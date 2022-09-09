@@ -92,16 +92,30 @@ pub const IID_IWSDAddress = &IID_IWSDAddress_Value;
 pub const IWSDAddress = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Serialize: fn(
-            self: *const IWSDAddress,
-            pszBuffer: [*:0]u16,
-            cchLength: u32,
-            fSafe: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Deserialize: fn(
-            self: *const IWSDAddress,
-            pszBuffer: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Serialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDAddress,
+                pszBuffer: [*:0]u16,
+                cchLength: u32,
+                fSafe: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDAddress,
+                pszBuffer: [*:0]u16,
+                cchLength: u32,
+                fSafe: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Deserialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDAddress,
+                pszBuffer: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDAddress,
+                pszBuffer: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -124,27 +138,58 @@ pub const IID_IWSDTransportAddress = &IID_IWSDTransportAddress_Value;
 pub const IWSDTransportAddress = extern struct {
     pub const VTable = extern struct {
         base: IWSDAddress.VTable,
-        GetPort: fn(
-            self: *const IWSDTransportAddress,
-            pwPort: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPort: fn(
-            self: *const IWSDTransportAddress,
-            wPort: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTransportAddress: fn(
-            self: *const IWSDTransportAddress,
-            ppszAddress: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTransportAddressEx: fn(
-            self: *const IWSDTransportAddress,
-            fSafe: BOOL,
-            ppszAddress: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTransportAddress: fn(
-            self: *const IWSDTransportAddress,
-            pszAddress: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPort: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDTransportAddress,
+                pwPort: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDTransportAddress,
+                pwPort: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPort: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDTransportAddress,
+                wPort: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDTransportAddress,
+                wPort: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetTransportAddress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDTransportAddress,
+                ppszAddress: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDTransportAddress,
+                ppszAddress: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetTransportAddressEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDTransportAddress,
+                fSafe: BOOL,
+                ppszAddress: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDTransportAddress,
+                fSafe: BOOL,
+                ppszAddress: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetTransportAddress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDTransportAddress,
+                pszAddress: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDTransportAddress,
+                pszAddress: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -179,26 +224,56 @@ pub const IID_IWSDMessageParameters = &IID_IWSDMessageParameters_Value;
 pub const IWSDMessageParameters = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetLocalAddress: fn(
-            self: *const IWSDMessageParameters,
-            ppAddress: ?*?*IWSDAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLocalAddress: fn(
-            self: *const IWSDMessageParameters,
-            pAddress: ?*IWSDAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRemoteAddress: fn(
-            self: *const IWSDMessageParameters,
-            ppAddress: ?*?*IWSDAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRemoteAddress: fn(
-            self: *const IWSDMessageParameters,
-            pAddress: ?*IWSDAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLowerParameters: fn(
-            self: *const IWSDMessageParameters,
-            ppTxParams: ?*?*IWSDMessageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocalAddress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDMessageParameters,
+                ppAddress: ?*?*IWSDAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDMessageParameters,
+                ppAddress: ?*?*IWSDAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetLocalAddress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDMessageParameters,
+                pAddress: ?*IWSDAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDMessageParameters,
+                pAddress: ?*IWSDAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRemoteAddress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDMessageParameters,
+                ppAddress: ?*?*IWSDAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDMessageParameters,
+                ppAddress: ?*?*IWSDAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetRemoteAddress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDMessageParameters,
+                pAddress: ?*IWSDAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDMessageParameters,
+                pAddress: ?*IWSDAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLowerParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDMessageParameters,
+                ppTxParams: ?*?*IWSDMessageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDMessageParameters,
+                ppTxParams: ?*?*IWSDMessageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -241,14 +316,26 @@ pub const IID_IWSDUdpMessageParameters = &IID_IWSDUdpMessageParameters_Value;
 pub const IWSDUdpMessageParameters = extern struct {
     pub const VTable = extern struct {
         base: IWSDMessageParameters.VTable,
-        SetRetransmitParams: fn(
-            self: *const IWSDUdpMessageParameters,
-            pParams: ?*const WSDUdpRetransmitParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRetransmitParams: fn(
-            self: *const IWSDUdpMessageParameters,
-            pParams: ?*WSDUdpRetransmitParams,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRetransmitParams: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDUdpMessageParameters,
+                pParams: ?*const WSDUdpRetransmitParams,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDUdpMessageParameters,
+                pParams: ?*const WSDUdpRetransmitParams,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRetransmitParams: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDUdpMessageParameters,
+                pParams: ?*WSDUdpRetransmitParams,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDUdpMessageParameters,
+                pParams: ?*WSDUdpRetransmitParams,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -278,45 +365,104 @@ pub const IID_IWSDUdpAddress = &IID_IWSDUdpAddress_Value;
 pub const IWSDUdpAddress = extern struct {
     pub const VTable = extern struct {
         base: IWSDTransportAddress.VTable,
-        SetSockaddr: fn(
-            self: *const IWSDUdpAddress,
-            pSockAddr: ?*const SOCKADDR_STORAGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSockaddr: fn(
-            self: *const IWSDUdpAddress,
-            pSockAddr: ?*SOCKADDR_STORAGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetExclusive: fn(
-            self: *const IWSDUdpAddress,
-            fExclusive: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetExclusive: fn(
-            self: *const IWSDUdpAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMessageType: fn(
-            self: *const IWSDUdpAddress,
-            messageType: WSDUdpMessageType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMessageType: fn(
-            self: *const IWSDUdpAddress,
-            pMessageType: ?*WSDUdpMessageType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTTL: fn(
-            self: *const IWSDUdpAddress,
-            dwTTL: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTTL: fn(
-            self: *const IWSDUdpAddress,
-            pdwTTL: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAlias: fn(
-            self: *const IWSDUdpAddress,
-            pAlias: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAlias: fn(
-            self: *const IWSDUdpAddress,
-            pAlias: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSockaddr: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDUdpAddress,
+                pSockAddr: ?*const SOCKADDR_STORAGE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDUdpAddress,
+                pSockAddr: ?*const SOCKADDR_STORAGE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSockaddr: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDUdpAddress,
+                pSockAddr: ?*SOCKADDR_STORAGE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDUdpAddress,
+                pSockAddr: ?*SOCKADDR_STORAGE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetExclusive: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDUdpAddress,
+                fExclusive: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDUdpAddress,
+                fExclusive: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetExclusive: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDUdpAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDUdpAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetMessageType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDUdpAddress,
+                messageType: WSDUdpMessageType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDUdpAddress,
+                messageType: WSDUdpMessageType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMessageType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDUdpAddress,
+                pMessageType: ?*WSDUdpMessageType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDUdpAddress,
+                pMessageType: ?*WSDUdpMessageType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetTTL: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDUdpAddress,
+                dwTTL: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDUdpAddress,
+                dwTTL: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetTTL: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDUdpAddress,
+                pdwTTL: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDUdpAddress,
+                pdwTTL: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAlias: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDUdpAddress,
+                pAlias: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDUdpAddress,
+                pAlias: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAlias: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDUdpAddress,
+                pAlias: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDUdpAddress,
+                pAlias: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -371,41 +517,94 @@ pub const IID_IWSDHttpMessageParameters = &IID_IWSDHttpMessageParameters_Value;
 pub const IWSDHttpMessageParameters = extern struct {
     pub const VTable = extern struct {
         base: IWSDMessageParameters.VTable,
-        SetInboundHttpHeaders: fn(
-            self: *const IWSDHttpMessageParameters,
-            pszHeaders: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInboundHttpHeaders: fn(
-            self: *const IWSDHttpMessageParameters,
-            ppszHeaders: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOutboundHttpHeaders: fn(
-            self: *const IWSDHttpMessageParameters,
-            pszHeaders: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutboundHttpHeaders: fn(
-            self: *const IWSDHttpMessageParameters,
-            ppszHeaders: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetID: fn(
-            self: *const IWSDHttpMessageParameters,
-            pszId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetID: fn(
-            self: *const IWSDHttpMessageParameters,
-            ppszId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetContext: fn(
-            self: *const IWSDHttpMessageParameters,
-            pContext: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetContext: fn(
-            self: *const IWSDHttpMessageParameters,
-            ppContext: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clear: fn(
-            self: *const IWSDHttpMessageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetInboundHttpHeaders: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpMessageParameters,
+                pszHeaders: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpMessageParameters,
+                pszHeaders: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInboundHttpHeaders: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpMessageParameters,
+                ppszHeaders: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpMessageParameters,
+                ppszHeaders: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOutboundHttpHeaders: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpMessageParameters,
+                pszHeaders: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpMessageParameters,
+                pszHeaders: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutboundHttpHeaders: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpMessageParameters,
+                ppszHeaders: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpMessageParameters,
+                ppszHeaders: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpMessageParameters,
+                pszId: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpMessageParameters,
+                pszId: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpMessageParameters,
+                ppszId: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpMessageParameters,
+                ppszId: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetContext: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpMessageParameters,
+                pContext: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpMessageParameters,
+                pContext: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetContext: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpMessageParameters,
+                ppContext: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpMessageParameters,
+                ppContext: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clear: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpMessageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpMessageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -456,21 +655,44 @@ pub const IID_IWSDHttpAddress = &IID_IWSDHttpAddress_Value;
 pub const IWSDHttpAddress = extern struct {
     pub const VTable = extern struct {
         base: IWSDTransportAddress.VTable,
-        GetSecure: fn(
-            self: *const IWSDHttpAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSecure: fn(
-            self: *const IWSDHttpAddress,
-            fSecure: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPath: fn(
-            self: *const IWSDHttpAddress,
-            ppszPath: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPath: fn(
-            self: *const IWSDHttpAddress,
-            pszPath: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSecure: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpAddress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetSecure: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpAddress,
+                fSecure: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpAddress,
+                fSecure: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPath: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpAddress,
+                ppszPath: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpAddress,
+                ppszPath: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPath: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpAddress,
+                pszPath: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpAddress,
+                pszPath: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -501,14 +723,26 @@ pub const IID_IWSDSSLClientCertificate = &IID_IWSDSSLClientCertificate_Value;
 pub const IWSDSSLClientCertificate = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClientCertificate: fn(
-            self: *const IWSDSSLClientCertificate,
-            ppCertContext: ?*?*CERT_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMappedAccessToken: fn(
-            self: *const IWSDSSLClientCertificate,
-            phToken: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClientCertificate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDSSLClientCertificate,
+                ppCertContext: ?*?*CERT_CONTEXT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDSSLClientCertificate,
+                ppCertContext: ?*?*CERT_CONTEXT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMappedAccessToken: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDSSLClientCertificate,
+                phToken: ?*?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDSSLClientCertificate,
+                phToken: ?*?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -531,14 +765,26 @@ pub const IID_IWSDHttpAuthParameters = &IID_IWSDHttpAuthParameters_Value;
 pub const IWSDHttpAuthParameters = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClientAccessToken: fn(
-            self: *const IWSDHttpAuthParameters,
-            phToken: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAuthType: fn(
-            self: *const IWSDHttpAuthParameters,
-            pAuthType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClientAccessToken: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpAuthParameters,
+                phToken: ?*?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpAuthParameters,
+                phToken: ?*?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAuthType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDHttpAuthParameters,
+                pAuthType: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDHttpAuthParameters,
+                pAuthType: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -561,32 +807,68 @@ pub const IID_IWSDSignatureProperty = &IID_IWSDSignatureProperty_Value;
 pub const IWSDSignatureProperty = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsMessageSigned: fn(
-            self: *const IWSDSignatureProperty,
-            pbSigned: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsMessageSignatureTrusted: fn(
-            self: *const IWSDSignatureProperty,
-            pbSignatureTrusted: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKeyInfo: fn(
-            self: *const IWSDSignatureProperty,
-            // TODO: what to do with BytesParamIndex 1?
-            pbKeyInfo: ?*u8,
-            pdwKeyInfoSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSignature: fn(
-            self: *const IWSDSignatureProperty,
-            // TODO: what to do with BytesParamIndex 1?
-            pbSignature: ?*u8,
-            pdwSignatureSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSignedInfoHash: fn(
-            self: *const IWSDSignatureProperty,
-            // TODO: what to do with BytesParamIndex 1?
-            pbSignedInfoHash: ?*u8,
-            pdwHashSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsMessageSigned: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDSignatureProperty,
+                pbSigned: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDSignatureProperty,
+                pbSigned: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsMessageSignatureTrusted: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDSignatureProperty,
+                pbSignatureTrusted: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDSignatureProperty,
+                pbSignatureTrusted: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetKeyInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDSignatureProperty,
+                // TODO: what to do with BytesParamIndex 1?
+                pbKeyInfo: ?*u8,
+                pdwKeyInfoSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDSignatureProperty,
+                // TODO: what to do with BytesParamIndex 1?
+                pbKeyInfo: ?*u8,
+                pdwKeyInfoSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSignature: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDSignatureProperty,
+                // TODO: what to do with BytesParamIndex 1?
+                pbSignature: ?*u8,
+                pdwSignatureSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDSignatureProperty,
+                // TODO: what to do with BytesParamIndex 1?
+                pbSignature: ?*u8,
+                pdwSignatureSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSignedInfoHash: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDSignatureProperty,
+                // TODO: what to do with BytesParamIndex 1?
+                pbSignedInfoHash: ?*u8,
+                pdwHashSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDSignatureProperty,
+                // TODO: what to do with BytesParamIndex 1?
+                pbSignedInfoHash: ?*u8,
+                pdwHashSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -635,18 +917,36 @@ pub const IID_IWSDOutboundAttachment = &IID_IWSDOutboundAttachment_Value;
 pub const IWSDOutboundAttachment = extern struct {
     pub const VTable = extern struct {
         base: IWSDAttachment.VTable,
-        Write: fn(
-            self: *const IWSDOutboundAttachment,
-            pBuffer: [*:0]const u8,
-            dwBytesToWrite: u32,
-            pdwNumberOfBytesWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IWSDOutboundAttachment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Abort: fn(
-            self: *const IWSDOutboundAttachment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Write: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDOutboundAttachment,
+                pBuffer: [*:0]const u8,
+                dwBytesToWrite: u32,
+                pdwNumberOfBytesWritten: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDOutboundAttachment,
+                pBuffer: [*:0]const u8,
+                dwBytesToWrite: u32,
+                pdwNumberOfBytesWritten: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDOutboundAttachment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDOutboundAttachment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Abort: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDOutboundAttachment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDOutboundAttachment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -673,15 +973,28 @@ pub const IID_IWSDInboundAttachment = &IID_IWSDInboundAttachment_Value;
 pub const IWSDInboundAttachment = extern struct {
     pub const VTable = extern struct {
         base: IWSDAttachment.VTable,
-        Read: fn(
-            self: *const IWSDInboundAttachment,
-            pBuffer: [*:0]u8,
-            dwBytesToRead: u32,
-            pdwNumberOfBytesRead: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IWSDInboundAttachment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Read: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDInboundAttachment,
+                pBuffer: [*:0]u8,
+                dwBytesToRead: u32,
+                pdwNumberOfBytesRead: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDInboundAttachment,
+                pBuffer: [*:0]u8,
+                dwBytesToRead: u32,
+                pdwNumberOfBytesRead: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDInboundAttachment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDInboundAttachment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -827,30 +1140,62 @@ pub const IID_IWSDXMLContext = &IID_IWSDXMLContext_Value;
 pub const IWSDXMLContext = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddNamespace: fn(
-            self: *const IWSDXMLContext,
-            pszUri: ?[*:0]const u16,
-            pszSuggestedPrefix: ?[*:0]const u16,
-            ppNamespace: ?*?*WSDXML_NAMESPACE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddNameToNamespace: fn(
-            self: *const IWSDXMLContext,
-            pszUri: ?[*:0]const u16,
-            pszName: ?[*:0]const u16,
-            ppName: ?*?*WSDXML_NAME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNamespaces: fn(
-            self: *const IWSDXMLContext,
-            pNamespaces: [*]const ?*const WSDXML_NAMESPACE,
-            wNamespacesCount: u16,
-            bLayerNumber: u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTypes: fn(
-            self: *const IWSDXMLContext,
-            pTypes: [*]const ?*const WSDXML_TYPE,
-            dwTypesCount: u32,
-            bLayerNumber: u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddNamespace: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDXMLContext,
+                pszUri: ?[*:0]const u16,
+                pszSuggestedPrefix: ?[*:0]const u16,
+                ppNamespace: ?*?*WSDXML_NAMESPACE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDXMLContext,
+                pszUri: ?[*:0]const u16,
+                pszSuggestedPrefix: ?[*:0]const u16,
+                ppNamespace: ?*?*WSDXML_NAMESPACE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddNameToNamespace: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDXMLContext,
+                pszUri: ?[*:0]const u16,
+                pszName: ?[*:0]const u16,
+                ppName: ?*?*WSDXML_NAME,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDXMLContext,
+                pszUri: ?[*:0]const u16,
+                pszName: ?[*:0]const u16,
+                ppName: ?*?*WSDXML_NAME,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNamespaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDXMLContext,
+                pNamespaces: [*]const ?*const WSDXML_NAMESPACE,
+                wNamespacesCount: u16,
+                bLayerNumber: u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDXMLContext,
+                pNamespaces: [*]const ?*const WSDXML_NAMESPACE,
+                wNamespacesCount: u16,
+                bLayerNumber: u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetTypes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDXMLContext,
+                pTypes: [*]const ?*const WSDXML_TYPE,
+                dwTypesCount: u32,
+                bLayerNumber: u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDXMLContext,
+                pTypes: [*]const ?*const WSDXML_TYPE,
+                dwTypesCount: u32,
+                bLayerNumber: u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -931,11 +1276,18 @@ pub const WSDXML_ELEMENT_LIST = extern struct {
     Element: ?*WSDXML_ELEMENT,
 };
 
-pub const WSD_STUB_FUNCTION = fn(
-    server: ?*IUnknown,
-    session: ?*IWSDServiceMessaging,
-    event: ?*WSD_EVENT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const WSD_STUB_FUNCTION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        server: ?*IUnknown,
+        session: ?*IWSDServiceMessaging,
+        event: ?*WSD_EVENT,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        server: ?*IUnknown,
+        session: ?*IWSDServiceMessaging,
+        event: ?*WSD_EVENT,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 pub const DeviceDiscoveryMechanism = enum(i32) {
     MulticastDiscovery = 0,
@@ -965,10 +1317,16 @@ pub const WSD_OPERATION = extern struct {
     RequestStubFunction: ?WSD_STUB_FUNCTION,
 };
 
-pub const PWSD_SOAP_MESSAGE_HANDLER = fn(
-    thisUnknown: ?*IUnknown,
-    event: ?*WSD_EVENT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PWSD_SOAP_MESSAGE_HANDLER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        thisUnknown: ?*IUnknown,
+        event: ?*WSD_EVENT,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        thisUnknown: ?*IUnknown,
+        event: ?*WSD_EVENT,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 pub const WSD_HANDLER_CONTEXT = extern struct {
     Handler: ?PWSD_SOAP_MESSAGE_HANDLER,
@@ -1306,38 +1664,84 @@ pub const IID_IWSDiscoveryProvider = &IID_IWSDiscoveryProvider_Value;
 pub const IWSDiscoveryProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAddressFamily: fn(
-            self: *const IWSDiscoveryProvider,
-            dwAddressFamily: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Attach: fn(
-            self: *const IWSDiscoveryProvider,
-            pSink: ?*IWSDiscoveryProviderNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Detach: fn(
-            self: *const IWSDiscoveryProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SearchById: fn(
-            self: *const IWSDiscoveryProvider,
-            pszId: ?[*:0]const u16,
-            pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SearchByAddress: fn(
-            self: *const IWSDiscoveryProvider,
-            pszAddress: ?[*:0]const u16,
-            pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SearchByType: fn(
-            self: *const IWSDiscoveryProvider,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pszMatchBy: ?[*:0]const u16,
-            pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetXMLContext: fn(
-            self: *const IWSDiscoveryProvider,
-            ppContext: ?*?*IWSDXMLContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAddressFamily: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryProvider,
+                dwAddressFamily: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryProvider,
+                dwAddressFamily: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Attach: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryProvider,
+                pSink: ?*IWSDiscoveryProviderNotify,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryProvider,
+                pSink: ?*IWSDiscoveryProviderNotify,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Detach: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryProvider,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryProvider,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SearchById: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryProvider,
+                pszId: ?[*:0]const u16,
+                pszTag: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryProvider,
+                pszId: ?[*:0]const u16,
+                pszTag: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SearchByAddress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryProvider,
+                pszAddress: ?[*:0]const u16,
+                pszTag: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryProvider,
+                pszAddress: ?[*:0]const u16,
+                pszTag: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SearchByType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryProvider,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pszMatchBy: ?[*:0]const u16,
+                pszTag: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryProvider,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pszMatchBy: ?[*:0]const u16,
+                pszTag: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetXMLContext: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryProvider,
+                ppContext: ?*?*IWSDXMLContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryProvider,
+                ppContext: ?*?*IWSDXMLContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1380,23 +1784,48 @@ pub const IID_IWSDiscoveryProviderNotify = &IID_IWSDiscoveryProviderNotify_Value
 pub const IWSDiscoveryProviderNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Add: fn(
-            self: *const IWSDiscoveryProviderNotify,
-            pService: ?*IWSDiscoveredService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
-            self: *const IWSDiscoveryProviderNotify,
-            pService: ?*IWSDiscoveredService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SearchFailed: fn(
-            self: *const IWSDiscoveryProviderNotify,
-            hr: HRESULT,
-            pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SearchComplete: fn(
-            self: *const IWSDiscoveryProviderNotify,
-            pszTag: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Add: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryProviderNotify,
+                pService: ?*IWSDiscoveredService,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryProviderNotify,
+                pService: ?*IWSDiscoveredService,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Remove: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryProviderNotify,
+                pService: ?*IWSDiscoveredService,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryProviderNotify,
+                pService: ?*IWSDiscoveredService,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SearchFailed: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryProviderNotify,
+                hr: HRESULT,
+                pszTag: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryProviderNotify,
+                hr: HRESULT,
+                pszTag: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SearchComplete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryProviderNotify,
+                pszTag: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryProviderNotify,
+                pszTag: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1427,51 +1856,118 @@ pub const IID_IWSDiscoveredService = &IID_IWSDiscoveredService_Value;
 pub const IWSDiscoveredService = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetEndpointReference: fn(
-            self: *const IWSDiscoveredService,
-            ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTypes: fn(
-            self: *const IWSDiscoveredService,
-            ppTypesList: ?*?*WSD_NAME_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScopes: fn(
-            self: *const IWSDiscoveredService,
-            ppScopesList: ?*?*WSD_URI_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetXAddrs: fn(
-            self: *const IWSDiscoveredService,
-            ppXAddrsList: ?*?*WSD_URI_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMetadataVersion: fn(
-            self: *const IWSDiscoveredService,
-            pullMetadataVersion: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetExtendedDiscoXML: fn(
-            self: *const IWSDiscoveredService,
-            ppHeaderAny: ?*?*WSDXML_ELEMENT,
-            ppBodyAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProbeResolveTag: fn(
-            self: *const IWSDiscoveredService,
-            ppszTag: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRemoteTransportAddress: fn(
-            self: *const IWSDiscoveredService,
-            ppszRemoteTransportAddress: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocalTransportAddress: fn(
-            self: *const IWSDiscoveredService,
-            ppszLocalTransportAddress: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocalInterfaceGUID: fn(
-            self: *const IWSDiscoveredService,
-            pGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInstanceId: fn(
-            self: *const IWSDiscoveredService,
-            pullInstanceId: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEndpointReference: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveredService,
+                ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveredService,
+                ppEndpointReference: ?*?*WSD_ENDPOINT_REFERENCE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetTypes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveredService,
+                ppTypesList: ?*?*WSD_NAME_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveredService,
+                ppTypesList: ?*?*WSD_NAME_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetScopes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveredService,
+                ppScopesList: ?*?*WSD_URI_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveredService,
+                ppScopesList: ?*?*WSD_URI_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetXAddrs: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveredService,
+                ppXAddrsList: ?*?*WSD_URI_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveredService,
+                ppXAddrsList: ?*?*WSD_URI_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMetadataVersion: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveredService,
+                pullMetadataVersion: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveredService,
+                pullMetadataVersion: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetExtendedDiscoXML: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveredService,
+                ppHeaderAny: ?*?*WSDXML_ELEMENT,
+                ppBodyAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveredService,
+                ppHeaderAny: ?*?*WSDXML_ELEMENT,
+                ppBodyAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProbeResolveTag: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveredService,
+                ppszTag: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveredService,
+                ppszTag: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRemoteTransportAddress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveredService,
+                ppszRemoteTransportAddress: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveredService,
+                ppszRemoteTransportAddress: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLocalTransportAddress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveredService,
+                ppszLocalTransportAddress: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveredService,
+                ppszLocalTransportAddress: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLocalInterfaceGUID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveredService,
+                pGuid: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveredService,
+                pGuid: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInstanceId: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveredService,
+                pullInstanceId: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveredService,
+                pullInstanceId: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1530,127 +2026,274 @@ pub const IID_IWSDiscoveryPublisher = &IID_IWSDiscoveryPublisher_Value;
 pub const IWSDiscoveryPublisher = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAddressFamily: fn(
-            self: *const IWSDiscoveryPublisher,
-            dwAddressFamily: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterNotificationSink: fn(
-            self: *const IWSDiscoveryPublisher,
-            pSink: ?*IWSDiscoveryPublisherNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnRegisterNotificationSink: fn(
-            self: *const IWSDiscoveryPublisher,
-            pSink: ?*IWSDiscoveryPublisherNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Publish: fn(
-            self: *const IWSDiscoveryPublisher,
-            pszId: ?[*:0]const u16,
-            ullMetadataVersion: u64,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pXAddrsList: ?*const WSD_URI_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnPublish: fn(
-            self: *const IWSDiscoveryPublisher,
-            pszId: ?[*:0]const u16,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchProbe: fn(
-            self: *const IWSDiscoveryPublisher,
-            pProbeMessage: ?*const WSD_SOAP_MESSAGE,
-            pMessageParameters: ?*IWSDMessageParameters,
-            pszId: ?[*:0]const u16,
-            ullMetadataVersion: u64,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pXAddrsList: ?*const WSD_URI_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchResolve: fn(
-            self: *const IWSDiscoveryPublisher,
-            pResolveMessage: ?*const WSD_SOAP_MESSAGE,
-            pMessageParameters: ?*IWSDMessageParameters,
-            pszId: ?[*:0]const u16,
-            ullMetadataVersion: u64,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pXAddrsList: ?*const WSD_URI_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PublishEx: fn(
-            self: *const IWSDiscoveryPublisher,
-            pszId: ?[*:0]const u16,
-            ullMetadataVersion: u64,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pXAddrsList: ?*const WSD_URI_LIST,
-            pHeaderAny: ?*const WSDXML_ELEMENT,
-            pReferenceParameterAny: ?*const WSDXML_ELEMENT,
-            pPolicyAny: ?*const WSDXML_ELEMENT,
-            pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
-            pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchProbeEx: fn(
-            self: *const IWSDiscoveryPublisher,
-            pProbeMessage: ?*const WSD_SOAP_MESSAGE,
-            pMessageParameters: ?*IWSDMessageParameters,
-            pszId: ?[*:0]const u16,
-            ullMetadataVersion: u64,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pXAddrsList: ?*const WSD_URI_LIST,
-            pHeaderAny: ?*const WSDXML_ELEMENT,
-            pReferenceParameterAny: ?*const WSDXML_ELEMENT,
-            pPolicyAny: ?*const WSDXML_ELEMENT,
-            pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
-            pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchResolveEx: fn(
-            self: *const IWSDiscoveryPublisher,
-            pResolveMessage: ?*const WSD_SOAP_MESSAGE,
-            pMessageParameters: ?*IWSDMessageParameters,
-            pszId: ?[*:0]const u16,
-            ullMetadataVersion: u64,
-            ullInstanceId: u64,
-            ullMessageNumber: u64,
-            pszSessionId: ?[*:0]const u16,
-            pTypesList: ?*const WSD_NAME_LIST,
-            pScopesList: ?*const WSD_URI_LIST,
-            pXAddrsList: ?*const WSD_URI_LIST,
-            pHeaderAny: ?*const WSDXML_ELEMENT,
-            pReferenceParameterAny: ?*const WSDXML_ELEMENT,
-            pPolicyAny: ?*const WSDXML_ELEMENT,
-            pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
-            pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterScopeMatchingRule: fn(
-            self: *const IWSDiscoveryPublisher,
-            pScopeMatchingRule: ?*IWSDScopeMatchingRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnRegisterScopeMatchingRule: fn(
-            self: *const IWSDiscoveryPublisher,
-            pScopeMatchingRule: ?*IWSDScopeMatchingRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetXMLContext: fn(
-            self: *const IWSDiscoveryPublisher,
-            ppContext: ?*?*IWSDXMLContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAddressFamily: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                dwAddressFamily: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                dwAddressFamily: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterNotificationSink: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                pSink: ?*IWSDiscoveryPublisherNotify,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                pSink: ?*IWSDiscoveryPublisherNotify,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnRegisterNotificationSink: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                pSink: ?*IWSDiscoveryPublisherNotify,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                pSink: ?*IWSDiscoveryPublisherNotify,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Publish: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                pszId: ?[*:0]const u16,
+                ullMetadataVersion: u64,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pXAddrsList: ?*const WSD_URI_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                pszId: ?[*:0]const u16,
+                ullMetadataVersion: u64,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pXAddrsList: ?*const WSD_URI_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnPublish: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                pszId: ?[*:0]const u16,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pAny: ?*const WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                pszId: ?[*:0]const u16,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pAny: ?*const WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        MatchProbe: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                pProbeMessage: ?*const WSD_SOAP_MESSAGE,
+                pMessageParameters: ?*IWSDMessageParameters,
+                pszId: ?[*:0]const u16,
+                ullMetadataVersion: u64,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pXAddrsList: ?*const WSD_URI_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                pProbeMessage: ?*const WSD_SOAP_MESSAGE,
+                pMessageParameters: ?*IWSDMessageParameters,
+                pszId: ?[*:0]const u16,
+                ullMetadataVersion: u64,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pXAddrsList: ?*const WSD_URI_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        MatchResolve: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                pResolveMessage: ?*const WSD_SOAP_MESSAGE,
+                pMessageParameters: ?*IWSDMessageParameters,
+                pszId: ?[*:0]const u16,
+                ullMetadataVersion: u64,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pXAddrsList: ?*const WSD_URI_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                pResolveMessage: ?*const WSD_SOAP_MESSAGE,
+                pMessageParameters: ?*IWSDMessageParameters,
+                pszId: ?[*:0]const u16,
+                ullMetadataVersion: u64,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pXAddrsList: ?*const WSD_URI_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PublishEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                pszId: ?[*:0]const u16,
+                ullMetadataVersion: u64,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pXAddrsList: ?*const WSD_URI_LIST,
+                pHeaderAny: ?*const WSDXML_ELEMENT,
+                pReferenceParameterAny: ?*const WSDXML_ELEMENT,
+                pPolicyAny: ?*const WSDXML_ELEMENT,
+                pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
+                pAny: ?*const WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                pszId: ?[*:0]const u16,
+                ullMetadataVersion: u64,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pXAddrsList: ?*const WSD_URI_LIST,
+                pHeaderAny: ?*const WSDXML_ELEMENT,
+                pReferenceParameterAny: ?*const WSDXML_ELEMENT,
+                pPolicyAny: ?*const WSDXML_ELEMENT,
+                pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
+                pAny: ?*const WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        MatchProbeEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                pProbeMessage: ?*const WSD_SOAP_MESSAGE,
+                pMessageParameters: ?*IWSDMessageParameters,
+                pszId: ?[*:0]const u16,
+                ullMetadataVersion: u64,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pXAddrsList: ?*const WSD_URI_LIST,
+                pHeaderAny: ?*const WSDXML_ELEMENT,
+                pReferenceParameterAny: ?*const WSDXML_ELEMENT,
+                pPolicyAny: ?*const WSDXML_ELEMENT,
+                pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
+                pAny: ?*const WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                pProbeMessage: ?*const WSD_SOAP_MESSAGE,
+                pMessageParameters: ?*IWSDMessageParameters,
+                pszId: ?[*:0]const u16,
+                ullMetadataVersion: u64,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pXAddrsList: ?*const WSD_URI_LIST,
+                pHeaderAny: ?*const WSDXML_ELEMENT,
+                pReferenceParameterAny: ?*const WSDXML_ELEMENT,
+                pPolicyAny: ?*const WSDXML_ELEMENT,
+                pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
+                pAny: ?*const WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        MatchResolveEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                pResolveMessage: ?*const WSD_SOAP_MESSAGE,
+                pMessageParameters: ?*IWSDMessageParameters,
+                pszId: ?[*:0]const u16,
+                ullMetadataVersion: u64,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pXAddrsList: ?*const WSD_URI_LIST,
+                pHeaderAny: ?*const WSDXML_ELEMENT,
+                pReferenceParameterAny: ?*const WSDXML_ELEMENT,
+                pPolicyAny: ?*const WSDXML_ELEMENT,
+                pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
+                pAny: ?*const WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                pResolveMessage: ?*const WSD_SOAP_MESSAGE,
+                pMessageParameters: ?*IWSDMessageParameters,
+                pszId: ?[*:0]const u16,
+                ullMetadataVersion: u64,
+                ullInstanceId: u64,
+                ullMessageNumber: u64,
+                pszSessionId: ?[*:0]const u16,
+                pTypesList: ?*const WSD_NAME_LIST,
+                pScopesList: ?*const WSD_URI_LIST,
+                pXAddrsList: ?*const WSD_URI_LIST,
+                pHeaderAny: ?*const WSDXML_ELEMENT,
+                pReferenceParameterAny: ?*const WSDXML_ELEMENT,
+                pPolicyAny: ?*const WSDXML_ELEMENT,
+                pEndpointReferenceAny: ?*const WSDXML_ELEMENT,
+                pAny: ?*const WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterScopeMatchingRule: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                pScopeMatchingRule: ?*IWSDScopeMatchingRule,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                pScopeMatchingRule: ?*IWSDScopeMatchingRule,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnRegisterScopeMatchingRule: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                pScopeMatchingRule: ?*IWSDScopeMatchingRule,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                pScopeMatchingRule: ?*IWSDScopeMatchingRule,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetXMLContext: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisher,
+                ppContext: ?*?*IWSDXMLContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisher,
+                ppContext: ?*?*IWSDXMLContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1717,16 +2360,30 @@ pub const IID_IWSDiscoveryPublisherNotify = &IID_IWSDiscoveryPublisherNotify_Val
 pub const IWSDiscoveryPublisherNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ProbeHandler: fn(
-            self: *const IWSDiscoveryPublisherNotify,
-            pSoap: ?*const WSD_SOAP_MESSAGE,
-            pMessageParameters: ?*IWSDMessageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ResolveHandler: fn(
-            self: *const IWSDiscoveryPublisherNotify,
-            pSoap: ?*const WSD_SOAP_MESSAGE,
-            pMessageParameters: ?*IWSDMessageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProbeHandler: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisherNotify,
+                pSoap: ?*const WSD_SOAP_MESSAGE,
+                pMessageParameters: ?*IWSDMessageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisherNotify,
+                pSoap: ?*const WSD_SOAP_MESSAGE,
+                pMessageParameters: ?*IWSDMessageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ResolveHandler: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDiscoveryPublisherNotify,
+                pSoap: ?*const WSD_SOAP_MESSAGE,
+                pMessageParameters: ?*IWSDMessageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDiscoveryPublisherNotify,
+                pSoap: ?*const WSD_SOAP_MESSAGE,
+                pMessageParameters: ?*IWSDMessageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1749,16 +2406,30 @@ pub const IID_IWSDScopeMatchingRule = &IID_IWSDScopeMatchingRule_Value;
 pub const IWSDScopeMatchingRule = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetScopeRule: fn(
-            self: *const IWSDScopeMatchingRule,
-            ppszScopeMatchingRule: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MatchScopes: fn(
-            self: *const IWSDScopeMatchingRule,
-            pszScope1: ?[*:0]const u16,
-            pszScope2: ?[*:0]const u16,
-            pfMatch: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScopeRule: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDScopeMatchingRule,
+                ppszScopeMatchingRule: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDScopeMatchingRule,
+                ppszScopeMatchingRule: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        MatchScopes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDScopeMatchingRule,
+                pszScope1: ?[*:0]const u16,
+                pszScope2: ?[*:0]const u16,
+                pfMatch: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDScopeMatchingRule,
+                pszScope1: ?[*:0]const u16,
+                pszScope2: ?[*:0]const u16,
+                pfMatch: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1781,41 +2452,90 @@ pub const IID_IWSDEndpointProxy = &IID_IWSDEndpointProxy_Value;
 pub const IWSDEndpointProxy = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SendOneWayRequest: fn(
-            self: *const IWSDEndpointProxy,
-            pBody: ?*const anyopaque,
-            pOperation: ?*const WSD_OPERATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SendTwoWayRequest: fn(
-            self: *const IWSDEndpointProxy,
-            pBody: ?*const anyopaque,
-            pOperation: ?*const WSD_OPERATION,
-            pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SendTwoWayRequestAsync: fn(
-            self: *const IWSDEndpointProxy,
-            pBody: ?*const anyopaque,
-            pOperation: ?*const WSD_OPERATION,
-            pAsyncState: ?*IUnknown,
-            pCallback: ?*IWSDAsyncCallback,
-            pResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AbortAsyncOperation: fn(
-            self: *const IWSDEndpointProxy,
-            pAsyncResult: ?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessFault: fn(
-            self: *const IWSDEndpointProxy,
-            pFault: ?*const WSD_SOAP_FAULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetErrorInfo: fn(
-            self: *const IWSDEndpointProxy,
-            ppszErrorInfo: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFaultInfo: fn(
-            self: *const IWSDEndpointProxy,
-            ppFault: ?*?*WSD_SOAP_FAULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendOneWayRequest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDEndpointProxy,
+                pBody: ?*const anyopaque,
+                pOperation: ?*const WSD_OPERATION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDEndpointProxy,
+                pBody: ?*const anyopaque,
+                pOperation: ?*const WSD_OPERATION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SendTwoWayRequest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDEndpointProxy,
+                pBody: ?*const anyopaque,
+                pOperation: ?*const WSD_OPERATION,
+                pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDEndpointProxy,
+                pBody: ?*const anyopaque,
+                pOperation: ?*const WSD_OPERATION,
+                pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SendTwoWayRequestAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDEndpointProxy,
+                pBody: ?*const anyopaque,
+                pOperation: ?*const WSD_OPERATION,
+                pAsyncState: ?*IUnknown,
+                pCallback: ?*IWSDAsyncCallback,
+                pResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDEndpointProxy,
+                pBody: ?*const anyopaque,
+                pOperation: ?*const WSD_OPERATION,
+                pAsyncState: ?*IUnknown,
+                pCallback: ?*IWSDAsyncCallback,
+                pResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AbortAsyncOperation: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDEndpointProxy,
+                pAsyncResult: ?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDEndpointProxy,
+                pAsyncResult: ?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ProcessFault: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDEndpointProxy,
+                pFault: ?*const WSD_SOAP_FAULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDEndpointProxy,
+                pFault: ?*const WSD_SOAP_FAULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetErrorInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDEndpointProxy,
+                ppszErrorInfo: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDEndpointProxy,
+                ppszErrorInfo: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFaultInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDEndpointProxy,
+                ppFault: ?*?*WSD_SOAP_FAULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDEndpointProxy,
+                ppFault: ?*?*WSD_SOAP_FAULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1858,10 +2578,16 @@ pub const IID_IWSDMetadataExchange = &IID_IWSDMetadataExchange_Value;
 pub const IWSDMetadataExchange = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetMetadata: fn(
-            self: *const IWSDMetadataExchange,
-            MetadataOut: ?*?*WSD_METADATA_SECTION_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMetadata: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDMetadataExchange,
+                MetadataOut: ?*?*WSD_METADATA_SECTION_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDMetadataExchange,
+                MetadataOut: ?*?*WSD_METADATA_SECTION_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1880,38 +2606,84 @@ pub const IID_IWSDServiceProxy = &IID_IWSDServiceProxy_Value;
 pub const IWSDServiceProxy = extern struct {
     pub const VTable = extern struct {
         base: IWSDMetadataExchange.VTable,
-        BeginGetMetadata: fn(
-            self: *const IWSDServiceProxy,
-            ppResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndGetMetadata: fn(
-            self: *const IWSDServiceProxy,
-            pResult: ?*IWSDAsyncResult,
-            ppMetadata: ?*?*WSD_METADATA_SECTION_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetServiceMetadata: fn(
-            self: *const IWSDServiceProxy,
-            ppServiceMetadata: ?*?*WSD_SERVICE_METADATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SubscribeToOperation: fn(
-            self: *const IWSDServiceProxy,
-            pOperation: ?*const WSD_OPERATION,
-            pUnknown: ?*IUnknown,
-            pAny: ?*const WSDXML_ELEMENT,
-            ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnsubscribeToOperation: fn(
-            self: *const IWSDServiceProxy,
-            pOperation: ?*const WSD_OPERATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEventingStatusCallback: fn(
-            self: *const IWSDServiceProxy,
-            pStatus: ?*IWSDEventingStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEndpointProxy: fn(
-            self: *const IWSDServiceProxy,
-            ppProxy: ?*?*IWSDEndpointProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginGetMetadata: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxy,
+                ppResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxy,
+                ppResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndGetMetadata: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxy,
+                pResult: ?*IWSDAsyncResult,
+                ppMetadata: ?*?*WSD_METADATA_SECTION_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxy,
+                pResult: ?*IWSDAsyncResult,
+                ppMetadata: ?*?*WSD_METADATA_SECTION_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetServiceMetadata: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxy,
+                ppServiceMetadata: ?*?*WSD_SERVICE_METADATA,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxy,
+                ppServiceMetadata: ?*?*WSD_SERVICE_METADATA,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SubscribeToOperation: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxy,
+                pOperation: ?*const WSD_OPERATION,
+                pUnknown: ?*IUnknown,
+                pAny: ?*const WSDXML_ELEMENT,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxy,
+                pOperation: ?*const WSD_OPERATION,
+                pUnknown: ?*IUnknown,
+                pAny: ?*const WSDXML_ELEMENT,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnsubscribeToOperation: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxy,
+                pOperation: ?*const WSD_OPERATION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxy,
+                pOperation: ?*const WSD_OPERATION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetEventingStatusCallback: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxy,
+                pStatus: ?*IWSDEventingStatus,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxy,
+                pStatus: ?*IWSDEventingStatus,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEndpointProxy: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxy,
+                ppProxy: ?*?*IWSDEndpointProxy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxy,
+                ppProxy: ?*?*IWSDEndpointProxy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1954,108 +2726,234 @@ pub const IID_IWSDServiceProxyEventing = &IID_IWSDServiceProxyEventing_Value;
 pub const IWSDServiceProxyEventing = extern struct {
     pub const VTable = extern struct {
         base: IWSDServiceProxy.VTable,
-        SubscribeToMultipleOperations: fn(
-            self: *const IWSDServiceProxyEventing,
-            pOperations: [*]const WSD_OPERATION,
-            dwOperationCount: u32,
-            pUnknown: ?*IUnknown,
-            pExpires: ?*const WSD_EVENTING_EXPIRES,
-            pAny: ?*const WSDXML_ELEMENT,
-            ppExpires: ?*?*WSD_EVENTING_EXPIRES,
-            ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginSubscribeToMultipleOperations: fn(
-            self: *const IWSDServiceProxyEventing,
-            pOperations: [*]const WSD_OPERATION,
-            dwOperationCount: u32,
-            pUnknown: ?*IUnknown,
-            pExpires: ?*const WSD_EVENTING_EXPIRES,
-            pAny: ?*const WSDXML_ELEMENT,
-            pAsyncState: ?*IUnknown,
-            pAsyncCallback: ?*IWSDAsyncCallback,
-            ppResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndSubscribeToMultipleOperations: fn(
-            self: *const IWSDServiceProxyEventing,
-            pOperations: [*]const WSD_OPERATION,
-            dwOperationCount: u32,
-            pResult: ?*IWSDAsyncResult,
-            ppExpires: ?*?*WSD_EVENTING_EXPIRES,
-            ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnsubscribeToMultipleOperations: fn(
-            self: *const IWSDServiceProxyEventing,
-            pOperations: [*]const WSD_OPERATION,
-            dwOperationCount: u32,
-            pAny: ?*const WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginUnsubscribeToMultipleOperations: fn(
-            self: *const IWSDServiceProxyEventing,
-            pOperations: [*]const WSD_OPERATION,
-            dwOperationCount: u32,
-            pAny: ?*const WSDXML_ELEMENT,
-            pAsyncState: ?*IUnknown,
-            pAsyncCallback: ?*IWSDAsyncCallback,
-            ppResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndUnsubscribeToMultipleOperations: fn(
-            self: *const IWSDServiceProxyEventing,
-            pOperations: [*]const WSD_OPERATION,
-            dwOperationCount: u32,
-            pResult: ?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RenewMultipleOperations: fn(
-            self: *const IWSDServiceProxyEventing,
-            pOperations: [*]const WSD_OPERATION,
-            dwOperationCount: u32,
-            pExpires: ?*const WSD_EVENTING_EXPIRES,
-            pAny: ?*const WSDXML_ELEMENT,
-            ppExpires: ?*?*WSD_EVENTING_EXPIRES,
-            ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginRenewMultipleOperations: fn(
-            self: *const IWSDServiceProxyEventing,
-            pOperations: [*]const WSD_OPERATION,
-            dwOperationCount: u32,
-            pExpires: ?*const WSD_EVENTING_EXPIRES,
-            pAny: ?*const WSDXML_ELEMENT,
-            pAsyncState: ?*IUnknown,
-            pAsyncCallback: ?*IWSDAsyncCallback,
-            ppResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndRenewMultipleOperations: fn(
-            self: *const IWSDServiceProxyEventing,
-            pOperations: [*]const WSD_OPERATION,
-            dwOperationCount: u32,
-            pResult: ?*IWSDAsyncResult,
-            ppExpires: ?*?*WSD_EVENTING_EXPIRES,
-            ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStatusForMultipleOperations: fn(
-            self: *const IWSDServiceProxyEventing,
-            pOperations: [*]const WSD_OPERATION,
-            dwOperationCount: u32,
-            pAny: ?*const WSDXML_ELEMENT,
-            ppExpires: ?*?*WSD_EVENTING_EXPIRES,
-            ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginGetStatusForMultipleOperations: fn(
-            self: *const IWSDServiceProxyEventing,
-            pOperations: [*]const WSD_OPERATION,
-            dwOperationCount: u32,
-            pAny: ?*const WSDXML_ELEMENT,
-            pAsyncState: ?*IUnknown,
-            pAsyncCallback: ?*IWSDAsyncCallback,
-            ppResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndGetStatusForMultipleOperations: fn(
-            self: *const IWSDServiceProxyEventing,
-            pOperations: [*]const WSD_OPERATION,
-            dwOperationCount: u32,
-            pResult: ?*IWSDAsyncResult,
-            ppExpires: ?*?*WSD_EVENTING_EXPIRES,
-            ppAny: ?*?*WSDXML_ELEMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SubscribeToMultipleOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pUnknown: ?*IUnknown,
+                pExpires: ?*const WSD_EVENTING_EXPIRES,
+                pAny: ?*const WSDXML_ELEMENT,
+                ppExpires: ?*?*WSD_EVENTING_EXPIRES,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pUnknown: ?*IUnknown,
+                pExpires: ?*const WSD_EVENTING_EXPIRES,
+                pAny: ?*const WSDXML_ELEMENT,
+                ppExpires: ?*?*WSD_EVENTING_EXPIRES,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BeginSubscribeToMultipleOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pUnknown: ?*IUnknown,
+                pExpires: ?*const WSD_EVENTING_EXPIRES,
+                pAny: ?*const WSDXML_ELEMENT,
+                pAsyncState: ?*IUnknown,
+                pAsyncCallback: ?*IWSDAsyncCallback,
+                ppResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pUnknown: ?*IUnknown,
+                pExpires: ?*const WSD_EVENTING_EXPIRES,
+                pAny: ?*const WSDXML_ELEMENT,
+                pAsyncState: ?*IUnknown,
+                pAsyncCallback: ?*IWSDAsyncCallback,
+                ppResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndSubscribeToMultipleOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pResult: ?*IWSDAsyncResult,
+                ppExpires: ?*?*WSD_EVENTING_EXPIRES,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pResult: ?*IWSDAsyncResult,
+                ppExpires: ?*?*WSD_EVENTING_EXPIRES,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnsubscribeToMultipleOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pAny: ?*const WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pAny: ?*const WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BeginUnsubscribeToMultipleOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pAny: ?*const WSDXML_ELEMENT,
+                pAsyncState: ?*IUnknown,
+                pAsyncCallback: ?*IWSDAsyncCallback,
+                ppResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pAny: ?*const WSDXML_ELEMENT,
+                pAsyncState: ?*IUnknown,
+                pAsyncCallback: ?*IWSDAsyncCallback,
+                ppResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndUnsubscribeToMultipleOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pResult: ?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pResult: ?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RenewMultipleOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pExpires: ?*const WSD_EVENTING_EXPIRES,
+                pAny: ?*const WSDXML_ELEMENT,
+                ppExpires: ?*?*WSD_EVENTING_EXPIRES,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pExpires: ?*const WSD_EVENTING_EXPIRES,
+                pAny: ?*const WSDXML_ELEMENT,
+                ppExpires: ?*?*WSD_EVENTING_EXPIRES,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BeginRenewMultipleOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pExpires: ?*const WSD_EVENTING_EXPIRES,
+                pAny: ?*const WSDXML_ELEMENT,
+                pAsyncState: ?*IUnknown,
+                pAsyncCallback: ?*IWSDAsyncCallback,
+                ppResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pExpires: ?*const WSD_EVENTING_EXPIRES,
+                pAny: ?*const WSDXML_ELEMENT,
+                pAsyncState: ?*IUnknown,
+                pAsyncCallback: ?*IWSDAsyncCallback,
+                ppResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndRenewMultipleOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pResult: ?*IWSDAsyncResult,
+                ppExpires: ?*?*WSD_EVENTING_EXPIRES,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pResult: ?*IWSDAsyncResult,
+                ppExpires: ?*?*WSD_EVENTING_EXPIRES,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStatusForMultipleOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pAny: ?*const WSDXML_ELEMENT,
+                ppExpires: ?*?*WSD_EVENTING_EXPIRES,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pAny: ?*const WSDXML_ELEMENT,
+                ppExpires: ?*?*WSD_EVENTING_EXPIRES,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BeginGetStatusForMultipleOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pAny: ?*const WSDXML_ELEMENT,
+                pAsyncState: ?*IUnknown,
+                pAsyncCallback: ?*IWSDAsyncCallback,
+                ppResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pAny: ?*const WSDXML_ELEMENT,
+                pAsyncState: ?*IUnknown,
+                pAsyncCallback: ?*IWSDAsyncCallback,
+                ppResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndGetStatusForMultipleOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pResult: ?*IWSDAsyncResult,
+                ppExpires: ?*?*WSD_EVENTING_EXPIRES,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceProxyEventing,
+                pOperations: [*]const WSD_OPERATION,
+                dwOperationCount: u32,
+                pResult: ?*IWSDAsyncResult,
+                ppExpires: ?*?*WSD_EVENTING_EXPIRES,
+                ppAny: ?*?*WSDXML_ELEMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2118,52 +3016,118 @@ pub const IID_IWSDDeviceProxy = &IID_IWSDDeviceProxy_Value;
 pub const IWSDDeviceProxy = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Init: fn(
-            self: *const IWSDDeviceProxy,
-            pszDeviceId: ?[*:0]const u16,
-            pDeviceAddress: ?*IWSDAddress,
-            pszLocalId: ?[*:0]const u16,
-            pContext: ?*IWSDXMLContext,
-            pSponsor: ?*IWSDDeviceProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginGetMetadata: fn(
-            self: *const IWSDDeviceProxy,
-            ppResult: ?*?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndGetMetadata: fn(
-            self: *const IWSDDeviceProxy,
-            pResult: ?*IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHostMetadata: fn(
-            self: *const IWSDDeviceProxy,
-            ppHostMetadata: ?*?*WSD_HOST_METADATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetThisModelMetadata: fn(
-            self: *const IWSDDeviceProxy,
-            ppManufacturerMetadata: ?*?*WSD_THIS_MODEL_METADATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetThisDeviceMetadata: fn(
-            self: *const IWSDDeviceProxy,
-            ppThisDeviceMetadata: ?*?*WSD_THIS_DEVICE_METADATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllMetadata: fn(
-            self: *const IWSDDeviceProxy,
-            ppMetadata: ?*?*WSD_METADATA_SECTION_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetServiceProxyById: fn(
-            self: *const IWSDDeviceProxy,
-            pszServiceId: ?[*:0]const u16,
-            ppServiceProxy: ?*?*IWSDServiceProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetServiceProxyByType: fn(
-            self: *const IWSDDeviceProxy,
-            pType: ?*const WSDXML_NAME,
-            ppServiceProxy: ?*?*IWSDServiceProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEndpointProxy: fn(
-            self: *const IWSDDeviceProxy,
-            ppProxy: ?*?*IWSDEndpointProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Init: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceProxy,
+                pszDeviceId: ?[*:0]const u16,
+                pDeviceAddress: ?*IWSDAddress,
+                pszLocalId: ?[*:0]const u16,
+                pContext: ?*IWSDXMLContext,
+                pSponsor: ?*IWSDDeviceProxy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceProxy,
+                pszDeviceId: ?[*:0]const u16,
+                pDeviceAddress: ?*IWSDAddress,
+                pszLocalId: ?[*:0]const u16,
+                pContext: ?*IWSDXMLContext,
+                pSponsor: ?*IWSDDeviceProxy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BeginGetMetadata: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceProxy,
+                ppResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceProxy,
+                ppResult: ?*?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndGetMetadata: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceProxy,
+                pResult: ?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceProxy,
+                pResult: ?*IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetHostMetadata: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceProxy,
+                ppHostMetadata: ?*?*WSD_HOST_METADATA,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceProxy,
+                ppHostMetadata: ?*?*WSD_HOST_METADATA,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetThisModelMetadata: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceProxy,
+                ppManufacturerMetadata: ?*?*WSD_THIS_MODEL_METADATA,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceProxy,
+                ppManufacturerMetadata: ?*?*WSD_THIS_MODEL_METADATA,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetThisDeviceMetadata: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceProxy,
+                ppThisDeviceMetadata: ?*?*WSD_THIS_DEVICE_METADATA,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceProxy,
+                ppThisDeviceMetadata: ?*?*WSD_THIS_DEVICE_METADATA,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllMetadata: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceProxy,
+                ppMetadata: ?*?*WSD_METADATA_SECTION_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceProxy,
+                ppMetadata: ?*?*WSD_METADATA_SECTION_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetServiceProxyById: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceProxy,
+                pszServiceId: ?[*:0]const u16,
+                ppServiceProxy: ?*?*IWSDServiceProxy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceProxy,
+                pszServiceId: ?[*:0]const u16,
+                ppServiceProxy: ?*?*IWSDServiceProxy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetServiceProxyByType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceProxy,
+                pType: ?*const WSDXML_NAME,
+                ppServiceProxy: ?*?*IWSDServiceProxy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceProxy,
+                pType: ?*const WSDXML_NAME,
+                ppServiceProxy: ?*?*IWSDServiceProxy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEndpointProxy: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceProxy,
+                ppProxy: ?*?*IWSDEndpointProxy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceProxy,
+                ppProxy: ?*?*IWSDEndpointProxy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2218,33 +3182,74 @@ pub const IID_IWSDAsyncResult = &IID_IWSDAsyncResult_Value;
 pub const IWSDAsyncResult = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetCallback: fn(
-            self: *const IWSDAsyncResult,
-            pCallback: ?*IWSDAsyncCallback,
-            pAsyncState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetWaitHandle: fn(
-            self: *const IWSDAsyncResult,
-            hWaitHandle: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HasCompleted: fn(
-            self: *const IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAsyncState: fn(
-            self: *const IWSDAsyncResult,
-            ppAsyncState: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Abort: fn(
-            self: *const IWSDAsyncResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEvent: fn(
-            self: *const IWSDAsyncResult,
-            pEvent: ?*WSD_EVENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEndpointProxy: fn(
-            self: *const IWSDAsyncResult,
-            ppEndpoint: ?*?*IWSDEndpointProxy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCallback: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDAsyncResult,
+                pCallback: ?*IWSDAsyncCallback,
+                pAsyncState: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDAsyncResult,
+                pCallback: ?*IWSDAsyncCallback,
+                pAsyncState: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetWaitHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDAsyncResult,
+                hWaitHandle: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDAsyncResult,
+                hWaitHandle: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HasCompleted: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAsyncState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDAsyncResult,
+                ppAsyncState: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDAsyncResult,
+                ppAsyncState: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Abort: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDAsyncResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEvent: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDAsyncResult,
+                pEvent: ?*WSD_EVENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDAsyncResult,
+                pEvent: ?*WSD_EVENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEndpointProxy: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDAsyncResult,
+                ppEndpoint: ?*?*IWSDEndpointProxy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDAsyncResult,
+                ppEndpoint: ?*?*IWSDEndpointProxy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2287,11 +3292,18 @@ pub const IID_IWSDAsyncCallback = &IID_IWSDAsyncCallback_Value;
 pub const IWSDAsyncCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AsyncOperationComplete: fn(
-            self: *const IWSDAsyncCallback,
-            pAsyncResult: ?*IWSDAsyncResult,
-            pAsyncState: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AsyncOperationComplete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDAsyncCallback,
+                pAsyncResult: ?*IWSDAsyncResult,
+                pAsyncState: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDAsyncCallback,
+                pAsyncResult: ?*IWSDAsyncResult,
+                pAsyncState: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2310,19 +3322,38 @@ pub const IID_IWSDEventingStatus = &IID_IWSDEventingStatus_Value;
 pub const IWSDEventingStatus = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SubscriptionRenewed: fn(
-            self: *const IWSDEventingStatus,
-            pszSubscriptionAction: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        SubscriptionRenewalFailed: fn(
-            self: *const IWSDEventingStatus,
-            pszSubscriptionAction: ?[*:0]const u16,
-            hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        SubscriptionEnded: fn(
-            self: *const IWSDEventingStatus,
-            pszSubscriptionAction: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        SubscriptionRenewed: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDEventingStatus,
+                pszSubscriptionAction: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) void,
+            else => *const fn(
+                self: *const IWSDEventingStatus,
+                pszSubscriptionAction: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) void,
+        },
+        SubscriptionRenewalFailed: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDEventingStatus,
+                pszSubscriptionAction: ?[*:0]const u16,
+                hr: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) void,
+            else => *const fn(
+                self: *const IWSDEventingStatus,
+                pszSubscriptionAction: ?[*:0]const u16,
+                hr: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) void,
+        },
+        SubscriptionEnded: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDEventingStatus,
+                pszSubscriptionAction: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) void,
+            else => *const fn(
+                self: *const IWSDEventingStatus,
+                pszSubscriptionAction: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) void,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2349,69 +3380,156 @@ pub const IID_IWSDDeviceHost = &IID_IWSDDeviceHost_Value;
 pub const IWSDDeviceHost = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Init: fn(
-            self: *const IWSDDeviceHost,
-            pszLocalId: ?[*:0]const u16,
-            pContext: ?*IWSDXMLContext,
-            ppHostAddresses: ?[*]?*IWSDAddress,
-            dwHostAddressCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Start: fn(
-            self: *const IWSDDeviceHost,
-            ullInstanceId: u64,
-            pScopeList: ?*const WSD_URI_LIST,
-            pNotificationSink: ?*IWSDDeviceHostNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Stop: fn(
-            self: *const IWSDDeviceHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Terminate: fn(
-            self: *const IWSDDeviceHost,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterPortType: fn(
-            self: *const IWSDDeviceHost,
-            pPortType: ?*const WSD_PORT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMetadata: fn(
-            self: *const IWSDDeviceHost,
-            pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA,
-            pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA,
-            pHostMetadata: ?*const WSD_HOST_METADATA,
-            pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterService: fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-            pService: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RetireService: fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddDynamicService: fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-            pszEndpointAddress: ?[*:0]const u16,
-            pPortType: ?*const WSD_PORT_TYPE,
-            pPortName: ?*const WSDXML_NAME,
-            pAny: ?*const WSDXML_ELEMENT,
-            pService: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveDynamicService: fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetServiceDiscoverable: fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-            fDiscoverable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SignalEvent: fn(
-            self: *const IWSDDeviceHost,
-            pszServiceId: ?[*:0]const u16,
-            pBody: ?*const anyopaque,
-            pOperation: ?*const WSD_OPERATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Init: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHost,
+                pszLocalId: ?[*:0]const u16,
+                pContext: ?*IWSDXMLContext,
+                ppHostAddresses: ?[*]?*IWSDAddress,
+                dwHostAddressCount: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHost,
+                pszLocalId: ?[*:0]const u16,
+                pContext: ?*IWSDXMLContext,
+                ppHostAddresses: ?[*]?*IWSDAddress,
+                dwHostAddressCount: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Start: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHost,
+                ullInstanceId: u64,
+                pScopeList: ?*const WSD_URI_LIST,
+                pNotificationSink: ?*IWSDDeviceHostNotify,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHost,
+                ullInstanceId: u64,
+                pScopeList: ?*const WSD_URI_LIST,
+                pNotificationSink: ?*IWSDDeviceHostNotify,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Stop: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHost,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHost,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Terminate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHost,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHost,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterPortType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHost,
+                pPortType: ?*const WSD_PORT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHost,
+                pPortType: ?*const WSD_PORT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetMetadata: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHost,
+                pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA,
+                pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA,
+                pHostMetadata: ?*const WSD_HOST_METADATA,
+                pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHost,
+                pThisModelMetadata: ?*const WSD_THIS_MODEL_METADATA,
+                pThisDeviceMetadata: ?*const WSD_THIS_DEVICE_METADATA,
+                pHostMetadata: ?*const WSD_HOST_METADATA,
+                pCustomMetadata: ?*const WSD_METADATA_SECTION_LIST,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterService: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHost,
+                pszServiceId: ?[*:0]const u16,
+                pService: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHost,
+                pszServiceId: ?[*:0]const u16,
+                pService: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RetireService: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHost,
+                pszServiceId: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHost,
+                pszServiceId: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddDynamicService: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHost,
+                pszServiceId: ?[*:0]const u16,
+                pszEndpointAddress: ?[*:0]const u16,
+                pPortType: ?*const WSD_PORT_TYPE,
+                pPortName: ?*const WSDXML_NAME,
+                pAny: ?*const WSDXML_ELEMENT,
+                pService: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHost,
+                pszServiceId: ?[*:0]const u16,
+                pszEndpointAddress: ?[*:0]const u16,
+                pPortType: ?*const WSD_PORT_TYPE,
+                pPortName: ?*const WSDXML_NAME,
+                pAny: ?*const WSDXML_ELEMENT,
+                pService: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveDynamicService: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHost,
+                pszServiceId: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHost,
+                pszServiceId: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetServiceDiscoverable: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHost,
+                pszServiceId: ?[*:0]const u16,
+                fDiscoverable: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHost,
+                pszServiceId: ?[*:0]const u16,
+                fDiscoverable: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SignalEvent: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHost,
+                pszServiceId: ?[*:0]const u16,
+                pBody: ?*const anyopaque,
+                pOperation: ?*const WSD_OPERATION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHost,
+                pszServiceId: ?[*:0]const u16,
+                pBody: ?*const anyopaque,
+                pOperation: ?*const WSD_OPERATION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2474,11 +3592,18 @@ pub const IID_IWSDDeviceHostNotify = &IID_IWSDDeviceHostNotify_Value;
 pub const IWSDDeviceHostNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetService: fn(
-            self: *const IWSDDeviceHostNotify,
-            pszServiceId: ?[*:0]const u16,
-            ppService: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetService: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDDeviceHostNotify,
+                pszServiceId: ?[*:0]const u16,
+                ppService: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDDeviceHostNotify,
+                pszServiceId: ?[*:0]const u16,
+                ppService: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2497,18 +3622,34 @@ pub const IID_IWSDServiceMessaging = &IID_IWSDServiceMessaging_Value;
 pub const IWSDServiceMessaging = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SendResponse: fn(
-            self: *const IWSDServiceMessaging,
-            pBody: ?*anyopaque,
-            pOperation: ?*WSD_OPERATION,
-            pMessageParameters: ?*IWSDMessageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FaultRequest: fn(
-            self: *const IWSDServiceMessaging,
-            pRequestHeader: ?*WSD_SOAP_HEADER,
-            pMessageParameters: ?*IWSDMessageParameters,
-            pFault: ?*WSD_SOAP_FAULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendResponse: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceMessaging,
+                pBody: ?*anyopaque,
+                pOperation: ?*WSD_OPERATION,
+                pMessageParameters: ?*IWSDMessageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceMessaging,
+                pBody: ?*anyopaque,
+                pOperation: ?*WSD_OPERATION,
+                pMessageParameters: ?*IWSDMessageParameters,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FaultRequest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWSDServiceMessaging,
+                pRequestHeader: ?*WSD_SOAP_HEADER,
+                pMessageParameters: ?*IWSDMessageParameters,
+                pFault: ?*WSD_SOAP_FAULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWSDServiceMessaging,
+                pRequestHeader: ?*WSD_SOAP_HEADER,
+                pMessageParameters: ?*IWSDMessageParameters,
+                pFault: ?*WSD_SOAP_FAULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

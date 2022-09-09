@@ -1376,16 +1376,30 @@ pub const IID_IEnumEnhancedStorageACT = &IID_IEnumEnhancedStorageACT_Value;
 pub const IEnumEnhancedStorageACT = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetACTs: fn(
-            self: *const IEnumEnhancedStorageACT,
-            pppIEnhancedStorageACTs: [*]?*?*IEnhancedStorageACT,
-            pcEnhancedStorageACTs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMatchingACT: fn(
-            self: *const IEnumEnhancedStorageACT,
-            szVolume: ?[*:0]const u16,
-            ppIEnhancedStorageACT: ?*?*IEnhancedStorageACT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetACTs: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumEnhancedStorageACT,
+                pppIEnhancedStorageACTs: [*]?*?*IEnhancedStorageACT,
+                pcEnhancedStorageACTs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumEnhancedStorageACT,
+                pppIEnhancedStorageACTs: [*]?*?*IEnhancedStorageACT,
+                pcEnhancedStorageACTs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMatchingACT: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumEnhancedStorageACT,
+                szVolume: ?[*:0]const u16,
+                ppIEnhancedStorageACT: ?*?*IEnhancedStorageACT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumEnhancedStorageACT,
+                szVolume: ?[*:0]const u16,
+                ppIEnhancedStorageACT: ?*?*IEnhancedStorageACT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1408,31 +1422,68 @@ pub const IID_IEnhancedStorageACT = &IID_IEnhancedStorageACT_Value;
 pub const IEnhancedStorageACT = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Authorize: fn(
-            self: *const IEnhancedStorageACT,
-            hwndParent: u32,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unauthorize: fn(
-            self: *const IEnhancedStorageACT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAuthorizationState: fn(
-            self: *const IEnhancedStorageACT,
-            pState: ?*ACT_AUTHORIZATION_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMatchingVolume: fn(
-            self: *const IEnhancedStorageACT,
-            ppwszVolume: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUniqueIdentity: fn(
-            self: *const IEnhancedStorageACT,
-            ppwszIdentity: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSilos: fn(
-            self: *const IEnhancedStorageACT,
-            pppIEnhancedStorageSilos: [*]?*?*IEnhancedStorageSilo,
-            pcEnhancedStorageSilos: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Authorize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageACT,
+                hwndParent: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageACT,
+                hwndParent: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unauthorize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageACT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageACT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAuthorizationState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageACT,
+                pState: ?*ACT_AUTHORIZATION_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageACT,
+                pState: ?*ACT_AUTHORIZATION_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMatchingVolume: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageACT,
+                ppwszVolume: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageACT,
+                ppwszVolume: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetUniqueIdentity: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageACT,
+                ppwszIdentity: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageACT,
+                ppwszIdentity: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSilos: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageACT,
+                pppIEnhancedStorageSilos: [*]?*?*IEnhancedStorageSilo,
+                pcEnhancedStorageSilos: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageACT,
+                pppIEnhancedStorageSilos: [*]?*?*IEnhancedStorageSilo,
+                pcEnhancedStorageSilos: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1471,14 +1522,26 @@ pub const IID_IEnhancedStorageACT2 = &IID_IEnhancedStorageACT2_Value;
 pub const IEnhancedStorageACT2 = extern struct {
     pub const VTable = extern struct {
         base: IEnhancedStorageACT.VTable,
-        GetDeviceName: fn(
-            self: *const IEnhancedStorageACT2,
-            ppwszDeviceName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsDeviceRemovable: fn(
-            self: *const IEnhancedStorageACT2,
-            pIsDeviceRemovable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageACT2,
+                ppwszDeviceName: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageACT2,
+                ppwszDeviceName: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsDeviceRemovable: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageACT2,
+                pIsDeviceRemovable: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageACT2,
+                pIsDeviceRemovable: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1500,18 +1563,36 @@ pub const IID_IEnhancedStorageACT3 = &IID_IEnhancedStorageACT3_Value;
 pub const IEnhancedStorageACT3 = extern struct {
     pub const VTable = extern struct {
         base: IEnhancedStorageACT2.VTable,
-        UnauthorizeEx: fn(
-            self: *const IEnhancedStorageACT3,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsQueueFrozen: fn(
-            self: *const IEnhancedStorageACT3,
-            pIsQueueFrozen: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetShellExtSupport: fn(
-            self: *const IEnhancedStorageACT3,
-            pShellExtSupport: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnauthorizeEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageACT3,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageACT3,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsQueueFrozen: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageACT3,
+                pIsQueueFrozen: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageACT3,
+                pIsQueueFrozen: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetShellExtSupport: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageACT3,
+                pShellExtSupport: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageACT3,
+                pShellExtSupport: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1538,31 +1619,66 @@ pub const IID_IEnhancedStorageSilo = &IID_IEnhancedStorageSilo_Value;
 pub const IEnhancedStorageSilo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetInfo: fn(
-            self: *const IEnhancedStorageSilo,
-            pSiloInfo: ?*SILO_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetActions: fn(
-            self: *const IEnhancedStorageSilo,
-            pppIEnhancedStorageSiloActions: [*]?*?*IEnhancedStorageSiloAction,
-            pcEnhancedStorageSiloActions: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SendCommand: fn(
-            self: *const IEnhancedStorageSilo,
-            Command: u8,
-            pbCommandBuffer: [*:0]u8,
-            cbCommandBuffer: u32,
-            pbResponseBuffer: [*:0]u8,
-            pcbResponseBuffer: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPortableDevice: fn(
-            self: *const IEnhancedStorageSilo,
-            ppIPortableDevice: ?*?*IPortableDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDevicePath: fn(
-            self: *const IEnhancedStorageSilo,
-            ppwszSiloDevicePath: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageSilo,
+                pSiloInfo: ?*SILO_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageSilo,
+                pSiloInfo: ?*SILO_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetActions: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageSilo,
+                pppIEnhancedStorageSiloActions: [*]?*?*IEnhancedStorageSiloAction,
+                pcEnhancedStorageSiloActions: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageSilo,
+                pppIEnhancedStorageSiloActions: [*]?*?*IEnhancedStorageSiloAction,
+                pcEnhancedStorageSiloActions: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SendCommand: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageSilo,
+                Command: u8,
+                pbCommandBuffer: [*:0]u8,
+                cbCommandBuffer: u32,
+                pbResponseBuffer: [*:0]u8,
+                pcbResponseBuffer: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageSilo,
+                Command: u8,
+                pbCommandBuffer: [*:0]u8,
+                cbCommandBuffer: u32,
+                pbResponseBuffer: [*:0]u8,
+                pcbResponseBuffer: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPortableDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageSilo,
+                ppIPortableDevice: ?*?*IPortableDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageSilo,
+                ppIPortableDevice: ?*?*IPortableDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDevicePath: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageSilo,
+                ppwszSiloDevicePath: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageSilo,
+                ppwszSiloDevicePath: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1597,17 +1713,34 @@ pub const IID_IEnhancedStorageSiloAction = &IID_IEnhancedStorageSiloAction_Value
 pub const IEnhancedStorageSiloAction = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetName: fn(
-            self: *const IEnhancedStorageSiloAction,
-            ppwszActionName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDescription: fn(
-            self: *const IEnhancedStorageSiloAction,
-            ppwszActionDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Invoke: fn(
-            self: *const IEnhancedStorageSiloAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageSiloAction,
+                ppwszActionName: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageSiloAction,
+                ppwszActionName: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageSiloAction,
+                ppwszActionDescription: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageSiloAction,
+                ppwszActionDescription: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Invoke: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnhancedStorageSiloAction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnhancedStorageSiloAction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

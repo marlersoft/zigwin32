@@ -24,14 +24,25 @@ pub const ICW_USEDEFAULTS = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (2)
 //--------------------------------------------------------------------------------
-pub const PFNCHECKCONNECTIONWIZARD = fn(
-    param0: u32,
-    param1: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PFNCHECKCONNECTIONWIZARD = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: u32,
+        param1: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: u32,
+        param1: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PFNSETSHELLNEXT = fn(
-    param0: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PFNSETSHELLNEXT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?PSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?PSTR,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 
 //--------------------------------------------------------------------------------

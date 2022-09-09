@@ -3534,49 +3534,99 @@ pub const RASTERIZER_STATUS = extern struct {
     nLanguageID: i16,
 };
 
-pub const FONTENUMPROCA = fn(
-    param0: ?*const LOGFONTA,
-    param1: ?*const TEXTMETRICA,
-    param2: u32,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const FONTENUMPROCA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*const LOGFONTA,
+        param1: ?*const TEXTMETRICA,
+        param2: u32,
+        param3: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?*const LOGFONTA,
+        param1: ?*const TEXTMETRICA,
+        param2: u32,
+        param3: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const FONTENUMPROCW = fn(
-    param0: ?*const LOGFONTW,
-    param1: ?*const TEXTMETRICW,
-    param2: u32,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const FONTENUMPROCW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*const LOGFONTW,
+        param1: ?*const TEXTMETRICW,
+        param2: u32,
+        param3: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?*const LOGFONTW,
+        param1: ?*const TEXTMETRICW,
+        param2: u32,
+        param3: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const GOBJENUMPROC = fn(
-    param0: ?*anyopaque,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const GOBJENUMPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const LINEDDAPROC = fn(
-    param0: i32,
-    param1: i32,
-    param2: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const LINEDDAPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: i32,
+        param1: i32,
+        param2: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        param0: i32,
+        param1: i32,
+        param2: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const LPFNDEVMODE = fn(
-    param0: ?HWND,
-    param1: ?HINSTANCE,
-    param2: ?*DEVMODEA,
-    param3: ?PSTR,
-    param4: ?PSTR,
-    param5: ?*DEVMODEA,
-    param6: ?PSTR,
-    param7: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPFNDEVMODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HWND,
+        param1: ?HINSTANCE,
+        param2: ?*DEVMODEA,
+        param3: ?PSTR,
+        param4: ?PSTR,
+        param5: ?*DEVMODEA,
+        param6: ?PSTR,
+        param7: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?HWND,
+        param1: ?HINSTANCE,
+        param2: ?*DEVMODEA,
+        param3: ?PSTR,
+        param4: ?PSTR,
+        param5: ?*DEVMODEA,
+        param6: ?PSTR,
+        param7: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPFNDEVCAPS = fn(
-    param0: ?PSTR,
-    param1: ?PSTR,
-    param2: u32,
-    param3: ?PSTR,
-    param4: ?*DEVMODEA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPFNDEVCAPS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?PSTR,
+        param1: ?PSTR,
+        param2: u32,
+        param3: ?PSTR,
+        param4: ?*DEVMODEA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?PSTR,
+        param1: ?PSTR,
+        param2: u32,
+        param3: ?PSTR,
+        param4: ?*DEVMODEA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const WCRANGE = extern struct {
     wcLow: u16,
@@ -3658,21 +3708,39 @@ pub const BLENDFUNCTION = extern struct {
     AlphaFormat: u8,
 };
 
-pub const MFENUMPROC = fn(
-    hdc: ?HDC,
-    lpht: [*]HANDLETABLE,
-    lpMR: ?*METARECORD,
-    nObj: i32,
-    param4: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const MFENUMPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hdc: ?HDC,
+        lpht: [*]HANDLETABLE,
+        lpMR: ?*METARECORD,
+        nObj: i32,
+        param4: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hdc: ?HDC,
+        lpht: [*]HANDLETABLE,
+        lpMR: ?*METARECORD,
+        nObj: i32,
+        param4: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const ENHMFENUMPROC = fn(
-    hdc: ?HDC,
-    lpht: [*]HANDLETABLE,
-    lpmr: ?*const ENHMETARECORD,
-    nHandles: i32,
-    data: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const ENHMFENUMPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hdc: ?HDC,
+        lpht: [*]HANDLETABLE,
+        lpmr: ?*const ENHMETARECORD,
+        nHandles: i32,
+        data: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        hdc: ?HDC,
+        lpht: [*]HANDLETABLE,
+        lpmr: ?*const ENHMETARECORD,
+        nHandles: i32,
+        data: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
 pub const DIBSECTION = extern struct {
     dsBm: BITMAP,
@@ -4281,30 +4349,60 @@ pub const WGLSWAP = extern struct {
     uiFlags: u32,
 };
 
-pub const CFP_ALLOCPROC = fn(
-    param0: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub const CFP_ALLOCPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: usize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+    else => *const fn(
+        param0: usize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+} ;
 
-pub const CFP_REALLOCPROC = fn(
-    param0: ?*anyopaque,
-    param1: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub const CFP_REALLOCPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: usize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: usize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+} ;
 
-pub const CFP_FREEPROC = fn(
-    param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const CFP_FREEPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        param0: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const READEMBEDPROC = fn(
-    param0: ?*anyopaque,
-    param1: ?*anyopaque,
-    param2: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const READEMBEDPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*anyopaque,
+        param2: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*anyopaque,
+        param2: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const WRITEEMBEDPROC = fn(
-    param0: ?*anyopaque,
-    param1: ?*const anyopaque,
-    param2: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const WRITEEMBEDPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*const anyopaque,
+        param2: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*const anyopaque,
+        param2: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const TTLOADINFO = extern struct {
     usStructSize: u16,
@@ -4338,19 +4436,35 @@ pub const TTVALIDATIONTESTSPARAMSEX = extern struct {
     pulCharCodeSet: ?*u32,
 };
 
-pub const GRAYSTRINGPROC = fn(
-    param0: ?HDC,
-    param1: LPARAM,
-    param2: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const GRAYSTRINGPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HDC,
+        param1: LPARAM,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?HDC,
+        param1: LPARAM,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const DRAWSTATEPROC = fn(
-    hdc: ?HDC,
-    lData: LPARAM,
-    wData: WPARAM,
-    cx: i32,
-    cy: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const DRAWSTATEPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hdc: ?HDC,
+        lData: LPARAM,
+        wData: WPARAM,
+        cx: i32,
+        cy: i32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hdc: ?HDC,
+        lData: LPARAM,
+        wData: WPARAM,
+        cx: i32,
+        cy: i32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 pub const PAINTSTRUCT = extern struct {
     hdc: ?HDC,
@@ -4386,12 +4500,20 @@ pub const MONITORINFOEXW = extern struct {
     szDevice: [32]u16,
 };
 
-pub const MONITORENUMPROC = fn(
-    param0: ?HMONITOR,
-    param1: ?HDC,
-    param2: ?*RECT,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const MONITORENUMPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HMONITOR,
+        param1: ?HDC,
+        param2: ?*RECT,
+        param3: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?HMONITOR,
+        param1: ?HDC,
+        param2: ?*RECT,
+        param3: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 
 //--------------------------------------------------------------------------------

@@ -15,9 +15,14 @@ pub const IID_IInkCommitRequestHandler = &IID_IInkCommitRequestHandler_Value;
 pub const IInkCommitRequestHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnCommitRequested: fn(
-            self: *const IInkCommitRequestHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnCommitRequested: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInkCommitRequestHandler,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInkCommitRequestHandler,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -36,28 +41,60 @@ pub const IID_IInkPresenterDesktop = &IID_IInkPresenterDesktop_Value;
 pub const IInkPresenterDesktop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetRootVisual: fn(
-            self: *const IInkPresenterDesktop,
-            rootVisual: ?*IUnknown,
-            device: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCommitRequestHandler: fn(
-            self: *const IInkPresenterDesktop,
-            handler: ?*IInkCommitRequestHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSize: fn(
-            self: *const IInkPresenterDesktop,
-            width: ?*f32,
-            height: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSize: fn(
-            self: *const IInkPresenterDesktop,
-            width: f32,
-            height: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnHighContrastChanged: fn(
-            self: *const IInkPresenterDesktop,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRootVisual: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInkPresenterDesktop,
+                rootVisual: ?*IUnknown,
+                device: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInkPresenterDesktop,
+                rootVisual: ?*IUnknown,
+                device: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetCommitRequestHandler: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInkPresenterDesktop,
+                handler: ?*IInkCommitRequestHandler,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInkPresenterDesktop,
+                handler: ?*IInkCommitRequestHandler,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInkPresenterDesktop,
+                width: ?*f32,
+                height: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInkPresenterDesktop,
+                width: ?*f32,
+                height: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInkPresenterDesktop,
+                width: f32,
+                height: f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInkPresenterDesktop,
+                width: f32,
+                height: f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnHighContrastChanged: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInkPresenterDesktop,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInkPresenterDesktop,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -92,9 +129,14 @@ pub const IID_IInkHostWorkItem = &IID_IInkHostWorkItem_Value;
 pub const IInkHostWorkItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Invoke: fn(
-            self: *const IInkHostWorkItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Invoke: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInkHostWorkItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInkHostWorkItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -113,23 +155,46 @@ pub const IID_IInkDesktopHost = &IID_IInkDesktopHost_Value;
 pub const IInkDesktopHost = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        QueueWorkItem: fn(
-            self: *const IInkDesktopHost,
-            workItem: ?*IInkHostWorkItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateInkPresenter: fn(
-            self: *const IInkDesktopHost,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateAndInitializeInkPresenter: fn(
-            self: *const IInkDesktopHost,
-            rootVisual: ?*IUnknown,
-            width: f32,
-            height: f32,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueueWorkItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInkDesktopHost,
+                workItem: ?*IInkHostWorkItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInkDesktopHost,
+                workItem: ?*IInkHostWorkItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateInkPresenter: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInkDesktopHost,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInkDesktopHost,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateAndInitializeInkPresenter: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInkDesktopHost,
+                rootVisual: ?*IUnknown,
+                width: f32,
+                height: f32,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInkDesktopHost,
+                rootVisual: ?*IUnknown,
+                width: f32,
+                height: f32,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -168,12 +233,20 @@ pub const IID_IInkD2DRenderer = &IID_IInkD2DRenderer_Value;
 pub const IInkD2DRenderer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Draw: fn(
-            self: *const IInkD2DRenderer,
-            pD2D1DeviceContext: ?*IUnknown,
-            pInkStrokeIterable: ?*IUnknown,
-            fHighContrast: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Draw: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInkD2DRenderer,
+                pD2D1DeviceContext: ?*IUnknown,
+                pInkStrokeIterable: ?*IUnknown,
+                fHighContrast: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInkD2DRenderer,
+                pD2D1DeviceContext: ?*IUnknown,
+                pInkStrokeIterable: ?*IUnknown,
+                fHighContrast: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -191,12 +264,20 @@ pub const IID_IInkD2DRenderer2 = &IID_IInkD2DRenderer2_Value;
 pub const IInkD2DRenderer2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Draw: fn(
-            self: *const IInkD2DRenderer2,
-            pD2D1DeviceContext: ?*IUnknown,
-            pInkStrokeIterable: ?*IUnknown,
-            highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Draw: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInkD2DRenderer2,
+                pD2D1DeviceContext: ?*IUnknown,
+                pInkStrokeIterable: ?*IUnknown,
+                highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInkD2DRenderer2,
+                pD2D1DeviceContext: ?*IUnknown,
+                pInkStrokeIterable: ?*IUnknown,
+                highContrastAdjustment: INK_HIGH_CONTRAST_ADJUSTMENT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

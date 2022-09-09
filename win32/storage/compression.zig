@@ -24,15 +24,27 @@ pub const COMPRESS_ALGORITHM_LZMS = COMPRESS_ALGORITHM.LZMS;
 // TODO: this type has a FreeFunc 'CloseDecompressor', what can Zig do with this information?
 pub const COMPRESSOR_HANDLE = isize;
 
-pub const PFN_COMPRESS_ALLOCATE = fn(
-    UserContext: ?*anyopaque,
-    Size: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub const PFN_COMPRESS_ALLOCATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        UserContext: ?*anyopaque,
+        Size: usize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+    else => *const fn(
+        UserContext: ?*anyopaque,
+        Size: usize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+} ;
 
-pub const PFN_COMPRESS_FREE = fn(
-    UserContext: ?*anyopaque,
-    Memory: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_COMPRESS_FREE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        UserContext: ?*anyopaque,
+        Memory: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        UserContext: ?*anyopaque,
+        Memory: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const COMPRESS_ALLOCATION_ROUTINES = extern struct {
     Allocate: ?PFN_COMPRESS_ALLOCATE,

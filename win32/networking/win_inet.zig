@@ -1299,13 +1299,22 @@ pub const INTERNET_BUFFERSW = extern struct {
     dwOffsetHigh: u32,
 };
 
-pub const LPINTERNET_STATUS_CALLBACK = fn(
-    hInternet: ?*anyopaque,
-    dwContext: usize,
-    dwInternetStatus: u32,
-    lpvStatusInformation: ?*anyopaque,
-    dwStatusInformationLength: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const LPINTERNET_STATUS_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hInternet: ?*anyopaque,
+        dwContext: usize,
+        dwInternetStatus: u32,
+        lpvStatusInformation: ?*anyopaque,
+        dwStatusInformationLength: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        hInternet: ?*anyopaque,
+        dwContext: usize,
+        dwInternetStatus: u32,
+        lpvStatusInformation: ?*anyopaque,
+        dwStatusInformationLength: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const InternetCookieState = enum(i32) {
     UNKNOWN = 0,
@@ -1473,10 +1482,16 @@ pub const GOPHER_ATTRIBUTE_TYPE = extern struct {
     },
 };
 
-pub const GOPHER_ATTRIBUTE_ENUMERATOR = fn(
-    lpAttributeInfo: ?*GOPHER_ATTRIBUTE_TYPE,
-    dwError: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const GOPHER_ATTRIBUTE_ENUMERATOR = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpAttributeInfo: ?*GOPHER_ATTRIBUTE_TYPE,
+        dwError: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        lpAttributeInfo: ?*GOPHER_ATTRIBUTE_TYPE,
+        dwError: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 pub const INTERNET_COOKIE2 = extern struct {
     pwszName: ?PWSTR,
@@ -1488,11 +1503,18 @@ pub const INTERNET_COOKIE2 = extern struct {
     fExpiresSet: BOOL,
 };
 
-pub const PFN_AUTH_NOTIFY = fn(
-    param0: usize,
-    param1: u32,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PFN_AUTH_NOTIFY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: usize,
+        param1: u32,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: usize,
+        param1: u32,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const INTERNET_AUTH_NOTIFY_DATA = extern struct {
     cbStruct: u32,
@@ -1592,27 +1614,52 @@ pub const AutoProxyHelperFunctions = extern struct {
     lpVtbl: ?*const AutoProxyHelperVtbl,
 };
 
-pub const pfnInternetInitializeAutoProxyDll = fn(
-    dwVersion: u32,
-    lpszDownloadedTempFile: ?PSTR,
-    lpszMime: ?PSTR,
-    lpAutoProxyCallbacks: ?*AutoProxyHelperFunctions,
-    lpAutoProxyScriptBuffer: ?*AUTO_PROXY_SCRIPT_BUFFER,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const pfnInternetInitializeAutoProxyDll = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        dwVersion: u32,
+        lpszDownloadedTempFile: ?PSTR,
+        lpszMime: ?PSTR,
+        lpAutoProxyCallbacks: ?*AutoProxyHelperFunctions,
+        lpAutoProxyScriptBuffer: ?*AUTO_PROXY_SCRIPT_BUFFER,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        dwVersion: u32,
+        lpszDownloadedTempFile: ?PSTR,
+        lpszMime: ?PSTR,
+        lpAutoProxyCallbacks: ?*AutoProxyHelperFunctions,
+        lpAutoProxyScriptBuffer: ?*AUTO_PROXY_SCRIPT_BUFFER,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const pfnInternetDeInitializeAutoProxyDll = fn(
-    lpszMime: ?PSTR,
-    dwReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const pfnInternetDeInitializeAutoProxyDll = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszMime: ?PSTR,
+        dwReserved: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        lpszMime: ?PSTR,
+        dwReserved: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const pfnInternetGetProxyInfo = fn(
-    lpszUrl: ?[*:0]const u8,
-    dwUrlLength: u32,
-    lpszUrlHostName: ?PSTR,
-    dwUrlHostNameLength: u32,
-    lplpszProxyHostName: ?*?PSTR,
-    lpdwProxyHostNameLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const pfnInternetGetProxyInfo = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpszUrl: ?[*:0]const u8,
+        dwUrlLength: u32,
+        lpszUrlHostName: ?PSTR,
+        dwUrlHostNameLength: u32,
+        lplpszProxyHostName: ?*?PSTR,
+        lpdwProxyHostNameLength: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        lpszUrl: ?[*:0]const u8,
+        dwUrlLength: u32,
+        lpszUrlHostName: ?PSTR,
+        dwUrlHostNameLength: u32,
+        lplpszProxyHostName: ?*?PSTR,
+        lpdwProxyHostNameLength: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 pub const WPAD_CACHE_DELETE = enum(i32) {
     CURRENT = 0,
@@ -1621,23 +1668,38 @@ pub const WPAD_CACHE_DELETE = enum(i32) {
 pub const WPAD_CACHE_DELETE_CURRENT = WPAD_CACHE_DELETE.CURRENT;
 pub const WPAD_CACHE_DELETE_ALL = WPAD_CACHE_DELETE.ALL;
 
-pub const PFN_DIAL_HANDLER = fn(
-    param0: ?HWND,
-    param1: ?[*:0]const u8,
-    param2: u32,
-    param3: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PFN_DIAL_HANDLER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HWND,
+        param1: ?[*:0]const u8,
+        param2: u32,
+        param3: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?HWND,
+        param1: ?[*:0]const u8,
+        param2: u32,
+        param3: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 const IID_IDialEventSink_Value = Guid.initString("2d86f4ff-6e2d-4488-b2e9-6934afd41bea");
 pub const IID_IDialEventSink = &IID_IDialEventSink_Value;
 pub const IDialEventSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnEvent: fn(
-            self: *const IDialEventSink,
-            dwEvent: u32,
-            dwStatus: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnEvent: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDialEventSink,
+                dwEvent: u32,
+                dwStatus: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDialEventSink,
+                dwEvent: u32,
+                dwStatus: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1655,36 +1717,80 @@ pub const IID_IDialEngine = &IID_IDialEngine_Value;
 pub const IDialEngine = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IDialEngine,
-            pwzConnectoid: ?[*:0]const u16,
-            pIDES: ?*IDialEventSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
-            self: *const IDialEngine,
-            pwzProperty: ?[*:0]const u16,
-            pwzValue: ?PWSTR,
-            dwBufSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
-            self: *const IDialEngine,
-            pwzProperty: ?[*:0]const u16,
-            pwzValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Dial: fn(
-            self: *const IDialEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HangUp: fn(
-            self: *const IDialEngine,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetConnectedState: fn(
-            self: *const IDialEngine,
-            pdwState: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetConnectHandle: fn(
-            self: *const IDialEngine,
-            pdwHandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDialEngine,
+                pwzConnectoid: ?[*:0]const u16,
+                pIDES: ?*IDialEventSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDialEngine,
+                pwzConnectoid: ?[*:0]const u16,
+                pIDES: ?*IDialEventSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDialEngine,
+                pwzProperty: ?[*:0]const u16,
+                pwzValue: ?PWSTR,
+                dwBufSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDialEngine,
+                pwzProperty: ?[*:0]const u16,
+                pwzValue: ?PWSTR,
+                dwBufSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDialEngine,
+                pwzProperty: ?[*:0]const u16,
+                pwzValue: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDialEngine,
+                pwzProperty: ?[*:0]const u16,
+                pwzValue: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Dial: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDialEngine,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDialEngine,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HangUp: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDialEngine,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDialEngine,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetConnectedState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDialEngine,
+                pdwState: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDialEngine,
+                pdwState: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetConnectHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDialEngine,
+                pdwHandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDialEngine,
+                pdwHandle: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1726,15 +1832,28 @@ pub const IID_IDialBranding = &IID_IDialBranding_Value;
 pub const IDialBranding = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IDialBranding,
-            pwzConnectoid: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBitmap: fn(
-            self: *const IDialBranding,
-            dwIndex: u32,
-            phBitmap: ?*?HBITMAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDialBranding,
+                pwzConnectoid: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDialBranding,
+                pwzConnectoid: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBitmap: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDialBranding,
+                dwIndex: u32,
+                phBitmap: ?*?HBITMAP,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDialBranding,
+                dwIndex: u32,
+                phBitmap: ?*?HBITMAP,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2062,11 +2181,18 @@ pub const WININET_PROXY_INFO_LIST = extern struct {
     pProxyInfo: ?*WININET_PROXY_INFO,
 };
 
-pub const CACHE_OPERATOR = fn(
-    pcei: ?*INTERNET_CACHE_ENTRY_INFOA,
-    pcbcei: ?*u32,
-    pOpData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const CACHE_OPERATOR = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pcei: ?*INTERNET_CACHE_ENTRY_INFOA,
+        pcbcei: ?*u32,
+        pOpData: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pcei: ?*INTERNET_CACHE_ENTRY_INFOA,
+        pcbcei: ?*u32,
+        pOpData: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 pub const HTTP_WEB_SOCKET_OPERATION = enum(i32) {
     SEND_OPERATION = 0,
@@ -2142,16 +2268,29 @@ pub const HTTP_POLICY_EXTENSION_VERSION = enum(i32) {
 };
 pub const POLICY_EXTENSION_VERSION1 = HTTP_POLICY_EXTENSION_VERSION.@"1";
 
-pub const HTTP_POLICY_EXTENSION_INIT = fn(
-    Version: HTTP_POLICY_EXTENSION_VERSION,
-    Type: HTTP_POLICY_EXTENSION_TYPE,
-    pvData: ?*anyopaque,
-    cbData: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const HTTP_POLICY_EXTENSION_INIT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Version: HTTP_POLICY_EXTENSION_VERSION,
+        Type: HTTP_POLICY_EXTENSION_TYPE,
+        pvData: ?*anyopaque,
+        cbData: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Version: HTTP_POLICY_EXTENSION_VERSION,
+        Type: HTTP_POLICY_EXTENSION_TYPE,
+        pvData: ?*anyopaque,
+        cbData: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const HTTP_POLICY_EXTENSION_SHUTDOWN = fn(
-    Type: HTTP_POLICY_EXTENSION_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const HTTP_POLICY_EXTENSION_SHUTDOWN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Type: HTTP_POLICY_EXTENSION_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Type: HTTP_POLICY_EXTENSION_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 const CLSID_ProofOfPossessionCookieInfoManager_Value = Guid.initString("a9927f85-a304-4390-8b23-a75f1c668600");
 pub const CLSID_ProofOfPossessionCookieInfoManager = &CLSID_ProofOfPossessionCookieInfoManager_Value;
@@ -2168,12 +2307,20 @@ pub const IID_IProofOfPossessionCookieInfoManager = &IID_IProofOfPossessionCooki
 pub const IProofOfPossessionCookieInfoManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCookieInfoForUri: fn(
-            self: *const IProofOfPossessionCookieInfoManager,
-            uri: ?[*:0]const u16,
-            cookieInfoCount: ?*u32,
-            cookieInfo: [*]?*ProofOfPossessionCookieInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCookieInfoForUri: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IProofOfPossessionCookieInfoManager,
+                uri: ?[*:0]const u16,
+                cookieInfoCount: ?*u32,
+                cookieInfo: [*]?*ProofOfPossessionCookieInfo,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IProofOfPossessionCookieInfoManager,
+                uri: ?[*:0]const u16,
+                cookieInfoCount: ?*u32,
+                cookieInfo: [*]?*ProofOfPossessionCookieInfo,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2191,13 +2338,22 @@ pub const IID_IProofOfPossessionCookieInfoManager2 = &IID_IProofOfPossessionCook
 pub const IProofOfPossessionCookieInfoManager2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCookieInfoWithUriForAccount: fn(
-            self: *const IProofOfPossessionCookieInfoManager2,
-            webAccount: ?*IInspectable,
-            uri: ?[*:0]const u16,
-            cookieInfoCount: ?*u32,
-            cookieInfo: [*]?*ProofOfPossessionCookieInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCookieInfoWithUriForAccount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IProofOfPossessionCookieInfoManager2,
+                webAccount: ?*IInspectable,
+                uri: ?[*:0]const u16,
+                cookieInfoCount: ?*u32,
+                cookieInfo: [*]?*ProofOfPossessionCookieInfo,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IProofOfPossessionCookieInfoManager2,
+                webAccount: ?*IInspectable,
+                uri: ?[*:0]const u16,
+                cookieInfoCount: ?*u32,
+                cookieInfo: [*]?*ProofOfPossessionCookieInfo,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

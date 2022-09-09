@@ -6419,11 +6419,18 @@ pub const VOLUME_GET_GPT_ATTRIBUTES_INFORMATION = extern struct {
     GptAttributes: u64,
 };
 
-pub const PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK = fn(
-    SourceContext: ?*IO_IRP_EXT_TRACK_OFFSET_HEADER,
-    TargetContext: ?*IO_IRP_EXT_TRACK_OFFSET_HEADER,
-    RelativeOffset: i64,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        SourceContext: ?*IO_IRP_EXT_TRACK_OFFSET_HEADER,
+        TargetContext: ?*IO_IRP_EXT_TRACK_OFFSET_HEADER,
+        RelativeOffset: i64,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        SourceContext: ?*IO_IRP_EXT_TRACK_OFFSET_HEADER,
+        TargetContext: ?*IO_IRP_EXT_TRACK_OFFSET_HEADER,
+        RelativeOffset: i64,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const IO_IRP_EXT_TRACK_OFFSET_HEADER = extern struct {
     Validation: u16,

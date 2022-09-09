@@ -982,11 +982,18 @@ pub const MIB_INVERTEDIFSTACK_TABLE = extern struct {
     Table: [1]MIB_INVERTEDIFSTACK_ROW,
 };
 
-pub const PIPINTERFACE_CHANGE_CALLBACK = fn(
-    CallerContext: ?*anyopaque,
-    Row: ?*MIB_IPINTERFACE_ROW,
-    NotificationType: MIB_NOTIFICATION_TYPE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PIPINTERFACE_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        CallerContext: ?*anyopaque,
+        Row: ?*MIB_IPINTERFACE_ROW,
+        NotificationType: MIB_NOTIFICATION_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        CallerContext: ?*anyopaque,
+        Row: ?*MIB_IPINTERFACE_ROW,
+        NotificationType: MIB_NOTIFICATION_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const MIB_IP_NETWORK_CONNECTION_BANDWIDTH_ESTIMATES = extern struct {
     InboundBandwidthInformation: NL_BANDWIDTH_INFORMATION,
@@ -1013,16 +1020,29 @@ pub const MIB_UNICASTIPADDRESS_TABLE = extern struct {
     Table: [1]MIB_UNICASTIPADDRESS_ROW,
 };
 
-pub const PUNICAST_IPADDRESS_CHANGE_CALLBACK = fn(
-    CallerContext: ?*anyopaque,
-    Row: ?*MIB_UNICASTIPADDRESS_ROW,
-    NotificationType: MIB_NOTIFICATION_TYPE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PUNICAST_IPADDRESS_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        CallerContext: ?*anyopaque,
+        Row: ?*MIB_UNICASTIPADDRESS_ROW,
+        NotificationType: MIB_NOTIFICATION_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        CallerContext: ?*anyopaque,
+        Row: ?*MIB_UNICASTIPADDRESS_ROW,
+        NotificationType: MIB_NOTIFICATION_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK = fn(
-    CallerContext: ?*anyopaque,
-    AddressTable: ?*MIB_UNICASTIPADDRESS_TABLE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        CallerContext: ?*anyopaque,
+        AddressTable: ?*MIB_UNICASTIPADDRESS_TABLE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        CallerContext: ?*anyopaque,
+        AddressTable: ?*MIB_UNICASTIPADDRESS_TABLE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const MIB_ANYCASTIPADDRESS_ROW = extern struct {
     Address: SOCKADDR_INET,
@@ -1076,11 +1096,18 @@ pub const MIB_IPFORWARD_TABLE2 = extern struct {
     Table: [1]MIB_IPFORWARD_ROW2,
 };
 
-pub const PIPFORWARD_CHANGE_CALLBACK = fn(
-    CallerContext: ?*anyopaque,
-    Row: ?*MIB_IPFORWARD_ROW2,
-    NotificationType: MIB_NOTIFICATION_TYPE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PIPFORWARD_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        CallerContext: ?*anyopaque,
+        Row: ?*MIB_IPFORWARD_ROW2,
+        NotificationType: MIB_NOTIFICATION_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        CallerContext: ?*anyopaque,
+        Row: ?*MIB_IPFORWARD_ROW2,
+        NotificationType: MIB_NOTIFICATION_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const MIB_IPPATH_ROW = extern struct {
     Source: SOCKADDR_INET,
@@ -1129,11 +1156,18 @@ pub const MIB_IPNET_TABLE2 = extern struct {
     Table: [1]MIB_IPNET_ROW2,
 };
 
-pub const PTEREDO_PORT_CHANGE_CALLBACK = fn(
-    CallerContext: ?*anyopaque,
-    Port: u16,
-    NotificationType: MIB_NOTIFICATION_TYPE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PTEREDO_PORT_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        CallerContext: ?*anyopaque,
+        Port: u16,
+        NotificationType: MIB_NOTIFICATION_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        CallerContext: ?*anyopaque,
+        Port: u16,
+        NotificationType: MIB_NOTIFICATION_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const DNS_SETTINGS = extern struct {
     Version: u32,
@@ -1213,10 +1247,16 @@ pub const DNS_INTERFACE_SETTINGS3 = extern struct {
     ProfileServerProperties: ?*DNS_SERVER_PROPERTY,
 };
 
-pub const PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK = fn(
-    CallerContext: ?*anyopaque,
-    ConnectivityHint: NL_NETWORK_CONNECTIVITY_HINT,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        CallerContext: ?*anyopaque,
+        ConnectivityHint: NL_NETWORK_CONNECTIVITY_HINT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        CallerContext: ?*anyopaque,
+        ConnectivityHint: NL_NETWORK_CONNECTIVITY_HINT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const MIB_OPAQUE_QUERY = extern struct {
     dwVarId: u32,
@@ -2669,9 +2709,14 @@ pub const INTERFACE_HARDWARE_CROSSTIMESTAMP = extern struct {
     SystemTimestamp2: u64,
 };
 
-pub const PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK = fn(
-    CallerContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        CallerContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        CallerContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const NET_ADDRESS_FORMAT = enum(i32) {
     FORMAT_UNSPECIFIED = 0,

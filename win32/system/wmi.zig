@@ -1007,15 +1007,26 @@ pub const MI_PropertyDecl = extern struct {
     value: ?*const anyopaque,
 };
 
-pub const MI_MethodDecl_Invoke = fn(
-    self: ?*anyopaque,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    methodName: ?*const u16,
-    instanceName: ?*const MI_Instance,
-    parameters: ?*const MI_Instance,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_MethodDecl_Invoke = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        methodName: ?*const u16,
+        instanceName: ?*const MI_Instance,
+        parameters: ?*const MI_Instance,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        methodName: ?*const u16,
+        instanceName: ?*const MI_Instance,
+        parameters: ?*const MI_Instance,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const MI_MethodDecl = extern struct {
     flags: u32,
@@ -1060,130 +1071,269 @@ pub const MI_Module_Self = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const MI_ProviderFT_Load = fn(
-    self: ?*?*anyopaque,
-    selfModule: ?*MI_Module_Self,
-    context: ?*MI_Context,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_Load = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*?*anyopaque,
+        selfModule: ?*MI_Module_Self,
+        context: ?*MI_Context,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*?*anyopaque,
+        selfModule: ?*MI_Module_Self,
+        context: ?*MI_Context,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_Unload = fn(
-    self: ?*anyopaque,
-    context: ?*MI_Context,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_Unload = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_GetInstance = fn(
-    self: ?*anyopaque,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    instanceName: ?*const MI_Instance,
-    propertySet: ?*const MI_PropertySet,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_GetInstance = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        instanceName: ?*const MI_Instance,
+        propertySet: ?*const MI_PropertySet,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        instanceName: ?*const MI_Instance,
+        propertySet: ?*const MI_PropertySet,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_EnumerateInstances = fn(
-    self: ?*anyopaque,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    propertySet: ?*const MI_PropertySet,
-    keysOnly: u8,
-    filter: ?*const MI_Filter,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_EnumerateInstances = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        propertySet: ?*const MI_PropertySet,
+        keysOnly: u8,
+        filter: ?*const MI_Filter,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        propertySet: ?*const MI_PropertySet,
+        keysOnly: u8,
+        filter: ?*const MI_Filter,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_CreateInstance = fn(
-    self: ?*anyopaque,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    newInstance: ?*const MI_Instance,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_CreateInstance = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        newInstance: ?*const MI_Instance,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        newInstance: ?*const MI_Instance,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_ModifyInstance = fn(
-    self: ?*anyopaque,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    modifiedInstance: ?*const MI_Instance,
-    propertySet: ?*const MI_PropertySet,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_ModifyInstance = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        modifiedInstance: ?*const MI_Instance,
+        propertySet: ?*const MI_PropertySet,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        modifiedInstance: ?*const MI_Instance,
+        propertySet: ?*const MI_PropertySet,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_DeleteInstance = fn(
-    self: ?*anyopaque,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    instanceName: ?*const MI_Instance,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_DeleteInstance = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        instanceName: ?*const MI_Instance,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        instanceName: ?*const MI_Instance,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_AssociatorInstances = fn(
-    self: ?*anyopaque,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    instanceName: ?*const MI_Instance,
-    resultClass: ?*const u16,
-    role: ?*const u16,
-    resultRole: ?*const u16,
-    propertySet: ?*const MI_PropertySet,
-    keysOnly: u8,
-    filter: ?*const MI_Filter,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_AssociatorInstances = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        instanceName: ?*const MI_Instance,
+        resultClass: ?*const u16,
+        role: ?*const u16,
+        resultRole: ?*const u16,
+        propertySet: ?*const MI_PropertySet,
+        keysOnly: u8,
+        filter: ?*const MI_Filter,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        instanceName: ?*const MI_Instance,
+        resultClass: ?*const u16,
+        role: ?*const u16,
+        resultRole: ?*const u16,
+        propertySet: ?*const MI_PropertySet,
+        keysOnly: u8,
+        filter: ?*const MI_Filter,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_ReferenceInstances = fn(
-    self: ?*anyopaque,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    instanceName: ?*const MI_Instance,
-    role: ?*const u16,
-    propertySet: ?*const MI_PropertySet,
-    keysOnly: u8,
-    filter: ?*const MI_Filter,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_ReferenceInstances = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        instanceName: ?*const MI_Instance,
+        role: ?*const u16,
+        propertySet: ?*const MI_PropertySet,
+        keysOnly: u8,
+        filter: ?*const MI_Filter,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        instanceName: ?*const MI_Instance,
+        role: ?*const u16,
+        propertySet: ?*const MI_PropertySet,
+        keysOnly: u8,
+        filter: ?*const MI_Filter,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_EnableIndications = fn(
-    self: ?*anyopaque,
-    indicationsContext: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_EnableIndications = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        indicationsContext: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        indicationsContext: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_DisableIndications = fn(
-    self: ?*anyopaque,
-    indicationsContext: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_DisableIndications = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        indicationsContext: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        indicationsContext: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_Subscribe = fn(
-    self: ?*anyopaque,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    filter: ?*const MI_Filter,
-    bookmark: ?*const u16,
-    subscriptionID: u64,
-    subscriptionSelf: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_Subscribe = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        filter: ?*const MI_Filter,
+        bookmark: ?*const u16,
+        subscriptionID: u64,
+        subscriptionSelf: ?*?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        filter: ?*const MI_Filter,
+        bookmark: ?*const u16,
+        subscriptionID: u64,
+        subscriptionSelf: ?*?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_Unsubscribe = fn(
-    self: ?*anyopaque,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    subscriptionID: u64,
-    subscriptionSelf: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_Unsubscribe = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        subscriptionID: u64,
+        subscriptionSelf: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        subscriptionID: u64,
+        subscriptionSelf: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_ProviderFT_Invoke = fn(
-    self: ?*anyopaque,
-    context: ?*MI_Context,
-    nameSpace: ?*const u16,
-    className: ?*const u16,
-    methodName: ?*const u16,
-    instanceName: ?*const MI_Instance,
-    inputParameters: ?*const MI_Instance,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_ProviderFT_Invoke = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        methodName: ?*const u16,
+        instanceName: ?*const MI_Instance,
+        inputParameters: ?*const MI_Instance,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*anyopaque,
+        context: ?*MI_Context,
+        nameSpace: ?*const u16,
+        className: ?*const u16,
+        methodName: ?*const u16,
+        instanceName: ?*const MI_Instance,
+        inputParameters: ?*const MI_Instance,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const MI_ProviderFT = extern struct {
     Load: ?MI_ProviderFT_Load,
@@ -1202,15 +1352,27 @@ pub const MI_ProviderFT = extern struct {
     Invoke: ?MI_ProviderFT_Invoke,
 };
 
-pub const MI_Module_Load = fn(
-    self: ?*?*MI_Module_Self,
-    context: ?*MI_Context,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_Module_Load = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*?*MI_Module_Self,
+        context: ?*MI_Context,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*?*MI_Module_Self,
+        context: ?*MI_Context,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_Module_Unload = fn(
-    self: ?*MI_Module_Self,
-    context: ?*MI_Context,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_Module_Unload = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        self: ?*MI_Module_Self,
+        context: ?*MI_Context,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        self: ?*MI_Module_Self,
+        context: ?*MI_Context,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const MI_Module = extern struct {
     version: u32,
@@ -1279,10 +1441,16 @@ pub const MI_REASON_TIMEOUT = MI_CancellationReason.TIMEOUT;
 pub const MI_REASON_SHUTDOWN = MI_CancellationReason.SHUTDOWN;
 pub const MI_REASON_SERVICESTOP = MI_CancellationReason.SERVICESTOP;
 
-pub const MI_CancelCallback = fn(
-    reason: MI_CancellationReason,
-    callbackData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_CancelCallback = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        reason: MI_CancellationReason,
+        callbackData: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        reason: MI_CancellationReason,
+        callbackData: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const MI_ContextFT = extern struct {
     PostResult: isize,
@@ -1322,9 +1490,14 @@ pub const MI_Context = extern struct {
     reserved: [3]isize,
 };
 
-pub const MI_MainFunction = fn(
-    server: ?*MI_Server,
-) callconv(@import("std").os.windows.WINAPI) ?*MI_Module;
+pub const MI_MainFunction = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        server: ?*MI_Server,
+    ) callconv(@import("std").os.windows.WINAPI) ?*MI_Module,
+    else => *const fn(
+        server: ?*MI_Server,
+    ) callconv(@import("std").os.windows.WINAPI) ?*MI_Module,
+} ;
 
 pub const MI_QualifierSetFT = extern struct {
     GetQualifierCount: isize,
@@ -1387,81 +1560,165 @@ pub const MI_OperationCallback_ResponseType_Yes = MI_OperationCallback_ResponseT
 pub const MI_OperationCallback_ResponseType_NoToAll = MI_OperationCallback_ResponseType.NoToAll;
 pub const MI_OperationCallback_ResponseType_YesToAll = MI_OperationCallback_ResponseType.YesToAll;
 
-pub const MI_OperationCallback_PromptUser = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*anyopaque,
-    message: ?*const u16,
-    promptType: MI_PromptType,
-    promptUserResult: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_OperationCallback_PromptUser = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        message: ?*const u16,
+        promptType: MI_PromptType,
+        promptUserResult: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        message: ?*const u16,
+        promptType: MI_PromptType,
+        promptUserResult: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_OperationCallback_WriteError = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*anyopaque,
-    instance: ?*MI_Instance,
-    writeErrorResult: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_OperationCallback_WriteError = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        instance: ?*MI_Instance,
+        writeErrorResult: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        instance: ?*MI_Instance,
+        writeErrorResult: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_OperationCallback_WriteMessage = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*anyopaque,
-    channel: u32,
-    message: ?*const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_OperationCallback_WriteMessage = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        channel: u32,
+        message: ?*const u16,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        channel: u32,
+        message: ?*const u16,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_OperationCallback_WriteProgress = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*anyopaque,
-    activity: ?*const u16,
-    currentOperation: ?*const u16,
-    statusDescription: ?*const u16,
-    percentageComplete: u32,
-    secondsRemaining: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_OperationCallback_WriteProgress = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        activity: ?*const u16,
+        currentOperation: ?*const u16,
+        statusDescription: ?*const u16,
+        percentageComplete: u32,
+        secondsRemaining: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        activity: ?*const u16,
+        currentOperation: ?*const u16,
+        statusDescription: ?*const u16,
+        percentageComplete: u32,
+        secondsRemaining: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_OperationCallback_Instance = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*anyopaque,
-    instance: ?*const MI_Instance,
-    moreResults: u8,
-    resultCode: MI_Result,
-    errorString: ?*const u16,
-    errorDetails: ?*const MI_Instance,
-    resultAcknowledgement: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_OperationCallback_Instance = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        instance: ?*const MI_Instance,
+        moreResults: u8,
+        resultCode: MI_Result,
+        errorString: ?*const u16,
+        errorDetails: ?*const MI_Instance,
+        resultAcknowledgement: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        instance: ?*const MI_Instance,
+        moreResults: u8,
+        resultCode: MI_Result,
+        errorString: ?*const u16,
+        errorDetails: ?*const MI_Instance,
+        resultAcknowledgement: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_OperationCallback_StreamedParameter = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*anyopaque,
-    parameterName: ?*const u16,
-    resultType: MI_Type,
-    result: ?*const MI_Value,
-    resultAcknowledgement: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_OperationCallback_StreamedParameter = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        parameterName: ?*const u16,
+        resultType: MI_Type,
+        result: ?*const MI_Value,
+        resultAcknowledgement: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        parameterName: ?*const u16,
+        resultType: MI_Type,
+        result: ?*const MI_Value,
+        resultAcknowledgement: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_OperationCallback_Indication = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*anyopaque,
-    instance: ?*const MI_Instance,
-    bookmark: ?*const u16,
-    machineID: ?*const u16,
-    moreResults: u8,
-    resultCode: MI_Result,
-    errorString: ?*const u16,
-    errorDetails: ?*const MI_Instance,
-    resultAcknowledgement: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_OperationCallback_Indication = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        instance: ?*const MI_Instance,
+        bookmark: ?*const u16,
+        machineID: ?*const u16,
+        moreResults: u8,
+        resultCode: MI_Result,
+        errorString: ?*const u16,
+        errorDetails: ?*const MI_Instance,
+        resultAcknowledgement: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        instance: ?*const MI_Instance,
+        bookmark: ?*const u16,
+        machineID: ?*const u16,
+        moreResults: u8,
+        resultCode: MI_Result,
+        errorString: ?*const u16,
+        errorDetails: ?*const MI_Instance,
+        resultAcknowledgement: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MI_OperationCallback_Class = fn(
-    operation: ?*MI_Operation,
-    callbackContext: ?*anyopaque,
-    classResult: ?*const MI_Class,
-    moreResults: u8,
-    resultCode: MI_Result,
-    errorString: ?*const u16,
-    errorDetails: ?*const MI_Instance,
-    resultAcknowledgement: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MI_OperationCallback_Class = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        classResult: ?*const MI_Class,
+        moreResults: u8,
+        resultCode: MI_Result,
+        errorString: ?*const u16,
+        errorDetails: ?*const MI_Instance,
+        resultAcknowledgement: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        operation: ?*MI_Operation,
+        callbackContext: ?*anyopaque,
+        classResult: ?*const MI_Class,
+        moreResults: u8,
+        resultCode: MI_Result,
+        errorString: ?*const u16,
+        errorDetails: ?*const MI_Instance,
+        resultAcknowledgement: isize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const MI_OperationCallbacks = extern struct {
     callbackContext: ?*anyopaque,
@@ -1544,13 +1801,22 @@ pub const MI_SerializerFT = extern struct {
     SerializeInstance: isize,
 };
 
-pub const MI_Deserializer_ClassObjectNeeded = fn(
-    context: ?*anyopaque,
-    serverName: ?*const u16,
-    namespaceName: ?*const u16,
-    className: ?*const u16,
-    requestedClassObject: ?*?*MI_Class,
-) callconv(@import("std").os.windows.WINAPI) MI_Result;
+pub const MI_Deserializer_ClassObjectNeeded = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*anyopaque,
+        serverName: ?*const u16,
+        namespaceName: ?*const u16,
+        className: ?*const u16,
+        requestedClassObject: ?*?*MI_Class,
+    ) callconv(@import("std").os.windows.WINAPI) MI_Result,
+    else => *const fn(
+        context: ?*anyopaque,
+        serverName: ?*const u16,
+        namespaceName: ?*const u16,
+        className: ?*const u16,
+        requestedClassObject: ?*?*MI_Class,
+    ) callconv(@import("std").os.windows.WINAPI) MI_Result,
+} ;
 
 pub const MI_DeserializerFT = extern struct {
     Close: isize,
@@ -1792,67 +2058,148 @@ pub const IID_IWbemPathKeyList = &IID_IWbemPathKeyList_Value;
 pub const IWbemPathKeyList = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: fn(
-            self: *const IWbemPathKeyList,
-            puKeyCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetKey: fn(
-            self: *const IWbemPathKeyList,
-            wszName: ?[*:0]const u16,
-            uFlags: u32,
-            uCimType: u32,
-            pKeyVal: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetKey2: fn(
-            self: *const IWbemPathKeyList,
-            wszName: ?[*:0]const u16,
-            uFlags: u32,
-            uCimType: u32,
-            pKeyVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKey: fn(
-            self: *const IWbemPathKeyList,
-            uKeyIx: u32,
-            uFlags: u32,
-            puNameBufSize: ?*u32,
-            pszKeyName: ?[*:0]u16,
-            puKeyValBufSize: ?*u32,
-            pKeyVal: ?*anyopaque,
-            puApparentCimType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKey2: fn(
-            self: *const IWbemPathKeyList,
-            uKeyIx: u32,
-            uFlags: u32,
-            puNameBufSize: ?*u32,
-            pszKeyName: ?[*:0]u16,
-            pKeyValue: ?*VARIANT,
-            puApparentCimType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveKey: fn(
-            self: *const IWbemPathKeyList,
-            wszName: ?[*:0]const u16,
-            uFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAllKeys: fn(
-            self: *const IWbemPathKeyList,
-            uFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MakeSingleton: fn(
-            self: *const IWbemPathKeyList,
-            bSet: u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInfo: fn(
-            self: *const IWbemPathKeyList,
-            uRequestedInfo: u32,
-            puResponse: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetText: fn(
-            self: *const IWbemPathKeyList,
-            lFlags: i32,
-            puBuffLength: ?*u32,
-            pszText: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPathKeyList,
+                puKeyCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPathKeyList,
+                puKeyCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPathKeyList,
+                wszName: ?[*:0]const u16,
+                uFlags: u32,
+                uCimType: u32,
+                pKeyVal: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPathKeyList,
+                wszName: ?[*:0]const u16,
+                uFlags: u32,
+                uCimType: u32,
+                pKeyVal: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetKey2: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPathKeyList,
+                wszName: ?[*:0]const u16,
+                uFlags: u32,
+                uCimType: u32,
+                pKeyVal: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPathKeyList,
+                wszName: ?[*:0]const u16,
+                uFlags: u32,
+                uCimType: u32,
+                pKeyVal: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPathKeyList,
+                uKeyIx: u32,
+                uFlags: u32,
+                puNameBufSize: ?*u32,
+                pszKeyName: ?[*:0]u16,
+                puKeyValBufSize: ?*u32,
+                pKeyVal: ?*anyopaque,
+                puApparentCimType: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPathKeyList,
+                uKeyIx: u32,
+                uFlags: u32,
+                puNameBufSize: ?*u32,
+                pszKeyName: ?[*:0]u16,
+                puKeyValBufSize: ?*u32,
+                pKeyVal: ?*anyopaque,
+                puApparentCimType: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetKey2: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPathKeyList,
+                uKeyIx: u32,
+                uFlags: u32,
+                puNameBufSize: ?*u32,
+                pszKeyName: ?[*:0]u16,
+                pKeyValue: ?*VARIANT,
+                puApparentCimType: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPathKeyList,
+                uKeyIx: u32,
+                uFlags: u32,
+                puNameBufSize: ?*u32,
+                pszKeyName: ?[*:0]u16,
+                pKeyValue: ?*VARIANT,
+                puApparentCimType: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPathKeyList,
+                wszName: ?[*:0]const u16,
+                uFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPathKeyList,
+                wszName: ?[*:0]const u16,
+                uFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveAllKeys: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPathKeyList,
+                uFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPathKeyList,
+                uFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        MakeSingleton: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPathKeyList,
+                bSet: u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPathKeyList,
+                bSet: u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPathKeyList,
+                uRequestedInfo: u32,
+                puResponse: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPathKeyList,
+                uRequestedInfo: u32,
+                puResponse: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetText: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPathKeyList,
+                lFlags: i32,
+                puBuffLength: ?*u32,
+                pszText: [*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPathKeyList,
+                lFlags: i32,
+                puBuffLength: ?*u32,
+                pszText: [*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1907,128 +2254,302 @@ pub const IID_IWbemPath = &IID_IWbemPath_Value;
 pub const IWbemPath = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetText: fn(
-            self: *const IWbemPath,
-            uMode: u32,
-            pszPath: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetText: fn(
-            self: *const IWbemPath,
-            lFlags: i32,
-            puBuffLength: ?*u32,
-            pszText: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInfo: fn(
-            self: *const IWbemPath,
-            uRequestedInfo: u32,
-            puResponse: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetServer: fn(
-            self: *const IWbemPath,
-            Name: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetServer: fn(
-            self: *const IWbemPath,
-            puNameBufLength: ?*u32,
-            pName: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNamespaceCount: fn(
-            self: *const IWbemPath,
-            puCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNamespaceAt: fn(
-            self: *const IWbemPath,
-            uIndex: u32,
-            pszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNamespaceAt: fn(
-            self: *const IWbemPath,
-            uIndex: u32,
-            puNameBufLength: ?*u32,
-            pName: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveNamespaceAt: fn(
-            self: *const IWbemPath,
-            uIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAllNamespaces: fn(
-            self: *const IWbemPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScopeCount: fn(
-            self: *const IWbemPath,
-            puCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetScope: fn(
-            self: *const IWbemPath,
-            uIndex: u32,
-            pszClass: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetScopeFromText: fn(
-            self: *const IWbemPath,
-            uIndex: u32,
-            pszText: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScope: fn(
-            self: *const IWbemPath,
-            uIndex: u32,
-            puClassNameBufSize: ?*u32,
-            pszClass: [*:0]u16,
-            pKeyList: ?*?*IWbemPathKeyList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScopeAsText: fn(
-            self: *const IWbemPath,
-            uIndex: u32,
-            puTextBufSize: ?*u32,
-            pszText: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveScope: fn(
-            self: *const IWbemPath,
-            uIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAllScopes: fn(
-            self: *const IWbemPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClassName: fn(
-            self: *const IWbemPath,
-            Name: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClassName: fn(
-            self: *const IWbemPath,
-            puBuffLength: ?*u32,
-            pszName: ?[*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKeyList: fn(
-            self: *const IWbemPath,
-            pOut: ?*?*IWbemPathKeyList,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateClassPart: fn(
-            self: *const IWbemPath,
-            lFlags: i32,
-            Name: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteClassPart: fn(
-            self: *const IWbemPath,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsRelative: fn(
-            self: *const IWbemPath,
-            wszMachine: ?PWSTR,
-            wszNamespace: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        IsRelativeOrChild: fn(
-            self: *const IWbemPath,
-            wszMachine: ?PWSTR,
-            wszNamespace: ?PWSTR,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        IsLocal: fn(
-            self: *const IWbemPath,
-            wszMachine: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        IsSameClassName: fn(
-            self: *const IWbemPath,
-            wszClass: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        SetText: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                uMode: u32,
+                pszPath: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                uMode: u32,
+                pszPath: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetText: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                lFlags: i32,
+                puBuffLength: ?*u32,
+                pszText: [*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                lFlags: i32,
+                puBuffLength: ?*u32,
+                pszText: [*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                uRequestedInfo: u32,
+                puResponse: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                uRequestedInfo: u32,
+                puResponse: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetServer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                Name: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                Name: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetServer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                puNameBufLength: ?*u32,
+                pName: [*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                puNameBufLength: ?*u32,
+                pName: [*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNamespaceCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                puCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                puCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNamespaceAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+                pszName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+                pszName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNamespaceAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+                puNameBufLength: ?*u32,
+                pName: [*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+                puNameBufLength: ?*u32,
+                pName: [*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveNamespaceAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveAllNamespaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetScopeCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                puCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                puCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetScope: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+                pszClass: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+                pszClass: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetScopeFromText: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+                pszText: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+                pszText: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetScope: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+                puClassNameBufSize: ?*u32,
+                pszClass: [*:0]u16,
+                pKeyList: ?*?*IWbemPathKeyList,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+                puClassNameBufSize: ?*u32,
+                pszClass: [*:0]u16,
+                pKeyList: ?*?*IWbemPathKeyList,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetScopeAsText: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+                puTextBufSize: ?*u32,
+                pszText: [*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+                puTextBufSize: ?*u32,
+                pszText: [*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveScope: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                uIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveAllScopes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetClassName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                Name: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                Name: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetClassName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                puBuffLength: ?*u32,
+                pszName: ?[*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                puBuffLength: ?*u32,
+                pszName: ?[*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetKeyList: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                pOut: ?*?*IWbemPathKeyList,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                pOut: ?*?*IWbemPathKeyList,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateClassPart: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                lFlags: i32,
+                Name: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                lFlags: i32,
+                Name: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteClassPart: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPath,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsRelative: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                wszMachine: ?PWSTR,
+                wszNamespace: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+            else => *const fn(
+                self: *const IWbemPath,
+                wszMachine: ?PWSTR,
+                wszNamespace: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        },
+        IsRelativeOrChild: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                wszMachine: ?PWSTR,
+                wszNamespace: ?PWSTR,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+            else => *const fn(
+                self: *const IWbemPath,
+                wszMachine: ?PWSTR,
+                wszNamespace: ?PWSTR,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        },
+        IsLocal: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                wszMachine: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+            else => *const fn(
+                self: *const IWbemPath,
+                wszMachine: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        },
+        IsSameClassName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPath,
+                wszClass: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+            else => *const fn(
+                self: *const IWbemPath,
+                wszClass: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2147,44 +2668,96 @@ pub const IID_IWbemQuery = &IID_IWbemQuery_Value;
 pub const IWbemQuery = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Empty: fn(
-            self: *const IWbemQuery,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLanguageFeatures: fn(
-            self: *const IWbemQuery,
-            uFlags: u32,
-            uArraySize: u32,
-            puFeatures: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TestLanguageFeatures: fn(
-            self: *const IWbemQuery,
-            uFlags: u32,
-            uArraySize: ?*u32,
-            puFeatures: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Parse: fn(
-            self: *const IWbemQuery,
-            pszLang: ?[*:0]const u16,
-            pszQuery: ?[*:0]const u16,
-            uFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAnalysis: fn(
-            self: *const IWbemQuery,
-            uAnalysisType: u32,
-            uFlags: u32,
-            pAnalysis: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FreeMemory: fn(
-            self: *const IWbemQuery,
-            pMem: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetQueryInfo: fn(
-            self: *const IWbemQuery,
-            uAnalysisType: u32,
-            uInfoId: u32,
-            uBufSize: u32,
-            pDestBuf: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Empty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQuery,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQuery,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetLanguageFeatures: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQuery,
+                uFlags: u32,
+                uArraySize: u32,
+                puFeatures: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQuery,
+                uFlags: u32,
+                uArraySize: u32,
+                puFeatures: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        TestLanguageFeatures: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQuery,
+                uFlags: u32,
+                uArraySize: ?*u32,
+                puFeatures: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQuery,
+                uFlags: u32,
+                uArraySize: ?*u32,
+                puFeatures: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Parse: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQuery,
+                pszLang: ?[*:0]const u16,
+                pszQuery: ?[*:0]const u16,
+                uFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQuery,
+                pszLang: ?[*:0]const u16,
+                pszQuery: ?[*:0]const u16,
+                uFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAnalysis: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQuery,
+                uAnalysisType: u32,
+                uFlags: u32,
+                pAnalysis: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQuery,
+                uAnalysisType: u32,
+                uFlags: u32,
+                pAnalysis: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FreeMemory: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQuery,
+                pMem: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQuery,
+                pMem: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetQueryInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQuery,
+                uAnalysisType: u32,
+                uInfoId: u32,
+                uBufSize: u32,
+                pDestBuf: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQuery,
+                uAnalysisType: u32,
+                uInfoId: u32,
+                uBufSize: u32,
+                pDestBuf: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3259,131 +3832,304 @@ pub const IID_IWbemClassObject = &IID_IWbemClassObject_Value;
 pub const IWbemClassObject = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetQualifierSet: fn(
-            self: *const IWbemClassObject,
-            ppQualSet: ?*?*IWbemQualifierSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Get: fn(
-            self: *const IWbemClassObject,
-            wszName: ?[*:0]const u16,
-            lFlags: i32,
-            pVal: ?*VARIANT,
-            pType: ?*i32,
-            plFlavor: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Put: fn(
-            self: *const IWbemClassObject,
-            wszName: ?[*:0]const u16,
-            lFlags: i32,
-            pVal: ?*VARIANT,
-            Type: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
-            self: *const IWbemClassObject,
-            wszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNames: fn(
-            self: *const IWbemClassObject,
-            wszQualifierName: ?[*:0]const u16,
-            lFlags: i32,
-            pQualifierVal: ?*VARIANT,
-            pNames: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginEnumeration: fn(
-            self: *const IWbemClassObject,
-            lEnumFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Next: fn(
-            self: *const IWbemClassObject,
-            lFlags: i32,
-            strName: ?*?BSTR,
-            pVal: ?*VARIANT,
-            pType: ?*i32,
-            plFlavor: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndEnumeration: fn(
-            self: *const IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyQualifierSet: fn(
-            self: *const IWbemClassObject,
-            wszProperty: ?[*:0]const u16,
-            ppQualSet: ?*?*IWbemQualifierSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IWbemClassObject,
-            ppCopy: ?*?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetObjectText: fn(
-            self: *const IWbemClassObject,
-            lFlags: i32,
-            pstrObjectText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SpawnDerivedClass: fn(
-            self: *const IWbemClassObject,
-            lFlags: i32,
-            ppNewClass: ?*?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SpawnInstance: fn(
-            self: *const IWbemClassObject,
-            lFlags: i32,
-            ppNewInstance: ?*?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CompareTo: fn(
-            self: *const IWbemClassObject,
-            lFlags: i32,
-            pCompareTo: ?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyOrigin: fn(
-            self: *const IWbemClassObject,
-            wszName: ?[*:0]const u16,
-            pstrClassName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InheritsFrom: fn(
-            self: *const IWbemClassObject,
-            strAncestor: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMethod: fn(
-            self: *const IWbemClassObject,
-            wszName: ?[*:0]const u16,
-            lFlags: i32,
-            ppInSignature: ?*?*IWbemClassObject,
-            ppOutSignature: ?*?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PutMethod: fn(
-            self: *const IWbemClassObject,
-            wszName: ?[*:0]const u16,
-            lFlags: i32,
-            pInSignature: ?*IWbemClassObject,
-            pOutSignature: ?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteMethod: fn(
-            self: *const IWbemClassObject,
-            wszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginMethodEnumeration: fn(
-            self: *const IWbemClassObject,
-            lEnumFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NextMethod: fn(
-            self: *const IWbemClassObject,
-            lFlags: i32,
-            pstrName: ?*?BSTR,
-            ppInSignature: ?*?*IWbemClassObject,
-            ppOutSignature: ?*?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndMethodEnumeration: fn(
-            self: *const IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMethodQualifierSet: fn(
-            self: *const IWbemClassObject,
-            wszMethod: ?[*:0]const u16,
-            ppQualSet: ?*?*IWbemQualifierSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMethodOrigin: fn(
-            self: *const IWbemClassObject,
-            wszMethodName: ?[*:0]const u16,
-            pstrClassName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQualifierSet: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                ppQualSet: ?*?*IWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                ppQualSet: ?*?*IWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Get: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                pVal: ?*VARIANT,
+                pType: ?*i32,
+                plFlavor: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                pVal: ?*VARIANT,
+                pType: ?*i32,
+                plFlavor: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Put: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                pVal: ?*VARIANT,
+                Type: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                pVal: ?*VARIANT,
+                Type: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Delete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNames: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                wszQualifierName: ?[*:0]const u16,
+                lFlags: i32,
+                pQualifierVal: ?*VARIANT,
+                pNames: ?*?*SAFEARRAY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                wszQualifierName: ?[*:0]const u16,
+                lFlags: i32,
+                pQualifierVal: ?*VARIANT,
+                pNames: ?*?*SAFEARRAY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BeginEnumeration: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                lEnumFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                lEnumFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                lFlags: i32,
+                strName: ?*?BSTR,
+                pVal: ?*VARIANT,
+                pType: ?*i32,
+                plFlavor: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                lFlags: i32,
+                strName: ?*?BSTR,
+                pVal: ?*VARIANT,
+                pType: ?*i32,
+                plFlavor: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndEnumeration: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyQualifierSet: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                wszProperty: ?[*:0]const u16,
+                ppQualSet: ?*?*IWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                wszProperty: ?[*:0]const u16,
+                ppQualSet: ?*?*IWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                ppCopy: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                ppCopy: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetObjectText: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                lFlags: i32,
+                pstrObjectText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                lFlags: i32,
+                pstrObjectText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SpawnDerivedClass: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                lFlags: i32,
+                ppNewClass: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                lFlags: i32,
+                ppNewClass: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SpawnInstance: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                lFlags: i32,
+                ppNewInstance: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                lFlags: i32,
+                ppNewInstance: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CompareTo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                lFlags: i32,
+                pCompareTo: ?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                lFlags: i32,
+                pCompareTo: ?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyOrigin: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+                pstrClassName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+                pstrClassName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        InheritsFrom: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                strAncestor: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                strAncestor: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMethod: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                ppInSignature: ?*?*IWbemClassObject,
+                ppOutSignature: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                ppInSignature: ?*?*IWbemClassObject,
+                ppOutSignature: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PutMethod: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                pInSignature: ?*IWbemClassObject,
+                pOutSignature: ?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                pInSignature: ?*IWbemClassObject,
+                pOutSignature: ?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteMethod: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                wszName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BeginMethodEnumeration: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                lEnumFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                lEnumFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        NextMethod: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                lFlags: i32,
+                pstrName: ?*?BSTR,
+                ppInSignature: ?*?*IWbemClassObject,
+                ppOutSignature: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                lFlags: i32,
+                pstrName: ?*?BSTR,
+                ppInSignature: ?*?*IWbemClassObject,
+                ppOutSignature: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndMethodEnumeration: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMethodQualifierSet: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                wszMethod: ?[*:0]const u16,
+                ppQualSet: ?*?*IWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                wszMethod: ?[*:0]const u16,
+                ppQualSet: ?*?*IWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMethodOrigin: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClassObject,
+                wszMethodName: ?[*:0]const u16,
+                pstrClassName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClassObject,
+                wszMethodName: ?[*:0]const u16,
+                pstrClassName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3494,59 +4240,132 @@ pub const IID_IWbemObjectAccess = &IID_IWbemObjectAccess_Value;
 pub const IWbemObjectAccess = extern struct {
     pub const VTable = extern struct {
         base: IWbemClassObject.VTable,
-        GetPropertyHandle: fn(
-            self: *const IWbemObjectAccess,
-            wszPropertyName: ?[*:0]const u16,
-            pType: ?*i32,
-            plHandle: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WritePropertyValue: fn(
-            self: *const IWbemObjectAccess,
-            lHandle: i32,
-            lNumBytes: i32,
-            aData: [*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReadPropertyValue: fn(
-            self: *const IWbemObjectAccess,
-            lHandle: i32,
-            lBufferSize: i32,
-            plNumBytes: ?*i32,
-            aData: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReadDWORD: fn(
-            self: *const IWbemObjectAccess,
-            lHandle: i32,
-            pdw: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteDWORD: fn(
-            self: *const IWbemObjectAccess,
-            lHandle: i32,
-            dw: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReadQWORD: fn(
-            self: *const IWbemObjectAccess,
-            lHandle: i32,
-            pqw: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteQWORD: fn(
-            self: *const IWbemObjectAccess,
-            lHandle: i32,
-            pw: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyInfoByHandle: fn(
-            self: *const IWbemObjectAccess,
-            lHandle: i32,
-            pstrName: ?*?BSTR,
-            pType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Lock: fn(
-            self: *const IWbemObjectAccess,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unlock: fn(
-            self: *const IWbemObjectAccess,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectAccess,
+                wszPropertyName: ?[*:0]const u16,
+                pType: ?*i32,
+                plHandle: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectAccess,
+                wszPropertyName: ?[*:0]const u16,
+                pType: ?*i32,
+                plHandle: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WritePropertyValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                lNumBytes: i32,
+                aData: [*:0]const u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                lNumBytes: i32,
+                aData: [*:0]const u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReadPropertyValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                lBufferSize: i32,
+                plNumBytes: ?*i32,
+                aData: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                lBufferSize: i32,
+                plNumBytes: ?*i32,
+                aData: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReadDWORD: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                pdw: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                pdw: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WriteDWORD: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                dw: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                dw: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReadQWORD: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                pqw: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                pqw: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WriteQWORD: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                pw: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                pw: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyInfoByHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                pstrName: ?*?BSTR,
+                pType: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectAccess,
+                lHandle: i32,
+                pstrName: ?*?BSTR,
+                pType: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Lock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectAccess,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectAccess,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectAccess,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectAccess,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3601,42 +4420,92 @@ pub const IID_IWbemQualifierSet = &IID_IWbemQualifierSet_Value;
 pub const IWbemQualifierSet = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Get: fn(
-            self: *const IWbemQualifierSet,
-            wszName: ?[*:0]const u16,
-            lFlags: i32,
-            pVal: ?*VARIANT,
-            plFlavor: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Put: fn(
-            self: *const IWbemQualifierSet,
-            wszName: ?[*:0]const u16,
-            pVal: ?*VARIANT,
-            lFlavor: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
-            self: *const IWbemQualifierSet,
-            wszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNames: fn(
-            self: *const IWbemQualifierSet,
-            lFlags: i32,
-            pNames: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginEnumeration: fn(
-            self: *const IWbemQualifierSet,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Next: fn(
-            self: *const IWbemQualifierSet,
-            lFlags: i32,
-            pstrName: ?*?BSTR,
-            pVal: ?*VARIANT,
-            plFlavor: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndEnumeration: fn(
-            self: *const IWbemQualifierSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Get: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQualifierSet,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                pVal: ?*VARIANT,
+                plFlavor: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQualifierSet,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                pVal: ?*VARIANT,
+                plFlavor: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Put: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQualifierSet,
+                wszName: ?[*:0]const u16,
+                pVal: ?*VARIANT,
+                lFlavor: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQualifierSet,
+                wszName: ?[*:0]const u16,
+                pVal: ?*VARIANT,
+                lFlavor: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Delete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQualifierSet,
+                wszName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQualifierSet,
+                wszName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNames: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQualifierSet,
+                lFlags: i32,
+                pNames: ?*?*SAFEARRAY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQualifierSet,
+                lFlags: i32,
+                pNames: ?*?*SAFEARRAY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BeginEnumeration: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQualifierSet,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQualifierSet,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQualifierSet,
+                lFlags: i32,
+                pstrName: ?*?BSTR,
+                pVal: ?*VARIANT,
+                plFlavor: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQualifierSet,
+                lFlags: i32,
+                pstrName: ?*?BSTR,
+                pVal: ?*VARIANT,
+                plFlavor: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndEnumeration: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3679,173 +4548,386 @@ pub const IID_IWbemServices = &IID_IWbemServices_Value;
 pub const IWbemServices = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OpenNamespace: fn(
-            self: *const IWbemServices,
-            strNamespace: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            ppWorkingNamespace: ?*?*IWbemServices,
-            ppResult: ?*?*IWbemCallResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CancelAsyncCall: fn(
-            self: *const IWbemServices,
-            pSink: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryObjectSink: fn(
-            self: *const IWbemServices,
-            lFlags: i32,
-            ppResponseHandler: ?*?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetObject: fn(
-            self: *const IWbemServices,
-            strObjectPath: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            ppObject: ?*?*IWbemClassObject,
-            ppCallResult: ?*?*IWbemCallResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetObjectAsync: fn(
-            self: *const IWbemServices,
-            strObjectPath: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            pResponseHandler: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PutClass: fn(
-            self: *const IWbemServices,
-            pObject: ?*IWbemClassObject,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            ppCallResult: ?*?*IWbemCallResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PutClassAsync: fn(
-            self: *const IWbemServices,
-            pObject: ?*IWbemClassObject,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            pResponseHandler: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteClass: fn(
-            self: *const IWbemServices,
-            strClass: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            ppCallResult: ?*?*IWbemCallResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteClassAsync: fn(
-            self: *const IWbemServices,
-            strClass: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            pResponseHandler: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateClassEnum: fn(
-            self: *const IWbemServices,
-            strSuperclass: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            ppEnum: ?*?*IEnumWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateClassEnumAsync: fn(
-            self: *const IWbemServices,
-            strSuperclass: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            pResponseHandler: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PutInstance: fn(
-            self: *const IWbemServices,
-            pInst: ?*IWbemClassObject,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            ppCallResult: ?*?*IWbemCallResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PutInstanceAsync: fn(
-            self: *const IWbemServices,
-            pInst: ?*IWbemClassObject,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            pResponseHandler: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteInstance: fn(
-            self: *const IWbemServices,
-            strObjectPath: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            ppCallResult: ?*?*IWbemCallResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteInstanceAsync: fn(
-            self: *const IWbemServices,
-            strObjectPath: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            pResponseHandler: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateInstanceEnum: fn(
-            self: *const IWbemServices,
-            strFilter: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            ppEnum: ?*?*IEnumWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateInstanceEnumAsync: fn(
-            self: *const IWbemServices,
-            strFilter: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            pResponseHandler: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecQuery: fn(
-            self: *const IWbemServices,
-            strQueryLanguage: ?BSTR,
-            strQuery: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            ppEnum: ?*?*IEnumWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecQueryAsync: fn(
-            self: *const IWbemServices,
-            strQueryLanguage: ?BSTR,
-            strQuery: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            pResponseHandler: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecNotificationQuery: fn(
-            self: *const IWbemServices,
-            strQueryLanguage: ?BSTR,
-            strQuery: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            ppEnum: ?*?*IEnumWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecNotificationQueryAsync: fn(
-            self: *const IWbemServices,
-            strQueryLanguage: ?BSTR,
-            strQuery: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            pResponseHandler: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecMethod: fn(
-            self: *const IWbemServices,
-            strObjectPath: ?BSTR,
-            strMethodName: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            pInParams: ?*IWbemClassObject,
-            ppOutParams: ?*?*IWbemClassObject,
-            ppCallResult: ?*?*IWbemCallResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecMethodAsync: fn(
-            self: *const IWbemServices,
-            strObjectPath: ?BSTR,
-            strMethodName: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            pInParams: ?*IWbemClassObject,
-            pResponseHandler: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenNamespace: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strNamespace: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppWorkingNamespace: ?*?*IWbemServices,
+                ppResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strNamespace: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppWorkingNamespace: ?*?*IWbemServices,
+                ppResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CancelAsyncCall: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                pSink: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                pSink: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        QueryObjectSink: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                lFlags: i32,
+                ppResponseHandler: ?*?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                lFlags: i32,
+                ppResponseHandler: ?*?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetObject: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strObjectPath: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppObject: ?*?*IWbemClassObject,
+                ppCallResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strObjectPath: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppObject: ?*?*IWbemClassObject,
+                ppCallResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetObjectAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strObjectPath: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strObjectPath: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PutClass: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                pObject: ?*IWbemClassObject,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppCallResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                pObject: ?*IWbemClassObject,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppCallResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PutClassAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                pObject: ?*IWbemClassObject,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                pObject: ?*IWbemClassObject,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteClass: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strClass: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppCallResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strClass: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppCallResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteClassAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strClass: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strClass: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateClassEnum: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strSuperclass: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppEnum: ?*?*IEnumWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strSuperclass: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppEnum: ?*?*IEnumWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateClassEnumAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strSuperclass: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strSuperclass: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PutInstance: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                pInst: ?*IWbemClassObject,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppCallResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                pInst: ?*IWbemClassObject,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppCallResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PutInstanceAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                pInst: ?*IWbemClassObject,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                pInst: ?*IWbemClassObject,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteInstance: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strObjectPath: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppCallResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strObjectPath: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppCallResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteInstanceAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strObjectPath: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strObjectPath: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateInstanceEnum: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strFilter: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppEnum: ?*?*IEnumWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strFilter: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppEnum: ?*?*IEnumWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateInstanceEnumAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strFilter: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strFilter: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecQuery: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strQueryLanguage: ?BSTR,
+                strQuery: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppEnum: ?*?*IEnumWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strQueryLanguage: ?BSTR,
+                strQuery: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppEnum: ?*?*IEnumWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecQueryAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strQueryLanguage: ?BSTR,
+                strQuery: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strQueryLanguage: ?BSTR,
+                strQuery: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecNotificationQuery: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strQueryLanguage: ?BSTR,
+                strQuery: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppEnum: ?*?*IEnumWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strQueryLanguage: ?BSTR,
+                strQuery: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppEnum: ?*?*IEnumWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecNotificationQueryAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strQueryLanguage: ?BSTR,
+                strQuery: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strQueryLanguage: ?BSTR,
+                strQuery: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecMethod: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strObjectPath: ?BSTR,
+                strMethodName: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pInParams: ?*IWbemClassObject,
+                ppOutParams: ?*?*IWbemClassObject,
+                ppCallResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strObjectPath: ?BSTR,
+                strMethodName: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pInParams: ?*IWbemClassObject,
+                ppOutParams: ?*?*IWbemClassObject,
+                ppCallResult: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecMethodAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemServices,
+                strObjectPath: ?BSTR,
+                strMethodName: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pInParams: ?*IWbemClassObject,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemServices,
+                strObjectPath: ?BSTR,
+                strMethodName: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pInParams: ?*IWbemClassObject,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3952,17 +5034,30 @@ pub const IID_IWbemLocator = &IID_IWbemLocator_Value;
 pub const IWbemLocator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ConnectServer: fn(
-            self: *const IWbemLocator,
-            strNetworkResource: ?BSTR,
-            strUser: ?BSTR,
-            strPassword: ?BSTR,
-            strLocale: ?BSTR,
-            lSecurityFlags: i32,
-            strAuthority: ?BSTR,
-            pCtx: ?*IWbemContext,
-            ppNamespace: ?*?*IWbemServices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConnectServer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemLocator,
+                strNetworkResource: ?BSTR,
+                strUser: ?BSTR,
+                strPassword: ?BSTR,
+                strLocale: ?BSTR,
+                lSecurityFlags: i32,
+                strAuthority: ?BSTR,
+                pCtx: ?*IWbemContext,
+                ppNamespace: ?*?*IWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemLocator,
+                strNetworkResource: ?BSTR,
+                strUser: ?BSTR,
+                strPassword: ?BSTR,
+                strLocale: ?BSTR,
+                lSecurityFlags: i32,
+                strAuthority: ?BSTR,
+                pCtx: ?*IWbemContext,
+                ppNamespace: ?*?*IWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3981,18 +5076,34 @@ pub const IID_IWbemObjectSink = &IID_IWbemObjectSink_Value;
 pub const IWbemObjectSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Indicate: fn(
-            self: *const IWbemObjectSink,
-            lObjectCount: i32,
-            apObjArray: [*]?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStatus: fn(
-            self: *const IWbemObjectSink,
-            lFlags: i32,
-            hResult: HRESULT,
-            strParam: ?BSTR,
-            pObjParam: ?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Indicate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectSink,
+                lObjectCount: i32,
+                apObjArray: [*]?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectSink,
+                lObjectCount: i32,
+                apObjArray: [*]?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectSink,
+                lFlags: i32,
+                hResult: HRESULT,
+                strParam: ?BSTR,
+                pObjParam: ?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectSink,
+                lFlags: i32,
+                hResult: HRESULT,
+                strParam: ?BSTR,
+                pObjParam: ?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4015,30 +5126,64 @@ pub const IID_IEnumWbemClassObject = &IID_IEnumWbemClassObject_Value;
 pub const IEnumWbemClassObject = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Reset: fn(
-            self: *const IEnumWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Next: fn(
-            self: *const IEnumWbemClassObject,
-            lTimeout: i32,
-            uCount: u32,
-            apObjects: [*]?*IWbemClassObject,
-            puReturned: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NextAsync: fn(
-            self: *const IEnumWbemClassObject,
-            uCount: u32,
-            pSink: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumWbemClassObject,
-            ppEnum: ?*?*IEnumWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumWbemClassObject,
-            lTimeout: i32,
-            nCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWbemClassObject,
+                lTimeout: i32,
+                uCount: u32,
+                apObjects: [*]?*IWbemClassObject,
+                puReturned: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWbemClassObject,
+                lTimeout: i32,
+                uCount: u32,
+                apObjects: [*]?*IWbemClassObject,
+                puReturned: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        NextAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWbemClassObject,
+                uCount: u32,
+                pSink: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWbemClassObject,
+                uCount: u32,
+                pSink: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWbemClassObject,
+                ppEnum: ?*?*IEnumWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWbemClassObject,
+                ppEnum: ?*?*IEnumWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumWbemClassObject,
+                lTimeout: i32,
+                nCount: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumWbemClassObject,
+                lTimeout: i32,
+                nCount: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4073,26 +5218,54 @@ pub const IID_IWbemCallResult = &IID_IWbemCallResult_Value;
 pub const IWbemCallResult = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetResultObject: fn(
-            self: *const IWbemCallResult,
-            lTimeout: i32,
-            ppResultObject: ?*?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetResultString: fn(
-            self: *const IWbemCallResult,
-            lTimeout: i32,
-            pstrResultString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetResultServices: fn(
-            self: *const IWbemCallResult,
-            lTimeout: i32,
-            ppServices: ?*?*IWbemServices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCallStatus: fn(
-            self: *const IWbemCallResult,
-            lTimeout: i32,
-            plStatus: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetResultObject: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemCallResult,
+                lTimeout: i32,
+                ppResultObject: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemCallResult,
+                lTimeout: i32,
+                ppResultObject: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetResultString: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemCallResult,
+                lTimeout: i32,
+                pstrResultString: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemCallResult,
+                lTimeout: i32,
+                pstrResultString: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetResultServices: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemCallResult,
+                lTimeout: i32,
+                ppServices: ?*?*IWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemCallResult,
+                lTimeout: i32,
+                ppServices: ?*?*IWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCallStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemCallResult,
+                lTimeout: i32,
+                plStatus: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemCallResult,
+                lTimeout: i32,
+                plStatus: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4123,48 +5296,108 @@ pub const IID_IWbemContext = &IID_IWbemContext_Value;
 pub const IWbemContext = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Clone: fn(
-            self: *const IWbemContext,
-            ppNewCopy: ?*?*IWbemContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNames: fn(
-            self: *const IWbemContext,
-            lFlags: i32,
-            pNames: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginEnumeration: fn(
-            self: *const IWbemContext,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Next: fn(
-            self: *const IWbemContext,
-            lFlags: i32,
-            pstrName: ?*?BSTR,
-            pValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndEnumeration: fn(
-            self: *const IWbemContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValue: fn(
-            self: *const IWbemContext,
-            wszName: ?[*:0]const u16,
-            lFlags: i32,
-            pValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValue: fn(
-            self: *const IWbemContext,
-            wszName: ?[*:0]const u16,
-            lFlags: i32,
-            pValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteValue: fn(
-            self: *const IWbemContext,
-            wszName: ?[*:0]const u16,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteAll: fn(
-            self: *const IWbemContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemContext,
+                ppNewCopy: ?*?*IWbemContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemContext,
+                ppNewCopy: ?*?*IWbemContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNames: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemContext,
+                lFlags: i32,
+                pNames: ?*?*SAFEARRAY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemContext,
+                lFlags: i32,
+                pNames: ?*?*SAFEARRAY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BeginEnumeration: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemContext,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemContext,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemContext,
+                lFlags: i32,
+                pstrName: ?*?BSTR,
+                pValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemContext,
+                lFlags: i32,
+                pstrName: ?*?BSTR,
+                pValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndEnumeration: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemContext,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                pValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemContext,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                pValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemContext,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                pValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemContext,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+                pValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemContext,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemContext,
+                wszName: ?[*:0]const u16,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteAll: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4215,11 +5448,18 @@ pub const IID_IUnsecuredApartment = &IID_IUnsecuredApartment_Value;
 pub const IUnsecuredApartment = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateObjectStub: fn(
-            self: *const IUnsecuredApartment,
-            pObject: ?*IUnknown,
-            ppStub: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateObjectStub: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IUnsecuredApartment,
+                pObject: ?*IUnknown,
+                ppStub: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IUnsecuredApartment,
+                pObject: ?*IUnknown,
+                ppStub: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4238,13 +5478,22 @@ pub const IID_IWbemUnsecuredApartment = &IID_IWbemUnsecuredApartment_Value;
 pub const IWbemUnsecuredApartment = extern struct {
     pub const VTable = extern struct {
         base: IUnsecuredApartment.VTable,
-        CreateSinkStub: fn(
-            self: *const IWbemUnsecuredApartment,
-            pSink: ?*IWbemObjectSink,
-            dwFlags: u32,
-            wszReserved: ?[*:0]const u16,
-            ppStub: ?*?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSinkStub: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemUnsecuredApartment,
+                pSink: ?*IWbemObjectSink,
+                dwFlags: u32,
+                wszReserved: ?[*:0]const u16,
+                ppStub: ?*?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemUnsecuredApartment,
+                pSink: ?*IWbemObjectSink,
+                dwFlags: u32,
+                wszReserved: ?[*:0]const u16,
+                ppStub: ?*?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4263,20 +5512,38 @@ pub const IID_IWbemStatusCodeText = &IID_IWbemStatusCodeText_Value;
 pub const IWbemStatusCodeText = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetErrorCodeText: fn(
-            self: *const IWbemStatusCodeText,
-            hRes: HRESULT,
-            LocaleId: u32,
-            lFlags: i32,
-            MessageText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFacilityCodeText: fn(
-            self: *const IWbemStatusCodeText,
-            hRes: HRESULT,
-            LocaleId: u32,
-            lFlags: i32,
-            MessageText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetErrorCodeText: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemStatusCodeText,
+                hRes: HRESULT,
+                LocaleId: u32,
+                lFlags: i32,
+                MessageText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemStatusCodeText,
+                hRes: HRESULT,
+                LocaleId: u32,
+                lFlags: i32,
+                MessageText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFacilityCodeText: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemStatusCodeText,
+                hRes: HRESULT,
+                LocaleId: u32,
+                lFlags: i32,
+                MessageText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemStatusCodeText,
+                hRes: HRESULT,
+                LocaleId: u32,
+                lFlags: i32,
+                MessageText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4299,16 +5566,30 @@ pub const IID_IWbemBackupRestore = &IID_IWbemBackupRestore_Value;
 pub const IWbemBackupRestore = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Backup: fn(
-            self: *const IWbemBackupRestore,
-            strBackupToFile: ?[*:0]const u16,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Restore: fn(
-            self: *const IWbemBackupRestore,
-            strRestoreFromFile: ?[*:0]const u16,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Backup: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemBackupRestore,
+                strBackupToFile: ?[*:0]const u16,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemBackupRestore,
+                strBackupToFile: ?[*:0]const u16,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Restore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemBackupRestore,
+                strRestoreFromFile: ?[*:0]const u16,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemBackupRestore,
+                strRestoreFromFile: ?[*:0]const u16,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4331,12 +5612,22 @@ pub const IID_IWbemBackupRestoreEx = &IID_IWbemBackupRestoreEx_Value;
 pub const IWbemBackupRestoreEx = extern struct {
     pub const VTable = extern struct {
         base: IWbemBackupRestore.VTable,
-        Pause: fn(
-            self: *const IWbemBackupRestoreEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Resume: fn(
-            self: *const IWbemBackupRestoreEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Pause: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemBackupRestoreEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemBackupRestoreEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Resume: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemBackupRestoreEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemBackupRestoreEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4359,10 +5650,16 @@ pub const IID_IWbemRefresher = &IID_IWbemRefresher_Value;
 pub const IWbemRefresher = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Refresh: fn(
-            self: *const IWbemRefresher,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemRefresher,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemRefresher,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4381,30 +5678,62 @@ pub const IID_IWbemHiPerfEnum = &IID_IWbemHiPerfEnum_Value;
 pub const IWbemHiPerfEnum = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddObjects: fn(
-            self: *const IWbemHiPerfEnum,
-            lFlags: i32,
-            uNumObjects: u32,
-            apIds: [*]i32,
-            apObj: [*]?*IWbemObjectAccess,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveObjects: fn(
-            self: *const IWbemHiPerfEnum,
-            lFlags: i32,
-            uNumObjects: u32,
-            apIds: [*]i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetObjects: fn(
-            self: *const IWbemHiPerfEnum,
-            lFlags: i32,
-            uNumObjects: u32,
-            apObj: [*]?*IWbemObjectAccess,
-            puReturned: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAll: fn(
-            self: *const IWbemHiPerfEnum,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddObjects: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemHiPerfEnum,
+                lFlags: i32,
+                uNumObjects: u32,
+                apIds: [*]i32,
+                apObj: [*]?*IWbemObjectAccess,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemHiPerfEnum,
+                lFlags: i32,
+                uNumObjects: u32,
+                apIds: [*]i32,
+                apObj: [*]?*IWbemObjectAccess,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveObjects: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemHiPerfEnum,
+                lFlags: i32,
+                uNumObjects: u32,
+                apIds: [*]i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemHiPerfEnum,
+                lFlags: i32,
+                uNumObjects: u32,
+                apIds: [*]i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetObjects: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemHiPerfEnum,
+                lFlags: i32,
+                uNumObjects: u32,
+                apObj: [*]?*IWbemObjectAccess,
+                puReturned: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemHiPerfEnum,
+                lFlags: i32,
+                uNumObjects: u32,
+                apObj: [*]?*IWbemObjectAccess,
+                puReturned: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveAll: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemHiPerfEnum,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemHiPerfEnum,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4435,44 +5764,92 @@ pub const IID_IWbemConfigureRefresher = &IID_IWbemConfigureRefresher_Value;
 pub const IWbemConfigureRefresher = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddObjectByPath: fn(
-            self: *const IWbemConfigureRefresher,
-            pNamespace: ?*IWbemServices,
-            wszPath: ?[*:0]const u16,
-            lFlags: i32,
-            pContext: ?*IWbemContext,
-            ppRefreshable: ?*?*IWbemClassObject,
-            plId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddObjectByTemplate: fn(
-            self: *const IWbemConfigureRefresher,
-            pNamespace: ?*IWbemServices,
-            pTemplate: ?*IWbemClassObject,
-            lFlags: i32,
-            pContext: ?*IWbemContext,
-            ppRefreshable: ?*?*IWbemClassObject,
-            plId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddRefresher: fn(
-            self: *const IWbemConfigureRefresher,
-            pRefresher: ?*IWbemRefresher,
-            lFlags: i32,
-            plId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
-            self: *const IWbemConfigureRefresher,
-            lId: i32,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddEnum: fn(
-            self: *const IWbemConfigureRefresher,
-            pNamespace: ?*IWbemServices,
-            wszClassName: ?[*:0]const u16,
-            lFlags: i32,
-            pContext: ?*IWbemContext,
-            ppEnum: ?*?*IWbemHiPerfEnum,
-            plId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddObjectByPath: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemConfigureRefresher,
+                pNamespace: ?*IWbemServices,
+                wszPath: ?[*:0]const u16,
+                lFlags: i32,
+                pContext: ?*IWbemContext,
+                ppRefreshable: ?*?*IWbemClassObject,
+                plId: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemConfigureRefresher,
+                pNamespace: ?*IWbemServices,
+                wszPath: ?[*:0]const u16,
+                lFlags: i32,
+                pContext: ?*IWbemContext,
+                ppRefreshable: ?*?*IWbemClassObject,
+                plId: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddObjectByTemplate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemConfigureRefresher,
+                pNamespace: ?*IWbemServices,
+                pTemplate: ?*IWbemClassObject,
+                lFlags: i32,
+                pContext: ?*IWbemContext,
+                ppRefreshable: ?*?*IWbemClassObject,
+                plId: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemConfigureRefresher,
+                pNamespace: ?*IWbemServices,
+                pTemplate: ?*IWbemClassObject,
+                lFlags: i32,
+                pContext: ?*IWbemContext,
+                ppRefreshable: ?*?*IWbemClassObject,
+                plId: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddRefresher: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemConfigureRefresher,
+                pRefresher: ?*IWbemRefresher,
+                lFlags: i32,
+                plId: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemConfigureRefresher,
+                pRefresher: ?*IWbemRefresher,
+                lFlags: i32,
+                plId: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Remove: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemConfigureRefresher,
+                lId: i32,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemConfigureRefresher,
+                lId: i32,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddEnum: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemConfigureRefresher,
+                pNamespace: ?*IWbemServices,
+                wszClassName: ?[*:0]const u16,
+                lFlags: i32,
+                pContext: ?*IWbemContext,
+                ppEnum: ?*?*IWbemHiPerfEnum,
+                plId: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemConfigureRefresher,
+                pNamespace: ?*IWbemServices,
+                wszClassName: ?[*:0]const u16,
+                lFlags: i32,
+                pContext: ?*IWbemContext,
+                ppEnum: ?*?*IWbemHiPerfEnum,
+                plId: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4507,37 +5884,78 @@ pub const IID_IWbemObjectSinkEx = &IID_IWbemObjectSinkEx_Value;
 pub const IWbemObjectSinkEx = extern struct {
     pub const VTable = extern struct {
         base: IWbemObjectSink.VTable,
-        WriteMessage: fn(
-            self: *const IWbemObjectSinkEx,
-            uChannel: u32,
-            strMessage: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteError: fn(
-            self: *const IWbemObjectSinkEx,
-            pObjError: ?*IWbemClassObject,
-            puReturned: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PromptUser: fn(
-            self: *const IWbemObjectSinkEx,
-            strMessage: ?BSTR,
-            uPromptType: u8,
-            puReturned: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteProgress: fn(
-            self: *const IWbemObjectSinkEx,
-            strActivity: ?BSTR,
-            strCurrentOperation: ?BSTR,
-            strStatusDescription: ?BSTR,
-            uPercentComplete: u32,
-            uSecondsRemaining: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteStreamParameter: fn(
-            self: *const IWbemObjectSinkEx,
-            strName: ?BSTR,
-            vtValue: ?*VARIANT,
-            ulType: u32,
-            ulFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteMessage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectSinkEx,
+                uChannel: u32,
+                strMessage: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectSinkEx,
+                uChannel: u32,
+                strMessage: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WriteError: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectSinkEx,
+                pObjError: ?*IWbemClassObject,
+                puReturned: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectSinkEx,
+                pObjError: ?*IWbemClassObject,
+                puReturned: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PromptUser: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectSinkEx,
+                strMessage: ?BSTR,
+                uPromptType: u8,
+                puReturned: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectSinkEx,
+                strMessage: ?BSTR,
+                uPromptType: u8,
+                puReturned: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WriteProgress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectSinkEx,
+                strActivity: ?BSTR,
+                strCurrentOperation: ?BSTR,
+                strStatusDescription: ?BSTR,
+                uPercentComplete: u32,
+                uSecondsRemaining: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectSinkEx,
+                strActivity: ?BSTR,
+                strCurrentOperation: ?BSTR,
+                strStatusDescription: ?BSTR,
+                uPercentComplete: u32,
+                uSecondsRemaining: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WriteStreamParameter: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectSinkEx,
+                strName: ?BSTR,
+                vtValue: ?*VARIANT,
+                ulType: u32,
+                ulFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectSinkEx,
+                strName: ?BSTR,
+                vtValue: ?*VARIANT,
+                ulType: u32,
+                ulFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4572,12 +5990,20 @@ pub const IID_IWbemShutdown = &IID_IWbemShutdown_Value;
 pub const IWbemShutdown = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Shutdown: fn(
-            self: *const IWbemShutdown,
-            uReason: i32,
-            uMaxMilliseconds: u32,
-            pCtx: ?*IWbemContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Shutdown: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemShutdown,
+                uReason: i32,
+                uMaxMilliseconds: u32,
+                pCtx: ?*IWbemContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemShutdown,
+                uReason: i32,
+                uMaxMilliseconds: u32,
+                pCtx: ?*IWbemContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4625,22 +6051,42 @@ pub const IID_IWbemObjectTextSrc = &IID_IWbemObjectTextSrc_Value;
 pub const IWbemObjectTextSrc = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetText: fn(
-            self: *const IWbemObjectTextSrc,
-            lFlags: i32,
-            pObj: ?*IWbemClassObject,
-            uObjTextFormat: u32,
-            pCtx: ?*IWbemContext,
-            strText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateFromText: fn(
-            self: *const IWbemObjectTextSrc,
-            lFlags: i32,
-            strText: ?BSTR,
-            uObjTextFormat: u32,
-            pCtx: ?*IWbemContext,
-            pNewObj: ?*?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetText: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectTextSrc,
+                lFlags: i32,
+                pObj: ?*IWbemClassObject,
+                uObjTextFormat: u32,
+                pCtx: ?*IWbemContext,
+                strText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectTextSrc,
+                lFlags: i32,
+                pObj: ?*IWbemClassObject,
+                uObjTextFormat: u32,
+                pCtx: ?*IWbemContext,
+                strText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateFromText: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemObjectTextSrc,
+                lFlags: i32,
+                strText: ?BSTR,
+                uObjTextFormat: u32,
+                pCtx: ?*IWbemContext,
+                pNewObj: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemObjectTextSrc,
+                lFlags: i32,
+                strText: ?BSTR,
+                uObjTextFormat: u32,
+                pCtx: ?*IWbemContext,
+                pNewObj: ?*?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4698,42 +6144,84 @@ pub const IID_IMofCompiler = &IID_IMofCompiler_Value;
 pub const IMofCompiler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CompileFile: fn(
-            self: *const IMofCompiler,
-            FileName: ?PWSTR,
-            ServerAndNamespace: ?PWSTR,
-            User: ?PWSTR,
-            Authority: ?PWSTR,
-            Password: ?PWSTR,
-            lOptionFlags: i32,
-            lClassFlags: i32,
-            lInstanceFlags: i32,
-            pInfo: ?*WBEM_COMPILE_STATUS_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CompileBuffer: fn(
-            self: *const IMofCompiler,
-            BuffSize: i32,
-            // TODO: what to do with BytesParamIndex 0?
-            pBuffer: ?*u8,
-            ServerAndNamespace: ?PWSTR,
-            User: ?PWSTR,
-            Authority: ?PWSTR,
-            Password: ?PWSTR,
-            lOptionFlags: i32,
-            lClassFlags: i32,
-            lInstanceFlags: i32,
-            pInfo: ?*WBEM_COMPILE_STATUS_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateBMOF: fn(
-            self: *const IMofCompiler,
-            TextFileName: ?PWSTR,
-            BMOFFileName: ?PWSTR,
-            ServerAndNamespace: ?PWSTR,
-            lOptionFlags: i32,
-            lClassFlags: i32,
-            lInstanceFlags: i32,
-            pInfo: ?*WBEM_COMPILE_STATUS_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CompileFile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMofCompiler,
+                FileName: ?PWSTR,
+                ServerAndNamespace: ?PWSTR,
+                User: ?PWSTR,
+                Authority: ?PWSTR,
+                Password: ?PWSTR,
+                lOptionFlags: i32,
+                lClassFlags: i32,
+                lInstanceFlags: i32,
+                pInfo: ?*WBEM_COMPILE_STATUS_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMofCompiler,
+                FileName: ?PWSTR,
+                ServerAndNamespace: ?PWSTR,
+                User: ?PWSTR,
+                Authority: ?PWSTR,
+                Password: ?PWSTR,
+                lOptionFlags: i32,
+                lClassFlags: i32,
+                lInstanceFlags: i32,
+                pInfo: ?*WBEM_COMPILE_STATUS_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CompileBuffer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMofCompiler,
+                BuffSize: i32,
+                // TODO: what to do with BytesParamIndex 0?
+                pBuffer: ?*u8,
+                ServerAndNamespace: ?PWSTR,
+                User: ?PWSTR,
+                Authority: ?PWSTR,
+                Password: ?PWSTR,
+                lOptionFlags: i32,
+                lClassFlags: i32,
+                lInstanceFlags: i32,
+                pInfo: ?*WBEM_COMPILE_STATUS_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMofCompiler,
+                BuffSize: i32,
+                // TODO: what to do with BytesParamIndex 0?
+                pBuffer: ?*u8,
+                ServerAndNamespace: ?PWSTR,
+                User: ?PWSTR,
+                Authority: ?PWSTR,
+                Password: ?PWSTR,
+                lOptionFlags: i32,
+                lClassFlags: i32,
+                lInstanceFlags: i32,
+                pInfo: ?*WBEM_COMPILE_STATUS_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateBMOF: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMofCompiler,
+                TextFileName: ?PWSTR,
+                BMOFFileName: ?PWSTR,
+                ServerAndNamespace: ?PWSTR,
+                lOptionFlags: i32,
+                lClassFlags: i32,
+                lInstanceFlags: i32,
+                pInfo: ?*WBEM_COMPILE_STATUS_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMofCompiler,
+                TextFileName: ?PWSTR,
+                BMOFFileName: ?PWSTR,
+                ServerAndNamespace: ?PWSTR,
+                lOptionFlags: i32,
+                lClassFlags: i32,
+                lInstanceFlags: i32,
+                pInfo: ?*WBEM_COMPILE_STATUS_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4800,24 +6288,46 @@ pub const IID_IWbemPropertyProvider = &IID_IWbemPropertyProvider_Value;
 pub const IWbemPropertyProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetProperty: fn(
-            self: *const IWbemPropertyProvider,
-            lFlags: i32,
-            strLocale: ?BSTR,
-            strClassMapping: ?BSTR,
-            strInstMapping: ?BSTR,
-            strPropMapping: ?BSTR,
-            pvValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PutProperty: fn(
-            self: *const IWbemPropertyProvider,
-            lFlags: i32,
-            strLocale: ?BSTR,
-            strClassMapping: ?BSTR,
-            strInstMapping: ?BSTR,
-            strPropMapping: ?BSTR,
-            pvValue: ?*const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPropertyProvider,
+                lFlags: i32,
+                strLocale: ?BSTR,
+                strClassMapping: ?BSTR,
+                strInstMapping: ?BSTR,
+                strPropMapping: ?BSTR,
+                pvValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPropertyProvider,
+                lFlags: i32,
+                strLocale: ?BSTR,
+                strClassMapping: ?BSTR,
+                strInstMapping: ?BSTR,
+                strPropMapping: ?BSTR,
+                pvValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PutProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemPropertyProvider,
+                lFlags: i32,
+                strLocale: ?BSTR,
+                strClassMapping: ?BSTR,
+                strInstMapping: ?BSTR,
+                strPropMapping: ?BSTR,
+                pvValue: ?*const VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemPropertyProvider,
+                lFlags: i32,
+                strLocale: ?BSTR,
+                strClassMapping: ?BSTR,
+                strInstMapping: ?BSTR,
+                strPropMapping: ?BSTR,
+                pvValue: ?*const VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4840,12 +6350,20 @@ pub const IID_IWbemUnboundObjectSink = &IID_IWbemUnboundObjectSink_Value;
 pub const IWbemUnboundObjectSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IndicateToConsumer: fn(
-            self: *const IWbemUnboundObjectSink,
-            pLogicalConsumer: ?*IWbemClassObject,
-            lNumObjects: i32,
-            apObjects: [*]?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IndicateToConsumer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemUnboundObjectSink,
+                pLogicalConsumer: ?*IWbemClassObject,
+                lNumObjects: i32,
+                apObjects: [*]?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemUnboundObjectSink,
+                pLogicalConsumer: ?*IWbemClassObject,
+                lNumObjects: i32,
+                apObjects: [*]?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4864,11 +6382,18 @@ pub const IID_IWbemEventProvider = &IID_IWbemEventProvider_Value;
 pub const IWbemEventProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ProvideEvents: fn(
-            self: *const IWbemEventProvider,
-            pSink: ?*IWbemObjectSink,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProvideEvents: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemEventProvider,
+                pSink: ?*IWbemObjectSink,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemEventProvider,
+                pSink: ?*IWbemObjectSink,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4887,16 +6412,30 @@ pub const IID_IWbemEventProviderQuerySink = &IID_IWbemEventProviderQuerySink_Val
 pub const IWbemEventProviderQuerySink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        NewQuery: fn(
-            self: *const IWbemEventProviderQuerySink,
-            dwId: u32,
-            wszQueryLanguage: ?*u16,
-            wszQuery: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CancelQuery: fn(
-            self: *const IWbemEventProviderQuerySink,
-            dwId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NewQuery: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemEventProviderQuerySink,
+                dwId: u32,
+                wszQueryLanguage: ?*u16,
+                wszQuery: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemEventProviderQuerySink,
+                dwId: u32,
+                wszQueryLanguage: ?*u16,
+                wszQuery: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CancelQuery: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemEventProviderQuerySink,
+                dwId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemEventProviderQuerySink,
+                dwId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4919,13 +6458,22 @@ pub const IID_IWbemEventProviderSecurity = &IID_IWbemEventProviderSecurity_Value
 pub const IWbemEventProviderSecurity = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AccessCheck: fn(
-            self: *const IWbemEventProviderSecurity,
-            wszQueryLanguage: ?*u16,
-            wszQuery: ?*u16,
-            lSidLength: i32,
-            pSid: [*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AccessCheck: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemEventProviderSecurity,
+                wszQueryLanguage: ?*u16,
+                wszQuery: ?*u16,
+                lSidLength: i32,
+                pSid: [*:0]const u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemEventProviderSecurity,
+                wszQueryLanguage: ?*u16,
+                wszQuery: ?*u16,
+                lSidLength: i32,
+                pSid: [*:0]const u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4944,11 +6492,18 @@ pub const IID_IWbemEventConsumerProvider = &IID_IWbemEventConsumerProvider_Value
 pub const IWbemEventConsumerProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        FindConsumer: fn(
-            self: *const IWbemEventConsumerProvider,
-            pLogicalConsumer: ?*IWbemClassObject,
-            ppConsumer: ?*?*IWbemUnboundObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindConsumer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemEventConsumerProvider,
+                pLogicalConsumer: ?*IWbemClassObject,
+                ppConsumer: ?*?*IWbemUnboundObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemEventConsumerProvider,
+                pLogicalConsumer: ?*IWbemClassObject,
+                ppConsumer: ?*?*IWbemUnboundObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4967,11 +6522,18 @@ pub const IID_IWbemProviderInitSink = &IID_IWbemProviderInitSink_Value;
 pub const IWbemProviderInitSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetStatus: fn(
-            self: *const IWbemProviderInitSink,
-            lStatus: i32,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemProviderInitSink,
+                lStatus: i32,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemProviderInitSink,
+                lStatus: i32,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4990,16 +6552,28 @@ pub const IID_IWbemProviderInit = &IID_IWbemProviderInit_Value;
 pub const IWbemProviderInit = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IWbemProviderInit,
-            wszUser: ?PWSTR,
-            lFlags: i32,
-            wszNamespace: ?PWSTR,
-            wszLocale: ?PWSTR,
-            pNamespace: ?*IWbemServices,
-            pCtx: ?*IWbemContext,
-            pInitSink: ?*IWbemProviderInitSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemProviderInit,
+                wszUser: ?PWSTR,
+                lFlags: i32,
+                wszNamespace: ?PWSTR,
+                wszLocale: ?PWSTR,
+                pNamespace: ?*IWbemServices,
+                pCtx: ?*IWbemContext,
+                pInitSink: ?*IWbemProviderInitSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemProviderInit,
+                wszUser: ?PWSTR,
+                lFlags: i32,
+                wszNamespace: ?PWSTR,
+                wszLocale: ?PWSTR,
+                pNamespace: ?*IWbemServices,
+                pCtx: ?*IWbemContext,
+                pInitSink: ?*IWbemProviderInitSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5018,54 +6592,114 @@ pub const IID_IWbemHiPerfProvider = &IID_IWbemHiPerfProvider_Value;
 pub const IWbemHiPerfProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        QueryInstances: fn(
-            self: *const IWbemHiPerfProvider,
-            pNamespace: ?*IWbemServices,
-            wszClass: ?PWSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            pSink: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateRefresher: fn(
-            self: *const IWbemHiPerfProvider,
-            pNamespace: ?*IWbemServices,
-            lFlags: i32,
-            ppRefresher: ?*?*IWbemRefresher,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateRefreshableObject: fn(
-            self: *const IWbemHiPerfProvider,
-            pNamespace: ?*IWbemServices,
-            pTemplate: ?*IWbemObjectAccess,
-            pRefresher: ?*IWbemRefresher,
-            lFlags: i32,
-            pContext: ?*IWbemContext,
-            ppRefreshable: ?*?*IWbemObjectAccess,
-            plId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StopRefreshing: fn(
-            self: *const IWbemHiPerfProvider,
-            pRefresher: ?*IWbemRefresher,
-            lId: i32,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateRefreshableEnum: fn(
-            self: *const IWbemHiPerfProvider,
-            pNamespace: ?*IWbemServices,
-            wszClass: ?[*:0]const u16,
-            pRefresher: ?*IWbemRefresher,
-            lFlags: i32,
-            pContext: ?*IWbemContext,
-            pHiPerfEnum: ?*IWbemHiPerfEnum,
-            plId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetObjects: fn(
-            self: *const IWbemHiPerfProvider,
-            pNamespace: ?*IWbemServices,
-            lNumObjects: i32,
-            apObj: [*]?*IWbemObjectAccess,
-            lFlags: i32,
-            pContext: ?*IWbemContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryInstances: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemHiPerfProvider,
+                pNamespace: ?*IWbemServices,
+                wszClass: ?PWSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pSink: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemHiPerfProvider,
+                pNamespace: ?*IWbemServices,
+                wszClass: ?PWSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                pSink: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateRefresher: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemHiPerfProvider,
+                pNamespace: ?*IWbemServices,
+                lFlags: i32,
+                ppRefresher: ?*?*IWbemRefresher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemHiPerfProvider,
+                pNamespace: ?*IWbemServices,
+                lFlags: i32,
+                ppRefresher: ?*?*IWbemRefresher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateRefreshableObject: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemHiPerfProvider,
+                pNamespace: ?*IWbemServices,
+                pTemplate: ?*IWbemObjectAccess,
+                pRefresher: ?*IWbemRefresher,
+                lFlags: i32,
+                pContext: ?*IWbemContext,
+                ppRefreshable: ?*?*IWbemObjectAccess,
+                plId: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemHiPerfProvider,
+                pNamespace: ?*IWbemServices,
+                pTemplate: ?*IWbemObjectAccess,
+                pRefresher: ?*IWbemRefresher,
+                lFlags: i32,
+                pContext: ?*IWbemContext,
+                ppRefreshable: ?*?*IWbemObjectAccess,
+                plId: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StopRefreshing: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemHiPerfProvider,
+                pRefresher: ?*IWbemRefresher,
+                lId: i32,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemHiPerfProvider,
+                pRefresher: ?*IWbemRefresher,
+                lId: i32,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateRefreshableEnum: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemHiPerfProvider,
+                pNamespace: ?*IWbemServices,
+                wszClass: ?[*:0]const u16,
+                pRefresher: ?*IWbemRefresher,
+                lFlags: i32,
+                pContext: ?*IWbemContext,
+                pHiPerfEnum: ?*IWbemHiPerfEnum,
+                plId: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemHiPerfProvider,
+                pNamespace: ?*IWbemServices,
+                wszClass: ?[*:0]const u16,
+                pRefresher: ?*IWbemRefresher,
+                lFlags: i32,
+                pContext: ?*IWbemContext,
+                pHiPerfEnum: ?*IWbemHiPerfEnum,
+                plId: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetObjects: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemHiPerfProvider,
+                pNamespace: ?*IWbemServices,
+                lNumObjects: i32,
+                apObj: [*]?*IWbemObjectAccess,
+                lFlags: i32,
+                pContext: ?*IWbemContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemHiPerfProvider,
+                pNamespace: ?*IWbemServices,
+                lNumObjects: i32,
+                apObj: [*]?*IWbemObjectAccess,
+                lFlags: i32,
+                pContext: ?*IWbemContext,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5104,19 +6738,36 @@ pub const IID_IWbemDecoupledRegistrar = &IID_IWbemDecoupledRegistrar_Value;
 pub const IWbemDecoupledRegistrar = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Register: fn(
-            self: *const IWbemDecoupledRegistrar,
-            a_Flags: i32,
-            a_Context: ?*IWbemContext,
-            a_User: ?[*:0]const u16,
-            a_Locale: ?[*:0]const u16,
-            a_Scope: ?[*:0]const u16,
-            a_Registration: ?[*:0]const u16,
-            pIUnknown: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnRegister: fn(
-            self: *const IWbemDecoupledRegistrar,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Register: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemDecoupledRegistrar,
+                a_Flags: i32,
+                a_Context: ?*IWbemContext,
+                a_User: ?[*:0]const u16,
+                a_Locale: ?[*:0]const u16,
+                a_Scope: ?[*:0]const u16,
+                a_Registration: ?[*:0]const u16,
+                pIUnknown: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemDecoupledRegistrar,
+                a_Flags: i32,
+                a_Context: ?*IWbemContext,
+                a_User: ?[*:0]const u16,
+                a_Locale: ?[*:0]const u16,
+                a_Scope: ?[*:0]const u16,
+                a_Registration: ?[*:0]const u16,
+                pIUnknown: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnRegister: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemDecoupledRegistrar,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemDecoupledRegistrar,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5139,11 +6790,18 @@ pub const IID_IWbemProviderIdentity = &IID_IWbemProviderIdentity_Value;
 pub const IWbemProviderIdentity = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetRegistrationObject: fn(
-            self: *const IWbemProviderIdentity,
-            lFlags: i32,
-            pProvReg: ?*IWbemClassObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRegistrationObject: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemProviderIdentity,
+                lFlags: i32,
+                pProvReg: ?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemProviderIdentity,
+                lFlags: i32,
+                pProvReg: ?*IWbemClassObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5182,18 +6840,34 @@ pub const IID_IWbemDecoupledBasicEventProvider = &IID_IWbemDecoupledBasicEventPr
 pub const IWbemDecoupledBasicEventProvider = extern struct {
     pub const VTable = extern struct {
         base: IWbemDecoupledRegistrar.VTable,
-        GetSink: fn(
-            self: *const IWbemDecoupledBasicEventProvider,
-            a_Flags: i32,
-            a_Context: ?*IWbemContext,
-            a_Sink: ?*?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetService: fn(
-            self: *const IWbemDecoupledBasicEventProvider,
-            a_Flags: i32,
-            a_Context: ?*IWbemContext,
-            a_Service: ?*?*IWbemServices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSink: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemDecoupledBasicEventProvider,
+                a_Flags: i32,
+                a_Context: ?*IWbemContext,
+                a_Sink: ?*?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemDecoupledBasicEventProvider,
+                a_Flags: i32,
+                a_Context: ?*IWbemContext,
+                a_Sink: ?*?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetService: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemDecoupledBasicEventProvider,
+                a_Flags: i32,
+                a_Context: ?*IWbemContext,
+                a_Service: ?*?*IWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemDecoupledBasicEventProvider,
+                a_Flags: i32,
+                a_Context: ?*IWbemContext,
+                a_Service: ?*?*IWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5225,27 +6899,56 @@ pub const IID_IWbemEventSink = &IID_IWbemEventSink_Value;
 pub const IWbemEventSink = extern struct {
     pub const VTable = extern struct {
         base: IWbemObjectSink.VTable,
-        SetSinkSecurity: fn(
-            self: *const IWbemEventSink,
-            lSDLength: i32,
-            pSD: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsActive: fn(
-            self: *const IWbemEventSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRestrictedSink: fn(
-            self: *const IWbemEventSink,
-            lNumQueries: i32,
-            awszQueries: [*]const ?[*:0]const u16,
-            pCallback: ?*IUnknown,
-            ppSink: ?*?*IWbemEventSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetBatchingParameters: fn(
-            self: *const IWbemEventSink,
-            lFlags: i32,
-            dwMaxBufferSize: u32,
-            dwMaxSendLatency: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSinkSecurity: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemEventSink,
+                lSDLength: i32,
+                pSD: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemEventSink,
+                lSDLength: i32,
+                pSD: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsActive: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemEventSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemEventSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRestrictedSink: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemEventSink,
+                lNumQueries: i32,
+                awszQueries: [*]const ?[*:0]const u16,
+                pCallback: ?*IUnknown,
+                ppSink: ?*?*IWbemEventSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemEventSink,
+                lNumQueries: i32,
+                awszQueries: [*]const ?[*:0]const u16,
+                pCallback: ?*IUnknown,
+                ppSink: ?*?*IWbemEventSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetBatchingParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemEventSink,
+                lFlags: i32,
+                dwMaxBufferSize: u32,
+                dwMaxSendLatency: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemEventSink,
+                lFlags: i32,
+                dwMaxBufferSize: u32,
+                dwMaxSendLatency: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5826,179 +7529,391 @@ pub const IID_ISWbemServices = &IID_ISWbemServices_Value;
 pub const ISWbemServices = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Get: fn(
-            self: *const ISWbemServices,
-            strObjectPath: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemObject: ?*?*ISWbemObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAsync: fn(
-            self: *const ISWbemServices,
-            objWbemSink: ?*IDispatch,
-            strObjectPath: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
-            self: *const ISWbemServices,
-            strObjectPath: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteAsync: fn(
-            self: *const ISWbemServices,
-            objWbemSink: ?*IDispatch,
-            strObjectPath: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InstancesOf: fn(
-            self: *const ISWbemServices,
-            strClass: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemObjectSet: ?*?*ISWbemObjectSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InstancesOfAsync: fn(
-            self: *const ISWbemServices,
-            objWbemSink: ?*IDispatch,
-            strClass: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SubclassesOf: fn(
-            self: *const ISWbemServices,
-            strSuperclass: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemObjectSet: ?*?*ISWbemObjectSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SubclassesOfAsync: fn(
-            self: *const ISWbemServices,
-            objWbemSink: ?*IDispatch,
-            strSuperclass: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecQuery: fn(
-            self: *const ISWbemServices,
-            strQuery: ?BSTR,
-            strQueryLanguage: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemObjectSet: ?*?*ISWbemObjectSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecQueryAsync: fn(
-            self: *const ISWbemServices,
-            objWbemSink: ?*IDispatch,
-            strQuery: ?BSTR,
-            strQueryLanguage: ?BSTR,
-            lFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AssociatorsOf: fn(
-            self: *const ISWbemServices,
-            strObjectPath: ?BSTR,
-            strAssocClass: ?BSTR,
-            strResultClass: ?BSTR,
-            strResultRole: ?BSTR,
-            strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
-            strRequiredAssocQualifier: ?BSTR,
-            strRequiredQualifier: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemObjectSet: ?*?*ISWbemObjectSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AssociatorsOfAsync: fn(
-            self: *const ISWbemServices,
-            objWbemSink: ?*IDispatch,
-            strObjectPath: ?BSTR,
-            strAssocClass: ?BSTR,
-            strResultClass: ?BSTR,
-            strResultRole: ?BSTR,
-            strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
-            strRequiredAssocQualifier: ?BSTR,
-            strRequiredQualifier: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReferencesTo: fn(
-            self: *const ISWbemServices,
-            strObjectPath: ?BSTR,
-            strResultClass: ?BSTR,
-            strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
-            strRequiredQualifier: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemObjectSet: ?*?*ISWbemObjectSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReferencesToAsync: fn(
-            self: *const ISWbemServices,
-            objWbemSink: ?*IDispatch,
-            strObjectPath: ?BSTR,
-            strResultClass: ?BSTR,
-            strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
-            strRequiredQualifier: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecNotificationQuery: fn(
-            self: *const ISWbemServices,
-            strQuery: ?BSTR,
-            strQueryLanguage: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemEventSource: ?*?*ISWbemEventSource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecNotificationQueryAsync: fn(
-            self: *const ISWbemServices,
-            objWbemSink: ?*IDispatch,
-            strQuery: ?BSTR,
-            strQueryLanguage: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecMethod: fn(
-            self: *const ISWbemServices,
-            strObjectPath: ?BSTR,
-            strMethodName: ?BSTR,
-            objWbemInParameters: ?*IDispatch,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemOutParameters: ?*?*ISWbemObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecMethodAsync: fn(
-            self: *const ISWbemServices,
-            objWbemSink: ?*IDispatch,
-            strObjectPath: ?BSTR,
-            strMethodName: ?BSTR,
-            objWbemInParameters: ?*IDispatch,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Get: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                strObjectPath: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                strObjectPath: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strObjectPath: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strObjectPath: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Delete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                strObjectPath: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                strObjectPath: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strObjectPath: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strObjectPath: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        InstancesOf: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                strClass: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                strClass: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        InstancesOfAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strClass: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strClass: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SubclassesOf: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                strSuperclass: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                strSuperclass: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SubclassesOfAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strSuperclass: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strSuperclass: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecQuery: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                strQuery: ?BSTR,
+                strQueryLanguage: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                strQuery: ?BSTR,
+                strQueryLanguage: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecQueryAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strQuery: ?BSTR,
+                strQueryLanguage: ?BSTR,
+                lFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strQuery: ?BSTR,
+                strQueryLanguage: ?BSTR,
+                lFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AssociatorsOf: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                strObjectPath: ?BSTR,
+                strAssocClass: ?BSTR,
+                strResultClass: ?BSTR,
+                strResultRole: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredAssocQualifier: ?BSTR,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                strObjectPath: ?BSTR,
+                strAssocClass: ?BSTR,
+                strResultClass: ?BSTR,
+                strResultRole: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredAssocQualifier: ?BSTR,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AssociatorsOfAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strObjectPath: ?BSTR,
+                strAssocClass: ?BSTR,
+                strResultClass: ?BSTR,
+                strResultRole: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredAssocQualifier: ?BSTR,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strObjectPath: ?BSTR,
+                strAssocClass: ?BSTR,
+                strResultClass: ?BSTR,
+                strResultRole: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredAssocQualifier: ?BSTR,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReferencesTo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                strObjectPath: ?BSTR,
+                strResultClass: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                strObjectPath: ?BSTR,
+                strResultClass: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReferencesToAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strObjectPath: ?BSTR,
+                strResultClass: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strObjectPath: ?BSTR,
+                strResultClass: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecNotificationQuery: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                strQuery: ?BSTR,
+                strQueryLanguage: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemEventSource: ?*?*ISWbemEventSource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                strQuery: ?BSTR,
+                strQueryLanguage: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemEventSource: ?*?*ISWbemEventSource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecNotificationQueryAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strQuery: ?BSTR,
+                strQueryLanguage: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strQuery: ?BSTR,
+                strQueryLanguage: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecMethod: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                strObjectPath: ?BSTR,
+                strMethodName: ?BSTR,
+                objWbemInParameters: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemOutParameters: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                strObjectPath: ?BSTR,
+                strMethodName: ?BSTR,
+                objWbemInParameters: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemOutParameters: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecMethodAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strObjectPath: ?BSTR,
+                strMethodName: ?BSTR,
+                objWbemInParameters: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServices,
+                objWbemSink: ?*IDispatch,
+                strObjectPath: ?BSTR,
+                strMethodName: ?BSTR,
+                objWbemInParameters: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Security_: fn(
-            self: *const ISWbemServices,
-            objWbemSecurity: ?*?*ISWbemSecurity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Security_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemServices,
+                objWbemSecurity: ?*?*ISWbemSecurity,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemServices,
+                objWbemSecurity: ?*?*ISWbemSecurity,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6088,23 +8003,45 @@ pub const IID_ISWbemLocator = &IID_ISWbemLocator_Value;
 pub const ISWbemLocator = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        ConnectServer: fn(
-            self: *const ISWbemLocator,
-            strServer: ?BSTR,
-            strNamespace: ?BSTR,
-            strUser: ?BSTR,
-            strPassword: ?BSTR,
-            strLocale: ?BSTR,
-            strAuthority: ?BSTR,
-            iSecurityFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemServices: ?*?*ISWbemServices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConnectServer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemLocator,
+                strServer: ?BSTR,
+                strNamespace: ?BSTR,
+                strUser: ?BSTR,
+                strPassword: ?BSTR,
+                strLocale: ?BSTR,
+                strAuthority: ?BSTR,
+                iSecurityFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemServices: ?*?*ISWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemLocator,
+                strServer: ?BSTR,
+                strNamespace: ?BSTR,
+                strUser: ?BSTR,
+                strPassword: ?BSTR,
+                strLocale: ?BSTR,
+                strAuthority: ?BSTR,
+                iSecurityFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemServices: ?*?*ISWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Security_: fn(
-            self: *const ISWbemLocator,
-            objWbemSecurity: ?*?*ISWbemSecurity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Security_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemLocator,
+                objWbemSecurity: ?*?*ISWbemSecurity,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemLocator,
+                objWbemSecurity: ?*?*ISWbemSecurity,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6126,181 +8063,412 @@ pub const IID_ISWbemObject = &IID_ISWbemObject_Value;
 pub const ISWbemObject = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Put_: fn(
-            self: *const ISWbemObject,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemObjectPath: ?*?*ISWbemObjectPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PutAsync_: fn(
-            self: *const ISWbemObject,
-            objWbemSink: ?*IDispatch,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete_: fn(
-            self: *const ISWbemObject,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteAsync_: fn(
-            self: *const ISWbemObject,
-            objWbemSink: ?*IDispatch,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Instances_: fn(
-            self: *const ISWbemObject,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemObjectSet: ?*?*ISWbemObjectSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InstancesAsync_: fn(
-            self: *const ISWbemObject,
-            objWbemSink: ?*IDispatch,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Subclasses_: fn(
-            self: *const ISWbemObject,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemObjectSet: ?*?*ISWbemObjectSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SubclassesAsync_: fn(
-            self: *const ISWbemObject,
-            objWbemSink: ?*IDispatch,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Associators_: fn(
-            self: *const ISWbemObject,
-            strAssocClass: ?BSTR,
-            strResultClass: ?BSTR,
-            strResultRole: ?BSTR,
-            strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
-            strRequiredAssocQualifier: ?BSTR,
-            strRequiredQualifier: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemObjectSet: ?*?*ISWbemObjectSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AssociatorsAsync_: fn(
-            self: *const ISWbemObject,
-            objWbemSink: ?*IDispatch,
-            strAssocClass: ?BSTR,
-            strResultClass: ?BSTR,
-            strResultRole: ?BSTR,
-            strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
-            strRequiredAssocQualifier: ?BSTR,
-            strRequiredQualifier: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        References_: fn(
-            self: *const ISWbemObject,
-            strResultClass: ?BSTR,
-            strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
-            strRequiredQualifier: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemObjectSet: ?*?*ISWbemObjectSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReferencesAsync_: fn(
-            self: *const ISWbemObject,
-            objWbemSink: ?*IDispatch,
-            strResultClass: ?BSTR,
-            strRole: ?BSTR,
-            bClassesOnly: i16,
-            bSchemaOnly: i16,
-            strRequiredQualifier: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecMethod_: fn(
-            self: *const ISWbemObject,
-            strMethodName: ?BSTR,
-            objWbemInParameters: ?*IDispatch,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemOutParameters: ?*?*ISWbemObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecMethodAsync_: fn(
-            self: *const ISWbemObject,
-            objWbemSink: ?*IDispatch,
-            strMethodName: ?BSTR,
-            objWbemInParameters: ?*IDispatch,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone_: fn(
-            self: *const ISWbemObject,
-            objWbemObject: ?*?*ISWbemObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetObjectText_: fn(
-            self: *const ISWbemObject,
-            iFlags: i32,
-            strObjectText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SpawnDerivedClass_: fn(
-            self: *const ISWbemObject,
-            iFlags: i32,
-            objWbemObject: ?*?*ISWbemObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SpawnInstance_: fn(
-            self: *const ISWbemObject,
-            iFlags: i32,
-            objWbemObject: ?*?*ISWbemObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CompareTo_: fn(
-            self: *const ISWbemObject,
-            objWbemObject: ?*IDispatch,
-            iFlags: i32,
-            bResult: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Put_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectPath: ?*?*ISWbemObjectPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectPath: ?*?*ISWbemObjectPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PutAsync_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Delete_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteAsync_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Instances_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        InstancesAsync_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Subclasses_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SubclassesAsync_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Associators_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                strAssocClass: ?BSTR,
+                strResultClass: ?BSTR,
+                strResultRole: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredAssocQualifier: ?BSTR,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                strAssocClass: ?BSTR,
+                strResultClass: ?BSTR,
+                strResultRole: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredAssocQualifier: ?BSTR,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AssociatorsAsync_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                strAssocClass: ?BSTR,
+                strResultClass: ?BSTR,
+                strResultRole: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredAssocQualifier: ?BSTR,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                strAssocClass: ?BSTR,
+                strResultClass: ?BSTR,
+                strResultRole: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredAssocQualifier: ?BSTR,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        References_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                strResultClass: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                strResultClass: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReferencesAsync_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                strResultClass: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                strResultClass: ?BSTR,
+                strRole: ?BSTR,
+                bClassesOnly: i16,
+                bSchemaOnly: i16,
+                strRequiredQualifier: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecMethod_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                strMethodName: ?BSTR,
+                objWbemInParameters: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemOutParameters: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                strMethodName: ?BSTR,
+                objWbemInParameters: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemOutParameters: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecMethodAsync_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                strMethodName: ?BSTR,
+                objWbemInParameters: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemSink: ?*IDispatch,
+                strMethodName: ?BSTR,
+                objWbemInParameters: ?*IDispatch,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetObjectText_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                strObjectText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                strObjectText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SpawnDerivedClass_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SpawnInstance_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                iFlags: i32,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CompareTo_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemObject: ?*IDispatch,
+                iFlags: i32,
+                bResult: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemObject: ?*IDispatch,
+                iFlags: i32,
+                bResult: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Qualifiers_: fn(
-            self: *const ISWbemObject,
-            objWbemQualifierSet: ?*?*ISWbemQualifierSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Qualifiers_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemQualifierSet: ?*?*ISWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemQualifierSet: ?*?*ISWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties_: fn(
-            self: *const ISWbemObject,
-            objWbemPropertySet: ?*?*ISWbemPropertySet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Properties_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemPropertySet: ?*?*ISWbemPropertySet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemPropertySet: ?*?*ISWbemPropertySet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Methods_: fn(
-            self: *const ISWbemObject,
-            objWbemMethodSet: ?*?*ISWbemMethodSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Methods_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemMethodSet: ?*?*ISWbemMethodSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemMethodSet: ?*?*ISWbemMethodSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Derivation_: fn(
-            self: *const ISWbemObject,
-            strClassNameArray: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Derivation_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                strClassNameArray: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObject,
+                strClassNameArray: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path_: fn(
-            self: *const ISWbemObject,
-            objWbemObjectPath: ?*?*ISWbemObjectPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Path_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemObjectPath: ?*?*ISWbemObjectPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemObjectPath: ?*?*ISWbemObjectPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Security_: fn(
-            self: *const ISWbemObject,
-            objWbemSecurity: ?*?*ISWbemSecurity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Security_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObject,
+                objWbemSecurity: ?*?*ISWbemSecurity,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObject,
+                objWbemSecurity: ?*?*ISWbemSecurity,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6415,31 +8583,70 @@ pub const ISWbemObjectSet = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISWbemObjectSet,
-            pUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
-            self: *const ISWbemObjectSet,
-            strObjectPath: ?BSTR,
-            iFlags: i32,
-            objWbemObject: ?*?*ISWbemObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectSet,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectSet,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Item: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObjectSet,
+                strObjectPath: ?BSTR,
+                iFlags: i32,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObjectSet,
+                strObjectPath: ?BSTR,
+                iFlags: i32,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISWbemObjectSet,
-            iCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectSet,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectSet,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Security_: fn(
-            self: *const ISWbemObjectSet,
-            objWbemSecurity: ?*?*ISWbemSecurity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ItemIndex: fn(
-            self: *const ISWbemObjectSet,
-            lIndex: i32,
-            objWbemObject: ?*?*ISWbemObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Security_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectSet,
+                objWbemSecurity: ?*?*ISWbemSecurity,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectSet,
+                objWbemSecurity: ?*?*ISWbemSecurity,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ItemIndex: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObjectSet,
+                lIndex: i32,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObjectSet,
+                lIndex: i32,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6474,20 +8681,44 @@ pub const ISWbemNamedValue = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: fn(
-            self: *const ISWbemNamedValue,
-            varValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemNamedValue,
+                varValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemNamedValue,
+                varValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: fn(
-            self: *const ISWbemNamedValue,
-            varValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemNamedValue,
+                varValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemNamedValue,
+                varValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISWbemNamedValue,
-            strName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemNamedValue,
+                strName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemNamedValue,
+                strName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6514,40 +8745,91 @@ pub const ISWbemNamedValueSet = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISWbemNamedValueSet,
-            pUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
-            self: *const ISWbemNamedValueSet,
-            strName: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValue: ?*?*ISWbemNamedValue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemNamedValueSet,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemNamedValueSet,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Item: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemNamedValueSet,
+                strName: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValue: ?*?*ISWbemNamedValue,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemNamedValueSet,
+                strName: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValue: ?*?*ISWbemNamedValue,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISWbemNamedValueSet,
-            iCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
-            self: *const ISWbemNamedValueSet,
-            strName: ?BSTR,
-            varValue: ?*VARIANT,
-            iFlags: i32,
-            objWbemNamedValue: ?*?*ISWbemNamedValue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
-            self: *const ISWbemNamedValueSet,
-            strName: ?BSTR,
-            iFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const ISWbemNamedValueSet,
-            objWbemNamedValueSet: ?*?*ISWbemNamedValueSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteAll: fn(
-            self: *const ISWbemNamedValueSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemNamedValueSet,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemNamedValueSet,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Add: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemNamedValueSet,
+                strName: ?BSTR,
+                varValue: ?*VARIANT,
+                iFlags: i32,
+                objWbemNamedValue: ?*?*ISWbemNamedValue,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemNamedValueSet,
+                strName: ?BSTR,
+                varValue: ?*VARIANT,
+                iFlags: i32,
+                objWbemNamedValue: ?*?*ISWbemNamedValue,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Remove: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemNamedValueSet,
+                strName: ?BSTR,
+                iFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemNamedValueSet,
+                strName: ?BSTR,
+                iFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemNamedValueSet,
+                objWbemNamedValueSet: ?*?*ISWbemNamedValueSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemNamedValueSet,
+                objWbemNamedValueSet: ?*?*ISWbemNamedValueSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteAll: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemNamedValueSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemNamedValueSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6590,60 +8872,148 @@ pub const ISWbemQualifier = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: fn(
-            self: *const ISWbemQualifier,
-            varValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifier,
+                varValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifier,
+                varValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: fn(
-            self: *const ISWbemQualifier,
-            varValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifier,
+                varValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifier,
+                varValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISWbemQualifier,
-            strName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifier,
+                strName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifier,
+                strName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsLocal: fn(
-            self: *const ISWbemQualifier,
-            bIsLocal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsLocal: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifier,
+                bIsLocal: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifier,
+                bIsLocal: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropagatesToSubclass: fn(
-            self: *const ISWbemQualifier,
-            bPropagatesToSubclass: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PropagatesToSubclass: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifier,
+                bPropagatesToSubclass: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifier,
+                bPropagatesToSubclass: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PropagatesToSubclass: fn(
-            self: *const ISWbemQualifier,
-            bPropagatesToSubclass: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PropagatesToSubclass: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifier,
+                bPropagatesToSubclass: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifier,
+                bPropagatesToSubclass: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropagatesToInstance: fn(
-            self: *const ISWbemQualifier,
-            bPropagatesToInstance: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PropagatesToInstance: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifier,
+                bPropagatesToInstance: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifier,
+                bPropagatesToInstance: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PropagatesToInstance: fn(
-            self: *const ISWbemQualifier,
-            bPropagatesToInstance: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PropagatesToInstance: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifier,
+                bPropagatesToInstance: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifier,
+                bPropagatesToInstance: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOverridable: fn(
-            self: *const ISWbemQualifier,
-            bIsOverridable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsOverridable: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifier,
+                bIsOverridable: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifier,
+                bIsOverridable: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IsOverridable: fn(
-            self: *const ISWbemQualifier,
-            bIsOverridable: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_IsOverridable: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifier,
+                bIsOverridable: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifier,
+                bIsOverridable: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsAmended: fn(
-            self: *const ISWbemQualifier,
-            bIsAmended: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsAmended: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifier,
+                bIsAmended: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifier,
+                bIsAmended: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6702,36 +9072,79 @@ pub const ISWbemQualifierSet = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISWbemQualifierSet,
-            pUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
-            self: *const ISWbemQualifierSet,
-            name: ?BSTR,
-            iFlags: i32,
-            objWbemQualifier: ?*?*ISWbemQualifier,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifierSet,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifierSet,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Item: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemQualifierSet,
+                name: ?BSTR,
+                iFlags: i32,
+                objWbemQualifier: ?*?*ISWbemQualifier,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemQualifierSet,
+                name: ?BSTR,
+                iFlags: i32,
+                objWbemQualifier: ?*?*ISWbemQualifier,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISWbemQualifierSet,
-            iCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
-            self: *const ISWbemQualifierSet,
-            strName: ?BSTR,
-            varVal: ?*VARIANT,
-            bPropagatesToSubclass: i16,
-            bPropagatesToInstance: i16,
-            bIsOverridable: i16,
-            iFlags: i32,
-            objWbemQualifier: ?*?*ISWbemQualifier,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
-            self: *const ISWbemQualifierSet,
-            strName: ?BSTR,
-            iFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemQualifierSet,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemQualifierSet,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Add: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemQualifierSet,
+                strName: ?BSTR,
+                varVal: ?*VARIANT,
+                bPropagatesToSubclass: i16,
+                bPropagatesToInstance: i16,
+                bIsOverridable: i16,
+                iFlags: i32,
+                objWbemQualifier: ?*?*ISWbemQualifier,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemQualifierSet,
+                strName: ?BSTR,
+                varVal: ?*VARIANT,
+                bPropagatesToSubclass: i16,
+                bPropagatesToInstance: i16,
+                bIsOverridable: i16,
+                iFlags: i32,
+                objWbemQualifier: ?*?*ISWbemQualifier,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Remove: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemQualifierSet,
+                strName: ?BSTR,
+                iFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemQualifierSet,
+                strName: ?BSTR,
+                iFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6766,45 +9179,109 @@ pub const ISWbemProperty = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: fn(
-            self: *const ISWbemProperty,
-            varValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemProperty,
+                varValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemProperty,
+                varValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: fn(
-            self: *const ISWbemProperty,
-            varValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemProperty,
+                varValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemProperty,
+                varValue: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISWbemProperty,
-            strName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemProperty,
+                strName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemProperty,
+                strName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsLocal: fn(
-            self: *const ISWbemProperty,
-            bIsLocal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsLocal: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemProperty,
+                bIsLocal: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemProperty,
+                bIsLocal: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Origin: fn(
-            self: *const ISWbemProperty,
-            strOrigin: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Origin: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemProperty,
+                strOrigin: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemProperty,
+                strOrigin: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CIMType: fn(
-            self: *const ISWbemProperty,
-            iCimType: ?*WbemCimtypeEnum,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CIMType: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemProperty,
+                iCimType: ?*WbemCimtypeEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemProperty,
+                iCimType: ?*WbemCimtypeEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Qualifiers_: fn(
-            self: *const ISWbemProperty,
-            objWbemQualifierSet: ?*?*ISWbemQualifierSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Qualifiers_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemProperty,
+                objWbemQualifierSet: ?*?*ISWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemProperty,
+                objWbemQualifierSet: ?*?*ISWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsArray: fn(
-            self: *const ISWbemProperty,
-            bIsArray: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsArray: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemProperty,
+                bIsArray: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemProperty,
+                bIsArray: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6851,34 +9328,75 @@ pub const ISWbemPropertySet = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISWbemPropertySet,
-            pUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
-            self: *const ISWbemPropertySet,
-            strName: ?BSTR,
-            iFlags: i32,
-            objWbemProperty: ?*?*ISWbemProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemPropertySet,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemPropertySet,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Item: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemPropertySet,
+                strName: ?BSTR,
+                iFlags: i32,
+                objWbemProperty: ?*?*ISWbemProperty,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemPropertySet,
+                strName: ?BSTR,
+                iFlags: i32,
+                objWbemProperty: ?*?*ISWbemProperty,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISWbemPropertySet,
-            iCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
-            self: *const ISWbemPropertySet,
-            strName: ?BSTR,
-            iCIMType: WbemCimtypeEnum,
-            bIsArray: i16,
-            iFlags: i32,
-            objWbemProperty: ?*?*ISWbemProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
-            self: *const ISWbemPropertySet,
-            strName: ?BSTR,
-            iFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemPropertySet,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemPropertySet,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Add: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemPropertySet,
+                strName: ?BSTR,
+                iCIMType: WbemCimtypeEnum,
+                bIsArray: i16,
+                iFlags: i32,
+                objWbemProperty: ?*?*ISWbemProperty,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemPropertySet,
+                strName: ?BSTR,
+                iCIMType: WbemCimtypeEnum,
+                bIsArray: i16,
+                iFlags: i32,
+                objWbemProperty: ?*?*ISWbemProperty,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Remove: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemPropertySet,
+                strName: ?BSTR,
+                iFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemPropertySet,
+                strName: ?BSTR,
+                iFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6913,30 +9431,70 @@ pub const ISWbemMethod = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISWbemMethod,
-            strName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemMethod,
+                strName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemMethod,
+                strName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Origin: fn(
-            self: *const ISWbemMethod,
-            strOrigin: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Origin: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemMethod,
+                strOrigin: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemMethod,
+                strOrigin: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InParameters: fn(
-            self: *const ISWbemMethod,
-            objWbemInParameters: ?*?*ISWbemObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_InParameters: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemMethod,
+                objWbemInParameters: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemMethod,
+                objWbemInParameters: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OutParameters: fn(
-            self: *const ISWbemMethod,
-            objWbemOutParameters: ?*?*ISWbemObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_OutParameters: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemMethod,
+                objWbemOutParameters: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemMethod,
+                objWbemOutParameters: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Qualifiers_: fn(
-            self: *const ISWbemMethod,
-            objWbemQualifierSet: ?*?*ISWbemQualifierSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Qualifiers_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemMethod,
+                objWbemQualifierSet: ?*?*ISWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemMethod,
+                objWbemQualifierSet: ?*?*ISWbemQualifierSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6971,21 +9529,45 @@ pub const ISWbemMethodSet = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISWbemMethodSet,
-            pUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
-            self: *const ISWbemMethodSet,
-            strName: ?BSTR,
-            iFlags: i32,
-            objWbemMethod: ?*?*ISWbemMethod,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemMethodSet,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemMethodSet,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Item: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemMethodSet,
+                strName: ?BSTR,
+                iFlags: i32,
+                objWbemMethod: ?*?*ISWbemMethod,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemMethodSet,
+                strName: ?BSTR,
+                iFlags: i32,
+                objWbemMethod: ?*?*ISWbemMethod,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISWbemMethodSet,
-            iCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemMethodSet,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemMethodSet,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7011,16 +9593,31 @@ pub const IID_ISWbemEventSource = &IID_ISWbemEventSource_Value;
 pub const ISWbemEventSource = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        NextEvent: fn(
-            self: *const ISWbemEventSource,
-            iTimeoutMs: i32,
-            objWbemObject: ?*?*ISWbemObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NextEvent: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemEventSource,
+                iTimeoutMs: i32,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemEventSource,
+                iTimeoutMs: i32,
+                objWbemObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Security_: fn(
-            self: *const ISWbemEventSource,
-            objWbemSecurity: ?*?*ISWbemSecurity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Security_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemEventSource,
+                objWbemSecurity: ?*?*ISWbemSecurity,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemEventSource,
+                objWbemSecurity: ?*?*ISWbemSecurity,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7043,116 +9640,294 @@ pub const ISWbemObjectPath = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: fn(
-            self: *const ISWbemObjectPath,
-            strPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Path: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strPath: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strPath: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Path: fn(
-            self: *const ISWbemObjectPath,
-            strPath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Path: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strPath: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strPath: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RelPath: fn(
-            self: *const ISWbemObjectPath,
-            strRelPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_RelPath: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strRelPath: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strRelPath: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RelPath: fn(
-            self: *const ISWbemObjectPath,
-            strRelPath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_RelPath: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strRelPath: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strRelPath: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Server: fn(
-            self: *const ISWbemObjectPath,
-            strServer: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Server: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strServer: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strServer: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Server: fn(
-            self: *const ISWbemObjectPath,
-            strServer: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Server: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strServer: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strServer: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Namespace: fn(
-            self: *const ISWbemObjectPath,
-            strNamespace: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Namespace: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strNamespace: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strNamespace: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Namespace: fn(
-            self: *const ISWbemObjectPath,
-            strNamespace: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Namespace: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strNamespace: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strNamespace: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ParentNamespace: fn(
-            self: *const ISWbemObjectPath,
-            strParentNamespace: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ParentNamespace: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strParentNamespace: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strParentNamespace: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: fn(
-            self: *const ISWbemObjectPath,
-            strDisplayName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_DisplayName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strDisplayName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strDisplayName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisplayName: fn(
-            self: *const ISWbemObjectPath,
-            strDisplayName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_DisplayName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strDisplayName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strDisplayName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Class: fn(
-            self: *const ISWbemObjectPath,
-            strClass: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Class: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strClass: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strClass: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Class: fn(
-            self: *const ISWbemObjectPath,
-            strClass: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Class: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strClass: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strClass: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsClass: fn(
-            self: *const ISWbemObjectPath,
-            bIsClass: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAsClass: fn(
-            self: *const ISWbemObjectPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsClass: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                bIsClass: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                bIsClass: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAsClass: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsSingleton: fn(
-            self: *const ISWbemObjectPath,
-            bIsSingleton: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAsSingleton: fn(
-            self: *const ISWbemObjectPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsSingleton: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                bIsSingleton: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                bIsSingleton: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAsSingleton: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Keys: fn(
-            self: *const ISWbemObjectPath,
-            objWbemNamedValueSet: ?*?*ISWbemNamedValueSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Keys: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                objWbemNamedValueSet: ?*?*ISWbemNamedValueSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                objWbemNamedValueSet: ?*?*ISWbemNamedValueSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Security_: fn(
-            self: *const ISWbemObjectPath,
-            objWbemSecurity: ?*?*ISWbemSecurity,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Security_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                objWbemSecurity: ?*?*ISWbemSecurity,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                objWbemSecurity: ?*?*ISWbemSecurity,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Locale: fn(
-            self: *const ISWbemObjectPath,
-            strLocale: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Locale: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strLocale: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strLocale: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Locale: fn(
-            self: *const ISWbemObjectPath,
-            strLocale: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Locale: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strLocale: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strLocale: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Authority: fn(
-            self: *const ISWbemObjectPath,
-            strAuthority: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Authority: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strAuthority: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strAuthority: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Authority: fn(
-            self: *const ISWbemObjectPath,
-            strAuthority: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Authority: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectPath,
+                strAuthority: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectPath,
+                strAuthority: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7284,9 +10059,14 @@ pub const IID_ISWbemSink = &IID_ISWbemSink_Value;
 pub const ISWbemSink = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Cancel: fn(
-            self: *const ISWbemSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7305,30 +10085,70 @@ pub const ISWbemSecurity = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ImpersonationLevel: fn(
-            self: *const ISWbemSecurity,
-            iImpersonationLevel: ?*WbemImpersonationLevelEnum,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ImpersonationLevel: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemSecurity,
+                iImpersonationLevel: ?*WbemImpersonationLevelEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemSecurity,
+                iImpersonationLevel: ?*WbemImpersonationLevelEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ImpersonationLevel: fn(
-            self: *const ISWbemSecurity,
-            iImpersonationLevel: WbemImpersonationLevelEnum,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_ImpersonationLevel: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemSecurity,
+                iImpersonationLevel: WbemImpersonationLevelEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemSecurity,
+                iImpersonationLevel: WbemImpersonationLevelEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthenticationLevel: fn(
-            self: *const ISWbemSecurity,
-            iAuthenticationLevel: ?*WbemAuthenticationLevelEnum,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AuthenticationLevel: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemSecurity,
+                iAuthenticationLevel: ?*WbemAuthenticationLevelEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemSecurity,
+                iAuthenticationLevel: ?*WbemAuthenticationLevelEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AuthenticationLevel: fn(
-            self: *const ISWbemSecurity,
-            iAuthenticationLevel: WbemAuthenticationLevelEnum,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_AuthenticationLevel: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemSecurity,
+                iAuthenticationLevel: WbemAuthenticationLevelEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemSecurity,
+                iAuthenticationLevel: WbemAuthenticationLevelEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Privileges: fn(
-            self: *const ISWbemSecurity,
-            objWbemPrivilegeSet: ?*?*ISWbemPrivilegeSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Privileges: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemSecurity,
+                objWbemPrivilegeSet: ?*?*ISWbemPrivilegeSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemSecurity,
+                objWbemPrivilegeSet: ?*?*ISWbemPrivilegeSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7363,30 +10183,70 @@ pub const ISWbemPrivilege = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsEnabled: fn(
-            self: *const ISWbemPrivilege,
-            bIsEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsEnabled: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemPrivilege,
+                bIsEnabled: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemPrivilege,
+                bIsEnabled: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IsEnabled: fn(
-            self: *const ISWbemPrivilege,
-            bIsEnabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_IsEnabled: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemPrivilege,
+                bIsEnabled: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemPrivilege,
+                bIsEnabled: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const ISWbemPrivilege,
-            strDisplayName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemPrivilege,
+                strDisplayName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemPrivilege,
+                strDisplayName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: fn(
-            self: *const ISWbemPrivilege,
-            strDisplayName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_DisplayName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemPrivilege,
+                strDisplayName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemPrivilege,
+                strDisplayName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Identifier: fn(
-            self: *const ISWbemPrivilege,
-            iPrivilege: ?*WbemPrivilegeEnum,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Identifier: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemPrivilege,
+                iPrivilege: ?*WbemPrivilegeEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemPrivilege,
+                iPrivilege: ?*WbemPrivilegeEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7421,39 +10281,89 @@ pub const ISWbemPrivilegeSet = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISWbemPrivilegeSet,
-            pUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
-            self: *const ISWbemPrivilegeSet,
-            iPrivilege: WbemPrivilegeEnum,
-            objWbemPrivilege: ?*?*ISWbemPrivilege,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemPrivilegeSet,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemPrivilegeSet,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Item: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemPrivilegeSet,
+                iPrivilege: WbemPrivilegeEnum,
+                objWbemPrivilege: ?*?*ISWbemPrivilege,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemPrivilegeSet,
+                iPrivilege: WbemPrivilegeEnum,
+                objWbemPrivilege: ?*?*ISWbemPrivilege,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISWbemPrivilegeSet,
-            iCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
-            self: *const ISWbemPrivilegeSet,
-            iPrivilege: WbemPrivilegeEnum,
-            bIsEnabled: i16,
-            objWbemPrivilege: ?*?*ISWbemPrivilege,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
-            self: *const ISWbemPrivilegeSet,
-            iPrivilege: WbemPrivilegeEnum,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteAll: fn(
-            self: *const ISWbemPrivilegeSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddAsString: fn(
-            self: *const ISWbemPrivilegeSet,
-            strPrivilege: ?BSTR,
-            bIsEnabled: i16,
-            objWbemPrivilege: ?*?*ISWbemPrivilege,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemPrivilegeSet,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemPrivilegeSet,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Add: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemPrivilegeSet,
+                iPrivilege: WbemPrivilegeEnum,
+                bIsEnabled: i16,
+                objWbemPrivilege: ?*?*ISWbemPrivilege,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemPrivilegeSet,
+                iPrivilege: WbemPrivilegeEnum,
+                bIsEnabled: i16,
+                objWbemPrivilege: ?*?*ISWbemPrivilege,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Remove: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemPrivilegeSet,
+                iPrivilege: WbemPrivilegeEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemPrivilegeSet,
+                iPrivilege: WbemPrivilegeEnum,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteAll: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemPrivilegeSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemPrivilegeSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddAsString: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemPrivilegeSet,
+                strPrivilege: ?BSTR,
+                bIsEnabled: i16,
+                objWbemPrivilege: ?*?*ISWbemPrivilege,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemPrivilegeSet,
+                strPrivilege: ?BSTR,
+                bIsEnabled: i16,
+                objWbemPrivilege: ?*?*ISWbemPrivilege,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7495,21 +10405,40 @@ pub const IID_ISWbemServicesEx = &IID_ISWbemServicesEx_Value;
 pub const ISWbemServicesEx = extern struct {
     pub const VTable = extern struct {
         base: ISWbemServices.VTable,
-        Put: fn(
-            self: *const ISWbemServicesEx,
-            objWbemObject: ?*ISWbemObjectEx,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemObjectPath: ?*?*ISWbemObjectPath,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PutAsync: fn(
-            self: *const ISWbemServicesEx,
-            objWbemSink: ?*ISWbemSink,
-            objWbemObject: ?*ISWbemObjectEx,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemAsyncContext: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Put: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServicesEx,
+                objWbemObject: ?*ISWbemObjectEx,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectPath: ?*?*ISWbemObjectPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServicesEx,
+                objWbemObject: ?*ISWbemObjectEx,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemObjectPath: ?*?*ISWbemObjectPath,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PutAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemServicesEx,
+                objWbemSink: ?*ISWbemSink,
+                objWbemObject: ?*ISWbemObjectEx,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemServicesEx,
+                objWbemSink: ?*ISWbemSink,
+                objWbemObject: ?*ISWbemObjectEx,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemAsyncContext: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7531,30 +10460,63 @@ pub const IID_ISWbemObjectEx = &IID_ISWbemObjectEx_Value;
 pub const ISWbemObjectEx = extern struct {
     pub const VTable = extern struct {
         base: ISWbemObject.VTable,
-        Refresh_: fn(
-            self: *const ISWbemObjectEx,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Refresh_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObjectEx,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObjectEx,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SystemProperties_: fn(
-            self: *const ISWbemObjectEx,
-            objWbemPropertySet: ?*?*ISWbemPropertySet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetText_: fn(
-            self: *const ISWbemObjectEx,
-            iObjectTextFormat: WbemObjectTextFormatEnum,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            bsText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFromText_: fn(
-            self: *const ISWbemObjectEx,
-            bsText: ?BSTR,
-            iObjectTextFormat: WbemObjectTextFormatEnum,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_SystemProperties_: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemObjectEx,
+                objWbemPropertySet: ?*?*ISWbemPropertySet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemObjectEx,
+                objWbemPropertySet: ?*?*ISWbemPropertySet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetText_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObjectEx,
+                iObjectTextFormat: WbemObjectTextFormatEnum,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                bsText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObjectEx,
+                iObjectTextFormat: WbemObjectTextFormatEnum,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                bsText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetFromText_: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemObjectEx,
+                bsText: ?BSTR,
+                iObjectTextFormat: WbemObjectTextFormatEnum,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemObjectEx,
+                bsText: ?BSTR,
+                iObjectTextFormat: WbemObjectTextFormatEnum,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7585,205 +10547,521 @@ pub const ISWbemDateTime = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: fn(
-            self: *const ISWbemDateTime,
-            strValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                strValue: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                strValue: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: fn(
-            self: *const ISWbemDateTime,
-            strValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                strValue: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                strValue: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Year: fn(
-            self: *const ISWbemDateTime,
-            iYear: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Year: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iYear: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iYear: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Year: fn(
-            self: *const ISWbemDateTime,
-            iYear: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Year: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iYear: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iYear: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_YearSpecified: fn(
-            self: *const ISWbemDateTime,
-            bYearSpecified: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_YearSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bYearSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bYearSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_YearSpecified: fn(
-            self: *const ISWbemDateTime,
-            bYearSpecified: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_YearSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bYearSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bYearSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Month: fn(
-            self: *const ISWbemDateTime,
-            iMonth: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Month: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iMonth: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iMonth: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Month: fn(
-            self: *const ISWbemDateTime,
-            iMonth: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Month: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iMonth: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iMonth: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MonthSpecified: fn(
-            self: *const ISWbemDateTime,
-            bMonthSpecified: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MonthSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bMonthSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bMonthSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MonthSpecified: fn(
-            self: *const ISWbemDateTime,
-            bMonthSpecified: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_MonthSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bMonthSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bMonthSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Day: fn(
-            self: *const ISWbemDateTime,
-            iDay: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Day: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iDay: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iDay: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Day: fn(
-            self: *const ISWbemDateTime,
-            iDay: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Day: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iDay: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iDay: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DaySpecified: fn(
-            self: *const ISWbemDateTime,
-            bDaySpecified: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_DaySpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bDaySpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bDaySpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DaySpecified: fn(
-            self: *const ISWbemDateTime,
-            bDaySpecified: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_DaySpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bDaySpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bDaySpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Hours: fn(
-            self: *const ISWbemDateTime,
-            iHours: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Hours: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iHours: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iHours: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Hours: fn(
-            self: *const ISWbemDateTime,
-            iHours: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Hours: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iHours: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iHours: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HoursSpecified: fn(
-            self: *const ISWbemDateTime,
-            bHoursSpecified: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_HoursSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bHoursSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bHoursSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_HoursSpecified: fn(
-            self: *const ISWbemDateTime,
-            bHoursSpecified: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_HoursSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bHoursSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bHoursSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Minutes: fn(
-            self: *const ISWbemDateTime,
-            iMinutes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Minutes: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iMinutes: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iMinutes: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Minutes: fn(
-            self: *const ISWbemDateTime,
-            iMinutes: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Minutes: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iMinutes: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iMinutes: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MinutesSpecified: fn(
-            self: *const ISWbemDateTime,
-            bMinutesSpecified: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MinutesSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bMinutesSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bMinutesSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MinutesSpecified: fn(
-            self: *const ISWbemDateTime,
-            bMinutesSpecified: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_MinutesSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bMinutesSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bMinutesSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Seconds: fn(
-            self: *const ISWbemDateTime,
-            iSeconds: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Seconds: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iSeconds: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iSeconds: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Seconds: fn(
-            self: *const ISWbemDateTime,
-            iSeconds: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Seconds: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iSeconds: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iSeconds: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SecondsSpecified: fn(
-            self: *const ISWbemDateTime,
-            bSecondsSpecified: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_SecondsSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bSecondsSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bSecondsSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SecondsSpecified: fn(
-            self: *const ISWbemDateTime,
-            bSecondsSpecified: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_SecondsSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bSecondsSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bSecondsSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Microseconds: fn(
-            self: *const ISWbemDateTime,
-            iMicroseconds: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Microseconds: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iMicroseconds: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iMicroseconds: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Microseconds: fn(
-            self: *const ISWbemDateTime,
-            iMicroseconds: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Microseconds: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iMicroseconds: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iMicroseconds: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MicrosecondsSpecified: fn(
-            self: *const ISWbemDateTime,
-            bMicrosecondsSpecified: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MicrosecondsSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bMicrosecondsSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bMicrosecondsSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MicrosecondsSpecified: fn(
-            self: *const ISWbemDateTime,
-            bMicrosecondsSpecified: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_MicrosecondsSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bMicrosecondsSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bMicrosecondsSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UTC: fn(
-            self: *const ISWbemDateTime,
-            iUTC: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_UTC: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iUTC: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iUTC: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UTC: fn(
-            self: *const ISWbemDateTime,
-            iUTC: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_UTC: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                iUTC: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                iUTC: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UTCSpecified: fn(
-            self: *const ISWbemDateTime,
-            bUTCSpecified: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_UTCSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bUTCSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bUTCSpecified: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UTCSpecified: fn(
-            self: *const ISWbemDateTime,
-            bUTCSpecified: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_UTCSpecified: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bUTCSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bUTCSpecified: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsInterval: fn(
-            self: *const ISWbemDateTime,
-            bIsInterval: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsInterval: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bIsInterval: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bIsInterval: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IsInterval: fn(
-            self: *const ISWbemDateTime,
-            bIsInterval: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVarDate: fn(
-            self: *const ISWbemDateTime,
-            bIsLocal: i16,
-            dVarDate: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetVarDate: fn(
-            self: *const ISWbemDateTime,
-            dVarDate: f64,
-            bIsLocal: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFileTime: fn(
-            self: *const ISWbemDateTime,
-            bIsLocal: i16,
-            strFileTime: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFileTime: fn(
-            self: *const ISWbemDateTime,
-            strFileTime: ?BSTR,
-            bIsLocal: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_IsInterval: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bIsInterval: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bIsInterval: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetVarDate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bIsLocal: i16,
+                dVarDate: ?*f64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bIsLocal: i16,
+                dVarDate: ?*f64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetVarDate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                dVarDate: f64,
+                bIsLocal: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                dVarDate: f64,
+                bIsLocal: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFileTime: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                bIsLocal: i16,
+                strFileTime: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                bIsLocal: i16,
+                strFileTime: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetFileTime: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemDateTime,
+                strFileTime: ?BSTR,
+                bIsLocal: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemDateTime,
+                strFileTime: ?BSTR,
+                bIsLocal: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7958,58 +11236,135 @@ pub const ISWbemRefresher = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const ISWbemRefresher,
-            pUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
-            self: *const ISWbemRefresher,
-            iIndex: i32,
-            objWbemRefreshableItem: ?*?*ISWbemRefreshableItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemRefresher,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemRefresher,
+                pUnk: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Item: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemRefresher,
+                iIndex: i32,
+                objWbemRefreshableItem: ?*?*ISWbemRefreshableItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemRefresher,
+                iIndex: i32,
+                objWbemRefreshableItem: ?*?*ISWbemRefreshableItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const ISWbemRefresher,
-            iCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
-            self: *const ISWbemRefresher,
-            objWbemServices: ?*ISWbemServicesEx,
-            bsInstancePath: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemRefreshableItem: ?*?*ISWbemRefreshableItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddEnum: fn(
-            self: *const ISWbemRefresher,
-            objWbemServices: ?*ISWbemServicesEx,
-            bsClassName: ?BSTR,
-            iFlags: i32,
-            objWbemNamedValueSet: ?*IDispatch,
-            objWbemRefreshableItem: ?*?*ISWbemRefreshableItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
-            self: *const ISWbemRefresher,
-            iIndex: i32,
-            iFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const ISWbemRefresher,
-            iFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemRefresher,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemRefresher,
+                iCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Add: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemRefresher,
+                objWbemServices: ?*ISWbemServicesEx,
+                bsInstancePath: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemRefreshableItem: ?*?*ISWbemRefreshableItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemRefresher,
+                objWbemServices: ?*ISWbemServicesEx,
+                bsInstancePath: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemRefreshableItem: ?*?*ISWbemRefreshableItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddEnum: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemRefresher,
+                objWbemServices: ?*ISWbemServicesEx,
+                bsClassName: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemRefreshableItem: ?*?*ISWbemRefreshableItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemRefresher,
+                objWbemServices: ?*ISWbemServicesEx,
+                bsClassName: ?BSTR,
+                iFlags: i32,
+                objWbemNamedValueSet: ?*IDispatch,
+                objWbemRefreshableItem: ?*?*ISWbemRefreshableItem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Remove: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemRefresher,
+                iIndex: i32,
+                iFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemRefresher,
+                iIndex: i32,
+                iFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemRefresher,
+                iFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemRefresher,
+                iFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AutoReconnect: fn(
-            self: *const ISWbemRefresher,
-            bCount: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AutoReconnect: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemRefresher,
+                bCount: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemRefresher,
+                bCount: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AutoReconnect: fn(
-            self: *const ISWbemRefresher,
-            bCount: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteAll: fn(
-            self: *const ISWbemRefresher,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_AutoReconnect: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemRefresher,
+                bCount: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemRefresher,
+                bCount: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteAll: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemRefresher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemRefresher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8064,34 +11419,80 @@ pub const ISWbemRefreshableItem = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Index: fn(
-            self: *const ISWbemRefreshableItem,
-            iIndex: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Index: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemRefreshableItem,
+                iIndex: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemRefreshableItem,
+                iIndex: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Refresher: fn(
-            self: *const ISWbemRefreshableItem,
-            objWbemRefresher: ?*?*ISWbemRefresher,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Refresher: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemRefreshableItem,
+                objWbemRefresher: ?*?*ISWbemRefresher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemRefreshableItem,
+                objWbemRefresher: ?*?*ISWbemRefresher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsSet: fn(
-            self: *const ISWbemRefreshableItem,
-            bIsSet: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsSet: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemRefreshableItem,
+                bIsSet: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemRefreshableItem,
+                bIsSet: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Object: fn(
-            self: *const ISWbemRefreshableItem,
-            objWbemObject: ?*?*ISWbemObjectEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Object: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemRefreshableItem,
+                objWbemObject: ?*?*ISWbemObjectEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemRefreshableItem,
+                objWbemObject: ?*?*ISWbemObjectEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ObjectSet: fn(
-            self: *const ISWbemRefreshableItem,
-            objWbemObjectSet: ?*?*ISWbemObjectSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Remove: fn(
-            self: *const ISWbemRefreshableItem,
-            iFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ObjectSet: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ISWbemRefreshableItem,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ISWbemRefreshableItem,
+                objWbemObjectSet: ?*?*ISWbemObjectSet,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Remove: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISWbemRefreshableItem,
+                iFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISWbemRefreshableItem,
+                iFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8133,18 +11534,38 @@ pub const IWMIExtension = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WMIObjectPath: fn(
-            self: *const IWMIExtension,
-            strWMIObjectPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWMIObject: fn(
-            self: *const IWMIExtension,
-            objWMIObject: ?*?*ISWbemObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWMIServices: fn(
-            self: *const IWMIExtension,
-            objWMIServices: ?*?*ISWbemServices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_WMIObjectPath: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IWMIExtension,
+                strWMIObjectPath: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IWMIExtension,
+                strWMIObjectPath: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetWMIObject: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMIExtension,
+                objWMIObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMIExtension,
+                objWMIObject: ?*?*ISWbemObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetWMIServices: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMIExtension,
+                objWMIServices: ?*?*ISWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMIExtension,
+                objWMIServices: ?*?*ISWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8195,9 +11616,14 @@ pub const IID_IWbemTransport = &IID_IWbemTransport_Value;
 pub const IWbemTransport = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IWbemTransport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemTransport,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemTransport,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8215,34 +11641,70 @@ pub const IID_IWbemLevel1Login = &IID_IWbemLevel1Login_Value;
 pub const IWbemLevel1Login = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EstablishPosition: fn(
-            self: *const IWbemLevel1Login,
-            wszLocaleList: ?PWSTR,
-            dwNumLocales: u32,
-            reserved: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RequestChallenge: fn(
-            self: *const IWbemLevel1Login,
-            wszNetworkResource: ?PWSTR,
-            wszUser: ?PWSTR,
-            Nonce: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WBEMLogin: fn(
-            self: *const IWbemLevel1Login,
-            wszPreferredLocale: ?PWSTR,
-            AccessToken: ?*u8,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            ppNamespace: ?*?*IWbemServices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NTLMLogin: fn(
-            self: *const IWbemLevel1Login,
-            wszNetworkResource: ?PWSTR,
-            wszPreferredLocale: ?PWSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            ppNamespace: ?*?*IWbemServices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EstablishPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemLevel1Login,
+                wszLocaleList: ?PWSTR,
+                dwNumLocales: u32,
+                reserved: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemLevel1Login,
+                wszLocaleList: ?PWSTR,
+                dwNumLocales: u32,
+                reserved: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RequestChallenge: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemLevel1Login,
+                wszNetworkResource: ?PWSTR,
+                wszUser: ?PWSTR,
+                Nonce: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemLevel1Login,
+                wszNetworkResource: ?PWSTR,
+                wszUser: ?PWSTR,
+                Nonce: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WBEMLogin: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemLevel1Login,
+                wszPreferredLocale: ?PWSTR,
+                AccessToken: ?*u8,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppNamespace: ?*?*IWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemLevel1Login,
+                wszPreferredLocale: ?PWSTR,
+                AccessToken: ?*u8,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppNamespace: ?*?*IWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        NTLMLogin: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemLevel1Login,
+                wszNetworkResource: ?PWSTR,
+                wszPreferredLocale: ?PWSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppNamespace: ?*?*IWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemLevel1Login,
+                wszNetworkResource: ?PWSTR,
+                wszPreferredLocale: ?PWSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                ppNamespace: ?*?*IWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8272,15 +11734,26 @@ pub const IID_IWbemConnectorLogin = &IID_IWbemConnectorLogin_Value;
 pub const IWbemConnectorLogin = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ConnectorLogin: fn(
-            self: *const IWbemConnectorLogin,
-            wszNetworkResource: ?PWSTR,
-            wszPreferredLocale: ?PWSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            riid: ?*const Guid,
-            pInterface: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConnectorLogin: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemConnectorLogin,
+                wszNetworkResource: ?PWSTR,
+                wszPreferredLocale: ?PWSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                riid: ?*const Guid,
+                pInterface: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemConnectorLogin,
+                wszNetworkResource: ?PWSTR,
+                wszPreferredLocale: ?PWSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                riid: ?*const Guid,
+                pInterface: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8298,13 +11771,22 @@ pub const IID_IWbemAddressResolution = &IID_IWbemAddressResolution_Value;
 pub const IWbemAddressResolution = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Resolve: fn(
-            self: *const IWbemAddressResolution,
-            wszNamespacePath: ?PWSTR,
-            wszAddressType: ?PWSTR,
-            pdwAddressLength: ?*u32,
-            pabBinaryAddress: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Resolve: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemAddressResolution,
+                wszNamespacePath: ?PWSTR,
+                wszAddressType: ?PWSTR,
+                pdwAddressLength: ?*u32,
+                pabBinaryAddress: ?*?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemAddressResolution,
+                wszNamespacePath: ?PWSTR,
+                wszAddressType: ?PWSTR,
+                pdwAddressLength: ?*u32,
+                pabBinaryAddress: ?*?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8322,20 +11804,36 @@ pub const IID_IWbemClientTransport = &IID_IWbemClientTransport_Value;
 pub const IWbemClientTransport = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ConnectServer: fn(
-            self: *const IWbemClientTransport,
-            strAddressType: ?BSTR,
-            dwBinaryAddressLength: u32,
-            abBinaryAddress: [*:0]u8,
-            strNetworkResource: ?BSTR,
-            strUser: ?BSTR,
-            strPassword: ?BSTR,
-            strLocale: ?BSTR,
-            lSecurityFlags: i32,
-            strAuthority: ?BSTR,
-            pCtx: ?*IWbemContext,
-            ppNamespace: ?*?*IWbemServices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConnectServer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClientTransport,
+                strAddressType: ?BSTR,
+                dwBinaryAddressLength: u32,
+                abBinaryAddress: [*:0]u8,
+                strNetworkResource: ?BSTR,
+                strUser: ?BSTR,
+                strPassword: ?BSTR,
+                strLocale: ?BSTR,
+                lSecurityFlags: i32,
+                strAuthority: ?BSTR,
+                pCtx: ?*IWbemContext,
+                ppNamespace: ?*?*IWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClientTransport,
+                strAddressType: ?BSTR,
+                dwBinaryAddressLength: u32,
+                abBinaryAddress: [*:0]u8,
+                strNetworkResource: ?BSTR,
+                strUser: ?BSTR,
+                strPassword: ?BSTR,
+                strLocale: ?BSTR,
+                lSecurityFlags: i32,
+                strAuthority: ?BSTR,
+                pCtx: ?*IWbemContext,
+                ppNamespace: ?*?*IWbemServices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8353,40 +11851,80 @@ pub const IID_IWbemClientConnectionTransport = &IID_IWbemClientConnectionTranspo
 pub const IWbemClientConnectionTransport = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Open: fn(
-            self: *const IWbemClientConnectionTransport,
-            strAddressType: ?BSTR,
-            dwBinaryAddressLength: u32,
-            abBinaryAddress: [*:0]u8,
-            strObject: ?BSTR,
-            strUser: ?BSTR,
-            strPassword: ?BSTR,
-            strLocale: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            riid: ?*const Guid,
-            pInterface: ?*?*anyopaque,
-            pCallRes: ?*?*IWbemCallResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OpenAsync: fn(
-            self: *const IWbemClientConnectionTransport,
-            strAddressType: ?BSTR,
-            dwBinaryAddressLength: u32,
-            abBinaryAddress: [*:0]u8,
-            strObject: ?BSTR,
-            strUser: ?BSTR,
-            strPassword: ?BSTR,
-            strLocale: ?BSTR,
-            lFlags: i32,
-            pCtx: ?*IWbemContext,
-            riid: ?*const Guid,
-            pResponseHandler: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IWbemClientConnectionTransport,
-            lFlags: i32,
-            pHandler: ?*IWbemObjectSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Open: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClientConnectionTransport,
+                strAddressType: ?BSTR,
+                dwBinaryAddressLength: u32,
+                abBinaryAddress: [*:0]u8,
+                strObject: ?BSTR,
+                strUser: ?BSTR,
+                strPassword: ?BSTR,
+                strLocale: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                riid: ?*const Guid,
+                pInterface: ?*?*anyopaque,
+                pCallRes: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClientConnectionTransport,
+                strAddressType: ?BSTR,
+                dwBinaryAddressLength: u32,
+                abBinaryAddress: [*:0]u8,
+                strObject: ?BSTR,
+                strUser: ?BSTR,
+                strPassword: ?BSTR,
+                strLocale: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                riid: ?*const Guid,
+                pInterface: ?*?*anyopaque,
+                pCallRes: ?*?*IWbemCallResult,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OpenAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClientConnectionTransport,
+                strAddressType: ?BSTR,
+                dwBinaryAddressLength: u32,
+                abBinaryAddress: [*:0]u8,
+                strObject: ?BSTR,
+                strUser: ?BSTR,
+                strPassword: ?BSTR,
+                strLocale: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                riid: ?*const Guid,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClientConnectionTransport,
+                strAddressType: ?BSTR,
+                dwBinaryAddressLength: u32,
+                abBinaryAddress: [*:0]u8,
+                strObject: ?BSTR,
+                strUser: ?BSTR,
+                strPassword: ?BSTR,
+                strLocale: ?BSTR,
+                lFlags: i32,
+                pCtx: ?*IWbemContext,
+                riid: ?*const Guid,
+                pResponseHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemClientConnectionTransport,
+                lFlags: i32,
+                pHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemClientConnectionTransport,
+                lFlags: i32,
+                pHandler: ?*IWbemObjectSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8412,27 +11950,56 @@ pub const IID_IWbemConstructClassObject = &IID_IWbemConstructClassObject_Value;
 pub const IWbemConstructClassObject = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetInheritanceChain: fn(
-            self: *const IWbemConstructClassObject,
-            lNumAntecedents: i32,
-            // TODO: what to do with BytesParamIndex 0?
-            awszAntecedents: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPropertyOrigin: fn(
-            self: *const IWbemConstructClassObject,
-            wszPropertyName: ?[*:0]const u16,
-            lOriginIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMethodOrigin: fn(
-            self: *const IWbemConstructClassObject,
-            wszMethodName: ?[*:0]const u16,
-            lOriginIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetServerNamespace: fn(
-            self: *const IWbemConstructClassObject,
-            wszServer: ?[*:0]const u16,
-            wszNamespace: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetInheritanceChain: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemConstructClassObject,
+                lNumAntecedents: i32,
+                // TODO: what to do with BytesParamIndex 0?
+                awszAntecedents: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemConstructClassObject,
+                lNumAntecedents: i32,
+                // TODO: what to do with BytesParamIndex 0?
+                awszAntecedents: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPropertyOrigin: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemConstructClassObject,
+                wszPropertyName: ?[*:0]const u16,
+                lOriginIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemConstructClassObject,
+                wszPropertyName: ?[*:0]const u16,
+                lOriginIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetMethodOrigin: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemConstructClassObject,
+                wszMethodName: ?[*:0]const u16,
+                lOriginIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemConstructClassObject,
+                wszMethodName: ?[*:0]const u16,
+                lOriginIndex: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetServerNamespace: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWbemConstructClassObject,
+                wszServer: ?[*:0]const u16,
+                wszNamespace: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWbemConstructClassObject,
+                wszServer: ?[*:0]const u16,
+                wszNamespace: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

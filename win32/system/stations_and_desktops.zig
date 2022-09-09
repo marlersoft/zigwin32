@@ -95,25 +95,49 @@ pub const UOI_NAME = USER_OBJECT_INFORMATION_INDEX.NAME;
 pub const UOI_TYPE = USER_OBJECT_INFORMATION_INDEX.TYPE;
 pub const UOI_USER_SID = USER_OBJECT_INFORMATION_INDEX.USER_SID;
 
-pub const WINSTAENUMPROCA = fn(
-    param0: ?PSTR,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const WINSTAENUMPROCA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?PSTR,
+        param1: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?PSTR,
+        param1: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const WINSTAENUMPROCW = fn(
-    param0: ?PWSTR,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const WINSTAENUMPROCW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?PWSTR,
+        param1: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?PWSTR,
+        param1: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const DESKTOPENUMPROCA = fn(
-    param0: ?PSTR,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const DESKTOPENUMPROCA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?PSTR,
+        param1: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?PSTR,
+        param1: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const DESKTOPENUMPROCW = fn(
-    param0: ?PWSTR,
-    param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const DESKTOPENUMPROCW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?PWSTR,
+        param1: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?PWSTR,
+        param1: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 // TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
 pub const HWINSTA = *opaque{};

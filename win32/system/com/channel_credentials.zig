@@ -11,69 +11,152 @@ pub const IID_IChannelCredentials = &IID_IChannelCredentials_Value;
 pub const IChannelCredentials = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        SetWindowsCredential: fn(
-            self: *const IChannelCredentials,
-            domain: ?BSTR,
-            username: ?BSTR,
-            password: ?BSTR,
-            impersonationLevel: i32,
-            allowNtlm: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetUserNameCredential: fn(
-            self: *const IChannelCredentials,
-            username: ?BSTR,
-            password: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClientCertificateFromStore: fn(
-            self: *const IChannelCredentials,
-            storeLocation: ?BSTR,
-            storeName: ?BSTR,
-            findYype: ?BSTR,
-            findValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClientCertificateFromStoreByName: fn(
-            self: *const IChannelCredentials,
-            subjectName: ?BSTR,
-            storeLocation: ?BSTR,
-            storeName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClientCertificateFromFile: fn(
-            self: *const IChannelCredentials,
-            filename: ?BSTR,
-            password: ?BSTR,
-            keystorageFlags: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDefaultServiceCertificateFromStore: fn(
-            self: *const IChannelCredentials,
-            storeLocation: ?BSTR,
-            storeName: ?BSTR,
-            findType: ?BSTR,
-            findValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDefaultServiceCertificateFromStoreByName: fn(
-            self: *const IChannelCredentials,
-            subjectName: ?BSTR,
-            storeLocation: ?BSTR,
-            storeName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDefaultServiceCertificateFromFile: fn(
-            self: *const IChannelCredentials,
-            filename: ?BSTR,
-            password: ?BSTR,
-            keystorageFlags: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetServiceCertificateAuthentication: fn(
-            self: *const IChannelCredentials,
-            storeLocation: ?BSTR,
-            revocationMode: ?BSTR,
-            certificateValidationMode: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetIssuedToken: fn(
-            self: *const IChannelCredentials,
-            localIssuerAddres: ?BSTR,
-            localIssuerBindingType: ?BSTR,
-            localIssuerBinding: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWindowsCredential: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IChannelCredentials,
+                domain: ?BSTR,
+                username: ?BSTR,
+                password: ?BSTR,
+                impersonationLevel: i32,
+                allowNtlm: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IChannelCredentials,
+                domain: ?BSTR,
+                username: ?BSTR,
+                password: ?BSTR,
+                impersonationLevel: i32,
+                allowNtlm: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetUserNameCredential: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IChannelCredentials,
+                username: ?BSTR,
+                password: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IChannelCredentials,
+                username: ?BSTR,
+                password: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetClientCertificateFromStore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IChannelCredentials,
+                storeLocation: ?BSTR,
+                storeName: ?BSTR,
+                findYype: ?BSTR,
+                findValue: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IChannelCredentials,
+                storeLocation: ?BSTR,
+                storeName: ?BSTR,
+                findYype: ?BSTR,
+                findValue: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetClientCertificateFromStoreByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IChannelCredentials,
+                subjectName: ?BSTR,
+                storeLocation: ?BSTR,
+                storeName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IChannelCredentials,
+                subjectName: ?BSTR,
+                storeLocation: ?BSTR,
+                storeName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetClientCertificateFromFile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IChannelCredentials,
+                filename: ?BSTR,
+                password: ?BSTR,
+                keystorageFlags: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IChannelCredentials,
+                filename: ?BSTR,
+                password: ?BSTR,
+                keystorageFlags: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetDefaultServiceCertificateFromStore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IChannelCredentials,
+                storeLocation: ?BSTR,
+                storeName: ?BSTR,
+                findType: ?BSTR,
+                findValue: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IChannelCredentials,
+                storeLocation: ?BSTR,
+                storeName: ?BSTR,
+                findType: ?BSTR,
+                findValue: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetDefaultServiceCertificateFromStoreByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IChannelCredentials,
+                subjectName: ?BSTR,
+                storeLocation: ?BSTR,
+                storeName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IChannelCredentials,
+                subjectName: ?BSTR,
+                storeLocation: ?BSTR,
+                storeName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetDefaultServiceCertificateFromFile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IChannelCredentials,
+                filename: ?BSTR,
+                password: ?BSTR,
+                keystorageFlags: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IChannelCredentials,
+                filename: ?BSTR,
+                password: ?BSTR,
+                keystorageFlags: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetServiceCertificateAuthentication: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IChannelCredentials,
+                storeLocation: ?BSTR,
+                revocationMode: ?BSTR,
+                certificateValidationMode: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IChannelCredentials,
+                storeLocation: ?BSTR,
+                revocationMode: ?BSTR,
+                certificateValidationMode: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetIssuedToken: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IChannelCredentials,
+                localIssuerAddres: ?BSTR,
+                localIssuerBindingType: ?BSTR,
+                localIssuerBinding: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IChannelCredentials,
+                localIssuerAddres: ?BSTR,
+                localIssuerBindingType: ?BSTR,
+                localIssuerBinding: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

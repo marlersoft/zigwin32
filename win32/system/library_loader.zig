@@ -91,59 +91,121 @@ pub const ENUMUILANG = extern struct {
     pEnumUIBuffer: ?*u16,
 };
 
-pub const ENUMRESLANGPROCA = fn(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u8,
-    lpName: ?[*:0]const u8,
-    wLanguage: u16,
-    lParam: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const ENUMRESLANGPROCA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hModule: ?HINSTANCE,
+        lpType: ?[*:0]const u8,
+        lpName: ?[*:0]const u8,
+        wLanguage: u16,
+        lParam: isize,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hModule: ?HINSTANCE,
+        lpType: ?[*:0]const u8,
+        lpName: ?[*:0]const u8,
+        wLanguage: u16,
+        lParam: isize,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const ENUMRESLANGPROCW = fn(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
-    lpName: ?[*:0]const u16,
-    wLanguage: u16,
-    lParam: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const ENUMRESLANGPROCW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hModule: ?HINSTANCE,
+        lpType: ?[*:0]const u16,
+        lpName: ?[*:0]const u16,
+        wLanguage: u16,
+        lParam: isize,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hModule: ?HINSTANCE,
+        lpType: ?[*:0]const u16,
+        lpName: ?[*:0]const u16,
+        wLanguage: u16,
+        lParam: isize,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const ENUMRESNAMEPROCA = fn(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u8,
-    lpName: ?PSTR,
-    lParam: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const ENUMRESNAMEPROCA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hModule: ?HINSTANCE,
+        lpType: ?[*:0]const u8,
+        lpName: ?PSTR,
+        lParam: isize,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hModule: ?HINSTANCE,
+        lpType: ?[*:0]const u8,
+        lpName: ?PSTR,
+        lParam: isize,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const ENUMRESNAMEPROCW = fn(
-    hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
-    lpName: ?PWSTR,
-    lParam: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const ENUMRESNAMEPROCW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hModule: ?HINSTANCE,
+        lpType: ?[*:0]const u16,
+        lpName: ?PWSTR,
+        lParam: isize,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hModule: ?HINSTANCE,
+        lpType: ?[*:0]const u16,
+        lpName: ?PWSTR,
+        lParam: isize,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const ENUMRESTYPEPROCA = fn(
-    hModule: ?HINSTANCE,
-    lpType: ?PSTR,
-    lParam: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const ENUMRESTYPEPROCA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hModule: ?HINSTANCE,
+        lpType: ?PSTR,
+        lParam: isize,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hModule: ?HINSTANCE,
+        lpType: ?PSTR,
+        lParam: isize,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const ENUMRESTYPEPROCW = fn(
-    hModule: ?HINSTANCE,
-    lpType: ?PWSTR,
-    lParam: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const ENUMRESTYPEPROCW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hModule: ?HINSTANCE,
+        lpType: ?PWSTR,
+        lParam: isize,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        hModule: ?HINSTANCE,
+        lpType: ?PWSTR,
+        lParam: isize,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PGET_MODULE_HANDLE_EXA = fn(
-    dwFlags: u32,
-    lpModuleName: ?[*:0]const u8,
-    phModule: ?*?HINSTANCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PGET_MODULE_HANDLE_EXA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        dwFlags: u32,
+        lpModuleName: ?[*:0]const u8,
+        phModule: ?*?HINSTANCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        dwFlags: u32,
+        lpModuleName: ?[*:0]const u8,
+        phModule: ?*?HINSTANCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PGET_MODULE_HANDLE_EXW = fn(
-    dwFlags: u32,
-    lpModuleName: ?[*:0]const u16,
-    phModule: ?*?HINSTANCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PGET_MODULE_HANDLE_EXW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        dwFlags: u32,
+        lpModuleName: ?[*:0]const u16,
+        phModule: ?*?HINSTANCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        dwFlags: u32,
+        lpModuleName: ?[*:0]const u16,
+        phModule: ?*?HINSTANCE,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 pub const REDIRECTION_FUNCTION_DESCRIPTOR = extern struct {
     DllName: ?[*:0]const u8,

@@ -793,220 +793,550 @@ pub const IID_IRTCClient = &IID_IRTCClient_Value;
 pub const IRTCClient = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IRTCClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Shutdown: fn(
-            self: *const IRTCClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PrepareForShutdown: fn(
-            self: *const IRTCClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Shutdown: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PrepareForShutdown: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EventFilter: fn(
-            self: *const IRTCClient,
-            lFilter: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_EventFilter: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                lFilter: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                lFilter: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventFilter: fn(
-            self: *const IRTCClient,
-            plFilter: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPreferredMediaTypes: fn(
-            self: *const IRTCClient,
-            lMediaTypes: i32,
-            fPersistent: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_EventFilter: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                plFilter: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                plFilter: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPreferredMediaTypes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient,
+                lMediaTypes: i32,
+                fPersistent: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient,
+                lMediaTypes: i32,
+                fPersistent: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredMediaTypes: fn(
-            self: *const IRTCClient,
-            plMediaTypes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PreferredMediaTypes: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                plMediaTypes: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                plMediaTypes: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MediaCapabilities: fn(
-            self: *const IRTCClient,
-            plMediaTypes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateSession: fn(
-            self: *const IRTCClient,
-            enType: RTC_SESSION_TYPE,
-            bstrLocalPhoneURI: ?BSTR,
-            pProfile: ?*IRTCProfile,
-            lFlags: i32,
-            ppSession: ?*?*IRTCSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MediaCapabilities: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                plMediaTypes: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                plMediaTypes: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateSession: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enType: RTC_SESSION_TYPE,
+                bstrLocalPhoneURI: ?BSTR,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+                ppSession: ?*?*IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient,
+                enType: RTC_SESSION_TYPE,
+                bstrLocalPhoneURI: ?BSTR,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+                ppSession: ?*?*IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ListenForIncomingSessions: fn(
-            self: *const IRTCClient,
-            enListen: RTC_LISTEN_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_ListenForIncomingSessions: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enListen: RTC_LISTEN_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                enListen: RTC_LISTEN_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ListenForIncomingSessions: fn(
-            self: *const IRTCClient,
-            penListen: ?*RTC_LISTEN_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ListenForIncomingSessions: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                penListen: ?*RTC_LISTEN_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                penListen: ?*RTC_LISTEN_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetworkAddresses: fn(
-            self: *const IRTCClient,
-            fTCP: i16,
-            fExternal: i16,
-            pvAddresses: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_NetworkAddresses: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                fTCP: i16,
+                fExternal: i16,
+                pvAddresses: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                fTCP: i16,
+                fExternal: i16,
+                pvAddresses: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Volume: fn(
-            self: *const IRTCClient,
-            enDevice: RTC_AUDIO_DEVICE,
-            lVolume: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Volume: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                lVolume: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                lVolume: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Volume: fn(
-            self: *const IRTCClient,
-            enDevice: RTC_AUDIO_DEVICE,
-            plVolume: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Volume: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                plVolume: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                plVolume: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AudioMuted: fn(
-            self: *const IRTCClient,
-            enDevice: RTC_AUDIO_DEVICE,
-            fMuted: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_AudioMuted: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                fMuted: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                fMuted: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AudioMuted: fn(
-            self: *const IRTCClient,
-            enDevice: RTC_AUDIO_DEVICE,
-            pfMuted: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AudioMuted: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                pfMuted: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                pfMuted: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IVideoWindow: fn(
-            self: *const IRTCClient,
-            enDevice: RTC_VIDEO_DEVICE,
-            ppIVideoWindow: ?*?*IVideoWindow,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IVideoWindow: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enDevice: RTC_VIDEO_DEVICE,
+                ppIVideoWindow: ?*?*IVideoWindow,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                enDevice: RTC_VIDEO_DEVICE,
+                ppIVideoWindow: ?*?*IVideoWindow,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PreferredAudioDevice: fn(
-            self: *const IRTCClient,
-            enDevice: RTC_AUDIO_DEVICE,
-            bstrDeviceName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PreferredAudioDevice: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                bstrDeviceName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                bstrDeviceName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredAudioDevice: fn(
-            self: *const IRTCClient,
-            enDevice: RTC_AUDIO_DEVICE,
-            pbstrDeviceName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PreferredAudioDevice: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                pbstrDeviceName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                pbstrDeviceName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PreferredVolume: fn(
-            self: *const IRTCClient,
-            enDevice: RTC_AUDIO_DEVICE,
-            lVolume: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PreferredVolume: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                lVolume: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                lVolume: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredVolume: fn(
-            self: *const IRTCClient,
-            enDevice: RTC_AUDIO_DEVICE,
-            plVolume: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PreferredVolume: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                plVolume: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                enDevice: RTC_AUDIO_DEVICE,
+                plVolume: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PreferredAEC: fn(
-            self: *const IRTCClient,
-            bEnable: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PreferredAEC: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                bEnable: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                bEnable: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredAEC: fn(
-            self: *const IRTCClient,
-            pbEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PreferredAEC: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                pbEnabled: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                pbEnabled: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PreferredVideoDevice: fn(
-            self: *const IRTCClient,
-            bstrDeviceName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PreferredVideoDevice: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                bstrDeviceName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                bstrDeviceName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredVideoDevice: fn(
-            self: *const IRTCClient,
-            pbstrDeviceName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PreferredVideoDevice: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                pbstrDeviceName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                pbstrDeviceName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActiveMedia: fn(
-            self: *const IRTCClient,
-            plMediaType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ActiveMedia: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                plMediaType: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                plMediaType: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MaxBitrate: fn(
-            self: *const IRTCClient,
-            lMaxBitrate: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_MaxBitrate: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                lMaxBitrate: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                lMaxBitrate: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxBitrate: fn(
-            self: *const IRTCClient,
-            plMaxBitrate: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MaxBitrate: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                plMaxBitrate: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                plMaxBitrate: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_TemporalSpatialTradeOff: fn(
-            self: *const IRTCClient,
-            lValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_TemporalSpatialTradeOff: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                lValue: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                lValue: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TemporalSpatialTradeOff: fn(
-            self: *const IRTCClient,
-            plValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_TemporalSpatialTradeOff: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                plValue: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                plValue: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetworkQuality: fn(
-            self: *const IRTCClient,
-            plNetworkQuality: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartT120Applet: fn(
-            self: *const IRTCClient,
-            enApplet: RTC_T120_APPLET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StopT120Applets: fn(
-            self: *const IRTCClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_NetworkQuality: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                plNetworkQuality: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                plNetworkQuality: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StartT120Applet: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enApplet: RTC_T120_APPLET,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient,
+                enApplet: RTC_T120_APPLET,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StopT120Applets: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsT120AppletRunning: fn(
-            self: *const IRTCClient,
-            enApplet: RTC_T120_APPLET,
-            pfRunning: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsT120AppletRunning: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enApplet: RTC_T120_APPLET,
+                pfRunning: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                enApplet: RTC_T120_APPLET,
+                pfRunning: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalUserURI: fn(
-            self: *const IRTCClient,
-            pbstrUserURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_LocalUserURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                pbstrUserURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                pbstrUserURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LocalUserURI: fn(
-            self: *const IRTCClient,
-            bstrUserURI: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_LocalUserURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                bstrUserURI: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                bstrUserURI: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalUserName: fn(
-            self: *const IRTCClient,
-            pbstrUserName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_LocalUserName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                pbstrUserName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                pbstrUserName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LocalUserName: fn(
-            self: *const IRTCClient,
-            bstrUserName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PlayRing: fn(
-            self: *const IRTCClient,
-            enType: RTC_RING_TYPE,
-            bPlay: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SendDTMF: fn(
-            self: *const IRTCClient,
-            enDTMF: RTC_DTMF,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InvokeTuningWizard: fn(
-            self: *const IRTCClient,
-            hwndParent: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_LocalUserName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                bstrUserName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PlayRing: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enType: RTC_RING_TYPE,
+                bPlay: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient,
+                enType: RTC_RING_TYPE,
+                bPlay: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SendDTMF: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient,
+                enDTMF: RTC_DTMF,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient,
+                enDTMF: RTC_DTMF,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        InvokeTuningWizard: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient,
+                hwndParent: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient,
+                hwndParent: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsTuned: fn(
-            self: *const IRTCClient,
-            pfTuned: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsTuned: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient,
+                pfTuned: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient,
+                pfTuned: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1189,78 +1519,186 @@ pub const IRTCClient2 = extern struct {
     pub const VTable = extern struct {
         base: IRTCClient.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AnswerMode: fn(
-            self: *const IRTCClient2,
-            enType: RTC_SESSION_TYPE,
-            enMode: RTC_ANSWER_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_AnswerMode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                enType: RTC_SESSION_TYPE,
+                enMode: RTC_ANSWER_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient2,
+                enType: RTC_SESSION_TYPE,
+                enMode: RTC_ANSWER_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AnswerMode: fn(
-            self: *const IRTCClient2,
-            enType: RTC_SESSION_TYPE,
-            penMode: ?*RTC_ANSWER_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InvokeTuningWizardEx: fn(
-            self: *const IRTCClient2,
-            hwndParent: isize,
-            fAllowAudio: i16,
-            fAllowVideo: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AnswerMode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                enType: RTC_SESSION_TYPE,
+                penMode: ?*RTC_ANSWER_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient2,
+                enType: RTC_SESSION_TYPE,
+                penMode: ?*RTC_ANSWER_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        InvokeTuningWizardEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                hwndParent: isize,
+                fAllowAudio: i16,
+                fAllowVideo: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient2,
+                hwndParent: isize,
+                fAllowAudio: i16,
+                fAllowVideo: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Version: fn(
-            self: *const IRTCClient2,
-            plVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Version: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                plVersion: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient2,
+                plVersion: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClientName: fn(
-            self: *const IRTCClient2,
-            bstrClientName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_ClientName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                bstrClientName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient2,
+                bstrClientName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClientCurVer: fn(
-            self: *const IRTCClient2,
-            bstrClientCurVer: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InitializeEx: fn(
-            self: *const IRTCClient2,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateSessionWithDescription: fn(
-            self: *const IRTCClient2,
-            bstrContentType: ?BSTR,
-            bstrSessionDescription: ?BSTR,
-            pProfile: ?*IRTCProfile,
-            lFlags: i32,
-            ppSession2: ?*?*IRTCSession2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSessionDescriptionManager: fn(
-            self: *const IRTCClient2,
-            pSessionDescriptionManager: ?*IRTCSessionDescriptionManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_ClientCurVer: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                bstrClientCurVer: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient2,
+                bstrClientCurVer: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        InitializeEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient2,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateSessionWithDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                bstrContentType: ?BSTR,
+                bstrSessionDescription: ?BSTR,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+                ppSession2: ?*?*IRTCSession2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient2,
+                bstrContentType: ?BSTR,
+                bstrSessionDescription: ?BSTR,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+                ppSession2: ?*?*IRTCSession2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetSessionDescriptionManager: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                pSessionDescriptionManager: ?*IRTCSessionDescriptionManager,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClient2,
+                pSessionDescriptionManager: ?*IRTCSessionDescriptionManager,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PreferredSecurityLevel: fn(
-            self: *const IRTCClient2,
-            enSecurityType: RTC_SECURITY_TYPE,
-            enSecurityLevel: RTC_SECURITY_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PreferredSecurityLevel: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                enSecurityType: RTC_SECURITY_TYPE,
+                enSecurityLevel: RTC_SECURITY_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient2,
+                enSecurityType: RTC_SECURITY_TYPE,
+                enSecurityLevel: RTC_SECURITY_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredSecurityLevel: fn(
-            self: *const IRTCClient2,
-            enSecurityType: RTC_SECURITY_TYPE,
-            penSecurityLevel: ?*RTC_SECURITY_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PreferredSecurityLevel: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                enSecurityType: RTC_SECURITY_TYPE,
+                penSecurityLevel: ?*RTC_SECURITY_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient2,
+                enSecurityType: RTC_SECURITY_TYPE,
+                penSecurityLevel: ?*RTC_SECURITY_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowedPorts: fn(
-            self: *const IRTCClient2,
-            lTransport: i32,
-            enListenMode: RTC_LISTEN_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_AllowedPorts: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                lTransport: i32,
+                enListenMode: RTC_LISTEN_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient2,
+                lTransport: i32,
+                enListenMode: RTC_LISTEN_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowedPorts: fn(
-            self: *const IRTCClient2,
-            lTransport: i32,
-            penListenMode: ?*RTC_LISTEN_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AllowedPorts: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClient2,
+                lTransport: i32,
+                penListenMode: ?*RTC_LISTEN_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClient2,
+                lTransport: i32,
+                penListenMode: ?*RTC_LISTEN_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1326,102 +1764,242 @@ pub const IID_IRTCClientPresence = &IID_IRTCClientPresence_Value;
 pub const IRTCClientPresence = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EnablePresence: fn(
-            self: *const IRTCClientPresence,
-            fUseStorage: i16,
-            varStorage: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Export: fn(
-            self: *const IRTCClientPresence,
-            varStorage: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Import: fn(
-            self: *const IRTCClientPresence,
-            varStorage: VARIANT,
-            fReplaceAll: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumerateBuddies: fn(
-            self: *const IRTCClientPresence,
-            ppEnum: ?*?*IRTCEnumBuddies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnablePresence: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                fUseStorage: i16,
+                varStorage: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                fUseStorage: i16,
+                varStorage: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Export: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                varStorage: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                varStorage: VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Import: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                varStorage: VARIANT,
+                fReplaceAll: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                varStorage: VARIANT,
+                fReplaceAll: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumerateBuddies: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                ppEnum: ?*?*IRTCEnumBuddies,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                ppEnum: ?*?*IRTCEnumBuddies,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Buddies: fn(
-            self: *const IRTCClientPresence,
-            ppCollection: ?*?*IRTCCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Buddies: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Buddy: fn(
-            self: *const IRTCClientPresence,
-            bstrPresentityURI: ?BSTR,
-            ppBuddy: ?*?*IRTCBuddy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddBuddy: fn(
-            self: *const IRTCClientPresence,
-            bstrPresentityURI: ?BSTR,
-            bstrUserName: ?BSTR,
-            bstrData: ?BSTR,
-            fPersistent: i16,
-            pProfile: ?*IRTCProfile,
-            lFlags: i32,
-            ppBuddy: ?*?*IRTCBuddy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveBuddy: fn(
-            self: *const IRTCClientPresence,
-            pBuddy: ?*IRTCBuddy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumerateWatchers: fn(
-            self: *const IRTCClientPresence,
-            ppEnum: ?*?*IRTCEnumWatchers,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Buddy: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                bstrPresentityURI: ?BSTR,
+                ppBuddy: ?*?*IRTCBuddy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                bstrPresentityURI: ?BSTR,
+                ppBuddy: ?*?*IRTCBuddy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddBuddy: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                bstrPresentityURI: ?BSTR,
+                bstrUserName: ?BSTR,
+                bstrData: ?BSTR,
+                fPersistent: i16,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+                ppBuddy: ?*?*IRTCBuddy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                bstrPresentityURI: ?BSTR,
+                bstrUserName: ?BSTR,
+                bstrData: ?BSTR,
+                fPersistent: i16,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+                ppBuddy: ?*?*IRTCBuddy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveBuddy: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                pBuddy: ?*IRTCBuddy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                pBuddy: ?*IRTCBuddy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumerateWatchers: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                ppEnum: ?*?*IRTCEnumWatchers,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                ppEnum: ?*?*IRTCEnumWatchers,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Watchers: fn(
-            self: *const IRTCClientPresence,
-            ppCollection: ?*?*IRTCCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Watchers: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Watcher: fn(
-            self: *const IRTCClientPresence,
-            bstrPresentityURI: ?BSTR,
-            ppWatcher: ?*?*IRTCWatcher,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddWatcher: fn(
-            self: *const IRTCClientPresence,
-            bstrPresentityURI: ?BSTR,
-            bstrUserName: ?BSTR,
-            bstrData: ?BSTR,
-            fBlocked: i16,
-            fPersistent: i16,
-            ppWatcher: ?*?*IRTCWatcher,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveWatcher: fn(
-            self: *const IRTCClientPresence,
-            pWatcher: ?*IRTCWatcher,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLocalPresenceInfo: fn(
-            self: *const IRTCClientPresence,
-            enStatus: RTC_PRESENCE_STATUS,
-            bstrNotes: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Watcher: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                bstrPresentityURI: ?BSTR,
+                ppWatcher: ?*?*IRTCWatcher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                bstrPresentityURI: ?BSTR,
+                ppWatcher: ?*?*IRTCWatcher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddWatcher: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                bstrPresentityURI: ?BSTR,
+                bstrUserName: ?BSTR,
+                bstrData: ?BSTR,
+                fBlocked: i16,
+                fPersistent: i16,
+                ppWatcher: ?*?*IRTCWatcher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                bstrPresentityURI: ?BSTR,
+                bstrUserName: ?BSTR,
+                bstrData: ?BSTR,
+                fBlocked: i16,
+                fPersistent: i16,
+                ppWatcher: ?*?*IRTCWatcher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveWatcher: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                pWatcher: ?*IRTCWatcher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                pWatcher: ?*IRTCWatcher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetLocalPresenceInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                enStatus: RTC_PRESENCE_STATUS,
+                bstrNotes: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                enStatus: RTC_PRESENCE_STATUS,
+                bstrNotes: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OfferWatcherMode: fn(
-            self: *const IRTCClientPresence,
-            penMode: ?*RTC_OFFER_WATCHER_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_OfferWatcherMode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                penMode: ?*RTC_OFFER_WATCHER_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                penMode: ?*RTC_OFFER_WATCHER_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_OfferWatcherMode: fn(
-            self: *const IRTCClientPresence,
-            enMode: RTC_OFFER_WATCHER_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_OfferWatcherMode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                enMode: RTC_OFFER_WATCHER_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                enMode: RTC_OFFER_WATCHER_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrivacyMode: fn(
-            self: *const IRTCClientPresence,
-            penMode: ?*RTC_PRIVACY_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PrivacyMode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                penMode: ?*RTC_PRIVACY_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                penMode: ?*RTC_PRIVACY_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PrivacyMode: fn(
-            self: *const IRTCClientPresence,
-            enMode: RTC_PRIVACY_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PrivacyMode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence,
+                enMode: RTC_PRIVACY_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence,
+                enMode: RTC_PRIVACY_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1507,99 +2085,227 @@ pub const IID_IRTCClientPresence2 = &IID_IRTCClientPresence2_Value;
 pub const IRTCClientPresence2 = extern struct {
     pub const VTable = extern struct {
         base: IRTCClientPresence.VTable,
-        EnablePresenceEx: fn(
-            self: *const IRTCClientPresence2,
-            pProfile: ?*IRTCProfile,
-            varStorage: VARIANT,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DisablePresence: fn(
-            self: *const IRTCClientPresence2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddGroup: fn(
-            self: *const IRTCClientPresence2,
-            bstrGroupName: ?BSTR,
-            bstrData: ?BSTR,
-            pProfile: ?*IRTCProfile,
-            lFlags: i32,
-            ppGroup: ?*?*IRTCBuddyGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveGroup: fn(
-            self: *const IRTCClientPresence2,
-            pGroup: ?*IRTCBuddyGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumerateGroups: fn(
-            self: *const IRTCClientPresence2,
-            ppEnum: ?*?*IRTCEnumGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnablePresenceEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                pProfile: ?*IRTCProfile,
+                varStorage: VARIANT,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                pProfile: ?*IRTCProfile,
+                varStorage: VARIANT,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DisablePresence: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddGroup: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                bstrGroupName: ?BSTR,
+                bstrData: ?BSTR,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+                ppGroup: ?*?*IRTCBuddyGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                bstrGroupName: ?BSTR,
+                bstrData: ?BSTR,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+                ppGroup: ?*?*IRTCBuddyGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveGroup: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                pGroup: ?*IRTCBuddyGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                pGroup: ?*IRTCBuddyGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumerateGroups: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                ppEnum: ?*?*IRTCEnumGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                ppEnum: ?*?*IRTCEnumGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Groups: fn(
-            self: *const IRTCClientPresence2,
-            ppCollection: ?*?*IRTCCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Groups: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Group: fn(
-            self: *const IRTCClientPresence2,
-            bstrGroupName: ?BSTR,
-            ppGroup: ?*?*IRTCBuddyGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddWatcherEx: fn(
-            self: *const IRTCClientPresence2,
-            bstrPresentityURI: ?BSTR,
-            bstrUserName: ?BSTR,
-            bstrData: ?BSTR,
-            enState: RTC_WATCHER_STATE,
-            fPersistent: i16,
-            enScope: RTC_ACE_SCOPE,
-            pProfile: ?*IRTCProfile,
-            lFlags: i32,
-            ppWatcher: ?*?*IRTCWatcher2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Group: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                bstrGroupName: ?BSTR,
+                ppGroup: ?*?*IRTCBuddyGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                bstrGroupName: ?BSTR,
+                ppGroup: ?*?*IRTCBuddyGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddWatcherEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                bstrPresentityURI: ?BSTR,
+                bstrUserName: ?BSTR,
+                bstrData: ?BSTR,
+                enState: RTC_WATCHER_STATE,
+                fPersistent: i16,
+                enScope: RTC_ACE_SCOPE,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+                ppWatcher: ?*?*IRTCWatcher2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                bstrPresentityURI: ?BSTR,
+                bstrUserName: ?BSTR,
+                bstrData: ?BSTR,
+                enState: RTC_WATCHER_STATE,
+                fPersistent: i16,
+                enScope: RTC_ACE_SCOPE,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+                ppWatcher: ?*?*IRTCWatcher2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WatcherEx: fn(
-            self: *const IRTCClientPresence2,
-            enMode: RTC_WATCHER_MATCH_MODE,
-            bstrPresentityURI: ?BSTR,
-            ppWatcher: ?*?*IRTCWatcher2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_WatcherEx: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                enMode: RTC_WATCHER_MATCH_MODE,
+                bstrPresentityURI: ?BSTR,
+                ppWatcher: ?*?*IRTCWatcher2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                enMode: RTC_WATCHER_MATCH_MODE,
+                bstrPresentityURI: ?BSTR,
+                ppWatcher: ?*?*IRTCWatcher2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PresenceProperty: fn(
-            self: *const IRTCClientPresence2,
-            enProperty: RTC_PRESENCE_PROPERTY,
-            bstrProperty: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PresenceProperty: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                enProperty: RTC_PRESENCE_PROPERTY,
+                bstrProperty: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                enProperty: RTC_PRESENCE_PROPERTY,
+                bstrProperty: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PresenceProperty: fn(
-            self: *const IRTCClientPresence2,
-            enProperty: RTC_PRESENCE_PROPERTY,
-            pbstrProperty: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPresenceData: fn(
-            self: *const IRTCClientPresence2,
-            bstrNamespace: ?BSTR,
-            bstrData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPresenceData: fn(
-            self: *const IRTCClientPresence2,
-            pbstrNamespace: ?*?BSTR,
-            pbstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocalPresenceInfo: fn(
-            self: *const IRTCClientPresence2,
-            penStatus: ?*RTC_PRESENCE_STATUS,
-            pbstrNotes: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddBuddyEx: fn(
-            self: *const IRTCClientPresence2,
-            bstrPresentityURI: ?BSTR,
-            bstrUserName: ?BSTR,
-            bstrData: ?BSTR,
-            fPersistent: i16,
-            enSubscriptionType: RTC_BUDDY_SUBSCRIPTION_TYPE,
-            pProfile: ?*IRTCProfile,
-            lFlags: i32,
-            ppBuddy: ?*?*IRTCBuddy2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PresenceProperty: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                enProperty: RTC_PRESENCE_PROPERTY,
+                pbstrProperty: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                enProperty: RTC_PRESENCE_PROPERTY,
+                pbstrProperty: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPresenceData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                bstrNamespace: ?BSTR,
+                bstrData: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                bstrNamespace: ?BSTR,
+                bstrData: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPresenceData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                pbstrNamespace: ?*?BSTR,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                pbstrNamespace: ?*?BSTR,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLocalPresenceInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                penStatus: ?*RTC_PRESENCE_STATUS,
+                pbstrNotes: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                penStatus: ?*RTC_PRESENCE_STATUS,
+                pbstrNotes: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddBuddyEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPresence2,
+                bstrPresentityURI: ?BSTR,
+                bstrUserName: ?BSTR,
+                bstrData: ?BSTR,
+                fPersistent: i16,
+                enSubscriptionType: RTC_BUDDY_SUBSCRIPTION_TYPE,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+                ppBuddy: ?*?*IRTCBuddy2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPresence2,
+                bstrPresentityURI: ?BSTR,
+                bstrUserName: ?BSTR,
+                bstrData: ?BSTR,
+                fPersistent: i16,
+                enSubscriptionType: RTC_BUDDY_SUBSCRIPTION_TYPE,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+                ppBuddy: ?*?*IRTCBuddy2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1673,43 +2379,96 @@ pub const IID_IRTCClientProvisioning = &IID_IRTCClientProvisioning_Value;
 pub const IRTCClientProvisioning = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateProfile: fn(
-            self: *const IRTCClientProvisioning,
-            bstrProfileXML: ?BSTR,
-            ppProfile: ?*?*IRTCProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnableProfile: fn(
-            self: *const IRTCClientProvisioning,
-            pProfile: ?*IRTCProfile,
-            lRegisterFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DisableProfile: fn(
-            self: *const IRTCClientProvisioning,
-            pProfile: ?*IRTCProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumerateProfiles: fn(
-            self: *const IRTCClientProvisioning,
-            ppEnum: ?*?*IRTCEnumProfiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateProfile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientProvisioning,
+                bstrProfileXML: ?BSTR,
+                ppProfile: ?*?*IRTCProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientProvisioning,
+                bstrProfileXML: ?BSTR,
+                ppProfile: ?*?*IRTCProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnableProfile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientProvisioning,
+                pProfile: ?*IRTCProfile,
+                lRegisterFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientProvisioning,
+                pProfile: ?*IRTCProfile,
+                lRegisterFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DisableProfile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientProvisioning,
+                pProfile: ?*IRTCProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientProvisioning,
+                pProfile: ?*IRTCProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumerateProfiles: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientProvisioning,
+                ppEnum: ?*?*IRTCEnumProfiles,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientProvisioning,
+                ppEnum: ?*?*IRTCEnumProfiles,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profiles: fn(
-            self: *const IRTCClientProvisioning,
-            ppCollection: ?*?*IRTCCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProfile: fn(
-            self: *const IRTCClientProvisioning,
-            bstrUserAccount: ?BSTR,
-            bstrUserPassword: ?BSTR,
-            bstrUserURI: ?BSTR,
-            bstrServer: ?BSTR,
-            lTransport: i32,
-            lCookie: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Profiles: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientProvisioning,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientProvisioning,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProfile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientProvisioning,
+                bstrUserAccount: ?BSTR,
+                bstrUserPassword: ?BSTR,
+                bstrUserURI: ?BSTR,
+                bstrServer: ?BSTR,
+                lTransport: i32,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientProvisioning,
+                bstrUserAccount: ?BSTR,
+                bstrUserPassword: ?BSTR,
+                bstrUserURI: ?BSTR,
+                bstrServer: ?BSTR,
+                lTransport: i32,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SessionCapabilities: fn(
-            self: *const IRTCClientProvisioning,
-            plSupportedSessions: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_SessionCapabilities: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientProvisioning,
+                plSupportedSessions: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientProvisioning,
+                plSupportedSessions: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1751,12 +2510,20 @@ pub const IID_IRTCClientProvisioning2 = &IID_IRTCClientProvisioning2_Value;
 pub const IRTCClientProvisioning2 = extern struct {
     pub const VTable = extern struct {
         base: IRTCClientProvisioning.VTable,
-        EnableProfileEx: fn(
-            self: *const IRTCClientProvisioning2,
-            pProfile: ?*IRTCProfile,
-            lRegisterFlags: i32,
-            lRoamingFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnableProfileEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientProvisioning2,
+                pProfile: ?*IRTCProfile,
+                lRegisterFlags: i32,
+                lRoamingFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientProvisioning2,
+                pProfile: ?*IRTCProfile,
+                lRegisterFlags: i32,
+                lRoamingFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1775,97 +2542,242 @@ pub const IRTCProfile = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Key: fn(
-            self: *const IRTCProfile,
-            pbstrKey: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Key: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrKey: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrKey: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const IRTCProfile,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_XML: fn(
-            self: *const IRTCProfile,
-            pbstrXML: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_XML: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrXML: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrXML: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProviderName: fn(
-            self: *const IRTCProfile,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ProviderName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProviderURI: fn(
-            self: *const IRTCProfile,
-            enURI: RTC_PROVIDER_URI,
-            pbstrURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ProviderURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                enURI: RTC_PROVIDER_URI,
+                pbstrURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                enURI: RTC_PROVIDER_URI,
+                pbstrURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProviderData: fn(
-            self: *const IRTCProfile,
-            pbstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ProviderData: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClientName: fn(
-            self: *const IRTCProfile,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ClientName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClientBanner: fn(
-            self: *const IRTCProfile,
-            pfBanner: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ClientBanner: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pfBanner: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pfBanner: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClientMinVer: fn(
-            self: *const IRTCProfile,
-            pbstrMinVer: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ClientMinVer: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrMinVer: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrMinVer: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClientCurVer: fn(
-            self: *const IRTCProfile,
-            pbstrCurVer: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ClientCurVer: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrCurVer: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrCurVer: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClientUpdateURI: fn(
-            self: *const IRTCProfile,
-            pbstrUpdateURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ClientUpdateURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrUpdateURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrUpdateURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClientData: fn(
-            self: *const IRTCProfile,
-            pbstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ClientData: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserURI: fn(
-            self: *const IRTCProfile,
-            pbstrUserURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_UserURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrUserURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrUserURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserName: fn(
-            self: *const IRTCProfile,
-            pbstrUserName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_UserName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrUserName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrUserName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserAccount: fn(
-            self: *const IRTCProfile,
-            pbstrUserAccount: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCredentials: fn(
-            self: *const IRTCProfile,
-            bstrUserURI: ?BSTR,
-            bstrUserAccount: ?BSTR,
-            bstrPassword: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_UserAccount: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                pbstrUserAccount: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                pbstrUserAccount: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetCredentials: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                bstrUserURI: ?BSTR,
+                bstrUserAccount: ?BSTR,
+                bstrPassword: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCProfile,
+                bstrUserURI: ?BSTR,
+                bstrUserAccount: ?BSTR,
+                bstrPassword: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SessionCapabilities: fn(
-            self: *const IRTCProfile,
-            plSupportedSessions: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_SessionCapabilities: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                plSupportedSessions: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                plSupportedSessions: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const IRTCProfile,
-            penState: ?*RTC_REGISTRATION_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile,
+                penState: ?*RTC_REGISTRATION_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile,
+                penState: ?*RTC_REGISTRATION_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1952,25 +2864,57 @@ pub const IRTCProfile2 = extern struct {
     pub const VTable = extern struct {
         base: IRTCProfile.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Realm: fn(
-            self: *const IRTCProfile2,
-            pbstrRealm: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Realm: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile2,
+                pbstrRealm: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile2,
+                pbstrRealm: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Realm: fn(
-            self: *const IRTCProfile2,
-            bstrRealm: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Realm: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile2,
+                bstrRealm: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile2,
+                bstrRealm: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowedAuth: fn(
-            self: *const IRTCProfile2,
-            plAllowedAuth: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AllowedAuth: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile2,
+                plAllowedAuth: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile2,
+                plAllowedAuth: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowedAuth: fn(
-            self: *const IRTCProfile2,
-            lAllowedAuth: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_AllowedAuth: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfile2,
+                lAllowedAuth: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfile2,
+                lAllowedAuth: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2001,103 +2945,250 @@ pub const IRTCSession = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Client: fn(
-            self: *const IRTCSession,
-            ppClient: ?*?*IRTCClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Client: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSession,
+                ppClient: ?*?*IRTCClient,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSession,
+                ppClient: ?*?*IRTCClient,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const IRTCSession,
-            penState: ?*RTC_SESSION_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSession,
+                penState: ?*RTC_SESSION_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSession,
+                penState: ?*RTC_SESSION_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: fn(
-            self: *const IRTCSession,
-            penType: ?*RTC_SESSION_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Type: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSession,
+                penType: ?*RTC_SESSION_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSession,
+                penType: ?*RTC_SESSION_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: fn(
-            self: *const IRTCSession,
-            ppProfile: ?*?*IRTCProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Profile: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSession,
+                ppProfile: ?*?*IRTCProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSession,
+                ppProfile: ?*?*IRTCProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Participants: fn(
-            self: *const IRTCSession,
-            ppCollection: ?*?*IRTCCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Answer: fn(
-            self: *const IRTCSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Terminate: fn(
-            self: *const IRTCSession,
-            enReason: RTC_TERMINATE_REASON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Redirect: fn(
-            self: *const IRTCSession,
-            enType: RTC_SESSION_TYPE,
-            bstrLocalPhoneURI: ?BSTR,
-            pProfile: ?*IRTCProfile,
-            lFlags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddParticipant: fn(
-            self: *const IRTCSession,
-            bstrAddress: ?BSTR,
-            bstrName: ?BSTR,
-            ppParticipant: ?*?*IRTCParticipant,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveParticipant: fn(
-            self: *const IRTCSession,
-            pParticipant: ?*IRTCParticipant,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumerateParticipants: fn(
-            self: *const IRTCSession,
-            ppEnum: ?*?*IRTCEnumParticipants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Participants: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSession,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSession,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Answer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Terminate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession,
+                enReason: RTC_TERMINATE_REASON,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession,
+                enReason: RTC_TERMINATE_REASON,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Redirect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession,
+                enType: RTC_SESSION_TYPE,
+                bstrLocalPhoneURI: ?BSTR,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession,
+                enType: RTC_SESSION_TYPE,
+                bstrLocalPhoneURI: ?BSTR,
+                pProfile: ?*IRTCProfile,
+                lFlags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddParticipant: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession,
+                bstrAddress: ?BSTR,
+                bstrName: ?BSTR,
+                ppParticipant: ?*?*IRTCParticipant,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession,
+                bstrAddress: ?BSTR,
+                bstrName: ?BSTR,
+                ppParticipant: ?*?*IRTCParticipant,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveParticipant: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession,
+                pParticipant: ?*IRTCParticipant,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession,
+                pParticipant: ?*IRTCParticipant,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumerateParticipants: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession,
+                ppEnum: ?*?*IRTCEnumParticipants,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession,
+                ppEnum: ?*?*IRTCEnumParticipants,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CanAddParticipants: fn(
-            self: *const IRTCSession,
-            pfCanAdd: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CanAddParticipants: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSession,
+                pfCanAdd: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSession,
+                pfCanAdd: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RedirectedUserURI: fn(
-            self: *const IRTCSession,
-            pbstrUserURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_RedirectedUserURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSession,
+                pbstrUserURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSession,
+                pbstrUserURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RedirectedUserName: fn(
-            self: *const IRTCSession,
-            pbstrUserName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NextRedirectedUser: fn(
-            self: *const IRTCSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SendMessage: fn(
-            self: *const IRTCSession,
-            bstrMessageHeader: ?BSTR,
-            bstrMessage: ?BSTR,
-            lCookie: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SendMessageStatus: fn(
-            self: *const IRTCSession,
-            enUserStatus: RTC_MESSAGING_USER_STATUS,
-            lCookie: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddStream: fn(
-            self: *const IRTCSession,
-            lMediaType: i32,
-            lCookie: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveStream: fn(
-            self: *const IRTCSession,
-            lMediaType: i32,
-            lCookie: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_RedirectedUserName: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSession,
+                pbstrUserName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSession,
+                pbstrUserName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        NextRedirectedUser: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SendMessage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession,
+                bstrMessageHeader: ?BSTR,
+                bstrMessage: ?BSTR,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession,
+                bstrMessageHeader: ?BSTR,
+                bstrMessage: ?BSTR,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SendMessageStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession,
+                enUserStatus: RTC_MESSAGING_USER_STATUS,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession,
+                enUserStatus: RTC_MESSAGING_USER_STATUS,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession,
+                lMediaType: i32,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession,
+                lMediaType: i32,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession,
+                lMediaType: i32,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession,
+                lMediaType: i32,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EncryptionKey: fn(
-            self: *const IRTCSession,
-            lMediaType: i32,
-            EncryptionKey: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_EncryptionKey: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSession,
+                lMediaType: i32,
+                EncryptionKey: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSession,
+                lMediaType: i32,
+                EncryptionKey: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2191,40 +3282,88 @@ pub const IID_IRTCSession2 = &IID_IRTCSession2_Value;
 pub const IRTCSession2 = extern struct {
     pub const VTable = extern struct {
         base: IRTCSession.VTable,
-        SendInfo: fn(
-            self: *const IRTCSession2,
-            bstrInfoHeader: ?BSTR,
-            bstrInfo: ?BSTR,
-            lCookie: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession2,
+                bstrInfoHeader: ?BSTR,
+                bstrInfo: ?BSTR,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession2,
+                bstrInfoHeader: ?BSTR,
+                bstrInfo: ?BSTR,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PreferredSecurityLevel: fn(
-            self: *const IRTCSession2,
-            enSecurityType: RTC_SECURITY_TYPE,
-            enSecurityLevel: RTC_SECURITY_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PreferredSecurityLevel: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSession2,
+                enSecurityType: RTC_SECURITY_TYPE,
+                enSecurityLevel: RTC_SECURITY_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSession2,
+                enSecurityType: RTC_SECURITY_TYPE,
+                enSecurityLevel: RTC_SECURITY_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PreferredSecurityLevel: fn(
-            self: *const IRTCSession2,
-            enSecurityType: RTC_SECURITY_TYPE,
-            penSecurityLevel: ?*RTC_SECURITY_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsSecurityEnabled: fn(
-            self: *const IRTCSession2,
-            enSecurityType: RTC_SECURITY_TYPE,
-            pfSecurityEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AnswerWithSessionDescription: fn(
-            self: *const IRTCSession2,
-            bstrContentType: ?BSTR,
-            bstrSessionDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReInviteWithSessionDescription: fn(
-            self: *const IRTCSession2,
-            bstrContentType: ?BSTR,
-            bstrSessionDescription: ?BSTR,
-            lCookie: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PreferredSecurityLevel: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSession2,
+                enSecurityType: RTC_SECURITY_TYPE,
+                penSecurityLevel: ?*RTC_SECURITY_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSession2,
+                enSecurityType: RTC_SECURITY_TYPE,
+                penSecurityLevel: ?*RTC_SECURITY_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsSecurityEnabled: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession2,
+                enSecurityType: RTC_SECURITY_TYPE,
+                pfSecurityEnabled: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession2,
+                enSecurityType: RTC_SECURITY_TYPE,
+                pfSecurityEnabled: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AnswerWithSessionDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession2,
+                bstrContentType: ?BSTR,
+                bstrSessionDescription: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession2,
+                bstrContentType: ?BSTR,
+                bstrSessionDescription: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReInviteWithSessionDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSession2,
+                bstrContentType: ?BSTR,
+                bstrSessionDescription: ?BSTR,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSession2,
+                bstrContentType: ?BSTR,
+                bstrSessionDescription: ?BSTR,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2262,48 +3401,113 @@ pub const IID_IRTCSessionCallControl = &IID_IRTCSessionCallControl_Value;
 pub const IRTCSessionCallControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Hold: fn(
-            self: *const IRTCSessionCallControl,
-            lCookie: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnHold: fn(
-            self: *const IRTCSessionCallControl,
-            lCookie: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Forward: fn(
-            self: *const IRTCSessionCallControl,
-            bstrForwardToURI: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refer: fn(
-            self: *const IRTCSessionCallControl,
-            bstrReferToURI: ?BSTR,
-            bstrReferCookie: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Hold: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSessionCallControl,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSessionCallControl,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnHold: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSessionCallControl,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSessionCallControl,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Forward: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSessionCallControl,
+                bstrForwardToURI: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSessionCallControl,
+                bstrForwardToURI: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSessionCallControl,
+                bstrReferToURI: ?BSTR,
+                bstrReferCookie: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSessionCallControl,
+                bstrReferToURI: ?BSTR,
+                bstrReferCookie: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ReferredByURI: fn(
-            self: *const IRTCSessionCallControl,
-            bstrReferredByURI: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_ReferredByURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionCallControl,
+                bstrReferredByURI: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionCallControl,
+                bstrReferredByURI: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReferredByURI: fn(
-            self: *const IRTCSessionCallControl,
-            pbstrReferredByURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ReferredByURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionCallControl,
+                pbstrReferredByURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionCallControl,
+                pbstrReferredByURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ReferCookie: fn(
-            self: *const IRTCSessionCallControl,
-            bstrReferCookie: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_ReferCookie: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionCallControl,
+                bstrReferCookie: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionCallControl,
+                bstrReferCookie: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReferCookie: fn(
-            self: *const IRTCSessionCallControl,
-            pbstrReferCookie: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ReferCookie: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionCallControl,
+                pbstrReferCookie: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionCallControl,
+                pbstrReferCookie: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsReferred: fn(
-            self: *const IRTCSessionCallControl,
-            pfIsReferred: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsReferred: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionCallControl,
+                pfIsReferred: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionCallControl,
+                pfIsReferred: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2354,30 +3558,70 @@ pub const IRTCParticipant = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserURI: fn(
-            self: *const IRTCParticipant,
-            pbstrUserURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_UserURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCParticipant,
+                pbstrUserURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCParticipant,
+                pbstrUserURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const IRTCParticipant,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCParticipant,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCParticipant,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Removable: fn(
-            self: *const IRTCParticipant,
-            pfRemovable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Removable: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCParticipant,
+                pfRemovable: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCParticipant,
+                pfRemovable: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const IRTCParticipant,
-            penState: ?*RTC_PARTICIPANT_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCParticipant,
+                penState: ?*RTC_PARTICIPANT_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCParticipant,
+                penState: ?*RTC_PARTICIPANT_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: fn(
-            self: *const IRTCParticipant,
-            ppSession: ?*?*IRTCSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Session: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCParticipant,
+                ppSession: ?*?*IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCParticipant,
+                ppSession: ?*?*IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2412,25 +3656,57 @@ pub const IRTCRoamingEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: fn(
-            self: *const IRTCRoamingEvent,
-            pEventType: ?*RTC_ROAMING_EVENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_EventType: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCRoamingEvent,
+                pEventType: ?*RTC_ROAMING_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCRoamingEvent,
+                pEventType: ?*RTC_ROAMING_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: fn(
-            self: *const IRTCRoamingEvent,
-            ppProfile: ?*?*IRTCProfile2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Profile: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCRoamingEvent,
+                ppProfile: ?*?*IRTCProfile2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCRoamingEvent,
+                ppProfile: ?*?*IRTCProfile2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCRoamingEvent,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCRoamingEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCRoamingEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: fn(
-            self: *const IRTCRoamingEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusText: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCRoamingEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCRoamingEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2461,20 +3737,44 @@ pub const IRTCProfileEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: fn(
-            self: *const IRTCProfileEvent,
-            ppProfile: ?*?*IRTCProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Profile: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfileEvent,
+                ppProfile: ?*?*IRTCProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfileEvent,
+                ppProfile: ?*?*IRTCProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cookie: fn(
-            self: *const IRTCProfileEvent,
-            plCookie: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Cookie: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfileEvent,
+                plCookie: ?*isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfileEvent,
+                plCookie: ?*isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCProfileEvent,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfileEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfileEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2501,10 +3801,18 @@ pub const IRTCProfileEvent2 = extern struct {
     pub const VTable = extern struct {
         base: IRTCProfileEvent.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: fn(
-            self: *const IRTCProfileEvent2,
-            pEventType: ?*RTC_PROFILE_EVENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_EventType: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCProfileEvent2,
+                pEventType: ?*RTC_PROFILE_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCProfileEvent2,
+                pEventType: ?*RTC_PROFILE_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2523,15 +3831,31 @@ pub const IRTCClientEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: fn(
-            self: *const IRTCClientEvent,
-            penEventType: ?*RTC_CLIENT_EVENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_EventType: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientEvent,
+                penEventType: ?*RTC_CLIENT_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientEvent,
+                penEventType: ?*RTC_CLIENT_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Client: fn(
-            self: *const IRTCClientEvent,
-            ppClient: ?*?*IRTCClient,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Client: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCClientEvent,
+                ppClient: ?*?*IRTCClient,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCClientEvent,
+                ppClient: ?*?*IRTCClient,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2554,25 +3878,57 @@ pub const IRTCRegistrationStateChangeEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: fn(
-            self: *const IRTCRegistrationStateChangeEvent,
-            ppProfile: ?*?*IRTCProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Profile: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCRegistrationStateChangeEvent,
+                ppProfile: ?*?*IRTCProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCRegistrationStateChangeEvent,
+                ppProfile: ?*?*IRTCProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const IRTCRegistrationStateChangeEvent,
-            penState: ?*RTC_REGISTRATION_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCRegistrationStateChangeEvent,
+                penState: ?*RTC_REGISTRATION_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCRegistrationStateChangeEvent,
+                penState: ?*RTC_REGISTRATION_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCRegistrationStateChangeEvent,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCRegistrationStateChangeEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCRegistrationStateChangeEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: fn(
-            self: *const IRTCRegistrationStateChangeEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusText: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCRegistrationStateChangeEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCRegistrationStateChangeEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2603,25 +3959,57 @@ pub const IRTCSessionStateChangeEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: fn(
-            self: *const IRTCSessionStateChangeEvent,
-            ppSession: ?*?*IRTCSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Session: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionStateChangeEvent,
+                ppSession: ?*?*IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionStateChangeEvent,
+                ppSession: ?*?*IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const IRTCSessionStateChangeEvent,
-            penState: ?*RTC_SESSION_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionStateChangeEvent,
+                penState: ?*RTC_SESSION_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionStateChangeEvent,
+                penState: ?*RTC_SESSION_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCSessionStateChangeEvent,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionStateChangeEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionStateChangeEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: fn(
-            self: *const IRTCSessionStateChangeEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusText: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionStateChangeEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionStateChangeEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2652,26 +4040,58 @@ pub const IRTCSessionStateChangeEvent2 = extern struct {
     pub const VTable = extern struct {
         base: IRTCSessionStateChangeEvent.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MediaTypes: fn(
-            self: *const IRTCSessionStateChangeEvent2,
-            pMediaTypes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MediaTypes: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionStateChangeEvent2,
+                pMediaTypes: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionStateChangeEvent2,
+                pMediaTypes: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemotePreferredSecurityLevel: fn(
-            self: *const IRTCSessionStateChangeEvent2,
-            enSecurityType: RTC_SECURITY_TYPE,
-            penSecurityLevel: ?*RTC_SECURITY_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_RemotePreferredSecurityLevel: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionStateChangeEvent2,
+                enSecurityType: RTC_SECURITY_TYPE,
+                penSecurityLevel: ?*RTC_SECURITY_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionStateChangeEvent2,
+                enSecurityType: RTC_SECURITY_TYPE,
+                penSecurityLevel: ?*RTC_SECURITY_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsForked: fn(
-            self: *const IRTCSessionStateChangeEvent2,
-            pfIsForked: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRemoteSessionDescription: fn(
-            self: *const IRTCSessionStateChangeEvent2,
-            pbstrContentType: ?*?BSTR,
-            pbstrSessionDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_IsForked: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionStateChangeEvent2,
+                pfIsForked: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionStateChangeEvent2,
+                pfIsForked: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRemoteSessionDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSessionStateChangeEvent2,
+                pbstrContentType: ?*?BSTR,
+                pbstrSessionDescription: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSessionStateChangeEvent2,
+                pbstrContentType: ?*?BSTR,
+                pbstrSessionDescription: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2702,25 +4122,57 @@ pub const IRTCSessionOperationCompleteEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: fn(
-            self: *const IRTCSessionOperationCompleteEvent,
-            ppSession: ?*?*IRTCSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Session: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionOperationCompleteEvent,
+                ppSession: ?*?*IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionOperationCompleteEvent,
+                ppSession: ?*?*IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cookie: fn(
-            self: *const IRTCSessionOperationCompleteEvent,
-            plCookie: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Cookie: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionOperationCompleteEvent,
+                plCookie: ?*isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionOperationCompleteEvent,
+                plCookie: ?*isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCSessionOperationCompleteEvent,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionOperationCompleteEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionOperationCompleteEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: fn(
-            self: *const IRTCSessionOperationCompleteEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusText: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionOperationCompleteEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionOperationCompleteEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2751,15 +4203,30 @@ pub const IRTCSessionOperationCompleteEvent2 = extern struct {
     pub const VTable = extern struct {
         base: IRTCSessionOperationCompleteEvent.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Participant: fn(
-            self: *const IRTCSessionOperationCompleteEvent2,
-            ppParticipant: ?*?*IRTCParticipant,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRemoteSessionDescription: fn(
-            self: *const IRTCSessionOperationCompleteEvent2,
-            pbstrContentType: ?*?BSTR,
-            pbstrSessionDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Participant: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionOperationCompleteEvent2,
+                ppParticipant: ?*?*IRTCParticipant,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionOperationCompleteEvent2,
+                ppParticipant: ?*?*IRTCParticipant,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRemoteSessionDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSessionOperationCompleteEvent2,
+                pbstrContentType: ?*?BSTR,
+                pbstrSessionDescription: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSessionOperationCompleteEvent2,
+                pbstrContentType: ?*?BSTR,
+                pbstrSessionDescription: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2782,20 +4249,44 @@ pub const IRTCParticipantStateChangeEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Participant: fn(
-            self: *const IRTCParticipantStateChangeEvent,
-            ppParticipant: ?*?*IRTCParticipant,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Participant: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCParticipantStateChangeEvent,
+                ppParticipant: ?*?*IRTCParticipant,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCParticipantStateChangeEvent,
+                ppParticipant: ?*?*IRTCParticipant,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const IRTCParticipantStateChangeEvent,
-            penState: ?*RTC_PARTICIPANT_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCParticipantStateChangeEvent,
+                penState: ?*RTC_PARTICIPANT_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCParticipantStateChangeEvent,
+                penState: ?*RTC_PARTICIPANT_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCParticipantStateChangeEvent,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCParticipantStateChangeEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCParticipantStateChangeEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2822,20 +4313,44 @@ pub const IRTCMediaEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MediaType: fn(
-            self: *const IRTCMediaEvent,
-            pMediaType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MediaType: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMediaEvent,
+                pMediaType: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMediaEvent,
+                pMediaType: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: fn(
-            self: *const IRTCMediaEvent,
-            penEventType: ?*RTC_MEDIA_EVENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_EventType: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMediaEvent,
+                penEventType: ?*RTC_MEDIA_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMediaEvent,
+                penEventType: ?*RTC_MEDIA_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventReason: fn(
-            self: *const IRTCMediaEvent,
-            penEventReason: ?*RTC_MEDIA_EVENT_REASON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_EventReason: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMediaEvent,
+                penEventReason: ?*RTC_MEDIA_EVENT_REASON,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMediaEvent,
+                penEventReason: ?*RTC_MEDIA_EVENT_REASON,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2862,25 +4377,57 @@ pub const IRTCIntensityEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Level: fn(
-            self: *const IRTCIntensityEvent,
-            plLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Level: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCIntensityEvent,
+                plLevel: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCIntensityEvent,
+                plLevel: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Min: fn(
-            self: *const IRTCIntensityEvent,
-            plMin: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Min: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCIntensityEvent,
+                plMin: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCIntensityEvent,
+                plMin: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Max: fn(
-            self: *const IRTCIntensityEvent,
-            plMax: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Max: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCIntensityEvent,
+                plMax: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCIntensityEvent,
+                plMax: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Direction: fn(
-            self: *const IRTCIntensityEvent,
-            penDirection: ?*RTC_AUDIO_DEVICE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Direction: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCIntensityEvent,
+                penDirection: ?*RTC_AUDIO_DEVICE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCIntensityEvent,
+                penDirection: ?*RTC_AUDIO_DEVICE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2911,35 +4458,83 @@ pub const IRTCMessagingEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: fn(
-            self: *const IRTCMessagingEvent,
-            ppSession: ?*?*IRTCSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Session: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMessagingEvent,
+                ppSession: ?*?*IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMessagingEvent,
+                ppSession: ?*?*IRTCSession,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Participant: fn(
-            self: *const IRTCMessagingEvent,
-            ppParticipant: ?*?*IRTCParticipant,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Participant: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMessagingEvent,
+                ppParticipant: ?*?*IRTCParticipant,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMessagingEvent,
+                ppParticipant: ?*?*IRTCParticipant,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: fn(
-            self: *const IRTCMessagingEvent,
-            penEventType: ?*RTC_MESSAGING_EVENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_EventType: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMessagingEvent,
+                penEventType: ?*RTC_MESSAGING_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMessagingEvent,
+                penEventType: ?*RTC_MESSAGING_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Message: fn(
-            self: *const IRTCMessagingEvent,
-            pbstrMessage: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Message: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMessagingEvent,
+                pbstrMessage: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMessagingEvent,
+                pbstrMessage: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MessageHeader: fn(
-            self: *const IRTCMessagingEvent,
-            pbstrMessageHeader: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MessageHeader: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMessagingEvent,
+                pbstrMessageHeader: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMessagingEvent,
+                pbstrMessageHeader: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserStatus: fn(
-            self: *const IRTCMessagingEvent,
-            penUserStatus: ?*RTC_MESSAGING_USER_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_UserStatus: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMessagingEvent,
+                penUserStatus: ?*RTC_MESSAGING_USER_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMessagingEvent,
+                penUserStatus: ?*RTC_MESSAGING_USER_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2978,10 +4573,18 @@ pub const IRTCBuddyEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Buddy: fn(
-            self: *const IRTCBuddyEvent,
-            ppBuddy: ?*?*IRTCBuddy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Buddy: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyEvent,
+                ppBuddy: ?*?*IRTCBuddy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyEvent,
+                ppBuddy: ?*?*IRTCBuddy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3000,20 +4603,44 @@ pub const IRTCBuddyEvent2 = extern struct {
     pub const VTable = extern struct {
         base: IRTCBuddyEvent.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: fn(
-            self: *const IRTCBuddyEvent2,
-            pEventType: ?*RTC_BUDDY_EVENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_EventType: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyEvent2,
+                pEventType: ?*RTC_BUDDY_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyEvent2,
+                pEventType: ?*RTC_BUDDY_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCBuddyEvent2,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyEvent2,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyEvent2,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: fn(
-            self: *const IRTCBuddyEvent2,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusText: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyEvent2,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyEvent2,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3040,10 +4667,18 @@ pub const IRTCWatcherEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Watcher: fn(
-            self: *const IRTCWatcherEvent,
-            ppWatcher: ?*?*IRTCWatcher,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Watcher: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCWatcherEvent,
+                ppWatcher: ?*?*IRTCWatcher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCWatcherEvent,
+                ppWatcher: ?*?*IRTCWatcher,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3062,15 +4697,31 @@ pub const IRTCWatcherEvent2 = extern struct {
     pub const VTable = extern struct {
         base: IRTCWatcherEvent.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: fn(
-            self: *const IRTCWatcherEvent2,
-            pEventType: ?*RTC_WATCHER_EVENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_EventType: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCWatcherEvent2,
+                pEventType: ?*RTC_WATCHER_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCWatcherEvent2,
+                pEventType: ?*RTC_WATCHER_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCWatcherEvent2,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCWatcherEvent2,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCWatcherEvent2,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3093,25 +4744,57 @@ pub const IRTCBuddyGroupEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: fn(
-            self: *const IRTCBuddyGroupEvent,
-            pEventType: ?*RTC_GROUP_EVENT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_EventType: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyGroupEvent,
+                pEventType: ?*RTC_GROUP_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyGroupEvent,
+                pEventType: ?*RTC_GROUP_EVENT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Group: fn(
-            self: *const IRTCBuddyGroupEvent,
-            ppGroup: ?*?*IRTCBuddyGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Group: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyGroupEvent,
+                ppGroup: ?*?*IRTCBuddyGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyGroupEvent,
+                ppGroup: ?*?*IRTCBuddyGroup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Buddy: fn(
-            self: *const IRTCBuddyGroupEvent,
-            ppBuddy: ?*?*IRTCBuddy2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Buddy: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyGroupEvent,
+                ppBuddy: ?*?*IRTCBuddy2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyGroupEvent,
+                ppBuddy: ?*?*IRTCBuddy2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCBuddyGroupEvent,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyGroupEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyGroupEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3142,25 +4825,57 @@ pub const IRTCInfoEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: fn(
-            self: *const IRTCInfoEvent,
-            ppSession: ?*?*IRTCSession2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Session: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCInfoEvent,
+                ppSession: ?*?*IRTCSession2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCInfoEvent,
+                ppSession: ?*?*IRTCSession2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Participant: fn(
-            self: *const IRTCInfoEvent,
-            ppParticipant: ?*?*IRTCParticipant,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Participant: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCInfoEvent,
+                ppParticipant: ?*?*IRTCParticipant,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCInfoEvent,
+                ppParticipant: ?*?*IRTCParticipant,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Info: fn(
-            self: *const IRTCInfoEvent,
-            pbstrInfo: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Info: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCInfoEvent,
+                pbstrInfo: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCInfoEvent,
+                pbstrInfo: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InfoHeader: fn(
-            self: *const IRTCInfoEvent,
-            pbstrInfoHeader: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_InfoHeader: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCInfoEvent,
+                pbstrInfoHeader: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCInfoEvent,
+                pbstrInfoHeader: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3191,38 +4906,90 @@ pub const IRTCMediaRequestEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: fn(
-            self: *const IRTCMediaRequestEvent,
-            ppSession: ?*?*IRTCSession2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Session: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMediaRequestEvent,
+                ppSession: ?*?*IRTCSession2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMediaRequestEvent,
+                ppSession: ?*?*IRTCSession2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProposedMedia: fn(
-            self: *const IRTCMediaRequestEvent,
-            plMediaTypes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ProposedMedia: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMediaRequestEvent,
+                plMediaTypes: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMediaRequestEvent,
+                plMediaTypes: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CurrentMedia: fn(
-            self: *const IRTCMediaRequestEvent,
-            plMediaTypes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Accept: fn(
-            self: *const IRTCMediaRequestEvent,
-            lMediaTypes: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_CurrentMedia: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMediaRequestEvent,
+                plMediaTypes: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMediaRequestEvent,
+                plMediaTypes: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Accept: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCMediaRequestEvent,
+                lMediaTypes: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCMediaRequestEvent,
+                lMediaTypes: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemotePreferredSecurityLevel: fn(
-            self: *const IRTCMediaRequestEvent,
-            enSecurityType: RTC_SECURITY_TYPE,
-            penSecurityLevel: ?*RTC_SECURITY_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reject: fn(
-            self: *const IRTCMediaRequestEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_RemotePreferredSecurityLevel: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMediaRequestEvent,
+                enSecurityType: RTC_SECURITY_TYPE,
+                penSecurityLevel: ?*RTC_SECURITY_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMediaRequestEvent,
+                enSecurityType: RTC_SECURITY_TYPE,
+                penSecurityLevel: ?*RTC_SECURITY_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reject: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCMediaRequestEvent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCMediaRequestEvent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const IRTCMediaRequestEvent,
-            pState: ?*RTC_REINVITE_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCMediaRequestEvent,
+                pState: ?*RTC_REINVITE_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCMediaRequestEvent,
+                pState: ?*RTC_REINVITE_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3265,28 +5032,63 @@ pub const IRTCReInviteEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: fn(
-            self: *const IRTCReInviteEvent,
-            ppSession2: ?*?*IRTCSession2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Accept: fn(
-            self: *const IRTCReInviteEvent,
-            bstrContentType: ?BSTR,
-            bstrSessionDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reject: fn(
-            self: *const IRTCReInviteEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Session: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCReInviteEvent,
+                ppSession2: ?*?*IRTCSession2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCReInviteEvent,
+                ppSession2: ?*?*IRTCSession2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Accept: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCReInviteEvent,
+                bstrContentType: ?BSTR,
+                bstrSessionDescription: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCReInviteEvent,
+                bstrContentType: ?BSTR,
+                bstrSessionDescription: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reject: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCReInviteEvent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCReInviteEvent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const IRTCReInviteEvent,
-            pState: ?*RTC_REINVITE_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRemoteSessionDescription: fn(
-            self: *const IRTCReInviteEvent,
-            pbstrContentType: ?*?BSTR,
-            pbstrSessionDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCReInviteEvent,
+                pState: ?*RTC_REINVITE_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCReInviteEvent,
+                pState: ?*RTC_REINVITE_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRemoteSessionDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCReInviteEvent,
+                pbstrContentType: ?*?BSTR,
+                pbstrSessionDescription: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCReInviteEvent,
+                pbstrContentType: ?*?BSTR,
+                pbstrSessionDescription: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3321,25 +5123,57 @@ pub const IRTCPresencePropertyEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCPresencePropertyEvent,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresencePropertyEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresencePropertyEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: fn(
-            self: *const IRTCPresencePropertyEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusText: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresencePropertyEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresencePropertyEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PresenceProperty: fn(
-            self: *const IRTCPresencePropertyEvent,
-            penPresProp: ?*RTC_PRESENCE_PROPERTY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PresenceProperty: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresencePropertyEvent,
+                penPresProp: ?*RTC_PRESENCE_PROPERTY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresencePropertyEvent,
+                penPresProp: ?*RTC_PRESENCE_PROPERTY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: fn(
-            self: *const IRTCPresencePropertyEvent,
-            pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresencePropertyEvent,
+                pbstrValue: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresencePropertyEvent,
+                pbstrValue: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3370,20 +5204,43 @@ pub const IRTCPresenceDataEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCPresenceDataEvent,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceDataEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceDataEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: fn(
-            self: *const IRTCPresenceDataEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPresenceData: fn(
-            self: *const IRTCPresenceDataEvent,
-            pbstrNamespace: ?*?BSTR,
-            pbstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusText: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceDataEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceDataEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPresenceData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCPresenceDataEvent,
+                pbstrNamespace: ?*?BSTR,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCPresenceDataEvent,
+                pbstrNamespace: ?*?BSTR,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3410,20 +5267,43 @@ pub const IRTCPresenceStatusEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCPresenceStatusEvent,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceStatusEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceStatusEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: fn(
-            self: *const IRTCPresenceStatusEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocalPresenceInfo: fn(
-            self: *const IRTCPresenceStatusEvent,
-            penStatus: ?*RTC_PRESENCE_STATUS,
-            pbstrNotes: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusText: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceStatusEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceStatusEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLocalPresenceInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCPresenceStatusEvent,
+                penStatus: ?*RTC_PRESENCE_STATUS,
+                pbstrNotes: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCPresenceStatusEvent,
+                penStatus: ?*RTC_PRESENCE_STATUS,
+                pbstrNotes: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3450,21 +5330,46 @@ pub const IRTCCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const IRTCCollection,
-            lCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Count: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCCollection,
+                lCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCCollection,
+                lCount: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: fn(
-            self: *const IRTCCollection,
-            Index: i32,
-            pVariant: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCCollection,
+                Index: i32,
+                pVariant: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCCollection,
+                Index: i32,
+                pVariant: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: fn(
-            self: *const IRTCCollection,
-            ppNewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get__NewEnum: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCCollection,
+                ppNewEnum: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCCollection,
+                ppNewEnum: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3490,23 +5395,48 @@ pub const IID_IRTCEnumParticipants = &IID_IRTCEnumParticipants_Value;
 pub const IRTCEnumParticipants = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IRTCEnumParticipants,
-            celt: u32,
-            ppElements: [*]?*IRTCParticipant,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IRTCEnumParticipants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IRTCEnumParticipants,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IRTCEnumParticipants,
-            ppEnum: ?*?*IRTCEnumParticipants,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumParticipants,
+                celt: u32,
+                ppElements: [*]?*IRTCParticipant,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumParticipants,
+                celt: u32,
+                ppElements: [*]?*IRTCParticipant,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumParticipants,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumParticipants,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumParticipants,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumParticipants,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumParticipants,
+                ppEnum: ?*?*IRTCEnumParticipants,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumParticipants,
+                ppEnum: ?*?*IRTCEnumParticipants,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3536,23 +5466,48 @@ pub const IID_IRTCEnumProfiles = &IID_IRTCEnumProfiles_Value;
 pub const IRTCEnumProfiles = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IRTCEnumProfiles,
-            celt: u32,
-            ppElements: [*]?*IRTCProfile,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IRTCEnumProfiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IRTCEnumProfiles,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IRTCEnumProfiles,
-            ppEnum: ?*?*IRTCEnumProfiles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumProfiles,
+                celt: u32,
+                ppElements: [*]?*IRTCProfile,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumProfiles,
+                celt: u32,
+                ppElements: [*]?*IRTCProfile,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumProfiles,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumProfiles,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumProfiles,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumProfiles,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumProfiles,
+                ppEnum: ?*?*IRTCEnumProfiles,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumProfiles,
+                ppEnum: ?*?*IRTCEnumProfiles,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3582,23 +5537,48 @@ pub const IID_IRTCEnumBuddies = &IID_IRTCEnumBuddies_Value;
 pub const IRTCEnumBuddies = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IRTCEnumBuddies,
-            celt: u32,
-            ppElements: [*]?*IRTCBuddy,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IRTCEnumBuddies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IRTCEnumBuddies,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IRTCEnumBuddies,
-            ppEnum: ?*?*IRTCEnumBuddies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumBuddies,
+                celt: u32,
+                ppElements: [*]?*IRTCBuddy,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumBuddies,
+                celt: u32,
+                ppElements: [*]?*IRTCBuddy,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumBuddies,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumBuddies,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumBuddies,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumBuddies,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumBuddies,
+                ppEnum: ?*?*IRTCEnumBuddies,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumBuddies,
+                ppEnum: ?*?*IRTCEnumBuddies,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3628,23 +5608,48 @@ pub const IID_IRTCEnumWatchers = &IID_IRTCEnumWatchers_Value;
 pub const IRTCEnumWatchers = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IRTCEnumWatchers,
-            celt: u32,
-            ppElements: [*]?*IRTCWatcher,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IRTCEnumWatchers,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IRTCEnumWatchers,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IRTCEnumWatchers,
-            ppEnum: ?*?*IRTCEnumWatchers,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumWatchers,
+                celt: u32,
+                ppElements: [*]?*IRTCWatcher,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumWatchers,
+                celt: u32,
+                ppElements: [*]?*IRTCWatcher,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumWatchers,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumWatchers,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumWatchers,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumWatchers,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumWatchers,
+                ppEnum: ?*?*IRTCEnumWatchers,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumWatchers,
+                ppEnum: ?*?*IRTCEnumWatchers,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3674,23 +5679,48 @@ pub const IID_IRTCEnumGroups = &IID_IRTCEnumGroups_Value;
 pub const IRTCEnumGroups = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IRTCEnumGroups,
-            celt: u32,
-            ppElements: [*]?*IRTCBuddyGroup,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IRTCEnumGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IRTCEnumGroups,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IRTCEnumGroups,
-            ppEnum: ?*?*IRTCEnumGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumGroups,
+                celt: u32,
+                ppElements: [*]?*IRTCBuddyGroup,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumGroups,
+                celt: u32,
+                ppElements: [*]?*IRTCBuddyGroup,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumGroups,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumGroups,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumGroups,
+                ppEnum: ?*?*IRTCEnumGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumGroups,
+                ppEnum: ?*?*IRTCEnumGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3721,45 +5751,109 @@ pub const IRTCPresenceContact = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PresentityURI: fn(
-            self: *const IRTCPresenceContact,
-            pbstrPresentityURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PresentityURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceContact,
+                pbstrPresentityURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceContact,
+                pbstrPresentityURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PresentityURI: fn(
-            self: *const IRTCPresenceContact,
-            bstrPresentityURI: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_PresentityURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceContact,
+                bstrPresentityURI: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceContact,
+                bstrPresentityURI: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const IRTCPresenceContact,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceContact,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceContact,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
-            self: *const IRTCPresenceContact,
-            bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceContact,
+                bstrName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceContact,
+                bstrName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: fn(
-            self: *const IRTCPresenceContact,
-            pbstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Data: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceContact,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceContact,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Data: fn(
-            self: *const IRTCPresenceContact,
-            bstrData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Data: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceContact,
+                bstrData: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceContact,
+                bstrData: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Persistent: fn(
-            self: *const IRTCPresenceContact,
-            pfPersistent: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Persistent: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceContact,
+                pfPersistent: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceContact,
+                pfPersistent: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Persistent: fn(
-            self: *const IRTCPresenceContact,
-            fPersistent: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Persistent: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceContact,
+                fPersistent: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceContact,
+                fPersistent: i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3806,15 +5900,31 @@ pub const IRTCBuddy = extern struct {
     pub const VTable = extern struct {
         base: IRTCPresenceContact.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Status: fn(
-            self: *const IRTCBuddy,
-            penStatus: ?*RTC_PRESENCE_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Status: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddy,
+                penStatus: ?*RTC_PRESENCE_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddy,
+                penStatus: ?*RTC_PRESENCE_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Notes: fn(
-            self: *const IRTCBuddy,
-            pbstrNotes: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Notes: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddy,
+                pbstrNotes: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddy,
+                pbstrNotes: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3837,42 +5947,100 @@ pub const IRTCBuddy2 = extern struct {
     pub const VTable = extern struct {
         base: IRTCBuddy.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: fn(
-            self: *const IRTCBuddy2,
-            ppProfile: ?*?*IRTCProfile2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Refresh: fn(
-            self: *const IRTCBuddy2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumerateGroups: fn(
-            self: *const IRTCBuddy2,
-            ppEnum: ?*?*IRTCEnumGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Profile: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddy2,
+                ppProfile: ?*?*IRTCProfile2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddy2,
+                ppProfile: ?*?*IRTCProfile2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Refresh: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCBuddy2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCBuddy2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumerateGroups: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCBuddy2,
+                ppEnum: ?*?*IRTCEnumGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCBuddy2,
+                ppEnum: ?*?*IRTCEnumGroups,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Groups: fn(
-            self: *const IRTCBuddy2,
-            ppCollection: ?*?*IRTCCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Groups: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddy2,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddy2,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PresenceProperty: fn(
-            self: *const IRTCBuddy2,
-            enProperty: RTC_PRESENCE_PROPERTY,
-            pbstrProperty: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumeratePresenceDevices: fn(
-            self: *const IRTCBuddy2,
-            ppEnumDevices: ?*?*IRTCEnumPresenceDevices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PresenceProperty: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddy2,
+                enProperty: RTC_PRESENCE_PROPERTY,
+                pbstrProperty: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddy2,
+                enProperty: RTC_PRESENCE_PROPERTY,
+                pbstrProperty: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumeratePresenceDevices: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCBuddy2,
+                ppEnumDevices: ?*?*IRTCEnumPresenceDevices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCBuddy2,
+                ppEnumDevices: ?*?*IRTCEnumPresenceDevices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PresenceDevices: fn(
-            self: *const IRTCBuddy2,
-            ppDevicesCollection: ?*?*IRTCCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PresenceDevices: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddy2,
+                ppDevicesCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddy2,
+                ppDevicesCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SubscriptionType: fn(
-            self: *const IRTCBuddy2,
-            penSubscriptionType: ?*RTC_BUDDY_SUBSCRIPTION_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_SubscriptionType: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddy2,
+                penSubscriptionType: ?*RTC_BUDDY_SUBSCRIPTION_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddy2,
+                penSubscriptionType: ?*RTC_BUDDY_SUBSCRIPTION_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3919,15 +6087,31 @@ pub const IRTCWatcher = extern struct {
     pub const VTable = extern struct {
         base: IRTCPresenceContact.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: fn(
-            self: *const IRTCWatcher,
-            penState: ?*RTC_WATCHER_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCWatcher,
+                penState: ?*RTC_WATCHER_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCWatcher,
+                penState: ?*RTC_WATCHER_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_State: fn(
-            self: *const IRTCWatcher,
-            enState: RTC_WATCHER_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_State: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCWatcher,
+                enState: RTC_WATCHER_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCWatcher,
+                enState: RTC_WATCHER_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3950,15 +6134,31 @@ pub const IRTCWatcher2 = extern struct {
     pub const VTable = extern struct {
         base: IRTCWatcher.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: fn(
-            self: *const IRTCWatcher2,
-            ppProfile: ?*?*IRTCProfile2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Profile: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCWatcher2,
+                ppProfile: ?*?*IRTCProfile2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCWatcher2,
+                ppProfile: ?*?*IRTCProfile2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Scope: fn(
-            self: *const IRTCWatcher2,
-            penScope: ?*RTC_ACE_SCOPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Scope: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCWatcher2,
+                penScope: ?*RTC_ACE_SCOPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCWatcher2,
+                penScope: ?*RTC_ACE_SCOPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3981,47 +6181,113 @@ pub const IRTCBuddyGroup = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: fn(
-            self: *const IRTCBuddyGroup,
-            pbstrGroupName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyGroup,
+                pbstrGroupName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyGroup,
+                pbstrGroupName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: fn(
-            self: *const IRTCBuddyGroup,
-            bstrGroupName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddBuddy: fn(
-            self: *const IRTCBuddyGroup,
-            pBuddy: ?*IRTCBuddy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveBuddy: fn(
-            self: *const IRTCBuddyGroup,
-            pBuddy: ?*IRTCBuddy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumerateBuddies: fn(
-            self: *const IRTCBuddyGroup,
-            ppEnum: ?*?*IRTCEnumBuddies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Name: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyGroup,
+                bstrGroupName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyGroup,
+                bstrGroupName: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddBuddy: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCBuddyGroup,
+                pBuddy: ?*IRTCBuddy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCBuddyGroup,
+                pBuddy: ?*IRTCBuddy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveBuddy: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCBuddyGroup,
+                pBuddy: ?*IRTCBuddy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCBuddyGroup,
+                pBuddy: ?*IRTCBuddy,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumerateBuddies: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCBuddyGroup,
+                ppEnum: ?*?*IRTCEnumBuddies,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCBuddyGroup,
+                ppEnum: ?*?*IRTCEnumBuddies,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Buddies: fn(
-            self: *const IRTCBuddyGroup,
-            ppCollection: ?*?*IRTCCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Buddies: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyGroup,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyGroup,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Data: fn(
-            self: *const IRTCBuddyGroup,
-            pbstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Data: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyGroup,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyGroup,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Data: fn(
-            self: *const IRTCBuddyGroup,
-            bstrData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Data: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyGroup,
+                bstrData: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyGroup,
+                bstrData: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: fn(
-            self: *const IRTCBuddyGroup,
-            ppProfile: ?*?*IRTCProfile2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Profile: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCBuddyGroup,
+                ppProfile: ?*?*IRTCProfile2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCBuddyGroup,
+                ppProfile: ?*?*IRTCProfile2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4071,11 +6337,18 @@ pub const IID_IRTCEventNotification = &IID_IRTCEventNotification_Value;
 pub const IRTCEventNotification = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Event: fn(
-            self: *const IRTCEventNotification,
-            RTCEvent: RTC_EVENT,
-            pEvent: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Event: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEventNotification,
+                RTCEvent: RTC_EVENT,
+                pEvent: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEventNotification,
+                RTCEvent: RTC_EVENT,
+                pEvent: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4093,30 +6366,60 @@ pub const IID_IRTCPortManager = &IID_IRTCPortManager_Value;
 pub const IRTCPortManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetMapping: fn(
-            self: *const IRTCPortManager,
-            bstrRemoteAddress: ?BSTR,
-            enPortType: RTC_PORT_TYPE,
-            pbstrInternalLocalAddress: ?*?BSTR,
-            plInternalLocalPort: ?*i32,
-            pbstrExternalLocalAddress: ?*?BSTR,
-            plExternalLocalPort: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateRemoteAddress: fn(
-            self: *const IRTCPortManager,
-            bstrRemoteAddress: ?BSTR,
-            bstrInternalLocalAddress: ?BSTR,
-            lInternalLocalPort: i32,
-            bstrExternalLocalAddress: ?BSTR,
-            lExternalLocalPort: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseMapping: fn(
-            self: *const IRTCPortManager,
-            bstrInternalLocalAddress: ?BSTR,
-            lInternalLocalPort: i32,
-            bstrExternalLocalAddress: ?BSTR,
-            lExternalLocalAddress: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMapping: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCPortManager,
+                bstrRemoteAddress: ?BSTR,
+                enPortType: RTC_PORT_TYPE,
+                pbstrInternalLocalAddress: ?*?BSTR,
+                plInternalLocalPort: ?*i32,
+                pbstrExternalLocalAddress: ?*?BSTR,
+                plExternalLocalPort: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCPortManager,
+                bstrRemoteAddress: ?BSTR,
+                enPortType: RTC_PORT_TYPE,
+                pbstrInternalLocalAddress: ?*?BSTR,
+                plInternalLocalPort: ?*i32,
+                pbstrExternalLocalAddress: ?*?BSTR,
+                plExternalLocalPort: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateRemoteAddress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCPortManager,
+                bstrRemoteAddress: ?BSTR,
+                bstrInternalLocalAddress: ?BSTR,
+                lInternalLocalPort: i32,
+                bstrExternalLocalAddress: ?BSTR,
+                lExternalLocalPort: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCPortManager,
+                bstrRemoteAddress: ?BSTR,
+                bstrInternalLocalAddress: ?BSTR,
+                lInternalLocalPort: i32,
+                bstrExternalLocalAddress: ?BSTR,
+                lExternalLocalPort: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReleaseMapping: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCPortManager,
+                bstrInternalLocalAddress: ?BSTR,
+                lInternalLocalPort: i32,
+                bstrExternalLocalAddress: ?BSTR,
+                lExternalLocalAddress: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCPortManager,
+                bstrInternalLocalAddress: ?BSTR,
+                lInternalLocalPort: i32,
+                bstrExternalLocalAddress: ?BSTR,
+                lExternalLocalAddress: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4142,10 +6445,16 @@ pub const IID_IRTCSessionPortManagement = &IID_IRTCSessionPortManagement_Value;
 pub const IRTCSessionPortManagement = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetPortManager: fn(
-            self: *const IRTCSessionPortManagement,
-            pPortManager: ?*IRTCPortManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPortManager: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSessionPortManagement,
+                pPortManager: ?*IRTCPortManager,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSessionPortManagement,
+                pPortManager: ?*IRTCPortManager,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4163,22 +6472,44 @@ pub const IID_IRTCClientPortManagement = &IID_IRTCClientPortManagement_Value;
 pub const IRTCClientPortManagement = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        StartListenAddressAndPort: fn(
-            self: *const IRTCClientPortManagement,
-            bstrInternalLocalAddress: ?BSTR,
-            lInternalLocalPort: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StopListenAddressAndPort: fn(
-            self: *const IRTCClientPortManagement,
-            bstrInternalLocalAddress: ?BSTR,
-            lInternalLocalPort: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPortRange: fn(
-            self: *const IRTCClientPortManagement,
-            enPortType: RTC_PORT_TYPE,
-            plMinValue: ?*i32,
-            plMaxValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StartListenAddressAndPort: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPortManagement,
+                bstrInternalLocalAddress: ?BSTR,
+                lInternalLocalPort: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPortManagement,
+                bstrInternalLocalAddress: ?BSTR,
+                lInternalLocalPort: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StopListenAddressAndPort: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPortManagement,
+                bstrInternalLocalAddress: ?BSTR,
+                lInternalLocalPort: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPortManagement,
+                bstrInternalLocalAddress: ?BSTR,
+                lInternalLocalPort: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPortRange: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCClientPortManagement,
+                enPortType: RTC_PORT_TYPE,
+                plMinValue: ?*i32,
+                plMaxValue: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCClientPortManagement,
+                enPortType: RTC_PORT_TYPE,
+                plMinValue: ?*i32,
+                plMaxValue: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4204,16 +6535,30 @@ pub const IID_IRTCUserSearch = &IID_IRTCUserSearch_Value;
 pub const IRTCUserSearch = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateQuery: fn(
-            self: *const IRTCUserSearch,
-            ppQuery: ?*?*IRTCUserSearchQuery,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ExecuteSearch: fn(
-            self: *const IRTCUserSearch,
-            pQuery: ?*IRTCUserSearchQuery,
-            pProfile: ?*IRTCProfile,
-            lCookie: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateQuery: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCUserSearch,
+                ppQuery: ?*?*IRTCUserSearchQuery,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCUserSearch,
+                ppQuery: ?*?*IRTCUserSearchQuery,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ExecuteSearch: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCUserSearch,
+                pQuery: ?*IRTCUserSearchQuery,
+                pProfile: ?*IRTCProfile,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCUserSearch,
+                pQuery: ?*IRTCUserSearchQuery,
+                pProfile: ?*IRTCProfile,
+                lCookie: isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4236,44 +6581,104 @@ pub const IRTCUserSearchQuery = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SearchTerm: fn(
-            self: *const IRTCUserSearchQuery,
-            bstrName: ?BSTR,
-            bstrValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_SearchTerm: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchQuery,
+                bstrName: ?BSTR,
+                bstrValue: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchQuery,
+                bstrName: ?BSTR,
+                bstrValue: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SearchTerm: fn(
-            self: *const IRTCUserSearchQuery,
-            bstrName: ?BSTR,
-            pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_SearchTerm: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchQuery,
+                bstrName: ?BSTR,
+                pbstrValue: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchQuery,
+                bstrName: ?BSTR,
+                pbstrValue: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SearchTerms: fn(
-            self: *const IRTCUserSearchQuery,
-            pbstrNames: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_SearchTerms: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchQuery,
+                pbstrNames: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchQuery,
+                pbstrNames: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SearchPreference: fn(
-            self: *const IRTCUserSearchQuery,
-            enPreference: RTC_USER_SEARCH_PREFERENCE,
-            lValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_SearchPreference: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchQuery,
+                enPreference: RTC_USER_SEARCH_PREFERENCE,
+                lValue: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchQuery,
+                enPreference: RTC_USER_SEARCH_PREFERENCE,
+                lValue: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SearchPreference: fn(
-            self: *const IRTCUserSearchQuery,
-            enPreference: RTC_USER_SEARCH_PREFERENCE,
-            plValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_SearchPreference: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchQuery,
+                enPreference: RTC_USER_SEARCH_PREFERENCE,
+                plValue: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchQuery,
+                enPreference: RTC_USER_SEARCH_PREFERENCE,
+                plValue: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SearchDomain: fn(
-            self: *const IRTCUserSearchQuery,
-            bstrDomain: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_SearchDomain: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchQuery,
+                bstrDomain: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchQuery,
+                bstrDomain: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SearchDomain: fn(
-            self: *const IRTCUserSearchQuery,
-            pbstrDomain: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_SearchDomain: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchQuery,
+                pbstrDomain: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchQuery,
+                pbstrDomain: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4316,11 +6721,20 @@ pub const IRTCUserSearchResult = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: fn(
-            self: *const IRTCUserSearchResult,
-            enColumn: RTC_USER_SEARCH_COLUMN,
-            pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Value: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchResult,
+                enColumn: RTC_USER_SEARCH_COLUMN,
+                pbstrValue: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchResult,
+                enColumn: RTC_USER_SEARCH_COLUMN,
+                pbstrValue: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4338,23 +6752,48 @@ pub const IID_IRTCEnumUserSearchResults = &IID_IRTCEnumUserSearchResults_Value;
 pub const IRTCEnumUserSearchResults = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IRTCEnumUserSearchResults,
-            celt: u32,
-            ppElements: [*]?*IRTCUserSearchResult,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IRTCEnumUserSearchResults,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IRTCEnumUserSearchResults,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IRTCEnumUserSearchResults,
-            ppEnum: ?*?*IRTCEnumUserSearchResults,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumUserSearchResults,
+                celt: u32,
+                ppElements: [*]?*IRTCUserSearchResult,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumUserSearchResults,
+                celt: u32,
+                ppElements: [*]?*IRTCUserSearchResult,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumUserSearchResults,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumUserSearchResults,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumUserSearchResults,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumUserSearchResults,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumUserSearchResults,
+                ppEnum: ?*?*IRTCEnumUserSearchResults,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumUserSearchResults,
+                ppEnum: ?*?*IRTCEnumUserSearchResults,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4384,40 +6823,94 @@ pub const IID_IRTCUserSearchResultsEvent = &IID_IRTCUserSearchResultsEvent_Value
 pub const IRTCUserSearchResultsEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        EnumerateResults: fn(
-            self: *const IRTCUserSearchResultsEvent,
-            ppEnum: ?*?*IRTCEnumUserSearchResults,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumerateResults: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCUserSearchResultsEvent,
+                ppEnum: ?*?*IRTCEnumUserSearchResults,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCUserSearchResultsEvent,
+                ppEnum: ?*?*IRTCEnumUserSearchResults,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Results: fn(
-            self: *const IRTCUserSearchResultsEvent,
-            ppCollection: ?*?*IRTCCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Results: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchResultsEvent,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchResultsEvent,
+                ppCollection: ?*?*IRTCCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Profile: fn(
-            self: *const IRTCUserSearchResultsEvent,
-            ppProfile: ?*?*IRTCProfile2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Profile: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchResultsEvent,
+                ppProfile: ?*?*IRTCProfile2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchResultsEvent,
+                ppProfile: ?*?*IRTCProfile2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Query: fn(
-            self: *const IRTCUserSearchResultsEvent,
-            ppQuery: ?*?*IRTCUserSearchQuery,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Query: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchResultsEvent,
+                ppQuery: ?*?*IRTCUserSearchQuery,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchResultsEvent,
+                ppQuery: ?*?*IRTCUserSearchQuery,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Cookie: fn(
-            self: *const IRTCUserSearchResultsEvent,
-            plCookie: ?*isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Cookie: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchResultsEvent,
+                plCookie: ?*isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchResultsEvent,
+                plCookie: ?*isize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCUserSearchResultsEvent,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchResultsEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchResultsEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MoreAvailable: fn(
-            self: *const IRTCUserSearchResultsEvent,
-            pfMoreAvailable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_MoreAvailable: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCUserSearchResultsEvent,
+                pfMoreAvailable: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCUserSearchResultsEvent,
+                pfMoreAvailable: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4460,25 +6953,57 @@ pub const IRTCSessionReferStatusEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: fn(
-            self: *const IRTCSessionReferStatusEvent,
-            ppSession: ?*?*IRTCSession2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Session: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionReferStatusEvent,
+                ppSession: ?*?*IRTCSession2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionReferStatusEvent,
+                ppSession: ?*?*IRTCSession2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReferStatus: fn(
-            self: *const IRTCSessionReferStatusEvent,
-            penReferStatus: ?*RTC_SESSION_REFER_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ReferStatus: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionReferStatusEvent,
+                penReferStatus: ?*RTC_SESSION_REFER_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionReferStatusEvent,
+                penReferStatus: ?*RTC_SESSION_REFER_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusCode: fn(
-            self: *const IRTCSessionReferStatusEvent,
-            plStatusCode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusCode: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionReferStatusEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionReferStatusEvent,
+                plStatusCode: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StatusText: fn(
-            self: *const IRTCSessionReferStatusEvent,
-            pbstrStatusText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StatusText: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionReferStatusEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionReferStatusEvent,
+                pbstrStatusText: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4509,35 +7034,83 @@ pub const IRTCSessionReferredEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Session: fn(
-            self: *const IRTCSessionReferredEvent,
-            ppSession: ?*?*IRTCSession2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Session: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionReferredEvent,
+                ppSession: ?*?*IRTCSession2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionReferredEvent,
+                ppSession: ?*?*IRTCSession2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReferredByURI: fn(
-            self: *const IRTCSessionReferredEvent,
-            pbstrReferredByURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ReferredByURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionReferredEvent,
+                pbstrReferredByURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionReferredEvent,
+                pbstrReferredByURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReferToURI: fn(
-            self: *const IRTCSessionReferredEvent,
-            pbstrReferoURI: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ReferToURI: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionReferredEvent,
+                pbstrReferoURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionReferredEvent,
+                pbstrReferoURI: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReferCookie: fn(
-            self: *const IRTCSessionReferredEvent,
-            pbstrReferCookie: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Accept: fn(
-            self: *const IRTCSessionReferredEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reject: fn(
-            self: *const IRTCSessionReferredEvent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetReferredSessionState: fn(
-            self: *const IRTCSessionReferredEvent,
-            enState: RTC_SESSION_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ReferCookie: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCSessionReferredEvent,
+                pbstrReferCookie: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCSessionReferredEvent,
+                pbstrReferCookie: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Accept: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSessionReferredEvent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSessionReferredEvent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reject: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSessionReferredEvent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSessionReferredEvent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetReferredSessionState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSessionReferredEvent,
+                enState: RTC_SESSION_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSessionReferredEvent,
+                enState: RTC_SESSION_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4579,12 +7152,20 @@ pub const IID_IRTCSessionDescriptionManager = &IID_IRTCSessionDescriptionManager
 pub const IRTCSessionDescriptionManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EvaluateSessionDescription: fn(
-            self: *const IRTCSessionDescriptionManager,
-            bstrContentType: ?BSTR,
-            bstrSessionDescription: ?BSTR,
-            pfApplicationSession: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EvaluateSessionDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCSessionDescriptionManager,
+                bstrContentType: ?BSTR,
+                bstrSessionDescription: ?BSTR,
+                pfApplicationSession: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCSessionDescriptionManager,
+                bstrContentType: ?BSTR,
+                bstrSessionDescription: ?BSTR,
+                pfApplicationSession: ?*i16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4602,23 +7183,48 @@ pub const IID_IRTCEnumPresenceDevices = &IID_IRTCEnumPresenceDevices_Value;
 pub const IRTCEnumPresenceDevices = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IRTCEnumPresenceDevices,
-            celt: u32,
-            ppElements: [*]?*IRTCPresenceDevice,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IRTCEnumPresenceDevices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IRTCEnumPresenceDevices,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IRTCEnumPresenceDevices,
-            ppEnum: ?*?*IRTCEnumPresenceDevices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumPresenceDevices,
+                celt: u32,
+                ppElements: [*]?*IRTCPresenceDevice,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumPresenceDevices,
+                celt: u32,
+                ppElements: [*]?*IRTCPresenceDevice,
+                pceltFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumPresenceDevices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumPresenceDevices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumPresenceDevices,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumPresenceDevices,
+                celt: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCEnumPresenceDevices,
+                ppEnum: ?*?*IRTCEnumPresenceDevices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCEnumPresenceDevices,
+                ppEnum: ?*?*IRTCEnumPresenceDevices,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4649,26 +7255,58 @@ pub const IRTCPresenceDevice = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Status: fn(
-            self: *const IRTCPresenceDevice,
-            penStatus: ?*RTC_PRESENCE_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Status: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceDevice,
+                penStatus: ?*RTC_PRESENCE_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceDevice,
+                penStatus: ?*RTC_PRESENCE_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Notes: fn(
-            self: *const IRTCPresenceDevice,
-            pbstrNotes: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Notes: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceDevice,
+                pbstrNotes: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceDevice,
+                pbstrNotes: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PresenceProperty: fn(
-            self: *const IRTCPresenceDevice,
-            enProperty: RTC_PRESENCE_PROPERTY,
-            pbstrProperty: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPresenceData: fn(
-            self: *const IRTCPresenceDevice,
-            pbstrNamespace: ?*?BSTR,
-            pbstrData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PresenceProperty: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IRTCPresenceDevice,
+                enProperty: RTC_PRESENCE_PROPERTY,
+                pbstrProperty: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IRTCPresenceDevice,
+                enProperty: RTC_PRESENCE_PROPERTY,
+                pbstrProperty: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPresenceData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRTCPresenceDevice,
+                pbstrNamespace: ?*?BSTR,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRTCPresenceDevice,
+                pbstrNamespace: ?*?BSTR,
+                pbstrData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4717,14 +7355,26 @@ pub const IID_ITransportSettingsInternal = &IID_ITransportSettingsInternal_Value
 pub const ITransportSettingsInternal = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ApplySetting: fn(
-            self: *const ITransportSettingsInternal,
-            Setting: ?*TRANSPORT_SETTING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QuerySetting: fn(
-            self: *const ITransportSettingsInternal,
-            Setting: ?*TRANSPORT_SETTING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ApplySetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransportSettingsInternal,
+                Setting: ?*TRANSPORT_SETTING,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransportSettingsInternal,
+                Setting: ?*TRANSPORT_SETTING,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        QuerySetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransportSettingsInternal,
+                Setting: ?*TRANSPORT_SETTING,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransportSettingsInternal,
+                Setting: ?*TRANSPORT_SETTING,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4746,22 +7396,42 @@ pub const IID_INetworkTransportSettings = &IID_INetworkTransportSettings_Value;
 pub const INetworkTransportSettings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ApplySetting: fn(
-            self: *const INetworkTransportSettings,
-            SettingId: ?*const TRANSPORT_SETTING_ID,
-            LengthIn: u32,
-            ValueIn: [*:0]const u8,
-            LengthOut: ?*u32,
-            ValueOut: [*]?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QuerySetting: fn(
-            self: *const INetworkTransportSettings,
-            SettingId: ?*const TRANSPORT_SETTING_ID,
-            LengthIn: u32,
-            ValueIn: [*:0]const u8,
-            LengthOut: ?*u32,
-            ValueOut: [*]?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ApplySetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INetworkTransportSettings,
+                SettingId: ?*const TRANSPORT_SETTING_ID,
+                LengthIn: u32,
+                ValueIn: [*:0]const u8,
+                LengthOut: ?*u32,
+                ValueOut: [*]?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INetworkTransportSettings,
+                SettingId: ?*const TRANSPORT_SETTING_ID,
+                LengthIn: u32,
+                ValueIn: [*:0]const u8,
+                LengthOut: ?*u32,
+                ValueOut: [*]?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        QuerySetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INetworkTransportSettings,
+                SettingId: ?*const TRANSPORT_SETTING_ID,
+                LengthIn: u32,
+                ValueIn: [*:0]const u8,
+                LengthOut: ?*u32,
+                ValueOut: [*]?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INetworkTransportSettings,
+                SettingId: ?*const TRANSPORT_SETTING_ID,
+                LengthIn: u32,
+                ValueIn: [*:0]const u8,
+                LengthOut: ?*u32,
+                ValueOut: [*]?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4783,12 +7453,22 @@ pub const IID_INotificationTransportSync = &IID_INotificationTransportSync_Value
 pub const INotificationTransportSync = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CompleteDelivery: fn(
-            self: *const INotificationTransportSync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Flush: fn(
-            self: *const INotificationTransportSync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CompleteDelivery: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INotificationTransportSync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INotificationTransportSync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Flush: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INotificationTransportSync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INotificationTransportSync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

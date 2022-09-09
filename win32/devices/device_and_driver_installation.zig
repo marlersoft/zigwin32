@@ -1478,19 +1478,35 @@ pub const HCMNOTIFICATION = *opaque{};
 
 
 
-pub const PSP_FILE_CALLBACK_A = fn(
-    Context: ?*anyopaque,
-    Notification: u32,
-    Param1: usize,
-    Param2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PSP_FILE_CALLBACK_A = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Context: ?*anyopaque,
+        Notification: u32,
+        Param1: usize,
+        Param2: usize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Context: ?*anyopaque,
+        Notification: u32,
+        Param1: usize,
+        Param2: usize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PSP_FILE_CALLBACK_W = fn(
-    Context: ?*anyopaque,
-    Notification: u32,
-    Param1: usize,
-    Param2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PSP_FILE_CALLBACK_W = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Context: ?*anyopaque,
+        Notification: u32,
+        Param1: usize,
+        Param2: usize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        Context: ?*anyopaque,
+        Notification: u32,
+        Param1: usize,
+        Param2: usize,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 
 
@@ -1529,10 +1545,16 @@ pub const SP_SELECTDEVICE_PARAMS_A = extern struct {
 };
 
 
-pub const PDETECT_PROGRESS_NOTIFY = fn(
-    ProgressNotifyParam: ?*anyopaque,
-    DetectComplete: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PDETECT_PROGRESS_NOTIFY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ProgressNotifyParam: ?*anyopaque,
+        DetectComplete: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        ProgressNotifyParam: ?*anyopaque,
+        DetectComplete: u32,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 
 
@@ -1557,12 +1579,20 @@ pub const SP_POWERMESSAGEWAKE_PARAMS_A = extern struct {
 
 
 
-pub const PSP_DETSIG_CMPPROC = fn(
-    DeviceInfoSet: ?*anyopaque,
-    NewDeviceData: ?*SP_DEVINFO_DATA,
-    ExistingDeviceData: ?*SP_DEVINFO_DATA,
-    CompareContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PSP_DETSIG_CMPPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        DeviceInfoSet: ?*anyopaque,
+        NewDeviceData: ?*SP_DEVINFO_DATA,
+        ExistingDeviceData: ?*SP_DEVINFO_DATA,
+        CompareContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        DeviceInfoSet: ?*anyopaque,
+        NewDeviceData: ?*SP_DEVINFO_DATA,
+        ExistingDeviceData: ?*SP_DEVINFO_DATA,
+        CompareContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 
 
@@ -1941,14 +1971,24 @@ pub const CM_NOTIFY_EVENT_DATA = extern struct {
     },
 };
 
-pub const PCM_NOTIFY_CALLBACK = fn(
-    hNotify: ?HCMNOTIFICATION,
-    Context: ?*anyopaque,
-    Action: CM_NOTIFY_ACTION,
-    // TODO: what to do with BytesParamIndex 4?
-    EventData: ?*CM_NOTIFY_EVENT_DATA,
-    EventDataSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PCM_NOTIFY_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hNotify: ?HCMNOTIFICATION,
+        Context: ?*anyopaque,
+        Action: CM_NOTIFY_ACTION,
+        // TODO: what to do with BytesParamIndex 4?
+        EventData: ?*CM_NOTIFY_EVENT_DATA,
+        EventDataSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        hNotify: ?HCMNOTIFICATION,
+        Context: ?*anyopaque,
+        Action: CM_NOTIFY_ACTION,
+        // TODO: what to do with BytesParamIndex 4?
+        EventData: ?*CM_NOTIFY_EVENT_DATA,
+        EventDataSize: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 
 

@@ -424,31 +424,61 @@ pub const PEER_GRAPH_EVENT_DATA = extern struct {
     },
 };
 
-pub const PFNPEER_VALIDATE_RECORD = fn(
-    hGraph: ?*anyopaque,
-    pvContext: ?*anyopaque,
-    pRecord: ?*PEER_RECORD,
-    changeType: PEER_RECORD_CHANGE_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFNPEER_VALIDATE_RECORD = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGraph: ?*anyopaque,
+        pvContext: ?*anyopaque,
+        pRecord: ?*PEER_RECORD,
+        changeType: PEER_RECORD_CHANGE_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        hGraph: ?*anyopaque,
+        pvContext: ?*anyopaque,
+        pRecord: ?*PEER_RECORD,
+        changeType: PEER_RECORD_CHANGE_TYPE,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PFNPEER_SECURE_RECORD = fn(
-    hGraph: ?*anyopaque,
-    pvContext: ?*anyopaque,
-    pRecord: ?*PEER_RECORD,
-    changeType: PEER_RECORD_CHANGE_TYPE,
-    ppSecurityData: ?*?*PEER_DATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFNPEER_SECURE_RECORD = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGraph: ?*anyopaque,
+        pvContext: ?*anyopaque,
+        pRecord: ?*PEER_RECORD,
+        changeType: PEER_RECORD_CHANGE_TYPE,
+        ppSecurityData: ?*?*PEER_DATA,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        hGraph: ?*anyopaque,
+        pvContext: ?*anyopaque,
+        pRecord: ?*PEER_RECORD,
+        changeType: PEER_RECORD_CHANGE_TYPE,
+        ppSecurityData: ?*?*PEER_DATA,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PFNPEER_FREE_SECURITY_DATA = fn(
-    hGraph: ?*anyopaque,
-    pvContext: ?*anyopaque,
-    pSecurityData: ?*PEER_DATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFNPEER_FREE_SECURITY_DATA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGraph: ?*anyopaque,
+        pvContext: ?*anyopaque,
+        pSecurityData: ?*PEER_DATA,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        hGraph: ?*anyopaque,
+        pvContext: ?*anyopaque,
+        pSecurityData: ?*PEER_DATA,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PFNPEER_ON_PASSWORD_AUTH_FAILED = fn(
-    hGraph: ?*anyopaque,
-    pvContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFNPEER_ON_PASSWORD_AUTH_FAILED = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hGraph: ?*anyopaque,
+        pvContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        hGraph: ?*anyopaque,
+        pvContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 pub const PEER_SECURITY_INTERFACE = extern struct {
     dwSize: u32,
@@ -972,12 +1002,20 @@ pub const DRT_SECURITY_PROVIDER = extern struct {
     VerifyData: isize,
 };
 
-pub const DRT_BOOTSTRAP_RESOLVE_CALLBACK = fn(
-    hr: HRESULT,
-    pvContext: ?*anyopaque,
-    pAddresses: ?*SOCKET_ADDRESS_LIST,
-    fFatalError: BOOL,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const DRT_BOOTSTRAP_RESOLVE_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hr: HRESULT,
+        pvContext: ?*anyopaque,
+        pAddresses: ?*SOCKET_ADDRESS_LIST,
+        fFatalError: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        hr: HRESULT,
+        pvContext: ?*anyopaque,
+        pAddresses: ?*SOCKET_ADDRESS_LIST,
+        fFatalError: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const DRT_BOOTSTRAP_PROVIDER = extern struct {
     pvContext: ?*anyopaque,

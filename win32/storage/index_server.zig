@@ -245,32 +245,68 @@ pub const IID_IFilter = &IID_IFilter_Value;
 pub const IFilter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Init: fn(
-            self: *const IFilter,
-            grfFlags: u32,
-            cAttributes: u32,
-            aAttributes: [*]const FULLPROPSPEC,
-            pFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
-        GetChunk: fn(
-            self: *const IFilter,
-            pStat: ?*STAT_CHUNK,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
-        GetText: fn(
-            self: *const IFilter,
-            pcwcBuffer: ?*u32,
-            awcBuffer: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
-        GetValue: fn(
-            self: *const IFilter,
-            ppPropValue: ?*?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
-        BindRegion: fn(
-            self: *const IFilter,
-            origPos: FILTERREGION,
-            riid: ?*const Guid,
-            ppunk: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        Init: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IFilter,
+                grfFlags: u32,
+                cAttributes: u32,
+                aAttributes: [*]const FULLPROPSPEC,
+                pFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) i32,
+            else => *const fn(
+                self: *const IFilter,
+                grfFlags: u32,
+                cAttributes: u32,
+                aAttributes: [*]const FULLPROPSPEC,
+                pFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) i32,
+        },
+        GetChunk: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IFilter,
+                pStat: ?*STAT_CHUNK,
+            ) callconv(@import("std").os.windows.WINAPI) i32,
+            else => *const fn(
+                self: *const IFilter,
+                pStat: ?*STAT_CHUNK,
+            ) callconv(@import("std").os.windows.WINAPI) i32,
+        },
+        GetText: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IFilter,
+                pcwcBuffer: ?*u32,
+                awcBuffer: [*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) i32,
+            else => *const fn(
+                self: *const IFilter,
+                pcwcBuffer: ?*u32,
+                awcBuffer: [*:0]u16,
+            ) callconv(@import("std").os.windows.WINAPI) i32,
+        },
+        GetValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IFilter,
+                ppPropValue: ?*?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) i32,
+            else => *const fn(
+                self: *const IFilter,
+                ppPropValue: ?*?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) i32,
+        },
+        BindRegion: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IFilter,
+                origPos: FILTERREGION,
+                riid: ?*const Guid,
+                ppunk: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) i32,
+            else => *const fn(
+                self: *const IFilter,
+                origPos: FILTERREGION,
+                riid: ?*const Guid,
+                ppunk: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) i32,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -305,19 +341,36 @@ pub const IID_IPhraseSink = &IID_IPhraseSink_Value;
 pub const IPhraseSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        PutSmallPhrase: fn(
-            self: *const IPhraseSink,
-            pwcNoun: ?[*:0]const u16,
-            cwcNoun: u32,
-            pwcModifier: ?[*:0]const u16,
-            cwcModifier: u32,
-            ulAttachmentType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PutPhrase: fn(
-            self: *const IPhraseSink,
-            pwcPhrase: ?[*:0]const u16,
-            cwcPhrase: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PutSmallPhrase: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPhraseSink,
+                pwcNoun: ?[*:0]const u16,
+                cwcNoun: u32,
+                pwcModifier: ?[*:0]const u16,
+                cwcModifier: u32,
+                ulAttachmentType: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPhraseSink,
+                pwcNoun: ?[*:0]const u16,
+                cwcNoun: u32,
+                pwcModifier: ?[*:0]const u16,
+                cwcModifier: u32,
+                ulAttachmentType: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PutPhrase: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPhraseSink,
+                pwcPhrase: ?[*:0]const u16,
+                cwcPhrase: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPhraseSink,
+                pwcPhrase: ?[*:0]const u16,
+                cwcPhrase: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

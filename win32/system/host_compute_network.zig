@@ -39,12 +39,20 @@ pub const HcnNotificationGuestNetworkServiceInterfaceStateChanged = HCN_NOTIFICA
 pub const HcnNotificationServiceDisconnect = HCN_NOTIFICATIONS.ServiceDisconnect;
 pub const HcnNotificationFlagsReserved = HCN_NOTIFICATIONS.FlagsReserved;
 
-pub const HCN_NOTIFICATION_CALLBACK = fn(
-    NotificationType: u32,
-    Context: ?*anyopaque,
-    NotificationStatus: HRESULT,
-    NotificationData: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const HCN_NOTIFICATION_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        NotificationType: u32,
+        Context: ?*anyopaque,
+        NotificationStatus: HRESULT,
+        NotificationData: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        NotificationType: u32,
+        Context: ?*anyopaque,
+        NotificationStatus: HRESULT,
+        NotificationData: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const HCN_PORT_PROTOCOL = enum(i32) {
     TCP = 1,

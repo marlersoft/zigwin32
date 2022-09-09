@@ -13,63 +13,127 @@ pub const DSSI_NO_READONLY_MESSAGE = @as(u32, 64);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const PFNREADOBJECTSECURITY = fn(
-    param0: ?[*:0]const u16,
-    param1: u32,
-    param2: ?*?*SECURITY_DESCRIPTOR,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFNREADOBJECTSECURITY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?[*:0]const u16,
+        param1: u32,
+        param2: ?*?*SECURITY_DESCRIPTOR,
+        param3: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?[*:0]const u16,
+        param1: u32,
+        param2: ?*?*SECURITY_DESCRIPTOR,
+        param3: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PFNWRITEOBJECTSECURITY = fn(
-    param0: ?[*:0]const u16,
-    param1: u32,
-    param2: ?*SECURITY_DESCRIPTOR,
-    param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFNWRITEOBJECTSECURITY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?[*:0]const u16,
+        param1: u32,
+        param2: ?*SECURITY_DESCRIPTOR,
+        param3: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?[*:0]const u16,
+        param1: u32,
+        param2: ?*SECURITY_DESCRIPTOR,
+        param3: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PFNDSCREATEISECINFO = fn(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: u32,
-    param3: ?*?*ISecurityInformation,
-    param4: ?PFNREADOBJECTSECURITY,
-    param5: ?PFNWRITEOBJECTSECURITY,
-    param6: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFNDSCREATEISECINFO = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?[*:0]const u16,
+        param1: ?[*:0]const u16,
+        param2: u32,
+        param3: ?*?*ISecurityInformation,
+        param4: ?PFNREADOBJECTSECURITY,
+        param5: ?PFNWRITEOBJECTSECURITY,
+        param6: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?[*:0]const u16,
+        param1: ?[*:0]const u16,
+        param2: u32,
+        param3: ?*?*ISecurityInformation,
+        param4: ?PFNREADOBJECTSECURITY,
+        param5: ?PFNWRITEOBJECTSECURITY,
+        param6: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PFNDSCREATEISECINFOEX = fn(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: ?[*:0]const u16,
-    param3: ?[*:0]const u16,
-    param4: ?[*:0]const u16,
-    param5: u32,
-    param6: ?*?*ISecurityInformation,
-    param7: ?PFNREADOBJECTSECURITY,
-    param8: ?PFNWRITEOBJECTSECURITY,
-    param9: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFNDSCREATEISECINFOEX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?[*:0]const u16,
+        param1: ?[*:0]const u16,
+        param2: ?[*:0]const u16,
+        param3: ?[*:0]const u16,
+        param4: ?[*:0]const u16,
+        param5: u32,
+        param6: ?*?*ISecurityInformation,
+        param7: ?PFNREADOBJECTSECURITY,
+        param8: ?PFNWRITEOBJECTSECURITY,
+        param9: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?[*:0]const u16,
+        param1: ?[*:0]const u16,
+        param2: ?[*:0]const u16,
+        param3: ?[*:0]const u16,
+        param4: ?[*:0]const u16,
+        param5: u32,
+        param6: ?*?*ISecurityInformation,
+        param7: ?PFNREADOBJECTSECURITY,
+        param8: ?PFNWRITEOBJECTSECURITY,
+        param9: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PFNDSCREATESECPAGE = fn(
-    param0: ?[*:0]const u16,
-    param1: ?[*:0]const u16,
-    param2: u32,
-    param3: ?*?HPROPSHEETPAGE,
-    param4: ?PFNREADOBJECTSECURITY,
-    param5: ?PFNWRITEOBJECTSECURITY,
-    param6: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFNDSCREATESECPAGE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?[*:0]const u16,
+        param1: ?[*:0]const u16,
+        param2: u32,
+        param3: ?*?HPROPSHEETPAGE,
+        param4: ?PFNREADOBJECTSECURITY,
+        param5: ?PFNWRITEOBJECTSECURITY,
+        param6: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?[*:0]const u16,
+        param1: ?[*:0]const u16,
+        param2: u32,
+        param3: ?*?HPROPSHEETPAGE,
+        param4: ?PFNREADOBJECTSECURITY,
+        param5: ?PFNWRITEOBJECTSECURITY,
+        param6: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const PFNDSEDITSECURITY = fn(
-    param0: ?HWND,
-    param1: ?[*:0]const u16,
-    param2: ?[*:0]const u16,
-    param3: u32,
-    param4: ?[*:0]const u16,
-    param5: ?PFNREADOBJECTSECURITY,
-    param6: ?PFNWRITEOBJECTSECURITY,
-    param7: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const PFNDSEDITSECURITY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?HWND,
+        param1: ?[*:0]const u16,
+        param2: ?[*:0]const u16,
+        param3: u32,
+        param4: ?[*:0]const u16,
+        param5: ?PFNREADOBJECTSECURITY,
+        param6: ?PFNWRITEOBJECTSECURITY,
+        param7: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?HWND,
+        param1: ?[*:0]const u16,
+        param2: ?[*:0]const u16,
+        param3: u32,
+        param4: ?[*:0]const u16,
+        param5: ?PFNREADOBJECTSECURITY,
+        param6: ?PFNWRITEOBJECTSECURITY,
+        param7: LPARAM,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 
 //--------------------------------------------------------------------------------

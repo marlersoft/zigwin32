@@ -116,17 +116,31 @@ pub const ENUM_PAGE_FILE_INFORMATION = extern struct {
     PeakUsage: usize,
 };
 
-pub const PENUM_PAGE_FILE_CALLBACKW = fn(
-    pContext: ?*anyopaque,
-    pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
-    lpFilename: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PENUM_PAGE_FILE_CALLBACKW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pContext: ?*anyopaque,
+        pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
+        lpFilename: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pContext: ?*anyopaque,
+        pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
+        lpFilename: ?[*:0]const u16,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const PENUM_PAGE_FILE_CALLBACKA = fn(
-    pContext: ?*anyopaque,
-    pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
-    lpFilename: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const PENUM_PAGE_FILE_CALLBACKA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pContext: ?*anyopaque,
+        pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
+        lpFilename: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        pContext: ?*anyopaque,
+        pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
+        lpFilename: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 
 //--------------------------------------------------------------------------------

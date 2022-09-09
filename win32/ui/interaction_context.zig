@@ -363,15 +363,27 @@ pub const CROSS_SLIDE_PARAMETER = extern struct {
     distance: f32,
 };
 
-pub const INTERACTION_CONTEXT_OUTPUT_CALLBACK = fn(
-    clientData: ?*anyopaque,
-    output: ?*const INTERACTION_CONTEXT_OUTPUT,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const INTERACTION_CONTEXT_OUTPUT_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        clientData: ?*anyopaque,
+        output: ?*const INTERACTION_CONTEXT_OUTPUT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        clientData: ?*anyopaque,
+        output: ?*const INTERACTION_CONTEXT_OUTPUT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const INTERACTION_CONTEXT_OUTPUT_CALLBACK2 = fn(
-    clientData: ?*anyopaque,
-    output: ?*const INTERACTION_CONTEXT_OUTPUT2,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const INTERACTION_CONTEXT_OUTPUT_CALLBACK2 = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        clientData: ?*anyopaque,
+        output: ?*const INTERACTION_CONTEXT_OUTPUT2,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        clientData: ?*anyopaque,
+        output: ?*const INTERACTION_CONTEXT_OUTPUT2,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 
 //--------------------------------------------------------------------------------

@@ -599,20 +599,38 @@ pub const RPC_POLICY = extern struct {
     NICFlags: u32,
 };
 
-pub const RPC_OBJECT_INQ_FN = fn(
-    ObjectUuid: ?*Guid,
-    TypeUuid: ?*Guid,
-    Status: ?*RPC_STATUS,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const RPC_OBJECT_INQ_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ObjectUuid: ?*Guid,
+        TypeUuid: ?*Guid,
+        Status: ?*RPC_STATUS,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        ObjectUuid: ?*Guid,
+        TypeUuid: ?*Guid,
+        Status: ?*RPC_STATUS,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const RPC_IF_CALLBACK_FN = fn(
-    InterfaceUuid: ?*anyopaque,
-    Context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub const RPC_IF_CALLBACK_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        InterfaceUuid: ?*anyopaque,
+        Context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+    else => *const fn(
+        InterfaceUuid: ?*anyopaque,
+        Context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+} ;
 
-pub const RPC_SECURITY_CALLBACK_FN = fn(
-    Context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const RPC_SECURITY_CALLBACK_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const RPC_STATS_VECTOR = extern struct {
     Count: u32,
@@ -879,32 +897,62 @@ pub const RPCHTTP_RS_SESSION = RPC_HTTP_REDIRECTOR_STAGE.SESSION;
 pub const RPCHTTP_RS_ACCESS_2 = RPC_HTTP_REDIRECTOR_STAGE.ACCESS_2;
 pub const RPCHTTP_RS_INTERFACE = RPC_HTTP_REDIRECTOR_STAGE.INTERFACE;
 
-pub const RPC_NEW_HTTP_PROXY_CHANNEL = fn(
-    RedirectorStage: RPC_HTTP_REDIRECTOR_STAGE,
-    ServerName: ?*u16,
-    ServerPort: ?*u16,
-    RemoteUser: ?*u16,
-    AuthType: ?*u16,
-    ResourceUuid: ?*anyopaque,
-    SessionId: ?*anyopaque,
-    Interface: ?*anyopaque,
-    Reserved: ?*anyopaque,
-    Flags: u32,
-    NewServerName: ?*?*u16,
-    NewServerPort: ?*?*u16,
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub const RPC_NEW_HTTP_PROXY_CHANNEL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        RedirectorStage: RPC_HTTP_REDIRECTOR_STAGE,
+        ServerName: ?*u16,
+        ServerPort: ?*u16,
+        RemoteUser: ?*u16,
+        AuthType: ?*u16,
+        ResourceUuid: ?*anyopaque,
+        SessionId: ?*anyopaque,
+        Interface: ?*anyopaque,
+        Reserved: ?*anyopaque,
+        Flags: u32,
+        NewServerName: ?*?*u16,
+        NewServerPort: ?*?*u16,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+    else => *const fn(
+        RedirectorStage: RPC_HTTP_REDIRECTOR_STAGE,
+        ServerName: ?*u16,
+        ServerPort: ?*u16,
+        RemoteUser: ?*u16,
+        AuthType: ?*u16,
+        ResourceUuid: ?*anyopaque,
+        SessionId: ?*anyopaque,
+        Interface: ?*anyopaque,
+        Reserved: ?*anyopaque,
+        Flags: u32,
+        NewServerName: ?*?*u16,
+        NewServerPort: ?*?*u16,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+} ;
 
-pub const RPC_HTTP_PROXY_FREE_STRING = fn(
-    String: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const RPC_HTTP_PROXY_FREE_STRING = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        String: ?*u16,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        String: ?*u16,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const RPC_AUTH_KEY_RETRIEVAL_FN = fn(
-    Arg: ?*anyopaque,
-    ServerPrincName: ?*u16,
-    KeyVer: u32,
-    Key: ?*?*anyopaque,
-    Status: ?*RPC_STATUS,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const RPC_AUTH_KEY_RETRIEVAL_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Arg: ?*anyopaque,
+        ServerPrincName: ?*u16,
+        KeyVer: u32,
+        Key: ?*?*anyopaque,
+        Status: ?*RPC_STATUS,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Arg: ?*anyopaque,
+        ServerPrincName: ?*u16,
+        KeyVer: u32,
+        Key: ?*?*anyopaque,
+        Status: ?*RPC_STATUS,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const RPC_CLIENT_INFORMATION1 = extern struct {
     UserName: ?*u8,
@@ -913,11 +961,18 @@ pub const RPC_CLIENT_INFORMATION1 = extern struct {
     AuthFlags: u32,
 };
 
-pub const RPC_MGMT_AUTHORIZATION_FN = fn(
-    ClientBinding: ?*anyopaque,
-    RequestedMgmtOperation: u32,
-    Status: ?*RPC_STATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const RPC_MGMT_AUTHORIZATION_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ClientBinding: ?*anyopaque,
+        RequestedMgmtOperation: u32,
+        Status: ?*RPC_STATUS,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        ClientBinding: ?*anyopaque,
+        RequestedMgmtOperation: u32,
+        Status: ?*RPC_STATUS,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
 pub const RPC_ENDPOINT_TEMPLATEW = extern struct {
     Version: u32,
@@ -963,11 +1018,18 @@ pub const RPC_INTERFACE_TEMPLATEW = extern struct {
     SecurityDescriptor: ?*anyopaque,
 };
 
-pub const RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN = fn(
-    IfGroup: ?*anyopaque,
-    IdleCallbackContext: ?*anyopaque,
-    IsGroupIdle: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        IfGroup: ?*anyopaque,
+        IdleCallbackContext: ?*anyopaque,
+        IsGroupIdle: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        IfGroup: ?*anyopaque,
+        IdleCallbackContext: ?*anyopaque,
+        IsGroupIdle: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const RPC_VERSION = extern struct {
     MajorVersion: u16,
@@ -993,13 +1055,22 @@ pub const RPC_MESSAGE = extern struct {
     RpcFlags: u32,
 };
 
-pub const RPC_FORWARD_FUNCTION = fn(
-    InterfaceId: ?*Guid,
-    InterfaceVersion: ?*RPC_VERSION,
-    ObjectId: ?*Guid,
-    Rpcpro: ?*u8,
-    ppDestEndpoint: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub const RPC_FORWARD_FUNCTION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        InterfaceId: ?*Guid,
+        InterfaceVersion: ?*RPC_VERSION,
+        ObjectId: ?*Guid,
+        Rpcpro: ?*u8,
+        ppDestEndpoint: ?*?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+    else => *const fn(
+        InterfaceId: ?*Guid,
+        InterfaceVersion: ?*RPC_VERSION,
+        ObjectId: ?*Guid,
+        Rpcpro: ?*u8,
+        ppDestEndpoint: ?*?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+} ;
 
 pub const RPC_ADDRESS_CHANGE_TYPE = enum(i32) {
     NOT_LOADED = 1,
@@ -1010,13 +1081,23 @@ pub const PROTOCOL_NOT_LOADED = RPC_ADDRESS_CHANGE_TYPE.NOT_LOADED;
 pub const PROTOCOL_LOADED = RPC_ADDRESS_CHANGE_TYPE.LOADED;
 pub const PROTOCOL_ADDRESS_CHANGE = RPC_ADDRESS_CHANGE_TYPE.ADDRESS_CHANGE;
 
-pub const RPC_ADDRESS_CHANGE_FN = fn(
-    arg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const RPC_ADDRESS_CHANGE_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        arg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        arg: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const RPC_DISPATCH_FUNCTION = fn(
-    Message: ?*RPC_MESSAGE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const RPC_DISPATCH_FUNCTION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Message: ?*RPC_MESSAGE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Message: ?*RPC_MESSAGE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const RPC_DISPATCH_TABLE = extern struct {
     DispatchTableCount: u32,
@@ -1060,9 +1141,14 @@ pub const LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION = enum(i32) {
 pub const MarshalDirectionMarshal = LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION.Marshal;
 pub const MarshalDirectionUnmarshal = LRPC_SYSTEM_HANDLE_MARSHAL_DIRECTION.Unmarshal;
 
-pub const PRPC_RUNDOWN = fn(
-    AssociationContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PRPC_RUNDOWN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        AssociationContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        AssociationContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const RPC_SEC_CONTEXT_KEY_INFO = extern struct {
     EncryptAlgorithm: u32,
@@ -1076,21 +1162,40 @@ pub const RPC_TRANSFER_SYNTAX = extern struct {
     VersMinor: u16,
 };
 
-pub const RPCLT_PDU_FILTER_FUNC = fn(
-    Buffer: ?*anyopaque,
-    BufferLength: u32,
-    fDatagram: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const RPCLT_PDU_FILTER_FUNC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Buffer: ?*anyopaque,
+        BufferLength: u32,
+        fDatagram: i32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Buffer: ?*anyopaque,
+        BufferLength: u32,
+        fDatagram: i32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const RPC_SETFILTER_FUNC = fn(
-    pfnFilter: ?RPCLT_PDU_FILTER_FUNC,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const RPC_SETFILTER_FUNC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pfnFilter: ?RPCLT_PDU_FILTER_FUNC,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        pfnFilter: ?RPCLT_PDU_FILTER_FUNC,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const RPC_BLOCKING_FN = fn(
-    hWnd: ?*anyopaque,
-    Context: ?*anyopaque,
-    hSyncEvent: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub const RPC_BLOCKING_FN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hWnd: ?*anyopaque,
+        Context: ?*anyopaque,
+        hSyncEvent: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+    else => *const fn(
+        hWnd: ?*anyopaque,
+        Context: ?*anyopaque,
+        hSyncEvent: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+} ;
 
 pub const RPC_C_OPT_COOKIE_AUTH_DESCRIPTOR = extern struct {
     BufferSize: u32,
@@ -1114,46 +1219,94 @@ pub const RDR_CALLOUT_STATE = extern struct {
     CertContext: ?*anyopaque,
 };
 
-pub const I_RpcProxyIsValidMachineFn = fn(
-    Machine: ?*u16,
-    DotMachine: ?*u16,
-    PortNumber: u32,
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub const I_RpcProxyIsValidMachineFn = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Machine: ?*u16,
+        DotMachine: ?*u16,
+        PortNumber: u32,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+    else => *const fn(
+        Machine: ?*u16,
+        DotMachine: ?*u16,
+        PortNumber: u32,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+} ;
 
-pub const I_RpcProxyGetClientAddressFn = fn(
-    Context: ?*anyopaque,
-    Buffer: ?PSTR,
-    BufferLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub const I_RpcProxyGetClientAddressFn = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Context: ?*anyopaque,
+        Buffer: ?PSTR,
+        BufferLength: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+    else => *const fn(
+        Context: ?*anyopaque,
+        Buffer: ?PSTR,
+        BufferLength: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+} ;
 
-pub const I_RpcProxyGetConnectionTimeoutFn = fn(
-    ConnectionTimeout: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub const I_RpcProxyGetConnectionTimeoutFn = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        ConnectionTimeout: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+    else => *const fn(
+        ConnectionTimeout: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+} ;
 
-pub const I_RpcPerformCalloutFn = fn(
-    Context: ?*anyopaque,
-    CallOutState: ?*RDR_CALLOUT_STATE,
-    Stage: RPC_HTTP_REDIRECTOR_STAGE,
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub const I_RpcPerformCalloutFn = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Context: ?*anyopaque,
+        CallOutState: ?*RDR_CALLOUT_STATE,
+        Stage: RPC_HTTP_REDIRECTOR_STAGE,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+    else => *const fn(
+        Context: ?*anyopaque,
+        CallOutState: ?*RDR_CALLOUT_STATE,
+        Stage: RPC_HTTP_REDIRECTOR_STAGE,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+} ;
 
-pub const I_RpcFreeCalloutStateFn = fn(
-    CallOutState: ?*RDR_CALLOUT_STATE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const I_RpcFreeCalloutStateFn = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        CallOutState: ?*RDR_CALLOUT_STATE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        CallOutState: ?*RDR_CALLOUT_STATE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const I_RpcProxyGetClientSessionAndResourceUUID = fn(
-    Context: ?*anyopaque,
-    SessionIdPresent: ?*i32,
-    SessionId: ?*Guid,
-    ResourceIdPresent: ?*i32,
-    ResourceId: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub const I_RpcProxyGetClientSessionAndResourceUUID = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Context: ?*anyopaque,
+        SessionIdPresent: ?*i32,
+        SessionId: ?*Guid,
+        ResourceIdPresent: ?*i32,
+        ResourceId: ?*Guid,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+    else => *const fn(
+        Context: ?*anyopaque,
+        SessionIdPresent: ?*i32,
+        SessionId: ?*Guid,
+        ResourceIdPresent: ?*i32,
+        ResourceId: ?*Guid,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+} ;
 
-pub const I_RpcProxyFilterIfFn = fn(
-    Context: ?*anyopaque,
-    IfUuid: ?*Guid,
-    IfMajorVersion: u16,
-    fAllow: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) RPC_STATUS;
+pub const I_RpcProxyFilterIfFn = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Context: ?*anyopaque,
+        IfUuid: ?*Guid,
+        IfMajorVersion: u16,
+        fAllow: ?*i32,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+    else => *const fn(
+        Context: ?*anyopaque,
+        IfUuid: ?*Guid,
+        IfMajorVersion: u16,
+        fAllow: ?*i32,
+    ) callconv(@import("std").os.windows.WINAPI) RPC_STATUS,
+} ;
 
 pub const RpcProxyPerfCounters = enum(i32) {
     CurrentUniqueUser = 1,
@@ -1182,16 +1335,29 @@ pub const RpcAttemptedLbsMessages = RpcProxyPerfCounters.AttemptedLbsMessages;
 pub const RpcFailedLbsMessages = RpcProxyPerfCounters.FailedLbsMessages;
 pub const RpcLastCounter = RpcProxyPerfCounters.LastCounter;
 
-pub const I_RpcProxyUpdatePerfCounterFn = fn(
-    Counter: RpcProxyPerfCounters,
-    ModifyTrend: i32,
-    Size: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const I_RpcProxyUpdatePerfCounterFn = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Counter: RpcProxyPerfCounters,
+        ModifyTrend: i32,
+        Size: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Counter: RpcProxyPerfCounters,
+        ModifyTrend: i32,
+        Size: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const I_RpcProxyUpdatePerfCounterBackendServerFn = fn(
-    MachineName: ?*u16,
-    IsConnectEvent: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const I_RpcProxyUpdatePerfCounterBackendServerFn = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        MachineName: ?*u16,
+        IsConnectEvent: i32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        MachineName: ?*u16,
+        IsConnectEvent: i32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const I_RpcProxyCallbackInterface = extern struct {
     IsValidMachineFn: ?I_RpcProxyIsValidMachineFn,
@@ -1233,11 +1399,18 @@ pub const RpcReceiveComplete = RPC_ASYNC_EVENT.ReceiveComplete;
 pub const RpcClientDisconnect = RPC_ASYNC_EVENT.ClientDisconnect;
 pub const RpcClientCancel = RPC_ASYNC_EVENT.ClientCancel;
 
-pub const PFN_RPCNOTIFICATION_ROUTINE = fn(
-    pAsync: ?*RPC_ASYNC_STATE,
-    Context: ?*anyopaque,
-    Event: RPC_ASYNC_EVENT,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_RPCNOTIFICATION_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pAsync: ?*RPC_ASYNC_STATE,
+        Context: ?*anyopaque,
+        Event: RPC_ASYNC_EVENT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        pAsync: ?*RPC_ASYNC_STATE,
+        Context: ?*anyopaque,
+        Event: RPC_ASYNC_EVENT,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const RPC_ASYNC_NOTIFICATION_INFO = extern union {
     APC: extern struct {
@@ -1498,25 +1671,44 @@ pub const _NDR_SCONTEXT = extern struct {
     userContext: ?*anyopaque,
 };
 
-pub const NDR_RUNDOWN = fn(
-    context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const NDR_RUNDOWN = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const NDR_NOTIFY_ROUTINE = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const NDR_NOTIFY_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const NDR_NOTIFY2_ROUTINE = fn(
-    flag: u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const NDR_NOTIFY2_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        flag: u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        flag: u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const SCONTEXT_QUEUE = extern struct {
     NumberOfObjects: u32,
     ArrayOfObjects: ?*?*NDR_SCONTEXT_1,
 };
 
-pub const EXPR_EVAL = fn(
-    param0: ?*MIDL_STUB_MESSAGE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const EXPR_EVAL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*MIDL_STUB_MESSAGE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        param0: ?*MIDL_STUB_MESSAGE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const ARRAY_INFO = extern struct {
     Dimension: i32,
@@ -1609,14 +1801,25 @@ pub const MIDL_STUB_MESSAGE = extern struct {
     Reserved51_5: isize,
 };
 
-pub const GENERIC_BINDING_ROUTINE = fn(
-    param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub const GENERIC_BINDING_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+    else => *const fn(
+        param0: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+} ;
 
-pub const GENERIC_UNBIND_ROUTINE = fn(
-    param0: ?*anyopaque,
-    param1: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const GENERIC_UNBIND_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const GENERIC_BINDING_ROUTINE_PAIR = extern struct {
     pfnBind: ?GENERIC_BINDING_ROUTINE,
@@ -1630,9 +1833,14 @@ pub const GENERIC_BINDING_INFO = extern struct {
     pfnUnbind: ?GENERIC_UNBIND_ROUTINE,
 };
 
-pub const XMIT_HELPER_ROUTINE = fn(
-    param0: ?*MIDL_STUB_MESSAGE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const XMIT_HELPER_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*MIDL_STUB_MESSAGE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        param0: ?*MIDL_STUB_MESSAGE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const XMIT_ROUTINE_QUINTUPLE = extern struct {
     pfnTranslateToXmit: ?XMIT_HELPER_ROUTINE,
@@ -1641,28 +1849,55 @@ pub const XMIT_ROUTINE_QUINTUPLE = extern struct {
     pfnFreeInst: ?XMIT_HELPER_ROUTINE,
 };
 
-pub const USER_MARSHAL_SIZING_ROUTINE = fn(
-    param0: ?*u32,
-    param1: u32,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const USER_MARSHAL_SIZING_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*u32,
+        param1: u32,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*u32,
+        param1: u32,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const USER_MARSHAL_MARSHALLING_ROUTINE = fn(
-    param0: ?*u32,
-    param1: ?*u8,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
+pub const USER_MARSHAL_MARSHALLING_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*u32,
+        param1: ?*u8,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*u8,
+    else => *const fn(
+        param0: ?*u32,
+        param1: ?*u8,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*u8,
+} ;
 
-pub const USER_MARSHAL_UNMARSHALLING_ROUTINE = fn(
-    param0: ?*u32,
-    param1: ?*u8,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
+pub const USER_MARSHAL_UNMARSHALLING_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*u32,
+        param1: ?*u8,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*u8,
+    else => *const fn(
+        param0: ?*u32,
+        param1: ?*u8,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*u8,
+} ;
 
-pub const USER_MARSHAL_FREEING_ROUTINE = fn(
-    param0: ?*u32,
-    param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const USER_MARSHAL_FREEING_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*u32,
+        param1: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        param0: ?*u32,
+        param1: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const USER_MARSHAL_ROUTINE_QUADRUPLE = extern struct {
     pfnBufferSize: ?USER_MARSHAL_SIZING_ROUTINE,
@@ -1711,53 +1946,106 @@ pub const IDL_CS_NO_CONVERT = IDL_CS_CONVERT.NO_CONVERT;
 pub const IDL_CS_IN_PLACE_CONVERT = IDL_CS_CONVERT.IN_PLACE_CONVERT;
 pub const IDL_CS_NEW_BUFFER_CONVERT = IDL_CS_CONVERT.NEW_BUFFER_CONVERT;
 
-pub const CS_TYPE_NET_SIZE_ROUTINE = fn(
-    hBinding: ?*anyopaque,
-    ulNetworkCodeSet: u32,
-    ulLocalBufferSize: u32,
-    conversionType: ?*IDL_CS_CONVERT,
-    pulNetworkBufferSize: ?*u32,
-    pStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const CS_TYPE_NET_SIZE_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hBinding: ?*anyopaque,
+        ulNetworkCodeSet: u32,
+        ulLocalBufferSize: u32,
+        conversionType: ?*IDL_CS_CONVERT,
+        pulNetworkBufferSize: ?*u32,
+        pStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        hBinding: ?*anyopaque,
+        ulNetworkCodeSet: u32,
+        ulLocalBufferSize: u32,
+        conversionType: ?*IDL_CS_CONVERT,
+        pulNetworkBufferSize: ?*u32,
+        pStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const CS_TYPE_LOCAL_SIZE_ROUTINE = fn(
-    hBinding: ?*anyopaque,
-    ulNetworkCodeSet: u32,
-    ulNetworkBufferSize: u32,
-    conversionType: ?*IDL_CS_CONVERT,
-    pulLocalBufferSize: ?*u32,
-    pStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const CS_TYPE_LOCAL_SIZE_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hBinding: ?*anyopaque,
+        ulNetworkCodeSet: u32,
+        ulNetworkBufferSize: u32,
+        conversionType: ?*IDL_CS_CONVERT,
+        pulLocalBufferSize: ?*u32,
+        pStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        hBinding: ?*anyopaque,
+        ulNetworkCodeSet: u32,
+        ulNetworkBufferSize: u32,
+        conversionType: ?*IDL_CS_CONVERT,
+        pulLocalBufferSize: ?*u32,
+        pStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const CS_TYPE_TO_NETCS_ROUTINE = fn(
-    hBinding: ?*anyopaque,
-    ulNetworkCodeSet: u32,
-    pLocalData: ?*anyopaque,
-    ulLocalDataLength: u32,
-    pNetworkData: ?*u8,
-    pulNetworkDataLength: ?*u32,
-    pStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const CS_TYPE_TO_NETCS_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hBinding: ?*anyopaque,
+        ulNetworkCodeSet: u32,
+        pLocalData: ?*anyopaque,
+        ulLocalDataLength: u32,
+        pNetworkData: ?*u8,
+        pulNetworkDataLength: ?*u32,
+        pStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        hBinding: ?*anyopaque,
+        ulNetworkCodeSet: u32,
+        pLocalData: ?*anyopaque,
+        ulLocalDataLength: u32,
+        pNetworkData: ?*u8,
+        pulNetworkDataLength: ?*u32,
+        pStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const CS_TYPE_FROM_NETCS_ROUTINE = fn(
-    hBinding: ?*anyopaque,
-    ulNetworkCodeSet: u32,
-    pNetworkData: ?*u8,
-    ulNetworkDataLength: u32,
-    ulLocalBufferSize: u32,
-    pLocalData: ?*anyopaque,
-    pulLocalDataLength: ?*u32,
-    pStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const CS_TYPE_FROM_NETCS_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hBinding: ?*anyopaque,
+        ulNetworkCodeSet: u32,
+        pNetworkData: ?*u8,
+        ulNetworkDataLength: u32,
+        ulLocalBufferSize: u32,
+        pLocalData: ?*anyopaque,
+        pulLocalDataLength: ?*u32,
+        pStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        hBinding: ?*anyopaque,
+        ulNetworkCodeSet: u32,
+        pNetworkData: ?*u8,
+        ulNetworkDataLength: u32,
+        ulLocalBufferSize: u32,
+        pLocalData: ?*anyopaque,
+        pulLocalDataLength: ?*u32,
+        pStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const CS_TAG_GETTING_ROUTINE = fn(
-    hBinding: ?*anyopaque,
-    fServerSide: i32,
-    pulSendingTag: ?*u32,
-    pulDesiredReceivingTag: ?*u32,
-    pulReceivingTag: ?*u32,
-    pStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const CS_TAG_GETTING_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hBinding: ?*anyopaque,
+        fServerSide: i32,
+        pulSendingTag: ?*u32,
+        pulDesiredReceivingTag: ?*u32,
+        pulReceivingTag: ?*u32,
+        pStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        hBinding: ?*anyopaque,
+        fServerSide: i32,
+        pulSendingTag: ?*u32,
+        pulDesiredReceivingTag: ?*u32,
+        pulReceivingTag: ?*u32,
+        pStatus: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const NDR_CS_SIZE_CONVERT_ROUTINES = extern struct {
     pfnNetSize: ?CS_TYPE_NET_SIZE_ROUTINE,
@@ -1808,12 +2096,21 @@ pub const MIDL_FORMAT_STRING = extern struct {
     Format: [1]u8,
 };
 
-pub const STUB_THUNK = fn(
-    param0: ?*MIDL_STUB_MESSAGE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const STUB_THUNK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*MIDL_STUB_MESSAGE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        param0: ?*MIDL_STUB_MESSAGE,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const SERVER_ROUTINE = fn(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const SERVER_ROUTINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
 pub const MIDL_METHOD_PROPERTY = extern struct {
     Id: u32,
@@ -1953,13 +2250,23 @@ pub const PROXY_MARSHAL = PROXY_PHASE.MARSHAL;
 pub const PROXY_SENDRECEIVE = PROXY_PHASE.SENDRECEIVE;
 pub const PROXY_UNMARSHAL = PROXY_PHASE.UNMARSHAL;
 
-pub const RPC_CLIENT_ALLOC = fn(
-    Size: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub const RPC_CLIENT_ALLOC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Size: usize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+    else => *const fn(
+        Size: usize,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+} ;
 
-pub const RPC_CLIENT_FREE = fn(
-    Ptr: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const RPC_CLIENT_FREE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Ptr: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Ptr: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const NDR_USER_MARSHAL_INFO_LEVEL1 = extern struct {
     Buffer: ?*anyopaque,
@@ -1995,23 +2302,44 @@ pub const MES_INCREMENTAL_HANDLE = MIDL_ES_HANDLE_STYLE.INCREMENTAL_HANDLE;
 pub const MES_FIXED_BUFFER_HANDLE = MIDL_ES_HANDLE_STYLE.FIXED_BUFFER_HANDLE;
 pub const MES_DYNAMIC_BUFFER_HANDLE = MIDL_ES_HANDLE_STYLE.DYNAMIC_BUFFER_HANDLE;
 
-pub const MIDL_ES_ALLOC = fn(
-    state: ?*anyopaque,
-    pbuffer: ?*?*i8,
-    psize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MIDL_ES_ALLOC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        state: ?*anyopaque,
+        pbuffer: ?*?*i8,
+        psize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        state: ?*anyopaque,
+        pbuffer: ?*?*i8,
+        psize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MIDL_ES_WRITE = fn(
-    state: ?*anyopaque,
-    buffer: ?PSTR,
-    size: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MIDL_ES_WRITE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        state: ?*anyopaque,
+        buffer: ?PSTR,
+        size: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        state: ?*anyopaque,
+        buffer: ?PSTR,
+        size: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const MIDL_ES_READ = fn(
-    state: ?*anyopaque,
-    pbuffer: ?*?*i8,
-    psize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const MIDL_ES_READ = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        state: ?*anyopaque,
+        pbuffer: ?*?*i8,
+        psize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        state: ?*anyopaque,
+        pbuffer: ?*?*i8,
+        psize: ?*u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const MIDL_TYPE_PICKLING_INFO = extern struct {
     Version: u32,

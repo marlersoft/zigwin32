@@ -943,75 +943,156 @@ pub const _DDFXROP = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const LPDDENUMCALLBACKA = fn(
-    param0: ?*Guid,
-    param1: ?PSTR,
-    param2: ?PSTR,
-    param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const LPDDENUMCALLBACKA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*Guid,
+        param1: ?PSTR,
+        param2: ?PSTR,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?*Guid,
+        param1: ?PSTR,
+        param2: ?PSTR,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const LPDDENUMCALLBACKW = fn(
-    param0: ?*Guid,
-    param1: ?PWSTR,
-    param2: ?PWSTR,
-    param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const LPDDENUMCALLBACKW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*Guid,
+        param1: ?PWSTR,
+        param2: ?PWSTR,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?*Guid,
+        param1: ?PWSTR,
+        param2: ?PWSTR,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const LPDDENUMCALLBACKEXA = fn(
-    param0: ?*Guid,
-    param1: ?PSTR,
-    param2: ?PSTR,
-    param3: ?*anyopaque,
-    param4: ?HMONITOR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const LPDDENUMCALLBACKEXA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*Guid,
+        param1: ?PSTR,
+        param2: ?PSTR,
+        param3: ?*anyopaque,
+        param4: ?HMONITOR,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?*Guid,
+        param1: ?PSTR,
+        param2: ?PSTR,
+        param3: ?*anyopaque,
+        param4: ?HMONITOR,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const LPDDENUMCALLBACKEXW = fn(
-    param0: ?*Guid,
-    param1: ?PWSTR,
-    param2: ?PWSTR,
-    param3: ?*anyopaque,
-    param4: ?HMONITOR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const LPDDENUMCALLBACKEXW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*Guid,
+        param1: ?PWSTR,
+        param2: ?PWSTR,
+        param3: ?*anyopaque,
+        param4: ?HMONITOR,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?*Guid,
+        param1: ?PWSTR,
+        param2: ?PWSTR,
+        param3: ?*anyopaque,
+        param4: ?HMONITOR,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const LPDIRECTDRAWENUMERATEEXA = fn(
-    lpCallback: ?LPDDENUMCALLBACKEXA,
-    lpContext: ?*anyopaque,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const LPDIRECTDRAWENUMERATEEXA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpCallback: ?LPDDENUMCALLBACKEXA,
+        lpContext: ?*anyopaque,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        lpCallback: ?LPDDENUMCALLBACKEXA,
+        lpContext: ?*anyopaque,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const LPDIRECTDRAWENUMERATEEXW = fn(
-    lpCallback: ?LPDDENUMCALLBACKEXW,
-    lpContext: ?*anyopaque,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const LPDIRECTDRAWENUMERATEEXW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpCallback: ?LPDDENUMCALLBACKEXW,
+        lpContext: ?*anyopaque,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        lpCallback: ?LPDDENUMCALLBACKEXW,
+        lpContext: ?*anyopaque,
+        dwFlags: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const LPDDENUMMODESCALLBACK = fn(
-    param0: ?*DDSURFACEDESC,
-    param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const LPDDENUMMODESCALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDSURFACEDESC,
+        param1: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?*DDSURFACEDESC,
+        param1: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const LPDDENUMMODESCALLBACK2 = fn(
-    param0: ?*DDSURFACEDESC2,
-    param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const LPDDENUMMODESCALLBACK2 = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDSURFACEDESC2,
+        param1: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?*DDSURFACEDESC2,
+        param1: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const LPDDENUMSURFACESCALLBACK = fn(
-    param0: ?*IDirectDrawSurface,
-    param1: ?*DDSURFACEDESC,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const LPDDENUMSURFACESCALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*IDirectDrawSurface,
+        param1: ?*DDSURFACEDESC,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?*IDirectDrawSurface,
+        param1: ?*DDSURFACEDESC,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const LPDDENUMSURFACESCALLBACK2 = fn(
-    param0: ?*IDirectDrawSurface4,
-    param1: ?*DDSURFACEDESC2,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const LPDDENUMSURFACESCALLBACK2 = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*IDirectDrawSurface4,
+        param1: ?*DDSURFACEDESC2,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?*IDirectDrawSurface4,
+        param1: ?*DDSURFACEDESC2,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const LPDDENUMSURFACESCALLBACK7 = fn(
-    param0: ?*IDirectDrawSurface7,
-    param1: ?*DDSURFACEDESC2,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const LPDDENUMSURFACESCALLBACK7 = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*IDirectDrawSurface7,
+        param1: ?*DDSURFACEDESC2,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?*IDirectDrawSurface7,
+        param1: ?*DDSURFACEDESC2,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 pub const DDARGB = extern struct {
     blue: u8,
@@ -1478,115 +1559,260 @@ pub const DDDEVICEIDENTIFIER2 = extern struct {
     dwWHQLLevel: u32,
 };
 
-pub const LPCLIPPERCALLBACK = fn(
-    lpDDClipper: ?*IDirectDrawClipper,
-    hWnd: ?HWND,
-    code: u32,
-    lpContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPCLIPPERCALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpDDClipper: ?*IDirectDrawClipper,
+        hWnd: ?HWND,
+        code: u32,
+        lpContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        lpDDClipper: ?*IDirectDrawClipper,
+        hWnd: ?HWND,
+        code: u32,
+        lpContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 const IID_IDirectDraw_Value = Guid.initString("6c14db80-a733-11ce-a521-0020af0be560");
 pub const IID_IDirectDraw = &IID_IDirectDraw_Value;
 pub const IDirectDraw = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Compact: fn(
-            self: *const IDirectDraw,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateClipper: fn(
-            self: *const IDirectDraw,
-            param0: u32,
-            param1: ?*?*IDirectDrawClipper,
-            param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreatePalette: fn(
-            self: *const IDirectDraw,
-            param0: u32,
-            param1: ?*PALETTEENTRY,
-            param2: ?*?*IDirectDrawPalette,
-            param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateSurface: fn(
-            self: *const IDirectDraw,
-            param0: ?*DDSURFACEDESC,
-            param1: ?*?*IDirectDrawSurface,
-            param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DuplicateSurface: fn(
-            self: *const IDirectDraw,
-            param0: ?*IDirectDrawSurface,
-            param1: ?*?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumDisplayModes: fn(
-            self: *const IDirectDraw,
-            param0: u32,
-            param1: ?*DDSURFACEDESC,
-            param2: ?*anyopaque,
-            param3: ?LPDDENUMMODESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumSurfaces: fn(
-            self: *const IDirectDraw,
-            param0: u32,
-            param1: ?*DDSURFACEDESC,
-            param2: ?*anyopaque,
-            param3: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FlipToGDISurface: fn(
-            self: *const IDirectDraw,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCaps: fn(
-            self: *const IDirectDraw,
-            param0: ?*DDCAPS_DX7,
-            param1: ?*DDCAPS_DX7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDisplayMode: fn(
-            self: *const IDirectDraw,
-            param0: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFourCCCodes: fn(
-            self: *const IDirectDraw,
-            param0: ?*u32,
-            param1: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGDISurface: fn(
-            self: *const IDirectDraw,
-            param0: ?*?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMonitorFrequency: fn(
-            self: *const IDirectDraw,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScanLine: fn(
-            self: *const IDirectDraw,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVerticalBlankStatus: fn(
-            self: *const IDirectDraw,
-            param0: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectDraw,
-            param0: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RestoreDisplayMode: fn(
-            self: *const IDirectDraw,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCooperativeLevel: fn(
-            self: *const IDirectDraw,
-            param0: ?HWND,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDisplayMode: fn(
-            self: *const IDirectDraw,
-            param0: u32,
-            param1: u32,
-            param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WaitForVerticalBlank: fn(
-            self: *const IDirectDraw,
-            param0: u32,
-            param1: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Compact: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: u32,
+                param1: ?*?*IDirectDrawClipper,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: u32,
+                param1: ?*?*IDirectDrawClipper,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreatePalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: u32,
+                param1: ?*PALETTEENTRY,
+                param2: ?*?*IDirectDrawPalette,
+                param3: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: u32,
+                param1: ?*PALETTEENTRY,
+                param2: ?*?*IDirectDrawPalette,
+                param3: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: ?*DDSURFACEDESC,
+                param1: ?*?*IDirectDrawSurface,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: ?*DDSURFACEDESC,
+                param1: ?*?*IDirectDrawSurface,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DuplicateSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: ?*IDirectDrawSurface,
+                param1: ?*?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: ?*IDirectDrawSurface,
+                param1: ?*?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumDisplayModes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: u32,
+                param1: ?*DDSURFACEDESC,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMMODESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: u32,
+                param1: ?*DDSURFACEDESC,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMMODESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumSurfaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: u32,
+                param1: ?*DDSURFACEDESC,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: u32,
+                param1: ?*DDSURFACEDESC,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FlipToGDISurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: ?*DDCAPS_DX7,
+                param1: ?*DDCAPS_DX7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: ?*DDCAPS_DX7,
+                param1: ?*DDCAPS_DX7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDisplayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFourCCCodes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: ?*u32,
+                param1: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: ?*u32,
+                param1: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetGDISurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: ?*?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: ?*?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMonitorFrequency: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetScanLine: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetVerticalBlankStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RestoreDisplayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetCooperativeLevel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: ?HWND,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: ?HWND,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetDisplayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WaitForVerticalBlank: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw,
+                param0: u32,
+                param1: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw,
+                param0: u32,
+                param1: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1680,111 +1906,258 @@ pub const IID_IDirectDraw2 = &IID_IDirectDraw2_Value;
 pub const IDirectDraw2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Compact: fn(
-            self: *const IDirectDraw2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateClipper: fn(
-            self: *const IDirectDraw2,
-            param0: u32,
-            param1: ?*?*IDirectDrawClipper,
-            param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreatePalette: fn(
-            self: *const IDirectDraw2,
-            param0: u32,
-            param1: ?*PALETTEENTRY,
-            param2: ?*?*IDirectDrawPalette,
-            param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateSurface: fn(
-            self: *const IDirectDraw2,
-            param0: ?*DDSURFACEDESC,
-            param1: ?*?*IDirectDrawSurface,
-            param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DuplicateSurface: fn(
-            self: *const IDirectDraw2,
-            param0: ?*IDirectDrawSurface,
-            param1: ?*?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumDisplayModes: fn(
-            self: *const IDirectDraw2,
-            param0: u32,
-            param1: ?*DDSURFACEDESC,
-            param2: ?*anyopaque,
-            param3: ?LPDDENUMMODESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumSurfaces: fn(
-            self: *const IDirectDraw2,
-            param0: u32,
-            param1: ?*DDSURFACEDESC,
-            param2: ?*anyopaque,
-            param3: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FlipToGDISurface: fn(
-            self: *const IDirectDraw2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCaps: fn(
-            self: *const IDirectDraw2,
-            param0: ?*DDCAPS_DX7,
-            param1: ?*DDCAPS_DX7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDisplayMode: fn(
-            self: *const IDirectDraw2,
-            param0: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFourCCCodes: fn(
-            self: *const IDirectDraw2,
-            param0: ?*u32,
-            param1: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGDISurface: fn(
-            self: *const IDirectDraw2,
-            param0: ?*?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMonitorFrequency: fn(
-            self: *const IDirectDraw2,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScanLine: fn(
-            self: *const IDirectDraw2,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVerticalBlankStatus: fn(
-            self: *const IDirectDraw2,
-            param0: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectDraw2,
-            param0: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RestoreDisplayMode: fn(
-            self: *const IDirectDraw2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCooperativeLevel: fn(
-            self: *const IDirectDraw2,
-            param0: ?HWND,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDisplayMode: fn(
-            self: *const IDirectDraw2,
-            param0: u32,
-            param1: u32,
-            param2: u32,
-            param3: u32,
-            param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WaitForVerticalBlank: fn(
-            self: *const IDirectDraw2,
-            param0: u32,
-            param1: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAvailableVidMem: fn(
-            self: *const IDirectDraw2,
-            param0: ?*DDSCAPS,
-            param1: ?*u32,
-            param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Compact: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: u32,
+                param1: ?*?*IDirectDrawClipper,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: u32,
+                param1: ?*?*IDirectDrawClipper,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreatePalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: u32,
+                param1: ?*PALETTEENTRY,
+                param2: ?*?*IDirectDrawPalette,
+                param3: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: u32,
+                param1: ?*PALETTEENTRY,
+                param2: ?*?*IDirectDrawPalette,
+                param3: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: ?*DDSURFACEDESC,
+                param1: ?*?*IDirectDrawSurface,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: ?*DDSURFACEDESC,
+                param1: ?*?*IDirectDrawSurface,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DuplicateSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: ?*IDirectDrawSurface,
+                param1: ?*?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: ?*IDirectDrawSurface,
+                param1: ?*?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumDisplayModes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: u32,
+                param1: ?*DDSURFACEDESC,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMMODESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: u32,
+                param1: ?*DDSURFACEDESC,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMMODESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumSurfaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: u32,
+                param1: ?*DDSURFACEDESC,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: u32,
+                param1: ?*DDSURFACEDESC,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FlipToGDISurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: ?*DDCAPS_DX7,
+                param1: ?*DDCAPS_DX7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: ?*DDCAPS_DX7,
+                param1: ?*DDCAPS_DX7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDisplayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFourCCCodes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: ?*u32,
+                param1: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: ?*u32,
+                param1: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetGDISurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: ?*?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: ?*?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMonitorFrequency: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetScanLine: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetVerticalBlankStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RestoreDisplayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetCooperativeLevel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: ?HWND,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: ?HWND,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetDisplayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+                param3: u32,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+                param3: u32,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WaitForVerticalBlank: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: u32,
+                param1: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: u32,
+                param1: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAvailableVidMem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw2,
+                param0: ?*DDSCAPS,
+                param1: ?*u32,
+                param2: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw2,
+                param0: ?*DDSCAPS,
+                param1: ?*u32,
+                param2: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1882,127 +2255,298 @@ pub const IID_IDirectDraw4 = &IID_IDirectDraw4_Value;
 pub const IDirectDraw4 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Compact: fn(
-            self: *const IDirectDraw4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateClipper: fn(
-            self: *const IDirectDraw4,
-            param0: u32,
-            param1: ?*?*IDirectDrawClipper,
-            param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreatePalette: fn(
-            self: *const IDirectDraw4,
-            param0: u32,
-            param1: ?*PALETTEENTRY,
-            param2: ?*?*IDirectDrawPalette,
-            param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateSurface: fn(
-            self: *const IDirectDraw4,
-            param0: ?*DDSURFACEDESC2,
-            param1: ?*?*IDirectDrawSurface4,
-            param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DuplicateSurface: fn(
-            self: *const IDirectDraw4,
-            param0: ?*IDirectDrawSurface4,
-            param1: ?*?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumDisplayModes: fn(
-            self: *const IDirectDraw4,
-            param0: u32,
-            param1: ?*DDSURFACEDESC2,
-            param2: ?*anyopaque,
-            param3: ?LPDDENUMMODESCALLBACK2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumSurfaces: fn(
-            self: *const IDirectDraw4,
-            param0: u32,
-            param1: ?*DDSURFACEDESC2,
-            param2: ?*anyopaque,
-            param3: ?LPDDENUMSURFACESCALLBACK2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FlipToGDISurface: fn(
-            self: *const IDirectDraw4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCaps: fn(
-            self: *const IDirectDraw4,
-            param0: ?*DDCAPS_DX7,
-            param1: ?*DDCAPS_DX7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDisplayMode: fn(
-            self: *const IDirectDraw4,
-            param0: ?*DDSURFACEDESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFourCCCodes: fn(
-            self: *const IDirectDraw4,
-            param0: ?*u32,
-            param1: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGDISurface: fn(
-            self: *const IDirectDraw4,
-            param0: ?*?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMonitorFrequency: fn(
-            self: *const IDirectDraw4,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScanLine: fn(
-            self: *const IDirectDraw4,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVerticalBlankStatus: fn(
-            self: *const IDirectDraw4,
-            param0: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectDraw4,
-            param0: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RestoreDisplayMode: fn(
-            self: *const IDirectDraw4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCooperativeLevel: fn(
-            self: *const IDirectDraw4,
-            param0: ?HWND,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDisplayMode: fn(
-            self: *const IDirectDraw4,
-            param0: u32,
-            param1: u32,
-            param2: u32,
-            param3: u32,
-            param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WaitForVerticalBlank: fn(
-            self: *const IDirectDraw4,
-            param0: u32,
-            param1: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAvailableVidMem: fn(
-            self: *const IDirectDraw4,
-            param0: ?*DDSCAPS2,
-            param1: ?*u32,
-            param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSurfaceFromDC: fn(
-            self: *const IDirectDraw4,
-            param0: ?HDC,
-            param1: ?*?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RestoreAllSurfaces: fn(
-            self: *const IDirectDraw4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TestCooperativeLevel: fn(
-            self: *const IDirectDraw4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceIdentifier: fn(
-            self: *const IDirectDraw4,
-            param0: ?*DDDEVICEIDENTIFIER,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Compact: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: u32,
+                param1: ?*?*IDirectDrawClipper,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: u32,
+                param1: ?*?*IDirectDrawClipper,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreatePalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: u32,
+                param1: ?*PALETTEENTRY,
+                param2: ?*?*IDirectDrawPalette,
+                param3: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: u32,
+                param1: ?*PALETTEENTRY,
+                param2: ?*?*IDirectDrawPalette,
+                param3: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?*DDSURFACEDESC2,
+                param1: ?*?*IDirectDrawSurface4,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?*DDSURFACEDESC2,
+                param1: ?*?*IDirectDrawSurface4,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DuplicateSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?*IDirectDrawSurface4,
+                param1: ?*?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?*IDirectDrawSurface4,
+                param1: ?*?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumDisplayModes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: u32,
+                param1: ?*DDSURFACEDESC2,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMMODESCALLBACK2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: u32,
+                param1: ?*DDSURFACEDESC2,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMMODESCALLBACK2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumSurfaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: u32,
+                param1: ?*DDSURFACEDESC2,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMSURFACESCALLBACK2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: u32,
+                param1: ?*DDSURFACEDESC2,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMSURFACESCALLBACK2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FlipToGDISurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?*DDCAPS_DX7,
+                param1: ?*DDCAPS_DX7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?*DDCAPS_DX7,
+                param1: ?*DDCAPS_DX7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDisplayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?*DDSURFACEDESC2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?*DDSURFACEDESC2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFourCCCodes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?*u32,
+                param1: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?*u32,
+                param1: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetGDISurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?*?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?*?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMonitorFrequency: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetScanLine: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetVerticalBlankStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RestoreDisplayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetCooperativeLevel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?HWND,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?HWND,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetDisplayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+                param3: u32,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+                param3: u32,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WaitForVerticalBlank: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: u32,
+                param1: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: u32,
+                param1: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAvailableVidMem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?*DDSCAPS2,
+                param1: ?*u32,
+                param2: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?*DDSCAPS2,
+                param1: ?*u32,
+                param2: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSurfaceFromDC: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?HDC,
+                param1: ?*?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?HDC,
+                param1: ?*?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RestoreAllSurfaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        TestCooperativeLevel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceIdentifier: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw4,
+                param0: ?*DDDEVICEIDENTIFIER,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw4,
+                param0: ?*DDDEVICEIDENTIFIER,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2116,138 +2660,324 @@ pub const IID_IDirectDraw7 = &IID_IDirectDraw7_Value;
 pub const IDirectDraw7 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Compact: fn(
-            self: *const IDirectDraw7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateClipper: fn(
-            self: *const IDirectDraw7,
-            param0: u32,
-            param1: ?*?*IDirectDrawClipper,
-            param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreatePalette: fn(
-            self: *const IDirectDraw7,
-            param0: u32,
-            param1: ?*PALETTEENTRY,
-            param2: ?*?*IDirectDrawPalette,
-            param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateSurface: fn(
-            self: *const IDirectDraw7,
-            param0: ?*DDSURFACEDESC2,
-            param1: ?*?*IDirectDrawSurface7,
-            param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DuplicateSurface: fn(
-            self: *const IDirectDraw7,
-            param0: ?*IDirectDrawSurface7,
-            param1: ?*?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumDisplayModes: fn(
-            self: *const IDirectDraw7,
-            param0: u32,
-            param1: ?*DDSURFACEDESC2,
-            param2: ?*anyopaque,
-            param3: ?LPDDENUMMODESCALLBACK2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumSurfaces: fn(
-            self: *const IDirectDraw7,
-            param0: u32,
-            param1: ?*DDSURFACEDESC2,
-            param2: ?*anyopaque,
-            param3: ?LPDDENUMSURFACESCALLBACK7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FlipToGDISurface: fn(
-            self: *const IDirectDraw7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCaps: fn(
-            self: *const IDirectDraw7,
-            param0: ?*DDCAPS_DX7,
-            param1: ?*DDCAPS_DX7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDisplayMode: fn(
-            self: *const IDirectDraw7,
-            param0: ?*DDSURFACEDESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFourCCCodes: fn(
-            self: *const IDirectDraw7,
-            param0: ?*u32,
-            param1: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGDISurface: fn(
-            self: *const IDirectDraw7,
-            param0: ?*?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMonitorFrequency: fn(
-            self: *const IDirectDraw7,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScanLine: fn(
-            self: *const IDirectDraw7,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVerticalBlankStatus: fn(
-            self: *const IDirectDraw7,
-            param0: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectDraw7,
-            param0: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RestoreDisplayMode: fn(
-            self: *const IDirectDraw7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCooperativeLevel: fn(
-            self: *const IDirectDraw7,
-            param0: ?HWND,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDisplayMode: fn(
-            self: *const IDirectDraw7,
-            param0: u32,
-            param1: u32,
-            param2: u32,
-            param3: u32,
-            param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WaitForVerticalBlank: fn(
-            self: *const IDirectDraw7,
-            param0: u32,
-            param1: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAvailableVidMem: fn(
-            self: *const IDirectDraw7,
-            param0: ?*DDSCAPS2,
-            param1: ?*u32,
-            param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSurfaceFromDC: fn(
-            self: *const IDirectDraw7,
-            param0: ?HDC,
-            param1: ?*?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RestoreAllSurfaces: fn(
-            self: *const IDirectDraw7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TestCooperativeLevel: fn(
-            self: *const IDirectDraw7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceIdentifier: fn(
-            self: *const IDirectDraw7,
-            param0: ?*DDDEVICEIDENTIFIER2,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartModeTest: fn(
-            self: *const IDirectDraw7,
-            param0: ?*SIZE,
-            param1: u32,
-            param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EvaluateMode: fn(
-            self: *const IDirectDraw7,
-            param0: u32,
-            param1: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Compact: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: ?*?*IDirectDrawClipper,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: ?*?*IDirectDrawClipper,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreatePalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: ?*PALETTEENTRY,
+                param2: ?*?*IDirectDrawPalette,
+                param3: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: ?*PALETTEENTRY,
+                param2: ?*?*IDirectDrawPalette,
+                param3: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*DDSURFACEDESC2,
+                param1: ?*?*IDirectDrawSurface7,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*DDSURFACEDESC2,
+                param1: ?*?*IDirectDrawSurface7,
+                param2: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DuplicateSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*IDirectDrawSurface7,
+                param1: ?*?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*IDirectDrawSurface7,
+                param1: ?*?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumDisplayModes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: ?*DDSURFACEDESC2,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMMODESCALLBACK2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: ?*DDSURFACEDESC2,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMMODESCALLBACK2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumSurfaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: ?*DDSURFACEDESC2,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMSURFACESCALLBACK7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: ?*DDSURFACEDESC2,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMSURFACESCALLBACK7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FlipToGDISurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*DDCAPS_DX7,
+                param1: ?*DDCAPS_DX7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*DDCAPS_DX7,
+                param1: ?*DDCAPS_DX7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDisplayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*DDSURFACEDESC2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*DDSURFACEDESC2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFourCCCodes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*u32,
+                param1: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*u32,
+                param1: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetGDISurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMonitorFrequency: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetScanLine: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetVerticalBlankStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RestoreDisplayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetCooperativeLevel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?HWND,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?HWND,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetDisplayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+                param3: u32,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+                param3: u32,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WaitForVerticalBlank: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAvailableVidMem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*DDSCAPS2,
+                param1: ?*u32,
+                param2: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*DDSCAPS2,
+                param1: ?*u32,
+                param2: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSurfaceFromDC: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?HDC,
+                param1: ?*?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?HDC,
+                param1: ?*?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RestoreAllSurfaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        TestCooperativeLevel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceIdentifier: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*DDDEVICEIDENTIFIER2,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*DDDEVICEIDENTIFIER2,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StartModeTest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: ?*SIZE,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: ?*SIZE,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EvaluateMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDraw7,
+                param0: u32,
+                param1: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2369,30 +3099,62 @@ pub const IID_IDirectDrawPalette = &IID_IDirectDrawPalette_Value;
 pub const IDirectDrawPalette = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCaps: fn(
-            self: *const IDirectDrawPalette,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEntries: fn(
-            self: *const IDirectDrawPalette,
-            param0: u32,
-            param1: u32,
-            param2: u32,
-            param3: ?*PALETTEENTRY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectDrawPalette,
-            param0: ?*IDirectDraw,
-            param1: u32,
-            param2: ?*PALETTEENTRY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEntries: fn(
-            self: *const IDirectDrawPalette,
-            param0: u32,
-            param1: u32,
-            param2: u32,
-            param3: ?*PALETTEENTRY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawPalette,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawPalette,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEntries: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawPalette,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+                param3: ?*PALETTEENTRY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawPalette,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+                param3: ?*PALETTEENTRY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawPalette,
+                param0: ?*IDirectDraw,
+                param1: u32,
+                param2: ?*PALETTEENTRY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawPalette,
+                param0: ?*IDirectDraw,
+                param1: u32,
+                param2: ?*PALETTEENTRY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetEntries: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawPalette,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+                param3: ?*PALETTEENTRY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawPalette,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+                param3: ?*PALETTEENTRY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2422,35 +3184,76 @@ pub const IID_IDirectDrawClipper = &IID_IDirectDrawClipper_Value;
 pub const IDirectDrawClipper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClipList: fn(
-            self: *const IDirectDrawClipper,
-            param0: ?*RECT,
-            param1: ?*RGNDATA,
-            param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHWnd: fn(
-            self: *const IDirectDrawClipper,
-            param0: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectDrawClipper,
-            param0: ?*IDirectDraw,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsClipListChanged: fn(
-            self: *const IDirectDrawClipper,
-            param0: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClipList: fn(
-            self: *const IDirectDrawClipper,
-            param0: ?*RGNDATA,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetHWnd: fn(
-            self: *const IDirectDrawClipper,
-            param0: u32,
-            param1: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClipList: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawClipper,
+                param0: ?*RECT,
+                param1: ?*RGNDATA,
+                param2: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawClipper,
+                param0: ?*RECT,
+                param1: ?*RGNDATA,
+                param2: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetHWnd: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawClipper,
+                param0: ?*?HWND,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawClipper,
+                param0: ?*?HWND,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawClipper,
+                param0: ?*IDirectDraw,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawClipper,
+                param0: ?*IDirectDraw,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsClipListChanged: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawClipper,
+                param0: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawClipper,
+                param0: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetClipList: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawClipper,
+                param0: ?*RGNDATA,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawClipper,
+                param0: ?*RGNDATA,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetHWnd: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawClipper,
+                param0: u32,
+                param1: ?HWND,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawClipper,
+                param0: u32,
+                param1: ?HWND,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2488,165 +3291,390 @@ pub const IID_IDirectDrawSurface = &IID_IDirectDrawSurface_Value;
 pub const IDirectDrawSurface = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddAttachedSurface: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddOverlayDirtyRect: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Blt: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*RECT,
-            param1: ?*IDirectDrawSurface,
-            param2: ?*RECT,
-            param3: u32,
-            param4: ?*DDBLTFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BltBatch: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*DDBLTBATCH,
-            param1: u32,
-            param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BltFast: fn(
-            self: *const IDirectDrawSurface,
-            param0: u32,
-            param1: u32,
-            param2: ?*IDirectDrawSurface,
-            param3: ?*RECT,
-            param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteAttachedSurface: fn(
-            self: *const IDirectDrawSurface,
-            param0: u32,
-            param1: ?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumAttachedSurfaces: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*anyopaque,
-            param1: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumOverlayZOrders: fn(
-            self: *const IDirectDrawSurface,
-            param0: u32,
-            param1: ?*anyopaque,
-            param2: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Flip: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*IDirectDrawSurface,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttachedSurface: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*DDSCAPS,
-            param1: ?*?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBltStatus: fn(
-            self: *const IDirectDrawSurface,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCaps: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*DDSCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClipper: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColorKey: fn(
-            self: *const IDirectDrawSurface,
-            param0: u32,
-            param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDC: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFlipStatus: fn(
-            self: *const IDirectDrawSurface,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOverlayPosition: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*i32,
-            param1: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPalette: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPixelFormat: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*DDPIXELFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSurfaceDesc: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*IDirectDraw,
-            param1: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsLost: fn(
-            self: *const IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Lock: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*RECT,
-            param1: ?*DDSURFACEDESC,
-            param2: u32,
-            param3: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseDC: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Restore: fn(
-            self: *const IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClipper: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetColorKey: fn(
-            self: *const IDirectDrawSurface,
-            param0: u32,
-            param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOverlayPosition: fn(
-            self: *const IDirectDrawSurface,
-            param0: i32,
-            param1: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPalette: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unlock: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlay: fn(
-            self: *const IDirectDrawSurface,
-            param0: ?*RECT,
-            param1: ?*IDirectDrawSurface,
-            param2: ?*RECT,
-            param3: u32,
-            param4: ?*DDOVERLAYFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlayDisplay: fn(
-            self: *const IDirectDrawSurface,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlayZOrder: fn(
-            self: *const IDirectDrawSurface,
-            param0: u32,
-            param1: ?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddOverlayDirtyRect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Blt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDBLTFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDBLTFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BltBatch: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*DDBLTBATCH,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*DDBLTBATCH,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BltFast: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+                param1: u32,
+                param2: ?*IDirectDrawSurface,
+                param3: ?*RECT,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+                param1: u32,
+                param2: ?*IDirectDrawSurface,
+                param3: ?*RECT,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+                param1: ?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+                param1: ?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumAttachedSurfaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*anyopaque,
+                param1: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*anyopaque,
+                param1: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumOverlayZOrders: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+                param1: ?*anyopaque,
+                param2: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+                param1: ?*anyopaque,
+                param2: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Flip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*IDirectDrawSurface,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*IDirectDrawSurface,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*DDSCAPS,
+                param1: ?*?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*DDSCAPS,
+                param1: ?*?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBltStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*DDSCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*DDSCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetColorKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDC: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFlipStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOverlayPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*i32,
+                param1: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*i32,
+                param1: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPixelFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*DDPIXELFORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*DDPIXELFORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSurfaceDesc: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*IDirectDraw,
+                param1: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*IDirectDraw,
+                param1: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsLost: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Lock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*RECT,
+                param1: ?*DDSURFACEDESC,
+                param2: u32,
+                param3: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*RECT,
+                param1: ?*DDSURFACEDESC,
+                param2: u32,
+                param3: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReleaseDC: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Restore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetColorKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOverlayPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: i32,
+                param1: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: i32,
+                param1: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDOVERLAYFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDOVERLAYFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlayDisplay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlayZOrder: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+                param1: ?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface,
+                param0: u32,
+                param1: ?*IDirectDrawSurface,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2792,177 +3820,420 @@ pub const IID_IDirectDrawSurface2 = &IID_IDirectDrawSurface2_Value;
 pub const IDirectDrawSurface2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddAttachedSurface: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*IDirectDrawSurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddOverlayDirtyRect: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Blt: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*RECT,
-            param1: ?*IDirectDrawSurface2,
-            param2: ?*RECT,
-            param3: u32,
-            param4: ?*DDBLTFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BltBatch: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*DDBLTBATCH,
-            param1: u32,
-            param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BltFast: fn(
-            self: *const IDirectDrawSurface2,
-            param0: u32,
-            param1: u32,
-            param2: ?*IDirectDrawSurface2,
-            param3: ?*RECT,
-            param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteAttachedSurface: fn(
-            self: *const IDirectDrawSurface2,
-            param0: u32,
-            param1: ?*IDirectDrawSurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumAttachedSurfaces: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*anyopaque,
-            param1: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumOverlayZOrders: fn(
-            self: *const IDirectDrawSurface2,
-            param0: u32,
-            param1: ?*anyopaque,
-            param2: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Flip: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*IDirectDrawSurface2,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttachedSurface: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*DDSCAPS,
-            param1: ?*?*IDirectDrawSurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBltStatus: fn(
-            self: *const IDirectDrawSurface2,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCaps: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*DDSCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClipper: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColorKey: fn(
-            self: *const IDirectDrawSurface2,
-            param0: u32,
-            param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDC: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFlipStatus: fn(
-            self: *const IDirectDrawSurface2,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOverlayPosition: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*i32,
-            param1: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPalette: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPixelFormat: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*DDPIXELFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSurfaceDesc: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*IDirectDraw,
-            param1: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsLost: fn(
-            self: *const IDirectDrawSurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Lock: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*RECT,
-            param1: ?*DDSURFACEDESC,
-            param2: u32,
-            param3: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseDC: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Restore: fn(
-            self: *const IDirectDrawSurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClipper: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetColorKey: fn(
-            self: *const IDirectDrawSurface2,
-            param0: u32,
-            param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOverlayPosition: fn(
-            self: *const IDirectDrawSurface2,
-            param0: i32,
-            param1: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPalette: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unlock: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlay: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*RECT,
-            param1: ?*IDirectDrawSurface2,
-            param2: ?*RECT,
-            param3: u32,
-            param4: ?*DDOVERLAYFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlayDisplay: fn(
-            self: *const IDirectDrawSurface2,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlayZOrder: fn(
-            self: *const IDirectDrawSurface2,
-            param0: u32,
-            param1: ?*IDirectDrawSurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDDInterface: fn(
-            self: *const IDirectDrawSurface2,
-            param0: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PageLock: fn(
-            self: *const IDirectDrawSurface2,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PageUnlock: fn(
-            self: *const IDirectDrawSurface2,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*IDirectDrawSurface2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*IDirectDrawSurface2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddOverlayDirtyRect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Blt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface2,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDBLTFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface2,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDBLTFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BltBatch: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*DDBLTBATCH,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*DDBLTBATCH,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BltFast: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+                param1: u32,
+                param2: ?*IDirectDrawSurface2,
+                param3: ?*RECT,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+                param1: u32,
+                param2: ?*IDirectDrawSurface2,
+                param3: ?*RECT,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+                param1: ?*IDirectDrawSurface2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+                param1: ?*IDirectDrawSurface2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumAttachedSurfaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*anyopaque,
+                param1: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*anyopaque,
+                param1: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumOverlayZOrders: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+                param1: ?*anyopaque,
+                param2: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+                param1: ?*anyopaque,
+                param2: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Flip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*IDirectDrawSurface2,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*IDirectDrawSurface2,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*DDSCAPS,
+                param1: ?*?*IDirectDrawSurface2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*DDSCAPS,
+                param1: ?*?*IDirectDrawSurface2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBltStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*DDSCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*DDSCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetColorKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDC: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFlipStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOverlayPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*i32,
+                param1: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*i32,
+                param1: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPixelFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*DDPIXELFORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*DDPIXELFORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSurfaceDesc: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*IDirectDraw,
+                param1: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*IDirectDraw,
+                param1: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsLost: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Lock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*RECT,
+                param1: ?*DDSURFACEDESC,
+                param2: u32,
+                param3: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*RECT,
+                param1: ?*DDSURFACEDESC,
+                param2: u32,
+                param3: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReleaseDC: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Restore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetColorKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOverlayPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: i32,
+                param1: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: i32,
+                param1: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface2,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDOVERLAYFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface2,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDOVERLAYFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlayDisplay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlayZOrder: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+                param1: ?*IDirectDrawSurface2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+                param1: ?*IDirectDrawSurface2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDDInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PageLock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PageUnlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface2,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3120,182 +4391,432 @@ pub const IID_IDirectDrawSurface3 = &IID_IDirectDrawSurface3_Value;
 pub const IDirectDrawSurface3 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddAttachedSurface: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*IDirectDrawSurface3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddOverlayDirtyRect: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Blt: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*RECT,
-            param1: ?*IDirectDrawSurface3,
-            param2: ?*RECT,
-            param3: u32,
-            param4: ?*DDBLTFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BltBatch: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*DDBLTBATCH,
-            param1: u32,
-            param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BltFast: fn(
-            self: *const IDirectDrawSurface3,
-            param0: u32,
-            param1: u32,
-            param2: ?*IDirectDrawSurface3,
-            param3: ?*RECT,
-            param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteAttachedSurface: fn(
-            self: *const IDirectDrawSurface3,
-            param0: u32,
-            param1: ?*IDirectDrawSurface3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumAttachedSurfaces: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*anyopaque,
-            param1: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumOverlayZOrders: fn(
-            self: *const IDirectDrawSurface3,
-            param0: u32,
-            param1: ?*anyopaque,
-            param2: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Flip: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*IDirectDrawSurface3,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttachedSurface: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*DDSCAPS,
-            param1: ?*?*IDirectDrawSurface3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBltStatus: fn(
-            self: *const IDirectDrawSurface3,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCaps: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*DDSCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClipper: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColorKey: fn(
-            self: *const IDirectDrawSurface3,
-            param0: u32,
-            param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDC: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFlipStatus: fn(
-            self: *const IDirectDrawSurface3,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOverlayPosition: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*i32,
-            param1: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPalette: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPixelFormat: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*DDPIXELFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSurfaceDesc: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*IDirectDraw,
-            param1: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsLost: fn(
-            self: *const IDirectDrawSurface3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Lock: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*RECT,
-            param1: ?*DDSURFACEDESC,
-            param2: u32,
-            param3: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseDC: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Restore: fn(
-            self: *const IDirectDrawSurface3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClipper: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetColorKey: fn(
-            self: *const IDirectDrawSurface3,
-            param0: u32,
-            param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOverlayPosition: fn(
-            self: *const IDirectDrawSurface3,
-            param0: i32,
-            param1: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPalette: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unlock: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlay: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*RECT,
-            param1: ?*IDirectDrawSurface3,
-            param2: ?*RECT,
-            param3: u32,
-            param4: ?*DDOVERLAYFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlayDisplay: fn(
-            self: *const IDirectDrawSurface3,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlayZOrder: fn(
-            self: *const IDirectDrawSurface3,
-            param0: u32,
-            param1: ?*IDirectDrawSurface3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDDInterface: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PageLock: fn(
-            self: *const IDirectDrawSurface3,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PageUnlock: fn(
-            self: *const IDirectDrawSurface3,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSurfaceDesc: fn(
-            self: *const IDirectDrawSurface3,
-            param0: ?*DDSURFACEDESC,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*IDirectDrawSurface3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*IDirectDrawSurface3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddOverlayDirtyRect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Blt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface3,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDBLTFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface3,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDBLTFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BltBatch: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*DDBLTBATCH,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*DDBLTBATCH,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BltFast: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+                param1: u32,
+                param2: ?*IDirectDrawSurface3,
+                param3: ?*RECT,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+                param1: u32,
+                param2: ?*IDirectDrawSurface3,
+                param3: ?*RECT,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+                param1: ?*IDirectDrawSurface3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+                param1: ?*IDirectDrawSurface3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumAttachedSurfaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*anyopaque,
+                param1: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*anyopaque,
+                param1: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumOverlayZOrders: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+                param1: ?*anyopaque,
+                param2: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+                param1: ?*anyopaque,
+                param2: ?LPDDENUMSURFACESCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Flip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*IDirectDrawSurface3,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*IDirectDrawSurface3,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*DDSCAPS,
+                param1: ?*?*IDirectDrawSurface3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*DDSCAPS,
+                param1: ?*?*IDirectDrawSurface3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBltStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*DDSCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*DDSCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetColorKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDC: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFlipStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOverlayPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*i32,
+                param1: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*i32,
+                param1: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPixelFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*DDPIXELFORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*DDPIXELFORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSurfaceDesc: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*IDirectDraw,
+                param1: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*IDirectDraw,
+                param1: ?*DDSURFACEDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsLost: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Lock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*RECT,
+                param1: ?*DDSURFACEDESC,
+                param2: u32,
+                param3: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*RECT,
+                param1: ?*DDSURFACEDESC,
+                param2: u32,
+                param3: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReleaseDC: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Restore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetColorKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOverlayPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: i32,
+                param1: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: i32,
+                param1: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface3,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDOVERLAYFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface3,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDOVERLAYFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlayDisplay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlayZOrder: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+                param1: ?*IDirectDrawSurface3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+                param1: ?*IDirectDrawSurface3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDDInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PageLock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PageUnlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetSurfaceDesc: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*DDSURFACEDESC,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface3,
+                param0: ?*DDSURFACEDESC,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3457,206 +4978,490 @@ pub const IID_IDirectDrawSurface4 = &IID_IDirectDrawSurface4_Value;
 pub const IDirectDrawSurface4 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddAttachedSurface: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddOverlayDirtyRect: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Blt: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*RECT,
-            param1: ?*IDirectDrawSurface4,
-            param2: ?*RECT,
-            param3: u32,
-            param4: ?*DDBLTFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BltBatch: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*DDBLTBATCH,
-            param1: u32,
-            param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BltFast: fn(
-            self: *const IDirectDrawSurface4,
-            param0: u32,
-            param1: u32,
-            param2: ?*IDirectDrawSurface4,
-            param3: ?*RECT,
-            param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteAttachedSurface: fn(
-            self: *const IDirectDrawSurface4,
-            param0: u32,
-            param1: ?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumAttachedSurfaces: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*anyopaque,
-            param1: ?LPDDENUMSURFACESCALLBACK2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumOverlayZOrders: fn(
-            self: *const IDirectDrawSurface4,
-            param0: u32,
-            param1: ?*anyopaque,
-            param2: ?LPDDENUMSURFACESCALLBACK2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Flip: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*IDirectDrawSurface4,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttachedSurface: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*DDSCAPS2,
-            param1: ?*?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBltStatus: fn(
-            self: *const IDirectDrawSurface4,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCaps: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*DDSCAPS2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClipper: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColorKey: fn(
-            self: *const IDirectDrawSurface4,
-            param0: u32,
-            param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDC: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFlipStatus: fn(
-            self: *const IDirectDrawSurface4,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOverlayPosition: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*i32,
-            param1: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPalette: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPixelFormat: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*DDPIXELFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSurfaceDesc: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*DDSURFACEDESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*IDirectDraw,
-            param1: ?*DDSURFACEDESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsLost: fn(
-            self: *const IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Lock: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*RECT,
-            param1: ?*DDSURFACEDESC2,
-            param2: u32,
-            param3: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseDC: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Restore: fn(
-            self: *const IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClipper: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetColorKey: fn(
-            self: *const IDirectDrawSurface4,
-            param0: u32,
-            param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOverlayPosition: fn(
-            self: *const IDirectDrawSurface4,
-            param0: i32,
-            param1: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPalette: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unlock: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlay: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*RECT,
-            param1: ?*IDirectDrawSurface4,
-            param2: ?*RECT,
-            param3: u32,
-            param4: ?*DDOVERLAYFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlayDisplay: fn(
-            self: *const IDirectDrawSurface4,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlayZOrder: fn(
-            self: *const IDirectDrawSurface4,
-            param0: u32,
-            param1: ?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDDInterface: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PageLock: fn(
-            self: *const IDirectDrawSurface4,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PageUnlock: fn(
-            self: *const IDirectDrawSurface4,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSurfaceDesc: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*DDSURFACEDESC2,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPrivateData: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*const Guid,
-            param1: ?*anyopaque,
-            param2: u32,
-            param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPrivateData: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*const Guid,
-            param1: ?*anyopaque,
-            param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FreePrivateData: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUniquenessValue: fn(
-            self: *const IDirectDrawSurface4,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ChangeUniquenessValue: fn(
-            self: *const IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddOverlayDirtyRect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Blt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface4,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDBLTFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface4,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDBLTFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BltBatch: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*DDBLTBATCH,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*DDBLTBATCH,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BltFast: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+                param1: u32,
+                param2: ?*IDirectDrawSurface4,
+                param3: ?*RECT,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+                param1: u32,
+                param2: ?*IDirectDrawSurface4,
+                param3: ?*RECT,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+                param1: ?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+                param1: ?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumAttachedSurfaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*anyopaque,
+                param1: ?LPDDENUMSURFACESCALLBACK2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*anyopaque,
+                param1: ?LPDDENUMSURFACESCALLBACK2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumOverlayZOrders: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+                param1: ?*anyopaque,
+                param2: ?LPDDENUMSURFACESCALLBACK2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+                param1: ?*anyopaque,
+                param2: ?LPDDENUMSURFACESCALLBACK2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Flip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*IDirectDrawSurface4,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*IDirectDrawSurface4,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*DDSCAPS2,
+                param1: ?*?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*DDSCAPS2,
+                param1: ?*?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBltStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*DDSCAPS2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*DDSCAPS2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetColorKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDC: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFlipStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOverlayPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*i32,
+                param1: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*i32,
+                param1: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPixelFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*DDPIXELFORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*DDPIXELFORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSurfaceDesc: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*DDSURFACEDESC2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*DDSURFACEDESC2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*IDirectDraw,
+                param1: ?*DDSURFACEDESC2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*IDirectDraw,
+                param1: ?*DDSURFACEDESC2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsLost: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Lock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*RECT,
+                param1: ?*DDSURFACEDESC2,
+                param2: u32,
+                param3: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*RECT,
+                param1: ?*DDSURFACEDESC2,
+                param2: u32,
+                param3: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReleaseDC: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Restore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetColorKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOverlayPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: i32,
+                param1: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: i32,
+                param1: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface4,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDOVERLAYFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface4,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDOVERLAYFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlayDisplay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlayZOrder: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+                param1: ?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+                param1: ?*IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDDInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PageLock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PageUnlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetSurfaceDesc: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*DDSURFACEDESC2,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*DDSURFACEDESC2,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPrivateData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*const Guid,
+                param1: ?*anyopaque,
+                param2: u32,
+                param3: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*const Guid,
+                param1: ?*anyopaque,
+                param2: u32,
+                param3: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPrivateData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*const Guid,
+                param1: ?*anyopaque,
+                param2: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*const Guid,
+                param1: ?*anyopaque,
+                param2: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FreePrivateData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetUniquenessValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ChangeUniquenessValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3838,222 +5643,530 @@ pub const IID_IDirectDrawSurface7 = &IID_IDirectDrawSurface7_Value;
 pub const IDirectDrawSurface7 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddAttachedSurface: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddOverlayDirtyRect: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Blt: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*RECT,
-            param1: ?*IDirectDrawSurface7,
-            param2: ?*RECT,
-            param3: u32,
-            param4: ?*DDBLTFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BltBatch: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*DDBLTBATCH,
-            param1: u32,
-            param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BltFast: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-            param1: u32,
-            param2: ?*IDirectDrawSurface7,
-            param3: ?*RECT,
-            param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteAttachedSurface: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-            param1: ?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumAttachedSurfaces: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*anyopaque,
-            param1: ?LPDDENUMSURFACESCALLBACK7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumOverlayZOrders: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-            param1: ?*anyopaque,
-            param2: ?LPDDENUMSURFACESCALLBACK7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Flip: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*IDirectDrawSurface7,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttachedSurface: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*DDSCAPS2,
-            param1: ?*?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBltStatus: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCaps: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*DDSCAPS2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClipper: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColorKey: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-            param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDC: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFlipStatus: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOverlayPosition: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*i32,
-            param1: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPalette: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPixelFormat: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*DDPIXELFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSurfaceDesc: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*DDSURFACEDESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*IDirectDraw,
-            param1: ?*DDSURFACEDESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsLost: fn(
-            self: *const IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Lock: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*RECT,
-            param1: ?*DDSURFACEDESC2,
-            param2: u32,
-            param3: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseDC: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Restore: fn(
-            self: *const IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClipper: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetColorKey: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-            param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOverlayPosition: fn(
-            self: *const IDirectDrawSurface7,
-            param0: i32,
-            param1: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPalette: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unlock: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlay: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*RECT,
-            param1: ?*IDirectDrawSurface7,
-            param2: ?*RECT,
-            param3: u32,
-            param4: ?*DDOVERLAYFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlayDisplay: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateOverlayZOrder: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-            param1: ?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDDInterface: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PageLock: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PageUnlock: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSurfaceDesc: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*DDSURFACEDESC2,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPrivateData: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*const Guid,
-            param1: ?*anyopaque,
-            param2: u32,
-            param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPrivateData: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*const Guid,
-            param1: ?*anyopaque,
-            param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FreePrivateData: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUniquenessValue: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ChangeUniquenessValue: fn(
-            self: *const IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPriority: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPriority: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLOD: fn(
-            self: *const IDirectDrawSurface7,
-            param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLOD: fn(
-            self: *const IDirectDrawSurface7,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddOverlayDirtyRect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Blt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface7,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDBLTFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface7,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDBLTFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BltBatch: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*DDBLTBATCH,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*DDBLTBATCH,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BltFast: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+                param1: u32,
+                param2: ?*IDirectDrawSurface7,
+                param3: ?*RECT,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+                param1: u32,
+                param2: ?*IDirectDrawSurface7,
+                param3: ?*RECT,
+                param4: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+                param1: ?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+                param1: ?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumAttachedSurfaces: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*anyopaque,
+                param1: ?LPDDENUMSURFACESCALLBACK7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*anyopaque,
+                param1: ?LPDDENUMSURFACESCALLBACK7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumOverlayZOrders: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+                param1: ?*anyopaque,
+                param2: ?LPDDENUMSURFACESCALLBACK7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+                param1: ?*anyopaque,
+                param2: ?LPDDENUMSURFACESCALLBACK7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Flip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*IDirectDrawSurface7,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*IDirectDrawSurface7,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAttachedSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*DDSCAPS2,
+                param1: ?*?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*DDSCAPS2,
+                param1: ?*?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBltStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*DDSCAPS2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*DDSCAPS2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetColorKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDC: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFlipStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOverlayPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*i32,
+                param1: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*i32,
+                param1: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPixelFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*DDPIXELFORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*DDPIXELFORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSurfaceDesc: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*DDSURFACEDESC2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*DDSURFACEDESC2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*IDirectDraw,
+                param1: ?*DDSURFACEDESC2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*IDirectDraw,
+                param1: ?*DDSURFACEDESC2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsLost: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Lock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*RECT,
+                param1: ?*DDSURFACEDESC2,
+                param2: u32,
+                param3: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*RECT,
+                param1: ?*DDSURFACEDESC2,
+                param2: u32,
+                param3: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReleaseDC: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?HDC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Restore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetClipper: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*IDirectDrawClipper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetColorKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+                param1: ?*DDCOLORKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOverlayPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: i32,
+                param1: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: i32,
+                param1: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPalette: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*IDirectDrawPalette,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface7,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDOVERLAYFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*RECT,
+                param1: ?*IDirectDrawSurface7,
+                param2: ?*RECT,
+                param3: u32,
+                param4: ?*DDOVERLAYFX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlayDisplay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateOverlayZOrder: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+                param1: ?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+                param1: ?*IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDDInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PageLock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PageUnlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetSurfaceDesc: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*DDSURFACEDESC2,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*DDSURFACEDESC2,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPrivateData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*const Guid,
+                param1: ?*anyopaque,
+                param2: u32,
+                param3: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*const Guid,
+                param1: ?*anyopaque,
+                param2: u32,
+                param3: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPrivateData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*const Guid,
+                param1: ?*anyopaque,
+                param2: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*const Guid,
+                param1: ?*anyopaque,
+                param2: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FreePrivateData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetUniquenessValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ChangeUniquenessValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPriority: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPriority: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetLOD: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLOD: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurface7,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4251,14 +6364,26 @@ pub const IID_IDirectDrawColorControl = &IID_IDirectDrawColorControl_Value;
 pub const IDirectDrawColorControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetColorControls: fn(
-            self: *const IDirectDrawColorControl,
-            param0: ?*DDCOLORCONTROL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetColorControls: fn(
-            self: *const IDirectDrawColorControl,
-            param0: ?*DDCOLORCONTROL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetColorControls: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawColorControl,
+                param0: ?*DDCOLORCONTROL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawColorControl,
+                param0: ?*DDCOLORCONTROL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetColorControls: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawColorControl,
+                param0: ?*DDCOLORCONTROL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawColorControl,
+                param0: ?*DDCOLORCONTROL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4280,16 +6405,30 @@ pub const IID_IDirectDrawGammaControl = &IID_IDirectDrawGammaControl_Value;
 pub const IDirectDrawGammaControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetGammaRamp: fn(
-            self: *const IDirectDrawGammaControl,
-            param0: u32,
-            param1: ?*DDGAMMARAMP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetGammaRamp: fn(
-            self: *const IDirectDrawGammaControl,
-            param0: u32,
-            param1: ?*DDGAMMARAMP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGammaRamp: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawGammaControl,
+                param0: u32,
+                param1: ?*DDGAMMARAMP,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawGammaControl,
+                param0: u32,
+                param1: ?*DDGAMMARAMP,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetGammaRamp: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawGammaControl,
+                param0: u32,
+                param1: ?*DDGAMMARAMP,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawGammaControl,
+                param0: u32,
+                param1: ?*DDGAMMARAMP,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4402,41 +6541,80 @@ pub const IDirectDrawVideoPortNotifyVtbl = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const LPDDENUMVIDEOCALLBACK = fn(
-    param0: ?*DDVIDEOPORTCAPS,
-    param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const LPDDENUMVIDEOCALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDVIDEOPORTCAPS,
+        param1: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?*DDVIDEOPORTCAPS,
+        param1: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 const IID_IDDVideoPortContainer_Value = Guid.initString("6c142760-a733-11ce-a521-0020af0be560");
 pub const IID_IDDVideoPortContainer = &IID_IDDVideoPortContainer_Value;
 pub const IDDVideoPortContainer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateVideoPort: fn(
-            self: *const IDDVideoPortContainer,
-            param0: u32,
-            param1: ?*DDVIDEOPORTDESC,
-            param2: ?*?*IDirectDrawVideoPort,
-            param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumVideoPorts: fn(
-            self: *const IDDVideoPortContainer,
-            param0: u32,
-            param1: ?*DDVIDEOPORTCAPS,
-            param2: ?*anyopaque,
-            param3: ?LPDDENUMVIDEOCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVideoPortConnectInfo: fn(
-            self: *const IDDVideoPortContainer,
-            param0: u32,
-            pcInfo: ?*u32,
-            param2: ?[*]DDVIDEOPORTCONNECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueryVideoPortStatus: fn(
-            self: *const IDDVideoPortContainer,
-            param0: u32,
-            param1: ?*DDVIDEOPORTSTATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVideoPort: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDDVideoPortContainer,
+                param0: u32,
+                param1: ?*DDVIDEOPORTDESC,
+                param2: ?*?*IDirectDrawVideoPort,
+                param3: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDDVideoPortContainer,
+                param0: u32,
+                param1: ?*DDVIDEOPORTDESC,
+                param2: ?*?*IDirectDrawVideoPort,
+                param3: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumVideoPorts: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDDVideoPortContainer,
+                param0: u32,
+                param1: ?*DDVIDEOPORTCAPS,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMVIDEOCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDDVideoPortContainer,
+                param0: u32,
+                param1: ?*DDVIDEOPORTCAPS,
+                param2: ?*anyopaque,
+                param3: ?LPDDENUMVIDEOCALLBACK,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetVideoPortConnectInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDDVideoPortContainer,
+                param0: u32,
+                pcInfo: ?*u32,
+                param2: ?[*]DDVIDEOPORTCONNECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDDVideoPortContainer,
+                param0: u32,
+                pcInfo: ?*u32,
+                param2: ?[*]DDVIDEOPORTCONNECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        QueryVideoPortStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDDVideoPortContainer,
+                param0: u32,
+                param1: ?*DDVIDEOPORTSTATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDDVideoPortContainer,
+                param0: u32,
+                param1: ?*DDVIDEOPORTSTATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4466,74 +6644,170 @@ pub const IID_IDirectDrawVideoPort = &IID_IDirectDrawVideoPort_Value;
 pub const IDirectDrawVideoPort = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Flip: fn(
-            self: *const IDirectDrawVideoPort,
-            param0: ?*IDirectDrawSurface,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBandwidthInfo: fn(
-            self: *const IDirectDrawVideoPort,
-            param0: ?*DDPIXELFORMAT,
-            param1: u32,
-            param2: u32,
-            param3: u32,
-            param4: ?*DDVIDEOPORTBANDWIDTH,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColorControls: fn(
-            self: *const IDirectDrawVideoPort,
-            param0: ?*DDCOLORCONTROL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputFormats: fn(
-            self: *const IDirectDrawVideoPort,
-            lpNumFormats: ?*u32,
-            param1: ?[*]DDPIXELFORMAT,
-            param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputFormats: fn(
-            self: *const IDirectDrawVideoPort,
-            param0: ?*DDPIXELFORMAT,
-            lpNumFormats: ?*u32,
-            param2: ?[*]DDPIXELFORMAT,
-            param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFieldPolarity: fn(
-            self: *const IDirectDrawVideoPort,
-            param0: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVideoLine: fn(
-            self: *const IDirectDrawVideoPort,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVideoSignalStatus: fn(
-            self: *const IDirectDrawVideoPort,
-            param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetColorControls: fn(
-            self: *const IDirectDrawVideoPort,
-            param0: ?*DDCOLORCONTROL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTargetSurface: fn(
-            self: *const IDirectDrawVideoPort,
-            param0: ?*IDirectDrawSurface,
-            param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartVideo: fn(
-            self: *const IDirectDrawVideoPort,
-            param0: ?*DDVIDEOPORTINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StopVideo: fn(
-            self: *const IDirectDrawVideoPort,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UpdateVideo: fn(
-            self: *const IDirectDrawVideoPort,
-            param0: ?*DDVIDEOPORTINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WaitForSync: fn(
-            self: *const IDirectDrawVideoPort,
-            param0: u32,
-            param1: u32,
-            param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Flip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*IDirectDrawSurface,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*IDirectDrawSurface,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBandwidthInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*DDPIXELFORMAT,
+                param1: u32,
+                param2: u32,
+                param3: u32,
+                param4: ?*DDVIDEOPORTBANDWIDTH,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*DDPIXELFORMAT,
+                param1: u32,
+                param2: u32,
+                param3: u32,
+                param4: ?*DDVIDEOPORTBANDWIDTH,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetColorControls: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*DDCOLORCONTROL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*DDCOLORCONTROL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputFormats: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                lpNumFormats: ?*u32,
+                param1: ?[*]DDPIXELFORMAT,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                lpNumFormats: ?*u32,
+                param1: ?[*]DDPIXELFORMAT,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputFormats: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*DDPIXELFORMAT,
+                lpNumFormats: ?*u32,
+                param2: ?[*]DDPIXELFORMAT,
+                param3: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*DDPIXELFORMAT,
+                lpNumFormats: ?*u32,
+                param2: ?[*]DDPIXELFORMAT,
+                param3: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFieldPolarity: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetVideoLine: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetVideoSignalStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetColorControls: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*DDCOLORCONTROL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*DDCOLORCONTROL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetTargetSurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*IDirectDrawSurface,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*IDirectDrawSurface,
+                param1: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StartVideo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*DDVIDEOPORTINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*DDVIDEOPORTINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StopVideo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UpdateVideo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*DDVIDEOPORTINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                param0: ?*DDVIDEOPORTINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WaitForSync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPort,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPort,
+                param0: u32,
+                param1: u32,
+                param2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4603,15 +6877,28 @@ pub const IID_IDirectDrawVideoPortNotify = &IID_IDirectDrawVideoPortNotify_Value
 pub const IDirectDrawVideoPortNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AcquireNotification: fn(
-            self: *const IDirectDrawVideoPortNotify,
-            param0: ?*?HANDLE,
-            param1: ?*DDVIDEOPORTNOTIFY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseNotification: fn(
-            self: *const IDirectDrawVideoPortNotify,
-            param0: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AcquireNotification: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPortNotify,
+                param0: ?*?HANDLE,
+                param1: ?*DDVIDEOPORTNOTIFY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPortNotify,
+                param0: ?*?HANDLE,
+                param1: ?*DDVIDEOPORTNOTIFY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReleaseNotification: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawVideoPortNotify,
+                param0: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawVideoPortNotify,
+                param0: ?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4721,17 +7008,34 @@ pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
 pub const IDirectDrawKernel = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCaps: fn(
-            self: *const IDirectDrawKernel,
-            param0: ?*DDKERNELCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKernelHandle: fn(
-            self: *const IDirectDrawKernel,
-            param0: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseKernelHandle: fn(
-            self: *const IDirectDrawKernel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawKernel,
+                param0: ?*DDKERNELCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawKernel,
+                param0: ?*DDKERNELCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetKernelHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawKernel,
+                param0: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawKernel,
+                param0: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReleaseKernelHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawKernel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawKernel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4757,13 +7061,24 @@ pub const IID_IDirectDrawSurfaceKernel = &IID_IDirectDrawSurfaceKernel_Value;
 pub const IDirectDrawSurfaceKernel = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetKernelHandle: fn(
-            self: *const IDirectDrawSurfaceKernel,
-            param0: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseKernelHandle: fn(
-            self: *const IDirectDrawSurfaceKernel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKernelHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurfaceKernel,
+                param0: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurfaceKernel,
+                param0: ?*usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReleaseKernelHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectDrawSurfaceKernel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectDrawSurfaceKernel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4964,9 +7279,14 @@ pub const DDVERSIONDATA = extern struct {
     dwReserved2: usize,
 };
 
-pub const LPDD32BITDRIVERINIT = fn(
-    dwContext: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDD32BITDRIVERINIT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        dwContext: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        dwContext: u32,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const VIDMEM = extern struct {
     dwFlags: u32,
@@ -5018,53 +7338,109 @@ pub const IUNKNOWN_LIST = extern struct {
     lpIUnknown: ?*IUnknown,
 };
 
-pub const LPDDHEL_INIT = fn(
-    param0: ?*DDRAWI_DIRECTDRAW_GBL,
-    param1: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const LPDDHEL_INIT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDRAWI_DIRECTDRAW_GBL,
+        param1: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?*DDRAWI_DIRECTDRAW_GBL,
+        param1: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const LPDDHAL_SETCOLORKEY = fn(
-    param0: ?*DDHAL_DRVSETCOLORKEYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_SETCOLORKEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_DRVSETCOLORKEYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_DRVSETCOLORKEYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHAL_CANCREATESURFACE = fn(
-    param0: ?*DDHAL_CANCREATESURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_CANCREATESURFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_CANCREATESURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_CANCREATESURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_WAITFORVERTICALBLANK = fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_WAITFORVERTICALBLANK = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_CREATESURFACE = fn(
-    param0: ?*DDHAL_CREATESURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_CREATESURFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_CREATESURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_CREATESURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHAL_DESTROYDRIVER = fn(
-    param0: ?*DDHAL_DESTROYDRIVERDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_DESTROYDRIVER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_DESTROYDRIVERDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_DESTROYDRIVERDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHAL_SETMODE = fn(
-    param0: ?*DDHAL_SETMODEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_SETMODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_SETMODEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_SETMODEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHAL_CREATEPALETTE = fn(
-    param0: ?*DDHAL_CREATEPALETTEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_CREATEPALETTE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_CREATEPALETTEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_CREATEPALETTEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHAL_GETSCANLINE = fn(
-    param0: ?*DDHAL_GETSCANLINEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_GETSCANLINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETSCANLINEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETSCANLINEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHAL_SETEXCLUSIVEMODE = fn(
-    param0: ?*DDHAL_SETEXCLUSIVEMODEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_SETEXCLUSIVEMODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_SETEXCLUSIVEMODEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_SETEXCLUSIVEMODEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHAL_FLIPTOGDISURFACE = fn(
-    param0: ?*DDHAL_FLIPTOGDISURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_FLIPTOGDISURFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_FLIPTOGDISURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_FLIPTOGDISURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHAL_GETDRIVERINFO = fn(
-    param0: ?*DDHAL_GETDRIVERINFODATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_GETDRIVERINFO = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETDRIVERINFODATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETDRIVERINFODATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DDHAL_DDCALLBACKS = extern struct {
     dwSize: u32,
@@ -5081,13 +7457,23 @@ pub const DDHAL_DDCALLBACKS = extern struct {
     FlipToGDISurface: ?LPDDHAL_FLIPTOGDISURFACE,
 };
 
-pub const LPDDHALPALCB_DESTROYPALETTE = fn(
-    param0: ?*DDHAL_DESTROYPALETTEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALPALCB_DESTROYPALETTE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_DESTROYPALETTEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_DESTROYPALETTEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALPALCB_SETENTRIES = fn(
-    param0: ?*DDHAL_SETENTRIESDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALPALCB_SETENTRIES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_SETENTRIESDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_SETENTRIESDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DDHAL_DDPALETTECALLBACKS = extern struct {
     dwSize: u32,
@@ -5096,57 +7482,122 @@ pub const DDHAL_DDPALETTECALLBACKS = extern struct {
     SetEntries: ?LPDDHALPALCB_SETENTRIES,
 };
 
-pub const LPDDHALSURFCB_LOCK = fn(
-    param0: ?*DDHAL_LOCKDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_LOCK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_LOCKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_LOCKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALSURFCB_UNLOCK = fn(
-    param0: ?*DDHAL_UNLOCKDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_UNLOCK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_UNLOCKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_UNLOCKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALSURFCB_BLT = fn(
-    param0: ?*DDHAL_BLTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_BLT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_BLTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_BLTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALSURFCB_UPDATEOVERLAY = fn(
-    param0: ?*DDHAL_UPDATEOVERLAYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_UPDATEOVERLAY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_UPDATEOVERLAYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_UPDATEOVERLAYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALSURFCB_SETOVERLAYPOSITION = fn(
-    param0: ?*DDHAL_SETOVERLAYPOSITIONDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_SETOVERLAYPOSITION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_SETOVERLAYPOSITIONDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_SETOVERLAYPOSITIONDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALSURFCB_SETPALETTE = fn(
-    param0: ?*DDHAL_SETPALETTEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_SETPALETTE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_SETPALETTEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_SETPALETTEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALSURFCB_FLIP = fn(
-    param0: ?*DDHAL_FLIPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_FLIP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_FLIPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_FLIPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALSURFCB_DESTROYSURFACE = fn(
-    param0: ?*DDHAL_DESTROYSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_DESTROYSURFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_DESTROYSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_DESTROYSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALSURFCB_SETCLIPLIST = fn(
-    param0: ?*DDHAL_SETCLIPLISTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_SETCLIPLIST = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_SETCLIPLISTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_SETCLIPLISTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALSURFCB_ADDATTACHEDSURFACE = fn(
-    param0: ?*DDHAL_ADDATTACHEDSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_ADDATTACHEDSURFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_ADDATTACHEDSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_ADDATTACHEDSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALSURFCB_SETCOLORKEY = fn(
-    param0: ?*DDHAL_SETCOLORKEYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_SETCOLORKEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_SETCOLORKEYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_SETCOLORKEYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALSURFCB_GETBLTSTATUS = fn(
-    param0: ?*DDHAL_GETBLTSTATUSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_GETBLTSTATUS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETBLTSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETBLTSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALSURFCB_GETFLIPSTATUS = fn(
-    param0: ?*DDHAL_GETFLIPSTATUSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALSURFCB_GETFLIPSTATUS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETFLIPSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETFLIPSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DDHAL_DDSURFACECALLBACKS = extern struct {
     dwSize: u32,
@@ -5167,17 +7618,32 @@ pub const DDHAL_DDSURFACECALLBACKS = extern struct {
     SetPalette: ?LPDDHALSURFCB_SETPALETTE,
 };
 
-pub const LPDDHAL_GETAVAILDRIVERMEMORY = fn(
-    param0: ?*DDHAL_GETAVAILDRIVERMEMORYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_GETAVAILDRIVERMEMORY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETAVAILDRIVERMEMORYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETAVAILDRIVERMEMORYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHAL_UPDATENONLOCALHEAP = fn(
-    param0: ?*DDHAL_UPDATENONLOCALHEAPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_UPDATENONLOCALHEAP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_UPDATENONLOCALHEAPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_UPDATENONLOCALHEAPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHAL_GETHEAPALIGNMENT = fn(
-    param0: ?*DDHAL_GETHEAPALIGNMENTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_GETHEAPALIGNMENT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETHEAPALIGNMENTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETHEAPALIGNMENTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DDHAL_DDMISCELLANEOUSCALLBACKS = extern struct {
     dwSize: u32,
@@ -5188,17 +7654,32 @@ pub const DDHAL_DDMISCELLANEOUSCALLBACKS = extern struct {
     GetSysmemBltStatus: ?LPDDHALSURFCB_GETBLTSTATUS,
 };
 
-pub const LPDDHAL_CREATESURFACEEX = fn(
-    param0: ?*DDHAL_CREATESURFACEEXDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_CREATESURFACEEX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_CREATESURFACEEXDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_CREATESURFACEEXDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHAL_GETDRIVERSTATE = fn(
-    param0: ?*DDHAL_GETDRIVERSTATEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_GETDRIVERSTATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETDRIVERSTATEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETDRIVERSTATEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHAL_DESTROYDDLOCAL = fn(
-    param0: ?*DDHAL_DESTROYDDLOCALDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHAL_DESTROYDDLOCAL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_DESTROYDDLOCALDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_DESTROYDDLOCALDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DDHAL_DDMISCELLANEOUS2CALLBACKS = extern struct {
     dwSize: u32,
@@ -5209,25 +7690,50 @@ pub const DDHAL_DDMISCELLANEOUS2CALLBACKS = extern struct {
     DestroyDDLocal: ?LPDDHAL_DESTROYDDLOCAL,
 };
 
-pub const LPDDHALEXEBUFCB_CANCREATEEXEBUF = fn(
-    param0: ?*DDHAL_CANCREATESURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALEXEBUFCB_CANCREATEEXEBUF = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_CANCREATESURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_CANCREATESURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALEXEBUFCB_CREATEEXEBUF = fn(
-    param0: ?*DDHAL_CREATESURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALEXEBUFCB_CREATEEXEBUF = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_CREATESURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_CREATESURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALEXEBUFCB_DESTROYEXEBUF = fn(
-    param0: ?*DDHAL_DESTROYSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALEXEBUFCB_DESTROYEXEBUF = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_DESTROYSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_DESTROYSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALEXEBUFCB_LOCKEXEBUF = fn(
-    param0: ?*DDHAL_LOCKDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALEXEBUFCB_LOCKEXEBUF = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_LOCKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_LOCKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALEXEBUFCB_UNLOCKEXEBUF = fn(
-    param0: ?*DDHAL_UNLOCKDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALEXEBUFCB_UNLOCKEXEBUF = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_UNLOCKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_UNLOCKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DDHAL_DDEXEBUFCALLBACKS = extern struct {
     dwSize: u32,
@@ -5239,65 +7745,140 @@ pub const DDHAL_DDEXEBUFCALLBACKS = extern struct {
     UnlockExecuteBuffer: ?LPDDHALEXEBUFCB_UNLOCKEXEBUF,
 };
 
-pub const LPDDHALVPORTCB_CANCREATEVIDEOPORT = fn(
-    param0: ?*DDHAL_CANCREATEVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_CANCREATEVIDEOPORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_CANCREATEVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_CANCREATEVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_CREATEVIDEOPORT = fn(
-    param0: ?*DDHAL_CREATEVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_CREATEVIDEOPORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_CREATEVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_CREATEVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_FLIP = fn(
-    param0: ?*DDHAL_FLIPVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_FLIP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_FLIPVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_FLIPVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_GETBANDWIDTH = fn(
-    param0: ?*DDHAL_GETVPORTBANDWIDTHDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_GETBANDWIDTH = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETVPORTBANDWIDTHDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETVPORTBANDWIDTHDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_GETINPUTFORMATS = fn(
-    param0: ?*DDHAL_GETVPORTINPUTFORMATDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_GETINPUTFORMATS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETVPORTINPUTFORMATDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETVPORTINPUTFORMATDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_GETOUTPUTFORMATS = fn(
-    param0: ?*DDHAL_GETVPORTOUTPUTFORMATDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_GETOUTPUTFORMATS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETVPORTOUTPUTFORMATDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETVPORTOUTPUTFORMATDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_GETFIELD = fn(
-    param0: ?*DDHAL_GETVPORTFIELDDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_GETFIELD = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETVPORTFIELDDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETVPORTFIELDDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_GETLINE = fn(
-    param0: ?*DDHAL_GETVPORTLINEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_GETLINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETVPORTLINEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETVPORTLINEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_GETVPORTCONNECT = fn(
-    param0: ?*DDHAL_GETVPORTCONNECTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_GETVPORTCONNECT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETVPORTCONNECTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETVPORTCONNECTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_DESTROYVPORT = fn(
-    param0: ?*DDHAL_DESTROYVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_DESTROYVPORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_DESTROYVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_DESTROYVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_GETFLIPSTATUS = fn(
-    param0: ?*DDHAL_GETVPORTFLIPSTATUSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_GETFLIPSTATUS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETVPORTFLIPSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETVPORTFLIPSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_UPDATE = fn(
-    param0: ?*DDHAL_UPDATEVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_UPDATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_UPDATEVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_UPDATEVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_WAITFORSYNC = fn(
-    param0: ?*DDHAL_WAITFORVPORTSYNCDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_WAITFORSYNC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_WAITFORVPORTSYNCDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_WAITFORVPORTSYNCDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_GETSIGNALSTATUS = fn(
-    param0: ?*DDHAL_GETVPORTSIGNALDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_GETSIGNALSTATUS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETVPORTSIGNALDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETVPORTSIGNALDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALVPORTCB_COLORCONTROL = fn(
-    param0: ?*DDHAL_VPORTCOLORDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALVPORTCB_COLORCONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_VPORTCOLORDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_VPORTCOLORDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DDHAL_DDVIDEOPORTCALLBACKS = extern struct {
     dwSize: u32,
@@ -5320,9 +7901,14 @@ pub const DDHAL_DDVIDEOPORTCALLBACKS = extern struct {
     ColorControl: ?LPDDHALVPORTCB_COLORCONTROL,
 };
 
-pub const LPDDHALCOLORCB_COLORCONTROL = fn(
-    param0: ?*DDHAL_COLORCONTROLDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALCOLORCB_COLORCONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_COLORCONTROLDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_COLORCONTROLDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DDHAL_DDCOLORCONTROLCALLBACKS = extern struct {
     dwSize: u32,
@@ -5330,13 +7916,23 @@ pub const DDHAL_DDCOLORCONTROLCALLBACKS = extern struct {
     ColorControl: ?LPDDHALCOLORCB_COLORCONTROL,
 };
 
-pub const LPDDHALKERNELCB_SYNCSURFACE = fn(
-    param0: ?*DDHAL_SYNCSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALKERNELCB_SYNCSURFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_SYNCSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_SYNCSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALKERNELCB_SYNCVIDEOPORT = fn(
-    param0: ?*DDHAL_SYNCVIDEOPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALKERNELCB_SYNCVIDEOPORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_SYNCVIDEOPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_SYNCVIDEOPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DDHAL_DDKERNELCALLBACKS = extern struct {
     dwSize: u32,
@@ -5345,50 +7941,106 @@ pub const DDHAL_DDKERNELCALLBACKS = extern struct {
     SyncVideoPortData: ?LPDDHALKERNELCB_SYNCVIDEOPORT,
 };
 
-pub const LPDDGAMMACALIBRATORPROC = fn(
-    param0: ?*DDGAMMARAMP,
-    param1: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const LPDDGAMMACALIBRATORPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDGAMMARAMP,
+        param1: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        param0: ?*DDGAMMARAMP,
+        param1: ?*u8,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const LPDDHALMOCOMPCB_GETGUIDS = fn(
-    param0: ?*DDHAL_GETMOCOMPGUIDSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALMOCOMPCB_GETGUIDS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETMOCOMPGUIDSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETMOCOMPGUIDSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALMOCOMPCB_GETFORMATS = fn(
-    param0: ?*DDHAL_GETMOCOMPFORMATSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALMOCOMPCB_GETFORMATS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETMOCOMPFORMATSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETMOCOMPFORMATSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALMOCOMPCB_CREATE = fn(
-    param0: ?*DDHAL_CREATEMOCOMPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALMOCOMPCB_CREATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_CREATEMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_CREATEMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALMOCOMPCB_GETCOMPBUFFINFO = fn(
-    param0: ?*DDHAL_GETMOCOMPCOMPBUFFDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALMOCOMPCB_GETCOMPBUFFINFO = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETMOCOMPCOMPBUFFDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETMOCOMPCOMPBUFFDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALMOCOMPCB_GETINTERNALINFO = fn(
-    param0: ?*DDHAL_GETINTERNALMOCOMPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALMOCOMPCB_GETINTERNALINFO = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_GETINTERNALMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_GETINTERNALMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALMOCOMPCB_BEGINFRAME = fn(
-    param0: ?*DDHAL_BEGINMOCOMPFRAMEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALMOCOMPCB_BEGINFRAME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_BEGINMOCOMPFRAMEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_BEGINMOCOMPFRAMEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALMOCOMPCB_ENDFRAME = fn(
-    param0: ?*DDHAL_ENDMOCOMPFRAMEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALMOCOMPCB_ENDFRAME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_ENDMOCOMPFRAMEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_ENDMOCOMPFRAMEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALMOCOMPCB_RENDER = fn(
-    param0: ?*DDHAL_RENDERMOCOMPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALMOCOMPCB_RENDER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_RENDERMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_RENDERMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALMOCOMPCB_QUERYSTATUS = fn(
-    param0: ?*DDHAL_QUERYMOCOMPSTATUSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALMOCOMPCB_QUERYSTATUS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_QUERYMOCOMPSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_QUERYMOCOMPSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const LPDDHALMOCOMPCB_DESTROY = fn(
-    param0: ?*DDHAL_DESTROYMOCOMPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const LPDDHALMOCOMPCB_DESTROY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DDHAL_DESTROYMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DDHAL_DESTROYMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DDHAL_DDMOTIONCOMPCALLBACKS = extern struct {
     dwSize: u32,
@@ -5930,23 +8582,44 @@ pub const DDHALINFO = extern struct {
     lpDDExeBufCallbacks: ?*DDHAL_DDEXEBUFCALLBACKS,
 };
 
-pub const LPDDHAL_SETINFO = fn(
-    lpDDHalInfo: ?*DDHALINFO,
-    reset: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const LPDDHAL_SETINFO = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpDDHalInfo: ?*DDHALINFO,
+        reset: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        lpDDHalInfo: ?*DDHALINFO,
+        reset: BOOL,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const LPDDHAL_VIDMEMALLOC = fn(
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    heap: i32,
-    dwWidth: u32,
-    dwHeight: u32,
-) callconv(@import("std").os.windows.WINAPI) usize;
+pub const LPDDHAL_VIDMEMALLOC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+        heap: i32,
+        dwWidth: u32,
+        dwHeight: u32,
+    ) callconv(@import("std").os.windows.WINAPI) usize,
+    else => *const fn(
+        lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+        heap: i32,
+        dwWidth: u32,
+        dwHeight: u32,
+    ) callconv(@import("std").os.windows.WINAPI) usize,
+} ;
 
-pub const LPDDHAL_VIDMEMFREE = fn(
-    lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-    heap: i32,
-    fpMem: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_VIDMEMFREE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+        heap: i32,
+        fpMem: usize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
+        heap: i32,
+        fpMem: usize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const DDHALDDRAWFNS = extern struct {
     dwSize: u32,
@@ -6580,45 +9253,95 @@ pub const VIDEOMEMORYINFO = extern struct {
     pvPrimary: ?*anyopaque,
 };
 
-pub const PDD_SETCOLORKEY = fn(
-    param0: ?*DD_DRVSETCOLORKEYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SETCOLORKEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_DRVSETCOLORKEYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_DRVSETCOLORKEYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_CANCREATESURFACE = fn(
-    param0: ?*DD_CANCREATESURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_CANCREATESURFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_CANCREATESURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_CANCREATESURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_WAITFORVERTICALBLANK = fn(
-    param0: ?*DD_WAITFORVERTICALBLANKDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_WAITFORVERTICALBLANK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_WAITFORVERTICALBLANKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_WAITFORVERTICALBLANKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_CREATESURFACE = fn(
-    param0: ?*DD_CREATESURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_CREATESURFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_CREATESURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_CREATESURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_DESTROYDRIVER = fn(
-    param0: ?*_DD_DESTROYDRIVERDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_DESTROYDRIVER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*_DD_DESTROYDRIVERDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*_DD_DESTROYDRIVERDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SETMODE = fn(
-    param0: ?*_DD_SETMODEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SETMODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*_DD_SETMODEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*_DD_SETMODEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_CREATEPALETTE = fn(
-    param0: ?*DD_CREATEPALETTEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_CREATEPALETTE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_CREATEPALETTEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_CREATEPALETTEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_GETSCANLINE = fn(
-    param0: ?*DD_GETSCANLINEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_GETSCANLINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETSCANLINEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETSCANLINEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_MAPMEMORY = fn(
-    param0: ?*DD_MAPMEMORYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_MAPMEMORY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_MAPMEMORYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_MAPMEMORYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_GETDRIVERINFO = fn(
-    param0: ?*DD_GETDRIVERINFODATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_GETDRIVERINFO = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETDRIVERINFODATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETDRIVERINFODATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DD_CALLBACKS = extern struct {
     dwSize: u32,
@@ -6634,9 +9357,14 @@ pub const DD_CALLBACKS = extern struct {
     MapMemory: ?PDD_MAPMEMORY,
 };
 
-pub const PDD_GETAVAILDRIVERMEMORY = fn(
-    param0: ?*DD_GETAVAILDRIVERMEMORYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_GETAVAILDRIVERMEMORY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETAVAILDRIVERMEMORYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETAVAILDRIVERMEMORYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DD_MISCELLANEOUSCALLBACKS = extern struct {
     dwSize: u32,
@@ -6644,21 +9372,41 @@ pub const DD_MISCELLANEOUSCALLBACKS = extern struct {
     GetAvailDriverMemory: ?PDD_GETAVAILDRIVERMEMORY,
 };
 
-pub const PDD_ALPHABLT = fn(
-    param0: ?*DD_BLTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_ALPHABLT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_BLTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_BLTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_CREATESURFACEEX = fn(
-    param0: ?*DD_CREATESURFACEEXDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_CREATESURFACEEX = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_CREATESURFACEEXDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_CREATESURFACEEXDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_GETDRIVERSTATE = fn(
-    param0: ?*DD_GETDRIVERSTATEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_GETDRIVERSTATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETDRIVERSTATEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETDRIVERSTATEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_DESTROYDDLOCAL = fn(
-    param0: ?*DD_DESTROYDDLOCALDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_DESTROYDDLOCAL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_DESTROYDDLOCALDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_DESTROYDDLOCALDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DD_MISCELLANEOUS2CALLBACKS = extern struct {
     dwSize: u32,
@@ -6669,17 +9417,32 @@ pub const DD_MISCELLANEOUS2CALLBACKS = extern struct {
     DestroyDDLocal: ?PDD_DESTROYDDLOCAL,
 };
 
-pub const PDD_FREEDRIVERMEMORY = fn(
-    param0: ?*DD_FREEDRIVERMEMORYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_FREEDRIVERMEMORY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_FREEDRIVERMEMORYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_FREEDRIVERMEMORYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SETEXCLUSIVEMODE = fn(
-    param0: ?*DD_SETEXCLUSIVEMODEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SETEXCLUSIVEMODE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_SETEXCLUSIVEMODEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_SETEXCLUSIVEMODEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_FLIPTOGDISURFACE = fn(
-    param0: ?*DD_FLIPTOGDISURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_FLIPTOGDISURFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_FLIPTOGDISURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_FLIPTOGDISURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DD_NTCALLBACKS = extern struct {
     dwSize: u32,
@@ -6689,13 +9452,23 @@ pub const DD_NTCALLBACKS = extern struct {
     FlipToGDISurface: ?PDD_FLIPTOGDISURFACE,
 };
 
-pub const PDD_PALCB_DESTROYPALETTE = fn(
-    param0: ?*DD_DESTROYPALETTEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_PALCB_DESTROYPALETTE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_DESTROYPALETTEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_DESTROYPALETTEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_PALCB_SETENTRIES = fn(
-    param0: ?*DD_SETENTRIESDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_PALCB_SETENTRIES = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_SETENTRIESDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_SETENTRIESDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DD_PALETTECALLBACKS = extern struct {
     dwSize: u32,
@@ -6704,57 +9477,122 @@ pub const DD_PALETTECALLBACKS = extern struct {
     SetEntries: ?PDD_PALCB_SETENTRIES,
 };
 
-pub const PDD_SURFCB_LOCK = fn(
-    param0: ?*DD_LOCKDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_LOCK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_LOCKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_LOCKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SURFCB_UNLOCK = fn(
-    param0: ?*DD_UNLOCKDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_UNLOCK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_UNLOCKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_UNLOCKDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SURFCB_BLT = fn(
-    param0: ?*DD_BLTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_BLT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_BLTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_BLTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SURFCB_UPDATEOVERLAY = fn(
-    param0: ?*DD_UPDATEOVERLAYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_UPDATEOVERLAY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_UPDATEOVERLAYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_UPDATEOVERLAYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SURFCB_SETOVERLAYPOSITION = fn(
-    param0: ?*DD_SETOVERLAYPOSITIONDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_SETOVERLAYPOSITION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_SETOVERLAYPOSITIONDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_SETOVERLAYPOSITIONDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SURFCB_SETPALETTE = fn(
-    param0: ?*DD_SETPALETTEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_SETPALETTE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_SETPALETTEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_SETPALETTEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SURFCB_FLIP = fn(
-    param0: ?*DD_FLIPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_FLIP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_FLIPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_FLIPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SURFCB_DESTROYSURFACE = fn(
-    param0: ?*DD_DESTROYSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_DESTROYSURFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_DESTROYSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_DESTROYSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SURFCB_SETCLIPLIST = fn(
-    param0: ?*DD_SETCLIPLISTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_SETCLIPLIST = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_SETCLIPLISTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_SETCLIPLISTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SURFCB_ADDATTACHEDSURFACE = fn(
-    param0: ?*DD_ADDATTACHEDSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_ADDATTACHEDSURFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_ADDATTACHEDSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_ADDATTACHEDSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SURFCB_SETCOLORKEY = fn(
-    param0: ?*DD_SETCOLORKEYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_SETCOLORKEY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_SETCOLORKEYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_SETCOLORKEYDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SURFCB_GETBLTSTATUS = fn(
-    param0: ?*DD_GETBLTSTATUSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_GETBLTSTATUS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETBLTSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETBLTSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_SURFCB_GETFLIPSTATUS = fn(
-    param0: ?*DD_GETFLIPSTATUSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_SURFCB_GETFLIPSTATUS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETFLIPSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETFLIPSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DD_SURFACECALLBACKS = extern struct {
     dwSize: u32,
@@ -6775,69 +9613,149 @@ pub const DD_SURFACECALLBACKS = extern struct {
     SetPalette: ?PDD_SURFCB_SETPALETTE,
 };
 
-pub const PDD_VPORTCB_CANCREATEVIDEOPORT = fn(
-    param0: ?*DD_CANCREATEVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_CANCREATEVIDEOPORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_CANCREATEVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_CANCREATEVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_CREATEVIDEOPORT = fn(
-    param0: ?*DD_CREATEVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_CREATEVIDEOPORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_CREATEVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_CREATEVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_FLIP = fn(
-    param0: ?*DD_FLIPVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_FLIP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_FLIPVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_FLIPVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_GETBANDWIDTH = fn(
-    param0: ?*DD_GETVPORTBANDWIDTHDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_GETBANDWIDTH = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETVPORTBANDWIDTHDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETVPORTBANDWIDTHDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_GETINPUTFORMATS = fn(
-    param0: ?*DD_GETVPORTINPUTFORMATDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_GETINPUTFORMATS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETVPORTINPUTFORMATDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETVPORTINPUTFORMATDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_GETOUTPUTFORMATS = fn(
-    param0: ?*DD_GETVPORTOUTPUTFORMATDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_GETOUTPUTFORMATS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETVPORTOUTPUTFORMATDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETVPORTOUTPUTFORMATDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_GETAUTOFLIPSURF = fn(
-    param0: ?*_DD_GETVPORTAUTOFLIPSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_GETAUTOFLIPSURF = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*_DD_GETVPORTAUTOFLIPSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*_DD_GETVPORTAUTOFLIPSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_GETFIELD = fn(
-    param0: ?*DD_GETVPORTFIELDDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_GETFIELD = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETVPORTFIELDDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETVPORTFIELDDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_GETLINE = fn(
-    param0: ?*DD_GETVPORTLINEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_GETLINE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETVPORTLINEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETVPORTLINEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_GETVPORTCONNECT = fn(
-    param0: ?*DD_GETVPORTCONNECTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_GETVPORTCONNECT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETVPORTCONNECTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETVPORTCONNECTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_DESTROYVPORT = fn(
-    param0: ?*DD_DESTROYVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_DESTROYVPORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_DESTROYVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_DESTROYVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_GETFLIPSTATUS = fn(
-    param0: ?*DD_GETVPORTFLIPSTATUSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_GETFLIPSTATUS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETVPORTFLIPSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETVPORTFLIPSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_UPDATE = fn(
-    param0: ?*DD_UPDATEVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_UPDATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_UPDATEVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_UPDATEVPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_WAITFORSYNC = fn(
-    param0: ?*DD_WAITFORVPORTSYNCDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_WAITFORSYNC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_WAITFORVPORTSYNCDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_WAITFORVPORTSYNCDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_GETSIGNALSTATUS = fn(
-    param0: ?*DD_GETVPORTSIGNALDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_GETSIGNALSTATUS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETVPORTSIGNALDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETVPORTSIGNALDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_VPORTCB_COLORCONTROL = fn(
-    param0: ?*DD_VPORTCOLORDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_VPORTCB_COLORCONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_VPORTCOLORDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_VPORTCOLORDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DD_VIDEOPORTCALLBACKS = extern struct {
     dwSize: u32,
@@ -6860,9 +9778,14 @@ pub const DD_VIDEOPORTCALLBACKS = extern struct {
     ColorControl: ?PDD_VPORTCB_COLORCONTROL,
 };
 
-pub const PDD_COLORCB_COLORCONTROL = fn(
-    param0: ?*DD_COLORCONTROLDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_COLORCB_COLORCONTROL = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_COLORCONTROLDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_COLORCONTROLDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DD_COLORCONTROLCALLBACKS = extern struct {
     dwSize: u32,
@@ -6870,13 +9793,23 @@ pub const DD_COLORCONTROLCALLBACKS = extern struct {
     ColorControl: ?PDD_COLORCB_COLORCONTROL,
 };
 
-pub const PDD_KERNELCB_SYNCSURFACE = fn(
-    param0: ?*DD_SYNCSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_KERNELCB_SYNCSURFACE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_SYNCSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_SYNCSURFACEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_KERNELCB_SYNCVIDEOPORT = fn(
-    param0: ?*DD_SYNCVIDEOPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_KERNELCB_SYNCVIDEOPORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_SYNCVIDEOPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_SYNCVIDEOPORTDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DD_KERNELCALLBACKS = extern struct {
     dwSize: u32,
@@ -6885,45 +9818,95 @@ pub const DD_KERNELCALLBACKS = extern struct {
     SyncVideoPortData: ?PDD_KERNELCB_SYNCVIDEOPORT,
 };
 
-pub const PDD_MOCOMPCB_GETGUIDS = fn(
-    param0: ?*DD_GETMOCOMPGUIDSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_MOCOMPCB_GETGUIDS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETMOCOMPGUIDSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETMOCOMPGUIDSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_MOCOMPCB_GETFORMATS = fn(
-    param0: ?*DD_GETMOCOMPFORMATSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_MOCOMPCB_GETFORMATS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETMOCOMPFORMATSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETMOCOMPFORMATSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_MOCOMPCB_CREATE = fn(
-    param0: ?*DD_CREATEMOCOMPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_MOCOMPCB_CREATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_CREATEMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_CREATEMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_MOCOMPCB_GETCOMPBUFFINFO = fn(
-    param0: ?*DD_GETMOCOMPCOMPBUFFDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_MOCOMPCB_GETCOMPBUFFINFO = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETMOCOMPCOMPBUFFDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETMOCOMPCOMPBUFFDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_MOCOMPCB_GETINTERNALINFO = fn(
-    param0: ?*DD_GETINTERNALMOCOMPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_MOCOMPCB_GETINTERNALINFO = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_GETINTERNALMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_GETINTERNALMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_MOCOMPCB_BEGINFRAME = fn(
-    param0: ?*DD_BEGINMOCOMPFRAMEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_MOCOMPCB_BEGINFRAME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_BEGINMOCOMPFRAMEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_BEGINMOCOMPFRAMEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_MOCOMPCB_ENDFRAME = fn(
-    param0: ?*DD_ENDMOCOMPFRAMEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_MOCOMPCB_ENDFRAME = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_ENDMOCOMPFRAMEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_ENDMOCOMPFRAMEDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_MOCOMPCB_RENDER = fn(
-    param0: ?*DD_RENDERMOCOMPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_MOCOMPCB_RENDER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_RENDERMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_RENDERMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_MOCOMPCB_QUERYSTATUS = fn(
-    param0: ?*DD_QUERYMOCOMPSTATUSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_MOCOMPCB_QUERYSTATUS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_QUERYMOCOMPSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_QUERYMOCOMPSTATUSDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDD_MOCOMPCB_DESTROY = fn(
-    param0: ?*DD_DESTROYMOCOMPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDD_MOCOMPCB_DESTROY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*DD_DESTROYMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*DD_DESTROYMOCOMPDATA,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DD_MOTIONCOMPCALLBACKS = extern struct {
     dwSize: u32,
@@ -7802,9 +10785,14 @@ pub const DX_IRQDATA = extern struct {
     dwIrqFlags: u32,
 };
 
-pub const PDX_IRQCALLBACK = fn(
-    pIrqData: ?*DX_IRQDATA,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PDX_IRQCALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pIrqData: ?*DX_IRQDATA,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        pIrqData: ?*DX_IRQDATA,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const DDGETIRQINFO = extern struct {
     dwFlags: u32,
@@ -7901,83 +10889,174 @@ pub const DDGETTRANSFERSTATUSOUTINFO = extern struct {
     dwTransferID: usize,
 };
 
-pub const PDX_GETIRQINFO = fn(
-    param0: ?*anyopaque,
-    param1: ?*anyopaque,
-    param2: ?*DDGETIRQINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_GETIRQINFO = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*anyopaque,
+        param2: ?*DDGETIRQINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*anyopaque,
+        param2: ?*DDGETIRQINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDX_ENABLEIRQ = fn(
-    param0: ?*anyopaque,
-    param1: ?*DDENABLEIRQINFO,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_ENABLEIRQ = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*DDENABLEIRQINFO,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*DDENABLEIRQINFO,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDX_SKIPNEXTFIELD = fn(
-    param0: ?*anyopaque,
-    param1: ?*DDSKIPNEXTFIELDINFO,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_SKIPNEXTFIELD = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*DDSKIPNEXTFIELDINFO,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*DDSKIPNEXTFIELDINFO,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDX_BOBNEXTFIELD = fn(
-    param0: ?*anyopaque,
-    param1: ?*DDBOBNEXTFIELDINFO,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_BOBNEXTFIELD = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*DDBOBNEXTFIELDINFO,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*DDBOBNEXTFIELDINFO,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDX_SETSTATE = fn(
-    param0: ?*anyopaque,
-    param1: ?*DDSETSTATEININFO,
-    param2: ?*DDSETSTATEOUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_SETSTATE = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*DDSETSTATEININFO,
+        param2: ?*DDSETSTATEOUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*DDSETSTATEININFO,
+        param2: ?*DDSETSTATEOUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDX_LOCK = fn(
-    param0: ?*anyopaque,
-    param1: ?*DDLOCKININFO,
-    param2: ?*DDLOCKOUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_LOCK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*DDLOCKININFO,
+        param2: ?*DDLOCKOUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*DDLOCKININFO,
+        param2: ?*DDLOCKOUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDX_FLIPOVERLAY = fn(
-    param0: ?*anyopaque,
-    param1: ?*DDFLIPOVERLAYINFO,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_FLIPOVERLAY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*DDFLIPOVERLAYINFO,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*DDFLIPOVERLAYINFO,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDX_FLIPVIDEOPORT = fn(
-    param0: ?*anyopaque,
-    param1: ?*DDFLIPVIDEOPORTINFO,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_FLIPVIDEOPORT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*DDFLIPVIDEOPORTINFO,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*DDFLIPVIDEOPORTINFO,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDX_GETPOLARITY = fn(
-    param0: ?*anyopaque,
-    param1: ?*DDGETPOLARITYININFO,
-    param2: ?*DDGETPOLARITYOUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_GETPOLARITY = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*DDGETPOLARITYININFO,
+        param2: ?*DDGETPOLARITYOUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*DDGETPOLARITYININFO,
+        param2: ?*DDGETPOLARITYOUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDX_GETCURRENTAUTOFLIP = fn(
-    param0: ?*anyopaque,
-    param1: ?*DDGETCURRENTAUTOFLIPININFO,
-    param2: ?*DDGETCURRENTAUTOFLIPOUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_GETCURRENTAUTOFLIP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*DDGETCURRENTAUTOFLIPININFO,
+        param2: ?*DDGETCURRENTAUTOFLIPOUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*DDGETCURRENTAUTOFLIPININFO,
+        param2: ?*DDGETCURRENTAUTOFLIPOUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDX_GETPREVIOUSAUTOFLIP = fn(
-    param0: ?*anyopaque,
-    param1: ?*DDGETPREVIOUSAUTOFLIPININFO,
-    param2: ?*DDGETPREVIOUSAUTOFLIPOUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_GETPREVIOUSAUTOFLIP = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*DDGETPREVIOUSAUTOFLIPININFO,
+        param2: ?*DDGETPREVIOUSAUTOFLIPOUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*DDGETPREVIOUSAUTOFLIPININFO,
+        param2: ?*DDGETPREVIOUSAUTOFLIPOUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDX_TRANSFER = fn(
-    param0: ?*anyopaque,
-    param1: ?*DDTRANSFERININFO,
-    param2: ?*DDTRANSFEROUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_TRANSFER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*DDTRANSFERININFO,
+        param2: ?*DDTRANSFEROUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*DDTRANSFERININFO,
+        param2: ?*DDTRANSFEROUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
-pub const PDX_GETTRANSFERSTATUS = fn(
-    param0: ?*anyopaque,
-    param1: ?*anyopaque,
-    param2: ?*DDGETTRANSFERSTATUSOUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const PDX_GETTRANSFERSTATUS = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+        param1: ?*anyopaque,
+        param2: ?*DDGETTRANSFERSTATUSOUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+    else => *const fn(
+        param0: ?*anyopaque,
+        param1: ?*anyopaque,
+        param2: ?*DDGETTRANSFERSTATUSOUTINFO,
+    ) callconv(@import("std").os.windows.WINAPI) u32,
+} ;
 
 pub const DXAPI_INTERFACE = extern struct {
     Size: u16,

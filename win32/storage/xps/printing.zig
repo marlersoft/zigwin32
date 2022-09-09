@@ -35,9 +35,14 @@ pub const IID_IXpsPrintJobStream = &IID_IXpsPrintJobStream_Value;
 pub const IXpsPrintJobStream = extern struct {
     pub const VTable = extern struct {
         base: ISequentialStream.VTable,
-        Close: fn(
-            self: *const IXpsPrintJobStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXpsPrintJobStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXpsPrintJobStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -56,13 +61,24 @@ pub const IID_IXpsPrintJob = &IID_IXpsPrintJob_Value;
 pub const IXpsPrintJob = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Cancel: fn(
-            self: *const IXpsPrintJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetJobStatus: fn(
-            self: *const IXpsPrintJob,
-            jobStatus: ?*XPS_JOB_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXpsPrintJob,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXpsPrintJob,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetJobStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXpsPrintJob,
+                jobStatus: ?*XPS_JOB_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXpsPrintJob,
+                jobStatus: ?*XPS_JOB_STATUS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -91,20 +107,40 @@ pub const IID_IPrintDocumentPackageTarget = &IID_IPrintDocumentPackageTarget_Val
 pub const IPrintDocumentPackageTarget = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPackageTargetTypes: fn(
-            self: *const IPrintDocumentPackageTarget,
-            targetCount: ?*u32,
-            targetTypes: [*]?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPackageTarget: fn(
-            self: *const IPrintDocumentPackageTarget,
-            guidTargetType: ?*const Guid,
-            riid: ?*const Guid,
-            ppvTarget: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPrintDocumentPackageTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPackageTargetTypes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPrintDocumentPackageTarget,
+                targetCount: ?*u32,
+                targetTypes: [*]?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPrintDocumentPackageTarget,
+                targetCount: ?*u32,
+                targetTypes: [*]?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPackageTarget: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPrintDocumentPackageTarget,
+                guidTargetType: ?*const Guid,
+                riid: ?*const Guid,
+                ppvTarget: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPrintDocumentPackageTarget,
+                guidTargetType: ?*const Guid,
+                riid: ?*const Guid,
+                ppvTarget: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPrintDocumentPackageTarget,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPrintDocumentPackageTarget,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -151,10 +187,16 @@ pub const IID_IPrintDocumentPackageStatusEvent = &IID_IPrintDocumentPackageStatu
 pub const IPrintDocumentPackageStatusEvent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        PackageStatusUpdated: fn(
-            self: *const IPrintDocumentPackageStatusEvent,
-            packageStatus: ?*PrintDocumentPackageStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PackageStatusUpdated: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPrintDocumentPackageStatusEvent,
+                packageStatus: ?*PrintDocumentPackageStatus,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPrintDocumentPackageStatusEvent,
+                packageStatus: ?*PrintDocumentPackageStatus,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -173,14 +215,24 @@ pub const IID_IPrintDocumentPackageTargetFactory = &IID_IPrintDocumentPackageTar
 pub const IPrintDocumentPackageTargetFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateDocumentPackageTargetForPrintJob: fn(
-            self: *const IPrintDocumentPackageTargetFactory,
-            printerName: ?[*:0]const u16,
-            jobName: ?[*:0]const u16,
-            jobOutputStream: ?*IStream,
-            jobPrintTicketStream: ?*IStream,
-            docPackageTarget: ?*?*IPrintDocumentPackageTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDocumentPackageTargetForPrintJob: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPrintDocumentPackageTargetFactory,
+                printerName: ?[*:0]const u16,
+                jobName: ?[*:0]const u16,
+                jobOutputStream: ?*IStream,
+                jobPrintTicketStream: ?*IStream,
+                docPackageTarget: ?*?*IPrintDocumentPackageTarget,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPrintDocumentPackageTargetFactory,
+                printerName: ?[*:0]const u16,
+                jobName: ?[*:0]const u16,
+                jobOutputStream: ?*IStream,
+                jobPrintTicketStream: ?*IStream,
+                docPackageTarget: ?*?*IPrintDocumentPackageTarget,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

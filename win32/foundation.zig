@@ -13119,14 +13119,26 @@ pub const DECIMAL = extern struct {
     },
 };
 
-pub const FARPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) isize;
+pub const FARPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+    else => *const fn(
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+} ;
 
-pub const NEARPROC = fn(
-) callconv(@import("std").os.windows.WINAPI) isize;
+pub const NEARPROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+    else => *const fn(
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+} ;
 
-pub const PROC = fn(
-) callconv(@import("std").os.windows.WINAPI) isize;
+pub const PROC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+    else => *const fn(
+    ) callconv(@import("std").os.windows.WINAPI) isize,
+} ;
 
 pub const HSPRITE__ = extern struct {
     unused: i32,
@@ -13227,9 +13239,14 @@ pub const LUID = extern struct {
     HighPart: i32,
 };
 
-pub const PAPCFUNC = fn(
-    Parameter: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PAPCFUNC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Parameter: usize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Parameter: usize,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 
 //--------------------------------------------------------------------------------

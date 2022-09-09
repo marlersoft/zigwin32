@@ -6,9 +6,14 @@
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-pub const OOBE_COMPLETED_CALLBACK = fn(
-    CallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const OOBE_COMPLETED_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        CallbackContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        CallbackContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 
 //--------------------------------------------------------------------------------

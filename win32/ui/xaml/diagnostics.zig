@@ -151,12 +151,20 @@ pub const IID_IVisualTreeServiceCallback = &IID_IVisualTreeServiceCallback_Value
 pub const IVisualTreeServiceCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnVisualTreeChange: fn(
-            self: *const IVisualTreeServiceCallback,
-            relation: ParentChildRelation,
-            element: VisualElement,
-            mutationType: VisualMutationType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnVisualTreeChange: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeServiceCallback,
+                relation: ParentChildRelation,
+                element: VisualElement,
+                mutationType: VisualMutationType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeServiceCallback,
+                relation: ParentChildRelation,
+                element: VisualElement,
+                mutationType: VisualMutationType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -175,12 +183,20 @@ pub const IID_IVisualTreeServiceCallback2 = &IID_IVisualTreeServiceCallback2_Val
 pub const IVisualTreeServiceCallback2 = extern struct {
     pub const VTable = extern struct {
         base: IVisualTreeServiceCallback.VTable,
-        OnElementStateChanged: fn(
-            self: *const IVisualTreeServiceCallback2,
-            element: u64,
-            elementState: VisualElementState,
-            context: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnElementStateChanged: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeServiceCallback2,
+                element: u64,
+                elementState: VisualElementState,
+                context: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeServiceCallback2,
+                element: u64,
+                elementState: VisualElementState,
+                context: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -198,71 +214,160 @@ pub const IID_IVisualTreeService = &IID_IVisualTreeService_Value;
 pub const IVisualTreeService = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AdviseVisualTreeChange: fn(
-            self: *const IVisualTreeService,
-            pCallback: ?*IVisualTreeServiceCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnadviseVisualTreeChange: fn(
-            self: *const IVisualTreeService,
-            pCallback: ?*IVisualTreeServiceCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnums: fn(
-            self: *const IVisualTreeService,
-            pCount: ?*u32,
-            ppEnums: [*]?*EnumType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateInstance: fn(
-            self: *const IVisualTreeService,
-            typeName: ?BSTR,
-            value: ?BSTR,
-            pInstanceHandle: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyValuesChain: fn(
-            self: *const IVisualTreeService,
-            instanceHandle: u64,
-            pSourceCount: ?*u32,
-            ppPropertySources: [*]?*PropertyChainSource,
-            pPropertyCount: ?*u32,
-            ppPropertyValues: [*]?*PropertyChainValue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
-            self: *const IVisualTreeService,
-            instanceHandle: u64,
-            value: u64,
-            propertyIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ClearProperty: fn(
-            self: *const IVisualTreeService,
-            instanceHandle: u64,
-            propertyIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCollectionCount: fn(
-            self: *const IVisualTreeService,
-            instanceHandle: u64,
-            pCollectionSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCollectionElements: fn(
-            self: *const IVisualTreeService,
-            instanceHandle: u64,
-            startIndex: u32,
-            pElementCount: ?*u32,
-            ppElementValues: [*]?*CollectionElementValue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddChild: fn(
-            self: *const IVisualTreeService,
-            parent: u64,
-            child: u64,
-            index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveChild: fn(
-            self: *const IVisualTreeService,
-            parent: u64,
-            index: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ClearChildren: fn(
-            self: *const IVisualTreeService,
-            parent: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AdviseVisualTreeChange: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService,
+                pCallback: ?*IVisualTreeServiceCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService,
+                pCallback: ?*IVisualTreeServiceCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnadviseVisualTreeChange: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService,
+                pCallback: ?*IVisualTreeServiceCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService,
+                pCallback: ?*IVisualTreeServiceCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEnums: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService,
+                pCount: ?*u32,
+                ppEnums: [*]?*EnumType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService,
+                pCount: ?*u32,
+                ppEnums: [*]?*EnumType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateInstance: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService,
+                typeName: ?BSTR,
+                value: ?BSTR,
+                pInstanceHandle: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService,
+                typeName: ?BSTR,
+                value: ?BSTR,
+                pInstanceHandle: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyValuesChain: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService,
+                instanceHandle: u64,
+                pSourceCount: ?*u32,
+                ppPropertySources: [*]?*PropertyChainSource,
+                pPropertyCount: ?*u32,
+                ppPropertyValues: [*]?*PropertyChainValue,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService,
+                instanceHandle: u64,
+                pSourceCount: ?*u32,
+                ppPropertySources: [*]?*PropertyChainSource,
+                pPropertyCount: ?*u32,
+                ppPropertyValues: [*]?*PropertyChainValue,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService,
+                instanceHandle: u64,
+                value: u64,
+                propertyIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService,
+                instanceHandle: u64,
+                value: u64,
+                propertyIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ClearProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService,
+                instanceHandle: u64,
+                propertyIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService,
+                instanceHandle: u64,
+                propertyIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCollectionCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService,
+                instanceHandle: u64,
+                pCollectionSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService,
+                instanceHandle: u64,
+                pCollectionSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCollectionElements: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService,
+                instanceHandle: u64,
+                startIndex: u32,
+                pElementCount: ?*u32,
+                ppElementValues: [*]?*CollectionElementValue,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService,
+                instanceHandle: u64,
+                startIndex: u32,
+                pElementCount: ?*u32,
+                ppElementValues: [*]?*CollectionElementValue,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddChild: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService,
+                parent: u64,
+                child: u64,
+                index: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService,
+                parent: u64,
+                child: u64,
+                index: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveChild: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService,
+                parent: u64,
+                index: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService,
+                parent: u64,
+                index: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ClearChildren: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService,
+                parent: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService,
+                parent: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -325,43 +430,96 @@ pub const IID_IXamlDiagnostics = &IID_IXamlDiagnostics_Value;
 pub const IXamlDiagnostics = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDispatcher: fn(
-            self: *const IXamlDiagnostics,
-            ppDispatcher: ?*?*IInspectable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUiLayer: fn(
-            self: *const IXamlDiagnostics,
-            ppLayer: ?*?*IInspectable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetApplication: fn(
-            self: *const IXamlDiagnostics,
-            ppApplication: ?*?*IInspectable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIInspectableFromHandle: fn(
-            self: *const IXamlDiagnostics,
-            instanceHandle: u64,
-            ppInstance: ?*?*IInspectable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHandleFromIInspectable: fn(
-            self: *const IXamlDiagnostics,
-            pInstance: ?*IInspectable,
-            pHandle: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HitTest: fn(
-            self: *const IXamlDiagnostics,
-            rect: RECT,
-            pCount: ?*u32,
-            ppInstanceHandles: [*]?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterInstance: fn(
-            self: *const IXamlDiagnostics,
-            pInstance: ?*IInspectable,
-            pInstanceHandle: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInitializationData: fn(
-            self: *const IXamlDiagnostics,
-            pInitializationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDispatcher: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXamlDiagnostics,
+                ppDispatcher: ?*?*IInspectable,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXamlDiagnostics,
+                ppDispatcher: ?*?*IInspectable,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetUiLayer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXamlDiagnostics,
+                ppLayer: ?*?*IInspectable,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXamlDiagnostics,
+                ppLayer: ?*?*IInspectable,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetApplication: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXamlDiagnostics,
+                ppApplication: ?*?*IInspectable,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXamlDiagnostics,
+                ppApplication: ?*?*IInspectable,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetIInspectableFromHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXamlDiagnostics,
+                instanceHandle: u64,
+                ppInstance: ?*?*IInspectable,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXamlDiagnostics,
+                instanceHandle: u64,
+                ppInstance: ?*?*IInspectable,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetHandleFromIInspectable: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXamlDiagnostics,
+                pInstance: ?*IInspectable,
+                pHandle: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXamlDiagnostics,
+                pInstance: ?*IInspectable,
+                pHandle: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HitTest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXamlDiagnostics,
+                rect: RECT,
+                pCount: ?*u32,
+                ppInstanceHandles: [*]?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXamlDiagnostics,
+                rect: RECT,
+                pCount: ?*u32,
+                ppInstanceHandles: [*]?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterInstance: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXamlDiagnostics,
+                pInstance: ?*IInspectable,
+                pInstanceHandle: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXamlDiagnostics,
+                pInstance: ?*IInspectable,
+                pInstanceHandle: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInitializationData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXamlDiagnostics,
+                pInitializationData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXamlDiagnostics,
+                pInitializationData: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -408,25 +566,52 @@ pub const IID_IBitmapData = &IID_IBitmapData_Value;
 pub const IBitmapData = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CopyBytesTo: fn(
-            self: *const IBitmapData,
-            sourceOffsetInBytes: u32,
-            maxBytesToCopy: u32,
-            pvBytes: [*:0]u8,
-            numberOfBytesCopied: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStride: fn(
-            self: *const IBitmapData,
-            pStride: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBitmapDescription: fn(
-            self: *const IBitmapData,
-            pBitmapDescription: ?*BitmapDescription,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSourceBitmapDescription: fn(
-            self: *const IBitmapData,
-            pBitmapDescription: ?*BitmapDescription,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CopyBytesTo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IBitmapData,
+                sourceOffsetInBytes: u32,
+                maxBytesToCopy: u32,
+                pvBytes: [*:0]u8,
+                numberOfBytesCopied: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IBitmapData,
+                sourceOffsetInBytes: u32,
+                maxBytesToCopy: u32,
+                pvBytes: [*:0]u8,
+                numberOfBytesCopied: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStride: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IBitmapData,
+                pStride: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IBitmapData,
+                pStride: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBitmapDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IBitmapData,
+                pBitmapDescription: ?*BitmapDescription,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IBitmapData,
+                pBitmapDescription: ?*BitmapDescription,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSourceBitmapDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IBitmapData,
+                pBitmapDescription: ?*BitmapDescription,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IBitmapData,
+                pBitmapDescription: ?*BitmapDescription,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -457,32 +642,66 @@ pub const IID_IVisualTreeService2 = &IID_IVisualTreeService2_Value;
 pub const IVisualTreeService2 = extern struct {
     pub const VTable = extern struct {
         base: IVisualTreeService.VTable,
-        GetPropertyIndex: fn(
-            self: *const IVisualTreeService2,
-            object: u64,
-            propertyName: ?[*:0]const u16,
-            pPropertyIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
-            self: *const IVisualTreeService2,
-            object: u64,
-            propertyIndex: u32,
-            pValue: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReplaceResource: fn(
-            self: *const IVisualTreeService2,
-            resourceDictionary: u64,
-            key: u64,
-            newValue: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RenderTargetBitmap: fn(
-            self: *const IVisualTreeService2,
-            handle: u64,
-            options: RenderTargetBitmapOptions,
-            maxPixelWidth: u32,
-            maxPixelHeight: u32,
-            ppBitmapData: ?*?*IBitmapData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyIndex: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService2,
+                object: u64,
+                propertyName: ?[*:0]const u16,
+                pPropertyIndex: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService2,
+                object: u64,
+                propertyName: ?[*:0]const u16,
+                pPropertyIndex: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService2,
+                object: u64,
+                propertyIndex: u32,
+                pValue: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService2,
+                object: u64,
+                propertyIndex: u32,
+                pValue: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReplaceResource: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService2,
+                resourceDictionary: u64,
+                key: u64,
+                newValue: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService2,
+                resourceDictionary: u64,
+                key: u64,
+                newValue: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RenderTargetBitmap: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService2,
+                handle: u64,
+                options: RenderTargetBitmapOptions,
+                maxPixelWidth: u32,
+                maxPixelHeight: u32,
+                ppBitmapData: ?*?*IBitmapData,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService2,
+                handle: u64,
+                options: RenderTargetBitmapOptions,
+                maxPixelWidth: u32,
+                maxPixelHeight: u32,
+                ppBitmapData: ?*?*IBitmapData,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -513,31 +732,64 @@ pub const IID_IVisualTreeService3 = &IID_IVisualTreeService3_Value;
 pub const IVisualTreeService3 = extern struct {
     pub const VTable = extern struct {
         base: IVisualTreeService2.VTable,
-        ResolveResource: fn(
-            self: *const IVisualTreeService3,
-            resourceContext: u64,
-            resourceName: ?[*:0]const u16,
-            resourceType: ResourceType,
-            propertyIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDictionaryItem: fn(
-            self: *const IVisualTreeService3,
-            dictionaryHandle: u64,
-            resourceName: ?[*:0]const u16,
-            resourceIsImplicitStyle: BOOL,
-            resourceHandle: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddDictionaryItem: fn(
-            self: *const IVisualTreeService3,
-            dictionaryHandle: u64,
-            resourceKey: u64,
-            resourceHandle: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveDictionaryItem: fn(
-            self: *const IVisualTreeService3,
-            dictionaryHandle: u64,
-            resourceKey: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResolveResource: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService3,
+                resourceContext: u64,
+                resourceName: ?[*:0]const u16,
+                resourceType: ResourceType,
+                propertyIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService3,
+                resourceContext: u64,
+                resourceName: ?[*:0]const u16,
+                resourceType: ResourceType,
+                propertyIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDictionaryItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService3,
+                dictionaryHandle: u64,
+                resourceName: ?[*:0]const u16,
+                resourceIsImplicitStyle: BOOL,
+                resourceHandle: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService3,
+                dictionaryHandle: u64,
+                resourceName: ?[*:0]const u16,
+                resourceIsImplicitStyle: BOOL,
+                resourceHandle: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddDictionaryItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService3,
+                dictionaryHandle: u64,
+                resourceKey: u64,
+                resourceHandle: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService3,
+                dictionaryHandle: u64,
+                resourceKey: u64,
+                resourceHandle: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveDictionaryItem: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualTreeService3,
+                dictionaryHandle: u64,
+                resourceKey: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualTreeService3,
+                dictionaryHandle: u64,
+                resourceKey: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

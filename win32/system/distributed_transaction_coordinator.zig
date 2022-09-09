@@ -98,39 +98,77 @@ pub const DTC_STATUS_STOPPED = DTC_STATUS_.STOPPED;
 pub const DTC_STATUS_E_CANTCONTROL = DTC_STATUS_.E_CANTCONTROL;
 pub const DTC_STATUS_FAILED = DTC_STATUS_.FAILED;
 
-pub const DTC_GET_TRANSACTION_MANAGER = fn(
-    pszHost: ?PSTR,
-    pszTmName: ?PSTR,
-    rid: ?*const Guid,
-    dwReserved1: u32,
-    wcbReserved2: u16,
-    pvReserved2: ?*anyopaque,
-    ppvObject: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const DTC_GET_TRANSACTION_MANAGER = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pszHost: ?PSTR,
+        pszTmName: ?PSTR,
+        rid: ?*const Guid,
+        dwReserved1: u32,
+        wcbReserved2: u16,
+        pvReserved2: ?*anyopaque,
+        ppvObject: ?*?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        pszHost: ?PSTR,
+        pszTmName: ?PSTR,
+        rid: ?*const Guid,
+        dwReserved1: u32,
+        wcbReserved2: u16,
+        pvReserved2: ?*anyopaque,
+        ppvObject: ?*?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const DTC_GET_TRANSACTION_MANAGER_EX_A = fn(
-    i_pszHost: ?PSTR,
-    i_pszTmName: ?PSTR,
-    i_riid: ?*const Guid,
-    i_grfOptions: u32,
-    i_pvConfigParams: ?*anyopaque,
-    o_ppvObject: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const DTC_GET_TRANSACTION_MANAGER_EX_A = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        i_pszHost: ?PSTR,
+        i_pszTmName: ?PSTR,
+        i_riid: ?*const Guid,
+        i_grfOptions: u32,
+        i_pvConfigParams: ?*anyopaque,
+        o_ppvObject: ?*?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        i_pszHost: ?PSTR,
+        i_pszTmName: ?PSTR,
+        i_riid: ?*const Guid,
+        i_grfOptions: u32,
+        i_pvConfigParams: ?*anyopaque,
+        o_ppvObject: ?*?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const DTC_GET_TRANSACTION_MANAGER_EX_W = fn(
-    i_pwszHost: ?PWSTR,
-    i_pwszTmName: ?PWSTR,
-    i_riid: ?*const Guid,
-    i_grfOptions: u32,
-    i_pvConfigParams: ?*anyopaque,
-    o_ppvObject: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const DTC_GET_TRANSACTION_MANAGER_EX_W = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        i_pwszHost: ?PWSTR,
+        i_pwszTmName: ?PWSTR,
+        i_riid: ?*const Guid,
+        i_grfOptions: u32,
+        i_pvConfigParams: ?*anyopaque,
+        o_ppvObject: ?*?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        i_pwszHost: ?PWSTR,
+        i_pwszTmName: ?PWSTR,
+        i_riid: ?*const Guid,
+        i_grfOptions: u32,
+        i_pvConfigParams: ?*anyopaque,
+        o_ppvObject: ?*?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
-pub const DTC_INSTALL_CLIENT = fn(
-    i_pszRemoteTmHostName: ?*i8,
-    i_dwProtocol: u32,
-    i_dwOverwrite: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const DTC_INSTALL_CLIENT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        i_pszRemoteTmHostName: ?*i8,
+        i_dwProtocol: u32,
+        i_dwOverwrite: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    else => *const fn(
+        i_pszRemoteTmHostName: ?*i8,
+        i_dwProtocol: u32,
+        i_dwOverwrite: u32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+} ;
 
 pub const BOID = extern struct {
     rgb: [16]u8,
@@ -305,22 +343,44 @@ pub const IID_ITransaction = &IID_ITransaction_Value;
 pub const ITransaction = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Commit: fn(
-            self: *const ITransaction,
-            fRetaining: BOOL,
-            grfTC: u32,
-            grfRM: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Abort: fn(
-            self: *const ITransaction,
-            pboidReason: ?*BOID,
-            fRetaining: BOOL,
-            fAsync: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTransactionInfo: fn(
-            self: *const ITransaction,
-            pinfo: ?*XACTTRANSINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Commit: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransaction,
+                fRetaining: BOOL,
+                grfTC: u32,
+                grfRM: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransaction,
+                fRetaining: BOOL,
+                grfTC: u32,
+                grfRM: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Abort: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransaction,
+                pboidReason: ?*BOID,
+                fRetaining: BOOL,
+                fAsync: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransaction,
+                pboidReason: ?*BOID,
+                fRetaining: BOOL,
+                fAsync: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetTransactionInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransaction,
+                pinfo: ?*XACTTRANSINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransaction,
+                pinfo: ?*XACTTRANSINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -346,10 +406,16 @@ pub const IID_ITransactionCloner = &IID_ITransactionCloner_Value;
 pub const ITransactionCloner = extern struct {
     pub const VTable = extern struct {
         base: ITransaction.VTable,
-        CloneWithCommitDisabled: fn(
-            self: *const ITransactionCloner,
-            ppITransaction: ?*?*ITransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CloneWithCommitDisabled: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionCloner,
+                ppITransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionCloner,
+                ppITransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -367,10 +433,16 @@ pub const IID_ITransaction2 = &IID_ITransaction2_Value;
 pub const ITransaction2 = extern struct {
     pub const VTable = extern struct {
         base: ITransactionCloner.VTable,
-        GetTransactionInfo2: fn(
-            self: *const ITransaction2,
-            pinfo: ?*XACTTRANSINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransactionInfo2: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransaction2,
+                pinfo: ?*XACTTRANSINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransaction2,
+                pinfo: ?*XACTTRANSINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -388,18 +460,34 @@ pub const IID_ITransactionDispenser = &IID_ITransactionDispenser_Value;
 pub const ITransactionDispenser = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOptionsObject: fn(
-            self: *const ITransactionDispenser,
-            ppOptions: ?*?*ITransactionOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginTransaction: fn(
-            self: *const ITransactionDispenser,
-            punkOuter: ?*IUnknown,
-            isoLevel: i32,
-            isoFlags: u32,
-            pOptions: ?*ITransactionOptions,
-            ppTransaction: ?*?*ITransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOptionsObject: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionDispenser,
+                ppOptions: ?*?*ITransactionOptions,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionDispenser,
+                ppOptions: ?*?*ITransactionOptions,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BeginTransaction: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionDispenser,
+                punkOuter: ?*IUnknown,
+                isoLevel: i32,
+                isoFlags: u32,
+                pOptions: ?*ITransactionOptions,
+                ppTransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionDispenser,
+                punkOuter: ?*IUnknown,
+                isoLevel: i32,
+                isoFlags: u32,
+                pOptions: ?*ITransactionOptions,
+                ppTransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -421,14 +509,26 @@ pub const IID_ITransactionOptions = &IID_ITransactionOptions_Value;
 pub const ITransactionOptions = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetOptions: fn(
-            self: *const ITransactionOptions,
-            pOptions: ?*XACTOPT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOptions: fn(
-            self: *const ITransactionOptions,
-            pOptions: ?*XACTOPT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOptions: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionOptions,
+                pOptions: ?*XACTOPT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionOptions,
+                pOptions: ?*XACTOPT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOptions: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionOptions,
+                pOptions: ?*XACTOPT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionOptions,
+                pOptions: ?*XACTOPT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -450,28 +550,58 @@ pub const IID_ITransactionOutcomeEvents = &IID_ITransactionOutcomeEvents_Value;
 pub const ITransactionOutcomeEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Committed: fn(
-            self: *const ITransactionOutcomeEvents,
-            fRetaining: BOOL,
-            pNewUOW: ?*BOID,
-            hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Aborted: fn(
-            self: *const ITransactionOutcomeEvents,
-            pboidReason: ?*BOID,
-            fRetaining: BOOL,
-            pNewUOW: ?*BOID,
-            hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HeuristicDecision: fn(
-            self: *const ITransactionOutcomeEvents,
-            dwDecision: u32,
-            pboidReason: ?*BOID,
-            hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Indoubt: fn(
-            self: *const ITransactionOutcomeEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Committed: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionOutcomeEvents,
+                fRetaining: BOOL,
+                pNewUOW: ?*BOID,
+                hr: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionOutcomeEvents,
+                fRetaining: BOOL,
+                pNewUOW: ?*BOID,
+                hr: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Aborted: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionOutcomeEvents,
+                pboidReason: ?*BOID,
+                fRetaining: BOOL,
+                pNewUOW: ?*BOID,
+                hr: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionOutcomeEvents,
+                pboidReason: ?*BOID,
+                fRetaining: BOOL,
+                pNewUOW: ?*BOID,
+                hr: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HeuristicDecision: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionOutcomeEvents,
+                dwDecision: u32,
+                pboidReason: ?*BOID,
+                hr: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionOutcomeEvents,
+                dwDecision: u32,
+                pboidReason: ?*BOID,
+                hr: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Indoubt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionOutcomeEvents,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionOutcomeEvents,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -501,15 +631,28 @@ pub const IID_ITmNodeName = &IID_ITmNodeName_Value;
 pub const ITmNodeName = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNodeNameSize: fn(
-            self: *const ITmNodeName,
-            pcbNodeNameSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNodeName: fn(
-            self: *const ITmNodeName,
-            cbNodeNameBufferSize: u32,
-            pNodeNameBuffer: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNodeNameSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITmNodeName,
+                pcbNodeNameSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITmNodeName,
+                pcbNodeNameSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNodeName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITmNodeName,
+                cbNodeNameBufferSize: u32,
+                pNodeNameBuffer: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITmNodeName,
+                cbNodeNameBufferSize: u32,
+                pNodeNameBuffer: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -531,10 +674,16 @@ pub const IID_IKernelTransaction = &IID_IKernelTransaction_Value;
 pub const IKernelTransaction = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetHandle: fn(
-            self: *const IKernelTransaction,
-            pHandle: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IKernelTransaction,
+                pHandle: ?*?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IKernelTransaction,
+                pHandle: ?*?HANDLE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -552,27 +701,56 @@ pub const IID_ITransactionResourceAsync = &IID_ITransactionResourceAsync_Value;
 pub const ITransactionResourceAsync = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        PrepareRequest: fn(
-            self: *const ITransactionResourceAsync,
-            fRetaining: BOOL,
-            grfRM: u32,
-            fWantMoniker: BOOL,
-            fSinglePhase: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CommitRequest: fn(
-            self: *const ITransactionResourceAsync,
-            grfRM: u32,
-            pNewUOW: ?*BOID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AbortRequest: fn(
-            self: *const ITransactionResourceAsync,
-            pboidReason: ?*BOID,
-            fRetaining: BOOL,
-            pNewUOW: ?*BOID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TMDown: fn(
-            self: *const ITransactionResourceAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PrepareRequest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionResourceAsync,
+                fRetaining: BOOL,
+                grfRM: u32,
+                fWantMoniker: BOOL,
+                fSinglePhase: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionResourceAsync,
+                fRetaining: BOOL,
+                grfRM: u32,
+                fWantMoniker: BOOL,
+                fSinglePhase: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CommitRequest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionResourceAsync,
+                grfRM: u32,
+                pNewUOW: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionResourceAsync,
+                grfRM: u32,
+                pNewUOW: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AbortRequest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionResourceAsync,
+                pboidReason: ?*BOID,
+                fRetaining: BOOL,
+                pNewUOW: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionResourceAsync,
+                pboidReason: ?*BOID,
+                fRetaining: BOOL,
+                pNewUOW: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        TMDown: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionResourceAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionResourceAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -602,14 +780,26 @@ pub const IID_ITransactionLastResourceAsync = &IID_ITransactionLastResourceAsync
 pub const ITransactionLastResourceAsync = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DelegateCommit: fn(
-            self: *const ITransactionLastResourceAsync,
-            grfRM: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ForgetRequest: fn(
-            self: *const ITransactionLastResourceAsync,
-            pNewUOW: ?*BOID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DelegateCommit: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionLastResourceAsync,
+                grfRM: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionLastResourceAsync,
+                grfRM: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ForgetRequest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionLastResourceAsync,
+                pNewUOW: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionLastResourceAsync,
+                pNewUOW: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -631,27 +821,56 @@ pub const IID_ITransactionResource = &IID_ITransactionResource_Value;
 pub const ITransactionResource = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        PrepareRequest: fn(
-            self: *const ITransactionResource,
-            fRetaining: BOOL,
-            grfRM: u32,
-            fWantMoniker: BOOL,
-            fSinglePhase: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CommitRequest: fn(
-            self: *const ITransactionResource,
-            grfRM: u32,
-            pNewUOW: ?*BOID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AbortRequest: fn(
-            self: *const ITransactionResource,
-            pboidReason: ?*BOID,
-            fRetaining: BOOL,
-            pNewUOW: ?*BOID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TMDown: fn(
-            self: *const ITransactionResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PrepareRequest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionResource,
+                fRetaining: BOOL,
+                grfRM: u32,
+                fWantMoniker: BOOL,
+                fSinglePhase: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionResource,
+                fRetaining: BOOL,
+                grfRM: u32,
+                fWantMoniker: BOOL,
+                fSinglePhase: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CommitRequest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionResource,
+                grfRM: u32,
+                pNewUOW: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionResource,
+                grfRM: u32,
+                pNewUOW: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AbortRequest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionResource,
+                pboidReason: ?*BOID,
+                fRetaining: BOOL,
+                pNewUOW: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionResource,
+                pboidReason: ?*BOID,
+                fRetaining: BOOL,
+                pNewUOW: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        TMDown: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionResource,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -681,20 +900,40 @@ pub const IID_ITransactionEnlistmentAsync = &IID_ITransactionEnlistmentAsync_Val
 pub const ITransactionEnlistmentAsync = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        PrepareRequestDone: fn(
-            self: *const ITransactionEnlistmentAsync,
-            hr: HRESULT,
-            pmk: ?*IMoniker,
-            pboidReason: ?*BOID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CommitRequestDone: fn(
-            self: *const ITransactionEnlistmentAsync,
-            hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AbortRequestDone: fn(
-            self: *const ITransactionEnlistmentAsync,
-            hr: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PrepareRequestDone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionEnlistmentAsync,
+                hr: HRESULT,
+                pmk: ?*IMoniker,
+                pboidReason: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionEnlistmentAsync,
+                hr: HRESULT,
+                pmk: ?*IMoniker,
+                pboidReason: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CommitRequestDone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionEnlistmentAsync,
+                hr: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionEnlistmentAsync,
+                hr: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AbortRequestDone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionEnlistmentAsync,
+                hr: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionEnlistmentAsync,
+                hr: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -720,11 +959,18 @@ pub const IID_ITransactionLastEnlistmentAsync = &IID_ITransactionLastEnlistmentA
 pub const ITransactionLastEnlistmentAsync = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        TransactionOutcome: fn(
-            self: *const ITransactionLastEnlistmentAsync,
-            XactStat: XACTSTAT,
-            pboidReason: ?*BOID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TransactionOutcome: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionLastEnlistmentAsync,
+                XactStat: XACTSTAT,
+                pboidReason: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionLastEnlistmentAsync,
+                XactStat: XACTSTAT,
+                pboidReason: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -742,16 +988,30 @@ pub const IID_ITransactionExportFactory = &IID_ITransactionExportFactory_Value;
 pub const ITransactionExportFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRemoteClassId: fn(
-            self: *const ITransactionExportFactory,
-            pclsid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Create: fn(
-            self: *const ITransactionExportFactory,
-            cbWhereabouts: u32,
-            rgbWhereabouts: [*:0]u8,
-            ppExport: ?*?*ITransactionExport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRemoteClassId: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionExportFactory,
+                pclsid: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionExportFactory,
+                pclsid: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Create: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionExportFactory,
+                cbWhereabouts: u32,
+                rgbWhereabouts: [*:0]u8,
+                ppExport: ?*?*ITransactionExport,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionExportFactory,
+                cbWhereabouts: u32,
+                rgbWhereabouts: [*:0]u8,
+                ppExport: ?*?*ITransactionExport,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -773,16 +1033,30 @@ pub const IID_ITransactionImportWhereabouts = &IID_ITransactionImportWhereabouts
 pub const ITransactionImportWhereabouts = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetWhereaboutsSize: fn(
-            self: *const ITransactionImportWhereabouts,
-            pcbWhereabouts: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWhereabouts: fn(
-            self: *const ITransactionImportWhereabouts,
-            cbWhereabouts: u32,
-            rgbWhereabouts: [*:0]u8,
-            pcbUsed: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWhereaboutsSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionImportWhereabouts,
+                pcbWhereabouts: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionImportWhereabouts,
+                pcbWhereabouts: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetWhereabouts: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionImportWhereabouts,
+                cbWhereabouts: u32,
+                rgbWhereabouts: [*:0]u8,
+                pcbUsed: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionImportWhereabouts,
+                cbWhereabouts: u32,
+                rgbWhereabouts: [*:0]u8,
+                pcbUsed: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -804,18 +1078,34 @@ pub const IID_ITransactionExport = &IID_ITransactionExport_Value;
 pub const ITransactionExport = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Export: fn(
-            self: *const ITransactionExport,
-            punkTransaction: ?*IUnknown,
-            pcbTransactionCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTransactionCookie: fn(
-            self: *const ITransactionExport,
-            punkTransaction: ?*IUnknown,
-            cbTransactionCookie: u32,
-            rgbTransactionCookie: [*:0]u8,
-            pcbUsed: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Export: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionExport,
+                punkTransaction: ?*IUnknown,
+                pcbTransactionCookie: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionExport,
+                punkTransaction: ?*IUnknown,
+                pcbTransactionCookie: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetTransactionCookie: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionExport,
+                punkTransaction: ?*IUnknown,
+                cbTransactionCookie: u32,
+                rgbTransactionCookie: [*:0]u8,
+                pcbUsed: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionExport,
+                punkTransaction: ?*IUnknown,
+                cbTransactionCookie: u32,
+                rgbTransactionCookie: [*:0]u8,
+                pcbUsed: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -837,13 +1127,22 @@ pub const IID_ITransactionImport = &IID_ITransactionImport_Value;
 pub const ITransactionImport = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Import: fn(
-            self: *const ITransactionImport,
-            cbTransactionCookie: u32,
-            rgbTransactionCookie: [*:0]u8,
-            piid: ?*const Guid,
-            ppvTransaction: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Import: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionImport,
+                cbTransactionCookie: u32,
+                rgbTransactionCookie: [*:0]u8,
+                piid: ?*const Guid,
+                ppvTransaction: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionImport,
+                cbTransactionCookie: u32,
+                rgbTransactionCookie: [*:0]u8,
+                piid: ?*const Guid,
+                ppvTransaction: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -861,15 +1160,28 @@ pub const IID_ITipTransaction = &IID_ITipTransaction_Value;
 pub const ITipTransaction = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Push: fn(
-            self: *const ITipTransaction,
-            i_pszRemoteTmUrl: ?*u8,
-            o_ppszRemoteTxUrl: ?*?PSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTransactionUrl: fn(
-            self: *const ITipTransaction,
-            o_ppszLocalTxUrl: ?*?PSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Push: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITipTransaction,
+                i_pszRemoteTmUrl: ?*u8,
+                o_ppszRemoteTxUrl: ?*?PSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITipTransaction,
+                i_pszRemoteTmUrl: ?*u8,
+                o_ppszRemoteTxUrl: ?*?PSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetTransactionUrl: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITipTransaction,
+                o_ppszLocalTxUrl: ?*?PSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITipTransaction,
+                o_ppszLocalTxUrl: ?*?PSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -891,21 +1203,42 @@ pub const IID_ITipHelper = &IID_ITipHelper_Value;
 pub const ITipHelper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Pull: fn(
-            self: *const ITipHelper,
-            i_pszTxUrl: ?*u8,
-            o_ppITransaction: ?*?*ITransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PullAsync: fn(
-            self: *const ITipHelper,
-            i_pszTxUrl: ?*u8,
-            i_pTipPullSink: ?*ITipPullSink,
-            o_ppITransaction: ?*?*ITransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLocalTmUrl: fn(
-            self: *const ITipHelper,
-            o_ppszLocalTmUrl: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Pull: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITipHelper,
+                i_pszTxUrl: ?*u8,
+                o_ppITransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITipHelper,
+                i_pszTxUrl: ?*u8,
+                o_ppITransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PullAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITipHelper,
+                i_pszTxUrl: ?*u8,
+                i_pTipPullSink: ?*ITipPullSink,
+                o_ppITransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITipHelper,
+                i_pszTxUrl: ?*u8,
+                i_pTipPullSink: ?*ITipPullSink,
+                o_ppITransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLocalTmUrl: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITipHelper,
+                o_ppszLocalTmUrl: ?*?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITipHelper,
+                o_ppszLocalTmUrl: ?*?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -931,10 +1264,16 @@ pub const IID_ITipPullSink = &IID_ITipPullSink_Value;
 pub const ITipPullSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        PullComplete: fn(
-            self: *const ITipPullSink,
-            i_hrPull: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PullComplete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITipPullSink,
+                i_hrPull: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITipPullSink,
+                i_hrPull: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -952,57 +1291,134 @@ pub const IID_IDtcNetworkAccessConfig = &IID_IDtcNetworkAccessConfig_Value;
 pub const IDtcNetworkAccessConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAnyNetworkAccess: fn(
-            self: *const IDtcNetworkAccessConfig,
-            pbAnyNetworkAccess: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAnyNetworkAccess: fn(
-            self: *const IDtcNetworkAccessConfig,
-            bAnyNetworkAccess: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNetworkAdministrationAccess: fn(
-            self: *const IDtcNetworkAccessConfig,
-            pbNetworkAdministrationAccess: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNetworkAdministrationAccess: fn(
-            self: *const IDtcNetworkAccessConfig,
-            bNetworkAdministrationAccess: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNetworkTransactionAccess: fn(
-            self: *const IDtcNetworkAccessConfig,
-            pbNetworkTransactionAccess: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNetworkTransactionAccess: fn(
-            self: *const IDtcNetworkAccessConfig,
-            bNetworkTransactionAccess: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNetworkClientAccess: fn(
-            self: *const IDtcNetworkAccessConfig,
-            pbNetworkClientAccess: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNetworkClientAccess: fn(
-            self: *const IDtcNetworkAccessConfig,
-            bNetworkClientAccess: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNetworkTIPAccess: fn(
-            self: *const IDtcNetworkAccessConfig,
-            pbNetworkTIPAccess: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNetworkTIPAccess: fn(
-            self: *const IDtcNetworkAccessConfig,
-            bNetworkTIPAccess: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetXAAccess: fn(
-            self: *const IDtcNetworkAccessConfig,
-            pbXAAccess: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetXAAccess: fn(
-            self: *const IDtcNetworkAccessConfig,
-            bXAAccess: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RestartDtcService: fn(
-            self: *const IDtcNetworkAccessConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAnyNetworkAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+                pbAnyNetworkAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+                pbAnyNetworkAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAnyNetworkAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+                bAnyNetworkAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+                bAnyNetworkAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNetworkAdministrationAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+                pbNetworkAdministrationAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+                pbNetworkAdministrationAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNetworkAdministrationAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+                bNetworkAdministrationAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+                bNetworkAdministrationAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNetworkTransactionAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+                pbNetworkTransactionAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+                pbNetworkTransactionAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNetworkTransactionAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+                bNetworkTransactionAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+                bNetworkTransactionAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNetworkClientAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+                pbNetworkClientAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+                pbNetworkClientAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNetworkClientAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+                bNetworkClientAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+                bNetworkClientAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNetworkTIPAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+                pbNetworkTIPAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+                pbNetworkTIPAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNetworkTIPAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+                bNetworkTIPAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+                bNetworkTIPAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetXAAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+                pbXAAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+                pbXAAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetXAAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+                bXAAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+                bXAAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RestartDtcService: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1077,30 +1493,66 @@ pub const IID_IDtcNetworkAccessConfig2 = &IID_IDtcNetworkAccessConfig2_Value;
 pub const IDtcNetworkAccessConfig2 = extern struct {
     pub const VTable = extern struct {
         base: IDtcNetworkAccessConfig.VTable,
-        GetNetworkInboundAccess: fn(
-            self: *const IDtcNetworkAccessConfig2,
-            pbInbound: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNetworkOutboundAccess: fn(
-            self: *const IDtcNetworkAccessConfig2,
-            pbOutbound: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNetworkInboundAccess: fn(
-            self: *const IDtcNetworkAccessConfig2,
-            bInbound: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNetworkOutboundAccess: fn(
-            self: *const IDtcNetworkAccessConfig2,
-            bOutbound: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAuthenticationLevel: fn(
-            self: *const IDtcNetworkAccessConfig2,
-            pAuthLevel: ?*AUTHENTICATION_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAuthenticationLevel: fn(
-            self: *const IDtcNetworkAccessConfig2,
-            AuthLevel: AUTHENTICATION_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNetworkInboundAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig2,
+                pbInbound: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig2,
+                pbInbound: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNetworkOutboundAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig2,
+                pbOutbound: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig2,
+                pbOutbound: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNetworkInboundAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig2,
+                bInbound: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig2,
+                bInbound: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNetworkOutboundAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig2,
+                bOutbound: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig2,
+                bOutbound: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAuthenticationLevel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig2,
+                pAuthLevel: ?*AUTHENTICATION_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig2,
+                pAuthLevel: ?*AUTHENTICATION_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAuthenticationLevel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig2,
+                AuthLevel: AUTHENTICATION_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig2,
+                AuthLevel: AUTHENTICATION_LEVEL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1138,14 +1590,26 @@ pub const IID_IDtcNetworkAccessConfig3 = &IID_IDtcNetworkAccessConfig3_Value;
 pub const IDtcNetworkAccessConfig3 = extern struct {
     pub const VTable = extern struct {
         base: IDtcNetworkAccessConfig2.VTable,
-        GetLUAccess: fn(
-            self: *const IDtcNetworkAccessConfig3,
-            pbLUAccess: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLUAccess: fn(
-            self: *const IDtcNetworkAccessConfig3,
-            bLUAccess: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLUAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig3,
+                pbLUAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig3,
+                pbLUAccess: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetLUAccess: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcNetworkAccessConfig3,
+                bLUAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcNetworkAccessConfig3,
+                bLUAccess: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1185,94 +1649,195 @@ pub const xa_switch_t = extern struct {
     xa_complete_entry: isize,
 };
 
-pub const XA_OPEN_EPT = fn(
-    param0: ?PSTR,
-    param1: i32,
-    param2: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const XA_OPEN_EPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?PSTR,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?PSTR,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const XA_CLOSE_EPT = fn(
-    param0: ?PSTR,
-    param1: i32,
-    param2: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const XA_CLOSE_EPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?PSTR,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?PSTR,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const XA_START_EPT = fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const XA_START_EPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const XA_END_EPT = fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const XA_END_EPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const XA_ROLLBACK_EPT = fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const XA_ROLLBACK_EPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const XA_PREPARE_EPT = fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const XA_PREPARE_EPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const XA_COMMIT_EPT = fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const XA_COMMIT_EPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const XA_RECOVER_EPT = fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-    param3: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const XA_RECOVER_EPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+        param3: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+        param3: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const XA_FORGET_EPT = fn(
-    param0: ?*xid_t,
-    param1: i32,
-    param2: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const XA_FORGET_EPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?*xid_t,
+        param1: i32,
+        param2: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const XA_COMPLETE_EPT = fn(
-    param0: ?*i32,
-    param1: ?*i32,
-    param2: i32,
-    param3: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const XA_COMPLETE_EPT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*i32,
+        param1: ?*i32,
+        param2: i32,
+        param3: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        param0: ?*i32,
+        param1: ?*i32,
+        param2: i32,
+        param3: i32,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
 const IID_IDtcToXaMapper_Value = Guid.initString("64ffabe0-7ce9-11d0-8ce6-00c04fdc877e");
 pub const IID_IDtcToXaMapper = &IID_IDtcToXaMapper_Value;
 pub const IDtcToXaMapper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RequestNewResourceManager: fn(
-            self: *const IDtcToXaMapper,
-            pszDSN: ?PSTR,
-            pszClientDllName: ?PSTR,
-            pdwRMCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TranslateTridToXid: fn(
-            self: *const IDtcToXaMapper,
-            pdwITransaction: ?*u32,
-            dwRMCookie: u32,
-            pXid: ?*xid_t,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnlistResourceManager: fn(
-            self: *const IDtcToXaMapper,
-            dwRMCookie: u32,
-            pdwITransaction: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseResourceManager: fn(
-            self: *const IDtcToXaMapper,
-            dwRMCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RequestNewResourceManager: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcToXaMapper,
+                pszDSN: ?PSTR,
+                pszClientDllName: ?PSTR,
+                pdwRMCookie: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcToXaMapper,
+                pszDSN: ?PSTR,
+                pszClientDllName: ?PSTR,
+                pdwRMCookie: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        TranslateTridToXid: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcToXaMapper,
+                pdwITransaction: ?*u32,
+                dwRMCookie: u32,
+                pXid: ?*xid_t,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcToXaMapper,
+                pdwITransaction: ?*u32,
+                dwRMCookie: u32,
+                pXid: ?*xid_t,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnlistResourceManager: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcToXaMapper,
+                dwRMCookie: u32,
+                pdwITransaction: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcToXaMapper,
+                dwRMCookie: u32,
+                pdwITransaction: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReleaseResourceManager: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcToXaMapper,
+                dwRMCookie: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcToXaMapper,
+                dwRMCookie: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1302,13 +1867,22 @@ pub const IID_IDtcToXaHelperFactory = &IID_IDtcToXaHelperFactory_Value;
 pub const IDtcToXaHelperFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
-            self: *const IDtcToXaHelperFactory,
-            pszDSN: ?PSTR,
-            pszClientDllName: ?PSTR,
-            pguidRm: ?*Guid,
-            ppXaHelper: ?*?*IDtcToXaHelper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcToXaHelperFactory,
+                pszDSN: ?PSTR,
+                pszClientDllName: ?PSTR,
+                pguidRm: ?*Guid,
+                ppXaHelper: ?*?*IDtcToXaHelper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcToXaHelperFactory,
+                pszDSN: ?PSTR,
+                pszClientDllName: ?PSTR,
+                pguidRm: ?*Guid,
+                ppXaHelper: ?*?*IDtcToXaHelper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1326,16 +1900,30 @@ pub const IID_IDtcToXaHelper = &IID_IDtcToXaHelper_Value;
 pub const IDtcToXaHelper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Close: fn(
-            self: *const IDtcToXaHelper,
-            i_fDoRecovery: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TranslateTridToXid: fn(
-            self: *const IDtcToXaHelper,
-            pITransaction: ?*ITransaction,
-            pguidBqual: ?*Guid,
-            pXid: ?*xid_t,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcToXaHelper,
+                i_fDoRecovery: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcToXaHelper,
+                i_fDoRecovery: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        TranslateTridToXid: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcToXaHelper,
+                pITransaction: ?*ITransaction,
+                pguidBqual: ?*Guid,
+                pXid: ?*xid_t,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcToXaHelper,
+                pITransaction: ?*ITransaction,
+                pguidBqual: ?*Guid,
+                pXid: ?*xid_t,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1357,30 +1945,62 @@ pub const IID_IDtcToXaHelperSinglePipe = &IID_IDtcToXaHelperSinglePipe_Value;
 pub const IDtcToXaHelperSinglePipe = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        XARMCreate: fn(
-            self: *const IDtcToXaHelperSinglePipe,
-            pszDSN: ?PSTR,
-            pszClientDll: ?PSTR,
-            pdwRMCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ConvertTridToXID: fn(
-            self: *const IDtcToXaHelperSinglePipe,
-            pdwITrans: ?*u32,
-            dwRMCookie: u32,
-            pxid: ?*xid_t,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnlistWithRM: fn(
-            self: *const IDtcToXaHelperSinglePipe,
-            dwRMCookie: u32,
-            i_pITransaction: ?*ITransaction,
-            i_pITransRes: ?*ITransactionResourceAsync,
-            o_ppITransEnslitment: ?*?*ITransactionEnlistmentAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseRMCookie: fn(
-            self: *const IDtcToXaHelperSinglePipe,
-            i_dwRMCookie: u32,
-            i_fNormal: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        XARMCreate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcToXaHelperSinglePipe,
+                pszDSN: ?PSTR,
+                pszClientDll: ?PSTR,
+                pdwRMCookie: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcToXaHelperSinglePipe,
+                pszDSN: ?PSTR,
+                pszClientDll: ?PSTR,
+                pdwRMCookie: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ConvertTridToXID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcToXaHelperSinglePipe,
+                pdwITrans: ?*u32,
+                dwRMCookie: u32,
+                pxid: ?*xid_t,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcToXaHelperSinglePipe,
+                pdwITrans: ?*u32,
+                dwRMCookie: u32,
+                pxid: ?*xid_t,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnlistWithRM: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcToXaHelperSinglePipe,
+                dwRMCookie: u32,
+                i_pITransaction: ?*ITransaction,
+                i_pITransRes: ?*ITransactionResourceAsync,
+                o_ppITransEnslitment: ?*?*ITransactionEnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcToXaHelperSinglePipe,
+                dwRMCookie: u32,
+                i_pITransaction: ?*ITransaction,
+                i_pITransRes: ?*ITransactionResourceAsync,
+                o_ppITransEnslitment: ?*?*ITransactionEnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReleaseRMCookie: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcToXaHelperSinglePipe,
+                i_dwRMCookie: u32,
+                i_fNormal: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) void,
+            else => *const fn(
+                self: *const IDtcToXaHelperSinglePipe,
+                i_dwRMCookie: u32,
+                i_fNormal: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) void,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1478,10 +2098,16 @@ pub const IID_IXATransLookup = &IID_IXATransLookup_Value;
 pub const IXATransLookup = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Lookup: fn(
-            self: *const IXATransLookup,
-            ppTransaction: ?*?*ITransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Lookup: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXATransLookup,
+                ppTransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXATransLookup,
+                ppTransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1499,11 +2125,18 @@ pub const IID_IXATransLookup2 = &IID_IXATransLookup2_Value;
 pub const IXATransLookup2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Lookup: fn(
-            self: *const IXATransLookup2,
-            pXID: ?*xid_t,
-            ppTransaction: ?*?*ITransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Lookup: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXATransLookup2,
+                pXID: ?*xid_t,
+                ppTransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXATransLookup2,
+                pXID: ?*xid_t,
+                ppTransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1521,9 +2154,14 @@ pub const IID_IResourceManagerSink = &IID_IResourceManagerSink_Value;
 pub const IResourceManagerSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        TMDown: fn(
-            self: *const IResourceManagerSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TMDown: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IResourceManagerSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IResourceManagerSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1542,29 +2180,60 @@ pub const IID_IResourceManager = &IID_IResourceManager_Value;
 pub const IResourceManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Enlist: fn(
-            self: *const IResourceManager,
-            pTransaction: ?*ITransaction,
-            pRes: ?*ITransactionResourceAsync,
-            pUOW: ?*BOID,
-            pisoLevel: ?*i32,
-            ppEnlist: ?*?*ITransactionEnlistmentAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reenlist: fn(
-            self: *const IResourceManager,
-            pPrepInfo: [*:0]u8,
-            cbPrepInfo: u32,
-            lTimeout: u32,
-            pXactStat: ?*XACTSTAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReenlistmentComplete: fn(
-            self: *const IResourceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDistributedTransactionManager: fn(
-            self: *const IResourceManager,
-            iid: ?*const Guid,
-            ppvObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Enlist: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IResourceManager,
+                pTransaction: ?*ITransaction,
+                pRes: ?*ITransactionResourceAsync,
+                pUOW: ?*BOID,
+                pisoLevel: ?*i32,
+                ppEnlist: ?*?*ITransactionEnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IResourceManager,
+                pTransaction: ?*ITransaction,
+                pRes: ?*ITransactionResourceAsync,
+                pUOW: ?*BOID,
+                pisoLevel: ?*i32,
+                ppEnlist: ?*?*ITransactionEnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reenlist: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IResourceManager,
+                pPrepInfo: [*:0]u8,
+                cbPrepInfo: u32,
+                lTimeout: u32,
+                pXactStat: ?*XACTSTAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IResourceManager,
+                pPrepInfo: [*:0]u8,
+                cbPrepInfo: u32,
+                lTimeout: u32,
+                pXactStat: ?*XACTSTAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReenlistmentComplete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IResourceManager,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IResourceManager,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDistributedTransactionManager: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IResourceManager,
+                iid: ?*const Guid,
+                ppvObject: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IResourceManager,
+                iid: ?*const Guid,
+                ppvObject: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1594,14 +2263,26 @@ pub const IID_ILastResourceManager = &IID_ILastResourceManager_Value;
 pub const ILastResourceManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        TransactionCommitted: fn(
-            self: *const ILastResourceManager,
-            pPrepInfo: [*:0]u8,
-            cbPrepInfo: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RecoveryDone: fn(
-            self: *const ILastResourceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TransactionCommitted: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ILastResourceManager,
+                pPrepInfo: [*:0]u8,
+                cbPrepInfo: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ILastResourceManager,
+                pPrepInfo: [*:0]u8,
+                cbPrepInfo: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RecoveryDone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ILastResourceManager,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ILastResourceManager,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1623,21 +2304,40 @@ pub const IID_IResourceManager2 = &IID_IResourceManager2_Value;
 pub const IResourceManager2 = extern struct {
     pub const VTable = extern struct {
         base: IResourceManager.VTable,
-        Enlist2: fn(
-            self: *const IResourceManager2,
-            pTransaction: ?*ITransaction,
-            pResAsync: ?*ITransactionResourceAsync,
-            pUOW: ?*BOID,
-            pisoLevel: ?*i32,
-            pXid: ?*xid_t,
-            ppEnlist: ?*?*ITransactionEnlistmentAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reenlist2: fn(
-            self: *const IResourceManager2,
-            pXid: ?*xid_t,
-            dwTimeout: u32,
-            pXactStat: ?*XACTSTAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Enlist2: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IResourceManager2,
+                pTransaction: ?*ITransaction,
+                pResAsync: ?*ITransactionResourceAsync,
+                pUOW: ?*BOID,
+                pisoLevel: ?*i32,
+                pXid: ?*xid_t,
+                ppEnlist: ?*?*ITransactionEnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IResourceManager2,
+                pTransaction: ?*ITransaction,
+                pResAsync: ?*ITransactionResourceAsync,
+                pUOW: ?*BOID,
+                pisoLevel: ?*i32,
+                pXid: ?*xid_t,
+                ppEnlist: ?*?*ITransactionEnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reenlist2: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IResourceManager2,
+                pXid: ?*xid_t,
+                dwTimeout: u32,
+                pXactStat: ?*XACTSTAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IResourceManager2,
+                pXid: ?*xid_t,
+                dwTimeout: u32,
+                pXactStat: ?*XACTSTAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1659,13 +2359,22 @@ pub const IID_IResourceManagerRejoinable = &IID_IResourceManagerRejoinable_Value
 pub const IResourceManagerRejoinable = extern struct {
     pub const VTable = extern struct {
         base: IResourceManager2.VTable,
-        Rejoin: fn(
-            self: *const IResourceManagerRejoinable,
-            pPrepInfo: [*:0]u8,
-            cbPrepInfo: u32,
-            lTimeout: u32,
-            pXactStat: ?*XACTSTAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Rejoin: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IResourceManagerRejoinable,
+                pPrepInfo: [*:0]u8,
+                cbPrepInfo: u32,
+                lTimeout: u32,
+                pXactStat: ?*XACTSTAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IResourceManagerRejoinable,
+                pPrepInfo: [*:0]u8,
+                cbPrepInfo: u32,
+                lTimeout: u32,
+                pXactStat: ?*XACTSTAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1683,13 +2392,24 @@ pub const IID_IXAConfig = &IID_IXAConfig_Value;
 pub const IXAConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IXAConfig,
-            clsidHelperDll: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Terminate: fn(
-            self: *const IXAConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXAConfig,
+                clsidHelperDll: Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXAConfig,
+                clsidHelperDll: Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Terminate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXAConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXAConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1711,18 +2431,34 @@ pub const IID_IRMHelper = &IID_IRMHelper_Value;
 pub const IRMHelper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RMCount: fn(
-            self: *const IRMHelper,
-            dwcTotalNumberOfRMs: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RMInfo: fn(
-            self: *const IRMHelper,
-            pXa_Switch: ?*xa_switch_t,
-            fCDeclCallingConv: BOOL,
-            pszOpenString: ?PSTR,
-            pszCloseString: ?PSTR,
-            guidRMRecovery: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RMCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRMHelper,
+                dwcTotalNumberOfRMs: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRMHelper,
+                dwcTotalNumberOfRMs: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RMInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRMHelper,
+                pXa_Switch: ?*xa_switch_t,
+                fCDeclCallingConv: BOOL,
+                pszOpenString: ?PSTR,
+                pszCloseString: ?PSTR,
+                guidRMRecovery: Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRMHelper,
+                pXa_Switch: ?*xa_switch_t,
+                fCDeclCallingConv: BOOL,
+                pszOpenString: ?PSTR,
+                pszCloseString: ?PSTR,
+                guidRMRecovery: Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1744,10 +2480,16 @@ pub const IID_IXAObtainRMInfo = &IID_IXAObtainRMInfo_Value;
 pub const IXAObtainRMInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ObtainRMInfo: fn(
-            self: *const IXAObtainRMInfo,
-            pIRMHelper: ?*IRMHelper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ObtainRMInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IXAObtainRMInfo,
+                pIRMHelper: ?*IRMHelper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IXAObtainRMInfo,
+                pIRMHelper: ?*IRMHelper,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1765,13 +2507,22 @@ pub const IID_IResourceManagerFactory = &IID_IResourceManagerFactory_Value;
 pub const IResourceManagerFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
-            self: *const IResourceManagerFactory,
-            pguidRM: ?*Guid,
-            pszRMName: ?PSTR,
-            pIResMgrSink: ?*IResourceManagerSink,
-            ppResMgr: ?*?*IResourceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IResourceManagerFactory,
+                pguidRM: ?*Guid,
+                pszRMName: ?PSTR,
+                pIResMgrSink: ?*IResourceManagerSink,
+                ppResMgr: ?*?*IResourceManager,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IResourceManagerFactory,
+                pguidRM: ?*Guid,
+                pszRMName: ?PSTR,
+                pIResMgrSink: ?*IResourceManagerSink,
+                ppResMgr: ?*?*IResourceManager,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1789,14 +2540,24 @@ pub const IID_IResourceManagerFactory2 = &IID_IResourceManagerFactory2_Value;
 pub const IResourceManagerFactory2 = extern struct {
     pub const VTable = extern struct {
         base: IResourceManagerFactory.VTable,
-        CreateEx: fn(
-            self: *const IResourceManagerFactory2,
-            pguidRM: ?*Guid,
-            pszRMName: ?PSTR,
-            pIResMgrSink: ?*IResourceManagerSink,
-            riidRequested: ?*const Guid,
-            ppvResMgr: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IResourceManagerFactory2,
+                pguidRM: ?*Guid,
+                pszRMName: ?PSTR,
+                pIResMgrSink: ?*IResourceManagerSink,
+                riidRequested: ?*const Guid,
+                ppvResMgr: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IResourceManagerFactory2,
+                pguidRM: ?*Guid,
+                pszRMName: ?PSTR,
+                pIResMgrSink: ?*IResourceManagerSink,
+                riidRequested: ?*const Guid,
+                ppvResMgr: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1814,14 +2575,26 @@ pub const IID_IPrepareInfo = &IID_IPrepareInfo_Value;
 pub const IPrepareInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPrepareInfoSize: fn(
-            self: *const IPrepareInfo,
-            pcbPrepInfo: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPrepareInfo: fn(
-            self: *const IPrepareInfo,
-            pPrepInfo: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrepareInfoSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPrepareInfo,
+                pcbPrepInfo: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPrepareInfo,
+                pcbPrepInfo: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPrepareInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPrepareInfo,
+                pPrepInfo: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPrepareInfo,
+                pPrepInfo: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1843,15 +2616,28 @@ pub const IID_IPrepareInfo2 = &IID_IPrepareInfo2_Value;
 pub const IPrepareInfo2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPrepareInfoSize: fn(
-            self: *const IPrepareInfo2,
-            pcbPrepInfo: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPrepareInfo: fn(
-            self: *const IPrepareInfo2,
-            cbPrepareInfo: u32,
-            pPrepInfo: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrepareInfoSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPrepareInfo2,
+                pcbPrepInfo: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPrepareInfo2,
+                pcbPrepInfo: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPrepareInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPrepareInfo2,
+                cbPrepareInfo: u32,
+                pPrepInfo: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPrepareInfo2,
+                cbPrepareInfo: u32,
+                pPrepInfo: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1873,11 +2659,18 @@ pub const IID_IGetDispenser = &IID_IGetDispenser_Value;
 pub const IGetDispenser = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDispenser: fn(
-            self: *const IGetDispenser,
-            iid: ?*const Guid,
-            ppvObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDispenser: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGetDispenser,
+                iid: ?*const Guid,
+                ppvObject: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGetDispenser,
+                iid: ?*const Guid,
+                ppvObject: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1895,11 +2688,18 @@ pub const IID_ITransactionVoterBallotAsync2 = &IID_ITransactionVoterBallotAsync2
 pub const ITransactionVoterBallotAsync2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        VoteRequestDone: fn(
-            self: *const ITransactionVoterBallotAsync2,
-            hr: HRESULT,
-            pboidReason: ?*BOID,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        VoteRequestDone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionVoterBallotAsync2,
+                hr: HRESULT,
+                pboidReason: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionVoterBallotAsync2,
+                hr: HRESULT,
+                pboidReason: ?*BOID,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1917,9 +2717,14 @@ pub const IID_ITransactionVoterNotifyAsync2 = &IID_ITransactionVoterNotifyAsync2
 pub const ITransactionVoterNotifyAsync2 = extern struct {
     pub const VTable = extern struct {
         base: ITransactionOutcomeEvents.VTable,
-        VoteRequest: fn(
-            self: *const ITransactionVoterNotifyAsync2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        VoteRequest: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionVoterNotifyAsync2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionVoterNotifyAsync2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1937,12 +2742,20 @@ pub const IID_ITransactionVoterFactory2 = &IID_ITransactionVoterFactory2_Value;
 pub const ITransactionVoterFactory2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
-            self: *const ITransactionVoterFactory2,
-            pTransaction: ?*ITransaction,
-            pVoterNotify: ?*ITransactionVoterNotifyAsync2,
-            ppVoterBallot: ?*?*ITransactionVoterBallotAsync2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionVoterFactory2,
+                pTransaction: ?*ITransaction,
+                pVoterNotify: ?*ITransactionVoterNotifyAsync2,
+                ppVoterBallot: ?*?*ITransactionVoterBallotAsync2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionVoterFactory2,
+                pTransaction: ?*ITransaction,
+                pVoterNotify: ?*ITransactionVoterNotifyAsync2,
+                ppVoterBallot: ?*?*ITransactionVoterBallotAsync2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1960,22 +2773,48 @@ pub const IID_ITransactionPhase0EnlistmentAsync = &IID_ITransactionPhase0Enlistm
 pub const ITransactionPhase0EnlistmentAsync = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Enable: fn(
-            self: *const ITransactionPhase0EnlistmentAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WaitForEnlistment: fn(
-            self: *const ITransactionPhase0EnlistmentAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Phase0Done: fn(
-            self: *const ITransactionPhase0EnlistmentAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unenlist: fn(
-            self: *const ITransactionPhase0EnlistmentAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTransaction: fn(
-            self: *const ITransactionPhase0EnlistmentAsync,
-            ppITransaction: ?*?*ITransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Enable: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionPhase0EnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionPhase0EnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WaitForEnlistment: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionPhase0EnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionPhase0EnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Phase0Done: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionPhase0EnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionPhase0EnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unenlist: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionPhase0EnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionPhase0EnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetTransaction: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionPhase0EnlistmentAsync,
+                ppITransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionPhase0EnlistmentAsync,
+                ppITransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2009,14 +2848,26 @@ pub const IID_ITransactionPhase0NotifyAsync = &IID_ITransactionPhase0NotifyAsync
 pub const ITransactionPhase0NotifyAsync = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Phase0Request: fn(
-            self: *const ITransactionPhase0NotifyAsync,
-            fAbortingHint: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnlistCompleted: fn(
-            self: *const ITransactionPhase0NotifyAsync,
-            status: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Phase0Request: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionPhase0NotifyAsync,
+                fAbortingHint: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionPhase0NotifyAsync,
+                fAbortingHint: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnlistCompleted: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionPhase0NotifyAsync,
+                status: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionPhase0NotifyAsync,
+                status: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2038,11 +2889,18 @@ pub const IID_ITransactionPhase0Factory = &IID_ITransactionPhase0Factory_Value;
 pub const ITransactionPhase0Factory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
-            self: *const ITransactionPhase0Factory,
-            pPhase0Notify: ?*ITransactionPhase0NotifyAsync,
-            ppPhase0Enlistment: ?*?*ITransactionPhase0EnlistmentAsync,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionPhase0Factory,
+                pPhase0Notify: ?*ITransactionPhase0NotifyAsync,
+                ppPhase0Enlistment: ?*?*ITransactionPhase0EnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionPhase0Factory,
+                pPhase0Notify: ?*ITransactionPhase0NotifyAsync,
+                ppPhase0Enlistment: ?*?*ITransactionPhase0EnlistmentAsync,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2060,28 +2918,60 @@ pub const IID_ITransactionTransmitter = &IID_ITransactionTransmitter_Value;
 pub const ITransactionTransmitter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Set: fn(
-            self: *const ITransactionTransmitter,
-            pTransaction: ?*ITransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropagationTokenSize: fn(
-            self: *const ITransactionTransmitter,
-            pcbToken: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MarshalPropagationToken: fn(
-            self: *const ITransactionTransmitter,
-            cbToken: u32,
-            rgbToken: [*:0]u8,
-            pcbUsed: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnmarshalReturnToken: fn(
-            self: *const ITransactionTransmitter,
-            cbReturnToken: u32,
-            rgbReturnToken: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const ITransactionTransmitter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Set: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionTransmitter,
+                pTransaction: ?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionTransmitter,
+                pTransaction: ?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropagationTokenSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionTransmitter,
+                pcbToken: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionTransmitter,
+                pcbToken: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        MarshalPropagationToken: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionTransmitter,
+                cbToken: u32,
+                rgbToken: [*:0]u8,
+                pcbUsed: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionTransmitter,
+                cbToken: u32,
+                rgbToken: [*:0]u8,
+                pcbUsed: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnmarshalReturnToken: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionTransmitter,
+                cbReturnToken: u32,
+                rgbReturnToken: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionTransmitter,
+                cbReturnToken: u32,
+                rgbReturnToken: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionTransmitter,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionTransmitter,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2115,10 +3005,16 @@ pub const IID_ITransactionTransmitterFactory = &IID_ITransactionTransmitterFacto
 pub const ITransactionTransmitterFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
-            self: *const ITransactionTransmitterFactory,
-            ppTransmitter: ?*?*ITransactionTransmitter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionTransmitterFactory,
+                ppTransmitter: ?*?*ITransactionTransmitter,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionTransmitterFactory,
+                ppTransmitter: ?*?*ITransactionTransmitter,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2136,25 +3032,52 @@ pub const IID_ITransactionReceiver = &IID_ITransactionReceiver_Value;
 pub const ITransactionReceiver = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        UnmarshalPropagationToken: fn(
-            self: *const ITransactionReceiver,
-            cbToken: u32,
-            rgbToken: [*:0]u8,
-            ppTransaction: ?*?*ITransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetReturnTokenSize: fn(
-            self: *const ITransactionReceiver,
-            pcbReturnToken: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MarshalReturnToken: fn(
-            self: *const ITransactionReceiver,
-            cbReturnToken: u32,
-            rgbReturnToken: [*:0]u8,
-            pcbUsed: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const ITransactionReceiver,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnmarshalPropagationToken: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionReceiver,
+                cbToken: u32,
+                rgbToken: [*:0]u8,
+                ppTransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionReceiver,
+                cbToken: u32,
+                rgbToken: [*:0]u8,
+                ppTransaction: ?*?*ITransaction,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetReturnTokenSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionReceiver,
+                pcbReturnToken: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionReceiver,
+                pcbReturnToken: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        MarshalReturnToken: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionReceiver,
+                cbReturnToken: u32,
+                rgbReturnToken: [*:0]u8,
+                pcbUsed: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionReceiver,
+                cbReturnToken: u32,
+                rgbReturnToken: [*:0]u8,
+                pcbUsed: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionReceiver,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionReceiver,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2184,10 +3107,16 @@ pub const IID_ITransactionReceiverFactory = &IID_ITransactionReceiverFactory_Val
 pub const ITransactionReceiverFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
-            self: *const ITransactionReceiverFactory,
-            ppReceiver: ?*?*ITransactionReceiver,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ITransactionReceiverFactory,
+                ppReceiver: ?*?*ITransactionReceiver,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ITransactionReceiverFactory,
+                ppReceiver: ?*?*ITransactionReceiver,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2209,16 +3138,30 @@ pub const IID_IDtcLuConfigure = &IID_IDtcLuConfigure_Value;
 pub const IDtcLuConfigure = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Add: fn(
-            self: *const IDtcLuConfigure,
-            pucLuPair: [*:0]u8,
-            cbLuPair: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
-            self: *const IDtcLuConfigure,
-            pucLuPair: [*:0]u8,
-            cbLuPair: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Add: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuConfigure,
+                pucLuPair: [*:0]u8,
+                cbLuPair: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuConfigure,
+                pucLuPair: [*:0]u8,
+                cbLuPair: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Delete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuConfigure,
+                pucLuPair: [*:0]u8,
+                cbLuPair: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuConfigure,
+                pucLuPair: [*:0]u8,
+                cbLuPair: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2253,12 +3196,20 @@ pub const IID_IDtcLuRecoveryFactory = &IID_IDtcLuRecoveryFactory_Value;
 pub const IDtcLuRecoveryFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
-            self: *const IDtcLuRecoveryFactory,
-            pucLuPair: [*:0]u8,
-            cbLuPair: u32,
-            ppRecovery: ?*?*IDtcLuRecovery,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryFactory,
+                pucLuPair: [*:0]u8,
+                cbLuPair: u32,
+                ppRecovery: ?*?*IDtcLuRecovery,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryFactory,
+                pucLuPair: [*:0]u8,
+                cbLuPair: u32,
+                ppRecovery: ?*?*IDtcLuRecovery,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2357,67 +3308,154 @@ pub const IID_IDtcLuRecoveryInitiatedByDtcTransWork = &IID_IDtcLuRecoveryInitiat
 pub const IDtcLuRecoveryInitiatedByDtcTransWork = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetLogNameSizes: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            pcbOurLogName: ?*u32,
-            pcbRemoteLogName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOurXln: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            pXln: ?*_DtcLu_Xln,
-            pOurLogName: ?*u8,
-            pRemoteLogName: ?*u8,
-            pdwProtocol: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleConfirmationFromOurXln: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            Confirmation: _DtcLu_Xln_Confirmation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleTheirXlnResponse: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            Xln: _DtcLu_Xln,
-            pRemoteLogName: ?*u8,
-            cbRemoteLogName: u32,
-            dwProtocol: u32,
-            pConfirmation: ?*_DtcLu_Xln_Confirmation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleErrorFromOurXln: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            Error: _DtcLu_Xln_Error,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CheckForCompareStates: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            fCompareStates: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOurTransIdSize: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            pcbOurTransId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOurCompareStates: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            pOurTransId: ?*u8,
-            pCompareState: ?*_DtcLu_CompareState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleTheirCompareStatesResponse: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            CompareState: _DtcLu_CompareState,
-            pConfirmation: ?*_DtcLu_CompareStates_Confirmation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleErrorFromOurCompareStates: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            Error: _DtcLu_CompareStates_Error,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ConversationLost: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRecoverySeqNum: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            plRecoverySeqNum: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ObsoleteRecoverySeqNum: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
-            lNewRecoverySeqNum: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLogNameSizes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                pcbOurLogName: ?*u32,
+                pcbRemoteLogName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                pcbOurLogName: ?*u32,
+                pcbRemoteLogName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOurXln: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                pXln: ?*_DtcLu_Xln,
+                pOurLogName: ?*u8,
+                pRemoteLogName: ?*u8,
+                pdwProtocol: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                pXln: ?*_DtcLu_Xln,
+                pOurLogName: ?*u8,
+                pRemoteLogName: ?*u8,
+                pdwProtocol: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HandleConfirmationFromOurXln: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                Confirmation: _DtcLu_Xln_Confirmation,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                Confirmation: _DtcLu_Xln_Confirmation,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HandleTheirXlnResponse: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                Xln: _DtcLu_Xln,
+                pRemoteLogName: ?*u8,
+                cbRemoteLogName: u32,
+                dwProtocol: u32,
+                pConfirmation: ?*_DtcLu_Xln_Confirmation,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                Xln: _DtcLu_Xln,
+                pRemoteLogName: ?*u8,
+                cbRemoteLogName: u32,
+                dwProtocol: u32,
+                pConfirmation: ?*_DtcLu_Xln_Confirmation,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HandleErrorFromOurXln: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                Error: _DtcLu_Xln_Error,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                Error: _DtcLu_Xln_Error,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CheckForCompareStates: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                fCompareStates: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                fCompareStates: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOurTransIdSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                pcbOurTransId: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                pcbOurTransId: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOurCompareStates: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                pOurTransId: ?*u8,
+                pCompareState: ?*_DtcLu_CompareState,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                pOurTransId: ?*u8,
+                pCompareState: ?*_DtcLu_CompareState,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HandleTheirCompareStatesResponse: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                CompareState: _DtcLu_CompareState,
+                pConfirmation: ?*_DtcLu_CompareStates_Confirmation,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                CompareState: _DtcLu_CompareState,
+                pConfirmation: ?*_DtcLu_CompareStates_Confirmation,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HandleErrorFromOurCompareStates: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                Error: _DtcLu_CompareStates_Error,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                Error: _DtcLu_CompareStates_Error,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ConversationLost: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRecoverySeqNum: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                plRecoverySeqNum: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                plRecoverySeqNum: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ObsoleteRecoverySeqNum: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                lNewRecoverySeqNum: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcTransWork,
+                lNewRecoverySeqNum: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2483,10 +3521,16 @@ pub const IID_IDtcLuRecoveryInitiatedByDtcStatusWork = &IID_IDtcLuRecoveryInitia
 pub const IDtcLuRecoveryInitiatedByDtcStatusWork = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        HandleCheckLuStatus: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtcStatusWork,
-            lRecoverySeqNum: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HandleCheckLuStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcStatusWork,
+                lRecoverySeqNum: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtcStatusWork,
+                lRecoverySeqNum: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2504,11 +3548,18 @@ pub const IID_IDtcLuRecoveryInitiatedByDtc = &IID_IDtcLuRecoveryInitiatedByDtc_V
 pub const IDtcLuRecoveryInitiatedByDtc = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetWork: fn(
-            self: *const IDtcLuRecoveryInitiatedByDtc,
-            pWork: ?*_DtcLu_LocalRecovery_Work,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWork: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByDtc,
+                pWork: ?*_DtcLu_LocalRecovery_Work,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByDtc,
+                pWork: ?*_DtcLu_LocalRecovery_Work,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2526,50 +3577,110 @@ pub const IID_IDtcLuRecoveryInitiatedByLuWork = &IID_IDtcLuRecoveryInitiatedByLu
 pub const IDtcLuRecoveryInitiatedByLuWork = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        HandleTheirXln: fn(
-            self: *const IDtcLuRecoveryInitiatedByLuWork,
-            lRecoverySeqNum: i32,
-            Xln: _DtcLu_Xln,
-            pRemoteLogName: ?*u8,
-            cbRemoteLogName: u32,
-            pOurLogName: ?*u8,
-            cbOurLogName: u32,
-            dwProtocol: u32,
-            pResponse: ?*_DtcLu_Xln_Response,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOurLogNameSize: fn(
-            self: *const IDtcLuRecoveryInitiatedByLuWork,
-            pcbOurLogName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOurXln: fn(
-            self: *const IDtcLuRecoveryInitiatedByLuWork,
-            pXln: ?*_DtcLu_Xln,
-            pOurLogName: ?*u8,
-            pdwProtocol: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleConfirmationOfOurXln: fn(
-            self: *const IDtcLuRecoveryInitiatedByLuWork,
-            Confirmation: _DtcLu_Xln_Confirmation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleTheirCompareStates: fn(
-            self: *const IDtcLuRecoveryInitiatedByLuWork,
-            pRemoteTransId: ?*u8,
-            cbRemoteTransId: u32,
-            CompareState: _DtcLu_CompareState,
-            pResponse: ?*_DtcLu_CompareStates_Response,
-            pCompareState: ?*_DtcLu_CompareState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleConfirmationOfOurCompareStates: fn(
-            self: *const IDtcLuRecoveryInitiatedByLuWork,
-            Confirmation: _DtcLu_CompareStates_Confirmation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleErrorFromOurCompareStates: fn(
-            self: *const IDtcLuRecoveryInitiatedByLuWork,
-            Error: _DtcLu_CompareStates_Error,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ConversationLost: fn(
-            self: *const IDtcLuRecoveryInitiatedByLuWork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HandleTheirXln: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                lRecoverySeqNum: i32,
+                Xln: _DtcLu_Xln,
+                pRemoteLogName: ?*u8,
+                cbRemoteLogName: u32,
+                pOurLogName: ?*u8,
+                cbOurLogName: u32,
+                dwProtocol: u32,
+                pResponse: ?*_DtcLu_Xln_Response,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                lRecoverySeqNum: i32,
+                Xln: _DtcLu_Xln,
+                pRemoteLogName: ?*u8,
+                cbRemoteLogName: u32,
+                pOurLogName: ?*u8,
+                cbOurLogName: u32,
+                dwProtocol: u32,
+                pResponse: ?*_DtcLu_Xln_Response,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOurLogNameSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                pcbOurLogName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                pcbOurLogName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOurXln: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                pXln: ?*_DtcLu_Xln,
+                pOurLogName: ?*u8,
+                pdwProtocol: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                pXln: ?*_DtcLu_Xln,
+                pOurLogName: ?*u8,
+                pdwProtocol: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HandleConfirmationOfOurXln: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                Confirmation: _DtcLu_Xln_Confirmation,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                Confirmation: _DtcLu_Xln_Confirmation,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HandleTheirCompareStates: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                pRemoteTransId: ?*u8,
+                cbRemoteTransId: u32,
+                CompareState: _DtcLu_CompareState,
+                pResponse: ?*_DtcLu_CompareStates_Response,
+                pCompareState: ?*_DtcLu_CompareState,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                pRemoteTransId: ?*u8,
+                cbRemoteTransId: u32,
+                CompareState: _DtcLu_CompareState,
+                pResponse: ?*_DtcLu_CompareStates_Response,
+                pCompareState: ?*_DtcLu_CompareState,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HandleConfirmationOfOurCompareStates: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                Confirmation: _DtcLu_CompareStates_Confirmation,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                Confirmation: _DtcLu_CompareStates_Confirmation,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        HandleErrorFromOurCompareStates: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                Error: _DtcLu_CompareStates_Error,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+                Error: _DtcLu_CompareStates_Error,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ConversationLost: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByLuWork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2615,10 +3726,16 @@ pub const IID_IDtcLuRecoveryInitiatedByLu = &IID_IDtcLuRecoveryInitiatedByLu_Val
 pub const IDtcLuRecoveryInitiatedByLu = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetObjectToHandleWorkFromLu: fn(
-            self: *const IDtcLuRecoveryInitiatedByLu,
-            ppWork: ?*?*IDtcLuRecoveryInitiatedByLuWork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetObjectToHandleWorkFromLu: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRecoveryInitiatedByLu,
+                ppWork: ?*?*IDtcLuRecoveryInitiatedByLuWork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRecoveryInitiatedByLu,
+                ppWork: ?*?*IDtcLuRecoveryInitiatedByLuWork,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2636,25 +3753,56 @@ pub const IID_IDtcLuRmEnlistment = &IID_IDtcLuRmEnlistment_Value;
 pub const IDtcLuRmEnlistment = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Unplug: fn(
-            self: *const IDtcLuRmEnlistment,
-            fConversationLost: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BackedOut: fn(
-            self: *const IDtcLuRmEnlistment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BackOut: fn(
-            self: *const IDtcLuRmEnlistment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Committed: fn(
-            self: *const IDtcLuRmEnlistment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Forget: fn(
-            self: *const IDtcLuRmEnlistment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RequestCommit: fn(
-            self: *const IDtcLuRmEnlistment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unplug: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistment,
+                fConversationLost: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistment,
+                fConversationLost: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BackedOut: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BackOut: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Committed: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Forget: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RequestCommit: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2692,33 +3840,78 @@ pub const IID_IDtcLuRmEnlistmentSink = &IID_IDtcLuRmEnlistmentSink_Value;
 pub const IDtcLuRmEnlistmentSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AckUnplug: fn(
-            self: *const IDtcLuRmEnlistmentSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TmDown: fn(
-            self: *const IDtcLuRmEnlistmentSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SessionLost: fn(
-            self: *const IDtcLuRmEnlistmentSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BackedOut: fn(
-            self: *const IDtcLuRmEnlistmentSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BackOut: fn(
-            self: *const IDtcLuRmEnlistmentSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Committed: fn(
-            self: *const IDtcLuRmEnlistmentSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Forget: fn(
-            self: *const IDtcLuRmEnlistmentSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Prepare: fn(
-            self: *const IDtcLuRmEnlistmentSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RequestCommit: fn(
-            self: *const IDtcLuRmEnlistmentSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AckUnplug: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        TmDown: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SessionLost: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BackedOut: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BackOut: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Committed: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Forget: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Prepare: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RequestCommit: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistmentSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2768,16 +3961,28 @@ pub const IID_IDtcLuRmEnlistmentFactory = &IID_IDtcLuRmEnlistmentFactory_Value;
 pub const IDtcLuRmEnlistmentFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
-            self: *const IDtcLuRmEnlistmentFactory,
-            pucLuPair: ?*u8,
-            cbLuPair: u32,
-            pITransaction: ?*ITransaction,
-            pTransId: ?*u8,
-            cbTransId: u32,
-            pRmEnlistmentSink: ?*IDtcLuRmEnlistmentSink,
-            ppRmEnlistment: ?*?*IDtcLuRmEnlistment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuRmEnlistmentFactory,
+                pucLuPair: ?*u8,
+                cbLuPair: u32,
+                pITransaction: ?*ITransaction,
+                pTransId: ?*u8,
+                cbTransId: u32,
+                pRmEnlistmentSink: ?*IDtcLuRmEnlistmentSink,
+                ppRmEnlistment: ?*?*IDtcLuRmEnlistment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuRmEnlistmentFactory,
+                pucLuPair: ?*u8,
+                cbLuPair: u32,
+                pITransaction: ?*ITransaction,
+                pTransId: ?*u8,
+                cbTransId: u32,
+                pRmEnlistmentSink: ?*IDtcLuRmEnlistmentSink,
+                ppRmEnlistment: ?*?*IDtcLuRmEnlistment,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2795,28 +4000,64 @@ pub const IID_IDtcLuSubordinateDtc = &IID_IDtcLuSubordinateDtc_Value;
 pub const IDtcLuSubordinateDtc = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Unplug: fn(
-            self: *const IDtcLuSubordinateDtc,
-            fConversationLost: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BackedOut: fn(
-            self: *const IDtcLuSubordinateDtc,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BackOut: fn(
-            self: *const IDtcLuSubordinateDtc,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Committed: fn(
-            self: *const IDtcLuSubordinateDtc,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Forget: fn(
-            self: *const IDtcLuSubordinateDtc,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Prepare: fn(
-            self: *const IDtcLuSubordinateDtc,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RequestCommit: fn(
-            self: *const IDtcLuSubordinateDtc,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unplug: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtc,
+                fConversationLost: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtc,
+                fConversationLost: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BackedOut: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BackOut: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Committed: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Forget: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Prepare: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RequestCommit: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2858,30 +4099,70 @@ pub const IID_IDtcLuSubordinateDtcSink = &IID_IDtcLuSubordinateDtcSink_Value;
 pub const IDtcLuSubordinateDtcSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AckUnplug: fn(
-            self: *const IDtcLuSubordinateDtcSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TmDown: fn(
-            self: *const IDtcLuSubordinateDtcSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SessionLost: fn(
-            self: *const IDtcLuSubordinateDtcSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BackedOut: fn(
-            self: *const IDtcLuSubordinateDtcSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BackOut: fn(
-            self: *const IDtcLuSubordinateDtcSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Committed: fn(
-            self: *const IDtcLuSubordinateDtcSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Forget: fn(
-            self: *const IDtcLuSubordinateDtcSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RequestCommit: fn(
-            self: *const IDtcLuSubordinateDtcSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AckUnplug: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        TmDown: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SessionLost: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BackedOut: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BackOut: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Committed: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Forget: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RequestCommit: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtcSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2927,20 +4208,36 @@ pub const IID_IDtcLuSubordinateDtcFactory = &IID_IDtcLuSubordinateDtcFactory_Val
 pub const IDtcLuSubordinateDtcFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: fn(
-            self: *const IDtcLuSubordinateDtcFactory,
-            pucLuPair: ?*u8,
-            cbLuPair: u32,
-            punkTransactionOuter: ?*IUnknown,
-            isoLevel: i32,
-            isoFlags: u32,
-            pOptions: ?*ITransactionOptions,
-            ppTransaction: ?*?*ITransaction,
-            pTransId: ?*u8,
-            cbTransId: u32,
-            pSubordinateDtcSink: ?*IDtcLuSubordinateDtcSink,
-            ppSubordinateDtc: ?*?*IDtcLuSubordinateDtc,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDtcLuSubordinateDtcFactory,
+                pucLuPair: ?*u8,
+                cbLuPair: u32,
+                punkTransactionOuter: ?*IUnknown,
+                isoLevel: i32,
+                isoFlags: u32,
+                pOptions: ?*ITransactionOptions,
+                ppTransaction: ?*?*ITransaction,
+                pTransId: ?*u8,
+                cbTransId: u32,
+                pSubordinateDtcSink: ?*IDtcLuSubordinateDtcSink,
+                ppSubordinateDtc: ?*?*IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDtcLuSubordinateDtcFactory,
+                pucLuPair: ?*u8,
+                cbLuPair: u32,
+                punkTransactionOuter: ?*IUnknown,
+                isoLevel: i32,
+                isoFlags: u32,
+                pOptions: ?*ITransactionOptions,
+                ppTransaction: ?*?*ITransaction,
+                pTransId: ?*u8,
+                cbTransId: u32,
+                pSubordinateDtcSink: ?*IDtcLuSubordinateDtcSink,
+                ppSubordinateDtc: ?*?*IDtcLuSubordinateDtc,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

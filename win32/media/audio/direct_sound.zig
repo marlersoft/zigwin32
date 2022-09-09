@@ -461,60 +461,127 @@ pub const DSBPOSITIONNOTIFY = extern struct {
     hEventNotify: ?HANDLE,
 };
 
-pub const LPDSENUMCALLBACKA = fn(
-    param0: ?*Guid,
-    param1: ?[*:0]const u8,
-    param2: ?[*:0]const u8,
-    param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const LPDSENUMCALLBACKA = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*Guid,
+        param1: ?[*:0]const u8,
+        param2: ?[*:0]const u8,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?*Guid,
+        param1: ?[*:0]const u8,
+        param2: ?[*:0]const u8,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
-pub const LPDSENUMCALLBACKW = fn(
-    param0: ?*Guid,
-    param1: ?[*:0]const u16,
-    param2: ?[*:0]const u16,
-    param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const LPDSENUMCALLBACKW = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*Guid,
+        param1: ?[*:0]const u16,
+        param2: ?[*:0]const u16,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+    else => *const fn(
+        param0: ?*Guid,
+        param1: ?[*:0]const u16,
+        param2: ?[*:0]const u16,
+        param3: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) BOOL,
+} ;
 
 const IID_IDirectSound_Value = Guid.initString("279afa83-4981-11ce-a521-0020af0be560");
 pub const IID_IDirectSound = &IID_IDirectSound_Value;
 pub const IDirectSound = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateSoundBuffer: fn(
-            self: *const IDirectSound,
-            pcDSBufferDesc: ?*DSBUFFERDESC,
-            ppDSBuffer: ?*?*IDirectSoundBuffer,
-            pUnkOuter: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCaps: fn(
-            self: *const IDirectSound,
-            pDSCaps: ?*DSCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DuplicateSoundBuffer: fn(
-            self: *const IDirectSound,
-            pDSBufferOriginal: ?*IDirectSoundBuffer,
-            ppDSBufferDuplicate: ?*?*IDirectSoundBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCooperativeLevel: fn(
-            self: *const IDirectSound,
-            hwnd: ?HWND,
-            dwLevel: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Compact: fn(
-            self: *const IDirectSound,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSpeakerConfig: fn(
-            self: *const IDirectSound,
-            pdwSpeakerConfig: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSpeakerConfig: fn(
-            self: *const IDirectSound,
-            dwSpeakerConfig: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectSound,
-            pcGuidDevice: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSoundBuffer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound,
+                pcDSBufferDesc: ?*DSBUFFERDESC,
+                ppDSBuffer: ?*?*IDirectSoundBuffer,
+                pUnkOuter: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound,
+                pcDSBufferDesc: ?*DSBUFFERDESC,
+                ppDSBuffer: ?*?*IDirectSoundBuffer,
+                pUnkOuter: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound,
+                pDSCaps: ?*DSCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound,
+                pDSCaps: ?*DSCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DuplicateSoundBuffer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound,
+                pDSBufferOriginal: ?*IDirectSoundBuffer,
+                ppDSBufferDuplicate: ?*?*IDirectSoundBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound,
+                pDSBufferOriginal: ?*IDirectSoundBuffer,
+                ppDSBufferDuplicate: ?*?*IDirectSoundBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetCooperativeLevel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound,
+                hwnd: ?HWND,
+                dwLevel: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound,
+                hwnd: ?HWND,
+                dwLevel: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Compact: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSpeakerConfig: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound,
+                pdwSpeakerConfig: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound,
+                pdwSpeakerConfig: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetSpeakerConfig: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound,
+                dwSpeakerConfig: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound,
+                dwSpeakerConfig: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound,
+                pcGuidDevice: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound,
+                pcGuidDevice: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -560,10 +627,16 @@ pub const IID_IDirectSound8 = &IID_IDirectSound8_Value;
 pub const IDirectSound8 = extern struct {
     pub const VTable = extern struct {
         base: IDirectSound.VTable,
-        VerifyCertification: fn(
-            self: *const IDirectSound8,
-            pdwCertified: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        VerifyCertification: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound8,
+                pdwCertified: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound8,
+                pdwCertified: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -581,94 +654,218 @@ pub const IID_IDirectSoundBuffer = &IID_IDirectSoundBuffer_Value;
 pub const IDirectSoundBuffer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCaps: fn(
-            self: *const IDirectSoundBuffer,
-            pDSBufferCaps: ?*DSBCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentPosition: fn(
-            self: *const IDirectSoundBuffer,
-            pdwCurrentPlayCursor: ?*u32,
-            pdwCurrentWriteCursor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFormat: fn(
-            self: *const IDirectSoundBuffer,
-            // TODO: what to do with BytesParamIndex 1?
-            pwfxFormat: ?*WAVEFORMATEX,
-            dwSizeAllocated: u32,
-            pdwSizeWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVolume: fn(
-            self: *const IDirectSoundBuffer,
-            plVolume: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPan: fn(
-            self: *const IDirectSoundBuffer,
-            plPan: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFrequency: fn(
-            self: *const IDirectSoundBuffer,
-            pdwFrequency: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStatus: fn(
-            self: *const IDirectSoundBuffer,
-            pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectSoundBuffer,
-            pDirectSound: ?*IDirectSound,
-            pcDSBufferDesc: ?*DSBUFFERDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Lock: fn(
-            self: *const IDirectSoundBuffer,
-            dwOffset: u32,
-            dwBytes: u32,
-            ppvAudioPtr1: ?*?*anyopaque,
-            pdwAudioBytes1: ?*u32,
-            ppvAudioPtr2: ?*?*anyopaque,
-            pdwAudioBytes2: ?*u32,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Play: fn(
-            self: *const IDirectSoundBuffer,
-            dwReserved1: u32,
-            dwPriority: u32,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCurrentPosition: fn(
-            self: *const IDirectSoundBuffer,
-            dwNewPosition: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFormat: fn(
-            self: *const IDirectSoundBuffer,
-            pcfxFormat: ?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetVolume: fn(
-            self: *const IDirectSoundBuffer,
-            lVolume: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPan: fn(
-            self: *const IDirectSoundBuffer,
-            lPan: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFrequency: fn(
-            self: *const IDirectSoundBuffer,
-            dwFrequency: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Stop: fn(
-            self: *const IDirectSoundBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unlock: fn(
-            self: *const IDirectSoundBuffer,
-            // TODO: what to do with BytesParamIndex 1?
-            pvAudioPtr1: ?*anyopaque,
-            dwAudioBytes1: u32,
-            // TODO: what to do with BytesParamIndex 3?
-            pvAudioPtr2: ?*anyopaque,
-            dwAudioBytes2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Restore: fn(
-            self: *const IDirectSoundBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                pDSBufferCaps: ?*DSBCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                pDSBufferCaps: ?*DSBCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCurrentPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                pdwCurrentPlayCursor: ?*u32,
+                pdwCurrentWriteCursor: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                pdwCurrentPlayCursor: ?*u32,
+                pdwCurrentWriteCursor: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                // TODO: what to do with BytesParamIndex 1?
+                pwfxFormat: ?*WAVEFORMATEX,
+                dwSizeAllocated: u32,
+                pdwSizeWritten: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                // TODO: what to do with BytesParamIndex 1?
+                pwfxFormat: ?*WAVEFORMATEX,
+                dwSizeAllocated: u32,
+                pdwSizeWritten: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetVolume: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                plVolume: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                plVolume: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPan: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                plPan: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                plPan: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFrequency: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                pdwFrequency: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                pdwFrequency: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                pdwStatus: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                pdwStatus: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                pDirectSound: ?*IDirectSound,
+                pcDSBufferDesc: ?*DSBUFFERDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                pDirectSound: ?*IDirectSound,
+                pcDSBufferDesc: ?*DSBUFFERDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Lock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                dwOffset: u32,
+                dwBytes: u32,
+                ppvAudioPtr1: ?*?*anyopaque,
+                pdwAudioBytes1: ?*u32,
+                ppvAudioPtr2: ?*?*anyopaque,
+                pdwAudioBytes2: ?*u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                dwOffset: u32,
+                dwBytes: u32,
+                ppvAudioPtr1: ?*?*anyopaque,
+                pdwAudioBytes1: ?*u32,
+                ppvAudioPtr2: ?*?*anyopaque,
+                pdwAudioBytes2: ?*u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Play: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                dwReserved1: u32,
+                dwPriority: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                dwReserved1: u32,
+                dwPriority: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetCurrentPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                dwNewPosition: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                dwNewPosition: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                pcfxFormat: ?*WAVEFORMATEX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                pcfxFormat: ?*WAVEFORMATEX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetVolume: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                lVolume: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                lVolume: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPan: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                lPan: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                lPan: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetFrequency: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                dwFrequency: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                dwFrequency: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Stop: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+                // TODO: what to do with BytesParamIndex 1?
+                pvAudioPtr1: ?*anyopaque,
+                dwAudioBytes1: u32,
+                // TODO: what to do with BytesParamIndex 3?
+                pvAudioPtr2: ?*anyopaque,
+                dwAudioBytes2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+                // TODO: what to do with BytesParamIndex 1?
+                pvAudioPtr1: ?*anyopaque,
+                dwAudioBytes1: u32,
+                // TODO: what to do with BytesParamIndex 3?
+                pvAudioPtr2: ?*anyopaque,
+                dwAudioBytes2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Restore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -754,25 +951,50 @@ pub const IID_IDirectSoundBuffer8 = &IID_IDirectSoundBuffer8_Value;
 pub const IDirectSoundBuffer8 = extern struct {
     pub const VTable = extern struct {
         base: IDirectSoundBuffer.VTable,
-        SetFX: fn(
-            self: *const IDirectSoundBuffer8,
-            dwEffectsCount: u32,
-            pDSFXDesc: ?[*]DSEFFECTDESC,
-            pdwResultCodes: ?[*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AcquireResources: fn(
-            self: *const IDirectSoundBuffer8,
-            dwFlags: u32,
-            dwEffectsCount: u32,
-            pdwResultCodes: [*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetObjectInPath: fn(
-            self: *const IDirectSoundBuffer8,
-            rguidObject: ?*const Guid,
-            dwIndex: u32,
-            rguidInterface: ?*const Guid,
-            ppObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFX: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer8,
+                dwEffectsCount: u32,
+                pDSFXDesc: ?[*]DSEFFECTDESC,
+                pdwResultCodes: ?[*]u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer8,
+                dwEffectsCount: u32,
+                pDSFXDesc: ?[*]DSEFFECTDESC,
+                pdwResultCodes: ?[*]u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AcquireResources: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer8,
+                dwFlags: u32,
+                dwEffectsCount: u32,
+                pdwResultCodes: [*]u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer8,
+                dwFlags: u32,
+                dwEffectsCount: u32,
+                pdwResultCodes: [*]u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetObjectInPath: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundBuffer8,
+                rguidObject: ?*const Guid,
+                dwIndex: u32,
+                rguidInterface: ?*const Guid,
+                ppObject: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundBuffer8,
+                rguidObject: ?*const Guid,
+                dwIndex: u32,
+                rguidInterface: ?*const Guid,
+                ppObject: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -798,82 +1020,188 @@ pub const IID_IDirectSound3DListener = &IID_IDirectSound3DListener_Value;
 pub const IDirectSound3DListener = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAllParameters: fn(
-            self: *const IDirectSound3DListener,
-            pListener: ?*DS3DLISTENER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDistanceFactor: fn(
-            self: *const IDirectSound3DListener,
-            pflDistanceFactor: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDopplerFactor: fn(
-            self: *const IDirectSound3DListener,
-            pflDopplerFactor: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOrientation: fn(
-            self: *const IDirectSound3DListener,
-            pvOrientFront: ?*D3DVECTOR,
-            pvOrientTop: ?*D3DVECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPosition: fn(
-            self: *const IDirectSound3DListener,
-            pvPosition: ?*D3DVECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRolloffFactor: fn(
-            self: *const IDirectSound3DListener,
-            pflRolloffFactor: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVelocity: fn(
-            self: *const IDirectSound3DListener,
-            pvVelocity: ?*D3DVECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllParameters: fn(
-            self: *const IDirectSound3DListener,
-            pcListener: ?*DS3DLISTENER,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDistanceFactor: fn(
-            self: *const IDirectSound3DListener,
-            flDistanceFactor: f32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDopplerFactor: fn(
-            self: *const IDirectSound3DListener,
-            flDopplerFactor: f32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOrientation: fn(
-            self: *const IDirectSound3DListener,
-            xFront: f32,
-            yFront: f32,
-            zFront: f32,
-            xTop: f32,
-            yTop: f32,
-            zTop: f32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPosition: fn(
-            self: *const IDirectSound3DListener,
-            x: f32,
-            y: f32,
-            z: f32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRolloffFactor: fn(
-            self: *const IDirectSound3DListener,
-            flRolloffFactor: f32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetVelocity: fn(
-            self: *const IDirectSound3DListener,
-            x: f32,
-            y: f32,
-            z: f32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CommitDeferredSettings: fn(
-            self: *const IDirectSound3DListener,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                pListener: ?*DS3DLISTENER,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                pListener: ?*DS3DLISTENER,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDistanceFactor: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                pflDistanceFactor: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                pflDistanceFactor: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDopplerFactor: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                pflDopplerFactor: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                pflDopplerFactor: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOrientation: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                pvOrientFront: ?*D3DVECTOR,
+                pvOrientTop: ?*D3DVECTOR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                pvOrientFront: ?*D3DVECTOR,
+                pvOrientTop: ?*D3DVECTOR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                pvPosition: ?*D3DVECTOR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                pvPosition: ?*D3DVECTOR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRolloffFactor: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                pflRolloffFactor: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                pflRolloffFactor: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetVelocity: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                pvVelocity: ?*D3DVECTOR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                pvVelocity: ?*D3DVECTOR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                pcListener: ?*DS3DLISTENER,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                pcListener: ?*DS3DLISTENER,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetDistanceFactor: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                flDistanceFactor: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                flDistanceFactor: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetDopplerFactor: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                flDopplerFactor: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                flDopplerFactor: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOrientation: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                xFront: f32,
+                yFront: f32,
+                zFront: f32,
+                xTop: f32,
+                yTop: f32,
+                zTop: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                xFront: f32,
+                yFront: f32,
+                zFront: f32,
+                xTop: f32,
+                yTop: f32,
+                zTop: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                x: f32,
+                y: f32,
+                z: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                x: f32,
+                y: f32,
+                z: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetRolloffFactor: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                flRolloffFactor: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                flRolloffFactor: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetVelocity: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+                x: f32,
+                y: f32,
+                z: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+                x: f32,
+                y: f32,
+                z: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CommitDeferredSettings: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DListener,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DListener,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -947,95 +1275,220 @@ pub const IID_IDirectSound3DBuffer = &IID_IDirectSound3DBuffer_Value;
 pub const IDirectSound3DBuffer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAllParameters: fn(
-            self: *const IDirectSound3DBuffer,
-            pDs3dBuffer: ?*DS3DBUFFER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetConeAngles: fn(
-            self: *const IDirectSound3DBuffer,
-            pdwInsideConeAngle: ?*u32,
-            pdwOutsideConeAngle: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetConeOrientation: fn(
-            self: *const IDirectSound3DBuffer,
-            pvOrientation: ?*D3DVECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetConeOutsideVolume: fn(
-            self: *const IDirectSound3DBuffer,
-            plConeOutsideVolume: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxDistance: fn(
-            self: *const IDirectSound3DBuffer,
-            pflMaxDistance: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMinDistance: fn(
-            self: *const IDirectSound3DBuffer,
-            pflMinDistance: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMode: fn(
-            self: *const IDirectSound3DBuffer,
-            pdwMode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPosition: fn(
-            self: *const IDirectSound3DBuffer,
-            pvPosition: ?*D3DVECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetVelocity: fn(
-            self: *const IDirectSound3DBuffer,
-            pvVelocity: ?*D3DVECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllParameters: fn(
-            self: *const IDirectSound3DBuffer,
-            pcDs3dBuffer: ?*DS3DBUFFER,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetConeAngles: fn(
-            self: *const IDirectSound3DBuffer,
-            dwInsideConeAngle: u32,
-            dwOutsideConeAngle: u32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetConeOrientation: fn(
-            self: *const IDirectSound3DBuffer,
-            x: f32,
-            y: f32,
-            z: f32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetConeOutsideVolume: fn(
-            self: *const IDirectSound3DBuffer,
-            lConeOutsideVolume: i32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMaxDistance: fn(
-            self: *const IDirectSound3DBuffer,
-            flMaxDistance: f32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMinDistance: fn(
-            self: *const IDirectSound3DBuffer,
-            flMinDistance: f32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMode: fn(
-            self: *const IDirectSound3DBuffer,
-            dwMode: u32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPosition: fn(
-            self: *const IDirectSound3DBuffer,
-            x: f32,
-            y: f32,
-            z: f32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetVelocity: fn(
-            self: *const IDirectSound3DBuffer,
-            x: f32,
-            y: f32,
-            z: f32,
-            dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                pDs3dBuffer: ?*DS3DBUFFER,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                pDs3dBuffer: ?*DS3DBUFFER,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetConeAngles: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                pdwInsideConeAngle: ?*u32,
+                pdwOutsideConeAngle: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                pdwInsideConeAngle: ?*u32,
+                pdwOutsideConeAngle: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetConeOrientation: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                pvOrientation: ?*D3DVECTOR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                pvOrientation: ?*D3DVECTOR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetConeOutsideVolume: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                plConeOutsideVolume: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                plConeOutsideVolume: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMaxDistance: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                pflMaxDistance: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                pflMaxDistance: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMinDistance: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                pflMinDistance: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                pflMinDistance: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                pdwMode: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                pdwMode: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                pvPosition: ?*D3DVECTOR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                pvPosition: ?*D3DVECTOR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetVelocity: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                pvVelocity: ?*D3DVECTOR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                pvVelocity: ?*D3DVECTOR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                pcDs3dBuffer: ?*DS3DBUFFER,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                pcDs3dBuffer: ?*DS3DBUFFER,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetConeAngles: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                dwInsideConeAngle: u32,
+                dwOutsideConeAngle: u32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                dwInsideConeAngle: u32,
+                dwOutsideConeAngle: u32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetConeOrientation: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                x: f32,
+                y: f32,
+                z: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                x: f32,
+                y: f32,
+                z: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetConeOutsideVolume: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                lConeOutsideVolume: i32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                lConeOutsideVolume: i32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetMaxDistance: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                flMaxDistance: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                flMaxDistance: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetMinDistance: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                flMinDistance: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                flMinDistance: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                dwMode: u32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                dwMode: u32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                x: f32,
+                y: f32,
+                z: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                x: f32,
+                y: f32,
+                z: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetVelocity: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSound3DBuffer,
+                x: f32,
+                y: f32,
+                z: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSound3DBuffer,
+                x: f32,
+                y: f32,
+                z: f32,
+                dwApply: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1121,20 +1574,40 @@ pub const IID_IDirectSoundCapture = &IID_IDirectSoundCapture_Value;
 pub const IDirectSoundCapture = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateCaptureBuffer: fn(
-            self: *const IDirectSoundCapture,
-            pcDSCBufferDesc: ?*DSCBUFFERDESC,
-            ppDSCBuffer: ?*?*IDirectSoundCaptureBuffer,
-            pUnkOuter: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCaps: fn(
-            self: *const IDirectSoundCapture,
-            pDSCCaps: ?*DSCCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectSoundCapture,
-            pcGuidDevice: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCaptureBuffer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCapture,
+                pcDSCBufferDesc: ?*DSCBUFFERDESC,
+                ppDSCBuffer: ?*?*IDirectSoundCaptureBuffer,
+                pUnkOuter: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCapture,
+                pcDSCBufferDesc: ?*DSCBUFFERDESC,
+                ppDSCBuffer: ?*?*IDirectSoundCaptureBuffer,
+                pUnkOuter: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCapture,
+                pDSCCaps: ?*DSCCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCapture,
+                pDSCCaps: ?*DSCCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCapture,
+                pcGuidDevice: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCapture,
+                pcGuidDevice: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1160,57 +1633,126 @@ pub const IID_IDirectSoundCaptureBuffer = &IID_IDirectSoundCaptureBuffer_Value;
 pub const IDirectSoundCaptureBuffer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCaps: fn(
-            self: *const IDirectSoundCaptureBuffer,
-            pDSCBCaps: ?*DSCBCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentPosition: fn(
-            self: *const IDirectSoundCaptureBuffer,
-            pdwCapturePosition: ?*u32,
-            pdwReadPosition: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFormat: fn(
-            self: *const IDirectSoundCaptureBuffer,
-            // TODO: what to do with BytesParamIndex 1?
-            pwfxFormat: ?*WAVEFORMATEX,
-            dwSizeAllocated: u32,
-            pdwSizeWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStatus: fn(
-            self: *const IDirectSoundCaptureBuffer,
-            pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Initialize: fn(
-            self: *const IDirectSoundCaptureBuffer,
-            pDirectSoundCapture: ?*IDirectSoundCapture,
-            pcDSCBufferDesc: ?*DSCBUFFERDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Lock: fn(
-            self: *const IDirectSoundCaptureBuffer,
-            dwOffset: u32,
-            dwBytes: u32,
-            ppvAudioPtr1: ?*?*anyopaque,
-            pdwAudioBytes1: ?*u32,
-            ppvAudioPtr2: ?*?*anyopaque,
-            pdwAudioBytes2: ?*u32,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Start: fn(
-            self: *const IDirectSoundCaptureBuffer,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Stop: fn(
-            self: *const IDirectSoundCaptureBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unlock: fn(
-            self: *const IDirectSoundCaptureBuffer,
-            // TODO: what to do with BytesParamIndex 1?
-            pvAudioPtr1: ?*anyopaque,
-            dwAudioBytes1: u32,
-            // TODO: what to do with BytesParamIndex 3?
-            pvAudioPtr2: ?*anyopaque,
-            dwAudioBytes2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCaps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureBuffer,
+                pDSCBCaps: ?*DSCBCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureBuffer,
+                pDSCBCaps: ?*DSCBCAPS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCurrentPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureBuffer,
+                pdwCapturePosition: ?*u32,
+                pdwReadPosition: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureBuffer,
+                pdwCapturePosition: ?*u32,
+                pdwReadPosition: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureBuffer,
+                // TODO: what to do with BytesParamIndex 1?
+                pwfxFormat: ?*WAVEFORMATEX,
+                dwSizeAllocated: u32,
+                pdwSizeWritten: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureBuffer,
+                // TODO: what to do with BytesParamIndex 1?
+                pwfxFormat: ?*WAVEFORMATEX,
+                dwSizeAllocated: u32,
+                pdwSizeWritten: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureBuffer,
+                pdwStatus: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureBuffer,
+                pdwStatus: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureBuffer,
+                pDirectSoundCapture: ?*IDirectSoundCapture,
+                pcDSCBufferDesc: ?*DSCBUFFERDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureBuffer,
+                pDirectSoundCapture: ?*IDirectSoundCapture,
+                pcDSCBufferDesc: ?*DSCBUFFERDESC,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Lock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureBuffer,
+                dwOffset: u32,
+                dwBytes: u32,
+                ppvAudioPtr1: ?*?*anyopaque,
+                pdwAudioBytes1: ?*u32,
+                ppvAudioPtr2: ?*?*anyopaque,
+                pdwAudioBytes2: ?*u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureBuffer,
+                dwOffset: u32,
+                dwBytes: u32,
+                ppvAudioPtr1: ?*?*anyopaque,
+                pdwAudioBytes1: ?*u32,
+                ppvAudioPtr2: ?*?*anyopaque,
+                pdwAudioBytes2: ?*u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Start: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureBuffer,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureBuffer,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Stop: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureBuffer,
+                // TODO: what to do with BytesParamIndex 1?
+                pvAudioPtr1: ?*anyopaque,
+                dwAudioBytes1: u32,
+                // TODO: what to do with BytesParamIndex 3?
+                pvAudioPtr2: ?*anyopaque,
+                dwAudioBytes2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureBuffer,
+                // TODO: what to do with BytesParamIndex 1?
+                pvAudioPtr1: ?*anyopaque,
+                dwAudioBytes1: u32,
+                // TODO: what to do with BytesParamIndex 3?
+                pvAudioPtr2: ?*anyopaque,
+                dwAudioBytes2: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1260,18 +1802,34 @@ pub const IID_IDirectSoundCaptureBuffer8 = &IID_IDirectSoundCaptureBuffer8_Value
 pub const IDirectSoundCaptureBuffer8 = extern struct {
     pub const VTable = extern struct {
         base: IDirectSoundCaptureBuffer.VTable,
-        GetObjectInPath: fn(
-            self: *const IDirectSoundCaptureBuffer8,
-            rguidObject: ?*const Guid,
-            dwIndex: u32,
-            rguidInterface: ?*const Guid,
-            ppObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFXStatus: fn(
-            self: *const IDirectSoundCaptureBuffer8,
-            dwEffectsCount: u32,
-            pdwFXStatus: [*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetObjectInPath: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureBuffer8,
+                rguidObject: ?*const Guid,
+                dwIndex: u32,
+                rguidInterface: ?*const Guid,
+                ppObject: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureBuffer8,
+                rguidObject: ?*const Guid,
+                dwIndex: u32,
+                rguidInterface: ?*const Guid,
+                ppObject: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFXStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureBuffer8,
+                dwEffectsCount: u32,
+                pdwFXStatus: [*]u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureBuffer8,
+                dwEffectsCount: u32,
+                pdwFXStatus: [*]u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1293,11 +1851,18 @@ pub const IID_IDirectSoundNotify = &IID_IDirectSoundNotify_Value;
 pub const IDirectSoundNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetNotificationPositions: fn(
-            self: *const IDirectSoundNotify,
-            dwPositionNotifies: u32,
-            pcPositionNotifies: [*]DSBPOSITIONNOTIFY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNotificationPositions: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundNotify,
+                dwPositionNotifies: u32,
+                pcPositionNotifies: [*]DSBPOSITIONNOTIFY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundNotify,
+                dwPositionNotifies: u32,
+                pcPositionNotifies: [*]DSBPOSITIONNOTIFY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1320,14 +1885,26 @@ pub const IID_IDirectSoundFXGargle = &IID_IDirectSoundFXGargle_Value;
 pub const IDirectSoundFXGargle = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAllParameters: fn(
-            self: *const IDirectSoundFXGargle,
-            pcDsFxGargle: ?*DSFXGargle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllParameters: fn(
-            self: *const IDirectSoundFXGargle,
-            pDsFxGargle: ?*DSFXGargle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXGargle,
+                pcDsFxGargle: ?*DSFXGargle,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXGargle,
+                pcDsFxGargle: ?*DSFXGargle,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXGargle,
+                pDsFxGargle: ?*DSFXGargle,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXGargle,
+                pDsFxGargle: ?*DSFXGargle,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1359,14 +1936,26 @@ pub const IID_IDirectSoundFXChorus = &IID_IDirectSoundFXChorus_Value;
 pub const IDirectSoundFXChorus = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAllParameters: fn(
-            self: *const IDirectSoundFXChorus,
-            pcDsFxChorus: ?*DSFXChorus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllParameters: fn(
-            self: *const IDirectSoundFXChorus,
-            pDsFxChorus: ?*DSFXChorus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXChorus,
+                pcDsFxChorus: ?*DSFXChorus,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXChorus,
+                pcDsFxChorus: ?*DSFXChorus,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXChorus,
+                pDsFxChorus: ?*DSFXChorus,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXChorus,
+                pDsFxChorus: ?*DSFXChorus,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1398,14 +1987,26 @@ pub const IID_IDirectSoundFXFlanger = &IID_IDirectSoundFXFlanger_Value;
 pub const IDirectSoundFXFlanger = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAllParameters: fn(
-            self: *const IDirectSoundFXFlanger,
-            pcDsFxFlanger: ?*DSFXFlanger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllParameters: fn(
-            self: *const IDirectSoundFXFlanger,
-            pDsFxFlanger: ?*DSFXFlanger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXFlanger,
+                pcDsFxFlanger: ?*DSFXFlanger,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXFlanger,
+                pcDsFxFlanger: ?*DSFXFlanger,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXFlanger,
+                pDsFxFlanger: ?*DSFXFlanger,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXFlanger,
+                pDsFxFlanger: ?*DSFXFlanger,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1435,14 +2036,26 @@ pub const IID_IDirectSoundFXEcho = &IID_IDirectSoundFXEcho_Value;
 pub const IDirectSoundFXEcho = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAllParameters: fn(
-            self: *const IDirectSoundFXEcho,
-            pcDsFxEcho: ?*DSFXEcho,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllParameters: fn(
-            self: *const IDirectSoundFXEcho,
-            pDsFxEcho: ?*DSFXEcho,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXEcho,
+                pcDsFxEcho: ?*DSFXEcho,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXEcho,
+                pcDsFxEcho: ?*DSFXEcho,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXEcho,
+                pDsFxEcho: ?*DSFXEcho,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXEcho,
+                pDsFxEcho: ?*DSFXEcho,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1472,14 +2085,26 @@ pub const IID_IDirectSoundFXDistortion = &IID_IDirectSoundFXDistortion_Value;
 pub const IDirectSoundFXDistortion = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAllParameters: fn(
-            self: *const IDirectSoundFXDistortion,
-            pcDsFxDistortion: ?*DSFXDistortion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllParameters: fn(
-            self: *const IDirectSoundFXDistortion,
-            pDsFxDistortion: ?*DSFXDistortion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXDistortion,
+                pcDsFxDistortion: ?*DSFXDistortion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXDistortion,
+                pcDsFxDistortion: ?*DSFXDistortion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXDistortion,
+                pDsFxDistortion: ?*DSFXDistortion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXDistortion,
+                pDsFxDistortion: ?*DSFXDistortion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1510,14 +2135,26 @@ pub const IID_IDirectSoundFXCompressor = &IID_IDirectSoundFXCompressor_Value;
 pub const IDirectSoundFXCompressor = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAllParameters: fn(
-            self: *const IDirectSoundFXCompressor,
-            pcDsFxCompressor: ?*DSFXCompressor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllParameters: fn(
-            self: *const IDirectSoundFXCompressor,
-            pDsFxCompressor: ?*DSFXCompressor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXCompressor,
+                pcDsFxCompressor: ?*DSFXCompressor,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXCompressor,
+                pcDsFxCompressor: ?*DSFXCompressor,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXCompressor,
+                pDsFxCompressor: ?*DSFXCompressor,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXCompressor,
+                pDsFxCompressor: ?*DSFXCompressor,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1545,14 +2182,26 @@ pub const IID_IDirectSoundFXParamEq = &IID_IDirectSoundFXParamEq_Value;
 pub const IDirectSoundFXParamEq = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAllParameters: fn(
-            self: *const IDirectSoundFXParamEq,
-            pcDsFxParamEq: ?*DSFXParamEq,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllParameters: fn(
-            self: *const IDirectSoundFXParamEq,
-            pDsFxParamEq: ?*DSFXParamEq,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXParamEq,
+                pcDsFxParamEq: ?*DSFXParamEq,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXParamEq,
+                pcDsFxParamEq: ?*DSFXParamEq,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXParamEq,
+                pDsFxParamEq: ?*DSFXParamEq,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXParamEq,
+                pDsFxParamEq: ?*DSFXParamEq,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1589,30 +2238,66 @@ pub const IID_IDirectSoundFXI3DL2Reverb = &IID_IDirectSoundFXI3DL2Reverb_Value;
 pub const IDirectSoundFXI3DL2Reverb = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAllParameters: fn(
-            self: *const IDirectSoundFXI3DL2Reverb,
-            pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllParameters: fn(
-            self: *const IDirectSoundFXI3DL2Reverb,
-            pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPreset: fn(
-            self: *const IDirectSoundFXI3DL2Reverb,
-            dwPreset: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPreset: fn(
-            self: *const IDirectSoundFXI3DL2Reverb,
-            pdwPreset: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetQuality: fn(
-            self: *const IDirectSoundFXI3DL2Reverb,
-            lQuality: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetQuality: fn(
-            self: *const IDirectSoundFXI3DL2Reverb,
-            plQuality: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXI3DL2Reverb,
+                pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXI3DL2Reverb,
+                pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXI3DL2Reverb,
+                pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXI3DL2Reverb,
+                pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPreset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXI3DL2Reverb,
+                dwPreset: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXI3DL2Reverb,
+                dwPreset: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPreset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXI3DL2Reverb,
+                pdwPreset: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXI3DL2Reverb,
+                pdwPreset: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetQuality: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXI3DL2Reverb,
+                lQuality: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXI3DL2Reverb,
+                lQuality: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetQuality: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXI3DL2Reverb,
+                plQuality: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXI3DL2Reverb,
+                plQuality: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1657,14 +2342,26 @@ pub const IID_IDirectSoundFXWavesReverb = &IID_IDirectSoundFXWavesReverb_Value;
 pub const IDirectSoundFXWavesReverb = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAllParameters: fn(
-            self: *const IDirectSoundFXWavesReverb,
-            pcDsFxWavesReverb: ?*DSFXWavesReverb,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllParameters: fn(
-            self: *const IDirectSoundFXWavesReverb,
-            pDsFxWavesReverb: ?*DSFXWavesReverb,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXWavesReverb,
+                pcDsFxWavesReverb: ?*DSFXWavesReverb,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXWavesReverb,
+                pcDsFxWavesReverb: ?*DSFXWavesReverb,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFXWavesReverb,
+                pDsFxWavesReverb: ?*DSFXWavesReverb,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFXWavesReverb,
+                pDsFxWavesReverb: ?*DSFXWavesReverb,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1692,21 +2389,44 @@ pub const IID_IDirectSoundCaptureFXAec = &IID_IDirectSoundCaptureFXAec_Value;
 pub const IDirectSoundCaptureFXAec = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAllParameters: fn(
-            self: *const IDirectSoundCaptureFXAec,
-            pDscFxAec: ?*DSCFXAec,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllParameters: fn(
-            self: *const IDirectSoundCaptureFXAec,
-            pDscFxAec: ?*DSCFXAec,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStatus: fn(
-            self: *const IDirectSoundCaptureFXAec,
-            pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IDirectSoundCaptureFXAec,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureFXAec,
+                pDscFxAec: ?*DSCFXAec,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureFXAec,
+                pDscFxAec: ?*DSCFXAec,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureFXAec,
+                pDscFxAec: ?*DSCFXAec,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureFXAec,
+                pDscFxAec: ?*DSCFXAec,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureFXAec,
+                pdwStatus: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureFXAec,
+                pdwStatus: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureFXAec,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureFXAec,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1740,17 +2460,34 @@ pub const IID_IDirectSoundCaptureFXNoiseSuppress = &IID_IDirectSoundCaptureFXNoi
 pub const IDirectSoundCaptureFXNoiseSuppress = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAllParameters: fn(
-            self: *const IDirectSoundCaptureFXNoiseSuppress,
-            pcDscFxNoiseSuppress: ?*DSCFXNoiseSuppress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllParameters: fn(
-            self: *const IDirectSoundCaptureFXNoiseSuppress,
-            pDscFxNoiseSuppress: ?*DSCFXNoiseSuppress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IDirectSoundCaptureFXNoiseSuppress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureFXNoiseSuppress,
+                pcDscFxNoiseSuppress: ?*DSCFXNoiseSuppress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureFXNoiseSuppress,
+                pcDscFxNoiseSuppress: ?*DSCFXNoiseSuppress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllParameters: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureFXNoiseSuppress,
+                pDscFxNoiseSuppress: ?*DSCFXNoiseSuppress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureFXNoiseSuppress,
+                pDscFxNoiseSuppress: ?*DSCFXNoiseSuppress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundCaptureFXNoiseSuppress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundCaptureFXNoiseSuppress,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1776,17 +2513,30 @@ pub const IID_IDirectSoundFullDuplex = &IID_IDirectSoundFullDuplex_Value;
 pub const IDirectSoundFullDuplex = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IDirectSoundFullDuplex,
-            pCaptureGuid: ?*const Guid,
-            pRenderGuid: ?*const Guid,
-            lpDscBufferDesc: ?*DSCBUFFERDESC,
-            lpDsBufferDesc: ?*DSBUFFERDESC,
-            hWnd: ?HWND,
-            dwLevel: u32,
-            lplpDirectSoundCaptureBuffer8: ?*?*IDirectSoundCaptureBuffer8,
-            lplpDirectSoundBuffer8: ?*?*IDirectSoundBuffer8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirectSoundFullDuplex,
+                pCaptureGuid: ?*const Guid,
+                pRenderGuid: ?*const Guid,
+                lpDscBufferDesc: ?*DSCBUFFERDESC,
+                lpDsBufferDesc: ?*DSBUFFERDESC,
+                hWnd: ?HWND,
+                dwLevel: u32,
+                lplpDirectSoundCaptureBuffer8: ?*?*IDirectSoundCaptureBuffer8,
+                lplpDirectSoundBuffer8: ?*?*IDirectSoundBuffer8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirectSoundFullDuplex,
+                pCaptureGuid: ?*const Guid,
+                pRenderGuid: ?*const Guid,
+                lpDscBufferDesc: ?*DSCBUFFERDESC,
+                lpDsBufferDesc: ?*DSBUFFERDESC,
+                hWnd: ?HWND,
+                dwLevel: u32,
+                lplpDirectSoundCaptureBuffer8: ?*?*IDirectSoundCaptureBuffer8,
+                lplpDirectSoundBuffer8: ?*?*IDirectSoundBuffer8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

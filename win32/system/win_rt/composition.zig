@@ -11,33 +11,72 @@ pub const IID_ICompositionDrawingSurfaceInterop = &IID_ICompositionDrawingSurfac
 pub const ICompositionDrawingSurfaceInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BeginDraw: fn(
-            self: *const ICompositionDrawingSurfaceInterop,
-            updateRect: ?*const RECT,
-            iid: ?*const Guid,
-            updateObject: ?*?*anyopaque,
-            updateOffset: ?*POINT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndDraw: fn(
-            self: *const ICompositionDrawingSurfaceInterop,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Resize: fn(
-            self: *const ICompositionDrawingSurfaceInterop,
-            sizePixels: SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Scroll: fn(
-            self: *const ICompositionDrawingSurfaceInterop,
-            scrollRect: ?*const RECT,
-            clipRect: ?*const RECT,
-            offsetX: i32,
-            offsetY: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ResumeDraw: fn(
-            self: *const ICompositionDrawingSurfaceInterop,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SuspendDraw: fn(
-            self: *const ICompositionDrawingSurfaceInterop,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginDraw: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositionDrawingSurfaceInterop,
+                updateRect: ?*const RECT,
+                iid: ?*const Guid,
+                updateObject: ?*?*anyopaque,
+                updateOffset: ?*POINT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositionDrawingSurfaceInterop,
+                updateRect: ?*const RECT,
+                iid: ?*const Guid,
+                updateObject: ?*?*anyopaque,
+                updateOffset: ?*POINT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndDraw: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositionDrawingSurfaceInterop,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositionDrawingSurfaceInterop,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Resize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositionDrawingSurfaceInterop,
+                sizePixels: SIZE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositionDrawingSurfaceInterop,
+                sizePixels: SIZE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Scroll: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositionDrawingSurfaceInterop,
+                scrollRect: ?*const RECT,
+                clipRect: ?*const RECT,
+                offsetX: i32,
+                offsetY: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositionDrawingSurfaceInterop,
+                scrollRect: ?*const RECT,
+                clipRect: ?*const RECT,
+                offsetX: i32,
+                offsetY: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ResumeDraw: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositionDrawingSurfaceInterop,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositionDrawingSurfaceInterop,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SuspendDraw: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositionDrawingSurfaceInterop,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositionDrawingSurfaceInterop,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -75,13 +114,22 @@ pub const IID_ICompositionDrawingSurfaceInterop2 = &IID_ICompositionDrawingSurfa
 pub const ICompositionDrawingSurfaceInterop2 = extern struct {
     pub const VTable = extern struct {
         base: ICompositionDrawingSurfaceInterop.VTable,
-        CopySurface: fn(
-            self: *const ICompositionDrawingSurfaceInterop2,
-            destinationResource: ?*IUnknown,
-            destinationOffsetX: i32,
-            destinationOffsetY: i32,
-            sourceRectangle: ?*const RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CopySurface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositionDrawingSurfaceInterop2,
+                destinationResource: ?*IUnknown,
+                destinationOffsetX: i32,
+                destinationOffsetY: i32,
+                sourceRectangle: ?*const RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositionDrawingSurfaceInterop2,
+                destinationResource: ?*IUnknown,
+                destinationOffsetX: i32,
+                destinationOffsetY: i32,
+                sourceRectangle: ?*const RECT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -99,14 +147,26 @@ pub const IID_ICompositionGraphicsDeviceInterop = &IID_ICompositionGraphicsDevic
 pub const ICompositionGraphicsDeviceInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRenderingDevice: fn(
-            self: *const ICompositionGraphicsDeviceInterop,
-            value: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRenderingDevice: fn(
-            self: *const ICompositionGraphicsDeviceInterop,
-            value: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRenderingDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositionGraphicsDeviceInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositionGraphicsDeviceInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetRenderingDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositionGraphicsDeviceInterop,
+                value: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositionGraphicsDeviceInterop,
+                value: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -128,21 +188,42 @@ pub const IID_ICompositorInterop = &IID_ICompositorInterop_Value;
 pub const ICompositorInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateCompositionSurfaceForHandle: fn(
-            self: *const ICompositorInterop,
-            swapChain: ?HANDLE,
-            result: ?**struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"},
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateCompositionSurfaceForSwapChain: fn(
-            self: *const ICompositorInterop,
-            swapChain: ?*IUnknown,
-            result: ?**struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"},
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateGraphicsDevice: fn(
-            self: *const ICompositorInterop,
-            renderingDevice: ?*IUnknown,
-            result: ?**struct{comment: []const u8 = "MissingClrType CompositionGraphicsDevice.Windows.UI.Composition"},
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCompositionSurfaceForHandle: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositorInterop,
+                swapChain: ?HANDLE,
+                result: ?**struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositorInterop,
+                swapChain: ?HANDLE,
+                result: ?**struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateCompositionSurfaceForSwapChain: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositorInterop,
+                swapChain: ?*IUnknown,
+                result: ?**struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositorInterop,
+                swapChain: ?*IUnknown,
+                result: ?**struct{comment: []const u8 = "MissingClrType ICompositionSurface.Windows.UI.Composition"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateGraphicsDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositorInterop,
+                renderingDevice: ?*IUnknown,
+                result: ?**struct{comment: []const u8 = "MissingClrType CompositionGraphicsDevice.Windows.UI.Composition"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositorInterop,
+                renderingDevice: ?*IUnknown,
+                result: ?**struct{comment: []const u8 = "MissingClrType CompositionGraphicsDevice.Windows.UI.Composition"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -168,10 +249,16 @@ pub const IID_ISwapChainInterop = &IID_ISwapChainInterop_Value;
 pub const ISwapChainInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetSwapChain: fn(
-            self: *const ISwapChainInterop,
-            swapChain: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSwapChain: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ISwapChainInterop,
+                swapChain: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ISwapChainInterop,
+                swapChain: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -189,10 +276,16 @@ pub const IID_IVisualInteractionSourceInterop = &IID_IVisualInteractionSourceInt
 pub const IVisualInteractionSourceInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        TryRedirectForManipulation: fn(
-            self: *const IVisualInteractionSourceInterop,
-            pointerInfo: ?*const POINTER_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TryRedirectForManipulation: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IVisualInteractionSourceInterop,
+                pointerInfo: ?*const POINTER_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IVisualInteractionSourceInterop,
+                pointerInfo: ?*const POINTER_INFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -210,11 +303,18 @@ pub const IID_ICompositionCapabilitiesInteropFactory = &IID_ICompositionCapabili
 pub const ICompositionCapabilitiesInteropFactory = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        GetForWindow: fn(
-            self: *const ICompositionCapabilitiesInteropFactory,
-            hwnd: ?HWND,
-            result: ?**struct{comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition"},
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetForWindow: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositionCapabilitiesInteropFactory,
+                hwnd: ?HWND,
+                result: ?**struct{comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositionCapabilitiesInteropFactory,
+                hwnd: ?HWND,
+                result: ?**struct{comment: []const u8 = "MissingClrType CompositionCapabilities.Windows.UI.Composition"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -232,16 +332,30 @@ pub const IID_ICompositorDesktopInterop = &IID_ICompositorDesktopInterop_Value;
 pub const ICompositorDesktopInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateDesktopWindowTarget: fn(
-            self: *const ICompositorDesktopInterop,
-            hwndTarget: ?HWND,
-            isTopmost: BOOL,
-            result: ?**struct{comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop"},
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnsureOnThread: fn(
-            self: *const ICompositorDesktopInterop,
-            threadId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDesktopWindowTarget: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositorDesktopInterop,
+                hwndTarget: ?HWND,
+                isTopmost: BOOL,
+                result: ?**struct{comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositorDesktopInterop,
+                hwndTarget: ?HWND,
+                isTopmost: BOOL,
+                result: ?**struct{comment: []const u8 = "MissingClrType DesktopWindowTarget.Windows.UI.Composition.Desktop"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnsureOnThread: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICompositorDesktopInterop,
+                threadId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICompositorDesktopInterop,
+                threadId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -264,10 +378,18 @@ pub const IDesktopWindowTargetInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Hwnd: fn(
-            self: *const IDesktopWindowTargetInterop,
-            value: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Hwnd: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const IDesktopWindowTargetInterop,
+                value: ?*?HWND,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const IDesktopWindowTargetInterop,
+                value: ?*?HWND,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

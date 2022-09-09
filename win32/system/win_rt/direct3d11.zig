@@ -11,11 +11,18 @@ pub const IID_IDirect3DDxgiInterfaceAccess = &IID_IDirect3DDxgiInterfaceAccess_V
 pub const IDirect3DDxgiInterfaceAccess = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetInterface: fn(
-            self: *const IDirect3DDxgiInterfaceAccess,
-            iid: ?*const Guid,
-            p: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDirect3DDxgiInterfaceAccess,
+                iid: ?*const Guid,
+                p: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDirect3DDxgiInterfaceAccess,
+                iid: ?*const Guid,
+                p: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

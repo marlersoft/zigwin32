@@ -959,38 +959,72 @@ pub const alljoyn_manifestarray = extern struct {
     xmls: ?*?*i8,
 };
 
-pub const alljoyn_applicationstatelistener_state_ptr = fn(
-    busName: ?*i8,
-    publicKey: ?*i8,
-    applicationState: alljoyn_applicationstate,
-    context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_applicationstatelistener_state_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        busName: ?*i8,
+        publicKey: ?*i8,
+        applicationState: alljoyn_applicationstate,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        busName: ?*i8,
+        publicKey: ?*i8,
+        applicationState: alljoyn_applicationstate,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const alljoyn_applicationstatelistener_callbacks = extern struct {
     state: ?alljoyn_applicationstatelistener_state_ptr,
 };
 
-pub const alljoyn_keystorelistener_loadrequest_ptr = fn(
-    context: ?*const anyopaque,
-    listener: alljoyn_keystorelistener,
-    keyStore: alljoyn_keystore,
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub const alljoyn_keystorelistener_loadrequest_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        listener: alljoyn_keystorelistener,
+        keyStore: alljoyn_keystore,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+    else => *const fn(
+        context: ?*const anyopaque,
+        listener: alljoyn_keystorelistener,
+        keyStore: alljoyn_keystore,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+} ;
 
-pub const alljoyn_keystorelistener_storerequest_ptr = fn(
-    context: ?*const anyopaque,
-    listener: alljoyn_keystorelistener,
-    keyStore: alljoyn_keystore,
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub const alljoyn_keystorelistener_storerequest_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        listener: alljoyn_keystorelistener,
+        keyStore: alljoyn_keystore,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+    else => *const fn(
+        context: ?*const anyopaque,
+        listener: alljoyn_keystorelistener,
+        keyStore: alljoyn_keystore,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+} ;
 
-pub const alljoyn_keystorelistener_acquireexclusivelock_ptr = fn(
-    context: ?*const anyopaque,
-    listener: alljoyn_keystorelistener,
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub const alljoyn_keystorelistener_acquireexclusivelock_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        listener: alljoyn_keystorelistener,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+    else => *const fn(
+        context: ?*const anyopaque,
+        listener: alljoyn_keystorelistener,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+} ;
 
-pub const alljoyn_keystorelistener_releaseexclusivelock_ptr = fn(
-    context: ?*const anyopaque,
-    listener: alljoyn_keystorelistener,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_keystorelistener_releaseexclusivelock_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        listener: alljoyn_keystorelistener,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        listener: alljoyn_keystorelistener,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const alljoyn_keystorelistener_callbacks = extern struct {
     load_request: ?alljoyn_keystorelistener_loadrequest_ptr,
@@ -1017,55 +1051,111 @@ pub const ALLJOYN_MESSAGE_METHOD_RET = alljoyn_messagetype.METHOD_RET;
 pub const ALLJOYN_MESSAGE_ERROR = alljoyn_messagetype.ERROR;
 pub const ALLJOYN_MESSAGE_SIGNAL = alljoyn_messagetype.SIGNAL;
 
-pub const alljoyn_authlistener_requestcredentials_ptr = fn(
-    context: ?*const anyopaque,
-    authMechanism: ?[*:0]const u8,
-    peerName: ?[*:0]const u8,
-    authCount: u16,
-    userName: ?[*:0]const u8,
-    credMask: u16,
-    credentials: alljoyn_credentials,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const alljoyn_authlistener_requestcredentials_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        authMechanism: ?[*:0]const u8,
+        peerName: ?[*:0]const u8,
+        authCount: u16,
+        userName: ?[*:0]const u8,
+        credMask: u16,
+        credentials: alljoyn_credentials,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        context: ?*const anyopaque,
+        authMechanism: ?[*:0]const u8,
+        peerName: ?[*:0]const u8,
+        authCount: u16,
+        userName: ?[*:0]const u8,
+        credMask: u16,
+        credentials: alljoyn_credentials,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const alljoyn_authlistener_requestcredentialsasync_ptr = fn(
-    context: ?*const anyopaque,
-    listener: alljoyn_authlistener,
-    authMechanism: ?[*:0]const u8,
-    peerName: ?[*:0]const u8,
-    authCount: u16,
-    userName: ?[*:0]const u8,
-    credMask: u16,
-    authContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub const alljoyn_authlistener_requestcredentialsasync_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        listener: alljoyn_authlistener,
+        authMechanism: ?[*:0]const u8,
+        peerName: ?[*:0]const u8,
+        authCount: u16,
+        userName: ?[*:0]const u8,
+        credMask: u16,
+        authContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+    else => *const fn(
+        context: ?*const anyopaque,
+        listener: alljoyn_authlistener,
+        authMechanism: ?[*:0]const u8,
+        peerName: ?[*:0]const u8,
+        authCount: u16,
+        userName: ?[*:0]const u8,
+        credMask: u16,
+        authContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+} ;
 
-pub const alljoyn_authlistener_verifycredentials_ptr = fn(
-    context: ?*const anyopaque,
-    authMechanism: ?[*:0]const u8,
-    peerName: ?[*:0]const u8,
-    credentials: alljoyn_credentials,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const alljoyn_authlistener_verifycredentials_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        authMechanism: ?[*:0]const u8,
+        peerName: ?[*:0]const u8,
+        credentials: alljoyn_credentials,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        context: ?*const anyopaque,
+        authMechanism: ?[*:0]const u8,
+        peerName: ?[*:0]const u8,
+        credentials: alljoyn_credentials,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const alljoyn_authlistener_verifycredentialsasync_ptr = fn(
-    context: ?*const anyopaque,
-    listener: alljoyn_authlistener,
-    authMechanism: ?[*:0]const u8,
-    peerName: ?[*:0]const u8,
-    credentials: alljoyn_credentials,
-    authContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub const alljoyn_authlistener_verifycredentialsasync_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        listener: alljoyn_authlistener,
+        authMechanism: ?[*:0]const u8,
+        peerName: ?[*:0]const u8,
+        credentials: alljoyn_credentials,
+        authContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+    else => *const fn(
+        context: ?*const anyopaque,
+        listener: alljoyn_authlistener,
+        authMechanism: ?[*:0]const u8,
+        peerName: ?[*:0]const u8,
+        credentials: alljoyn_credentials,
+        authContext: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+} ;
 
-pub const alljoyn_authlistener_securityviolation_ptr = fn(
-    context: ?*const anyopaque,
-    status: QStatus,
-    msg: alljoyn_message,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_authlistener_securityviolation_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        status: QStatus,
+        msg: alljoyn_message,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        status: QStatus,
+        msg: alljoyn_message,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_authlistener_authenticationcomplete_ptr = fn(
-    context: ?*const anyopaque,
-    authMechanism: ?[*:0]const u8,
-    peerName: ?[*:0]const u8,
-    success: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_authlistener_authenticationcomplete_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        authMechanism: ?[*:0]const u8,
+        peerName: ?[*:0]const u8,
+        success: i32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        authMechanism: ?[*:0]const u8,
+        peerName: ?[*:0]const u8,
+        success: i32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const alljoyn_authlistener_callbacks = extern struct {
     request_credentials: ?alljoyn_authlistener_requestcredentials_ptr,
@@ -1081,49 +1171,101 @@ pub const alljoyn_authlistenerasync_callbacks = extern struct {
     authentication_complete: ?alljoyn_authlistener_authenticationcomplete_ptr,
 };
 
-pub const alljoyn_buslistener_listener_registered_ptr = fn(
-    context: ?*const anyopaque,
-    bus: alljoyn_busattachment,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_buslistener_listener_registered_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        bus: alljoyn_busattachment,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        bus: alljoyn_busattachment,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_buslistener_listener_unregistered_ptr = fn(
-    context: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_buslistener_listener_unregistered_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_buslistener_found_advertised_name_ptr = fn(
-    context: ?*const anyopaque,
-    name: ?[*:0]const u8,
-    transport: u16,
-    namePrefix: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_buslistener_found_advertised_name_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        name: ?[*:0]const u8,
+        transport: u16,
+        namePrefix: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        name: ?[*:0]const u8,
+        transport: u16,
+        namePrefix: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_buslistener_lost_advertised_name_ptr = fn(
-    context: ?*const anyopaque,
-    name: ?[*:0]const u8,
-    transport: u16,
-    namePrefix: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_buslistener_lost_advertised_name_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        name: ?[*:0]const u8,
+        transport: u16,
+        namePrefix: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        name: ?[*:0]const u8,
+        transport: u16,
+        namePrefix: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_buslistener_name_owner_changed_ptr = fn(
-    context: ?*const anyopaque,
-    busName: ?[*:0]const u8,
-    previousOwner: ?[*:0]const u8,
-    newOwner: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_buslistener_name_owner_changed_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        busName: ?[*:0]const u8,
+        previousOwner: ?[*:0]const u8,
+        newOwner: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        busName: ?[*:0]const u8,
+        previousOwner: ?[*:0]const u8,
+        newOwner: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_buslistener_bus_stopping_ptr = fn(
-    context: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_buslistener_bus_stopping_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_buslistener_bus_disconnected_ptr = fn(
-    context: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_buslistener_bus_disconnected_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_buslistener_bus_prop_changed_ptr = fn(
-    context: ?*const anyopaque,
-    prop_name: ?[*:0]const u8,
-    prop_value: alljoyn_msgarg,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_buslistener_bus_prop_changed_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        prop_name: ?[*:0]const u8,
+        prop_value: alljoyn_msgarg,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        prop_name: ?[*:0]const u8,
+        prop_value: alljoyn_msgarg,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const alljoyn_buslistener_callbacks = extern struct {
     listener_registered: ?alljoyn_buslistener_listener_registered_ptr,
@@ -1155,11 +1297,18 @@ pub const alljoyn_interfacedescription_member = extern struct {
     internal_member: ?*const anyopaque,
 };
 
-pub const alljoyn_interfacedescription_translation_callback_ptr = fn(
-    sourceLanguage: ?[*:0]const u8,
-    targetLanguage: ?[*:0]const u8,
-    sourceText: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+pub const alljoyn_interfacedescription_translation_callback_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        sourceLanguage: ?[*:0]const u8,
+        targetLanguage: ?[*:0]const u8,
+        sourceText: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
+    else => *const fn(
+        sourceLanguage: ?[*:0]const u8,
+        targetLanguage: ?[*:0]const u8,
+        sourceText: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
+} ;
 
 pub const alljoyn_interfacedescription_property = extern struct {
     name: ?[*:0]const u8,
@@ -1168,40 +1317,81 @@ pub const alljoyn_interfacedescription_property = extern struct {
     internal_property: ?*const anyopaque,
 };
 
-pub const alljoyn_messagereceiver_methodhandler_ptr = fn(
-    bus: alljoyn_busobject,
-    member: ?*const alljoyn_interfacedescription_member,
-    message: alljoyn_message,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_messagereceiver_methodhandler_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        bus: alljoyn_busobject,
+        member: ?*const alljoyn_interfacedescription_member,
+        message: alljoyn_message,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        bus: alljoyn_busobject,
+        member: ?*const alljoyn_interfacedescription_member,
+        message: alljoyn_message,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_messagereceiver_replyhandler_ptr = fn(
-    message: alljoyn_message,
-    context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_messagereceiver_replyhandler_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        message: alljoyn_message,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        message: alljoyn_message,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_messagereceiver_signalhandler_ptr = fn(
-    member: ?*const alljoyn_interfacedescription_member,
-    srcPath: ?[*:0]const u8,
-    message: alljoyn_message,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_messagereceiver_signalhandler_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        member: ?*const alljoyn_interfacedescription_member,
+        srcPath: ?[*:0]const u8,
+        message: alljoyn_message,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        member: ?*const alljoyn_interfacedescription_member,
+        srcPath: ?[*:0]const u8,
+        message: alljoyn_message,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_busobject_prop_get_ptr = fn(
-    context: ?*const anyopaque,
-    ifcName: ?[*:0]const u8,
-    propName: ?[*:0]const u8,
-    val: alljoyn_msgarg,
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub const alljoyn_busobject_prop_get_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        ifcName: ?[*:0]const u8,
+        propName: ?[*:0]const u8,
+        val: alljoyn_msgarg,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+    else => *const fn(
+        context: ?*const anyopaque,
+        ifcName: ?[*:0]const u8,
+        propName: ?[*:0]const u8,
+        val: alljoyn_msgarg,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+} ;
 
-pub const alljoyn_busobject_prop_set_ptr = fn(
-    context: ?*const anyopaque,
-    ifcName: ?[*:0]const u8,
-    propName: ?[*:0]const u8,
-    val: alljoyn_msgarg,
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub const alljoyn_busobject_prop_set_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        ifcName: ?[*:0]const u8,
+        propName: ?[*:0]const u8,
+        val: alljoyn_msgarg,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+    else => *const fn(
+        context: ?*const anyopaque,
+        ifcName: ?[*:0]const u8,
+        propName: ?[*:0]const u8,
+        val: alljoyn_msgarg,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+} ;
 
-pub const alljoyn_busobject_object_registration_ptr = fn(
-    context: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_busobject_object_registration_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const alljoyn_busobject_callbacks = extern struct {
     property_get: ?alljoyn_busobject_prop_get_ptr,
@@ -1215,55 +1405,114 @@ pub const alljoyn_busobject_methodentry = extern struct {
     method_handler: ?alljoyn_messagereceiver_methodhandler_ptr,
 };
 
-pub const alljoyn_proxybusobject_listener_introspectcb_ptr = fn(
-    status: QStatus,
-    obj: alljoyn_proxybusobject,
-    context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_proxybusobject_listener_introspectcb_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        status: QStatus,
+        obj: alljoyn_proxybusobject,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        status: QStatus,
+        obj: alljoyn_proxybusobject,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_proxybusobject_listener_getpropertycb_ptr = fn(
-    status: QStatus,
-    obj: alljoyn_proxybusobject,
-    value: alljoyn_msgarg,
-    context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_proxybusobject_listener_getpropertycb_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        status: QStatus,
+        obj: alljoyn_proxybusobject,
+        value: alljoyn_msgarg,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        status: QStatus,
+        obj: alljoyn_proxybusobject,
+        value: alljoyn_msgarg,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_proxybusobject_listener_getallpropertiescb_ptr = fn(
-    status: QStatus,
-    obj: alljoyn_proxybusobject,
-    values: alljoyn_msgarg,
-    context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_proxybusobject_listener_getallpropertiescb_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        status: QStatus,
+        obj: alljoyn_proxybusobject,
+        values: alljoyn_msgarg,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        status: QStatus,
+        obj: alljoyn_proxybusobject,
+        values: alljoyn_msgarg,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_proxybusobject_listener_setpropertycb_ptr = fn(
-    status: QStatus,
-    obj: alljoyn_proxybusobject,
-    context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_proxybusobject_listener_setpropertycb_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        status: QStatus,
+        obj: alljoyn_proxybusobject,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        status: QStatus,
+        obj: alljoyn_proxybusobject,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_proxybusobject_listener_propertieschanged_ptr = fn(
-    obj: alljoyn_proxybusobject,
-    ifaceName: ?[*:0]const u8,
-    changed: alljoyn_msgarg,
-    invalidated: alljoyn_msgarg,
-    context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_proxybusobject_listener_propertieschanged_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        obj: alljoyn_proxybusobject,
+        ifaceName: ?[*:0]const u8,
+        changed: alljoyn_msgarg,
+        invalidated: alljoyn_msgarg,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        obj: alljoyn_proxybusobject,
+        ifaceName: ?[*:0]const u8,
+        changed: alljoyn_msgarg,
+        invalidated: alljoyn_msgarg,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_permissionconfigurationlistener_factoryreset_ptr = fn(
-    context: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub const alljoyn_permissionconfigurationlistener_factoryreset_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+    else => *const fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+} ;
 
-pub const alljoyn_permissionconfigurationlistener_policychanged_ptr = fn(
-    context: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_permissionconfigurationlistener_policychanged_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_permissionconfigurationlistener_startmanagement_ptr = fn(
-    context: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_permissionconfigurationlistener_startmanagement_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_permissionconfigurationlistener_endmanagement_ptr = fn(
-    context: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_permissionconfigurationlistener_endmanagement_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const alljoyn_permissionconfigurationlistener_callbacks = extern struct {
     factory_reset: ?alljoyn_permissionconfigurationlistener_factoryreset_ptr,
@@ -1287,23 +1536,44 @@ pub const ALLJOYN_SESSIONLOST_REMOVED_BY_BINDER = alljoyn_sessionlostreason.REMO
 pub const ALLJOYN_SESSIONLOST_LINK_TIMEOUT = alljoyn_sessionlostreason.LINK_TIMEOUT;
 pub const ALLJOYN_SESSIONLOST_REASON_OTHER = alljoyn_sessionlostreason.REASON_OTHER;
 
-pub const alljoyn_sessionlistener_sessionlost_ptr = fn(
-    context: ?*const anyopaque,
-    sessionId: u32,
-    reason: alljoyn_sessionlostreason,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_sessionlistener_sessionlost_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        sessionId: u32,
+        reason: alljoyn_sessionlostreason,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        sessionId: u32,
+        reason: alljoyn_sessionlostreason,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_sessionlistener_sessionmemberadded_ptr = fn(
-    context: ?*const anyopaque,
-    sessionId: u32,
-    uniqueName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_sessionlistener_sessionmemberadded_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        sessionId: u32,
+        uniqueName: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        sessionId: u32,
+        uniqueName: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_sessionlistener_sessionmemberremoved_ptr = fn(
-    context: ?*const anyopaque,
-    sessionId: u32,
-    uniqueName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_sessionlistener_sessionmemberremoved_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        sessionId: u32,
+        uniqueName: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        sessionId: u32,
+        uniqueName: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const alljoyn_sessionlistener_callbacks = extern struct {
     session_lost: ?alljoyn_sessionlistener_sessionlost_ptr,
@@ -1311,50 +1581,91 @@ pub const alljoyn_sessionlistener_callbacks = extern struct {
     session_member_removed: ?alljoyn_sessionlistener_sessionmemberremoved_ptr,
 };
 
-pub const alljoyn_sessionportlistener_acceptsessionjoiner_ptr = fn(
-    context: ?*const anyopaque,
-    sessionPort: u16,
-    joiner: ?[*:0]const u8,
-    opts: alljoyn_sessionopts,
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub const alljoyn_sessionportlistener_acceptsessionjoiner_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        sessionPort: u16,
+        joiner: ?[*:0]const u8,
+        opts: alljoyn_sessionopts,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+    else => *const fn(
+        context: ?*const anyopaque,
+        sessionPort: u16,
+        joiner: ?[*:0]const u8,
+        opts: alljoyn_sessionopts,
+    ) callconv(@import("std").os.windows.WINAPI) i32,
+} ;
 
-pub const alljoyn_sessionportlistener_sessionjoined_ptr = fn(
-    context: ?*const anyopaque,
-    sessionPort: u16,
-    id: u32,
-    joiner: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_sessionportlistener_sessionjoined_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        sessionPort: u16,
+        id: u32,
+        joiner: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        sessionPort: u16,
+        id: u32,
+        joiner: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const alljoyn_sessionportlistener_callbacks = extern struct {
     accept_session_joiner: ?alljoyn_sessionportlistener_acceptsessionjoiner_ptr,
     session_joined: ?alljoyn_sessionportlistener_sessionjoined_ptr,
 };
 
-pub const alljoyn_about_announced_ptr = fn(
-    context: ?*const anyopaque,
-    busName: ?[*:0]const u8,
-    version: u16,
-    port: u16,
-    objectDescriptionArg: alljoyn_msgarg,
-    aboutDataArg: alljoyn_msgarg,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_about_announced_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        busName: ?[*:0]const u8,
+        version: u16,
+        port: u16,
+        objectDescriptionArg: alljoyn_msgarg,
+        aboutDataArg: alljoyn_msgarg,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        busName: ?[*:0]const u8,
+        version: u16,
+        port: u16,
+        objectDescriptionArg: alljoyn_msgarg,
+        aboutDataArg: alljoyn_msgarg,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const alljoyn_aboutlistener_callback = extern struct {
     about_listener_announced: ?alljoyn_about_announced_ptr,
 };
 
-pub const alljoyn_busattachment_joinsessioncb_ptr = fn(
-    status: QStatus,
-    sessionId: u32,
-    opts: alljoyn_sessionopts,
-    context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_busattachment_joinsessioncb_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        status: QStatus,
+        sessionId: u32,
+        opts: alljoyn_sessionopts,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        status: QStatus,
+        sessionId: u32,
+        opts: alljoyn_sessionopts,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_busattachment_setlinktimeoutcb_ptr = fn(
-    status: QStatus,
-    timeout: u32,
-    context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_busattachment_setlinktimeoutcb_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        status: QStatus,
+        timeout: u32,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        status: QStatus,
+        timeout: u32,
+        context: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const _alljoyn_abouticonobj_handle = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -1364,48 +1675,87 @@ pub const _alljoyn_abouticonproxy_handle = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const alljoyn_aboutdatalistener_getaboutdata_ptr = fn(
-    context: ?*const anyopaque,
-    msgArg: alljoyn_msgarg,
-    language: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub const alljoyn_aboutdatalistener_getaboutdata_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        msgArg: alljoyn_msgarg,
+        language: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+    else => *const fn(
+        context: ?*const anyopaque,
+        msgArg: alljoyn_msgarg,
+        language: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+} ;
 
-pub const alljoyn_aboutdatalistener_getannouncedaboutdata_ptr = fn(
-    context: ?*const anyopaque,
-    msgArg: alljoyn_msgarg,
-) callconv(@import("std").os.windows.WINAPI) QStatus;
+pub const alljoyn_aboutdatalistener_getannouncedaboutdata_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        msgArg: alljoyn_msgarg,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+    else => *const fn(
+        context: ?*const anyopaque,
+        msgArg: alljoyn_msgarg,
+    ) callconv(@import("std").os.windows.WINAPI) QStatus,
+} ;
 
 pub const alljoyn_aboutdatalistener_callbacks = extern struct {
     about_datalistener_getaboutdata: ?alljoyn_aboutdatalistener_getaboutdata_ptr,
     about_datalistener_getannouncedaboutdata: ?alljoyn_aboutdatalistener_getannouncedaboutdata_ptr,
 };
 
-pub const alljoyn_autopinger_destination_lost_ptr = fn(
-    context: ?*const anyopaque,
-    group: ?[*:0]const u8,
-    destination: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_autopinger_destination_lost_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        group: ?[*:0]const u8,
+        destination: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        group: ?[*:0]const u8,
+        destination: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_autopinger_destination_found_ptr = fn(
-    context: ?*const anyopaque,
-    group: ?[*:0]const u8,
-    destination: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_autopinger_destination_found_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        group: ?[*:0]const u8,
+        destination: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        group: ?[*:0]const u8,
+        destination: ?[*:0]const u8,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const alljoyn_pinglistener_callback = extern struct {
     destination_found: ?alljoyn_autopinger_destination_found_ptr,
     destination_lost: ?alljoyn_autopinger_destination_lost_ptr,
 };
 
-pub const alljoyn_observer_object_discovered_ptr = fn(
-    context: ?*const anyopaque,
-    proxyref: alljoyn_proxybusobject_ref,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_observer_object_discovered_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        proxyref: alljoyn_proxybusobject_ref,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        proxyref: alljoyn_proxybusobject_ref,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const alljoyn_observer_object_lost_ptr = fn(
-    context: ?*const anyopaque,
-    proxyref: alljoyn_proxybusobject_ref,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const alljoyn_observer_object_lost_ptr = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        context: ?*const anyopaque,
+        proxyref: alljoyn_proxybusobject_ref,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        context: ?*const anyopaque,
+        proxyref: alljoyn_proxybusobject_ref,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const alljoyn_observerlistener_callback = extern struct {
     object_discovered: ?alljoyn_observer_object_discovered_ptr,

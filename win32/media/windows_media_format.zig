@@ -353,10 +353,16 @@ pub const IID_IAMWMBufferPass = &IID_IAMWMBufferPass_Value;
 pub const IAMWMBufferPass = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetNotify: fn(
-            self: *const IAMWMBufferPass,
-            pCallback: ?*IAMWMBufferPassCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNotify: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IAMWMBufferPass,
+                pCallback: ?*IAMWMBufferPassCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IAMWMBufferPass,
+                pCallback: ?*IAMWMBufferPassCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -374,13 +380,22 @@ pub const IID_IAMWMBufferPassCallback = &IID_IAMWMBufferPassCallback_Value;
 pub const IAMWMBufferPassCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Notify: fn(
-            self: *const IAMWMBufferPassCallback,
-            pNSSBuffer3: ?*INSSBuffer3,
-            pPin: ?*IPin,
-            prtStart: ?*i64,
-            prtEnd: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Notify: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IAMWMBufferPassCallback,
+                pNSSBuffer3: ?*INSSBuffer3,
+                pPin: ?*IPin,
+                prtStart: ?*i64,
+                prtEnd: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IAMWMBufferPassCallback,
+                pNSSBuffer3: ?*INSSBuffer3,
+                pPin: ?*IPin,
+                prtStart: ?*i64,
+                prtEnd: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -412,27 +427,58 @@ pub const IID_INSSBuffer = &IID_INSSBuffer_Value;
 pub const INSSBuffer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetLength: fn(
-            self: *const INSSBuffer,
-            pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLength: fn(
-            self: *const INSSBuffer,
-            dwLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxLength: fn(
-            self: *const INSSBuffer,
-            pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBuffer: fn(
-            self: *const INSSBuffer,
-            ppdwBuffer: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBufferAndLength: fn(
-            self: *const INSSBuffer,
-            ppdwBuffer: ?*?*u8,
-            pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLength: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSSBuffer,
+                pdwLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSSBuffer,
+                pdwLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetLength: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSSBuffer,
+                dwLength: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSSBuffer,
+                dwLength: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMaxLength: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSSBuffer,
+                pdwLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSSBuffer,
+                pdwLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBuffer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSSBuffer,
+                ppdwBuffer: ?*?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSSBuffer,
+                ppdwBuffer: ?*?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBufferAndLength: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSSBuffer,
+                ppdwBuffer: ?*?*u8,
+                pdwLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSSBuffer,
+                ppdwBuffer: ?*?*u8,
+                pdwLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -466,16 +512,30 @@ pub const IID_INSSBuffer2 = &IID_INSSBuffer2_Value;
 pub const INSSBuffer2 = extern struct {
     pub const VTable = extern struct {
         base: INSSBuffer.VTable,
-        GetSampleProperties: fn(
-            self: *const INSSBuffer2,
-            cbProperties: u32,
-            pbProperties: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSampleProperties: fn(
-            self: *const INSSBuffer2,
-            cbProperties: u32,
-            pbProperties: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSampleProperties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSSBuffer2,
+                cbProperties: u32,
+                pbProperties: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSSBuffer2,
+                cbProperties: u32,
+                pbProperties: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetSampleProperties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSSBuffer2,
+                cbProperties: u32,
+                pbProperties: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSSBuffer2,
+                cbProperties: u32,
+                pbProperties: ?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -497,18 +557,34 @@ pub const IID_INSSBuffer3 = &IID_INSSBuffer3_Value;
 pub const INSSBuffer3 = extern struct {
     pub const VTable = extern struct {
         base: INSSBuffer2.VTable,
-        SetProperty: fn(
-            self: *const INSSBuffer3,
-            guidBufferProperty: Guid,
-            pvBufferProperty: ?*anyopaque,
-            dwBufferPropertySize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
-            self: *const INSSBuffer3,
-            guidBufferProperty: Guid,
-            pvBufferProperty: ?*anyopaque,
-            pdwBufferPropertySize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSSBuffer3,
+                guidBufferProperty: Guid,
+                pvBufferProperty: ?*anyopaque,
+                dwBufferPropertySize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSSBuffer3,
+                guidBufferProperty: Guid,
+                pvBufferProperty: ?*anyopaque,
+                dwBufferPropertySize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSSBuffer3,
+                guidBufferProperty: Guid,
+                pvBufferProperty: ?*anyopaque,
+                pdwBufferPropertySize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSSBuffer3,
+                guidBufferProperty: Guid,
+                pvBufferProperty: ?*anyopaque,
+                pdwBufferPropertySize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -530,17 +606,32 @@ pub const IID_INSSBuffer4 = &IID_INSSBuffer4_Value;
 pub const INSSBuffer4 = extern struct {
     pub const VTable = extern struct {
         base: INSSBuffer3.VTable,
-        GetPropertyCount: fn(
-            self: *const INSSBuffer4,
-            pcBufferProperties: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyByIndex: fn(
-            self: *const INSSBuffer4,
-            dwBufferPropertyIndex: u32,
-            pguidBufferProperty: ?*Guid,
-            pvBufferProperty: ?*anyopaque,
-            pdwBufferPropertySize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSSBuffer4,
+                pcBufferProperties: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSSBuffer4,
+                pcBufferProperties: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyByIndex: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSSBuffer4,
+                dwBufferPropertyIndex: u32,
+                pguidBufferProperty: ?*Guid,
+                pvBufferProperty: ?*anyopaque,
+                pdwBufferPropertySize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSSBuffer4,
+                dwBufferPropertyIndex: u32,
+                pguidBufferProperty: ?*Guid,
+                pvBufferProperty: ?*anyopaque,
+                pdwBufferPropertySize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -562,16 +653,30 @@ pub const IID_IWMSBufferAllocator = &IID_IWMSBufferAllocator_Value;
 pub const IWMSBufferAllocator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AllocateBuffer: fn(
-            self: *const IWMSBufferAllocator,
-            dwMaxBufferSize: u32,
-            ppBuffer: ?*?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AllocatePageSizeBuffer: fn(
-            self: *const IWMSBufferAllocator,
-            dwMaxBufferSize: u32,
-            ppBuffer: ?*?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AllocateBuffer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSBufferAllocator,
+                dwMaxBufferSize: u32,
+                ppBuffer: ?*?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSBufferAllocator,
+                dwMaxBufferSize: u32,
+                ppBuffer: ?*?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AllocatePageSizeBuffer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSBufferAllocator,
+                dwMaxBufferSize: u32,
+                ppBuffer: ?*?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSBufferAllocator,
+                dwMaxBufferSize: u32,
+                ppBuffer: ?*?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1273,19 +1378,38 @@ pub const IID_IWMMediaProps = &IID_IWMMediaProps_Value;
 pub const IWMMediaProps = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetType: fn(
-            self: *const IWMMediaProps,
-            pguidType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMediaType: fn(
-            self: *const IWMMediaProps,
-            pType: ?*WM_MEDIA_TYPE,
-            pcbType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMediaType: fn(
-            self: *const IWMMediaProps,
-            pType: ?*WM_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMediaProps,
+                pguidType: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMediaProps,
+                pguidType: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMediaType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMediaProps,
+                pType: ?*WM_MEDIA_TYPE,
+                pcbType: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMediaProps,
+                pType: ?*WM_MEDIA_TYPE,
+                pcbType: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetMediaType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMediaProps,
+                pType: ?*WM_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMediaProps,
+                pType: ?*WM_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1311,22 +1435,46 @@ pub const IID_IWMVideoMediaProps = &IID_IWMVideoMediaProps_Value;
 pub const IWMVideoMediaProps = extern struct {
     pub const VTable = extern struct {
         base: IWMMediaProps.VTable,
-        GetMaxKeyFrameSpacing: fn(
-            self: *const IWMVideoMediaProps,
-            pllTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMaxKeyFrameSpacing: fn(
-            self: *const IWMVideoMediaProps,
-            llTime: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetQuality: fn(
-            self: *const IWMVideoMediaProps,
-            pdwQuality: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetQuality: fn(
-            self: *const IWMVideoMediaProps,
-            dwQuality: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxKeyFrameSpacing: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMVideoMediaProps,
+                pllTime: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMVideoMediaProps,
+                pllTime: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetMaxKeyFrameSpacing: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMVideoMediaProps,
+                llTime: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMVideoMediaProps,
+                llTime: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetQuality: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMVideoMediaProps,
+                pdwQuality: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMVideoMediaProps,
+                pdwQuality: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetQuality: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMVideoMediaProps,
+                dwQuality: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMVideoMediaProps,
+                dwQuality: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1356,64 +1504,148 @@ pub const IID_IWMWriter = &IID_IWMWriter_Value;
 pub const IWMWriter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetProfileByID: fn(
-            self: *const IWMWriter,
-            guidProfile: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProfile: fn(
-            self: *const IWMWriter,
-            pProfile: ?*IWMProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOutputFilename: fn(
-            self: *const IWMWriter,
-            pwszFilename: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputCount: fn(
-            self: *const IWMWriter,
-            pcInputs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputProps: fn(
-            self: *const IWMWriter,
-            dwInputNum: u32,
-            ppInput: ?*?*IWMInputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInputProps: fn(
-            self: *const IWMWriter,
-            dwInputNum: u32,
-            pInput: ?*IWMInputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputFormatCount: fn(
-            self: *const IWMWriter,
-            dwInputNumber: u32,
-            pcFormats: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputFormat: fn(
-            self: *const IWMWriter,
-            dwInputNumber: u32,
-            dwFormatNumber: u32,
-            pProps: ?*?*IWMInputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginWriting: fn(
-            self: *const IWMWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndWriting: fn(
-            self: *const IWMWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AllocateSample: fn(
-            self: *const IWMWriter,
-            dwSampleSize: u32,
-            ppSample: ?*?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteSample: fn(
-            self: *const IWMWriter,
-            dwInputNum: u32,
-            cnsSampleTime: u64,
-            dwFlags: u32,
-            pSample: ?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Flush: fn(
-            self: *const IWMWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProfileByID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+                guidProfile: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+                guidProfile: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetProfile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+                pProfile: ?*IWMProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+                pProfile: ?*IWMProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOutputFilename: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+                pwszFilename: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+                pwszFilename: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+                pcInputs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+                pcInputs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputProps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+                dwInputNum: u32,
+                ppInput: ?*?*IWMInputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+                dwInputNum: u32,
+                ppInput: ?*?*IWMInputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetInputProps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+                dwInputNum: u32,
+                pInput: ?*IWMInputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+                dwInputNum: u32,
+                pInput: ?*IWMInputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputFormatCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+                dwInputNumber: u32,
+                pcFormats: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+                dwInputNumber: u32,
+                pcFormats: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+                dwInputNumber: u32,
+                dwFormatNumber: u32,
+                pProps: ?*?*IWMInputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+                dwInputNumber: u32,
+                dwFormatNumber: u32,
+                pProps: ?*?*IWMInputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BeginWriting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndWriting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AllocateSample: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+                dwSampleSize: u32,
+                ppSample: ?*?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+                dwSampleSize: u32,
+                ppSample: ?*?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WriteSample: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+                dwInputNum: u32,
+                cnsSampleTime: u64,
+                dwFlags: u32,
+                pSample: ?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+                dwInputNum: u32,
+                cnsSampleTime: u64,
+                dwFlags: u32,
+                pSample: ?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Flush: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriter,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriter,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1480,31 +1712,64 @@ pub const IID_IWMDRMWriter = &IID_IWMDRMWriter_Value;
 pub const IWMDRMWriter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GenerateKeySeed: fn(
-            self: *const IWMDRMWriter,
-            pwszKeySeed: [*:0]u16,
-            pcwchLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GenerateKeyID: fn(
-            self: *const IWMDRMWriter,
-            pwszKeyID: [*:0]u16,
-            pcwchLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GenerateSigningKeyPair: fn(
-            self: *const IWMDRMWriter,
-            pwszPrivKey: [*:0]u16,
-            pcwchPrivKeyLength: ?*u32,
-            pwszPubKey: [*:0]u16,
-            pcwchPubKeyLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDRMAttribute: fn(
-            self: *const IWMDRMWriter,
-            wStreamNum: u16,
-            pszName: ?[*:0]const u16,
-            Type: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GenerateKeySeed: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMWriter,
+                pwszKeySeed: [*:0]u16,
+                pcwchLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMWriter,
+                pwszKeySeed: [*:0]u16,
+                pcwchLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GenerateKeyID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMWriter,
+                pwszKeyID: [*:0]u16,
+                pcwchLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMWriter,
+                pwszKeyID: [*:0]u16,
+                pcwchLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GenerateSigningKeyPair: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMWriter,
+                pwszPrivKey: [*:0]u16,
+                pcwchPrivKeyLength: ?*u32,
+                pwszPubKey: [*:0]u16,
+                pcwchPubKeyLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMWriter,
+                pwszPrivKey: [*:0]u16,
+                pcwchPrivKeyLength: ?*u32,
+                pwszPubKey: [*:0]u16,
+                pcwchPubKeyLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetDRMAttribute: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMWriter,
+                wStreamNum: u16,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMWriter,
+                wStreamNum: u16,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1543,12 +1808,20 @@ pub const IID_IWMDRMWriter2 = &IID_IWMDRMWriter2_Value;
 pub const IWMDRMWriter2 = extern struct {
     pub const VTable = extern struct {
         base: IWMDRMWriter.VTable,
-        SetWMDRMNetEncryption: fn(
-            self: *const IWMDRMWriter2,
-            fSamplesEncrypted: BOOL,
-            pbKeyID: ?*u8,
-            cbKeyID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWMDRMNetEncryption: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMWriter2,
+                fSamplesEncrypted: BOOL,
+                pbKeyID: ?*u8,
+                cbKeyID: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMWriter2,
+                fSamplesEncrypted: BOOL,
+                pbKeyID: ?*u8,
+                cbKeyID: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1567,10 +1840,16 @@ pub const IID_IWMDRMWriter3 = &IID_IWMDRMWriter3_Value;
 pub const IWMDRMWriter3 = extern struct {
     pub const VTable = extern struct {
         base: IWMDRMWriter2.VTable,
-        SetProtectStreamSamples: fn(
-            self: *const IWMDRMWriter3,
-            pImportInitStruct: ?*WMDRM_IMPORT_INIT_STRUCT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProtectStreamSamples: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMWriter3,
+                pImportInitStruct: ?*WMDRM_IMPORT_INIT_STRUCT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMWriter3,
+                pImportInitStruct: ?*WMDRM_IMPORT_INIT_STRUCT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1588,16 +1867,30 @@ pub const IID_IWMInputMediaProps = &IID_IWMInputMediaProps_Value;
 pub const IWMInputMediaProps = extern struct {
     pub const VTable = extern struct {
         base: IWMMediaProps.VTable,
-        GetConnectionName: fn(
-            self: *const IWMInputMediaProps,
-            pwszName: [*:0]u16,
-            pcchName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGroupName: fn(
-            self: *const IWMInputMediaProps,
-            pwszName: [*:0]u16,
-            pcchName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConnectionName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMInputMediaProps,
+                pwszName: [*:0]u16,
+                pcchName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMInputMediaProps,
+                pwszName: [*:0]u16,
+                pcchName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetGroupName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMInputMediaProps,
+                pwszName: [*:0]u16,
+                pcchName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMInputMediaProps,
+                pwszName: [*:0]u16,
+                pcchName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1619,40 +1912,86 @@ pub const IID_IWMPropertyVault = &IID_IWMPropertyVault_Value;
 pub const IWMPropertyVault = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPropertyCount: fn(
-            self: *const IWMPropertyVault,
-            pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyByName: fn(
-            self: *const IWMPropertyVault,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
-            self: *const IWMPropertyVault,
-            pszName: ?[*:0]const u16,
-            pType: WMT_ATTR_DATATYPE,
-            pValue: ?*u8,
-            dwSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyByIndex: fn(
-            self: *const IWMPropertyVault,
-            dwIndex: u32,
-            pszName: [*:0]u16,
-            pdwNameLen: ?*u32,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CopyPropertiesFrom: fn(
-            self: *const IWMPropertyVault,
-            pIWMPropertyVault: ?*IWMPropertyVault,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clear: fn(
-            self: *const IWMPropertyVault,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMPropertyVault,
+                pdwCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMPropertyVault,
+                pdwCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMPropertyVault,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMPropertyVault,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMPropertyVault,
+                pszName: ?[*:0]const u16,
+                pType: WMT_ATTR_DATATYPE,
+                pValue: ?*u8,
+                dwSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMPropertyVault,
+                pszName: ?[*:0]const u16,
+                pType: WMT_ATTR_DATATYPE,
+                pValue: ?*u8,
+                dwSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyByIndex: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMPropertyVault,
+                dwIndex: u32,
+                pszName: [*:0]u16,
+                pdwNameLen: ?*u32,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMPropertyVault,
+                dwIndex: u32,
+                pszName: [*:0]u16,
+                pdwNameLen: ?*u32,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CopyPropertiesFrom: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMPropertyVault,
+                pIWMPropertyVault: ?*IWMPropertyVault,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMPropertyVault,
+                pIWMPropertyVault: ?*IWMPropertyVault,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clear: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMPropertyVault,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMPropertyVault,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1690,13 +2029,22 @@ pub const IID_IWMIStreamProps = &IID_IWMIStreamProps_Value;
 pub const IWMIStreamProps = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetProperty: fn(
-            self: *const IWMIStreamProps,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMIStreamProps,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMIStreamProps,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1714,56 +2062,128 @@ pub const IID_IWMReader = &IID_IWMReader_Value;
 pub const IWMReader = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Open: fn(
-            self: *const IWMReader,
-            pwszURL: ?[*:0]const u16,
-            pCallback: ?*IWMReaderCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IWMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputCount: fn(
-            self: *const IWMReader,
-            pcOutputs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputProps: fn(
-            self: *const IWMReader,
-            dwOutputNum: u32,
-            ppOutput: ?*?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOutputProps: fn(
-            self: *const IWMReader,
-            dwOutputNum: u32,
-            pOutput: ?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputFormatCount: fn(
-            self: *const IWMReader,
-            dwOutputNumber: u32,
-            pcFormats: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputFormat: fn(
-            self: *const IWMReader,
-            dwOutputNumber: u32,
-            dwFormatNumber: u32,
-            ppProps: ?*?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Start: fn(
-            self: *const IWMReader,
-            cnsStart: u64,
-            cnsDuration: u64,
-            fRate: f32,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Stop: fn(
-            self: *const IWMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Pause: fn(
-            self: *const IWMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Resume: fn(
-            self: *const IWMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Open: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReader,
+                pwszURL: ?[*:0]const u16,
+                pCallback: ?*IWMReaderCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReader,
+                pwszURL: ?[*:0]const u16,
+                pCallback: ?*IWMReaderCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReader,
+                pcOutputs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReader,
+                pcOutputs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputProps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReader,
+                dwOutputNum: u32,
+                ppOutput: ?*?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReader,
+                dwOutputNum: u32,
+                ppOutput: ?*?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOutputProps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReader,
+                dwOutputNum: u32,
+                pOutput: ?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReader,
+                dwOutputNum: u32,
+                pOutput: ?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputFormatCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReader,
+                dwOutputNumber: u32,
+                pcFormats: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReader,
+                dwOutputNumber: u32,
+                pcFormats: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReader,
+                dwOutputNumber: u32,
+                dwFormatNumber: u32,
+                ppProps: ?*?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReader,
+                dwOutputNumber: u32,
+                dwFormatNumber: u32,
+                ppProps: ?*?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Start: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReader,
+                cnsStart: u64,
+                cnsDuration: u64,
+                fRate: f32,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReader,
+                cnsStart: u64,
+                cnsDuration: u64,
+                fRate: f32,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Stop: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Pause: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Resume: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1821,120 +2241,276 @@ pub const IID_IWMSyncReader = &IID_IWMSyncReader_Value;
 pub const IWMSyncReader = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Open: fn(
-            self: *const IWMSyncReader,
-            pwszFilename: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IWMSyncReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRange: fn(
-            self: *const IWMSyncReader,
-            cnsStartTime: u64,
-            cnsDuration: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRangeByFrame: fn(
-            self: *const IWMSyncReader,
-            wStreamNum: u16,
-            qwFrameNumber: u64,
-            cFramesToRead: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNextSample: fn(
-            self: *const IWMSyncReader,
-            wStreamNum: u16,
-            ppSample: ?*?*INSSBuffer,
-            pcnsSampleTime: ?*u64,
-            pcnsDuration: ?*u64,
-            pdwFlags: ?*u32,
-            pdwOutputNum: ?*u32,
-            pwStreamNum: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStreamsSelected: fn(
-            self: *const IWMSyncReader,
-            cStreamCount: u16,
-            pwStreamNumbers: ?*u16,
-            pSelections: ?*WMT_STREAM_SELECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStreamSelected: fn(
-            self: *const IWMSyncReader,
-            wStreamNum: u16,
-            pSelection: ?*WMT_STREAM_SELECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetReadStreamSamples: fn(
-            self: *const IWMSyncReader,
-            wStreamNum: u16,
-            fCompressed: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetReadStreamSamples: fn(
-            self: *const IWMSyncReader,
-            wStreamNum: u16,
-            pfCompressed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputSetting: fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOutputSetting: fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            pszName: ?[*:0]const u16,
-            Type: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputCount: fn(
-            self: *const IWMSyncReader,
-            pcOutputs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputProps: fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            ppOutput: ?*?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOutputProps: fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            pOutput: ?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputFormatCount: fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            pcFormats: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputFormat: fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            dwFormatNum: u32,
-            ppProps: ?*?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputNumberForStream: fn(
-            self: *const IWMSyncReader,
-            wStreamNum: u16,
-            pdwOutputNum: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStreamNumberForOutput: fn(
-            self: *const IWMSyncReader,
-            dwOutputNum: u32,
-            pwStreamNum: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxOutputSampleSize: fn(
-            self: *const IWMSyncReader,
-            dwOutput: u32,
-            pcbMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxStreamSampleSize: fn(
-            self: *const IWMSyncReader,
-            wStream: u16,
-            pcbMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OpenStream: fn(
-            self: *const IWMSyncReader,
-            pStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Open: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                pwszFilename: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                pwszFilename: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetRange: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                cnsStartTime: u64,
+                cnsDuration: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                cnsStartTime: u64,
+                cnsDuration: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetRangeByFrame: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                wStreamNum: u16,
+                qwFrameNumber: u64,
+                cFramesToRead: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                wStreamNum: u16,
+                qwFrameNumber: u64,
+                cFramesToRead: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNextSample: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                wStreamNum: u16,
+                ppSample: ?*?*INSSBuffer,
+                pcnsSampleTime: ?*u64,
+                pcnsDuration: ?*u64,
+                pdwFlags: ?*u32,
+                pdwOutputNum: ?*u32,
+                pwStreamNum: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                wStreamNum: u16,
+                ppSample: ?*?*INSSBuffer,
+                pcnsSampleTime: ?*u64,
+                pcnsDuration: ?*u64,
+                pdwFlags: ?*u32,
+                pdwOutputNum: ?*u32,
+                pwStreamNum: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetStreamsSelected: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                cStreamCount: u16,
+                pwStreamNumbers: ?*u16,
+                pSelections: ?*WMT_STREAM_SELECTION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                cStreamCount: u16,
+                pwStreamNumbers: ?*u16,
+                pSelections: ?*WMT_STREAM_SELECTION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamSelected: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                wStreamNum: u16,
+                pSelection: ?*WMT_STREAM_SELECTION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                wStreamNum: u16,
+                pSelection: ?*WMT_STREAM_SELECTION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetReadStreamSamples: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                wStreamNum: u16,
+                fCompressed: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                wStreamNum: u16,
+                fCompressed: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetReadStreamSamples: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                wStreamNum: u16,
+                pfCompressed: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                wStreamNum: u16,
+                pfCompressed: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputSetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOutputSetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                pcOutputs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                pcOutputs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputProps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                ppOutput: ?*?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                ppOutput: ?*?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOutputProps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                pOutput: ?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                pOutput: ?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputFormatCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                pcFormats: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                pcFormats: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                dwFormatNum: u32,
+                ppProps: ?*?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                dwFormatNum: u32,
+                ppProps: ?*?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputNumberForStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                wStreamNum: u16,
+                pdwOutputNum: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                wStreamNum: u16,
+                pdwOutputNum: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamNumberForOutput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                pwStreamNum: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                dwOutputNum: u32,
+                pwStreamNum: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMaxOutputSampleSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                dwOutput: u32,
+                pcbMax: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                dwOutput: u32,
+                pcbMax: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMaxStreamSampleSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                wStream: u16,
+                pcbMax: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                wStream: u16,
+                pcbMax: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OpenStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader,
+                pStream: ?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader,
+                pStream: ?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2032,39 +2608,84 @@ pub const IID_IWMSyncReader2 = &IID_IWMSyncReader2_Value;
 pub const IWMSyncReader2 = extern struct {
     pub const VTable = extern struct {
         base: IWMSyncReader.VTable,
-        SetRangeByTimecode: fn(
-            self: *const IWMSyncReader2,
-            wStreamNum: u16,
-            pStart: ?*WMT_TIMECODE_EXTENSION_DATA,
-            pEnd: ?*WMT_TIMECODE_EXTENSION_DATA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRangeByFrameEx: fn(
-            self: *const IWMSyncReader2,
-            wStreamNum: u16,
-            qwFrameNumber: u64,
-            cFramesToRead: i64,
-            pcnsStartTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllocateForOutput: fn(
-            self: *const IWMSyncReader2,
-            dwOutputNum: u32,
-            pAllocator: ?*IWMReaderAllocatorEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllocateForOutput: fn(
-            self: *const IWMSyncReader2,
-            dwOutputNum: u32,
-            ppAllocator: ?*?*IWMReaderAllocatorEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllocateForStream: fn(
-            self: *const IWMSyncReader2,
-            wStreamNum: u16,
-            pAllocator: ?*IWMReaderAllocatorEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllocateForStream: fn(
-            self: *const IWMSyncReader2,
-            dwSreamNum: u16,
-            ppAllocator: ?*?*IWMReaderAllocatorEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRangeByTimecode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader2,
+                wStreamNum: u16,
+                pStart: ?*WMT_TIMECODE_EXTENSION_DATA,
+                pEnd: ?*WMT_TIMECODE_EXTENSION_DATA,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader2,
+                wStreamNum: u16,
+                pStart: ?*WMT_TIMECODE_EXTENSION_DATA,
+                pEnd: ?*WMT_TIMECODE_EXTENSION_DATA,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetRangeByFrameEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader2,
+                wStreamNum: u16,
+                qwFrameNumber: u64,
+                cFramesToRead: i64,
+                pcnsStartTime: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader2,
+                wStreamNum: u16,
+                qwFrameNumber: u64,
+                cFramesToRead: i64,
+                pcnsStartTime: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAllocateForOutput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader2,
+                dwOutputNum: u32,
+                pAllocator: ?*IWMReaderAllocatorEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader2,
+                dwOutputNum: u32,
+                pAllocator: ?*IWMReaderAllocatorEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllocateForOutput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader2,
+                dwOutputNum: u32,
+                ppAllocator: ?*?*IWMReaderAllocatorEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader2,
+                dwOutputNum: u32,
+                ppAllocator: ?*?*IWMReaderAllocatorEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAllocateForStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader2,
+                wStreamNum: u16,
+                pAllocator: ?*IWMReaderAllocatorEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader2,
+                wStreamNum: u16,
+                pAllocator: ?*IWMReaderAllocatorEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllocateForStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSyncReader2,
+                dwSreamNum: u16,
+                ppAllocator: ?*?*IWMReaderAllocatorEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSyncReader2,
+                dwSreamNum: u16,
+                ppAllocator: ?*?*IWMReaderAllocatorEx,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2102,16 +2723,30 @@ pub const IID_IWMOutputMediaProps = &IID_IWMOutputMediaProps_Value;
 pub const IWMOutputMediaProps = extern struct {
     pub const VTable = extern struct {
         base: IWMMediaProps.VTable,
-        GetStreamGroupName: fn(
-            self: *const IWMOutputMediaProps,
-            pwszName: [*:0]u16,
-            pcchName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetConnectionName: fn(
-            self: *const IWMOutputMediaProps,
-            pwszName: [*:0]u16,
-            pcchName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStreamGroupName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMOutputMediaProps,
+                pwszName: [*:0]u16,
+                pcchName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMOutputMediaProps,
+                pwszName: [*:0]u16,
+                pcchName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetConnectionName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMOutputMediaProps,
+                pwszName: [*:0]u16,
+                pcchName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMOutputMediaProps,
+                pwszName: [*:0]u16,
+                pcchName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2133,14 +2768,24 @@ pub const IID_IWMStatusCallback = &IID_IWMStatusCallback_Value;
 pub const IWMStatusCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnStatus: fn(
-            self: *const IWMStatusCallback,
-            Status: WMT_STATUS,
-            hr: HRESULT,
-            dwType: WMT_ATTR_DATATYPE,
-            pValue: ?*u8,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStatusCallback,
+                Status: WMT_STATUS,
+                hr: HRESULT,
+                dwType: WMT_ATTR_DATATYPE,
+                pValue: ?*u8,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStatusCallback,
+                Status: WMT_STATUS,
+                hr: HRESULT,
+                dwType: WMT_ATTR_DATATYPE,
+                pValue: ?*u8,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2158,15 +2803,26 @@ pub const IID_IWMReaderCallback = &IID_IWMReaderCallback_Value;
 pub const IWMReaderCallback = extern struct {
     pub const VTable = extern struct {
         base: IWMStatusCallback.VTable,
-        OnSample: fn(
-            self: *const IWMReaderCallback,
-            dwOutputNum: u32,
-            cnsSampleTime: u64,
-            cnsSampleDuration: u64,
-            dwFlags: u32,
-            pSample: ?*INSSBuffer,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnSample: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderCallback,
+                dwOutputNum: u32,
+                cnsSampleTime: u64,
+                cnsSampleDuration: u64,
+                dwFlags: u32,
+                pSample: ?*INSSBuffer,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderCallback,
+                dwOutputNum: u32,
+                cnsSampleTime: u64,
+                cnsSampleDuration: u64,
+                dwFlags: u32,
+                pSample: ?*INSSBuffer,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2184,17 +2840,30 @@ pub const IID_IWMCredentialCallback = &IID_IWMCredentialCallback_Value;
 pub const IWMCredentialCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AcquireCredentials: fn(
-            self: *const IWMCredentialCallback,
-            pwszRealm: ?PWSTR,
-            pwszSite: ?PWSTR,
-            pwszUser: [*:0]u16,
-            cchUser: u32,
-            pwszPassword: [*:0]u16,
-            cchPassword: u32,
-            hrStatus: HRESULT,
-            pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AcquireCredentials: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCredentialCallback,
+                pwszRealm: ?PWSTR,
+                pwszSite: ?PWSTR,
+                pwszUser: [*:0]u16,
+                cchUser: u32,
+                pwszPassword: [*:0]u16,
+                cchPassword: u32,
+                hrStatus: HRESULT,
+                pdwFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCredentialCallback,
+                pwszRealm: ?PWSTR,
+                pwszSite: ?PWSTR,
+                pwszUser: [*:0]u16,
+                cchUser: u32,
+                pwszPassword: [*:0]u16,
+                cchPassword: u32,
+                hrStatus: HRESULT,
+                pdwFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2212,16 +2881,32 @@ pub const IID_IWMMetadataEditor = &IID_IWMMetadataEditor_Value;
 pub const IWMMetadataEditor = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Open: fn(
-            self: *const IWMMetadataEditor,
-            pwszFilename: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IWMMetadataEditor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Flush: fn(
-            self: *const IWMMetadataEditor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Open: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMetadataEditor,
+                pwszFilename: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMetadataEditor,
+                pwszFilename: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMetadataEditor,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMetadataEditor,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Flush: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMetadataEditor,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMetadataEditor,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2247,12 +2932,20 @@ pub const IID_IWMMetadataEditor2 = &IID_IWMMetadataEditor2_Value;
 pub const IWMMetadataEditor2 = extern struct {
     pub const VTable = extern struct {
         base: IWMMetadataEditor.VTable,
-        OpenEx: fn(
-            self: *const IWMMetadataEditor2,
-            pwszFilename: ?[*:0]const u16,
-            dwDesiredAccess: u32,
-            dwShareMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMetadataEditor2,
+                pwszFilename: ?[*:0]const u16,
+                dwDesiredAccess: u32,
+                dwShareMode: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMetadataEditor2,
+                pwszFilename: ?[*:0]const u16,
+                dwDesiredAccess: u32,
+                dwShareMode: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2271,13 +2964,22 @@ pub const IID_IWMDRMEditor = &IID_IWMDRMEditor_Value;
 pub const IWMDRMEditor = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDRMProperty: fn(
-            self: *const IWMDRMEditor,
-            pwstrName: ?[*:0]const u16,
-            pdwType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDRMProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMEditor,
+                pwstrName: ?[*:0]const u16,
+                pdwType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMEditor,
+                pwstrName: ?[*:0]const u16,
+                pdwType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2295,80 +2997,178 @@ pub const IID_IWMHeaderInfo = &IID_IWMHeaderInfo_Value;
 pub const IWMHeaderInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAttributeCount: fn(
-            self: *const IWMHeaderInfo,
-            wStreamNum: u16,
-            pcAttributes: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttributeByIndex: fn(
-            self: *const IWMHeaderInfo,
-            wIndex: u16,
-            pwStreamNum: ?*u16,
-            pwszName: [*:0]u16,
-            pcchNameLen: ?*u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttributeByName: fn(
-            self: *const IWMHeaderInfo,
-            pwStreamNum: ?*u16,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAttribute: fn(
-            self: *const IWMHeaderInfo,
-            wStreamNum: u16,
-            pszName: ?[*:0]const u16,
-            Type: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMarkerCount: fn(
-            self: *const IWMHeaderInfo,
-            pcMarkers: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMarker: fn(
-            self: *const IWMHeaderInfo,
-            wIndex: u16,
-            pwszMarkerName: [*:0]u16,
-            pcchMarkerNameLen: ?*u16,
-            pcnsMarkerTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddMarker: fn(
-            self: *const IWMHeaderInfo,
-            pwszMarkerName: ?PWSTR,
-            cnsMarkerTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveMarker: fn(
-            self: *const IWMHeaderInfo,
-            wIndex: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScriptCount: fn(
-            self: *const IWMHeaderInfo,
-            pcScripts: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetScript: fn(
-            self: *const IWMHeaderInfo,
-            wIndex: u16,
-            pwszType: [*:0]u16,
-            pcchTypeLen: ?*u16,
-            pwszCommand: [*:0]u16,
-            pcchCommandLen: ?*u16,
-            pcnsScriptTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddScript: fn(
-            self: *const IWMHeaderInfo,
-            pwszType: ?PWSTR,
-            pwszCommand: ?PWSTR,
-            cnsScriptTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveScript: fn(
-            self: *const IWMHeaderInfo,
-            wIndex: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAttributeCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo,
+                wStreamNum: u16,
+                pcAttributes: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo,
+                wStreamNum: u16,
+                pcAttributes: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAttributeByIndex: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo,
+                wIndex: u16,
+                pwStreamNum: ?*u16,
+                pwszName: [*:0]u16,
+                pcchNameLen: ?*u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo,
+                wIndex: u16,
+                pwStreamNum: ?*u16,
+                pwszName: [*:0]u16,
+                pcchNameLen: ?*u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAttributeByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo,
+                pwStreamNum: ?*u16,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo,
+                pwStreamNum: ?*u16,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAttribute: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo,
+                wStreamNum: u16,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo,
+                wStreamNum: u16,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMarkerCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo,
+                pcMarkers: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo,
+                pcMarkers: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMarker: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo,
+                wIndex: u16,
+                pwszMarkerName: [*:0]u16,
+                pcchMarkerNameLen: ?*u16,
+                pcnsMarkerTime: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo,
+                wIndex: u16,
+                pwszMarkerName: [*:0]u16,
+                pcchMarkerNameLen: ?*u16,
+                pcnsMarkerTime: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddMarker: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo,
+                pwszMarkerName: ?PWSTR,
+                cnsMarkerTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo,
+                pwszMarkerName: ?PWSTR,
+                cnsMarkerTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveMarker: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo,
+                wIndex: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo,
+                wIndex: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetScriptCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo,
+                pcScripts: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo,
+                pcScripts: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetScript: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo,
+                wIndex: u16,
+                pwszType: [*:0]u16,
+                pcchTypeLen: ?*u16,
+                pwszCommand: [*:0]u16,
+                pcchCommandLen: ?*u16,
+                pcnsScriptTime: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo,
+                wIndex: u16,
+                pwszType: [*:0]u16,
+                pcchTypeLen: ?*u16,
+                pwszCommand: [*:0]u16,
+                pcchCommandLen: ?*u16,
+                pcnsScriptTime: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddScript: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo,
+                pwszType: ?PWSTR,
+                pwszCommand: ?PWSTR,
+                cnsScriptTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo,
+                pwszType: ?PWSTR,
+                pwszCommand: ?PWSTR,
+                cnsScriptTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveScript: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo,
+                wIndex: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo,
+                wIndex: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2430,21 +3230,40 @@ pub const IID_IWMHeaderInfo2 = &IID_IWMHeaderInfo2_Value;
 pub const IWMHeaderInfo2 = extern struct {
     pub const VTable = extern struct {
         base: IWMHeaderInfo.VTable,
-        GetCodecInfoCount: fn(
-            self: *const IWMHeaderInfo2,
-            pcCodecInfos: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCodecInfo: fn(
-            self: *const IWMHeaderInfo2,
-            wIndex: u32,
-            pcchName: ?*u16,
-            pwszName: [*:0]u16,
-            pcchDescription: ?*u16,
-            pwszDescription: [*:0]u16,
-            pCodecType: ?*WMT_CODEC_INFO_TYPE,
-            pcbCodecInfo: ?*u16,
-            pbCodecInfo: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCodecInfoCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo2,
+                pcCodecInfos: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo2,
+                pcCodecInfos: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCodecInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo2,
+                wIndex: u32,
+                pcchName: ?*u16,
+                pwszName: [*:0]u16,
+                pcchDescription: ?*u16,
+                pwszDescription: [*:0]u16,
+                pCodecType: ?*WMT_CODEC_INFO_TYPE,
+                pcbCodecInfo: ?*u16,
+                pbCodecInfo: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo2,
+                wIndex: u32,
+                pcchName: ?*u16,
+                pwszName: [*:0]u16,
+                pcchDescription: ?*u16,
+                pwszDescription: [*:0]u16,
+                pCodecType: ?*WMT_CODEC_INFO_TYPE,
+                pcbCodecInfo: ?*u16,
+                pbCodecInfo: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2466,62 +3285,132 @@ pub const IID_IWMHeaderInfo3 = &IID_IWMHeaderInfo3_Value;
 pub const IWMHeaderInfo3 = extern struct {
     pub const VTable = extern struct {
         base: IWMHeaderInfo2.VTable,
-        GetAttributeCountEx: fn(
-            self: *const IWMHeaderInfo3,
-            wStreamNum: u16,
-            pcAttributes: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttributeIndices: fn(
-            self: *const IWMHeaderInfo3,
-            wStreamNum: u16,
-            pwszName: ?[*:0]const u16,
-            pwLangIndex: ?*u16,
-            pwIndices: [*:0]u16,
-            pwCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttributeByIndexEx: fn(
-            self: *const IWMHeaderInfo3,
-            wStreamNum: u16,
-            wIndex: u16,
-            pwszName: [*:0]u16,
-            pwNameLen: ?*u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pwLangIndex: ?*u16,
-            pValue: [*:0]u8,
-            pdwDataLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ModifyAttribute: fn(
-            self: *const IWMHeaderInfo3,
-            wStreamNum: u16,
-            wIndex: u16,
-            Type: WMT_ATTR_DATATYPE,
-            wLangIndex: u16,
-            pValue: [*:0]const u8,
-            dwLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddAttribute: fn(
-            self: *const IWMHeaderInfo3,
-            wStreamNum: u16,
-            pszName: ?[*:0]const u16,
-            pwIndex: ?*u16,
-            Type: WMT_ATTR_DATATYPE,
-            wLangIndex: u16,
-            pValue: [*:0]const u8,
-            dwLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteAttribute: fn(
-            self: *const IWMHeaderInfo3,
-            wStreamNum: u16,
-            wIndex: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddCodecInfo: fn(
-            self: *const IWMHeaderInfo3,
-            pwszName: ?PWSTR,
-            pwszDescription: ?PWSTR,
-            codecType: WMT_CODEC_INFO_TYPE,
-            cbCodecInfo: u16,
-            pbCodecInfo: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAttributeCountEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo3,
+                wStreamNum: u16,
+                pcAttributes: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo3,
+                wStreamNum: u16,
+                pcAttributes: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAttributeIndices: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo3,
+                wStreamNum: u16,
+                pwszName: ?[*:0]const u16,
+                pwLangIndex: ?*u16,
+                pwIndices: [*:0]u16,
+                pwCount: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo3,
+                wStreamNum: u16,
+                pwszName: ?[*:0]const u16,
+                pwLangIndex: ?*u16,
+                pwIndices: [*:0]u16,
+                pwCount: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAttributeByIndexEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo3,
+                wStreamNum: u16,
+                wIndex: u16,
+                pwszName: [*:0]u16,
+                pwNameLen: ?*u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pwLangIndex: ?*u16,
+                pValue: [*:0]u8,
+                pdwDataLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo3,
+                wStreamNum: u16,
+                wIndex: u16,
+                pwszName: [*:0]u16,
+                pwNameLen: ?*u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pwLangIndex: ?*u16,
+                pValue: [*:0]u8,
+                pdwDataLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ModifyAttribute: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo3,
+                wStreamNum: u16,
+                wIndex: u16,
+                Type: WMT_ATTR_DATATYPE,
+                wLangIndex: u16,
+                pValue: [*:0]const u8,
+                dwLength: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo3,
+                wStreamNum: u16,
+                wIndex: u16,
+                Type: WMT_ATTR_DATATYPE,
+                wLangIndex: u16,
+                pValue: [*:0]const u8,
+                dwLength: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddAttribute: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo3,
+                wStreamNum: u16,
+                pszName: ?[*:0]const u16,
+                pwIndex: ?*u16,
+                Type: WMT_ATTR_DATATYPE,
+                wLangIndex: u16,
+                pValue: [*:0]const u8,
+                dwLength: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo3,
+                wStreamNum: u16,
+                pszName: ?[*:0]const u16,
+                pwIndex: ?*u16,
+                Type: WMT_ATTR_DATATYPE,
+                wLangIndex: u16,
+                pValue: [*:0]const u8,
+                dwLength: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteAttribute: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo3,
+                wStreamNum: u16,
+                wIndex: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo3,
+                wStreamNum: u16,
+                wIndex: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddCodecInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMHeaderInfo3,
+                pwszName: ?PWSTR,
+                pwszDescription: ?PWSTR,
+                codecType: WMT_CODEC_INFO_TYPE,
+                cbCodecInfo: u16,
+                pbCodecInfo: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMHeaderInfo3,
+                pwszName: ?PWSTR,
+                pwszDescription: ?PWSTR,
+                codecType: WMT_CODEC_INFO_TYPE,
+                cbCodecInfo: u16,
+                pbCodecInfo: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2563,36 +3452,78 @@ pub const IID_IWMProfileManager = &IID_IWMProfileManager_Value;
 pub const IWMProfileManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateEmptyProfile: fn(
-            self: *const IWMProfileManager,
-            dwVersion: WMT_VERSION,
-            ppProfile: ?*?*IWMProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        LoadProfileByID: fn(
-            self: *const IWMProfileManager,
-            guidProfile: ?*const Guid,
-            ppProfile: ?*?*IWMProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        LoadProfileByData: fn(
-            self: *const IWMProfileManager,
-            pwszProfile: ?[*:0]const u16,
-            ppProfile: ?*?*IWMProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SaveProfile: fn(
-            self: *const IWMProfileManager,
-            pIWMProfile: ?*IWMProfile,
-            pwszProfile: ?PWSTR,
-            pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSystemProfileCount: fn(
-            self: *const IWMProfileManager,
-            pcProfiles: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        LoadSystemProfile: fn(
-            self: *const IWMProfileManager,
-            dwProfileIndex: u32,
-            ppProfile: ?*?*IWMProfile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateEmptyProfile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfileManager,
+                dwVersion: WMT_VERSION,
+                ppProfile: ?*?*IWMProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfileManager,
+                dwVersion: WMT_VERSION,
+                ppProfile: ?*?*IWMProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        LoadProfileByID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfileManager,
+                guidProfile: ?*const Guid,
+                ppProfile: ?*?*IWMProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfileManager,
+                guidProfile: ?*const Guid,
+                ppProfile: ?*?*IWMProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        LoadProfileByData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfileManager,
+                pwszProfile: ?[*:0]const u16,
+                ppProfile: ?*?*IWMProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfileManager,
+                pwszProfile: ?[*:0]const u16,
+                ppProfile: ?*?*IWMProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SaveProfile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfileManager,
+                pIWMProfile: ?*IWMProfile,
+                pwszProfile: ?PWSTR,
+                pdwLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfileManager,
+                pIWMProfile: ?*IWMProfile,
+                pwszProfile: ?PWSTR,
+                pdwLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSystemProfileCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfileManager,
+                pcProfiles: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfileManager,
+                pcProfiles: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        LoadSystemProfile: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfileManager,
+                dwProfileIndex: u32,
+                ppProfile: ?*?*IWMProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfileManager,
+                dwProfileIndex: u32,
+                ppProfile: ?*?*IWMProfile,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2630,14 +3561,26 @@ pub const IID_IWMProfileManager2 = &IID_IWMProfileManager2_Value;
 pub const IWMProfileManager2 = extern struct {
     pub const VTable = extern struct {
         base: IWMProfileManager.VTable,
-        GetSystemProfileVersion: fn(
-            self: *const IWMProfileManager2,
-            pdwVersion: ?*WMT_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSystemProfileVersion: fn(
-            self: *const IWMProfileManager2,
-            dwVersion: WMT_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSystemProfileVersion: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfileManager2,
+                pdwVersion: ?*WMT_VERSION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfileManager2,
+                pdwVersion: ?*WMT_VERSION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetSystemProfileVersion: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfileManager2,
+                dwVersion: WMT_VERSION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfileManager2,
+                dwVersion: WMT_VERSION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2659,14 +3602,26 @@ pub const IID_IWMProfileManagerLanguage = &IID_IWMProfileManagerLanguage_Value;
 pub const IWMProfileManagerLanguage = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetUserLanguageID: fn(
-            self: *const IWMProfileManagerLanguage,
-            wLangID: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetUserLanguageID: fn(
-            self: *const IWMProfileManagerLanguage,
-            wLangID: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUserLanguageID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfileManagerLanguage,
+                wLangID: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfileManagerLanguage,
+                wLangID: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetUserLanguageID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfileManagerLanguage,
+                wLangID: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfileManagerLanguage,
+                wLangID: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2688,84 +3643,198 @@ pub const IID_IWMProfile = &IID_IWMProfile_Value;
 pub const IWMProfile = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetVersion: fn(
-            self: *const IWMProfile,
-            pdwVersion: ?*WMT_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetName: fn(
-            self: *const IWMProfile,
-            pwszName: [*:0]u16,
-            pcchName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetName: fn(
-            self: *const IWMProfile,
-            pwszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDescription: fn(
-            self: *const IWMProfile,
-            pwszDescription: [*:0]u16,
-            pcchDescription: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDescription: fn(
-            self: *const IWMProfile,
-            pwszDescription: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStreamCount: fn(
-            self: *const IWMProfile,
-            pcStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStream: fn(
-            self: *const IWMProfile,
-            dwStreamIndex: u32,
-            ppConfig: ?*?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStreamByNumber: fn(
-            self: *const IWMProfile,
-            wStreamNum: u16,
-            ppConfig: ?*?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveStream: fn(
-            self: *const IWMProfile,
-            pConfig: ?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveStreamByNumber: fn(
-            self: *const IWMProfile,
-            wStreamNum: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddStream: fn(
-            self: *const IWMProfile,
-            pConfig: ?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReconfigStream: fn(
-            self: *const IWMProfile,
-            pConfig: ?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateNewStream: fn(
-            self: *const IWMProfile,
-            guidStreamType: ?*const Guid,
-            ppConfig: ?*?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMutualExclusionCount: fn(
-            self: *const IWMProfile,
-            pcME: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMutualExclusion: fn(
-            self: *const IWMProfile,
-            dwMEIndex: u32,
-            ppME: ?*?*IWMMutualExclusion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveMutualExclusion: fn(
-            self: *const IWMProfile,
-            pME: ?*IWMMutualExclusion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddMutualExclusion: fn(
-            self: *const IWMProfile,
-            pME: ?*IWMMutualExclusion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateNewMutualExclusion: fn(
-            self: *const IWMProfile,
-            ppME: ?*?*IWMMutualExclusion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVersion: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                pdwVersion: ?*WMT_VERSION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                pdwVersion: ?*WMT_VERSION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                pwszName: [*:0]u16,
+                pcchName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                pwszName: [*:0]u16,
+                pcchName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                pwszName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                pwszName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                pwszDescription: [*:0]u16,
+                pcchDescription: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                pwszDescription: [*:0]u16,
+                pcchDescription: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                pwszDescription: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                pwszDescription: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                pcStreams: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                pcStreams: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                dwStreamIndex: u32,
+                ppConfig: ?*?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                dwStreamIndex: u32,
+                ppConfig: ?*?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamByNumber: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                wStreamNum: u16,
+                ppConfig: ?*?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                wStreamNum: u16,
+                ppConfig: ?*?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                pConfig: ?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                pConfig: ?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveStreamByNumber: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                wStreamNum: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                wStreamNum: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                pConfig: ?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                pConfig: ?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ReconfigStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                pConfig: ?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                pConfig: ?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateNewStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                guidStreamType: ?*const Guid,
+                ppConfig: ?*?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                guidStreamType: ?*const Guid,
+                ppConfig: ?*?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMutualExclusionCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                pcME: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                pcME: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMutualExclusion: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                dwMEIndex: u32,
+                ppME: ?*?*IWMMutualExclusion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                dwMEIndex: u32,
+                ppME: ?*?*IWMMutualExclusion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveMutualExclusion: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                pME: ?*IWMMutualExclusion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                pME: ?*IWMMutualExclusion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddMutualExclusion: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                pME: ?*IWMMutualExclusion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                pME: ?*IWMMutualExclusion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateNewMutualExclusion: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile,
+                ppME: ?*?*IWMMutualExclusion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile,
+                ppME: ?*?*IWMMutualExclusion,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2851,10 +3920,16 @@ pub const IID_IWMProfile2 = &IID_IWMProfile2_Value;
 pub const IWMProfile2 = extern struct {
     pub const VTable = extern struct {
         base: IWMProfile.VTable,
-        GetProfileID: fn(
-            self: *const IWMProfile2,
-            pguidID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProfileID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile2,
+                pguidID: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile2,
+                pguidID: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2872,55 +3947,128 @@ pub const IID_IWMProfile3 = &IID_IWMProfile3_Value;
 pub const IWMProfile3 = extern struct {
     pub const VTable = extern struct {
         base: IWMProfile2.VTable,
-        GetStorageFormat: fn(
-            self: *const IWMProfile3,
-            pnStorageFormat: ?*WMT_STORAGE_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStorageFormat: fn(
-            self: *const IWMProfile3,
-            nStorageFormat: WMT_STORAGE_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBandwidthSharingCount: fn(
-            self: *const IWMProfile3,
-            pcBS: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBandwidthSharing: fn(
-            self: *const IWMProfile3,
-            dwBSIndex: u32,
-            ppBS: ?*?*IWMBandwidthSharing,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveBandwidthSharing: fn(
-            self: *const IWMProfile3,
-            pBS: ?*IWMBandwidthSharing,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddBandwidthSharing: fn(
-            self: *const IWMProfile3,
-            pBS: ?*IWMBandwidthSharing,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateNewBandwidthSharing: fn(
-            self: *const IWMProfile3,
-            ppBS: ?*?*IWMBandwidthSharing,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStreamPrioritization: fn(
-            self: *const IWMProfile3,
-            ppSP: ?*?*IWMStreamPrioritization,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStreamPrioritization: fn(
-            self: *const IWMProfile3,
-            pSP: ?*IWMStreamPrioritization,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveStreamPrioritization: fn(
-            self: *const IWMProfile3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateNewStreamPrioritization: fn(
-            self: *const IWMProfile3,
-            ppSP: ?*?*IWMStreamPrioritization,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetExpectedPacketCount: fn(
-            self: *const IWMProfile3,
-            msDuration: u64,
-            pcPackets: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStorageFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile3,
+                pnStorageFormat: ?*WMT_STORAGE_FORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile3,
+                pnStorageFormat: ?*WMT_STORAGE_FORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetStorageFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile3,
+                nStorageFormat: WMT_STORAGE_FORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile3,
+                nStorageFormat: WMT_STORAGE_FORMAT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBandwidthSharingCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile3,
+                pcBS: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile3,
+                pcBS: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBandwidthSharing: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile3,
+                dwBSIndex: u32,
+                ppBS: ?*?*IWMBandwidthSharing,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile3,
+                dwBSIndex: u32,
+                ppBS: ?*?*IWMBandwidthSharing,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveBandwidthSharing: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile3,
+                pBS: ?*IWMBandwidthSharing,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile3,
+                pBS: ?*IWMBandwidthSharing,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddBandwidthSharing: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile3,
+                pBS: ?*IWMBandwidthSharing,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile3,
+                pBS: ?*IWMBandwidthSharing,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateNewBandwidthSharing: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile3,
+                ppBS: ?*?*IWMBandwidthSharing,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile3,
+                ppBS: ?*?*IWMBandwidthSharing,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamPrioritization: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile3,
+                ppSP: ?*?*IWMStreamPrioritization,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile3,
+                ppSP: ?*?*IWMStreamPrioritization,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetStreamPrioritization: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile3,
+                pSP: ?*IWMStreamPrioritization,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile3,
+                pSP: ?*IWMStreamPrioritization,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveStreamPrioritization: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateNewStreamPrioritization: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile3,
+                ppSP: ?*?*IWMStreamPrioritization,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile3,
+                ppSP: ?*?*IWMStreamPrioritization,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetExpectedPacketCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProfile3,
+                msDuration: u64,
+                pcPackets: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProfile3,
+                msDuration: u64,
+                pcPackets: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2982,52 +4130,120 @@ pub const IID_IWMStreamConfig = &IID_IWMStreamConfig_Value;
 pub const IWMStreamConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStreamType: fn(
-            self: *const IWMStreamConfig,
-            pguidStreamType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStreamNumber: fn(
-            self: *const IWMStreamConfig,
-            pwStreamNum: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStreamNumber: fn(
-            self: *const IWMStreamConfig,
-            wStreamNum: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStreamName: fn(
-            self: *const IWMStreamConfig,
-            pwszStreamName: [*:0]u16,
-            pcchStreamName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStreamName: fn(
-            self: *const IWMStreamConfig,
-            pwszStreamName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetConnectionName: fn(
-            self: *const IWMStreamConfig,
-            pwszInputName: [*:0]u16,
-            pcchInputName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetConnectionName: fn(
-            self: *const IWMStreamConfig,
-            pwszInputName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBitrate: fn(
-            self: *const IWMStreamConfig,
-            pdwBitrate: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetBitrate: fn(
-            self: *const IWMStreamConfig,
-            pdwBitrate: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBufferWindow: fn(
-            self: *const IWMStreamConfig,
-            pmsBufferWindow: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetBufferWindow: fn(
-            self: *const IWMStreamConfig,
-            msBufferWindow: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStreamType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig,
+                pguidStreamType: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig,
+                pguidStreamType: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamNumber: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig,
+                pwStreamNum: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig,
+                pwStreamNum: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetStreamNumber: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig,
+                wStreamNum: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig,
+                wStreamNum: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig,
+                pwszStreamName: [*:0]u16,
+                pcchStreamName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig,
+                pwszStreamName: [*:0]u16,
+                pcchStreamName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetStreamName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig,
+                pwszStreamName: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig,
+                pwszStreamName: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetConnectionName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig,
+                pwszInputName: [*:0]u16,
+                pcchInputName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig,
+                pwszInputName: [*:0]u16,
+                pcchInputName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetConnectionName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig,
+                pwszInputName: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig,
+                pwszInputName: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBitrate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig,
+                pdwBitrate: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig,
+                pdwBitrate: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetBitrate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig,
+                pdwBitrate: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig,
+                pdwBitrate: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBufferWindow: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig,
+                pmsBufferWindow: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig,
+                pmsBufferWindow: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetBufferWindow: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig,
+                msBufferWindow: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig,
+                msBufferWindow: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3085,36 +4301,78 @@ pub const IID_IWMStreamConfig2 = &IID_IWMStreamConfig2_Value;
 pub const IWMStreamConfig2 = extern struct {
     pub const VTable = extern struct {
         base: IWMStreamConfig.VTable,
-        GetTransportType: fn(
-            self: *const IWMStreamConfig2,
-            pnTransportType: ?*WMT_TRANSPORT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTransportType: fn(
-            self: *const IWMStreamConfig2,
-            nTransportType: WMT_TRANSPORT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddDataUnitExtension: fn(
-            self: *const IWMStreamConfig2,
-            guidExtensionSystemID: Guid,
-            cbExtensionDataSize: u16,
-            pbExtensionSystemInfo: [*:0]u8,
-            cbExtensionSystemInfo: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDataUnitExtensionCount: fn(
-            self: *const IWMStreamConfig2,
-            pcDataUnitExtensions: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDataUnitExtension: fn(
-            self: *const IWMStreamConfig2,
-            wDataUnitExtensionNumber: u16,
-            pguidExtensionSystemID: ?*Guid,
-            pcbExtensionDataSize: ?*u16,
-            pbExtensionSystemInfo: [*:0]u8,
-            pcbExtensionSystemInfo: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAllDataUnitExtensions: fn(
-            self: *const IWMStreamConfig2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransportType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig2,
+                pnTransportType: ?*WMT_TRANSPORT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig2,
+                pnTransportType: ?*WMT_TRANSPORT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetTransportType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig2,
+                nTransportType: WMT_TRANSPORT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig2,
+                nTransportType: WMT_TRANSPORT_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddDataUnitExtension: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig2,
+                guidExtensionSystemID: Guid,
+                cbExtensionDataSize: u16,
+                pbExtensionSystemInfo: [*:0]u8,
+                cbExtensionSystemInfo: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig2,
+                guidExtensionSystemID: Guid,
+                cbExtensionDataSize: u16,
+                pbExtensionSystemInfo: [*:0]u8,
+                cbExtensionSystemInfo: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDataUnitExtensionCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig2,
+                pcDataUnitExtensions: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig2,
+                pcDataUnitExtensions: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDataUnitExtension: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig2,
+                wDataUnitExtensionNumber: u16,
+                pguidExtensionSystemID: ?*Guid,
+                pcbExtensionDataSize: ?*u16,
+                pbExtensionSystemInfo: [*:0]u8,
+                pcbExtensionSystemInfo: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig2,
+                wDataUnitExtensionNumber: u16,
+                pguidExtensionSystemID: ?*Guid,
+                pcbExtensionDataSize: ?*u16,
+                pbExtensionSystemInfo: [*:0]u8,
+                pcbExtensionSystemInfo: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveAllDataUnitExtensions: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3152,15 +4410,28 @@ pub const IID_IWMStreamConfig3 = &IID_IWMStreamConfig3_Value;
 pub const IWMStreamConfig3 = extern struct {
     pub const VTable = extern struct {
         base: IWMStreamConfig2.VTable,
-        GetLanguage: fn(
-            self: *const IWMStreamConfig3,
-            pwszLanguageString: [*:0]u16,
-            pcchLanguageStringLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLanguage: fn(
-            self: *const IWMStreamConfig3,
-            pwszLanguageString: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLanguage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig3,
+                pwszLanguageString: [*:0]u16,
+                pcchLanguageStringLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig3,
+                pwszLanguageString: [*:0]u16,
+                pcchLanguageStringLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetLanguage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamConfig3,
+                pwszLanguageString: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamConfig3,
+                pwszLanguageString: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3182,14 +4453,26 @@ pub const IID_IWMPacketSize = &IID_IWMPacketSize_Value;
 pub const IWMPacketSize = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetMaxPacketSize: fn(
-            self: *const IWMPacketSize,
-            pdwMaxPacketSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMaxPacketSize: fn(
-            self: *const IWMPacketSize,
-            dwMaxPacketSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxPacketSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMPacketSize,
+                pdwMaxPacketSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMPacketSize,
+                pdwMaxPacketSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetMaxPacketSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMPacketSize,
+                dwMaxPacketSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMPacketSize,
+                dwMaxPacketSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3211,14 +4494,26 @@ pub const IID_IWMPacketSize2 = &IID_IWMPacketSize2_Value;
 pub const IWMPacketSize2 = extern struct {
     pub const VTable = extern struct {
         base: IWMPacketSize.VTable,
-        GetMinPacketSize: fn(
-            self: *const IWMPacketSize2,
-            pdwMinPacketSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetMinPacketSize: fn(
-            self: *const IWMPacketSize2,
-            dwMinPacketSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMinPacketSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMPacketSize2,
+                pdwMinPacketSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMPacketSize2,
+                pdwMinPacketSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetMinPacketSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMPacketSize2,
+                dwMinPacketSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMPacketSize2,
+                dwMinPacketSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3240,19 +4535,38 @@ pub const IID_IWMStreamList = &IID_IWMStreamList_Value;
 pub const IWMStreamList = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStreams: fn(
-            self: *const IWMStreamList,
-            pwStreamNumArray: [*:0]u16,
-            pcStreams: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddStream: fn(
-            self: *const IWMStreamList,
-            wStreamNum: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveStream: fn(
-            self: *const IWMStreamList,
-            wStreamNum: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStreams: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamList,
+                pwStreamNumArray: [*:0]u16,
+                pcStreams: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamList,
+                pwStreamNumArray: [*:0]u16,
+                pcStreams: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamList,
+                wStreamNum: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamList,
+                wStreamNum: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamList,
+                wStreamNum: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamList,
+                wStreamNum: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3278,14 +4592,26 @@ pub const IID_IWMMutualExclusion = &IID_IWMMutualExclusion_Value;
 pub const IWMMutualExclusion = extern struct {
     pub const VTable = extern struct {
         base: IWMStreamList.VTable,
-        GetType: fn(
-            self: *const IWMMutualExclusion,
-            pguidType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetType: fn(
-            self: *const IWMMutualExclusion,
-            guidType: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMutualExclusion,
+                pguidType: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMutualExclusion,
+                pguidType: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMutualExclusion,
+                guidType: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMutualExclusion,
+                guidType: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3307,53 +4633,120 @@ pub const IID_IWMMutualExclusion2 = &IID_IWMMutualExclusion2_Value;
 pub const IWMMutualExclusion2 = extern struct {
     pub const VTable = extern struct {
         base: IWMMutualExclusion.VTable,
-        GetName: fn(
-            self: *const IWMMutualExclusion2,
-            pwszName: [*:0]u16,
-            pcchName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetName: fn(
-            self: *const IWMMutualExclusion2,
-            pwszName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRecordCount: fn(
-            self: *const IWMMutualExclusion2,
-            pwRecordCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddRecord: fn(
-            self: *const IWMMutualExclusion2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveRecord: fn(
-            self: *const IWMMutualExclusion2,
-            wRecordNumber: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRecordName: fn(
-            self: *const IWMMutualExclusion2,
-            wRecordNumber: u16,
-            pwszRecordName: [*:0]u16,
-            pcchRecordName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRecordName: fn(
-            self: *const IWMMutualExclusion2,
-            wRecordNumber: u16,
-            pwszRecordName: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStreamsForRecord: fn(
-            self: *const IWMMutualExclusion2,
-            wRecordNumber: u16,
-            pwStreamNumArray: [*:0]u16,
-            pcStreams: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddStreamForRecord: fn(
-            self: *const IWMMutualExclusion2,
-            wRecordNumber: u16,
-            wStreamNumber: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveStreamForRecord: fn(
-            self: *const IWMMutualExclusion2,
-            wRecordNumber: u16,
-            wStreamNumber: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMutualExclusion2,
+                pwszName: [*:0]u16,
+                pcchName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMutualExclusion2,
+                pwszName: [*:0]u16,
+                pcchName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMutualExclusion2,
+                pwszName: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMutualExclusion2,
+                pwszName: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRecordCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMutualExclusion2,
+                pwRecordCount: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMutualExclusion2,
+                pwRecordCount: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddRecord: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMutualExclusion2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMutualExclusion2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveRecord: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMutualExclusion2,
+                wRecordNumber: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMutualExclusion2,
+                wRecordNumber: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRecordName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMutualExclusion2,
+                wRecordNumber: u16,
+                pwszRecordName: [*:0]u16,
+                pcchRecordName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMutualExclusion2,
+                wRecordNumber: u16,
+                pwszRecordName: [*:0]u16,
+                pcchRecordName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetRecordName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMutualExclusion2,
+                wRecordNumber: u16,
+                pwszRecordName: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMutualExclusion2,
+                wRecordNumber: u16,
+                pwszRecordName: ?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamsForRecord: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMutualExclusion2,
+                wRecordNumber: u16,
+                pwStreamNumArray: [*:0]u16,
+                pcStreams: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMutualExclusion2,
+                wRecordNumber: u16,
+                pwStreamNumArray: [*:0]u16,
+                pcStreams: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddStreamForRecord: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMutualExclusion2,
+                wRecordNumber: u16,
+                wStreamNumber: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMutualExclusion2,
+                wRecordNumber: u16,
+                wStreamNumber: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveStreamForRecord: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMMutualExclusion2,
+                wRecordNumber: u16,
+                wStreamNumber: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMMutualExclusion2,
+                wRecordNumber: u16,
+                wStreamNumber: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3407,24 +4800,50 @@ pub const IID_IWMBandwidthSharing = &IID_IWMBandwidthSharing_Value;
 pub const IWMBandwidthSharing = extern struct {
     pub const VTable = extern struct {
         base: IWMStreamList.VTable,
-        GetType: fn(
-            self: *const IWMBandwidthSharing,
-            pguidType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetType: fn(
-            self: *const IWMBandwidthSharing,
-            guidType: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBandwidth: fn(
-            self: *const IWMBandwidthSharing,
-            pdwBitrate: ?*u32,
-            pmsBufferWindow: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetBandwidth: fn(
-            self: *const IWMBandwidthSharing,
-            dwBitrate: u32,
-            msBufferWindow: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMBandwidthSharing,
+                pguidType: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMBandwidthSharing,
+                pguidType: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMBandwidthSharing,
+                guidType: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMBandwidthSharing,
+                guidType: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBandwidth: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMBandwidthSharing,
+                pdwBitrate: ?*u32,
+                pmsBufferWindow: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMBandwidthSharing,
+                pdwBitrate: ?*u32,
+                pmsBufferWindow: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetBandwidth: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMBandwidthSharing,
+                dwBitrate: u32,
+                msBufferWindow: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMBandwidthSharing,
+                dwBitrate: u32,
+                msBufferWindow: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3454,16 +4873,30 @@ pub const IID_IWMStreamPrioritization = &IID_IWMStreamPrioritization_Value;
 pub const IWMStreamPrioritization = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPriorityRecords: fn(
-            self: *const IWMStreamPrioritization,
-            pRecordArray: [*]WM_STREAM_PRIORITY_RECORD,
-            pcRecords: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPriorityRecords: fn(
-            self: *const IWMStreamPrioritization,
-            pRecordArray: ?*WM_STREAM_PRIORITY_RECORD,
-            cRecords: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPriorityRecords: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamPrioritization,
+                pRecordArray: [*]WM_STREAM_PRIORITY_RECORD,
+                pcRecords: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamPrioritization,
+                pRecordArray: [*]WM_STREAM_PRIORITY_RECORD,
+                pcRecords: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPriorityRecords: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMStreamPrioritization,
+                pRecordArray: ?*WM_STREAM_PRIORITY_RECORD,
+                cRecords: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMStreamPrioritization,
+                pRecordArray: ?*WM_STREAM_PRIORITY_RECORD,
+                cRecords: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3485,57 +4918,130 @@ pub const IID_IWMWriterAdvanced = &IID_IWMWriterAdvanced_Value;
 pub const IWMWriterAdvanced = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSinkCount: fn(
-            self: *const IWMWriterAdvanced,
-            pcSinks: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSink: fn(
-            self: *const IWMWriterAdvanced,
-            dwSinkNum: u32,
-            ppSink: ?*?*IWMWriterSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddSink: fn(
-            self: *const IWMWriterAdvanced,
-            pSink: ?*IWMWriterSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveSink: fn(
-            self: *const IWMWriterAdvanced,
-            pSink: ?*IWMWriterSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteStreamSample: fn(
-            self: *const IWMWriterAdvanced,
-            wStreamNum: u16,
-            cnsSampleTime: u64,
-            msSampleSendTime: u32,
-            cnsSampleDuration: u64,
-            dwFlags: u32,
-            pSample: ?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLiveSource: fn(
-            self: *const IWMWriterAdvanced,
-            fIsLiveSource: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsRealTime: fn(
-            self: *const IWMWriterAdvanced,
-            pfRealTime: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWriterTime: fn(
-            self: *const IWMWriterAdvanced,
-            pcnsCurrentTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStatistics: fn(
-            self: *const IWMWriterAdvanced,
-            wStreamNum: u16,
-            pStats: ?*WM_WRITER_STATISTICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSyncTolerance: fn(
-            self: *const IWMWriterAdvanced,
-            msWindow: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSyncTolerance: fn(
-            self: *const IWMWriterAdvanced,
-            pmsWindow: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSinkCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced,
+                pcSinks: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced,
+                pcSinks: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSink: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced,
+                dwSinkNum: u32,
+                ppSink: ?*?*IWMWriterSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced,
+                dwSinkNum: u32,
+                ppSink: ?*?*IWMWriterSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddSink: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced,
+                pSink: ?*IWMWriterSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced,
+                pSink: ?*IWMWriterSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveSink: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced,
+                pSink: ?*IWMWriterSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced,
+                pSink: ?*IWMWriterSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WriteStreamSample: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced,
+                wStreamNum: u16,
+                cnsSampleTime: u64,
+                msSampleSendTime: u32,
+                cnsSampleDuration: u64,
+                dwFlags: u32,
+                pSample: ?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced,
+                wStreamNum: u16,
+                cnsSampleTime: u64,
+                msSampleSendTime: u32,
+                cnsSampleDuration: u64,
+                dwFlags: u32,
+                pSample: ?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetLiveSource: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced,
+                fIsLiveSource: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced,
+                fIsLiveSource: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsRealTime: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced,
+                pfRealTime: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced,
+                pfRealTime: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetWriterTime: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced,
+                pcnsCurrentTime: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced,
+                pcnsCurrentTime: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStatistics: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced,
+                wStreamNum: u16,
+                pStats: ?*WM_WRITER_STATISTICS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced,
+                wStreamNum: u16,
+                pStats: ?*WM_WRITER_STATISTICS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetSyncTolerance: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced,
+                msWindow: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced,
+                msWindow: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSyncTolerance: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced,
+                pmsWindow: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced,
+                pmsWindow: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3593,22 +5099,42 @@ pub const IID_IWMWriterAdvanced2 = &IID_IWMWriterAdvanced2_Value;
 pub const IWMWriterAdvanced2 = extern struct {
     pub const VTable = extern struct {
         base: IWMWriterAdvanced.VTable,
-        GetInputSetting: fn(
-            self: *const IWMWriterAdvanced2,
-            dwInputNum: u32,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInputSetting: fn(
-            self: *const IWMWriterAdvanced2,
-            dwInputNum: u32,
-            pszName: ?[*:0]const u16,
-            Type: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputSetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced2,
+                dwInputNum: u32,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced2,
+                dwInputNum: u32,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetInputSetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced2,
+                dwInputNum: u32,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced2,
+                dwInputNum: u32,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3630,14 +5156,26 @@ pub const IID_IWMWriterAdvanced3 = &IID_IWMWriterAdvanced3_Value;
 pub const IWMWriterAdvanced3 = extern struct {
     pub const VTable = extern struct {
         base: IWMWriterAdvanced2.VTable,
-        GetStatisticsEx: fn(
-            self: *const IWMWriterAdvanced3,
-            wStreamNum: u16,
-            pStats: ?*WM_WRITER_STATISTICS_EX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNonBlocking: fn(
-            self: *const IWMWriterAdvanced3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatisticsEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced3,
+                wStreamNum: u16,
+                pStats: ?*WM_WRITER_STATISTICS_EX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced3,
+                wStreamNum: u16,
+                pStats: ?*WM_WRITER_STATISTICS_EX,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNonBlocking: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterAdvanced3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterAdvanced3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3659,35 +5197,74 @@ pub const IID_IWMWriterPreprocess = &IID_IWMWriterPreprocess_Value;
 pub const IWMWriterPreprocess = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetMaxPreprocessingPasses: fn(
-            self: *const IWMWriterPreprocess,
-            dwInputNum: u32,
-            dwFlags: u32,
-            pdwMaxNumPasses: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNumPreprocessingPasses: fn(
-            self: *const IWMWriterPreprocess,
-            dwInputNum: u32,
-            dwFlags: u32,
-            dwNumPasses: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        BeginPreprocessingPass: fn(
-            self: *const IWMWriterPreprocess,
-            dwInputNum: u32,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        PreprocessSample: fn(
-            self: *const IWMWriterPreprocess,
-            dwInputNum: u32,
-            cnsSampleTime: u64,
-            dwFlags: u32,
-            pSample: ?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndPreprocessingPass: fn(
-            self: *const IWMWriterPreprocess,
-            dwInputNum: u32,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxPreprocessingPasses: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPreprocess,
+                dwInputNum: u32,
+                dwFlags: u32,
+                pdwMaxNumPasses: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPreprocess,
+                dwInputNum: u32,
+                dwFlags: u32,
+                pdwMaxNumPasses: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNumPreprocessingPasses: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPreprocess,
+                dwInputNum: u32,
+                dwFlags: u32,
+                dwNumPasses: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPreprocess,
+                dwInputNum: u32,
+                dwFlags: u32,
+                dwNumPasses: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        BeginPreprocessingPass: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPreprocess,
+                dwInputNum: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPreprocess,
+                dwInputNum: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        PreprocessSample: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPreprocess,
+                dwInputNum: u32,
+                cnsSampleTime: u64,
+                dwFlags: u32,
+                pSample: ?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPreprocess,
+                dwInputNum: u32,
+                cnsSampleTime: u64,
+                dwFlags: u32,
+                pSample: ?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndPreprocessingPass: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPreprocess,
+                dwInputNum: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPreprocess,
+                dwInputNum: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3721,22 +5298,42 @@ pub const IID_IWMWriterPostViewCallback = &IID_IWMWriterPostViewCallback_Value;
 pub const IWMWriterPostViewCallback = extern struct {
     pub const VTable = extern struct {
         base: IWMStatusCallback.VTable,
-        OnPostViewSample: fn(
-            self: *const IWMWriterPostViewCallback,
-            wStreamNumber: u16,
-            cnsSampleTime: u64,
-            cnsSampleDuration: u64,
-            dwFlags: u32,
-            pSample: ?*INSSBuffer,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AllocateForPostView: fn(
-            self: *const IWMWriterPostViewCallback,
-            wStreamNum: u16,
-            cbBuffer: u32,
-            ppBuffer: ?*?*INSSBuffer,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnPostViewSample: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPostViewCallback,
+                wStreamNumber: u16,
+                cnsSampleTime: u64,
+                cnsSampleDuration: u64,
+                dwFlags: u32,
+                pSample: ?*INSSBuffer,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPostViewCallback,
+                wStreamNumber: u16,
+                cnsSampleTime: u64,
+                cnsSampleDuration: u64,
+                dwFlags: u32,
+                pSample: ?*INSSBuffer,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AllocateForPostView: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPostViewCallback,
+                wStreamNum: u16,
+                cbBuffer: u32,
+                ppBuffer: ?*?*INSSBuffer,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPostViewCallback,
+                wStreamNum: u16,
+                cbBuffer: u32,
+                ppBuffer: ?*?*INSSBuffer,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3758,52 +5355,116 @@ pub const IID_IWMWriterPostView = &IID_IWMWriterPostView_Value;
 pub const IWMWriterPostView = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetPostViewCallback: fn(
-            self: *const IWMWriterPostView,
-            pCallback: ?*IWMWriterPostViewCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetReceivePostViewSamples: fn(
-            self: *const IWMWriterPostView,
-            wStreamNum: u16,
-            fReceivePostViewSamples: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetReceivePostViewSamples: fn(
-            self: *const IWMWriterPostView,
-            wStreamNum: u16,
-            pfReceivePostViewSamples: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPostViewProps: fn(
-            self: *const IWMWriterPostView,
-            wStreamNumber: u16,
-            ppOutput: ?*?*IWMMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPostViewProps: fn(
-            self: *const IWMWriterPostView,
-            wStreamNumber: u16,
-            pOutput: ?*IWMMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPostViewFormatCount: fn(
-            self: *const IWMWriterPostView,
-            wStreamNumber: u16,
-            pcFormats: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPostViewFormat: fn(
-            self: *const IWMWriterPostView,
-            wStreamNumber: u16,
-            dwFormatNumber: u32,
-            ppProps: ?*?*IWMMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllocateForPostView: fn(
-            self: *const IWMWriterPostView,
-            wStreamNumber: u16,
-            fAllocate: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllocateForPostView: fn(
-            self: *const IWMWriterPostView,
-            wStreamNumber: u16,
-            pfAllocate: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPostViewCallback: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPostView,
+                pCallback: ?*IWMWriterPostViewCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPostView,
+                pCallback: ?*IWMWriterPostViewCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetReceivePostViewSamples: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPostView,
+                wStreamNum: u16,
+                fReceivePostViewSamples: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPostView,
+                wStreamNum: u16,
+                fReceivePostViewSamples: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetReceivePostViewSamples: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPostView,
+                wStreamNum: u16,
+                pfReceivePostViewSamples: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPostView,
+                wStreamNum: u16,
+                pfReceivePostViewSamples: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPostViewProps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPostView,
+                wStreamNumber: u16,
+                ppOutput: ?*?*IWMMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPostView,
+                wStreamNumber: u16,
+                ppOutput: ?*?*IWMMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPostViewProps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPostView,
+                wStreamNumber: u16,
+                pOutput: ?*IWMMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPostView,
+                wStreamNumber: u16,
+                pOutput: ?*IWMMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPostViewFormatCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPostView,
+                wStreamNumber: u16,
+                pcFormats: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPostView,
+                wStreamNumber: u16,
+                pcFormats: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPostViewFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPostView,
+                wStreamNumber: u16,
+                dwFormatNumber: u32,
+                ppProps: ?*?*IWMMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPostView,
+                wStreamNumber: u16,
+                dwFormatNumber: u32,
+                ppProps: ?*?*IWMMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAllocateForPostView: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPostView,
+                wStreamNumber: u16,
+                fAllocate: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPostView,
+                wStreamNumber: u16,
+                fAllocate: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllocateForPostView: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPostView,
+                wStreamNumber: u16,
+                pfAllocate: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPostView,
+                wStreamNumber: u16,
+                pfAllocate: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3853,26 +5514,56 @@ pub const IID_IWMWriterSink = &IID_IWMWriterSink_Value;
 pub const IWMWriterSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnHeader: fn(
-            self: *const IWMWriterSink,
-            pHeader: ?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsRealTime: fn(
-            self: *const IWMWriterSink,
-            pfRealTime: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AllocateDataUnit: fn(
-            self: *const IWMWriterSink,
-            cbDataUnit: u32,
-            ppDataUnit: ?*?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnDataUnit: fn(
-            self: *const IWMWriterSink,
-            pDataUnit: ?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnEndWriting: fn(
-            self: *const IWMWriterSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnHeader: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterSink,
+                pHeader: ?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterSink,
+                pHeader: ?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsRealTime: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterSink,
+                pfRealTime: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterSink,
+                pfRealTime: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AllocateDataUnit: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterSink,
+                cbDataUnit: u32,
+                ppDataUnit: ?*?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterSink,
+                cbDataUnit: u32,
+                ppDataUnit: ?*?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnDataUnit: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterSink,
+                pDataUnit: ?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterSink,
+                pDataUnit: ?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnEndWriting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3906,16 +5597,30 @@ pub const IID_IWMRegisterCallback = &IID_IWMRegisterCallback_Value;
 pub const IWMRegisterCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Advise: fn(
-            self: *const IWMRegisterCallback,
-            pCallback: ?*IWMStatusCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unadvise: fn(
-            self: *const IWMRegisterCallback,
-            pCallback: ?*IWMStatusCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Advise: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisterCallback,
+                pCallback: ?*IWMStatusCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisterCallback,
+                pCallback: ?*IWMStatusCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unadvise: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisterCallback,
+                pCallback: ?*IWMStatusCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisterCallback,
+                pCallback: ?*IWMStatusCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3937,10 +5642,16 @@ pub const IID_IWMWriterFileSink = &IID_IWMWriterFileSink_Value;
 pub const IWMWriterFileSink = extern struct {
     pub const VTable = extern struct {
         base: IWMWriterSink.VTable,
-        Open: fn(
-            self: *const IWMWriterFileSink,
-            pwszFilename: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Open: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink,
+                pwszFilename: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink,
+                pwszFilename: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3958,33 +5669,74 @@ pub const IID_IWMWriterFileSink2 = &IID_IWMWriterFileSink2_Value;
 pub const IWMWriterFileSink2 = extern struct {
     pub const VTable = extern struct {
         base: IWMWriterFileSink.VTable,
-        Start: fn(
-            self: *const IWMWriterFileSink2,
-            cnsStartTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Stop: fn(
-            self: *const IWMWriterFileSink2,
-            cnsStopTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsStopped: fn(
-            self: *const IWMWriterFileSink2,
-            pfStopped: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFileDuration: fn(
-            self: *const IWMWriterFileSink2,
-            pcnsDuration: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFileSize: fn(
-            self: *const IWMWriterFileSink2,
-            pcbFile: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IWMWriterFileSink2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsClosed: fn(
-            self: *const IWMWriterFileSink2,
-            pfClosed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Start: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink2,
+                cnsStartTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink2,
+                cnsStartTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Stop: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink2,
+                cnsStopTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink2,
+                cnsStopTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsStopped: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink2,
+                pfStopped: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink2,
+                pfStopped: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFileDuration: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink2,
+                pcnsDuration: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink2,
+                pcnsDuration: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFileSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink2,
+                pcbFile: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink2,
+                pcbFile: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsClosed: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink2,
+                pfClosed: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink2,
+                pfClosed: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4026,39 +5778,88 @@ pub const IID_IWMWriterFileSink3 = &IID_IWMWriterFileSink3_Value;
 pub const IWMWriterFileSink3 = extern struct {
     pub const VTable = extern struct {
         base: IWMWriterFileSink2.VTable,
-        SetAutoIndexing: fn(
-            self: *const IWMWriterFileSink3,
-            fDoAutoIndexing: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAutoIndexing: fn(
-            self: *const IWMWriterFileSink3,
-            pfAutoIndexing: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetControlStream: fn(
-            self: *const IWMWriterFileSink3,
-            wStreamNumber: u16,
-            fShouldControlStartAndStop: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMode: fn(
-            self: *const IWMWriterFileSink3,
-            pdwFileSinkMode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnDataUnitEx: fn(
-            self: *const IWMWriterFileSink3,
-            pFileSinkDataUnit: ?*WMT_FILESINK_DATA_UNIT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetUnbufferedIO: fn(
-            self: *const IWMWriterFileSink3,
-            fUnbufferedIO: BOOL,
-            fRestrictMemUsage: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUnbufferedIO: fn(
-            self: *const IWMWriterFileSink3,
-            pfUnbufferedIO: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CompleteOperations: fn(
-            self: *const IWMWriterFileSink3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAutoIndexing: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink3,
+                fDoAutoIndexing: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink3,
+                fDoAutoIndexing: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAutoIndexing: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink3,
+                pfAutoIndexing: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink3,
+                pfAutoIndexing: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetControlStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink3,
+                wStreamNumber: u16,
+                fShouldControlStartAndStop: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink3,
+                wStreamNumber: u16,
+                fShouldControlStartAndStop: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink3,
+                pdwFileSinkMode: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink3,
+                pdwFileSinkMode: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnDataUnitEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink3,
+                pFileSinkDataUnit: ?*WMT_FILESINK_DATA_UNIT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink3,
+                pFileSinkDataUnit: ?*WMT_FILESINK_DATA_UNIT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetUnbufferedIO: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink3,
+                fUnbufferedIO: BOOL,
+                fRestrictMemUsage: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink3,
+                fUnbufferedIO: BOOL,
+                fRestrictMemUsage: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetUnbufferedIO: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink3,
+                pfUnbufferedIO: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink3,
+                pfUnbufferedIO: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CompleteOperations: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterFileSink3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterFileSink3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4104,37 +5905,84 @@ pub const IID_IWMWriterNetworkSink = &IID_IWMWriterNetworkSink_Value;
 pub const IWMWriterNetworkSink = extern struct {
     pub const VTable = extern struct {
         base: IWMWriterSink.VTable,
-        SetMaximumClients: fn(
-            self: *const IWMWriterNetworkSink,
-            dwMaxClients: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaximumClients: fn(
-            self: *const IWMWriterNetworkSink,
-            pdwMaxClients: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNetworkProtocol: fn(
-            self: *const IWMWriterNetworkSink,
-            protocol: WMT_NET_PROTOCOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNetworkProtocol: fn(
-            self: *const IWMWriterNetworkSink,
-            pProtocol: ?*WMT_NET_PROTOCOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHostURL: fn(
-            self: *const IWMWriterNetworkSink,
-            pwszURL: ?PWSTR,
-            pcchURL: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Open: fn(
-            self: *const IWMWriterNetworkSink,
-            pdwPortNum: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Disconnect: fn(
-            self: *const IWMWriterNetworkSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IWMWriterNetworkSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMaximumClients: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterNetworkSink,
+                dwMaxClients: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterNetworkSink,
+                dwMaxClients: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMaximumClients: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterNetworkSink,
+                pdwMaxClients: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterNetworkSink,
+                pdwMaxClients: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNetworkProtocol: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterNetworkSink,
+                protocol: WMT_NET_PROTOCOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterNetworkSink,
+                protocol: WMT_NET_PROTOCOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNetworkProtocol: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterNetworkSink,
+                pProtocol: ?*WMT_NET_PROTOCOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterNetworkSink,
+                pProtocol: ?*WMT_NET_PROTOCOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetHostURL: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterNetworkSink,
+                pwszURL: ?PWSTR,
+                pcchURL: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterNetworkSink,
+                pwszURL: ?PWSTR,
+                pcchURL: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Open: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterNetworkSink,
+                pdwPortNum: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterNetworkSink,
+                pdwPortNum: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Disconnect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterNetworkSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterNetworkSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterNetworkSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterNetworkSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4180,15 +6028,28 @@ pub const IID_IWMClientConnections = &IID_IWMClientConnections_Value;
 pub const IWMClientConnections = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClientCount: fn(
-            self: *const IWMClientConnections,
-            pcClients: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetClientProperties: fn(
-            self: *const IWMClientConnections,
-            dwClientNum: u32,
-            pClientProperties: ?*WM_CLIENT_PROPERTIES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClientCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMClientConnections,
+                pcClients: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMClientConnections,
+                pcClients: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetClientProperties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMClientConnections,
+                dwClientNum: u32,
+                pClientProperties: ?*WM_CLIENT_PROPERTIES,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMClientConnections,
+                dwClientNum: u32,
+                pClientProperties: ?*WM_CLIENT_PROPERTIES,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4210,16 +6071,28 @@ pub const IID_IWMClientConnections2 = &IID_IWMClientConnections2_Value;
 pub const IWMClientConnections2 = extern struct {
     pub const VTable = extern struct {
         base: IWMClientConnections.VTable,
-        GetClientInfo: fn(
-            self: *const IWMClientConnections2,
-            dwClientNum: u32,
-            pwszNetworkAddress: [*:0]u16,
-            pcchNetworkAddress: ?*u32,
-            pwszPort: [*:0]u16,
-            pcchPort: ?*u32,
-            pwszDNSName: [*:0]u16,
-            pcchDNSName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClientInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMClientConnections2,
+                dwClientNum: u32,
+                pwszNetworkAddress: [*:0]u16,
+                pcchNetworkAddress: ?*u32,
+                pwszPort: [*:0]u16,
+                pcchPort: ?*u32,
+                pwszDNSName: [*:0]u16,
+                pcchDNSName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMClientConnections2,
+                dwClientNum: u32,
+                pwszNetworkAddress: [*:0]u16,
+                pcchNetworkAddress: ?*u32,
+                pwszPort: [*:0]u16,
+                pcchPort: ?*u32,
+                pwszDNSName: [*:0]u16,
+                pcchDNSName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4237,97 +6110,228 @@ pub const IID_IWMReaderAdvanced = &IID_IWMReaderAdvanced_Value;
 pub const IWMReaderAdvanced = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetUserProvidedClock: fn(
-            self: *const IWMReaderAdvanced,
-            fUserClock: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUserProvidedClock: fn(
-            self: *const IWMReaderAdvanced,
-            pfUserClock: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeliverTime: fn(
-            self: *const IWMReaderAdvanced,
-            cnsTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetManualStreamSelection: fn(
-            self: *const IWMReaderAdvanced,
-            fSelection: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetManualStreamSelection: fn(
-            self: *const IWMReaderAdvanced,
-            pfSelection: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStreamsSelected: fn(
-            self: *const IWMReaderAdvanced,
-            cStreamCount: u16,
-            pwStreamNumbers: ?*u16,
-            pSelections: ?*WMT_STREAM_SELECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStreamSelected: fn(
-            self: *const IWMReaderAdvanced,
-            wStreamNum: u16,
-            pSelection: ?*WMT_STREAM_SELECTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetReceiveSelectionCallbacks: fn(
-            self: *const IWMReaderAdvanced,
-            fGetCallbacks: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetReceiveSelectionCallbacks: fn(
-            self: *const IWMReaderAdvanced,
-            pfGetCallbacks: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetReceiveStreamSamples: fn(
-            self: *const IWMReaderAdvanced,
-            wStreamNum: u16,
-            fReceiveStreamSamples: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetReceiveStreamSamples: fn(
-            self: *const IWMReaderAdvanced,
-            wStreamNum: u16,
-            pfReceiveStreamSamples: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllocateForOutput: fn(
-            self: *const IWMReaderAdvanced,
-            dwOutputNum: u32,
-            fAllocate: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllocateForOutput: fn(
-            self: *const IWMReaderAdvanced,
-            dwOutputNum: u32,
-            pfAllocate: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllocateForStream: fn(
-            self: *const IWMReaderAdvanced,
-            wStreamNum: u16,
-            fAllocate: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllocateForStream: fn(
-            self: *const IWMReaderAdvanced,
-            dwSreamNum: u16,
-            pfAllocate: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStatistics: fn(
-            self: *const IWMReaderAdvanced,
-            pStatistics: ?*WM_READER_STATISTICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClientInfo: fn(
-            self: *const IWMReaderAdvanced,
-            pClientInfo: ?*WM_READER_CLIENTINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxOutputSampleSize: fn(
-            self: *const IWMReaderAdvanced,
-            dwOutput: u32,
-            pcbMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxStreamSampleSize: fn(
-            self: *const IWMReaderAdvanced,
-            wStream: u16,
-            pcbMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NotifyLateDelivery: fn(
-            self: *const IWMReaderAdvanced,
-            cnsLateness: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetUserProvidedClock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                fUserClock: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                fUserClock: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetUserProvidedClock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                pfUserClock: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                pfUserClock: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeliverTime: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                cnsTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                cnsTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetManualStreamSelection: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                fSelection: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                fSelection: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetManualStreamSelection: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                pfSelection: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                pfSelection: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetStreamsSelected: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                cStreamCount: u16,
+                pwStreamNumbers: ?*u16,
+                pSelections: ?*WMT_STREAM_SELECTION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                cStreamCount: u16,
+                pwStreamNumbers: ?*u16,
+                pSelections: ?*WMT_STREAM_SELECTION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamSelected: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                wStreamNum: u16,
+                pSelection: ?*WMT_STREAM_SELECTION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                wStreamNum: u16,
+                pSelection: ?*WMT_STREAM_SELECTION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetReceiveSelectionCallbacks: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                fGetCallbacks: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                fGetCallbacks: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetReceiveSelectionCallbacks: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                pfGetCallbacks: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                pfGetCallbacks: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetReceiveStreamSamples: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                wStreamNum: u16,
+                fReceiveStreamSamples: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                wStreamNum: u16,
+                fReceiveStreamSamples: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetReceiveStreamSamples: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                wStreamNum: u16,
+                pfReceiveStreamSamples: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                wStreamNum: u16,
+                pfReceiveStreamSamples: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAllocateForOutput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                dwOutputNum: u32,
+                fAllocate: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                dwOutputNum: u32,
+                fAllocate: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllocateForOutput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                dwOutputNum: u32,
+                pfAllocate: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                dwOutputNum: u32,
+                pfAllocate: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAllocateForStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                wStreamNum: u16,
+                fAllocate: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                wStreamNum: u16,
+                fAllocate: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAllocateForStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                dwSreamNum: u16,
+                pfAllocate: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                dwSreamNum: u16,
+                pfAllocate: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStatistics: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                pStatistics: ?*WM_READER_STATISTICS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                pStatistics: ?*WM_READER_STATISTICS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetClientInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                pClientInfo: ?*WM_READER_CLIENTINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                pClientInfo: ?*WM_READER_CLIENTINFO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMaxOutputSampleSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                dwOutput: u32,
+                pcbMax: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                dwOutput: u32,
+                pcbMax: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMaxStreamSampleSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                wStream: u16,
+                pcbMax: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                wStream: u16,
+                pcbMax: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        NotifyLateDelivery: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced,
+                cnsLateness: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced,
+                cnsLateness: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4421,84 +6425,192 @@ pub const IID_IWMReaderAdvanced2 = &IID_IWMReaderAdvanced2_Value;
 pub const IWMReaderAdvanced2 = extern struct {
     pub const VTable = extern struct {
         base: IWMReaderAdvanced.VTable,
-        SetPlayMode: fn(
-            self: *const IWMReaderAdvanced2,
-            Mode: WMT_PLAY_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPlayMode: fn(
-            self: *const IWMReaderAdvanced2,
-            pMode: ?*WMT_PLAY_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBufferProgress: fn(
-            self: *const IWMReaderAdvanced2,
-            pdwPercent: ?*u32,
-            pcnsBuffering: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDownloadProgress: fn(
-            self: *const IWMReaderAdvanced2,
-            pdwPercent: ?*u32,
-            pqwBytesDownloaded: ?*u64,
-            pcnsDownload: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSaveAsProgress: fn(
-            self: *const IWMReaderAdvanced2,
-            pdwPercent: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SaveFileAs: fn(
-            self: *const IWMReaderAdvanced2,
-            pwszFilename: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProtocolName: fn(
-            self: *const IWMReaderAdvanced2,
-            pwszProtocol: [*:0]u16,
-            pcchProtocol: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartAtMarker: fn(
-            self: *const IWMReaderAdvanced2,
-            wMarkerIndex: u16,
-            cnsDuration: u64,
-            fRate: f32,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputSetting: fn(
-            self: *const IWMReaderAdvanced2,
-            dwOutputNum: u32,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOutputSetting: fn(
-            self: *const IWMReaderAdvanced2,
-            dwOutputNum: u32,
-            pszName: ?[*:0]const u16,
-            Type: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Preroll: fn(
-            self: *const IWMReaderAdvanced2,
-            cnsStart: u64,
-            cnsDuration: u64,
-            fRate: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetLogClientID: fn(
-            self: *const IWMReaderAdvanced2,
-            fLogClientID: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLogClientID: fn(
-            self: *const IWMReaderAdvanced2,
-            pfLogClientID: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StopBuffering: fn(
-            self: *const IWMReaderAdvanced2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OpenStream: fn(
-            self: *const IWMReaderAdvanced2,
-            pStream: ?*IStream,
-            pCallback: ?*IWMReaderCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPlayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                Mode: WMT_PLAY_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                Mode: WMT_PLAY_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPlayMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                pMode: ?*WMT_PLAY_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                pMode: ?*WMT_PLAY_MODE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBufferProgress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                pdwPercent: ?*u32,
+                pcnsBuffering: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                pdwPercent: ?*u32,
+                pcnsBuffering: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDownloadProgress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                pdwPercent: ?*u32,
+                pqwBytesDownloaded: ?*u64,
+                pcnsDownload: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                pdwPercent: ?*u32,
+                pqwBytesDownloaded: ?*u64,
+                pcnsDownload: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSaveAsProgress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                pdwPercent: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                pdwPercent: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SaveFileAs: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                pwszFilename: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                pwszFilename: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProtocolName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                pwszProtocol: [*:0]u16,
+                pcchProtocol: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                pwszProtocol: [*:0]u16,
+                pcchProtocol: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StartAtMarker: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                wMarkerIndex: u16,
+                cnsDuration: u64,
+                fRate: f32,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                wMarkerIndex: u16,
+                cnsDuration: u64,
+                fRate: f32,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputSetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                dwOutputNum: u32,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                dwOutputNum: u32,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOutputSetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                dwOutputNum: u32,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                dwOutputNum: u32,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Preroll: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                cnsStart: u64,
+                cnsDuration: u64,
+                fRate: f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                cnsStart: u64,
+                cnsDuration: u64,
+                fRate: f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetLogClientID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                fLogClientID: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                fLogClientID: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLogClientID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                pfLogClientID: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                pfLogClientID: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StopBuffering: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OpenStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced2,
+                pStream: ?*IStream,
+                pCallback: ?*IWMReaderCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced2,
+                pStream: ?*IStream,
+                pCallback: ?*IWMReaderCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4572,18 +6684,34 @@ pub const IID_IWMReaderAdvanced3 = &IID_IWMReaderAdvanced3_Value;
 pub const IWMReaderAdvanced3 = extern struct {
     pub const VTable = extern struct {
         base: IWMReaderAdvanced2.VTable,
-        StopNetStreaming: fn(
-            self: *const IWMReaderAdvanced3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartAtPosition: fn(
-            self: *const IWMReaderAdvanced3,
-            wStreamNum: u16,
-            pvOffsetStart: ?*anyopaque,
-            pvDuration: ?*anyopaque,
-            dwOffsetFormat: WMT_OFFSET_FORMAT,
-            fRate: f32,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StopNetStreaming: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced3,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        StartAtPosition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced3,
+                wStreamNum: u16,
+                pvOffsetStart: ?*anyopaque,
+                pvDuration: ?*anyopaque,
+                dwOffsetFormat: WMT_OFFSET_FORMAT,
+                fRate: f32,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced3,
+                wStreamNum: u16,
+                pvOffsetStart: ?*anyopaque,
+                pvDuration: ?*anyopaque,
+                dwOffsetFormat: WMT_OFFSET_FORMAT,
+                fRate: f32,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4605,47 +6733,106 @@ pub const IID_IWMReaderAdvanced4 = &IID_IWMReaderAdvanced4_Value;
 pub const IWMReaderAdvanced4 = extern struct {
     pub const VTable = extern struct {
         base: IWMReaderAdvanced3.VTable,
-        GetLanguageCount: fn(
-            self: *const IWMReaderAdvanced4,
-            dwOutputNum: u32,
-            pwLanguageCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLanguage: fn(
-            self: *const IWMReaderAdvanced4,
-            dwOutputNum: u32,
-            wLanguage: u16,
-            pwszLanguageString: [*:0]u16,
-            pcchLanguageStringLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxSpeedFactor: fn(
-            self: *const IWMReaderAdvanced4,
-            pdblFactor: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsUsingFastCache: fn(
-            self: *const IWMReaderAdvanced4,
-            pfUsingFastCache: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddLogParam: fn(
-            self: *const IWMReaderAdvanced4,
-            wszNameSpace: ?[*:0]const u16,
-            wszName: ?[*:0]const u16,
-            wszValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SendLogParams: fn(
-            self: *const IWMReaderAdvanced4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CanSaveFileAs: fn(
-            self: *const IWMReaderAdvanced4,
-            pfCanSave: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CancelSaveFileAs: fn(
-            self: *const IWMReaderAdvanced4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetURL: fn(
-            self: *const IWMReaderAdvanced4,
-            pwszURL: [*:0]u16,
-            pcchURL: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLanguageCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced4,
+                dwOutputNum: u32,
+                pwLanguageCount: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced4,
+                dwOutputNum: u32,
+                pwLanguageCount: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLanguage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced4,
+                dwOutputNum: u32,
+                wLanguage: u16,
+                pwszLanguageString: [*:0]u16,
+                pcchLanguageStringLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced4,
+                dwOutputNum: u32,
+                wLanguage: u16,
+                pwszLanguageString: [*:0]u16,
+                pcchLanguageStringLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMaxSpeedFactor: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced4,
+                pdblFactor: ?*f64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced4,
+                pdblFactor: ?*f64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsUsingFastCache: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced4,
+                pfUsingFastCache: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced4,
+                pfUsingFastCache: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddLogParam: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced4,
+                wszNameSpace: ?[*:0]const u16,
+                wszName: ?[*:0]const u16,
+                wszValue: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced4,
+                wszNameSpace: ?[*:0]const u16,
+                wszName: ?[*:0]const u16,
+                wszValue: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SendLogParams: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CanSaveFileAs: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced4,
+                pfCanSave: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced4,
+                pfCanSave: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CancelSaveFileAs: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced4,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetURL: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced4,
+                pwszURL: [*:0]u16,
+                pcchURL: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced4,
+                pwszURL: [*:0]u16,
+                pcchURL: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4695,11 +6882,18 @@ pub const IID_IWMReaderAdvanced5 = &IID_IWMReaderAdvanced5_Value;
 pub const IWMReaderAdvanced5 = extern struct {
     pub const VTable = extern struct {
         base: IWMReaderAdvanced4.VTable,
-        SetPlayerHook: fn(
-            self: *const IWMReaderAdvanced5,
-            dwOutputNum: u32,
-            pHook: ?*IWMPlayerHook,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPlayerHook: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced5,
+                dwOutputNum: u32,
+                pHook: ?*IWMPlayerHook,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced5,
+                dwOutputNum: u32,
+                pHook: ?*IWMPlayerHook,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4717,15 +6911,26 @@ pub const IID_IWMReaderAdvanced6 = &IID_IWMReaderAdvanced6_Value;
 pub const IWMReaderAdvanced6 = extern struct {
     pub const VTable = extern struct {
         base: IWMReaderAdvanced5.VTable,
-        SetProtectStreamSamples: fn(
-            self: *const IWMReaderAdvanced6,
-            pbCertificate: [*:0]u8,
-            cbCertificate: u32,
-            dwCertificateType: u32,
-            dwFlags: u32,
-            pbInitializationVector: [*:0]u8,
-            pcbInitializationVector: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProtectStreamSamples: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAdvanced6,
+                pbCertificate: [*:0]u8,
+                cbCertificate: u32,
+                dwCertificateType: u32,
+                dwFlags: u32,
+                pbInitializationVector: [*:0]u8,
+                pcbInitializationVector: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAdvanced6,
+                pbCertificate: [*:0]u8,
+                cbCertificate: u32,
+                dwCertificateType: u32,
+                dwFlags: u32,
+                pbInitializationVector: [*:0]u8,
+                pcbInitializationVector: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4743,9 +6948,14 @@ pub const IID_IWMPlayerHook = &IID_IWMPlayerHook_Value;
 pub const IWMPlayerHook = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        PreDecode: fn(
-            self: *const IWMPlayerHook,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PreDecode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMPlayerHook,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMPlayerHook,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4763,26 +6973,50 @@ pub const IID_IWMReaderAllocatorEx = &IID_IWMReaderAllocatorEx_Value;
 pub const IWMReaderAllocatorEx = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AllocateForStreamEx: fn(
-            self: *const IWMReaderAllocatorEx,
-            wStreamNum: u16,
-            cbBuffer: u32,
-            ppBuffer: ?*?*INSSBuffer,
-            dwFlags: u32,
-            cnsSampleTime: u64,
-            cnsSampleDuration: u64,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AllocateForOutputEx: fn(
-            self: *const IWMReaderAllocatorEx,
-            dwOutputNum: u32,
-            cbBuffer: u32,
-            ppBuffer: ?*?*INSSBuffer,
-            dwFlags: u32,
-            cnsSampleTime: u64,
-            cnsSampleDuration: u64,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AllocateForStreamEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAllocatorEx,
+                wStreamNum: u16,
+                cbBuffer: u32,
+                ppBuffer: ?*?*INSSBuffer,
+                dwFlags: u32,
+                cnsSampleTime: u64,
+                cnsSampleDuration: u64,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAllocatorEx,
+                wStreamNum: u16,
+                cbBuffer: u32,
+                ppBuffer: ?*?*INSSBuffer,
+                dwFlags: u32,
+                cnsSampleTime: u64,
+                cnsSampleDuration: u64,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AllocateForOutputEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAllocatorEx,
+                dwOutputNum: u32,
+                cbBuffer: u32,
+                ppBuffer: ?*?*INSSBuffer,
+                dwFlags: u32,
+                cnsSampleTime: u64,
+                cnsSampleDuration: u64,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAllocatorEx,
+                dwOutputNum: u32,
+                cbBuffer: u32,
+                ppBuffer: ?*?*INSSBuffer,
+                dwFlags: u32,
+                cnsSampleTime: u64,
+                cnsSampleDuration: u64,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4804,11 +7038,18 @@ pub const IID_IWMReaderTypeNegotiation = &IID_IWMReaderTypeNegotiation_Value;
 pub const IWMReaderTypeNegotiation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        TryOutputProps: fn(
-            self: *const IWMReaderTypeNegotiation,
-            dwOutputNum: u32,
-            pOutput: ?*IWMOutputMediaProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TryOutputProps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderTypeNegotiation,
+                dwOutputNum: u32,
+                pOutput: ?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderTypeNegotiation,
+                dwOutputNum: u32,
+                pOutput: ?*IWMOutputMediaProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4826,47 +7067,100 @@ pub const IID_IWMReaderCallbackAdvanced = &IID_IWMReaderCallbackAdvanced_Value;
 pub const IWMReaderCallbackAdvanced = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnStreamSample: fn(
-            self: *const IWMReaderCallbackAdvanced,
-            wStreamNum: u16,
-            cnsSampleTime: u64,
-            cnsSampleDuration: u64,
-            dwFlags: u32,
-            pSample: ?*INSSBuffer,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnTime: fn(
-            self: *const IWMReaderCallbackAdvanced,
-            cnsCurrentTime: u64,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnStreamSelection: fn(
-            self: *const IWMReaderCallbackAdvanced,
-            wStreamCount: u16,
-            pStreamNumbers: ?*u16,
-            pSelections: ?*WMT_STREAM_SELECTION,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnOutputPropsChanged: fn(
-            self: *const IWMReaderCallbackAdvanced,
-            dwOutputNum: u32,
-            pMediaType: ?*WM_MEDIA_TYPE,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AllocateForStream: fn(
-            self: *const IWMReaderCallbackAdvanced,
-            wStreamNum: u16,
-            cbBuffer: u32,
-            ppBuffer: ?*?*INSSBuffer,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AllocateForOutput: fn(
-            self: *const IWMReaderCallbackAdvanced,
-            dwOutputNum: u32,
-            cbBuffer: u32,
-            ppBuffer: ?*?*INSSBuffer,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnStreamSample: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderCallbackAdvanced,
+                wStreamNum: u16,
+                cnsSampleTime: u64,
+                cnsSampleDuration: u64,
+                dwFlags: u32,
+                pSample: ?*INSSBuffer,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderCallbackAdvanced,
+                wStreamNum: u16,
+                cnsSampleTime: u64,
+                cnsSampleDuration: u64,
+                dwFlags: u32,
+                pSample: ?*INSSBuffer,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnTime: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderCallbackAdvanced,
+                cnsCurrentTime: u64,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderCallbackAdvanced,
+                cnsCurrentTime: u64,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnStreamSelection: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderCallbackAdvanced,
+                wStreamCount: u16,
+                pStreamNumbers: ?*u16,
+                pSelections: ?*WMT_STREAM_SELECTION,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderCallbackAdvanced,
+                wStreamCount: u16,
+                pStreamNumbers: ?*u16,
+                pSelections: ?*WMT_STREAM_SELECTION,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnOutputPropsChanged: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderCallbackAdvanced,
+                dwOutputNum: u32,
+                pMediaType: ?*WM_MEDIA_TYPE,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderCallbackAdvanced,
+                dwOutputNum: u32,
+                pMediaType: ?*WM_MEDIA_TYPE,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AllocateForStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderCallbackAdvanced,
+                wStreamNum: u16,
+                cbBuffer: u32,
+                ppBuffer: ?*?*INSSBuffer,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderCallbackAdvanced,
+                wStreamNum: u16,
+                cbBuffer: u32,
+                ppBuffer: ?*?*INSSBuffer,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AllocateForOutput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderCallbackAdvanced,
+                dwOutputNum: u32,
+                cbBuffer: u32,
+                ppBuffer: ?*?*INSSBuffer,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderCallbackAdvanced,
+                dwOutputNum: u32,
+                cbBuffer: u32,
+                ppBuffer: ?*?*INSSBuffer,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4905,40 +7199,90 @@ pub const IID_IWMDRMReader = &IID_IWMDRMReader_Value;
 pub const IWMDRMReader = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AcquireLicense: fn(
-            self: *const IWMDRMReader,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CancelLicenseAcquisition: fn(
-            self: *const IWMDRMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Individualize: fn(
-            self: *const IWMDRMReader,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CancelIndividualization: fn(
-            self: *const IWMDRMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        MonitorLicenseAcquisition: fn(
-            self: *const IWMDRMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CancelMonitorLicenseAcquisition: fn(
-            self: *const IWMDRMReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetDRMProperty: fn(
-            self: *const IWMDRMReader,
-            pwstrName: ?[*:0]const u16,
-            dwType: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDRMProperty: fn(
-            self: *const IWMDRMReader,
-            pwstrName: ?[*:0]const u16,
-            pdwType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AcquireLicense: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CancelLicenseAcquisition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Individualize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CancelIndividualization: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        MonitorLicenseAcquisition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CancelMonitorLicenseAcquisition: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetDRMProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader,
+                pwstrName: ?[*:0]const u16,
+                dwType: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader,
+                pwstrName: ?[*:0]const u16,
+                dwType: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDRMProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader,
+                pwstrName: ?[*:0]const u16,
+                pdwType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader,
+                pwstrName: ?[*:0]const u16,
+                pdwType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5020,25 +7364,52 @@ pub const IID_IWMDRMReader2 = &IID_IWMDRMReader2_Value;
 pub const IWMDRMReader2 = extern struct {
     pub const VTable = extern struct {
         base: IWMDRMReader.VTable,
-        SetEvaluateOutputLevelLicenses: fn(
-            self: *const IWMDRMReader2,
-            fEvaluate: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPlayOutputLevels: fn(
-            self: *const IWMDRMReader2,
-            pPlayOPL: [*]DRM_PLAY_OPL,
-            pcbLength: ?*u32,
-            pdwMinAppComplianceLevel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCopyOutputLevels: fn(
-            self: *const IWMDRMReader2,
-            pCopyOPL: [*]DRM_COPY_OPL,
-            pcbLength: ?*u32,
-            pdwMinAppComplianceLevel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TryNextLicense: fn(
-            self: *const IWMDRMReader2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEvaluateOutputLevelLicenses: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader2,
+                fEvaluate: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader2,
+                fEvaluate: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPlayOutputLevels: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader2,
+                pPlayOPL: [*]DRM_PLAY_OPL,
+                pcbLength: ?*u32,
+                pdwMinAppComplianceLevel: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader2,
+                pPlayOPL: [*]DRM_PLAY_OPL,
+                pcbLength: ?*u32,
+                pdwMinAppComplianceLevel: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCopyOutputLevels: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader2,
+                pCopyOPL: [*]DRM_COPY_OPL,
+                pcbLength: ?*u32,
+                pdwMinAppComplianceLevel: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader2,
+                pCopyOPL: [*]DRM_COPY_OPL,
+                pcbLength: ?*u32,
+                pdwMinAppComplianceLevel: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        TryNextLicense: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5069,11 +7440,18 @@ pub const IID_IWMDRMReader3 = &IID_IWMDRMReader3_Value;
 pub const IWMDRMReader3 = extern struct {
     pub const VTable = extern struct {
         base: IWMDRMReader2.VTable,
-        GetInclusionList: fn(
-            self: *const IWMDRMReader3,
-            ppGuids: ?*?*Guid,
-            pcGuids: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInclusionList: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMReader3,
+                ppGuids: ?*?*Guid,
+                pcGuids: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMReader3,
+                ppGuids: ?*?*Guid,
+                pcGuids: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5091,25 +7469,52 @@ pub const IID_IWMReaderPlaylistBurn = &IID_IWMReaderPlaylistBurn_Value;
 pub const IWMReaderPlaylistBurn = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InitPlaylistBurn: fn(
-            self: *const IWMReaderPlaylistBurn,
-            cFiles: u32,
-            ppwszFilenames: ?*?PWSTR,
-            pCallback: ?*IWMStatusCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInitResults: fn(
-            self: *const IWMReaderPlaylistBurn,
-            cFiles: u32,
-            phrStati: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IWMReaderPlaylistBurn,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndPlaylistBurn: fn(
-            self: *const IWMReaderPlaylistBurn,
-            hrBurnResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InitPlaylistBurn: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderPlaylistBurn,
+                cFiles: u32,
+                ppwszFilenames: ?*?PWSTR,
+                pCallback: ?*IWMStatusCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderPlaylistBurn,
+                cFiles: u32,
+                ppwszFilenames: ?*?PWSTR,
+                pCallback: ?*IWMStatusCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInitResults: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderPlaylistBurn,
+                cFiles: u32,
+                phrStati: ?*HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderPlaylistBurn,
+                cFiles: u32,
+                phrStati: ?*HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderPlaylistBurn,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderPlaylistBurn,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndPlaylistBurn: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderPlaylistBurn,
+                hrBurnResult: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderPlaylistBurn,
+                hrBurnResult: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5139,154 +7544,368 @@ pub const IID_IWMReaderNetworkConfig = &IID_IWMReaderNetworkConfig_Value;
 pub const IWMReaderNetworkConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetBufferingTime: fn(
-            self: *const IWMReaderNetworkConfig,
-            pcnsBufferingTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetBufferingTime: fn(
-            self: *const IWMReaderNetworkConfig,
-            cnsBufferingTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUDPPortRanges: fn(
-            self: *const IWMReaderNetworkConfig,
-            pRangeArray: [*]WM_PORT_NUMBER_RANGE,
-            pcRanges: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetUDPPortRanges: fn(
-            self: *const IWMReaderNetworkConfig,
-            pRangeArray: [*]WM_PORT_NUMBER_RANGE,
-            cRanges: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProxySettings: fn(
-            self: *const IWMReaderNetworkConfig,
-            pwszProtocol: ?[*:0]const u16,
-            pProxySetting: ?*WMT_PROXY_SETTINGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProxySettings: fn(
-            self: *const IWMReaderNetworkConfig,
-            pwszProtocol: ?[*:0]const u16,
-            ProxySetting: WMT_PROXY_SETTINGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProxyHostName: fn(
-            self: *const IWMReaderNetworkConfig,
-            pwszProtocol: ?[*:0]const u16,
-            pwszHostName: [*:0]u16,
-            pcchHostName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProxyHostName: fn(
-            self: *const IWMReaderNetworkConfig,
-            pwszProtocol: ?[*:0]const u16,
-            pwszHostName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProxyPort: fn(
-            self: *const IWMReaderNetworkConfig,
-            pwszProtocol: ?[*:0]const u16,
-            pdwPort: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProxyPort: fn(
-            self: *const IWMReaderNetworkConfig,
-            pwszProtocol: ?[*:0]const u16,
-            dwPort: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProxyExceptionList: fn(
-            self: *const IWMReaderNetworkConfig,
-            pwszProtocol: ?[*:0]const u16,
-            pwszExceptionList: [*:0]u16,
-            pcchExceptionList: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProxyExceptionList: fn(
-            self: *const IWMReaderNetworkConfig,
-            pwszProtocol: ?[*:0]const u16,
-            pwszExceptionList: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProxyBypassForLocal: fn(
-            self: *const IWMReaderNetworkConfig,
-            pwszProtocol: ?[*:0]const u16,
-            pfBypassForLocal: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProxyBypassForLocal: fn(
-            self: *const IWMReaderNetworkConfig,
-            pwszProtocol: ?[*:0]const u16,
-            fBypassForLocal: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetForceRerunAutoProxyDetection: fn(
-            self: *const IWMReaderNetworkConfig,
-            pfForceRerunDetection: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetForceRerunAutoProxyDetection: fn(
-            self: *const IWMReaderNetworkConfig,
-            fForceRerunDetection: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnableMulticast: fn(
-            self: *const IWMReaderNetworkConfig,
-            pfEnableMulticast: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEnableMulticast: fn(
-            self: *const IWMReaderNetworkConfig,
-            fEnableMulticast: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnableHTTP: fn(
-            self: *const IWMReaderNetworkConfig,
-            pfEnableHTTP: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEnableHTTP: fn(
-            self: *const IWMReaderNetworkConfig,
-            fEnableHTTP: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnableUDP: fn(
-            self: *const IWMReaderNetworkConfig,
-            pfEnableUDP: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEnableUDP: fn(
-            self: *const IWMReaderNetworkConfig,
-            fEnableUDP: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnableTCP: fn(
-            self: *const IWMReaderNetworkConfig,
-            pfEnableTCP: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEnableTCP: fn(
-            self: *const IWMReaderNetworkConfig,
-            fEnableTCP: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ResetProtocolRollover: fn(
-            self: *const IWMReaderNetworkConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetConnectionBandwidth: fn(
-            self: *const IWMReaderNetworkConfig,
-            pdwConnectionBandwidth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetConnectionBandwidth: fn(
-            self: *const IWMReaderNetworkConfig,
-            dwConnectionBandwidth: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNumProtocolsSupported: fn(
-            self: *const IWMReaderNetworkConfig,
-            pcProtocols: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSupportedProtocolName: fn(
-            self: *const IWMReaderNetworkConfig,
-            dwProtocolNum: u32,
-            pwszProtocolName: [*:0]u16,
-            pcchProtocolName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddLoggingUrl: fn(
-            self: *const IWMReaderNetworkConfig,
-            pwszUrl: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLoggingUrl: fn(
-            self: *const IWMReaderNetworkConfig,
-            dwIndex: u32,
-            pwszUrl: [*:0]u16,
-            pcchUrl: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLoggingUrlCount: fn(
-            self: *const IWMReaderNetworkConfig,
-            pdwUrlCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ResetLoggingUrlList: fn(
-            self: *const IWMReaderNetworkConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBufferingTime: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pcnsBufferingTime: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pcnsBufferingTime: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetBufferingTime: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                cnsBufferingTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                cnsBufferingTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetUDPPortRanges: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pRangeArray: [*]WM_PORT_NUMBER_RANGE,
+                pcRanges: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pRangeArray: [*]WM_PORT_NUMBER_RANGE,
+                pcRanges: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetUDPPortRanges: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pRangeArray: [*]WM_PORT_NUMBER_RANGE,
+                cRanges: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pRangeArray: [*]WM_PORT_NUMBER_RANGE,
+                cRanges: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProxySettings: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pProxySetting: ?*WMT_PROXY_SETTINGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pProxySetting: ?*WMT_PROXY_SETTINGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetProxySettings: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                ProxySetting: WMT_PROXY_SETTINGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                ProxySetting: WMT_PROXY_SETTINGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProxyHostName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pwszHostName: [*:0]u16,
+                pcchHostName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pwszHostName: [*:0]u16,
+                pcchHostName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetProxyHostName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pwszHostName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pwszHostName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProxyPort: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pdwPort: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pdwPort: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetProxyPort: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                dwPort: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                dwPort: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProxyExceptionList: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pwszExceptionList: [*:0]u16,
+                pcchExceptionList: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pwszExceptionList: [*:0]u16,
+                pcchExceptionList: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetProxyExceptionList: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pwszExceptionList: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pwszExceptionList: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProxyBypassForLocal: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pfBypassForLocal: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                pfBypassForLocal: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetProxyBypassForLocal: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                fBypassForLocal: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszProtocol: ?[*:0]const u16,
+                fBypassForLocal: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetForceRerunAutoProxyDetection: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pfForceRerunDetection: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pfForceRerunDetection: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetForceRerunAutoProxyDetection: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                fForceRerunDetection: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                fForceRerunDetection: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEnableMulticast: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pfEnableMulticast: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pfEnableMulticast: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetEnableMulticast: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                fEnableMulticast: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                fEnableMulticast: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEnableHTTP: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pfEnableHTTP: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pfEnableHTTP: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetEnableHTTP: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                fEnableHTTP: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                fEnableHTTP: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEnableUDP: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pfEnableUDP: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pfEnableUDP: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetEnableUDP: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                fEnableUDP: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                fEnableUDP: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEnableTCP: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pfEnableTCP: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pfEnableTCP: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetEnableTCP: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                fEnableTCP: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                fEnableTCP: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ResetProtocolRollover: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetConnectionBandwidth: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pdwConnectionBandwidth: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pdwConnectionBandwidth: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetConnectionBandwidth: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                dwConnectionBandwidth: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                dwConnectionBandwidth: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNumProtocolsSupported: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pcProtocols: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pcProtocols: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSupportedProtocolName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                dwProtocolNum: u32,
+                pwszProtocolName: [*:0]u16,
+                pcchProtocolName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                dwProtocolNum: u32,
+                pwszProtocolName: [*:0]u16,
+                pcchProtocolName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddLoggingUrl: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszUrl: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pwszUrl: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLoggingUrl: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                dwIndex: u32,
+                pwszUrl: [*:0]u16,
+                pcchUrl: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                dwIndex: u32,
+                pwszUrl: [*:0]u16,
+                pcchUrl: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLoggingUrlCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+                pdwUrlCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+                pdwUrlCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ResetLoggingUrlList: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5432,58 +8051,136 @@ pub const IID_IWMReaderNetworkConfig2 = &IID_IWMReaderNetworkConfig2_Value;
 pub const IWMReaderNetworkConfig2 = extern struct {
     pub const VTable = extern struct {
         base: IWMReaderNetworkConfig.VTable,
-        GetEnableContentCaching: fn(
-            self: *const IWMReaderNetworkConfig2,
-            pfEnableContentCaching: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEnableContentCaching: fn(
-            self: *const IWMReaderNetworkConfig2,
-            fEnableContentCaching: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnableFastCache: fn(
-            self: *const IWMReaderNetworkConfig2,
-            pfEnableFastCache: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEnableFastCache: fn(
-            self: *const IWMReaderNetworkConfig2,
-            fEnableFastCache: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAcceleratedStreamingDuration: fn(
-            self: *const IWMReaderNetworkConfig2,
-            pcnsAccelDuration: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAcceleratedStreamingDuration: fn(
-            self: *const IWMReaderNetworkConfig2,
-            cnsAccelDuration: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAutoReconnectLimit: fn(
-            self: *const IWMReaderNetworkConfig2,
-            pdwAutoReconnectLimit: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAutoReconnectLimit: fn(
-            self: *const IWMReaderNetworkConfig2,
-            dwAutoReconnectLimit: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnableResends: fn(
-            self: *const IWMReaderNetworkConfig2,
-            pfEnableResends: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEnableResends: fn(
-            self: *const IWMReaderNetworkConfig2,
-            fEnableResends: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnableThinning: fn(
-            self: *const IWMReaderNetworkConfig2,
-            pfEnableThinning: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEnableThinning: fn(
-            self: *const IWMReaderNetworkConfig2,
-            fEnableThinning: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxNetPacketSize: fn(
-            self: *const IWMReaderNetworkConfig2,
-            pdwMaxNetPacketSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEnableContentCaching: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                pfEnableContentCaching: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                pfEnableContentCaching: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetEnableContentCaching: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                fEnableContentCaching: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                fEnableContentCaching: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEnableFastCache: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                pfEnableFastCache: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                pfEnableFastCache: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetEnableFastCache: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                fEnableFastCache: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                fEnableFastCache: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAcceleratedStreamingDuration: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                pcnsAccelDuration: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                pcnsAccelDuration: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAcceleratedStreamingDuration: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                cnsAccelDuration: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                cnsAccelDuration: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAutoReconnectLimit: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                pdwAutoReconnectLimit: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                pdwAutoReconnectLimit: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAutoReconnectLimit: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                dwAutoReconnectLimit: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                dwAutoReconnectLimit: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEnableResends: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                pfEnableResends: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                pfEnableResends: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetEnableResends: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                fEnableResends: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                fEnableResends: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEnableThinning: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                pfEnableThinning: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                pfEnableThinning: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetEnableThinning: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                fEnableThinning: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                fEnableThinning: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMaxNetPacketSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderNetworkConfig2,
+                pdwMaxNetPacketSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderNetworkConfig2,
+                pdwMaxNetPacketSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5549,20 +8246,40 @@ pub const IID_IWMReaderStreamClock = &IID_IWMReaderStreamClock_Value;
 pub const IWMReaderStreamClock = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetTime: fn(
-            self: *const IWMReaderStreamClock,
-            pcnsNow: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTimer: fn(
-            self: *const IWMReaderStreamClock,
-            cnsWhen: u64,
-            pvParam: ?*anyopaque,
-            pdwTimerId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        KillTimer: fn(
-            self: *const IWMReaderStreamClock,
-            dwTimerId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTime: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderStreamClock,
+                pcnsNow: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderStreamClock,
+                pcnsNow: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetTimer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderStreamClock,
+                cnsWhen: u64,
+                pvParam: ?*anyopaque,
+                pdwTimerId: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderStreamClock,
+                cnsWhen: u64,
+                pvParam: ?*anyopaque,
+                pdwTimerId: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        KillTimer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderStreamClock,
+                dwTimerId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderStreamClock,
+                dwTimerId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5588,15 +8305,28 @@ pub const IID_IWMIndexer = &IID_IWMIndexer_Value;
 pub const IWMIndexer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        StartIndexing: fn(
-            self: *const IWMIndexer,
-            pwszURL: ?[*:0]const u16,
-            pCallback: ?*IWMStatusCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IWMIndexer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StartIndexing: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMIndexer,
+                pwszURL: ?[*:0]const u16,
+                pCallback: ?*IWMStatusCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMIndexer,
+                pwszURL: ?[*:0]const u16,
+                pCallback: ?*IWMStatusCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMIndexer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMIndexer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5618,13 +8348,22 @@ pub const IID_IWMIndexer2 = &IID_IWMIndexer2_Value;
 pub const IWMIndexer2 = extern struct {
     pub const VTable = extern struct {
         base: IWMIndexer.VTable,
-        Configure: fn(
-            self: *const IWMIndexer2,
-            wStreamNum: u16,
-            nIndexerType: WMT_INDEXER_TYPE,
-            pvInterval: ?*anyopaque,
-            pvIndexType: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Configure: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMIndexer2,
+                wStreamNum: u16,
+                nIndexerType: WMT_INDEXER_TYPE,
+                pvInterval: ?*anyopaque,
+                pvIndexType: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMIndexer2,
+                wStreamNum: u16,
+                nIndexerType: WMT_INDEXER_TYPE,
+                pvInterval: ?*anyopaque,
+                pvIndexType: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5643,14 +8382,26 @@ pub const IID_IWMLicenseBackup = &IID_IWMLicenseBackup_Value;
 pub const IWMLicenseBackup = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BackupLicenses: fn(
-            self: *const IWMLicenseBackup,
-            dwFlags: u32,
-            pCallback: ?*IWMStatusCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CancelLicenseBackup: fn(
-            self: *const IWMLicenseBackup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BackupLicenses: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMLicenseBackup,
+                dwFlags: u32,
+                pCallback: ?*IWMStatusCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMLicenseBackup,
+                dwFlags: u32,
+                pCallback: ?*IWMStatusCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CancelLicenseBackup: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMLicenseBackup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMLicenseBackup,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5673,14 +8424,26 @@ pub const IID_IWMLicenseRestore = &IID_IWMLicenseRestore_Value;
 pub const IWMLicenseRestore = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RestoreLicenses: fn(
-            self: *const IWMLicenseRestore,
-            dwFlags: u32,
-            pCallback: ?*IWMStatusCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CancelLicenseRestore: fn(
-            self: *const IWMLicenseRestore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RestoreLicenses: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMLicenseRestore,
+                dwFlags: u32,
+                pCallback: ?*IWMStatusCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMLicenseRestore,
+                dwFlags: u32,
+                pCallback: ?*IWMStatusCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CancelLicenseRestore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMLicenseRestore,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMLicenseRestore,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5703,40 +8466,86 @@ pub const IID_IWMBackupRestoreProps = &IID_IWMBackupRestoreProps_Value;
 pub const IWMBackupRestoreProps = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPropCount: fn(
-            self: *const IWMBackupRestoreProps,
-            pcProps: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropByIndex: fn(
-            self: *const IWMBackupRestoreProps,
-            wIndex: u16,
-            pwszName: [*:0]u16,
-            pcchNameLen: ?*u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropByName: fn(
-            self: *const IWMBackupRestoreProps,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pcbLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProp: fn(
-            self: *const IWMBackupRestoreProps,
-            pszName: ?[*:0]const u16,
-            Type: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            cbLength: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveProp: fn(
-            self: *const IWMBackupRestoreProps,
-            pcwszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAllProps: fn(
-            self: *const IWMBackupRestoreProps,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMBackupRestoreProps,
+                pcProps: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMBackupRestoreProps,
+                pcProps: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropByIndex: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMBackupRestoreProps,
+                wIndex: u16,
+                pwszName: [*:0]u16,
+                pcchNameLen: ?*u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMBackupRestoreProps,
+                wIndex: u16,
+                pwszName: [*:0]u16,
+                pcchNameLen: ?*u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMBackupRestoreProps,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMBackupRestoreProps,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pcbLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetProp: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMBackupRestoreProps,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMBackupRestoreProps,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                cbLength: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveProp: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMBackupRestoreProps,
+                pcwszName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMBackupRestoreProps,
+                pcwszName: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveAllProps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMBackupRestoreProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMBackupRestoreProps,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5774,24 +8583,48 @@ pub const IID_IWMCodecInfo = &IID_IWMCodecInfo_Value;
 pub const IWMCodecInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCodecInfoCount: fn(
-            self: *const IWMCodecInfo,
-            guidType: ?*const Guid,
-            pcCodecs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCodecFormatCount: fn(
-            self: *const IWMCodecInfo,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            pcFormat: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCodecFormat: fn(
-            self: *const IWMCodecInfo,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            dwFormatIndex: u32,
-            ppIStreamConfig: ?*?*IWMStreamConfig,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCodecInfoCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecInfo,
+                guidType: ?*const Guid,
+                pcCodecs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecInfo,
+                guidType: ?*const Guid,
+                pcCodecs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCodecFormatCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecInfo,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                pcFormat: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecInfo,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                pcFormat: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCodecFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecInfo,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                dwFormatIndex: u32,
+                ppIStreamConfig: ?*?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecInfo,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                dwFormatIndex: u32,
+                ppIStreamConfig: ?*?*IWMStreamConfig,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5817,22 +8650,42 @@ pub const IID_IWMCodecInfo2 = &IID_IWMCodecInfo2_Value;
 pub const IWMCodecInfo2 = extern struct {
     pub const VTable = extern struct {
         base: IWMCodecInfo.VTable,
-        GetCodecName: fn(
-            self: *const IWMCodecInfo2,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            wszName: [*:0]u16,
-            pcchName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCodecFormatDesc: fn(
-            self: *const IWMCodecInfo2,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            dwFormatIndex: u32,
-            ppIStreamConfig: ?*?*IWMStreamConfig,
-            wszDesc: [*:0]u16,
-            pcchDesc: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCodecName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecInfo2,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                wszName: [*:0]u16,
+                pcchName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecInfo2,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                wszName: [*:0]u16,
+                pcchName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCodecFormatDesc: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecInfo2,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                dwFormatIndex: u32,
+                ppIStreamConfig: ?*?*IWMStreamConfig,
+                wszDesc: [*:0]u16,
+                pcchDesc: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecInfo2,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                dwFormatIndex: u32,
+                ppIStreamConfig: ?*?*IWMStreamConfig,
+                wszDesc: [*:0]u16,
+                pcchDesc: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5854,43 +8707,88 @@ pub const IID_IWMCodecInfo3 = &IID_IWMCodecInfo3_Value;
 pub const IWMCodecInfo3 = extern struct {
     pub const VTable = extern struct {
         base: IWMCodecInfo2.VTable,
-        GetCodecFormatProp: fn(
-            self: *const IWMCodecInfo3,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            dwFormatIndex: u32,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCodecProp: fn(
-            self: *const IWMCodecInfo3,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCodecEnumerationSetting: fn(
-            self: *const IWMCodecInfo3,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            pszName: ?[*:0]const u16,
-            Type: WMT_ATTR_DATATYPE,
-            pValue: [*:0]const u8,
-            dwSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCodecEnumerationSetting: fn(
-            self: *const IWMCodecInfo3,
-            guidType: ?*const Guid,
-            dwCodecIndex: u32,
-            pszName: ?[*:0]const u16,
-            pType: ?*WMT_ATTR_DATATYPE,
-            pValue: [*:0]u8,
-            pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCodecFormatProp: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecInfo3,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                dwFormatIndex: u32,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecInfo3,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                dwFormatIndex: u32,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCodecProp: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecInfo3,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecInfo3,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetCodecEnumerationSetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecInfo3,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                dwSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecInfo3,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                pszName: ?[*:0]const u16,
+                Type: WMT_ATTR_DATATYPE,
+                pValue: [*:0]const u8,
+                dwSize: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCodecEnumerationSetting: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecInfo3,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecInfo3,
+                guidType: ?*const Guid,
+                dwCodecIndex: u32,
+                pszName: ?[*:0]const u16,
+                pType: ?*WMT_ATTR_DATATYPE,
+                pValue: [*:0]u8,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5920,21 +8818,42 @@ pub const IID_IWMLanguageList = &IID_IWMLanguageList_Value;
 pub const IWMLanguageList = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetLanguageCount: fn(
-            self: *const IWMLanguageList,
-            pwCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLanguageDetails: fn(
-            self: *const IWMLanguageList,
-            wIndex: u16,
-            pwszLanguageString: [*:0]u16,
-            pcchLanguageStringLength: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddLanguageByRFC1766String: fn(
-            self: *const IWMLanguageList,
-            pwszLanguageString: ?PWSTR,
-            pwIndex: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLanguageCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMLanguageList,
+                pwCount: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMLanguageList,
+                pwCount: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLanguageDetails: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMLanguageList,
+                wIndex: u16,
+                pwszLanguageString: [*:0]u16,
+                pcchLanguageStringLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMLanguageList,
+                wIndex: u16,
+                pwszLanguageString: [*:0]u16,
+                pcchLanguageStringLength: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddLanguageByRFC1766String: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMLanguageList,
+                pwszLanguageString: ?PWSTR,
+                pwIndex: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMLanguageList,
+                pwszLanguageString: ?PWSTR,
+                pwIndex: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5960,18 +8879,36 @@ pub const IID_IWMWriterPushSink = &IID_IWMWriterPushSink_Value;
 pub const IWMWriterPushSink = extern struct {
     pub const VTable = extern struct {
         base: IWMWriterSink.VTable,
-        Connect: fn(
-            self: *const IWMWriterPushSink,
-            pwszURL: ?[*:0]const u16,
-            pwszTemplateURL: ?[*:0]const u16,
-            fAutoDestroy: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Disconnect: fn(
-            self: *const IWMWriterPushSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EndSession: fn(
-            self: *const IWMWriterPushSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Connect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPushSink,
+                pwszURL: ?[*:0]const u16,
+                pwszTemplateURL: ?[*:0]const u16,
+                fAutoDestroy: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPushSink,
+                pwszURL: ?[*:0]const u16,
+                pwszTemplateURL: ?[*:0]const u16,
+                fAutoDestroy: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Disconnect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPushSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPushSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EndSession: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWriterPushSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWriterPushSink,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5998,43 +8935,92 @@ pub const IID_IWMDeviceRegistration = &IID_IWMDeviceRegistration_Value;
 pub const IWMDeviceRegistration = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RegisterDevice: fn(
-            self: *const IWMDeviceRegistration,
-            dwRegisterType: u32,
-            pbCertificate: [*:0]u8,
-            cbCertificate: u32,
-            SerialNumber: DRM_VAL16,
-            ppDevice: ?*?*IWMRegisteredDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnregisterDevice: fn(
-            self: *const IWMDeviceRegistration,
-            dwRegisterType: u32,
-            pbCertificate: [*:0]u8,
-            cbCertificate: u32,
-            SerialNumber: DRM_VAL16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRegistrationStats: fn(
-            self: *const IWMDeviceRegistration,
-            dwRegisterType: u32,
-            pcRegisteredDevices: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFirstRegisteredDevice: fn(
-            self: *const IWMDeviceRegistration,
-            dwRegisterType: u32,
-            ppDevice: ?*?*IWMRegisteredDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNextRegisteredDevice: fn(
-            self: *const IWMDeviceRegistration,
-            ppDevice: ?*?*IWMRegisteredDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRegisteredDeviceByID: fn(
-            self: *const IWMDeviceRegistration,
-            dwRegisterType: u32,
-            pbCertificate: [*:0]u8,
-            cbCertificate: u32,
-            SerialNumber: DRM_VAL16,
-            ppDevice: ?*?*IWMRegisteredDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDeviceRegistration,
+                dwRegisterType: u32,
+                pbCertificate: [*:0]u8,
+                cbCertificate: u32,
+                SerialNumber: DRM_VAL16,
+                ppDevice: ?*?*IWMRegisteredDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDeviceRegistration,
+                dwRegisterType: u32,
+                pbCertificate: [*:0]u8,
+                cbCertificate: u32,
+                SerialNumber: DRM_VAL16,
+                ppDevice: ?*?*IWMRegisteredDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnregisterDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDeviceRegistration,
+                dwRegisterType: u32,
+                pbCertificate: [*:0]u8,
+                cbCertificate: u32,
+                SerialNumber: DRM_VAL16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDeviceRegistration,
+                dwRegisterType: u32,
+                pbCertificate: [*:0]u8,
+                cbCertificate: u32,
+                SerialNumber: DRM_VAL16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRegistrationStats: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDeviceRegistration,
+                dwRegisterType: u32,
+                pcRegisteredDevices: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDeviceRegistration,
+                dwRegisterType: u32,
+                pcRegisteredDevices: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFirstRegisteredDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDeviceRegistration,
+                dwRegisterType: u32,
+                ppDevice: ?*?*IWMRegisteredDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDeviceRegistration,
+                dwRegisterType: u32,
+                ppDevice: ?*?*IWMRegisteredDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNextRegisteredDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDeviceRegistration,
+                ppDevice: ?*?*IWMRegisteredDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDeviceRegistration,
+                ppDevice: ?*?*IWMRegisteredDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRegisteredDeviceByID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDeviceRegistration,
+                dwRegisterType: u32,
+                pbCertificate: [*:0]u8,
+                cbCertificate: u32,
+                SerialNumber: DRM_VAL16,
+                ppDevice: ?*?*IWMRegisteredDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDeviceRegistration,
+                dwRegisterType: u32,
+                pbCertificate: [*:0]u8,
+                cbCertificate: u32,
+                SerialNumber: DRM_VAL16,
+                ppDevice: ?*?*IWMRegisteredDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6072,64 +9058,150 @@ pub const IID_IWMRegisteredDevice = &IID_IWMRegisteredDevice_Value;
 pub const IWMRegisteredDevice = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDeviceSerialNumber: fn(
-            self: *const IWMRegisteredDevice,
-            pSerialNumber: ?*DRM_VAL16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceCertificate: fn(
-            self: *const IWMRegisteredDevice,
-            ppCertificate: ?*?*INSSBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceType: fn(
-            self: *const IWMRegisteredDevice,
-            pdwType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttributeCount: fn(
-            self: *const IWMRegisteredDevice,
-            pcAttributes: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttributeByIndex: fn(
-            self: *const IWMRegisteredDevice,
-            dwIndex: u32,
-            pbstrName: ?*?BSTR,
-            pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAttributeByName: fn(
-            self: *const IWMRegisteredDevice,
-            bstrName: ?BSTR,
-            pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAttributeByName: fn(
-            self: *const IWMRegisteredDevice,
-            bstrName: ?BSTR,
-            bstrValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Approve: fn(
-            self: *const IWMRegisteredDevice,
-            fApprove: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsValid: fn(
-            self: *const IWMRegisteredDevice,
-            pfValid: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsApproved: fn(
-            self: *const IWMRegisteredDevice,
-            pfApproved: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsWmdrmCompliant: fn(
-            self: *const IWMRegisteredDevice,
-            pfCompliant: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsOpened: fn(
-            self: *const IWMRegisteredDevice,
-            pfOpened: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Open: fn(
-            self: *const IWMRegisteredDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IWMRegisteredDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceSerialNumber: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+                pSerialNumber: ?*DRM_VAL16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+                pSerialNumber: ?*DRM_VAL16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceCertificate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+                ppCertificate: ?*?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+                ppCertificate: ?*?*INSSBuffer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+                pdwType: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+                pdwType: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAttributeCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+                pcAttributes: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+                pcAttributes: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAttributeByIndex: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+                dwIndex: u32,
+                pbstrName: ?*?BSTR,
+                pbstrValue: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+                dwIndex: u32,
+                pbstrName: ?*?BSTR,
+                pbstrValue: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAttributeByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+                bstrName: ?BSTR,
+                pbstrValue: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+                bstrName: ?BSTR,
+                pbstrValue: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetAttributeByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+                bstrName: ?BSTR,
+                bstrValue: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+                bstrName: ?BSTR,
+                bstrValue: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Approve: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+                fApprove: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+                fApprove: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsValid: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+                pfValid: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+                pfValid: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsApproved: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+                pfApproved: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+                pfApproved: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsWmdrmCompliant: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+                pfCompliant: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+                pfCompliant: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsOpened: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+                pfOpened: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+                pfOpened: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Open: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMRegisteredDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMRegisteredDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6200,17 +9272,30 @@ pub const IID_IWMProximityDetection = &IID_IWMProximityDetection_Value;
 pub const IWMProximityDetection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        StartDetection: fn(
-            self: *const IWMProximityDetection,
-            pbRegistrationMsg: [*:0]u8,
-            cbRegistrationMsg: u32,
-            pbLocalAddress: [*:0]u8,
-            cbLocalAddress: u32,
-            dwExtraPortsAllowed: u32,
-            ppRegistrationResponseMsg: ?*?*INSSBuffer,
-            pCallback: ?*IWMStatusCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StartDetection: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMProximityDetection,
+                pbRegistrationMsg: [*:0]u8,
+                cbRegistrationMsg: u32,
+                pbLocalAddress: [*:0]u8,
+                cbLocalAddress: u32,
+                dwExtraPortsAllowed: u32,
+                ppRegistrationResponseMsg: ?*?*INSSBuffer,
+                pCallback: ?*IWMStatusCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMProximityDetection,
+                pbRegistrationMsg: [*:0]u8,
+                cbRegistrationMsg: u32,
+                pbLocalAddress: [*:0]u8,
+                cbLocalAddress: u32,
+                dwExtraPortsAllowed: u32,
+                ppRegistrationResponseMsg: ?*?*INSSBuffer,
+                pCallback: ?*IWMStatusCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6229,21 +9314,40 @@ pub const IID_IWMDRMMessageParser = &IID_IWMDRMMessageParser_Value;
 pub const IWMDRMMessageParser = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ParseRegistrationReqMsg: fn(
-            self: *const IWMDRMMessageParser,
-            pbRegistrationReqMsg: [*:0]u8,
-            cbRegistrationReqMsg: u32,
-            ppDeviceCert: ?*?*INSSBuffer,
-            pDeviceSerialNumber: ?*DRM_VAL16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ParseLicenseRequestMsg: fn(
-            self: *const IWMDRMMessageParser,
-            pbLicenseRequestMsg: [*:0]u8,
-            cbLicenseRequestMsg: u32,
-            ppDeviceCert: ?*?*INSSBuffer,
-            pDeviceSerialNumber: ?*DRM_VAL16,
-            pbstrAction: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ParseRegistrationReqMsg: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMMessageParser,
+                pbRegistrationReqMsg: [*:0]u8,
+                cbRegistrationReqMsg: u32,
+                ppDeviceCert: ?*?*INSSBuffer,
+                pDeviceSerialNumber: ?*DRM_VAL16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMMessageParser,
+                pbRegistrationReqMsg: [*:0]u8,
+                cbRegistrationReqMsg: u32,
+                ppDeviceCert: ?*?*INSSBuffer,
+                pDeviceSerialNumber: ?*DRM_VAL16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ParseLicenseRequestMsg: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMMessageParser,
+                pbLicenseRequestMsg: [*:0]u8,
+                cbLicenseRequestMsg: u32,
+                ppDeviceCert: ?*?*INSSBuffer,
+                pDeviceSerialNumber: ?*DRM_VAL16,
+                pbstrAction: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMMessageParser,
+                pbLicenseRequestMsg: [*:0]u8,
+                cbLicenseRequestMsg: u32,
+                ppDeviceCert: ?*?*INSSBuffer,
+                pDeviceSerialNumber: ?*DRM_VAL16,
+                pbstrAction: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6266,27 +9370,56 @@ pub const IID_IWMDRMTranscryptor = &IID_IWMDRMTranscryptor_Value;
 pub const IWMDRMTranscryptor = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IWMDRMTranscryptor,
-            bstrFileName: ?BSTR,
-            pbLicenseRequestMsg: ?*u8,
-            cbLicenseRequestMsg: u32,
-            ppLicenseResponseMsg: ?*?*INSSBuffer,
-            pCallback: ?*IWMStatusCallback,
-            pvContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Seek: fn(
-            self: *const IWMDRMTranscryptor,
-            hnsTime: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Read: fn(
-            self: *const IWMDRMTranscryptor,
-            pbData: ?*u8,
-            pcbData: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IWMDRMTranscryptor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMTranscryptor,
+                bstrFileName: ?BSTR,
+                pbLicenseRequestMsg: ?*u8,
+                cbLicenseRequestMsg: u32,
+                ppLicenseResponseMsg: ?*?*INSSBuffer,
+                pCallback: ?*IWMStatusCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMTranscryptor,
+                bstrFileName: ?BSTR,
+                pbLicenseRequestMsg: ?*u8,
+                cbLicenseRequestMsg: u32,
+                ppLicenseResponseMsg: ?*?*INSSBuffer,
+                pCallback: ?*IWMStatusCallback,
+                pvContext: ?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Seek: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMTranscryptor,
+                hnsTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMTranscryptor,
+                hnsTime: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Read: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMTranscryptor,
+                pbData: ?*u8,
+                pcbData: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMTranscryptor,
+                pbData: ?*u8,
+                pcbData: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMTranscryptor,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMTranscryptor,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6316,25 +9449,52 @@ pub const IID_IWMDRMTranscryptor2 = &IID_IWMDRMTranscryptor2_Value;
 pub const IWMDRMTranscryptor2 = extern struct {
     pub const VTable = extern struct {
         base: IWMDRMTranscryptor.VTable,
-        SeekEx: fn(
-            self: *const IWMDRMTranscryptor2,
-            cnsStartTime: u64,
-            cnsDuration: u64,
-            flRate: f32,
-            fIncludeFileHeader: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ZeroAdjustTimestamps: fn(
-            self: *const IWMDRMTranscryptor2,
-            fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSeekStartTime: fn(
-            self: *const IWMDRMTranscryptor2,
-            pcnsTime: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDuration: fn(
-            self: *const IWMDRMTranscryptor2,
-            pcnsDuration: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SeekEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMTranscryptor2,
+                cnsStartTime: u64,
+                cnsDuration: u64,
+                flRate: f32,
+                fIncludeFileHeader: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMTranscryptor2,
+                cnsStartTime: u64,
+                cnsDuration: u64,
+                flRate: f32,
+                fIncludeFileHeader: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ZeroAdjustTimestamps: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMTranscryptor2,
+                fEnable: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMTranscryptor2,
+                fEnable: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSeekStartTime: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMTranscryptor2,
+                pcnsTime: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMTranscryptor2,
+                pcnsTime: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDuration: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMTranscryptor2,
+                pcnsDuration: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMTranscryptor2,
+                pcnsDuration: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6364,10 +9524,16 @@ pub const IID_IWMDRMTranscryptionManager = &IID_IWMDRMTranscryptionManager_Value
 pub const IWMDRMTranscryptionManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateTranscryptor: fn(
-            self: *const IWMDRMTranscryptionManager,
-            ppTranscryptor: ?*?*IWMDRMTranscryptor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTranscryptor: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMDRMTranscryptionManager,
+                ppTranscryptor: ?*?*IWMDRMTranscryptor,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMDRMTranscryptionManager,
+                ppTranscryptor: ?*?*IWMDRMTranscryptor,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6385,17 +9551,32 @@ pub const IID_IWMWatermarkInfo = &IID_IWMWatermarkInfo_Value;
 pub const IWMWatermarkInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetWatermarkEntryCount: fn(
-            self: *const IWMWatermarkInfo,
-            wmetType: WMT_WATERMARK_ENTRY_TYPE,
-            pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetWatermarkEntry: fn(
-            self: *const IWMWatermarkInfo,
-            wmetType: WMT_WATERMARK_ENTRY_TYPE,
-            dwEntryNum: u32,
-            pEntry: ?*WMT_WATERMARK_ENTRY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWatermarkEntryCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWatermarkInfo,
+                wmetType: WMT_WATERMARK_ENTRY_TYPE,
+                pdwCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWatermarkInfo,
+                wmetType: WMT_WATERMARK_ENTRY_TYPE,
+                pdwCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetWatermarkEntry: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMWatermarkInfo,
+                wmetType: WMT_WATERMARK_ENTRY_TYPE,
+                dwEntryNum: u32,
+                pEntry: ?*WMT_WATERMARK_ENTRY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMWatermarkInfo,
+                wmetType: WMT_WATERMARK_ENTRY_TYPE,
+                dwEntryNum: u32,
+                pEntry: ?*WMT_WATERMARK_ENTRY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6417,17 +9598,32 @@ pub const IID_IWMReaderAccelerator = &IID_IWMReaderAccelerator_Value;
 pub const IWMReaderAccelerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCodecInterface: fn(
-            self: *const IWMReaderAccelerator,
-            dwOutputNum: u32,
-            riid: ?*const Guid,
-            ppvCodecInterface: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Notify: fn(
-            self: *const IWMReaderAccelerator,
-            dwOutputNum: u32,
-            pSubtype: ?*WM_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCodecInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAccelerator,
+                dwOutputNum: u32,
+                riid: ?*const Guid,
+                ppvCodecInterface: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAccelerator,
+                dwOutputNum: u32,
+                riid: ?*const Guid,
+                ppvCodecInterface: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Notify: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderAccelerator,
+                dwOutputNum: u32,
+                pSubtype: ?*WM_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderAccelerator,
+                dwOutputNum: u32,
+                pSubtype: ?*WM_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6449,18 +9645,34 @@ pub const IID_IWMReaderTimecode = &IID_IWMReaderTimecode_Value;
 pub const IWMReaderTimecode = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetTimecodeRangeCount: fn(
-            self: *const IWMReaderTimecode,
-            wStreamNum: u16,
-            pwRangeCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTimecodeRangeBounds: fn(
-            self: *const IWMReaderTimecode,
-            wStreamNum: u16,
-            wRangeNum: u16,
-            pStartTimecode: ?*u32,
-            pEndTimecode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTimecodeRangeCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderTimecode,
+                wStreamNum: u16,
+                pwRangeCount: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderTimecode,
+                wStreamNum: u16,
+                pwRangeCount: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetTimecodeRangeBounds: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMReaderTimecode,
+                wStreamNum: u16,
+                wRangeNum: u16,
+                pStartTimecode: ?*u32,
+                pEndTimecode: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMReaderTimecode,
+                wStreamNum: u16,
+                wRangeNum: u16,
+                pStartTimecode: ?*u32,
+                pEndTimecode: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6482,27 +9694,56 @@ pub const IID_IWMAddressAccess = &IID_IWMAddressAccess_Value;
 pub const IWMAddressAccess = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAccessEntryCount: fn(
-            self: *const IWMAddressAccess,
-            aeType: WM_AETYPE,
-            pcEntries: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAccessEntry: fn(
-            self: *const IWMAddressAccess,
-            aeType: WM_AETYPE,
-            dwEntryNum: u32,
-            pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddAccessEntry: fn(
-            self: *const IWMAddressAccess,
-            aeType: WM_AETYPE,
-            pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAccessEntry: fn(
-            self: *const IWMAddressAccess,
-            aeType: WM_AETYPE,
-            dwEntryNum: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAccessEntryCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMAddressAccess,
+                aeType: WM_AETYPE,
+                pcEntries: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMAddressAccess,
+                aeType: WM_AETYPE,
+                pcEntries: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAccessEntry: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMAddressAccess,
+                aeType: WM_AETYPE,
+                dwEntryNum: u32,
+                pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMAddressAccess,
+                aeType: WM_AETYPE,
+                dwEntryNum: u32,
+                pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddAccessEntry: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMAddressAccess,
+                aeType: WM_AETYPE,
+                pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMAddressAccess,
+                aeType: WM_AETYPE,
+                pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveAccessEntry: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMAddressAccess,
+                aeType: WM_AETYPE,
+                dwEntryNum: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMAddressAccess,
+                aeType: WM_AETYPE,
+                dwEntryNum: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6532,19 +9773,36 @@ pub const IID_IWMAddressAccess2 = &IID_IWMAddressAccess2_Value;
 pub const IWMAddressAccess2 = extern struct {
     pub const VTable = extern struct {
         base: IWMAddressAccess.VTable,
-        GetAccessEntryEx: fn(
-            self: *const IWMAddressAccess2,
-            aeType: WM_AETYPE,
-            dwEntryNum: u32,
-            pbstrAddress: ?*?BSTR,
-            pbstrMask: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AddAccessEntryEx: fn(
-            self: *const IWMAddressAccess2,
-            aeType: WM_AETYPE,
-            bstrAddress: ?BSTR,
-            bstrMask: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAccessEntryEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMAddressAccess2,
+                aeType: WM_AETYPE,
+                dwEntryNum: u32,
+                pbstrAddress: ?*?BSTR,
+                pbstrMask: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMAddressAccess2,
+                aeType: WM_AETYPE,
+                dwEntryNum: u32,
+                pbstrAddress: ?*?BSTR,
+                pbstrMask: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AddAccessEntryEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMAddressAccess2,
+                aeType: WM_AETYPE,
+                bstrAddress: ?BSTR,
+                bstrMask: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMAddressAccess2,
+                aeType: WM_AETYPE,
+                bstrAddress: ?BSTR,
+                bstrMask: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6566,21 +9824,40 @@ pub const IID_IWMImageInfo = &IID_IWMImageInfo_Value;
 pub const IWMImageInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetImageCount: fn(
-            self: *const IWMImageInfo,
-            pcImages: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetImage: fn(
-            self: *const IWMImageInfo,
-            wIndex: u32,
-            pcchMIMEType: ?*u16,
-            pwszMIMEType: [*:0]u16,
-            pcchDescription: ?*u16,
-            pwszDescription: [*:0]u16,
-            pImageType: ?*u16,
-            pcbImageData: ?*u32,
-            pbImageData: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImageCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMImageInfo,
+                pcImages: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMImageInfo,
+                pcImages: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetImage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMImageInfo,
+                wIndex: u32,
+                pcchMIMEType: ?*u16,
+                pwszMIMEType: [*:0]u16,
+                pcchDescription: ?*u16,
+                pwszDescription: [*:0]u16,
+                pImageType: ?*u16,
+                pcbImageData: ?*u32,
+                pbImageData: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMImageInfo,
+                wIndex: u32,
+                pcchMIMEType: ?*u16,
+                pwszMIMEType: [*:0]u16,
+                pcchDescription: ?*u16,
+                pwszDescription: [*:0]u16,
+                pImageType: ?*u16,
+                pcbImageData: ?*u32,
+                pbImageData: [*:0]u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6602,22 +9879,42 @@ pub const IID_IWMLicenseRevocationAgent = &IID_IWMLicenseRevocationAgent_Value;
 pub const IWMLicenseRevocationAgent = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetLRBChallenge: fn(
-            self: *const IWMLicenseRevocationAgent,
-            pMachineID: ?*u8,
-            dwMachineIDLength: u32,
-            pChallenge: ?*u8,
-            dwChallengeLength: u32,
-            pChallengeOutput: ?*u8,
-            pdwChallengeOutputLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessLRB: fn(
-            self: *const IWMLicenseRevocationAgent,
-            pSignedLRB: ?*u8,
-            dwSignedLRBLength: u32,
-            pSignedACK: ?*u8,
-            pdwSignedACKLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLRBChallenge: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMLicenseRevocationAgent,
+                pMachineID: ?*u8,
+                dwMachineIDLength: u32,
+                pChallenge: ?*u8,
+                dwChallengeLength: u32,
+                pChallengeOutput: ?*u8,
+                pdwChallengeOutputLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMLicenseRevocationAgent,
+                pMachineID: ?*u8,
+                dwMachineIDLength: u32,
+                pChallenge: ?*u8,
+                dwChallengeLength: u32,
+                pChallengeOutput: ?*u8,
+                pdwChallengeOutputLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ProcessLRB: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMLicenseRevocationAgent,
+                pSignedLRB: ?*u8,
+                dwSignedLRBLength: u32,
+                pSignedACK: ?*u8,
+                pdwSignedACKLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMLicenseRevocationAgent,
+                pSignedLRB: ?*u8,
+                dwSignedLRBLength: u32,
+                pSignedACK: ?*u8,
+                pdwSignedACKLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6640,22 +9937,44 @@ pub const IID_IWMAuthorizer = &IID_IWMAuthorizer_Value;
 pub const IWMAuthorizer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCertCount: fn(
-            self: *const IWMAuthorizer,
-            pcCerts: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCert: fn(
-            self: *const IWMAuthorizer,
-            dwIndex: u32,
-            ppbCertData: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSharedData: fn(
-            self: *const IWMAuthorizer,
-            dwCertIndex: u32,
-            pbSharedData: ?*const u8,
-            pbCert: ?*u8,
-            ppbSharedData: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCertCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMAuthorizer,
+                pcCerts: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMAuthorizer,
+                pcCerts: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCert: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMAuthorizer,
+                dwIndex: u32,
+                ppbCertData: ?*?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMAuthorizer,
+                dwIndex: u32,
+                ppbCertData: ?*?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSharedData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMAuthorizer,
+                dwCertIndex: u32,
+                pbSharedData: ?*const u8,
+                pbCert: ?*u8,
+                ppbSharedData: ?*?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMAuthorizer,
+                dwCertIndex: u32,
+                pbSharedData: ?*const u8,
+                pbCert: ?*u8,
+                ppbSharedData: ?*?*u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6682,52 +10001,120 @@ pub const IID_IWMSecureChannel = &IID_IWMSecureChannel_Value;
 pub const IWMSecureChannel = extern struct {
     pub const VTable = extern struct {
         base: IWMAuthorizer.VTable,
-        WMSC_AddCertificate: fn(
-            self: *const IWMSecureChannel,
-            pCert: ?*IWMAuthorizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WMSC_AddSignature: fn(
-            self: *const IWMSecureChannel,
-            pbCertSig: ?*u8,
-            cbCertSig: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WMSC_Connect: fn(
-            self: *const IWMSecureChannel,
-            pOtherSide: ?*IWMSecureChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WMSC_IsConnected: fn(
-            self: *const IWMSecureChannel,
-            pfIsConnected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WMSC_Disconnect: fn(
-            self: *const IWMSecureChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WMSC_GetValidCertificate: fn(
-            self: *const IWMSecureChannel,
-            ppbCertificate: ?*?*u8,
-            pdwSignature: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WMSC_Encrypt: fn(
-            self: *const IWMSecureChannel,
-            pbData: ?*u8,
-            cbData: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WMSC_Decrypt: fn(
-            self: *const IWMSecureChannel,
-            pbData: ?*u8,
-            cbData: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WMSC_Lock: fn(
-            self: *const IWMSecureChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WMSC_Unlock: fn(
-            self: *const IWMSecureChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WMSC_SetSharedData: fn(
-            self: *const IWMSecureChannel,
-            dwCertIndex: u32,
-            pbSharedData: ?*const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WMSC_AddCertificate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSecureChannel,
+                pCert: ?*IWMAuthorizer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSecureChannel,
+                pCert: ?*IWMAuthorizer,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WMSC_AddSignature: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSecureChannel,
+                pbCertSig: ?*u8,
+                cbCertSig: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSecureChannel,
+                pbCertSig: ?*u8,
+                cbCertSig: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WMSC_Connect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSecureChannel,
+                pOtherSide: ?*IWMSecureChannel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSecureChannel,
+                pOtherSide: ?*IWMSecureChannel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WMSC_IsConnected: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSecureChannel,
+                pfIsConnected: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSecureChannel,
+                pfIsConnected: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WMSC_Disconnect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSecureChannel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSecureChannel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WMSC_GetValidCertificate: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSecureChannel,
+                ppbCertificate: ?*?*u8,
+                pdwSignature: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSecureChannel,
+                ppbCertificate: ?*?*u8,
+                pdwSignature: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WMSC_Encrypt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSecureChannel,
+                pbData: ?*u8,
+                cbData: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSecureChannel,
+                pbData: ?*u8,
+                cbData: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WMSC_Decrypt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSecureChannel,
+                pbData: ?*u8,
+                cbData: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSecureChannel,
+                pbData: ?*u8,
+                cbData: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WMSC_Lock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSecureChannel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSecureChannel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WMSC_Unlock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSecureChannel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSecureChannel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WMSC_SetSharedData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSecureChannel,
+                dwCertIndex: u32,
+                pbSharedData: ?*const u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSecureChannel,
+                dwCertIndex: u32,
+                pbSharedData: ?*const u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6786,10 +10173,16 @@ pub const IID_IWMGetSecureChannel = &IID_IWMGetSecureChannel_Value;
 pub const IWMGetSecureChannel = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPeerSecureChannelInterface: fn(
-            self: *const IWMGetSecureChannel,
-            ppPeer: ?*?*IWMSecureChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPeerSecureChannelInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMGetSecureChannel,
+                ppPeer: ?*?*IWMSecureChannel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMGetSecureChannel,
+                ppPeer: ?*?*IWMSecureChannel,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6807,45 +10200,100 @@ pub const IID_INSNetSourceCreator = &IID_INSNetSourceCreator_Value;
 pub const INSNetSourceCreator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const INSNetSourceCreator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateNetSource: fn(
-            self: *const INSNetSourceCreator,
-            pszStreamName: ?[*:0]const u16,
-            pMonitor: ?*IUnknown,
-            pData: ?*u8,
-            pUserContext: ?*IUnknown,
-            pCallback: ?*IUnknown,
-            qwContext: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNetSourceProperties: fn(
-            self: *const INSNetSourceCreator,
-            pszStreamName: ?[*:0]const u16,
-            ppPropertiesNode: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNetSourceSharedNamespace: fn(
-            self: *const INSNetSourceCreator,
-            ppSharedNamespace: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNetSourceAdminInterface: fn(
-            self: *const INSNetSourceCreator,
-            pszStreamName: ?[*:0]const u16,
-            pVal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNumProtocolsSupported: fn(
-            self: *const INSNetSourceCreator,
-            pcProtocols: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProtocolName: fn(
-            self: *const INSNetSourceCreator,
-            dwProtocolNum: u32,
-            pwszProtocolName: ?PWSTR,
-            pcchProtocolName: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Shutdown: fn(
-            self: *const INSNetSourceCreator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSNetSourceCreator,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSNetSourceCreator,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateNetSource: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSNetSourceCreator,
+                pszStreamName: ?[*:0]const u16,
+                pMonitor: ?*IUnknown,
+                pData: ?*u8,
+                pUserContext: ?*IUnknown,
+                pCallback: ?*IUnknown,
+                qwContext: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSNetSourceCreator,
+                pszStreamName: ?[*:0]const u16,
+                pMonitor: ?*IUnknown,
+                pData: ?*u8,
+                pUserContext: ?*IUnknown,
+                pCallback: ?*IUnknown,
+                qwContext: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNetSourceProperties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSNetSourceCreator,
+                pszStreamName: ?[*:0]const u16,
+                ppPropertiesNode: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSNetSourceCreator,
+                pszStreamName: ?[*:0]const u16,
+                ppPropertiesNode: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNetSourceSharedNamespace: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSNetSourceCreator,
+                ppSharedNamespace: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSNetSourceCreator,
+                ppSharedNamespace: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNetSourceAdminInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSNetSourceCreator,
+                pszStreamName: ?[*:0]const u16,
+                pVal: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSNetSourceCreator,
+                pszStreamName: ?[*:0]const u16,
+                pVal: ?*VARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNumProtocolsSupported: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSNetSourceCreator,
+                pcProtocols: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSNetSourceCreator,
+                pcProtocols: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProtocolName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSNetSourceCreator,
+                dwProtocolNum: u32,
+                pwszProtocolName: ?PWSTR,
+                pcchProtocolName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSNetSourceCreator,
+                dwProtocolNum: u32,
+                pwszProtocolName: ?PWSTR,
+                pcchProtocolName: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Shutdown: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INSNetSourceCreator,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INSNetSourceCreator,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6891,11 +10339,18 @@ pub const IID_IWMPlayerTimestampHook = &IID_IWMPlayerTimestampHook_Value;
 pub const IWMPlayerTimestampHook = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        MapTimestamp: fn(
-            self: *const IWMPlayerTimestampHook,
-            rtIn: i64,
-            prtOut: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MapTimestamp: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMPlayerTimestampHook,
+                rtIn: i64,
+                prtOut: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMPlayerTimestampHook,
+                rtIn: i64,
+                prtOut: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6913,18 +10368,36 @@ pub const IID_IWMCodecAMVideoAccelerator = &IID_IWMCodecAMVideoAccelerator_Value
 pub const IWMCodecAMVideoAccelerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAcceleratorInterface: fn(
-            self: *const IWMCodecAMVideoAccelerator,
-            pIAMVA: ?*IAMVideoAccelerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NegotiateConnection: fn(
-            self: *const IWMCodecAMVideoAccelerator,
-            pMediaType: ?*AM_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPlayerNotify: fn(
-            self: *const IWMCodecAMVideoAccelerator,
-            pHook: ?*IWMPlayerTimestampHook,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAcceleratorInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecAMVideoAccelerator,
+                pIAMVA: ?*IAMVideoAccelerator,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecAMVideoAccelerator,
+                pIAMVA: ?*IAMVideoAccelerator,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        NegotiateConnection: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecAMVideoAccelerator,
+                pMediaType: ?*AM_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecAMVideoAccelerator,
+                pMediaType: ?*AM_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPlayerNotify: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecAMVideoAccelerator,
+                pHook: ?*IWMPlayerTimestampHook,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecAMVideoAccelerator,
+                pHook: ?*IWMPlayerTimestampHook,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6950,15 +10423,28 @@ pub const IID_IWMCodecVideoAccelerator = &IID_IWMCodecVideoAccelerator_Value;
 pub const IWMCodecVideoAccelerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        NegotiateConnection: fn(
-            self: *const IWMCodecVideoAccelerator,
-            pIAMVA: ?*IAMVideoAccelerator,
-            pMediaType: ?*AM_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPlayerNotify: fn(
-            self: *const IWMCodecVideoAccelerator,
-            pHook: ?*IWMPlayerTimestampHook,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NegotiateConnection: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecVideoAccelerator,
+                pIAMVA: ?*IAMVideoAccelerator,
+                pMediaType: ?*AM_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecVideoAccelerator,
+                pIAMVA: ?*IAMVideoAccelerator,
+                pMediaType: ?*AM_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPlayerNotify: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecVideoAccelerator,
+                pHook: ?*IWMPlayerTimestampHook,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecVideoAccelerator,
+                pHook: ?*IWMPlayerTimestampHook,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6989,67 +10475,150 @@ pub const IID_IWMSInternalAdminNetSource = &IID_IWMSInternalAdminNetSource_Value
 pub const IWMSInternalAdminNetSource = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IWMSInternalAdminNetSource,
-            pSharedNamespace: ?*IUnknown,
-            pNamespaceNode: ?*IUnknown,
-            pNetSourceCreator: ?*INSNetSourceCreator,
-            fEmbeddedInServer: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNetSourceCreator: fn(
-            self: *const IWMSInternalAdminNetSource,
-            ppNetSourceCreator: ?*?*INSNetSourceCreator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCredentials: fn(
-            self: *const IWMSInternalAdminNetSource,
-            bstrRealm: ?BSTR,
-            bstrName: ?BSTR,
-            bstrPassword: ?BSTR,
-            fPersist: BOOL,
-            fConfirmedGood: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCredentials: fn(
-            self: *const IWMSInternalAdminNetSource,
-            bstrRealm: ?BSTR,
-            pbstrName: ?*?BSTR,
-            pbstrPassword: ?*?BSTR,
-            pfConfirmedGood: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteCredentials: fn(
-            self: *const IWMSInternalAdminNetSource,
-            bstrRealm: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCredentialFlags: fn(
-            self: *const IWMSInternalAdminNetSource,
-            lpdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCredentialFlags: fn(
-            self: *const IWMSInternalAdminNetSource,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindProxyForURL: fn(
-            self: *const IWMSInternalAdminNetSource,
-            bstrProtocol: ?BSTR,
-            bstrHost: ?BSTR,
-            pfProxyEnabled: ?*BOOL,
-            pbstrProxyServer: ?*?BSTR,
-            pdwProxyPort: ?*u32,
-            pdwProxyContext: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterProxyFailure: fn(
-            self: *const IWMSInternalAdminNetSource,
-            hrParam: HRESULT,
-            dwProxyContext: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ShutdownProxyContext: fn(
-            self: *const IWMSInternalAdminNetSource,
-            dwProxyContext: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsUsingIE: fn(
-            self: *const IWMSInternalAdminNetSource,
-            dwProxyContext: u32,
-            pfIsUsingIE: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource,
+                pSharedNamespace: ?*IUnknown,
+                pNamespaceNode: ?*IUnknown,
+                pNetSourceCreator: ?*INSNetSourceCreator,
+                fEmbeddedInServer: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource,
+                pSharedNamespace: ?*IUnknown,
+                pNamespaceNode: ?*IUnknown,
+                pNetSourceCreator: ?*INSNetSourceCreator,
+                fEmbeddedInServer: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNetSourceCreator: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource,
+                ppNetSourceCreator: ?*?*INSNetSourceCreator,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource,
+                ppNetSourceCreator: ?*?*INSNetSourceCreator,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetCredentials: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource,
+                bstrRealm: ?BSTR,
+                bstrName: ?BSTR,
+                bstrPassword: ?BSTR,
+                fPersist: BOOL,
+                fConfirmedGood: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource,
+                bstrRealm: ?BSTR,
+                bstrName: ?BSTR,
+                bstrPassword: ?BSTR,
+                fPersist: BOOL,
+                fConfirmedGood: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCredentials: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource,
+                bstrRealm: ?BSTR,
+                pbstrName: ?*?BSTR,
+                pbstrPassword: ?*?BSTR,
+                pfConfirmedGood: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource,
+                bstrRealm: ?BSTR,
+                pbstrName: ?*?BSTR,
+                pbstrPassword: ?*?BSTR,
+                pfConfirmedGood: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteCredentials: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource,
+                bstrRealm: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource,
+                bstrRealm: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCredentialFlags: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource,
+                lpdwFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource,
+                lpdwFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetCredentialFlags: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FindProxyForURL: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource,
+                bstrProtocol: ?BSTR,
+                bstrHost: ?BSTR,
+                pfProxyEnabled: ?*BOOL,
+                pbstrProxyServer: ?*?BSTR,
+                pdwProxyPort: ?*u32,
+                pdwProxyContext: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource,
+                bstrProtocol: ?BSTR,
+                bstrHost: ?BSTR,
+                pfProxyEnabled: ?*BOOL,
+                pbstrProxyServer: ?*?BSTR,
+                pdwProxyPort: ?*u32,
+                pdwProxyContext: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterProxyFailure: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource,
+                hrParam: HRESULT,
+                dwProxyContext: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource,
+                hrParam: HRESULT,
+                dwProxyContext: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ShutdownProxyContext: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource,
+                dwProxyContext: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource,
+                dwProxyContext: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsUsingIE: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource,
+                dwProxyContext: u32,
+                pfIsUsingIE: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource,
+                dwProxyContext: u32,
+                pfIsUsingIE: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7107,42 +10676,86 @@ pub const IID_IWMSInternalAdminNetSource2 = &IID_IWMSInternalAdminNetSource2_Val
 pub const IWMSInternalAdminNetSource2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetCredentialsEx: fn(
-            self: *const IWMSInternalAdminNetSource2,
-            bstrRealm: ?BSTR,
-            bstrUrl: ?BSTR,
-            fProxy: BOOL,
-            bstrName: ?BSTR,
-            bstrPassword: ?BSTR,
-            fPersist: BOOL,
-            fConfirmedGood: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCredentialsEx: fn(
-            self: *const IWMSInternalAdminNetSource2,
-            bstrRealm: ?BSTR,
-            bstrUrl: ?BSTR,
-            fProxy: BOOL,
-            pdwUrlPolicy: ?*NETSOURCE_URLCREDPOLICY_SETTINGS,
-            pbstrName: ?*?BSTR,
-            pbstrPassword: ?*?BSTR,
-            pfConfirmedGood: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteCredentialsEx: fn(
-            self: *const IWMSInternalAdminNetSource2,
-            bstrRealm: ?BSTR,
-            bstrUrl: ?BSTR,
-            fProxy: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindProxyForURLEx: fn(
-            self: *const IWMSInternalAdminNetSource2,
-            bstrProtocol: ?BSTR,
-            bstrHost: ?BSTR,
-            bstrUrl: ?BSTR,
-            pfProxyEnabled: ?*BOOL,
-            pbstrProxyServer: ?*?BSTR,
-            pdwProxyPort: ?*u32,
-            pdwProxyContext: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCredentialsEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource2,
+                bstrRealm: ?BSTR,
+                bstrUrl: ?BSTR,
+                fProxy: BOOL,
+                bstrName: ?BSTR,
+                bstrPassword: ?BSTR,
+                fPersist: BOOL,
+                fConfirmedGood: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource2,
+                bstrRealm: ?BSTR,
+                bstrUrl: ?BSTR,
+                fProxy: BOOL,
+                bstrName: ?BSTR,
+                bstrPassword: ?BSTR,
+                fPersist: BOOL,
+                fConfirmedGood: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCredentialsEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource2,
+                bstrRealm: ?BSTR,
+                bstrUrl: ?BSTR,
+                fProxy: BOOL,
+                pdwUrlPolicy: ?*NETSOURCE_URLCREDPOLICY_SETTINGS,
+                pbstrName: ?*?BSTR,
+                pbstrPassword: ?*?BSTR,
+                pfConfirmedGood: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource2,
+                bstrRealm: ?BSTR,
+                bstrUrl: ?BSTR,
+                fProxy: BOOL,
+                pdwUrlPolicy: ?*NETSOURCE_URLCREDPOLICY_SETTINGS,
+                pbstrName: ?*?BSTR,
+                pbstrPassword: ?*?BSTR,
+                pfConfirmedGood: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        DeleteCredentialsEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource2,
+                bstrRealm: ?BSTR,
+                bstrUrl: ?BSTR,
+                fProxy: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource2,
+                bstrRealm: ?BSTR,
+                bstrUrl: ?BSTR,
+                fProxy: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FindProxyForURLEx: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource2,
+                bstrProtocol: ?BSTR,
+                bstrHost: ?BSTR,
+                bstrUrl: ?BSTR,
+                pfProxyEnabled: ?*BOOL,
+                pbstrProxyServer: ?*?BSTR,
+                pdwProxyPort: ?*u32,
+                pdwProxyContext: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource2,
+                bstrProtocol: ?BSTR,
+                bstrHost: ?BSTR,
+                bstrUrl: ?BSTR,
+                pfProxyEnabled: ?*BOOL,
+                pbstrProxyServer: ?*?BSTR,
+                pdwProxyPort: ?*u32,
+                pdwProxyContext: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7172,56 +10785,120 @@ pub const IID_IWMSInternalAdminNetSource3 = &IID_IWMSInternalAdminNetSource3_Val
 pub const IWMSInternalAdminNetSource3 = extern struct {
     pub const VTable = extern struct {
         base: IWMSInternalAdminNetSource2.VTable,
-        GetNetSourceCreator2: fn(
-            self: *const IWMSInternalAdminNetSource3,
-            ppNetSourceCreator: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindProxyForURLEx2: fn(
-            self: *const IWMSInternalAdminNetSource3,
-            bstrProtocol: ?BSTR,
-            bstrHost: ?BSTR,
-            bstrUrl: ?BSTR,
-            pfProxyEnabled: ?*BOOL,
-            pbstrProxyServer: ?*?BSTR,
-            pdwProxyPort: ?*u32,
-            pqwProxyContext: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterProxyFailure2: fn(
-            self: *const IWMSInternalAdminNetSource3,
-            hrParam: HRESULT,
-            qwProxyContext: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ShutdownProxyContext2: fn(
-            self: *const IWMSInternalAdminNetSource3,
-            qwProxyContext: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsUsingIE2: fn(
-            self: *const IWMSInternalAdminNetSource3,
-            qwProxyContext: u64,
-            pfIsUsingIE: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetCredentialsEx2: fn(
-            self: *const IWMSInternalAdminNetSource3,
-            bstrRealm: ?BSTR,
-            bstrUrl: ?BSTR,
-            fProxy: BOOL,
-            bstrName: ?BSTR,
-            bstrPassword: ?BSTR,
-            fPersist: BOOL,
-            fConfirmedGood: BOOL,
-            fClearTextAuthentication: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCredentialsEx2: fn(
-            self: *const IWMSInternalAdminNetSource3,
-            bstrRealm: ?BSTR,
-            bstrUrl: ?BSTR,
-            fProxy: BOOL,
-            fClearTextAuthentication: BOOL,
-            pdwUrlPolicy: ?*NETSOURCE_URLCREDPOLICY_SETTINGS,
-            pbstrName: ?*?BSTR,
-            pbstrPassword: ?*?BSTR,
-            pfConfirmedGood: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNetSourceCreator2: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource3,
+                ppNetSourceCreator: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource3,
+                ppNetSourceCreator: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FindProxyForURLEx2: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource3,
+                bstrProtocol: ?BSTR,
+                bstrHost: ?BSTR,
+                bstrUrl: ?BSTR,
+                pfProxyEnabled: ?*BOOL,
+                pbstrProxyServer: ?*?BSTR,
+                pdwProxyPort: ?*u32,
+                pqwProxyContext: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource3,
+                bstrProtocol: ?BSTR,
+                bstrHost: ?BSTR,
+                bstrUrl: ?BSTR,
+                pfProxyEnabled: ?*BOOL,
+                pbstrProxyServer: ?*?BSTR,
+                pdwProxyPort: ?*u32,
+                pqwProxyContext: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterProxyFailure2: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource3,
+                hrParam: HRESULT,
+                qwProxyContext: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource3,
+                hrParam: HRESULT,
+                qwProxyContext: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ShutdownProxyContext2: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource3,
+                qwProxyContext: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource3,
+                qwProxyContext: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsUsingIE2: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource3,
+                qwProxyContext: u64,
+                pfIsUsingIE: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource3,
+                qwProxyContext: u64,
+                pfIsUsingIE: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetCredentialsEx2: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource3,
+                bstrRealm: ?BSTR,
+                bstrUrl: ?BSTR,
+                fProxy: BOOL,
+                bstrName: ?BSTR,
+                bstrPassword: ?BSTR,
+                fPersist: BOOL,
+                fConfirmedGood: BOOL,
+                fClearTextAuthentication: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource3,
+                bstrRealm: ?BSTR,
+                bstrUrl: ?BSTR,
+                fProxy: BOOL,
+                bstrName: ?BSTR,
+                bstrPassword: ?BSTR,
+                fPersist: BOOL,
+                fConfirmedGood: BOOL,
+                fClearTextAuthentication: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCredentialsEx2: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMSInternalAdminNetSource3,
+                bstrRealm: ?BSTR,
+                bstrUrl: ?BSTR,
+                fProxy: BOOL,
+                fClearTextAuthentication: BOOL,
+                pdwUrlPolicy: ?*NETSOURCE_URLCREDPOLICY_SETTINGS,
+                pbstrName: ?*?BSTR,
+                pbstrPassword: ?*?BSTR,
+                pfConfirmedGood: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMSInternalAdminNetSource3,
+                bstrRealm: ?BSTR,
+                bstrUrl: ?BSTR,
+                fProxy: BOOL,
+                fClearTextAuthentication: BOOL,
+                pdwUrlPolicy: ?*NETSOURCE_URLCREDPOLICY_SETTINGS,
+                pbstrName: ?*?BSTR,
+                pbstrPassword: ?*?BSTR,
+                pfConfirmedGood: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

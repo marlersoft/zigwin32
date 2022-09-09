@@ -561,12 +561,22 @@ pub const IID_ID3DBlob = &IID_ID3DBlob_Value;
 pub const ID3DBlob = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetBufferPointer: fn(
-            self: *const ID3DBlob,
-        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-        GetBufferSize: fn(
-            self: *const ID3DBlob,
-        ) callconv(@import("std").os.windows.WINAPI) usize,
+        GetBufferPointer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ID3DBlob,
+            ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+            else => *const fn(
+                self: *const ID3DBlob,
+            ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+        },
+        GetBufferSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ID3DBlob,
+            ) callconv(@import("std").os.windows.WINAPI) usize,
+            else => *const fn(
+                self: *const ID3DBlob,
+            ) callconv(@import("std").os.windows.WINAPI) usize,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -583,9 +593,14 @@ pub const ID3DBlob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PFN_DESTRUCTION_CALLBACK = fn(
-    pData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_DESTRUCTION_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        pData: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        pData: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ID3DDestructionNotifier_Value = Guid.initString("a06eb39a-50da-425b-8c31-4eecd6c270f3");
@@ -593,16 +608,30 @@ pub const IID_ID3DDestructionNotifier = &IID_ID3DDestructionNotifier_Value;
 pub const ID3DDestructionNotifier = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RegisterDestructionCallback: fn(
-            self: *const ID3DDestructionNotifier,
-            callbackFn: ?PFN_DESTRUCTION_CALLBACK,
-            pData: ?*anyopaque,
-            pCallbackID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnregisterDestructionCallback: fn(
-            self: *const ID3DDestructionNotifier,
-            callbackID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterDestructionCallback: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ID3DDestructionNotifier,
+                callbackFn: ?PFN_DESTRUCTION_CALLBACK,
+                pData: ?*anyopaque,
+                pCallbackID: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ID3DDestructionNotifier,
+                callbackFn: ?PFN_DESTRUCTION_CALLBACK,
+                pData: ?*anyopaque,
+                pCallbackID: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnregisterDestructionCallback: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ID3DDestructionNotifier,
+                callbackID: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ID3DDestructionNotifier,
+                callbackID: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -634,18 +663,34 @@ pub const D3D_INCLUDE_FORCE_DWORD = D3D_INCLUDE_TYPE._INCLUDE_FORCE_DWORD;
 
 pub const ID3DInclude = extern struct {
     pub const VTable = extern struct {
-        Open: fn(
-            self: *const ID3DInclude,
-            IncludeType: D3D_INCLUDE_TYPE,
-            pFileName: ?[*:0]const u8,
-            pParentData: ?*const anyopaque,
-            ppData: ?*?*anyopaque,
-            pBytes: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const ID3DInclude,
-            pData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Open: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ID3DInclude,
+                IncludeType: D3D_INCLUDE_TYPE,
+                pFileName: ?[*:0]const u8,
+                pParentData: ?*const anyopaque,
+                ppData: ?*?*anyopaque,
+                pBytes: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ID3DInclude,
+                IncludeType: D3D_INCLUDE_TYPE,
+                pFileName: ?[*:0]const u8,
+                pParentData: ?*const anyopaque,
+                ppData: ?*?*anyopaque,
+                pBytes: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ID3DInclude,
+                pData: ?*const anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ID3DInclude,
+                pData: ?*const anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

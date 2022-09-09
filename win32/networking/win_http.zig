@@ -852,16 +852,29 @@ pub const WINHTTP_CREDS_EX = extern struct {
     lpszUrl: ?PSTR,
 };
 
-pub const WINHTTP_STATUS_CALLBACK = fn(
-    hInternet: ?*anyopaque,
-    dwContext: usize,
-    dwInternetStatus: u32,
-    lpvStatusInformation: ?*anyopaque,
-    dwStatusInformationLength: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const WINHTTP_STATUS_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        hInternet: ?*anyopaque,
+        dwContext: usize,
+        dwInternetStatus: u32,
+        lpvStatusInformation: ?*anyopaque,
+        dwStatusInformationLength: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        hInternet: ?*anyopaque,
+        dwContext: usize,
+        dwInternetStatus: u32,
+        lpvStatusInformation: ?*anyopaque,
+        dwStatusInformationLength: u32,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const LPWINHTTP_STATUS_CALLBACK = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const LPWINHTTP_STATUS_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const WINHTTP_CURRENT_USER_IE_PROXY_CONFIG = extern struct {
     fAutoDetect: BOOL,

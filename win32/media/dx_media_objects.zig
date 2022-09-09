@@ -104,19 +104,38 @@ pub const IID_IMediaBuffer = &IID_IMediaBuffer_Value;
 pub const IMediaBuffer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetLength: fn(
-            self: *const IMediaBuffer,
-            cbLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxLength: fn(
-            self: *const IMediaBuffer,
-            pcbMaxLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBufferAndLength: fn(
-            self: *const IMediaBuffer,
-            ppBuffer: ?*?*u8,
-            pcbLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLength: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaBuffer,
+                cbLength: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaBuffer,
+                cbLength: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMaxLength: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaBuffer,
+                pcbMaxLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaBuffer,
+                pcbMaxLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBufferAndLength: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaBuffer,
+                ppBuffer: ?*?*u8,
+                pcbLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaBuffer,
+                ppBuffer: ?*?*u8,
+                pcbLength: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -149,115 +168,266 @@ pub const IID_IMediaObject = &IID_IMediaObject_Value;
 pub const IMediaObject = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStreamCount: fn(
-            self: *const IMediaObject,
-            pcInputStreams: ?*u32,
-            pcOutputStreams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputStreamInfo: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputStreamInfo: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputType: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            dwTypeIndex: u32,
-            pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputType: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            dwTypeIndex: u32,
-            pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInputType: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pmt: ?*const DMO_MEDIA_TYPE,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOutputType: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            pmt: ?*const DMO_MEDIA_TYPE,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputCurrentType: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputCurrentType: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputSizeInfo: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pcbSize: ?*u32,
-            pcbMaxLookahead: ?*u32,
-            pcbAlignment: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputSizeInfo: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            pcbSize: ?*u32,
-            pcbAlignment: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputMaxLatency: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            prtMaxLatency: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInputMaxLatency: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            rtMaxLatency: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Flush: fn(
-            self: *const IMediaObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Discontinuity: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AllocateStreamingResources: fn(
-            self: *const IMediaObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FreeStreamingResources: fn(
-            self: *const IMediaObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputStatus: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            dwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessInput: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pBuffer: ?*IMediaBuffer,
-            dwFlags: u32,
-            rtTimestamp: i64,
-            rtTimelength: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessOutput: fn(
-            self: *const IMediaObject,
-            dwFlags: u32,
-            cOutputBufferCount: u32,
-            pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER,
-            pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Lock: fn(
-            self: *const IMediaObject,
-            bLock: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStreamCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                pcInputStreams: ?*u32,
+                pcOutputStreams: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                pcInputStreams: ?*u32,
+                pcOutputStreams: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputStreamInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                pdwFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                pdwFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputStreamInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwOutputStreamIndex: u32,
+                pdwFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwOutputStreamIndex: u32,
+                pdwFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                dwTypeIndex: u32,
+                pmt: ?*DMO_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                dwTypeIndex: u32,
+                pmt: ?*DMO_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwOutputStreamIndex: u32,
+                dwTypeIndex: u32,
+                pmt: ?*DMO_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwOutputStreamIndex: u32,
+                dwTypeIndex: u32,
+                pmt: ?*DMO_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetInputType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                pmt: ?*const DMO_MEDIA_TYPE,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                pmt: ?*const DMO_MEDIA_TYPE,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOutputType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwOutputStreamIndex: u32,
+                pmt: ?*const DMO_MEDIA_TYPE,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwOutputStreamIndex: u32,
+                pmt: ?*const DMO_MEDIA_TYPE,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputCurrentType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                pmt: ?*DMO_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                pmt: ?*DMO_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputCurrentType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwOutputStreamIndex: u32,
+                pmt: ?*DMO_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwOutputStreamIndex: u32,
+                pmt: ?*DMO_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputSizeInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                pcbSize: ?*u32,
+                pcbMaxLookahead: ?*u32,
+                pcbAlignment: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                pcbSize: ?*u32,
+                pcbMaxLookahead: ?*u32,
+                pcbAlignment: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputSizeInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwOutputStreamIndex: u32,
+                pcbSize: ?*u32,
+                pcbAlignment: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwOutputStreamIndex: u32,
+                pcbSize: ?*u32,
+                pcbAlignment: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputMaxLatency: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                prtMaxLatency: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                prtMaxLatency: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetInputMaxLatency: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                rtMaxLatency: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                rtMaxLatency: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Flush: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Discontinuity: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AllocateStreamingResources: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FreeStreamingResources: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                dwFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                dwFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ProcessInput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                pBuffer: ?*IMediaBuffer,
+                dwFlags: u32,
+                rtTimestamp: i64,
+                rtTimelength: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwInputStreamIndex: u32,
+                pBuffer: ?*IMediaBuffer,
+                dwFlags: u32,
+                rtTimestamp: i64,
+                rtTimelength: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ProcessOutput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                dwFlags: u32,
+                cOutputBufferCount: u32,
+                pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER,
+                pdwStatus: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                dwFlags: u32,
+                cOutputBufferCount: u32,
+                pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER,
+                pdwStatus: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Lock: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObject,
+                bLock: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObject,
+                bLock: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -355,24 +525,50 @@ pub const IID_IEnumDMO = &IID_IEnumDMO_Value;
 pub const IEnumDMO = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumDMO,
-            cItemsToFetch: u32,
-            pCLSID: [*]Guid,
-            Names: [*]?PWSTR,
-            pcItemsFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumDMO,
-            cItemsToSkip: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumDMO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumDMO,
-            ppEnum: ?*?*IEnumDMO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDMO,
+                cItemsToFetch: u32,
+                pCLSID: [*]Guid,
+                Names: [*]?PWSTR,
+                pcItemsFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDMO,
+                cItemsToFetch: u32,
+                pCLSID: [*]Guid,
+                Names: [*]?PWSTR,
+                pcItemsFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDMO,
+                cItemsToSkip: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDMO,
+                cItemsToSkip: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDMO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDMO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumDMO,
+                ppEnum: ?*?*IEnumDMO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumDMO,
+                ppEnum: ?*?*IEnumDMO,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -409,22 +605,44 @@ pub const IID_IMediaObjectInPlace = &IID_IMediaObjectInPlace_Value;
 pub const IMediaObjectInPlace = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Process: fn(
-            self: *const IMediaObjectInPlace,
-            ulSize: u32,
-            // TODO: what to do with BytesParamIndex 0?
-            pData: ?*u8,
-            refTimeStart: i64,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IMediaObjectInPlace,
-            ppMediaObject: ?*?*IMediaObjectInPlace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLatency: fn(
-            self: *const IMediaObjectInPlace,
-            pLatencyTime: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Process: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObjectInPlace,
+                ulSize: u32,
+                // TODO: what to do with BytesParamIndex 0?
+                pData: ?*u8,
+                refTimeStart: i64,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObjectInPlace,
+                ulSize: u32,
+                // TODO: what to do with BytesParamIndex 0?
+                pData: ?*u8,
+                refTimeStart: i64,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObjectInPlace,
+                ppMediaObject: ?*?*IMediaObjectInPlace,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObjectInPlace,
+                ppMediaObject: ?*?*IMediaObjectInPlace,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetLatency: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaObjectInPlace,
+                pLatencyTime: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaObjectInPlace,
+                pLatencyTime: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -455,18 +673,36 @@ pub const IID_IDMOQualityControl = &IID_IDMOQualityControl_Value;
 pub const IDMOQualityControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetNow: fn(
-            self: *const IDMOQualityControl,
-            rtNow: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStatus: fn(
-            self: *const IDMOQualityControl,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStatus: fn(
-            self: *const IDMOQualityControl,
-            pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNow: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDMOQualityControl,
+                rtNow: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDMOQualityControl,
+                rtNow: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDMOQualityControl,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDMOQualityControl,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStatus: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDMOQualityControl,
+                pdwFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDMOQualityControl,
+                pdwFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -497,26 +733,54 @@ pub const IID_IDMOVideoOutputOptimizations = &IID_IDMOVideoOutputOptimizations_V
 pub const IDMOVideoOutputOptimizations = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        QueryOperationModePreferences: fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            pdwRequestedCapabilities: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOperationMode: fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            dwEnabledFeatures: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentOperationMode: fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            pdwEnabledFeatures: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentSampleRequirements: fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            pdwRequestedFeatures: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryOperationModePreferences: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDMOVideoOutputOptimizations,
+                ulOutputStreamIndex: u32,
+                pdwRequestedCapabilities: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDMOVideoOutputOptimizations,
+                ulOutputStreamIndex: u32,
+                pdwRequestedCapabilities: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOperationMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDMOVideoOutputOptimizations,
+                ulOutputStreamIndex: u32,
+                dwEnabledFeatures: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDMOVideoOutputOptimizations,
+                ulOutputStreamIndex: u32,
+                dwEnabledFeatures: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCurrentOperationMode: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDMOVideoOutputOptimizations,
+                ulOutputStreamIndex: u32,
+                pdwEnabledFeatures: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDMOVideoOutputOptimizations,
+                ulOutputStreamIndex: u32,
+                pdwEnabledFeatures: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCurrentSampleRequirements: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDMOVideoOutputOptimizations,
+                ulOutputStreamIndex: u32,
+                pdwRequestedFeatures: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDMOVideoOutputOptimizations,
+                ulOutputStreamIndex: u32,
+                pdwRequestedFeatures: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

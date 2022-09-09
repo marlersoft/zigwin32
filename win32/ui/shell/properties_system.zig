@@ -27,11 +27,18 @@ pub const IID_IInitializeWithFile = &IID_IInitializeWithFile_Value;
 pub const IInitializeWithFile = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IInitializeWithFile,
-            pszFilePath: ?[*:0]const u16,
-            grfMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInitializeWithFile,
+                pszFilePath: ?[*:0]const u16,
+                grfMode: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInitializeWithFile,
+                pszFilePath: ?[*:0]const u16,
+                grfMode: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -50,11 +57,18 @@ pub const IID_IInitializeWithStream = &IID_IInitializeWithStream_Value;
 pub const IInitializeWithStream = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IInitializeWithStream,
-            pstream: ?*IStream,
-            grfMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IInitializeWithStream,
+                pstream: ?*IStream,
+                grfMode: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IInitializeWithStream,
+                pstream: ?*IStream,
+                grfMode: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -72,28 +86,60 @@ pub const IID_IPropertyStore = &IID_IPropertyStore_Value;
 pub const IPropertyStore = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: fn(
-            self: *const IPropertyStore,
-            cProps: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAt: fn(
-            self: *const IPropertyStore,
-            iProp: u32,
-            pkey: ?*PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValue: fn(
-            self: *const IPropertyStore,
-            key: ?*const PROPERTYKEY,
-            pv: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValue: fn(
-            self: *const IPropertyStore,
-            key: ?*const PROPERTYKEY,
-            propvar: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Commit: fn(
-            self: *const IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyStore,
+                cProps: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyStore,
+                cProps: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyStore,
+                iProp: u32,
+                pkey: ?*PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyStore,
+                iProp: u32,
+                pkey: ?*PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyStore,
+                key: ?*const PROPERTYKEY,
+                pv: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyStore,
+                key: ?*const PROPERTYKEY,
+                pv: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyStore,
+                key: ?*const PROPERTYKEY,
+                propvar: ?*const PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyStore,
+                key: ?*const PROPERTYKEY,
+                propvar: ?*const PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Commit: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyStore,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyStore,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -128,25 +174,52 @@ pub const IID_INamedPropertyStore = &IID_INamedPropertyStore_Value;
 pub const INamedPropertyStore = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNamedValue: fn(
-            self: *const INamedPropertyStore,
-            pszName: ?[*:0]const u16,
-            ppropvar: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNamedValue: fn(
-            self: *const INamedPropertyStore,
-            pszName: ?[*:0]const u16,
-            propvar: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNameCount: fn(
-            self: *const INamedPropertyStore,
-            pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNameAt: fn(
-            self: *const INamedPropertyStore,
-            iProp: u32,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNamedValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INamedPropertyStore,
+                pszName: ?[*:0]const u16,
+                ppropvar: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INamedPropertyStore,
+                pszName: ?[*:0]const u16,
+                ppropvar: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetNamedValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INamedPropertyStore,
+                pszName: ?[*:0]const u16,
+                propvar: ?*const PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INamedPropertyStore,
+                pszName: ?[*:0]const u16,
+                propvar: ?*const PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNameCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INamedPropertyStore,
+                pdwCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INamedPropertyStore,
+                pdwCount: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNameAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const INamedPropertyStore,
+                iProp: u32,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const INamedPropertyStore,
+                iProp: u32,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -210,14 +283,26 @@ pub const IID_IObjectWithPropertyKey = &IID_IObjectWithPropertyKey_Value;
 pub const IObjectWithPropertyKey = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetPropertyKey: fn(
-            self: *const IObjectWithPropertyKey,
-            key: ?*const PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyKey: fn(
-            self: *const IObjectWithPropertyKey,
-            pkey: ?*PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPropertyKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IObjectWithPropertyKey,
+                key: ?*const PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IObjectWithPropertyKey,
+                key: ?*const PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IObjectWithPropertyKey,
+                pkey: ?*PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IObjectWithPropertyKey,
+                pkey: ?*PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -249,11 +334,18 @@ pub const IID_IPropertyChange = &IID_IPropertyChange_Value;
 pub const IPropertyChange = extern struct {
     pub const VTable = extern struct {
         base: IObjectWithPropertyKey.VTable,
-        ApplyToPropVariant: fn(
-            self: *const IPropertyChange,
-            propvarIn: ?*const PROPVARIANT,
-            ppropvarOut: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ApplyToPropVariant: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyChange,
+                propvarIn: ?*const PROPVARIANT,
+                ppropvarOut: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyChange,
+                propvarIn: ?*const PROPVARIANT,
+                ppropvarOut: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -272,37 +364,82 @@ pub const IID_IPropertyChangeArray = &IID_IPropertyChangeArray_Value;
 pub const IPropertyChangeArray = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: fn(
-            self: *const IPropertyChangeArray,
-            pcOperations: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAt: fn(
-            self: *const IPropertyChangeArray,
-            iIndex: u32,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InsertAt: fn(
-            self: *const IPropertyChangeArray,
-            iIndex: u32,
-            ppropChange: ?*IPropertyChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Append: fn(
-            self: *const IPropertyChangeArray,
-            ppropChange: ?*IPropertyChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AppendOrReplace: fn(
-            self: *const IPropertyChangeArray,
-            ppropChange: ?*IPropertyChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAt: fn(
-            self: *const IPropertyChangeArray,
-            iIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsKeyInArray: fn(
-            self: *const IPropertyChangeArray,
-            key: ?*const PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyChangeArray,
+                pcOperations: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyChangeArray,
+                pcOperations: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyChangeArray,
+                iIndex: u32,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyChangeArray,
+                iIndex: u32,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        InsertAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyChangeArray,
+                iIndex: u32,
+                ppropChange: ?*IPropertyChange,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyChangeArray,
+                iIndex: u32,
+                ppropChange: ?*IPropertyChange,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Append: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyChangeArray,
+                ppropChange: ?*IPropertyChange,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyChangeArray,
+                ppropChange: ?*IPropertyChange,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        AppendOrReplace: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyChangeArray,
+                ppropChange: ?*IPropertyChange,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyChangeArray,
+                ppropChange: ?*IPropertyChange,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyChangeArray,
+                iIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyChangeArray,
+                iIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsKeyInArray: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyChangeArray,
+                key: ?*const PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyChangeArray,
+                key: ?*const PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -345,10 +482,16 @@ pub const IID_IPropertyStoreCapabilities = &IID_IPropertyStoreCapabilities_Value
 pub const IPropertyStoreCapabilities = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsPropertyWritable: fn(
-            self: *const IPropertyStoreCapabilities,
-            key: ?*const PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsPropertyWritable: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyStoreCapabilities,
+                key: ?*const PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyStoreCapabilities,
+                key: ?*const PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -378,28 +521,58 @@ pub const IID_IPropertyStoreCache = &IID_IPropertyStoreCache_Value;
 pub const IPropertyStoreCache = extern struct {
     pub const VTable = extern struct {
         base: IPropertyStore.VTable,
-        GetState: fn(
-            self: *const IPropertyStoreCache,
-            key: ?*const PROPERTYKEY,
-            pstate: ?*PSC_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValueAndState: fn(
-            self: *const IPropertyStoreCache,
-            key: ?*const PROPERTYKEY,
-            ppropvar: ?*PROPVARIANT,
-            pstate: ?*PSC_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetState: fn(
-            self: *const IPropertyStoreCache,
-            key: ?*const PROPERTYKEY,
-            state: PSC_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValueAndState: fn(
-            self: *const IPropertyStoreCache,
-            key: ?*const PROPERTYKEY,
-            ppropvar: ?*const PROPVARIANT,
-            state: PSC_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyStoreCache,
+                key: ?*const PROPERTYKEY,
+                pstate: ?*PSC_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyStoreCache,
+                key: ?*const PROPERTYKEY,
+                pstate: ?*PSC_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetValueAndState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyStoreCache,
+                key: ?*const PROPERTYKEY,
+                ppropvar: ?*PROPVARIANT,
+                pstate: ?*PSC_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyStoreCache,
+                key: ?*const PROPERTYKEY,
+                ppropvar: ?*PROPVARIANT,
+                pstate: ?*PSC_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyStoreCache,
+                key: ?*const PROPERTYKEY,
+                state: PSC_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyStoreCache,
+                key: ?*const PROPERTYKEY,
+                state: PSC_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetValueAndState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyStoreCache,
+                key: ?*const PROPERTYKEY,
+                ppropvar: ?*const PROPVARIANT,
+                state: PSC_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyStoreCache,
+                key: ?*const PROPERTYKEY,
+                ppropvar: ?*const PROPVARIANT,
+                state: PSC_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -441,26 +614,56 @@ pub const IID_IPropertyEnumType = &IID_IPropertyEnumType_Value;
 pub const IPropertyEnumType = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetEnumType: fn(
-            self: *const IPropertyEnumType,
-            penumtype: ?*PROPENUMTYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValue: fn(
-            self: *const IPropertyEnumType,
-            ppropvar: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRangeMinValue: fn(
-            self: *const IPropertyEnumType,
-            ppropvarMin: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRangeSetValue: fn(
-            self: *const IPropertyEnumType,
-            ppropvarSet: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDisplayText: fn(
-            self: *const IPropertyEnumType,
-            ppszDisplay: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEnumType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyEnumType,
+                penumtype: ?*PROPENUMTYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyEnumType,
+                penumtype: ?*PROPENUMTYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyEnumType,
+                ppropvar: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyEnumType,
+                ppropvar: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRangeMinValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyEnumType,
+                ppropvarMin: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyEnumType,
+                ppropvarMin: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRangeSetValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyEnumType,
+                ppropvarSet: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyEnumType,
+                ppropvarSet: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDisplayText: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyEnumType,
+                ppszDisplay: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyEnumType,
+                ppszDisplay: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -495,10 +698,16 @@ pub const IID_IPropertyEnumType2 = &IID_IPropertyEnumType2_Value;
 pub const IPropertyEnumType2 = extern struct {
     pub const VTable = extern struct {
         base: IPropertyEnumType.VTable,
-        GetImageReference: fn(
-            self: *const IPropertyEnumType2,
-            ppszImageRes: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImageReference: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyEnumType2,
+                ppszImageRes: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyEnumType2,
+                ppszImageRes: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -517,27 +726,56 @@ pub const IID_IPropertyEnumTypeList = &IID_IPropertyEnumTypeList_Value;
 pub const IPropertyEnumTypeList = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: fn(
-            self: *const IPropertyEnumTypeList,
-            pctypes: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAt: fn(
-            self: *const IPropertyEnumTypeList,
-            itype: u32,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetConditionAt: fn(
-            self: *const IPropertyEnumTypeList,
-            nIndex: u32,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindMatchingIndex: fn(
-            self: *const IPropertyEnumTypeList,
-            propvarCmp: ?*const PROPVARIANT,
-            pnIndex: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyEnumTypeList,
+                pctypes: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyEnumTypeList,
+                pctypes: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyEnumTypeList,
+                itype: u32,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyEnumTypeList,
+                itype: u32,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetConditionAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyEnumTypeList,
+                nIndex: u32,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyEnumTypeList,
+                nIndex: u32,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FindMatchingIndex: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyEnumTypeList,
+                propvarCmp: ?*const PROPVARIANT,
+                pnIndex: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyEnumTypeList,
+                propvarCmp: ?*const PROPVARIANT,
+                pnIndex: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -769,99 +1007,234 @@ pub const IID_IPropertyDescription = &IID_IPropertyDescription_Value;
 pub const IPropertyDescription = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPropertyKey: fn(
-            self: *const IPropertyDescription,
-            pkey: ?*PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCanonicalName: fn(
-            self: *const IPropertyDescription,
-            ppszName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyType: fn(
-            self: *const IPropertyDescription,
-            pvartype: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDisplayName: fn(
-            self: *const IPropertyDescription,
-            ppszName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEditInvitation: fn(
-            self: *const IPropertyDescription,
-            ppszInvite: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetTypeFlags: fn(
-            self: *const IPropertyDescription,
-            mask: PROPDESC_TYPE_FLAGS,
-            ppdtFlags: ?*PROPDESC_TYPE_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetViewFlags: fn(
-            self: *const IPropertyDescription,
-            ppdvFlags: ?*PROPDESC_VIEW_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultColumnWidth: fn(
-            self: *const IPropertyDescription,
-            pcxChars: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDisplayType: fn(
-            self: *const IPropertyDescription,
-            pdisplaytype: ?*PROPDESC_DISPLAYTYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColumnState: fn(
-            self: *const IPropertyDescription,
-            pcsFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGroupingRange: fn(
-            self: *const IPropertyDescription,
-            pgr: ?*PROPDESC_GROUPING_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRelativeDescriptionType: fn(
-            self: *const IPropertyDescription,
-            prdt: ?*PROPDESC_RELATIVEDESCRIPTION_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRelativeDescription: fn(
-            self: *const IPropertyDescription,
-            propvar1: ?*const PROPVARIANT,
-            propvar2: ?*const PROPVARIANT,
-            ppszDesc1: ?*?PWSTR,
-            ppszDesc2: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSortDescription: fn(
-            self: *const IPropertyDescription,
-            psd: ?*PROPDESC_SORTDESCRIPTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSortDescriptionLabel: fn(
-            self: *const IPropertyDescription,
-            fDescending: BOOL,
-            ppszDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAggregationType: fn(
-            self: *const IPropertyDescription,
-            paggtype: ?*PROPDESC_AGGREGATION_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetConditionType: fn(
-            self: *const IPropertyDescription,
-            pcontype: ?*PROPDESC_CONDITION_TYPE,
-            popDefault: ?*CONDITION_OPERATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEnumTypeList: fn(
-            self: *const IPropertyDescription,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CoerceToCanonicalValue: fn(
-            self: *const IPropertyDescription,
-            ppropvar: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FormatForDisplay: fn(
-            self: *const IPropertyDescription,
-            propvar: ?*const PROPVARIANT,
-            pdfFlags: PROPDESC_FORMAT_FLAGS,
-            ppszDisplay: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsValueCanonical: fn(
-            self: *const IPropertyDescription,
-            propvar: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyKey: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                pkey: ?*PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                pkey: ?*PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCanonicalName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                ppszName: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                ppszName: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                pvartype: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                pvartype: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDisplayName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                ppszName: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                ppszName: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEditInvitation: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                ppszInvite: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                ppszInvite: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetTypeFlags: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                mask: PROPDESC_TYPE_FLAGS,
+                ppdtFlags: ?*PROPDESC_TYPE_FLAGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                mask: PROPDESC_TYPE_FLAGS,
+                ppdtFlags: ?*PROPDESC_TYPE_FLAGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetViewFlags: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                ppdvFlags: ?*PROPDESC_VIEW_FLAGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                ppdvFlags: ?*PROPDESC_VIEW_FLAGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDefaultColumnWidth: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                pcxChars: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                pcxChars: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDisplayType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                pdisplaytype: ?*PROPDESC_DISPLAYTYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                pdisplaytype: ?*PROPDESC_DISPLAYTYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetColumnState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                pcsFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                pcsFlags: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetGroupingRange: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                pgr: ?*PROPDESC_GROUPING_RANGE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                pgr: ?*PROPDESC_GROUPING_RANGE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRelativeDescriptionType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                prdt: ?*PROPDESC_RELATIVEDESCRIPTION_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                prdt: ?*PROPDESC_RELATIVEDESCRIPTION_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRelativeDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                propvar1: ?*const PROPVARIANT,
+                propvar2: ?*const PROPVARIANT,
+                ppszDesc1: ?*?PWSTR,
+                ppszDesc2: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                propvar1: ?*const PROPVARIANT,
+                propvar2: ?*const PROPVARIANT,
+                ppszDesc1: ?*?PWSTR,
+                ppszDesc2: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSortDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                psd: ?*PROPDESC_SORTDESCRIPTION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                psd: ?*PROPDESC_SORTDESCRIPTION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSortDescriptionLabel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                fDescending: BOOL,
+                ppszDescription: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                fDescending: BOOL,
+                ppszDescription: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAggregationType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                paggtype: ?*PROPDESC_AGGREGATION_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                paggtype: ?*PROPDESC_AGGREGATION_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetConditionType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                pcontype: ?*PROPDESC_CONDITION_TYPE,
+                popDefault: ?*CONDITION_OPERATION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                pcontype: ?*PROPDESC_CONDITION_TYPE,
+                popDefault: ?*CONDITION_OPERATION,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEnumTypeList: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CoerceToCanonicalValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                ppropvar: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                ppropvar: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FormatForDisplay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                propvar: ?*const PROPVARIANT,
+                pdfFlags: PROPDESC_FORMAT_FLAGS,
+                ppszDisplay: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                propvar: ?*const PROPVARIANT,
+                pdfFlags: PROPDESC_FORMAT_FLAGS,
+                ppszDisplay: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsValueCanonical: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription,
+                propvar: ?*const PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription,
+                propvar: ?*const PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -960,11 +1333,18 @@ pub const IID_IPropertyDescription2 = &IID_IPropertyDescription2_Value;
 pub const IPropertyDescription2 = extern struct {
     pub const VTable = extern struct {
         base: IPropertyDescription.VTable,
-        GetImageReferenceForValue: fn(
-            self: *const IPropertyDescription2,
-            propvar: ?*const PROPVARIANT,
-            ppszImageRes: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImageReferenceForValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescription2,
+                propvar: ?*const PROPVARIANT,
+                ppszImageRes: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescription2,
+                propvar: ?*const PROPVARIANT,
+                ppszImageRes: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -983,16 +1363,30 @@ pub const IID_IPropertyDescriptionAliasInfo = &IID_IPropertyDescriptionAliasInfo
 pub const IPropertyDescriptionAliasInfo = extern struct {
     pub const VTable = extern struct {
         base: IPropertyDescription.VTable,
-        GetSortByAlias: fn(
-            self: *const IPropertyDescriptionAliasInfo,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAdditionalSortByAliases: fn(
-            self: *const IPropertyDescriptionAliasInfo,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSortByAlias: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescriptionAliasInfo,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescriptionAliasInfo,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAdditionalSortByAliases: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescriptionAliasInfo,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescriptionAliasInfo,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1045,22 +1439,46 @@ pub const IID_IPropertyDescriptionSearchInfo = &IID_IPropertyDescriptionSearchIn
 pub const IPropertyDescriptionSearchInfo = extern struct {
     pub const VTable = extern struct {
         base: IPropertyDescription.VTable,
-        GetSearchInfoFlags: fn(
-            self: *const IPropertyDescriptionSearchInfo,
-            ppdsiFlags: ?*PROPDESC_SEARCHINFO_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetColumnIndexType: fn(
-            self: *const IPropertyDescriptionSearchInfo,
-            ppdciType: ?*PROPDESC_COLUMNINDEX_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProjectionString: fn(
-            self: *const IPropertyDescriptionSearchInfo,
-            ppszProjection: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxSize: fn(
-            self: *const IPropertyDescriptionSearchInfo,
-            pcbMaxSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSearchInfoFlags: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescriptionSearchInfo,
+                ppdsiFlags: ?*PROPDESC_SEARCHINFO_FLAGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescriptionSearchInfo,
+                ppdsiFlags: ?*PROPDESC_SEARCHINFO_FLAGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetColumnIndexType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescriptionSearchInfo,
+                ppdciType: ?*PROPDESC_COLUMNINDEX_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescriptionSearchInfo,
+                ppdciType: ?*PROPDESC_COLUMNINDEX_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProjectionString: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescriptionSearchInfo,
+                ppszProjection: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescriptionSearchInfo,
+                ppszProjection: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMaxSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescriptionSearchInfo,
+                pcbMaxSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescriptionSearchInfo,
+                pcbMaxSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1091,12 +1509,20 @@ pub const IID_IPropertyDescriptionRelatedPropertyInfo = &IID_IPropertyDescriptio
 pub const IPropertyDescriptionRelatedPropertyInfo = extern struct {
     pub const VTable = extern struct {
         base: IPropertyDescription.VTable,
-        GetRelatedProperty: fn(
-            self: *const IPropertyDescriptionRelatedPropertyInfo,
-            pszRelationshipName: ?[*:0]const u16,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRelatedProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescriptionRelatedPropertyInfo,
+                pszRelationshipName: ?[*:0]const u16,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescriptionRelatedPropertyInfo,
+                pszRelationshipName: ?[*:0]const u16,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1132,56 +1558,124 @@ pub const IID_IPropertySystem = &IID_IPropertySystem_Value;
 pub const IPropertySystem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPropertyDescription: fn(
-            self: *const IPropertySystem,
-            propkey: ?*const PROPERTYKEY,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyDescriptionByName: fn(
-            self: *const IPropertySystem,
-            pszCanonicalName: ?[*:0]const u16,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyDescriptionListFromString: fn(
-            self: *const IPropertySystem,
-            pszPropList: ?[*:0]const u16,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EnumeratePropertyDescriptions: fn(
-            self: *const IPropertySystem,
-            filterOn: PROPDESC_ENUMFILTER,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FormatForDisplay: fn(
-            self: *const IPropertySystem,
-            key: ?*const PROPERTYKEY,
-            propvar: ?*const PROPVARIANT,
-            pdff: PROPDESC_FORMAT_FLAGS,
-            pszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FormatForDisplayAlloc: fn(
-            self: *const IPropertySystem,
-            key: ?*const PROPERTYKEY,
-            propvar: ?*const PROPVARIANT,
-            pdff: PROPDESC_FORMAT_FLAGS,
-            ppszDisplay: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterPropertySchema: fn(
-            self: *const IPropertySystem,
-            pszPath: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnregisterPropertySchema: fn(
-            self: *const IPropertySystem,
-            pszPath: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RefreshPropertySchema: fn(
-            self: *const IPropertySystem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertySystem,
+                propkey: ?*const PROPERTYKEY,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertySystem,
+                propkey: ?*const PROPERTYKEY,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyDescriptionByName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertySystem,
+                pszCanonicalName: ?[*:0]const u16,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertySystem,
+                pszCanonicalName: ?[*:0]const u16,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyDescriptionListFromString: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertySystem,
+                pszPropList: ?[*:0]const u16,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertySystem,
+                pszPropList: ?[*:0]const u16,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        EnumeratePropertyDescriptions: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertySystem,
+                filterOn: PROPDESC_ENUMFILTER,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertySystem,
+                filterOn: PROPDESC_ENUMFILTER,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FormatForDisplay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertySystem,
+                key: ?*const PROPERTYKEY,
+                propvar: ?*const PROPVARIANT,
+                pdff: PROPDESC_FORMAT_FLAGS,
+                pszText: [*:0]u16,
+                cchText: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertySystem,
+                key: ?*const PROPERTYKEY,
+                propvar: ?*const PROPVARIANT,
+                pdff: PROPDESC_FORMAT_FLAGS,
+                pszText: [*:0]u16,
+                cchText: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FormatForDisplayAlloc: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertySystem,
+                key: ?*const PROPERTYKEY,
+                propvar: ?*const PROPVARIANT,
+                pdff: PROPDESC_FORMAT_FLAGS,
+                ppszDisplay: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertySystem,
+                key: ?*const PROPERTYKEY,
+                propvar: ?*const PROPVARIANT,
+                pdff: PROPDESC_FORMAT_FLAGS,
+                ppszDisplay: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RegisterPropertySchema: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertySystem,
+                pszPath: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertySystem,
+                pszPath: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        UnregisterPropertySchema: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertySystem,
+                pszPath: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertySystem,
+                pszPath: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RefreshPropertySchema: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertySystem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertySystem,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1232,16 +1726,30 @@ pub const IID_IPropertyDescriptionList = &IID_IPropertyDescriptionList_Value;
 pub const IPropertyDescriptionList = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: fn(
-            self: *const IPropertyDescriptionList,
-            pcElem: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAt: fn(
-            self: *const IPropertyDescriptionList,
-            iElem: u32,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescriptionList,
+                pcElem: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescriptionList,
+                pcElem: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyDescriptionList,
+                iElem: u32,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyDescriptionList,
+                iElem: u32,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1264,21 +1772,40 @@ pub const IID_IPropertyStoreFactory = &IID_IPropertyStoreFactory_Value;
 pub const IPropertyStoreFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPropertyStore: fn(
-            self: *const IPropertyStoreFactory,
-            flags: GETPROPERTYSTOREFLAGS,
-            pUnkFactory: ?*IUnknown,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyStoreForKeys: fn(
-            self: *const IPropertyStoreFactory,
-            rgKeys: ?*const PROPERTYKEY,
-            cKeys: u32,
-            flags: GETPROPERTYSTOREFLAGS,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyStore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyStoreFactory,
+                flags: GETPROPERTYSTOREFLAGS,
+                pUnkFactory: ?*IUnknown,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyStoreFactory,
+                flags: GETPROPERTYSTOREFLAGS,
+                pUnkFactory: ?*IUnknown,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyStoreForKeys: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyStoreFactory,
+                rgKeys: ?*const PROPERTYKEY,
+                cKeys: u32,
+                flags: GETPROPERTYSTOREFLAGS,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyStoreFactory,
+                rgKeys: ?*const PROPERTYKEY,
+                cKeys: u32,
+                flags: GETPROPERTYSTOREFLAGS,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1301,13 +1828,22 @@ pub const IID_IDelayedPropertyStoreFactory = &IID_IDelayedPropertyStoreFactory_V
 pub const IDelayedPropertyStoreFactory = extern struct {
     pub const VTable = extern struct {
         base: IPropertyStoreFactory.VTable,
-        GetDelayedPropertyStore: fn(
-            self: *const IDelayedPropertyStoreFactory,
-            flags: GETPROPERTYSTOREFLAGS,
-            dwStoreId: u32,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDelayedPropertyStore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IDelayedPropertyStoreFactory,
+                flags: GETPROPERTYSTOREFLAGS,
+                dwStoreId: u32,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IDelayedPropertyStoreFactory,
+                flags: GETPROPERTYSTOREFLAGS,
+                dwStoreId: u32,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1339,21 +1875,42 @@ pub const IID_IPersistSerializedPropStorage = &IID_IPersistSerializedPropStorage
 pub const IPersistSerializedPropStorage = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetFlags: fn(
-            self: *const IPersistSerializedPropStorage,
-            flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPropertyStorage: fn(
-            self: *const IPersistSerializedPropStorage,
-            // TODO: what to do with BytesParamIndex 1?
-            psps: ?*SERIALIZEDPROPSTORAGE,
-            cb: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyStorage: fn(
-            self: *const IPersistSerializedPropStorage,
-            ppsps: ?*?*SERIALIZEDPROPSTORAGE,
-            pcb: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFlags: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPersistSerializedPropStorage,
+                flags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPersistSerializedPropStorage,
+                flags: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPropertyStorage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPersistSerializedPropStorage,
+                // TODO: what to do with BytesParamIndex 1?
+                psps: ?*SERIALIZEDPROPSTORAGE,
+                cb: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPersistSerializedPropStorage,
+                // TODO: what to do with BytesParamIndex 1?
+                psps: ?*SERIALIZEDPROPSTORAGE,
+                cb: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyStorage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPersistSerializedPropStorage,
+                ppsps: ?*?*SERIALIZEDPROPSTORAGE,
+                pcb: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPersistSerializedPropStorage,
+                ppsps: ?*?*SERIALIZEDPROPSTORAGE,
+                pcb: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1380,17 +1937,32 @@ pub const IID_IPersistSerializedPropStorage2 = &IID_IPersistSerializedPropStorag
 pub const IPersistSerializedPropStorage2 = extern struct {
     pub const VTable = extern struct {
         base: IPersistSerializedPropStorage.VTable,
-        GetPropertyStorageSize: fn(
-            self: *const IPersistSerializedPropStorage2,
-            pcb: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyStorageBuffer: fn(
-            self: *const IPersistSerializedPropStorage2,
-            // TODO: what to do with BytesParamIndex 1?
-            psps: ?*SERIALIZEDPROPSTORAGE,
-            cb: u32,
-            pcbWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyStorageSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPersistSerializedPropStorage2,
+                pcb: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPersistSerializedPropStorage2,
+                pcb: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyStorageBuffer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPersistSerializedPropStorage2,
+                // TODO: what to do with BytesParamIndex 1?
+                psps: ?*SERIALIZEDPROPSTORAGE,
+                cb: u32,
+                pcbWritten: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPersistSerializedPropStorage2,
+                // TODO: what to do with BytesParamIndex 1?
+                psps: ?*SERIALIZEDPROPSTORAGE,
+                cb: u32,
+                pcbWritten: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1412,9 +1984,14 @@ pub const IID_IPropertySystemChangeNotify = &IID_IPropertySystemChangeNotify_Val
 pub const IPropertySystemChangeNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SchemaRefreshed: fn(
-            self: *const IPropertySystemChangeNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SchemaRefreshed: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertySystemChangeNotify,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertySystemChangeNotify,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1433,13 +2010,22 @@ pub const IID_ICreateObject = &IID_ICreateObject_Value;
 pub const ICreateObject = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateObject: fn(
-            self: *const ICreateObject,
-            clsid: ?*const Guid,
-            pUnkOuter: ?*IUnknown,
-            riid: ?*const Guid,
-            ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateObject: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICreateObject,
+                clsid: ?*const Guid,
+                pUnkOuter: ?*IUnknown,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICreateObject,
+                clsid: ?*const Guid,
+                pUnkOuter: ?*IUnknown,
+                riid: ?*const Guid,
+                ppv: ?*?*anyopaque,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1602,64 +2188,138 @@ pub const IID_IPropertyUI = &IID_IPropertyUI_Value;
 pub const IPropertyUI = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ParsePropertyName: fn(
-            self: *const IPropertyUI,
-            pszName: ?[*:0]const u16,
-            pfmtid: ?*Guid,
-            ppid: ?*u32,
-            pchEaten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCannonicalName: fn(
-            self: *const IPropertyUI,
-            fmtid: ?*const Guid,
-            pid: u32,
-            pwszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDisplayName: fn(
-            self: *const IPropertyUI,
-            fmtid: ?*const Guid,
-            pid: u32,
-            flags: PROPERTYUI_NAME_FLAGS,
-            pwszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyDescription: fn(
-            self: *const IPropertyUI,
-            fmtid: ?*const Guid,
-            pid: u32,
-            pwszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultWidth: fn(
-            self: *const IPropertyUI,
-            fmtid: ?*const Guid,
-            pid: u32,
-            pcxChars: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFlags: fn(
-            self: *const IPropertyUI,
-            fmtid: ?*const Guid,
-            pid: u32,
-            pflags: ?*PROPERTYUI_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FormatForDisplay: fn(
-            self: *const IPropertyUI,
-            fmtid: ?*const Guid,
-            pid: u32,
-            ppropvar: ?*const PROPVARIANT,
-            puiff: PROPERTYUI_FORMAT_FLAGS,
-            pwszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHelpInfo: fn(
-            self: *const IPropertyUI,
-            fmtid: ?*const Guid,
-            pid: u32,
-            pwszHelpFile: [*:0]u16,
-            cch: u32,
-            puHelpID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ParsePropertyName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyUI,
+                pszName: ?[*:0]const u16,
+                pfmtid: ?*Guid,
+                ppid: ?*u32,
+                pchEaten: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyUI,
+                pszName: ?[*:0]const u16,
+                pfmtid: ?*Guid,
+                ppid: ?*u32,
+                pchEaten: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCannonicalName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                pwszText: [*:0]u16,
+                cchText: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                pwszText: [*:0]u16,
+                cchText: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDisplayName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                flags: PROPERTYUI_NAME_FLAGS,
+                pwszText: [*:0]u16,
+                cchText: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                flags: PROPERTYUI_NAME_FLAGS,
+                pwszText: [*:0]u16,
+                cchText: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                pwszText: [*:0]u16,
+                cchText: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                pwszText: [*:0]u16,
+                cchText: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDefaultWidth: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                pcxChars: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                pcxChars: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFlags: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                pflags: ?*PROPERTYUI_FLAGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                pflags: ?*PROPERTYUI_FLAGS,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FormatForDisplay: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                ppropvar: ?*const PROPVARIANT,
+                puiff: PROPERTYUI_FORMAT_FLAGS,
+                pwszText: [*:0]u16,
+                cchText: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                ppropvar: ?*const PROPVARIANT,
+                puiff: PROPERTYUI_FORMAT_FLAGS,
+                pwszText: [*:0]u16,
+                cchText: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetHelpInfo: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                pwszHelpFile: [*:0]u16,
+                cch: u32,
+                puHelpID: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPropertyUI,
+                fmtid: ?*const Guid,
+                pid: u32,
+                pwszHelpFile: [*:0]u16,
+                cch: u32,
+                puHelpID: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

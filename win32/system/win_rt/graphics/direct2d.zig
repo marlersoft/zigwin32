@@ -36,34 +36,74 @@ pub const IID_IGraphicsEffectD2D1Interop = &IID_IGraphicsEffectD2D1Interop_Value
 pub const IGraphicsEffectD2D1Interop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetEffectId: fn(
-            self: *const IGraphicsEffectD2D1Interop,
-            id: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNamedPropertyMapping: fn(
-            self: *const IGraphicsEffectD2D1Interop,
-            name: ?[*:0]const u16,
-            index: ?*u32,
-            mapping: ?*GRAPHICS_EFFECT_PROPERTY_MAPPING,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyCount: fn(
-            self: *const IGraphicsEffectD2D1Interop,
-            count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
-            self: *const IGraphicsEffectD2D1Interop,
-            index: u32,
-            value: ?**struct{comment: []const u8 = "MissingClrType IPropertyValue.Windows.Foundation"},
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSource: fn(
-            self: *const IGraphicsEffectD2D1Interop,
-            index: u32,
-            source: ?**struct{comment: []const u8 = "MissingClrType IGraphicsEffectSource.Windows.Graphics.Effects"},
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSourceCount: fn(
-            self: *const IGraphicsEffectD2D1Interop,
-            count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffectId: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGraphicsEffectD2D1Interop,
+                id: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGraphicsEffectD2D1Interop,
+                id: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetNamedPropertyMapping: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGraphicsEffectD2D1Interop,
+                name: ?[*:0]const u16,
+                index: ?*u32,
+                mapping: ?*GRAPHICS_EFFECT_PROPERTY_MAPPING,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGraphicsEffectD2D1Interop,
+                name: ?[*:0]const u16,
+                index: ?*u32,
+                mapping: ?*GRAPHICS_EFFECT_PROPERTY_MAPPING,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGraphicsEffectD2D1Interop,
+                count: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGraphicsEffectD2D1Interop,
+                count: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGraphicsEffectD2D1Interop,
+                index: u32,
+                value: ?**struct{comment: []const u8 = "MissingClrType IPropertyValue.Windows.Foundation"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGraphicsEffectD2D1Interop,
+                index: u32,
+                value: ?**struct{comment: []const u8 = "MissingClrType IPropertyValue.Windows.Foundation"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSource: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGraphicsEffectD2D1Interop,
+                index: u32,
+                source: ?**struct{comment: []const u8 = "MissingClrType IGraphicsEffectSource.Windows.Graphics.Effects"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGraphicsEffectD2D1Interop,
+                index: u32,
+                source: ?**struct{comment: []const u8 = "MissingClrType IGraphicsEffectSource.Windows.Graphics.Effects"},
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSourceCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGraphicsEffectD2D1Interop,
+                count: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGraphicsEffectD2D1Interop,
+                count: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -101,15 +141,28 @@ pub const IID_IGeometrySource2DInterop = &IID_IGeometrySource2DInterop_Value;
 pub const IGeometrySource2DInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetGeometry: fn(
-            self: *const IGeometrySource2DInterop,
-            value: ?*?*ID2D1Geometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TryGetGeometryUsingFactory: fn(
-            self: *const IGeometrySource2DInterop,
-            factory: ?*ID2D1Factory,
-            value: ?*?*ID2D1Geometry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGeometry: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGeometrySource2DInterop,
+                value: ?*?*ID2D1Geometry,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGeometrySource2DInterop,
+                value: ?*?*ID2D1Geometry,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        TryGetGeometryUsingFactory: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IGeometrySource2DInterop,
+                factory: ?*ID2D1Factory,
+                value: ?*?*ID2D1Geometry,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IGeometrySource2DInterop,
+                factory: ?*ID2D1Factory,
+                value: ?*?*ID2D1Geometry,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

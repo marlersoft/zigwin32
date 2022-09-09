@@ -1278,30 +1278,62 @@ pub const IID_IWpdSerializer = &IID_IWpdSerializer_Value;
 pub const IWpdSerializer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIPortableDeviceValuesFromBuffer: fn(
-            self: *const IWpdSerializer,
-            pBuffer: [*:0]u8,
-            dwInputBufferLength: u32,
-            ppParams: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteIPortableDeviceValuesToBuffer: fn(
-            self: *const IWpdSerializer,
-            dwOutputBufferLength: u32,
-            pResults: ?*IPortableDeviceValues,
-            pBuffer: [*:0]u8,
-            pdwBytesWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBufferFromIPortableDeviceValues: fn(
-            self: *const IWpdSerializer,
-            pSource: ?*IPortableDeviceValues,
-            ppBuffer: [*]?*u8,
-            pdwBufferSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSerializedSize: fn(
-            self: *const IWpdSerializer,
-            pSource: ?*IPortableDeviceValues,
-            pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIPortableDeviceValuesFromBuffer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWpdSerializer,
+                pBuffer: [*:0]u8,
+                dwInputBufferLength: u32,
+                ppParams: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWpdSerializer,
+                pBuffer: [*:0]u8,
+                dwInputBufferLength: u32,
+                ppParams: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        WriteIPortableDeviceValuesToBuffer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWpdSerializer,
+                dwOutputBufferLength: u32,
+                pResults: ?*IPortableDeviceValues,
+                pBuffer: [*:0]u8,
+                pdwBytesWritten: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWpdSerializer,
+                dwOutputBufferLength: u32,
+                pResults: ?*IPortableDeviceValues,
+                pBuffer: [*:0]u8,
+                pdwBytesWritten: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBufferFromIPortableDeviceValues: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWpdSerializer,
+                pSource: ?*IPortableDeviceValues,
+                ppBuffer: [*]?*u8,
+                pdwBufferSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWpdSerializer,
+                pSource: ?*IPortableDeviceValues,
+                ppBuffer: [*]?*u8,
+                pdwBufferSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSerializedSize: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWpdSerializer,
+                pSource: ?*IPortableDeviceValues,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWpdSerializer,
+                pSource: ?*IPortableDeviceValues,
+                pdwSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1331,203 +1363,480 @@ pub const IID_IPortableDeviceValues = &IID_IPortableDeviceValues_Value;
 pub const IPortableDeviceValues = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: fn(
-            self: *const IPortableDeviceValues,
-            pcelt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAt: fn(
-            self: *const IPortableDeviceValues,
-            index: u32,
-            pKey: ?*PROPERTYKEY,
-            pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStringValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            Value: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStringValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetUnsignedIntegerValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            Value: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUnsignedIntegerValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSignedIntegerValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSignedIntegerValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetUnsignedLargeIntegerValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            Value: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetUnsignedLargeIntegerValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetSignedLargeIntegerValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            Value: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSignedLargeIntegerValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetFloatValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            Value: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFloatValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetErrorValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            Value: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetErrorValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetKeyValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            Value: ?*const PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKeyValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetBoolValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            Value: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBoolValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetIUnknownValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIUnknownValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            ppValue: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetGuidValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            Value: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGuidValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetBufferValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: [*:0]u8,
-            cbValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBufferValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            ppValue: [*]?*u8,
-            pcbValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetIPortableDeviceValuesValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIPortableDeviceValuesValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            ppValue: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetIPortableDevicePropVariantCollectionValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIPortableDevicePropVariantCollectionValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            ppValue: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetIPortableDeviceKeyCollectionValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*IPortableDeviceKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIPortableDeviceKeyCollectionValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            ppValue: ?*?*IPortableDeviceKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetIPortableDeviceValuesCollectionValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            pValue: ?*IPortableDeviceValuesCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetIPortableDeviceValuesCollectionValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-            ppValue: ?*?*IPortableDeviceValuesCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveValue: fn(
-            self: *const IPortableDeviceValues,
-            key: ?*const PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CopyValuesFromPropertyStore: fn(
-            self: *const IPortableDeviceValues,
-            pStore: ?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CopyValuesToPropertyStore: fn(
-            self: *const IPortableDeviceValues,
-            pStore: ?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clear: fn(
-            self: *const IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                pcelt: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                pcelt: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                index: u32,
+                pKey: ?*PROPERTYKEY,
+                pValue: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                index: u32,
+                pKey: ?*PROPERTYKEY,
+                pValue: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*const PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*const PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetStringValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStringValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetUnsignedIntegerValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetUnsignedIntegerValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetSignedIntegerValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSignedIntegerValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*i32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetUnsignedLargeIntegerValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetUnsignedLargeIntegerValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*u64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetSignedLargeIntegerValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSignedLargeIntegerValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetFloatValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFloatValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*f32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetErrorValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetErrorValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetKeyValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: ?*const PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: ?*const PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetKeyValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetBoolValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBoolValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*BOOL,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetIUnknownValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetIUnknownValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                ppValue: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                ppValue: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetGuidValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                Value: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetGuidValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetBufferValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: [*:0]u8,
+                cbValue: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: [*:0]u8,
+                cbValue: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetBufferValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                ppValue: [*]?*u8,
+                pcbValue: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                ppValue: [*]?*u8,
+                pcbValue: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetIPortableDeviceValuesValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetIPortableDeviceValuesValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                ppValue: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                ppValue: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetIPortableDevicePropVariantCollectionValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetIPortableDevicePropVariantCollectionValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                ppValue: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                ppValue: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetIPortableDeviceKeyCollectionValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetIPortableDeviceKeyCollectionValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                ppValue: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                ppValue: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetIPortableDeviceValuesCollectionValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*IPortableDeviceValuesCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                pValue: ?*IPortableDeviceValuesCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetIPortableDeviceValuesCollectionValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                ppValue: ?*?*IPortableDeviceValuesCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+                ppValue: ?*?*IPortableDeviceValuesCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveValue: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                key: ?*const PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CopyValuesFromPropertyStore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                pStore: ?*IPropertyStore,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                pStore: ?*IPropertyStore,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CopyValuesToPropertyStore: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+                pStore: ?*IPropertyStore,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+                pStore: ?*IPropertyStore,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clear: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1701,26 +2010,56 @@ pub const IID_IPortableDeviceKeyCollection = &IID_IPortableDeviceKeyCollection_V
 pub const IPortableDeviceKeyCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: fn(
-            self: *const IPortableDeviceKeyCollection,
-            pcElems: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAt: fn(
-            self: *const IPortableDeviceKeyCollection,
-            dwIndex: u32,
-            pKey: ?*PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
-            self: *const IPortableDeviceKeyCollection,
-            Key: ?*const PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clear: fn(
-            self: *const IPortableDeviceKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAt: fn(
-            self: *const IPortableDeviceKeyCollection,
-            dwIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceKeyCollection,
+                pcElems: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceKeyCollection,
+                pcElems: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceKeyCollection,
+                dwIndex: u32,
+                pKey: ?*PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceKeyCollection,
+                dwIndex: u32,
+                pKey: ?*PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Add: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceKeyCollection,
+                Key: ?*const PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceKeyCollection,
+                Key: ?*const PROPERTYKEY,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clear: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceKeyCollection,
+                dwIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceKeyCollection,
+                dwIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1754,34 +2093,76 @@ pub const IID_IPortableDevicePropVariantCollection = &IID_IPortableDevicePropVar
 pub const IPortableDevicePropVariantCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: fn(
-            self: *const IPortableDevicePropVariantCollection,
-            pcElems: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAt: fn(
-            self: *const IPortableDevicePropVariantCollection,
-            dwIndex: u32,
-            pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
-            self: *const IPortableDevicePropVariantCollection,
-            pValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetType: fn(
-            self: *const IPortableDevicePropVariantCollection,
-            pvt: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ChangeType: fn(
-            self: *const IPortableDevicePropVariantCollection,
-            vt: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clear: fn(
-            self: *const IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAt: fn(
-            self: *const IPortableDevicePropVariantCollection,
-            dwIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropVariantCollection,
+                pcElems: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropVariantCollection,
+                pcElems: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropVariantCollection,
+                dwIndex: u32,
+                pValue: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropVariantCollection,
+                dwIndex: u32,
+                pValue: ?*PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Add: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropVariantCollection,
+                pValue: ?*const PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropVariantCollection,
+                pValue: ?*const PROPVARIANT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropVariantCollection,
+                pvt: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropVariantCollection,
+                pvt: ?*u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ChangeType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropVariantCollection,
+                vt: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropVariantCollection,
+                vt: u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clear: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropVariantCollection,
+                dwIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropVariantCollection,
+                dwIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1823,26 +2204,56 @@ pub const IID_IPortableDeviceValuesCollection = &IID_IPortableDeviceValuesCollec
 pub const IPortableDeviceValuesCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: fn(
-            self: *const IPortableDeviceValuesCollection,
-            pcElems: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAt: fn(
-            self: *const IPortableDeviceValuesCollection,
-            dwIndex: u32,
-            ppValues: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Add: fn(
-            self: *const IPortableDeviceValuesCollection,
-            pValues: ?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clear: fn(
-            self: *const IPortableDeviceValuesCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveAt: fn(
-            self: *const IPortableDeviceValuesCollection,
-            dwIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValuesCollection,
+                pcElems: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValuesCollection,
+                pcElems: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValuesCollection,
+                dwIndex: u32,
+                ppValues: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValuesCollection,
+                dwIndex: u32,
+                ppValues: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Add: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValuesCollection,
+                pValues: ?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValuesCollection,
+                pValues: ?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clear: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValuesCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValuesCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RemoveAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceValuesCollection,
+                dwIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceValuesCollection,
+                dwIndex: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1897,45 +2308,98 @@ pub const IID_IPortableDeviceManager = &IID_IPortableDeviceManager_Value;
 pub const IPortableDeviceManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDevices: fn(
-            self: *const IPortableDeviceManager,
-            pPnPDeviceIDs: ?*?PWSTR,
-            pcPnPDeviceIDs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RefreshDeviceList: fn(
-            self: *const IPortableDeviceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceFriendlyName: fn(
-            self: *const IPortableDeviceManager,
-            pszPnPDeviceID: ?[*:0]const u16,
-            pDeviceFriendlyName: ?PWSTR,
-            pcchDeviceFriendlyName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceDescription: fn(
-            self: *const IPortableDeviceManager,
-            pszPnPDeviceID: ?[*:0]const u16,
-            pDeviceDescription: ?PWSTR,
-            pcchDeviceDescription: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceManufacturer: fn(
-            self: *const IPortableDeviceManager,
-            pszPnPDeviceID: ?[*:0]const u16,
-            pDeviceManufacturer: ?PWSTR,
-            pcchDeviceManufacturer: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceProperty: fn(
-            self: *const IPortableDeviceManager,
-            pszPnPDeviceID: ?[*:0]const u16,
-            pszDevicePropertyName: ?[*:0]const u16,
-            pData: ?*u8,
-            pcbData: ?*u32,
-            pdwType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPrivateDevices: fn(
-            self: *const IPortableDeviceManager,
-            pPnPDeviceIDs: ?*?PWSTR,
-            pcPnPDeviceIDs: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDevices: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceManager,
+                pPnPDeviceIDs: ?*?PWSTR,
+                pcPnPDeviceIDs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceManager,
+                pPnPDeviceIDs: ?*?PWSTR,
+                pcPnPDeviceIDs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        RefreshDeviceList: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceManager,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceManager,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceFriendlyName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceManager,
+                pszPnPDeviceID: ?[*:0]const u16,
+                pDeviceFriendlyName: ?PWSTR,
+                pcchDeviceFriendlyName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceManager,
+                pszPnPDeviceID: ?[*:0]const u16,
+                pDeviceFriendlyName: ?PWSTR,
+                pcchDeviceFriendlyName: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceDescription: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceManager,
+                pszPnPDeviceID: ?[*:0]const u16,
+                pDeviceDescription: ?PWSTR,
+                pcchDeviceDescription: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceManager,
+                pszPnPDeviceID: ?[*:0]const u16,
+                pDeviceDescription: ?PWSTR,
+                pcchDeviceDescription: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceManufacturer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceManager,
+                pszPnPDeviceID: ?[*:0]const u16,
+                pDeviceManufacturer: ?PWSTR,
+                pcchDeviceManufacturer: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceManager,
+                pszPnPDeviceID: ?[*:0]const u16,
+                pDeviceManufacturer: ?PWSTR,
+                pcchDeviceManufacturer: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceManager,
+                pszPnPDeviceID: ?[*:0]const u16,
+                pszDevicePropertyName: ?[*:0]const u16,
+                pData: ?*u8,
+                pcbData: ?*u32,
+                pdwType: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceManager,
+                pszPnPDeviceID: ?[*:0]const u16,
+                pszDevicePropertyName: ?[*:0]const u16,
+                pData: ?*u8,
+                pcbData: ?*u32,
+                pdwType: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPrivateDevices: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceManager,
+                pPnPDeviceIDs: ?*?PWSTR,
+                pcPnPDeviceIDs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceManager,
+                pPnPDeviceIDs: ?*?PWSTR,
+                pcPnPDeviceIDs: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1977,46 +2441,104 @@ pub const IID_IPortableDevice = &IID_IPortableDevice_Value;
 pub const IPortableDevice = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Open: fn(
-            self: *const IPortableDevice,
-            pszPnPDeviceID: ?[*:0]const u16,
-            pClientInfo: ?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SendCommand: fn(
-            self: *const IPortableDevice,
-            dwFlags: u32,
-            pParameters: ?*IPortableDeviceValues,
-            ppResults: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Content: fn(
-            self: *const IPortableDevice,
-            ppContent: ?*?*IPortableDeviceContent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Capabilities: fn(
-            self: *const IPortableDevice,
-            ppCapabilities: ?*?*IPortableDeviceCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPortableDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IPortableDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Advise: fn(
-            self: *const IPortableDevice,
-            dwFlags: u32,
-            pCallback: ?*IPortableDeviceEventCallback,
-            pParameters: ?*IPortableDeviceValues,
-            ppszCookie: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unadvise: fn(
-            self: *const IPortableDevice,
-            pszCookie: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPnPDeviceID: fn(
-            self: *const IPortableDevice,
-            ppszPnPDeviceID: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Open: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevice,
+                pszPnPDeviceID: ?[*:0]const u16,
+                pClientInfo: ?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevice,
+                pszPnPDeviceID: ?[*:0]const u16,
+                pClientInfo: ?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SendCommand: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevice,
+                dwFlags: u32,
+                pParameters: ?*IPortableDeviceValues,
+                ppResults: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevice,
+                dwFlags: u32,
+                pParameters: ?*IPortableDeviceValues,
+                ppResults: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Content: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevice,
+                ppContent: ?*?*IPortableDeviceContent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevice,
+                ppContent: ?*?*IPortableDeviceContent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Capabilities: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevice,
+                ppCapabilities: ?*?*IPortableDeviceCapabilities,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevice,
+                ppCapabilities: ?*?*IPortableDeviceCapabilities,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevice,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Advise: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevice,
+                dwFlags: u32,
+                pCallback: ?*IPortableDeviceEventCallback,
+                pParameters: ?*IPortableDeviceValues,
+                ppszCookie: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevice,
+                dwFlags: u32,
+                pCallback: ?*IPortableDeviceEventCallback,
+                pParameters: ?*IPortableDeviceValues,
+                ppszCookie: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unadvise: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevice,
+                pszCookie: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevice,
+                pszCookie: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPnPDeviceID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevice,
+                ppszPnPDeviceID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevice,
+                ppszPnPDeviceID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2066,59 +2588,132 @@ pub const IID_IPortableDeviceContent = &IID_IPortableDeviceContent_Value;
 pub const IPortableDeviceContent = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EnumObjects: fn(
-            self: *const IPortableDeviceContent,
-            dwFlags: u32,
-            pszParentObjectID: ?[*:0]const u16,
-            pFilter: ?*IPortableDeviceValues,
-            ppEnum: ?*?*IEnumPortableDeviceObjectIDs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Properties: fn(
-            self: *const IPortableDeviceContent,
-            ppProperties: ?*?*IPortableDeviceProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Transfer: fn(
-            self: *const IPortableDeviceContent,
-            ppResources: ?*?*IPortableDeviceResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateObjectWithPropertiesOnly: fn(
-            self: *const IPortableDeviceContent,
-            pValues: ?*IPortableDeviceValues,
-            ppszObjectID: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateObjectWithPropertiesAndData: fn(
-            self: *const IPortableDeviceContent,
-            pValues: ?*IPortableDeviceValues,
-            ppData: ?*?*IStream,
-            pdwOptimalWriteBufferSize: ?*u32,
-            ppszCookie: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
-            self: *const IPortableDeviceContent,
-            dwOptions: u32,
-            pObjectIDs: ?*IPortableDevicePropVariantCollection,
-            ppResults: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetObjectIDsFromPersistentUniqueIDs: fn(
-            self: *const IPortableDeviceContent,
-            pPersistentUniqueIDs: ?*IPortableDevicePropVariantCollection,
-            ppObjectIDs: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPortableDeviceContent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Move: fn(
-            self: *const IPortableDeviceContent,
-            pObjectIDs: ?*IPortableDevicePropVariantCollection,
-            pszDestinationFolderObjectID: ?[*:0]const u16,
-            ppResults: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Copy: fn(
-            self: *const IPortableDeviceContent,
-            pObjectIDs: ?*IPortableDevicePropVariantCollection,
-            pszDestinationFolderObjectID: ?[*:0]const u16,
-            ppResults: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumObjects: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceContent,
+                dwFlags: u32,
+                pszParentObjectID: ?[*:0]const u16,
+                pFilter: ?*IPortableDeviceValues,
+                ppEnum: ?*?*IEnumPortableDeviceObjectIDs,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceContent,
+                dwFlags: u32,
+                pszParentObjectID: ?[*:0]const u16,
+                pFilter: ?*IPortableDeviceValues,
+                ppEnum: ?*?*IEnumPortableDeviceObjectIDs,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Properties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceContent,
+                ppProperties: ?*?*IPortableDeviceProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceContent,
+                ppProperties: ?*?*IPortableDeviceProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Transfer: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceContent,
+                ppResources: ?*?*IPortableDeviceResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceContent,
+                ppResources: ?*?*IPortableDeviceResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateObjectWithPropertiesOnly: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceContent,
+                pValues: ?*IPortableDeviceValues,
+                ppszObjectID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceContent,
+                pValues: ?*IPortableDeviceValues,
+                ppszObjectID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateObjectWithPropertiesAndData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceContent,
+                pValues: ?*IPortableDeviceValues,
+                ppData: ?*?*IStream,
+                pdwOptimalWriteBufferSize: ?*u32,
+                ppszCookie: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceContent,
+                pValues: ?*IPortableDeviceValues,
+                ppData: ?*?*IStream,
+                pdwOptimalWriteBufferSize: ?*u32,
+                ppszCookie: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Delete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceContent,
+                dwOptions: u32,
+                pObjectIDs: ?*IPortableDevicePropVariantCollection,
+                ppResults: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceContent,
+                dwOptions: u32,
+                pObjectIDs: ?*IPortableDevicePropVariantCollection,
+                ppResults: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetObjectIDsFromPersistentUniqueIDs: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceContent,
+                pPersistentUniqueIDs: ?*IPortableDevicePropVariantCollection,
+                ppObjectIDs: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceContent,
+                pPersistentUniqueIDs: ?*IPortableDevicePropVariantCollection,
+                ppObjectIDs: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceContent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceContent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Move: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceContent,
+                pObjectIDs: ?*IPortableDevicePropVariantCollection,
+                pszDestinationFolderObjectID: ?[*:0]const u16,
+                ppResults: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceContent,
+                pObjectIDs: ?*IPortableDevicePropVariantCollection,
+                pszDestinationFolderObjectID: ?[*:0]const u16,
+                ppResults: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Copy: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceContent,
+                pObjectIDs: ?*IPortableDevicePropVariantCollection,
+                pszDestinationFolderObjectID: ?[*:0]const u16,
+                ppResults: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceContent,
+                pObjectIDs: ?*IPortableDevicePropVariantCollection,
+                pszDestinationFolderObjectID: ?[*:0]const u16,
+                ppResults: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2173,13 +2768,22 @@ pub const IID_IPortableDeviceContent2 = &IID_IPortableDeviceContent2_Value;
 pub const IPortableDeviceContent2 = extern struct {
     pub const VTable = extern struct {
         base: IPortableDeviceContent.VTable,
-        UpdateObjectWithPropertiesAndData: fn(
-            self: *const IPortableDeviceContent2,
-            pszObjectID: ?[*:0]const u16,
-            pProperties: ?*IPortableDeviceValues,
-            ppData: ?*?*IStream,
-            pdwOptimalWriteBufferSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UpdateObjectWithPropertiesAndData: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceContent2,
+                pszObjectID: ?[*:0]const u16,
+                pProperties: ?*IPortableDeviceValues,
+                ppData: ?*?*IStream,
+                pdwOptimalWriteBufferSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceContent2,
+                pszObjectID: ?[*:0]const u16,
+                pProperties: ?*IPortableDeviceValues,
+                ppData: ?*?*IStream,
+                pdwOptimalWriteBufferSize: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2197,26 +2801,56 @@ pub const IID_IEnumPortableDeviceObjectIDs = &IID_IEnumPortableDeviceObjectIDs_V
 pub const IEnumPortableDeviceObjectIDs = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumPortableDeviceObjectIDs,
-            cObjects: u32,
-            pObjIDs: [*]?PWSTR,
-            pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumPortableDeviceObjectIDs,
-            cObjects: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumPortableDeviceObjectIDs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumPortableDeviceObjectIDs,
-            ppEnum: ?*?*IEnumPortableDeviceObjectIDs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IEnumPortableDeviceObjectIDs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumPortableDeviceObjectIDs,
+                cObjects: u32,
+                pObjIDs: [*]?PWSTR,
+                pcFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumPortableDeviceObjectIDs,
+                cObjects: u32,
+                pObjIDs: [*]?PWSTR,
+                pcFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumPortableDeviceObjectIDs,
+                cObjects: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumPortableDeviceObjectIDs,
+                cObjects: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumPortableDeviceObjectIDs,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumPortableDeviceObjectIDs,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumPortableDeviceObjectIDs,
+                ppEnum: ?*?*IEnumPortableDeviceObjectIDs,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumPortableDeviceObjectIDs,
+                ppEnum: ?*?*IEnumPortableDeviceObjectIDs,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumPortableDeviceObjectIDs,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumPortableDeviceObjectIDs,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2250,37 +2884,80 @@ pub const IID_IPortableDeviceProperties = &IID_IPortableDeviceProperties_Value;
 pub const IPortableDeviceProperties = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSupportedProperties: fn(
-            self: *const IPortableDeviceProperties,
-            pszObjectID: ?[*:0]const u16,
-            ppKeys: ?*?*IPortableDeviceKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyAttributes: fn(
-            self: *const IPortableDeviceProperties,
-            pszObjectID: ?[*:0]const u16,
-            Key: ?*const PROPERTYKEY,
-            ppAttributes: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValues: fn(
-            self: *const IPortableDeviceProperties,
-            pszObjectID: ?[*:0]const u16,
-            pKeys: ?*IPortableDeviceKeyCollection,
-            ppValues: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValues: fn(
-            self: *const IPortableDeviceProperties,
-            pszObjectID: ?[*:0]const u16,
-            pValues: ?*IPortableDeviceValues,
-            ppResults: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
-            self: *const IPortableDeviceProperties,
-            pszObjectID: ?[*:0]const u16,
-            pKeys: ?*IPortableDeviceKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPortableDeviceProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSupportedProperties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceProperties,
+                pszObjectID: ?[*:0]const u16,
+                ppKeys: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceProperties,
+                pszObjectID: ?[*:0]const u16,
+                ppKeys: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPropertyAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceProperties,
+                pszObjectID: ?[*:0]const u16,
+                Key: ?*const PROPERTYKEY,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceProperties,
+                pszObjectID: ?[*:0]const u16,
+                Key: ?*const PROPERTYKEY,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetValues: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceProperties,
+                pszObjectID: ?[*:0]const u16,
+                pKeys: ?*IPortableDeviceKeyCollection,
+                ppValues: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceProperties,
+                pszObjectID: ?[*:0]const u16,
+                pKeys: ?*IPortableDeviceKeyCollection,
+                ppValues: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetValues: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceProperties,
+                pszObjectID: ?[*:0]const u16,
+                pValues: ?*IPortableDeviceValues,
+                ppResults: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceProperties,
+                pszObjectID: ?[*:0]const u16,
+                pValues: ?*IPortableDeviceValues,
+                ppResults: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Delete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceProperties,
+                pszObjectID: ?[*:0]const u16,
+                pKeys: ?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceProperties,
+                pszObjectID: ?[*:0]const u16,
+                pKeys: ?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceProperties,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2318,40 +2995,86 @@ pub const IID_IPortableDeviceResources = &IID_IPortableDeviceResources_Value;
 pub const IPortableDeviceResources = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSupportedResources: fn(
-            self: *const IPortableDeviceResources,
-            pszObjectID: ?[*:0]const u16,
-            ppKeys: ?*?*IPortableDeviceKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetResourceAttributes: fn(
-            self: *const IPortableDeviceResources,
-            pszObjectID: ?[*:0]const u16,
-            Key: ?*const PROPERTYKEY,
-            ppResourceAttributes: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStream: fn(
-            self: *const IPortableDeviceResources,
-            pszObjectID: ?[*:0]const u16,
-            Key: ?*const PROPERTYKEY,
-            dwMode: u32,
-            pdwOptimalBufferSize: ?*u32,
-            ppStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
-            self: *const IPortableDeviceResources,
-            pszObjectID: ?[*:0]const u16,
-            pKeys: ?*IPortableDeviceKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPortableDeviceResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateResource: fn(
-            self: *const IPortableDeviceResources,
-            pResourceAttributes: ?*IPortableDeviceValues,
-            ppData: ?*?*IStream,
-            pdwOptimalWriteBufferSize: ?*u32,
-            ppszCookie: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSupportedResources: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceResources,
+                pszObjectID: ?[*:0]const u16,
+                ppKeys: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceResources,
+                pszObjectID: ?[*:0]const u16,
+                ppKeys: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetResourceAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceResources,
+                pszObjectID: ?[*:0]const u16,
+                Key: ?*const PROPERTYKEY,
+                ppResourceAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceResources,
+                pszObjectID: ?[*:0]const u16,
+                Key: ?*const PROPERTYKEY,
+                ppResourceAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceResources,
+                pszObjectID: ?[*:0]const u16,
+                Key: ?*const PROPERTYKEY,
+                dwMode: u32,
+                pdwOptimalBufferSize: ?*u32,
+                ppStream: ?*?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceResources,
+                pszObjectID: ?[*:0]const u16,
+                Key: ?*const PROPERTYKEY,
+                dwMode: u32,
+                pdwOptimalBufferSize: ?*u32,
+                ppStream: ?*?*IStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Delete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceResources,
+                pszObjectID: ?[*:0]const u16,
+                pKeys: ?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceResources,
+                pszObjectID: ?[*:0]const u16,
+                pKeys: ?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceResources,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CreateResource: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceResources,
+                pResourceAttributes: ?*IPortableDeviceValues,
+                ppData: ?*?*IStream,
+                pdwOptimalWriteBufferSize: ?*u32,
+                ppszCookie: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceResources,
+                pResourceAttributes: ?*IPortableDeviceValues,
+                ppData: ?*?*IStream,
+                pdwOptimalWriteBufferSize: ?*u32,
+                ppszCookie: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2389,57 +3112,130 @@ pub const IID_IPortableDeviceCapabilities = &IID_IPortableDeviceCapabilities_Val
 pub const IPortableDeviceCapabilities = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSupportedCommands: fn(
-            self: *const IPortableDeviceCapabilities,
-            ppCommands: ?*?*IPortableDeviceKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCommandOptions: fn(
-            self: *const IPortableDeviceCapabilities,
-            Command: ?*const PROPERTYKEY,
-            ppOptions: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFunctionalCategories: fn(
-            self: *const IPortableDeviceCapabilities,
-            ppCategories: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFunctionalObjects: fn(
-            self: *const IPortableDeviceCapabilities,
-            Category: ?*const Guid,
-            ppObjectIDs: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSupportedContentTypes: fn(
-            self: *const IPortableDeviceCapabilities,
-            Category: ?*const Guid,
-            ppContentTypes: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSupportedFormats: fn(
-            self: *const IPortableDeviceCapabilities,
-            ContentType: ?*const Guid,
-            ppFormats: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSupportedFormatProperties: fn(
-            self: *const IPortableDeviceCapabilities,
-            Format: ?*const Guid,
-            ppKeys: ?*?*IPortableDeviceKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFixedPropertyAttributes: fn(
-            self: *const IPortableDeviceCapabilities,
-            Format: ?*const Guid,
-            Key: ?*const PROPERTYKEY,
-            ppAttributes: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPortableDeviceCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSupportedEvents: fn(
-            self: *const IPortableDeviceCapabilities,
-            ppEvents: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEventOptions: fn(
-            self: *const IPortableDeviceCapabilities,
-            Event: ?*const Guid,
-            ppOptions: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSupportedCommands: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceCapabilities,
+                ppCommands: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceCapabilities,
+                ppCommands: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCommandOptions: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceCapabilities,
+                Command: ?*const PROPERTYKEY,
+                ppOptions: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceCapabilities,
+                Command: ?*const PROPERTYKEY,
+                ppOptions: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFunctionalCategories: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceCapabilities,
+                ppCategories: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceCapabilities,
+                ppCategories: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFunctionalObjects: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceCapabilities,
+                Category: ?*const Guid,
+                ppObjectIDs: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceCapabilities,
+                Category: ?*const Guid,
+                ppObjectIDs: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSupportedContentTypes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceCapabilities,
+                Category: ?*const Guid,
+                ppContentTypes: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceCapabilities,
+                Category: ?*const Guid,
+                ppContentTypes: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSupportedFormats: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceCapabilities,
+                ContentType: ?*const Guid,
+                ppFormats: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceCapabilities,
+                ContentType: ?*const Guid,
+                ppFormats: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSupportedFormatProperties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceCapabilities,
+                Format: ?*const Guid,
+                ppKeys: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceCapabilities,
+                Format: ?*const Guid,
+                ppKeys: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFixedPropertyAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceCapabilities,
+                Format: ?*const Guid,
+                Key: ?*const PROPERTYKEY,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceCapabilities,
+                Format: ?*const Guid,
+                Key: ?*const PROPERTYKEY,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceCapabilities,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceCapabilities,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSupportedEvents: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceCapabilities,
+                ppEvents: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceCapabilities,
+                ppEvents: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEventOptions: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceCapabilities,
+                Event: ?*const Guid,
+                ppOptions: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceCapabilities,
+                Event: ?*const Guid,
+                ppOptions: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2497,10 +3293,16 @@ pub const IID_IPortableDeviceEventCallback = &IID_IPortableDeviceEventCallback_V
 pub const IPortableDeviceEventCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnEvent: fn(
-            self: *const IPortableDeviceEventCallback,
-            pEventParameters: ?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnEvent: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceEventCallback,
+                pEventParameters: ?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceEventCallback,
+                pEventParameters: ?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2518,13 +3320,24 @@ pub const IID_IPortableDeviceDataStream = &IID_IPortableDeviceDataStream_Value;
 pub const IPortableDeviceDataStream = extern struct {
     pub const VTable = extern struct {
         base: IStream.VTable,
-        GetObjectID: fn(
-            self: *const IPortableDeviceDataStream,
-            ppszObjectID: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPortableDeviceDataStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetObjectID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceDataStream,
+                ppszObjectID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceDataStream,
+                ppszObjectID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceDataStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceDataStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2547,16 +3360,30 @@ pub const IID_IPortableDeviceUnitsStream = &IID_IPortableDeviceUnitsStream_Value
 pub const IPortableDeviceUnitsStream = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SeekInUnits: fn(
-            self: *const IPortableDeviceUnitsStream,
-            dlibMove: LARGE_INTEGER,
-            units: WPD_STREAM_UNITS,
-            dwOrigin: u32,
-            plibNewPosition: ?*ULARGE_INTEGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPortableDeviceUnitsStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SeekInUnits: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceUnitsStream,
+                dlibMove: LARGE_INTEGER,
+                units: WPD_STREAM_UNITS,
+                dwOrigin: u32,
+                plibNewPosition: ?*ULARGE_INTEGER,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceUnitsStream,
+                dlibMove: LARGE_INTEGER,
+                units: WPD_STREAM_UNITS,
+                dwOrigin: u32,
+                plibNewPosition: ?*ULARGE_INTEGER,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceUnitsStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceUnitsStream,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2578,36 +3405,76 @@ pub const IID_IPortableDevicePropertiesBulk = &IID_IPortableDevicePropertiesBulk
 pub const IPortableDevicePropertiesBulk = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        QueueGetValuesByObjectList: fn(
-            self: *const IPortableDevicePropertiesBulk,
-            pObjectIDs: ?*IPortableDevicePropVariantCollection,
-            pKeys: ?*IPortableDeviceKeyCollection,
-            pCallback: ?*IPortableDevicePropertiesBulkCallback,
-            pContext: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueueGetValuesByObjectFormat: fn(
-            self: *const IPortableDevicePropertiesBulk,
-            pguidObjectFormat: ?*const Guid,
-            pszParentObjectID: ?[*:0]const u16,
-            dwDepth: u32,
-            pKeys: ?*IPortableDeviceKeyCollection,
-            pCallback: ?*IPortableDevicePropertiesBulkCallback,
-            pContext: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        QueueSetValuesByObjectList: fn(
-            self: *const IPortableDevicePropertiesBulk,
-            pObjectValues: ?*IPortableDeviceValuesCollection,
-            pCallback: ?*IPortableDevicePropertiesBulkCallback,
-            pContext: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Start: fn(
-            self: *const IPortableDevicePropertiesBulk,
-            pContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPortableDevicePropertiesBulk,
-            pContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueueGetValuesByObjectList: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropertiesBulk,
+                pObjectIDs: ?*IPortableDevicePropVariantCollection,
+                pKeys: ?*IPortableDeviceKeyCollection,
+                pCallback: ?*IPortableDevicePropertiesBulkCallback,
+                pContext: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropertiesBulk,
+                pObjectIDs: ?*IPortableDevicePropVariantCollection,
+                pKeys: ?*IPortableDeviceKeyCollection,
+                pCallback: ?*IPortableDevicePropertiesBulkCallback,
+                pContext: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        QueueGetValuesByObjectFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropertiesBulk,
+                pguidObjectFormat: ?*const Guid,
+                pszParentObjectID: ?[*:0]const u16,
+                dwDepth: u32,
+                pKeys: ?*IPortableDeviceKeyCollection,
+                pCallback: ?*IPortableDevicePropertiesBulkCallback,
+                pContext: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropertiesBulk,
+                pguidObjectFormat: ?*const Guid,
+                pszParentObjectID: ?[*:0]const u16,
+                dwDepth: u32,
+                pKeys: ?*IPortableDeviceKeyCollection,
+                pCallback: ?*IPortableDevicePropertiesBulkCallback,
+                pContext: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        QueueSetValuesByObjectList: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropertiesBulk,
+                pObjectValues: ?*IPortableDeviceValuesCollection,
+                pCallback: ?*IPortableDevicePropertiesBulkCallback,
+                pContext: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropertiesBulk,
+                pObjectValues: ?*IPortableDeviceValuesCollection,
+                pCallback: ?*IPortableDevicePropertiesBulkCallback,
+                pContext: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Start: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropertiesBulk,
+                pContext: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropertiesBulk,
+                pContext: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropertiesBulk,
+                pContext: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropertiesBulk,
+                pContext: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2641,20 +3508,40 @@ pub const IID_IPortableDevicePropertiesBulkCallback = &IID_IPortableDeviceProper
 pub const IPortableDevicePropertiesBulkCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnStart: fn(
-            self: *const IPortableDevicePropertiesBulkCallback,
-            pContext: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnProgress: fn(
-            self: *const IPortableDevicePropertiesBulkCallback,
-            pContext: ?*const Guid,
-            pResults: ?*IPortableDeviceValuesCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnEnd: fn(
-            self: *const IPortableDevicePropertiesBulkCallback,
-            pContext: ?*const Guid,
-            hrStatus: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnStart: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropertiesBulkCallback,
+                pContext: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropertiesBulkCallback,
+                pContext: ?*const Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnProgress: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropertiesBulkCallback,
+                pContext: ?*const Guid,
+                pResults: ?*IPortableDeviceValuesCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropertiesBulkCallback,
+                pContext: ?*const Guid,
+                pResults: ?*IPortableDeviceValuesCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnEnd: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDevicePropertiesBulkCallback,
+                pContext: ?*const Guid,
+                hrStatus: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDevicePropertiesBulkCallback,
+                pContext: ?*const Guid,
+                hrStatus: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2681,18 +3568,34 @@ pub const IID_IPortableDeviceServiceManager = &IID_IPortableDeviceServiceManager
 pub const IPortableDeviceServiceManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDeviceServices: fn(
-            self: *const IPortableDeviceServiceManager,
-            pszPnPDeviceID: ?[*:0]const u16,
-            guidServiceCategory: ?*const Guid,
-            pServices: ?*?PWSTR,
-            pcServices: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceForService: fn(
-            self: *const IPortableDeviceServiceManager,
-            pszPnPServiceID: ?[*:0]const u16,
-            ppszPnPDeviceID: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceServices: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceManager,
+                pszPnPDeviceID: ?[*:0]const u16,
+                guidServiceCategory: ?*const Guid,
+                pServices: ?*?PWSTR,
+                pcServices: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceManager,
+                pszPnPDeviceID: ?[*:0]const u16,
+                guidServiceCategory: ?*const Guid,
+                pServices: ?*?PWSTR,
+                pcServices: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceForService: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceManager,
+                pszPnPServiceID: ?[*:0]const u16,
+                ppszPnPDeviceID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceManager,
+                pszPnPServiceID: ?[*:0]const u16,
+                ppszPnPDeviceID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2715,54 +3618,124 @@ pub const IID_IPortableDeviceService = &IID_IPortableDeviceService_Value;
 pub const IPortableDeviceService = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Open: fn(
-            self: *const IPortableDeviceService,
-            pszPnPServiceID: ?[*:0]const u16,
-            pClientInfo: ?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Capabilities: fn(
-            self: *const IPortableDeviceService,
-            ppCapabilities: ?*?*IPortableDeviceServiceCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Content: fn(
-            self: *const IPortableDeviceService,
-            ppContent: ?*?*IPortableDeviceContent2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Methods: fn(
-            self: *const IPortableDeviceService,
-            ppMethods: ?*?*IPortableDeviceServiceMethods,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPortableDeviceService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Close: fn(
-            self: *const IPortableDeviceService,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetServiceObjectID: fn(
-            self: *const IPortableDeviceService,
-            ppszServiceObjectID: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPnPServiceID: fn(
-            self: *const IPortableDeviceService,
-            ppszPnPServiceID: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Advise: fn(
-            self: *const IPortableDeviceService,
-            dwFlags: u32,
-            pCallback: ?*IPortableDeviceEventCallback,
-            pParameters: ?*IPortableDeviceValues,
-            ppszCookie: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Unadvise: fn(
-            self: *const IPortableDeviceService,
-            pszCookie: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SendCommand: fn(
-            self: *const IPortableDeviceService,
-            dwFlags: u32,
-            pParameters: ?*IPortableDeviceValues,
-            ppResults: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Open: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceService,
+                pszPnPServiceID: ?[*:0]const u16,
+                pClientInfo: ?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceService,
+                pszPnPServiceID: ?[*:0]const u16,
+                pClientInfo: ?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Capabilities: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceService,
+                ppCapabilities: ?*?*IPortableDeviceServiceCapabilities,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceService,
+                ppCapabilities: ?*?*IPortableDeviceServiceCapabilities,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Content: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceService,
+                ppContent: ?*?*IPortableDeviceContent2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceService,
+                ppContent: ?*?*IPortableDeviceContent2,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Methods: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceService,
+                ppMethods: ?*?*IPortableDeviceServiceMethods,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceService,
+                ppMethods: ?*?*IPortableDeviceServiceMethods,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceService,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceService,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Close: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceService,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceService,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetServiceObjectID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceService,
+                ppszServiceObjectID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceService,
+                ppszServiceObjectID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPnPServiceID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceService,
+                ppszPnPServiceID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceService,
+                ppszPnPServiceID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Advise: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceService,
+                dwFlags: u32,
+                pCallback: ?*IPortableDeviceEventCallback,
+                pParameters: ?*IPortableDeviceValues,
+                ppszCookie: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceService,
+                dwFlags: u32,
+                pCallback: ?*IPortableDeviceEventCallback,
+                pParameters: ?*IPortableDeviceValues,
+                ppszCookie: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Unadvise: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceService,
+                pszCookie: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceService,
+                pszCookie: ?[*:0]const u16,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SendCommand: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceService,
+                dwFlags: u32,
+                pParameters: ?*IPortableDeviceValues,
+                ppResults: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceService,
+                dwFlags: u32,
+                pParameters: ?*IPortableDeviceValues,
+                ppResults: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2821,83 +3794,192 @@ pub const IID_IPortableDeviceServiceCapabilities = &IID_IPortableDeviceServiceCa
 pub const IPortableDeviceServiceCapabilities = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSupportedMethods: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            ppMethods: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSupportedMethodsByFormat: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            Format: ?*const Guid,
-            ppMethods: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMethodAttributes: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            Method: ?*const Guid,
-            ppAttributes: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMethodParameterAttributes: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            Method: ?*const Guid,
-            Parameter: ?*const PROPERTYKEY,
-            ppAttributes: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSupportedFormats: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            ppFormats: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFormatAttributes: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            Format: ?*const Guid,
-            ppAttributes: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSupportedFormatProperties: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            Format: ?*const Guid,
-            ppKeys: ?*?*IPortableDeviceKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFormatPropertyAttributes: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            Format: ?*const Guid,
-            Property: ?*const PROPERTYKEY,
-            ppAttributes: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSupportedEvents: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            ppEvents: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEventAttributes: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            Event: ?*const Guid,
-            ppAttributes: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEventParameterAttributes: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            Event: ?*const Guid,
-            Parameter: ?*const PROPERTYKEY,
-            ppAttributes: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInheritedServices: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            dwInheritanceType: u32,
-            ppServices: ?*?*IPortableDevicePropVariantCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFormatRenderingProfiles: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            Format: ?*const Guid,
-            ppRenderingProfiles: ?*?*IPortableDeviceValuesCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSupportedCommands: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            ppCommands: ?*?*IPortableDeviceKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCommandOptions: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-            Command: ?*const PROPERTYKEY,
-            ppOptions: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPortableDeviceServiceCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSupportedMethods: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                ppMethods: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                ppMethods: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSupportedMethodsByFormat: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Format: ?*const Guid,
+                ppMethods: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Format: ?*const Guid,
+                ppMethods: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMethodAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Method: ?*const Guid,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Method: ?*const Guid,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetMethodParameterAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Method: ?*const Guid,
+                Parameter: ?*const PROPERTYKEY,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Method: ?*const Guid,
+                Parameter: ?*const PROPERTYKEY,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSupportedFormats: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                ppFormats: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                ppFormats: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFormatAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Format: ?*const Guid,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Format: ?*const Guid,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSupportedFormatProperties: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Format: ?*const Guid,
+                ppKeys: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Format: ?*const Guid,
+                ppKeys: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFormatPropertyAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Format: ?*const Guid,
+                Property: ?*const PROPERTYKEY,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Format: ?*const Guid,
+                Property: ?*const PROPERTYKEY,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSupportedEvents: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                ppEvents: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                ppEvents: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEventAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Event: ?*const Guid,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Event: ?*const Guid,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetEventParameterAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Event: ?*const Guid,
+                Parameter: ?*const PROPERTYKEY,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Event: ?*const Guid,
+                Parameter: ?*const PROPERTYKEY,
+                ppAttributes: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInheritedServices: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                dwInheritanceType: u32,
+                ppServices: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                dwInheritanceType: u32,
+                ppServices: ?*?*IPortableDevicePropVariantCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFormatRenderingProfiles: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Format: ?*const Guid,
+                ppRenderingProfiles: ?*?*IPortableDeviceValuesCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Format: ?*const Guid,
+                ppRenderingProfiles: ?*?*IPortableDeviceValuesCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetSupportedCommands: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                ppCommands: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                ppCommands: ?*?*IPortableDeviceKeyCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetCommandOptions: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Command: ?*const PROPERTYKEY,
+                ppOptions: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+                Command: ?*const PROPERTYKEY,
+                ppOptions: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceCapabilities,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceCapabilities,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2976,22 +4058,44 @@ pub const IID_IPortableDeviceServiceMethods = &IID_IPortableDeviceServiceMethods
 pub const IPortableDeviceServiceMethods = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Invoke: fn(
-            self: *const IPortableDeviceServiceMethods,
-            Method: ?*const Guid,
-            pParameters: ?*IPortableDeviceValues,
-            ppResults: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        InvokeAsync: fn(
-            self: *const IPortableDeviceServiceMethods,
-            Method: ?*const Guid,
-            pParameters: ?*IPortableDeviceValues,
-            pCallback: ?*IPortableDeviceServiceMethodCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPortableDeviceServiceMethods,
-            pCallback: ?*IPortableDeviceServiceMethodCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Invoke: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceMethods,
+                Method: ?*const Guid,
+                pParameters: ?*IPortableDeviceValues,
+                ppResults: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceMethods,
+                Method: ?*const Guid,
+                pParameters: ?*IPortableDeviceValues,
+                ppResults: ?*?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        InvokeAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceMethods,
+                Method: ?*const Guid,
+                pParameters: ?*IPortableDeviceValues,
+                pCallback: ?*IPortableDeviceServiceMethodCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceMethods,
+                Method: ?*const Guid,
+                pParameters: ?*IPortableDeviceValues,
+                pCallback: ?*IPortableDeviceServiceMethodCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceMethods,
+                pCallback: ?*IPortableDeviceServiceMethodCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceMethods,
+                pCallback: ?*IPortableDeviceServiceMethodCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3018,11 +4122,18 @@ pub const IID_IPortableDeviceServiceMethodCallback = &IID_IPortableDeviceService
 pub const IPortableDeviceServiceMethodCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnComplete: fn(
-            self: *const IPortableDeviceServiceMethodCallback,
-            hrStatus: HRESULT,
-            pResults: ?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnComplete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceMethodCallback,
+                hrStatus: HRESULT,
+                pResults: ?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceMethodCallback,
+                hrStatus: HRESULT,
+                pResults: ?*IPortableDeviceValues,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3040,15 +4151,28 @@ pub const IID_IPortableDeviceServiceActivation = &IID_IPortableDeviceServiceActi
 pub const IPortableDeviceServiceActivation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OpenAsync: fn(
-            self: *const IPortableDeviceServiceActivation,
-            pszPnPServiceID: ?[*:0]const u16,
-            pClientInfo: ?*IPortableDeviceValues,
-            pCallback: ?*IPortableDeviceServiceOpenCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CancelOpenAsync: fn(
-            self: *const IPortableDeviceServiceActivation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceActivation,
+                pszPnPServiceID: ?[*:0]const u16,
+                pClientInfo: ?*IPortableDeviceValues,
+                pCallback: ?*IPortableDeviceServiceOpenCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceActivation,
+                pszPnPServiceID: ?[*:0]const u16,
+                pClientInfo: ?*IPortableDeviceValues,
+                pCallback: ?*IPortableDeviceServiceOpenCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        CancelOpenAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceActivation,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceActivation,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3070,10 +4194,16 @@ pub const IID_IPortableDeviceServiceOpenCallback = &IID_IPortableDeviceServiceOp
 pub const IPortableDeviceServiceOpenCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnComplete: fn(
-            self: *const IPortableDeviceServiceOpenCallback,
-            hrStatus: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnComplete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceServiceOpenCallback,
+                hrStatus: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceServiceOpenCallback,
+                hrStatus: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3092,11 +4222,18 @@ pub const IID_IPortableDeviceDispatchFactory = &IID_IPortableDeviceDispatchFacto
 pub const IPortableDeviceDispatchFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDeviceDispatch: fn(
-            self: *const IPortableDeviceDispatchFactory,
-            pszPnPDeviceID: ?[*:0]const u16,
-            ppDeviceDispatch: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceDispatch: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceDispatchFactory,
+                pszPnPDeviceID: ?[*:0]const u16,
+                ppDeviceDispatch: ?*?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceDispatchFactory,
+                pszPnPDeviceID: ?[*:0]const u16,
+                ppDeviceDispatch: ?*?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3115,17 +4252,32 @@ pub const IID_IPortableDeviceWebControl = &IID_IPortableDeviceWebControl_Value;
 pub const IPortableDeviceWebControl = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetDeviceFromId: fn(
-            self: *const IPortableDeviceWebControl,
-            deviceId: ?BSTR,
-            ppDevice: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDeviceFromIdAsync: fn(
-            self: *const IPortableDeviceWebControl,
-            deviceId: ?BSTR,
-            pCompletionHandler: ?*IDispatch,
-            pErrorHandler: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceFromId: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceWebControl,
+                deviceId: ?BSTR,
+                ppDevice: ?*?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceWebControl,
+                deviceId: ?BSTR,
+                ppDevice: ?*?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetDeviceFromIdAsync: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceWebControl,
+                deviceId: ?BSTR,
+                pCompletionHandler: ?*IDispatch,
+                pErrorHandler: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceWebControl,
+                deviceId: ?BSTR,
+                pCompletionHandler: ?*IDispatch,
+                pErrorHandler: ?*IDispatch,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3150,23 +4302,48 @@ pub const IID_IEnumPortableDeviceConnectors = &IID_IEnumPortableDeviceConnectors
 pub const IEnumPortableDeviceConnectors = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumPortableDeviceConnectors,
-            cRequested: u32,
-            pConnectors: [*]?*IPortableDeviceConnector,
-            pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumPortableDeviceConnectors,
-            cConnectors: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumPortableDeviceConnectors,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumPortableDeviceConnectors,
-            ppEnum: ?*?*IEnumPortableDeviceConnectors,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumPortableDeviceConnectors,
+                cRequested: u32,
+                pConnectors: [*]?*IPortableDeviceConnector,
+                pcFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumPortableDeviceConnectors,
+                cRequested: u32,
+                pConnectors: [*]?*IPortableDeviceConnector,
+                pcFetched: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Skip: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumPortableDeviceConnectors,
+                cConnectors: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumPortableDeviceConnectors,
+                cConnectors: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Reset: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumPortableDeviceConnectors,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumPortableDeviceConnectors,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Clone: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IEnumPortableDeviceConnectors,
+                ppEnum: ?*?*IEnumPortableDeviceConnectors,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IEnumPortableDeviceConnectors,
+                ppEnum: ?*?*IEnumPortableDeviceConnectors,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3197,36 +4374,78 @@ pub const IID_IPortableDeviceConnector = &IID_IPortableDeviceConnector_Value;
 pub const IPortableDeviceConnector = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Connect: fn(
-            self: *const IPortableDeviceConnector,
-            pCallback: ?*IConnectionRequestCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Disconnect: fn(
-            self: *const IPortableDeviceConnector,
-            pCallback: ?*IConnectionRequestCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Cancel: fn(
-            self: *const IPortableDeviceConnector,
-            pCallback: ?*IConnectionRequestCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetProperty: fn(
-            self: *const IPortableDeviceConnector,
-            pPropertyKey: ?*const DEVPROPKEY,
-            pPropertyType: ?*u32,
-            ppData: [*]?*u8,
-            pcbData: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetProperty: fn(
-            self: *const IPortableDeviceConnector,
-            pPropertyKey: ?*const DEVPROPKEY,
-            PropertyType: u32,
-            pData: [*:0]const u8,
-            cbData: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPnPID: fn(
-            self: *const IPortableDeviceConnector,
-            ppwszPnPID: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Connect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceConnector,
+                pCallback: ?*IConnectionRequestCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceConnector,
+                pCallback: ?*IConnectionRequestCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Disconnect: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceConnector,
+                pCallback: ?*IConnectionRequestCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceConnector,
+                pCallback: ?*IConnectionRequestCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        Cancel: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceConnector,
+                pCallback: ?*IConnectionRequestCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceConnector,
+                pCallback: ?*IConnectionRequestCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceConnector,
+                pPropertyKey: ?*const DEVPROPKEY,
+                pPropertyType: ?*u32,
+                ppData: [*]?*u8,
+                pcbData: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceConnector,
+                pPropertyKey: ?*const DEVPROPKEY,
+                pPropertyType: ?*u32,
+                ppData: [*]?*u8,
+                pcbData: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetProperty: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceConnector,
+                pPropertyKey: ?*const DEVPROPKEY,
+                PropertyType: u32,
+                pData: [*:0]const u8,
+                cbData: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceConnector,
+                pPropertyKey: ?*const DEVPROPKEY,
+                PropertyType: u32,
+                pData: [*:0]const u8,
+                cbData: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetPnPID: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IPortableDeviceConnector,
+                ppwszPnPID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IPortableDeviceConnector,
+                ppwszPnPID: ?*?PWSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3264,10 +4483,16 @@ pub const IID_IConnectionRequestCallback = &IID_IConnectionRequestCallback_Value
 pub const IConnectionRequestCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnComplete: fn(
-            self: *const IConnectionRequestCallback,
-            hrStatus: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnComplete: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IConnectionRequestCallback,
+                hrStatus: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IConnectionRequestCallback,
+                hrStatus: HRESULT,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3311,15 +4536,28 @@ pub const IID_IMediaRadioManager = &IID_IMediaRadioManager_Value;
 pub const IMediaRadioManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRadioInstances: fn(
-            self: *const IMediaRadioManager,
-            ppCollection: ?*?*IRadioInstanceCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnSystemRadioStateChange: fn(
-            self: *const IMediaRadioManager,
-            sysRadioState: SYSTEM_RADIO_STATE,
-            uTimeoutSec: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRadioInstances: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaRadioManager,
+                ppCollection: ?*?*IRadioInstanceCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaRadioManager,
+                ppCollection: ?*?*IRadioInstanceCollection,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnSystemRadioStateChange: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaRadioManager,
+                sysRadioState: SYSTEM_RADIO_STATE,
+                uTimeoutSec: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaRadioManager,
+                sysRadioState: SYSTEM_RADIO_STATE,
+                uTimeoutSec: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3341,15 +4579,28 @@ pub const IID_IRadioInstanceCollection = &IID_IRadioInstanceCollection_Value;
 pub const IRadioInstanceCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: fn(
-            self: *const IRadioInstanceCollection,
-            pcInstance: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAt: fn(
-            self: *const IRadioInstanceCollection,
-            uIndex: u32,
-            ppRadioInstance: ?*?*IRadioInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRadioInstanceCollection,
+                pcInstance: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRadioInstanceCollection,
+                pcInstance: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetAt: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRadioInstanceCollection,
+                uIndex: u32,
+                ppRadioInstance: ?*?*IRadioInstance,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRadioInstanceCollection,
+                uIndex: u32,
+                ppRadioInstance: ?*?*IRadioInstance,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3371,34 +4622,76 @@ pub const IID_IRadioInstance = &IID_IRadioInstance_Value;
 pub const IRadioInstance = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRadioManagerSignature: fn(
-            self: *const IRadioInstance,
-            pguidSignature: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInstanceSignature: fn(
-            self: *const IRadioInstance,
-            pbstrId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFriendlyName: fn(
-            self: *const IRadioInstance,
-            lcid: u32,
-            pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRadioState: fn(
-            self: *const IRadioInstance,
-            pRadioState: ?*DEVICE_RADIO_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetRadioState: fn(
-            self: *const IRadioInstance,
-            radioState: DEVICE_RADIO_STATE,
-            uTimeoutSec: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsMultiComm: fn(
-            self: *const IRadioInstance,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        IsAssociatingDevice: fn(
-            self: *const IRadioInstance,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetRadioManagerSignature: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRadioInstance,
+                pguidSignature: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRadioInstance,
+                pguidSignature: ?*Guid,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInstanceSignature: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRadioInstance,
+                pbstrId: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRadioInstance,
+                pbstrId: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetFriendlyName: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRadioInstance,
+                lcid: u32,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRadioInstance,
+                lcid: u32,
+                pbstrName: ?*?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetRadioState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRadioInstance,
+                pRadioState: ?*DEVICE_RADIO_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRadioInstance,
+                pRadioState: ?*DEVICE_RADIO_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetRadioState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRadioInstance,
+                radioState: DEVICE_RADIO_STATE,
+                uTimeoutSec: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IRadioInstance,
+                radioState: DEVICE_RADIO_STATE,
+                uTimeoutSec: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        IsMultiComm: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRadioInstance,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+            else => *const fn(
+                self: *const IRadioInstance,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        },
+        IsAssociatingDevice: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IRadioInstance,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+            else => *const fn(
+                self: *const IRadioInstance,
+            ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3440,19 +4733,38 @@ pub const IID_IMediaRadioManagerNotifySink = &IID_IMediaRadioManagerNotifySink_V
 pub const IMediaRadioManagerNotifySink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnInstanceAdd: fn(
-            self: *const IMediaRadioManagerNotifySink,
-            pRadioInstance: ?*IRadioInstance,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnInstanceRemove: fn(
-            self: *const IMediaRadioManagerNotifySink,
-            bstrRadioInstanceId: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnInstanceRadioChange: fn(
-            self: *const IMediaRadioManagerNotifySink,
-            bstrRadioInstanceId: ?BSTR,
-            radioState: DEVICE_RADIO_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnInstanceAdd: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaRadioManagerNotifySink,
+                pRadioInstance: ?*IRadioInstance,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaRadioManagerNotifySink,
+                pRadioInstance: ?*IRadioInstance,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnInstanceRemove: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaRadioManagerNotifySink,
+                bstrRadioInstanceId: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaRadioManagerNotifySink,
+                bstrRadioInstanceId: ?BSTR,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        OnInstanceRadioChange: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMediaRadioManagerNotifySink,
+                bstrRadioInstanceId: ?BSTR,
+                radioState: DEVICE_RADIO_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMediaRadioManagerNotifySink,
+                bstrRadioInstanceId: ?BSTR,
+                radioState: DEVICE_RADIO_STATE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

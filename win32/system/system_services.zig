@@ -3687,11 +3687,18 @@ pub const DEV_BROADCAST_VOLUME_FLAGS = enum(u16) {
 pub const DBTF_MEDIA = DEV_BROADCAST_VOLUME_FLAGS.MEDIA;
 pub const DBTF_NET = DEV_BROADCAST_VOLUME_FLAGS.NET;
 
-pub const PUMS_SCHEDULER_ENTRY_POINT = fn(
-    Reason: RTL_UMS_SCHEDULER_REASON,
-    ActivationPayload: usize,
-    SchedulerParam: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PUMS_SCHEDULER_ENTRY_POINT = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        Reason: RTL_UMS_SCHEDULER_REASON,
+        ActivationPayload: usize,
+        SchedulerParam: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        Reason: RTL_UMS_SCHEDULER_REASON,
+        ActivationPayload: usize,
+        SchedulerParam: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 
 
@@ -5353,11 +5360,18 @@ pub const IMAGE_IMPORT_BY_NAME = extern struct {
     Name: [1]CHAR,
 };
 
-pub const PIMAGE_TLS_CALLBACK = fn(
-    DllHandle: ?*anyopaque,
-    Reason: u32,
-    Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const PIMAGE_TLS_CALLBACK = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        DllHandle: ?*anyopaque,
+        Reason: u32,
+        Reserved: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        DllHandle: ?*anyopaque,
+        Reason: u32,
+        Reserved: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const IMAGE_TLS_DIRECTORY64 = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
@@ -5828,15 +5842,27 @@ pub const HEAP_OPTIMIZE_RESOURCES_INFORMATION = extern struct {
     Flags: u32,
 };
 
-pub const WORKERCALLBACKFUNC = fn(
-    param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const WORKERCALLBACKFUNC = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        param0: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const APC_CALLBACK_FUNCTION = fn(
-    param0: u32,
-    param1: ?*anyopaque,
-    param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const APC_CALLBACK_FUNCTION = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        param0: u32,
+        param1: ?*anyopaque,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        param0: u32,
+        param1: ?*anyopaque,
+        param2: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
 pub const ACTIVATION_CONTEXT_INFO_CLASS = enum(i32) {
     ActivationContextBasicInformation = 1,
@@ -6154,36 +6180,70 @@ pub const KTMOBJECT_CURSOR = extern struct {
 };
 
 pub const PTERMINATION_HANDLER = switch(@import("../zig.zig").arch) {
-    .Arm64 => fn(
-        _abnormal_termination: BOOLEAN,
-        EstablisherFrame: u64,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    .X64 => fn(
-        _abnormal_termination: BOOLEAN,
-        EstablisherFrame: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
+    .Arm64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            _abnormal_termination: BOOLEAN,
+            EstablisherFrame: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        else => *const fn(
+            _abnormal_termination: BOOLEAN,
+            EstablisherFrame: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    } ,
+    .X64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            _abnormal_termination: BOOLEAN,
+            EstablisherFrame: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        else => *const fn(
+            _abnormal_termination: BOOLEAN,
+            EstablisherFrame: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    } ,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
 pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = switch(@import("../zig.zig").arch) {
-    .Arm64 => fn(
-        Process: ?HANDLE,
-        TableAddress: ?*anyopaque,
-        Entries: ?*u32,
-        Functions: ?*?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    .X64 => fn(
-        Process: ?HANDLE,
-        TableAddress: ?*anyopaque,
-        Entries: ?*u32,
-        Functions: ?*?*IMAGE_RUNTIME_FUNCTION_ENTRY,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
+    .Arm64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            Process: ?HANDLE,
+            TableAddress: ?*anyopaque,
+            Entries: ?*u32,
+            Functions: ?*?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        else => *const fn(
+            Process: ?HANDLE,
+            TableAddress: ?*anyopaque,
+            Entries: ?*u32,
+            Functions: ?*?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+    } ,
+    .X64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            Process: ?HANDLE,
+            TableAddress: ?*anyopaque,
+            Entries: ?*u32,
+            Functions: ?*?*IMAGE_RUNTIME_FUNCTION_ENTRY,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        else => *const fn(
+            Process: ?HANDLE,
+            TableAddress: ?*anyopaque,
+            Entries: ?*u32,
+            Functions: ?*?*IMAGE_RUNTIME_FUNCTION_ENTRY,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+    } ,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
 pub const PEXCEPTION_FILTER = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => fn(
-        ExceptionPointers: ?*EXCEPTION_POINTERS,
-        EstablisherFrame: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    .X64, .Arm64 => switch (@import("builtin").zig_backend) {
+        .stage1 => fn(
+            ExceptionPointers: ?*EXCEPTION_POINTERS,
+            EstablisherFrame: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        else => *const fn(
+            ExceptionPointers: ?*EXCEPTION_POINTERS,
+            EstablisherFrame: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+    } ,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
 pub const REARRANGE_FILE_DATA32 = switch(@import("../zig.zig").arch) {

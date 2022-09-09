@@ -99,24 +99,47 @@ pub const JsMemoryAllocate = JsMemoryEventType.Allocate;
 pub const JsMemoryFree = JsMemoryEventType.Free;
 pub const JsMemoryFailure = JsMemoryEventType.Failure;
 
-pub const JsMemoryAllocationCallback = fn(
-    callbackState: ?*anyopaque,
-    allocationEvent: JsMemoryEventType,
-    allocationSize: usize,
-) callconv(@import("std").os.windows.WINAPI) bool;
+pub const JsMemoryAllocationCallback = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        callbackState: ?*anyopaque,
+        allocationEvent: JsMemoryEventType,
+        allocationSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) bool,
+    else => *const fn(
+        callbackState: ?*anyopaque,
+        allocationEvent: JsMemoryEventType,
+        allocationSize: usize,
+    ) callconv(@import("std").os.windows.WINAPI) bool,
+} ;
 
-pub const JsBeforeCollectCallback = fn(
-    callbackState: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const JsBeforeCollectCallback = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        callbackState: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        callbackState: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const JsBackgroundWorkItemCallback = fn(
-    callbackState: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const JsBackgroundWorkItemCallback = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        callbackState: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        callbackState: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const JsThreadServiceCallback = fn(
-    callback: ?JsBackgroundWorkItemCallback,
-    callbackState: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) bool;
+pub const JsThreadServiceCallback = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        callback: ?JsBackgroundWorkItemCallback,
+        callbackState: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) bool,
+    else => *const fn(
+        callback: ?JsBackgroundWorkItemCallback,
+        callbackState: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) bool,
+} ;
 
 pub const JsValueType = enum(i32) {
     Undefined = 0,
@@ -139,17 +162,31 @@ pub const JsFunction = JsValueType.Function;
 pub const JsError = JsValueType.Error;
 pub const JsArray = JsValueType.Array;
 
-pub const JsFinalizeCallback = fn(
-    data: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub const JsFinalizeCallback = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        data: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+    else => *const fn(
+        data: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) void,
+} ;
 
-pub const JsNativeFunction = fn(
-    callee: ?*anyopaque,
-    isConstructCall: bool,
-    arguments: ?*?*anyopaque,
-    argumentCount: u16,
-    callbackState: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+pub const JsNativeFunction = switch (@import("builtin").zig_backend) {
+    .stage1 => fn(
+        callee: ?*anyopaque,
+        isConstructCall: bool,
+        arguments: ?*?*anyopaque,
+        argumentCount: u16,
+        callbackState: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+    else => *const fn(
+        callee: ?*anyopaque,
+        isConstructCall: bool,
+        arguments: ?*?*anyopaque,
+        argumentCount: u16,
+        callbackState: ?*anyopaque,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+} ;
 
 
 //--------------------------------------------------------------------------------
