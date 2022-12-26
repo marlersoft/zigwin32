@@ -4751,26 +4751,24 @@ pub const IAppxPackageEditor = extern struct {
 
 pub const PACKAGE_VERSION = extern struct {
     Anonymous: extern union {
-        // WARNING: unable to add field alignment because it's not implemented for unions
-        Version: u64,
+        Version: u64 align(4),
         Anonymous: extern struct {
             Revision: u16,
             Build: u16,
             Minor: u16,
             Major: u16,
-        },
+        } align(4),
     },
 };
 
 pub const PACKAGE_ID = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    reserved: u32,
-    processorArchitecture: u32,
-    version: PACKAGE_VERSION,
-    name: ?PWSTR,
-    publisher: ?PWSTR,
-    resourceId: ?PWSTR,
-    publisherId: ?PWSTR,
+    reserved: u32 align(4),
+    processorArchitecture: u32 align(4),
+    version: PACKAGE_VERSION align(4),
+    name: ?PWSTR align(4),
+    publisher: ?PWSTR align(4),
+    resourceId: ?PWSTR align(4),
+    publisherId: ?PWSTR align(4),
 };
 
 pub const PackagePathType = enum(i32) {
@@ -4810,13 +4808,12 @@ pub const _PACKAGE_INFO_REFERENCE = extern struct {
 };
 
 pub const PACKAGE_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    reserved: u32,
-    flags: u32,
-    path: ?PWSTR,
-    packageFullName: ?PWSTR,
-    packageFamilyName: ?PWSTR,
-    packageId: PACKAGE_ID,
+    reserved: u32 align(4),
+    flags: u32 align(4),
+    path: ?PWSTR align(4),
+    packageFullName: ?PWSTR align(4),
+    packageFamilyName: ?PWSTR align(4),
+    packageId: PACKAGE_ID align(4),
 };
 
 pub const CreatePackageDependencyOptions = enum(i32) {

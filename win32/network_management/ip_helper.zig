@@ -561,11 +561,11 @@ pub const icmp_echo_reply = extern struct {
 };
 
 
-pub const IPV6_ADDRESS_EX = packed struct {
-    sin6_port: u16,
-    sin6_flowinfo: u32,
-    sin6_addr: [8]u16,
-    sin6_scope_id: u32,
+pub const IPV6_ADDRESS_EX = extern struct {
+    sin6_port: u16 align(1),
+    sin6_flowinfo: u32 align(1),
+    sin6_addr: [8]u16 align(1),
+    sin6_scope_id: u32 align(1),
 };
 
 pub const icmpv6_echo_reply_lh = extern struct {

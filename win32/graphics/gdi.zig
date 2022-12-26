@@ -2906,12 +2906,11 @@ pub const BITMAPCOREINFO = extern struct {
 };
 
 pub const BITMAPFILEHEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    bfType: u16,
-    bfSize: u32,
-    bfReserved1: u16,
-    bfReserved2: u16,
-    bfOffBits: u32,
+    bfType: u16 align(2),
+    bfSize: u32 align(2),
+    bfReserved1: u16 align(2),
+    bfReserved2: u16 align(2),
+    bfOffBits: u32 align(2),
 };
 
 pub const HANDLETABLE = extern struct {
@@ -2925,14 +2924,13 @@ pub const METARECORD = extern struct {
 };
 
 pub const METAHEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    mtType: u16,
-    mtHeaderSize: u16,
-    mtVersion: u16,
-    mtSize: u32,
-    mtNoObjects: u16,
-    mtMaxRecord: u32,
-    mtNoParameters: u16,
+    mtType: u16 align(2),
+    mtHeaderSize: u16 align(2),
+    mtVersion: u16 align(2),
+    mtSize: u32 align(2),
+    mtNoObjects: u16 align(2),
+    mtMaxRecord: u32 align(2),
+    mtNoParameters: u16 align(2),
 };
 
 pub const ENHMETARECORD = extern struct {

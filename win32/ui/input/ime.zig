@@ -883,11 +883,11 @@ pub const IFEClassFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IMEDLG = packed struct {
-    cbIMEDLG: i32,
-    hwnd: ?HWND,
-    lpwstrWord: ?PWSTR,
-    nTabId: i32,
+pub const IMEDLG = extern struct {
+    cbIMEDLG: i32 align(1),
+    hwnd: ?HWND align(1),
+    lpwstrWord: ?PWSTR align(1),
+    nTabId: i32 align(1),
 };
 
 const IID_IFECommon_Value = Guid.initString("019f7151-e6db-11d0-83c3-00c04fddb82e");
@@ -959,46 +959,46 @@ pub const IFECommon = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WDD = packed struct {
-    wDispPos: u16,
-    Anonymous1: packed union {
-        wReadPos: u16,
-        wCompPos: u16,
-    },
-    cchDisp: u16,
-    Anonymous2: packed union {
-        cchRead: u16,
-        cchComp: u16,
-    },
-    WDD_nReserve1: u32,
-    nPos: u16,
-    _bitfield: u16,
-    pReserved: ?*anyopaque,
+pub const WDD = extern struct {
+    wDispPos: u16 align(1),
+    Anonymous1: extern union {
+        wReadPos: u16 align(1),
+        wCompPos: u16 align(1),
+    } align(1),
+    cchDisp: u16 align(1),
+    Anonymous2: extern union {
+        cchRead: u16 align(1),
+        cchComp: u16 align(1),
+    } align(1),
+    WDD_nReserve1: u32 align(1),
+    nPos: u16 align(1),
+    _bitfield: u16 align(1),
+    pReserved: ?*anyopaque align(1),
 };
 
-pub const MORRSLT = packed struct {
-    dwSize: u32,
-    pwchOutput: ?PWSTR,
-    cchOutput: u16,
-    Anonymous1: packed union {
-        pwchRead: ?PWSTR,
-        pwchComp: ?PWSTR,
-    },
-    Anonymous2: packed union {
-        cchRead: u16,
-        cchComp: u16,
-    },
-    pchInputPos: ?*u16,
-    pchOutputIdxWDD: ?*u16,
-    Anonymous3: packed union {
-        pchReadIdxWDD: ?*u16,
-        pchCompIdxWDD: ?*u16,
-    },
-    paMonoRubyPos: ?*u16,
-    pWDD: ?*WDD,
-    cWDD: i32,
-    pPrivate: ?*anyopaque,
-    BLKBuff: [1]u16,
+pub const MORRSLT = extern struct {
+    dwSize: u32 align(1),
+    pwchOutput: ?PWSTR align(1),
+    cchOutput: u16 align(1),
+    Anonymous1: extern union {
+        pwchRead: ?PWSTR align(1),
+        pwchComp: ?PWSTR align(1),
+    } align(1),
+    Anonymous2: extern union {
+        cchRead: u16 align(1),
+        cchComp: u16 align(1),
+    } align(1),
+    pchInputPos: ?*u16 align(1),
+    pchOutputIdxWDD: ?*u16 align(1),
+    Anonymous3: extern union {
+        pchReadIdxWDD: ?*u16 align(1),
+        pchCompIdxWDD: ?*u16 align(1),
+    } align(1),
+    paMonoRubyPos: ?*u16 align(1),
+    pWDD: ?*WDD align(1),
+    cWDD: i32 align(1),
+    pPrivate: ?*anyopaque align(1),
+    BLKBuff: [1]u16 align(1),
 };
 
 const IID_IFELanguage_Value = Guid.initString("019f7152-e6db-11d0-83c3-00c04fddb82e");
@@ -1195,33 +1195,33 @@ pub const IFED_UCT_STRING_UNICODE = IMEUCT.STRING_UNICODE;
 pub const IFED_UCT_USER_DEFINED = IMEUCT.USER_DEFINED;
 pub const IFED_UCT_MAX = IMEUCT.MAX;
 
-pub const IMEWRD = packed struct {
-    pwchReading: ?PWSTR,
-    pwchDisplay: ?PWSTR,
-    Anonymous: packed union {
-        ulPos: u32,
-        Anonymous: packed struct {
-            nPos1: u16,
-            nPos2: u16,
-        },
-    },
-    rgulAttrs: [2]u32,
-    cbComment: i32,
-    uct: IMEUCT,
-    pvComment: ?*anyopaque,
+pub const IMEWRD = extern struct {
+    pwchReading: ?PWSTR align(1),
+    pwchDisplay: ?PWSTR align(1),
+    Anonymous: extern union {
+        ulPos: u32 align(1),
+        Anonymous: extern struct {
+            nPos1: u16 align(1),
+            nPos2: u16 align(1),
+        } align(1),
+    } align(1),
+    rgulAttrs: [2]u32 align(1),
+    cbComment: i32 align(1),
+    uct: IMEUCT align(1),
+    pvComment: ?*anyopaque align(1),
 };
 
-pub const IMESHF = packed struct {
-    cbShf: u16,
-    verDic: u16,
-    szTitle: [48]CHAR,
-    szDescription: [256]CHAR,
-    szCopyright: [128]CHAR,
+pub const IMESHF = extern struct {
+    cbShf: u16 align(1),
+    verDic: u16 align(1),
+    szTitle: [48]CHAR align(1),
+    szDescription: [256]CHAR align(1),
+    szCopyright: [128]CHAR align(1),
 };
 
-pub const POSTBL = packed struct {
-    nPos: u16,
-    szName: ?*u8,
+pub const POSTBL = extern struct {
+    nPos: u16 align(1),
+    szName: ?*u8 align(1),
 };
 
 pub const IMEREL = enum(i32) {
@@ -1277,10 +1277,10 @@ pub const IFED_REL_UNKNOWN1 = IMEREL.UNKNOWN1;
 pub const IFED_REL_UNKNOWN2 = IMEREL.UNKNOWN2;
 pub const IFED_REL_ALL = IMEREL.ALL;
 
-pub const IMEDP = packed struct {
-    wrdModifier: IMEWRD,
-    wrdModifiee: IMEWRD,
-    relID: IMEREL,
+pub const IMEDP = extern struct {
+    wrdModifier: IMEWRD align(1),
+    wrdModifiee: IMEWRD align(1),
+    relID: IMEREL align(1),
 };
 
 pub const PFNLOG = switch (@import("builtin").zig_backend) {
@@ -1605,59 +1605,59 @@ pub const IFEDictionary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IMEKMSINIT = packed struct {
-    cbSize: i32,
-    hWnd: ?HWND,
+pub const IMEKMSINIT = extern struct {
+    cbSize: i32 align(1),
+    hWnd: ?HWND align(1),
 };
 
-pub const IMEKMSKEY = packed struct {
-    dwStatus: u32,
-    dwCompStatus: u32,
-    dwVKEY: u32,
-    Anonymous1: packed union {
-        dwControl: u32,
-        dwNotUsed: u32,
-    },
-    Anonymous2: packed union {
-        pwszDscr: [31]u16,
-        pwszNoUse: [31]u16,
-    },
+pub const IMEKMSKEY = extern struct {
+    dwStatus: u32 align(1),
+    dwCompStatus: u32 align(1),
+    dwVKEY: u32 align(1),
+    Anonymous1: extern union {
+        dwControl: u32 align(1),
+        dwNotUsed: u32 align(1),
+    } align(1),
+    Anonymous2: extern union {
+        pwszDscr: [31]u16 align(1),
+        pwszNoUse: [31]u16 align(1),
+    } align(1),
 };
 
-pub const IMEKMS = packed struct {
-    cbSize: i32,
-    hIMC: ?HIMC,
-    cKeyList: u32,
-    pKeyList: ?*IMEKMSKEY,
+pub const IMEKMS = extern struct {
+    cbSize: i32 align(1),
+    hIMC: ?HIMC align(1),
+    cKeyList: u32 align(1),
+    pKeyList: ?*IMEKMSKEY align(1),
 };
 
-pub const IMEKMSNTFY = packed struct {
-    cbSize: i32,
-    hIMC: ?HIMC,
-    fSelect: BOOL,
+pub const IMEKMSNTFY = extern struct {
+    cbSize: i32 align(1),
+    hIMC: ?HIMC align(1),
+    fSelect: BOOL align(1),
 };
 
-pub const IMEKMSKMP = packed struct {
-    cbSize: i32,
-    hIMC: ?HIMC,
-    idLang: u16,
-    wVKStart: u16,
-    wVKEnd: u16,
-    cKeyList: i32,
-    pKeyList: ?*IMEKMSKEY,
+pub const IMEKMSKMP = extern struct {
+    cbSize: i32 align(1),
+    hIMC: ?HIMC align(1),
+    idLang: u16 align(1),
+    wVKStart: u16 align(1),
+    wVKEnd: u16 align(1),
+    cKeyList: i32 align(1),
+    pKeyList: ?*IMEKMSKEY align(1),
 };
 
-pub const IMEKMSINVK = packed struct {
-    cbSize: i32,
-    hIMC: ?HIMC,
-    dwControl: u32,
+pub const IMEKMSINVK = extern struct {
+    cbSize: i32 align(1),
+    hIMC: ?HIMC align(1),
+    dwControl: u32 align(1),
 };
 
-pub const IMEKMSFUNCDESC = packed struct {
-    cbSize: i32,
-    idLang: u16,
-    dwControl: u32,
-    pwszDescription: [128]u16,
+pub const IMEKMSFUNCDESC = extern struct {
+    cbSize: i32 align(1),
+    idLang: u16 align(1),
+    dwControl: u32 align(1),
+    pwszDescription: [128]u16 align(1),
 };
 
 pub const fpCreateIFECommonInstanceType = switch (@import("builtin").zig_backend) {

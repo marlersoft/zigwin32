@@ -1622,26 +1622,26 @@ pub const JET_BKLOGTIME = extern struct {
     },
 };
 
-pub const JET_LGPOS = packed struct {
-    ib: u16,
-    isec: u16,
-    lGeneration: i32,
+pub const JET_LGPOS = extern struct {
+    ib: u16 align(1),
+    isec: u16 align(1),
+    lGeneration: i32 align(1),
 };
 
-pub const JET_SIGNATURE = packed struct {
-    ulRandom: u32,
-    logtimeCreate: JET_LOGTIME,
-    szComputerName: [16]CHAR,
+pub const JET_SIGNATURE = extern struct {
+    ulRandom: u32 align(1),
+    logtimeCreate: JET_LOGTIME align(1),
+    szComputerName: [16]CHAR align(1),
 };
 
-pub const JET_BKINFO = packed struct {
-    lgposMark: JET_LGPOS,
+pub const JET_BKINFO = extern struct {
+    lgposMark: JET_LGPOS align(1),
     Anonymous: extern union {
         logtimeMark: JET_LOGTIME,
         bklogtimeMark: JET_BKLOGTIME,
-    },
-    genLow: u32,
-    genHigh: u32,
+    } align(1),
+    genLow: u32 align(1),
+    genHigh: u32 align(1),
 };
 
 pub const JET_DBINFOMISC = extern struct {
@@ -2043,15 +2043,14 @@ pub const JET_OBJECTINFO = switch(@import("../zig.zig").arch) {
         cPage: u32,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        cbStruct: u32,
-        objtyp: u32,
-        dtCreate: f64,
-        dtUpdate: f64,
-        grbit: u32,
-        flags: u32,
-        cRecord: u32,
-        cPage: u32,
+        cbStruct: u32 align(4),
+        objtyp: u32 align(4),
+        dtCreate: f64 align(4),
+        dtUpdate: f64 align(4),
+        grbit: u32 align(4),
+        flags: u32 align(4),
+        cRecord: u32 align(4),
+        cPage: u32 align(4),
     },
 };
 pub const JET_THREADSTATS2 = switch(@import("../zig.zig").arch) {
@@ -2068,17 +2067,16 @@ pub const JET_THREADSTATS2 = switch(@import("../zig.zig").arch) {
         cPageCacheMiss: u32,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        cbStruct: u32,
-        cPageReferenced: u32,
-        cPageRead: u32,
-        cPagePreread: u32,
-        cPageDirtied: u32,
-        cPageRedirtied: u32,
-        cLogRecord: u32,
-        cbLogRecord: u32,
-        cusecPageCacheMiss: u64,
-        cPageCacheMiss: u32,
+        cbStruct: u32 align(4),
+        cPageReferenced: u32 align(4),
+        cPageRead: u32 align(4),
+        cPagePreread: u32 align(4),
+        cPageDirtied: u32 align(4),
+        cPageRedirtied: u32 align(4),
+        cLogRecord: u32 align(4),
+        cbLogRecord: u32 align(4),
+        cusecPageCacheMiss: u64 align(4),
+        cPageCacheMiss: u32 align(4),
     },
 };
 pub const JET_COMMIT_ID = switch(@import("../zig.zig").arch) {
@@ -2088,10 +2086,9 @@ pub const JET_COMMIT_ID = switch(@import("../zig.zig").arch) {
         commitId: i64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        signLog: JET_SIGNATURE,
-        reserved: i32,
-        commitId: i64,
+        signLog: JET_SIGNATURE align(4),
+        reserved: i32 align(4),
+        commitId: i64 align(4),
     },
 };
 pub const JET_RBSINFOMISC = switch(@import("../zig.zig").arch) {
@@ -2104,13 +2101,12 @@ pub const JET_RBSINFOMISC = switch(@import("../zig.zig").arch) {
         cbLogicalFileSize: u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        lRBSGeneration: i32,
-        logtimeCreate: JET_LOGTIME,
-        logtimeCreatePrevRBS: JET_LOGTIME,
-        ulMajor: u32,
-        ulMinor: u32,
-        cbLogicalFileSize: u64,
+        lRBSGeneration: i32 align(4),
+        logtimeCreate: JET_LOGTIME align(4),
+        logtimeCreatePrevRBS: JET_LOGTIME align(4),
+        ulMajor: u32 align(4),
+        ulMinor: u32 align(4),
+        cbLogicalFileSize: u64 align(4),
     },
 };
 pub const JET_RBSREVERTINFOMISC = switch(@import("../zig.zig").arch) {
@@ -2124,14 +2120,13 @@ pub const JET_RBSREVERTINFOMISC = switch(@import("../zig.zig").arch) {
         cPagesReverted: u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        lGenMinRevertStart: i32,
-        lGenMaxRevertStart: i32,
-        lGenMinRevertEnd: i32,
-        lGenMaxRevertEnd: i32,
-        logtimeRevertFrom: JET_LOGTIME,
-        cSecRevert: u64,
-        cPagesReverted: u64,
+        lGenMinRevertStart: i32 align(4),
+        lGenMaxRevertStart: i32 align(4),
+        lGenMinRevertEnd: i32 align(4),
+        lGenMaxRevertEnd: i32 align(4),
+        logtimeRevertFrom: JET_LOGTIME align(4),
+        cSecRevert: u64 align(4),
+        cPagesReverted: u64 align(4),
     },
 };
 pub const JET_RECSIZE = switch(@import("../zig.zig").arch) {
@@ -2146,15 +2141,14 @@ pub const JET_RECSIZE = switch(@import("../zig.zig").arch) {
         cMultiValues: u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        cbData: u64,
-        cbLongValueData: u64,
-        cbOverhead: u64,
-        cbLongValueOverhead: u64,
-        cNonTaggedColumns: u64,
-        cTaggedColumns: u64,
-        cLongValues: u64,
-        cMultiValues: u64,
+        cbData: u64 align(4),
+        cbLongValueData: u64 align(4),
+        cbOverhead: u64 align(4),
+        cbLongValueOverhead: u64 align(4),
+        cNonTaggedColumns: u64 align(4),
+        cTaggedColumns: u64 align(4),
+        cLongValues: u64 align(4),
+        cMultiValues: u64 align(4),
     },
 };
 pub const JET_RECSIZE2 = switch(@import("../zig.zig").arch) {
@@ -2172,18 +2166,17 @@ pub const JET_RECSIZE2 = switch(@import("../zig.zig").arch) {
         cbLongValueDataCompressed: u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        cbData: u64,
-        cbLongValueData: u64,
-        cbOverhead: u64,
-        cbLongValueOverhead: u64,
-        cNonTaggedColumns: u64,
-        cTaggedColumns: u64,
-        cLongValues: u64,
-        cMultiValues: u64,
-        cCompressedColumns: u64,
-        cbDataCompressed: u64,
-        cbLongValueDataCompressed: u64,
+        cbData: u64 align(4),
+        cbLongValueData: u64 align(4),
+        cbOverhead: u64 align(4),
+        cbLongValueOverhead: u64 align(4),
+        cNonTaggedColumns: u64 align(4),
+        cTaggedColumns: u64 align(4),
+        cLongValues: u64 align(4),
+        cMultiValues: u64 align(4),
+        cCompressedColumns: u64 align(4),
+        cbDataCompressed: u64 align(4),
+        cbLongValueDataCompressed: u64 align(4),
     },
 };
 

@@ -1007,26 +1007,8 @@ pub const MI_PropertyDecl = extern struct {
     value: ?*const anyopaque,
 };
 
-pub const MI_MethodDecl_Invoke = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        methodName: ?*const u16,
-        instanceName: ?*const MI_Instance,
-        parameters: ?*const MI_Instance,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        methodName: ?*const u16,
-        instanceName: ?*const MI_Instance,
-        parameters: ?*const MI_Instance,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const MI_MethodDecl_Invoke = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const MI_MethodDecl = extern struct {
     flags: u32,
@@ -1095,24 +1077,8 @@ pub const MI_ProviderFT_Unload = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) void,
 } ;
 
-pub const MI_ProviderFT_GetInstance = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        instanceName: ?*const MI_Instance,
-        propertySet: ?*const MI_PropertySet,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        instanceName: ?*const MI_Instance,
-        propertySet: ?*const MI_PropertySet,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const MI_ProviderFT_GetInstance = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const MI_ProviderFT_EnumerateInstances = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
@@ -1135,112 +1101,20 @@ pub const MI_ProviderFT_EnumerateInstances = switch (@import("builtin").zig_back
     ) callconv(@import("std").os.windows.WINAPI) void,
 } ;
 
-pub const MI_ProviderFT_CreateInstance = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        newInstance: ?*const MI_Instance,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        newInstance: ?*const MI_Instance,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const MI_ProviderFT_CreateInstance = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const MI_ProviderFT_ModifyInstance = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        modifiedInstance: ?*const MI_Instance,
-        propertySet: ?*const MI_PropertySet,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        modifiedInstance: ?*const MI_Instance,
-        propertySet: ?*const MI_PropertySet,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const MI_ProviderFT_ModifyInstance = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const MI_ProviderFT_DeleteInstance = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        instanceName: ?*const MI_Instance,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        instanceName: ?*const MI_Instance,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const MI_ProviderFT_DeleteInstance = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const MI_ProviderFT_AssociatorInstances = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        instanceName: ?*const MI_Instance,
-        resultClass: ?*const u16,
-        role: ?*const u16,
-        resultRole: ?*const u16,
-        propertySet: ?*const MI_PropertySet,
-        keysOnly: u8,
-        filter: ?*const MI_Filter,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        instanceName: ?*const MI_Instance,
-        resultClass: ?*const u16,
-        role: ?*const u16,
-        resultRole: ?*const u16,
-        propertySet: ?*const MI_PropertySet,
-        keysOnly: u8,
-        filter: ?*const MI_Filter,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const MI_ProviderFT_AssociatorInstances = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const MI_ProviderFT_ReferenceInstances = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        instanceName: ?*const MI_Instance,
-        role: ?*const u16,
-        propertySet: ?*const MI_PropertySet,
-        keysOnly: u8,
-        filter: ?*const MI_Filter,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        instanceName: ?*const MI_Instance,
-        role: ?*const u16,
-        propertySet: ?*const MI_PropertySet,
-        keysOnly: u8,
-        filter: ?*const MI_Filter,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const MI_ProviderFT_ReferenceInstances = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const MI_ProviderFT_EnableIndications = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
@@ -1314,26 +1188,8 @@ pub const MI_ProviderFT_Unsubscribe = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) void,
 } ;
 
-pub const MI_ProviderFT_Invoke = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        methodName: ?*const u16,
-        instanceName: ?*const MI_Instance,
-        inputParameters: ?*const MI_Instance,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        self: ?*anyopaque,
-        context: ?*MI_Context,
-        nameSpace: ?*const u16,
-        className: ?*const u16,
-        methodName: ?*const u16,
-        instanceName: ?*const MI_Instance,
-        inputParameters: ?*const MI_Instance,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const MI_ProviderFT_Invoke = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const MI_ProviderFT = extern struct {
     Load: ?MI_ProviderFT_Load,
@@ -12065,21 +11921,13 @@ const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "MI_MethodDecl_Invoke")) { _ = MI_MethodDecl_Invoke; }
     if (@hasDecl(@This(), "MI_ProviderFT_Load")) { _ = MI_ProviderFT_Load; }
     if (@hasDecl(@This(), "MI_ProviderFT_Unload")) { _ = MI_ProviderFT_Unload; }
-    if (@hasDecl(@This(), "MI_ProviderFT_GetInstance")) { _ = MI_ProviderFT_GetInstance; }
     if (@hasDecl(@This(), "MI_ProviderFT_EnumerateInstances")) { _ = MI_ProviderFT_EnumerateInstances; }
-    if (@hasDecl(@This(), "MI_ProviderFT_CreateInstance")) { _ = MI_ProviderFT_CreateInstance; }
-    if (@hasDecl(@This(), "MI_ProviderFT_ModifyInstance")) { _ = MI_ProviderFT_ModifyInstance; }
-    if (@hasDecl(@This(), "MI_ProviderFT_DeleteInstance")) { _ = MI_ProviderFT_DeleteInstance; }
-    if (@hasDecl(@This(), "MI_ProviderFT_AssociatorInstances")) { _ = MI_ProviderFT_AssociatorInstances; }
-    if (@hasDecl(@This(), "MI_ProviderFT_ReferenceInstances")) { _ = MI_ProviderFT_ReferenceInstances; }
     if (@hasDecl(@This(), "MI_ProviderFT_EnableIndications")) { _ = MI_ProviderFT_EnableIndications; }
     if (@hasDecl(@This(), "MI_ProviderFT_DisableIndications")) { _ = MI_ProviderFT_DisableIndications; }
     if (@hasDecl(@This(), "MI_ProviderFT_Subscribe")) { _ = MI_ProviderFT_Subscribe; }
     if (@hasDecl(@This(), "MI_ProviderFT_Unsubscribe")) { _ = MI_ProviderFT_Unsubscribe; }
-    if (@hasDecl(@This(), "MI_ProviderFT_Invoke")) { _ = MI_ProviderFT_Invoke; }
     if (@hasDecl(@This(), "MI_Module_Load")) { _ = MI_Module_Load; }
     if (@hasDecl(@This(), "MI_Module_Unload")) { _ = MI_Module_Unload; }
     if (@hasDecl(@This(), "MI_CancelCallback")) { _ = MI_CancelCallback; }

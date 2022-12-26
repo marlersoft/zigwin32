@@ -130,13 +130,13 @@ pub const ED_DEVCAP_RTC_READ = TIMECODE_SAMPLE_FLAGS.RTC_READ;
 
 pub const HTASK = *opaque{};
 
-pub const MMTIME = packed struct {
-    wType: u32,
-    u: packed union {
-        ms: u32,
-        sample: u32,
-        cb: u32,
-        ticks: u32,
+pub const MMTIME = extern struct {
+    wType: u32 align(1),
+    u: extern union {
+        ms: u32 align(1),
+        sample: u32 align(1),
+        cb: u32 align(1),
+        ticks: u32 align(1),
         smpte: extern struct {
             hour: u8,
             min: u8,
@@ -145,11 +145,11 @@ pub const MMTIME = packed struct {
             fps: u8,
             dummy: u8,
             pad: [2]u8,
-        },
-        midi: packed struct {
-            songptrpos: u32,
-        },
-    },
+        } align(1),
+        midi: extern struct {
+            songptrpos: u32 align(1),
+        } align(1),
+    } align(1),
 };
 
 pub const LPDRVCALLBACK = switch (@import("builtin").zig_backend) {

@@ -1124,23 +1124,11 @@ pub const EVENT_TRACE = extern struct {
     },
 };
 
-pub const PEVENT_TRACE_BUFFER_CALLBACKW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Logfile: ?*EVENT_TRACE_LOGFILEW,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        Logfile: ?*EVENT_TRACE_LOGFILEW,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PEVENT_TRACE_BUFFER_CALLBACKW = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const PEVENT_TRACE_BUFFER_CALLBACKA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Logfile: ?*EVENT_TRACE_LOGFILEA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        Logfile: ?*EVENT_TRACE_LOGFILEA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PEVENT_TRACE_BUFFER_CALLBACKA = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const PEVENT_CALLBACK = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
@@ -3094,8 +3082,6 @@ const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMA
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PEVENT_TRACE_BUFFER_CALLBACKW")) { _ = PEVENT_TRACE_BUFFER_CALLBACKW; }
-    if (@hasDecl(@This(), "PEVENT_TRACE_BUFFER_CALLBACKA")) { _ = PEVENT_TRACE_BUFFER_CALLBACKA; }
     if (@hasDecl(@This(), "PEVENT_CALLBACK")) { _ = PEVENT_CALLBACK; }
     if (@hasDecl(@This(), "PEVENT_RECORD_CALLBACK")) { _ = PEVENT_RECORD_CALLBACK; }
     if (@hasDecl(@This(), "WMIDPREQUEST")) { _ = WMIDPREQUEST; }

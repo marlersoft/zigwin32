@@ -851,33 +851,31 @@ pub const RASTUNNELENDPOINT = extern struct {
 };
 
 pub const RASCONNW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hrasconn: ?HRASCONN,
-    szEntryName: [257]u16,
-    szDeviceType: [17]u16,
-    szDeviceName: [129]u16,
-    szPhonebook: [260]u16,
-    dwSubEntry: u32,
-    guidEntry: Guid,
-    dwFlags: u32,
-    luid: LUID,
-    guidCorrelationId: Guid,
+    dwSize: u32 align(4),
+    hrasconn: ?HRASCONN align(4),
+    szEntryName: [257]u16 align(4),
+    szDeviceType: [17]u16 align(4),
+    szDeviceName: [129]u16 align(4),
+    szPhonebook: [260]u16 align(4),
+    dwSubEntry: u32 align(4),
+    guidEntry: Guid align(4),
+    dwFlags: u32 align(4),
+    luid: LUID align(4),
+    guidCorrelationId: Guid align(4),
 };
 
 pub const RASCONNA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hrasconn: ?HRASCONN,
-    szEntryName: [257]CHAR,
-    szDeviceType: [17]CHAR,
-    szDeviceName: [129]CHAR,
-    szPhonebook: [260]CHAR,
-    dwSubEntry: u32,
-    guidEntry: Guid,
-    dwFlags: u32,
-    luid: LUID,
-    guidCorrelationId: Guid,
+    dwSize: u32 align(4),
+    hrasconn: ?HRASCONN align(4),
+    szEntryName: [257]CHAR align(4),
+    szDeviceType: [17]CHAR align(4),
+    szDeviceName: [129]CHAR align(4),
+    szPhonebook: [260]CHAR align(4),
+    dwSubEntry: u32 align(4),
+    guidEntry: Guid align(4),
+    dwFlags: u32 align(4),
+    luid: LUID align(4),
+    guidCorrelationId: Guid align(4),
 };
 
 pub const RASCONNSTATE = enum(i32) {
@@ -983,57 +981,52 @@ pub const RASCONNSTATUSA = extern struct {
 };
 
 pub const RASDIALPARAMSW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    szEntryName: [257]u16,
-    szPhoneNumber: [129]u16,
-    szCallbackNumber: [129]u16,
-    szUserName: [257]u16,
-    szPassword: [257]u16,
-    szDomain: [16]u16,
-    dwSubEntry: u32,
-    dwCallbackId: usize,
-    dwIfIndex: u32,
-    szEncPassword: ?PWSTR,
+    dwSize: u32 align(4),
+    szEntryName: [257]u16 align(4),
+    szPhoneNumber: [129]u16 align(4),
+    szCallbackNumber: [129]u16 align(4),
+    szUserName: [257]u16 align(4),
+    szPassword: [257]u16 align(4),
+    szDomain: [16]u16 align(4),
+    dwSubEntry: u32 align(4),
+    dwCallbackId: usize align(4),
+    dwIfIndex: u32 align(4),
+    szEncPassword: ?PWSTR align(4),
 };
 
 pub const RASDIALPARAMSA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    szEntryName: [257]CHAR,
-    szPhoneNumber: [129]CHAR,
-    szCallbackNumber: [129]CHAR,
-    szUserName: [257]CHAR,
-    szPassword: [257]CHAR,
-    szDomain: [16]CHAR,
-    dwSubEntry: u32,
-    dwCallbackId: usize,
-    dwIfIndex: u32,
-    szEncPassword: ?PSTR,
+    dwSize: u32 align(4),
+    szEntryName: [257]CHAR align(4),
+    szPhoneNumber: [129]CHAR align(4),
+    szCallbackNumber: [129]CHAR align(4),
+    szUserName: [257]CHAR align(4),
+    szPassword: [257]CHAR align(4),
+    szDomain: [16]CHAR align(4),
+    dwSubEntry: u32 align(4),
+    dwCallbackId: usize align(4),
+    dwIfIndex: u32 align(4),
+    szEncPassword: ?PSTR align(4),
 };
 
 pub const RASEAPINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSizeofEapInfo: u32,
-    pbEapInfo: ?*u8,
+    dwSizeofEapInfo: u32 align(4),
+    pbEapInfo: ?*u8 align(4),
 };
 
 pub const RASDEVSPECIFICINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    pbDevSpecificInfo: ?*u8,
+    dwSize: u32 align(4),
+    pbDevSpecificInfo: ?*u8 align(4),
 };
 
 pub const RASDIALEXTENSIONS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    dwfOptions: u32,
-    hwndParent: ?HWND,
-    reserved: usize,
-    reserved1: usize,
-    RasEapInfo: RASEAPINFO,
-    fSkipPppAuth: BOOL,
-    RasDevSpecificInfo: RASDEVSPECIFICINFO,
+    dwSize: u32 align(4),
+    dwfOptions: u32 align(4),
+    hwndParent: ?HWND align(4),
+    reserved: usize align(4),
+    reserved1: usize align(4),
+    RasEapInfo: RASEAPINFO align(4),
+    fSkipPppAuth: BOOL align(4),
+    RasDevSpecificInfo: RASDEVSPECIFICINFO align(4),
 };
 
 pub const RASENTRYNAMEW = extern struct {
@@ -1210,22 +1203,21 @@ pub const RASPPP_PROJECTION_INFO = extern struct {
 };
 
 pub const RASIKEV2_PROJECTION_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwIPv4NegotiationError: u32,
-    ipv4Address: IN_ADDR,
-    ipv4ServerAddress: IN_ADDR,
-    dwIPv6NegotiationError: u32,
-    ipv6Address: IN6_ADDR,
-    ipv6ServerAddress: IN6_ADDR,
-    dwPrefixLength: u32,
-    dwAuthenticationProtocol: u32,
-    dwEapTypeId: u32,
-    dwFlags: RASIKEV_PROJECTION_INFO_FLAGS,
-    dwEncryptionMethod: u32,
-    numIPv4ServerAddresses: u32,
-    ipv4ServerAddresses: ?*IN_ADDR,
-    numIPv6ServerAddresses: u32,
-    ipv6ServerAddresses: ?*IN6_ADDR,
+    dwIPv4NegotiationError: u32 align(4),
+    ipv4Address: IN_ADDR align(4),
+    ipv4ServerAddress: IN_ADDR align(4),
+    dwIPv6NegotiationError: u32 align(4),
+    ipv6Address: IN6_ADDR align(4),
+    ipv6ServerAddress: IN6_ADDR align(4),
+    dwPrefixLength: u32 align(4),
+    dwAuthenticationProtocol: u32 align(4),
+    dwEapTypeId: u32 align(4),
+    dwFlags: RASIKEV_PROJECTION_INFO_FLAGS align(4),
+    dwEncryptionMethod: u32 align(4),
+    numIPv4ServerAddresses: u32 align(4),
+    ipv4ServerAddresses: ?*IN_ADDR align(4),
+    numIPv6ServerAddresses: u32 align(4),
+    ipv6ServerAddresses: ?*IN6_ADDR align(4),
 };
 
 pub const RASPROJECTION_INFO_TYPE = enum(i32) {
@@ -1488,12 +1480,11 @@ pub const ORASADFUNC = switch (@import("builtin").zig_backend) {
 } ;
 
 pub const RASADPARAMS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
+    dwSize: u32 align(4),
+    hwndOwner: ?HWND align(4),
+    dwFlags: u32 align(4),
+    xDlg: i32 align(4),
+    yDlg: i32 align(4),
 };
 
 pub const RASADFUNCA = switch (@import("builtin").zig_backend) {
@@ -1700,9 +1691,8 @@ pub const PFNRASSETCOMMSETTINGS = switch (@import("builtin").zig_backend) {
 } ;
 
 pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    pfnRasSetCommSettings: ?PFNRASSETCOMMSETTINGS,
+    dwSize: u32 align(4),
+    pfnRasSetCommSettings: ?PFNRASSETCOMMSETTINGS align(4),
 };
 
 pub const RAS_STATS = extern struct {
@@ -1826,70 +1816,65 @@ pub const RASNOUSERA = extern struct {
 };
 
 pub const RASPBDLGW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwCallbackId: usize,
-    pCallback: ?RASPBDLGFUNCW,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
+    dwSize: u32 align(4),
+    hwndOwner: ?HWND align(4),
+    dwFlags: u32 align(4),
+    xDlg: i32 align(4),
+    yDlg: i32 align(4),
+    dwCallbackId: usize align(4),
+    pCallback: ?RASPBDLGFUNCW align(4),
+    dwError: u32 align(4),
+    reserved: usize align(4),
+    reserved2: usize align(4),
 };
 
 pub const RASPBDLGA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwCallbackId: usize,
-    pCallback: ?RASPBDLGFUNCA,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
+    dwSize: u32 align(4),
+    hwndOwner: ?HWND align(4),
+    dwFlags: u32 align(4),
+    xDlg: i32 align(4),
+    yDlg: i32 align(4),
+    dwCallbackId: usize align(4),
+    pCallback: ?RASPBDLGFUNCA align(4),
+    dwError: u32 align(4),
+    reserved: usize align(4),
+    reserved2: usize align(4),
 };
 
 pub const RASENTRYDLGW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    szEntry: [257]u16,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
+    dwSize: u32 align(4),
+    hwndOwner: ?HWND align(4),
+    dwFlags: u32 align(4),
+    xDlg: i32 align(4),
+    yDlg: i32 align(4),
+    szEntry: [257]u16 align(4),
+    dwError: u32 align(4),
+    reserved: usize align(4),
+    reserved2: usize align(4),
 };
 
 pub const RASENTRYDLGA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    szEntry: [257]CHAR,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
+    dwSize: u32 align(4),
+    hwndOwner: ?HWND align(4),
+    dwFlags: u32 align(4),
+    xDlg: i32 align(4),
+    yDlg: i32 align(4),
+    szEntry: [257]CHAR align(4),
+    dwError: u32 align(4),
+    reserved: usize align(4),
+    reserved2: usize align(4),
 };
 
 pub const RASDIALDLG = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: ?HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwSubEntry: u32,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
+    dwSize: u32 align(4),
+    hwndOwner: ?HWND align(4),
+    dwFlags: u32 align(4),
+    xDlg: i32 align(4),
+    yDlg: i32 align(4),
+    dwSubEntry: u32 align(4),
+    dwError: u32 align(4),
+    reserved: usize align(4),
+    reserved2: usize align(4),
 };
 
 pub const RasCustomDialDlgFn = switch (@import("builtin").zig_backend) {

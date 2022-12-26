@@ -1669,22 +1669,22 @@ pub const CONFLICT_DETAILS_W = extern struct {
     CD_szDescription: [260]u16,
 };
 
-pub const MEM_RANGE = packed struct {
-    MR_Align: u64,
-    MR_nBytes: u32,
-    MR_Min: u64,
-    MR_Max: u64,
-    MR_Flags: u32,
-    MR_Reserved: u32,
+pub const MEM_RANGE = extern struct {
+    MR_Align: u64 align(1),
+    MR_nBytes: u32 align(1),
+    MR_Min: u64 align(1),
+    MR_Max: u64 align(1),
+    MR_Flags: u32 align(1),
+    MR_Reserved: u32 align(1),
 };
 
-pub const MEM_DES = packed struct {
-    MD_Count: u32,
-    MD_Type: u32,
-    MD_Alloc_Base: u64,
-    MD_Alloc_End: u64,
-    MD_Flags: u32,
-    MD_Reserved: u32,
+pub const MEM_DES = extern struct {
+    MD_Count: u32 align(1),
+    MD_Type: u32 align(1),
+    MD_Alloc_Base: u64 align(1),
+    MD_Alloc_End: u64 align(1),
+    MD_Flags: u32 align(1),
+    MD_Reserved: u32 align(1),
 };
 
 pub const MEM_RESOURCE = extern struct {
@@ -1692,22 +1692,22 @@ pub const MEM_RESOURCE = extern struct {
     MEM_Data: [1]MEM_RANGE,
 };
 
-pub const Mem_Large_Range_s = packed struct {
-    MLR_Align: u64,
-    MLR_nBytes: u64,
-    MLR_Min: u64,
-    MLR_Max: u64,
-    MLR_Flags: u32,
-    MLR_Reserved: u32,
+pub const Mem_Large_Range_s = extern struct {
+    MLR_Align: u64 align(1),
+    MLR_nBytes: u64 align(1),
+    MLR_Min: u64 align(1),
+    MLR_Max: u64 align(1),
+    MLR_Flags: u32 align(1),
+    MLR_Reserved: u32 align(1),
 };
 
-pub const Mem_Large_Des_s = packed struct {
-    MLD_Count: u32,
-    MLD_Type: u32,
-    MLD_Alloc_Base: u64,
-    MLD_Alloc_End: u64,
-    MLD_Flags: u32,
-    MLD_Reserved: u32,
+pub const Mem_Large_Des_s = extern struct {
+    MLD_Count: u32 align(1),
+    MLD_Type: u32 align(1),
+    MLD_Alloc_Base: u64 align(1),
+    MLD_Alloc_End: u64 align(1),
+    MLD_Flags: u32 align(1),
+    MLD_Reserved: u32 align(1),
 };
 
 pub const Mem_Large_Resource_s = extern struct {
@@ -1715,21 +1715,21 @@ pub const Mem_Large_Resource_s = extern struct {
     MEM_LARGE_Data: [1]Mem_Large_Range_s,
 };
 
-pub const IO_RANGE = packed struct {
-    IOR_Align: u64,
-    IOR_nPorts: u32,
-    IOR_Min: u64,
-    IOR_Max: u64,
-    IOR_RangeFlags: u32,
-    IOR_Alias: u64,
+pub const IO_RANGE = extern struct {
+    IOR_Align: u64 align(1),
+    IOR_nPorts: u32 align(1),
+    IOR_Min: u64 align(1),
+    IOR_Max: u64 align(1),
+    IOR_RangeFlags: u32 align(1),
+    IOR_Alias: u64 align(1),
 };
 
-pub const IO_DES = packed struct {
-    IOD_Count: u32,
-    IOD_Type: u32,
-    IOD_Alloc_Base: u64,
-    IOD_Alloc_End: u64,
-    IOD_DesFlags: u32,
+pub const IO_DES = extern struct {
+    IOD_Count: u32 align(1),
+    IOD_Type: u32 align(1),
+    IOD_Alloc_Base: u64 align(1),
+    IOD_Alloc_End: u64 align(1),
+    IOD_DesFlags: u32 align(1),
 };
 
 pub const IO_RESOURCE = extern struct {
@@ -1737,17 +1737,17 @@ pub const IO_RESOURCE = extern struct {
     IO_Data: [1]IO_RANGE,
 };
 
-pub const DMA_RANGE = packed struct {
-    DR_Min: u32,
-    DR_Max: u32,
-    DR_Flags: u32,
+pub const DMA_RANGE = extern struct {
+    DR_Min: u32 align(1),
+    DR_Max: u32 align(1),
+    DR_Flags: u32 align(1),
 };
 
-pub const DMA_DES = packed struct {
-    DD_Count: u32,
-    DD_Type: u32,
-    DD_Flags: u32,
-    DD_Alloc_Chan: u32,
+pub const DMA_DES = extern struct {
+    DD_Count: u32 align(1),
+    DD_Type: u32 align(1),
+    DD_Flags: u32 align(1),
+    DD_Alloc_Chan: u32 align(1),
 };
 
 pub const DMA_RESOURCE = extern struct {
@@ -1755,26 +1755,26 @@ pub const DMA_RESOURCE = extern struct {
     DMA_Data: [1]DMA_RANGE,
 };
 
-pub const IRQ_RANGE = packed struct {
-    IRQR_Min: u32,
-    IRQR_Max: u32,
-    IRQR_Flags: u32,
+pub const IRQ_RANGE = extern struct {
+    IRQR_Min: u32 align(1),
+    IRQR_Max: u32 align(1),
+    IRQR_Flags: u32 align(1),
 };
 
-pub const IRQ_DES_32 = packed struct {
-    IRQD_Count: u32,
-    IRQD_Type: u32,
-    IRQD_Flags: u32,
-    IRQD_Alloc_Num: u32,
-    IRQD_Affinity: u32,
+pub const IRQ_DES_32 = extern struct {
+    IRQD_Count: u32 align(1),
+    IRQD_Type: u32 align(1),
+    IRQD_Flags: u32 align(1),
+    IRQD_Alloc_Num: u32 align(1),
+    IRQD_Affinity: u32 align(1),
 };
 
-pub const IRQ_DES_64 = packed struct {
-    IRQD_Count: u32,
-    IRQD_Type: u32,
-    IRQD_Flags: u32,
-    IRQD_Alloc_Num: u32,
-    IRQD_Affinity: u64,
+pub const IRQ_DES_64 = extern struct {
+    IRQD_Count: u32 align(1),
+    IRQD_Type: u32 align(1),
+    IRQD_Flags: u32 align(1),
+    IRQD_Alloc_Num: u32 align(1),
+    IRQD_Affinity: u64 align(1),
 };
 
 pub const IRQ_RESOURCE_32 = extern struct {
@@ -1787,19 +1787,19 @@ pub const IRQ_RESOURCE_64 = extern struct {
     IRQ_Data: [1]IRQ_RANGE,
 };
 
-pub const DevPrivate_Range_s = packed struct {
-    PR_Data1: u32,
-    PR_Data2: u32,
-    PR_Data3: u32,
+pub const DevPrivate_Range_s = extern struct {
+    PR_Data1: u32 align(1),
+    PR_Data2: u32 align(1),
+    PR_Data3: u32 align(1),
 };
 
-pub const DevPrivate_Des_s = packed struct {
-    PD_Count: u32,
-    PD_Type: u32,
-    PD_Data1: u32,
-    PD_Data2: u32,
-    PD_Data3: u32,
-    PD_Flags: u32,
+pub const DevPrivate_Des_s = extern struct {
+    PD_Count: u32 align(1),
+    PD_Type: u32 align(1),
+    PD_Data1: u32 align(1),
+    PD_Data2: u32 align(1),
+    PD_Data3: u32 align(1),
+    PD_Flags: u32 align(1),
 };
 
 pub const DevPrivate_Resource_s = extern struct {
@@ -1807,63 +1807,63 @@ pub const DevPrivate_Resource_s = extern struct {
     PRV_Data: [1]DevPrivate_Range_s,
 };
 
-pub const CS_DES = packed struct {
-    CSD_SignatureLength: u32,
-    CSD_LegacyDataOffset: u32,
-    CSD_LegacyDataSize: u32,
-    CSD_Flags: u32,
-    CSD_ClassGuid: Guid,
-    CSD_Signature: [1]u8,
+pub const CS_DES = extern struct {
+    CSD_SignatureLength: u32 align(1),
+    CSD_LegacyDataOffset: u32 align(1),
+    CSD_LegacyDataSize: u32 align(1),
+    CSD_Flags: u32 align(1),
+    CSD_ClassGuid: Guid align(1),
+    CSD_Signature: [1]u8 align(1),
 };
 
 pub const CS_RESOURCE = extern struct {
     CS_Header: CS_DES,
 };
 
-pub const PCCARD_DES = packed struct {
-    PCD_Count: u32,
-    PCD_Type: u32,
-    PCD_Flags: u32,
-    PCD_ConfigIndex: u8,
-    PCD_Reserved: [3]u8,
-    PCD_MemoryCardBase1: u32,
-    PCD_MemoryCardBase2: u32,
-    PCD_MemoryCardBase: [2]u32,
-    PCD_MemoryFlags: [2]u16,
-    PCD_IoFlags: [2]u8,
+pub const PCCARD_DES = extern struct {
+    PCD_Count: u32 align(1),
+    PCD_Type: u32 align(1),
+    PCD_Flags: u32 align(1),
+    PCD_ConfigIndex: u8 align(1),
+    PCD_Reserved: [3]u8 align(1),
+    PCD_MemoryCardBase1: u32 align(1),
+    PCD_MemoryCardBase2: u32 align(1),
+    PCD_MemoryCardBase: [2]u32 align(1),
+    PCD_MemoryFlags: [2]u16 align(1),
+    PCD_IoFlags: [2]u8 align(1),
 };
 
 pub const PCCARD_RESOURCE = extern struct {
     PcCard_Header: PCCARD_DES,
 };
 
-pub const MFCARD_DES = packed struct {
-    PMF_Count: u32,
-    PMF_Type: u32,
-    PMF_Flags: u32,
-    PMF_ConfigOptions: u8,
-    PMF_IoResourceIndex: u8,
-    PMF_Reserved: [2]u8,
-    PMF_ConfigRegisterBase: u32,
+pub const MFCARD_DES = extern struct {
+    PMF_Count: u32 align(1),
+    PMF_Type: u32 align(1),
+    PMF_Flags: u32 align(1),
+    PMF_ConfigOptions: u8 align(1),
+    PMF_IoResourceIndex: u8 align(1),
+    PMF_Reserved: [2]u8 align(1),
+    PMF_ConfigRegisterBase: u32 align(1),
 };
 
 pub const MFCARD_RESOURCE = extern struct {
     MfCard_Header: MFCARD_DES,
 };
 
-pub const BUSNUMBER_RANGE = packed struct {
-    BUSR_Min: u32,
-    BUSR_Max: u32,
-    BUSR_nBusNumbers: u32,
-    BUSR_Flags: u32,
+pub const BUSNUMBER_RANGE = extern struct {
+    BUSR_Min: u32 align(1),
+    BUSR_Max: u32 align(1),
+    BUSR_nBusNumbers: u32 align(1),
+    BUSR_Flags: u32 align(1),
 };
 
-pub const BUSNUMBER_DES = packed struct {
-    BUSD_Count: u32,
-    BUSD_Type: u32,
-    BUSD_Flags: u32,
-    BUSD_Alloc_Base: u32,
-    BUSD_Alloc_End: u32,
+pub const BUSNUMBER_DES = extern struct {
+    BUSD_Count: u32 align(1),
+    BUSD_Type: u32 align(1),
+    BUSD_Flags: u32 align(1),
+    BUSD_Alloc_Base: u32 align(1),
+    BUSD_Alloc_End: u32 align(1),
 };
 
 pub const BUSNUMBER_RESOURCE = extern struct {
@@ -1871,30 +1871,30 @@ pub const BUSNUMBER_RESOURCE = extern struct {
     BusNumber_Data: [1]BUSNUMBER_RANGE,
 };
 
-pub const Connection_Des_s = packed struct {
-    COND_Type: u32,
-    COND_Flags: u32,
-    COND_Class: u8,
-    COND_ClassType: u8,
-    COND_Reserved1: u8,
-    COND_Reserved2: u8,
-    COND_Id: LARGE_INTEGER,
+pub const Connection_Des_s = extern struct {
+    COND_Type: u32 align(1),
+    COND_Flags: u32 align(1),
+    COND_Class: u8 align(1),
+    COND_ClassType: u8 align(1),
+    COND_Reserved1: u8 align(1),
+    COND_Reserved2: u8 align(1),
+    COND_Id: LARGE_INTEGER align(1),
 };
 
 pub const Connection_Resource_s = extern struct {
     Connection_Header: Connection_Des_s,
 };
 
-pub const HWProfileInfo_sA = packed struct {
-    HWPI_ulHWProfile: u32,
-    HWPI_szFriendlyName: [80]CHAR,
-    HWPI_dwFlags: u32,
+pub const HWProfileInfo_sA = extern struct {
+    HWPI_ulHWProfile: u32 align(1),
+    HWPI_szFriendlyName: [80]CHAR align(1),
+    HWPI_dwFlags: u32 align(1),
 };
 
-pub const HWProfileInfo_sW = packed struct {
-    HWPI_ulHWProfile: u32,
-    HWPI_szFriendlyName: [80]u16,
-    HWPI_dwFlags: u32,
+pub const HWProfileInfo_sW = extern struct {
+    HWPI_ulHWProfile: u32 align(1),
+    HWPI_szFriendlyName: [80]u16 align(1),
+    HWPI_dwFlags: u32 align(1),
 };
 
 pub const CM_NOTIFY_FILTER_TYPE = enum(i32) {
@@ -2055,11 +2055,11 @@ pub const INFCONTEXT = switch(@import("../zig.zig").arch) {
         Section: u32,
         Line: u32,
     },
-    .X86 => packed struct {
-        Inf: ?*anyopaque,
-        CurrentInf: ?*anyopaque,
-        Section: u32,
-        Line: u32,
+    .X86 => extern struct {
+        Inf: ?*anyopaque align(1),
+        CurrentInf: ?*anyopaque align(1),
+        Section: u32 align(1),
+        Line: u32 align(1),
     },
 };
 pub const SP_INF_INFORMATION = switch(@import("../zig.zig").arch) {
@@ -2068,10 +2068,10 @@ pub const SP_INF_INFORMATION = switch(@import("../zig.zig").arch) {
         InfCount: u32,
         VersionData: [1]u8,
     },
-    .X86 => packed struct {
-        InfStyle: SP_INF_STYLE,
-        InfCount: u32,
-        VersionData: [1]u8,
+    .X86 => extern struct {
+        InfStyle: SP_INF_STYLE align(1),
+        InfCount: u32 align(1),
+        VersionData: [1]u8 align(1),
     },
 };
 pub const SP_ALTPLATFORM_INFO_V3 = switch(@import("../zig.zig").arch) {
@@ -2091,21 +2091,21 @@ pub const SP_ALTPLATFORM_INFO_V3 = switch(@import("../zig.zig").arch) {
         SuiteMask: u16,
         BuildNumber: u32,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        Platform: u32,
-        MajorVersion: u32,
-        MinorVersion: u32,
-        ProcessorArchitecture: u16,
-        Anonymous: packed union {
-            Reserved: u16,
-            Flags: u16,
-        },
-        FirstValidatedMajorVersion: u32,
-        FirstValidatedMinorVersion: u32,
-        ProductType: u8,
-        SuiteMask: u16,
-        BuildNumber: u32,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        Platform: u32 align(1),
+        MajorVersion: u32 align(1),
+        MinorVersion: u32 align(1),
+        ProcessorArchitecture: u16 align(1),
+        Anonymous: extern union {
+            Reserved: u16 align(1),
+            Flags: u16 align(1),
+        } align(1),
+        FirstValidatedMajorVersion: u32 align(1),
+        FirstValidatedMinorVersion: u32 align(1),
+        ProductType: u8 align(1),
+        SuiteMask: u16 align(1),
+        BuildNumber: u32 align(1),
     },
 };
 pub const SP_ALTPLATFORM_INFO_V2 = switch(@import("../zig.zig").arch) {
@@ -2122,18 +2122,18 @@ pub const SP_ALTPLATFORM_INFO_V2 = switch(@import("../zig.zig").arch) {
         FirstValidatedMajorVersion: u32,
         FirstValidatedMinorVersion: u32,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        Platform: VER_PLATFORM,
-        MajorVersion: u32,
-        MinorVersion: u32,
-        ProcessorArchitecture: u16,
-        Anonymous: packed union {
-            Reserved: u16,
-            Flags: u16,
-        },
-        FirstValidatedMajorVersion: u32,
-        FirstValidatedMinorVersion: u32,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        Platform: VER_PLATFORM align(1),
+        MajorVersion: u32 align(1),
+        MinorVersion: u32 align(1),
+        ProcessorArchitecture: u16 align(1),
+        Anonymous: extern union {
+            Reserved: u16 align(1),
+            Flags: u16 align(1),
+        } align(1),
+        FirstValidatedMajorVersion: u32 align(1),
+        FirstValidatedMinorVersion: u32 align(1),
     },
 };
 pub const SP_ALTPLATFORM_INFO_V1 = switch(@import("../zig.zig").arch) {
@@ -2145,13 +2145,13 @@ pub const SP_ALTPLATFORM_INFO_V1 = switch(@import("../zig.zig").arch) {
         ProcessorArchitecture: u16,
         Reserved: u16,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        Platform: VER_PLATFORM,
-        MajorVersion: u32,
-        MinorVersion: u32,
-        ProcessorArchitecture: u16,
-        Reserved: u16,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        Platform: VER_PLATFORM align(1),
+        MajorVersion: u32 align(1),
+        MinorVersion: u32 align(1),
+        ProcessorArchitecture: u16 align(1),
+        Reserved: u16 align(1),
     },
 };
 pub const SP_ORIGINAL_FILE_INFO_A = switch(@import("../zig.zig").arch) {
@@ -2160,10 +2160,10 @@ pub const SP_ORIGINAL_FILE_INFO_A = switch(@import("../zig.zig").arch) {
         OriginalInfName: [260]CHAR,
         OriginalCatalogName: [260]CHAR,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        OriginalInfName: [260]CHAR,
-        OriginalCatalogName: [260]CHAR,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        OriginalInfName: [260]CHAR align(1),
+        OriginalCatalogName: [260]CHAR align(1),
     },
 };
 pub const SP_ORIGINAL_FILE_INFO_W = switch(@import("../zig.zig").arch) {
@@ -2172,10 +2172,10 @@ pub const SP_ORIGINAL_FILE_INFO_W = switch(@import("../zig.zig").arch) {
         OriginalInfName: [260]u16,
         OriginalCatalogName: [260]u16,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        OriginalInfName: [260]u16,
-        OriginalCatalogName: [260]u16,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        OriginalInfName: [260]u16 align(1),
+        OriginalCatalogName: [260]u16 align(1),
     },
 };
 pub const FILEPATHS_A = switch(@import("../zig.zig").arch) {
@@ -2185,11 +2185,11 @@ pub const FILEPATHS_A = switch(@import("../zig.zig").arch) {
         Win32Error: u32,
         Flags: u32,
     },
-    .X86 => packed struct {
-        Target: ?[*:0]const u8,
-        Source: ?[*:0]const u8,
-        Win32Error: u32,
-        Flags: u32,
+    .X86 => extern struct {
+        Target: ?[*:0]const u8 align(1),
+        Source: ?[*:0]const u8 align(1),
+        Win32Error: u32 align(1),
+        Flags: u32 align(1),
     },
 };
 pub const FILEPATHS_W = switch(@import("../zig.zig").arch) {
@@ -2199,11 +2199,11 @@ pub const FILEPATHS_W = switch(@import("../zig.zig").arch) {
         Win32Error: u32,
         Flags: u32,
     },
-    .X86 => packed struct {
-        Target: ?[*:0]const u16,
-        Source: ?[*:0]const u16,
-        Win32Error: u32,
-        Flags: u32,
+    .X86 => extern struct {
+        Target: ?[*:0]const u16 align(1),
+        Source: ?[*:0]const u16 align(1),
+        Win32Error: u32 align(1),
+        Flags: u32 align(1),
     },
 };
 pub const FILEPATHS_SIGNERINFO_A = switch(@import("../zig.zig").arch) {
@@ -2216,14 +2216,14 @@ pub const FILEPATHS_SIGNERINFO_A = switch(@import("../zig.zig").arch) {
         Version: ?[*:0]const u8,
         CatalogFile: ?[*:0]const u8,
     },
-    .X86 => packed struct {
-        Target: ?[*:0]const u8,
-        Source: ?[*:0]const u8,
-        Win32Error: u32,
-        Flags: u32,
-        DigitalSigner: ?[*:0]const u8,
-        Version: ?[*:0]const u8,
-        CatalogFile: ?[*:0]const u8,
+    .X86 => extern struct {
+        Target: ?[*:0]const u8 align(1),
+        Source: ?[*:0]const u8 align(1),
+        Win32Error: u32 align(1),
+        Flags: u32 align(1),
+        DigitalSigner: ?[*:0]const u8 align(1),
+        Version: ?[*:0]const u8 align(1),
+        CatalogFile: ?[*:0]const u8 align(1),
     },
 };
 pub const FILEPATHS_SIGNERINFO_W = switch(@import("../zig.zig").arch) {
@@ -2236,14 +2236,14 @@ pub const FILEPATHS_SIGNERINFO_W = switch(@import("../zig.zig").arch) {
         Version: ?[*:0]const u16,
         CatalogFile: ?[*:0]const u16,
     },
-    .X86 => packed struct {
-        Target: ?[*:0]const u16,
-        Source: ?[*:0]const u16,
-        Win32Error: u32,
-        Flags: u32,
-        DigitalSigner: ?[*:0]const u16,
-        Version: ?[*:0]const u16,
-        CatalogFile: ?[*:0]const u16,
+    .X86 => extern struct {
+        Target: ?[*:0]const u16 align(1),
+        Source: ?[*:0]const u16 align(1),
+        Win32Error: u32 align(1),
+        Flags: u32 align(1),
+        DigitalSigner: ?[*:0]const u16 align(1),
+        Version: ?[*:0]const u16 align(1),
+        CatalogFile: ?[*:0]const u16 align(1),
     },
 };
 pub const SOURCE_MEDIA_A = switch(@import("../zig.zig").arch) {
@@ -2255,13 +2255,13 @@ pub const SOURCE_MEDIA_A = switch(@import("../zig.zig").arch) {
         SourceFile: ?[*:0]const u8,
         Flags: u32,
     },
-    .X86 => packed struct {
-        Reserved: ?[*:0]const u8,
-        Tagfile: ?[*:0]const u8,
-        Description: ?[*:0]const u8,
-        SourcePath: ?[*:0]const u8,
-        SourceFile: ?[*:0]const u8,
-        Flags: u32,
+    .X86 => extern struct {
+        Reserved: ?[*:0]const u8 align(1),
+        Tagfile: ?[*:0]const u8 align(1),
+        Description: ?[*:0]const u8 align(1),
+        SourcePath: ?[*:0]const u8 align(1),
+        SourceFile: ?[*:0]const u8 align(1),
+        Flags: u32 align(1),
     },
 };
 pub const SOURCE_MEDIA_W = switch(@import("../zig.zig").arch) {
@@ -2273,13 +2273,13 @@ pub const SOURCE_MEDIA_W = switch(@import("../zig.zig").arch) {
         SourceFile: ?[*:0]const u16,
         Flags: u32,
     },
-    .X86 => packed struct {
-        Reserved: ?[*:0]const u16,
-        Tagfile: ?[*:0]const u16,
-        Description: ?[*:0]const u16,
-        SourcePath: ?[*:0]const u16,
-        SourceFile: ?[*:0]const u16,
-        Flags: u32,
+    .X86 => extern struct {
+        Reserved: ?[*:0]const u16 align(1),
+        Tagfile: ?[*:0]const u16 align(1),
+        Description: ?[*:0]const u16 align(1),
+        SourcePath: ?[*:0]const u16 align(1),
+        SourceFile: ?[*:0]const u16 align(1),
+        Flags: u32 align(1),
     },
 };
 pub const CABINET_INFO_A = switch(@import("../zig.zig").arch) {
@@ -2290,12 +2290,12 @@ pub const CABINET_INFO_A = switch(@import("../zig.zig").arch) {
         SetId: u16,
         CabinetNumber: u16,
     },
-    .X86 => packed struct {
-        CabinetPath: ?[*:0]const u8,
-        CabinetFile: ?[*:0]const u8,
-        DiskName: ?[*:0]const u8,
-        SetId: u16,
-        CabinetNumber: u16,
+    .X86 => extern struct {
+        CabinetPath: ?[*:0]const u8 align(1),
+        CabinetFile: ?[*:0]const u8 align(1),
+        DiskName: ?[*:0]const u8 align(1),
+        SetId: u16 align(1),
+        CabinetNumber: u16 align(1),
     },
 };
 pub const CABINET_INFO_W = switch(@import("../zig.zig").arch) {
@@ -2306,12 +2306,12 @@ pub const CABINET_INFO_W = switch(@import("../zig.zig").arch) {
         SetId: u16,
         CabinetNumber: u16,
     },
-    .X86 => packed struct {
-        CabinetPath: ?[*:0]const u16,
-        CabinetFile: ?[*:0]const u16,
-        DiskName: ?[*:0]const u16,
-        SetId: u16,
-        CabinetNumber: u16,
+    .X86 => extern struct {
+        CabinetPath: ?[*:0]const u16 align(1),
+        CabinetFile: ?[*:0]const u16 align(1),
+        DiskName: ?[*:0]const u16 align(1),
+        SetId: u16 align(1),
+        CabinetNumber: u16 align(1),
     },
 };
 pub const FILE_IN_CABINET_INFO_A = switch(@import("../zig.zig").arch) {
@@ -2324,14 +2324,14 @@ pub const FILE_IN_CABINET_INFO_A = switch(@import("../zig.zig").arch) {
         DosAttribs: u16,
         FullTargetName: [260]CHAR,
     },
-    .X86 => packed struct {
-        NameInCabinet: ?[*:0]const u8,
-        FileSize: u32,
-        Win32Error: u32,
-        DosDate: u16,
-        DosTime: u16,
-        DosAttribs: u16,
-        FullTargetName: [260]CHAR,
+    .X86 => extern struct {
+        NameInCabinet: ?[*:0]const u8 align(1),
+        FileSize: u32 align(1),
+        Win32Error: u32 align(1),
+        DosDate: u16 align(1),
+        DosTime: u16 align(1),
+        DosAttribs: u16 align(1),
+        FullTargetName: [260]CHAR align(1),
     },
 };
 pub const FILE_IN_CABINET_INFO_W = switch(@import("../zig.zig").arch) {
@@ -2344,14 +2344,14 @@ pub const FILE_IN_CABINET_INFO_W = switch(@import("../zig.zig").arch) {
         DosAttribs: u16,
         FullTargetName: [260]u16,
     },
-    .X86 => packed struct {
-        NameInCabinet: ?[*:0]const u16,
-        FileSize: u32,
-        Win32Error: u32,
-        DosDate: u16,
-        DosTime: u16,
-        DosAttribs: u16,
-        FullTargetName: [260]u16,
+    .X86 => extern struct {
+        NameInCabinet: ?[*:0]const u16 align(1),
+        FileSize: u32 align(1),
+        Win32Error: u32 align(1),
+        DosDate: u16 align(1),
+        DosTime: u16 align(1),
+        DosAttribs: u16 align(1),
+        FullTargetName: [260]u16 align(1),
     },
 };
 pub const SP_REGISTER_CONTROL_STATUSA = switch(@import("../zig.zig").arch) {
@@ -2361,11 +2361,11 @@ pub const SP_REGISTER_CONTROL_STATUSA = switch(@import("../zig.zig").arch) {
         Win32Error: u32,
         FailureCode: u32,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        FileName: ?[*:0]const u8,
-        Win32Error: u32,
-        FailureCode: u32,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        FileName: ?[*:0]const u8 align(1),
+        Win32Error: u32 align(1),
+        FailureCode: u32 align(1),
     },
 };
 pub const SP_REGISTER_CONTROL_STATUSW = switch(@import("../zig.zig").arch) {
@@ -2375,11 +2375,11 @@ pub const SP_REGISTER_CONTROL_STATUSW = switch(@import("../zig.zig").arch) {
         Win32Error: u32,
         FailureCode: u32,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        FileName: ?[*:0]const u16,
-        Win32Error: u32,
-        FailureCode: u32,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        FileName: ?[*:0]const u16 align(1),
+        Win32Error: u32 align(1),
+        FailureCode: u32 align(1),
     },
 };
 pub const SP_FILE_COPY_PARAMS_A = switch(@import("../zig.zig").arch) {
@@ -2397,19 +2397,19 @@ pub const SP_FILE_COPY_PARAMS_A = switch(@import("../zig.zig").arch) {
         LayoutInf: ?*anyopaque,
         SecurityDescriptor: ?[*:0]const u8,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        QueueHandle: ?*anyopaque,
-        SourceRootPath: ?[*:0]const u8,
-        SourcePath: ?[*:0]const u8,
-        SourceFilename: ?[*:0]const u8,
-        SourceDescription: ?[*:0]const u8,
-        SourceTagfile: ?[*:0]const u8,
-        TargetDirectory: ?[*:0]const u8,
-        TargetFilename: ?[*:0]const u8,
-        CopyStyle: u32,
-        LayoutInf: ?*anyopaque,
-        SecurityDescriptor: ?[*:0]const u8,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        QueueHandle: ?*anyopaque align(1),
+        SourceRootPath: ?[*:0]const u8 align(1),
+        SourcePath: ?[*:0]const u8 align(1),
+        SourceFilename: ?[*:0]const u8 align(1),
+        SourceDescription: ?[*:0]const u8 align(1),
+        SourceTagfile: ?[*:0]const u8 align(1),
+        TargetDirectory: ?[*:0]const u8 align(1),
+        TargetFilename: ?[*:0]const u8 align(1),
+        CopyStyle: u32 align(1),
+        LayoutInf: ?*anyopaque align(1),
+        SecurityDescriptor: ?[*:0]const u8 align(1),
     },
 };
 pub const SP_FILE_COPY_PARAMS_W = switch(@import("../zig.zig").arch) {
@@ -2427,19 +2427,19 @@ pub const SP_FILE_COPY_PARAMS_W = switch(@import("../zig.zig").arch) {
         LayoutInf: ?*anyopaque,
         SecurityDescriptor: ?[*:0]const u16,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        QueueHandle: ?*anyopaque,
-        SourceRootPath: ?[*:0]const u16,
-        SourcePath: ?[*:0]const u16,
-        SourceFilename: ?[*:0]const u16,
-        SourceDescription: ?[*:0]const u16,
-        SourceTagfile: ?[*:0]const u16,
-        TargetDirectory: ?[*:0]const u16,
-        TargetFilename: ?[*:0]const u16,
-        CopyStyle: u32,
-        LayoutInf: ?*anyopaque,
-        SecurityDescriptor: ?[*:0]const u16,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        QueueHandle: ?*anyopaque align(1),
+        SourceRootPath: ?[*:0]const u16 align(1),
+        SourcePath: ?[*:0]const u16 align(1),
+        SourceFilename: ?[*:0]const u16 align(1),
+        SourceDescription: ?[*:0]const u16 align(1),
+        SourceTagfile: ?[*:0]const u16 align(1),
+        TargetDirectory: ?[*:0]const u16 align(1),
+        TargetFilename: ?[*:0]const u16 align(1),
+        CopyStyle: u32 align(1),
+        LayoutInf: ?*anyopaque align(1),
+        SecurityDescriptor: ?[*:0]const u16 align(1),
     },
 };
 pub const SP_DEVINFO_DATA = switch(@import("../zig.zig").arch) {
@@ -2449,11 +2449,11 @@ pub const SP_DEVINFO_DATA = switch(@import("../zig.zig").arch) {
         DevInst: u32,
         Reserved: usize,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        ClassGuid: Guid,
-        DevInst: u32,
-        Reserved: usize,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        ClassGuid: Guid align(1),
+        DevInst: u32 align(1),
+        Reserved: usize align(1),
     },
 };
 pub const SP_DEVICE_INTERFACE_DATA = switch(@import("../zig.zig").arch) {
@@ -2463,11 +2463,11 @@ pub const SP_DEVICE_INTERFACE_DATA = switch(@import("../zig.zig").arch) {
         Flags: u32,
         Reserved: usize,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        InterfaceClassGuid: Guid,
-        Flags: u32,
-        Reserved: usize,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        InterfaceClassGuid: Guid align(1),
+        Flags: u32 align(1),
+        Reserved: usize align(1),
     },
 };
 pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = switch(@import("../zig.zig").arch) {
@@ -2475,9 +2475,9 @@ pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = switch(@import("../zig.zig").arch)
         cbSize: u32,
         DevicePath: [1]CHAR,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        DevicePath: [1]CHAR,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        DevicePath: [1]CHAR align(1),
     },
 };
 pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = switch(@import("../zig.zig").arch) {
@@ -2485,9 +2485,9 @@ pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = switch(@import("../zig.zig").arch)
         cbSize: u32,
         DevicePath: [1]u16,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        DevicePath: [1]u16,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        DevicePath: [1]u16 align(1),
     },
 };
 pub const SP_DEVINFO_LIST_DETAIL_DATA_A = switch(@import("../zig.zig").arch) {
@@ -2497,11 +2497,11 @@ pub const SP_DEVINFO_LIST_DETAIL_DATA_A = switch(@import("../zig.zig").arch) {
         RemoteMachineHandle: ?HANDLE,
         RemoteMachineName: [263]CHAR,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        ClassGuid: Guid,
-        RemoteMachineHandle: ?HANDLE,
-        RemoteMachineName: [263]CHAR,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        ClassGuid: Guid align(1),
+        RemoteMachineHandle: ?HANDLE align(1),
+        RemoteMachineName: [263]CHAR align(1),
     },
 };
 pub const SP_DEVINFO_LIST_DETAIL_DATA_W = switch(@import("../zig.zig").arch) {
@@ -2511,11 +2511,11 @@ pub const SP_DEVINFO_LIST_DETAIL_DATA_W = switch(@import("../zig.zig").arch) {
         RemoteMachineHandle: ?HANDLE,
         RemoteMachineName: [263]u16,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        ClassGuid: Guid,
-        RemoteMachineHandle: ?HANDLE,
-        RemoteMachineName: [263]u16,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        ClassGuid: Guid align(1),
+        RemoteMachineHandle: ?HANDLE align(1),
+        RemoteMachineName: [263]u16 align(1),
     },
 };
 pub const SP_DEVINSTALL_PARAMS_A = switch(@import("../zig.zig").arch) {
@@ -2531,17 +2531,17 @@ pub const SP_DEVINSTALL_PARAMS_A = switch(@import("../zig.zig").arch) {
         Reserved: u32,
         DriverPath: [260]CHAR,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        Flags: u32,
-        FlagsEx: u32,
-        hwndParent: ?HWND,
-        InstallMsgHandler: ?PSP_FILE_CALLBACK_A,
-        InstallMsgHandlerContext: ?*anyopaque,
-        FileQueue: ?*anyopaque,
-        ClassInstallReserved: usize,
-        Reserved: u32,
-        DriverPath: [260]CHAR,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        Flags: u32 align(1),
+        FlagsEx: u32 align(1),
+        hwndParent: ?HWND align(1),
+        InstallMsgHandler: ?PSP_FILE_CALLBACK_A align(1),
+        InstallMsgHandlerContext: ?*anyopaque align(1),
+        FileQueue: ?*anyopaque align(1),
+        ClassInstallReserved: usize align(1),
+        Reserved: u32 align(1),
+        DriverPath: [260]CHAR align(1),
     },
 };
 pub const SP_DEVINSTALL_PARAMS_W = switch(@import("../zig.zig").arch) {
@@ -2557,17 +2557,17 @@ pub const SP_DEVINSTALL_PARAMS_W = switch(@import("../zig.zig").arch) {
         Reserved: u32,
         DriverPath: [260]u16,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        Flags: u32,
-        FlagsEx: u32,
-        hwndParent: ?HWND,
-        InstallMsgHandler: ?PSP_FILE_CALLBACK_A,
-        InstallMsgHandlerContext: ?*anyopaque,
-        FileQueue: ?*anyopaque,
-        ClassInstallReserved: usize,
-        Reserved: u32,
-        DriverPath: [260]u16,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        Flags: u32 align(1),
+        FlagsEx: u32 align(1),
+        hwndParent: ?HWND align(1),
+        InstallMsgHandler: ?PSP_FILE_CALLBACK_A align(1),
+        InstallMsgHandlerContext: ?*anyopaque align(1),
+        FileQueue: ?*anyopaque align(1),
+        ClassInstallReserved: usize align(1),
+        Reserved: u32 align(1),
+        DriverPath: [260]u16 align(1),
     },
 };
 pub const SP_CLASSINSTALL_HEADER = switch(@import("../zig.zig").arch) {
@@ -2575,9 +2575,9 @@ pub const SP_CLASSINSTALL_HEADER = switch(@import("../zig.zig").arch) {
         cbSize: u32,
         InstallFunction: u32,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        InstallFunction: u32,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        InstallFunction: u32 align(1),
     },
 };
 pub const SP_ENABLECLASS_PARAMS = switch(@import("../zig.zig").arch) {
@@ -2586,10 +2586,10 @@ pub const SP_ENABLECLASS_PARAMS = switch(@import("../zig.zig").arch) {
         ClassGuid: Guid,
         EnableMessage: u32,
     },
-    .X86 => packed struct {
-        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-        ClassGuid: Guid,
-        EnableMessage: u32,
+    .X86 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER align(1),
+        ClassGuid: Guid align(1),
+        EnableMessage: u32 align(1),
     },
 };
 pub const SP_PROPCHANGE_PARAMS = switch(@import("../zig.zig").arch) {
@@ -2599,11 +2599,11 @@ pub const SP_PROPCHANGE_PARAMS = switch(@import("../zig.zig").arch) {
         Scope: u32,
         HwProfile: u32,
     },
-    .X86 => packed struct {
-        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-        StateChange: u32,
-        Scope: u32,
-        HwProfile: u32,
+    .X86 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER align(1),
+        StateChange: u32 align(1),
+        Scope: u32 align(1),
+        HwProfile: u32 align(1),
     },
 };
 pub const SP_REMOVEDEVICE_PARAMS = switch(@import("../zig.zig").arch) {
@@ -2612,10 +2612,10 @@ pub const SP_REMOVEDEVICE_PARAMS = switch(@import("../zig.zig").arch) {
         Scope: u32,
         HwProfile: u32,
     },
-    .X86 => packed struct {
-        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-        Scope: u32,
-        HwProfile: u32,
+    .X86 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER align(1),
+        Scope: u32 align(1),
+        HwProfile: u32 align(1),
     },
 };
 pub const SP_UNREMOVEDEVICE_PARAMS = switch(@import("../zig.zig").arch) {
@@ -2624,10 +2624,10 @@ pub const SP_UNREMOVEDEVICE_PARAMS = switch(@import("../zig.zig").arch) {
         Scope: u32,
         HwProfile: u32,
     },
-    .X86 => packed struct {
-        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-        Scope: u32,
-        HwProfile: u32,
+    .X86 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER align(1),
+        Scope: u32 align(1),
+        HwProfile: u32 align(1),
     },
 };
 pub const SP_SELECTDEVICE_PARAMS_W = switch(@import("../zig.zig").arch) {
@@ -2638,12 +2638,12 @@ pub const SP_SELECTDEVICE_PARAMS_W = switch(@import("../zig.zig").arch) {
         ListLabel: [30]u16,
         SubTitle: [256]u16,
     },
-    .X86 => packed struct {
-        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-        Title: [60]u16,
-        Instructions: [256]u16,
-        ListLabel: [30]u16,
-        SubTitle: [256]u16,
+    .X86 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER align(1),
+        Title: [60]u16 align(1),
+        Instructions: [256]u16 align(1),
+        ListLabel: [30]u16 align(1),
+        SubTitle: [256]u16 align(1),
     },
 };
 pub const SP_DETECTDEVICE_PARAMS = switch(@import("../zig.zig").arch) {
@@ -2652,10 +2652,10 @@ pub const SP_DETECTDEVICE_PARAMS = switch(@import("../zig.zig").arch) {
         DetectProgressNotify: ?PDETECT_PROGRESS_NOTIFY,
         ProgressNotifyParam: ?*anyopaque,
     },
-    .X86 => packed struct {
-        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-        DetectProgressNotify: ?PDETECT_PROGRESS_NOTIFY,
-        ProgressNotifyParam: ?*anyopaque,
+    .X86 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER align(1),
+        DetectProgressNotify: ?PDETECT_PROGRESS_NOTIFY align(1),
+        ProgressNotifyParam: ?*anyopaque align(1),
     },
 };
 pub const SP_INSTALLWIZARD_DATA = switch(@import("../zig.zig").arch) {
@@ -2669,15 +2669,15 @@ pub const SP_INSTALLWIZARD_DATA = switch(@import("../zig.zig").arch) {
         PrivateData: LPARAM,
         hwndWizardDlg: ?HWND,
     },
-    .X86 => packed struct {
-        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-        Flags: u32,
-        DynamicPages: [20]?HPROPSHEETPAGE,
-        NumDynamicPages: u32,
-        DynamicPageFlags: u32,
-        PrivateFlags: u32,
-        PrivateData: LPARAM,
-        hwndWizardDlg: ?HWND,
+    .X86 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER align(1),
+        Flags: u32 align(1),
+        DynamicPages: [20]?HPROPSHEETPAGE align(1),
+        NumDynamicPages: u32 align(1),
+        DynamicPageFlags: u32 align(1),
+        PrivateFlags: u32 align(1),
+        PrivateData: LPARAM align(1),
+        hwndWizardDlg: ?HWND align(1),
     },
 };
 pub const SP_NEWDEVICEWIZARD_DATA = switch(@import("../zig.zig").arch) {
@@ -2688,12 +2688,12 @@ pub const SP_NEWDEVICEWIZARD_DATA = switch(@import("../zig.zig").arch) {
         NumDynamicPages: u32,
         hwndWizardDlg: ?HWND,
     },
-    .X86 => packed struct {
-        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-        Flags: u32,
-        DynamicPages: [20]?HPROPSHEETPAGE,
-        NumDynamicPages: u32,
-        hwndWizardDlg: ?HWND,
+    .X86 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER align(1),
+        Flags: u32 align(1),
+        DynamicPages: [20]?HPROPSHEETPAGE align(1),
+        NumDynamicPages: u32 align(1),
+        hwndWizardDlg: ?HWND align(1),
     },
 };
 pub const SP_TROUBLESHOOTER_PARAMS_W = switch(@import("../zig.zig").arch) {
@@ -2702,10 +2702,10 @@ pub const SP_TROUBLESHOOTER_PARAMS_W = switch(@import("../zig.zig").arch) {
         ChmFile: [260]u16,
         HtmlTroubleShooter: [260]u16,
     },
-    .X86 => packed struct {
-        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-        ChmFile: [260]u16,
-        HtmlTroubleShooter: [260]u16,
+    .X86 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER align(1),
+        ChmFile: [260]u16 align(1),
+        HtmlTroubleShooter: [260]u16 align(1),
     },
 };
 pub const SP_POWERMESSAGEWAKE_PARAMS_W = switch(@import("../zig.zig").arch) {
@@ -2713,9 +2713,9 @@ pub const SP_POWERMESSAGEWAKE_PARAMS_W = switch(@import("../zig.zig").arch) {
         ClassInstallHeader: SP_CLASSINSTALL_HEADER,
         PowerMessageWake: [512]u16,
     },
-    .X86 => packed struct {
-        ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-        PowerMessageWake: [512]u16,
+    .X86 => extern struct {
+        ClassInstallHeader: SP_CLASSINSTALL_HEADER align(1),
+        PowerMessageWake: [512]u16 align(1),
     },
 };
 pub const SP_DRVINFO_DATA_V2_A = switch(@import("../zig.zig").arch) {
@@ -2729,15 +2729,15 @@ pub const SP_DRVINFO_DATA_V2_A = switch(@import("../zig.zig").arch) {
         DriverDate: FILETIME,
         DriverVersion: u64,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        DriverType: u32,
-        Reserved: usize,
-        Description: [256]CHAR,
-        MfgName: [256]CHAR,
-        ProviderName: [256]CHAR,
-        DriverDate: FILETIME,
-        DriverVersion: u64,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        DriverType: u32 align(1),
+        Reserved: usize align(1),
+        Description: [256]CHAR align(1),
+        MfgName: [256]CHAR align(1),
+        ProviderName: [256]CHAR align(1),
+        DriverDate: FILETIME align(1),
+        DriverVersion: u64 align(1),
     },
 };
 pub const SP_DRVINFO_DATA_V2_W = switch(@import("../zig.zig").arch) {
@@ -2751,15 +2751,15 @@ pub const SP_DRVINFO_DATA_V2_W = switch(@import("../zig.zig").arch) {
         DriverDate: FILETIME,
         DriverVersion: u64,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        DriverType: u32,
-        Reserved: usize,
-        Description: [256]u16,
-        MfgName: [256]u16,
-        ProviderName: [256]u16,
-        DriverDate: FILETIME,
-        DriverVersion: u64,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        DriverType: u32 align(1),
+        Reserved: usize align(1),
+        Description: [256]u16 align(1),
+        MfgName: [256]u16 align(1),
+        ProviderName: [256]u16 align(1),
+        DriverDate: FILETIME align(1),
+        DriverVersion: u64 align(1),
     },
 };
 pub const SP_DRVINFO_DATA_V1_A = switch(@import("../zig.zig").arch) {
@@ -2771,13 +2771,13 @@ pub const SP_DRVINFO_DATA_V1_A = switch(@import("../zig.zig").arch) {
         MfgName: [256]CHAR,
         ProviderName: [256]CHAR,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        DriverType: u32,
-        Reserved: usize,
-        Description: [256]CHAR,
-        MfgName: [256]CHAR,
-        ProviderName: [256]CHAR,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        DriverType: u32 align(1),
+        Reserved: usize align(1),
+        Description: [256]CHAR align(1),
+        MfgName: [256]CHAR align(1),
+        ProviderName: [256]CHAR align(1),
     },
 };
 pub const SP_DRVINFO_DATA_V1_W = switch(@import("../zig.zig").arch) {
@@ -2789,13 +2789,13 @@ pub const SP_DRVINFO_DATA_V1_W = switch(@import("../zig.zig").arch) {
         MfgName: [256]u16,
         ProviderName: [256]u16,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        DriverType: u32,
-        Reserved: usize,
-        Description: [256]u16,
-        MfgName: [256]u16,
-        ProviderName: [256]u16,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        DriverType: u32 align(1),
+        Reserved: usize align(1),
+        Description: [256]u16 align(1),
+        MfgName: [256]u16 align(1),
+        ProviderName: [256]u16 align(1),
     },
 };
 pub const SP_DRVINFO_DETAIL_DATA_A = switch(@import("../zig.zig").arch) {
@@ -2810,16 +2810,16 @@ pub const SP_DRVINFO_DETAIL_DATA_A = switch(@import("../zig.zig").arch) {
         DrvDescription: [256]CHAR,
         HardwareID: [1]CHAR,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        InfDate: FILETIME,
-        CompatIDsOffset: u32,
-        CompatIDsLength: u32,
-        Reserved: usize,
-        SectionName: [256]CHAR,
-        InfFileName: [260]CHAR,
-        DrvDescription: [256]CHAR,
-        HardwareID: [1]CHAR,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        InfDate: FILETIME align(1),
+        CompatIDsOffset: u32 align(1),
+        CompatIDsLength: u32 align(1),
+        Reserved: usize align(1),
+        SectionName: [256]CHAR align(1),
+        InfFileName: [260]CHAR align(1),
+        DrvDescription: [256]CHAR align(1),
+        HardwareID: [1]CHAR align(1),
     },
 };
 pub const SP_DRVINFO_DETAIL_DATA_W = switch(@import("../zig.zig").arch) {
@@ -2834,16 +2834,16 @@ pub const SP_DRVINFO_DETAIL_DATA_W = switch(@import("../zig.zig").arch) {
         DrvDescription: [256]u16,
         HardwareID: [1]u16,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        InfDate: FILETIME,
-        CompatIDsOffset: u32,
-        CompatIDsLength: u32,
-        Reserved: usize,
-        SectionName: [256]u16,
-        InfFileName: [260]u16,
-        DrvDescription: [256]u16,
-        HardwareID: [1]u16,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        InfDate: FILETIME align(1),
+        CompatIDsOffset: u32 align(1),
+        CompatIDsLength: u32 align(1),
+        Reserved: usize align(1),
+        SectionName: [256]u16 align(1),
+        InfFileName: [260]u16 align(1),
+        DrvDescription: [256]u16 align(1),
+        HardwareID: [1]u16 align(1),
     },
 };
 pub const SP_DRVINSTALL_PARAMS = switch(@import("../zig.zig").arch) {
@@ -2854,12 +2854,12 @@ pub const SP_DRVINSTALL_PARAMS = switch(@import("../zig.zig").arch) {
         PrivateData: usize,
         Reserved: u32,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        Rank: u32,
-        Flags: u32,
-        PrivateData: usize,
-        Reserved: u32,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        Rank: u32 align(1),
+        Flags: u32 align(1),
+        PrivateData: usize align(1),
+        Reserved: u32 align(1),
     },
 };
 pub const COINSTALLER_CONTEXT_DATA = switch(@import("../zig.zig").arch) {
@@ -2868,10 +2868,10 @@ pub const COINSTALLER_CONTEXT_DATA = switch(@import("../zig.zig").arch) {
         InstallResult: u32,
         PrivateData: ?*anyopaque,
     },
-    .X86 => packed struct {
-        PostProcessing: BOOL,
-        InstallResult: u32,
-        PrivateData: ?*anyopaque,
+    .X86 => extern struct {
+        PostProcessing: BOOL align(1),
+        InstallResult: u32 align(1),
+        PrivateData: ?*anyopaque align(1),
     },
 };
 pub const SP_CLASSIMAGELIST_DATA = switch(@import("../zig.zig").arch) {
@@ -2880,10 +2880,10 @@ pub const SP_CLASSIMAGELIST_DATA = switch(@import("../zig.zig").arch) {
         ImageList: ?HIMAGELIST,
         Reserved: usize,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        ImageList: ?HIMAGELIST,
-        Reserved: usize,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        ImageList: ?HIMAGELIST align(1),
+        Reserved: usize align(1),
     },
 };
 pub const SP_PROPSHEETPAGE_REQUEST = switch(@import("../zig.zig").arch) {
@@ -2893,11 +2893,11 @@ pub const SP_PROPSHEETPAGE_REQUEST = switch(@import("../zig.zig").arch) {
         DeviceInfoSet: ?*anyopaque,
         DeviceInfoData: ?*SP_DEVINFO_DATA,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        PageRequested: u32,
-        DeviceInfoSet: ?*anyopaque,
-        DeviceInfoData: ?*SP_DEVINFO_DATA,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        PageRequested: u32 align(1),
+        DeviceInfoSet: ?*anyopaque align(1),
+        DeviceInfoData: ?*SP_DEVINFO_DATA align(1),
     },
 };
 pub const SP_BACKUP_QUEUE_PARAMS_V2_A = switch(@import("../zig.zig").arch) {
@@ -2907,11 +2907,11 @@ pub const SP_BACKUP_QUEUE_PARAMS_V2_A = switch(@import("../zig.zig").arch) {
         FilenameOffset: i32,
         ReinstallInstance: [260]CHAR,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        FullInfPath: [260]CHAR,
-        FilenameOffset: i32,
-        ReinstallInstance: [260]CHAR,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        FullInfPath: [260]CHAR align(1),
+        FilenameOffset: i32 align(1),
+        ReinstallInstance: [260]CHAR align(1),
     },
 };
 pub const SP_BACKUP_QUEUE_PARAMS_V2_W = switch(@import("../zig.zig").arch) {
@@ -2921,11 +2921,11 @@ pub const SP_BACKUP_QUEUE_PARAMS_V2_W = switch(@import("../zig.zig").arch) {
         FilenameOffset: i32,
         ReinstallInstance: [260]u16,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        FullInfPath: [260]u16,
-        FilenameOffset: i32,
-        ReinstallInstance: [260]u16,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        FullInfPath: [260]u16 align(1),
+        FilenameOffset: i32 align(1),
+        ReinstallInstance: [260]u16 align(1),
     },
 };
 pub const SP_BACKUP_QUEUE_PARAMS_V1_A = switch(@import("../zig.zig").arch) {
@@ -2934,10 +2934,10 @@ pub const SP_BACKUP_QUEUE_PARAMS_V1_A = switch(@import("../zig.zig").arch) {
         FullInfPath: [260]CHAR,
         FilenameOffset: i32,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        FullInfPath: [260]CHAR,
-        FilenameOffset: i32,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        FullInfPath: [260]CHAR align(1),
+        FilenameOffset: i32 align(1),
     },
 };
 pub const SP_BACKUP_QUEUE_PARAMS_V1_W = switch(@import("../zig.zig").arch) {
@@ -2946,10 +2946,10 @@ pub const SP_BACKUP_QUEUE_PARAMS_V1_W = switch(@import("../zig.zig").arch) {
         FullInfPath: [260]u16,
         FilenameOffset: i32,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        FullInfPath: [260]u16,
-        FilenameOffset: i32,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        FullInfPath: [260]u16 align(1),
+        FilenameOffset: i32 align(1),
     },
 };
 pub const SP_INF_SIGNER_INFO_V1_A = switch(@import("../zig.zig").arch) {
@@ -2959,11 +2959,11 @@ pub const SP_INF_SIGNER_INFO_V1_A = switch(@import("../zig.zig").arch) {
         DigitalSigner: [260]CHAR,
         DigitalSignerVersion: [260]CHAR,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        CatalogFile: [260]CHAR,
-        DigitalSigner: [260]CHAR,
-        DigitalSignerVersion: [260]CHAR,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        CatalogFile: [260]CHAR align(1),
+        DigitalSigner: [260]CHAR align(1),
+        DigitalSignerVersion: [260]CHAR align(1),
     },
 };
 pub const SP_INF_SIGNER_INFO_V1_W = switch(@import("../zig.zig").arch) {
@@ -2973,11 +2973,11 @@ pub const SP_INF_SIGNER_INFO_V1_W = switch(@import("../zig.zig").arch) {
         DigitalSigner: [260]u16,
         DigitalSignerVersion: [260]u16,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        CatalogFile: [260]u16,
-        DigitalSigner: [260]u16,
-        DigitalSignerVersion: [260]u16,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        CatalogFile: [260]u16 align(1),
+        DigitalSigner: [260]u16 align(1),
+        DigitalSignerVersion: [260]u16 align(1),
     },
 };
 pub const SP_INF_SIGNER_INFO_V2_A = switch(@import("../zig.zig").arch) {
@@ -2988,12 +2988,12 @@ pub const SP_INF_SIGNER_INFO_V2_A = switch(@import("../zig.zig").arch) {
         DigitalSignerVersion: [260]CHAR,
         SignerScore: u32,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        CatalogFile: [260]CHAR,
-        DigitalSigner: [260]CHAR,
-        DigitalSignerVersion: [260]CHAR,
-        SignerScore: u32,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        CatalogFile: [260]CHAR align(1),
+        DigitalSigner: [260]CHAR align(1),
+        DigitalSignerVersion: [260]CHAR align(1),
+        SignerScore: u32 align(1),
     },
 };
 pub const SP_INF_SIGNER_INFO_V2_W = switch(@import("../zig.zig").arch) {
@@ -3004,12 +3004,12 @@ pub const SP_INF_SIGNER_INFO_V2_W = switch(@import("../zig.zig").arch) {
         DigitalSignerVersion: [260]u16,
         SignerScore: u32,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        CatalogFile: [260]u16,
-        DigitalSigner: [260]u16,
-        DigitalSignerVersion: [260]u16,
-        SignerScore: u32,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        CatalogFile: [260]u16 align(1),
+        DigitalSigner: [260]u16 align(1),
+        DigitalSignerVersion: [260]u16 align(1),
+        SignerScore: u32 align(1),
     },
 };
 

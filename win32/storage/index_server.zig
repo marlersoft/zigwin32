@@ -430,18 +430,15 @@ pub const DBID = switch(@import("../zig.zig").arch) {
         },
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
         uGuid: extern union {
-            // WARNING: unable to add field alignment because it's not implemented for unions
-            guid: Guid,
-            pguid: ?*Guid,
-        },
-        eKind: u32,
+            guid: Guid align(2),
+            pguid: ?*Guid align(2),
+        } align(2),
+        eKind: u32 align(2),
         uName: extern union {
-            // WARNING: unable to add field alignment because it's not implemented for unions
-            pwszName: ?PWSTR,
-            ulPropid: u32,
-        },
+            pwszName: ?PWSTR align(2),
+            ulPropid: u32 align(2),
+        } align(2),
     },
 };
 

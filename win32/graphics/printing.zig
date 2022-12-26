@@ -2997,20 +2997,20 @@ pub const MXDC_IMAGETYPE_JPEGMEDIUM_COMPRESSION = MxdcImageTypeEnums.JPEGMEDIUM_
 pub const MXDC_IMAGETYPE_JPEGLOW_COMPRESSION = MxdcImageTypeEnums.JPEGLOW_COMPRESSION;
 pub const MXDC_IMAGETYPE_PNG = MxdcImageTypeEnums.PNG;
 
-pub const MxdcEscapeHeader = packed struct {
-    cbInput: u32,
-    cbOutput: u32,
-    opCode: u32,
+pub const MxdcEscapeHeader = extern struct {
+    cbInput: u32 align(1),
+    cbOutput: u32 align(1),
+    opCode: u32 align(1),
 };
 
-pub const MxdcGetFileNameData = packed struct {
-    cbOutput: u32,
-    wszData: [1]u16,
+pub const MxdcGetFileNameData = extern struct {
+    cbOutput: u32 align(1),
+    wszData: [1]u16 align(1),
 };
 
-pub const MxdcS0PageData = packed struct {
-    dwSize: u32,
-    bData: [1]u8,
+pub const MxdcS0PageData = extern struct {
+    dwSize: u32 align(1),
+    bData: [1]u8 align(1),
 };
 
 pub const MxdcS0PageEnums = enum(i32) {
@@ -3036,17 +3036,17 @@ pub const MXDC_RESOURCE_JPEG_THUMBNAIL = MxdcS0PageEnums.JPEG_THUMBNAIL;
 pub const MXDC_RESOURCE_PNG_THUMBNAIL = MxdcS0PageEnums.PNG_THUMBNAIL;
 pub const MXDC_RESOURCE_MAX = MxdcS0PageEnums.MAX;
 
-pub const MxdcXpsS0PageResource = packed struct {
-    dwSize: u32,
-    dwResourceType: u32,
-    szUri: [260]u8,
-    dwDataSize: u32,
-    bData: [1]u8,
+pub const MxdcXpsS0PageResource = extern struct {
+    dwSize: u32 align(1),
+    dwResourceType: u32 align(1),
+    szUri: [260]u8 align(1),
+    dwDataSize: u32 align(1),
+    bData: [1]u8 align(1),
 };
 
-pub const MxdcPrintTicketPassthrough = packed struct {
-    dwDataSize: u32,
-    bData: [1]u8,
+pub const MxdcPrintTicketPassthrough = extern struct {
+    dwDataSize: u32 align(1),
+    bData: [1]u8 align(1),
 };
 
 pub const MxdcPrintTicketEscape = extern struct {
@@ -3300,16 +3300,8 @@ pub const OEMUIOBJ = extern struct {
     pOemUIProcs: ?*OEMUIPROCS,
 };
 
-pub const OEMCUIPCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*CPSUICBPARAM,
-        param1: ?*OEMCUIPPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: ?*CPSUICBPARAM,
-        param1: ?*OEMCUIPPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const OEMCUIPCALLBACK = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const OEMCUIPPARAM = extern struct {
     cbSize: u32,
@@ -10851,7 +10843,6 @@ test {
     if (@hasDecl(@This(), "PFN_DrvGetDriverSetting")) { _ = PFN_DrvGetDriverSetting; }
     if (@hasDecl(@This(), "PFN_DrvUpgradeRegistrySetting")) { _ = PFN_DrvUpgradeRegistrySetting; }
     if (@hasDecl(@This(), "PFN_DrvUpdateUISetting")) { _ = PFN_DrvUpdateUISetting; }
-    if (@hasDecl(@This(), "OEMCUIPCALLBACK")) { _ = OEMCUIPCALLBACK; }
     if (@hasDecl(@This(), "EMFPLAYPROC")) { _ = EMFPLAYPROC; }
     if (@hasDecl(@This(), "ROUTER_NOTIFY_CALLBACK")) { _ = ROUTER_NOTIFY_CALLBACK; }
 

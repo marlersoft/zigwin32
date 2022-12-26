@@ -1882,9 +1882,9 @@ pub const KSDEGRADE_STANDARD_QUALITY = KSDEGRADE_STANDARD.QUALITY;
 pub const KSDEGRADE_STANDARD_COMPUTATION = KSDEGRADE_STANDARD.COMPUTATION;
 pub const KSDEGRADE_STANDARD_SKIP = KSDEGRADE_STANDARD.SKIP;
 
-pub const KSPROPERTY_SERIALHDR = packed struct {
-    PropertySet: Guid,
-    Count: u32,
+pub const KSPROPERTY_SERIALHDR = extern struct {
+    PropertySet: Guid align(1),
+    Count: u32 align(1),
 };
 
 pub const KSPROPERTY_SERIAL = extern struct {
@@ -4380,10 +4380,10 @@ pub const NABTS_BUFFER_LINE = extern struct {
     Bytes: [36]u8,
 };
 
-pub const NABTS_BUFFER = packed struct {
-    ScanlinesRequested: VBICODECFILTERING_SCANLINES,
-    PictureNumber: i64,
-    NabtsLines: [11]NABTS_BUFFER_LINE,
+pub const NABTS_BUFFER = extern struct {
+    ScanlinesRequested: VBICODECFILTERING_SCANLINES align(1),
+    PictureNumber: i64 align(1),
+    NabtsLines: [11]NABTS_BUFFER_LINE align(1),
 };
 
 pub const WST_BUFFER_LINE = extern struct {

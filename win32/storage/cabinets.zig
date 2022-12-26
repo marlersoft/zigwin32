@@ -474,9 +474,9 @@ pub const FDISPILLFILE = switch(@import("../zig.zig").arch) {
         ach: [2]CHAR,
         cbFile: i32,
     },
-    .X86 => packed struct {
-        ach: [2]CHAR,
-        cbFile: i32,
+    .X86 => extern struct {
+        ach: [2]CHAR align(1),
+        cbFile: i32 align(1),
     },
 };
 

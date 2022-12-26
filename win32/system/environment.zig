@@ -37,49 +37,49 @@ pub const ENCLAVE_IDENTITY_POLICY_SEAL_SAME_IMAGE = ENCLAVE_SEALING_IDENTITY_POL
 pub const ENCLAVE_IDENTITY_POLICY_SEAL_SAME_FAMILY = ENCLAVE_SEALING_IDENTITY_POLICY.SAME_FAMILY;
 pub const ENCLAVE_IDENTITY_POLICY_SEAL_SAME_AUTHOR = ENCLAVE_SEALING_IDENTITY_POLICY.SAME_AUTHOR;
 
-pub const ENCLAVE_IDENTITY = packed struct {
-    OwnerId: [32]u8,
-    UniqueId: [32]u8,
-    AuthorId: [32]u8,
-    FamilyId: [16]u8,
-    ImageId: [16]u8,
-    EnclaveSvn: u32,
-    SecureKernelSvn: u32,
-    PlatformSvn: u32,
-    Flags: u32,
-    SigningLevel: u32,
-    EnclaveType: u32,
+pub const ENCLAVE_IDENTITY = extern struct {
+    OwnerId: [32]u8 align(1),
+    UniqueId: [32]u8 align(1),
+    AuthorId: [32]u8 align(1),
+    FamilyId: [16]u8 align(1),
+    ImageId: [16]u8 align(1),
+    EnclaveSvn: u32 align(1),
+    SecureKernelSvn: u32 align(1),
+    PlatformSvn: u32 align(1),
+    Flags: u32 align(1),
+    SigningLevel: u32 align(1),
+    EnclaveType: u32 align(1),
 };
 
-pub const VBS_ENCLAVE_REPORT_PKG_HEADER = packed struct {
-    PackageSize: u32,
-    Version: u32,
-    SignatureScheme: u32,
-    SignedStatementSize: u32,
-    SignatureSize: u32,
-    Reserved: u32,
+pub const VBS_ENCLAVE_REPORT_PKG_HEADER = extern struct {
+    PackageSize: u32 align(1),
+    Version: u32 align(1),
+    SignatureScheme: u32 align(1),
+    SignedStatementSize: u32 align(1),
+    SignatureSize: u32 align(1),
+    Reserved: u32 align(1),
 };
 
-pub const VBS_ENCLAVE_REPORT = packed struct {
-    ReportSize: u32,
-    ReportVersion: u32,
-    EnclaveData: [64]u8,
-    EnclaveIdentity: ENCLAVE_IDENTITY,
+pub const VBS_ENCLAVE_REPORT = extern struct {
+    ReportSize: u32 align(1),
+    ReportVersion: u32 align(1),
+    EnclaveData: [64]u8 align(1),
+    EnclaveIdentity: ENCLAVE_IDENTITY align(1),
 };
 
-pub const VBS_ENCLAVE_REPORT_VARDATA_HEADER = packed struct {
-    DataType: u32,
-    Size: u32,
+pub const VBS_ENCLAVE_REPORT_VARDATA_HEADER = extern struct {
+    DataType: u32 align(1),
+    Size: u32 align(1),
 };
 
-pub const VBS_ENCLAVE_REPORT_MODULE = packed struct {
-    Header: VBS_ENCLAVE_REPORT_VARDATA_HEADER,
-    UniqueId: [32]u8,
-    AuthorId: [32]u8,
-    FamilyId: [16]u8,
-    ImageId: [16]u8,
-    Svn: u32,
-    ModuleName: [1]u16,
+pub const VBS_ENCLAVE_REPORT_MODULE = extern struct {
+    Header: VBS_ENCLAVE_REPORT_VARDATA_HEADER align(1),
+    UniqueId: [32]u8 align(1),
+    AuthorId: [32]u8 align(1),
+    FamilyId: [16]u8 align(1),
+    ImageId: [16]u8 align(1),
+    Svn: u32 align(1),
+    ModuleName: [1]u16 align(1),
 };
 
 pub const ENCLAVE_INFORMATION = extern struct {

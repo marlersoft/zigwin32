@@ -1103,9 +1103,8 @@ pub const WMT_RIGHT_SDMI_TRIGGER = WMT_RIGHTS.SDMI_TRIGGER;
 pub const WMT_RIGHT_SDMI_NOMORECOPIES = WMT_RIGHTS.SDMI_NOMORECOPIES;
 
 pub const WM_STREAM_PRIORITY_RECORD = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    wStreamNumber: u16,
-    fMandatory: BOOL,
+    wStreamNumber: u16 align(2),
+    fMandatory: BOOL align(2),
 };
 
 pub const WM_WRITER_STATISTICS = extern struct {
@@ -1208,40 +1207,40 @@ pub const WM_ADDRESS_ACCESSENTRY = extern struct {
     dwMask: u32,
 };
 
-pub const WM_PICTURE = packed struct {
-    pwszMIMEType: ?PWSTR,
-    bPictureType: u8,
-    pwszDescription: ?PWSTR,
-    dwDataLen: u32,
-    pbData: ?*u8,
+pub const WM_PICTURE = extern struct {
+    pwszMIMEType: ?PWSTR align(1),
+    bPictureType: u8 align(1),
+    pwszDescription: ?PWSTR align(1),
+    dwDataLen: u32 align(1),
+    pbData: ?*u8 align(1),
 };
 
-pub const WM_SYNCHRONISED_LYRICS = packed struct {
-    bTimeStampFormat: u8,
-    bContentType: u8,
-    pwszContentDescriptor: ?PWSTR,
-    dwLyricsLen: u32,
-    pbLyrics: ?*u8,
+pub const WM_SYNCHRONISED_LYRICS = extern struct {
+    bTimeStampFormat: u8 align(1),
+    bContentType: u8 align(1),
+    pwszContentDescriptor: ?PWSTR align(1),
+    dwLyricsLen: u32 align(1),
+    pbLyrics: ?*u8 align(1),
 };
 
-pub const WM_USER_WEB_URL = packed struct {
-    pwszDescription: ?PWSTR,
-    pwszURL: ?PWSTR,
+pub const WM_USER_WEB_URL = extern struct {
+    pwszDescription: ?PWSTR align(1),
+    pwszURL: ?PWSTR align(1),
 };
 
-pub const WM_USER_TEXT = packed struct {
-    pwszDescription: ?PWSTR,
-    pwszText: ?PWSTR,
+pub const WM_USER_TEXT = extern struct {
+    pwszDescription: ?PWSTR align(1),
+    pwszText: ?PWSTR align(1),
 };
 
-pub const WM_LEAKY_BUCKET_PAIR = packed struct {
-    dwBitrate: u32,
-    msBufferWindow: u32,
+pub const WM_LEAKY_BUCKET_PAIR = extern struct {
+    dwBitrate: u32 align(1),
+    msBufferWindow: u32 align(1),
 };
 
-pub const WM_STREAM_TYPE_INFO = packed struct {
-    guidMajorType: Guid,
-    cbFormat: u32,
+pub const WM_STREAM_TYPE_INFO = extern struct {
+    guidMajorType: Guid align(1),
+    cbFormat: u32 align(1),
 };
 
 pub const WMT_WATERMARK_ENTRY = extern struct {
@@ -1362,11 +1361,10 @@ pub const WMT_COLORSPACEINFO_EXTENSION_DATA = extern struct {
 };
 
 pub const WMT_TIMECODE_EXTENSION_DATA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    wRange: u16,
-    dwTimecode: u32,
-    dwUserbits: u32,
-    dwAmFlags: u32,
+    wRange: u16 align(2),
+    dwTimecode: u32 align(2),
+    dwUserbits: u32 align(2),
+    dwAmFlags: u32 align(2),
 };
 
 pub const DRM_VAL16 = extern struct {

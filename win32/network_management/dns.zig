@@ -342,50 +342,50 @@ pub const IP4_ARRAY = extern struct {
 
 pub const DNS_ADDR = extern struct {
     MaxSa: [32]CHAR,
-    Data: packed union {
-        DnsAddrUserDword: [8]u32,
+    Data: extern union {
+        DnsAddrUserDword: [8]u32 align(1),
     },
 };
 
-pub const DNS_ADDR_ARRAY = packed struct {
-    MaxCount: u32,
-    AddrCount: u32,
-    Tag: u32,
-    Family: u16,
-    WordReserved: u16,
-    Flags: u32,
-    MatchFlag: u32,
-    Reserved1: u32,
-    Reserved2: u32,
-    AddrArray: [1]DNS_ADDR,
+pub const DNS_ADDR_ARRAY = extern struct {
+    MaxCount: u32 align(1),
+    AddrCount: u32 align(1),
+    Tag: u32 align(1),
+    Family: u16 align(1),
+    WordReserved: u16 align(1),
+    Flags: u32 align(1),
+    MatchFlag: u32 align(1),
+    Reserved1: u32 align(1),
+    Reserved2: u32 align(1),
+    AddrArray: [1]DNS_ADDR align(1),
 };
 
-pub const DNS_HEADER = packed struct {
-    Xid: u16,
-    _bitfield1: u8,
-    _bitfield2: u8,
-    QuestionCount: u16,
-    AnswerCount: u16,
-    NameServerCount: u16,
-    AdditionalCount: u16,
+pub const DNS_HEADER = extern struct {
+    Xid: u16 align(1),
+    _bitfield1: u8 align(1),
+    _bitfield2: u8 align(1),
+    QuestionCount: u16 align(1),
+    AnswerCount: u16 align(1),
+    NameServerCount: u16 align(1),
+    AdditionalCount: u16 align(1),
 };
 
-pub const DNS_HEADER_EXT = packed struct {
-    _bitfield: u16,
-    chRcode: u8,
-    chVersion: u8,
+pub const DNS_HEADER_EXT = extern struct {
+    _bitfield: u16 align(1),
+    chRcode: u8 align(1),
+    chVersion: u8 align(1),
 };
 
-pub const DNS_WIRE_QUESTION = packed struct {
-    QuestionType: u16,
-    QuestionClass: u16,
+pub const DNS_WIRE_QUESTION = extern struct {
+    QuestionType: u16 align(1),
+    QuestionClass: u16 align(1),
 };
 
-pub const DNS_WIRE_RECORD = packed struct {
-    RecordType: u16,
-    RecordClass: u16,
-    TimeToLive: u32,
-    DataLength: u16,
+pub const DNS_WIRE_RECORD = extern struct {
+    RecordType: u16 align(1),
+    RecordClass: u16 align(1),
+    TimeToLive: u32 align(1),
+    DataLength: u16 align(1),
 };
 
 pub const DNS_CONFIG_TYPE = enum(i32) {

@@ -268,34 +268,31 @@ pub const SNMP_ERROR_NOTWRITABLE = SNMP_ERROR.NOTWRITABLE;
 pub const SNMP_ERROR_INCONSISTENTNAME = SNMP_ERROR.INCONSISTENTNAME;
 
 pub const AsnOctetString = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    stream: ?*u8,
-    length: u32,
-    dynamic: BOOL,
+    stream: ?*u8 align(4),
+    length: u32 align(4),
+    dynamic: BOOL align(4),
 };
 
 pub const AsnObjectIdentifier = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    idLength: u32,
-    ids: ?*u32,
+    idLength: u32 align(4),
+    ids: ?*u32 align(4),
 };
 
 pub const AsnAny = extern struct {
     asnType: u8,
     asnValue: extern union {
-        // WARNING: unable to add field alignment because it's not implemented for unions
-        number: i32,
-        unsigned32: u32,
-        counter64: ULARGE_INTEGER,
-        string: AsnOctetString,
-        bits: AsnOctetString,
-        object: AsnObjectIdentifier,
-        sequence: AsnOctetString,
-        address: AsnOctetString,
-        counter: u32,
-        gauge: u32,
-        ticks: u32,
-        arbitrary: AsnOctetString,
+        number: i32 align(4),
+        unsigned32: u32 align(4),
+        counter64: ULARGE_INTEGER align(4),
+        string: AsnOctetString align(4),
+        bits: AsnOctetString align(4),
+        object: AsnObjectIdentifier align(4),
+        sequence: AsnOctetString align(4),
+        address: AsnOctetString align(4),
+        counter: u32 align(4),
+        gauge: u32 align(4),
+        ticks: u32 align(4),
+        arbitrary: AsnOctetString align(4),
     },
 };
 
@@ -305,9 +302,8 @@ pub const SnmpVarBind = extern struct {
 };
 
 pub const SnmpVarBindList = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    list: ?*SnmpVarBind,
-    len: u32,
+    list: ?*SnmpVarBind align(4),
+    len: u32 align(4),
 };
 
 pub const PFNSNMPEXTENSIONINIT = switch (@import("builtin").zig_backend) {

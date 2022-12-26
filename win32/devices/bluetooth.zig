@@ -1170,33 +1170,33 @@ pub const PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK = switch (@import("builtin").zi
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
 } ;
 
-pub const SOCKADDR_BTH = packed struct {
-    addressFamily: u16,
-    btAddr: u64,
-    serviceClassId: Guid,
-    port: u32,
+pub const SOCKADDR_BTH = extern struct {
+    addressFamily: u16 align(1),
+    btAddr: u64 align(1),
+    serviceClassId: Guid align(1),
+    port: u32 align(1),
 };
 
-pub const BTH_SET_SERVICE = packed struct {
-    pSdpVersion: ?*u32,
-    pRecordHandle: ?*?HANDLE,
-    fCodService: u32,
-    Reserved: [5]u32,
-    ulRecordLength: u32,
-    pRecord: [1]u8,
+pub const BTH_SET_SERVICE = extern struct {
+    pSdpVersion: ?*u32 align(1),
+    pRecordHandle: ?*?HANDLE align(1),
+    fCodService: u32 align(1),
+    Reserved: [5]u32 align(1),
+    ulRecordLength: u32 align(1),
+    pRecord: [1]u8 align(1),
 };
 
-pub const BTH_QUERY_DEVICE = packed struct {
-    LAP: u32,
-    length: u8,
+pub const BTH_QUERY_DEVICE = extern struct {
+    LAP: u32 align(1),
+    length: u8 align(1),
 };
 
-pub const BTH_QUERY_SERVICE = packed struct {
-    type: u32,
-    serviceHandle: u32,
-    uuids: [12]SdpQueryUuid,
-    numRange: u32,
-    pRange: [1]SdpAttributeRange,
+pub const BTH_QUERY_SERVICE = extern struct {
+    type: u32 align(1),
+    serviceHandle: u32 align(1),
+    uuids: [12]SdpQueryUuid align(1),
+    numRange: u32 align(1),
+    pRange: [1]SdpAttributeRange align(1),
 };
 
 pub const RFCOMM_MSC_DATA = extern struct {
@@ -1218,19 +1218,19 @@ pub const RFCOMM_RPN_DATA = extern struct {
     ParameterMask2: u8,
 };
 
-pub const RFCOMM_COMMAND = packed struct {
-    CmdType: u32,
+pub const RFCOMM_COMMAND = extern struct {
+    CmdType: u32 align(1),
     Data: extern union {
         MSC: RFCOMM_MSC_DATA,
         RLS: RFCOMM_RLS_DATA,
         RPN: RFCOMM_RPN_DATA,
-    },
+    } align(1),
 };
 
-pub const BTH_PING_REQ = packed struct {
-    btAddr: u64,
-    dataLen: u8,
-    data: [44]u8,
+pub const BTH_PING_REQ = extern struct {
+    btAddr: u64 align(1),
+    dataLen: u8 align(1),
+    data: [44]u8 align(1),
 };
 
 pub const BTH_PING_RSP = extern struct {
@@ -1238,18 +1238,18 @@ pub const BTH_PING_RSP = extern struct {
     data: [44]u8,
 };
 
-pub const BTH_INFO_REQ = packed struct {
-    btAddr: u64,
-    infoType: u16,
+pub const BTH_INFO_REQ = extern struct {
+    btAddr: u64 align(1),
+    infoType: u16 align(1),
 };
 
-pub const BTH_INFO_RSP = packed struct {
-    result: u16,
-    dataLen: u8,
-    Anonymous: packed union {
-        connectionlessMTU: u16,
-        data: [44]u8,
-    },
+pub const BTH_INFO_RSP = extern struct {
+    result: u16 align(1),
+    dataLen: u8 align(1),
+    Anonymous: extern union {
+        connectionlessMTU: u16 align(1),
+        data: [44]u8 align(1),
+    } align(1),
 };
 
 

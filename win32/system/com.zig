@@ -45,14 +45,8 @@ pub const DMUS_ERRBASE = @as(u32, 4096);
 //--------------------------------------------------------------------------------
 // Section: Types (232)
 //--------------------------------------------------------------------------------
-pub const LPEXCEPFINO_DEFERRED_FILLIN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pExcepInfo: ?*EXCEPINFO,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        pExcepInfo: ?*EXCEPINFO,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPEXCEPFINO_DEFERRED_FILLIN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const URI_CREATE_FLAGS = enum(u32) {
     ALLOW_RELATIVE = 1,
@@ -10894,7 +10888,6 @@ const userHPALETTE = @import("../system/system_services.zig").userHPALETTE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "LPEXCEPFINO_DEFERRED_FILLIN")) { _ = LPEXCEPFINO_DEFERRED_FILLIN; }
     if (@hasDecl(@This(), "LPFNGETCLASSOBJECT")) { _ = LPFNGETCLASSOBJECT; }
     if (@hasDecl(@This(), "LPFNCANUNLOADNOW")) { _ = LPFNCANUNLOADNOW; }
     if (@hasDecl(@This(), "PFNCONTEXTCALL")) { _ = PFNCONTEXTCALL; }

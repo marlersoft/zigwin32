@@ -4447,22 +4447,22 @@ pub const MLDV2_REPORT_HEADER = extern struct {
     RecordCount: u16,
 };
 
-pub const tcp_hdr = packed struct {
-    th_sport: u16,
-    th_dport: u16,
-    th_seq: u32,
-    th_ack: u32,
-    _bitfield: u8,
-    th_flags: u8,
-    th_win: u16,
-    th_sum: u16,
-    th_urp: u16,
+pub const tcp_hdr = extern struct {
+    th_sport: u16 align(1),
+    th_dport: u16 align(1),
+    th_seq: u32 align(1),
+    th_ack: u32 align(1),
+    _bitfield: u8 align(1),
+    th_flags: u8 align(1),
+    th_win: u16 align(1),
+    th_sum: u16 align(1),
+    th_urp: u16 align(1),
 };
 
-pub const tcp_opt_mss = packed struct {
-    Kind: u8,
-    Length: u8,
-    Mss: u16,
+pub const tcp_opt_mss = extern struct {
+    Kind: u8 align(1),
+    Length: u8 align(1),
+    Mss: u16 align(1),
 };
 
 pub const tcp_opt_ws = extern struct {
@@ -4477,20 +4477,20 @@ pub const tcp_opt_sack_permitted = extern struct {
 };
 
 pub const tcp_opt_sack = extern struct {
-    pub const tcp_opt_sack_block = packed struct {
-        Left: u32,
-        Right: u32,
+    pub const tcp_opt_sack_block = extern struct {
+        Left: u32 align(1),
+        Right: u32 align(1),
     };
     Kind: u8,
     Length: u8,
     Block: [1]tcp_opt_sack_block,
 };
 
-pub const tcp_opt_ts = packed struct {
-    Kind: u8,
-    Length: u8,
-    Val: u32,
-    EcR: u32,
+pub const tcp_opt_ts = extern struct {
+    Kind: u8 align(1),
+    Length: u8 align(1),
+    Val: u32 align(1),
+    EcR: u32 align(1),
 };
 
 pub const tcp_opt_unknown = extern struct {
@@ -4523,34 +4523,34 @@ pub const TUNNEL_SUB_TYPE_HA = TUNNEL_SUB_TYPE.HA;
 
 pub const DL_TEREDO_ADDRESS = extern struct {
     Reserved: [6]u8,
-    Anonymous: packed union {
-        Eui64: DL_EUI64,
-        Anonymous: packed struct {
-            Flags: u16,
-            MappedPort: u16,
-            MappedAddress: IN_ADDR,
-        },
+    Anonymous: extern union {
+        Eui64: DL_EUI64 align(1),
+        Anonymous: extern struct {
+            Flags: u16 align(1),
+            MappedPort: u16 align(1),
+            MappedAddress: IN_ADDR align(1),
+        } align(1),
     },
 };
 
 pub const DL_TEREDO_ADDRESS_PRV = extern struct {
     Reserved: [6]u8,
-    Anonymous: packed union {
-        Eui64: DL_EUI64,
-        Anonymous: packed struct {
-            Flags: u16,
-            MappedPort: u16,
-            MappedAddress: IN_ADDR,
-            LocalAddress: IN_ADDR,
-            InterfaceIndex: u32,
-            LocalPort: u16,
-            DlDestination: DL_EUI48,
-        },
+    Anonymous: extern union {
+        Eui64: DL_EUI64 align(1),
+        Anonymous: extern struct {
+            Flags: u16 align(1),
+            MappedPort: u16 align(1),
+            MappedAddress: IN_ADDR align(1),
+            LocalAddress: IN_ADDR align(1),
+            InterfaceIndex: u32 align(1),
+            LocalPort: u16 align(1),
+            DlDestination: DL_EUI48 align(1),
+        } align(1),
     },
 };
 
-pub const IPTLS_METADATA = packed struct {
-    SequenceNumber: u64,
+pub const IPTLS_METADATA = extern struct {
+    SequenceNumber: u64 align(1),
 };
 
 pub const NPI_MODULEID_TYPE = enum(i32) {

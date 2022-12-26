@@ -147,13 +147,12 @@ pub const IMAGE_NOTE = extern struct {
 };
 
 pub const MODULEENTRY = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    szModule: [10]CHAR,
-    hModule: ?HANDLE,
-    wcUsage: u16,
-    szExePath: [256]CHAR,
-    wNext: u16,
+    dwSize: u32 align(4),
+    szModule: [10]CHAR align(4),
+    hModule: ?HANDLE align(4),
+    wcUsage: u16 align(4),
+    szExePath: [256]CHAR align(4),
+    wNext: u16 align(4),
 };
 
 pub const TEMP_BP_NOTE = extern struct {
@@ -172,20 +171,19 @@ pub const VDM_SEGINFO = extern struct {
 };
 
 pub const GLOBALENTRY = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    dwAddress: u32,
-    dwBlockSize: u32,
-    hBlock: ?HANDLE,
-    wcLock: u16,
-    wcPageLock: u16,
-    wFlags: u16,
-    wHeapPresent: BOOL,
-    hOwner: ?HANDLE,
-    wType: u16,
-    wData: u16,
-    dwNext: u32,
-    dwNextAlt: u32,
+    dwSize: u32 align(4),
+    dwAddress: u32 align(4),
+    dwBlockSize: u32 align(4),
+    hBlock: ?HANDLE align(4),
+    wcLock: u16 align(4),
+    wcPageLock: u16 align(4),
+    wFlags: u16 align(4),
+    wHeapPresent: BOOL align(4),
+    hOwner: ?HANDLE align(4),
+    wType: u16 align(4),
+    wData: u16 align(4),
+    dwNext: u32 align(4),
+    dwNextAlt: u32 align(4),
 };
 
 pub const DEBUGEVENTPROC = switch (@import("builtin").zig_backend) {

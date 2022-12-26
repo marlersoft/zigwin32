@@ -956,10 +956,9 @@ pub const WINHTTP_CONNECTION_INFO = switch(@import("../zig.zig").arch) {
         RemoteAddress: SOCKADDR_STORAGE,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        cbSize: u32,
-        LocalAddress: SOCKADDR_STORAGE,
-        RemoteAddress: SOCKADDR_STORAGE,
+        cbSize: u32 align(4),
+        LocalAddress: SOCKADDR_STORAGE align(4),
+        RemoteAddress: SOCKADDR_STORAGE align(4),
     },
 };
 pub const WINHTTP_REQUEST_TIMES = switch(@import("../zig.zig").arch) {
@@ -968,9 +967,8 @@ pub const WINHTTP_REQUEST_TIMES = switch(@import("../zig.zig").arch) {
         rgullTimes: [64]u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        cTimes: u32,
-        rgullTimes: [64]u64,
+        cTimes: u32 align(4),
+        rgullTimes: [64]u64 align(4),
     },
 };
 pub const WINHTTP_REQUEST_STATS = switch(@import("../zig.zig").arch) {
@@ -981,11 +979,10 @@ pub const WINHTTP_REQUEST_STATS = switch(@import("../zig.zig").arch) {
         rgullStats: [32]u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        ullFlags: u64,
-        ulIndex: u32,
-        cStats: u32,
-        rgullStats: [32]u64,
+        ullFlags: u64 align(4),
+        ulIndex: u32 align(4),
+        cStats: u32 align(4),
+        rgullStats: [32]u64 align(4),
     },
 };
 pub const WINHTTP_MATCH_CONNECTION_GUID = switch(@import("../zig.zig").arch) {
@@ -994,9 +991,8 @@ pub const WINHTTP_MATCH_CONNECTION_GUID = switch(@import("../zig.zig").arch) {
         ullFlags: u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        ConnectionGuid: Guid,
-        ullFlags: u64,
+        ConnectionGuid: Guid align(4),
+        ullFlags: u64 align(4),
     },
 };
 pub const WINHTTP_RESOLVER_CACHE_CONFIG = switch(@import("../zig.zig").arch) {
@@ -1009,13 +1005,12 @@ pub const WINHTTP_RESOLVER_CACHE_CONFIG = switch(@import("../zig.zig").arch) {
         ullFlags: u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        ulMaxResolverCacheEntries: u32,
-        ulMaxCacheEntryAge: u32,
-        ulMinCacheEntryTtl: u32,
-        SecureDnsSetting: WINHTTP_SECURE_DNS_SETTING,
-        ullConnResolutionWaitTime: u64,
-        ullFlags: u64,
+        ulMaxResolverCacheEntries: u32 align(4),
+        ulMaxCacheEntryAge: u32 align(4),
+        ulMinCacheEntryTtl: u32 align(4),
+        SecureDnsSetting: WINHTTP_SECURE_DNS_SETTING align(4),
+        ullConnResolutionWaitTime: u64 align(4),
+        ullFlags: u64 align(4),
     },
 };
 

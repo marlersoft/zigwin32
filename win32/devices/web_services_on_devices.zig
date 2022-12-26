@@ -1276,18 +1276,8 @@ pub const WSDXML_ELEMENT_LIST = extern struct {
     Element: ?*WSDXML_ELEMENT,
 };
 
-pub const WSD_STUB_FUNCTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        server: ?*IUnknown,
-        session: ?*IWSDServiceMessaging,
-        event: ?*WSD_EVENT,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        server: ?*IUnknown,
-        session: ?*IWSDServiceMessaging,
-        event: ?*WSD_EVENT,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const WSD_STUB_FUNCTION = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const DeviceDiscoveryMechanism = enum(i32) {
     MulticastDiscovery = 0,
@@ -1317,16 +1307,8 @@ pub const WSD_OPERATION = extern struct {
     RequestStubFunction: ?WSD_STUB_FUNCTION,
 };
 
-pub const PWSD_SOAP_MESSAGE_HANDLER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        thisUnknown: ?*IUnknown,
-        event: ?*WSD_EVENT,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        thisUnknown: ?*IUnknown,
-        event: ?*WSD_EVENT,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PWSD_SOAP_MESSAGE_HANDLER = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const WSD_HANDLER_CONTEXT = extern struct {
     Handler: ?PWSD_SOAP_MESSAGE_HANDLER,
@@ -3919,10 +3901,6 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
 
 test {
-    // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WSD_STUB_FUNCTION")) { _ = WSD_STUB_FUNCTION; }
-    if (@hasDecl(@This(), "PWSD_SOAP_MESSAGE_HANDLER")) { _ = PWSD_SOAP_MESSAGE_HANDLER; }
-
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3
     );

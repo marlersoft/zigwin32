@@ -1055,44 +1055,14 @@ pub const LPDDENUMMODESCALLBACK2 = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
-pub const LPDDENUMSURFACESCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*IDirectDrawSurface,
-        param1: ?*DDSURFACEDESC,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        param0: ?*IDirectDrawSurface,
-        param1: ?*DDSURFACEDESC,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDENUMSURFACESCALLBACK = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDENUMSURFACESCALLBACK2 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*IDirectDrawSurface4,
-        param1: ?*DDSURFACEDESC2,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        param0: ?*IDirectDrawSurface4,
-        param1: ?*DDSURFACEDESC2,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDENUMSURFACESCALLBACK2 = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDENUMSURFACESCALLBACK7 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*IDirectDrawSurface7,
-        param1: ?*DDSURFACEDESC2,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        param0: ?*IDirectDrawSurface7,
-        param1: ?*DDSURFACEDESC2,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDENUMSURFACESCALLBACK7 = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const DDARGB = extern struct {
     blue: u8,
@@ -7349,98 +7319,38 @@ pub const LPDDHEL_INIT = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
 } ;
 
-pub const LPDDHAL_SETCOLORKEY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_DRVSETCOLORKEYDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_DRVSETCOLORKEYDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_SETCOLORKEY = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_CANCREATESURFACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_CANCREATESURFACEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_CANCREATESURFACEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_CANCREATESURFACE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
 pub const LPDDHAL_WAITFORVERTICALBLANK = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_CREATESURFACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_CREATESURFACEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_CREATESURFACEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_CREATESURFACE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_DESTROYDRIVER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_DESTROYDRIVERDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_DESTROYDRIVERDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_DESTROYDRIVER = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_SETMODE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_SETMODEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_SETMODEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_SETMODE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_CREATEPALETTE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_CREATEPALETTEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_CREATEPALETTEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_CREATEPALETTE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_GETSCANLINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETSCANLINEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETSCANLINEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_GETSCANLINE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_SETEXCLUSIVEMODE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_SETEXCLUSIVEMODEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_SETEXCLUSIVEMODEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_SETEXCLUSIVEMODE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_FLIPTOGDISURFACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_FLIPTOGDISURFACEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_FLIPTOGDISURFACEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_FLIPTOGDISURFACE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_GETDRIVERINFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETDRIVERINFODATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETDRIVERINFODATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_GETDRIVERINFO = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const DDHAL_DDCALLBACKS = extern struct {
     dwSize: u32,
@@ -7457,23 +7367,11 @@ pub const DDHAL_DDCALLBACKS = extern struct {
     FlipToGDISurface: ?LPDDHAL_FLIPTOGDISURFACE,
 };
 
-pub const LPDDHALPALCB_DESTROYPALETTE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_DESTROYPALETTEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_DESTROYPALETTEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALPALCB_DESTROYPALETTE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALPALCB_SETENTRIES = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_SETENTRIESDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_SETENTRIESDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALPALCB_SETENTRIES = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const DDHAL_DDPALETTECALLBACKS = extern struct {
     dwSize: u32,
@@ -7482,122 +7380,44 @@ pub const DDHAL_DDPALETTECALLBACKS = extern struct {
     SetEntries: ?LPDDHALPALCB_SETENTRIES,
 };
 
-pub const LPDDHALSURFCB_LOCK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_LOCKDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_LOCKDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_LOCK = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALSURFCB_UNLOCK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_UNLOCKDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_UNLOCKDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_UNLOCK = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALSURFCB_BLT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_BLTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_BLTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_BLT = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALSURFCB_UPDATEOVERLAY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_UPDATEOVERLAYDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_UPDATEOVERLAYDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_UPDATEOVERLAY = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALSURFCB_SETOVERLAYPOSITION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_SETOVERLAYPOSITIONDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_SETOVERLAYPOSITIONDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_SETOVERLAYPOSITION = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALSURFCB_SETPALETTE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_SETPALETTEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_SETPALETTEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_SETPALETTE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALSURFCB_FLIP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_FLIPDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_FLIPDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_FLIP = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALSURFCB_DESTROYSURFACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_DESTROYSURFACEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_DESTROYSURFACEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_DESTROYSURFACE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALSURFCB_SETCLIPLIST = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_SETCLIPLISTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_SETCLIPLISTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_SETCLIPLIST = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALSURFCB_ADDATTACHEDSURFACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_ADDATTACHEDSURFACEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_ADDATTACHEDSURFACEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_ADDATTACHEDSURFACE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALSURFCB_SETCOLORKEY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_SETCOLORKEYDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_SETCOLORKEYDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_SETCOLORKEY = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALSURFCB_GETBLTSTATUS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETBLTSTATUSDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETBLTSTATUSDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_GETBLTSTATUS = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALSURFCB_GETFLIPSTATUS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETFLIPSTATUSDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETFLIPSTATUSDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALSURFCB_GETFLIPSTATUS = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const DDHAL_DDSURFACECALLBACKS = extern struct {
     dwSize: u32,
@@ -7618,32 +7438,14 @@ pub const DDHAL_DDSURFACECALLBACKS = extern struct {
     SetPalette: ?LPDDHALSURFCB_SETPALETTE,
 };
 
-pub const LPDDHAL_GETAVAILDRIVERMEMORY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETAVAILDRIVERMEMORYDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETAVAILDRIVERMEMORYDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_GETAVAILDRIVERMEMORY = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_UPDATENONLOCALHEAP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_UPDATENONLOCALHEAPDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_UPDATENONLOCALHEAPDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_UPDATENONLOCALHEAP = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_GETHEAPALIGNMENT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETHEAPALIGNMENTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETHEAPALIGNMENTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_GETHEAPALIGNMENT = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const DDHAL_DDMISCELLANEOUSCALLBACKS = extern struct {
     dwSize: u32,
@@ -7654,32 +7456,14 @@ pub const DDHAL_DDMISCELLANEOUSCALLBACKS = extern struct {
     GetSysmemBltStatus: ?LPDDHALSURFCB_GETBLTSTATUS,
 };
 
-pub const LPDDHAL_CREATESURFACEEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_CREATESURFACEEXDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_CREATESURFACEEXDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_CREATESURFACEEX = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_GETDRIVERSTATE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETDRIVERSTATEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETDRIVERSTATEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_GETDRIVERSTATE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_DESTROYDDLOCAL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_DESTROYDDLOCALDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_DESTROYDDLOCALDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_DESTROYDDLOCAL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const DDHAL_DDMISCELLANEOUS2CALLBACKS = extern struct {
     dwSize: u32,
@@ -7745,140 +7529,50 @@ pub const DDHAL_DDEXEBUFCALLBACKS = extern struct {
     UnlockExecuteBuffer: ?LPDDHALEXEBUFCB_UNLOCKEXEBUF,
 };
 
-pub const LPDDHALVPORTCB_CANCREATEVIDEOPORT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_CANCREATEVPORTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_CANCREATEVPORTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_CANCREATEVIDEOPORT = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_CREATEVIDEOPORT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_CREATEVPORTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_CREATEVPORTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_CREATEVIDEOPORT = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_FLIP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_FLIPVPORTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_FLIPVPORTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_FLIP = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_GETBANDWIDTH = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETVPORTBANDWIDTHDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETVPORTBANDWIDTHDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETBANDWIDTH = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_GETINPUTFORMATS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETVPORTINPUTFORMATDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETVPORTINPUTFORMATDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETINPUTFORMATS = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_GETOUTPUTFORMATS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETVPORTOUTPUTFORMATDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETVPORTOUTPUTFORMATDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETOUTPUTFORMATS = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_GETFIELD = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETVPORTFIELDDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETVPORTFIELDDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETFIELD = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_GETLINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETVPORTLINEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETVPORTLINEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETLINE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_GETVPORTCONNECT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETVPORTCONNECTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETVPORTCONNECTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETVPORTCONNECT = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_DESTROYVPORT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_DESTROYVPORTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_DESTROYVPORTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_DESTROYVPORT = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_GETFLIPSTATUS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETVPORTFLIPSTATUSDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETVPORTFLIPSTATUSDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETFLIPSTATUS = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_UPDATE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_UPDATEVPORTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_UPDATEVPORTDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_UPDATE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_WAITFORSYNC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_WAITFORVPORTSYNCDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_WAITFORVPORTSYNCDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_WAITFORSYNC = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_GETSIGNALSTATUS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETVPORTSIGNALDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETVPORTSIGNALDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_GETSIGNALSTATUS = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALVPORTCB_COLORCONTROL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_VPORTCOLORDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_VPORTCOLORDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALVPORTCB_COLORCONTROL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const DDHAL_DDVIDEOPORTCALLBACKS = extern struct {
     dwSize: u32,
@@ -7901,14 +7595,8 @@ pub const DDHAL_DDVIDEOPORTCALLBACKS = extern struct {
     ColorControl: ?LPDDHALVPORTCB_COLORCONTROL,
 };
 
-pub const LPDDHALCOLORCB_COLORCONTROL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_COLORCONTROLDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_COLORCONTROLDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALCOLORCB_COLORCONTROL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const DDHAL_DDCOLORCONTROLCALLBACKS = extern struct {
     dwSize: u32,
@@ -7952,95 +7640,35 @@ pub const LPDDGAMMACALIBRATORPROC = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
-pub const LPDDHALMOCOMPCB_GETGUIDS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETMOCOMPGUIDSDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETMOCOMPGUIDSDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_GETGUIDS = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALMOCOMPCB_GETFORMATS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETMOCOMPFORMATSDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETMOCOMPFORMATSDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_GETFORMATS = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALMOCOMPCB_CREATE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_CREATEMOCOMPDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_CREATEMOCOMPDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_CREATE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALMOCOMPCB_GETCOMPBUFFINFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETMOCOMPCOMPBUFFDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETMOCOMPCOMPBUFFDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_GETCOMPBUFFINFO = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALMOCOMPCB_GETINTERNALINFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_GETINTERNALMOCOMPDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_GETINTERNALMOCOMPDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_GETINTERNALINFO = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALMOCOMPCB_BEGINFRAME = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_BEGINMOCOMPFRAMEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_BEGINMOCOMPFRAMEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_BEGINFRAME = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALMOCOMPCB_ENDFRAME = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_ENDMOCOMPFRAMEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_ENDMOCOMPFRAMEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_ENDFRAME = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALMOCOMPCB_RENDER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_RENDERMOCOMPDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_RENDERMOCOMPDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_RENDER = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALMOCOMPCB_QUERYSTATUS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_QUERYMOCOMPSTATUSDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_QUERYMOCOMPSTATUSDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_QUERYSTATUS = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHALMOCOMPCB_DESTROY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DDHAL_DESTROYMOCOMPDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*DDHAL_DESTROYMOCOMPDATA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHALMOCOMPCB_DESTROY = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const DDHAL_DDMOTIONCOMPCALLBACKS = extern struct {
     dwSize: u32,
@@ -8582,44 +8210,14 @@ pub const DDHALINFO = extern struct {
     lpDDExeBufCallbacks: ?*DDHAL_DDEXEBUFCALLBACKS,
 };
 
-pub const LPDDHAL_SETINFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpDDHalInfo: ?*DDHALINFO,
-        reset: BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        lpDDHalInfo: ?*DDHALINFO,
-        reset: BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_SETINFO = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_VIDMEMALLOC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-        heap: i32,
-        dwWidth: u32,
-        dwHeight: u32,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-        heap: i32,
-        dwWidth: u32,
-        dwHeight: u32,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_VIDMEMALLOC = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const LPDDHAL_VIDMEMFREE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-        heap: i32,
-        fpMem: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        lpDD: ?*DDRAWI_DIRECTDRAW_GBL,
-        heap: i32,
-        fpMem: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const LPDDHAL_VIDMEMFREE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const DDHALDDRAWFNS = extern struct {
     dwSize: u32,
@@ -11191,81 +10789,18 @@ test {
     if (@hasDecl(@This(), "LPDIRECTDRAWENUMERATEEXW")) { _ = LPDIRECTDRAWENUMERATEEXW; }
     if (@hasDecl(@This(), "LPDDENUMMODESCALLBACK")) { _ = LPDDENUMMODESCALLBACK; }
     if (@hasDecl(@This(), "LPDDENUMMODESCALLBACK2")) { _ = LPDDENUMMODESCALLBACK2; }
-    if (@hasDecl(@This(), "LPDDENUMSURFACESCALLBACK")) { _ = LPDDENUMSURFACESCALLBACK; }
-    if (@hasDecl(@This(), "LPDDENUMSURFACESCALLBACK2")) { _ = LPDDENUMSURFACESCALLBACK2; }
-    if (@hasDecl(@This(), "LPDDENUMSURFACESCALLBACK7")) { _ = LPDDENUMSURFACESCALLBACK7; }
     if (@hasDecl(@This(), "LPCLIPPERCALLBACK")) { _ = LPCLIPPERCALLBACK; }
     if (@hasDecl(@This(), "LPDDENUMVIDEOCALLBACK")) { _ = LPDDENUMVIDEOCALLBACK; }
     if (@hasDecl(@This(), "LPDD32BITDRIVERINIT")) { _ = LPDD32BITDRIVERINIT; }
     if (@hasDecl(@This(), "LPDDHEL_INIT")) { _ = LPDDHEL_INIT; }
-    if (@hasDecl(@This(), "LPDDHAL_SETCOLORKEY")) { _ = LPDDHAL_SETCOLORKEY; }
-    if (@hasDecl(@This(), "LPDDHAL_CANCREATESURFACE")) { _ = LPDDHAL_CANCREATESURFACE; }
-    if (@hasDecl(@This(), "LPDDHAL_CREATESURFACE")) { _ = LPDDHAL_CREATESURFACE; }
-    if (@hasDecl(@This(), "LPDDHAL_DESTROYDRIVER")) { _ = LPDDHAL_DESTROYDRIVER; }
-    if (@hasDecl(@This(), "LPDDHAL_SETMODE")) { _ = LPDDHAL_SETMODE; }
-    if (@hasDecl(@This(), "LPDDHAL_CREATEPALETTE")) { _ = LPDDHAL_CREATEPALETTE; }
-    if (@hasDecl(@This(), "LPDDHAL_GETSCANLINE")) { _ = LPDDHAL_GETSCANLINE; }
-    if (@hasDecl(@This(), "LPDDHAL_SETEXCLUSIVEMODE")) { _ = LPDDHAL_SETEXCLUSIVEMODE; }
-    if (@hasDecl(@This(), "LPDDHAL_FLIPTOGDISURFACE")) { _ = LPDDHAL_FLIPTOGDISURFACE; }
-    if (@hasDecl(@This(), "LPDDHAL_GETDRIVERINFO")) { _ = LPDDHAL_GETDRIVERINFO; }
-    if (@hasDecl(@This(), "LPDDHALPALCB_DESTROYPALETTE")) { _ = LPDDHALPALCB_DESTROYPALETTE; }
-    if (@hasDecl(@This(), "LPDDHALPALCB_SETENTRIES")) { _ = LPDDHALPALCB_SETENTRIES; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_LOCK")) { _ = LPDDHALSURFCB_LOCK; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_UNLOCK")) { _ = LPDDHALSURFCB_UNLOCK; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_BLT")) { _ = LPDDHALSURFCB_BLT; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_UPDATEOVERLAY")) { _ = LPDDHALSURFCB_UPDATEOVERLAY; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_SETOVERLAYPOSITION")) { _ = LPDDHALSURFCB_SETOVERLAYPOSITION; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_SETPALETTE")) { _ = LPDDHALSURFCB_SETPALETTE; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_FLIP")) { _ = LPDDHALSURFCB_FLIP; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_DESTROYSURFACE")) { _ = LPDDHALSURFCB_DESTROYSURFACE; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_SETCLIPLIST")) { _ = LPDDHALSURFCB_SETCLIPLIST; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_ADDATTACHEDSURFACE")) { _ = LPDDHALSURFCB_ADDATTACHEDSURFACE; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_SETCOLORKEY")) { _ = LPDDHALSURFCB_SETCOLORKEY; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_GETBLTSTATUS")) { _ = LPDDHALSURFCB_GETBLTSTATUS; }
-    if (@hasDecl(@This(), "LPDDHALSURFCB_GETFLIPSTATUS")) { _ = LPDDHALSURFCB_GETFLIPSTATUS; }
-    if (@hasDecl(@This(), "LPDDHAL_GETAVAILDRIVERMEMORY")) { _ = LPDDHAL_GETAVAILDRIVERMEMORY; }
-    if (@hasDecl(@This(), "LPDDHAL_UPDATENONLOCALHEAP")) { _ = LPDDHAL_UPDATENONLOCALHEAP; }
-    if (@hasDecl(@This(), "LPDDHAL_GETHEAPALIGNMENT")) { _ = LPDDHAL_GETHEAPALIGNMENT; }
-    if (@hasDecl(@This(), "LPDDHAL_CREATESURFACEEX")) { _ = LPDDHAL_CREATESURFACEEX; }
-    if (@hasDecl(@This(), "LPDDHAL_GETDRIVERSTATE")) { _ = LPDDHAL_GETDRIVERSTATE; }
-    if (@hasDecl(@This(), "LPDDHAL_DESTROYDDLOCAL")) { _ = LPDDHAL_DESTROYDDLOCAL; }
     if (@hasDecl(@This(), "LPDDHALEXEBUFCB_CANCREATEEXEBUF")) { _ = LPDDHALEXEBUFCB_CANCREATEEXEBUF; }
     if (@hasDecl(@This(), "LPDDHALEXEBUFCB_CREATEEXEBUF")) { _ = LPDDHALEXEBUFCB_CREATEEXEBUF; }
     if (@hasDecl(@This(), "LPDDHALEXEBUFCB_DESTROYEXEBUF")) { _ = LPDDHALEXEBUFCB_DESTROYEXEBUF; }
     if (@hasDecl(@This(), "LPDDHALEXEBUFCB_LOCKEXEBUF")) { _ = LPDDHALEXEBUFCB_LOCKEXEBUF; }
     if (@hasDecl(@This(), "LPDDHALEXEBUFCB_UNLOCKEXEBUF")) { _ = LPDDHALEXEBUFCB_UNLOCKEXEBUF; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_CANCREATEVIDEOPORT")) { _ = LPDDHALVPORTCB_CANCREATEVIDEOPORT; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_CREATEVIDEOPORT")) { _ = LPDDHALVPORTCB_CREATEVIDEOPORT; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_FLIP")) { _ = LPDDHALVPORTCB_FLIP; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETBANDWIDTH")) { _ = LPDDHALVPORTCB_GETBANDWIDTH; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETINPUTFORMATS")) { _ = LPDDHALVPORTCB_GETINPUTFORMATS; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETOUTPUTFORMATS")) { _ = LPDDHALVPORTCB_GETOUTPUTFORMATS; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETFIELD")) { _ = LPDDHALVPORTCB_GETFIELD; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETLINE")) { _ = LPDDHALVPORTCB_GETLINE; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETVPORTCONNECT")) { _ = LPDDHALVPORTCB_GETVPORTCONNECT; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_DESTROYVPORT")) { _ = LPDDHALVPORTCB_DESTROYVPORT; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETFLIPSTATUS")) { _ = LPDDHALVPORTCB_GETFLIPSTATUS; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_UPDATE")) { _ = LPDDHALVPORTCB_UPDATE; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_WAITFORSYNC")) { _ = LPDDHALVPORTCB_WAITFORSYNC; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETSIGNALSTATUS")) { _ = LPDDHALVPORTCB_GETSIGNALSTATUS; }
-    if (@hasDecl(@This(), "LPDDHALVPORTCB_COLORCONTROL")) { _ = LPDDHALVPORTCB_COLORCONTROL; }
-    if (@hasDecl(@This(), "LPDDHALCOLORCB_COLORCONTROL")) { _ = LPDDHALCOLORCB_COLORCONTROL; }
     if (@hasDecl(@This(), "LPDDHALKERNELCB_SYNCSURFACE")) { _ = LPDDHALKERNELCB_SYNCSURFACE; }
     if (@hasDecl(@This(), "LPDDHALKERNELCB_SYNCVIDEOPORT")) { _ = LPDDHALKERNELCB_SYNCVIDEOPORT; }
     if (@hasDecl(@This(), "LPDDGAMMACALIBRATORPROC")) { _ = LPDDGAMMACALIBRATORPROC; }
-    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_GETGUIDS")) { _ = LPDDHALMOCOMPCB_GETGUIDS; }
-    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_GETFORMATS")) { _ = LPDDHALMOCOMPCB_GETFORMATS; }
-    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_CREATE")) { _ = LPDDHALMOCOMPCB_CREATE; }
-    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_GETCOMPBUFFINFO")) { _ = LPDDHALMOCOMPCB_GETCOMPBUFFINFO; }
-    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_GETINTERNALINFO")) { _ = LPDDHALMOCOMPCB_GETINTERNALINFO; }
-    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_BEGINFRAME")) { _ = LPDDHALMOCOMPCB_BEGINFRAME; }
-    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_ENDFRAME")) { _ = LPDDHALMOCOMPCB_ENDFRAME; }
-    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_RENDER")) { _ = LPDDHALMOCOMPCB_RENDER; }
-    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_QUERYSTATUS")) { _ = LPDDHALMOCOMPCB_QUERYSTATUS; }
-    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_DESTROY")) { _ = LPDDHALMOCOMPCB_DESTROY; }
-    if (@hasDecl(@This(), "LPDDHAL_SETINFO")) { _ = LPDDHAL_SETINFO; }
-    if (@hasDecl(@This(), "LPDDHAL_VIDMEMALLOC")) { _ = LPDDHAL_VIDMEMALLOC; }
-    if (@hasDecl(@This(), "LPDDHAL_VIDMEMFREE")) { _ = LPDDHAL_VIDMEMFREE; }
     if (@hasDecl(@This(), "PDD_SETCOLORKEY")) { _ = PDD_SETCOLORKEY; }
     if (@hasDecl(@This(), "PDD_CANCREATESURFACE")) { _ = PDD_CANCREATESURFACE; }
     if (@hasDecl(@This(), "PDD_WAITFORVERTICALBLANK")) { _ = PDD_WAITFORVERTICALBLANK; }

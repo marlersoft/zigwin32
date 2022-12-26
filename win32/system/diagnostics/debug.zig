@@ -56754,38 +56754,37 @@ pub const IMAGE_ROM_OPTIONAL_HEADER = extern struct {
 };
 
 pub const IMAGE_OPTIONAL_HEADER64 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Magic: IMAGE_OPTIONAL_HEADER_MAGIC,
-    MajorLinkerVersion: u8,
-    MinorLinkerVersion: u8,
-    SizeOfCode: u32,
-    SizeOfInitializedData: u32,
-    SizeOfUninitializedData: u32,
-    AddressOfEntryPoint: u32,
-    BaseOfCode: u32,
-    ImageBase: u64,
-    SectionAlignment: u32,
-    FileAlignment: u32,
-    MajorOperatingSystemVersion: u16,
-    MinorOperatingSystemVersion: u16,
-    MajorImageVersion: u16,
-    MinorImageVersion: u16,
-    MajorSubsystemVersion: u16,
-    MinorSubsystemVersion: u16,
-    Win32VersionValue: u32,
-    SizeOfImage: u32,
-    SizeOfHeaders: u32,
-    CheckSum: u32,
-    Subsystem: IMAGE_SUBSYSTEM,
-    DllCharacteristics: IMAGE_DLL_CHARACTERISTICS,
-    SizeOfStackReserve: u64,
-    SizeOfStackCommit: u64,
-    SizeOfHeapReserve: u64,
-    SizeOfHeapCommit: u64,
+    Magic: IMAGE_OPTIONAL_HEADER_MAGIC align(4),
+    MajorLinkerVersion: u8 align(4),
+    MinorLinkerVersion: u8 align(4),
+    SizeOfCode: u32 align(4),
+    SizeOfInitializedData: u32 align(4),
+    SizeOfUninitializedData: u32 align(4),
+    AddressOfEntryPoint: u32 align(4),
+    BaseOfCode: u32 align(4),
+    ImageBase: u64 align(4),
+    SectionAlignment: u32 align(4),
+    FileAlignment: u32 align(4),
+    MajorOperatingSystemVersion: u16 align(4),
+    MinorOperatingSystemVersion: u16 align(4),
+    MajorImageVersion: u16 align(4),
+    MinorImageVersion: u16 align(4),
+    MajorSubsystemVersion: u16 align(4),
+    MinorSubsystemVersion: u16 align(4),
+    Win32VersionValue: u32 align(4),
+    SizeOfImage: u32 align(4),
+    SizeOfHeaders: u32 align(4),
+    CheckSum: u32 align(4),
+    Subsystem: IMAGE_SUBSYSTEM align(4),
+    DllCharacteristics: IMAGE_DLL_CHARACTERISTICS align(4),
+    SizeOfStackReserve: u64 align(4),
+    SizeOfStackCommit: u64 align(4),
+    SizeOfHeapReserve: u64 align(4),
+    SizeOfHeapCommit: u64 align(4),
     /// Deprecated
-    LoaderFlags: u32,
-    NumberOfRvaAndSizes: u32,
-    DataDirectory: [16]IMAGE_DATA_DIRECTORY,
+    LoaderFlags: u32 align(4),
+    NumberOfRvaAndSizes: u32 align(4),
+    DataDirectory: [16]IMAGE_DATA_DIRECTORY align(4),
 };
 
 pub const IMAGE_NT_HEADERS64 = extern struct {
@@ -56880,55 +56879,54 @@ pub const IMAGE_LOAD_CONFIG_DIRECTORY32 = extern struct {
 };
 
 pub const IMAGE_LOAD_CONFIG_DIRECTORY64 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Size: u32,
-    TimeDateStamp: u32,
-    MajorVersion: u16,
-    MinorVersion: u16,
-    GlobalFlagsClear: u32,
-    GlobalFlagsSet: u32,
-    CriticalSectionDefaultTimeout: u32,
-    DeCommitFreeBlockThreshold: u64,
-    DeCommitTotalFreeThreshold: u64,
-    LockPrefixTable: u64,
-    MaximumAllocationSize: u64,
-    VirtualMemoryThreshold: u64,
-    ProcessAffinityMask: u64,
-    ProcessHeapFlags: u32,
-    CSDVersion: u16,
-    DependentLoadFlags: u16,
-    EditList: u64,
-    SecurityCookie: u64,
-    SEHandlerTable: u64,
-    SEHandlerCount: u64,
-    GuardCFCheckFunctionPointer: u64,
-    GuardCFDispatchFunctionPointer: u64,
-    GuardCFFunctionTable: u64,
-    GuardCFFunctionCount: u64,
-    GuardFlags: u32,
-    CodeIntegrity: IMAGE_LOAD_CONFIG_CODE_INTEGRITY,
-    GuardAddressTakenIatEntryTable: u64,
-    GuardAddressTakenIatEntryCount: u64,
-    GuardLongJumpTargetTable: u64,
-    GuardLongJumpTargetCount: u64,
-    DynamicValueRelocTable: u64,
-    CHPEMetadataPointer: u64,
-    GuardRFFailureRoutine: u64,
-    GuardRFFailureRoutineFunctionPointer: u64,
-    DynamicValueRelocTableOffset: u32,
-    DynamicValueRelocTableSection: u16,
-    Reserved2: u16,
-    GuardRFVerifyStackPointerFunctionPointer: u64,
-    HotPatchTableOffset: u32,
-    Reserved3: u32,
-    EnclaveConfigurationPointer: u64,
-    VolatileMetadataPointer: u64,
-    GuardEHContinuationTable: u64,
-    GuardEHContinuationCount: u64,
-    GuardXFGCheckFunctionPointer: u64,
-    GuardXFGDispatchFunctionPointer: u64,
-    GuardXFGTableDispatchFunctionPointer: u64,
-    CastGuardOsDeterminedFailureMode: u64,
+    Size: u32 align(4),
+    TimeDateStamp: u32 align(4),
+    MajorVersion: u16 align(4),
+    MinorVersion: u16 align(4),
+    GlobalFlagsClear: u32 align(4),
+    GlobalFlagsSet: u32 align(4),
+    CriticalSectionDefaultTimeout: u32 align(4),
+    DeCommitFreeBlockThreshold: u64 align(4),
+    DeCommitTotalFreeThreshold: u64 align(4),
+    LockPrefixTable: u64 align(4),
+    MaximumAllocationSize: u64 align(4),
+    VirtualMemoryThreshold: u64 align(4),
+    ProcessAffinityMask: u64 align(4),
+    ProcessHeapFlags: u32 align(4),
+    CSDVersion: u16 align(4),
+    DependentLoadFlags: u16 align(4),
+    EditList: u64 align(4),
+    SecurityCookie: u64 align(4),
+    SEHandlerTable: u64 align(4),
+    SEHandlerCount: u64 align(4),
+    GuardCFCheckFunctionPointer: u64 align(4),
+    GuardCFDispatchFunctionPointer: u64 align(4),
+    GuardCFFunctionTable: u64 align(4),
+    GuardCFFunctionCount: u64 align(4),
+    GuardFlags: u32 align(4),
+    CodeIntegrity: IMAGE_LOAD_CONFIG_CODE_INTEGRITY align(4),
+    GuardAddressTakenIatEntryTable: u64 align(4),
+    GuardAddressTakenIatEntryCount: u64 align(4),
+    GuardLongJumpTargetTable: u64 align(4),
+    GuardLongJumpTargetCount: u64 align(4),
+    DynamicValueRelocTable: u64 align(4),
+    CHPEMetadataPointer: u64 align(4),
+    GuardRFFailureRoutine: u64 align(4),
+    GuardRFFailureRoutineFunctionPointer: u64 align(4),
+    DynamicValueRelocTableOffset: u32 align(4),
+    DynamicValueRelocTableSection: u16 align(4),
+    Reserved2: u16 align(4),
+    GuardRFVerifyStackPointerFunctionPointer: u64 align(4),
+    HotPatchTableOffset: u32 align(4),
+    Reserved3: u32 align(4),
+    EnclaveConfigurationPointer: u64 align(4),
+    VolatileMetadataPointer: u64 align(4),
+    GuardEHContinuationTable: u64 align(4),
+    GuardEHContinuationCount: u64 align(4),
+    GuardXFGCheckFunctionPointer: u64 align(4),
+    GuardXFGDispatchFunctionPointer: u64 align(4),
+    GuardXFGTableDispatchFunctionPointer: u64 align(4),
+    CastGuardOsDeterminedFailureMode: u64 align(4),
 };
 
 pub const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = extern struct {
@@ -56987,14 +56985,12 @@ pub const IMAGE_FUNCTION_ENTRY = extern struct {
 };
 
 pub const IMAGE_FUNCTION_ENTRY64 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    StartingAddress: u64,
-    EndingAddress: u64,
+    StartingAddress: u64 align(4),
+    EndingAddress: u64 align(4),
     Anonymous: extern union {
-        // WARNING: unable to add field alignment because it's not implemented for unions
-        EndOfPrologue: u64,
-        UnwindInfoAddress: u64,
-    },
+        EndOfPrologue: u64 align(4),
+        UnwindInfoAddress: u64 align(4),
+    } align(4),
 };
 
 pub const IMAGE_COR20_HEADER = extern struct {
@@ -57156,35 +57152,31 @@ pub const MINIDUMP_LOCATION_DESCRIPTOR = extern struct {
 };
 
 pub const MINIDUMP_LOCATION_DESCRIPTOR64 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    DataSize: u64,
-    Rva: u64,
+    DataSize: u64 align(4),
+    Rva: u64 align(4),
 };
 
 pub const MINIDUMP_MEMORY_DESCRIPTOR = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    StartOfMemoryRange: u64,
-    Memory: MINIDUMP_LOCATION_DESCRIPTOR,
+    StartOfMemoryRange: u64 align(4),
+    Memory: MINIDUMP_LOCATION_DESCRIPTOR align(4),
 };
 
 pub const MINIDUMP_MEMORY_DESCRIPTOR64 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    StartOfMemoryRange: u64,
-    DataSize: u64,
+    StartOfMemoryRange: u64 align(4),
+    DataSize: u64 align(4),
 };
 
 pub const MINIDUMP_HEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Signature: u32,
-    Version: u32,
-    NumberOfStreams: u32,
-    StreamDirectoryRva: u32,
-    CheckSum: u32,
+    Signature: u32 align(4),
+    Version: u32 align(4),
+    NumberOfStreams: u32 align(4),
+    StreamDirectoryRva: u32 align(4),
+    CheckSum: u32 align(4),
     Anonymous: extern union {
         Reserved: u32,
         TimeDateStamp: u32,
-    },
-    Flags: u64,
+    } align(4),
+    Flags: u64 align(4),
 };
 
 pub const MINIDUMP_DIRECTORY = extern struct {
@@ -57286,8 +57278,7 @@ pub const CPU_INFORMATION = extern union {
         AMDExtendedCpuFeatures: u32,
     },
     OtherCpuInfo: extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        ProcessorFeatures: [2]u64,
+        ProcessorFeatures: [2]u64 align(4),
     },
 };
 
@@ -57318,14 +57309,13 @@ pub const MINIDUMP_SYSTEM_INFO = extern struct {
 };
 
 pub const MINIDUMP_THREAD = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    SuspendCount: u32,
-    PriorityClass: u32,
-    Priority: u32,
-    Teb: u64,
-    Stack: MINIDUMP_MEMORY_DESCRIPTOR,
-    ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR,
+    ThreadId: u32 align(4),
+    SuspendCount: u32 align(4),
+    PriorityClass: u32 align(4),
+    Priority: u32 align(4),
+    Teb: u64 align(4),
+    Stack: MINIDUMP_MEMORY_DESCRIPTOR align(4),
+    ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR align(4),
 };
 
 pub const MINIDUMP_THREAD_LIST = extern struct {
@@ -57334,15 +57324,14 @@ pub const MINIDUMP_THREAD_LIST = extern struct {
 };
 
 pub const MINIDUMP_THREAD_EX = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    SuspendCount: u32,
-    PriorityClass: u32,
-    Priority: u32,
-    Teb: u64,
-    Stack: MINIDUMP_MEMORY_DESCRIPTOR,
-    ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR,
-    BackingStore: MINIDUMP_MEMORY_DESCRIPTOR,
+    ThreadId: u32 align(4),
+    SuspendCount: u32 align(4),
+    PriorityClass: u32 align(4),
+    Priority: u32 align(4),
+    Teb: u64 align(4),
+    Stack: MINIDUMP_MEMORY_DESCRIPTOR align(4),
+    ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR align(4),
+    BackingStore: MINIDUMP_MEMORY_DESCRIPTOR align(4),
 };
 
 pub const MINIDUMP_THREAD_EX_LIST = extern struct {
@@ -57351,14 +57340,13 @@ pub const MINIDUMP_THREAD_EX_LIST = extern struct {
 };
 
 pub const MINIDUMP_EXCEPTION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ExceptionCode: u32,
-    ExceptionFlags: u32,
-    ExceptionRecord: u64,
-    ExceptionAddress: u64,
-    NumberParameters: u32,
-    __unusedAlignment: u32,
-    ExceptionInformation: [15]u64,
+    ExceptionCode: u32 align(4),
+    ExceptionFlags: u32 align(4),
+    ExceptionRecord: u64 align(4),
+    ExceptionAddress: u64 align(4),
+    NumberParameters: u32 align(4),
+    __unusedAlignment: u32 align(4),
+    ExceptionInformation: [15]u64 align(4),
 };
 
 pub const MINIDUMP_EXCEPTION_STREAM = extern struct {
@@ -57369,17 +57357,16 @@ pub const MINIDUMP_EXCEPTION_STREAM = extern struct {
 };
 
 pub const MINIDUMP_MODULE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    BaseOfImage: u64,
-    SizeOfImage: u32,
-    CheckSum: u32,
-    TimeDateStamp: u32,
-    ModuleNameRva: u32,
-    VersionInfo: VS_FIXEDFILEINFO,
-    CvRecord: MINIDUMP_LOCATION_DESCRIPTOR,
-    MiscRecord: MINIDUMP_LOCATION_DESCRIPTOR,
-    Reserved0: u64,
-    Reserved1: u64,
+    BaseOfImage: u64 align(4),
+    SizeOfImage: u32 align(4),
+    CheckSum: u32 align(4),
+    TimeDateStamp: u32 align(4),
+    ModuleNameRva: u32 align(4),
+    VersionInfo: VS_FIXEDFILEINFO align(4),
+    CvRecord: MINIDUMP_LOCATION_DESCRIPTOR align(4),
+    MiscRecord: MINIDUMP_LOCATION_DESCRIPTOR align(4),
+    Reserved0: u64 align(4),
+    Reserved1: u64 align(4),
 };
 
 pub const MINIDUMP_MODULE_LIST = extern struct {
@@ -57393,25 +57380,22 @@ pub const MINIDUMP_MEMORY_LIST = extern struct {
 };
 
 pub const MINIDUMP_MEMORY64_LIST = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    NumberOfMemoryRanges: u64,
-    BaseRva: u64,
-    MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR64,
+    NumberOfMemoryRanges: u64 align(4),
+    BaseRva: u64 align(4),
+    MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR64 align(4),
 };
 
 pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    ExceptionPointers: ?*EXCEPTION_POINTERS,
-    ClientPointers: BOOL,
+    ThreadId: u32 align(4),
+    ExceptionPointers: ?*EXCEPTION_POINTERS align(4),
+    ClientPointers: BOOL align(4),
 };
 
 pub const MINIDUMP_EXCEPTION_INFORMATION64 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    ExceptionRecord: u64,
-    ContextRecord: u64,
-    ClientPointers: BOOL,
+    ThreadId: u32 align(4),
+    ExceptionRecord: u64 align(4),
+    ContextRecord: u64 align(4),
+    ClientPointers: BOOL align(4),
 };
 
 pub const MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE = enum(i32) {
@@ -57444,27 +57428,25 @@ pub const MINIDUMP_HANDLE_OBJECT_INFORMATION = extern struct {
 };
 
 pub const MINIDUMP_HANDLE_DESCRIPTOR = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Handle: u64,
-    TypeNameRva: u32,
-    ObjectNameRva: u32,
-    Attributes: u32,
-    GrantedAccess: u32,
-    HandleCount: u32,
-    PointerCount: u32,
+    Handle: u64 align(4),
+    TypeNameRva: u32 align(4),
+    ObjectNameRva: u32 align(4),
+    Attributes: u32 align(4),
+    GrantedAccess: u32 align(4),
+    HandleCount: u32 align(4),
+    PointerCount: u32 align(4),
 };
 
 pub const MINIDUMP_HANDLE_DESCRIPTOR_2 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Handle: u64,
-    TypeNameRva: u32,
-    ObjectNameRva: u32,
-    Attributes: u32,
-    GrantedAccess: u32,
-    HandleCount: u32,
-    PointerCount: u32,
-    ObjectInfoRva: u32,
-    Reserved0: u32,
+    Handle: u64 align(4),
+    TypeNameRva: u32 align(4),
+    ObjectNameRva: u32 align(4),
+    Attributes: u32 align(4),
+    GrantedAccess: u32 align(4),
+    HandleCount: u32 align(4),
+    PointerCount: u32 align(4),
+    ObjectInfoRva: u32 align(4),
+    Reserved0: u32 align(4),
 };
 
 pub const MINIDUMP_HANDLE_DATA_STREAM = extern struct {
@@ -57482,12 +57464,11 @@ pub const MINIDUMP_HANDLE_OPERATION_LIST = extern struct {
 };
 
 pub const MINIDUMP_FUNCTION_TABLE_DESCRIPTOR = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    MinimumAddress: u64,
-    MaximumAddress: u64,
-    BaseAddress: u64,
-    EntryCount: u32,
-    SizeOfAlignPad: u32,
+    MinimumAddress: u64 align(4),
+    MaximumAddress: u64 align(4),
+    BaseAddress: u64 align(4),
+    EntryCount: u32 align(4),
+    SizeOfAlignPad: u32 align(4),
 };
 
 pub const MINIDUMP_FUNCTION_TABLE_STREAM = extern struct {
@@ -57500,12 +57481,11 @@ pub const MINIDUMP_FUNCTION_TABLE_STREAM = extern struct {
 };
 
 pub const MINIDUMP_UNLOADED_MODULE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    BaseOfImage: u64,
-    SizeOfImage: u32,
-    CheckSum: u32,
-    TimeDateStamp: u32,
-    ModuleNameRva: u32,
+    BaseOfImage: u64 align(4),
+    SizeOfImage: u32 align(4),
+    CheckSum: u32 align(4),
+    TimeDateStamp: u32 align(4),
+    ModuleNameRva: u32 align(4),
 };
 
 pub const MINIDUMP_UNLOADED_MODULE_LIST = extern struct {
@@ -57515,11 +57495,10 @@ pub const MINIDUMP_UNLOADED_MODULE_LIST = extern struct {
 };
 
 pub const XSTATE_CONFIG_FEATURE_MSC_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    SizeOfInfo: u32,
-    ContextSize: u32,
-    EnabledFeatures: u64,
-    Features: [64]XSTATE_FEATURE,
+    SizeOfInfo: u32 align(4),
+    ContextSize: u32 align(4),
+    EnabledFeatures: u64 align(4),
+    Features: [64]XSTATE_FEATURE align(4),
 };
 
 pub const MINIDUMP_MISC_INFO = extern struct {
@@ -57609,29 +57588,26 @@ pub const MINIDUMP_MISC_INFO_5 = extern struct {
 };
 
 pub const MINIDUMP_MEMORY_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    BaseAddress: u64,
-    AllocationBase: u64,
-    AllocationProtect: u32,
-    __alignment1: u32,
-    RegionSize: u64,
-    State: VIRTUAL_ALLOCATION_TYPE,
-    Protect: u32,
-    Type: u32,
-    __alignment2: u32,
+    BaseAddress: u64 align(4),
+    AllocationBase: u64 align(4),
+    AllocationProtect: u32 align(4),
+    __alignment1: u32 align(4),
+    RegionSize: u64 align(4),
+    State: VIRTUAL_ALLOCATION_TYPE align(4),
+    Protect: u32 align(4),
+    Type: u32 align(4),
+    __alignment2: u32 align(4),
 };
 
 pub const MINIDUMP_MEMORY_INFO_LIST = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    SizeOfHeader: u32,
-    SizeOfEntry: u32,
-    NumberOfEntries: u64,
+    SizeOfHeader: u32 align(4),
+    SizeOfEntry: u32 align(4),
+    NumberOfEntries: u64 align(4),
 };
 
 pub const MINIDUMP_THREAD_NAME = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    RvaOfThreadName: u64,
+    ThreadId: u32 align(4),
+    RvaOfThreadName: u64 align(4),
 };
 
 pub const MINIDUMP_THREAD_NAME_LIST = extern struct {
@@ -57640,17 +57616,16 @@ pub const MINIDUMP_THREAD_NAME_LIST = extern struct {
 };
 
 pub const MINIDUMP_THREAD_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ThreadId: u32,
-    DumpFlags: MINIDUMP_THREAD_INFO_DUMP_FLAGS,
-    DumpError: u32,
-    ExitStatus: u32,
-    CreateTime: u64,
-    ExitTime: u64,
-    KernelTime: u64,
-    UserTime: u64,
-    StartAddress: u64,
-    Affinity: u64,
+    ThreadId: u32 align(4),
+    DumpFlags: MINIDUMP_THREAD_INFO_DUMP_FLAGS align(4),
+    DumpError: u32 align(4),
+    ExitStatus: u32 align(4),
+    CreateTime: u64 align(4),
+    ExitTime: u64 align(4),
+    KernelTime: u64 align(4),
+    UserTime: u64 align(4),
+    StartAddress: u64 align(4),
+    Affinity: u64 align(4),
 };
 
 pub const MINIDUMP_THREAD_INFO_LIST = extern struct {
@@ -57660,10 +57635,9 @@ pub const MINIDUMP_THREAD_INFO_LIST = extern struct {
 };
 
 pub const MINIDUMP_TOKEN_INFO_HEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    TokenSize: u32,
-    TokenId: u32,
-    TokenHandle: u64,
+    TokenSize: u32 align(4),
+    TokenId: u32 align(4),
+    TokenHandle: u64 align(4),
 };
 
 pub const MINIDUMP_TOKEN_INFO_LIST = extern struct {
@@ -57674,120 +57648,116 @@ pub const MINIDUMP_TOKEN_INFO_LIST = extern struct {
 };
 
 pub const MINIDUMP_SYSTEM_BASIC_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    TimerResolution: u32,
-    PageSize: u32,
-    NumberOfPhysicalPages: u32,
-    LowestPhysicalPageNumber: u32,
-    HighestPhysicalPageNumber: u32,
-    AllocationGranularity: u32,
-    MinimumUserModeAddress: u64,
-    MaximumUserModeAddress: u64,
-    ActiveProcessorsAffinityMask: u64,
-    NumberOfProcessors: u32,
+    TimerResolution: u32 align(4),
+    PageSize: u32 align(4),
+    NumberOfPhysicalPages: u32 align(4),
+    LowestPhysicalPageNumber: u32 align(4),
+    HighestPhysicalPageNumber: u32 align(4),
+    AllocationGranularity: u32 align(4),
+    MinimumUserModeAddress: u64 align(4),
+    MaximumUserModeAddress: u64 align(4),
+    ActiveProcessorsAffinityMask: u64 align(4),
+    NumberOfProcessors: u32 align(4),
 };
 
 pub const MINIDUMP_SYSTEM_FILECACHE_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    CurrentSize: u64,
-    PeakSize: u64,
-    PageFaultCount: u32,
-    MinimumWorkingSet: u64,
-    MaximumWorkingSet: u64,
-    CurrentSizeIncludingTransitionInPages: u64,
-    PeakSizeIncludingTransitionInPages: u64,
-    TransitionRePurposeCount: u32,
-    Flags: u32,
+    CurrentSize: u64 align(4),
+    PeakSize: u64 align(4),
+    PageFaultCount: u32 align(4),
+    MinimumWorkingSet: u64 align(4),
+    MaximumWorkingSet: u64 align(4),
+    CurrentSizeIncludingTransitionInPages: u64 align(4),
+    PeakSizeIncludingTransitionInPages: u64 align(4),
+    TransitionRePurposeCount: u32 align(4),
+    Flags: u32 align(4),
 };
 
 pub const MINIDUMP_SYSTEM_BASIC_PERFORMANCE_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    AvailablePages: u64,
-    CommittedPages: u64,
-    CommitLimit: u64,
-    PeakCommitment: u64,
+    AvailablePages: u64 align(4),
+    CommittedPages: u64 align(4),
+    CommitLimit: u64 align(4),
+    PeakCommitment: u64 align(4),
 };
 
 pub const MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    IdleProcessTime: u64,
-    IoReadTransferCount: u64,
-    IoWriteTransferCount: u64,
-    IoOtherTransferCount: u64,
-    IoReadOperationCount: u32,
-    IoWriteOperationCount: u32,
-    IoOtherOperationCount: u32,
-    AvailablePages: u32,
-    CommittedPages: u32,
-    CommitLimit: u32,
-    PeakCommitment: u32,
-    PageFaultCount: u32,
-    CopyOnWriteCount: u32,
-    TransitionCount: u32,
-    CacheTransitionCount: u32,
-    DemandZeroCount: u32,
-    PageReadCount: u32,
-    PageReadIoCount: u32,
-    CacheReadCount: u32,
-    CacheIoCount: u32,
-    DirtyPagesWriteCount: u32,
-    DirtyWriteIoCount: u32,
-    MappedPagesWriteCount: u32,
-    MappedWriteIoCount: u32,
-    PagedPoolPages: u32,
-    NonPagedPoolPages: u32,
-    PagedPoolAllocs: u32,
-    PagedPoolFrees: u32,
-    NonPagedPoolAllocs: u32,
-    NonPagedPoolFrees: u32,
-    FreeSystemPtes: u32,
-    ResidentSystemCodePage: u32,
-    TotalSystemDriverPages: u32,
-    TotalSystemCodePages: u32,
-    NonPagedPoolLookasideHits: u32,
-    PagedPoolLookasideHits: u32,
-    AvailablePagedPoolPages: u32,
-    ResidentSystemCachePage: u32,
-    ResidentPagedPoolPage: u32,
-    ResidentSystemDriverPage: u32,
-    CcFastReadNoWait: u32,
-    CcFastReadWait: u32,
-    CcFastReadResourceMiss: u32,
-    CcFastReadNotPossible: u32,
-    CcFastMdlReadNoWait: u32,
-    CcFastMdlReadWait: u32,
-    CcFastMdlReadResourceMiss: u32,
-    CcFastMdlReadNotPossible: u32,
-    CcMapDataNoWait: u32,
-    CcMapDataWait: u32,
-    CcMapDataNoWaitMiss: u32,
-    CcMapDataWaitMiss: u32,
-    CcPinMappedDataCount: u32,
-    CcPinReadNoWait: u32,
-    CcPinReadWait: u32,
-    CcPinReadNoWaitMiss: u32,
-    CcPinReadWaitMiss: u32,
-    CcCopyReadNoWait: u32,
-    CcCopyReadWait: u32,
-    CcCopyReadNoWaitMiss: u32,
-    CcCopyReadWaitMiss: u32,
-    CcMdlReadNoWait: u32,
-    CcMdlReadWait: u32,
-    CcMdlReadNoWaitMiss: u32,
-    CcMdlReadWaitMiss: u32,
-    CcReadAheadIos: u32,
-    CcLazyWriteIos: u32,
-    CcLazyWritePages: u32,
-    CcDataFlushes: u32,
-    CcDataPages: u32,
-    ContextSwitches: u32,
-    FirstLevelTbFills: u32,
-    SecondLevelTbFills: u32,
-    SystemCalls: u32,
-    CcTotalDirtyPages: u64,
-    CcDirtyPageThreshold: u64,
-    ResidentAvailablePages: i64,
-    SharedCommittedPages: u64,
+    IdleProcessTime: u64 align(4),
+    IoReadTransferCount: u64 align(4),
+    IoWriteTransferCount: u64 align(4),
+    IoOtherTransferCount: u64 align(4),
+    IoReadOperationCount: u32 align(4),
+    IoWriteOperationCount: u32 align(4),
+    IoOtherOperationCount: u32 align(4),
+    AvailablePages: u32 align(4),
+    CommittedPages: u32 align(4),
+    CommitLimit: u32 align(4),
+    PeakCommitment: u32 align(4),
+    PageFaultCount: u32 align(4),
+    CopyOnWriteCount: u32 align(4),
+    TransitionCount: u32 align(4),
+    CacheTransitionCount: u32 align(4),
+    DemandZeroCount: u32 align(4),
+    PageReadCount: u32 align(4),
+    PageReadIoCount: u32 align(4),
+    CacheReadCount: u32 align(4),
+    CacheIoCount: u32 align(4),
+    DirtyPagesWriteCount: u32 align(4),
+    DirtyWriteIoCount: u32 align(4),
+    MappedPagesWriteCount: u32 align(4),
+    MappedWriteIoCount: u32 align(4),
+    PagedPoolPages: u32 align(4),
+    NonPagedPoolPages: u32 align(4),
+    PagedPoolAllocs: u32 align(4),
+    PagedPoolFrees: u32 align(4),
+    NonPagedPoolAllocs: u32 align(4),
+    NonPagedPoolFrees: u32 align(4),
+    FreeSystemPtes: u32 align(4),
+    ResidentSystemCodePage: u32 align(4),
+    TotalSystemDriverPages: u32 align(4),
+    TotalSystemCodePages: u32 align(4),
+    NonPagedPoolLookasideHits: u32 align(4),
+    PagedPoolLookasideHits: u32 align(4),
+    AvailablePagedPoolPages: u32 align(4),
+    ResidentSystemCachePage: u32 align(4),
+    ResidentPagedPoolPage: u32 align(4),
+    ResidentSystemDriverPage: u32 align(4),
+    CcFastReadNoWait: u32 align(4),
+    CcFastReadWait: u32 align(4),
+    CcFastReadResourceMiss: u32 align(4),
+    CcFastReadNotPossible: u32 align(4),
+    CcFastMdlReadNoWait: u32 align(4),
+    CcFastMdlReadWait: u32 align(4),
+    CcFastMdlReadResourceMiss: u32 align(4),
+    CcFastMdlReadNotPossible: u32 align(4),
+    CcMapDataNoWait: u32 align(4),
+    CcMapDataWait: u32 align(4),
+    CcMapDataNoWaitMiss: u32 align(4),
+    CcMapDataWaitMiss: u32 align(4),
+    CcPinMappedDataCount: u32 align(4),
+    CcPinReadNoWait: u32 align(4),
+    CcPinReadWait: u32 align(4),
+    CcPinReadNoWaitMiss: u32 align(4),
+    CcPinReadWaitMiss: u32 align(4),
+    CcCopyReadNoWait: u32 align(4),
+    CcCopyReadWait: u32 align(4),
+    CcCopyReadNoWaitMiss: u32 align(4),
+    CcCopyReadWaitMiss: u32 align(4),
+    CcMdlReadNoWait: u32 align(4),
+    CcMdlReadWait: u32 align(4),
+    CcMdlReadNoWaitMiss: u32 align(4),
+    CcMdlReadWaitMiss: u32 align(4),
+    CcReadAheadIos: u32 align(4),
+    CcLazyWriteIos: u32 align(4),
+    CcLazyWritePages: u32 align(4),
+    CcDataFlushes: u32 align(4),
+    CcDataPages: u32 align(4),
+    ContextSwitches: u32 align(4),
+    FirstLevelTbFills: u32 align(4),
+    SecondLevelTbFills: u32 align(4),
+    SystemCalls: u32 align(4),
+    CcTotalDirtyPages: u64 align(4),
+    CcDirtyPageThreshold: u64 align(4),
+    ResidentAvailablePages: i64 align(4),
+    SharedCommittedPages: u64 align(4),
 };
 
 pub const MINIDUMP_SYSTEM_MEMORY_INFO_1 = extern struct {
@@ -57800,43 +57770,41 @@ pub const MINIDUMP_SYSTEM_MEMORY_INFO_1 = extern struct {
 };
 
 pub const MINIDUMP_PROCESS_VM_COUNTERS_1 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Revision: u16,
-    PageFaultCount: u32,
-    PeakWorkingSetSize: u64,
-    WorkingSetSize: u64,
-    QuotaPeakPagedPoolUsage: u64,
-    QuotaPagedPoolUsage: u64,
-    QuotaPeakNonPagedPoolUsage: u64,
-    QuotaNonPagedPoolUsage: u64,
-    PagefileUsage: u64,
-    PeakPagefileUsage: u64,
-    PrivateUsage: u64,
+    Revision: u16 align(4),
+    PageFaultCount: u32 align(4),
+    PeakWorkingSetSize: u64 align(4),
+    WorkingSetSize: u64 align(4),
+    QuotaPeakPagedPoolUsage: u64 align(4),
+    QuotaPagedPoolUsage: u64 align(4),
+    QuotaPeakNonPagedPoolUsage: u64 align(4),
+    QuotaNonPagedPoolUsage: u64 align(4),
+    PagefileUsage: u64 align(4),
+    PeakPagefileUsage: u64 align(4),
+    PrivateUsage: u64 align(4),
 };
 
 pub const MINIDUMP_PROCESS_VM_COUNTERS_2 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Revision: u16,
-    Flags: u16,
-    PageFaultCount: u32,
-    PeakWorkingSetSize: u64,
-    WorkingSetSize: u64,
-    QuotaPeakPagedPoolUsage: u64,
-    QuotaPagedPoolUsage: u64,
-    QuotaPeakNonPagedPoolUsage: u64,
-    QuotaNonPagedPoolUsage: u64,
-    PagefileUsage: u64,
-    PeakPagefileUsage: u64,
-    PeakVirtualSize: u64,
-    VirtualSize: u64,
-    PrivateUsage: u64,
-    PrivateWorkingSetSize: u64,
-    SharedCommitUsage: u64,
-    JobSharedCommitUsage: u64,
-    JobPrivateCommitUsage: u64,
-    JobPeakPrivateCommitUsage: u64,
-    JobPrivateCommitLimit: u64,
-    JobTotalCommitLimit: u64,
+    Revision: u16 align(4),
+    Flags: u16 align(4),
+    PageFaultCount: u32 align(4),
+    PeakWorkingSetSize: u64 align(4),
+    WorkingSetSize: u64 align(4),
+    QuotaPeakPagedPoolUsage: u64 align(4),
+    QuotaPagedPoolUsage: u64 align(4),
+    QuotaPeakNonPagedPoolUsage: u64 align(4),
+    QuotaNonPagedPoolUsage: u64 align(4),
+    PagefileUsage: u64 align(4),
+    PeakPagefileUsage: u64 align(4),
+    PeakVirtualSize: u64 align(4),
+    VirtualSize: u64 align(4),
+    PrivateUsage: u64 align(4),
+    PrivateWorkingSetSize: u64 align(4),
+    SharedCommitUsage: u64 align(4),
+    JobSharedCommitUsage: u64 align(4),
+    JobPrivateCommitUsage: u64 align(4),
+    JobPeakPrivateCommitUsage: u64 align(4),
+    JobPrivateCommitLimit: u64 align(4),
+    JobTotalCommitLimit: u64 align(4),
 };
 
 pub const MINIDUMP_USER_RECORD = extern struct {
@@ -57845,16 +57813,14 @@ pub const MINIDUMP_USER_RECORD = extern struct {
 };
 
 pub const MINIDUMP_USER_STREAM = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Type: u32,
-    BufferSize: u32,
-    Buffer: ?*anyopaque,
+    Type: u32 align(4),
+    BufferSize: u32 align(4),
+    Buffer: ?*anyopaque align(4),
 };
 
 pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    UserStreamCount: u32,
-    UserStreamArray: ?*MINIDUMP_USER_STREAM,
+    UserStreamCount: u32 align(4),
+    UserStreamArray: ?*MINIDUMP_USER_STREAM align(4),
 };
 
 pub const MINIDUMP_CALLBACK_TYPE = enum(i32) {
@@ -57926,22 +57892,20 @@ pub const ThreadWriteThreadData = THREAD_WRITE_FLAGS.ThreadData;
 pub const ThreadWriteThreadInfo = THREAD_WRITE_FLAGS.ThreadInfo;
 
 pub const MINIDUMP_MODULE_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    FullPath: ?[*]u16,
-    BaseOfImage: u64,
-    SizeOfImage: u32,
-    CheckSum: u32,
-    TimeDateStamp: u32,
-    VersionInfo: VS_FIXEDFILEINFO,
-    CvRecord: ?*anyopaque,
-    SizeOfCvRecord: u32,
-    MiscRecord: ?*anyopaque,
-    SizeOfMiscRecord: u32,
+    FullPath: ?[*]u16 align(4),
+    BaseOfImage: u64 align(4),
+    SizeOfImage: u32 align(4),
+    CheckSum: u32 align(4),
+    TimeDateStamp: u32 align(4),
+    VersionInfo: VS_FIXEDFILEINFO align(4),
+    CvRecord: ?*anyopaque align(4),
+    SizeOfCvRecord: u32 align(4),
+    MiscRecord: ?*anyopaque align(4),
+    SizeOfMiscRecord: u32 align(4),
 };
 
 pub const MINIDUMP_INCLUDE_MODULE_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    BaseOfImage: u64,
+    BaseOfImage: u64 align(4),
 };
 
 pub const MODULE_WRITE_FLAGS = enum(i32) {
@@ -57962,39 +57926,34 @@ pub const ModuleWriteTlsData = MODULE_WRITE_FLAGS.WriteTlsData;
 pub const ModuleWriteCodeSegs = MODULE_WRITE_FLAGS.WriteCodeSegs;
 
 pub const MINIDUMP_IO_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Handle: ?HANDLE,
-    Offset: u64,
-    Buffer: ?*anyopaque,
-    BufferBytes: u32,
+    Handle: ?HANDLE align(4),
+    Offset: u64 align(4),
+    Buffer: ?*anyopaque align(4),
+    BufferBytes: u32 align(4),
 };
 
 pub const MINIDUMP_READ_MEMORY_FAILURE_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Offset: u64,
-    Bytes: u32,
-    FailureStatus: HRESULT,
+    Offset: u64 align(4),
+    Bytes: u32 align(4),
+    FailureStatus: HRESULT align(4),
 };
 
 pub const MINIDUMP_VM_QUERY_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Offset: u64,
+    Offset: u64 align(4),
 };
 
 pub const MINIDUMP_VM_PRE_READ_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Offset: u64,
-    Buffer: ?*anyopaque,
-    Size: u32,
+    Offset: u64 align(4),
+    Buffer: ?*anyopaque align(4),
+    Size: u32 align(4),
 };
 
 pub const MINIDUMP_VM_POST_READ_CALLBACK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Offset: u64,
-    Buffer: ?*anyopaque,
-    Size: u32,
-    Completed: u32,
-    Status: HRESULT,
+    Offset: u64 align(4),
+    Buffer: ?*anyopaque align(4),
+    Size: u32 align(4),
+    Completed: u32 align(4),
+    Status: HRESULT align(4),
 };
 
 pub const MINIDUMP_CALLBACK_INPUT = extern struct {
@@ -58019,33 +57978,31 @@ pub const MINIDUMP_CALLBACK_INPUT = extern struct {
 
 pub const MINIDUMP_CALLBACK_OUTPUT = extern struct {
     Anonymous: extern union {
-        // WARNING: unable to add field alignment because it's not implemented for unions
-        ModuleWriteFlags: u32,
-        ThreadWriteFlags: u32,
-        SecondaryFlags: u32,
+        ModuleWriteFlags: u32 align(4),
+        ThreadWriteFlags: u32 align(4),
+        SecondaryFlags: u32 align(4),
         Anonymous1: extern struct {
-            // WARNING: unable to add field alignment because it's causing a compiler bug
-            MemoryBase: u64,
-            MemorySize: u32,
-        },
+            MemoryBase: u64 align(4),
+            MemorySize: u32 align(4),
+        } align(4),
         Anonymous2: extern struct {
             CheckCancel: BOOL,
             Cancel: BOOL,
-        },
-        Handle: ?HANDLE,
+        } align(4),
+        Handle: ?HANDLE align(4),
         Anonymous3: extern struct {
             VmRegion: MINIDUMP_MEMORY_INFO,
             Continue: BOOL,
-        },
+        } align(4),
         Anonymous4: extern struct {
             VmQueryStatus: HRESULT,
             VmQueryResult: MINIDUMP_MEMORY_INFO,
-        },
+        } align(4),
         Anonymous5: extern struct {
             VmReadStatus: HRESULT,
             VmReadBytesCompleted: u32,
-        },
-        Status: HRESULT,
+        } align(4),
+        Status: HRESULT align(4),
     },
 };
 
@@ -58187,9 +58144,8 @@ pub const MINIDUMP_CALLBACK_ROUTINE = switch (@import("builtin").zig_backend) {
 } ;
 
 pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    CallbackRoutine: ?MINIDUMP_CALLBACK_ROUTINE,
-    CallbackParam: ?*anyopaque,
+    CallbackRoutine: ?MINIDUMP_CALLBACK_ROUTINE align(4),
+    CallbackParam: ?*anyopaque align(4),
 };
 
 const CLSID_ProcessDebugManager_Value = Guid.initString("78a51822-51f4-11d0-8f20-00805f2cd064");
@@ -70332,48 +70288,48 @@ pub const WHEA_ERROR_SOURCE_CORRECT_DEVICE_DRIVER = switch (@import("builtin").z
     ) callconv(@import("std").os.windows.WINAPI) NTSTATUS,
 } ;
 
-pub const WHEA_ERROR_SOURCE_CONFIGURATION_DD = packed struct {
-    Initialize: ?WHEA_ERROR_SOURCE_INITIALIZE_DEVICE_DRIVER,
-    Uninitialize: ?WHEA_ERROR_SOURCE_UNINITIALIZE_DEVICE_DRIVER,
-    Correct: ?WHEA_ERROR_SOURCE_CORRECT_DEVICE_DRIVER,
+pub const WHEA_ERROR_SOURCE_CONFIGURATION_DD = extern struct {
+    Initialize: ?WHEA_ERROR_SOURCE_INITIALIZE_DEVICE_DRIVER align(1),
+    Uninitialize: ?WHEA_ERROR_SOURCE_UNINITIALIZE_DEVICE_DRIVER align(1),
+    Correct: ?WHEA_ERROR_SOURCE_CORRECT_DEVICE_DRIVER align(1),
 };
 
-pub const WHEA_ERROR_SOURCE_CONFIGURATION_DEVICE_DRIVER_V1 = packed struct {
-    Version: u32,
-    SourceGuid: Guid,
-    LogTag: u16,
-    Reserved: [6]u8,
-    Initialize: ?WHEA_ERROR_SOURCE_INITIALIZE_DEVICE_DRIVER,
-    Uninitialize: ?WHEA_ERROR_SOURCE_UNINITIALIZE_DEVICE_DRIVER,
+pub const WHEA_ERROR_SOURCE_CONFIGURATION_DEVICE_DRIVER_V1 = extern struct {
+    Version: u32 align(1),
+    SourceGuid: Guid align(1),
+    LogTag: u16 align(1),
+    Reserved: [6]u8 align(1),
+    Initialize: ?WHEA_ERROR_SOURCE_INITIALIZE_DEVICE_DRIVER align(1),
+    Uninitialize: ?WHEA_ERROR_SOURCE_UNINITIALIZE_DEVICE_DRIVER align(1),
 };
 
-pub const WHEA_ERROR_SOURCE_CONFIGURATION_DEVICE_DRIVER = packed struct {
-    Version: u32,
-    SourceGuid: Guid,
-    LogTag: u16,
-    Reserved: [6]u8,
-    Initialize: ?WHEA_ERROR_SOURCE_INITIALIZE_DEVICE_DRIVER,
-    Uninitialize: ?WHEA_ERROR_SOURCE_UNINITIALIZE_DEVICE_DRIVER,
-    MaxSectionDataLength: u32,
-    MaxSectionsPerReport: u32,
-    CreatorId: Guid,
-    PartitionId: Guid,
+pub const WHEA_ERROR_SOURCE_CONFIGURATION_DEVICE_DRIVER = extern struct {
+    Version: u32 align(1),
+    SourceGuid: Guid align(1),
+    LogTag: u16 align(1),
+    Reserved: [6]u8 align(1),
+    Initialize: ?WHEA_ERROR_SOURCE_INITIALIZE_DEVICE_DRIVER align(1),
+    Uninitialize: ?WHEA_ERROR_SOURCE_UNINITIALIZE_DEVICE_DRIVER align(1),
+    MaxSectionDataLength: u32 align(1),
+    MaxSectionsPerReport: u32 align(1),
+    CreatorId: Guid align(1),
+    PartitionId: Guid align(1),
 };
 
-pub const WHEA_DRIVER_BUFFER_SET = packed struct {
-    Version: u32,
-    Data: ?*u8,
-    DataSize: u32,
-    SectionTypeGuid: ?*Guid,
-    SectionFriendlyName: ?*u8,
-    Flags: ?*u8,
+pub const WHEA_DRIVER_BUFFER_SET = extern struct {
+    Version: u32 align(1),
+    Data: ?*u8 align(1),
+    DataSize: u32 align(1),
+    SectionTypeGuid: ?*Guid align(1),
+    SectionFriendlyName: ?*u8 align(1),
+    Flags: ?*u8 align(1),
 };
 
-pub const WHEA_NOTIFICATION_FLAGS = packed union {
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
-    AsUSHORT: u16,
+pub const WHEA_NOTIFICATION_FLAGS = extern union {
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
+    AsUSHORT: u16 align(1),
 };
 
 pub const XPF_MC_BANK_FLAGS = extern union {
@@ -70383,32 +70339,32 @@ pub const XPF_MC_BANK_FLAGS = extern union {
     AsUCHAR: u8,
 };
 
-pub const XPF_MCE_FLAGS = packed union {
-    Anonymous: packed struct {
-        _bitfield: u32,
-    },
-    AsULONG: u32,
+pub const XPF_MCE_FLAGS = extern union {
+    Anonymous: extern struct {
+        _bitfield: u32 align(1),
+    } align(1),
+    AsULONG: u32 align(1),
 };
 
-pub const AER_ROOTPORT_DESCRIPTOR_FLAGS = packed union {
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
-    AsUSHORT: u16,
+pub const AER_ROOTPORT_DESCRIPTOR_FLAGS = extern union {
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
+    AsUSHORT: u16 align(1),
 };
 
-pub const AER_ENDPOINT_DESCRIPTOR_FLAGS = packed union {
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
-    AsUSHORT: u16,
+pub const AER_ENDPOINT_DESCRIPTOR_FLAGS = extern union {
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
+    AsUSHORT: u16 align(1),
 };
 
-pub const AER_BRIDGE_DESCRIPTOR_FLAGS = packed union {
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
-    AsUSHORT: u16,
+pub const AER_BRIDGE_DESCRIPTOR_FLAGS = extern union {
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
+    AsUSHORT: u16 align(1),
 };
 
 pub const WHEA_NOTIFICATION_DESCRIPTOR = extern struct {
@@ -70416,242 +70372,242 @@ pub const WHEA_NOTIFICATION_DESCRIPTOR = extern struct {
     Length: u8,
     Flags: WHEA_NOTIFICATION_FLAGS,
     u: extern union {
-        Polled: packed struct {
-            PollInterval: u32,
+        Polled: extern struct {
+            PollInterval: u32 align(1),
         },
-        Interrupt: packed struct {
-            PollInterval: u32,
-            Vector: u32,
-            SwitchToPollingThreshold: u32,
-            SwitchToPollingWindow: u32,
-            ErrorThreshold: u32,
-            ErrorThresholdWindow: u32,
+        Interrupt: extern struct {
+            PollInterval: u32 align(1),
+            Vector: u32 align(1),
+            SwitchToPollingThreshold: u32 align(1),
+            SwitchToPollingWindow: u32 align(1),
+            ErrorThreshold: u32 align(1),
+            ErrorThresholdWindow: u32 align(1),
         },
-        LocalInterrupt: packed struct {
-            PollInterval: u32,
-            Vector: u32,
-            SwitchToPollingThreshold: u32,
-            SwitchToPollingWindow: u32,
-            ErrorThreshold: u32,
-            ErrorThresholdWindow: u32,
+        LocalInterrupt: extern struct {
+            PollInterval: u32 align(1),
+            Vector: u32 align(1),
+            SwitchToPollingThreshold: u32 align(1),
+            SwitchToPollingWindow: u32 align(1),
+            ErrorThreshold: u32 align(1),
+            ErrorThresholdWindow: u32 align(1),
         },
-        Sci: packed struct {
-            PollInterval: u32,
-            Vector: u32,
-            SwitchToPollingThreshold: u32,
-            SwitchToPollingWindow: u32,
-            ErrorThreshold: u32,
-            ErrorThresholdWindow: u32,
+        Sci: extern struct {
+            PollInterval: u32 align(1),
+            Vector: u32 align(1),
+            SwitchToPollingThreshold: u32 align(1),
+            SwitchToPollingWindow: u32 align(1),
+            ErrorThreshold: u32 align(1),
+            ErrorThresholdWindow: u32 align(1),
         },
-        Nmi: packed struct {
-            PollInterval: u32,
-            Vector: u32,
-            SwitchToPollingThreshold: u32,
-            SwitchToPollingWindow: u32,
-            ErrorThreshold: u32,
-            ErrorThresholdWindow: u32,
+        Nmi: extern struct {
+            PollInterval: u32 align(1),
+            Vector: u32 align(1),
+            SwitchToPollingThreshold: u32 align(1),
+            SwitchToPollingWindow: u32 align(1),
+            ErrorThreshold: u32 align(1),
+            ErrorThresholdWindow: u32 align(1),
         },
-        Sea: packed struct {
-            PollInterval: u32,
-            Vector: u32,
-            SwitchToPollingThreshold: u32,
-            SwitchToPollingWindow: u32,
-            ErrorThreshold: u32,
-            ErrorThresholdWindow: u32,
+        Sea: extern struct {
+            PollInterval: u32 align(1),
+            Vector: u32 align(1),
+            SwitchToPollingThreshold: u32 align(1),
+            SwitchToPollingWindow: u32 align(1),
+            ErrorThreshold: u32 align(1),
+            ErrorThresholdWindow: u32 align(1),
         },
-        Sei: packed struct {
-            PollInterval: u32,
-            Vector: u32,
-            SwitchToPollingThreshold: u32,
-            SwitchToPollingWindow: u32,
-            ErrorThreshold: u32,
-            ErrorThresholdWindow: u32,
+        Sei: extern struct {
+            PollInterval: u32 align(1),
+            Vector: u32 align(1),
+            SwitchToPollingThreshold: u32 align(1),
+            SwitchToPollingWindow: u32 align(1),
+            ErrorThreshold: u32 align(1),
+            ErrorThresholdWindow: u32 align(1),
         },
-        Gsiv: packed struct {
-            PollInterval: u32,
-            Vector: u32,
-            SwitchToPollingThreshold: u32,
-            SwitchToPollingWindow: u32,
-            ErrorThreshold: u32,
-            ErrorThresholdWindow: u32,
+        Gsiv: extern struct {
+            PollInterval: u32 align(1),
+            Vector: u32 align(1),
+            SwitchToPollingThreshold: u32 align(1),
+            SwitchToPollingWindow: u32 align(1),
+            ErrorThreshold: u32 align(1),
+            ErrorThresholdWindow: u32 align(1),
         },
     },
 };
 
-pub const WHEA_XPF_MC_BANK_DESCRIPTOR = packed struct {
-    BankNumber: u8,
-    ClearOnInitialization: BOOLEAN,
-    StatusDataFormat: u8,
-    Flags: XPF_MC_BANK_FLAGS,
-    ControlMsr: u32,
-    StatusMsr: u32,
-    AddressMsr: u32,
-    MiscMsr: u32,
-    ControlData: u64,
+pub const WHEA_XPF_MC_BANK_DESCRIPTOR = extern struct {
+    BankNumber: u8 align(1),
+    ClearOnInitialization: BOOLEAN align(1),
+    StatusDataFormat: u8 align(1),
+    Flags: XPF_MC_BANK_FLAGS align(1),
+    ControlMsr: u32 align(1),
+    StatusMsr: u32 align(1),
+    AddressMsr: u32 align(1),
+    MiscMsr: u32 align(1),
+    ControlData: u64 align(1),
 };
 
-pub const WHEA_XPF_MCE_DESCRIPTOR = packed struct {
-    Type: u16,
-    Enabled: u8,
-    NumberOfBanks: u8,
-    Flags: XPF_MCE_FLAGS,
-    MCG_Capability: u64,
-    MCG_GlobalControl: u64,
-    Banks: [32]WHEA_XPF_MC_BANK_DESCRIPTOR,
+pub const WHEA_XPF_MCE_DESCRIPTOR = extern struct {
+    Type: u16 align(1),
+    Enabled: u8 align(1),
+    NumberOfBanks: u8 align(1),
+    Flags: XPF_MCE_FLAGS align(1),
+    MCG_Capability: u64 align(1),
+    MCG_GlobalControl: u64 align(1),
+    Banks: [32]WHEA_XPF_MC_BANK_DESCRIPTOR align(1),
 };
 
-pub const WHEA_XPF_CMC_DESCRIPTOR = packed struct {
-    Type: u16,
-    Enabled: BOOLEAN,
-    NumberOfBanks: u8,
-    Reserved: u32,
-    Notify: WHEA_NOTIFICATION_DESCRIPTOR,
-    Banks: [32]WHEA_XPF_MC_BANK_DESCRIPTOR,
+pub const WHEA_XPF_CMC_DESCRIPTOR = extern struct {
+    Type: u16 align(1),
+    Enabled: BOOLEAN align(1),
+    NumberOfBanks: u8 align(1),
+    Reserved: u32 align(1),
+    Notify: WHEA_NOTIFICATION_DESCRIPTOR align(1),
+    Banks: [32]WHEA_XPF_MC_BANK_DESCRIPTOR align(1),
 };
 
 pub const WHEA_PCI_SLOT_NUMBER = extern struct {
-    u: packed union {
-        bits: packed struct {
-            _bitfield: u32,
-        },
-        AsULONG: u32,
+    u: extern union {
+        bits: extern struct {
+            _bitfield: u32 align(1),
+        } align(1),
+        AsULONG: u32 align(1),
     },
 };
 
-pub const WHEA_XPF_NMI_DESCRIPTOR = packed struct {
-    Type: u16,
-    Enabled: BOOLEAN,
+pub const WHEA_XPF_NMI_DESCRIPTOR = extern struct {
+    Type: u16 align(1),
+    Enabled: BOOLEAN align(1),
 };
 
-pub const WHEA_AER_ROOTPORT_DESCRIPTOR = packed struct {
-    Type: u16,
-    Enabled: BOOLEAN,
-    Reserved: u8,
-    BusNumber: u32,
-    Slot: WHEA_PCI_SLOT_NUMBER,
-    DeviceControl: u16,
-    Flags: AER_ROOTPORT_DESCRIPTOR_FLAGS,
-    UncorrectableErrorMask: u32,
-    UncorrectableErrorSeverity: u32,
-    CorrectableErrorMask: u32,
-    AdvancedCapsAndControl: u32,
-    RootErrorCommand: u32,
+pub const WHEA_AER_ROOTPORT_DESCRIPTOR = extern struct {
+    Type: u16 align(1),
+    Enabled: BOOLEAN align(1),
+    Reserved: u8 align(1),
+    BusNumber: u32 align(1),
+    Slot: WHEA_PCI_SLOT_NUMBER align(1),
+    DeviceControl: u16 align(1),
+    Flags: AER_ROOTPORT_DESCRIPTOR_FLAGS align(1),
+    UncorrectableErrorMask: u32 align(1),
+    UncorrectableErrorSeverity: u32 align(1),
+    CorrectableErrorMask: u32 align(1),
+    AdvancedCapsAndControl: u32 align(1),
+    RootErrorCommand: u32 align(1),
 };
 
-pub const WHEA_AER_ENDPOINT_DESCRIPTOR = packed struct {
-    Type: u16,
-    Enabled: BOOLEAN,
-    Reserved: u8,
-    BusNumber: u32,
-    Slot: WHEA_PCI_SLOT_NUMBER,
-    DeviceControl: u16,
-    Flags: AER_ENDPOINT_DESCRIPTOR_FLAGS,
-    UncorrectableErrorMask: u32,
-    UncorrectableErrorSeverity: u32,
-    CorrectableErrorMask: u32,
-    AdvancedCapsAndControl: u32,
+pub const WHEA_AER_ENDPOINT_DESCRIPTOR = extern struct {
+    Type: u16 align(1),
+    Enabled: BOOLEAN align(1),
+    Reserved: u8 align(1),
+    BusNumber: u32 align(1),
+    Slot: WHEA_PCI_SLOT_NUMBER align(1),
+    DeviceControl: u16 align(1),
+    Flags: AER_ENDPOINT_DESCRIPTOR_FLAGS align(1),
+    UncorrectableErrorMask: u32 align(1),
+    UncorrectableErrorSeverity: u32 align(1),
+    CorrectableErrorMask: u32 align(1),
+    AdvancedCapsAndControl: u32 align(1),
 };
 
-pub const WHEA_AER_BRIDGE_DESCRIPTOR = packed struct {
-    Type: u16,
-    Enabled: BOOLEAN,
-    Reserved: u8,
-    BusNumber: u32,
-    Slot: WHEA_PCI_SLOT_NUMBER,
-    DeviceControl: u16,
-    Flags: AER_BRIDGE_DESCRIPTOR_FLAGS,
-    UncorrectableErrorMask: u32,
-    UncorrectableErrorSeverity: u32,
-    CorrectableErrorMask: u32,
-    AdvancedCapsAndControl: u32,
-    SecondaryUncorrectableErrorMask: u32,
-    SecondaryUncorrectableErrorSev: u32,
-    SecondaryCapsAndControl: u32,
+pub const WHEA_AER_BRIDGE_DESCRIPTOR = extern struct {
+    Type: u16 align(1),
+    Enabled: BOOLEAN align(1),
+    Reserved: u8 align(1),
+    BusNumber: u32 align(1),
+    Slot: WHEA_PCI_SLOT_NUMBER align(1),
+    DeviceControl: u16 align(1),
+    Flags: AER_BRIDGE_DESCRIPTOR_FLAGS align(1),
+    UncorrectableErrorMask: u32 align(1),
+    UncorrectableErrorSeverity: u32 align(1),
+    CorrectableErrorMask: u32 align(1),
+    AdvancedCapsAndControl: u32 align(1),
+    SecondaryUncorrectableErrorMask: u32 align(1),
+    SecondaryUncorrectableErrorSev: u32 align(1),
+    SecondaryCapsAndControl: u32 align(1),
 };
 
-pub const WHEA_GENERIC_ERROR_DESCRIPTOR = packed struct {
-    Type: u16,
-    Reserved: u8,
-    Enabled: u8,
-    ErrStatusBlockLength: u32,
-    RelatedErrorSourceId: u32,
-    ErrStatusAddressSpaceID: u8,
-    ErrStatusAddressBitWidth: u8,
-    ErrStatusAddressBitOffset: u8,
-    ErrStatusAddressAccessSize: u8,
-    ErrStatusAddress: LARGE_INTEGER,
-    Notify: WHEA_NOTIFICATION_DESCRIPTOR,
+pub const WHEA_GENERIC_ERROR_DESCRIPTOR = extern struct {
+    Type: u16 align(1),
+    Reserved: u8 align(1),
+    Enabled: u8 align(1),
+    ErrStatusBlockLength: u32 align(1),
+    RelatedErrorSourceId: u32 align(1),
+    ErrStatusAddressSpaceID: u8 align(1),
+    ErrStatusAddressBitWidth: u8 align(1),
+    ErrStatusAddressBitOffset: u8 align(1),
+    ErrStatusAddressAccessSize: u8 align(1),
+    ErrStatusAddress: LARGE_INTEGER align(1),
+    Notify: WHEA_NOTIFICATION_DESCRIPTOR align(1),
 };
 
-pub const WHEA_GENERIC_ERROR_DESCRIPTOR_V2 = packed struct {
-    Type: u16,
-    Reserved: u8,
-    Enabled: u8,
-    ErrStatusBlockLength: u32,
-    RelatedErrorSourceId: u32,
-    ErrStatusAddressSpaceID: u8,
-    ErrStatusAddressBitWidth: u8,
-    ErrStatusAddressBitOffset: u8,
-    ErrStatusAddressAccessSize: u8,
-    ErrStatusAddress: LARGE_INTEGER,
-    Notify: WHEA_NOTIFICATION_DESCRIPTOR,
-    ReadAckAddressSpaceID: u8,
-    ReadAckAddressBitWidth: u8,
-    ReadAckAddressBitOffset: u8,
-    ReadAckAddressAccessSize: u8,
-    ReadAckAddress: LARGE_INTEGER,
-    ReadAckPreserveMask: u64,
-    ReadAckWriteMask: u64,
+pub const WHEA_GENERIC_ERROR_DESCRIPTOR_V2 = extern struct {
+    Type: u16 align(1),
+    Reserved: u8 align(1),
+    Enabled: u8 align(1),
+    ErrStatusBlockLength: u32 align(1),
+    RelatedErrorSourceId: u32 align(1),
+    ErrStatusAddressSpaceID: u8 align(1),
+    ErrStatusAddressBitWidth: u8 align(1),
+    ErrStatusAddressBitOffset: u8 align(1),
+    ErrStatusAddressAccessSize: u8 align(1),
+    ErrStatusAddress: LARGE_INTEGER align(1),
+    Notify: WHEA_NOTIFICATION_DESCRIPTOR align(1),
+    ReadAckAddressSpaceID: u8 align(1),
+    ReadAckAddressBitWidth: u8 align(1),
+    ReadAckAddressBitOffset: u8 align(1),
+    ReadAckAddressAccessSize: u8 align(1),
+    ReadAckAddress: LARGE_INTEGER align(1),
+    ReadAckPreserveMask: u64 align(1),
+    ReadAckWriteMask: u64 align(1),
 };
 
-pub const WHEA_DEVICE_DRIVER_DESCRIPTOR = packed struct {
-    Type: u16,
-    Enabled: BOOLEAN,
-    Reserved: u8,
-    SourceGuid: Guid,
-    LogTag: u16,
-    Reserved2: u16,
-    PacketLength: u32,
-    PacketCount: u32,
-    PacketBuffer: ?*u8,
-    Config: WHEA_ERROR_SOURCE_CONFIGURATION_DD,
-    CreatorId: Guid,
-    PartitionId: Guid,
-    MaxSectionDataLength: u32,
-    MaxSectionsPerRecord: u32,
-    PacketStateBuffer: ?*u8,
-    OpenHandles: i32,
+pub const WHEA_DEVICE_DRIVER_DESCRIPTOR = extern struct {
+    Type: u16 align(1),
+    Enabled: BOOLEAN align(1),
+    Reserved: u8 align(1),
+    SourceGuid: Guid align(1),
+    LogTag: u16 align(1),
+    Reserved2: u16 align(1),
+    PacketLength: u32 align(1),
+    PacketCount: u32 align(1),
+    PacketBuffer: ?*u8 align(1),
+    Config: WHEA_ERROR_SOURCE_CONFIGURATION_DD align(1),
+    CreatorId: Guid align(1),
+    PartitionId: Guid align(1),
+    MaxSectionDataLength: u32 align(1),
+    MaxSectionsPerRecord: u32 align(1),
+    PacketStateBuffer: ?*u8 align(1),
+    OpenHandles: i32 align(1),
 };
 
-pub const WHEA_IPF_MCA_DESCRIPTOR = packed struct {
-    Type: u16,
-    Enabled: u8,
-    Reserved: u8,
+pub const WHEA_IPF_MCA_DESCRIPTOR = extern struct {
+    Type: u16 align(1),
+    Enabled: u8 align(1),
+    Reserved: u8 align(1),
 };
 
-pub const WHEA_IPF_CMC_DESCRIPTOR = packed struct {
-    Type: u16,
-    Enabled: u8,
-    Reserved: u8,
+pub const WHEA_IPF_CMC_DESCRIPTOR = extern struct {
+    Type: u16 align(1),
+    Enabled: u8 align(1),
+    Reserved: u8 align(1),
 };
 
-pub const WHEA_IPF_CPE_DESCRIPTOR = packed struct {
-    Type: u16,
-    Enabled: u8,
-    Reserved: u8,
+pub const WHEA_IPF_CPE_DESCRIPTOR = extern struct {
+    Type: u16 align(1),
+    Enabled: u8 align(1),
+    Reserved: u8 align(1),
 };
 
-pub const WHEA_ERROR_SOURCE_DESCRIPTOR = packed struct {
-    Length: u32,
-    Version: u32,
-    Type: WHEA_ERROR_SOURCE_TYPE,
-    State: WHEA_ERROR_SOURCE_STATE,
-    MaxRawDataLength: u32,
-    NumRecordsToPreallocate: u32,
-    MaxSectionsPerRecord: u32,
-    ErrorSourceId: u32,
-    PlatformErrorSourceId: u32,
-    Flags: u32,
+pub const WHEA_ERROR_SOURCE_DESCRIPTOR = extern struct {
+    Length: u32 align(1),
+    Version: u32 align(1),
+    Type: WHEA_ERROR_SOURCE_TYPE align(1),
+    State: WHEA_ERROR_SOURCE_STATE align(1),
+    MaxRawDataLength: u32 align(1),
+    NumRecordsToPreallocate: u32 align(1),
+    MaxSectionsPerRecord: u32 align(1),
+    ErrorSourceId: u32 align(1),
+    PlatformErrorSourceId: u32 align(1),
+    Flags: u32 align(1),
     Info: extern union {
         XpfMceDescriptor: WHEA_XPF_MCE_DESCRIPTOR,
         XpfCmcDescriptor: WHEA_XPF_CMC_DESCRIPTOR,
@@ -70665,7 +70621,7 @@ pub const WHEA_ERROR_SOURCE_DESCRIPTOR = packed struct {
         GenErrDescriptor: WHEA_GENERIC_ERROR_DESCRIPTOR,
         GenErrDescriptorV2: WHEA_GENERIC_ERROR_DESCRIPTOR_V2,
         DeviceDriverDescriptor: WHEA_DEVICE_DRIVER_DESCRIPTOR,
-    },
+    } align(1),
 };
 
 pub const IPMI_OS_SEL_RECORD_TYPE = enum(i32) {
@@ -70693,13 +70649,13 @@ pub const IpmiOsSelRecordTypeBugcheckRecovery = IPMI_OS_SEL_RECORD_TYPE.Bugcheck
 pub const IpmiOsSelRecordTypeBugcheckData = IPMI_OS_SEL_RECORD_TYPE.BugcheckData;
 pub const IpmiOsSelRecordTypeMax = IPMI_OS_SEL_RECORD_TYPE.Max;
 
-pub const IPMI_OS_SEL_RECORD = packed struct {
-    Signature: u32,
-    Version: u32,
-    Length: u32,
-    RecordType: IPMI_OS_SEL_RECORD_TYPE,
-    DataLength: u32,
-    Data: [1]u8,
+pub const IPMI_OS_SEL_RECORD = extern struct {
+    Signature: u32 align(1),
+    Version: u32 align(1),
+    Length: u32 align(1),
+    RecordType: IPMI_OS_SEL_RECORD_TYPE align(1),
+    DataLength: u32 align(1),
+    Data: [1]u8 align(1),
 };
 
 
@@ -70988,13 +70944,12 @@ pub const MINIDUMP_THREAD_CALLBACK = switch(@import("../../zig.zig").arch) {
         StackEnd: u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        ThreadId: u32,
-        ThreadHandle: ?HANDLE,
-        Context: CONTEXT,
-        SizeOfContext: u32,
-        StackBase: u64,
-        StackEnd: u64,
+        ThreadId: u32 align(4),
+        ThreadHandle: ?HANDLE align(4),
+        Context: CONTEXT align(4),
+        SizeOfContext: u32 align(4),
+        StackBase: u64 align(4),
+        StackEnd: u64 align(4),
     },
 };
 pub const MINIDUMP_THREAD_EX_CALLBACK = switch(@import("../../zig.zig").arch) {
@@ -71020,15 +70975,14 @@ pub const MINIDUMP_THREAD_EX_CALLBACK = switch(@import("../../zig.zig").arch) {
         BackingStoreEnd: u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        ThreadId: u32,
-        ThreadHandle: ?HANDLE,
-        Context: CONTEXT,
-        SizeOfContext: u32,
-        StackBase: u64,
-        StackEnd: u64,
-        BackingStoreBase: u64,
-        BackingStoreEnd: u64,
+        ThreadId: u32 align(4),
+        ThreadHandle: ?HANDLE align(4),
+        Context: CONTEXT align(4),
+        SizeOfContext: u32 align(4),
+        StackBase: u64 align(4),
+        StackEnd: u64 align(4),
+        BackingStoreBase: u64 align(4),
+        BackingStoreEnd: u64 align(4),
     },
 };
 pub const XSAVE_FORMAT = switch(@import("../../zig.zig").arch) {

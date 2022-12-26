@@ -450,11 +450,10 @@ pub const DMUS_WAVEDL = extern struct {
 };
 
 pub const DMUS_EVENTHEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbEvent: u32,
-    dwChannelGroup: u32,
-    rtDelta: i64,
-    dwFlags: u32,
+    cbEvent: u32 align(4),
+    dwChannelGroup: u32 align(4),
+    rtDelta: i64 align(4),
+    dwFlags: u32 align(4),
 };
 
 pub const DMUS_BUFFERDESC = extern struct {
@@ -2158,18 +2157,18 @@ pub const Tag_DVAudInfo = extern struct {
     wBlkDiv: u16,
 };
 
-pub const MDEVICECAPSEX = packed struct {
-    cbSize: u32,
-    pCaps: ?*anyopaque,
+pub const MDEVICECAPSEX = extern struct {
+    cbSize: u32 align(1),
+    pCaps: ?*anyopaque align(1),
 };
 
-pub const MIDIOPENDESC = packed struct {
-    hMidi: ?HMIDI,
-    dwCallback: usize,
-    dwInstance: usize,
-    dnDevNode: usize,
-    cIds: u32,
-    rgIds: [1]MIDIOPENSTRMID,
+pub const MIDIOPENDESC = extern struct {
+    hMidi: ?HMIDI align(1),
+    dwCallback: usize align(1),
+    dwInstance: usize align(1),
+    dnDevNode: usize align(1),
+    cIds: u32 align(1),
+    rgIds: [1]MIDIOPENSTRMID align(1),
 };
 
 

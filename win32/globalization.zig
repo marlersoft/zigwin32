@@ -3506,107 +3506,35 @@ pub const UITER_LIMIT = UCharIteratorOrigin.LIMIT;
 pub const UITER_ZERO = UCharIteratorOrigin.ZERO;
 pub const UITER_LENGTH = UCharIteratorOrigin.LENGTH;
 
-pub const UCharIteratorGetIndex = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        iter: ?*UCharIterator,
-        origin: UCharIteratorOrigin,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        iter: ?*UCharIterator,
-        origin: UCharIteratorOrigin,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorGetIndex = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UCharIteratorMove = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        iter: ?*UCharIterator,
-        delta: i32,
-        origin: UCharIteratorOrigin,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        iter: ?*UCharIterator,
-        delta: i32,
-        origin: UCharIteratorOrigin,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorMove = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UCharIteratorHasNext = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        iter: ?*UCharIterator,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-    else => *const fn(
-        iter: ?*UCharIterator,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorHasNext = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UCharIteratorHasPrevious = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        iter: ?*UCharIterator,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-    else => *const fn(
-        iter: ?*UCharIterator,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorHasPrevious = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UCharIteratorCurrent = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        iter: ?*UCharIterator,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        iter: ?*UCharIterator,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorCurrent = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UCharIteratorNext = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        iter: ?*UCharIterator,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        iter: ?*UCharIterator,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorNext = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UCharIteratorPrevious = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        iter: ?*UCharIterator,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        iter: ?*UCharIterator,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorPrevious = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UCharIteratorReserved = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        iter: ?*UCharIterator,
-        something: i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        iter: ?*UCharIterator,
-        something: i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorReserved = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UCharIteratorGetState = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        iter: ?*const UCharIterator,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        iter: ?*const UCharIterator,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorGetState = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UCharIteratorSetState = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        iter: ?*UCharIterator,
-        state: u32,
-        pErrorCode: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        iter: ?*UCharIterator,
-        state: u32,
-        pErrorCode: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UCharIteratorSetState = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const UCharIterator = extern struct {
     context: ?*const anyopaque,
@@ -5786,128 +5714,32 @@ pub const UBiDiTransform = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const UTextClone = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dest: ?*UText,
-        src: ?*const UText,
-        deep: i8,
-        status: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) ?*UText,
-    else => *const fn(
-        dest: ?*UText,
-        src: ?*const UText,
-        deep: i8,
-        status: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) ?*UText,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextClone = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UTextNativeLength = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ut: ?*UText,
-    ) callconv(@import("std").os.windows.WINAPI) i64,
-    else => *const fn(
-        ut: ?*UText,
-    ) callconv(@import("std").os.windows.WINAPI) i64,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextNativeLength = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UTextAccess = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ut: ?*UText,
-        nativeIndex: i64,
-        forward: i8,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-    else => *const fn(
-        ut: ?*UText,
-        nativeIndex: i64,
-        forward: i8,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextAccess = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UTextExtract = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ut: ?*UText,
-        nativeStart: i64,
-        nativeLimit: i64,
-        dest: ?*u16,
-        destCapacity: i32,
-        status: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        ut: ?*UText,
-        nativeStart: i64,
-        nativeLimit: i64,
-        dest: ?*u16,
-        destCapacity: i32,
-        status: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextExtract = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UTextReplace = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ut: ?*UText,
-        nativeStart: i64,
-        nativeLimit: i64,
-        replacementText: ?*const u16,
-        replacmentLength: i32,
-        status: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        ut: ?*UText,
-        nativeStart: i64,
-        nativeLimit: i64,
-        replacementText: ?*const u16,
-        replacmentLength: i32,
-        status: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextReplace = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UTextCopy = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ut: ?*UText,
-        nativeStart: i64,
-        nativeLimit: i64,
-        nativeDest: i64,
-        move: i8,
-        status: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        ut: ?*UText,
-        nativeStart: i64,
-        nativeLimit: i64,
-        nativeDest: i64,
-        move: i8,
-        status: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextCopy = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UTextMapOffsetToNative = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ut: ?*const UText,
-    ) callconv(@import("std").os.windows.WINAPI) i64,
-    else => *const fn(
-        ut: ?*const UText,
-    ) callconv(@import("std").os.windows.WINAPI) i64,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextMapOffsetToNative = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UTextMapNativeIndexToUTF16 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ut: ?*const UText,
-        nativeIndex: i64,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        ut: ?*const UText,
-        nativeIndex: i64,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextMapNativeIndexToUTF16 = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const UTextClose = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ut: ?*UText,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        ut: ?*UText,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const UTextClose = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const UTextFuncs = extern struct {
     tableSize: i32,
@@ -18343,16 +18175,6 @@ test {
     if (@hasDecl(@This(), "UTraceEntry")) { _ = UTraceEntry; }
     if (@hasDecl(@This(), "UTraceExit")) { _ = UTraceExit; }
     if (@hasDecl(@This(), "UTraceData")) { _ = UTraceData; }
-    if (@hasDecl(@This(), "UCharIteratorGetIndex")) { _ = UCharIteratorGetIndex; }
-    if (@hasDecl(@This(), "UCharIteratorMove")) { _ = UCharIteratorMove; }
-    if (@hasDecl(@This(), "UCharIteratorHasNext")) { _ = UCharIteratorHasNext; }
-    if (@hasDecl(@This(), "UCharIteratorHasPrevious")) { _ = UCharIteratorHasPrevious; }
-    if (@hasDecl(@This(), "UCharIteratorCurrent")) { _ = UCharIteratorCurrent; }
-    if (@hasDecl(@This(), "UCharIteratorNext")) { _ = UCharIteratorNext; }
-    if (@hasDecl(@This(), "UCharIteratorPrevious")) { _ = UCharIteratorPrevious; }
-    if (@hasDecl(@This(), "UCharIteratorReserved")) { _ = UCharIteratorReserved; }
-    if (@hasDecl(@This(), "UCharIteratorGetState")) { _ = UCharIteratorGetState; }
-    if (@hasDecl(@This(), "UCharIteratorSetState")) { _ = UCharIteratorSetState; }
     if (@hasDecl(@This(), "UCPMapValueFilter")) { _ = UCPMapValueFilter; }
     if (@hasDecl(@This(), "UConverterToUCallback")) { _ = UConverterToUCallback; }
     if (@hasDecl(@This(), "UConverterFromUCallback")) { _ = UConverterFromUCallback; }
@@ -18362,15 +18184,6 @@ test {
     if (@hasDecl(@This(), "UCharEnumTypeRange")) { _ = UCharEnumTypeRange; }
     if (@hasDecl(@This(), "UEnumCharNamesFn")) { _ = UEnumCharNamesFn; }
     if (@hasDecl(@This(), "UBiDiClassCallback")) { _ = UBiDiClassCallback; }
-    if (@hasDecl(@This(), "UTextClone")) { _ = UTextClone; }
-    if (@hasDecl(@This(), "UTextNativeLength")) { _ = UTextNativeLength; }
-    if (@hasDecl(@This(), "UTextAccess")) { _ = UTextAccess; }
-    if (@hasDecl(@This(), "UTextExtract")) { _ = UTextExtract; }
-    if (@hasDecl(@This(), "UTextReplace")) { _ = UTextReplace; }
-    if (@hasDecl(@This(), "UTextCopy")) { _ = UTextCopy; }
-    if (@hasDecl(@This(), "UTextMapOffsetToNative")) { _ = UTextMapOffsetToNative; }
-    if (@hasDecl(@This(), "UTextMapNativeIndexToUTF16")) { _ = UTextMapNativeIndexToUTF16; }
-    if (@hasDecl(@This(), "UTextClose")) { _ = UTextClose; }
     if (@hasDecl(@This(), "UNESCAPE_CHAR_AT")) { _ = UNESCAPE_CHAR_AT; }
     if (@hasDecl(@This(), "URegexMatchCallback")) { _ = URegexMatchCallback; }
     if (@hasDecl(@This(), "URegexFindProgressCallback")) { _ = URegexFindProgressCallback; }

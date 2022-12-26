@@ -3147,88 +3147,88 @@ pub const TCCollectionBugCheck = _DEVICEDUMP_COLLECTION_TYPE.BugCheck;
 pub const TCCollectionApplicationRequested = _DEVICEDUMP_COLLECTION_TYPE.ApplicationRequested;
 pub const TCCollectionDeviceRequested = _DEVICEDUMP_COLLECTION_TYPE.DeviceRequested;
 
-pub const DEVICEDUMP_SUBSECTION_POINTER = packed struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwOffset: u32,
+pub const DEVICEDUMP_SUBSECTION_POINTER = extern struct {
+    dwSize: u32 align(1),
+    dwFlags: u32 align(1),
+    dwOffset: u32 align(1),
 };
 
-pub const DEVICEDUMP_STRUCTURE_VERSION = packed struct {
-    dwSignature: u32,
-    dwVersion: u32,
-    dwSize: u32,
+pub const DEVICEDUMP_STRUCTURE_VERSION = extern struct {
+    dwSignature: u32 align(1),
+    dwVersion: u32 align(1),
+    dwSize: u32 align(1),
 };
 
-pub const DEVICEDUMP_SECTION_HEADER = packed struct {
-    guidDeviceDataId: Guid,
-    sOrganizationID: [16]u8,
-    dwFirmwareRevision: u32,
-    sModelNumber: [32]u8,
-    szDeviceManufacturingID: [32]u8,
-    dwFlags: u32,
-    bRestrictedPrivateDataVersion: u32,
-    dwFirmwareIssueId: u32,
-    szIssueDescriptionString: [132]u8,
+pub const DEVICEDUMP_SECTION_HEADER = extern struct {
+    guidDeviceDataId: Guid align(1),
+    sOrganizationID: [16]u8 align(1),
+    dwFirmwareRevision: u32 align(1),
+    sModelNumber: [32]u8 align(1),
+    szDeviceManufacturingID: [32]u8 align(1),
+    dwFlags: u32 align(1),
+    bRestrictedPrivateDataVersion: u32 align(1),
+    dwFirmwareIssueId: u32 align(1),
+    szIssueDescriptionString: [132]u8 align(1),
 };
 
-pub const GP_LOG_PAGE_DESCRIPTOR = packed struct {
-    LogAddress: u16,
-    LogSectors: u16,
+pub const GP_LOG_PAGE_DESCRIPTOR = extern struct {
+    LogAddress: u16 align(1),
+    LogSectors: u16 align(1),
 };
 
-pub const DEVICEDUMP_PUBLIC_SUBSECTION = packed struct {
-    dwFlags: u32,
-    GPLogTable: [16]GP_LOG_PAGE_DESCRIPTOR,
-    szDescription: [16]CHAR,
-    bData: [1]u8,
+pub const DEVICEDUMP_PUBLIC_SUBSECTION = extern struct {
+    dwFlags: u32 align(1),
+    GPLogTable: [16]GP_LOG_PAGE_DESCRIPTOR align(1),
+    szDescription: [16]CHAR align(1),
+    bData: [1]u8 align(1),
 };
 
 pub const DEVICEDUMP_RESTRICTED_SUBSECTION = extern struct {
     bData: [1]u8,
 };
 
-pub const DEVICEDUMP_PRIVATE_SUBSECTION = packed struct {
-    dwFlags: u32,
-    GPLogId: GP_LOG_PAGE_DESCRIPTOR,
-    bData: [1]u8,
+pub const DEVICEDUMP_PRIVATE_SUBSECTION = extern struct {
+    dwFlags: u32 align(1),
+    GPLogId: GP_LOG_PAGE_DESCRIPTOR align(1),
+    bData: [1]u8 align(1),
 };
 
-pub const DEVICEDUMP_STORAGEDEVICE_DATA = packed struct {
-    Descriptor: DEVICEDUMP_STRUCTURE_VERSION,
-    SectionHeader: DEVICEDUMP_SECTION_HEADER,
-    dwBufferSize: u32,
-    dwReasonForCollection: u32,
-    PublicData: DEVICEDUMP_SUBSECTION_POINTER,
-    RestrictedData: DEVICEDUMP_SUBSECTION_POINTER,
-    PrivateData: DEVICEDUMP_SUBSECTION_POINTER,
+pub const DEVICEDUMP_STORAGEDEVICE_DATA = extern struct {
+    Descriptor: DEVICEDUMP_STRUCTURE_VERSION align(1),
+    SectionHeader: DEVICEDUMP_SECTION_HEADER align(1),
+    dwBufferSize: u32 align(1),
+    dwReasonForCollection: u32 align(1),
+    PublicData: DEVICEDUMP_SUBSECTION_POINTER align(1),
+    RestrictedData: DEVICEDUMP_SUBSECTION_POINTER align(1),
+    PrivateData: DEVICEDUMP_SUBSECTION_POINTER align(1),
 };
 
-pub const DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD = packed struct {
-    Cdb: [16]u8,
-    Command: [16]u8,
-    StartTime: u64,
-    EndTime: u64,
-    OperationStatus: u32,
-    OperationError: u32,
+pub const DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD = extern struct {
+    Cdb: [16]u8 align(1),
+    Command: [16]u8 align(1),
+    StartTime: u64 align(1),
+    EndTime: u64 align(1),
+    OperationStatus: u32 align(1),
+    OperationError: u32 align(1),
     StackSpecific: extern union {
-        ExternalStack: packed struct {
-            dwReserved: u32,
+        ExternalStack: extern struct {
+            dwReserved: u32 align(1),
         },
-        AtaPort: packed struct {
-            dwAtaPortSpecific: u32,
+        AtaPort: extern struct {
+            dwAtaPortSpecific: u32 align(1),
         },
-        StorPort: packed struct {
-            SrbTag: u32,
+        StorPort: extern struct {
+            SrbTag: u32 align(1),
         },
-    },
+    } align(1),
 };
 
-pub const DEVICEDUMP_STORAGESTACK_PUBLIC_DUMP = packed struct {
-    Descriptor: DEVICEDUMP_STRUCTURE_VERSION,
-    dwReasonForCollection: u32,
-    cDriverName: [16]u8,
-    uiNumRecords: u32,
-    RecordArray: [1]DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD,
+pub const DEVICEDUMP_STORAGESTACK_PUBLIC_DUMP = extern struct {
+    Descriptor: DEVICEDUMP_STRUCTURE_VERSION align(1),
+    dwReasonForCollection: u32 align(1),
+    cDriverName: [16]u8 align(1),
+    uiNumRecords: u32 align(1),
+    RecordArray: [1]DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD align(1),
 };
 
 pub const STORAGE_IDLE_POWER = extern struct {
@@ -4085,10 +4085,10 @@ pub const REASSIGN_BLOCKS = extern struct {
     BlockNumber: [1]u32,
 };
 
-pub const REASSIGN_BLOCKS_EX = packed struct {
-    Reserved: u16,
-    Count: u16,
-    BlockNumber: [1]LARGE_INTEGER,
+pub const REASSIGN_BLOCKS_EX = extern struct {
+    Reserved: u16 align(1),
+    Count: u16 align(1),
+    BlockNumber: [1]LARGE_INTEGER align(1),
 };
 
 pub const PARTITION_STYLE = enum(i32) {
@@ -4356,13 +4356,13 @@ pub const BIN_RESULTS = extern struct {
     BinCounts: [1]BIN_COUNT,
 };
 
-pub const GETVERSIONINPARAMS = packed struct {
-    bVersion: u8,
-    bRevision: u8,
-    bReserved: u8,
-    bIDEDeviceMap: u8,
-    fCapabilities: u32,
-    dwReserved: [4]u32,
+pub const GETVERSIONINPARAMS = extern struct {
+    bVersion: u8 align(1),
+    bRevision: u8 align(1),
+    bReserved: u8 align(1),
+    bIDEDeviceMap: u8 align(1),
+    fCapabilities: u32 align(1),
+    dwReserved: [4]u32 align(1),
 };
 
 pub const IDEREGS = extern struct {
@@ -4376,26 +4376,26 @@ pub const IDEREGS = extern struct {
     bReserved: u8,
 };
 
-pub const SENDCMDINPARAMS = packed struct {
-    cBufferSize: u32,
-    irDriveRegs: IDEREGS,
-    bDriveNumber: u8,
-    bReserved: [3]u8,
-    dwReserved: [4]u32,
-    bBuffer: [1]u8,
+pub const SENDCMDINPARAMS = extern struct {
+    cBufferSize: u32 align(1),
+    irDriveRegs: IDEREGS align(1),
+    bDriveNumber: u8 align(1),
+    bReserved: [3]u8 align(1),
+    dwReserved: [4]u32 align(1),
+    bBuffer: [1]u8 align(1),
 };
 
-pub const DRIVERSTATUS = packed struct {
-    bDriverError: u8,
-    bIDEError: u8,
-    bReserved: [2]u8,
-    dwReserved: [2]u32,
+pub const DRIVERSTATUS = extern struct {
+    bDriverError: u8 align(1),
+    bIDEError: u8 align(1),
+    bReserved: [2]u8 align(1),
+    dwReserved: [2]u32 align(1),
 };
 
-pub const SENDCMDOUTPARAMS = packed struct {
-    cBufferSize: u32,
-    DriverStatus: DRIVERSTATUS,
-    bBuffer: [1]u8,
+pub const SENDCMDOUTPARAMS = extern struct {
+    cBufferSize: u32 align(1),
+    DriverStatus: DRIVERSTATUS align(1),
+    bBuffer: [1]u8 align(1),
 };
 
 pub const GET_DISK_ATTRIBUTES = extern struct {
@@ -6419,18 +6419,8 @@ pub const VOLUME_GET_GPT_ATTRIBUTES_INFORMATION = extern struct {
     GptAttributes: u64,
 };
 
-pub const PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        SourceContext: ?*IO_IRP_EXT_TRACK_OFFSET_HEADER,
-        TargetContext: ?*IO_IRP_EXT_TRACK_OFFSET_HEADER,
-        RelativeOffset: i64,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        SourceContext: ?*IO_IRP_EXT_TRACK_OFFSET_HEADER,
-        TargetContext: ?*IO_IRP_EXT_TRACK_OFFSET_HEADER,
-        RelativeOffset: i64,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const IO_IRP_EXT_TRACK_OFFSET_HEADER = extern struct {
     Validation: u16,
@@ -6511,9 +6501,6 @@ const STORAGE_BUS_TYPE = @import("../storage/file_system.zig").STORAGE_BUS_TYPE;
 const VIRTUAL_STORAGE_TYPE = @import("../storage/vhd.zig").VIRTUAL_STORAGE_TYPE;
 
 test {
-    // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK")) { _ = PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK; }
-
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3
     );

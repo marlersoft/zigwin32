@@ -3325,10 +3325,10 @@ pub const DOT11_PORT_STATE = extern struct {
     bPortAuthorized: BOOL,
 };
 
-pub const DOT11_SECURITY_PACKET_HEADER = packed struct {
-    PeerMac: [6]u8,
-    usEtherType: u16,
-    Data: [1]u8,
+pub const DOT11_SECURITY_PACKET_HEADER = extern struct {
+    PeerMac: [6]u8 align(1),
+    usEtherType: u16 align(1),
+    Data: [1]u8 align(1),
 };
 
 pub const DOT11_MSSECURITY_SETTINGS = extern struct {

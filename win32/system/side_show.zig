@@ -895,37 +895,37 @@ pub const SCF_CONTEXTMENU_EVENT = extern struct {
     MenuItemId: u32,
 };
 
-pub const CONTENT_MISSING_EVENT_DATA = packed struct {
-    cbContentMissingEventData: u32,
-    ApplicationId: Guid,
-    EndpointId: Guid,
-    ContentId: u32,
+pub const CONTENT_MISSING_EVENT_DATA = extern struct {
+    cbContentMissingEventData: u32 align(1),
+    ApplicationId: Guid align(1),
+    EndpointId: Guid align(1),
+    ContentId: u32 align(1),
 };
 
-pub const APPLICATION_EVENT_DATA = packed struct {
-    cbApplicationEventData: u32,
-    ApplicationId: Guid,
-    EndpointId: Guid,
-    dwEventId: u32,
-    cbEventData: u32,
-    bEventData: [1]u8,
+pub const APPLICATION_EVENT_DATA = extern struct {
+    cbApplicationEventData: u32 align(1),
+    ApplicationId: Guid align(1),
+    EndpointId: Guid align(1),
+    dwEventId: u32 align(1),
+    cbEventData: u32 align(1),
+    bEventData: [1]u8 align(1),
 };
 
-pub const DEVICE_USER_CHANGE_EVENT_DATA = packed struct {
-    cbDeviceUserChangeEventData: u32,
-    wszUser: u16,
+pub const DEVICE_USER_CHANGE_EVENT_DATA = extern struct {
+    cbDeviceUserChangeEventData: u32 align(1),
+    wszUser: u16 align(1),
 };
 
-pub const NEW_EVENT_DATA_AVAILABLE = packed struct {
-    cbNewEventDataAvailable: u32,
-    dwVersion: u32,
+pub const NEW_EVENT_DATA_AVAILABLE = extern struct {
+    cbNewEventDataAvailable: u32 align(1),
+    dwVersion: u32 align(1),
 };
 
-pub const EVENT_DATA_HEADER = packed struct {
-    cbEventDataHeader: u32,
-    guidEventType: Guid,
-    dwVersion: u32,
-    cbEventDataSid: u32,
+pub const EVENT_DATA_HEADER = extern struct {
+    cbEventDataHeader: u32 align(1),
+    guidEventType: Guid align(1),
+    dwVersion: u32 align(1),
+    cbEventDataSid: u32 align(1),
 };
 
 

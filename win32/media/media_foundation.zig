@@ -8882,76 +8882,76 @@ pub const DXVA_AYUVsample2 = extern struct {
     bSampleAlpha8: u8,
 };
 
-pub const DXVA_BufferDescription = packed struct {
-    dwTypeIndex: u32,
-    dwBufferIndex: u32,
-    dwDataOffset: u32,
-    dwDataSize: u32,
-    dwFirstMBaddress: u32,
-    dwNumMBsInBuffer: u32,
-    dwWidth: u32,
-    dwHeight: u32,
-    dwStride: u32,
-    dwReservedBits: u32,
+pub const DXVA_BufferDescription = extern struct {
+    dwTypeIndex: u32 align(1),
+    dwBufferIndex: u32 align(1),
+    dwDataOffset: u32 align(1),
+    dwDataSize: u32 align(1),
+    dwFirstMBaddress: u32 align(1),
+    dwNumMBsInBuffer: u32 align(1),
+    dwWidth: u32 align(1),
+    dwHeight: u32 align(1),
+    dwStride: u32 align(1),
+    dwReservedBits: u32 align(1),
 };
 
-pub const DXVA_ConfigPictureDecode = packed struct {
-    dwFunction: u32,
-    dwReservedBits: [3]u32,
-    guidConfigBitstreamEncryption: Guid,
-    guidConfigMBcontrolEncryption: Guid,
-    guidConfigResidDiffEncryption: Guid,
-    bConfigBitstreamRaw: u8,
-    bConfigMBcontrolRasterOrder: u8,
-    bConfigResidDiffHost: u8,
-    bConfigSpatialResid8: u8,
-    bConfigResid8Subtraction: u8,
-    bConfigSpatialHost8or9Clipping: u8,
-    bConfigSpatialResidInterleaved: u8,
-    bConfigIntraResidUnsigned: u8,
-    bConfigResidDiffAccelerator: u8,
-    bConfigHostInverseScan: u8,
-    bConfigSpecificIDCT: u8,
-    bConfig4GroupedCoefs: u8,
+pub const DXVA_ConfigPictureDecode = extern struct {
+    dwFunction: u32 align(1),
+    dwReservedBits: [3]u32 align(1),
+    guidConfigBitstreamEncryption: Guid align(1),
+    guidConfigMBcontrolEncryption: Guid align(1),
+    guidConfigResidDiffEncryption: Guid align(1),
+    bConfigBitstreamRaw: u8 align(1),
+    bConfigMBcontrolRasterOrder: u8 align(1),
+    bConfigResidDiffHost: u8 align(1),
+    bConfigSpatialResid8: u8 align(1),
+    bConfigResid8Subtraction: u8 align(1),
+    bConfigSpatialHost8or9Clipping: u8 align(1),
+    bConfigSpatialResidInterleaved: u8 align(1),
+    bConfigIntraResidUnsigned: u8 align(1),
+    bConfigResidDiffAccelerator: u8 align(1),
+    bConfigHostInverseScan: u8 align(1),
+    bConfigSpecificIDCT: u8 align(1),
+    bConfig4GroupedCoefs: u8 align(1),
 };
 
-pub const DXVA_PictureParameters = packed struct {
-    wDecodedPictureIndex: u16,
-    wDeblockedPictureIndex: u16,
-    wForwardRefPictureIndex: u16,
-    wBackwardRefPictureIndex: u16,
-    wPicWidthInMBminus1: u16,
-    wPicHeightInMBminus1: u16,
-    bMacroblockWidthMinus1: u8,
-    bMacroblockHeightMinus1: u8,
-    bBlockWidthMinus1: u8,
-    bBlockHeightMinus1: u8,
-    bBPPminus1: u8,
-    bPicStructure: u8,
-    bSecondField: u8,
-    bPicIntra: u8,
-    bPicBackwardPrediction: u8,
-    bBidirectionalAveragingMode: u8,
-    bMVprecisionAndChromaRelation: u8,
-    bChromaFormat: u8,
-    bPicScanFixed: u8,
-    bPicScanMethod: u8,
-    bPicReadbackRequests: u8,
-    bRcontrol: u8,
-    bPicSpatialResid8: u8,
-    bPicOverflowBlocks: u8,
-    bPicExtrapolation: u8,
-    bPicDeblocked: u8,
-    bPicDeblockConfined: u8,
-    bPic4MVallowed: u8,
-    bPicOBMC: u8,
-    bPicBinPB: u8,
-    bMV_RPS: u8,
-    bReservedBits: u8,
-    wBitstreamFcodes: u16,
-    wBitstreamPCEelements: u16,
-    bBitstreamConcealmentNeed: u8,
-    bBitstreamConcealmentMethod: u8,
+pub const DXVA_PictureParameters = extern struct {
+    wDecodedPictureIndex: u16 align(1),
+    wDeblockedPictureIndex: u16 align(1),
+    wForwardRefPictureIndex: u16 align(1),
+    wBackwardRefPictureIndex: u16 align(1),
+    wPicWidthInMBminus1: u16 align(1),
+    wPicHeightInMBminus1: u16 align(1),
+    bMacroblockWidthMinus1: u8 align(1),
+    bMacroblockHeightMinus1: u8 align(1),
+    bBlockWidthMinus1: u8 align(1),
+    bBlockHeightMinus1: u8 align(1),
+    bBPPminus1: u8 align(1),
+    bPicStructure: u8 align(1),
+    bSecondField: u8 align(1),
+    bPicIntra: u8 align(1),
+    bPicBackwardPrediction: u8 align(1),
+    bBidirectionalAveragingMode: u8 align(1),
+    bMVprecisionAndChromaRelation: u8 align(1),
+    bChromaFormat: u8 align(1),
+    bPicScanFixed: u8 align(1),
+    bPicScanMethod: u8 align(1),
+    bPicReadbackRequests: u8 align(1),
+    bRcontrol: u8 align(1),
+    bPicSpatialResid8: u8 align(1),
+    bPicOverflowBlocks: u8 align(1),
+    bPicExtrapolation: u8 align(1),
+    bPicDeblocked: u8 align(1),
+    bPicDeblockConfined: u8 align(1),
+    bPic4MVallowed: u8 align(1),
+    bPicOBMC: u8 align(1),
+    bPicBinPB: u8 align(1),
+    bMV_RPS: u8 align(1),
+    bReservedBits: u8 align(1),
+    wBitstreamFcodes: u16 align(1),
+    wBitstreamPCEelements: u16 align(1),
+    bBitstreamConcealmentNeed: u8 align(1),
+    bBitstreamConcealmentMethod: u8 align(1),
 };
 
 pub const DXVAUncompDataInfo = extern struct {
@@ -13682,124 +13682,124 @@ pub const OPM_ENCRYPTED_INITIALIZATION_PARAMETERS = extern struct {
     abEncryptedInitializationParameters: [256]u8,
 };
 
-pub const OPM_GET_INFO_PARAMETERS = packed struct {
-    omac: OPM_OMAC,
-    rnRandomNumber: OPM_RANDOM_NUMBER,
-    guidInformation: Guid,
-    ulSequenceNumber: u32,
-    cbParametersSize: u32,
-    abParameters: [4056]u8,
+pub const OPM_GET_INFO_PARAMETERS = extern struct {
+    omac: OPM_OMAC align(1),
+    rnRandomNumber: OPM_RANDOM_NUMBER align(1),
+    guidInformation: Guid align(1),
+    ulSequenceNumber: u32 align(1),
+    cbParametersSize: u32 align(1),
+    abParameters: [4056]u8 align(1),
 };
 
-pub const OPM_COPP_COMPATIBLE_GET_INFO_PARAMETERS = packed struct {
-    rnRandomNumber: OPM_RANDOM_NUMBER,
-    guidInformation: Guid,
-    ulSequenceNumber: u32,
-    cbParametersSize: u32,
-    abParameters: [4056]u8,
+pub const OPM_COPP_COMPATIBLE_GET_INFO_PARAMETERS = extern struct {
+    rnRandomNumber: OPM_RANDOM_NUMBER align(1),
+    guidInformation: Guid align(1),
+    ulSequenceNumber: u32 align(1),
+    cbParametersSize: u32 align(1),
+    abParameters: [4056]u8 align(1),
 };
 
 pub const OPM_HDCP_KEY_SELECTION_VECTOR = extern struct {
     abKeySelectionVector: [5]u8,
 };
 
-pub const OPM_CONNECTED_HDCP_DEVICE_INFORMATION = packed struct {
-    rnRandomNumber: OPM_RANDOM_NUMBER,
-    ulStatusFlags: u32,
-    ulHDCPFlags: u32,
-    ksvB: OPM_HDCP_KEY_SELECTION_VECTOR,
-    Reserved: [11]u8,
-    Reserved2: [16]u8,
-    Reserved3: [16]u8,
+pub const OPM_CONNECTED_HDCP_DEVICE_INFORMATION = extern struct {
+    rnRandomNumber: OPM_RANDOM_NUMBER align(1),
+    ulStatusFlags: u32 align(1),
+    ulHDCPFlags: u32 align(1),
+    ksvB: OPM_HDCP_KEY_SELECTION_VECTOR align(1),
+    Reserved: [11]u8 align(1),
+    Reserved2: [16]u8 align(1),
+    Reserved3: [16]u8 align(1),
 };
 
-pub const OPM_REQUESTED_INFORMATION = packed struct {
-    omac: OPM_OMAC,
-    cbRequestedInformationSize: u32,
-    abRequestedInformation: [4076]u8,
+pub const OPM_REQUESTED_INFORMATION = extern struct {
+    omac: OPM_OMAC align(1),
+    cbRequestedInformationSize: u32 align(1),
+    abRequestedInformation: [4076]u8 align(1),
 };
 
-pub const OPM_STANDARD_INFORMATION = packed struct {
-    rnRandomNumber: OPM_RANDOM_NUMBER,
-    ulStatusFlags: u32,
-    ulInformation: u32,
-    ulReserved: u32,
-    ulReserved2: u32,
+pub const OPM_STANDARD_INFORMATION = extern struct {
+    rnRandomNumber: OPM_RANDOM_NUMBER align(1),
+    ulStatusFlags: u32 align(1),
+    ulInformation: u32 align(1),
+    ulReserved: u32 align(1),
+    ulReserved2: u32 align(1),
 };
 
-pub const OPM_ACTUAL_OUTPUT_FORMAT = packed struct {
-    rnRandomNumber: OPM_RANDOM_NUMBER,
-    ulStatusFlags: u32,
-    ulDisplayWidth: u32,
-    ulDisplayHeight: u32,
-    dsfSampleInterleaveFormat: DXVA2_SampleFormat,
-    d3dFormat: D3DFORMAT,
-    ulFrequencyNumerator: u32,
-    ulFrequencyDenominator: u32,
+pub const OPM_ACTUAL_OUTPUT_FORMAT = extern struct {
+    rnRandomNumber: OPM_RANDOM_NUMBER align(1),
+    ulStatusFlags: u32 align(1),
+    ulDisplayWidth: u32 align(1),
+    ulDisplayHeight: u32 align(1),
+    dsfSampleInterleaveFormat: DXVA2_SampleFormat align(1),
+    d3dFormat: D3DFORMAT align(1),
+    ulFrequencyNumerator: u32 align(1),
+    ulFrequencyDenominator: u32 align(1),
 };
 
-pub const OPM_ACP_AND_CGMSA_SIGNALING = packed struct {
-    rnRandomNumber: OPM_RANDOM_NUMBER,
-    ulStatusFlags: u32,
-    ulAvailableTVProtectionStandards: u32,
-    ulActiveTVProtectionStandard: u32,
-    ulReserved: u32,
-    ulAspectRatioValidMask1: u32,
-    ulAspectRatioData1: u32,
-    ulAspectRatioValidMask2: u32,
-    ulAspectRatioData2: u32,
-    ulAspectRatioValidMask3: u32,
-    ulAspectRatioData3: u32,
-    ulReserved2: [4]u32,
-    ulReserved3: [4]u32,
+pub const OPM_ACP_AND_CGMSA_SIGNALING = extern struct {
+    rnRandomNumber: OPM_RANDOM_NUMBER align(1),
+    ulStatusFlags: u32 align(1),
+    ulAvailableTVProtectionStandards: u32 align(1),
+    ulActiveTVProtectionStandard: u32 align(1),
+    ulReserved: u32 align(1),
+    ulAspectRatioValidMask1: u32 align(1),
+    ulAspectRatioData1: u32 align(1),
+    ulAspectRatioValidMask2: u32 align(1),
+    ulAspectRatioData2: u32 align(1),
+    ulAspectRatioValidMask3: u32 align(1),
+    ulAspectRatioData3: u32 align(1),
+    ulReserved2: [4]u32 align(1),
+    ulReserved3: [4]u32 align(1),
 };
 
-pub const OPM_OUTPUT_ID_DATA = packed struct {
-    rnRandomNumber: OPM_RANDOM_NUMBER,
-    ulStatusFlags: u32,
-    OutputId: u64,
+pub const OPM_OUTPUT_ID_DATA = extern struct {
+    rnRandomNumber: OPM_RANDOM_NUMBER align(1),
+    ulStatusFlags: u32 align(1),
+    OutputId: u64 align(1),
 };
 
-pub const OPM_CONFIGURE_PARAMETERS = packed struct {
-    omac: OPM_OMAC,
-    guidSetting: Guid,
-    ulSequenceNumber: u32,
-    cbParametersSize: u32,
-    abParameters: [4056]u8,
+pub const OPM_CONFIGURE_PARAMETERS = extern struct {
+    omac: OPM_OMAC align(1),
+    guidSetting: Guid align(1),
+    ulSequenceNumber: u32 align(1),
+    cbParametersSize: u32 align(1),
+    abParameters: [4056]u8 align(1),
 };
 
-pub const OPM_SET_PROTECTION_LEVEL_PARAMETERS = packed struct {
-    ulProtectionType: u32,
-    ulProtectionLevel: u32,
-    Reserved: u32,
-    Reserved2: u32,
+pub const OPM_SET_PROTECTION_LEVEL_PARAMETERS = extern struct {
+    ulProtectionType: u32 align(1),
+    ulProtectionLevel: u32 align(1),
+    Reserved: u32 align(1),
+    Reserved2: u32 align(1),
 };
 
-pub const OPM_SET_ACP_AND_CGMSA_SIGNALING_PARAMETERS = packed struct {
-    ulNewTVProtectionStandard: u32,
-    ulAspectRatioChangeMask1: u32,
-    ulAspectRatioData1: u32,
-    ulAspectRatioChangeMask2: u32,
-    ulAspectRatioData2: u32,
-    ulAspectRatioChangeMask3: u32,
-    ulAspectRatioData3: u32,
-    ulReserved: [4]u32,
-    ulReserved2: [4]u32,
-    ulReserved3: u32,
+pub const OPM_SET_ACP_AND_CGMSA_SIGNALING_PARAMETERS = extern struct {
+    ulNewTVProtectionStandard: u32 align(1),
+    ulAspectRatioChangeMask1: u32 align(1),
+    ulAspectRatioData1: u32 align(1),
+    ulAspectRatioChangeMask2: u32 align(1),
+    ulAspectRatioData2: u32 align(1),
+    ulAspectRatioChangeMask3: u32 align(1),
+    ulAspectRatioData3: u32 align(1),
+    ulReserved: [4]u32 align(1),
+    ulReserved2: [4]u32 align(1),
+    ulReserved3: u32 align(1),
 };
 
-pub const OPM_SET_HDCP_SRM_PARAMETERS = packed struct {
-    ulSRMVersion: u32,
+pub const OPM_SET_HDCP_SRM_PARAMETERS = extern struct {
+    ulSRMVersion: u32 align(1),
 };
 
-pub const OPM_GET_CODEC_INFO_PARAMETERS = packed struct {
-    cbVerifier: u32,
-    Verifier: [4052]u8,
+pub const OPM_GET_CODEC_INFO_PARAMETERS = extern struct {
+    cbVerifier: u32 align(1),
+    Verifier: [4052]u8 align(1),
 };
 
-pub const OPM_GET_CODEC_INFO_INFORMATION = packed struct {
-    rnRandomNumber: OPM_RANDOM_NUMBER,
-    Merit: u32,
+pub const OPM_GET_CODEC_INFO_INFORMATION = extern struct {
+    rnRandomNumber: OPM_RANDOM_NUMBER align(1),
+    Merit: u32 align(1),
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -20748,15 +20748,15 @@ pub const MFRR_COMPONENTS = extern struct {
     pRRComponents: ?*MFRR_COMPONENT_HASH_INFO,
 };
 
-pub const ASF_FLAT_PICTURE = packed struct {
-    bPictureType: u8,
-    dwDataLen: u32,
+pub const ASF_FLAT_PICTURE = extern struct {
+    bPictureType: u8 align(1),
+    dwDataLen: u32 align(1),
 };
 
-pub const ASF_FLAT_SYNCHRONISED_LYRICS = packed struct {
-    bTimeStampFormat: u8,
-    bContentType: u8,
-    dwLyricsLen: u32,
+pub const ASF_FLAT_SYNCHRONISED_LYRICS = extern struct {
+    bTimeStampFormat: u8 align(1),
+    bContentType: u8 align(1),
+    dwLyricsLen: u32 align(1),
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -40580,12 +40580,11 @@ pub const D3DCONTENTPROTECTIONCAPS = switch(@import("../zig.zig").arch) {
         ProtectedMemorySize: u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        Caps: u32,
-        KeyExchangeType: Guid,
-        BufferAlignmentStart: u32,
-        BlockAlignmentSize: u32,
-        ProtectedMemorySize: u64,
+        Caps: u32 align(4),
+        KeyExchangeType: Guid align(4),
+        BufferAlignmentStart: u32 align(4),
+        BlockAlignmentSize: u32 align(4),
+        ProtectedMemorySize: u64 align(4),
     },
 };
 pub const DXVA_VideoSample2 = switch(@import("../zig.zig").arch) {

@@ -7254,12 +7254,12 @@ pub const INFORMATIONCARD_CRYPTO_HANDLE = extern struct {
     cryptoParameters: ?*anyopaque,
 };
 
-pub const GENERIC_XML_TOKEN = packed struct {
-    createDate: FILETIME,
-    expiryDate: FILETIME,
-    xmlToken: ?PWSTR,
-    internalTokenReference: ?PWSTR,
-    externalTokenReference: ?PWSTR,
+pub const GENERIC_XML_TOKEN = extern struct {
+    createDate: FILETIME align(1),
+    expiryDate: FILETIME align(1),
+    xmlToken: ?PWSTR align(1),
+    internalTokenReference: ?PWSTR align(1),
+    externalTokenReference: ?PWSTR align(1),
 };
 
 pub const POLICY_ELEMENT = extern struct {
