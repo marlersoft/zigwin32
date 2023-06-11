@@ -388,6 +388,7 @@ pub const WM_IME_KEYDOWN = @as(u32, 656);
 pub const WM_IME_KEYUP = @as(u32, 657);
 pub const WM_NCMOUSEHOVER = @as(u32, 672);
 pub const WM_NCMOUSELEAVE = @as(u32, 674);
+pub const WM_MOUSELEAVE = @as(u32, 675);
 pub const WM_WTSSESSION_CHANGE = @as(u32, 689);
 pub const WM_TABLET_FIRST = @as(u32, 704);
 pub const WM_TABLET_LAST = @as(u32, 735);
