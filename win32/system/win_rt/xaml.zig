@@ -50,15 +50,15 @@ pub const ISurfaceImageSourceNative = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISurfaceImageSourceNative_SetDevice(self: *const T, device: ?*IDXGIDevice) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISurfaceImageSourceNative.VTable, self.vtable).SetDevice(@ptrCast(*const ISurfaceImageSourceNative, self), device);
+            return @as(*const ISurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).SetDevice(@as(*const ISurfaceImageSourceNative, @ptrCast(self)), device);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISurfaceImageSourceNative_BeginDraw(self: *const T, updateRect: RECT, surface: ?*?*IDXGISurface, offset: ?*POINT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISurfaceImageSourceNative.VTable, self.vtable).BeginDraw(@ptrCast(*const ISurfaceImageSourceNative, self), updateRect, surface, offset);
+            return @as(*const ISurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const ISurfaceImageSourceNative, @ptrCast(self)), updateRect, surface, offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISurfaceImageSourceNative_EndDraw(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISurfaceImageSourceNative.VTable, self.vtable).EndDraw(@ptrCast(*const ISurfaceImageSourceNative, self));
+            return @as(*const ISurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const ISurfaceImageSourceNative, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -83,7 +83,7 @@ pub const IVirtualSurfaceUpdatesCallbackNative = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IVirtualSurfaceUpdatesCallbackNative_UpdatesNeeded(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IVirtualSurfaceUpdatesCallbackNative.VTable, self.vtable).UpdatesNeeded(@ptrCast(*const IVirtualSurfaceUpdatesCallbackNative, self));
+            return @as(*const IVirtualSurfaceUpdatesCallbackNative.VTable, @ptrCast(self.vtable)).UpdatesNeeded(@as(*const IVirtualSurfaceUpdatesCallbackNative, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -164,27 +164,27 @@ pub const IVirtualSurfaceImageSourceNative = extern struct {
         pub usingnamespace ISurfaceImageSourceNative.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IVirtualSurfaceImageSourceNative_Invalidate(self: *const T, updateRect: RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IVirtualSurfaceImageSourceNative.VTable, self.vtable).Invalidate(@ptrCast(*const IVirtualSurfaceImageSourceNative, self), updateRect);
+            return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).Invalidate(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), updateRect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IVirtualSurfaceImageSourceNative_GetUpdateRectCount(self: *const T, count: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IVirtualSurfaceImageSourceNative.VTable, self.vtable).GetUpdateRectCount(@ptrCast(*const IVirtualSurfaceImageSourceNative, self), count);
+            return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).GetUpdateRectCount(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IVirtualSurfaceImageSourceNative_GetUpdateRects(self: *const T, updates: [*]RECT, count: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IVirtualSurfaceImageSourceNative.VTable, self.vtable).GetUpdateRects(@ptrCast(*const IVirtualSurfaceImageSourceNative, self), updates, count);
+            return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).GetUpdateRects(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), updates, count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IVirtualSurfaceImageSourceNative_GetVisibleBounds(self: *const T, bounds: ?*RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IVirtualSurfaceImageSourceNative.VTable, self.vtable).GetVisibleBounds(@ptrCast(*const IVirtualSurfaceImageSourceNative, self), bounds);
+            return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).GetVisibleBounds(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), bounds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IVirtualSurfaceImageSourceNative_RegisterForUpdatesNeeded(self: *const T, callback: ?*IVirtualSurfaceUpdatesCallbackNative) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IVirtualSurfaceImageSourceNative.VTable, self.vtable).RegisterForUpdatesNeeded(@ptrCast(*const IVirtualSurfaceImageSourceNative, self), callback);
+            return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).RegisterForUpdatesNeeded(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), callback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IVirtualSurfaceImageSourceNative_Resize(self: *const T, newWidth: i32, newHeight: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IVirtualSurfaceImageSourceNative.VTable, self.vtable).Resize(@ptrCast(*const IVirtualSurfaceImageSourceNative, self), newWidth, newHeight);
+            return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).Resize(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), newWidth, newHeight);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -211,7 +211,7 @@ pub const ISwapChainBackgroundPanelNative = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISwapChainBackgroundPanelNative_SetSwapChain(self: *const T, swapChain: ?*IDXGISwapChain) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISwapChainBackgroundPanelNative.VTable, self.vtable).SetSwapChain(@ptrCast(*const ISwapChainBackgroundPanelNative, self), swapChain);
+            return @as(*const ISwapChainBackgroundPanelNative.VTable, @ptrCast(self.vtable)).SetSwapChain(@as(*const ISwapChainBackgroundPanelNative, @ptrCast(self)), swapChain);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -238,7 +238,7 @@ pub const ISurfaceImageSourceManagerNative = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISurfaceImageSourceManagerNative_FlushAllSurfacesWithDevice(self: *const T, device: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISurfaceImageSourceManagerNative.VTable, self.vtable).FlushAllSurfacesWithDevice(@ptrCast(*const ISurfaceImageSourceManagerNative, self), device);
+            return @as(*const ISurfaceImageSourceManagerNative.VTable, @ptrCast(self.vtable)).FlushAllSurfacesWithDevice(@as(*const ISurfaceImageSourceManagerNative, @ptrCast(self)), device);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -305,23 +305,23 @@ pub const ISurfaceImageSourceNativeWithD2D = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISurfaceImageSourceNativeWithD2D_SetDevice(self: *const T, device: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISurfaceImageSourceNativeWithD2D.VTable, self.vtable).SetDevice(@ptrCast(*const ISurfaceImageSourceNativeWithD2D, self), device);
+            return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).SetDevice(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)), device);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISurfaceImageSourceNativeWithD2D_BeginDraw(self: *const T, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, offset: ?*POINT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISurfaceImageSourceNativeWithD2D.VTable, self.vtable).BeginDraw(@ptrCast(*const ISurfaceImageSourceNativeWithD2D, self), updateRect, iid, updateObject, offset);
+            return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)), updateRect, iid, updateObject, offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISurfaceImageSourceNativeWithD2D_EndDraw(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISurfaceImageSourceNativeWithD2D.VTable, self.vtable).EndDraw(@ptrCast(*const ISurfaceImageSourceNativeWithD2D, self));
+            return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISurfaceImageSourceNativeWithD2D_SuspendDraw(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISurfaceImageSourceNativeWithD2D.VTable, self.vtable).SuspendDraw(@ptrCast(*const ISurfaceImageSourceNativeWithD2D, self));
+            return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).SuspendDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISurfaceImageSourceNativeWithD2D_ResumeDraw(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISurfaceImageSourceNativeWithD2D.VTable, self.vtable).ResumeDraw(@ptrCast(*const ISurfaceImageSourceNativeWithD2D, self));
+            return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).ResumeDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -348,7 +348,7 @@ pub const ISwapChainPanelNative = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISwapChainPanelNative_SetSwapChain(self: *const T, swapChain: ?*IDXGISwapChain) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISwapChainPanelNative.VTable, self.vtable).SetSwapChain(@ptrCast(*const ISwapChainPanelNative, self), swapChain);
+            return @as(*const ISwapChainPanelNative.VTable, @ptrCast(self.vtable)).SetSwapChain(@as(*const ISwapChainPanelNative, @ptrCast(self)), swapChain);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -375,7 +375,7 @@ pub const ISwapChainPanelNative2 = extern struct {
         pub usingnamespace ISwapChainPanelNative.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISwapChainPanelNative2_SetSwapChainHandle(self: *const T, swapChainHandle: ?HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISwapChainPanelNative2.VTable, self.vtable).SetSwapChainHandle(@ptrCast(*const ISwapChainPanelNative2, self), swapChainHandle);
+            return @as(*const ISwapChainPanelNative2.VTable, @ptrCast(self.vtable)).SetSwapChainHandle(@as(*const ISwapChainPanelNative2, @ptrCast(self)), swapChainHandle);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -415,11 +415,11 @@ pub const IDesktopWindowXamlSourceNative = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDesktopWindowXamlSourceNative_AttachToWindow(self: *const T, parentWnd: ?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDesktopWindowXamlSourceNative.VTable, self.vtable).AttachToWindow(@ptrCast(*const IDesktopWindowXamlSourceNative, self), parentWnd);
+            return @as(*const IDesktopWindowXamlSourceNative.VTable, @ptrCast(self.vtable)).AttachToWindow(@as(*const IDesktopWindowXamlSourceNative, @ptrCast(self)), parentWnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDesktopWindowXamlSourceNative_get_WindowHandle(self: *const T, hWnd: ?*?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDesktopWindowXamlSourceNative.VTable, self.vtable).get_WindowHandle(@ptrCast(*const IDesktopWindowXamlSourceNative, self), hWnd);
+            return @as(*const IDesktopWindowXamlSourceNative.VTable, @ptrCast(self.vtable)).get_WindowHandle(@as(*const IDesktopWindowXamlSourceNative, @ptrCast(self)), hWnd);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -448,7 +448,7 @@ pub const IDesktopWindowXamlSourceNative2 = extern struct {
         pub usingnamespace IDesktopWindowXamlSourceNative.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDesktopWindowXamlSourceNative2_PreTranslateMessage(self: *const T, message: ?*const MSG, result: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDesktopWindowXamlSourceNative2.VTable, self.vtable).PreTranslateMessage(@ptrCast(*const IDesktopWindowXamlSourceNative2, self), message, result);
+            return @as(*const IDesktopWindowXamlSourceNative2.VTable, @ptrCast(self.vtable)).PreTranslateMessage(@as(*const IDesktopWindowXamlSourceNative2, @ptrCast(self)), message, result);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -497,19 +497,19 @@ pub const IReferenceTrackerTarget = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerTarget_AddRefFromReferenceTracker(self: *const T) callconv(.Inline) u32 {
-            return @ptrCast(*const IReferenceTrackerTarget.VTable, self.vtable).AddRefFromReferenceTracker(@ptrCast(*const IReferenceTrackerTarget, self));
+            return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).AddRefFromReferenceTracker(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerTarget_ReleaseFromReferenceTracker(self: *const T) callconv(.Inline) u32 {
-            return @ptrCast(*const IReferenceTrackerTarget.VTable, self.vtable).ReleaseFromReferenceTracker(@ptrCast(*const IReferenceTrackerTarget, self));
+            return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).ReleaseFromReferenceTracker(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerTarget_Peg(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTrackerTarget.VTable, self.vtable).Peg(@ptrCast(*const IReferenceTrackerTarget, self));
+            return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).Peg(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerTarget_Unpeg(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTrackerTarget.VTable, self.vtable).Unpeg(@ptrCast(*const IReferenceTrackerTarget, self));
+            return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).Unpeg(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -586,31 +586,31 @@ pub const IReferenceTracker = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTracker_ConnectFromTrackerSource(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTracker.VTable, self.vtable).ConnectFromTrackerSource(@ptrCast(*const IReferenceTracker, self));
+            return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).ConnectFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTracker_DisconnectFromTrackerSource(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTracker.VTable, self.vtable).DisconnectFromTrackerSource(@ptrCast(*const IReferenceTracker, self));
+            return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).DisconnectFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTracker_FindTrackerTargets(self: *const T, callback: ?*IFindReferenceTargetsCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTracker.VTable, self.vtable).FindTrackerTargets(@ptrCast(*const IReferenceTracker, self), callback);
+            return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).FindTrackerTargets(@as(*const IReferenceTracker, @ptrCast(self)), callback);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTracker_GetReferenceTrackerManager(self: *const T, value: ?*?*IReferenceTrackerManager) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTracker.VTable, self.vtable).GetReferenceTrackerManager(@ptrCast(*const IReferenceTracker, self), value);
+            return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).GetReferenceTrackerManager(@as(*const IReferenceTracker, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTracker_AddRefFromTrackerSource(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTracker.VTable, self.vtable).AddRefFromTrackerSource(@ptrCast(*const IReferenceTracker, self));
+            return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).AddRefFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTracker_ReleaseFromTrackerSource(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTracker.VTable, self.vtable).ReleaseFromTrackerSource(@ptrCast(*const IReferenceTracker, self));
+            return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).ReleaseFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTracker_PegFromTrackerSource(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTracker.VTable, self.vtable).PegFromTrackerSource(@ptrCast(*const IReferenceTracker, self));
+            return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).PegFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -663,19 +663,19 @@ pub const IReferenceTrackerManager = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerManager_ReferenceTrackingStarted(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTrackerManager.VTable, self.vtable).ReferenceTrackingStarted(@ptrCast(*const IReferenceTrackerManager, self));
+            return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).ReferenceTrackingStarted(@as(*const IReferenceTrackerManager, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerManager_FindTrackerTargetsCompleted(self: *const T, findFailed: u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTrackerManager.VTable, self.vtable).FindTrackerTargetsCompleted(@ptrCast(*const IReferenceTrackerManager, self), findFailed);
+            return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).FindTrackerTargetsCompleted(@as(*const IReferenceTrackerManager, @ptrCast(self)), findFailed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerManager_ReferenceTrackingCompleted(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTrackerManager.VTable, self.vtable).ReferenceTrackingCompleted(@ptrCast(*const IReferenceTrackerManager, self));
+            return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).ReferenceTrackingCompleted(@as(*const IReferenceTrackerManager, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerManager_SetReferenceTrackerHost(self: *const T, value: ?*IReferenceTrackerHost) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTrackerManager.VTable, self.vtable).SetReferenceTrackerHost(@ptrCast(*const IReferenceTrackerManager, self), value);
+            return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).SetReferenceTrackerHost(@as(*const IReferenceTrackerManager, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -702,7 +702,7 @@ pub const IFindReferenceTargetsCallback = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFindReferenceTargetsCallback_FoundTrackerTarget(self: *const T, target: ?*IReferenceTrackerTarget) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFindReferenceTargetsCallback.VTable, self.vtable).FoundTrackerTarget(@ptrCast(*const IFindReferenceTargetsCallback, self), target);
+            return @as(*const IFindReferenceTargetsCallback.VTable, @ptrCast(self.vtable)).FoundTrackerTarget(@as(*const IFindReferenceTargetsCallback, @ptrCast(self)), target);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -784,27 +784,27 @@ pub const IReferenceTrackerHost = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerHost_DisconnectUnusedReferenceSources(self: *const T, options: XAML_REFERENCETRACKER_DISCONNECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTrackerHost.VTable, self.vtable).DisconnectUnusedReferenceSources(@ptrCast(*const IReferenceTrackerHost, self), options);
+            return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).DisconnectUnusedReferenceSources(@as(*const IReferenceTrackerHost, @ptrCast(self)), options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerHost_ReleaseDisconnectedReferenceSources(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTrackerHost.VTable, self.vtable).ReleaseDisconnectedReferenceSources(@ptrCast(*const IReferenceTrackerHost, self));
+            return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).ReleaseDisconnectedReferenceSources(@as(*const IReferenceTrackerHost, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerHost_NotifyEndOfReferenceTrackingOnThread(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTrackerHost.VTable, self.vtable).NotifyEndOfReferenceTrackingOnThread(@ptrCast(*const IReferenceTrackerHost, self));
+            return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).NotifyEndOfReferenceTrackingOnThread(@as(*const IReferenceTrackerHost, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerHost_GetTrackerTarget(self: *const T, unknown: ?*IUnknown, newReference: ?*?*IReferenceTrackerTarget) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTrackerHost.VTable, self.vtable).GetTrackerTarget(@ptrCast(*const IReferenceTrackerHost, self), unknown, newReference);
+            return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).GetTrackerTarget(@as(*const IReferenceTrackerHost, @ptrCast(self)), unknown, newReference);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerHost_AddMemoryPressure(self: *const T, bytesAllocated: u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTrackerHost.VTable, self.vtable).AddMemoryPressure(@ptrCast(*const IReferenceTrackerHost, self), bytesAllocated);
+            return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).AddMemoryPressure(@as(*const IReferenceTrackerHost, @ptrCast(self)), bytesAllocated);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IReferenceTrackerHost_RemoveMemoryPressure(self: *const T, bytesAllocated: u64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IReferenceTrackerHost.VTable, self.vtable).RemoveMemoryPressure(@ptrCast(*const IReferenceTrackerHost, self), bytesAllocated);
+            return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).RemoveMemoryPressure(@as(*const IReferenceTrackerHost, @ptrCast(self)), bytesAllocated);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -882,19 +882,19 @@ pub const ITrackerOwner = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITrackerOwner_CreateTrackerHandle(self: *const T, returnValue: ?*?*TrackerHandle__) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITrackerOwner.VTable, self.vtable).CreateTrackerHandle(@ptrCast(*const ITrackerOwner, self), returnValue);
+            return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).CreateTrackerHandle(@as(*const ITrackerOwner, @ptrCast(self)), returnValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITrackerOwner_DeleteTrackerHandle(self: *const T, handle: ?*TrackerHandle__) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITrackerOwner.VTable, self.vtable).DeleteTrackerHandle(@ptrCast(*const ITrackerOwner, self), handle);
+            return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).DeleteTrackerHandle(@as(*const ITrackerOwner, @ptrCast(self)), handle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITrackerOwner_SetTrackerValue(self: *const T, handle: ?*TrackerHandle__, value: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITrackerOwner.VTable, self.vtable).SetTrackerValue(@ptrCast(*const ITrackerOwner, self), handle, value);
+            return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).SetTrackerValue(@as(*const ITrackerOwner, @ptrCast(self)), handle, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITrackerOwner_TryGetSafeTrackerValue(self: *const T, handle: ?*TrackerHandle__, returnValue: ?*?*IUnknown) callconv(.Inline) u8 {
-            return @ptrCast(*const ITrackerOwner.VTable, self.vtable).TryGetSafeTrackerValue(@ptrCast(*const ITrackerOwner, self), handle, returnValue);
+            return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).TryGetSafeTrackerValue(@as(*const ITrackerOwner, @ptrCast(self)), handle, returnValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());

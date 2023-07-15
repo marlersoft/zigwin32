@@ -442,23 +442,23 @@ pub const ISensorManager = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorManager_GetSensorsByCategory(self: *const T, sensorCategory: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorManager.VTable, self.vtable).GetSensorsByCategory(@ptrCast(*const ISensorManager, self), sensorCategory, ppSensorsFound);
+            return @as(*const ISensorManager.VTable, @ptrCast(self.vtable)).GetSensorsByCategory(@as(*const ISensorManager, @ptrCast(self)), sensorCategory, ppSensorsFound);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorManager_GetSensorsByType(self: *const T, sensorType: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorManager.VTable, self.vtable).GetSensorsByType(@ptrCast(*const ISensorManager, self), sensorType, ppSensorsFound);
+            return @as(*const ISensorManager.VTable, @ptrCast(self.vtable)).GetSensorsByType(@as(*const ISensorManager, @ptrCast(self)), sensorType, ppSensorsFound);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorManager_GetSensorByID(self: *const T, sensorID: ?*Guid, ppSensor: ?*?*ISensor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorManager.VTable, self.vtable).GetSensorByID(@ptrCast(*const ISensorManager, self), sensorID, ppSensor);
+            return @as(*const ISensorManager.VTable, @ptrCast(self.vtable)).GetSensorByID(@as(*const ISensorManager, @ptrCast(self)), sensorID, ppSensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorManager_SetEventSink(self: *const T, pEvents: ?*ISensorManagerEvents) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorManager.VTable, self.vtable).SetEventSink(@ptrCast(*const ISensorManager, self), pEvents);
+            return @as(*const ISensorManager.VTable, @ptrCast(self.vtable)).SetEventSink(@as(*const ISensorManager, @ptrCast(self)), pEvents);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorManager_RequestPermissions(self: *const T, hParent: ?HWND, pSensors: ?*ISensorCollection, fModal: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorManager.VTable, self.vtable).RequestPermissions(@ptrCast(*const ISensorManager, self), hParent, pSensors, fModal);
+            return @as(*const ISensorManager.VTable, @ptrCast(self.vtable)).RequestPermissions(@as(*const ISensorManager, @ptrCast(self)), hParent, pSensors, fModal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -496,11 +496,11 @@ pub const ILocationPermissions = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ILocationPermissions_GetGlobalLocationPermission(self: *const T, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILocationPermissions.VTable, self.vtable).GetGlobalLocationPermission(@ptrCast(*const ILocationPermissions, self), pfEnabled);
+            return @as(*const ILocationPermissions.VTable, @ptrCast(self.vtable)).GetGlobalLocationPermission(@as(*const ILocationPermissions, @ptrCast(self)), pfEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ILocationPermissions_CheckLocationCapability(self: *const T, dwClientThreadId: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILocationPermissions.VTable, self.vtable).CheckLocationCapability(@ptrCast(*const ILocationPermissions, self), dwClientThreadId);
+            return @as(*const ILocationPermissions.VTable, @ptrCast(self.vtable)).CheckLocationCapability(@as(*const ILocationPermissions, @ptrCast(self)), dwClientThreadId);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -578,27 +578,27 @@ pub const ISensorCollection = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorCollection_GetAt(self: *const T, ulIndex: u32, ppSensor: ?*?*ISensor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorCollection.VTable, self.vtable).GetAt(@ptrCast(*const ISensorCollection, self), ulIndex, ppSensor);
+            return @as(*const ISensorCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const ISensorCollection, @ptrCast(self)), ulIndex, ppSensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorCollection_GetCount(self: *const T, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorCollection.VTable, self.vtable).GetCount(@ptrCast(*const ISensorCollection, self), pCount);
+            return @as(*const ISensorCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ISensorCollection, @ptrCast(self)), pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorCollection_Add(self: *const T, pSensor: ?*ISensor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorCollection.VTable, self.vtable).Add(@ptrCast(*const ISensorCollection, self), pSensor);
+            return @as(*const ISensorCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const ISensorCollection, @ptrCast(self)), pSensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorCollection_Remove(self: *const T, pSensor: ?*ISensor) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorCollection.VTable, self.vtable).Remove(@ptrCast(*const ISensorCollection, self), pSensor);
+            return @as(*const ISensorCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISensorCollection, @ptrCast(self)), pSensor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorCollection_RemoveByID(self: *const T, sensorID: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorCollection.VTable, self.vtable).RemoveByID(@ptrCast(*const ISensorCollection, self), sensorID);
+            return @as(*const ISensorCollection.VTable, @ptrCast(self.vtable)).RemoveByID(@as(*const ISensorCollection, @ptrCast(self)), sensorID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorCollection_Clear(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorCollection.VTable, self.vtable).Clear(@ptrCast(*const ISensorCollection, self));
+            return @as(*const ISensorCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const ISensorCollection, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -780,63 +780,63 @@ pub const ISensor = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_GetID(self: *const T, pID: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetID(@ptrCast(*const ISensor, self), pID);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetID(@as(*const ISensor, @ptrCast(self)), pID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_GetCategory(self: *const T, pSensorCategory: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetCategory(@ptrCast(*const ISensor, self), pSensorCategory);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetCategory(@as(*const ISensor, @ptrCast(self)), pSensorCategory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_GetType(self: *const T, pSensorType: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetType(@ptrCast(*const ISensor, self), pSensorType);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetType(@as(*const ISensor, @ptrCast(self)), pSensorType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_GetFriendlyName(self: *const T, pFriendlyName: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetFriendlyName(@ptrCast(*const ISensor, self), pFriendlyName);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetFriendlyName(@as(*const ISensor, @ptrCast(self)), pFriendlyName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_GetProperty(self: *const T, key: ?*const PROPERTYKEY, pProperty: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetProperty(@ptrCast(*const ISensor, self), key, pProperty);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ISensor, @ptrCast(self)), key, pProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_GetProperties(self: *const T, pKeys: ?*IPortableDeviceKeyCollection, ppProperties: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetProperties(@ptrCast(*const ISensor, self), pKeys, ppProperties);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const ISensor, @ptrCast(self)), pKeys, ppProperties);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_GetSupportedDataFields(self: *const T, ppDataFields: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetSupportedDataFields(@ptrCast(*const ISensor, self), ppDataFields);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetSupportedDataFields(@as(*const ISensor, @ptrCast(self)), ppDataFields);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_SetProperties(self: *const T, pProperties: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).SetProperties(@ptrCast(*const ISensor, self), pProperties, ppResults);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).SetProperties(@as(*const ISensor, @ptrCast(self)), pProperties, ppResults);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_SupportsDataField(self: *const T, key: ?*const PROPERTYKEY, pIsSupported: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).SupportsDataField(@ptrCast(*const ISensor, self), key, pIsSupported);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).SupportsDataField(@as(*const ISensor, @ptrCast(self)), key, pIsSupported);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_GetState(self: *const T, pState: ?*SensorState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetState(@ptrCast(*const ISensor, self), pState);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetState(@as(*const ISensor, @ptrCast(self)), pState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_GetData(self: *const T, ppDataReport: ?*?*ISensorDataReport) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetData(@ptrCast(*const ISensor, self), ppDataReport);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISensor, @ptrCast(self)), ppDataReport);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_SupportsEvent(self: *const T, eventGuid: ?*const Guid, pIsSupported: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).SupportsEvent(@ptrCast(*const ISensor, self), eventGuid, pIsSupported);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).SupportsEvent(@as(*const ISensor, @ptrCast(self)), eventGuid, pIsSupported);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_GetEventInterest(self: *const T, ppValues: ?[*]?*Guid, pCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).GetEventInterest(@ptrCast(*const ISensor, self), ppValues, pCount);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetEventInterest(@as(*const ISensor, @ptrCast(self)), ppValues, pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_SetEventInterest(self: *const T, pValues: ?[*]Guid, count: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).SetEventInterest(@ptrCast(*const ISensor, self), pValues, count);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).SetEventInterest(@as(*const ISensor, @ptrCast(self)), pValues, count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensor_SetEventSink(self: *const T, pEvents: ?*ISensorEvents) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensor.VTable, self.vtable).SetEventSink(@ptrCast(*const ISensor, self), pEvents);
+            return @as(*const ISensor.VTable, @ptrCast(self.vtable)).SetEventSink(@as(*const ISensor, @ptrCast(self)), pEvents);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -888,15 +888,15 @@ pub const ISensorDataReport = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorDataReport_GetTimestamp(self: *const T, pTimeStamp: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorDataReport.VTable, self.vtable).GetTimestamp(@ptrCast(*const ISensorDataReport, self), pTimeStamp);
+            return @as(*const ISensorDataReport.VTable, @ptrCast(self.vtable)).GetTimestamp(@as(*const ISensorDataReport, @ptrCast(self)), pTimeStamp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorDataReport_GetSensorValue(self: *const T, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorDataReport.VTable, self.vtable).GetSensorValue(@ptrCast(*const ISensorDataReport, self), pKey, pValue);
+            return @as(*const ISensorDataReport.VTable, @ptrCast(self.vtable)).GetSensorValue(@as(*const ISensorDataReport, @ptrCast(self)), pKey, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorDataReport_GetSensorValues(self: *const T, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorDataReport.VTable, self.vtable).GetSensorValues(@ptrCast(*const ISensorDataReport, self), pKeys, ppValues);
+            return @as(*const ISensorDataReport.VTable, @ptrCast(self.vtable)).GetSensorValues(@as(*const ISensorDataReport, @ptrCast(self)), pKeys, ppValues);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -926,7 +926,7 @@ pub const ISensorManagerEvents = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorManagerEvents_OnSensorEnter(self: *const T, pSensor: ?*ISensor, state: SensorState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorManagerEvents.VTable, self.vtable).OnSensorEnter(@ptrCast(*const ISensorManagerEvents, self), pSensor, state);
+            return @as(*const ISensorManagerEvents.VTable, @ptrCast(self.vtable)).OnSensorEnter(@as(*const ISensorManagerEvents, @ptrCast(self)), pSensor, state);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -992,19 +992,19 @@ pub const ISensorEvents = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorEvents_OnStateChanged(self: *const T, pSensor: ?*ISensor, state: SensorState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorEvents.VTable, self.vtable).OnStateChanged(@ptrCast(*const ISensorEvents, self), pSensor, state);
+            return @as(*const ISensorEvents.VTable, @ptrCast(self.vtable)).OnStateChanged(@as(*const ISensorEvents, @ptrCast(self)), pSensor, state);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorEvents_OnDataUpdated(self: *const T, pSensor: ?*ISensor, pNewData: ?*ISensorDataReport) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorEvents.VTable, self.vtable).OnDataUpdated(@ptrCast(*const ISensorEvents, self), pSensor, pNewData);
+            return @as(*const ISensorEvents.VTable, @ptrCast(self.vtable)).OnDataUpdated(@as(*const ISensorEvents, @ptrCast(self)), pSensor, pNewData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorEvents_OnEvent(self: *const T, pSensor: ?*ISensor, eventID: ?*const Guid, pEventData: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorEvents.VTable, self.vtable).OnEvent(@ptrCast(*const ISensorEvents, self), pSensor, eventID, pEventData);
+            return @as(*const ISensorEvents.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const ISensorEvents, @ptrCast(self)), pSensor, eventID, pEventData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISensorEvents_OnLeave(self: *const T, ID: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISensorEvents.VTable, self.vtable).OnLeave(@ptrCast(*const ISensorEvents, self), ID);
+            return @as(*const ISensorEvents.VTable, @ptrCast(self.vtable)).OnLeave(@as(*const ISensorEvents, @ptrCast(self)), ID);
         }
     };}
     pub usingnamespace MethodMixin(@This());

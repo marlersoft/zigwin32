@@ -387,15 +387,15 @@ pub const ITransaction = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransaction_Commit(self: *const T, fRetaining: BOOL, grfTC: u32, grfRM: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransaction.VTable, self.vtable).Commit(@ptrCast(*const ITransaction, self), fRetaining, grfTC, grfRM);
+            return @as(*const ITransaction.VTable, @ptrCast(self.vtable)).Commit(@as(*const ITransaction, @ptrCast(self)), fRetaining, grfTC, grfRM);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransaction_Abort(self: *const T, pboidReason: ?*BOID, fRetaining: BOOL, fAsync: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransaction.VTable, self.vtable).Abort(@ptrCast(*const ITransaction, self), pboidReason, fRetaining, fAsync);
+            return @as(*const ITransaction.VTable, @ptrCast(self.vtable)).Abort(@as(*const ITransaction, @ptrCast(self)), pboidReason, fRetaining, fAsync);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransaction_GetTransactionInfo(self: *const T, pinfo: ?*XACTTRANSINFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransaction.VTable, self.vtable).GetTransactionInfo(@ptrCast(*const ITransaction, self), pinfo);
+            return @as(*const ITransaction.VTable, @ptrCast(self.vtable)).GetTransactionInfo(@as(*const ITransaction, @ptrCast(self)), pinfo);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -422,7 +422,7 @@ pub const ITransactionCloner = extern struct {
         pub usingnamespace ITransaction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionCloner_CloneWithCommitDisabled(self: *const T, ppITransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionCloner.VTable, self.vtable).CloneWithCommitDisabled(@ptrCast(*const ITransactionCloner, self), ppITransaction);
+            return @as(*const ITransactionCloner.VTable, @ptrCast(self.vtable)).CloneWithCommitDisabled(@as(*const ITransactionCloner, @ptrCast(self)), ppITransaction);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -449,7 +449,7 @@ pub const ITransaction2 = extern struct {
         pub usingnamespace ITransactionCloner.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransaction2_GetTransactionInfo2(self: *const T, pinfo: ?*XACTTRANSINFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransaction2.VTable, self.vtable).GetTransactionInfo2(@ptrCast(*const ITransaction2, self), pinfo);
+            return @as(*const ITransaction2.VTable, @ptrCast(self.vtable)).GetTransactionInfo2(@as(*const ITransaction2, @ptrCast(self)), pinfo);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -494,11 +494,11 @@ pub const ITransactionDispenser = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionDispenser_GetOptionsObject(self: *const T, ppOptions: ?*?*ITransactionOptions) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionDispenser.VTable, self.vtable).GetOptionsObject(@ptrCast(*const ITransactionDispenser, self), ppOptions);
+            return @as(*const ITransactionDispenser.VTable, @ptrCast(self.vtable)).GetOptionsObject(@as(*const ITransactionDispenser, @ptrCast(self)), ppOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionDispenser_BeginTransaction(self: *const T, punkOuter: ?*IUnknown, isoLevel: i32, isoFlags: u32, pOptions: ?*ITransactionOptions, ppTransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionDispenser.VTable, self.vtable).BeginTransaction(@ptrCast(*const ITransactionDispenser, self), punkOuter, isoLevel, isoFlags, pOptions, ppTransaction);
+            return @as(*const ITransactionDispenser.VTable, @ptrCast(self.vtable)).BeginTransaction(@as(*const ITransactionDispenser, @ptrCast(self)), punkOuter, isoLevel, isoFlags, pOptions, ppTransaction);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -535,11 +535,11 @@ pub const ITransactionOptions = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionOptions_SetOptions(self: *const T, pOptions: ?*XACTOPT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionOptions.VTable, self.vtable).SetOptions(@ptrCast(*const ITransactionOptions, self), pOptions);
+            return @as(*const ITransactionOptions.VTable, @ptrCast(self.vtable)).SetOptions(@as(*const ITransactionOptions, @ptrCast(self)), pOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionOptions_GetOptions(self: *const T, pOptions: ?*XACTOPT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionOptions.VTable, self.vtable).GetOptions(@ptrCast(*const ITransactionOptions, self), pOptions);
+            return @as(*const ITransactionOptions.VTable, @ptrCast(self.vtable)).GetOptions(@as(*const ITransactionOptions, @ptrCast(self)), pOptions);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -608,19 +608,19 @@ pub const ITransactionOutcomeEvents = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionOutcomeEvents_Committed(self: *const T, fRetaining: BOOL, pNewUOW: ?*BOID, hr: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionOutcomeEvents.VTable, self.vtable).Committed(@ptrCast(*const ITransactionOutcomeEvents, self), fRetaining, pNewUOW, hr);
+            return @as(*const ITransactionOutcomeEvents.VTable, @ptrCast(self.vtable)).Committed(@as(*const ITransactionOutcomeEvents, @ptrCast(self)), fRetaining, pNewUOW, hr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionOutcomeEvents_Aborted(self: *const T, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID, hr: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionOutcomeEvents.VTable, self.vtable).Aborted(@ptrCast(*const ITransactionOutcomeEvents, self), pboidReason, fRetaining, pNewUOW, hr);
+            return @as(*const ITransactionOutcomeEvents.VTable, @ptrCast(self.vtable)).Aborted(@as(*const ITransactionOutcomeEvents, @ptrCast(self)), pboidReason, fRetaining, pNewUOW, hr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionOutcomeEvents_HeuristicDecision(self: *const T, dwDecision: u32, pboidReason: ?*BOID, hr: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionOutcomeEvents.VTable, self.vtable).HeuristicDecision(@ptrCast(*const ITransactionOutcomeEvents, self), dwDecision, pboidReason, hr);
+            return @as(*const ITransactionOutcomeEvents.VTable, @ptrCast(self.vtable)).HeuristicDecision(@as(*const ITransactionOutcomeEvents, @ptrCast(self)), dwDecision, pboidReason, hr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionOutcomeEvents_Indoubt(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionOutcomeEvents.VTable, self.vtable).Indoubt(@ptrCast(*const ITransactionOutcomeEvents, self));
+            return @as(*const ITransactionOutcomeEvents.VTable, @ptrCast(self.vtable)).Indoubt(@as(*const ITransactionOutcomeEvents, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -659,11 +659,11 @@ pub const ITmNodeName = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITmNodeName_GetNodeNameSize(self: *const T, pcbNodeNameSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITmNodeName.VTable, self.vtable).GetNodeNameSize(@ptrCast(*const ITmNodeName, self), pcbNodeNameSize);
+            return @as(*const ITmNodeName.VTable, @ptrCast(self.vtable)).GetNodeNameSize(@as(*const ITmNodeName, @ptrCast(self)), pcbNodeNameSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITmNodeName_GetNodeName(self: *const T, cbNodeNameBufferSize: u32, pNodeNameBuffer: ?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITmNodeName.VTable, self.vtable).GetNodeName(@ptrCast(*const ITmNodeName, self), cbNodeNameBufferSize, pNodeNameBuffer);
+            return @as(*const ITmNodeName.VTable, @ptrCast(self.vtable)).GetNodeName(@as(*const ITmNodeName, @ptrCast(self)), cbNodeNameBufferSize, pNodeNameBuffer);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -690,7 +690,7 @@ pub const IKernelTransaction = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IKernelTransaction_GetHandle(self: *const T, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IKernelTransaction.VTable, self.vtable).GetHandle(@ptrCast(*const IKernelTransaction, self), pHandle);
+            return @as(*const IKernelTransaction.VTable, @ptrCast(self.vtable)).GetHandle(@as(*const IKernelTransaction, @ptrCast(self)), pHandle);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -757,19 +757,19 @@ pub const ITransactionResourceAsync = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionResourceAsync_PrepareRequest(self: *const T, fRetaining: BOOL, grfRM: u32, fWantMoniker: BOOL, fSinglePhase: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionResourceAsync.VTable, self.vtable).PrepareRequest(@ptrCast(*const ITransactionResourceAsync, self), fRetaining, grfRM, fWantMoniker, fSinglePhase);
+            return @as(*const ITransactionResourceAsync.VTable, @ptrCast(self.vtable)).PrepareRequest(@as(*const ITransactionResourceAsync, @ptrCast(self)), fRetaining, grfRM, fWantMoniker, fSinglePhase);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionResourceAsync_CommitRequest(self: *const T, grfRM: u32, pNewUOW: ?*BOID) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionResourceAsync.VTable, self.vtable).CommitRequest(@ptrCast(*const ITransactionResourceAsync, self), grfRM, pNewUOW);
+            return @as(*const ITransactionResourceAsync.VTable, @ptrCast(self.vtable)).CommitRequest(@as(*const ITransactionResourceAsync, @ptrCast(self)), grfRM, pNewUOW);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionResourceAsync_AbortRequest(self: *const T, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionResourceAsync.VTable, self.vtable).AbortRequest(@ptrCast(*const ITransactionResourceAsync, self), pboidReason, fRetaining, pNewUOW);
+            return @as(*const ITransactionResourceAsync.VTable, @ptrCast(self.vtable)).AbortRequest(@as(*const ITransactionResourceAsync, @ptrCast(self)), pboidReason, fRetaining, pNewUOW);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionResourceAsync_TMDown(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionResourceAsync.VTable, self.vtable).TMDown(@ptrCast(*const ITransactionResourceAsync, self));
+            return @as(*const ITransactionResourceAsync.VTable, @ptrCast(self.vtable)).TMDown(@as(*const ITransactionResourceAsync, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -806,11 +806,11 @@ pub const ITransactionLastResourceAsync = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionLastResourceAsync_DelegateCommit(self: *const T, grfRM: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionLastResourceAsync.VTable, self.vtable).DelegateCommit(@ptrCast(*const ITransactionLastResourceAsync, self), grfRM);
+            return @as(*const ITransactionLastResourceAsync.VTable, @ptrCast(self.vtable)).DelegateCommit(@as(*const ITransactionLastResourceAsync, @ptrCast(self)), grfRM);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionLastResourceAsync_ForgetRequest(self: *const T, pNewUOW: ?*BOID) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionLastResourceAsync.VTable, self.vtable).ForgetRequest(@ptrCast(*const ITransactionLastResourceAsync, self), pNewUOW);
+            return @as(*const ITransactionLastResourceAsync.VTable, @ptrCast(self.vtable)).ForgetRequest(@as(*const ITransactionLastResourceAsync, @ptrCast(self)), pNewUOW);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -877,19 +877,19 @@ pub const ITransactionResource = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionResource_PrepareRequest(self: *const T, fRetaining: BOOL, grfRM: u32, fWantMoniker: BOOL, fSinglePhase: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionResource.VTable, self.vtable).PrepareRequest(@ptrCast(*const ITransactionResource, self), fRetaining, grfRM, fWantMoniker, fSinglePhase);
+            return @as(*const ITransactionResource.VTable, @ptrCast(self.vtable)).PrepareRequest(@as(*const ITransactionResource, @ptrCast(self)), fRetaining, grfRM, fWantMoniker, fSinglePhase);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionResource_CommitRequest(self: *const T, grfRM: u32, pNewUOW: ?*BOID) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionResource.VTable, self.vtable).CommitRequest(@ptrCast(*const ITransactionResource, self), grfRM, pNewUOW);
+            return @as(*const ITransactionResource.VTable, @ptrCast(self.vtable)).CommitRequest(@as(*const ITransactionResource, @ptrCast(self)), grfRM, pNewUOW);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionResource_AbortRequest(self: *const T, pboidReason: ?*BOID, fRetaining: BOOL, pNewUOW: ?*BOID) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionResource.VTable, self.vtable).AbortRequest(@ptrCast(*const ITransactionResource, self), pboidReason, fRetaining, pNewUOW);
+            return @as(*const ITransactionResource.VTable, @ptrCast(self.vtable)).AbortRequest(@as(*const ITransactionResource, @ptrCast(self)), pboidReason, fRetaining, pNewUOW);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionResource_TMDown(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionResource.VTable, self.vtable).TMDown(@ptrCast(*const ITransactionResource, self));
+            return @as(*const ITransactionResource.VTable, @ptrCast(self.vtable)).TMDown(@as(*const ITransactionResource, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -940,15 +940,15 @@ pub const ITransactionEnlistmentAsync = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionEnlistmentAsync_PrepareRequestDone(self: *const T, hr: HRESULT, pmk: ?*IMoniker, pboidReason: ?*BOID) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionEnlistmentAsync.VTable, self.vtable).PrepareRequestDone(@ptrCast(*const ITransactionEnlistmentAsync, self), hr, pmk, pboidReason);
+            return @as(*const ITransactionEnlistmentAsync.VTable, @ptrCast(self.vtable)).PrepareRequestDone(@as(*const ITransactionEnlistmentAsync, @ptrCast(self)), hr, pmk, pboidReason);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionEnlistmentAsync_CommitRequestDone(self: *const T, hr: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionEnlistmentAsync.VTable, self.vtable).CommitRequestDone(@ptrCast(*const ITransactionEnlistmentAsync, self), hr);
+            return @as(*const ITransactionEnlistmentAsync.VTable, @ptrCast(self.vtable)).CommitRequestDone(@as(*const ITransactionEnlistmentAsync, @ptrCast(self)), hr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionEnlistmentAsync_AbortRequestDone(self: *const T, hr: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionEnlistmentAsync.VTable, self.vtable).AbortRequestDone(@ptrCast(*const ITransactionEnlistmentAsync, self), hr);
+            return @as(*const ITransactionEnlistmentAsync.VTable, @ptrCast(self.vtable)).AbortRequestDone(@as(*const ITransactionEnlistmentAsync, @ptrCast(self)), hr);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -977,7 +977,7 @@ pub const ITransactionLastEnlistmentAsync = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionLastEnlistmentAsync_TransactionOutcome(self: *const T, XactStat: XACTSTAT, pboidReason: ?*BOID) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionLastEnlistmentAsync.VTable, self.vtable).TransactionOutcome(@ptrCast(*const ITransactionLastEnlistmentAsync, self), XactStat, pboidReason);
+            return @as(*const ITransactionLastEnlistmentAsync.VTable, @ptrCast(self.vtable)).TransactionOutcome(@as(*const ITransactionLastEnlistmentAsync, @ptrCast(self)), XactStat, pboidReason);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1018,11 +1018,11 @@ pub const ITransactionExportFactory = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionExportFactory_GetRemoteClassId(self: *const T, pclsid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionExportFactory.VTable, self.vtable).GetRemoteClassId(@ptrCast(*const ITransactionExportFactory, self), pclsid);
+            return @as(*const ITransactionExportFactory.VTable, @ptrCast(self.vtable)).GetRemoteClassId(@as(*const ITransactionExportFactory, @ptrCast(self)), pclsid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionExportFactory_Create(self: *const T, cbWhereabouts: u32, rgbWhereabouts: [*:0]u8, ppExport: ?*?*ITransactionExport) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionExportFactory.VTable, self.vtable).Create(@ptrCast(*const ITransactionExportFactory, self), cbWhereabouts, rgbWhereabouts, ppExport);
+            return @as(*const ITransactionExportFactory.VTable, @ptrCast(self.vtable)).Create(@as(*const ITransactionExportFactory, @ptrCast(self)), cbWhereabouts, rgbWhereabouts, ppExport);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1063,11 +1063,11 @@ pub const ITransactionImportWhereabouts = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionImportWhereabouts_GetWhereaboutsSize(self: *const T, pcbWhereabouts: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionImportWhereabouts.VTable, self.vtable).GetWhereaboutsSize(@ptrCast(*const ITransactionImportWhereabouts, self), pcbWhereabouts);
+            return @as(*const ITransactionImportWhereabouts.VTable, @ptrCast(self.vtable)).GetWhereaboutsSize(@as(*const ITransactionImportWhereabouts, @ptrCast(self)), pcbWhereabouts);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionImportWhereabouts_GetWhereabouts(self: *const T, cbWhereabouts: u32, rgbWhereabouts: [*:0]u8, pcbUsed: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionImportWhereabouts.VTable, self.vtable).GetWhereabouts(@ptrCast(*const ITransactionImportWhereabouts, self), cbWhereabouts, rgbWhereabouts, pcbUsed);
+            return @as(*const ITransactionImportWhereabouts.VTable, @ptrCast(self.vtable)).GetWhereabouts(@as(*const ITransactionImportWhereabouts, @ptrCast(self)), cbWhereabouts, rgbWhereabouts, pcbUsed);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1112,11 +1112,11 @@ pub const ITransactionExport = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionExport_Export(self: *const T, punkTransaction: ?*IUnknown, pcbTransactionCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionExport.VTable, self.vtable).Export(@ptrCast(*const ITransactionExport, self), punkTransaction, pcbTransactionCookie);
+            return @as(*const ITransactionExport.VTable, @ptrCast(self.vtable)).Export(@as(*const ITransactionExport, @ptrCast(self)), punkTransaction, pcbTransactionCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionExport_GetTransactionCookie(self: *const T, punkTransaction: ?*IUnknown, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, pcbUsed: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionExport.VTable, self.vtable).GetTransactionCookie(@ptrCast(*const ITransactionExport, self), punkTransaction, cbTransactionCookie, rgbTransactionCookie, pcbUsed);
+            return @as(*const ITransactionExport.VTable, @ptrCast(self.vtable)).GetTransactionCookie(@as(*const ITransactionExport, @ptrCast(self)), punkTransaction, cbTransactionCookie, rgbTransactionCookie, pcbUsed);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1149,7 +1149,7 @@ pub const ITransactionImport = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionImport_Import(self: *const T, cbTransactionCookie: u32, rgbTransactionCookie: [*:0]u8, piid: ?*const Guid, ppvTransaction: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionImport.VTable, self.vtable).Import(@ptrCast(*const ITransactionImport, self), cbTransactionCookie, rgbTransactionCookie, piid, ppvTransaction);
+            return @as(*const ITransactionImport.VTable, @ptrCast(self.vtable)).Import(@as(*const ITransactionImport, @ptrCast(self)), cbTransactionCookie, rgbTransactionCookie, piid, ppvTransaction);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1188,11 +1188,11 @@ pub const ITipTransaction = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITipTransaction_Push(self: *const T, i_pszRemoteTmUrl: ?*u8, o_ppszRemoteTxUrl: ?*?PSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipTransaction.VTable, self.vtable).Push(@ptrCast(*const ITipTransaction, self), i_pszRemoteTmUrl, o_ppszRemoteTxUrl);
+            return @as(*const ITipTransaction.VTable, @ptrCast(self.vtable)).Push(@as(*const ITipTransaction, @ptrCast(self)), i_pszRemoteTmUrl, o_ppszRemoteTxUrl);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITipTransaction_GetTransactionUrl(self: *const T, o_ppszLocalTxUrl: ?*?PSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipTransaction.VTable, self.vtable).GetTransactionUrl(@ptrCast(*const ITipTransaction, self), o_ppszLocalTxUrl);
+            return @as(*const ITipTransaction.VTable, @ptrCast(self.vtable)).GetTransactionUrl(@as(*const ITipTransaction, @ptrCast(self)), o_ppszLocalTxUrl);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1245,15 +1245,15 @@ pub const ITipHelper = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITipHelper_Pull(self: *const T, i_pszTxUrl: ?*u8, o_ppITransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipHelper.VTable, self.vtable).Pull(@ptrCast(*const ITipHelper, self), i_pszTxUrl, o_ppITransaction);
+            return @as(*const ITipHelper.VTable, @ptrCast(self.vtable)).Pull(@as(*const ITipHelper, @ptrCast(self)), i_pszTxUrl, o_ppITransaction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITipHelper_PullAsync(self: *const T, i_pszTxUrl: ?*u8, i_pTipPullSink: ?*ITipPullSink, o_ppITransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipHelper.VTable, self.vtable).PullAsync(@ptrCast(*const ITipHelper, self), i_pszTxUrl, i_pTipPullSink, o_ppITransaction);
+            return @as(*const ITipHelper.VTable, @ptrCast(self.vtable)).PullAsync(@as(*const ITipHelper, @ptrCast(self)), i_pszTxUrl, i_pTipPullSink, o_ppITransaction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITipHelper_GetLocalTmUrl(self: *const T, o_ppszLocalTmUrl: ?*?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipHelper.VTable, self.vtable).GetLocalTmUrl(@ptrCast(*const ITipHelper, self), o_ppszLocalTmUrl);
+            return @as(*const ITipHelper.VTable, @ptrCast(self.vtable)).GetLocalTmUrl(@as(*const ITipHelper, @ptrCast(self)), o_ppszLocalTmUrl);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1280,7 +1280,7 @@ pub const ITipPullSink = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITipPullSink_PullComplete(self: *const T, i_hrPull: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITipPullSink.VTable, self.vtable).PullComplete(@ptrCast(*const ITipPullSink, self), i_hrPull);
+            return @as(*const ITipPullSink.VTable, @ptrCast(self.vtable)).PullComplete(@as(*const ITipPullSink, @ptrCast(self)), i_hrPull);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1425,55 +1425,55 @@ pub const IDtcNetworkAccessConfig = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_GetAnyNetworkAccess(self: *const T, pbAnyNetworkAccess: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).GetAnyNetworkAccess(@ptrCast(*const IDtcNetworkAccessConfig, self), pbAnyNetworkAccess);
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).GetAnyNetworkAccess(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)), pbAnyNetworkAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_SetAnyNetworkAccess(self: *const T, bAnyNetworkAccess: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).SetAnyNetworkAccess(@ptrCast(*const IDtcNetworkAccessConfig, self), bAnyNetworkAccess);
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).SetAnyNetworkAccess(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)), bAnyNetworkAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_GetNetworkAdministrationAccess(self: *const T, pbNetworkAdministrationAccess: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).GetNetworkAdministrationAccess(@ptrCast(*const IDtcNetworkAccessConfig, self), pbNetworkAdministrationAccess);
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).GetNetworkAdministrationAccess(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)), pbNetworkAdministrationAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_SetNetworkAdministrationAccess(self: *const T, bNetworkAdministrationAccess: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).SetNetworkAdministrationAccess(@ptrCast(*const IDtcNetworkAccessConfig, self), bNetworkAdministrationAccess);
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).SetNetworkAdministrationAccess(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)), bNetworkAdministrationAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_GetNetworkTransactionAccess(self: *const T, pbNetworkTransactionAccess: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).GetNetworkTransactionAccess(@ptrCast(*const IDtcNetworkAccessConfig, self), pbNetworkTransactionAccess);
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).GetNetworkTransactionAccess(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)), pbNetworkTransactionAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_SetNetworkTransactionAccess(self: *const T, bNetworkTransactionAccess: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).SetNetworkTransactionAccess(@ptrCast(*const IDtcNetworkAccessConfig, self), bNetworkTransactionAccess);
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).SetNetworkTransactionAccess(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)), bNetworkTransactionAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_GetNetworkClientAccess(self: *const T, pbNetworkClientAccess: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).GetNetworkClientAccess(@ptrCast(*const IDtcNetworkAccessConfig, self), pbNetworkClientAccess);
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).GetNetworkClientAccess(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)), pbNetworkClientAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_SetNetworkClientAccess(self: *const T, bNetworkClientAccess: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).SetNetworkClientAccess(@ptrCast(*const IDtcNetworkAccessConfig, self), bNetworkClientAccess);
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).SetNetworkClientAccess(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)), bNetworkClientAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_GetNetworkTIPAccess(self: *const T, pbNetworkTIPAccess: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).GetNetworkTIPAccess(@ptrCast(*const IDtcNetworkAccessConfig, self), pbNetworkTIPAccess);
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).GetNetworkTIPAccess(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)), pbNetworkTIPAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_SetNetworkTIPAccess(self: *const T, bNetworkTIPAccess: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).SetNetworkTIPAccess(@ptrCast(*const IDtcNetworkAccessConfig, self), bNetworkTIPAccess);
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).SetNetworkTIPAccess(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)), bNetworkTIPAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_GetXAAccess(self: *const T, pbXAAccess: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).GetXAAccess(@ptrCast(*const IDtcNetworkAccessConfig, self), pbXAAccess);
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).GetXAAccess(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)), pbXAAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_SetXAAccess(self: *const T, bXAAccess: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).SetXAAccess(@ptrCast(*const IDtcNetworkAccessConfig, self), bXAAccess);
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).SetXAAccess(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)), bXAAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig_RestartDtcService(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig.VTable, self.vtable).RestartDtcService(@ptrCast(*const IDtcNetworkAccessConfig, self));
+            return @as(*const IDtcNetworkAccessConfig.VTable, @ptrCast(self.vtable)).RestartDtcService(@as(*const IDtcNetworkAccessConfig, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1559,27 +1559,27 @@ pub const IDtcNetworkAccessConfig2 = extern struct {
         pub usingnamespace IDtcNetworkAccessConfig.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig2_GetNetworkInboundAccess(self: *const T, pbInbound: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig2.VTable, self.vtable).GetNetworkInboundAccess(@ptrCast(*const IDtcNetworkAccessConfig2, self), pbInbound);
+            return @as(*const IDtcNetworkAccessConfig2.VTable, @ptrCast(self.vtable)).GetNetworkInboundAccess(@as(*const IDtcNetworkAccessConfig2, @ptrCast(self)), pbInbound);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig2_GetNetworkOutboundAccess(self: *const T, pbOutbound: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig2.VTable, self.vtable).GetNetworkOutboundAccess(@ptrCast(*const IDtcNetworkAccessConfig2, self), pbOutbound);
+            return @as(*const IDtcNetworkAccessConfig2.VTable, @ptrCast(self.vtable)).GetNetworkOutboundAccess(@as(*const IDtcNetworkAccessConfig2, @ptrCast(self)), pbOutbound);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig2_SetNetworkInboundAccess(self: *const T, bInbound: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig2.VTable, self.vtable).SetNetworkInboundAccess(@ptrCast(*const IDtcNetworkAccessConfig2, self), bInbound);
+            return @as(*const IDtcNetworkAccessConfig2.VTable, @ptrCast(self.vtable)).SetNetworkInboundAccess(@as(*const IDtcNetworkAccessConfig2, @ptrCast(self)), bInbound);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig2_SetNetworkOutboundAccess(self: *const T, bOutbound: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig2.VTable, self.vtable).SetNetworkOutboundAccess(@ptrCast(*const IDtcNetworkAccessConfig2, self), bOutbound);
+            return @as(*const IDtcNetworkAccessConfig2.VTable, @ptrCast(self.vtable)).SetNetworkOutboundAccess(@as(*const IDtcNetworkAccessConfig2, @ptrCast(self)), bOutbound);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig2_GetAuthenticationLevel(self: *const T, pAuthLevel: ?*AUTHENTICATION_LEVEL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig2.VTable, self.vtable).GetAuthenticationLevel(@ptrCast(*const IDtcNetworkAccessConfig2, self), pAuthLevel);
+            return @as(*const IDtcNetworkAccessConfig2.VTable, @ptrCast(self.vtable)).GetAuthenticationLevel(@as(*const IDtcNetworkAccessConfig2, @ptrCast(self)), pAuthLevel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig2_SetAuthenticationLevel(self: *const T, AuthLevel: AUTHENTICATION_LEVEL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig2.VTable, self.vtable).SetAuthenticationLevel(@ptrCast(*const IDtcNetworkAccessConfig2, self), AuthLevel);
+            return @as(*const IDtcNetworkAccessConfig2.VTable, @ptrCast(self.vtable)).SetAuthenticationLevel(@as(*const IDtcNetworkAccessConfig2, @ptrCast(self)), AuthLevel);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1616,11 +1616,11 @@ pub const IDtcNetworkAccessConfig3 = extern struct {
         pub usingnamespace IDtcNetworkAccessConfig2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig3_GetLUAccess(self: *const T, pbLUAccess: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig3.VTable, self.vtable).GetLUAccess(@ptrCast(*const IDtcNetworkAccessConfig3, self), pbLUAccess);
+            return @as(*const IDtcNetworkAccessConfig3.VTable, @ptrCast(self.vtable)).GetLUAccess(@as(*const IDtcNetworkAccessConfig3, @ptrCast(self)), pbLUAccess);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcNetworkAccessConfig3_SetLUAccess(self: *const T, bLUAccess: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcNetworkAccessConfig3.VTable, self.vtable).SetLUAccess(@ptrCast(*const IDtcNetworkAccessConfig3, self), bLUAccess);
+            return @as(*const IDtcNetworkAccessConfig3.VTable, @ptrCast(self.vtable)).SetLUAccess(@as(*const IDtcNetworkAccessConfig3, @ptrCast(self)), bLUAccess);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1844,19 +1844,19 @@ pub const IDtcToXaMapper = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcToXaMapper_RequestNewResourceManager(self: *const T, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pdwRMCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcToXaMapper.VTable, self.vtable).RequestNewResourceManager(@ptrCast(*const IDtcToXaMapper, self), pszDSN, pszClientDllName, pdwRMCookie);
+            return @as(*const IDtcToXaMapper.VTable, @ptrCast(self.vtable)).RequestNewResourceManager(@as(*const IDtcToXaMapper, @ptrCast(self)), pszDSN, pszClientDllName, pdwRMCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcToXaMapper_TranslateTridToXid(self: *const T, pdwITransaction: ?*u32, dwRMCookie: u32, pXid: ?*xid_t) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcToXaMapper.VTable, self.vtable).TranslateTridToXid(@ptrCast(*const IDtcToXaMapper, self), pdwITransaction, dwRMCookie, pXid);
+            return @as(*const IDtcToXaMapper.VTable, @ptrCast(self.vtable)).TranslateTridToXid(@as(*const IDtcToXaMapper, @ptrCast(self)), pdwITransaction, dwRMCookie, pXid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcToXaMapper_EnlistResourceManager(self: *const T, dwRMCookie: u32, pdwITransaction: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcToXaMapper.VTable, self.vtable).EnlistResourceManager(@ptrCast(*const IDtcToXaMapper, self), dwRMCookie, pdwITransaction);
+            return @as(*const IDtcToXaMapper.VTable, @ptrCast(self.vtable)).EnlistResourceManager(@as(*const IDtcToXaMapper, @ptrCast(self)), dwRMCookie, pdwITransaction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcToXaMapper_ReleaseResourceManager(self: *const T, dwRMCookie: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcToXaMapper.VTable, self.vtable).ReleaseResourceManager(@ptrCast(*const IDtcToXaMapper, self), dwRMCookie);
+            return @as(*const IDtcToXaMapper.VTable, @ptrCast(self.vtable)).ReleaseResourceManager(@as(*const IDtcToXaMapper, @ptrCast(self)), dwRMCookie);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1889,7 +1889,7 @@ pub const IDtcToXaHelperFactory = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcToXaHelperFactory_Create(self: *const T, pszDSN: ?PSTR, pszClientDllName: ?PSTR, pguidRm: ?*Guid, ppXaHelper: ?*?*IDtcToXaHelper) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcToXaHelperFactory.VTable, self.vtable).Create(@ptrCast(*const IDtcToXaHelperFactory, self), pszDSN, pszClientDllName, pguidRm, ppXaHelper);
+            return @as(*const IDtcToXaHelperFactory.VTable, @ptrCast(self.vtable)).Create(@as(*const IDtcToXaHelperFactory, @ptrCast(self)), pszDSN, pszClientDllName, pguidRm, ppXaHelper);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1930,11 +1930,11 @@ pub const IDtcToXaHelper = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcToXaHelper_Close(self: *const T, i_fDoRecovery: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcToXaHelper.VTable, self.vtable).Close(@ptrCast(*const IDtcToXaHelper, self), i_fDoRecovery);
+            return @as(*const IDtcToXaHelper.VTable, @ptrCast(self.vtable)).Close(@as(*const IDtcToXaHelper, @ptrCast(self)), i_fDoRecovery);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcToXaHelper_TranslateTridToXid(self: *const T, pITransaction: ?*ITransaction, pguidBqual: ?*Guid, pXid: ?*xid_t) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcToXaHelper.VTable, self.vtable).TranslateTridToXid(@ptrCast(*const IDtcToXaHelper, self), pITransaction, pguidBqual, pXid);
+            return @as(*const IDtcToXaHelper.VTable, @ptrCast(self.vtable)).TranslateTridToXid(@as(*const IDtcToXaHelper, @ptrCast(self)), pITransaction, pguidBqual, pXid);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2007,19 +2007,19 @@ pub const IDtcToXaHelperSinglePipe = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcToXaHelperSinglePipe_XARMCreate(self: *const T, pszDSN: ?PSTR, pszClientDll: ?PSTR, pdwRMCookie: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcToXaHelperSinglePipe.VTable, self.vtable).XARMCreate(@ptrCast(*const IDtcToXaHelperSinglePipe, self), pszDSN, pszClientDll, pdwRMCookie);
+            return @as(*const IDtcToXaHelperSinglePipe.VTable, @ptrCast(self.vtable)).XARMCreate(@as(*const IDtcToXaHelperSinglePipe, @ptrCast(self)), pszDSN, pszClientDll, pdwRMCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcToXaHelperSinglePipe_ConvertTridToXID(self: *const T, pdwITrans: ?*u32, dwRMCookie: u32, pxid: ?*xid_t) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcToXaHelperSinglePipe.VTable, self.vtable).ConvertTridToXID(@ptrCast(*const IDtcToXaHelperSinglePipe, self), pdwITrans, dwRMCookie, pxid);
+            return @as(*const IDtcToXaHelperSinglePipe.VTable, @ptrCast(self.vtable)).ConvertTridToXID(@as(*const IDtcToXaHelperSinglePipe, @ptrCast(self)), pdwITrans, dwRMCookie, pxid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcToXaHelperSinglePipe_EnlistWithRM(self: *const T, dwRMCookie: u32, i_pITransaction: ?*ITransaction, i_pITransRes: ?*ITransactionResourceAsync, o_ppITransEnslitment: ?*?*ITransactionEnlistmentAsync) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcToXaHelperSinglePipe.VTable, self.vtable).EnlistWithRM(@ptrCast(*const IDtcToXaHelperSinglePipe, self), dwRMCookie, i_pITransaction, i_pITransRes, o_ppITransEnslitment);
+            return @as(*const IDtcToXaHelperSinglePipe.VTable, @ptrCast(self.vtable)).EnlistWithRM(@as(*const IDtcToXaHelperSinglePipe, @ptrCast(self)), dwRMCookie, i_pITransaction, i_pITransRes, o_ppITransEnslitment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcToXaHelperSinglePipe_ReleaseRMCookie(self: *const T, i_dwRMCookie: u32, i_fNormal: BOOL) callconv(.Inline) void {
-            return @ptrCast(*const IDtcToXaHelperSinglePipe.VTable, self.vtable).ReleaseRMCookie(@ptrCast(*const IDtcToXaHelperSinglePipe, self), i_dwRMCookie, i_fNormal);
+            return @as(*const IDtcToXaHelperSinglePipe.VTable, @ptrCast(self.vtable)).ReleaseRMCookie(@as(*const IDtcToXaHelperSinglePipe, @ptrCast(self)), i_dwRMCookie, i_fNormal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2114,7 +2114,7 @@ pub const IXATransLookup = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXATransLookup_Lookup(self: *const T, ppTransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXATransLookup.VTable, self.vtable).Lookup(@ptrCast(*const IXATransLookup, self), ppTransaction);
+            return @as(*const IXATransLookup.VTable, @ptrCast(self.vtable)).Lookup(@as(*const IXATransLookup, @ptrCast(self)), ppTransaction);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2143,7 +2143,7 @@ pub const IXATransLookup2 = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXATransLookup2_Lookup(self: *const T, pXID: ?*xid_t, ppTransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXATransLookup2.VTable, self.vtable).Lookup(@ptrCast(*const IXATransLookup2, self), pXID, ppTransaction);
+            return @as(*const IXATransLookup2.VTable, @ptrCast(self.vtable)).Lookup(@as(*const IXATransLookup2, @ptrCast(self)), pXID, ppTransaction);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2168,7 +2168,7 @@ pub const IResourceManagerSink = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IResourceManagerSink_TMDown(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IResourceManagerSink.VTable, self.vtable).TMDown(@ptrCast(*const IResourceManagerSink, self));
+            return @as(*const IResourceManagerSink.VTable, @ptrCast(self.vtable)).TMDown(@as(*const IResourceManagerSink, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2240,19 +2240,19 @@ pub const IResourceManager = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IResourceManager_Enlist(self: *const T, pTransaction: ?*ITransaction, pRes: ?*ITransactionResourceAsync, pUOW: ?*BOID, pisoLevel: ?*i32, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IResourceManager.VTable, self.vtable).Enlist(@ptrCast(*const IResourceManager, self), pTransaction, pRes, pUOW, pisoLevel, ppEnlist);
+            return @as(*const IResourceManager.VTable, @ptrCast(self.vtable)).Enlist(@as(*const IResourceManager, @ptrCast(self)), pTransaction, pRes, pUOW, pisoLevel, ppEnlist);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IResourceManager_Reenlist(self: *const T, pPrepInfo: [*:0]u8, cbPrepInfo: u32, lTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IResourceManager.VTable, self.vtable).Reenlist(@ptrCast(*const IResourceManager, self), pPrepInfo, cbPrepInfo, lTimeout, pXactStat);
+            return @as(*const IResourceManager.VTable, @ptrCast(self.vtable)).Reenlist(@as(*const IResourceManager, @ptrCast(self)), pPrepInfo, cbPrepInfo, lTimeout, pXactStat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IResourceManager_ReenlistmentComplete(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IResourceManager.VTable, self.vtable).ReenlistmentComplete(@ptrCast(*const IResourceManager, self));
+            return @as(*const IResourceManager.VTable, @ptrCast(self.vtable)).ReenlistmentComplete(@as(*const IResourceManager, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IResourceManager_GetDistributedTransactionManager(self: *const T, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IResourceManager.VTable, self.vtable).GetDistributedTransactionManager(@ptrCast(*const IResourceManager, self), iid, ppvObject);
+            return @as(*const IResourceManager.VTable, @ptrCast(self.vtable)).GetDistributedTransactionManager(@as(*const IResourceManager, @ptrCast(self)), iid, ppvObject);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2289,11 +2289,11 @@ pub const ILastResourceManager = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ILastResourceManager_TransactionCommitted(self: *const T, pPrepInfo: [*:0]u8, cbPrepInfo: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILastResourceManager.VTable, self.vtable).TransactionCommitted(@ptrCast(*const ILastResourceManager, self), pPrepInfo, cbPrepInfo);
+            return @as(*const ILastResourceManager.VTable, @ptrCast(self.vtable)).TransactionCommitted(@as(*const ILastResourceManager, @ptrCast(self)), pPrepInfo, cbPrepInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ILastResourceManager_RecoveryDone(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ILastResourceManager.VTable, self.vtable).RecoveryDone(@ptrCast(*const ILastResourceManager, self));
+            return @as(*const ILastResourceManager.VTable, @ptrCast(self.vtable)).RecoveryDone(@as(*const ILastResourceManager, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2344,11 +2344,11 @@ pub const IResourceManager2 = extern struct {
         pub usingnamespace IResourceManager.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IResourceManager2_Enlist2(self: *const T, pTransaction: ?*ITransaction, pResAsync: ?*ITransactionResourceAsync, pUOW: ?*BOID, pisoLevel: ?*i32, pXid: ?*xid_t, ppEnlist: ?*?*ITransactionEnlistmentAsync) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IResourceManager2.VTable, self.vtable).Enlist2(@ptrCast(*const IResourceManager2, self), pTransaction, pResAsync, pUOW, pisoLevel, pXid, ppEnlist);
+            return @as(*const IResourceManager2.VTable, @ptrCast(self.vtable)).Enlist2(@as(*const IResourceManager2, @ptrCast(self)), pTransaction, pResAsync, pUOW, pisoLevel, pXid, ppEnlist);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IResourceManager2_Reenlist2(self: *const T, pXid: ?*xid_t, dwTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IResourceManager2.VTable, self.vtable).Reenlist2(@ptrCast(*const IResourceManager2, self), pXid, dwTimeout, pXactStat);
+            return @as(*const IResourceManager2.VTable, @ptrCast(self.vtable)).Reenlist2(@as(*const IResourceManager2, @ptrCast(self)), pXid, dwTimeout, pXactStat);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2381,7 +2381,7 @@ pub const IResourceManagerRejoinable = extern struct {
         pub usingnamespace IResourceManager2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IResourceManagerRejoinable_Rejoin(self: *const T, pPrepInfo: [*:0]u8, cbPrepInfo: u32, lTimeout: u32, pXactStat: ?*XACTSTAT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IResourceManagerRejoinable.VTable, self.vtable).Rejoin(@ptrCast(*const IResourceManagerRejoinable, self), pPrepInfo, cbPrepInfo, lTimeout, pXactStat);
+            return @as(*const IResourceManagerRejoinable.VTable, @ptrCast(self.vtable)).Rejoin(@as(*const IResourceManagerRejoinable, @ptrCast(self)), pPrepInfo, cbPrepInfo, lTimeout, pXactStat);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2416,11 +2416,11 @@ pub const IXAConfig = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXAConfig_Initialize(self: *const T, clsidHelperDll: Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXAConfig.VTable, self.vtable).Initialize(@ptrCast(*const IXAConfig, self), clsidHelperDll);
+            return @as(*const IXAConfig.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IXAConfig, @ptrCast(self)), clsidHelperDll);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXAConfig_Terminate(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXAConfig.VTable, self.vtable).Terminate(@ptrCast(*const IXAConfig, self));
+            return @as(*const IXAConfig.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IXAConfig, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2465,11 +2465,11 @@ pub const IRMHelper = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRMHelper_RMCount(self: *const T, dwcTotalNumberOfRMs: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRMHelper.VTable, self.vtable).RMCount(@ptrCast(*const IRMHelper, self), dwcTotalNumberOfRMs);
+            return @as(*const IRMHelper.VTable, @ptrCast(self.vtable)).RMCount(@as(*const IRMHelper, @ptrCast(self)), dwcTotalNumberOfRMs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRMHelper_RMInfo(self: *const T, pXa_Switch: ?*xa_switch_t, fCDeclCallingConv: BOOL, pszOpenString: ?PSTR, pszCloseString: ?PSTR, guidRMRecovery: Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRMHelper.VTable, self.vtable).RMInfo(@ptrCast(*const IRMHelper, self), pXa_Switch, fCDeclCallingConv, pszOpenString, pszCloseString, guidRMRecovery);
+            return @as(*const IRMHelper.VTable, @ptrCast(self.vtable)).RMInfo(@as(*const IRMHelper, @ptrCast(self)), pXa_Switch, fCDeclCallingConv, pszOpenString, pszCloseString, guidRMRecovery);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2496,7 +2496,7 @@ pub const IXAObtainRMInfo = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXAObtainRMInfo_ObtainRMInfo(self: *const T, pIRMHelper: ?*IRMHelper) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXAObtainRMInfo.VTable, self.vtable).ObtainRMInfo(@ptrCast(*const IXAObtainRMInfo, self), pIRMHelper);
+            return @as(*const IXAObtainRMInfo.VTable, @ptrCast(self.vtable)).ObtainRMInfo(@as(*const IXAObtainRMInfo, @ptrCast(self)), pIRMHelper);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2529,7 +2529,7 @@ pub const IResourceManagerFactory = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IResourceManagerFactory_Create(self: *const T, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, ppResMgr: ?*?*IResourceManager) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IResourceManagerFactory.VTable, self.vtable).Create(@ptrCast(*const IResourceManagerFactory, self), pguidRM, pszRMName, pIResMgrSink, ppResMgr);
+            return @as(*const IResourceManagerFactory.VTable, @ptrCast(self.vtable)).Create(@as(*const IResourceManagerFactory, @ptrCast(self)), pguidRM, pszRMName, pIResMgrSink, ppResMgr);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2564,7 +2564,7 @@ pub const IResourceManagerFactory2 = extern struct {
         pub usingnamespace IResourceManagerFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IResourceManagerFactory2_CreateEx(self: *const T, pguidRM: ?*Guid, pszRMName: ?PSTR, pIResMgrSink: ?*IResourceManagerSink, riidRequested: ?*const Guid, ppvResMgr: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IResourceManagerFactory2.VTable, self.vtable).CreateEx(@ptrCast(*const IResourceManagerFactory2, self), pguidRM, pszRMName, pIResMgrSink, riidRequested, ppvResMgr);
+            return @as(*const IResourceManagerFactory2.VTable, @ptrCast(self.vtable)).CreateEx(@as(*const IResourceManagerFactory2, @ptrCast(self)), pguidRM, pszRMName, pIResMgrSink, riidRequested, ppvResMgr);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2601,11 +2601,11 @@ pub const IPrepareInfo = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPrepareInfo_GetPrepareInfoSize(self: *const T, pcbPrepInfo: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrepareInfo.VTable, self.vtable).GetPrepareInfoSize(@ptrCast(*const IPrepareInfo, self), pcbPrepInfo);
+            return @as(*const IPrepareInfo.VTable, @ptrCast(self.vtable)).GetPrepareInfoSize(@as(*const IPrepareInfo, @ptrCast(self)), pcbPrepInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPrepareInfo_GetPrepareInfo(self: *const T, pPrepInfo: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrepareInfo.VTable, self.vtable).GetPrepareInfo(@ptrCast(*const IPrepareInfo, self), pPrepInfo);
+            return @as(*const IPrepareInfo.VTable, @ptrCast(self.vtable)).GetPrepareInfo(@as(*const IPrepareInfo, @ptrCast(self)), pPrepInfo);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2644,11 +2644,11 @@ pub const IPrepareInfo2 = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPrepareInfo2_GetPrepareInfoSize(self: *const T, pcbPrepInfo: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrepareInfo2.VTable, self.vtable).GetPrepareInfoSize(@ptrCast(*const IPrepareInfo2, self), pcbPrepInfo);
+            return @as(*const IPrepareInfo2.VTable, @ptrCast(self.vtable)).GetPrepareInfoSize(@as(*const IPrepareInfo2, @ptrCast(self)), pcbPrepInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPrepareInfo2_GetPrepareInfo(self: *const T, cbPrepareInfo: u32, pPrepInfo: [*:0]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrepareInfo2.VTable, self.vtable).GetPrepareInfo(@ptrCast(*const IPrepareInfo2, self), cbPrepareInfo, pPrepInfo);
+            return @as(*const IPrepareInfo2.VTable, @ptrCast(self.vtable)).GetPrepareInfo(@as(*const IPrepareInfo2, @ptrCast(self)), cbPrepareInfo, pPrepInfo);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2677,7 +2677,7 @@ pub const IGetDispenser = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IGetDispenser_GetDispenser(self: *const T, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IGetDispenser.VTable, self.vtable).GetDispenser(@ptrCast(*const IGetDispenser, self), iid, ppvObject);
+            return @as(*const IGetDispenser.VTable, @ptrCast(self.vtable)).GetDispenser(@as(*const IGetDispenser, @ptrCast(self)), iid, ppvObject);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2706,7 +2706,7 @@ pub const ITransactionVoterBallotAsync2 = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionVoterBallotAsync2_VoteRequestDone(self: *const T, hr: HRESULT, pboidReason: ?*BOID) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionVoterBallotAsync2.VTable, self.vtable).VoteRequestDone(@ptrCast(*const ITransactionVoterBallotAsync2, self), hr, pboidReason);
+            return @as(*const ITransactionVoterBallotAsync2.VTable, @ptrCast(self.vtable)).VoteRequestDone(@as(*const ITransactionVoterBallotAsync2, @ptrCast(self)), hr, pboidReason);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2731,7 +2731,7 @@ pub const ITransactionVoterNotifyAsync2 = extern struct {
         pub usingnamespace ITransactionOutcomeEvents.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionVoterNotifyAsync2_VoteRequest(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionVoterNotifyAsync2.VTable, self.vtable).VoteRequest(@ptrCast(*const ITransactionVoterNotifyAsync2, self));
+            return @as(*const ITransactionVoterNotifyAsync2.VTable, @ptrCast(self.vtable)).VoteRequest(@as(*const ITransactionVoterNotifyAsync2, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2762,7 +2762,7 @@ pub const ITransactionVoterFactory2 = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionVoterFactory2_Create(self: *const T, pTransaction: ?*ITransaction, pVoterNotify: ?*ITransactionVoterNotifyAsync2, ppVoterBallot: ?*?*ITransactionVoterBallotAsync2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionVoterFactory2.VTable, self.vtable).Create(@ptrCast(*const ITransactionVoterFactory2, self), pTransaction, pVoterNotify, ppVoterBallot);
+            return @as(*const ITransactionVoterFactory2.VTable, @ptrCast(self.vtable)).Create(@as(*const ITransactionVoterFactory2, @ptrCast(self)), pTransaction, pVoterNotify, ppVoterBallot);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2821,23 +2821,23 @@ pub const ITransactionPhase0EnlistmentAsync = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionPhase0EnlistmentAsync_Enable(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionPhase0EnlistmentAsync.VTable, self.vtable).Enable(@ptrCast(*const ITransactionPhase0EnlistmentAsync, self));
+            return @as(*const ITransactionPhase0EnlistmentAsync.VTable, @ptrCast(self.vtable)).Enable(@as(*const ITransactionPhase0EnlistmentAsync, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionPhase0EnlistmentAsync_WaitForEnlistment(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionPhase0EnlistmentAsync.VTable, self.vtable).WaitForEnlistment(@ptrCast(*const ITransactionPhase0EnlistmentAsync, self));
+            return @as(*const ITransactionPhase0EnlistmentAsync.VTable, @ptrCast(self.vtable)).WaitForEnlistment(@as(*const ITransactionPhase0EnlistmentAsync, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionPhase0EnlistmentAsync_Phase0Done(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionPhase0EnlistmentAsync.VTable, self.vtable).Phase0Done(@ptrCast(*const ITransactionPhase0EnlistmentAsync, self));
+            return @as(*const ITransactionPhase0EnlistmentAsync.VTable, @ptrCast(self.vtable)).Phase0Done(@as(*const ITransactionPhase0EnlistmentAsync, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionPhase0EnlistmentAsync_Unenlist(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionPhase0EnlistmentAsync.VTable, self.vtable).Unenlist(@ptrCast(*const ITransactionPhase0EnlistmentAsync, self));
+            return @as(*const ITransactionPhase0EnlistmentAsync.VTable, @ptrCast(self.vtable)).Unenlist(@as(*const ITransactionPhase0EnlistmentAsync, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionPhase0EnlistmentAsync_GetTransaction(self: *const T, ppITransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionPhase0EnlistmentAsync.VTable, self.vtable).GetTransaction(@ptrCast(*const ITransactionPhase0EnlistmentAsync, self), ppITransaction);
+            return @as(*const ITransactionPhase0EnlistmentAsync.VTable, @ptrCast(self.vtable)).GetTransaction(@as(*const ITransactionPhase0EnlistmentAsync, @ptrCast(self)), ppITransaction);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2874,11 +2874,11 @@ pub const ITransactionPhase0NotifyAsync = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionPhase0NotifyAsync_Phase0Request(self: *const T, fAbortingHint: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionPhase0NotifyAsync.VTable, self.vtable).Phase0Request(@ptrCast(*const ITransactionPhase0NotifyAsync, self), fAbortingHint);
+            return @as(*const ITransactionPhase0NotifyAsync.VTable, @ptrCast(self.vtable)).Phase0Request(@as(*const ITransactionPhase0NotifyAsync, @ptrCast(self)), fAbortingHint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionPhase0NotifyAsync_EnlistCompleted(self: *const T, status: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionPhase0NotifyAsync.VTable, self.vtable).EnlistCompleted(@ptrCast(*const ITransactionPhase0NotifyAsync, self), status);
+            return @as(*const ITransactionPhase0NotifyAsync.VTable, @ptrCast(self.vtable)).EnlistCompleted(@as(*const ITransactionPhase0NotifyAsync, @ptrCast(self)), status);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2907,7 +2907,7 @@ pub const ITransactionPhase0Factory = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionPhase0Factory_Create(self: *const T, pPhase0Notify: ?*ITransactionPhase0NotifyAsync, ppPhase0Enlistment: ?*?*ITransactionPhase0EnlistmentAsync) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionPhase0Factory.VTable, self.vtable).Create(@ptrCast(*const ITransactionPhase0Factory, self), pPhase0Notify, ppPhase0Enlistment);
+            return @as(*const ITransactionPhase0Factory.VTable, @ptrCast(self.vtable)).Create(@as(*const ITransactionPhase0Factory, @ptrCast(self)), pPhase0Notify, ppPhase0Enlistment);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2978,23 +2978,23 @@ pub const ITransactionTransmitter = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionTransmitter_Set(self: *const T, pTransaction: ?*ITransaction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionTransmitter.VTable, self.vtable).Set(@ptrCast(*const ITransactionTransmitter, self), pTransaction);
+            return @as(*const ITransactionTransmitter.VTable, @ptrCast(self.vtable)).Set(@as(*const ITransactionTransmitter, @ptrCast(self)), pTransaction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionTransmitter_GetPropagationTokenSize(self: *const T, pcbToken: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionTransmitter.VTable, self.vtable).GetPropagationTokenSize(@ptrCast(*const ITransactionTransmitter, self), pcbToken);
+            return @as(*const ITransactionTransmitter.VTable, @ptrCast(self.vtable)).GetPropagationTokenSize(@as(*const ITransactionTransmitter, @ptrCast(self)), pcbToken);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionTransmitter_MarshalPropagationToken(self: *const T, cbToken: u32, rgbToken: [*:0]u8, pcbUsed: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionTransmitter.VTable, self.vtable).MarshalPropagationToken(@ptrCast(*const ITransactionTransmitter, self), cbToken, rgbToken, pcbUsed);
+            return @as(*const ITransactionTransmitter.VTable, @ptrCast(self.vtable)).MarshalPropagationToken(@as(*const ITransactionTransmitter, @ptrCast(self)), cbToken, rgbToken, pcbUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionTransmitter_UnmarshalReturnToken(self: *const T, cbReturnToken: u32, rgbReturnToken: [*:0]u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionTransmitter.VTable, self.vtable).UnmarshalReturnToken(@ptrCast(*const ITransactionTransmitter, self), cbReturnToken, rgbReturnToken);
+            return @as(*const ITransactionTransmitter.VTable, @ptrCast(self.vtable)).UnmarshalReturnToken(@as(*const ITransactionTransmitter, @ptrCast(self)), cbReturnToken, rgbReturnToken);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionTransmitter_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionTransmitter.VTable, self.vtable).Reset(@ptrCast(*const ITransactionTransmitter, self));
+            return @as(*const ITransactionTransmitter.VTable, @ptrCast(self.vtable)).Reset(@as(*const ITransactionTransmitter, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3021,7 +3021,7 @@ pub const ITransactionTransmitterFactory = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionTransmitterFactory_Create(self: *const T, ppTransmitter: ?*?*ITransactionTransmitter) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionTransmitterFactory.VTable, self.vtable).Create(@ptrCast(*const ITransactionTransmitterFactory, self), ppTransmitter);
+            return @as(*const ITransactionTransmitterFactory.VTable, @ptrCast(self.vtable)).Create(@as(*const ITransactionTransmitterFactory, @ptrCast(self)), ppTransmitter);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3084,19 +3084,19 @@ pub const ITransactionReceiver = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionReceiver_UnmarshalPropagationToken(self: *const T, cbToken: u32, rgbToken: [*:0]u8, ppTransaction: ?*?*ITransaction) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionReceiver.VTable, self.vtable).UnmarshalPropagationToken(@ptrCast(*const ITransactionReceiver, self), cbToken, rgbToken, ppTransaction);
+            return @as(*const ITransactionReceiver.VTable, @ptrCast(self.vtable)).UnmarshalPropagationToken(@as(*const ITransactionReceiver, @ptrCast(self)), cbToken, rgbToken, ppTransaction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionReceiver_GetReturnTokenSize(self: *const T, pcbReturnToken: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionReceiver.VTable, self.vtable).GetReturnTokenSize(@ptrCast(*const ITransactionReceiver, self), pcbReturnToken);
+            return @as(*const ITransactionReceiver.VTable, @ptrCast(self.vtable)).GetReturnTokenSize(@as(*const ITransactionReceiver, @ptrCast(self)), pcbReturnToken);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionReceiver_MarshalReturnToken(self: *const T, cbReturnToken: u32, rgbReturnToken: [*:0]u8, pcbUsed: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionReceiver.VTable, self.vtable).MarshalReturnToken(@ptrCast(*const ITransactionReceiver, self), cbReturnToken, rgbReturnToken, pcbUsed);
+            return @as(*const ITransactionReceiver.VTable, @ptrCast(self.vtable)).MarshalReturnToken(@as(*const ITransactionReceiver, @ptrCast(self)), cbReturnToken, rgbReturnToken, pcbUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionReceiver_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionReceiver.VTable, self.vtable).Reset(@ptrCast(*const ITransactionReceiver, self));
+            return @as(*const ITransactionReceiver.VTable, @ptrCast(self.vtable)).Reset(@as(*const ITransactionReceiver, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3123,7 +3123,7 @@ pub const ITransactionReceiverFactory = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITransactionReceiverFactory_Create(self: *const T, ppReceiver: ?*?*ITransactionReceiver) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITransactionReceiverFactory.VTable, self.vtable).Create(@ptrCast(*const ITransactionReceiverFactory, self), ppReceiver);
+            return @as(*const ITransactionReceiverFactory.VTable, @ptrCast(self.vtable)).Create(@as(*const ITransactionReceiverFactory, @ptrCast(self)), ppReceiver);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3168,11 +3168,11 @@ pub const IDtcLuConfigure = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuConfigure_Add(self: *const T, pucLuPair: [*:0]u8, cbLuPair: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuConfigure.VTable, self.vtable).Add(@ptrCast(*const IDtcLuConfigure, self), pucLuPair, cbLuPair);
+            return @as(*const IDtcLuConfigure.VTable, @ptrCast(self.vtable)).Add(@as(*const IDtcLuConfigure, @ptrCast(self)), pucLuPair, cbLuPair);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuConfigure_Delete(self: *const T, pucLuPair: [*:0]u8, cbLuPair: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuConfigure.VTable, self.vtable).Delete(@ptrCast(*const IDtcLuConfigure, self), pucLuPair, cbLuPair);
+            return @as(*const IDtcLuConfigure.VTable, @ptrCast(self.vtable)).Delete(@as(*const IDtcLuConfigure, @ptrCast(self)), pucLuPair, cbLuPair);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3216,7 +3216,7 @@ pub const IDtcLuRecoveryFactory = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryFactory_Create(self: *const T, pucLuPair: [*:0]u8, cbLuPair: u32, ppRecovery: ?*?*IDtcLuRecovery) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryFactory.VTable, self.vtable).Create(@ptrCast(*const IDtcLuRecoveryFactory, self), pucLuPair, cbLuPair, ppRecovery);
+            return @as(*const IDtcLuRecoveryFactory.VTable, @ptrCast(self.vtable)).Create(@as(*const IDtcLuRecoveryFactory, @ptrCast(self)), pucLuPair, cbLuPair, ppRecovery);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3462,55 +3462,55 @@ pub const IDtcLuRecoveryInitiatedByDtcTransWork = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_GetLogNameSizes(self: *const T, pcbOurLogName: ?*u32, pcbRemoteLogName: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).GetLogNameSizes(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self), pcbOurLogName, pcbRemoteLogName);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).GetLogNameSizes(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)), pcbOurLogName, pcbRemoteLogName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_GetOurXln(self: *const T, pXln: ?*_DtcLu_Xln, pOurLogName: ?*u8, pRemoteLogName: ?*u8, pdwProtocol: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).GetOurXln(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self), pXln, pOurLogName, pRemoteLogName, pdwProtocol);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).GetOurXln(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)), pXln, pOurLogName, pRemoteLogName, pdwProtocol);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_HandleConfirmationFromOurXln(self: *const T, Confirmation: _DtcLu_Xln_Confirmation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).HandleConfirmationFromOurXln(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self), Confirmation);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).HandleConfirmationFromOurXln(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)), Confirmation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_HandleTheirXlnResponse(self: *const T, Xln: _DtcLu_Xln, pRemoteLogName: ?*u8, cbRemoteLogName: u32, dwProtocol: u32, pConfirmation: ?*_DtcLu_Xln_Confirmation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).HandleTheirXlnResponse(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self), Xln, pRemoteLogName, cbRemoteLogName, dwProtocol, pConfirmation);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).HandleTheirXlnResponse(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)), Xln, pRemoteLogName, cbRemoteLogName, dwProtocol, pConfirmation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_HandleErrorFromOurXln(self: *const T, Error: _DtcLu_Xln_Error) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).HandleErrorFromOurXln(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self), Error);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).HandleErrorFromOurXln(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)), Error);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_CheckForCompareStates(self: *const T, fCompareStates: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).CheckForCompareStates(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self), fCompareStates);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).CheckForCompareStates(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)), fCompareStates);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_GetOurTransIdSize(self: *const T, pcbOurTransId: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).GetOurTransIdSize(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self), pcbOurTransId);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).GetOurTransIdSize(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)), pcbOurTransId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_GetOurCompareStates(self: *const T, pOurTransId: ?*u8, pCompareState: ?*_DtcLu_CompareState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).GetOurCompareStates(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self), pOurTransId, pCompareState);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).GetOurCompareStates(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)), pOurTransId, pCompareState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_HandleTheirCompareStatesResponse(self: *const T, CompareState: _DtcLu_CompareState, pConfirmation: ?*_DtcLu_CompareStates_Confirmation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).HandleTheirCompareStatesResponse(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self), CompareState, pConfirmation);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).HandleTheirCompareStatesResponse(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)), CompareState, pConfirmation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_HandleErrorFromOurCompareStates(self: *const T, Error: _DtcLu_CompareStates_Error) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).HandleErrorFromOurCompareStates(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self), Error);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).HandleErrorFromOurCompareStates(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)), Error);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_ConversationLost(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).ConversationLost(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self));
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).ConversationLost(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_GetRecoverySeqNum(self: *const T, plRecoverySeqNum: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).GetRecoverySeqNum(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self), plRecoverySeqNum);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).GetRecoverySeqNum(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)), plRecoverySeqNum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcTransWork_ObsoleteRecoverySeqNum(self: *const T, lNewRecoverySeqNum: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, self.vtable).ObsoleteRecoverySeqNum(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcTransWork, self), lNewRecoverySeqNum);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcTransWork.VTable, @ptrCast(self.vtable)).ObsoleteRecoverySeqNum(@as(*const IDtcLuRecoveryInitiatedByDtcTransWork, @ptrCast(self)), lNewRecoverySeqNum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3537,7 +3537,7 @@ pub const IDtcLuRecoveryInitiatedByDtcStatusWork = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtcStatusWork_HandleCheckLuStatus(self: *const T, lRecoverySeqNum: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtcStatusWork.VTable, self.vtable).HandleCheckLuStatus(@ptrCast(*const IDtcLuRecoveryInitiatedByDtcStatusWork, self), lRecoverySeqNum);
+            return @as(*const IDtcLuRecoveryInitiatedByDtcStatusWork.VTable, @ptrCast(self.vtable)).HandleCheckLuStatus(@as(*const IDtcLuRecoveryInitiatedByDtcStatusWork, @ptrCast(self)), lRecoverySeqNum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3566,7 +3566,7 @@ pub const IDtcLuRecoveryInitiatedByDtc = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByDtc_GetWork(self: *const T, pWork: ?*_DtcLu_LocalRecovery_Work, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByDtc.VTable, self.vtable).GetWork(@ptrCast(*const IDtcLuRecoveryInitiatedByDtc, self), pWork, ppv);
+            return @as(*const IDtcLuRecoveryInitiatedByDtc.VTable, @ptrCast(self.vtable)).GetWork(@as(*const IDtcLuRecoveryInitiatedByDtc, @ptrCast(self)), pWork, ppv);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3687,35 +3687,35 @@ pub const IDtcLuRecoveryInitiatedByLuWork = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByLuWork_HandleTheirXln(self: *const T, lRecoverySeqNum: i32, Xln: _DtcLu_Xln, pRemoteLogName: ?*u8, cbRemoteLogName: u32, pOurLogName: ?*u8, cbOurLogName: u32, dwProtocol: u32, pResponse: ?*_DtcLu_Xln_Response) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByLuWork.VTable, self.vtable).HandleTheirXln(@ptrCast(*const IDtcLuRecoveryInitiatedByLuWork, self), lRecoverySeqNum, Xln, pRemoteLogName, cbRemoteLogName, pOurLogName, cbOurLogName, dwProtocol, pResponse);
+            return @as(*const IDtcLuRecoveryInitiatedByLuWork.VTable, @ptrCast(self.vtable)).HandleTheirXln(@as(*const IDtcLuRecoveryInitiatedByLuWork, @ptrCast(self)), lRecoverySeqNum, Xln, pRemoteLogName, cbRemoteLogName, pOurLogName, cbOurLogName, dwProtocol, pResponse);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByLuWork_GetOurLogNameSize(self: *const T, pcbOurLogName: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByLuWork.VTable, self.vtable).GetOurLogNameSize(@ptrCast(*const IDtcLuRecoveryInitiatedByLuWork, self), pcbOurLogName);
+            return @as(*const IDtcLuRecoveryInitiatedByLuWork.VTable, @ptrCast(self.vtable)).GetOurLogNameSize(@as(*const IDtcLuRecoveryInitiatedByLuWork, @ptrCast(self)), pcbOurLogName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByLuWork_GetOurXln(self: *const T, pXln: ?*_DtcLu_Xln, pOurLogName: ?*u8, pdwProtocol: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByLuWork.VTable, self.vtable).GetOurXln(@ptrCast(*const IDtcLuRecoveryInitiatedByLuWork, self), pXln, pOurLogName, pdwProtocol);
+            return @as(*const IDtcLuRecoveryInitiatedByLuWork.VTable, @ptrCast(self.vtable)).GetOurXln(@as(*const IDtcLuRecoveryInitiatedByLuWork, @ptrCast(self)), pXln, pOurLogName, pdwProtocol);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByLuWork_HandleConfirmationOfOurXln(self: *const T, Confirmation: _DtcLu_Xln_Confirmation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByLuWork.VTable, self.vtable).HandleConfirmationOfOurXln(@ptrCast(*const IDtcLuRecoveryInitiatedByLuWork, self), Confirmation);
+            return @as(*const IDtcLuRecoveryInitiatedByLuWork.VTable, @ptrCast(self.vtable)).HandleConfirmationOfOurXln(@as(*const IDtcLuRecoveryInitiatedByLuWork, @ptrCast(self)), Confirmation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByLuWork_HandleTheirCompareStates(self: *const T, pRemoteTransId: ?*u8, cbRemoteTransId: u32, CompareState: _DtcLu_CompareState, pResponse: ?*_DtcLu_CompareStates_Response, pCompareState: ?*_DtcLu_CompareState) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByLuWork.VTable, self.vtable).HandleTheirCompareStates(@ptrCast(*const IDtcLuRecoveryInitiatedByLuWork, self), pRemoteTransId, cbRemoteTransId, CompareState, pResponse, pCompareState);
+            return @as(*const IDtcLuRecoveryInitiatedByLuWork.VTable, @ptrCast(self.vtable)).HandleTheirCompareStates(@as(*const IDtcLuRecoveryInitiatedByLuWork, @ptrCast(self)), pRemoteTransId, cbRemoteTransId, CompareState, pResponse, pCompareState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByLuWork_HandleConfirmationOfOurCompareStates(self: *const T, Confirmation: _DtcLu_CompareStates_Confirmation) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByLuWork.VTable, self.vtable).HandleConfirmationOfOurCompareStates(@ptrCast(*const IDtcLuRecoveryInitiatedByLuWork, self), Confirmation);
+            return @as(*const IDtcLuRecoveryInitiatedByLuWork.VTable, @ptrCast(self.vtable)).HandleConfirmationOfOurCompareStates(@as(*const IDtcLuRecoveryInitiatedByLuWork, @ptrCast(self)), Confirmation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByLuWork_HandleErrorFromOurCompareStates(self: *const T, Error: _DtcLu_CompareStates_Error) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByLuWork.VTable, self.vtable).HandleErrorFromOurCompareStates(@ptrCast(*const IDtcLuRecoveryInitiatedByLuWork, self), Error);
+            return @as(*const IDtcLuRecoveryInitiatedByLuWork.VTable, @ptrCast(self.vtable)).HandleErrorFromOurCompareStates(@as(*const IDtcLuRecoveryInitiatedByLuWork, @ptrCast(self)), Error);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByLuWork_ConversationLost(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByLuWork.VTable, self.vtable).ConversationLost(@ptrCast(*const IDtcLuRecoveryInitiatedByLuWork, self));
+            return @as(*const IDtcLuRecoveryInitiatedByLuWork.VTable, @ptrCast(self.vtable)).ConversationLost(@as(*const IDtcLuRecoveryInitiatedByLuWork, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3742,7 +3742,7 @@ pub const IDtcLuRecoveryInitiatedByLu = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRecoveryInitiatedByLu_GetObjectToHandleWorkFromLu(self: *const T, ppWork: ?*?*IDtcLuRecoveryInitiatedByLuWork) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRecoveryInitiatedByLu.VTable, self.vtable).GetObjectToHandleWorkFromLu(@ptrCast(*const IDtcLuRecoveryInitiatedByLu, self), ppWork);
+            return @as(*const IDtcLuRecoveryInitiatedByLu.VTable, @ptrCast(self.vtable)).GetObjectToHandleWorkFromLu(@as(*const IDtcLuRecoveryInitiatedByLu, @ptrCast(self)), ppWork);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3809,27 +3809,27 @@ pub const IDtcLuRmEnlistment = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistment_Unplug(self: *const T, fConversationLost: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistment.VTable, self.vtable).Unplug(@ptrCast(*const IDtcLuRmEnlistment, self), fConversationLost);
+            return @as(*const IDtcLuRmEnlistment.VTable, @ptrCast(self.vtable)).Unplug(@as(*const IDtcLuRmEnlistment, @ptrCast(self)), fConversationLost);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistment_BackedOut(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistment.VTable, self.vtable).BackedOut(@ptrCast(*const IDtcLuRmEnlistment, self));
+            return @as(*const IDtcLuRmEnlistment.VTable, @ptrCast(self.vtable)).BackedOut(@as(*const IDtcLuRmEnlistment, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistment_BackOut(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistment.VTable, self.vtable).BackOut(@ptrCast(*const IDtcLuRmEnlistment, self));
+            return @as(*const IDtcLuRmEnlistment.VTable, @ptrCast(self.vtable)).BackOut(@as(*const IDtcLuRmEnlistment, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistment_Committed(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistment.VTable, self.vtable).Committed(@ptrCast(*const IDtcLuRmEnlistment, self));
+            return @as(*const IDtcLuRmEnlistment.VTable, @ptrCast(self.vtable)).Committed(@as(*const IDtcLuRmEnlistment, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistment_Forget(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistment.VTable, self.vtable).Forget(@ptrCast(*const IDtcLuRmEnlistment, self));
+            return @as(*const IDtcLuRmEnlistment.VTable, @ptrCast(self.vtable)).Forget(@as(*const IDtcLuRmEnlistment, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistment_RequestCommit(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistment.VTable, self.vtable).RequestCommit(@ptrCast(*const IDtcLuRmEnlistment, self));
+            return @as(*const IDtcLuRmEnlistment.VTable, @ptrCast(self.vtable)).RequestCommit(@as(*const IDtcLuRmEnlistment, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3918,39 +3918,39 @@ pub const IDtcLuRmEnlistmentSink = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistmentSink_AckUnplug(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistmentSink.VTable, self.vtable).AckUnplug(@ptrCast(*const IDtcLuRmEnlistmentSink, self));
+            return @as(*const IDtcLuRmEnlistmentSink.VTable, @ptrCast(self.vtable)).AckUnplug(@as(*const IDtcLuRmEnlistmentSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistmentSink_TmDown(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistmentSink.VTable, self.vtable).TmDown(@ptrCast(*const IDtcLuRmEnlistmentSink, self));
+            return @as(*const IDtcLuRmEnlistmentSink.VTable, @ptrCast(self.vtable)).TmDown(@as(*const IDtcLuRmEnlistmentSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistmentSink_SessionLost(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistmentSink.VTable, self.vtable).SessionLost(@ptrCast(*const IDtcLuRmEnlistmentSink, self));
+            return @as(*const IDtcLuRmEnlistmentSink.VTable, @ptrCast(self.vtable)).SessionLost(@as(*const IDtcLuRmEnlistmentSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistmentSink_BackedOut(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistmentSink.VTable, self.vtable).BackedOut(@ptrCast(*const IDtcLuRmEnlistmentSink, self));
+            return @as(*const IDtcLuRmEnlistmentSink.VTable, @ptrCast(self.vtable)).BackedOut(@as(*const IDtcLuRmEnlistmentSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistmentSink_BackOut(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistmentSink.VTable, self.vtable).BackOut(@ptrCast(*const IDtcLuRmEnlistmentSink, self));
+            return @as(*const IDtcLuRmEnlistmentSink.VTable, @ptrCast(self.vtable)).BackOut(@as(*const IDtcLuRmEnlistmentSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistmentSink_Committed(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistmentSink.VTable, self.vtable).Committed(@ptrCast(*const IDtcLuRmEnlistmentSink, self));
+            return @as(*const IDtcLuRmEnlistmentSink.VTable, @ptrCast(self.vtable)).Committed(@as(*const IDtcLuRmEnlistmentSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistmentSink_Forget(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistmentSink.VTable, self.vtable).Forget(@ptrCast(*const IDtcLuRmEnlistmentSink, self));
+            return @as(*const IDtcLuRmEnlistmentSink.VTable, @ptrCast(self.vtable)).Forget(@as(*const IDtcLuRmEnlistmentSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistmentSink_Prepare(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistmentSink.VTable, self.vtable).Prepare(@ptrCast(*const IDtcLuRmEnlistmentSink, self));
+            return @as(*const IDtcLuRmEnlistmentSink.VTable, @ptrCast(self.vtable)).Prepare(@as(*const IDtcLuRmEnlistmentSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistmentSink_RequestCommit(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistmentSink.VTable, self.vtable).RequestCommit(@ptrCast(*const IDtcLuRmEnlistmentSink, self));
+            return @as(*const IDtcLuRmEnlistmentSink.VTable, @ptrCast(self.vtable)).RequestCommit(@as(*const IDtcLuRmEnlistmentSink, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3989,7 +3989,7 @@ pub const IDtcLuRmEnlistmentFactory = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuRmEnlistmentFactory_Create(self: *const T, pucLuPair: ?*u8, cbLuPair: u32, pITransaction: ?*ITransaction, pTransId: ?*u8, cbTransId: u32, pRmEnlistmentSink: ?*IDtcLuRmEnlistmentSink, ppRmEnlistment: ?*?*IDtcLuRmEnlistment) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuRmEnlistmentFactory.VTable, self.vtable).Create(@ptrCast(*const IDtcLuRmEnlistmentFactory, self), pucLuPair, cbLuPair, pITransaction, pTransId, cbTransId, pRmEnlistmentSink, ppRmEnlistment);
+            return @as(*const IDtcLuRmEnlistmentFactory.VTable, @ptrCast(self.vtable)).Create(@as(*const IDtcLuRmEnlistmentFactory, @ptrCast(self)), pucLuPair, cbLuPair, pITransaction, pTransId, cbTransId, pRmEnlistmentSink, ppRmEnlistment);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4064,31 +4064,31 @@ pub const IDtcLuSubordinateDtc = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtc_Unplug(self: *const T, fConversationLost: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtc.VTable, self.vtable).Unplug(@ptrCast(*const IDtcLuSubordinateDtc, self), fConversationLost);
+            return @as(*const IDtcLuSubordinateDtc.VTable, @ptrCast(self.vtable)).Unplug(@as(*const IDtcLuSubordinateDtc, @ptrCast(self)), fConversationLost);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtc_BackedOut(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtc.VTable, self.vtable).BackedOut(@ptrCast(*const IDtcLuSubordinateDtc, self));
+            return @as(*const IDtcLuSubordinateDtc.VTable, @ptrCast(self.vtable)).BackedOut(@as(*const IDtcLuSubordinateDtc, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtc_BackOut(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtc.VTable, self.vtable).BackOut(@ptrCast(*const IDtcLuSubordinateDtc, self));
+            return @as(*const IDtcLuSubordinateDtc.VTable, @ptrCast(self.vtable)).BackOut(@as(*const IDtcLuSubordinateDtc, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtc_Committed(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtc.VTable, self.vtable).Committed(@ptrCast(*const IDtcLuSubordinateDtc, self));
+            return @as(*const IDtcLuSubordinateDtc.VTable, @ptrCast(self.vtable)).Committed(@as(*const IDtcLuSubordinateDtc, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtc_Forget(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtc.VTable, self.vtable).Forget(@ptrCast(*const IDtcLuSubordinateDtc, self));
+            return @as(*const IDtcLuSubordinateDtc.VTable, @ptrCast(self.vtable)).Forget(@as(*const IDtcLuSubordinateDtc, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtc_Prepare(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtc.VTable, self.vtable).Prepare(@ptrCast(*const IDtcLuSubordinateDtc, self));
+            return @as(*const IDtcLuSubordinateDtc.VTable, @ptrCast(self.vtable)).Prepare(@as(*const IDtcLuSubordinateDtc, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtc_RequestCommit(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtc.VTable, self.vtable).RequestCommit(@ptrCast(*const IDtcLuSubordinateDtc, self));
+            return @as(*const IDtcLuSubordinateDtc.VTable, @ptrCast(self.vtable)).RequestCommit(@as(*const IDtcLuSubordinateDtc, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4169,35 +4169,35 @@ pub const IDtcLuSubordinateDtcSink = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtcSink_AckUnplug(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtcSink.VTable, self.vtable).AckUnplug(@ptrCast(*const IDtcLuSubordinateDtcSink, self));
+            return @as(*const IDtcLuSubordinateDtcSink.VTable, @ptrCast(self.vtable)).AckUnplug(@as(*const IDtcLuSubordinateDtcSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtcSink_TmDown(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtcSink.VTable, self.vtable).TmDown(@ptrCast(*const IDtcLuSubordinateDtcSink, self));
+            return @as(*const IDtcLuSubordinateDtcSink.VTable, @ptrCast(self.vtable)).TmDown(@as(*const IDtcLuSubordinateDtcSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtcSink_SessionLost(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtcSink.VTable, self.vtable).SessionLost(@ptrCast(*const IDtcLuSubordinateDtcSink, self));
+            return @as(*const IDtcLuSubordinateDtcSink.VTable, @ptrCast(self.vtable)).SessionLost(@as(*const IDtcLuSubordinateDtcSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtcSink_BackedOut(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtcSink.VTable, self.vtable).BackedOut(@ptrCast(*const IDtcLuSubordinateDtcSink, self));
+            return @as(*const IDtcLuSubordinateDtcSink.VTable, @ptrCast(self.vtable)).BackedOut(@as(*const IDtcLuSubordinateDtcSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtcSink_BackOut(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtcSink.VTable, self.vtable).BackOut(@ptrCast(*const IDtcLuSubordinateDtcSink, self));
+            return @as(*const IDtcLuSubordinateDtcSink.VTable, @ptrCast(self.vtable)).BackOut(@as(*const IDtcLuSubordinateDtcSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtcSink_Committed(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtcSink.VTable, self.vtable).Committed(@ptrCast(*const IDtcLuSubordinateDtcSink, self));
+            return @as(*const IDtcLuSubordinateDtcSink.VTable, @ptrCast(self.vtable)).Committed(@as(*const IDtcLuSubordinateDtcSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtcSink_Forget(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtcSink.VTable, self.vtable).Forget(@ptrCast(*const IDtcLuSubordinateDtcSink, self));
+            return @as(*const IDtcLuSubordinateDtcSink.VTable, @ptrCast(self.vtable)).Forget(@as(*const IDtcLuSubordinateDtcSink, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtcSink_RequestCommit(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtcSink.VTable, self.vtable).RequestCommit(@ptrCast(*const IDtcLuSubordinateDtcSink, self));
+            return @as(*const IDtcLuSubordinateDtcSink.VTable, @ptrCast(self.vtable)).RequestCommit(@as(*const IDtcLuSubordinateDtcSink, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4244,7 +4244,7 @@ pub const IDtcLuSubordinateDtcFactory = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDtcLuSubordinateDtcFactory_Create(self: *const T, pucLuPair: ?*u8, cbLuPair: u32, punkTransactionOuter: ?*IUnknown, isoLevel: i32, isoFlags: u32, pOptions: ?*ITransactionOptions, ppTransaction: ?*?*ITransaction, pTransId: ?*u8, cbTransId: u32, pSubordinateDtcSink: ?*IDtcLuSubordinateDtcSink, ppSubordinateDtc: ?*?*IDtcLuSubordinateDtc) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDtcLuSubordinateDtcFactory.VTable, self.vtable).Create(@ptrCast(*const IDtcLuSubordinateDtcFactory, self), pucLuPair, cbLuPair, punkTransactionOuter, isoLevel, isoFlags, pOptions, ppTransaction, pTransId, cbTransId, pSubordinateDtcSink, ppSubordinateDtc);
+            return @as(*const IDtcLuSubordinateDtcFactory.VTable, @ptrCast(self.vtable)).Create(@as(*const IDtcLuSubordinateDtcFactory, @ptrCast(self)), pucLuPair, cbLuPair, punkTransactionOuter, isoLevel, isoFlags, pOptions, ppTransaction, pTransId, cbTransId, pSubordinateDtcSink, ppSubordinateDtc);
         }
     };}
     pub usingnamespace MethodMixin(@This());

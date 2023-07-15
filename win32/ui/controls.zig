@@ -2312,17 +2312,17 @@ pub const DLG_DIR_LIST_FILE_TYPE = enum(u32) {
         SYSTEM: u1 = 0,
         POSTMSGS: u1 = 0,
     }) DLG_DIR_LIST_FILE_TYPE {
-        return @intToEnum(DLG_DIR_LIST_FILE_TYPE,
-              (if (o.ARCHIVE == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.ARCHIVE) else 0)
-            | (if (o.DIRECTORY == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.DIRECTORY) else 0)
-            | (if (o.DRIVES == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.DRIVES) else 0)
-            | (if (o.EXCLUSIVE == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.EXCLUSIVE) else 0)
-            | (if (o.HIDDEN == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.HIDDEN) else 0)
-            | (if (o.READONLY == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.READONLY) else 0)
-            | (if (o.READWRITE == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.READWRITE) else 0)
-            | (if (o.SYSTEM == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.SYSTEM) else 0)
-            | (if (o.POSTMSGS == 1) @enumToInt(DLG_DIR_LIST_FILE_TYPE.POSTMSGS) else 0)
-        );
+        return @as(DLG_DIR_LIST_FILE_TYPE, @enumFromInt(
+              (if (o.ARCHIVE == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.ARCHIVE) else 0)
+            | (if (o.DIRECTORY == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.DIRECTORY) else 0)
+            | (if (o.DRIVES == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.DRIVES) else 0)
+            | (if (o.EXCLUSIVE == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.EXCLUSIVE) else 0)
+            | (if (o.HIDDEN == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.HIDDEN) else 0)
+            | (if (o.READONLY == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.READONLY) else 0)
+            | (if (o.READWRITE == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.READWRITE) else 0)
+            | (if (o.SYSTEM == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.SYSTEM) else 0)
+            | (if (o.POSTMSGS == 1) @intFromEnum(DLG_DIR_LIST_FILE_TYPE.POSTMSGS) else 0)
+        ));
     }
 };
 pub const DDL_ARCHIVE = DLG_DIR_LIST_FILE_TYPE.ARCHIVE;
@@ -2343,10 +2343,10 @@ pub const OPEN_THEME_DATA_FLAGS = enum(u32) {
         FORCE_RECT_SIZING: u1 = 0,
         NONCLIENT: u1 = 0,
     }) OPEN_THEME_DATA_FLAGS {
-        return @intToEnum(OPEN_THEME_DATA_FLAGS,
-              (if (o.FORCE_RECT_SIZING == 1) @enumToInt(OPEN_THEME_DATA_FLAGS.FORCE_RECT_SIZING) else 0)
-            | (if (o.NONCLIENT == 1) @enumToInt(OPEN_THEME_DATA_FLAGS.NONCLIENT) else 0)
-        );
+        return @as(OPEN_THEME_DATA_FLAGS, @enumFromInt(
+              (if (o.FORCE_RECT_SIZING == 1) @intFromEnum(OPEN_THEME_DATA_FLAGS.FORCE_RECT_SIZING) else 0)
+            | (if (o.NONCLIENT == 1) @intFromEnum(OPEN_THEME_DATA_FLAGS.NONCLIENT) else 0)
+        ));
     }
 };
 pub const OTD_FORCE_RECT_SIZING = OPEN_THEME_DATA_FLAGS.FORCE_RECT_SIZING;
@@ -2394,12 +2394,12 @@ pub const IMAGE_LIST_DRAW_STYLE = enum(u32) {
         MASK: u1 = 0,
         NORMAL: u1 = 0,
     }) IMAGE_LIST_DRAW_STYLE {
-        return @intToEnum(IMAGE_LIST_DRAW_STYLE,
-              (if (o.BLEND == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.BLEND) else 0)
-            | (if (o.FOCUS == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.FOCUS) else 0)
-            | (if (o.MASK == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.MASK) else 0)
-            | (if (o.NORMAL == 1) @enumToInt(IMAGE_LIST_DRAW_STYLE.NORMAL) else 0)
-        );
+        return @as(IMAGE_LIST_DRAW_STYLE, @enumFromInt(
+              (if (o.BLEND == 1) @intFromEnum(IMAGE_LIST_DRAW_STYLE.BLEND) else 0)
+            | (if (o.FOCUS == 1) @intFromEnum(IMAGE_LIST_DRAW_STYLE.FOCUS) else 0)
+            | (if (o.MASK == 1) @intFromEnum(IMAGE_LIST_DRAW_STYLE.MASK) else 0)
+            | (if (o.NORMAL == 1) @intFromEnum(IMAGE_LIST_DRAW_STYLE.NORMAL) else 0)
+        ));
     }
 };
 pub const ILD_BLEND = IMAGE_LIST_DRAW_STYLE.BLEND;
@@ -2482,11 +2482,11 @@ pub const DRAW_THEME_PARENT_BACKGROUND_FLAGS = enum(u32) {
         USECTLCOLORSTATIC: u1 = 0,
         USEERASEBKGND: u1 = 0,
     }) DRAW_THEME_PARENT_BACKGROUND_FLAGS {
-        return @intToEnum(DRAW_THEME_PARENT_BACKGROUND_FLAGS,
-              (if (o.WINDOWDC == 1) @enumToInt(DRAW_THEME_PARENT_BACKGROUND_FLAGS.WINDOWDC) else 0)
-            | (if (o.USECTLCOLORSTATIC == 1) @enumToInt(DRAW_THEME_PARENT_BACKGROUND_FLAGS.USECTLCOLORSTATIC) else 0)
-            | (if (o.USEERASEBKGND == 1) @enumToInt(DRAW_THEME_PARENT_BACKGROUND_FLAGS.USEERASEBKGND) else 0)
-        );
+        return @as(DRAW_THEME_PARENT_BACKGROUND_FLAGS, @enumFromInt(
+              (if (o.WINDOWDC == 1) @intFromEnum(DRAW_THEME_PARENT_BACKGROUND_FLAGS.WINDOWDC) else 0)
+            | (if (o.USECTLCOLORSTATIC == 1) @intFromEnum(DRAW_THEME_PARENT_BACKGROUND_FLAGS.USECTLCOLORSTATIC) else 0)
+            | (if (o.USEERASEBKGND == 1) @intFromEnum(DRAW_THEME_PARENT_BACKGROUND_FLAGS.USEERASEBKGND) else 0)
+        ));
     }
 };
 pub const DTPB_WINDOWDC = DRAW_THEME_PARENT_BACKGROUND_FLAGS.WINDOWDC;
@@ -2525,18 +2525,18 @@ pub const HDI_MASK = enum(u32) {
         FILTER: u1 = 0,
         STATE: u1 = 0,
     }) HDI_MASK {
-        return @intToEnum(HDI_MASK,
-              (if (o.WIDTH == 1) @enumToInt(HDI_MASK.WIDTH) else 0)
-            | (if (o.TEXT == 1) @enumToInt(HDI_MASK.TEXT) else 0)
-            | (if (o.FORMAT == 1) @enumToInt(HDI_MASK.FORMAT) else 0)
-            | (if (o.LPARAM == 1) @enumToInt(HDI_MASK.LPARAM) else 0)
-            | (if (o.BITMAP == 1) @enumToInt(HDI_MASK.BITMAP) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(HDI_MASK.IMAGE) else 0)
-            | (if (o.DI_SETITEM == 1) @enumToInt(HDI_MASK.DI_SETITEM) else 0)
-            | (if (o.ORDER == 1) @enumToInt(HDI_MASK.ORDER) else 0)
-            | (if (o.FILTER == 1) @enumToInt(HDI_MASK.FILTER) else 0)
-            | (if (o.STATE == 1) @enumToInt(HDI_MASK.STATE) else 0)
-        );
+        return @as(HDI_MASK, @enumFromInt(
+              (if (o.WIDTH == 1) @intFromEnum(HDI_MASK.WIDTH) else 0)
+            | (if (o.TEXT == 1) @intFromEnum(HDI_MASK.TEXT) else 0)
+            | (if (o.FORMAT == 1) @intFromEnum(HDI_MASK.FORMAT) else 0)
+            | (if (o.LPARAM == 1) @intFromEnum(HDI_MASK.LPARAM) else 0)
+            | (if (o.BITMAP == 1) @intFromEnum(HDI_MASK.BITMAP) else 0)
+            | (if (o.IMAGE == 1) @intFromEnum(HDI_MASK.IMAGE) else 0)
+            | (if (o.DI_SETITEM == 1) @intFromEnum(HDI_MASK.DI_SETITEM) else 0)
+            | (if (o.ORDER == 1) @intFromEnum(HDI_MASK.ORDER) else 0)
+            | (if (o.FILTER == 1) @intFromEnum(HDI_MASK.FILTER) else 0)
+            | (if (o.STATE == 1) @intFromEnum(HDI_MASK.STATE) else 0)
+        ));
     }
 };
 pub const HDI_WIDTH = HDI_MASK.WIDTH;
@@ -2561,11 +2561,11 @@ pub const NMREBAR_MASK_FLAGS = enum(u32) {
         LPARAM: u1 = 0,
         STYLE: u1 = 0,
     }) NMREBAR_MASK_FLAGS {
-        return @intToEnum(NMREBAR_MASK_FLAGS,
-              (if (o.ID == 1) @enumToInt(NMREBAR_MASK_FLAGS.ID) else 0)
-            | (if (o.LPARAM == 1) @enumToInt(NMREBAR_MASK_FLAGS.LPARAM) else 0)
-            | (if (o.STYLE == 1) @enumToInt(NMREBAR_MASK_FLAGS.STYLE) else 0)
-        );
+        return @as(NMREBAR_MASK_FLAGS, @enumFromInt(
+              (if (o.ID == 1) @intFromEnum(NMREBAR_MASK_FLAGS.ID) else 0)
+            | (if (o.LPARAM == 1) @intFromEnum(NMREBAR_MASK_FLAGS.LPARAM) else 0)
+            | (if (o.STYLE == 1) @intFromEnum(NMREBAR_MASK_FLAGS.STYLE) else 0)
+        ));
     }
 };
 pub const RBNM_ID = NMREBAR_MASK_FLAGS.ID;
@@ -2615,19 +2615,19 @@ pub const LVCOLUMNW_FORMAT = enum(u32) {
         FIXED_RATIO: u1 = 0,
         SPLITBUTTON: u1 = 0,
     }) LVCOLUMNW_FORMAT {
-        return @intToEnum(LVCOLUMNW_FORMAT,
-              (if (o.LEFT == 1) @enumToInt(LVCOLUMNW_FORMAT.LEFT) else 0)
-            | (if (o.RIGHT == 1) @enumToInt(LVCOLUMNW_FORMAT.RIGHT) else 0)
-            | (if (o.CENTER == 1) @enumToInt(LVCOLUMNW_FORMAT.CENTER) else 0)
-            | (if (o.JUSTIFYMASK == 1) @enumToInt(LVCOLUMNW_FORMAT.JUSTIFYMASK) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(LVCOLUMNW_FORMAT.IMAGE) else 0)
-            | (if (o.BITMAP_ON_RIGHT == 1) @enumToInt(LVCOLUMNW_FORMAT.BITMAP_ON_RIGHT) else 0)
-            | (if (o.COL_HAS_IMAGES == 1) @enumToInt(LVCOLUMNW_FORMAT.COL_HAS_IMAGES) else 0)
-            | (if (o.FIXED_WIDTH == 1) @enumToInt(LVCOLUMNW_FORMAT.FIXED_WIDTH) else 0)
-            | (if (o.NO_DPI_SCALE == 1) @enumToInt(LVCOLUMNW_FORMAT.NO_DPI_SCALE) else 0)
-            | (if (o.FIXED_RATIO == 1) @enumToInt(LVCOLUMNW_FORMAT.FIXED_RATIO) else 0)
-            | (if (o.SPLITBUTTON == 1) @enumToInt(LVCOLUMNW_FORMAT.SPLITBUTTON) else 0)
-        );
+        return @as(LVCOLUMNW_FORMAT, @enumFromInt(
+              (if (o.LEFT == 1) @intFromEnum(LVCOLUMNW_FORMAT.LEFT) else 0)
+            | (if (o.RIGHT == 1) @intFromEnum(LVCOLUMNW_FORMAT.RIGHT) else 0)
+            | (if (o.CENTER == 1) @intFromEnum(LVCOLUMNW_FORMAT.CENTER) else 0)
+            | (if (o.JUSTIFYMASK == 1) @intFromEnum(LVCOLUMNW_FORMAT.JUSTIFYMASK) else 0)
+            | (if (o.IMAGE == 1) @intFromEnum(LVCOLUMNW_FORMAT.IMAGE) else 0)
+            | (if (o.BITMAP_ON_RIGHT == 1) @intFromEnum(LVCOLUMNW_FORMAT.BITMAP_ON_RIGHT) else 0)
+            | (if (o.COL_HAS_IMAGES == 1) @intFromEnum(LVCOLUMNW_FORMAT.COL_HAS_IMAGES) else 0)
+            | (if (o.FIXED_WIDTH == 1) @intFromEnum(LVCOLUMNW_FORMAT.FIXED_WIDTH) else 0)
+            | (if (o.NO_DPI_SCALE == 1) @intFromEnum(LVCOLUMNW_FORMAT.NO_DPI_SCALE) else 0)
+            | (if (o.FIXED_RATIO == 1) @intFromEnum(LVCOLUMNW_FORMAT.FIXED_RATIO) else 0)
+            | (if (o.SPLITBUTTON == 1) @intFromEnum(LVCOLUMNW_FORMAT.SPLITBUTTON) else 0)
+        ));
     }
 };
 pub const LVCFMT_LEFT = LVCOLUMNW_FORMAT.LEFT;
@@ -2654,12 +2654,12 @@ pub const NMPGSCROLL_KEYS = enum(u16) {
         CONTROL: u1 = 0,
         MENU: u1 = 0,
     }) NMPGSCROLL_KEYS {
-        return @intToEnum(NMPGSCROLL_KEYS,
-              (if (o.NONE == 1) @enumToInt(NMPGSCROLL_KEYS.NONE) else 0)
-            | (if (o.SHIFT == 1) @enumToInt(NMPGSCROLL_KEYS.SHIFT) else 0)
-            | (if (o.CONTROL == 1) @enumToInt(NMPGSCROLL_KEYS.CONTROL) else 0)
-            | (if (o.MENU == 1) @enumToInt(NMPGSCROLL_KEYS.MENU) else 0)
-        );
+        return @as(NMPGSCROLL_KEYS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(NMPGSCROLL_KEYS.NONE) else 0)
+            | (if (o.SHIFT == 1) @intFromEnum(NMPGSCROLL_KEYS.SHIFT) else 0)
+            | (if (o.CONTROL == 1) @intFromEnum(NMPGSCROLL_KEYS.CONTROL) else 0)
+            | (if (o.MENU == 1) @intFromEnum(NMPGSCROLL_KEYS.MENU) else 0)
+        ));
     }
 };
 pub const PGK_NONE = NMPGSCROLL_KEYS.NONE;
@@ -2685,15 +2685,15 @@ pub const COMBOBOX_EX_ITEM_FLAGS = enum(u32) {
         SELECTEDIMAGE: u1 = 0,
         TEXT: u1 = 0,
     }) COMBOBOX_EX_ITEM_FLAGS {
-        return @intToEnum(COMBOBOX_EX_ITEM_FLAGS,
-              (if (o.DI_SETITEM == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.DI_SETITEM) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.IMAGE) else 0)
-            | (if (o.INDENT == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.INDENT) else 0)
-            | (if (o.LPARAM == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.LPARAM) else 0)
-            | (if (o.OVERLAY == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.OVERLAY) else 0)
-            | (if (o.SELECTEDIMAGE == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.SELECTEDIMAGE) else 0)
-            | (if (o.TEXT == 1) @enumToInt(COMBOBOX_EX_ITEM_FLAGS.TEXT) else 0)
-        );
+        return @as(COMBOBOX_EX_ITEM_FLAGS, @enumFromInt(
+              (if (o.DI_SETITEM == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.DI_SETITEM) else 0)
+            | (if (o.IMAGE == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.IMAGE) else 0)
+            | (if (o.INDENT == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.INDENT) else 0)
+            | (if (o.LPARAM == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.LPARAM) else 0)
+            | (if (o.OVERLAY == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.OVERLAY) else 0)
+            | (if (o.SELECTEDIMAGE == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.SELECTEDIMAGE) else 0)
+            | (if (o.TEXT == 1) @intFromEnum(COMBOBOX_EX_ITEM_FLAGS.TEXT) else 0)
+        ));
     }
 };
 pub const CBEIF_DI_SETITEM = COMBOBOX_EX_ITEM_FLAGS.DI_SETITEM;
@@ -2741,19 +2741,19 @@ pub const TVITEM_MASK = enum(u32) {
         INTEGRAL: u1 = 0,
         STATEEX: u1 = 0,
     }) TVITEM_MASK {
-        return @intToEnum(TVITEM_MASK,
-              (if (o.CHILDREN == 1) @enumToInt(TVITEM_MASK.CHILDREN) else 0)
-            | (if (o.DI_SETITEM == 1) @enumToInt(TVITEM_MASK.DI_SETITEM) else 0)
-            | (if (o.HANDLE == 1) @enumToInt(TVITEM_MASK.HANDLE) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(TVITEM_MASK.IMAGE) else 0)
-            | (if (o.PARAM == 1) @enumToInt(TVITEM_MASK.PARAM) else 0)
-            | (if (o.SELECTEDIMAGE == 1) @enumToInt(TVITEM_MASK.SELECTEDIMAGE) else 0)
-            | (if (o.STATE == 1) @enumToInt(TVITEM_MASK.STATE) else 0)
-            | (if (o.TEXT == 1) @enumToInt(TVITEM_MASK.TEXT) else 0)
-            | (if (o.EXPANDEDIMAGE == 1) @enumToInt(TVITEM_MASK.EXPANDEDIMAGE) else 0)
-            | (if (o.INTEGRAL == 1) @enumToInt(TVITEM_MASK.INTEGRAL) else 0)
-            | (if (o.STATEEX == 1) @enumToInt(TVITEM_MASK.STATEEX) else 0)
-        );
+        return @as(TVITEM_MASK, @enumFromInt(
+              (if (o.CHILDREN == 1) @intFromEnum(TVITEM_MASK.CHILDREN) else 0)
+            | (if (o.DI_SETITEM == 1) @intFromEnum(TVITEM_MASK.DI_SETITEM) else 0)
+            | (if (o.HANDLE == 1) @intFromEnum(TVITEM_MASK.HANDLE) else 0)
+            | (if (o.IMAGE == 1) @intFromEnum(TVITEM_MASK.IMAGE) else 0)
+            | (if (o.PARAM == 1) @intFromEnum(TVITEM_MASK.PARAM) else 0)
+            | (if (o.SELECTEDIMAGE == 1) @intFromEnum(TVITEM_MASK.SELECTEDIMAGE) else 0)
+            | (if (o.STATE == 1) @intFromEnum(TVITEM_MASK.STATE) else 0)
+            | (if (o.TEXT == 1) @intFromEnum(TVITEM_MASK.TEXT) else 0)
+            | (if (o.EXPANDEDIMAGE == 1) @intFromEnum(TVITEM_MASK.EXPANDEDIMAGE) else 0)
+            | (if (o.INTEGRAL == 1) @intFromEnum(TVITEM_MASK.INTEGRAL) else 0)
+            | (if (o.STATEEX == 1) @intFromEnum(TVITEM_MASK.STATEEX) else 0)
+        ));
     }
 };
 pub const TVIF_CHILDREN = TVITEM_MASK.CHILDREN;
@@ -2782,13 +2782,13 @@ pub const TCITEMHEADERA_MASK = enum(u32) {
         PARAM: u1 = 0,
         STATE: u1 = 0,
     }) TCITEMHEADERA_MASK {
-        return @intToEnum(TCITEMHEADERA_MASK,
-              (if (o.IMAGE == 1) @enumToInt(TCITEMHEADERA_MASK.IMAGE) else 0)
-            | (if (o.RTLREADING == 1) @enumToInt(TCITEMHEADERA_MASK.RTLREADING) else 0)
-            | (if (o.TEXT == 1) @enumToInt(TCITEMHEADERA_MASK.TEXT) else 0)
-            | (if (o.PARAM == 1) @enumToInt(TCITEMHEADERA_MASK.PARAM) else 0)
-            | (if (o.STATE == 1) @enumToInt(TCITEMHEADERA_MASK.STATE) else 0)
-        );
+        return @as(TCITEMHEADERA_MASK, @enumFromInt(
+              (if (o.IMAGE == 1) @intFromEnum(TCITEMHEADERA_MASK.IMAGE) else 0)
+            | (if (o.RTLREADING == 1) @intFromEnum(TCITEMHEADERA_MASK.RTLREADING) else 0)
+            | (if (o.TEXT == 1) @intFromEnum(TCITEMHEADERA_MASK.TEXT) else 0)
+            | (if (o.PARAM == 1) @intFromEnum(TCITEMHEADERA_MASK.PARAM) else 0)
+            | (if (o.STATE == 1) @intFromEnum(TCITEMHEADERA_MASK.STATE) else 0)
+        ));
     }
 };
 pub const TCIF_IMAGE = TCITEMHEADERA_MASK.IMAGE;
@@ -2892,18 +2892,18 @@ pub const NMTBHOTITEM_FLAGS = enum(u32) {
         RESELECT: u1 = 0,
         TOGGLEDROPDOWN: u1 = 0,
     }) NMTBHOTITEM_FLAGS {
-        return @intToEnum(NMTBHOTITEM_FLAGS,
-              (if (o.ACCELERATOR == 1) @enumToInt(NMTBHOTITEM_FLAGS.ACCELERATOR) else 0)
-            | (if (o.ARROWKEYS == 1) @enumToInt(NMTBHOTITEM_FLAGS.ARROWKEYS) else 0)
-            | (if (o.DUPACCEL == 1) @enumToInt(NMTBHOTITEM_FLAGS.DUPACCEL) else 0)
-            | (if (o.ENTERING == 1) @enumToInt(NMTBHOTITEM_FLAGS.ENTERING) else 0)
-            | (if (o.LEAVING == 1) @enumToInt(NMTBHOTITEM_FLAGS.LEAVING) else 0)
-            | (if (o.LMOUSE == 1) @enumToInt(NMTBHOTITEM_FLAGS.LMOUSE) else 0)
-            | (if (o.MOUSE == 1) @enumToInt(NMTBHOTITEM_FLAGS.MOUSE) else 0)
-            | (if (o.OTHER == 1) @enumToInt(NMTBHOTITEM_FLAGS.OTHER) else 0)
-            | (if (o.RESELECT == 1) @enumToInt(NMTBHOTITEM_FLAGS.RESELECT) else 0)
-            | (if (o.TOGGLEDROPDOWN == 1) @enumToInt(NMTBHOTITEM_FLAGS.TOGGLEDROPDOWN) else 0)
-        );
+        return @as(NMTBHOTITEM_FLAGS, @enumFromInt(
+              (if (o.ACCELERATOR == 1) @intFromEnum(NMTBHOTITEM_FLAGS.ACCELERATOR) else 0)
+            | (if (o.ARROWKEYS == 1) @intFromEnum(NMTBHOTITEM_FLAGS.ARROWKEYS) else 0)
+            | (if (o.DUPACCEL == 1) @intFromEnum(NMTBHOTITEM_FLAGS.DUPACCEL) else 0)
+            | (if (o.ENTERING == 1) @intFromEnum(NMTBHOTITEM_FLAGS.ENTERING) else 0)
+            | (if (o.LEAVING == 1) @intFromEnum(NMTBHOTITEM_FLAGS.LEAVING) else 0)
+            | (if (o.LMOUSE == 1) @intFromEnum(NMTBHOTITEM_FLAGS.LMOUSE) else 0)
+            | (if (o.MOUSE == 1) @intFromEnum(NMTBHOTITEM_FLAGS.MOUSE) else 0)
+            | (if (o.OTHER == 1) @intFromEnum(NMTBHOTITEM_FLAGS.OTHER) else 0)
+            | (if (o.RESELECT == 1) @intFromEnum(NMTBHOTITEM_FLAGS.RESELECT) else 0)
+            | (if (o.TOGGLEDROPDOWN == 1) @intFromEnum(NMTBHOTITEM_FLAGS.TOGGLEDROPDOWN) else 0)
+        ));
     }
 };
 pub const HICF_ACCELERATOR = NMTBHOTITEM_FLAGS.ACCELERATOR;
@@ -2937,16 +2937,16 @@ pub const TTTOOLINFO_FLAGS = enum(u32) {
         TRACK: u1 = 0,
         TRANSPARENT: u1 = 0,
     }) TTTOOLINFO_FLAGS {
-        return @intToEnum(TTTOOLINFO_FLAGS,
-              (if (o.ABSOLUTE == 1) @enumToInt(TTTOOLINFO_FLAGS.ABSOLUTE) else 0)
-            | (if (o.CENTERTIP == 1) @enumToInt(TTTOOLINFO_FLAGS.CENTERTIP) else 0)
-            | (if (o.IDISHWND == 1) @enumToInt(TTTOOLINFO_FLAGS.IDISHWND) else 0)
-            | (if (o.PARSELINKS == 1) @enumToInt(TTTOOLINFO_FLAGS.PARSELINKS) else 0)
-            | (if (o.RTLREADING == 1) @enumToInt(TTTOOLINFO_FLAGS.RTLREADING) else 0)
-            | (if (o.SUBCLASS == 1) @enumToInt(TTTOOLINFO_FLAGS.SUBCLASS) else 0)
-            | (if (o.TRACK == 1) @enumToInt(TTTOOLINFO_FLAGS.TRACK) else 0)
-            | (if (o.TRANSPARENT == 1) @enumToInt(TTTOOLINFO_FLAGS.TRANSPARENT) else 0)
-        );
+        return @as(TTTOOLINFO_FLAGS, @enumFromInt(
+              (if (o.ABSOLUTE == 1) @intFromEnum(TTTOOLINFO_FLAGS.ABSOLUTE) else 0)
+            | (if (o.CENTERTIP == 1) @intFromEnum(TTTOOLINFO_FLAGS.CENTERTIP) else 0)
+            | (if (o.IDISHWND == 1) @intFromEnum(TTTOOLINFO_FLAGS.IDISHWND) else 0)
+            | (if (o.PARSELINKS == 1) @intFromEnum(TTTOOLINFO_FLAGS.PARSELINKS) else 0)
+            | (if (o.RTLREADING == 1) @intFromEnum(TTTOOLINFO_FLAGS.RTLREADING) else 0)
+            | (if (o.SUBCLASS == 1) @intFromEnum(TTTOOLINFO_FLAGS.SUBCLASS) else 0)
+            | (if (o.TRACK == 1) @intFromEnum(TTTOOLINFO_FLAGS.TRACK) else 0)
+            | (if (o.TRANSPARENT == 1) @intFromEnum(TTTOOLINFO_FLAGS.TRANSPARENT) else 0)
+        ));
     }
 };
 pub const TTF_ABSOLUTE = TTTOOLINFO_FLAGS.ABSOLUTE;
@@ -2996,17 +2996,17 @@ pub const LVCOLUMNW_MASK = enum(u32) {
         DEFAULTWIDTH: u1 = 0,
         IDEALWIDTH: u1 = 0,
     }) LVCOLUMNW_MASK {
-        return @intToEnum(LVCOLUMNW_MASK,
-              (if (o.FMT == 1) @enumToInt(LVCOLUMNW_MASK.FMT) else 0)
-            | (if (o.WIDTH == 1) @enumToInt(LVCOLUMNW_MASK.WIDTH) else 0)
-            | (if (o.TEXT == 1) @enumToInt(LVCOLUMNW_MASK.TEXT) else 0)
-            | (if (o.SUBITEM == 1) @enumToInt(LVCOLUMNW_MASK.SUBITEM) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(LVCOLUMNW_MASK.IMAGE) else 0)
-            | (if (o.ORDER == 1) @enumToInt(LVCOLUMNW_MASK.ORDER) else 0)
-            | (if (o.MINWIDTH == 1) @enumToInt(LVCOLUMNW_MASK.MINWIDTH) else 0)
-            | (if (o.DEFAULTWIDTH == 1) @enumToInt(LVCOLUMNW_MASK.DEFAULTWIDTH) else 0)
-            | (if (o.IDEALWIDTH == 1) @enumToInt(LVCOLUMNW_MASK.IDEALWIDTH) else 0)
-        );
+        return @as(LVCOLUMNW_MASK, @enumFromInt(
+              (if (o.FMT == 1) @intFromEnum(LVCOLUMNW_MASK.FMT) else 0)
+            | (if (o.WIDTH == 1) @intFromEnum(LVCOLUMNW_MASK.WIDTH) else 0)
+            | (if (o.TEXT == 1) @intFromEnum(LVCOLUMNW_MASK.TEXT) else 0)
+            | (if (o.SUBITEM == 1) @intFromEnum(LVCOLUMNW_MASK.SUBITEM) else 0)
+            | (if (o.IMAGE == 1) @intFromEnum(LVCOLUMNW_MASK.IMAGE) else 0)
+            | (if (o.ORDER == 1) @intFromEnum(LVCOLUMNW_MASK.ORDER) else 0)
+            | (if (o.MINWIDTH == 1) @intFromEnum(LVCOLUMNW_MASK.MINWIDTH) else 0)
+            | (if (o.DEFAULTWIDTH == 1) @intFromEnum(LVCOLUMNW_MASK.DEFAULTWIDTH) else 0)
+            | (if (o.IDEALWIDTH == 1) @intFromEnum(LVCOLUMNW_MASK.IDEALWIDTH) else 0)
+        ));
     }
 };
 pub const LVCF_FMT = LVCOLUMNW_MASK.FMT;
@@ -3035,14 +3035,14 @@ pub const LVFINDINFOW_FLAGS = enum(u32) {
         WRAP: u1 = 0,
         NEARESTXY: u1 = 0,
     }) LVFINDINFOW_FLAGS {
-        return @intToEnum(LVFINDINFOW_FLAGS,
-              (if (o.PARAM == 1) @enumToInt(LVFINDINFOW_FLAGS.PARAM) else 0)
-            | (if (o.PARTIAL == 1) @enumToInt(LVFINDINFOW_FLAGS.PARTIAL) else 0)
-            | (if (o.STRING == 1) @enumToInt(LVFINDINFOW_FLAGS.STRING) else 0)
-            | (if (o.SUBSTRING == 1) @enumToInt(LVFINDINFOW_FLAGS.SUBSTRING) else 0)
-            | (if (o.WRAP == 1) @enumToInt(LVFINDINFOW_FLAGS.WRAP) else 0)
-            | (if (o.NEARESTXY == 1) @enumToInt(LVFINDINFOW_FLAGS.NEARESTXY) else 0)
-        );
+        return @as(LVFINDINFOW_FLAGS, @enumFromInt(
+              (if (o.PARAM == 1) @intFromEnum(LVFINDINFOW_FLAGS.PARAM) else 0)
+            | (if (o.PARTIAL == 1) @intFromEnum(LVFINDINFOW_FLAGS.PARTIAL) else 0)
+            | (if (o.STRING == 1) @intFromEnum(LVFINDINFOW_FLAGS.STRING) else 0)
+            | (if (o.SUBSTRING == 1) @intFromEnum(LVFINDINFOW_FLAGS.SUBSTRING) else 0)
+            | (if (o.WRAP == 1) @intFromEnum(LVFINDINFOW_FLAGS.WRAP) else 0)
+            | (if (o.NEARESTXY == 1) @intFromEnum(LVFINDINFOW_FLAGS.NEARESTXY) else 0)
+        ));
     }
 };
 pub const LVFI_PARAM = LVFINDINFOW_FLAGS.PARAM;
@@ -3085,16 +3085,16 @@ pub const TBBUTTONINFOW_MASK = enum(u32) {
         STYLE: u1 = 0,
         TEXT: u1 = 0,
     }) TBBUTTONINFOW_MASK {
-        return @intToEnum(TBBUTTONINFOW_MASK,
-              (if (o.BYINDEX == 1) @enumToInt(TBBUTTONINFOW_MASK.BYINDEX) else 0)
-            | (if (o.COMMAND == 1) @enumToInt(TBBUTTONINFOW_MASK.COMMAND) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(TBBUTTONINFOW_MASK.IMAGE) else 0)
-            | (if (o.LPARAM == 1) @enumToInt(TBBUTTONINFOW_MASK.LPARAM) else 0)
-            | (if (o.SIZE == 1) @enumToInt(TBBUTTONINFOW_MASK.SIZE) else 0)
-            | (if (o.STATE == 1) @enumToInt(TBBUTTONINFOW_MASK.STATE) else 0)
-            | (if (o.STYLE == 1) @enumToInt(TBBUTTONINFOW_MASK.STYLE) else 0)
-            | (if (o.TEXT == 1) @enumToInt(TBBUTTONINFOW_MASK.TEXT) else 0)
-        );
+        return @as(TBBUTTONINFOW_MASK, @enumFromInt(
+              (if (o.BYINDEX == 1) @intFromEnum(TBBUTTONINFOW_MASK.BYINDEX) else 0)
+            | (if (o.COMMAND == 1) @intFromEnum(TBBUTTONINFOW_MASK.COMMAND) else 0)
+            | (if (o.IMAGE == 1) @intFromEnum(TBBUTTONINFOW_MASK.IMAGE) else 0)
+            | (if (o.LPARAM == 1) @intFromEnum(TBBUTTONINFOW_MASK.LPARAM) else 0)
+            | (if (o.SIZE == 1) @intFromEnum(TBBUTTONINFOW_MASK.SIZE) else 0)
+            | (if (o.STATE == 1) @intFromEnum(TBBUTTONINFOW_MASK.STATE) else 0)
+            | (if (o.STYLE == 1) @intFromEnum(TBBUTTONINFOW_MASK.STYLE) else 0)
+            | (if (o.TEXT == 1) @intFromEnum(TBBUTTONINFOW_MASK.TEXT) else 0)
+        ));
     }
 };
 pub const TBIF_BYINDEX = TBBUTTONINFOW_MASK.BYINDEX;
@@ -3127,12 +3127,12 @@ pub const LVGROUP_MASK = enum(u32) {
         FOOTER: u1 = 0,
         STATE: u1 = 0,
     }) LVGROUP_MASK {
-        return @intToEnum(LVGROUP_MASK,
-              (if (o.NONE == 1) @enumToInt(LVGROUP_MASK.NONE) else 0)
-            | (if (o.HEADER == 1) @enumToInt(LVGROUP_MASK.HEADER) else 0)
-            | (if (o.FOOTER == 1) @enumToInt(LVGROUP_MASK.FOOTER) else 0)
-            | (if (o.STATE == 1) @enumToInt(LVGROUP_MASK.STATE) else 0)
-        );
+        return @as(LVGROUP_MASK, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(LVGROUP_MASK.NONE) else 0)
+            | (if (o.HEADER == 1) @intFromEnum(LVGROUP_MASK.HEADER) else 0)
+            | (if (o.FOOTER == 1) @intFromEnum(LVGROUP_MASK.FOOTER) else 0)
+            | (if (o.STATE == 1) @intFromEnum(LVGROUP_MASK.STATE) else 0)
+        ));
     }
 };
 pub const LVGF_NONE = LVGROUP_MASK.NONE;
@@ -3150,11 +3150,11 @@ pub const BP_PAINTPARAMS_FLAGS = enum(u32) {
         NOCLIP: u1 = 0,
         NONCLIENT: u1 = 0,
     }) BP_PAINTPARAMS_FLAGS {
-        return @intToEnum(BP_PAINTPARAMS_FLAGS,
-              (if (o.ERASE == 1) @enumToInt(BP_PAINTPARAMS_FLAGS.ERASE) else 0)
-            | (if (o.NOCLIP == 1) @enumToInt(BP_PAINTPARAMS_FLAGS.NOCLIP) else 0)
-            | (if (o.NONCLIENT == 1) @enumToInt(BP_PAINTPARAMS_FLAGS.NONCLIENT) else 0)
-        );
+        return @as(BP_PAINTPARAMS_FLAGS, @enumFromInt(
+              (if (o.ERASE == 1) @intFromEnum(BP_PAINTPARAMS_FLAGS.ERASE) else 0)
+            | (if (o.NOCLIP == 1) @intFromEnum(BP_PAINTPARAMS_FLAGS.NOCLIP) else 0)
+            | (if (o.NONCLIENT == 1) @intFromEnum(BP_PAINTPARAMS_FLAGS.NONCLIENT) else 0)
+        ));
     }
 };
 pub const BPPF_ERASE = BP_PAINTPARAMS_FLAGS.ERASE;
@@ -3189,20 +3189,20 @@ pub const TVHITTESTINFO_FLAGS = enum(u32) {
         TOLEFT: u1 = 0,
         TORIGHT: u1 = 0,
     }) TVHITTESTINFO_FLAGS {
-        return @intToEnum(TVHITTESTINFO_FLAGS,
-              (if (o.ABOVE == 1) @enumToInt(TVHITTESTINFO_FLAGS.ABOVE) else 0)
-            | (if (o.BELOW == 1) @enumToInt(TVHITTESTINFO_FLAGS.BELOW) else 0)
-            | (if (o.NOWHERE == 1) @enumToInt(TVHITTESTINFO_FLAGS.NOWHERE) else 0)
-            | (if (o.ONITEM == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEM) else 0)
-            | (if (o.ONITEMBUTTON == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMBUTTON) else 0)
-            | (if (o.ONITEMICON == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMICON) else 0)
-            | (if (o.ONITEMINDENT == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMINDENT) else 0)
-            | (if (o.ONITEMLABEL == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMLABEL) else 0)
-            | (if (o.ONITEMRIGHT == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMRIGHT) else 0)
-            | (if (o.ONITEMSTATEICON == 1) @enumToInt(TVHITTESTINFO_FLAGS.ONITEMSTATEICON) else 0)
-            | (if (o.TOLEFT == 1) @enumToInt(TVHITTESTINFO_FLAGS.TOLEFT) else 0)
-            | (if (o.TORIGHT == 1) @enumToInt(TVHITTESTINFO_FLAGS.TORIGHT) else 0)
-        );
+        return @as(TVHITTESTINFO_FLAGS, @enumFromInt(
+              (if (o.ABOVE == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ABOVE) else 0)
+            | (if (o.BELOW == 1) @intFromEnum(TVHITTESTINFO_FLAGS.BELOW) else 0)
+            | (if (o.NOWHERE == 1) @intFromEnum(TVHITTESTINFO_FLAGS.NOWHERE) else 0)
+            | (if (o.ONITEM == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEM) else 0)
+            | (if (o.ONITEMBUTTON == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEMBUTTON) else 0)
+            | (if (o.ONITEMICON == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEMICON) else 0)
+            | (if (o.ONITEMINDENT == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEMINDENT) else 0)
+            | (if (o.ONITEMLABEL == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEMLABEL) else 0)
+            | (if (o.ONITEMRIGHT == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEMRIGHT) else 0)
+            | (if (o.ONITEMSTATEICON == 1) @intFromEnum(TVHITTESTINFO_FLAGS.ONITEMSTATEICON) else 0)
+            | (if (o.TOLEFT == 1) @intFromEnum(TVHITTESTINFO_FLAGS.TOLEFT) else 0)
+            | (if (o.TORIGHT == 1) @intFromEnum(TVHITTESTINFO_FLAGS.TORIGHT) else 0)
+        ));
     }
 };
 pub const TVHT_ABOVE = TVHITTESTINFO_FLAGS.ABOVE;
@@ -3261,11 +3261,11 @@ pub const MCGRIDINFO_FLAGS = enum(u32) {
         RECT: u1 = 0,
         NAME: u1 = 0,
     }) MCGRIDINFO_FLAGS {
-        return @intToEnum(MCGRIDINFO_FLAGS,
-              (if (o.DATE == 1) @enumToInt(MCGRIDINFO_FLAGS.DATE) else 0)
-            | (if (o.RECT == 1) @enumToInt(MCGRIDINFO_FLAGS.RECT) else 0)
-            | (if (o.NAME == 1) @enumToInt(MCGRIDINFO_FLAGS.NAME) else 0)
-        );
+        return @as(MCGRIDINFO_FLAGS, @enumFromInt(
+              (if (o.DATE == 1) @intFromEnum(MCGRIDINFO_FLAGS.DATE) else 0)
+            | (if (o.RECT == 1) @intFromEnum(MCGRIDINFO_FLAGS.RECT) else 0)
+            | (if (o.NAME == 1) @intFromEnum(MCGRIDINFO_FLAGS.NAME) else 0)
+        ));
     }
 };
 pub const MCGIF_DATE = MCGRIDINFO_FLAGS.DATE;
@@ -3309,24 +3309,24 @@ pub const LVHITTESTINFO_FLAGS = enum(u32) {
         EX_ONCONTENTS: u1 = 0,
         EX_FOOTER: u1 = 0,
     }) LVHITTESTINFO_FLAGS {
-        return @intToEnum(LVHITTESTINFO_FLAGS,
-              (if (o.ABOVE == 1) @enumToInt(LVHITTESTINFO_FLAGS.ABOVE) else 0)
-            | (if (o.BELOW == 1) @enumToInt(LVHITTESTINFO_FLAGS.BELOW) else 0)
-            | (if (o.NOWHERE == 1) @enumToInt(LVHITTESTINFO_FLAGS.NOWHERE) else 0)
-            | (if (o.ONITEMICON == 1) @enumToInt(LVHITTESTINFO_FLAGS.ONITEMICON) else 0)
-            | (if (o.ONITEMLABEL == 1) @enumToInt(LVHITTESTINFO_FLAGS.ONITEMLABEL) else 0)
-            | (if (o.TOLEFT == 1) @enumToInt(LVHITTESTINFO_FLAGS.TOLEFT) else 0)
-            | (if (o.TORIGHT == 1) @enumToInt(LVHITTESTINFO_FLAGS.TORIGHT) else 0)
-            | (if (o.EX_GROUP_HEADER == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_HEADER) else 0)
-            | (if (o.EX_GROUP_FOOTER == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_FOOTER) else 0)
-            | (if (o.EX_GROUP_COLLAPSE == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_COLLAPSE) else 0)
-            | (if (o.EX_GROUP_BACKGROUND == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_BACKGROUND) else 0)
-            | (if (o.EX_GROUP_STATEICON == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_STATEICON) else 0)
-            | (if (o.EX_GROUP_SUBSETLINK == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP_SUBSETLINK) else 0)
-            | (if (o.EX_GROUP == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_GROUP) else 0)
-            | (if (o.EX_ONCONTENTS == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_ONCONTENTS) else 0)
-            | (if (o.EX_FOOTER == 1) @enumToInt(LVHITTESTINFO_FLAGS.EX_FOOTER) else 0)
-        );
+        return @as(LVHITTESTINFO_FLAGS, @enumFromInt(
+              (if (o.ABOVE == 1) @intFromEnum(LVHITTESTINFO_FLAGS.ABOVE) else 0)
+            | (if (o.BELOW == 1) @intFromEnum(LVHITTESTINFO_FLAGS.BELOW) else 0)
+            | (if (o.NOWHERE == 1) @intFromEnum(LVHITTESTINFO_FLAGS.NOWHERE) else 0)
+            | (if (o.ONITEMICON == 1) @intFromEnum(LVHITTESTINFO_FLAGS.ONITEMICON) else 0)
+            | (if (o.ONITEMLABEL == 1) @intFromEnum(LVHITTESTINFO_FLAGS.ONITEMLABEL) else 0)
+            | (if (o.TOLEFT == 1) @intFromEnum(LVHITTESTINFO_FLAGS.TOLEFT) else 0)
+            | (if (o.TORIGHT == 1) @intFromEnum(LVHITTESTINFO_FLAGS.TORIGHT) else 0)
+            | (if (o.EX_GROUP_HEADER == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP_HEADER) else 0)
+            | (if (o.EX_GROUP_FOOTER == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP_FOOTER) else 0)
+            | (if (o.EX_GROUP_COLLAPSE == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP_COLLAPSE) else 0)
+            | (if (o.EX_GROUP_BACKGROUND == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP_BACKGROUND) else 0)
+            | (if (o.EX_GROUP_STATEICON == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP_STATEICON) else 0)
+            | (if (o.EX_GROUP_SUBSETLINK == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP_SUBSETLINK) else 0)
+            | (if (o.EX_GROUP == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_GROUP) else 0)
+            | (if (o.EX_ONCONTENTS == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_ONCONTENTS) else 0)
+            | (if (o.EX_FOOTER == 1) @intFromEnum(LVHITTESTINFO_FLAGS.EX_FOOTER) else 0)
+        ));
     }
 };
 pub const LVHT_ABOVE = LVHITTESTINFO_FLAGS.ABOVE;
@@ -3385,25 +3385,25 @@ pub const INITCOMMONCONTROLSEX_ICC = enum(u32) {
         USEREX_CLASSES: u1 = 0,
         WIN95_CLASSES: u1 = 0,
     }) INITCOMMONCONTROLSEX_ICC {
-        return @intToEnum(INITCOMMONCONTROLSEX_ICC,
-              (if (o.ANIMATE_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.ANIMATE_CLASS) else 0)
-            | (if (o.BAR_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.BAR_CLASSES) else 0)
-            | (if (o.COOL_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.COOL_CLASSES) else 0)
-            | (if (o.DATE_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.DATE_CLASSES) else 0)
-            | (if (o.HOTKEY_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.HOTKEY_CLASS) else 0)
-            | (if (o.INTERNET_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.INTERNET_CLASSES) else 0)
-            | (if (o.LINK_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.LINK_CLASS) else 0)
-            | (if (o.LISTVIEW_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.LISTVIEW_CLASSES) else 0)
-            | (if (o.NATIVEFNTCTL_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.NATIVEFNTCTL_CLASS) else 0)
-            | (if (o.PAGESCROLLER_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.PAGESCROLLER_CLASS) else 0)
-            | (if (o.PROGRESS_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.PROGRESS_CLASS) else 0)
-            | (if (o.STANDARD_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.STANDARD_CLASSES) else 0)
-            | (if (o.TAB_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.TAB_CLASSES) else 0)
-            | (if (o.TREEVIEW_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.TREEVIEW_CLASSES) else 0)
-            | (if (o.UPDOWN_CLASS == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.UPDOWN_CLASS) else 0)
-            | (if (o.USEREX_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.USEREX_CLASSES) else 0)
-            | (if (o.WIN95_CLASSES == 1) @enumToInt(INITCOMMONCONTROLSEX_ICC.WIN95_CLASSES) else 0)
-        );
+        return @as(INITCOMMONCONTROLSEX_ICC, @enumFromInt(
+              (if (o.ANIMATE_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.ANIMATE_CLASS) else 0)
+            | (if (o.BAR_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.BAR_CLASSES) else 0)
+            | (if (o.COOL_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.COOL_CLASSES) else 0)
+            | (if (o.DATE_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.DATE_CLASSES) else 0)
+            | (if (o.HOTKEY_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.HOTKEY_CLASS) else 0)
+            | (if (o.INTERNET_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.INTERNET_CLASSES) else 0)
+            | (if (o.LINK_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.LINK_CLASS) else 0)
+            | (if (o.LISTVIEW_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.LISTVIEW_CLASSES) else 0)
+            | (if (o.NATIVEFNTCTL_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.NATIVEFNTCTL_CLASS) else 0)
+            | (if (o.PAGESCROLLER_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.PAGESCROLLER_CLASS) else 0)
+            | (if (o.PROGRESS_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.PROGRESS_CLASS) else 0)
+            | (if (o.STANDARD_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.STANDARD_CLASSES) else 0)
+            | (if (o.TAB_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.TAB_CLASSES) else 0)
+            | (if (o.TREEVIEW_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.TREEVIEW_CLASSES) else 0)
+            | (if (o.UPDOWN_CLASS == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.UPDOWN_CLASS) else 0)
+            | (if (o.USEREX_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.USEREX_CLASSES) else 0)
+            | (if (o.WIN95_CLASSES == 1) @intFromEnum(INITCOMMONCONTROLSEX_ICC.WIN95_CLASSES) else 0)
+        ));
     }
 };
 pub const ICC_ANIMATE_CLASS = INITCOMMONCONTROLSEX_ICC.ANIMATE_CLASS;
@@ -3443,11 +3443,11 @@ pub const NMTBDISPINFOW_MASK = enum(u32) {
         TEXT: u1 = 0,
         DI_SETITEM: u1 = 0,
     }) NMTBDISPINFOW_MASK {
-        return @intToEnum(NMTBDISPINFOW_MASK,
-              (if (o.IMAGE == 1) @enumToInt(NMTBDISPINFOW_MASK.IMAGE) else 0)
-            | (if (o.TEXT == 1) @enumToInt(NMTBDISPINFOW_MASK.TEXT) else 0)
-            | (if (o.DI_SETITEM == 1) @enumToInt(NMTBDISPINFOW_MASK.DI_SETITEM) else 0)
-        );
+        return @as(NMTBDISPINFOW_MASK, @enumFromInt(
+              (if (o.IMAGE == 1) @intFromEnum(NMTBDISPINFOW_MASK.IMAGE) else 0)
+            | (if (o.TEXT == 1) @intFromEnum(NMTBDISPINFOW_MASK.TEXT) else 0)
+            | (if (o.DI_SETITEM == 1) @intFromEnum(NMTBDISPINFOW_MASK.DI_SETITEM) else 0)
+        ));
     }
 };
 pub const TBNF_IMAGE = NMTBDISPINFOW_MASK.IMAGE;
@@ -3496,21 +3496,21 @@ pub const IMAGELIST_CREATION_FLAGS = enum(u32) {
         ORIGINALSIZE: u1 = 0,
         HIGHQUALITYSCALE: u1 = 0,
     }) IMAGELIST_CREATION_FLAGS {
-        return @intToEnum(IMAGELIST_CREATION_FLAGS,
-              (if (o.MASK == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.MASK) else 0)
-            | (if (o.COLOR == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLOR) else 0)
-            | (if (o.COLORDDB == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLORDDB) else 0)
-            | (if (o.COLOR4 == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLOR4) else 0)
-            | (if (o.COLOR8 == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLOR8) else 0)
-            | (if (o.COLOR16 == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLOR16) else 0)
-            | (if (o.COLOR24 == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLOR24) else 0)
-            | (if (o.COLOR32 == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.COLOR32) else 0)
-            | (if (o.PALETTE == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.PALETTE) else 0)
-            | (if (o.MIRROR == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.MIRROR) else 0)
-            | (if (o.PERITEMMIRROR == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.PERITEMMIRROR) else 0)
-            | (if (o.ORIGINALSIZE == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.ORIGINALSIZE) else 0)
-            | (if (o.HIGHQUALITYSCALE == 1) @enumToInt(IMAGELIST_CREATION_FLAGS.HIGHQUALITYSCALE) else 0)
-        );
+        return @as(IMAGELIST_CREATION_FLAGS, @enumFromInt(
+              (if (o.MASK == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.MASK) else 0)
+            | (if (o.COLOR == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLOR) else 0)
+            | (if (o.COLORDDB == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLORDDB) else 0)
+            | (if (o.COLOR4 == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLOR4) else 0)
+            | (if (o.COLOR8 == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLOR8) else 0)
+            | (if (o.COLOR16 == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLOR16) else 0)
+            | (if (o.COLOR24 == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLOR24) else 0)
+            | (if (o.COLOR32 == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.COLOR32) else 0)
+            | (if (o.PALETTE == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.PALETTE) else 0)
+            | (if (o.MIRROR == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.MIRROR) else 0)
+            | (if (o.PERITEMMIRROR == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.PERITEMMIRROR) else 0)
+            | (if (o.ORIGINALSIZE == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.ORIGINALSIZE) else 0)
+            | (if (o.HIGHQUALITYSCALE == 1) @intFromEnum(IMAGELIST_CREATION_FLAGS.HIGHQUALITYSCALE) else 0)
+        ));
     }
 };
 pub const ILC_MASK = IMAGELIST_CREATION_FLAGS.MASK;
@@ -6020,119 +6020,119 @@ pub const IImageList = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_Add(self: *const T, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP, pi: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Add(@ptrCast(*const IImageList, self), hbmImage, hbmMask, pi);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Add(@as(*const IImageList, @ptrCast(self)), hbmImage, hbmMask, pi);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_ReplaceIcon(self: *const T, i: i32, hicon: ?HICON, pi: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).ReplaceIcon(@ptrCast(*const IImageList, self), i, hicon, pi);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).ReplaceIcon(@as(*const IImageList, @ptrCast(self)), i, hicon, pi);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_SetOverlayImage(self: *const T, iImage: i32, iOverlay: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).SetOverlayImage(@ptrCast(*const IImageList, self), iImage, iOverlay);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).SetOverlayImage(@as(*const IImageList, @ptrCast(self)), iImage, iOverlay);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_Replace(self: *const T, i: i32, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Replace(@ptrCast(*const IImageList, self), i, hbmImage, hbmMask);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Replace(@as(*const IImageList, @ptrCast(self)), i, hbmImage, hbmMask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_AddMasked(self: *const T, hbmImage: ?HBITMAP, crMask: u32, pi: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).AddMasked(@ptrCast(*const IImageList, self), hbmImage, crMask, pi);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).AddMasked(@as(*const IImageList, @ptrCast(self)), hbmImage, crMask, pi);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_Draw(self: *const T, pimldp: ?*IMAGELISTDRAWPARAMS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Draw(@ptrCast(*const IImageList, self), pimldp);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Draw(@as(*const IImageList, @ptrCast(self)), pimldp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_Remove(self: *const T, i: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Remove(@ptrCast(*const IImageList, self), i);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Remove(@as(*const IImageList, @ptrCast(self)), i);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_GetIcon(self: *const T, i: i32, flags: u32, picon: ?*?HICON) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetIcon(@ptrCast(*const IImageList, self), i, flags, picon);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetIcon(@as(*const IImageList, @ptrCast(self)), i, flags, picon);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_GetImageInfo(self: *const T, i: i32, pImageInfo: ?*IMAGEINFO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetImageInfo(@ptrCast(*const IImageList, self), i, pImageInfo);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetImageInfo(@as(*const IImageList, @ptrCast(self)), i, pImageInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_Copy(self: *const T, iDst: i32, punkSrc: ?*IUnknown, iSrc: i32, uFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Copy(@ptrCast(*const IImageList, self), iDst, punkSrc, iSrc, uFlags);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Copy(@as(*const IImageList, @ptrCast(self)), iDst, punkSrc, iSrc, uFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_Merge(self: *const T, i1_: i32, punk2: ?*IUnknown, i2_: i32, dx: i32, dy: i32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Merge(@ptrCast(*const IImageList, self), i1_, punk2, i2_, dx, dy, riid, ppv);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Merge(@as(*const IImageList, @ptrCast(self)), i1_, punk2, i2_, dx, dy, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_Clone(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).Clone(@ptrCast(*const IImageList, self), riid, ppv);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Clone(@as(*const IImageList, @ptrCast(self)), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_GetImageRect(self: *const T, i: i32, prc: ?*RECT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetImageRect(@ptrCast(*const IImageList, self), i, prc);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetImageRect(@as(*const IImageList, @ptrCast(self)), i, prc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_GetIconSize(self: *const T, cx: ?*i32, cy: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetIconSize(@ptrCast(*const IImageList, self), cx, cy);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetIconSize(@as(*const IImageList, @ptrCast(self)), cx, cy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_SetIconSize(self: *const T, cx: i32, cy: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).SetIconSize(@ptrCast(*const IImageList, self), cx, cy);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).SetIconSize(@as(*const IImageList, @ptrCast(self)), cx, cy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_GetImageCount(self: *const T, pi: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetImageCount(@ptrCast(*const IImageList, self), pi);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetImageCount(@as(*const IImageList, @ptrCast(self)), pi);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_SetImageCount(self: *const T, uNewCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).SetImageCount(@ptrCast(*const IImageList, self), uNewCount);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).SetImageCount(@as(*const IImageList, @ptrCast(self)), uNewCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_SetBkColor(self: *const T, clrBk: u32, pclr: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).SetBkColor(@ptrCast(*const IImageList, self), clrBk, pclr);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).SetBkColor(@as(*const IImageList, @ptrCast(self)), clrBk, pclr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_GetBkColor(self: *const T, pclr: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetBkColor(@ptrCast(*const IImageList, self), pclr);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetBkColor(@as(*const IImageList, @ptrCast(self)), pclr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_BeginDrag(self: *const T, iTrack: i32, dxHotspot: i32, dyHotspot: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).BeginDrag(@ptrCast(*const IImageList, self), iTrack, dxHotspot, dyHotspot);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).BeginDrag(@as(*const IImageList, @ptrCast(self)), iTrack, dxHotspot, dyHotspot);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_EndDrag(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).EndDrag(@ptrCast(*const IImageList, self));
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).EndDrag(@as(*const IImageList, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_DragEnter(self: *const T, hwndLock: ?HWND, x: i32, y: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).DragEnter(@ptrCast(*const IImageList, self), hwndLock, x, y);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).DragEnter(@as(*const IImageList, @ptrCast(self)), hwndLock, x, y);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_DragLeave(self: *const T, hwndLock: ?HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).DragLeave(@ptrCast(*const IImageList, self), hwndLock);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).DragLeave(@as(*const IImageList, @ptrCast(self)), hwndLock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_DragMove(self: *const T, x: i32, y: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).DragMove(@ptrCast(*const IImageList, self), x, y);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).DragMove(@as(*const IImageList, @ptrCast(self)), x, y);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_SetDragCursorImage(self: *const T, punk: ?*IUnknown, iDrag: i32, dxHotspot: i32, dyHotspot: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).SetDragCursorImage(@ptrCast(*const IImageList, self), punk, iDrag, dxHotspot, dyHotspot);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).SetDragCursorImage(@as(*const IImageList, @ptrCast(self)), punk, iDrag, dxHotspot, dyHotspot);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_DragShowNolock(self: *const T, fShow: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).DragShowNolock(@ptrCast(*const IImageList, self), fShow);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).DragShowNolock(@as(*const IImageList, @ptrCast(self)), fShow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_GetDragImage(self: *const T, ppt: ?*POINT, pptHotspot: ?*POINT, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetDragImage(@ptrCast(*const IImageList, self), ppt, pptHotspot, riid, ppv);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetDragImage(@as(*const IImageList, @ptrCast(self)), ppt, pptHotspot, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_GetItemFlags(self: *const T, i: i32, dwFlags: ?*IMAGE_LIST_ITEM_FLAGS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetItemFlags(@ptrCast(*const IImageList, self), i, dwFlags);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetItemFlags(@as(*const IImageList, @ptrCast(self)), i, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_GetOverlayImage(self: *const T, iOverlay: i32, piIndex: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList.VTable, self.vtable).GetOverlayImage(@ptrCast(*const IImageList, self), iOverlay, piIndex);
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).GetOverlayImage(@as(*const IImageList, @ptrCast(self)), iOverlay, piIndex);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -6321,51 +6321,51 @@ pub const IImageList2 = extern struct {
         pub usingnamespace IImageList.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList2_Resize(self: *const T, cxNewIconSize: i32, cyNewIconSize: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).Resize(@ptrCast(*const IImageList2, self), cxNewIconSize, cyNewIconSize);
+            return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).Resize(@as(*const IImageList2, @ptrCast(self)), cxNewIconSize, cyNewIconSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList2_GetOriginalSize(self: *const T, iImage: i32, dwFlags: u32, pcx: ?*i32, pcy: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).GetOriginalSize(@ptrCast(*const IImageList2, self), iImage, dwFlags, pcx, pcy);
+            return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).GetOriginalSize(@as(*const IImageList2, @ptrCast(self)), iImage, dwFlags, pcx, pcy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList2_SetOriginalSize(self: *const T, iImage: i32, cx: i32, cy: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).SetOriginalSize(@ptrCast(*const IImageList2, self), iImage, cx, cy);
+            return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).SetOriginalSize(@as(*const IImageList2, @ptrCast(self)), iImage, cx, cy);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList2_SetCallback(self: *const T, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).SetCallback(@ptrCast(*const IImageList2, self), punk);
+            return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).SetCallback(@as(*const IImageList2, @ptrCast(self)), punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList2_GetCallback(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).GetCallback(@ptrCast(*const IImageList2, self), riid, ppv);
+            return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).GetCallback(@as(*const IImageList2, @ptrCast(self)), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList2_ForceImagePresent(self: *const T, iImage: i32, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).ForceImagePresent(@ptrCast(*const IImageList2, self), iImage, dwFlags);
+            return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).ForceImagePresent(@as(*const IImageList2, @ptrCast(self)), iImage, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList2_DiscardImages(self: *const T, iFirstImage: i32, iLastImage: i32, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).DiscardImages(@ptrCast(*const IImageList2, self), iFirstImage, iLastImage, dwFlags);
+            return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).DiscardImages(@as(*const IImageList2, @ptrCast(self)), iFirstImage, iLastImage, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList2_PreloadImages(self: *const T, pimldp: ?*IMAGELISTDRAWPARAMS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).PreloadImages(@ptrCast(*const IImageList2, self), pimldp);
+            return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).PreloadImages(@as(*const IImageList2, @ptrCast(self)), pimldp);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList2_GetStatistics(self: *const T, pils: ?*IMAGELISTSTATS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).GetStatistics(@ptrCast(*const IImageList2, self), pils);
+            return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const IImageList2, @ptrCast(self)), pils);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList2_Initialize(self: *const T, cx: i32, cy: i32, flags: IMAGELIST_CREATION_FLAGS, cInitial: i32, cGrow: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).Initialize(@ptrCast(*const IImageList2, self), cx, cy, flags, cInitial, cGrow);
+            return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IImageList2, @ptrCast(self)), cx, cy, flags, cInitial, cGrow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList2_Replace2(self: *const T, i: i32, hbmImage: ?HBITMAP, hbmMask: ?HBITMAP, punk: ?*IUnknown, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).Replace2(@ptrCast(*const IImageList2, self), i, hbmImage, hbmMask, punk, dwFlags);
+            return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).Replace2(@as(*const IImageList2, @ptrCast(self)), i, hbmImage, hbmMask, punk, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList2_ReplaceFromImageList(self: *const T, i: i32, pil: ?*IImageList, iSrc: i32, punk: ?*IUnknown, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IImageList2.VTable, self.vtable).ReplaceFromImageList(@ptrCast(*const IImageList2, self), i, pil, iSrc, punk, dwFlags);
+            return @as(*const IImageList2.VTable, @ptrCast(self.vtable)).ReplaceFromImageList(@as(*const IImageList2, @ptrCast(self)), i, pil, iSrc, punk, dwFlags);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -6402,14 +6402,14 @@ pub const TA_PROPERTY_FLAG = enum(u32) {
         HASBACKGROUND: u1 = 0,
         HASPERSPECTIVE: u1 = 0,
     }) TA_PROPERTY_FLAG {
-        return @intToEnum(TA_PROPERTY_FLAG,
-              (if (o.NONE == 1) @enumToInt(TA_PROPERTY_FLAG.NONE) else 0)
-            | (if (o.HASSTAGGER == 1) @enumToInt(TA_PROPERTY_FLAG.HASSTAGGER) else 0)
-            | (if (o.ISRTLAWARE == 1) @enumToInt(TA_PROPERTY_FLAG.ISRTLAWARE) else 0)
-            | (if (o.ALLOWCOLLECTION == 1) @enumToInt(TA_PROPERTY_FLAG.ALLOWCOLLECTION) else 0)
-            | (if (o.HASBACKGROUND == 1) @enumToInt(TA_PROPERTY_FLAG.HASBACKGROUND) else 0)
-            | (if (o.HASPERSPECTIVE == 1) @enumToInt(TA_PROPERTY_FLAG.HASPERSPECTIVE) else 0)
-        );
+        return @as(TA_PROPERTY_FLAG, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(TA_PROPERTY_FLAG.NONE) else 0)
+            | (if (o.HASSTAGGER == 1) @intFromEnum(TA_PROPERTY_FLAG.HASSTAGGER) else 0)
+            | (if (o.ISRTLAWARE == 1) @intFromEnum(TA_PROPERTY_FLAG.ISRTLAWARE) else 0)
+            | (if (o.ALLOWCOLLECTION == 1) @intFromEnum(TA_PROPERTY_FLAG.ALLOWCOLLECTION) else 0)
+            | (if (o.HASBACKGROUND == 1) @intFromEnum(TA_PROPERTY_FLAG.HASBACKGROUND) else 0)
+            | (if (o.HASPERSPECTIVE == 1) @intFromEnum(TA_PROPERTY_FLAG.HASPERSPECTIVE) else 0)
+        ));
     }
 };
 pub const TAPF_NONE = TA_PROPERTY_FLAG.NONE;

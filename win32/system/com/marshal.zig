@@ -112,27 +112,27 @@ pub const IMarshal = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMarshal_GetUnmarshalClass(self: *const T, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pCid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMarshal.VTable, self.vtable).GetUnmarshalClass(@ptrCast(*const IMarshal, self), riid, pv, dwDestContext, pvDestContext, mshlflags, pCid);
+            return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).GetUnmarshalClass(@as(*const IMarshal, @ptrCast(self)), riid, pv, dwDestContext, pvDestContext, mshlflags, pCid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMarshal_GetMarshalSizeMax(self: *const T, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMarshal.VTable, self.vtable).GetMarshalSizeMax(@ptrCast(*const IMarshal, self), riid, pv, dwDestContext, pvDestContext, mshlflags, pSize);
+            return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).GetMarshalSizeMax(@as(*const IMarshal, @ptrCast(self)), riid, pv, dwDestContext, pvDestContext, mshlflags, pSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMarshal_MarshalInterface(self: *const T, pStm: ?*IStream, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMarshal.VTable, self.vtable).MarshalInterface(@ptrCast(*const IMarshal, self), pStm, riid, pv, dwDestContext, pvDestContext, mshlflags);
+            return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).MarshalInterface(@as(*const IMarshal, @ptrCast(self)), pStm, riid, pv, dwDestContext, pvDestContext, mshlflags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMarshal_UnmarshalInterface(self: *const T, pStm: ?*IStream, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMarshal.VTable, self.vtable).UnmarshalInterface(@ptrCast(*const IMarshal, self), pStm, riid, ppv);
+            return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).UnmarshalInterface(@as(*const IMarshal, @ptrCast(self)), pStm, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMarshal_ReleaseMarshalData(self: *const T, pStm: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMarshal.VTable, self.vtable).ReleaseMarshalData(@ptrCast(*const IMarshal, self), pStm);
+            return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).ReleaseMarshalData(@as(*const IMarshal, @ptrCast(self)), pStm);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMarshal_DisconnectObject(self: *const T, dwReserved: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMarshal.VTable, self.vtable).DisconnectObject(@ptrCast(*const IMarshal, self), dwReserved);
+            return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).DisconnectObject(@as(*const IMarshal, @ptrCast(self)), dwReserved);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -175,7 +175,7 @@ pub const IMarshalingStream = extern struct {
         pub usingnamespace IStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMarshalingStream_GetMarshalingContextAttribute(self: *const T, attribute: CO_MARSHALING_CONTEXT_ATTRIBUTES, pAttributeValue: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMarshalingStream.VTable, self.vtable).GetMarshalingContextAttribute(@ptrCast(*const IMarshalingStream, self), attribute, pAttributeValue);
+            return @as(*const IMarshalingStream.VTable, @ptrCast(self.vtable)).GetMarshalingContextAttribute(@as(*const IMarshalingStream, @ptrCast(self)), attribute, pAttributeValue);
         }
     };}
     pub usingnamespace MethodMixin(@This());

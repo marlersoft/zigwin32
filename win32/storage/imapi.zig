@@ -803,19 +803,19 @@ pub const IDiscMaster2 = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster2_get__NewEnum(self: *const T, ppunk: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster2.VTable, self.vtable).get__NewEnum(@ptrCast(*const IDiscMaster2, self), ppunk);
+            return @as(*const IDiscMaster2.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IDiscMaster2, @ptrCast(self)), ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster2_get_Item(self: *const T, index: i32, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster2.VTable, self.vtable).get_Item(@ptrCast(*const IDiscMaster2, self), index, value);
+            return @as(*const IDiscMaster2.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IDiscMaster2, @ptrCast(self)), index, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster2_get_Count(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster2.VTable, self.vtable).get_Count(@ptrCast(*const IDiscMaster2, self), value);
+            return @as(*const IDiscMaster2.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IDiscMaster2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster2_get_IsSupportedEnvironment(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster2.VTable, self.vtable).get_IsSupportedEnvironment(@ptrCast(*const IDiscMaster2, self), value);
+            return @as(*const IDiscMaster2.VTable, @ptrCast(self.vtable)).get_IsSupportedEnvironment(@as(*const IDiscMaster2, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -857,11 +857,11 @@ pub const DDiscMaster2Events = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn DDiscMaster2Events_NotifyDeviceAdded(self: *const T, object: ?*IDispatch, uniqueId: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const DDiscMaster2Events.VTable, self.vtable).NotifyDeviceAdded(@ptrCast(*const DDiscMaster2Events, self), object, uniqueId);
+            return @as(*const DDiscMaster2Events.VTable, @ptrCast(self.vtable)).NotifyDeviceAdded(@as(*const DDiscMaster2Events, @ptrCast(self)), object, uniqueId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn DDiscMaster2Events_NotifyDeviceRemoved(self: *const T, object: ?*IDispatch, uniqueId: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const DDiscMaster2Events.VTable, self.vtable).NotifyDeviceRemoved(@ptrCast(*const DDiscMaster2Events, self), object, uniqueId);
+            return @as(*const DDiscMaster2Events.VTable, @ptrCast(self.vtable)).NotifyDeviceRemoved(@as(*const DDiscMaster2Events, @ptrCast(self)), object, uniqueId);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1141,75 +1141,75 @@ pub const IDiscRecorder2Ex = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_SendCommandNoData(self: *const T, Cdb: [*:0]u8, CdbSize: u32, SenseBuffer: *[18]u8, Timeout: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).SendCommandNoData(@ptrCast(*const IDiscRecorder2Ex, self), Cdb, CdbSize, SenseBuffer, Timeout);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SendCommandNoData(@as(*const IDiscRecorder2Ex, @ptrCast(self)), Cdb, CdbSize, SenseBuffer, Timeout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_SendCommandSendDataToDevice(self: *const T, Cdb: [*:0]u8, CdbSize: u32, SenseBuffer: *[18]u8, Timeout: u32, Buffer: [*:0]u8, BufferSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).SendCommandSendDataToDevice(@ptrCast(*const IDiscRecorder2Ex, self), Cdb, CdbSize, SenseBuffer, Timeout, Buffer, BufferSize);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SendCommandSendDataToDevice(@as(*const IDiscRecorder2Ex, @ptrCast(self)), Cdb, CdbSize, SenseBuffer, Timeout, Buffer, BufferSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_SendCommandGetDataFromDevice(self: *const T, Cdb: [*:0]u8, CdbSize: u32, SenseBuffer: *[18]u8, Timeout: u32, Buffer: [*:0]u8, BufferSize: u32, BufferFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).SendCommandGetDataFromDevice(@ptrCast(*const IDiscRecorder2Ex, self), Cdb, CdbSize, SenseBuffer, Timeout, Buffer, BufferSize, BufferFetched);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SendCommandGetDataFromDevice(@as(*const IDiscRecorder2Ex, @ptrCast(self)), Cdb, CdbSize, SenseBuffer, Timeout, Buffer, BufferSize, BufferFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_ReadDvdStructure(self: *const T, format: u32, address: u32, layer: u32, agid: u32, data: ?[*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).ReadDvdStructure(@ptrCast(*const IDiscRecorder2Ex, self), format, address, layer, agid, data, count);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).ReadDvdStructure(@as(*const IDiscRecorder2Ex, @ptrCast(self)), format, address, layer, agid, data, count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_SendDvdStructure(self: *const T, format: u32, data: [*:0]u8, count: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).SendDvdStructure(@ptrCast(*const IDiscRecorder2Ex, self), format, data, count);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SendDvdStructure(@as(*const IDiscRecorder2Ex, @ptrCast(self)), format, data, count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_GetAdapterDescriptor(self: *const T, data: ?[*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetAdapterDescriptor(@ptrCast(*const IDiscRecorder2Ex, self), data, byteSize);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetAdapterDescriptor(@as(*const IDiscRecorder2Ex, @ptrCast(self)), data, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_GetDeviceDescriptor(self: *const T, data: ?[*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetDeviceDescriptor(@ptrCast(*const IDiscRecorder2Ex, self), data, byteSize);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetDeviceDescriptor(@as(*const IDiscRecorder2Ex, @ptrCast(self)), data, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_GetDiscInformation(self: *const T, discInformation: ?[*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetDiscInformation(@ptrCast(*const IDiscRecorder2Ex, self), discInformation, byteSize);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetDiscInformation(@as(*const IDiscRecorder2Ex, @ptrCast(self)), discInformation, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_GetTrackInformation(self: *const T, address: u32, addressType: IMAPI_READ_TRACK_ADDRESS_TYPE, trackInformation: ?[*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetTrackInformation(@ptrCast(*const IDiscRecorder2Ex, self), address, addressType, trackInformation, byteSize);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetTrackInformation(@as(*const IDiscRecorder2Ex, @ptrCast(self)), address, addressType, trackInformation, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_GetFeaturePage(self: *const T, requestedFeature: IMAPI_FEATURE_PAGE_TYPE, currentFeatureOnly: BOOLEAN, featureData: ?[*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetFeaturePage(@ptrCast(*const IDiscRecorder2Ex, self), requestedFeature, currentFeatureOnly, featureData, byteSize);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetFeaturePage(@as(*const IDiscRecorder2Ex, @ptrCast(self)), requestedFeature, currentFeatureOnly, featureData, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_GetModePage(self: *const T, requestedModePage: IMAPI_MODE_PAGE_TYPE, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, modePageData: ?[*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetModePage(@ptrCast(*const IDiscRecorder2Ex, self), requestedModePage, requestType, modePageData, byteSize);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetModePage(@as(*const IDiscRecorder2Ex, @ptrCast(self)), requestedModePage, requestType, modePageData, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_SetModePage(self: *const T, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, data: [*:0]u8, byteSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).SetModePage(@ptrCast(*const IDiscRecorder2Ex, self), requestType, data, byteSize);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SetModePage(@as(*const IDiscRecorder2Ex, @ptrCast(self)), requestType, data, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_GetSupportedFeaturePages(self: *const T, currentFeatureOnly: BOOLEAN, featureData: ?[*]?*IMAPI_FEATURE_PAGE_TYPE, byteSize: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetSupportedFeaturePages(@ptrCast(*const IDiscRecorder2Ex, self), currentFeatureOnly, featureData, byteSize);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetSupportedFeaturePages(@as(*const IDiscRecorder2Ex, @ptrCast(self)), currentFeatureOnly, featureData, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_GetSupportedProfiles(self: *const T, currentOnly: BOOLEAN, profileTypes: ?[*]?*IMAPI_PROFILE_TYPE, validProfiles: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetSupportedProfiles(@ptrCast(*const IDiscRecorder2Ex, self), currentOnly, profileTypes, validProfiles);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetSupportedProfiles(@as(*const IDiscRecorder2Ex, @ptrCast(self)), currentOnly, profileTypes, validProfiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_GetSupportedModePages(self: *const T, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, modePageTypes: ?[*]?*IMAPI_MODE_PAGE_TYPE, validPages: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetSupportedModePages(@ptrCast(*const IDiscRecorder2Ex, self), requestType, modePageTypes, validPages);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetSupportedModePages(@as(*const IDiscRecorder2Ex, @ptrCast(self)), requestType, modePageTypes, validPages);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_GetByteAlignmentMask(self: *const T, value: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetByteAlignmentMask(@ptrCast(*const IDiscRecorder2Ex, self), value);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetByteAlignmentMask(@as(*const IDiscRecorder2Ex, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_GetMaximumNonPageAlignedTransferSize(self: *const T, value: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetMaximumNonPageAlignedTransferSize(@ptrCast(*const IDiscRecorder2Ex, self), value);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetMaximumNonPageAlignedTransferSize(@as(*const IDiscRecorder2Ex, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2Ex_GetMaximumPageAlignedTransferSize(self: *const T, value: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2Ex.VTable, self.vtable).GetMaximumPageAlignedTransferSize(@ptrCast(*const IDiscRecorder2Ex, self), value);
+            return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetMaximumPageAlignedTransferSize(@as(*const IDiscRecorder2Ex, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1471,87 +1471,87 @@ pub const IDiscRecorder2 = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_EjectMedia(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).EjectMedia(@ptrCast(*const IDiscRecorder2, self));
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).EjectMedia(@as(*const IDiscRecorder2, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_CloseTray(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).CloseTray(@ptrCast(*const IDiscRecorder2, self));
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).CloseTray(@as(*const IDiscRecorder2, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_AcquireExclusiveAccess(self: *const T, force: i16, __MIDL__IDiscRecorder20000: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).AcquireExclusiveAccess(@ptrCast(*const IDiscRecorder2, self), force, __MIDL__IDiscRecorder20000);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).AcquireExclusiveAccess(@as(*const IDiscRecorder2, @ptrCast(self)), force, __MIDL__IDiscRecorder20000);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_ReleaseExclusiveAccess(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).ReleaseExclusiveAccess(@ptrCast(*const IDiscRecorder2, self));
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).ReleaseExclusiveAccess(@as(*const IDiscRecorder2, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_DisableMcn(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).DisableMcn(@ptrCast(*const IDiscRecorder2, self));
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).DisableMcn(@as(*const IDiscRecorder2, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_EnableMcn(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).EnableMcn(@ptrCast(*const IDiscRecorder2, self));
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).EnableMcn(@as(*const IDiscRecorder2, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_InitializeDiscRecorder(self: *const T, recorderUniqueId: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).InitializeDiscRecorder(@ptrCast(*const IDiscRecorder2, self), recorderUniqueId);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).InitializeDiscRecorder(@as(*const IDiscRecorder2, @ptrCast(self)), recorderUniqueId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_ActiveDiscRecorder(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_ActiveDiscRecorder(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_ActiveDiscRecorder(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_VendorId(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_VendorId(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_VendorId(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_ProductId(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_ProductId(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_ProductId(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_ProductRevision(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_ProductRevision(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_ProductRevision(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_VolumeName(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_VolumeName(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_VolumeName(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_VolumePathNames(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_VolumePathNames(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_VolumePathNames(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_DeviceCanLoadMedia(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_DeviceCanLoadMedia(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_DeviceCanLoadMedia(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_LegacyDeviceNumber(self: *const T, legacyDeviceNumber: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_LegacyDeviceNumber(@ptrCast(*const IDiscRecorder2, self), legacyDeviceNumber);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_LegacyDeviceNumber(@as(*const IDiscRecorder2, @ptrCast(self)), legacyDeviceNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_SupportedFeaturePages(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_SupportedFeaturePages(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_SupportedFeaturePages(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_CurrentFeaturePages(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_CurrentFeaturePages(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_CurrentFeaturePages(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_SupportedProfiles(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_SupportedProfiles(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_SupportedProfiles(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_CurrentProfiles(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_CurrentProfiles(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_CurrentProfiles(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_SupportedModePages(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_SupportedModePages(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_SupportedModePages(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder2_get_ExclusiveAccessOwner(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder2.VTable, self.vtable).get_ExclusiveAccessOwner(@ptrCast(*const IDiscRecorder2, self), value);
+            return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_ExclusiveAccessOwner(@as(*const IDiscRecorder2, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1734,55 +1734,55 @@ pub const IWriteEngine2 = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_WriteSection(self: *const T, data: ?*IStream, startingBlockAddress: i32, numberOfBlocks: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).WriteSection(@ptrCast(*const IWriteEngine2, self), data, startingBlockAddress, numberOfBlocks);
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).WriteSection(@as(*const IWriteEngine2, @ptrCast(self)), data, startingBlockAddress, numberOfBlocks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_CancelWrite(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).CancelWrite(@ptrCast(*const IWriteEngine2, self));
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).CancelWrite(@as(*const IWriteEngine2, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_put_Recorder(self: *const T, value: ?*IDiscRecorder2Ex) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).put_Recorder(@ptrCast(*const IWriteEngine2, self), value);
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).put_Recorder(@as(*const IWriteEngine2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2Ex) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).get_Recorder(@ptrCast(*const IWriteEngine2, self), value);
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).get_Recorder(@as(*const IWriteEngine2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_put_UseStreamingWrite12(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).put_UseStreamingWrite12(@ptrCast(*const IWriteEngine2, self), value);
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).put_UseStreamingWrite12(@as(*const IWriteEngine2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_get_UseStreamingWrite12(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).get_UseStreamingWrite12(@ptrCast(*const IWriteEngine2, self), value);
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).get_UseStreamingWrite12(@as(*const IWriteEngine2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_put_StartingSectorsPerSecond(self: *const T, value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).put_StartingSectorsPerSecond(@ptrCast(*const IWriteEngine2, self), value);
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).put_StartingSectorsPerSecond(@as(*const IWriteEngine2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_get_StartingSectorsPerSecond(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).get_StartingSectorsPerSecond(@ptrCast(*const IWriteEngine2, self), value);
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).get_StartingSectorsPerSecond(@as(*const IWriteEngine2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_put_EndingSectorsPerSecond(self: *const T, value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).put_EndingSectorsPerSecond(@ptrCast(*const IWriteEngine2, self), value);
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).put_EndingSectorsPerSecond(@as(*const IWriteEngine2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_get_EndingSectorsPerSecond(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).get_EndingSectorsPerSecond(@ptrCast(*const IWriteEngine2, self), value);
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).get_EndingSectorsPerSecond(@as(*const IWriteEngine2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_put_BytesPerSector(self: *const T, value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).put_BytesPerSector(@ptrCast(*const IWriteEngine2, self), value);
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).put_BytesPerSector(@as(*const IWriteEngine2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_get_BytesPerSector(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).get_BytesPerSector(@ptrCast(*const IWriteEngine2, self), value);
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).get_BytesPerSector(@as(*const IWriteEngine2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2_get_WriteInProgress(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2.VTable, self.vtable).get_WriteInProgress(@ptrCast(*const IWriteEngine2, self), value);
+            return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).get_WriteInProgress(@as(*const IWriteEngine2, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1891,31 +1891,31 @@ pub const IWriteEngine2EventArgs = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2EventArgs_get_StartLba(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2EventArgs.VTable, self.vtable).get_StartLba(@ptrCast(*const IWriteEngine2EventArgs, self), value);
+            return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_StartLba(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2EventArgs_get_SectorCount(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2EventArgs.VTable, self.vtable).get_SectorCount(@ptrCast(*const IWriteEngine2EventArgs, self), value);
+            return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_SectorCount(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2EventArgs_get_LastReadLba(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2EventArgs.VTable, self.vtable).get_LastReadLba(@ptrCast(*const IWriteEngine2EventArgs, self), value);
+            return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_LastReadLba(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2EventArgs_get_LastWrittenLba(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2EventArgs.VTable, self.vtable).get_LastWrittenLba(@ptrCast(*const IWriteEngine2EventArgs, self), value);
+            return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_LastWrittenLba(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2EventArgs_get_TotalSystemBuffer(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2EventArgs.VTable, self.vtable).get_TotalSystemBuffer(@ptrCast(*const IWriteEngine2EventArgs, self), value);
+            return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_TotalSystemBuffer(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2EventArgs_get_UsedSystemBuffer(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2EventArgs.VTable, self.vtable).get_UsedSystemBuffer(@ptrCast(*const IWriteEngine2EventArgs, self), value);
+            return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_UsedSystemBuffer(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteEngine2EventArgs_get_FreeSystemBuffer(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteEngine2EventArgs.VTable, self.vtable).get_FreeSystemBuffer(@ptrCast(*const IWriteEngine2EventArgs, self), value);
+            return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_FreeSystemBuffer(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1945,7 +1945,7 @@ pub const DWriteEngine2Events = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn DWriteEngine2Events_Update(self: *const T, object: ?*IDispatch, progress: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const DWriteEngine2Events.VTable, self.vtable).Update(@ptrCast(*const DWriteEngine2Events, self), object, progress);
+            return @as(*const DWriteEngine2Events.VTable, @ptrCast(self.vtable)).Update(@as(*const DWriteEngine2Events, @ptrCast(self)), object, progress);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2026,23 +2026,23 @@ pub const IDiscFormat2 = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2_IsRecorderSupported(self: *const T, recorder: ?*IDiscRecorder2, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2.VTable, self.vtable).IsRecorderSupported(@ptrCast(*const IDiscFormat2, self), recorder, value);
+            return @as(*const IDiscFormat2.VTable, @ptrCast(self.vtable)).IsRecorderSupported(@as(*const IDiscFormat2, @ptrCast(self)), recorder, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2_IsCurrentMediaSupported(self: *const T, recorder: ?*IDiscRecorder2, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2.VTable, self.vtable).IsCurrentMediaSupported(@ptrCast(*const IDiscFormat2, self), recorder, value);
+            return @as(*const IDiscFormat2.VTable, @ptrCast(self.vtable)).IsCurrentMediaSupported(@as(*const IDiscFormat2, @ptrCast(self)), recorder, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2_get_MediaPhysicallyBlank(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2.VTable, self.vtable).get_MediaPhysicallyBlank(@ptrCast(*const IDiscFormat2, self), value);
+            return @as(*const IDiscFormat2.VTable, @ptrCast(self.vtable)).get_MediaPhysicallyBlank(@as(*const IDiscFormat2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2_get_MediaHeuristicallyBlank(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2.VTable, self.vtable).get_MediaHeuristicallyBlank(@ptrCast(*const IDiscFormat2, self), value);
+            return @as(*const IDiscFormat2.VTable, @ptrCast(self.vtable)).get_MediaHeuristicallyBlank(@as(*const IDiscFormat2, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2_get_SupportedMediaTypes(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2.VTable, self.vtable).get_SupportedMediaTypes(@ptrCast(*const IDiscFormat2, self), value);
+            return @as(*const IDiscFormat2.VTable, @ptrCast(self.vtable)).get_SupportedMediaTypes(@as(*const IDiscFormat2, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2159,35 +2159,35 @@ pub const IDiscFormat2Erase = extern struct {
         pub usingnamespace IDiscFormat2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Erase_put_Recorder(self: *const T, value: ?*IDiscRecorder2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).put_Recorder(@ptrCast(*const IDiscFormat2Erase, self), value);
+            return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).put_Recorder(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Erase_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).get_Recorder(@ptrCast(*const IDiscFormat2Erase, self), value);
+            return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).get_Recorder(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Erase_put_FullErase(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).put_FullErase(@ptrCast(*const IDiscFormat2Erase, self), value);
+            return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).put_FullErase(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Erase_get_FullErase(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).get_FullErase(@ptrCast(*const IDiscFormat2Erase, self), value);
+            return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).get_FullErase(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Erase_get_CurrentPhysicalMediaType(self: *const T, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).get_CurrentPhysicalMediaType(@ptrCast(*const IDiscFormat2Erase, self), value);
+            return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).get_CurrentPhysicalMediaType(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Erase_put_ClientName(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).put_ClientName(@ptrCast(*const IDiscFormat2Erase, self), value);
+            return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).put_ClientName(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Erase_get_ClientName(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).get_ClientName(@ptrCast(*const IDiscFormat2Erase, self), value);
+            return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).get_ClientName(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Erase_EraseMedia(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Erase.VTable, self.vtable).EraseMedia(@ptrCast(*const IDiscFormat2Erase, self));
+            return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).EraseMedia(@as(*const IDiscFormat2Erase, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2219,7 +2219,7 @@ pub const DDiscFormat2EraseEvents = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn DDiscFormat2EraseEvents_Update(self: *const T, object: ?*IDispatch, elapsedSeconds: i32, estimatedTotalSeconds: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const DDiscFormat2EraseEvents.VTable, self.vtable).Update(@ptrCast(*const DDiscFormat2EraseEvents, self), object, elapsedSeconds, estimatedTotalSeconds);
+            return @as(*const DDiscFormat2EraseEvents.VTable, @ptrCast(self.vtable)).Update(@as(*const DDiscFormat2EraseEvents, @ptrCast(self)), object, elapsedSeconds, estimatedTotalSeconds);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2644,131 +2644,131 @@ pub const IDiscFormat2Data = extern struct {
         pub usingnamespace IDiscFormat2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_put_Recorder(self: *const T, value: ?*IDiscRecorder2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).put_Recorder(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_Recorder(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_Recorder(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_Recorder(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_put_BufferUnderrunFreeDisabled(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).put_BufferUnderrunFreeDisabled(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_BufferUnderrunFreeDisabled(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_BufferUnderrunFreeDisabled(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_BufferUnderrunFreeDisabled(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_BufferUnderrunFreeDisabled(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_put_PostgapAlreadyInImage(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).put_PostgapAlreadyInImage(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_PostgapAlreadyInImage(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_PostgapAlreadyInImage(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_PostgapAlreadyInImage(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_PostgapAlreadyInImage(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_CurrentMediaStatus(self: *const T, value: ?*IMAPI_FORMAT2_DATA_MEDIA_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_CurrentMediaStatus(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_CurrentMediaStatus(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_WriteProtectStatus(self: *const T, value: ?*IMAPI_MEDIA_WRITE_PROTECT_STATE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_WriteProtectStatus(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_WriteProtectStatus(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_TotalSectorsOnMedia(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_TotalSectorsOnMedia(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_TotalSectorsOnMedia(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_FreeSectorsOnMedia(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_FreeSectorsOnMedia(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_FreeSectorsOnMedia(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_NextWritableAddress(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_NextWritableAddress(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_NextWritableAddress(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_StartAddressOfPreviousSession(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_StartAddressOfPreviousSession(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_StartAddressOfPreviousSession(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_LastWrittenAddressOfPreviousSession(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_LastWrittenAddressOfPreviousSession(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_LastWrittenAddressOfPreviousSession(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_put_ForceMediaToBeClosed(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).put_ForceMediaToBeClosed(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_ForceMediaToBeClosed(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_ForceMediaToBeClosed(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_ForceMediaToBeClosed(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_ForceMediaToBeClosed(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_put_DisableConsumerDvdCompatibilityMode(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).put_DisableConsumerDvdCompatibilityMode(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_DisableConsumerDvdCompatibilityMode(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_DisableConsumerDvdCompatibilityMode(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_DisableConsumerDvdCompatibilityMode(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_DisableConsumerDvdCompatibilityMode(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_CurrentPhysicalMediaType(self: *const T, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_CurrentPhysicalMediaType(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_CurrentPhysicalMediaType(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_put_ClientName(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).put_ClientName(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_ClientName(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_ClientName(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_ClientName(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_ClientName(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_RequestedWriteSpeed(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_RequestedWriteSpeed(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_RequestedWriteSpeed(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_RequestedRotationTypeIsPureCAV(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_RequestedRotationTypeIsPureCAV(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_RequestedRotationTypeIsPureCAV(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_CurrentWriteSpeed(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_CurrentWriteSpeed(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_CurrentWriteSpeed(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_CurrentRotationTypeIsPureCAV(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_CurrentRotationTypeIsPureCAV(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_CurrentRotationTypeIsPureCAV(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_SupportedWriteSpeeds(@ptrCast(*const IDiscFormat2Data, self), supportedSpeeds);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_SupportedWriteSpeeds(@as(*const IDiscFormat2Data, @ptrCast(self)), supportedSpeeds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_SupportedWriteSpeedDescriptors(@ptrCast(*const IDiscFormat2Data, self), supportedSpeedDescriptors);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_SupportedWriteSpeedDescriptors(@as(*const IDiscFormat2Data, @ptrCast(self)), supportedSpeedDescriptors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_put_ForceOverwrite(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).put_ForceOverwrite(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_ForceOverwrite(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_ForceOverwrite(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_ForceOverwrite(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_ForceOverwrite(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_get_MultisessionInterfaces(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).get_MultisessionInterfaces(@ptrCast(*const IDiscFormat2Data, self), value);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_MultisessionInterfaces(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_Write(self: *const T, data: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).Write(@ptrCast(*const IDiscFormat2Data, self), data);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).Write(@as(*const IDiscFormat2Data, @ptrCast(self)), data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_CancelWrite(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).CancelWrite(@ptrCast(*const IDiscFormat2Data, self));
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).CancelWrite(@as(*const IDiscFormat2Data, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2Data_SetWriteSpeed(self: *const T, RequestedSectorsPerSecond: i32, RotationTypeIsPureCAV: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2Data.VTable, self.vtable).SetWriteSpeed(@ptrCast(*const IDiscFormat2Data, self), RequestedSectorsPerSecond, RotationTypeIsPureCAV);
+            return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).SetWriteSpeed(@as(*const IDiscFormat2Data, @ptrCast(self)), RequestedSectorsPerSecond, RotationTypeIsPureCAV);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2798,7 +2798,7 @@ pub const DDiscFormat2DataEvents = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn DDiscFormat2DataEvents_Update(self: *const T, object: ?*IDispatch, progress: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const DDiscFormat2DataEvents.VTable, self.vtable).Update(@ptrCast(*const DDiscFormat2DataEvents, self), object, progress);
+            return @as(*const DDiscFormat2DataEvents.VTable, @ptrCast(self.vtable)).Update(@as(*const DDiscFormat2DataEvents, @ptrCast(self)), object, progress);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -2868,19 +2868,19 @@ pub const IDiscFormat2DataEventArgs = extern struct {
         pub usingnamespace IWriteEngine2EventArgs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2DataEventArgs_get_ElapsedTime(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2DataEventArgs.VTable, self.vtable).get_ElapsedTime(@ptrCast(*const IDiscFormat2DataEventArgs, self), value);
+            return @as(*const IDiscFormat2DataEventArgs.VTable, @ptrCast(self.vtable)).get_ElapsedTime(@as(*const IDiscFormat2DataEventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2DataEventArgs_get_RemainingTime(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2DataEventArgs.VTable, self.vtable).get_RemainingTime(@ptrCast(*const IDiscFormat2DataEventArgs, self), value);
+            return @as(*const IDiscFormat2DataEventArgs.VTable, @ptrCast(self.vtable)).get_RemainingTime(@as(*const IDiscFormat2DataEventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2DataEventArgs_get_TotalTime(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2DataEventArgs.VTable, self.vtable).get_TotalTime(@ptrCast(*const IDiscFormat2DataEventArgs, self), value);
+            return @as(*const IDiscFormat2DataEventArgs.VTable, @ptrCast(self.vtable)).get_TotalTime(@as(*const IDiscFormat2DataEventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2DataEventArgs_get_CurrentAction(self: *const T, value: ?*IMAPI_FORMAT2_DATA_WRITE_ACTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2DataEventArgs.VTable, self.vtable).get_CurrentAction(@ptrCast(*const IDiscFormat2DataEventArgs, self), value);
+            return @as(*const IDiscFormat2DataEventArgs.VTable, @ptrCast(self.vtable)).get_CurrentAction(@as(*const IDiscFormat2DataEventArgs, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3204,103 +3204,103 @@ pub const IDiscFormat2TrackAtOnce = extern struct {
         pub usingnamespace IDiscFormat2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_PrepareMedia(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).PrepareMedia(@ptrCast(*const IDiscFormat2TrackAtOnce, self));
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).PrepareMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_AddAudioTrack(self: *const T, data: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).AddAudioTrack(@ptrCast(*const IDiscFormat2TrackAtOnce, self), data);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).AddAudioTrack(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_CancelAddTrack(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).CancelAddTrack(@ptrCast(*const IDiscFormat2TrackAtOnce, self));
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).CancelAddTrack(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_ReleaseMedia(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).ReleaseMedia(@ptrCast(*const IDiscFormat2TrackAtOnce, self));
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).ReleaseMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_SetWriteSpeed(self: *const T, RequestedSectorsPerSecond: i32, RotationTypeIsPureCAV: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).SetWriteSpeed(@ptrCast(*const IDiscFormat2TrackAtOnce, self), RequestedSectorsPerSecond, RotationTypeIsPureCAV);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).SetWriteSpeed(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), RequestedSectorsPerSecond, RotationTypeIsPureCAV);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_put_Recorder(self: *const T, value: ?*IDiscRecorder2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).put_Recorder(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).put_Recorder(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_Recorder(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_Recorder(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_put_BufferUnderrunFreeDisabled(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).put_BufferUnderrunFreeDisabled(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).put_BufferUnderrunFreeDisabled(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_BufferUnderrunFreeDisabled(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_BufferUnderrunFreeDisabled(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_BufferUnderrunFreeDisabled(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_NumberOfExistingTracks(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_NumberOfExistingTracks(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_NumberOfExistingTracks(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_TotalSectorsOnMedia(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_TotalSectorsOnMedia(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_TotalSectorsOnMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_FreeSectorsOnMedia(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_FreeSectorsOnMedia(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_FreeSectorsOnMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_UsedSectorsOnMedia(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_UsedSectorsOnMedia(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_UsedSectorsOnMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_put_DoNotFinalizeMedia(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).put_DoNotFinalizeMedia(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).put_DoNotFinalizeMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_DoNotFinalizeMedia(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_DoNotFinalizeMedia(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_DoNotFinalizeMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_ExpectedTableOfContents(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_ExpectedTableOfContents(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_ExpectedTableOfContents(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_CurrentPhysicalMediaType(self: *const T, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_CurrentPhysicalMediaType(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_CurrentPhysicalMediaType(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_put_ClientName(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).put_ClientName(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).put_ClientName(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_ClientName(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_ClientName(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_ClientName(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_RequestedWriteSpeed(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_RequestedWriteSpeed(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_RequestedWriteSpeed(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_RequestedRotationTypeIsPureCAV(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_RequestedRotationTypeIsPureCAV(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_RequestedRotationTypeIsPureCAV(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_CurrentWriteSpeed(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_CurrentWriteSpeed(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_CurrentWriteSpeed(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_CurrentRotationTypeIsPureCAV(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_CurrentRotationTypeIsPureCAV(@ptrCast(*const IDiscFormat2TrackAtOnce, self), value);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_CurrentRotationTypeIsPureCAV(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_SupportedWriteSpeeds(@ptrCast(*const IDiscFormat2TrackAtOnce, self), supportedSpeeds);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_SupportedWriteSpeeds(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), supportedSpeeds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnce_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnce.VTable, self.vtable).get_SupportedWriteSpeedDescriptors(@ptrCast(*const IDiscFormat2TrackAtOnce, self), supportedSpeedDescriptors);
+            return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_SupportedWriteSpeedDescriptors(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), supportedSpeedDescriptors);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3330,7 +3330,7 @@ pub const DDiscFormat2TrackAtOnceEvents = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn DDiscFormat2TrackAtOnceEvents_Update(self: *const T, object: ?*IDispatch, progress: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const DDiscFormat2TrackAtOnceEvents.VTable, self.vtable).Update(@ptrCast(*const DDiscFormat2TrackAtOnceEvents, self), object, progress);
+            return @as(*const DDiscFormat2TrackAtOnceEvents.VTable, @ptrCast(self.vtable)).Update(@as(*const DDiscFormat2TrackAtOnceEvents, @ptrCast(self)), object, progress);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3400,19 +3400,19 @@ pub const IDiscFormat2TrackAtOnceEventArgs = extern struct {
         pub usingnamespace IWriteEngine2EventArgs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnceEventArgs_get_CurrentTrackNumber(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnceEventArgs.VTable, self.vtable).get_CurrentTrackNumber(@ptrCast(*const IDiscFormat2TrackAtOnceEventArgs, self), value);
+            return @as(*const IDiscFormat2TrackAtOnceEventArgs.VTable, @ptrCast(self.vtable)).get_CurrentTrackNumber(@as(*const IDiscFormat2TrackAtOnceEventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnceEventArgs_get_CurrentAction(self: *const T, value: ?*IMAPI_FORMAT2_TAO_WRITE_ACTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnceEventArgs.VTable, self.vtable).get_CurrentAction(@ptrCast(*const IDiscFormat2TrackAtOnceEventArgs, self), value);
+            return @as(*const IDiscFormat2TrackAtOnceEventArgs.VTable, @ptrCast(self.vtable)).get_CurrentAction(@as(*const IDiscFormat2TrackAtOnceEventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnceEventArgs_get_ElapsedTime(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnceEventArgs.VTable, self.vtable).get_ElapsedTime(@ptrCast(*const IDiscFormat2TrackAtOnceEventArgs, self), value);
+            return @as(*const IDiscFormat2TrackAtOnceEventArgs.VTable, @ptrCast(self.vtable)).get_ElapsedTime(@as(*const IDiscFormat2TrackAtOnceEventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2TrackAtOnceEventArgs_get_RemainingTime(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2TrackAtOnceEventArgs.VTable, self.vtable).get_RemainingTime(@ptrCast(*const IDiscFormat2TrackAtOnceEventArgs, self), value);
+            return @as(*const IDiscFormat2TrackAtOnceEventArgs.VTable, @ptrCast(self.vtable)).get_RemainingTime(@as(*const IDiscFormat2TrackAtOnceEventArgs, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3722,99 +3722,99 @@ pub const IDiscFormat2RawCD = extern struct {
         pub usingnamespace IDiscFormat2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_PrepareMedia(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).PrepareMedia(@ptrCast(*const IDiscFormat2RawCD, self));
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).PrepareMedia(@as(*const IDiscFormat2RawCD, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_WriteMedia(self: *const T, data: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).WriteMedia(@ptrCast(*const IDiscFormat2RawCD, self), data);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).WriteMedia(@as(*const IDiscFormat2RawCD, @ptrCast(self)), data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_WriteMedia2(self: *const T, data: ?*IStream, streamLeadInSectors: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).WriteMedia2(@ptrCast(*const IDiscFormat2RawCD, self), data, streamLeadInSectors);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).WriteMedia2(@as(*const IDiscFormat2RawCD, @ptrCast(self)), data, streamLeadInSectors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_CancelWrite(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).CancelWrite(@ptrCast(*const IDiscFormat2RawCD, self));
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).CancelWrite(@as(*const IDiscFormat2RawCD, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_ReleaseMedia(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).ReleaseMedia(@ptrCast(*const IDiscFormat2RawCD, self));
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).ReleaseMedia(@as(*const IDiscFormat2RawCD, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_SetWriteSpeed(self: *const T, RequestedSectorsPerSecond: i32, RotationTypeIsPureCAV: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).SetWriteSpeed(@ptrCast(*const IDiscFormat2RawCD, self), RequestedSectorsPerSecond, RotationTypeIsPureCAV);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).SetWriteSpeed(@as(*const IDiscFormat2RawCD, @ptrCast(self)), RequestedSectorsPerSecond, RotationTypeIsPureCAV);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_put_Recorder(self: *const T, value: ?*IDiscRecorder2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).put_Recorder(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).put_Recorder(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_Recorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_Recorder(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_Recorder(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_put_BufferUnderrunFreeDisabled(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).put_BufferUnderrunFreeDisabled(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).put_BufferUnderrunFreeDisabled(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_BufferUnderrunFreeDisabled(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_BufferUnderrunFreeDisabled(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_BufferUnderrunFreeDisabled(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_StartOfNextSession(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_StartOfNextSession(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_StartOfNextSession(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_LastPossibleStartOfLeadout(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_LastPossibleStartOfLeadout(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_LastPossibleStartOfLeadout(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_CurrentPhysicalMediaType(self: *const T, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_CurrentPhysicalMediaType(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_CurrentPhysicalMediaType(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_SupportedSectorTypes(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_SupportedSectorTypes(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_SupportedSectorTypes(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_put_RequestedSectorType(self: *const T, value: IMAPI_FORMAT2_RAW_CD_DATA_SECTOR_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).put_RequestedSectorType(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).put_RequestedSectorType(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_RequestedSectorType(self: *const T, value: ?*IMAPI_FORMAT2_RAW_CD_DATA_SECTOR_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_RequestedSectorType(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_RequestedSectorType(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_put_ClientName(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).put_ClientName(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).put_ClientName(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_ClientName(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_ClientName(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_ClientName(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_RequestedWriteSpeed(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_RequestedWriteSpeed(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_RequestedWriteSpeed(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_RequestedRotationTypeIsPureCAV(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_RequestedRotationTypeIsPureCAV(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_RequestedRotationTypeIsPureCAV(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_CurrentWriteSpeed(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_CurrentWriteSpeed(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_CurrentWriteSpeed(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_CurrentRotationTypeIsPureCAV(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_CurrentRotationTypeIsPureCAV(@ptrCast(*const IDiscFormat2RawCD, self), value);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_CurrentRotationTypeIsPureCAV(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_SupportedWriteSpeeds(self: *const T, supportedSpeeds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_SupportedWriteSpeeds(@ptrCast(*const IDiscFormat2RawCD, self), supportedSpeeds);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_SupportedWriteSpeeds(@as(*const IDiscFormat2RawCD, @ptrCast(self)), supportedSpeeds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCD_get_SupportedWriteSpeedDescriptors(self: *const T, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCD.VTable, self.vtable).get_SupportedWriteSpeedDescriptors(@ptrCast(*const IDiscFormat2RawCD, self), supportedSpeedDescriptors);
+            return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_SupportedWriteSpeedDescriptors(@as(*const IDiscFormat2RawCD, @ptrCast(self)), supportedSpeedDescriptors);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3844,7 +3844,7 @@ pub const DDiscFormat2RawCDEvents = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn DDiscFormat2RawCDEvents_Update(self: *const T, object: ?*IDispatch, progress: ?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const DDiscFormat2RawCDEvents.VTable, self.vtable).Update(@ptrCast(*const DDiscFormat2RawCDEvents, self), object, progress);
+            return @as(*const DDiscFormat2RawCDEvents.VTable, @ptrCast(self.vtable)).Update(@as(*const DDiscFormat2RawCDEvents, @ptrCast(self)), object, progress);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3901,15 +3901,15 @@ pub const IDiscFormat2RawCDEventArgs = extern struct {
         pub usingnamespace IWriteEngine2EventArgs.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCDEventArgs_get_CurrentAction(self: *const T, value: ?*IMAPI_FORMAT2_RAW_CD_WRITE_ACTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCDEventArgs.VTable, self.vtable).get_CurrentAction(@ptrCast(*const IDiscFormat2RawCDEventArgs, self), value);
+            return @as(*const IDiscFormat2RawCDEventArgs.VTable, @ptrCast(self.vtable)).get_CurrentAction(@as(*const IDiscFormat2RawCDEventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCDEventArgs_get_ElapsedTime(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCDEventArgs.VTable, self.vtable).get_ElapsedTime(@ptrCast(*const IDiscFormat2RawCDEventArgs, self), value);
+            return @as(*const IDiscFormat2RawCDEventArgs.VTable, @ptrCast(self.vtable)).get_ElapsedTime(@as(*const IDiscFormat2RawCDEventArgs, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscFormat2RawCDEventArgs_get_RemainingTime(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscFormat2RawCDEventArgs.VTable, self.vtable).get_RemainingTime(@ptrCast(*const IDiscFormat2RawCDEventArgs, self), value);
+            return @as(*const IDiscFormat2RawCDEventArgs.VTable, @ptrCast(self.vtable)).get_RemainingTime(@as(*const IDiscFormat2RawCDEventArgs, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -3953,11 +3953,11 @@ pub const IBurnVerification = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBurnVerification_put_BurnVerificationLevel(self: *const T, value: IMAPI_BURN_VERIFICATION_LEVEL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBurnVerification.VTable, self.vtable).put_BurnVerificationLevel(@ptrCast(*const IBurnVerification, self), value);
+            return @as(*const IBurnVerification.VTable, @ptrCast(self.vtable)).put_BurnVerificationLevel(@as(*const IBurnVerification, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBurnVerification_get_BurnVerificationLevel(self: *const T, value: ?*IMAPI_BURN_VERIFICATION_LEVEL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBurnVerification.VTable, self.vtable).get_BurnVerificationLevel(@ptrCast(*const IBurnVerification, self), value);
+            return @as(*const IBurnVerification.VTable, @ptrCast(self.vtable)).get_BurnVerificationLevel(@as(*const IBurnVerification, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4014,15 +4014,15 @@ pub const IWriteSpeedDescriptor = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteSpeedDescriptor_get_MediaType(self: *const T, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteSpeedDescriptor.VTable, self.vtable).get_MediaType(@ptrCast(*const IWriteSpeedDescriptor, self), value);
+            return @as(*const IWriteSpeedDescriptor.VTable, @ptrCast(self.vtable)).get_MediaType(@as(*const IWriteSpeedDescriptor, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteSpeedDescriptor_get_RotationTypeIsPureCAV(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteSpeedDescriptor.VTable, self.vtable).get_RotationTypeIsPureCAV(@ptrCast(*const IWriteSpeedDescriptor, self), value);
+            return @as(*const IWriteSpeedDescriptor.VTable, @ptrCast(self.vtable)).get_RotationTypeIsPureCAV(@as(*const IWriteSpeedDescriptor, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWriteSpeedDescriptor_get_WriteSpeed(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWriteSpeedDescriptor.VTable, self.vtable).get_WriteSpeed(@ptrCast(*const IWriteSpeedDescriptor, self), value);
+            return @as(*const IWriteSpeedDescriptor.VTable, @ptrCast(self.vtable)).get_WriteSpeed(@as(*const IWriteSpeedDescriptor, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4092,19 +4092,19 @@ pub const IMultisession = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisession_get_IsSupportedOnCurrentMediaState(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisession.VTable, self.vtable).get_IsSupportedOnCurrentMediaState(@ptrCast(*const IMultisession, self), value);
+            return @as(*const IMultisession.VTable, @ptrCast(self.vtable)).get_IsSupportedOnCurrentMediaState(@as(*const IMultisession, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisession_put_InUse(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisession.VTable, self.vtable).put_InUse(@ptrCast(*const IMultisession, self), value);
+            return @as(*const IMultisession.VTable, @ptrCast(self.vtable)).put_InUse(@as(*const IMultisession, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisession_get_InUse(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisession.VTable, self.vtable).get_InUse(@ptrCast(*const IMultisession, self), value);
+            return @as(*const IMultisession.VTable, @ptrCast(self.vtable)).get_InUse(@as(*const IMultisession, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisession_get_ImportRecorder(self: *const T, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisession.VTable, self.vtable).get_ImportRecorder(@ptrCast(*const IMultisession, self), value);
+            return @as(*const IMultisession.VTable, @ptrCast(self.vtable)).get_ImportRecorder(@as(*const IMultisession, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4187,23 +4187,23 @@ pub const IMultisessionSequential = extern struct {
         pub usingnamespace IMultisession.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisessionSequential_get_IsFirstDataSession(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisessionSequential.VTable, self.vtable).get_IsFirstDataSession(@ptrCast(*const IMultisessionSequential, self), value);
+            return @as(*const IMultisessionSequential.VTable, @ptrCast(self.vtable)).get_IsFirstDataSession(@as(*const IMultisessionSequential, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisessionSequential_get_StartAddressOfPreviousSession(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisessionSequential.VTable, self.vtable).get_StartAddressOfPreviousSession(@ptrCast(*const IMultisessionSequential, self), value);
+            return @as(*const IMultisessionSequential.VTable, @ptrCast(self.vtable)).get_StartAddressOfPreviousSession(@as(*const IMultisessionSequential, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisessionSequential_get_LastWrittenAddressOfPreviousSession(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisessionSequential.VTable, self.vtable).get_LastWrittenAddressOfPreviousSession(@ptrCast(*const IMultisessionSequential, self), value);
+            return @as(*const IMultisessionSequential.VTable, @ptrCast(self.vtable)).get_LastWrittenAddressOfPreviousSession(@as(*const IMultisessionSequential, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisessionSequential_get_NextWritableAddress(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisessionSequential.VTable, self.vtable).get_NextWritableAddress(@ptrCast(*const IMultisessionSequential, self), value);
+            return @as(*const IMultisessionSequential.VTable, @ptrCast(self.vtable)).get_NextWritableAddress(@as(*const IMultisessionSequential, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisessionSequential_get_FreeSectorsOnMedia(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisessionSequential.VTable, self.vtable).get_FreeSectorsOnMedia(@ptrCast(*const IMultisessionSequential, self), value);
+            return @as(*const IMultisessionSequential.VTable, @ptrCast(self.vtable)).get_FreeSectorsOnMedia(@as(*const IMultisessionSequential, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4234,7 +4234,7 @@ pub const IMultisessionSequential2 = extern struct {
         pub usingnamespace IMultisessionSequential.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisessionSequential2_get_WriteUnitSize(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisessionSequential2.VTable, self.vtable).get_WriteUnitSize(@ptrCast(*const IMultisessionSequential2, self), value);
+            return @as(*const IMultisessionSequential2.VTable, @ptrCast(self.vtable)).get_WriteUnitSize(@as(*const IMultisessionSequential2, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4291,15 +4291,15 @@ pub const IMultisessionRandomWrite = extern struct {
         pub usingnamespace IMultisession.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisessionRandomWrite_get_WriteUnitSize(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisessionRandomWrite.VTable, self.vtable).get_WriteUnitSize(@ptrCast(*const IMultisessionRandomWrite, self), value);
+            return @as(*const IMultisessionRandomWrite.VTable, @ptrCast(self.vtable)).get_WriteUnitSize(@as(*const IMultisessionRandomWrite, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisessionRandomWrite_get_LastWrittenAddress(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisessionRandomWrite.VTable, self.vtable).get_LastWrittenAddress(@ptrCast(*const IMultisessionRandomWrite, self), value);
+            return @as(*const IMultisessionRandomWrite.VTable, @ptrCast(self.vtable)).get_LastWrittenAddress(@as(*const IMultisessionRandomWrite, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMultisessionRandomWrite_get_TotalSectorsOnMedia(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMultisessionRandomWrite.VTable, self.vtable).get_TotalSectorsOnMedia(@ptrCast(*const IMultisessionRandomWrite, self), value);
+            return @as(*const IMultisessionRandomWrite.VTable, @ptrCast(self.vtable)).get_TotalSectorsOnMedia(@as(*const IMultisessionRandomWrite, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4373,19 +4373,19 @@ pub const IStreamPseudoRandomBased = extern struct {
         pub usingnamespace IStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IStreamPseudoRandomBased_put_Seed(self: *const T, value: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStreamPseudoRandomBased.VTable, self.vtable).put_Seed(@ptrCast(*const IStreamPseudoRandomBased, self), value);
+            return @as(*const IStreamPseudoRandomBased.VTable, @ptrCast(self.vtable)).put_Seed(@as(*const IStreamPseudoRandomBased, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IStreamPseudoRandomBased_get_Seed(self: *const T, value: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStreamPseudoRandomBased.VTable, self.vtable).get_Seed(@ptrCast(*const IStreamPseudoRandomBased, self), value);
+            return @as(*const IStreamPseudoRandomBased.VTable, @ptrCast(self.vtable)).get_Seed(@as(*const IStreamPseudoRandomBased, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IStreamPseudoRandomBased_put_ExtendedSeed(self: *const T, values: [*]u32, eCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStreamPseudoRandomBased.VTable, self.vtable).put_ExtendedSeed(@ptrCast(*const IStreamPseudoRandomBased, self), values, eCount);
+            return @as(*const IStreamPseudoRandomBased.VTable, @ptrCast(self.vtable)).put_ExtendedSeed(@as(*const IStreamPseudoRandomBased, @ptrCast(self)), values, eCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IStreamPseudoRandomBased_get_ExtendedSeed(self: *const T, values: [*]?*u32, eCount: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStreamPseudoRandomBased.VTable, self.vtable).get_ExtendedSeed(@ptrCast(*const IStreamPseudoRandomBased, self), values, eCount);
+            return @as(*const IStreamPseudoRandomBased.VTable, @ptrCast(self.vtable)).get_ExtendedSeed(@as(*const IStreamPseudoRandomBased, @ptrCast(self)), values, eCount);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4449,19 +4449,19 @@ pub const IStreamConcatenate = extern struct {
         pub usingnamespace IStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IStreamConcatenate_Initialize(self: *const T, stream1: ?*IStream, stream2: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStreamConcatenate.VTable, self.vtable).Initialize(@ptrCast(*const IStreamConcatenate, self), stream1, stream2);
+            return @as(*const IStreamConcatenate.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IStreamConcatenate, @ptrCast(self)), stream1, stream2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IStreamConcatenate_Initialize2(self: *const T, streams: [*]?*IStream, streamCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStreamConcatenate.VTable, self.vtable).Initialize2(@ptrCast(*const IStreamConcatenate, self), streams, streamCount);
+            return @as(*const IStreamConcatenate.VTable, @ptrCast(self.vtable)).Initialize2(@as(*const IStreamConcatenate, @ptrCast(self)), streams, streamCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IStreamConcatenate_Append(self: *const T, stream: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStreamConcatenate.VTable, self.vtable).Append(@ptrCast(*const IStreamConcatenate, self), stream);
+            return @as(*const IStreamConcatenate.VTable, @ptrCast(self.vtable)).Append(@as(*const IStreamConcatenate, @ptrCast(self)), stream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IStreamConcatenate_Append2(self: *const T, streams: [*]?*IStream, streamCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStreamConcatenate.VTable, self.vtable).Append2(@ptrCast(*const IStreamConcatenate, self), streams, streamCount);
+            return @as(*const IStreamConcatenate.VTable, @ptrCast(self.vtable)).Append2(@as(*const IStreamConcatenate, @ptrCast(self)), streams, streamCount);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4493,7 +4493,7 @@ pub const IStreamInterleave = extern struct {
         pub usingnamespace IStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IStreamInterleave_Initialize(self: *const T, streams: [*]?*IStream, interleaveSizes: [*]u32, streamCount: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IStreamInterleave.VTable, self.vtable).Initialize(@ptrCast(*const IStreamInterleave, self), streams, interleaveSizes, streamCount);
+            return @as(*const IStreamInterleave.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IStreamInterleave, @ptrCast(self)), streams, interleaveSizes, streamCount);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -4752,79 +4752,79 @@ pub const IRawCDImageCreator = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_CreateResultImage(self: *const T, resultStream: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).CreateResultImage(@ptrCast(*const IRawCDImageCreator, self), resultStream);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).CreateResultImage(@as(*const IRawCDImageCreator, @ptrCast(self)), resultStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_AddTrack(self: *const T, dataType: IMAPI_CD_SECTOR_TYPE, data: ?*IStream, trackIndex: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).AddTrack(@ptrCast(*const IRawCDImageCreator, self), dataType, data, trackIndex);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).AddTrack(@as(*const IRawCDImageCreator, @ptrCast(self)), dataType, data, trackIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_AddSpecialPregap(self: *const T, data: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).AddSpecialPregap(@ptrCast(*const IRawCDImageCreator, self), data);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).AddSpecialPregap(@as(*const IRawCDImageCreator, @ptrCast(self)), data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_AddSubcodeRWGenerator(self: *const T, subcode: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).AddSubcodeRWGenerator(@ptrCast(*const IRawCDImageCreator, self), subcode);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).AddSubcodeRWGenerator(@as(*const IRawCDImageCreator, @ptrCast(self)), subcode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_put_ResultingImageType(self: *const T, value: IMAPI_FORMAT2_RAW_CD_DATA_SECTOR_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).put_ResultingImageType(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).put_ResultingImageType(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_get_ResultingImageType(self: *const T, value: ?*IMAPI_FORMAT2_RAW_CD_DATA_SECTOR_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_ResultingImageType(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_ResultingImageType(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_get_StartOfLeadout(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_StartOfLeadout(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_StartOfLeadout(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_put_StartOfLeadoutLimit(self: *const T, value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).put_StartOfLeadoutLimit(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).put_StartOfLeadoutLimit(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_get_StartOfLeadoutLimit(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_StartOfLeadoutLimit(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_StartOfLeadoutLimit(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_put_DisableGaplessAudio(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).put_DisableGaplessAudio(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).put_DisableGaplessAudio(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_get_DisableGaplessAudio(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_DisableGaplessAudio(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_DisableGaplessAudio(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_put_MediaCatalogNumber(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).put_MediaCatalogNumber(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).put_MediaCatalogNumber(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_get_MediaCatalogNumber(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_MediaCatalogNumber(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_MediaCatalogNumber(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_put_StartingTrackNumber(self: *const T, value: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).put_StartingTrackNumber(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).put_StartingTrackNumber(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_get_StartingTrackNumber(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_StartingTrackNumber(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_StartingTrackNumber(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_get_TrackInfo(self: *const T, trackIndex: i32, value: ?*?*IRawCDImageTrackInfo) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_TrackInfo(@ptrCast(*const IRawCDImageCreator, self), trackIndex, value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_TrackInfo(@as(*const IRawCDImageCreator, @ptrCast(self)), trackIndex, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_get_NumberOfExistingTracks(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_NumberOfExistingTracks(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_NumberOfExistingTracks(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_get_LastUsedUserSectorInImage(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_LastUsedUserSectorInImage(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_LastUsedUserSectorInImage(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageCreator_get_ExpectedTableOfContents(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageCreator.VTable, self.vtable).get_ExpectedTableOfContents(@ptrCast(*const IRawCDImageCreator, self), value);
+            return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_ExpectedTableOfContents(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -5005,55 +5005,55 @@ pub const IRawCDImageTrackInfo = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_get_StartingLba(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).get_StartingLba(@ptrCast(*const IRawCDImageTrackInfo, self), value);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_StartingLba(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_get_SectorCount(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).get_SectorCount(@ptrCast(*const IRawCDImageTrackInfo, self), value);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_SectorCount(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_get_TrackNumber(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).get_TrackNumber(@ptrCast(*const IRawCDImageTrackInfo, self), value);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_TrackNumber(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_get_SectorType(self: *const T, value: ?*IMAPI_CD_SECTOR_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).get_SectorType(@ptrCast(*const IRawCDImageTrackInfo, self), value);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_SectorType(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_get_ISRC(self: *const T, value: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).get_ISRC(@ptrCast(*const IRawCDImageTrackInfo, self), value);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_ISRC(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_put_ISRC(self: *const T, value: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).put_ISRC(@ptrCast(*const IRawCDImageTrackInfo, self), value);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).put_ISRC(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_get_DigitalAudioCopySetting(self: *const T, value: ?*IMAPI_CD_TRACK_DIGITAL_COPY_SETTING) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).get_DigitalAudioCopySetting(@ptrCast(*const IRawCDImageTrackInfo, self), value);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_DigitalAudioCopySetting(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_put_DigitalAudioCopySetting(self: *const T, value: IMAPI_CD_TRACK_DIGITAL_COPY_SETTING) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).put_DigitalAudioCopySetting(@ptrCast(*const IRawCDImageTrackInfo, self), value);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).put_DigitalAudioCopySetting(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_get_AudioHasPreemphasis(self: *const T, value: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).get_AudioHasPreemphasis(@ptrCast(*const IRawCDImageTrackInfo, self), value);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_AudioHasPreemphasis(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_put_AudioHasPreemphasis(self: *const T, value: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).put_AudioHasPreemphasis(@ptrCast(*const IRawCDImageTrackInfo, self), value);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).put_AudioHasPreemphasis(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_get_TrackIndexes(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).get_TrackIndexes(@ptrCast(*const IRawCDImageTrackInfo, self), value);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_TrackIndexes(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_AddTrackIndex(self: *const T, lbaOffset: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).AddTrackIndex(@ptrCast(*const IRawCDImageTrackInfo, self), lbaOffset);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).AddTrackIndex(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), lbaOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRawCDImageTrackInfo_ClearTrackIndex(self: *const T, lbaOffset: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRawCDImageTrackInfo.VTable, self.vtable).ClearTrackIndex(@ptrCast(*const IRawCDImageTrackInfo, self), lbaOffset);
+            return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).ClearTrackIndex(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), lbaOffset);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -5097,11 +5097,11 @@ pub const IBlockRange = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBlockRange_get_StartLba(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBlockRange.VTable, self.vtable).get_StartLba(@ptrCast(*const IBlockRange, self), value);
+            return @as(*const IBlockRange.VTable, @ptrCast(self.vtable)).get_StartLba(@as(*const IBlockRange, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBlockRange_get_EndLba(self: *const T, value: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBlockRange.VTable, self.vtable).get_EndLba(@ptrCast(*const IBlockRange, self), value);
+            return @as(*const IBlockRange.VTable, @ptrCast(self.vtable)).get_EndLba(@as(*const IBlockRange, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -5132,7 +5132,7 @@ pub const IBlockRangeList = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBlockRangeList_get_BlockRanges(self: *const T, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBlockRangeList.VTable, self.vtable).get_BlockRanges(@ptrCast(*const IBlockRangeList, self), value);
+            return @as(*const IBlockRangeList.VTable, @ptrCast(self.vtable)).get_BlockRanges(@as(*const IBlockRangeList, @ptrCast(self)), value);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -5352,39 +5352,39 @@ pub const IBootOptions = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBootOptions_get_BootImage(self: *const T, pVal: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBootOptions.VTable, self.vtable).get_BootImage(@ptrCast(*const IBootOptions, self), pVal);
+            return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).get_BootImage(@as(*const IBootOptions, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBootOptions_get_Manufacturer(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBootOptions.VTable, self.vtable).get_Manufacturer(@ptrCast(*const IBootOptions, self), pVal);
+            return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).get_Manufacturer(@as(*const IBootOptions, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBootOptions_put_Manufacturer(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBootOptions.VTable, self.vtable).put_Manufacturer(@ptrCast(*const IBootOptions, self), newVal);
+            return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).put_Manufacturer(@as(*const IBootOptions, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBootOptions_get_PlatformId(self: *const T, pVal: ?*PlatformId) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBootOptions.VTable, self.vtable).get_PlatformId(@ptrCast(*const IBootOptions, self), pVal);
+            return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).get_PlatformId(@as(*const IBootOptions, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBootOptions_put_PlatformId(self: *const T, newVal: PlatformId) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBootOptions.VTable, self.vtable).put_PlatformId(@ptrCast(*const IBootOptions, self), newVal);
+            return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).put_PlatformId(@as(*const IBootOptions, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBootOptions_get_Emulation(self: *const T, pVal: ?*EmulationType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBootOptions.VTable, self.vtable).get_Emulation(@ptrCast(*const IBootOptions, self), pVal);
+            return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).get_Emulation(@as(*const IBootOptions, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBootOptions_put_Emulation(self: *const T, newVal: EmulationType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBootOptions.VTable, self.vtable).put_Emulation(@ptrCast(*const IBootOptions, self), newVal);
+            return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).put_Emulation(@as(*const IBootOptions, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBootOptions_get_ImageSize(self: *const T, pVal: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBootOptions.VTable, self.vtable).get_ImageSize(@ptrCast(*const IBootOptions, self), pVal);
+            return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).get_ImageSize(@as(*const IBootOptions, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IBootOptions_AssignBootImage(self: *const T, newVal: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IBootOptions.VTable, self.vtable).AssignBootImage(@ptrCast(*const IBootOptions, self), newVal);
+            return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).AssignBootImage(@as(*const IBootOptions, @ptrCast(self)), newVal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -5454,19 +5454,19 @@ pub const IProgressItem = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IProgressItem_get_Description(self: *const T, desc: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProgressItem.VTable, self.vtable).get_Description(@ptrCast(*const IProgressItem, self), desc);
+            return @as(*const IProgressItem.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IProgressItem, @ptrCast(self)), desc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IProgressItem_get_FirstBlock(self: *const T, block: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProgressItem.VTable, self.vtable).get_FirstBlock(@ptrCast(*const IProgressItem, self), block);
+            return @as(*const IProgressItem.VTable, @ptrCast(self.vtable)).get_FirstBlock(@as(*const IProgressItem, @ptrCast(self)), block);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IProgressItem_get_LastBlock(self: *const T, block: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProgressItem.VTable, self.vtable).get_LastBlock(@ptrCast(*const IProgressItem, self), block);
+            return @as(*const IProgressItem.VTable, @ptrCast(self.vtable)).get_LastBlock(@as(*const IProgressItem, @ptrCast(self)), block);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IProgressItem_get_BlockCount(self: *const T, blocks: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProgressItem.VTable, self.vtable).get_BlockCount(@ptrCast(*const IProgressItem, self), blocks);
+            return @as(*const IProgressItem.VTable, @ptrCast(self.vtable)).get_BlockCount(@as(*const IProgressItem, @ptrCast(self)), blocks);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -5526,19 +5526,19 @@ pub const IEnumProgressItems = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumProgressItems_Next(self: *const T, celt: u32, rgelt: [*]?*IProgressItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumProgressItems.VTable, self.vtable).Next(@ptrCast(*const IEnumProgressItems, self), celt, rgelt, pceltFetched);
+            return @as(*const IEnumProgressItems.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumProgressItems, @ptrCast(self)), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumProgressItems_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumProgressItems.VTable, self.vtable).Skip(@ptrCast(*const IEnumProgressItems, self), celt);
+            return @as(*const IEnumProgressItems.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumProgressItems, @ptrCast(self)), celt);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumProgressItems_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumProgressItems.VTable, self.vtable).Reset(@ptrCast(*const IEnumProgressItems, self));
+            return @as(*const IEnumProgressItems.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumProgressItems, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumProgressItems_Clone(self: *const T, ppEnum: ?*?*IEnumProgressItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumProgressItems.VTable, self.vtable).Clone(@ptrCast(*const IEnumProgressItems, self), ppEnum);
+            return @as(*const IEnumProgressItems.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumProgressItems, @ptrCast(self)), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -5634,27 +5634,27 @@ pub const IProgressItems = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IProgressItems_get__NewEnum(self: *const T, NewEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProgressItems.VTable, self.vtable).get__NewEnum(@ptrCast(*const IProgressItems, self), NewEnum);
+            return @as(*const IProgressItems.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IProgressItems, @ptrCast(self)), NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IProgressItems_get_Item(self: *const T, Index: i32, item: ?*?*IProgressItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProgressItems.VTable, self.vtable).get_Item(@ptrCast(*const IProgressItems, self), Index, item);
+            return @as(*const IProgressItems.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IProgressItems, @ptrCast(self)), Index, item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IProgressItems_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProgressItems.VTable, self.vtable).get_Count(@ptrCast(*const IProgressItems, self), Count);
+            return @as(*const IProgressItems.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IProgressItems, @ptrCast(self)), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IProgressItems_ProgressItemFromBlock(self: *const T, block: u32, item: ?*?*IProgressItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProgressItems.VTable, self.vtable).ProgressItemFromBlock(@ptrCast(*const IProgressItems, self), block, item);
+            return @as(*const IProgressItems.VTable, @ptrCast(self.vtable)).ProgressItemFromBlock(@as(*const IProgressItems, @ptrCast(self)), block, item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IProgressItems_ProgressItemFromDescription(self: *const T, description: ?BSTR, item: ?*?*IProgressItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProgressItems.VTable, self.vtable).ProgressItemFromDescription(@ptrCast(*const IProgressItems, self), description, item);
+            return @as(*const IProgressItems.VTable, @ptrCast(self.vtable)).ProgressItemFromDescription(@as(*const IProgressItems, @ptrCast(self)), description, item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IProgressItems_get_EnumProgressItems(self: *const T, NewEnum: ?*?*IEnumProgressItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IProgressItems.VTable, self.vtable).get_EnumProgressItems(@ptrCast(*const IProgressItems, self), NewEnum);
+            return @as(*const IProgressItems.VTable, @ptrCast(self.vtable)).get_EnumProgressItems(@as(*const IProgressItems, @ptrCast(self)), NewEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -5737,23 +5737,23 @@ pub const IFileSystemImageResult = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImageResult_get_ImageStream(self: *const T, pVal: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImageResult.VTable, self.vtable).get_ImageStream(@ptrCast(*const IFileSystemImageResult, self), pVal);
+            return @as(*const IFileSystemImageResult.VTable, @ptrCast(self.vtable)).get_ImageStream(@as(*const IFileSystemImageResult, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImageResult_get_ProgressItems(self: *const T, pVal: ?*?*IProgressItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImageResult.VTable, self.vtable).get_ProgressItems(@ptrCast(*const IFileSystemImageResult, self), pVal);
+            return @as(*const IFileSystemImageResult.VTable, @ptrCast(self.vtable)).get_ProgressItems(@as(*const IFileSystemImageResult, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImageResult_get_TotalBlocks(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImageResult.VTable, self.vtable).get_TotalBlocks(@ptrCast(*const IFileSystemImageResult, self), pVal);
+            return @as(*const IFileSystemImageResult.VTable, @ptrCast(self.vtable)).get_TotalBlocks(@as(*const IFileSystemImageResult, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImageResult_get_BlockSize(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImageResult.VTable, self.vtable).get_BlockSize(@ptrCast(*const IFileSystemImageResult, self), pVal);
+            return @as(*const IFileSystemImageResult.VTable, @ptrCast(self.vtable)).get_BlockSize(@as(*const IFileSystemImageResult, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImageResult_get_DiscId(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImageResult.VTable, self.vtable).get_DiscId(@ptrCast(*const IFileSystemImageResult, self), pVal);
+            return @as(*const IFileSystemImageResult.VTable, @ptrCast(self.vtable)).get_DiscId(@as(*const IFileSystemImageResult, @ptrCast(self)), pVal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -5784,7 +5784,7 @@ pub const IFileSystemImageResult2 = extern struct {
         pub usingnamespace IFileSystemImageResult.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImageResult2_get_ModifiedBlocks(self: *const T, pVal: ?*?*IBlockRangeList) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImageResult2.VTable, self.vtable).get_ModifiedBlocks(@ptrCast(*const IFileSystemImageResult2, self), pVal);
+            return @as(*const IFileSystemImageResult2.VTable, @ptrCast(self.vtable)).get_ModifiedBlocks(@as(*const IFileSystemImageResult2, @ptrCast(self)), pVal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -5956,51 +5956,51 @@ pub const IFsiItem = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiItem_get_Name(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiItem.VTable, self.vtable).get_Name(@ptrCast(*const IFsiItem, self), pVal);
+            return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsiItem, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiItem_get_FullPath(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiItem.VTable, self.vtable).get_FullPath(@ptrCast(*const IFsiItem, self), pVal);
+            return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).get_FullPath(@as(*const IFsiItem, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiItem_get_CreationTime(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiItem.VTable, self.vtable).get_CreationTime(@ptrCast(*const IFsiItem, self), pVal);
+            return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).get_CreationTime(@as(*const IFsiItem, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiItem_put_CreationTime(self: *const T, newVal: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiItem.VTable, self.vtable).put_CreationTime(@ptrCast(*const IFsiItem, self), newVal);
+            return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).put_CreationTime(@as(*const IFsiItem, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiItem_get_LastAccessedTime(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiItem.VTable, self.vtable).get_LastAccessedTime(@ptrCast(*const IFsiItem, self), pVal);
+            return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).get_LastAccessedTime(@as(*const IFsiItem, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiItem_put_LastAccessedTime(self: *const T, newVal: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiItem.VTable, self.vtable).put_LastAccessedTime(@ptrCast(*const IFsiItem, self), newVal);
+            return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).put_LastAccessedTime(@as(*const IFsiItem, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiItem_get_LastModifiedTime(self: *const T, pVal: ?*f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiItem.VTable, self.vtable).get_LastModifiedTime(@ptrCast(*const IFsiItem, self), pVal);
+            return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).get_LastModifiedTime(@as(*const IFsiItem, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiItem_put_LastModifiedTime(self: *const T, newVal: f64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiItem.VTable, self.vtable).put_LastModifiedTime(@ptrCast(*const IFsiItem, self), newVal);
+            return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).put_LastModifiedTime(@as(*const IFsiItem, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiItem_get_IsHidden(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiItem.VTable, self.vtable).get_IsHidden(@ptrCast(*const IFsiItem, self), pVal);
+            return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).get_IsHidden(@as(*const IFsiItem, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiItem_put_IsHidden(self: *const T, newVal: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiItem.VTable, self.vtable).put_IsHidden(@ptrCast(*const IFsiItem, self), newVal);
+            return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).put_IsHidden(@as(*const IFsiItem, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiItem_FileSystemName(self: *const T, fileSystem: FsiFileSystems, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiItem.VTable, self.vtable).FileSystemName(@ptrCast(*const IFsiItem, self), fileSystem, pVal);
+            return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).FileSystemName(@as(*const IFsiItem, @ptrCast(self)), fileSystem, pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiItem_FileSystemPath(self: *const T, fileSystem: FsiFileSystems, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiItem.VTable, self.vtable).FileSystemPath(@ptrCast(*const IFsiItem, self), fileSystem, pVal);
+            return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).FileSystemPath(@as(*const IFsiItem, @ptrCast(self)), fileSystem, pVal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -6060,19 +6060,19 @@ pub const IEnumFsiItems = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumFsiItems_Next(self: *const T, celt: u32, rgelt: [*]?*IFsiItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumFsiItems.VTable, self.vtable).Next(@ptrCast(*const IEnumFsiItems, self), celt, rgelt, pceltFetched);
+            return @as(*const IEnumFsiItems.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumFsiItems, @ptrCast(self)), celt, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumFsiItems_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumFsiItems.VTable, self.vtable).Skip(@ptrCast(*const IEnumFsiItems, self), celt);
+            return @as(*const IEnumFsiItems.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumFsiItems, @ptrCast(self)), celt);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumFsiItems_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumFsiItems.VTable, self.vtable).Reset(@ptrCast(*const IEnumFsiItems, self));
+            return @as(*const IEnumFsiItems.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumFsiItems, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumFsiItems_Clone(self: *const T, ppEnum: ?*?*IEnumFsiItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumFsiItems.VTable, self.vtable).Clone(@ptrCast(*const IEnumFsiItems, self), ppEnum);
+            return @as(*const IEnumFsiItems.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumFsiItems, @ptrCast(self)), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -6155,23 +6155,23 @@ pub const IFsiFileItem = extern struct {
         pub usingnamespace IFsiItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiFileItem_get_DataSize(self: *const T, pVal: ?*i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiFileItem.VTable, self.vtable).get_DataSize(@ptrCast(*const IFsiFileItem, self), pVal);
+            return @as(*const IFsiFileItem.VTable, @ptrCast(self.vtable)).get_DataSize(@as(*const IFsiFileItem, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiFileItem_get_DataSize32BitLow(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiFileItem.VTable, self.vtable).get_DataSize32BitLow(@ptrCast(*const IFsiFileItem, self), pVal);
+            return @as(*const IFsiFileItem.VTable, @ptrCast(self.vtable)).get_DataSize32BitLow(@as(*const IFsiFileItem, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiFileItem_get_DataSize32BitHigh(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiFileItem.VTable, self.vtable).get_DataSize32BitHigh(@ptrCast(*const IFsiFileItem, self), pVal);
+            return @as(*const IFsiFileItem.VTable, @ptrCast(self.vtable)).get_DataSize32BitHigh(@as(*const IFsiFileItem, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiFileItem_get_Data(self: *const T, pVal: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiFileItem.VTable, self.vtable).get_Data(@ptrCast(*const IFsiFileItem, self), pVal);
+            return @as(*const IFsiFileItem.VTable, @ptrCast(self.vtable)).get_Data(@as(*const IFsiFileItem, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiFileItem_put_Data(self: *const T, newVal: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiFileItem.VTable, self.vtable).put_Data(@ptrCast(*const IFsiFileItem, self), newVal);
+            return @as(*const IFsiFileItem.VTable, @ptrCast(self.vtable)).put_Data(@as(*const IFsiFileItem, @ptrCast(self)), newVal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -6263,27 +6263,27 @@ pub const IFsiFileItem2 = extern struct {
         pub usingnamespace IFsiFileItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiFileItem2_get_FsiNamedStreams(self: *const T, streams: ?*?*IFsiNamedStreams) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiFileItem2.VTable, self.vtable).get_FsiNamedStreams(@ptrCast(*const IFsiFileItem2, self), streams);
+            return @as(*const IFsiFileItem2.VTable, @ptrCast(self.vtable)).get_FsiNamedStreams(@as(*const IFsiFileItem2, @ptrCast(self)), streams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiFileItem2_get_IsNamedStream(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiFileItem2.VTable, self.vtable).get_IsNamedStream(@ptrCast(*const IFsiFileItem2, self), pVal);
+            return @as(*const IFsiFileItem2.VTable, @ptrCast(self.vtable)).get_IsNamedStream(@as(*const IFsiFileItem2, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiFileItem2_AddStream(self: *const T, name: ?BSTR, streamData: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiFileItem2.VTable, self.vtable).AddStream(@ptrCast(*const IFsiFileItem2, self), name, streamData);
+            return @as(*const IFsiFileItem2.VTable, @ptrCast(self.vtable)).AddStream(@as(*const IFsiFileItem2, @ptrCast(self)), name, streamData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiFileItem2_RemoveStream(self: *const T, name: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiFileItem2.VTable, self.vtable).RemoveStream(@ptrCast(*const IFsiFileItem2, self), name);
+            return @as(*const IFsiFileItem2.VTable, @ptrCast(self.vtable)).RemoveStream(@as(*const IFsiFileItem2, @ptrCast(self)), name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiFileItem2_get_IsRealTime(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiFileItem2.VTable, self.vtable).get_IsRealTime(@ptrCast(*const IFsiFileItem2, self), pVal);
+            return @as(*const IFsiFileItem2.VTable, @ptrCast(self.vtable)).get_IsRealTime(@as(*const IFsiFileItem2, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiFileItem2_put_IsRealTime(self: *const T, newVal: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiFileItem2.VTable, self.vtable).put_IsRealTime(@ptrCast(*const IFsiFileItem2, self), newVal);
+            return @as(*const IFsiFileItem2.VTable, @ptrCast(self.vtable)).put_IsRealTime(@as(*const IFsiFileItem2, @ptrCast(self)), newVal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -6355,19 +6355,19 @@ pub const IFsiNamedStreams = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiNamedStreams_get__NewEnum(self: *const T, NewEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiNamedStreams.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFsiNamedStreams, self), NewEnum);
+            return @as(*const IFsiNamedStreams.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFsiNamedStreams, @ptrCast(self)), NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiNamedStreams_get_Item(self: *const T, index: i32, item: ?*?*IFsiFileItem2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiNamedStreams.VTable, self.vtable).get_Item(@ptrCast(*const IFsiNamedStreams, self), index, item);
+            return @as(*const IFsiNamedStreams.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFsiNamedStreams, @ptrCast(self)), index, item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiNamedStreams_get_Count(self: *const T, count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiNamedStreams.VTable, self.vtable).get_Count(@ptrCast(*const IFsiNamedStreams, self), count);
+            return @as(*const IFsiNamedStreams.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFsiNamedStreams, @ptrCast(self)), count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiNamedStreams_get_EnumNamedStreams(self: *const T, NewEnum: ?*?*IEnumFsiItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiNamedStreams.VTable, self.vtable).get_EnumNamedStreams(@ptrCast(*const IFsiNamedStreams, self), NewEnum);
+            return @as(*const IFsiNamedStreams.VTable, @ptrCast(self.vtable)).get_EnumNamedStreams(@as(*const IFsiNamedStreams, @ptrCast(self)), NewEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -6503,43 +6503,43 @@ pub const IFsiDirectoryItem = extern struct {
         pub usingnamespace IFsiItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiDirectoryItem_get__NewEnum(self: *const T, NewEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiDirectoryItem.VTable, self.vtable).get__NewEnum(@ptrCast(*const IFsiDirectoryItem, self), NewEnum);
+            return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFsiDirectoryItem, @ptrCast(self)), NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiDirectoryItem_get_Item(self: *const T, path: ?BSTR, item: ?*?*IFsiItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiDirectoryItem.VTable, self.vtable).get_Item(@ptrCast(*const IFsiDirectoryItem, self), path, item);
+            return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFsiDirectoryItem, @ptrCast(self)), path, item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiDirectoryItem_get_Count(self: *const T, Count: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiDirectoryItem.VTable, self.vtable).get_Count(@ptrCast(*const IFsiDirectoryItem, self), Count);
+            return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFsiDirectoryItem, @ptrCast(self)), Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiDirectoryItem_get_EnumFsiItems(self: *const T, NewEnum: ?*?*IEnumFsiItems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiDirectoryItem.VTable, self.vtable).get_EnumFsiItems(@ptrCast(*const IFsiDirectoryItem, self), NewEnum);
+            return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).get_EnumFsiItems(@as(*const IFsiDirectoryItem, @ptrCast(self)), NewEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiDirectoryItem_AddDirectory(self: *const T, path: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiDirectoryItem.VTable, self.vtable).AddDirectory(@ptrCast(*const IFsiDirectoryItem, self), path);
+            return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).AddDirectory(@as(*const IFsiDirectoryItem, @ptrCast(self)), path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiDirectoryItem_AddFile(self: *const T, path: ?BSTR, fileData: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiDirectoryItem.VTable, self.vtable).AddFile(@ptrCast(*const IFsiDirectoryItem, self), path, fileData);
+            return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).AddFile(@as(*const IFsiDirectoryItem, @ptrCast(self)), path, fileData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiDirectoryItem_AddTree(self: *const T, sourceDirectory: ?BSTR, includeBaseDirectory: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiDirectoryItem.VTable, self.vtable).AddTree(@ptrCast(*const IFsiDirectoryItem, self), sourceDirectory, includeBaseDirectory);
+            return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).AddTree(@as(*const IFsiDirectoryItem, @ptrCast(self)), sourceDirectory, includeBaseDirectory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiDirectoryItem_Add(self: *const T, item: ?*IFsiItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiDirectoryItem.VTable, self.vtable).Add(@ptrCast(*const IFsiDirectoryItem, self), item);
+            return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).Add(@as(*const IFsiDirectoryItem, @ptrCast(self)), item);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiDirectoryItem_Remove(self: *const T, path: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiDirectoryItem.VTable, self.vtable).Remove(@ptrCast(*const IFsiDirectoryItem, self), path);
+            return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFsiDirectoryItem, @ptrCast(self)), path);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiDirectoryItem_RemoveTree(self: *const T, path: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiDirectoryItem.VTable, self.vtable).RemoveTree(@ptrCast(*const IFsiDirectoryItem, self), path);
+            return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).RemoveTree(@as(*const IFsiDirectoryItem, @ptrCast(self)), path);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -6569,7 +6569,7 @@ pub const IFsiDirectoryItem2 = extern struct {
         pub usingnamespace IFsiDirectoryItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFsiDirectoryItem2_AddTreeWithNamedStreams(self: *const T, sourceDirectory: ?BSTR, includeBaseDirectory: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFsiDirectoryItem2.VTable, self.vtable).AddTreeWithNamedStreams(@ptrCast(*const IFsiDirectoryItem2, self), sourceDirectory, includeBaseDirectory);
+            return @as(*const IFsiDirectoryItem2.VTable, @ptrCast(self.vtable)).AddTreeWithNamedStreams(@as(*const IFsiDirectoryItem2, @ptrCast(self)), sourceDirectory, includeBaseDirectory);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -7203,203 +7203,203 @@ pub const IFileSystemImage = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_Root(self: *const T, pVal: ?*?*IFsiDirectoryItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_Root(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_Root(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_SessionStartBlock(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_SessionStartBlock(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_SessionStartBlock(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_put_SessionStartBlock(self: *const T, newVal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_SessionStartBlock(@ptrCast(*const IFileSystemImage, self), newVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_SessionStartBlock(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_FreeMediaBlocks(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_FreeMediaBlocks(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_FreeMediaBlocks(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_put_FreeMediaBlocks(self: *const T, newVal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_FreeMediaBlocks(@ptrCast(*const IFileSystemImage, self), newVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_FreeMediaBlocks(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_SetMaxMediaBlocksFromDevice(self: *const T, discRecorder: ?*IDiscRecorder2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).SetMaxMediaBlocksFromDevice(@ptrCast(*const IFileSystemImage, self), discRecorder);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).SetMaxMediaBlocksFromDevice(@as(*const IFileSystemImage, @ptrCast(self)), discRecorder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_UsedBlocks(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_UsedBlocks(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_UsedBlocks(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_VolumeName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_VolumeName(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_VolumeName(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_put_VolumeName(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_VolumeName(@ptrCast(*const IFileSystemImage, self), newVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_VolumeName(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_ImportedVolumeName(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_ImportedVolumeName(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_ImportedVolumeName(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_BootImageOptions(self: *const T, pVal: ?*?*IBootOptions) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_BootImageOptions(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_BootImageOptions(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_put_BootImageOptions(self: *const T, newVal: ?*IBootOptions) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_BootImageOptions(@ptrCast(*const IFileSystemImage, self), newVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_BootImageOptions(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_FileCount(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_FileCount(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_FileCount(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_DirectoryCount(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_DirectoryCount(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_DirectoryCount(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_WorkingDirectory(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_WorkingDirectory(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_WorkingDirectory(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_put_WorkingDirectory(self: *const T, newVal: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_WorkingDirectory(@ptrCast(*const IFileSystemImage, self), newVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_WorkingDirectory(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_ChangePoint(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_ChangePoint(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_ChangePoint(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_StrictFileSystemCompliance(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_StrictFileSystemCompliance(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_StrictFileSystemCompliance(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_put_StrictFileSystemCompliance(self: *const T, newVal: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_StrictFileSystemCompliance(@ptrCast(*const IFileSystemImage, self), newVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_StrictFileSystemCompliance(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_UseRestrictedCharacterSet(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_UseRestrictedCharacterSet(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_UseRestrictedCharacterSet(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_put_UseRestrictedCharacterSet(self: *const T, newVal: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_UseRestrictedCharacterSet(@ptrCast(*const IFileSystemImage, self), newVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_UseRestrictedCharacterSet(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_FileSystemsToCreate(self: *const T, pVal: ?*FsiFileSystems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_FileSystemsToCreate(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_FileSystemsToCreate(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_put_FileSystemsToCreate(self: *const T, newVal: FsiFileSystems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_FileSystemsToCreate(@ptrCast(*const IFileSystemImage, self), newVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_FileSystemsToCreate(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_FileSystemsSupported(self: *const T, pVal: ?*FsiFileSystems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_FileSystemsSupported(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_FileSystemsSupported(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_put_UDFRevision(self: *const T, newVal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_UDFRevision(@ptrCast(*const IFileSystemImage, self), newVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_UDFRevision(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_UDFRevision(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_UDFRevision(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_UDFRevision(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_UDFRevisionsSupported(self: *const T, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_UDFRevisionsSupported(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_UDFRevisionsSupported(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_ChooseImageDefaults(self: *const T, discRecorder: ?*IDiscRecorder2) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).ChooseImageDefaults(@ptrCast(*const IFileSystemImage, self), discRecorder);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).ChooseImageDefaults(@as(*const IFileSystemImage, @ptrCast(self)), discRecorder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_ChooseImageDefaultsForMediaType(self: *const T, value: IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).ChooseImageDefaultsForMediaType(@ptrCast(*const IFileSystemImage, self), value);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).ChooseImageDefaultsForMediaType(@as(*const IFileSystemImage, @ptrCast(self)), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_put_ISO9660InterchangeLevel(self: *const T, newVal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_ISO9660InterchangeLevel(@ptrCast(*const IFileSystemImage, self), newVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_ISO9660InterchangeLevel(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_ISO9660InterchangeLevel(self: *const T, pVal: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_ISO9660InterchangeLevel(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_ISO9660InterchangeLevel(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_ISO9660InterchangeLevelsSupported(self: *const T, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_ISO9660InterchangeLevelsSupported(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_ISO9660InterchangeLevelsSupported(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_CreateResultImage(self: *const T, resultStream: ?*?*IFileSystemImageResult) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).CreateResultImage(@ptrCast(*const IFileSystemImage, self), resultStream);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).CreateResultImage(@as(*const IFileSystemImage, @ptrCast(self)), resultStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_Exists(self: *const T, fullPath: ?BSTR, itemType: ?*FsiItemType) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).Exists(@ptrCast(*const IFileSystemImage, self), fullPath, itemType);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).Exists(@as(*const IFileSystemImage, @ptrCast(self)), fullPath, itemType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_CalculateDiscIdentifier(self: *const T, discIdentifier: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).CalculateDiscIdentifier(@ptrCast(*const IFileSystemImage, self), discIdentifier);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).CalculateDiscIdentifier(@as(*const IFileSystemImage, @ptrCast(self)), discIdentifier);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_IdentifyFileSystemsOnDisc(self: *const T, discRecorder: ?*IDiscRecorder2, fileSystems: ?*FsiFileSystems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).IdentifyFileSystemsOnDisc(@ptrCast(*const IFileSystemImage, self), discRecorder, fileSystems);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).IdentifyFileSystemsOnDisc(@as(*const IFileSystemImage, @ptrCast(self)), discRecorder, fileSystems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_GetDefaultFileSystemForImport(self: *const T, fileSystems: FsiFileSystems, importDefault: ?*FsiFileSystems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).GetDefaultFileSystemForImport(@ptrCast(*const IFileSystemImage, self), fileSystems, importDefault);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).GetDefaultFileSystemForImport(@as(*const IFileSystemImage, @ptrCast(self)), fileSystems, importDefault);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_ImportFileSystem(self: *const T, importedFileSystem: ?*FsiFileSystems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).ImportFileSystem(@ptrCast(*const IFileSystemImage, self), importedFileSystem);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).ImportFileSystem(@as(*const IFileSystemImage, @ptrCast(self)), importedFileSystem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_ImportSpecificFileSystem(self: *const T, fileSystemToUse: FsiFileSystems) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).ImportSpecificFileSystem(@ptrCast(*const IFileSystemImage, self), fileSystemToUse);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).ImportSpecificFileSystem(@as(*const IFileSystemImage, @ptrCast(self)), fileSystemToUse);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_RollbackToChangePoint(self: *const T, changePoint: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).RollbackToChangePoint(@ptrCast(*const IFileSystemImage, self), changePoint);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).RollbackToChangePoint(@as(*const IFileSystemImage, @ptrCast(self)), changePoint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_LockInChangePoint(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).LockInChangePoint(@ptrCast(*const IFileSystemImage, self));
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).LockInChangePoint(@as(*const IFileSystemImage, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_CreateDirectoryItem(self: *const T, name: ?BSTR, newItem: ?*?*IFsiDirectoryItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).CreateDirectoryItem(@ptrCast(*const IFileSystemImage, self), name, newItem);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).CreateDirectoryItem(@as(*const IFileSystemImage, @ptrCast(self)), name, newItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_CreateFileItem(self: *const T, name: ?BSTR, newItem: ?*?*IFsiFileItem) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).CreateFileItem(@ptrCast(*const IFileSystemImage, self), name, newItem);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).CreateFileItem(@as(*const IFileSystemImage, @ptrCast(self)), name, newItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_VolumeNameUDF(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_VolumeNameUDF(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_VolumeNameUDF(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_VolumeNameJoliet(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_VolumeNameJoliet(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_VolumeNameJoliet(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_VolumeNameISO9660(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_VolumeNameISO9660(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_VolumeNameISO9660(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_StageFiles(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_StageFiles(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_StageFiles(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_put_StageFiles(self: *const T, newVal: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_StageFiles(@ptrCast(*const IFileSystemImage, self), newVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_StageFiles(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_get_MultisessionInterfaces(self: *const T, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).get_MultisessionInterfaces(@ptrCast(*const IFileSystemImage, self), pVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_MultisessionInterfaces(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage_put_MultisessionInterfaces(self: *const T, newVal: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage.VTable, self.vtable).put_MultisessionInterfaces(@ptrCast(*const IFileSystemImage, self), newVal);
+            return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_MultisessionInterfaces(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -7443,11 +7443,11 @@ pub const IFileSystemImage2 = extern struct {
         pub usingnamespace IFileSystemImage.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage2_get_BootImageOptionsArray(self: *const T, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage2.VTable, self.vtable).get_BootImageOptionsArray(@ptrCast(*const IFileSystemImage2, self), pVal);
+            return @as(*const IFileSystemImage2.VTable, @ptrCast(self.vtable)).get_BootImageOptionsArray(@as(*const IFileSystemImage2, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage2_put_BootImageOptionsArray(self: *const T, newVal: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage2.VTable, self.vtable).put_BootImageOptionsArray(@ptrCast(*const IFileSystemImage2, self), newVal);
+            return @as(*const IFileSystemImage2.VTable, @ptrCast(self.vtable)).put_BootImageOptionsArray(@as(*const IFileSystemImage2, @ptrCast(self)), newVal);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -7503,15 +7503,15 @@ pub const IFileSystemImage3 = extern struct {
         pub usingnamespace IFileSystemImage2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage3_get_CreateRedundantUdfMetadataFiles(self: *const T, pVal: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage3.VTable, self.vtable).get_CreateRedundantUdfMetadataFiles(@ptrCast(*const IFileSystemImage3, self), pVal);
+            return @as(*const IFileSystemImage3.VTable, @ptrCast(self.vtable)).get_CreateRedundantUdfMetadataFiles(@as(*const IFileSystemImage3, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage3_put_CreateRedundantUdfMetadataFiles(self: *const T, newVal: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage3.VTable, self.vtable).put_CreateRedundantUdfMetadataFiles(@ptrCast(*const IFileSystemImage3, self), newVal);
+            return @as(*const IFileSystemImage3.VTable, @ptrCast(self.vtable)).put_CreateRedundantUdfMetadataFiles(@as(*const IFileSystemImage3, @ptrCast(self)), newVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IFileSystemImage3_ProbeSpecificFileSystem(self: *const T, fileSystemToProbe: FsiFileSystems, isAppendable: ?*i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IFileSystemImage3.VTable, self.vtable).ProbeSpecificFileSystem(@ptrCast(*const IFileSystemImage3, self), fileSystemToProbe, isAppendable);
+            return @as(*const IFileSystemImage3.VTable, @ptrCast(self.vtable)).ProbeSpecificFileSystem(@as(*const IFileSystemImage3, @ptrCast(self)), fileSystemToProbe, isAppendable);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -7545,7 +7545,7 @@ pub const DFileSystemImageEvents = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn DFileSystemImageEvents_Update(self: *const T, object: ?*IDispatch, currentFile: ?BSTR, copiedSectors: i32, totalSectors: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const DFileSystemImageEvents.VTable, self.vtable).Update(@ptrCast(*const DFileSystemImageEvents, self), object, currentFile, copiedSectors, totalSectors);
+            return @as(*const DFileSystemImageEvents.VTable, @ptrCast(self.vtable)).Update(@as(*const DFileSystemImageEvents, @ptrCast(self)), object, currentFile, copiedSectors, totalSectors);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -7585,7 +7585,7 @@ pub const DFileSystemImageImportEvents = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn DFileSystemImageImportEvents_UpdateImport(self: *const T, object: ?*IDispatch, fileSystem: FsiFileSystems, currentItem: ?BSTR, importedDirectoryItems: i32, totalDirectoryItems: i32, importedFileItems: i32, totalFileItems: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const DFileSystemImageImportEvents.VTable, self.vtable).UpdateImport(@ptrCast(*const DFileSystemImageImportEvents, self), object, fileSystem, currentItem, importedDirectoryItems, totalDirectoryItems, importedFileItems, totalFileItems);
+            return @as(*const DFileSystemImageImportEvents.VTable, @ptrCast(self.vtable)).UpdateImport(@as(*const DFileSystemImageImportEvents, @ptrCast(self)), object, fileSystem, currentItem, importedDirectoryItems, totalDirectoryItems, importedFileItems, totalFileItems);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -7657,23 +7657,23 @@ pub const IIsoImageManager = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IIsoImageManager_get_Path(self: *const T, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IIsoImageManager.VTable, self.vtable).get_Path(@ptrCast(*const IIsoImageManager, self), pVal);
+            return @as(*const IIsoImageManager.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IIsoImageManager, @ptrCast(self)), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IIsoImageManager_get_Stream(self: *const T, data: ?*?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IIsoImageManager.VTable, self.vtable).get_Stream(@ptrCast(*const IIsoImageManager, self), data);
+            return @as(*const IIsoImageManager.VTable, @ptrCast(self.vtable)).get_Stream(@as(*const IIsoImageManager, @ptrCast(self)), data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IIsoImageManager_SetPath(self: *const T, Val: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IIsoImageManager.VTable, self.vtable).SetPath(@ptrCast(*const IIsoImageManager, self), Val);
+            return @as(*const IIsoImageManager.VTable, @ptrCast(self.vtable)).SetPath(@as(*const IIsoImageManager, @ptrCast(self)), Val);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IIsoImageManager_SetStream(self: *const T, data: ?*IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IIsoImageManager.VTable, self.vtable).SetStream(@ptrCast(*const IIsoImageManager, self), data);
+            return @as(*const IIsoImageManager.VTable, @ptrCast(self.vtable)).SetStream(@as(*const IIsoImageManager, @ptrCast(self)), data);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IIsoImageManager_Validate(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IIsoImageManager.VTable, self.vtable).Validate(@ptrCast(*const IIsoImageManager, self));
+            return @as(*const IIsoImageManager.VTable, @ptrCast(self.vtable)).Validate(@as(*const IIsoImageManager, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -7899,63 +7899,63 @@ pub const IDiscRecorder = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_Init(self: *const T, pbyUniqueID: [*:0]u8, nulIDSize: u32, nulDriveNumber: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).Init(@ptrCast(*const IDiscRecorder, self), pbyUniqueID, nulIDSize, nulDriveNumber);
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).Init(@as(*const IDiscRecorder, @ptrCast(self)), pbyUniqueID, nulIDSize, nulDriveNumber);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_GetRecorderGUID(self: *const T, pbyUniqueID: ?[*:0]u8, ulBufferSize: u32, pulReturnSizeRequired: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetRecorderGUID(@ptrCast(*const IDiscRecorder, self), pbyUniqueID, ulBufferSize, pulReturnSizeRequired);
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetRecorderGUID(@as(*const IDiscRecorder, @ptrCast(self)), pbyUniqueID, ulBufferSize, pulReturnSizeRequired);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_GetRecorderType(self: *const T, fTypeCode: ?*RECORDER_TYPES) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetRecorderType(@ptrCast(*const IDiscRecorder, self), fTypeCode);
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetRecorderType(@as(*const IDiscRecorder, @ptrCast(self)), fTypeCode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_GetDisplayNames(self: *const T, pbstrVendorID: ?*?BSTR, pbstrProductID: ?*?BSTR, pbstrRevision: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetDisplayNames(@ptrCast(*const IDiscRecorder, self), pbstrVendorID, pbstrProductID, pbstrRevision);
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetDisplayNames(@as(*const IDiscRecorder, @ptrCast(self)), pbstrVendorID, pbstrProductID, pbstrRevision);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_GetBasePnPID(self: *const T, pbstrBasePnPID: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetBasePnPID(@ptrCast(*const IDiscRecorder, self), pbstrBasePnPID);
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetBasePnPID(@as(*const IDiscRecorder, @ptrCast(self)), pbstrBasePnPID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_GetPath(self: *const T, pbstrPath: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetPath(@ptrCast(*const IDiscRecorder, self), pbstrPath);
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IDiscRecorder, @ptrCast(self)), pbstrPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_GetRecorderProperties(self: *const T, ppPropStg: ?*?*IPropertyStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetRecorderProperties(@ptrCast(*const IDiscRecorder, self), ppPropStg);
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetRecorderProperties(@as(*const IDiscRecorder, @ptrCast(self)), ppPropStg);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_SetRecorderProperties(self: *const T, pPropStg: ?*IPropertyStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).SetRecorderProperties(@ptrCast(*const IDiscRecorder, self), pPropStg);
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).SetRecorderProperties(@as(*const IDiscRecorder, @ptrCast(self)), pPropStg);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_GetRecorderState(self: *const T, pulDevStateFlags: ?*DISC_RECORDER_STATE_FLAGS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).GetRecorderState(@ptrCast(*const IDiscRecorder, self), pulDevStateFlags);
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetRecorderState(@as(*const IDiscRecorder, @ptrCast(self)), pulDevStateFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_OpenExclusive(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).OpenExclusive(@ptrCast(*const IDiscRecorder, self));
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).OpenExclusive(@as(*const IDiscRecorder, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_QueryMediaType(self: *const T, fMediaType: ?*MEDIA_TYPES, fMediaFlags: ?*MEDIA_FLAGS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).QueryMediaType(@ptrCast(*const IDiscRecorder, self), fMediaType, fMediaFlags);
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).QueryMediaType(@as(*const IDiscRecorder, @ptrCast(self)), fMediaType, fMediaFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_QueryMediaInfo(self: *const T, pbSessions: ?*u8, pbLastTrack: ?*u8, ulStartAddress: ?*u32, ulNextWritable: ?*u32, ulFreeBlocks: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).QueryMediaInfo(@ptrCast(*const IDiscRecorder, self), pbSessions, pbLastTrack, ulStartAddress, ulNextWritable, ulFreeBlocks);
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).QueryMediaInfo(@as(*const IDiscRecorder, @ptrCast(self)), pbSessions, pbLastTrack, ulStartAddress, ulNextWritable, ulFreeBlocks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_Eject(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).Eject(@ptrCast(*const IDiscRecorder, self));
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).Eject(@as(*const IDiscRecorder, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_Erase(self: *const T, bFullErase: u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).Erase(@ptrCast(*const IDiscRecorder, self), bFullErase);
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).Erase(@as(*const IDiscRecorder, @ptrCast(self)), bFullErase);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscRecorder_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscRecorder.VTable, self.vtable).Close(@ptrCast(*const IDiscRecorder, self));
+            return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).Close(@as(*const IDiscRecorder, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -8014,19 +8014,19 @@ pub const IEnumDiscRecorders = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumDiscRecorders_Next(self: *const T, cRecorders: u32, ppRecorder: [*]?*IDiscRecorder, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDiscRecorders.VTable, self.vtable).Next(@ptrCast(*const IEnumDiscRecorders, self), cRecorders, ppRecorder, pcFetched);
+            return @as(*const IEnumDiscRecorders.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDiscRecorders, @ptrCast(self)), cRecorders, ppRecorder, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumDiscRecorders_Skip(self: *const T, cRecorders: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDiscRecorders.VTable, self.vtable).Skip(@ptrCast(*const IEnumDiscRecorders, self), cRecorders);
+            return @as(*const IEnumDiscRecorders.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDiscRecorders, @ptrCast(self)), cRecorders);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumDiscRecorders_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDiscRecorders.VTable, self.vtable).Reset(@ptrCast(*const IEnumDiscRecorders, self));
+            return @as(*const IEnumDiscRecorders.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDiscRecorders, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumDiscRecorders_Clone(self: *const T, ppEnum: ?*?*IEnumDiscRecorders) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDiscRecorders.VTable, self.vtable).Clone(@ptrCast(*const IEnumDiscRecorders, self), ppEnum);
+            return @as(*const IEnumDiscRecorders.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDiscRecorders, @ptrCast(self)), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -8085,19 +8085,19 @@ pub const IEnumDiscMasterFormats = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumDiscMasterFormats_Next(self: *const T, cFormats: u32, lpiidFormatID: [*]Guid, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDiscMasterFormats.VTable, self.vtable).Next(@ptrCast(*const IEnumDiscMasterFormats, self), cFormats, lpiidFormatID, pcFetched);
+            return @as(*const IEnumDiscMasterFormats.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDiscMasterFormats, @ptrCast(self)), cFormats, lpiidFormatID, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumDiscMasterFormats_Skip(self: *const T, cFormats: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDiscMasterFormats.VTable, self.vtable).Skip(@ptrCast(*const IEnumDiscMasterFormats, self), cFormats);
+            return @as(*const IEnumDiscMasterFormats.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDiscMasterFormats, @ptrCast(self)), cFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumDiscMasterFormats_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDiscMasterFormats.VTable, self.vtable).Reset(@ptrCast(*const IEnumDiscMasterFormats, self));
+            return @as(*const IEnumDiscMasterFormats.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDiscMasterFormats, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IEnumDiscMasterFormats_Clone(self: *const T, ppEnum: ?*?*IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDiscMasterFormats.VTable, self.vtable).Clone(@ptrCast(*const IEnumDiscMasterFormats, self), ppEnum);
+            return @as(*const IEnumDiscMasterFormats.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDiscMasterFormats, @ptrCast(self)), ppEnum);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -8195,35 +8195,35 @@ pub const IRedbookDiscMaster = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRedbookDiscMaster_GetTotalAudioTracks(self: *const T, pnTracks: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRedbookDiscMaster.VTable, self.vtable).GetTotalAudioTracks(@ptrCast(*const IRedbookDiscMaster, self), pnTracks);
+            return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).GetTotalAudioTracks(@as(*const IRedbookDiscMaster, @ptrCast(self)), pnTracks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRedbookDiscMaster_GetTotalAudioBlocks(self: *const T, pnBlocks: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRedbookDiscMaster.VTable, self.vtable).GetTotalAudioBlocks(@ptrCast(*const IRedbookDiscMaster, self), pnBlocks);
+            return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).GetTotalAudioBlocks(@as(*const IRedbookDiscMaster, @ptrCast(self)), pnBlocks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRedbookDiscMaster_GetUsedAudioBlocks(self: *const T, pnBlocks: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRedbookDiscMaster.VTable, self.vtable).GetUsedAudioBlocks(@ptrCast(*const IRedbookDiscMaster, self), pnBlocks);
+            return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).GetUsedAudioBlocks(@as(*const IRedbookDiscMaster, @ptrCast(self)), pnBlocks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRedbookDiscMaster_GetAvailableAudioTrackBlocks(self: *const T, pnBlocks: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRedbookDiscMaster.VTable, self.vtable).GetAvailableAudioTrackBlocks(@ptrCast(*const IRedbookDiscMaster, self), pnBlocks);
+            return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).GetAvailableAudioTrackBlocks(@as(*const IRedbookDiscMaster, @ptrCast(self)), pnBlocks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRedbookDiscMaster_GetAudioBlockSize(self: *const T, pnBlockBytes: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRedbookDiscMaster.VTable, self.vtable).GetAudioBlockSize(@ptrCast(*const IRedbookDiscMaster, self), pnBlockBytes);
+            return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).GetAudioBlockSize(@as(*const IRedbookDiscMaster, @ptrCast(self)), pnBlockBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRedbookDiscMaster_CreateAudioTrack(self: *const T, nBlocks: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRedbookDiscMaster.VTable, self.vtable).CreateAudioTrack(@ptrCast(*const IRedbookDiscMaster, self), nBlocks);
+            return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).CreateAudioTrack(@as(*const IRedbookDiscMaster, @ptrCast(self)), nBlocks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRedbookDiscMaster_AddAudioTrackBlocks(self: *const T, pby: [*:0]u8, cb: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRedbookDiscMaster.VTable, self.vtable).AddAudioTrackBlocks(@ptrCast(*const IRedbookDiscMaster, self), pby, cb);
+            return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).AddAudioTrackBlocks(@as(*const IRedbookDiscMaster, @ptrCast(self)), pby, cb);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRedbookDiscMaster_CloseAudioTrack(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRedbookDiscMaster.VTable, self.vtable).CloseAudioTrack(@ptrCast(*const IRedbookDiscMaster, self));
+            return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).CloseAudioTrack(@as(*const IRedbookDiscMaster, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -8303,27 +8303,27 @@ pub const IJolietDiscMaster = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IJolietDiscMaster_GetTotalDataBlocks(self: *const T, pnBlocks: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IJolietDiscMaster.VTable, self.vtable).GetTotalDataBlocks(@ptrCast(*const IJolietDiscMaster, self), pnBlocks);
+            return @as(*const IJolietDiscMaster.VTable, @ptrCast(self.vtable)).GetTotalDataBlocks(@as(*const IJolietDiscMaster, @ptrCast(self)), pnBlocks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IJolietDiscMaster_GetUsedDataBlocks(self: *const T, pnBlocks: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IJolietDiscMaster.VTable, self.vtable).GetUsedDataBlocks(@ptrCast(*const IJolietDiscMaster, self), pnBlocks);
+            return @as(*const IJolietDiscMaster.VTable, @ptrCast(self.vtable)).GetUsedDataBlocks(@as(*const IJolietDiscMaster, @ptrCast(self)), pnBlocks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IJolietDiscMaster_GetDataBlockSize(self: *const T, pnBlockBytes: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IJolietDiscMaster.VTable, self.vtable).GetDataBlockSize(@ptrCast(*const IJolietDiscMaster, self), pnBlockBytes);
+            return @as(*const IJolietDiscMaster.VTable, @ptrCast(self.vtable)).GetDataBlockSize(@as(*const IJolietDiscMaster, @ptrCast(self)), pnBlockBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IJolietDiscMaster_AddData(self: *const T, pStorage: ?*IStorage, lFileOverwrite: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IJolietDiscMaster.VTable, self.vtable).AddData(@ptrCast(*const IJolietDiscMaster, self), pStorage, lFileOverwrite);
+            return @as(*const IJolietDiscMaster.VTable, @ptrCast(self.vtable)).AddData(@as(*const IJolietDiscMaster, @ptrCast(self)), pStorage, lFileOverwrite);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IJolietDiscMaster_GetJolietProperties(self: *const T, ppPropStg: ?*?*IPropertyStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IJolietDiscMaster.VTable, self.vtable).GetJolietProperties(@ptrCast(*const IJolietDiscMaster, self), ppPropStg);
+            return @as(*const IJolietDiscMaster.VTable, @ptrCast(self.vtable)).GetJolietProperties(@as(*const IJolietDiscMaster, @ptrCast(self)), ppPropStg);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IJolietDiscMaster_SetJolietProperties(self: *const T, pPropStg: ?*IPropertyStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IJolietDiscMaster.VTable, self.vtable).SetJolietProperties(@ptrCast(*const IJolietDiscMaster, self), pPropStg);
+            return @as(*const IJolietDiscMaster.VTable, @ptrCast(self.vtable)).SetJolietProperties(@as(*const IJolietDiscMaster, @ptrCast(self)), pPropStg);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -8435,39 +8435,39 @@ pub const IDiscMasterProgressEvents = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMasterProgressEvents_QueryCancel(self: *const T, pbCancel: ?*u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMasterProgressEvents.VTable, self.vtable).QueryCancel(@ptrCast(*const IDiscMasterProgressEvents, self), pbCancel);
+            return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).QueryCancel(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), pbCancel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMasterProgressEvents_NotifyPnPActivity(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMasterProgressEvents.VTable, self.vtable).NotifyPnPActivity(@ptrCast(*const IDiscMasterProgressEvents, self));
+            return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyPnPActivity(@as(*const IDiscMasterProgressEvents, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMasterProgressEvents_NotifyAddProgress(self: *const T, nCompletedSteps: i32, nTotalSteps: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMasterProgressEvents.VTable, self.vtable).NotifyAddProgress(@ptrCast(*const IDiscMasterProgressEvents, self), nCompletedSteps, nTotalSteps);
+            return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyAddProgress(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), nCompletedSteps, nTotalSteps);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMasterProgressEvents_NotifyBlockProgress(self: *const T, nCompleted: i32, nTotal: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMasterProgressEvents.VTable, self.vtable).NotifyBlockProgress(@ptrCast(*const IDiscMasterProgressEvents, self), nCompleted, nTotal);
+            return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyBlockProgress(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), nCompleted, nTotal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMasterProgressEvents_NotifyTrackProgress(self: *const T, nCurrentTrack: i32, nTotalTracks: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMasterProgressEvents.VTable, self.vtable).NotifyTrackProgress(@ptrCast(*const IDiscMasterProgressEvents, self), nCurrentTrack, nTotalTracks);
+            return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyTrackProgress(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), nCurrentTrack, nTotalTracks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMasterProgressEvents_NotifyPreparingBurn(self: *const T, nEstimatedSeconds: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMasterProgressEvents.VTable, self.vtable).NotifyPreparingBurn(@ptrCast(*const IDiscMasterProgressEvents, self), nEstimatedSeconds);
+            return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyPreparingBurn(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), nEstimatedSeconds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMasterProgressEvents_NotifyClosingDisc(self: *const T, nEstimatedSeconds: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMasterProgressEvents.VTable, self.vtable).NotifyClosingDisc(@ptrCast(*const IDiscMasterProgressEvents, self), nEstimatedSeconds);
+            return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyClosingDisc(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), nEstimatedSeconds);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMasterProgressEvents_NotifyBurnComplete(self: *const T, status: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMasterProgressEvents.VTable, self.vtable).NotifyBurnComplete(@ptrCast(*const IDiscMasterProgressEvents, self), status);
+            return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyBurnComplete(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMasterProgressEvents_NotifyEraseComplete(self: *const T, status: HRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMasterProgressEvents.VTable, self.vtable).NotifyEraseComplete(@ptrCast(*const IDiscMasterProgressEvents, self), status);
+            return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyEraseComplete(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), status);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -8605,51 +8605,51 @@ pub const IDiscMaster = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster_Open(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster.VTable, self.vtable).Open(@ptrCast(*const IDiscMaster, self));
+            return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).Open(@as(*const IDiscMaster, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster_EnumDiscMasterFormats(self: *const T, ppEnum: ?*?*IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster.VTable, self.vtable).EnumDiscMasterFormats(@ptrCast(*const IDiscMaster, self), ppEnum);
+            return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).EnumDiscMasterFormats(@as(*const IDiscMaster, @ptrCast(self)), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster_GetActiveDiscMasterFormat(self: *const T, lpiid: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster.VTable, self.vtable).GetActiveDiscMasterFormat(@ptrCast(*const IDiscMaster, self), lpiid);
+            return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).GetActiveDiscMasterFormat(@as(*const IDiscMaster, @ptrCast(self)), lpiid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster_SetActiveDiscMasterFormat(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster.VTable, self.vtable).SetActiveDiscMasterFormat(@ptrCast(*const IDiscMaster, self), riid, ppUnk);
+            return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).SetActiveDiscMasterFormat(@as(*const IDiscMaster, @ptrCast(self)), riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster_EnumDiscRecorders(self: *const T, ppEnum: ?*?*IEnumDiscRecorders) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster.VTable, self.vtable).EnumDiscRecorders(@ptrCast(*const IDiscMaster, self), ppEnum);
+            return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).EnumDiscRecorders(@as(*const IDiscMaster, @ptrCast(self)), ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster_GetActiveDiscRecorder(self: *const T, ppRecorder: ?*?*IDiscRecorder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster.VTable, self.vtable).GetActiveDiscRecorder(@ptrCast(*const IDiscMaster, self), ppRecorder);
+            return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).GetActiveDiscRecorder(@as(*const IDiscMaster, @ptrCast(self)), ppRecorder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster_SetActiveDiscRecorder(self: *const T, pRecorder: ?*IDiscRecorder) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster.VTable, self.vtable).SetActiveDiscRecorder(@ptrCast(*const IDiscMaster, self), pRecorder);
+            return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).SetActiveDiscRecorder(@as(*const IDiscMaster, @ptrCast(self)), pRecorder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster_ClearFormatContent(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster.VTable, self.vtable).ClearFormatContent(@ptrCast(*const IDiscMaster, self));
+            return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).ClearFormatContent(@as(*const IDiscMaster, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster_ProgressAdvise(self: *const T, pEvents: ?*IDiscMasterProgressEvents, pvCookie: ?*usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster.VTable, self.vtable).ProgressAdvise(@ptrCast(*const IDiscMaster, self), pEvents, pvCookie);
+            return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).ProgressAdvise(@as(*const IDiscMaster, @ptrCast(self)), pEvents, pvCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster_ProgressUnadvise(self: *const T, vCookie: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster.VTable, self.vtable).ProgressUnadvise(@ptrCast(*const IDiscMaster, self), vCookie);
+            return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).ProgressUnadvise(@as(*const IDiscMaster, @ptrCast(self)), vCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster_RecordDisc(self: *const T, bSimulate: u8, bEjectAfterBurn: u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster.VTable, self.vtable).RecordDisc(@ptrCast(*const IDiscMaster, self), bSimulate, bEjectAfterBurn);
+            return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).RecordDisc(@as(*const IDiscMaster, @ptrCast(self)), bSimulate, bEjectAfterBurn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDiscMaster_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDiscMaster.VTable, self.vtable).Close(@ptrCast(*const IDiscMaster, self));
+            return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).Close(@as(*const IDiscMaster, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());

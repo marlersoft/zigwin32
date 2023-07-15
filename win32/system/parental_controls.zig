@@ -146,11 +146,11 @@ pub const IWPCProviderState = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWPCProviderState_Enable(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWPCProviderState.VTable, self.vtable).Enable(@ptrCast(*const IWPCProviderState, self));
+            return @as(*const IWPCProviderState.VTable, @ptrCast(self.vtable)).Enable(@as(*const IWPCProviderState, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWPCProviderState_Disable(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWPCProviderState.VTable, self.vtable).Disable(@ptrCast(*const IWPCProviderState, self));
+            return @as(*const IWPCProviderState.VTable, @ptrCast(self.vtable)).Disable(@as(*const IWPCProviderState, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -211,15 +211,15 @@ pub const IWPCProviderConfig = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWPCProviderConfig_GetUserSummary(self: *const T, bstrSID: ?BSTR, pbstrUserSummary: ?*?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWPCProviderConfig.VTable, self.vtable).GetUserSummary(@ptrCast(*const IWPCProviderConfig, self), bstrSID, pbstrUserSummary);
+            return @as(*const IWPCProviderConfig.VTable, @ptrCast(self.vtable)).GetUserSummary(@as(*const IWPCProviderConfig, @ptrCast(self)), bstrSID, pbstrUserSummary);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWPCProviderConfig_Configure(self: *const T, hWnd: ?HWND, bstrSID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWPCProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IWPCProviderConfig, self), hWnd, bstrSID);
+            return @as(*const IWPCProviderConfig.VTable, @ptrCast(self.vtable)).Configure(@as(*const IWPCProviderConfig, @ptrCast(self)), hWnd, bstrSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWPCProviderConfig_RequestOverride(self: *const T, hWnd: ?HWND, bstrPath: ?BSTR, dwFlags: WPCFLAG_RESTRICTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWPCProviderConfig.VTable, self.vtable).RequestOverride(@ptrCast(*const IWPCProviderConfig, self), hWnd, bstrPath, dwFlags);
+            return @as(*const IWPCProviderConfig.VTable, @ptrCast(self.vtable)).RequestOverride(@as(*const IWPCProviderConfig, @ptrCast(self)), hWnd, bstrPath, dwFlags);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -286,15 +286,15 @@ pub const IWPCSettings = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWPCSettings_IsLoggingRequired(self: *const T, pfRequired: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWPCSettings.VTable, self.vtable).IsLoggingRequired(@ptrCast(*const IWPCSettings, self), pfRequired);
+            return @as(*const IWPCSettings.VTable, @ptrCast(self.vtable)).IsLoggingRequired(@as(*const IWPCSettings, @ptrCast(self)), pfRequired);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWPCSettings_GetLastSettingsChangeTime(self: *const T, pTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWPCSettings.VTable, self.vtable).GetLastSettingsChangeTime(@ptrCast(*const IWPCSettings, self), pTime);
+            return @as(*const IWPCSettings.VTable, @ptrCast(self.vtable)).GetLastSettingsChangeTime(@as(*const IWPCSettings, @ptrCast(self)), pTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWPCSettings_GetRestrictions(self: *const T, pdwRestrictions: ?*WPCFLAG_RESTRICTION) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWPCSettings.VTable, self.vtable).GetRestrictions(@ptrCast(*const IWPCSettings, self), pdwRestrictions);
+            return @as(*const IWPCSettings.VTable, @ptrCast(self.vtable)).GetRestrictions(@as(*const IWPCSettings, @ptrCast(self)), pdwRestrictions);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -324,7 +324,7 @@ pub const IWPCGamesSettings = extern struct {
         pub usingnamespace IWPCSettings.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWPCGamesSettings_IsBlocked(self: *const T, guidAppID: Guid, pdwReasons: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWPCGamesSettings.VTable, self.vtable).IsBlocked(@ptrCast(*const IWPCGamesSettings, self), guidAppID, pdwReasons);
+            return @as(*const IWPCGamesSettings.VTable, @ptrCast(self.vtable)).IsBlocked(@as(*const IWPCGamesSettings, @ptrCast(self)), guidAppID, pdwReasons);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -377,11 +377,11 @@ pub const IWPCWebSettings = extern struct {
         pub usingnamespace IWPCSettings.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWPCWebSettings_GetSettings(self: *const T, pdwSettings: ?*WPCFLAG_WEB_SETTING) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWPCWebSettings.VTable, self.vtable).GetSettings(@ptrCast(*const IWPCWebSettings, self), pdwSettings);
+            return @as(*const IWPCWebSettings.VTable, @ptrCast(self.vtable)).GetSettings(@as(*const IWPCWebSettings, @ptrCast(self)), pdwSettings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWPCWebSettings_RequestURLOverride(self: *const T, hWnd: ?HWND, pcszURL: ?[*:0]const u16, cURLs: u32, ppcszSubURLs: ?[*]?PWSTR, pfChanged: ?*BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWPCWebSettings.VTable, self.vtable).RequestURLOverride(@ptrCast(*const IWPCWebSettings, self), hWnd, pcszURL, cURLs, ppcszSubURLs, pfChanged);
+            return @as(*const IWPCWebSettings.VTable, @ptrCast(self.vtable)).RequestURLOverride(@as(*const IWPCWebSettings, @ptrCast(self)), hWnd, pcszURL, cURLs, ppcszSubURLs, pfChanged);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -452,19 +452,19 @@ pub const IWindowsParentalControlsCore = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWindowsParentalControlsCore_GetVisibility(self: *const T, peVisibility: ?*WPCFLAG_VISIBILITY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWindowsParentalControlsCore.VTable, self.vtable).GetVisibility(@ptrCast(*const IWindowsParentalControlsCore, self), peVisibility);
+            return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetVisibility(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), peVisibility);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWindowsParentalControlsCore_GetUserSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCSettings) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWindowsParentalControlsCore.VTable, self.vtable).GetUserSettings(@ptrCast(*const IWindowsParentalControlsCore, self), pcszSID, ppSettings);
+            return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetUserSettings(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), pcszSID, ppSettings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWindowsParentalControlsCore_GetWebSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCWebSettings) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWindowsParentalControlsCore.VTable, self.vtable).GetWebSettings(@ptrCast(*const IWindowsParentalControlsCore, self), pcszSID, ppSettings);
+            return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetWebSettings(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), pcszSID, ppSettings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWindowsParentalControlsCore_GetWebFilterInfo(self: *const T, pguidID: ?*Guid, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWindowsParentalControlsCore.VTable, self.vtable).GetWebFilterInfo(@ptrCast(*const IWindowsParentalControlsCore, self), pguidID, ppszName);
+            return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetWebFilterInfo(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), pguidID, ppszName);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -494,7 +494,7 @@ pub const IWindowsParentalControls = extern struct {
         pub usingnamespace IWindowsParentalControlsCore.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWindowsParentalControls_GetGamesSettings(self: *const T, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCGamesSettings) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWindowsParentalControls.VTable, self.vtable).GetGamesSettings(@ptrCast(*const IWindowsParentalControls, self), pcszSID, ppSettings);
+            return @as(*const IWindowsParentalControls.VTable, @ptrCast(self.vtable)).GetGamesSettings(@as(*const IWindowsParentalControls, @ptrCast(self)), pcszSID, ppSettings);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -522,7 +522,7 @@ pub const IWPCProviderSupport = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IWPCProviderSupport_GetCurrent(self: *const T, pguidProvider: ?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IWPCProviderSupport.VTable, self.vtable).GetCurrent(@ptrCast(*const IWPCProviderSupport, self), pguidProvider);
+            return @as(*const IWPCProviderSupport.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IWPCProviderSupport, @ptrCast(self)), pguidProvider);
         }
     };}
     pub usingnamespace MethodMixin(@This());
