@@ -85,7 +85,7 @@ pub const VBS_ENCLAVE_REPORT_MODULE = packed struct {
 pub const ENCLAVE_INFORMATION = extern struct {
     EnclaveType: u32,
     Reserved: u32,
-    BaseAddress: ?*c_void,
+    BaseAddress: ?*anyopaque,
     Size: usize,
     Identity: ENCLAVE_IDENTITY,
 };
@@ -127,19 +127,19 @@ pub const VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_ENCLAVE = fn(
 
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_COMMIT_PAGES = fn(
-    EnclaveAddress: ?*c_void,
+    EnclaveAddress: ?*anyopaque,
     NumberOfBytes: usize,
-    SourceAddress: ?*c_void,
+    SourceAddress: ?*anyopaque,
     PageProtection: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_DECOMMIT_PAGES = fn(
-    EnclaveAddress: ?*c_void,
+    EnclaveAddress: ?*anyopaque,
     NumberOfBytes: usize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_PROTECT_PAGES = fn(
-    EnclaveAddress: ?*c_void,
+    EnclaveAddress: ?*anyopaque,
     NumberOfytes: usize,
     PageProtection: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -166,14 +166,14 @@ pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_KEY = fn(
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_GENERATE_REPORT = fn(
     EnclaveData: ?*const u8,
     // TODO: what to do with BytesParamIndex 2?
-    Report: ?*c_void,
+    Report: ?*anyopaque,
     BufferSize: u32,
     OutputSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_VERIFY_REPORT = fn(
     // TODO: what to do with BytesParamIndex 1?
-    Report: ?*const c_void,
+    Report: ?*const anyopaque,
     ReportSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -209,7 +209,7 @@ pub const VBS_BASIC_ENCLAVE_BASIC_CALL_RETURN_FROM_EXCEPTION = switch(@import(".
         ExceptionRecord: ?*VBS_BASIC_ENCLAVE_EXCEPTION_AMD64,
     ) callconv(@import("std").os.windows.WINAPI) i32,
     .X86, .Arm64 => fn(
-        ExceptionRecord: ?*c_void,
+        ExceptionRecord: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
 };
 pub const VBS_BASIC_ENCLAVE_BASIC_CALL_TERMINATE_THREAD = switch(@import("../zig.zig").arch) {
@@ -340,14 +340,14 @@ pub extern "KERNEL32" fn NeedCurrentDirectoryForExePathW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn CreateEnvironmentBlock(
-    lpEnvironment: ?*?*c_void,
+    lpEnvironment: ?*?*anyopaque,
     hToken: ?HANDLE,
     bInherit: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn DestroyEnvironmentBlock(
-    lpEnvironment: ?*c_void,
+    lpEnvironment: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -374,26 +374,26 @@ pub extern "KERNEL32" fn IsEnclaveTypeSupported(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "KERNEL32" fn CreateEnclave(
     hProcess: ?HANDLE,
-    lpAddress: ?*c_void,
+    lpAddress: ?*anyopaque,
     dwSize: usize,
     dwInitialCommitment: usize,
     flEnclaveType: u32,
     // TODO: what to do with BytesParamIndex 6?
-    lpEnclaveInformation: ?*const c_void,
+    lpEnclaveInformation: ?*const anyopaque,
     dwInfoLength: u32,
     lpEnclaveError: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "KERNEL32" fn LoadEnclaveData(
     hProcess: ?HANDLE,
-    lpAddress: ?*c_void,
+    lpAddress: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*const c_void,
+    lpBuffer: ?*const anyopaque,
     nSize: usize,
     flProtect: u32,
     // TODO: what to do with BytesParamIndex 6?
-    lpPageInformation: ?*const c_void,
+    lpPageInformation: ?*const anyopaque,
     dwInfoLength: u32,
     lpNumberOfBytesWritten: ?*usize,
     lpEnclaveError: ?*u32,
@@ -402,48 +402,48 @@ pub extern "KERNEL32" fn LoadEnclaveData(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "KERNEL32" fn InitializeEnclave(
     hProcess: ?HANDLE,
-    lpAddress: ?*c_void,
+    lpAddress: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
-    lpEnclaveInformation: ?*const c_void,
+    lpEnclaveInformation: ?*const anyopaque,
     dwInfoLength: u32,
     lpEnclaveError: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-core-enclave-l1-1-1" fn LoadEnclaveImageA(
-    lpEnclaveAddress: ?*c_void,
+    lpEnclaveAddress: ?*anyopaque,
     lpImageName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "api-ms-win-core-enclave-l1-1-1" fn LoadEnclaveImageW(
-    lpEnclaveAddress: ?*c_void,
+    lpEnclaveAddress: ?*anyopaque,
     lpImageName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "vertdll" fn CallEnclave(
     lpRoutine: isize,
-    lpParameter: ?*c_void,
+    lpParameter: ?*anyopaque,
     fWaitForThread: BOOL,
-    lpReturnValue: ?*?*c_void,
+    lpReturnValue: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "vertdll" fn TerminateEnclave(
-    lpAddress: ?*c_void,
+    lpAddress: ?*anyopaque,
     fWait: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "api-ms-win-core-enclave-l1-1-1" fn DeleteEnclave(
-    lpAddress: ?*c_void,
+    lpAddress: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "vertdll" fn EnclaveGetAttestationReport(
     EnclaveData: ?*const u8,
     // TODO: what to do with BytesParamIndex 2?
-    Report: ?*c_void,
+    Report: ?*anyopaque,
     BufferSize: u32,
     OutputSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -452,19 +452,19 @@ pub extern "vertdll" fn EnclaveGetAttestationReport(
 pub extern "vertdll" fn EnclaveVerifyAttestationReport(
     EnclaveType: u32,
     // TODO: what to do with BytesParamIndex 2?
-    Report: ?*const c_void,
+    Report: ?*const anyopaque,
     ReportSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "vertdll" fn EnclaveSealData(
     // TODO: what to do with BytesParamIndex 1?
-    DataToEncrypt: ?*const c_void,
+    DataToEncrypt: ?*const anyopaque,
     DataToEncryptSize: u32,
     IdentityPolicy: ENCLAVE_SEALING_IDENTITY_POLICY,
     RuntimePolicy: u32,
     // TODO: what to do with BytesParamIndex 5?
-    ProtectedBlob: ?*c_void,
+    ProtectedBlob: ?*anyopaque,
     BufferSize: u32,
     ProtectedBlobSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -472,10 +472,10 @@ pub extern "vertdll" fn EnclaveSealData(
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "vertdll" fn EnclaveUnsealData(
     // TODO: what to do with BytesParamIndex 1?
-    ProtectedBlob: ?*const c_void,
+    ProtectedBlob: ?*const anyopaque,
     ProtectedBlobSize: u32,
     // TODO: what to do with BytesParamIndex 3?
-    DecryptedData: ?*c_void,
+    DecryptedData: ?*anyopaque,
     BufferSize: u32,
     DecryptedDataSize: ?*u32,
     SealingIdentity: ?*ENCLAVE_IDENTITY,

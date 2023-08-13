@@ -30,9 +30,9 @@ pub const MAGCOLOREFFECT = extern struct {
 
 pub const MagImageScalingCallback = fn(
     hwnd: ?HWND,
-    srcdata: ?*c_void,
+    srcdata: ?*anyopaque,
     srcheader: MAGIMAGEHEADER,
-    destdata: ?*c_void,
+    destdata: ?*anyopaque,
     destheader: MAGIMAGEHEADER,
     unclipped: RECT,
     clipped: RECT,

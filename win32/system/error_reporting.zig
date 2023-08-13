@@ -365,7 +365,7 @@ pub const WER_DUMP_CUSTOM_OPTIONS_V3 = extern struct {
     wzPreferredModuleList: [256]u16,
     dwPreferredModuleResetFlags: u32,
     dwOtherModuleResetFlags: u32,
-    pvDumpKey: ?*c_void,
+    pvDumpKey: ?*anyopaque,
     hSnapshot: ?HANDLE,
     dwThreadID: u32,
 };
@@ -415,7 +415,7 @@ pub const WER_RUNTIME_EXCEPTION_INFORMATION = extern struct {
 };
 
 pub const PFN_WER_RUNTIME_EXCEPTION_EVENT = fn(
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
     pbOwnershipClaimed: ?*BOOL,
     pwszEventName: [*:0]u16,
@@ -424,7 +424,7 @@ pub const PFN_WER_RUNTIME_EXCEPTION_EVENT = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_WER_RUNTIME_EXCEPTION_EVENT_SIGNATURE = fn(
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
     dwIndex: u32,
     pwszName: [*:0]u16,
@@ -434,7 +434,7 @@ pub const PFN_WER_RUNTIME_EXCEPTION_EVENT_SIGNATURE = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFN_WER_RUNTIME_EXCEPTION_DEBUGGER_LAUNCH = fn(
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     pExceptionInformation: ?*const WER_RUNTIME_EXCEPTION_INFORMATION,
     pbIsCustomDebugger: ?*BOOL,
     pwszDebuggerLaunch: [*:0]u16,
@@ -618,24 +618,24 @@ pub extern "KERNEL32" fn WerUnregisterFile(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn WerRegisterMemoryBlock(
-    pvAddress: ?*c_void,
+    pvAddress: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn WerUnregisterMemoryBlock(
-    pvAddress: ?*c_void,
+    pvAddress: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "KERNEL32" fn WerRegisterExcludedMemoryBlock(
-    address: ?*const c_void,
+    address: ?*const anyopaque,
     size: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "KERNEL32" fn WerUnregisterExcludedMemoryBlock(
-    address: ?*const c_void,
+    address: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -695,13 +695,13 @@ pub extern "wer" fn WerRemoveExcludedApplication(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn WerRegisterRuntimeExceptionModule(
     pwszOutOfProcessCallbackDll: ?[*:0]const u16,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn WerUnregisterRuntimeExceptionModule(
     pwszOutOfProcessCallbackDll: ?[*:0]const u16,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.15063'

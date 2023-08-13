@@ -256,7 +256,7 @@ pub const DEVPROPERTY = extern struct {
     CompKey: DEVPROPCOMPKEY,
     Type: u32,
     BufferSize: u32,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 };
 
 

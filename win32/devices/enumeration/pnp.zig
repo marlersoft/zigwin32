@@ -90,7 +90,7 @@ pub const SWDeviceLifetimeMax = SW_DEVICE_LIFETIME.Max;
 pub const SW_DEVICE_CREATE_CALLBACK = fn(
     hSwDevice: ?HSWDEVICE,
     CreateResult: HRESULT,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     pszDeviceInstanceId: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1302,7 +1302,7 @@ pub extern "CFGMGR32" fn SwDeviceCreate(
     cPropertyCount: u32,
     pProperties: ?[*]const DEVPROPERTY,
     pCallback: ?SW_DEVICE_CREATE_CALLBACK,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     phSwDevice: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1343,7 +1343,7 @@ pub extern "CFGMGR32" fn SwDeviceInterfaceRegister(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "CFGMGR32" fn SwMemFree(
-    pMem: ?*c_void,
+    pMem: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows8.0'

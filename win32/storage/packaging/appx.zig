@@ -3358,7 +3358,7 @@ pub const PackageOrigin_DeveloperSigned = PackageOrigin.DeveloperSigned;
 pub const PackageOrigin_LineOfBusiness = PackageOrigin.LineOfBusiness;
 
 pub const _PACKAGE_INFO_REFERENCE = extern struct {
-    reserved: ?*c_void,
+    reserved: ?*anyopaque,
 };
 
 pub const PACKAGE_INFO = extern struct {

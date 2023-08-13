@@ -38,7 +38,7 @@ pub const RESTART_NO_REBOOT = REGISTER_APPLICATION_RESTART_FLAGS.REBOOT;
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn RegisterApplicationRecoveryCallback(
     pRecoveyCallback: ?APPLICATION_RECOVERY_CALLBACK,
-    pvParameter: ?*c_void,
+    pvParameter: ?*anyopaque,
     dwPingInterval: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -61,7 +61,7 @@ pub extern "KERNEL32" fn UnregisterApplicationRestart(
 pub extern "KERNEL32" fn GetApplicationRecoveryCallback(
     hProcess: ?HANDLE,
     pRecoveryCallback: ?*?APPLICATION_RECOVERY_CALLBACK,
-    ppvParameter: ?*?*c_void,
+    ppvParameter: ?*?*anyopaque,
     pdwPingInterval: ?*u32,
     pdwFlags: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

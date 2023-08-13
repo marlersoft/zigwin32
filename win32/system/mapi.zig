@@ -67,7 +67,7 @@ pub const MapiFileDesc = extern struct {
     nPosition: u32,
     lpszPathName: ?PSTR,
     lpszFileName: ?PSTR,
-    lpFileType: ?*c_void,
+    lpFileType: ?*anyopaque,
 };
 
 pub const MapiFileDescW = extern struct {
@@ -76,7 +76,7 @@ pub const MapiFileDescW = extern struct {
     nPosition: u32,
     lpszPathName: ?PWSTR,
     lpszFileName: ?PWSTR,
-    lpFileType: ?*c_void,
+    lpFileType: ?*anyopaque,
 };
 
 pub const MapiFileTagExt = extern struct {
@@ -93,7 +93,7 @@ pub const MapiRecipDesc = extern struct {
     lpszName: ?PSTR,
     lpszAddress: ?PSTR,
     ulEIDSize: u32,
-    lpEntryID: ?*c_void,
+    lpEntryID: ?*anyopaque,
 };
 
 pub const MapiRecipDescW = extern struct {
@@ -102,7 +102,7 @@ pub const MapiRecipDescW = extern struct {
     lpszName: ?PWSTR,
     lpszAddress: ?PWSTR,
     ulEIDSize: u32,
-    lpEntryID: ?*c_void,
+    lpEntryID: ?*anyopaque,
 };
 
 pub const MapiMessage = extern struct {
@@ -212,7 +212,7 @@ pub const LPMAPIDELETEMAIL = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIFREEBUFFER = fn(
-    pv: ?*c_void,
+    pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPMAPIADDRESS = fn(
@@ -251,7 +251,7 @@ pub const LPMAPIRESOLVENAME = fn(
 // Section: Functions (1)
 //--------------------------------------------------------------------------------
 pub extern "MAPI32" fn MAPIFreeBuffer(
-    pv: ?*c_void,
+    pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

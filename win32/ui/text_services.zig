@@ -8873,14 +8873,14 @@ pub const IClonableWrapper = extern struct {
         CloneNewWrapper: fn(
             self: *const IClonableWrapper,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClonableWrapper_CloneNewWrapper(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IClonableWrapper_CloneNewWrapper(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IClonableWrapper.VTable, self.vtable).CloneNewWrapper(@ptrCast(*const IClonableWrapper, self), riid, ppv);
         }
     };}

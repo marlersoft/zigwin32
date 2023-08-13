@@ -840,14 +840,14 @@ pub const REGISTERWORDENUMPROCA = fn(
     lpszReading: ?[*:0]const u8,
     param1: u32,
     lpszString: ?[*:0]const u8,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const REGISTERWORDENUMPROCW = fn(
     lpszReading: ?[*:0]const u16,
     param1: u32,
     lpszString: ?[*:0]const u16,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const IFEClassFactory = extern struct {
@@ -927,7 +927,7 @@ pub const WDD = packed struct {
     WDD_nReserve1: u32,
     nPos: u16,
     _bitfield: u16,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
 };
 
 pub const MORRSLT = packed struct {
@@ -951,7 +951,7 @@ pub const MORRSLT = packed struct {
     paMonoRubyPos: ?*u16,
     pWDD: ?*WDD,
     cWDD: i32,
-    pPrivate: ?*c_void,
+    pPrivate: ?*anyopaque,
     BLKBuff: [1]u16,
 };
 
@@ -1117,7 +1117,7 @@ pub const IMEWRD = packed struct {
     rgulAttrs: [2]u32,
     cbComment: i32,
     uct: IMEUCT,
-    pvComment: ?*c_void,
+    pvComment: ?*anyopaque,
 };
 
 pub const IMESHF = packed struct {
@@ -1432,16 +1432,16 @@ pub const IMEKMSFUNCDESC = packed struct {
 };
 
 pub const fpCreateIFECommonInstanceType = fn(
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const fpCreateIFELanguageInstanceType = fn(
     clsid: ?*const Guid,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const fpCreateIFEDictionaryInstanceType = fn(
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const COMPOSITIONSTRING = extern struct {
@@ -1552,7 +1552,7 @@ pub const IMESTRINGCANDIDATE = extern struct {
 pub const IMEITEM = extern struct {
     cbSize: i32,
     iType: i32,
-    lpItemData: ?*c_void,
+    lpItemData: ?*anyopaque,
 };
 
 pub const IMEITEMCANDIDATE = extern struct {
@@ -2023,7 +2023,7 @@ pub const IActiveIMMApp = extern struct {
             szReading: ?PSTR,
             dwStyle: u32,
             szRegister: ?PSTR,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             pEnum: ?*?*IEnumRegisterWordA,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumRegisterWordW: fn(
@@ -2032,7 +2032,7 @@ pub const IActiveIMMApp = extern struct {
             szReading: ?PWSTR,
             dwStyle: u32,
             szRegister: ?PWSTR,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             pEnum: ?*?*IEnumRegisterWordW,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EscapeA: fn(
@@ -2040,7 +2040,7 @@ pub const IActiveIMMApp = extern struct {
             hKL: ?HKL,
             hIMC: ?HIMC,
             uEscape: u32,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             plResult: ?*LRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EscapeW: fn(
@@ -2048,7 +2048,7 @@ pub const IActiveIMMApp = extern struct {
             hKL: ?HKL,
             hIMC: ?HIMC,
             uEscape: u32,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             plResult: ?*LRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCandidateListA: fn(
@@ -2101,7 +2101,7 @@ pub const IActiveIMMApp = extern struct {
             dwIndex: u32,
             dwBufLen: u32,
             plCopied: ?*i32,
-            pBuf: ?*c_void,
+            pBuf: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCompositionStringW: fn(
             self: *const IActiveIMMApp,
@@ -2109,7 +2109,7 @@ pub const IActiveIMMApp = extern struct {
             dwIndex: u32,
             dwBufLen: u32,
             plCopied: ?*i32,
-            pBuf: ?*c_void,
+            pBuf: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCompositionWindow: fn(
             self: *const IActiveIMMApp,
@@ -2305,18 +2305,18 @@ pub const IActiveIMMApp = extern struct {
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             dwIndex: u32,
-            pComp: ?*c_void,
+            pComp: ?*anyopaque,
             dwCompLen: u32,
-            pRead: ?*c_void,
+            pRead: ?*anyopaque,
             dwReadLen: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCompositionStringW: fn(
             self: *const IActiveIMMApp,
             hIMC: ?HIMC,
             dwIndex: u32,
-            pComp: ?*c_void,
+            pComp: ?*anyopaque,
             dwCompLen: u32,
-            pRead: ?*c_void,
+            pRead: ?*anyopaque,
             dwReadLen: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCompositionWindow: fn(
@@ -2449,19 +2449,19 @@ pub const IActiveIMMApp = extern struct {
             return @ptrCast(*const IActiveIMMApp.VTable, self.vtable).DestroyContext(@ptrCast(*const IActiveIMMApp, self), hIME);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMApp_EnumRegisterWordA(self: *const T, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szRegister: ?PSTR, pData: ?*c_void, pEnum: ?*?*IEnumRegisterWordA) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMApp_EnumRegisterWordA(self: *const T, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szRegister: ?PSTR, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordA) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMApp.VTable, self.vtable).EnumRegisterWordA(@ptrCast(*const IActiveIMMApp, self), hKL, szReading, dwStyle, szRegister, pData, pEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMApp_EnumRegisterWordW(self: *const T, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*c_void, pEnum: ?*?*IEnumRegisterWordW) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMApp_EnumRegisterWordW(self: *const T, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordW) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMApp.VTable, self.vtable).EnumRegisterWordW(@ptrCast(*const IActiveIMMApp, self), hKL, szReading, dwStyle, szRegister, pData, pEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMApp_EscapeA(self: *const T, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*c_void, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMApp_EscapeA(self: *const T, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMApp.VTable, self.vtable).EscapeA(@ptrCast(*const IActiveIMMApp, self), hKL, hIMC, uEscape, pData, plResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMApp_EscapeW(self: *const T, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*c_void, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMApp_EscapeW(self: *const T, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMApp.VTable, self.vtable).EscapeW(@ptrCast(*const IActiveIMMApp, self), hKL, hIMC, uEscape, pData, plResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2493,11 +2493,11 @@ pub const IActiveIMMApp = extern struct {
             return @ptrCast(*const IActiveIMMApp.VTable, self.vtable).GetCompositionFontW(@ptrCast(*const IActiveIMMApp, self), hIMC, plf);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMApp_GetCompositionStringA(self: *const T, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, plCopied: ?*i32, pBuf: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMApp_GetCompositionStringA(self: *const T, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, plCopied: ?*i32, pBuf: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMApp.VTable, self.vtable).GetCompositionStringA(@ptrCast(*const IActiveIMMApp, self), hIMC, dwIndex, dwBufLen, plCopied, pBuf);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMApp_GetCompositionStringW(self: *const T, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, plCopied: ?*i32, pBuf: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMApp_GetCompositionStringW(self: *const T, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, plCopied: ?*i32, pBuf: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMApp.VTable, self.vtable).GetCompositionStringW(@ptrCast(*const IActiveIMMApp, self), hIMC, dwIndex, dwBufLen, plCopied, pBuf);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2621,11 +2621,11 @@ pub const IActiveIMMApp = extern struct {
             return @ptrCast(*const IActiveIMMApp.VTable, self.vtable).SetCompositionFontW(@ptrCast(*const IActiveIMMApp, self), hIMC, plf);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMApp_SetCompositionStringA(self: *const T, hIMC: ?HIMC, dwIndex: u32, pComp: ?*c_void, dwCompLen: u32, pRead: ?*c_void, dwReadLen: u32) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMApp_SetCompositionStringA(self: *const T, hIMC: ?HIMC, dwIndex: u32, pComp: ?*anyopaque, dwCompLen: u32, pRead: ?*anyopaque, dwReadLen: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMApp.VTable, self.vtable).SetCompositionStringA(@ptrCast(*const IActiveIMMApp, self), hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMApp_SetCompositionStringW(self: *const T, hIMC: ?HIMC, dwIndex: u32, pComp: ?*c_void, dwCompLen: u32, pRead: ?*c_void, dwReadLen: u32) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMApp_SetCompositionStringW(self: *const T, hIMC: ?HIMC, dwIndex: u32, pComp: ?*anyopaque, dwCompLen: u32, pRead: ?*anyopaque, dwReadLen: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMApp.VTable, self.vtable).SetCompositionStringW(@ptrCast(*const IActiveIMMApp, self), hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2743,7 +2743,7 @@ pub const IActiveIMMIME = extern struct {
             szReading: ?PSTR,
             dwStyle: u32,
             szRegister: ?PSTR,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             pEnum: ?*?*IEnumRegisterWordA,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumRegisterWordW: fn(
@@ -2752,7 +2752,7 @@ pub const IActiveIMMIME = extern struct {
             szReading: ?PWSTR,
             dwStyle: u32,
             szRegister: ?PWSTR,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             pEnum: ?*?*IEnumRegisterWordW,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EscapeA: fn(
@@ -2760,7 +2760,7 @@ pub const IActiveIMMIME = extern struct {
             hKL: ?HKL,
             hIMC: ?HIMC,
             uEscape: u32,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             plResult: ?*LRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EscapeW: fn(
@@ -2768,7 +2768,7 @@ pub const IActiveIMMIME = extern struct {
             hKL: ?HKL,
             hIMC: ?HIMC,
             uEscape: u32,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             plResult: ?*LRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCandidateListA: fn(
@@ -2821,7 +2821,7 @@ pub const IActiveIMMIME = extern struct {
             dwIndex: u32,
             dwBufLen: u32,
             plCopied: ?*i32,
-            pBuf: ?*c_void,
+            pBuf: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCompositionStringW: fn(
             self: *const IActiveIMMIME,
@@ -2829,7 +2829,7 @@ pub const IActiveIMMIME = extern struct {
             dwIndex: u32,
             dwBufLen: u32,
             plCopied: ?*i32,
-            pBuf: ?*c_void,
+            pBuf: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCompositionWindow: fn(
             self: *const IActiveIMMIME,
@@ -3025,18 +3025,18 @@ pub const IActiveIMMIME = extern struct {
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             dwIndex: u32,
-            pComp: ?*c_void,
+            pComp: ?*anyopaque,
             dwCompLen: u32,
-            pRead: ?*c_void,
+            pRead: ?*anyopaque,
             dwReadLen: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCompositionStringW: fn(
             self: *const IActiveIMMIME,
             hIMC: ?HIMC,
             dwIndex: u32,
-            pComp: ?*c_void,
+            pComp: ?*anyopaque,
             dwCompLen: u32,
-            pRead: ?*c_void,
+            pRead: ?*anyopaque,
             dwReadLen: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCompositionWindow: fn(
@@ -3109,7 +3109,7 @@ pub const IActiveIMMIME = extern struct {
         LockIMCC: fn(
             self: *const IActiveIMMIME,
             hIMCC: ?HIMCC,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnlockIMCC: fn(
             self: *const IActiveIMMIME,
@@ -3279,19 +3279,19 @@ pub const IActiveIMMIME = extern struct {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).DestroyContext(@ptrCast(*const IActiveIMMIME, self), hIME);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMIME_EnumRegisterWordA(self: *const T, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szRegister: ?PSTR, pData: ?*c_void, pEnum: ?*?*IEnumRegisterWordA) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMIME_EnumRegisterWordA(self: *const T, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szRegister: ?PSTR, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordA) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).EnumRegisterWordA(@ptrCast(*const IActiveIMMIME, self), hKL, szReading, dwStyle, szRegister, pData, pEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMIME_EnumRegisterWordW(self: *const T, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*c_void, pEnum: ?*?*IEnumRegisterWordW) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMIME_EnumRegisterWordW(self: *const T, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordW) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).EnumRegisterWordW(@ptrCast(*const IActiveIMMIME, self), hKL, szReading, dwStyle, szRegister, pData, pEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMIME_EscapeA(self: *const T, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*c_void, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMIME_EscapeA(self: *const T, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).EscapeA(@ptrCast(*const IActiveIMMIME, self), hKL, hIMC, uEscape, pData, plResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMIME_EscapeW(self: *const T, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*c_void, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMIME_EscapeW(self: *const T, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).EscapeW(@ptrCast(*const IActiveIMMIME, self), hKL, hIMC, uEscape, pData, plResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3323,11 +3323,11 @@ pub const IActiveIMMIME = extern struct {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).GetCompositionFontW(@ptrCast(*const IActiveIMMIME, self), hIMC, plf);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMIME_GetCompositionStringA(self: *const T, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, plCopied: ?*i32, pBuf: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMIME_GetCompositionStringA(self: *const T, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, plCopied: ?*i32, pBuf: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).GetCompositionStringA(@ptrCast(*const IActiveIMMIME, self), hIMC, dwIndex, dwBufLen, plCopied, pBuf);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMIME_GetCompositionStringW(self: *const T, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, plCopied: ?*i32, pBuf: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMIME_GetCompositionStringW(self: *const T, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, plCopied: ?*i32, pBuf: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).GetCompositionStringW(@ptrCast(*const IActiveIMMIME, self), hIMC, dwIndex, dwBufLen, plCopied, pBuf);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3451,11 +3451,11 @@ pub const IActiveIMMIME = extern struct {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).SetCompositionFontW(@ptrCast(*const IActiveIMMIME, self), hIMC, plf);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMIME_SetCompositionStringA(self: *const T, hIMC: ?HIMC, dwIndex: u32, pComp: ?*c_void, dwCompLen: u32, pRead: ?*c_void, dwReadLen: u32) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMIME_SetCompositionStringA(self: *const T, hIMC: ?HIMC, dwIndex: u32, pComp: ?*anyopaque, dwCompLen: u32, pRead: ?*anyopaque, dwReadLen: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).SetCompositionStringA(@ptrCast(*const IActiveIMMIME, self), hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMIME_SetCompositionStringW(self: *const T, hIMC: ?HIMC, dwIndex: u32, pComp: ?*c_void, dwCompLen: u32, pRead: ?*c_void, dwReadLen: u32) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMIME_SetCompositionStringW(self: *const T, hIMC: ?HIMC, dwIndex: u32, pComp: ?*anyopaque, dwCompLen: u32, pRead: ?*anyopaque, dwReadLen: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).SetCompositionStringW(@ptrCast(*const IActiveIMMIME, self), hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3511,7 +3511,7 @@ pub const IActiveIMMIME = extern struct {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).DestroyIMCC(@ptrCast(*const IActiveIMMIME, self), hIMCC);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIMMIME_LockIMCC(self: *const T, hIMCC: ?HIMCC, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IActiveIMMIME_LockIMCC(self: *const T, hIMCC: ?HIMCC, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIMMIME.VTable, self.vtable).LockIMCC(@ptrCast(*const IActiveIMMIME, self), hIMCC, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3650,7 +3650,7 @@ pub const IActiveIME = extern struct {
             self: *const IActiveIME,
             hIMC: ?HIMC,
             uEscape: u32,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             plResult: ?*LRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetActiveContext: fn(
@@ -3681,9 +3681,9 @@ pub const IActiveIME = extern struct {
             self: *const IActiveIME,
             hIMC: ?HIMC,
             dwIndex: u32,
-            pComp: ?*c_void,
+            pComp: ?*anyopaque,
             dwCompLen: u32,
-            pRead: ?*c_void,
+            pRead: ?*anyopaque,
             dwReadLen: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ToAsciiEx: fn(
@@ -3719,7 +3719,7 @@ pub const IActiveIME = extern struct {
             szReading: ?PWSTR,
             dwStyle: u32,
             szRegister: ?PWSTR,
-            pData: ?*c_void,
+            pData: ?*anyopaque,
             ppEnum: ?*?*IEnumRegisterWordW,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCodePageA: fn(
@@ -3751,7 +3751,7 @@ pub const IActiveIME = extern struct {
             return @ptrCast(*const IActiveIME.VTable, self.vtable).Destroy(@ptrCast(*const IActiveIME, self), uReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIME_Escape(self: *const T, hIMC: ?HIMC, uEscape: u32, pData: ?*c_void, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
+        pub fn IActiveIME_Escape(self: *const T, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIME.VTable, self.vtable).Escape(@ptrCast(*const IActiveIME, self), hIMC, uEscape, pData, plResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3771,7 +3771,7 @@ pub const IActiveIME = extern struct {
             return @ptrCast(*const IActiveIME.VTable, self.vtable).Select(@ptrCast(*const IActiveIME, self), hIMC, fSelect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIME_SetCompositionString(self: *const T, hIMC: ?HIMC, dwIndex: u32, pComp: ?*c_void, dwCompLen: u32, pRead: ?*c_void, dwReadLen: u32) callconv(.Inline) HRESULT {
+        pub fn IActiveIME_SetCompositionString(self: *const T, hIMC: ?HIMC, dwIndex: u32, pComp: ?*anyopaque, dwCompLen: u32, pRead: ?*anyopaque, dwReadLen: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIME.VTable, self.vtable).SetCompositionString(@ptrCast(*const IActiveIME, self), hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3791,7 +3791,7 @@ pub const IActiveIME = extern struct {
             return @ptrCast(*const IActiveIME.VTable, self.vtable).GetRegisterWordStyle(@ptrCast(*const IActiveIME, self), nItem, pStyleBuf, puBufSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveIME_EnumRegisterWord(self: *const T, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*c_void, ppEnum: ?*?*IEnumRegisterWordW) callconv(.Inline) HRESULT {
+        pub fn IActiveIME_EnumRegisterWord(self: *const T, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*anyopaque, ppEnum: ?*?*IEnumRegisterWordW) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveIME.VTable, self.vtable).EnumRegisterWord(@ptrCast(*const IActiveIME, self), szReading, dwStyle, szRegister, pData, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3938,7 +3938,7 @@ pub extern "IMM32" fn ImmGetCompositionStringA(
     param0: ?HIMC,
     param1: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuf: ?*c_void,
+    lpBuf: ?*anyopaque,
     dwBufLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3947,7 +3947,7 @@ pub extern "IMM32" fn ImmGetCompositionStringW(
     param0: ?HIMC,
     param1: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuf: ?*c_void,
+    lpBuf: ?*anyopaque,
     dwBufLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3956,10 +3956,10 @@ pub extern "IMM32" fn ImmSetCompositionStringA(
     param0: ?HIMC,
     dwIndex: SET_COMPOSITION_STRING_TYPE,
     // TODO: what to do with BytesParamIndex 3?
-    lpComp: ?*c_void,
+    lpComp: ?*anyopaque,
     dwCompLen: u32,
     // TODO: what to do with BytesParamIndex 5?
-    lpRead: ?*c_void,
+    lpRead: ?*anyopaque,
     dwReadLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -3968,10 +3968,10 @@ pub extern "IMM32" fn ImmSetCompositionStringW(
     param0: ?HIMC,
     dwIndex: SET_COMPOSITION_STRING_TYPE,
     // TODO: what to do with BytesParamIndex 3?
-    lpComp: ?*c_void,
+    lpComp: ?*anyopaque,
     dwCompLen: u32,
     // TODO: what to do with BytesParamIndex 5?
-    lpRead: ?*c_void,
+    lpRead: ?*anyopaque,
     dwReadLen: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -4077,7 +4077,7 @@ pub extern "IMM32" fn ImmConfigureIMEA(
     param0: ?HKL,
     param1: ?HWND,
     param2: u32,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4085,7 +4085,7 @@ pub extern "IMM32" fn ImmConfigureIMEW(
     param0: ?HKL,
     param1: ?HWND,
     param2: u32,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4093,7 +4093,7 @@ pub extern "IMM32" fn ImmEscapeA(
     param0: ?HKL,
     param1: ?HIMC,
     param2: u32,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4101,7 +4101,7 @@ pub extern "IMM32" fn ImmEscapeW(
     param0: ?HKL,
     param1: ?HIMC,
     param2: u32,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4245,7 +4245,7 @@ pub extern "IMM32" fn ImmEnumRegisterWordA(
     lpszReading: ?[*:0]const u8,
     param3: u32,
     lpszRegister: ?[*:0]const u8,
-    param5: ?*c_void,
+    param5: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4255,7 +4255,7 @@ pub extern "IMM32" fn ImmEnumRegisterWordW(
     lpszReading: ?[*:0]const u16,
     param3: u32,
     lpszRegister: ?[*:0]const u16,
-    param5: ?*c_void,
+    param5: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -4371,7 +4371,7 @@ pub extern "IMM32" fn ImmDestroyIMCC(
 
 pub extern "IMM32" fn ImmLockIMCC(
     param0: ?HIMCC,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "IMM32" fn ImmUnlockIMCC(
     param0: ?HIMCC,

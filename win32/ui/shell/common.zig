@@ -180,7 +180,7 @@ pub const IObjectArray = extern struct {
             self: *const IObjectArray,
             uiIndex: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -191,7 +191,7 @@ pub const IObjectArray = extern struct {
             return @ptrCast(*const IObjectArray.VTable, self.vtable).GetCount(@ptrCast(*const IObjectArray, self), pcObjects);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectArray_GetAt(self: *const T, uiIndex: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IObjectArray_GetAt(self: *const T, uiIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectArray.VTable, self.vtable).GetAt(@ptrCast(*const IObjectArray, self), uiIndex, riid, ppv);
         }
     };}

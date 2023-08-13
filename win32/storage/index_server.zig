@@ -269,7 +269,7 @@ pub const IFilter = extern struct {
             self: *const IFilter,
             origPos: FILTERREGION,
             riid: ?*const Guid,
-            ppunk: ?*?*c_void,
+            ppunk: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) i32,
     };
     vtable: *const VTable,
@@ -292,7 +292,7 @@ pub const IFilter = extern struct {
             return @ptrCast(*const IFilter.VTable, self.vtable).GetValue(@ptrCast(*const IFilter, self), ppPropValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFilter_BindRegion(self: *const T, origPos: FILTERREGION, riid: ?*const Guid, ppunk: ?*?*c_void) callconv(.Inline) i32 {
+        pub fn IFilter_BindRegion(self: *const T, origPos: FILTERREGION, riid: ?*const Guid, ppunk: ?*?*anyopaque) callconv(.Inline) i32 {
             return @ptrCast(*const IFilter.VTable, self.vtable).BindRegion(@ptrCast(*const IFilter, self), origPos, riid, ppunk);
         }
     };}
@@ -399,28 +399,28 @@ pub const DBID = switch(@import("../zig.zig").arch) {
 pub extern "query" fn LoadIFilter(
     pwcsPath: ?[*:0]const u16,
     pUnkOuter: ?*IUnknown,
-    ppIUnk: ?*?*c_void,
+    ppIUnk: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "query" fn LoadIFilterEx(
     pwcsPath: ?[*:0]const u16,
     dwFlags: u32,
     riid: ?*const Guid,
-    ppIUnk: ?*?*c_void,
+    ppIUnk: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "query" fn BindIFilterFromStorage(
     pStg: ?*IStorage,
     pUnkOuter: ?*IUnknown,
-    ppIUnk: ?*?*c_void,
+    ppIUnk: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "query" fn BindIFilterFromStream(
     pStm: ?*IStream,
     pUnkOuter: ?*IUnknown,
-    ppIUnk: ?*?*c_void,
+    ppIUnk: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

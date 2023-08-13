@@ -4770,7 +4770,7 @@ pub const ACCEL = extern struct {
 };
 
 pub const CREATESTRUCTA = extern struct {
-    lpCreateParams: ?*c_void,
+    lpCreateParams: ?*anyopaque,
     hInstance: ?HINSTANCE,
     hMenu: ?HMENU,
     hwndParent: ?HWND,
@@ -4785,7 +4785,7 @@ pub const CREATESTRUCTA = extern struct {
 };
 
 pub const CREATESTRUCTW = extern struct {
-    lpCreateParams: ?*c_void,
+    lpCreateParams: ?*anyopaque,
     hInstance: ?HINSTANCE,
     hMenu: ?HMENU,
     hwndParent: ?HWND,
@@ -4892,8 +4892,8 @@ pub const MENUGETOBJECTINFO = extern struct {
     dwFlags: MENUGETOBJECTINFO_FLAGS,
     uPos: u32,
     hmenu: ?HMENU,
-    riid: ?*c_void,
-    pvObj: ?*c_void,
+    riid: ?*anyopaque,
+    pvObj: ?*anyopaque,
 };
 
 pub const MENUITEMINFOA = extern struct {
@@ -5246,7 +5246,7 @@ pub const MrmPlatformVersion_Windows10_0_0_0 = MrmPlatformVersion.Windows10_0_0_
 pub const MrmPlatformVersion_Windows10_0_0_5 = MrmPlatformVersion.Windows10_0_0_5;
 
 pub const MrmResourceIndexerHandle = extern struct {
-    handle: ?*c_void,
+    handle: ?*anyopaque,
 };
 
 pub const MrmPackagingMode = enum(i32) {
@@ -5518,16 +5518,16 @@ pub extern "USER32" fn SendMessageCallbackW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn RegisterDeviceNotificationA(
     hRecipient: ?HANDLE,
-    NotificationFilter: ?*c_void,
+    NotificationFilter: ?*anyopaque,
     Flags: POWER_SETTING_REGISTER_NOTIFICATION_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn RegisterDeviceNotificationW(
     hRecipient: ?HANDLE,
-    NotificationFilter: ?*c_void,
+    NotificationFilter: ?*anyopaque,
     Flags: POWER_SETTING_REGISTER_NOTIFICATION_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn PostMessageA(
@@ -5615,7 +5615,7 @@ pub extern "USER32" fn InSendMessage(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn InSendMessageEx(
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5691,7 +5691,7 @@ pub extern "USER32" fn CreateWindowExA(
     hWndParent: ?HWND,
     hMenu: ?HMENU,
     hInstance: ?HINSTANCE,
-    lpParam: ?*c_void,
+    lpParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5707,7 +5707,7 @@ pub extern "USER32" fn CreateWindowExW(
     hWndParent: ?HWND,
     hMenu: ?HMENU,
     hInstance: ?HINSTANCE,
-    lpParam: ?*c_void,
+    lpParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6399,12 +6399,12 @@ pub extern "USER32" fn LoadMenuW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn LoadMenuIndirectA(
-    lpMenuTemplate: ?*const c_void,
+    lpMenuTemplate: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn LoadMenuIndirectW(
-    lpMenuTemplate: ?*const c_void,
+    lpMenuTemplate: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7495,8 +7495,8 @@ pub extern "USER32" fn CreateCursor(
     yHotSpot: i32,
     nWidth: i32,
     nHeight: i32,
-    pvANDPlane: ?*const c_void,
-    pvXORPlane: ?*const c_void,
+    pvANDPlane: ?*const anyopaque,
+    pvXORPlane: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HCURSOR;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7788,7 +7788,7 @@ pub extern "USER32" fn CascadeWindows(
 pub extern "USER32" fn SystemParametersInfoA(
     uiAction: SYSTEM_PARAMETERS_INFO_ACTION,
     uiParam: u32,
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
     fWinIni: SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -7796,7 +7796,7 @@ pub extern "USER32" fn SystemParametersInfoA(
 pub extern "USER32" fn SystemParametersInfoW(
     uiAction: SYSTEM_PARAMETERS_INFO_ACTION,
     uiParam: u32,
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
     fWinIni: SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -7944,17 +7944,17 @@ pub extern "USER32" fn ChangeWindowMessageFilterEx(
 pub extern "MrmSupport" fn CreateResourceIndexer(
     projectRoot: ?[*:0]const u16,
     extensionDllPath: ?[*:0]const u16,
-    ppResourceIndexer: ?*?*c_void,
+    ppResourceIndexer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MrmSupport" fn DestroyResourceIndexer(
-    resourceIndexer: ?*c_void,
+    resourceIndexer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MrmSupport" fn IndexFilePath(
-    resourceIndexer: ?*c_void,
+    resourceIndexer: ?*anyopaque,
     filePath: ?[*:0]const u16,
     ppResourceUri: ?*?PWSTR,
     pQualifierCount: ?*u32,

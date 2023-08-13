@@ -15,7 +15,7 @@ pub const ICompositionDrawingSurfaceInterop = extern struct {
             self: *const ICompositionDrawingSurfaceInterop,
             updateRect: ?*const RECT,
             iid: ?*const Guid,
-            updateObject: ?*?*c_void,
+            updateObject: ?*?*anyopaque,
             updateOffset: ?*POINT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EndDraw: fn(
@@ -43,7 +43,7 @@ pub const ICompositionDrawingSurfaceInterop = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICompositionDrawingSurfaceInterop_BeginDraw(self: *const T, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*c_void, updateOffset: ?*POINT) callconv(.Inline) HRESULT {
+        pub fn ICompositionDrawingSurfaceInterop_BeginDraw(self: *const T, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, updateOffset: ?*POINT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICompositionDrawingSurfaceInterop.VTable, self.vtable).BeginDraw(@ptrCast(*const ICompositionDrawingSurfaceInterop, self), updateRect, iid, updateObject, updateOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

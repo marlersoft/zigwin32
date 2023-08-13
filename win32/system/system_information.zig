@@ -530,8 +530,8 @@ pub const SYSTEM_INFO = extern struct {
         },
     },
     dwPageSize: u32,
-    lpMinimumApplicationAddress: ?*c_void,
-    lpMaximumApplicationAddress: ?*c_void,
+    lpMinimumApplicationAddress: ?*anyopaque,
+    lpMaximumApplicationAddress: ?*anyopaque,
     dwActiveProcessorMask: usize,
     dwNumberOfProcessors: u32,
     dwProcessorType: u32,
@@ -1056,7 +1056,7 @@ pub extern "KERNEL32" fn GetSystemFirmwareTable(
     FirmwareTableProviderSignature: FIRMWARE_TABLE_PROVIDER,
     FirmwareTableID: FIRMWARE_TABLE_ID,
     // TODO: what to do with BytesParamIndex 3?
-    pFirmwareTableBuffer: ?*c_void,
+    pFirmwareTableBuffer: ?*anyopaque,
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1177,7 +1177,7 @@ pub extern "ntdll" fn RtlOsDeploymentState(
 
 pub extern "ntdllk" fn RtlGetSystemGlobalData(
     DataId: RTL_SYSTEM_GLOBAL_DATA_ID,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     Size: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

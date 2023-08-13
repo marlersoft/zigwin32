@@ -5471,7 +5471,7 @@ pub const IWMPMediaPluginRegistrar = extern struct {
             guidPluginType: Guid,
             clsid: Guid,
             cMediaTypes: u32,
-            pMediaTypes: ?*c_void,
+            pMediaTypes: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WMPUnRegisterPlayerPlugin: fn(
             self: *const IWMPMediaPluginRegistrar,
@@ -5483,7 +5483,7 @@ pub const IWMPMediaPluginRegistrar = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPMediaPluginRegistrar_WMPRegisterPlayerPlugin(self: *const T, pwszFriendlyName: ?PWSTR, pwszDescription: ?PWSTR, pwszUninstallString: ?PWSTR, dwPriority: u32, guidPluginType: Guid, clsid: Guid, cMediaTypes: u32, pMediaTypes: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IWMPMediaPluginRegistrar_WMPRegisterPlayerPlugin(self: *const T, pwszFriendlyName: ?PWSTR, pwszDescription: ?PWSTR, pwszUninstallString: ?PWSTR, dwPriority: u32, guidPluginType: Guid, clsid: Guid, cMediaTypes: u32, pMediaTypes: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWMPMediaPluginRegistrar.VTable, self.vtable).WMPRegisterPlayerPlugin(@ptrCast(*const IWMPMediaPluginRegistrar, self), pwszFriendlyName, pwszDescription, pwszUninstallString, dwPriority, guidPluginType, clsid, cMediaTypes, pMediaTypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5856,7 +5856,7 @@ pub const IXFeedsManager = extern struct {
         RootFolder: fn(
             self: *const IXFeedsManager,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsSubscribed: fn(
             self: *const IXFeedsManager,
@@ -5872,13 +5872,13 @@ pub const IXFeedsManager = extern struct {
             self: *const IXFeedsManager,
             pszPath: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFeedByUrl: fn(
             self: *const IXFeedsManager,
             pszUrl: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExistsFolder: fn(
             self: *const IXFeedsManager,
@@ -5889,7 +5889,7 @@ pub const IXFeedsManager = extern struct {
             self: *const IXFeedsManager,
             pszPath: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteFeed: fn(
             self: *const IXFeedsManager,
@@ -5932,7 +5932,7 @@ pub const IXFeedsManager = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedsManager_RootFolder(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedsManager_RootFolder(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedsManager.VTable, self.vtable).RootFolder(@ptrCast(*const IXFeedsManager, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5944,11 +5944,11 @@ pub const IXFeedsManager = extern struct {
             return @ptrCast(*const IXFeedsManager.VTable, self.vtable).ExistsFeed(@ptrCast(*const IXFeedsManager, self), pszPath, pbFeedExists);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedsManager_GetFeed(self: *const T, pszPath: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedsManager_GetFeed(self: *const T, pszPath: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedsManager.VTable, self.vtable).GetFeed(@ptrCast(*const IXFeedsManager, self), pszPath, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedsManager_GetFeedByUrl(self: *const T, pszUrl: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedsManager_GetFeedByUrl(self: *const T, pszUrl: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedsManager.VTable, self.vtable).GetFeedByUrl(@ptrCast(*const IXFeedsManager, self), pszUrl, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5956,7 +5956,7 @@ pub const IXFeedsManager = extern struct {
             return @ptrCast(*const IXFeedsManager.VTable, self.vtable).ExistsFolder(@ptrCast(*const IXFeedsManager, self), pszPath, pbFolderExists);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedsManager_GetFolder(self: *const T, pszPath: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedsManager_GetFolder(self: *const T, pszPath: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedsManager.VTable, self.vtable).GetFolder(@ptrCast(*const IXFeedsManager, self), pszPath, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6012,7 +6012,7 @@ pub const IXFeedsEnum = extern struct {
             self: *const IXFeedsEnum,
             uiIndex: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6023,7 +6023,7 @@ pub const IXFeedsEnum = extern struct {
             return @ptrCast(*const IXFeedsEnum.VTable, self.vtable).Count(@ptrCast(*const IXFeedsEnum, self), puiCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedsEnum_Item(self: *const T, uiIndex: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedsEnum_Item(self: *const T, uiIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedsEnum.VTable, self.vtable).Item(@ptrCast(*const IXFeedsEnum, self), uiIndex, riid, ppv);
         }
     };}
@@ -6048,13 +6048,13 @@ pub const IXFeedFolder = extern struct {
             pszName: ?[*:0]const u16,
             pszUrl: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateSubfolder: fn(
             self: *const IXFeedFolder,
             pszName: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExistsFeed: fn(
             self: *const IXFeedFolder,
@@ -6070,13 +6070,13 @@ pub const IXFeedFolder = extern struct {
             self: *const IXFeedFolder,
             pszName: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSubfolder: fn(
             self: *const IXFeedFolder,
             pszName: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IXFeedFolder,
@@ -6100,7 +6100,7 @@ pub const IXFeedFolder = extern struct {
         Parent: fn(
             self: *const IXFeedFolder,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsRoot: fn(
             self: *const IXFeedFolder,
@@ -6111,7 +6111,7 @@ pub const IXFeedFolder = extern struct {
             scope: FEEDS_EVENTS_SCOPE,
             mask: FEEDS_EVENTS_MASK,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TotalUnreadItemCount: fn(
             self: *const IXFeedFolder,
@@ -6134,11 +6134,11 @@ pub const IXFeedFolder = extern struct {
             return @ptrCast(*const IXFeedFolder.VTable, self.vtable).Subfolders(@ptrCast(*const IXFeedFolder, self), ppfe);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedFolder_CreateFeed(self: *const T, pszName: ?[*:0]const u16, pszUrl: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedFolder_CreateFeed(self: *const T, pszName: ?[*:0]const u16, pszUrl: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedFolder.VTable, self.vtable).CreateFeed(@ptrCast(*const IXFeedFolder, self), pszName, pszUrl, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedFolder_CreateSubfolder(self: *const T, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedFolder_CreateSubfolder(self: *const T, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedFolder.VTable, self.vtable).CreateSubfolder(@ptrCast(*const IXFeedFolder, self), pszName, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6150,11 +6150,11 @@ pub const IXFeedFolder = extern struct {
             return @ptrCast(*const IXFeedFolder.VTable, self.vtable).ExistsSubfolder(@ptrCast(*const IXFeedFolder, self), pszName, pbSubfolderExists);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedFolder_GetFeed(self: *const T, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedFolder_GetFeed(self: *const T, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedFolder.VTable, self.vtable).GetFeed(@ptrCast(*const IXFeedFolder, self), pszName, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedFolder_GetSubfolder(self: *const T, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedFolder_GetSubfolder(self: *const T, pszName: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedFolder.VTable, self.vtable).GetSubfolder(@ptrCast(*const IXFeedFolder, self), pszName, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6178,7 +6178,7 @@ pub const IXFeedFolder = extern struct {
             return @ptrCast(*const IXFeedFolder.VTable, self.vtable).Move(@ptrCast(*const IXFeedFolder, self), pszPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedFolder_Parent(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedFolder_Parent(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedFolder.VTable, self.vtable).Parent(@ptrCast(*const IXFeedFolder, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6186,7 +6186,7 @@ pub const IXFeedFolder = extern struct {
             return @ptrCast(*const IXFeedFolder.VTable, self.vtable).IsRoot(@ptrCast(*const IXFeedFolder, self), pbIsRootFeedFolder);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedFolder_GetWatcher(self: *const T, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedFolder_GetWatcher(self: *const T, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedFolder.VTable, self.vtable).GetWatcher(@ptrCast(*const IXFeedFolder, self), scope, mask, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6395,7 +6395,7 @@ pub const IXFeed = extern struct {
         Parent: fn(
             self: *const IXFeed,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LastWriteTime: fn(
             self: *const IXFeed,
@@ -6445,7 +6445,7 @@ pub const IXFeed = extern struct {
             self: *const IXFeed,
             uiId: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MarkAllItemsRead: fn(
             self: *const IXFeed,
@@ -6528,7 +6528,7 @@ pub const IXFeed = extern struct {
             scope: FEEDS_EVENTS_SCOPE,
             mask: FEEDS_EVENTS_MASK,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnreadItemCount: fn(
             self: *const IXFeed,
@@ -6575,7 +6575,7 @@ pub const IXFeed = extern struct {
             return @ptrCast(*const IXFeed.VTable, self.vtable).Move(@ptrCast(*const IXFeed, self), pszPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeed_Parent(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeed_Parent(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeed.VTable, self.vtable).Parent(@ptrCast(*const IXFeed, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6627,7 +6627,7 @@ pub const IXFeed = extern struct {
             return @ptrCast(*const IXFeed.VTable, self.vtable).Items(@ptrCast(*const IXFeed, self), ppfe);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeed_GetItem(self: *const T, uiId: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeed_GetItem(self: *const T, uiId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeed.VTable, self.vtable).GetItem(@ptrCast(*const IXFeed, self), uiId, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6707,7 +6707,7 @@ pub const IXFeed = extern struct {
             return @ptrCast(*const IXFeed.VTable, self.vtable).IsList(@ptrCast(*const IXFeed, self), pbIsList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeed_GetWatcher(self: *const T, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeed_GetWatcher(self: *const T, scope: FEEDS_EVENTS_SCOPE, mask: FEEDS_EVENTS_MASK, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeed.VTable, self.vtable).GetWatcher(@ptrCast(*const IXFeed, self), scope, mask, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6731,7 +6731,7 @@ pub const IXFeed2 = extern struct {
             self: *const IXFeed2,
             uiEffectiveId: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LastItemDownloadTime: fn(
             self: *const IXFeed2,
@@ -6758,7 +6758,7 @@ pub const IXFeed2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IXFeed.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeed2_GetItemByEffectiveId(self: *const T, uiEffectiveId: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeed2_GetItemByEffectiveId(self: *const T, uiEffectiveId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeed2.VTable, self.vtable).GetItemByEffectiveId(@ptrCast(*const IXFeed2, self), uiEffectiveId, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6906,7 +6906,7 @@ pub const IXFeedItem = extern struct {
         Enclosure: fn(
             self: *const IXFeedItem,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsRead: fn(
             self: *const IXFeedItem,
@@ -6923,7 +6923,7 @@ pub const IXFeedItem = extern struct {
         Parent: fn(
             self: *const IXFeedItem,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IXFeedItem,
@@ -6977,7 +6977,7 @@ pub const IXFeedItem = extern struct {
             return @ptrCast(*const IXFeedItem.VTable, self.vtable).Author(@ptrCast(*const IXFeedItem, self), ppszAuthor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedItem_Enclosure(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedItem_Enclosure(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedItem.VTable, self.vtable).Enclosure(@ptrCast(*const IXFeedItem, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6993,7 +6993,7 @@ pub const IXFeedItem = extern struct {
             return @ptrCast(*const IXFeedItem.VTable, self.vtable).LocalId(@ptrCast(*const IXFeedItem, self), puiId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedItem_Parent(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedItem_Parent(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedItem.VTable, self.vtable).Parent(@ptrCast(*const IXFeedItem, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7075,7 +7075,7 @@ pub const IXFeedEnclosure = extern struct {
         Parent: fn(
             self: *const IXFeedEnclosure,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DownloadUrl: fn(
             self: *const IXFeedEnclosure,
@@ -7132,7 +7132,7 @@ pub const IXFeedEnclosure = extern struct {
             return @ptrCast(*const IXFeedEnclosure.VTable, self.vtable).LocalPath(@ptrCast(*const IXFeedEnclosure, self), ppszPath);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXFeedEnclosure_Parent(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IXFeedEnclosure_Parent(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXFeedEnclosure.VTable, self.vtable).Parent(@ptrCast(*const IXFeedEnclosure, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

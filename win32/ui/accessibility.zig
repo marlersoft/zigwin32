@@ -1248,14 +1248,14 @@ pub const LPFNOBJECTFROMLRESULT = fn(
     lResult: LRESULT,
     riid: ?*const Guid,
     wParam: WPARAM,
-    ppvObject: ?*?*c_void,
+    ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPFNACCESSIBLEOBJECTFROMWINDOW = fn(
     hwnd: ?HWND,
     dwId: u32,
     riid: ?*const Guid,
-    ppvObject: ?*?*c_void,
+    ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPFNACCESSIBLEOBJECTFROMPOINT = fn(
@@ -1268,7 +1268,7 @@ pub const LPFNCREATESTDACCESSIBLEOBJECT = fn(
     hwnd: ?HWND,
     idObject: i32,
     riid: ?*const Guid,
-    ppvObject: ?*?*c_void,
+    ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPFNACCESSIBLECHILDREN = fn(
@@ -2406,7 +2406,7 @@ pub const UIAutomationType_OutElementArray = UIAutomationType.OutElementArray;
 
 pub const UIAutomationParameter = extern struct {
     type: UIAutomationType,
-    pData: ?*c_void,
+    pData: ?*anyopaque,
 };
 
 pub const UIAutomationPropertyInfo = extern struct {
@@ -4717,7 +4717,7 @@ pub const IUIAutomationPatternInstance = extern struct {
             index: u32,
             cached: BOOL,
             type: UIAutomationType,
-            pPtr: ?*c_void,
+            pPtr: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CallMethod: fn(
             self: *const IUIAutomationPatternInstance,
@@ -4730,7 +4730,7 @@ pub const IUIAutomationPatternInstance = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationPatternInstance_GetProperty(self: *const T, index: u32, cached: BOOL, type_: UIAutomationType, pPtr: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationPatternInstance_GetProperty(self: *const T, index: u32, cached: BOOL, type_: UIAutomationType, pPtr: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationPatternInstance.VTable, self.vtable).GetProperty(@ptrCast(*const IUIAutomationPatternInstance, self), index, cached, type_, pPtr);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4952,13 +4952,13 @@ pub const IUIAutomationElement = extern struct {
             self: *const IUIAutomationElement,
             patternId: i32,
             riid: ?*const Guid,
-            patternObject: ?*?*c_void,
+            patternObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedPatternAs: fn(
             self: *const IUIAutomationElement,
             patternId: i32,
             riid: ?*const Guid,
-            patternObject: ?*?*c_void,
+            patternObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentPattern: fn(
             self: *const IUIAutomationElement,
@@ -5352,11 +5352,11 @@ pub const IUIAutomationElement = extern struct {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCachedPropertyValueEx(@ptrCast(*const IUIAutomationElement, self), propertyId, ignoreDefaultValue, retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCurrentPatternAs(self: *const T, patternId: i32, riid: ?*const Guid, patternObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCurrentPatternAs(self: *const T, patternId: i32, riid: ?*const Guid, patternObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCurrentPatternAs(@ptrCast(*const IUIAutomationElement, self), patternId, riid, patternObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCachedPatternAs(self: *const T, patternId: i32, riid: ?*const Guid, patternObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCachedPatternAs(self: *const T, patternId: i32, riid: ?*const Guid, patternObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCachedPatternAs(@ptrCast(*const IUIAutomationElement, self), patternId, riid, patternObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10810,7 +10810,7 @@ pub extern "OLEACC" fn ObjectFromLresult(
     lResult: LRESULT,
     riid: ?*const Guid,
     wParam: WPARAM,
-    ppvObject: ?*?*c_void,
+    ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10824,7 +10824,7 @@ pub extern "OLEACC" fn AccessibleObjectFromWindow(
     hwnd: ?HWND,
     dwId: u32,
     riid: ?*const Guid,
-    ppvObject: ?*?*c_void,
+    ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10891,7 +10891,7 @@ pub extern "OLEACC" fn CreateStdAccessibleObject(
     hwnd: ?HWND,
     idObject: i32,
     riid: ?*const Guid,
-    ppvObject: ?*?*c_void,
+    ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10900,7 +10900,7 @@ pub extern "OLEACC" fn CreateStdAccessibleProxyA(
     pClassName: ?[*:0]const u8,
     idObject: i32,
     riid: ?*const Guid,
-    ppvObject: ?*?*c_void,
+    ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10909,7 +10909,7 @@ pub extern "OLEACC" fn CreateStdAccessibleProxyW(
     pClassName: ?[*:0]const u16,
     idObject: i32,
     riid: ?*const Guid,
-    ppvObject: ?*?*c_void,
+    ppvObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'

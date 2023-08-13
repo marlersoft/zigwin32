@@ -16,14 +16,14 @@ pub const IAudioFrameNative = extern struct {
         GetData: fn(
             self: *const IAudioFrameNative,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioFrameNative_GetData(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAudioFrameNative_GetData(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioFrameNative.VTable, self.vtable).GetData(@ptrCast(*const IAudioFrameNative, self), riid, ppv);
         }
     };}
@@ -38,23 +38,23 @@ pub const IVideoFrameNative = extern struct {
         GetData: fn(
             self: *const IVideoFrameNative,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDevice: fn(
             self: *const IVideoFrameNative,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVideoFrameNative_GetData(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IVideoFrameNative_GetData(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVideoFrameNative.VTable, self.vtable).GetData(@ptrCast(*const IVideoFrameNative, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVideoFrameNative_GetDevice(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IVideoFrameNative_GetDevice(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVideoFrameNative.VTable, self.vtable).GetDevice(@ptrCast(*const IVideoFrameNative, self), riid, ppv);
         }
     };}
@@ -71,14 +71,14 @@ pub const IAudioFrameNativeFactory = extern struct {
             data: ?*IMFSample,
             forceReadOnly: BOOL,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioFrameNativeFactory_CreateFromMFSample(self: *const T, data: ?*IMFSample, forceReadOnly: BOOL, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAudioFrameNativeFactory_CreateFromMFSample(self: *const T, data: ?*IMFSample, forceReadOnly: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioFrameNativeFactory.VTable, self.vtable).CreateFromMFSample(@ptrCast(*const IAudioFrameNativeFactory, self), data, forceReadOnly, riid, ppv);
         }
     };}
@@ -100,14 +100,14 @@ pub const IVideoFrameNativeFactory = extern struct {
             minDisplayAperture: ?*const MFVideoArea,
             device: ?*IMFDXGIDeviceManager,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVideoFrameNativeFactory_CreateFromMFSample(self: *const T, data: ?*IMFSample, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, device: ?*IMFDXGIDeviceManager, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IVideoFrameNativeFactory_CreateFromMFSample(self: *const T, data: ?*IMFSample, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, device: ?*IMFDXGIDeviceManager, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVideoFrameNativeFactory.VTable, self.vtable).CreateFromMFSample(@ptrCast(*const IVideoFrameNativeFactory, self), data, subtype, width, height, forceReadOnly, minDisplayAperture, device, riid, ppv);
         }
     };}

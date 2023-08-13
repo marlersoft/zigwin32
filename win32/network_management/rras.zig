@@ -1575,7 +1575,7 @@ pub const RasCustomScriptExecuteFn = fn(
     pfnRasRetrieveBuffer: ?PFNRASRETRIEVEBUFFER,
     hWnd: ?HWND,
     pRasDialParams: ?*RASDIALPARAMSA,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const RASCOMMSETTINGS = extern struct {
@@ -1589,7 +1589,7 @@ pub const RASCOMMSETTINGS = extern struct {
 pub const PFNRASSETCOMMSETTINGS = fn(
     hPort: ?HANDLE,
     pRasCommSettings: ?*RASCOMMSETTINGS,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
@@ -1626,7 +1626,7 @@ pub const RasCustomDialFn = fn(
     lpszPhonebook: ?[*:0]const u16,
     lpRasDialParams: ?*RASDIALPARAMSA,
     dwNotifierType: u32,
-    lpvNotifier: ?*c_void,
+    lpvNotifier: ?*anyopaque,
     lphRasConn: ?*?HRASCONN,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1650,14 +1650,14 @@ pub const RASPBDLGFUNCW = fn(
     param0: usize,
     param1: u32,
     param2: ?PWSTR,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const RASPBDLGFUNCA = fn(
     param0: usize,
     param1: u32,
     param2: ?PSTR,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const RASNOUSERW = extern struct {
@@ -1752,7 +1752,7 @@ pub const RasCustomDialDlgFn = fn(
     lpszEntry: ?PWSTR,
     lpszPhoneNumber: ?PWSTR,
     lpInfo: ?*RASDIALDLG,
-    pvInfo: ?*c_void,
+    pvInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const RasCustomEntryDlgFn = fn(
@@ -2967,7 +2967,7 @@ pub const RTM_ROUTE_INFO = extern struct {
     Flags: u16,
     PrefInfo: RTM_PREF_INFO,
     BelongsToViews: u32,
-    EntitySpecificInfo: ?*c_void,
+    EntitySpecificInfo: ?*anyopaque,
     NextHopsList: RTM_NEXTHOP_LIST,
 };
 
@@ -2977,7 +2977,7 @@ pub const RTM_NEXTHOP_INFO = extern struct {
     InterfaceIndex: u32,
     State: u16,
     Flags: u16,
-    EntitySpecificInfo: ?*c_void,
+    EntitySpecificInfo: ?*anyopaque,
     RemoteNextHop: isize,
 };
 
@@ -3011,8 +3011,8 @@ pub const RTM_CHANGE_NOTIFICATION = RTM_EVENT_TYPE.CHANGE_NOTIFICATION;
 pub const RTM_EVENT_CALLBACK = fn(
     RtmRegHandle: isize,
     EventType: RTM_EVENT_TYPE,
-    Context1: ?*c_void,
-    Context2: ?*c_void,
+    Context1: ?*anyopaque,
+    Context2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const RTM_ENTITY_METHOD_INPUT = extern struct {
@@ -3050,7 +3050,7 @@ pub extern "RASAPI32" fn RasDialA(
     param1: ?[*:0]const u8,
     param2: ?*RASDIALPARAMSA,
     param3: u32,
-    param4: ?*c_void,
+    param4: ?*anyopaque,
     param5: ?*?HRASCONN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3060,7 +3060,7 @@ pub extern "RASAPI32" fn RasDialW(
     param1: ?[*:0]const u16,
     param2: ?*RASDIALPARAMSW,
     param3: u32,
-    param4: ?*c_void,
+    param4: ?*anyopaque,
     param5: ?*?HRASCONN,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3136,7 +3136,7 @@ pub extern "RASAPI32" fn RasHangUpW(
 pub extern "RASAPI32" fn RasGetProjectionInfoA(
     param0: ?HRASCONN,
     param1: RASPROJECTION,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
     param3: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3144,7 +3144,7 @@ pub extern "RASAPI32" fn RasGetProjectionInfoA(
 pub extern "RASAPI32" fn RasGetProjectionInfoW(
     param0: ?HRASCONN,
     param1: RASPROJECTION,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
     param3: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3487,28 +3487,28 @@ pub extern "RASAPI32" fn RasSetAutodialEnableW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RASAPI32" fn RasGetAutodialParamA(
     param0: u32,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
     param2: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RASAPI32" fn RasGetAutodialParamW(
     param0: u32,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
     param2: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RASAPI32" fn RasSetAutodialParamA(
     param0: u32,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RASAPI32" fn RasSetAutodialParamW(
     param0: u32,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3933,7 +3933,7 @@ pub extern "MPRAPI" fn MprAdminServerSetCredentials(
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprAdminBufferFree(
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -4209,7 +4209,7 @@ pub extern "MPRAPI" fn MprAdminMIBEntryCreate(
     hMibServer: isize,
     dwPid: u32,
     dwRoutingPid: u32,
-    lpEntry: ?*c_void,
+    lpEntry: ?*anyopaque,
     dwEntrySize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4218,7 +4218,7 @@ pub extern "MPRAPI" fn MprAdminMIBEntryDelete(
     hMibServer: isize,
     dwProtocolId: u32,
     dwRoutingPid: u32,
-    lpEntry: ?*c_void,
+    lpEntry: ?*anyopaque,
     dwEntrySize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4227,7 +4227,7 @@ pub extern "MPRAPI" fn MprAdminMIBEntrySet(
     hMibServer: isize,
     dwProtocolId: u32,
     dwRoutingPid: u32,
-    lpEntry: ?*c_void,
+    lpEntry: ?*anyopaque,
     dwEntrySize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4236,9 +4236,9 @@ pub extern "MPRAPI" fn MprAdminMIBEntryGet(
     hMibServer: isize,
     dwProtocolId: u32,
     dwRoutingPid: u32,
-    lpInEntry: ?*c_void,
+    lpInEntry: ?*anyopaque,
     dwInEntrySize: u32,
-    lplpOutEntry: ?*?*c_void,
+    lplpOutEntry: ?*?*anyopaque,
     lpOutEntrySize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4247,9 +4247,9 @@ pub extern "MPRAPI" fn MprAdminMIBEntryGetFirst(
     hMibServer: isize,
     dwProtocolId: u32,
     dwRoutingPid: u32,
-    lpInEntry: ?*c_void,
+    lpInEntry: ?*anyopaque,
     dwInEntrySize: u32,
-    lplpOutEntry: ?*?*c_void,
+    lplpOutEntry: ?*?*anyopaque,
     lpOutEntrySize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4258,21 +4258,21 @@ pub extern "MPRAPI" fn MprAdminMIBEntryGetNext(
     hMibServer: isize,
     dwProtocolId: u32,
     dwRoutingPid: u32,
-    lpInEntry: ?*c_void,
+    lpInEntry: ?*anyopaque,
     dwInEntrySize: u32,
-    lplpOutEntry: ?*?*c_void,
+    lplpOutEntry: ?*?*anyopaque,
     lpOutEntrySize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprAdminMIBBufferFree(
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprConfigServerInstall(
     dwLevel: u32,
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -4292,7 +4292,7 @@ pub extern "MPRAPI" fn MprConfigServerRefresh(
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprConfigBufferFree(
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -4528,56 +4528,56 @@ pub extern "MPRAPI" fn MprConfigFilterSetInfo(
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprInfoCreate(
     dwVersion: u32,
-    lplpNewHeader: ?*?*c_void,
+    lplpNewHeader: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprInfoDelete(
-    lpHeader: ?*c_void,
+    lpHeader: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprInfoRemoveAll(
-    lpHeader: ?*c_void,
-    lplpNewHeader: ?*?*c_void,
+    lpHeader: ?*anyopaque,
+    lplpNewHeader: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprInfoDuplicate(
-    lpHeader: ?*c_void,
-    lplpNewHeader: ?*?*c_void,
+    lpHeader: ?*anyopaque,
+    lplpNewHeader: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprInfoBlockAdd(
-    lpHeader: ?*c_void,
+    lpHeader: ?*anyopaque,
     dwInfoType: u32,
     dwItemSize: u32,
     dwItemCount: u32,
     lpItemData: ?*u8,
-    lplpNewHeader: ?*?*c_void,
+    lplpNewHeader: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprInfoBlockRemove(
-    lpHeader: ?*c_void,
+    lpHeader: ?*anyopaque,
     dwInfoType: u32,
-    lplpNewHeader: ?*?*c_void,
+    lplpNewHeader: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprInfoBlockSet(
-    lpHeader: ?*c_void,
+    lpHeader: ?*anyopaque,
     dwInfoType: u32,
     dwItemSize: u32,
     dwItemCount: u32,
     lpItemData: ?*u8,
-    lplpNewHeader: ?*?*c_void,
+    lplpNewHeader: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprInfoBlockFind(
-    lpHeader: ?*c_void,
+    lpHeader: ?*anyopaque,
     dwInfoType: u32,
     lpdwItemSize: ?*u32,
     lpdwItemCount: ?*u32,
@@ -4586,7 +4586,7 @@ pub extern "MPRAPI" fn MprInfoBlockFind(
 
 // TODO: this type is limited to platform 'windowsServer2000'
 pub extern "MPRAPI" fn MprInfoBlockQuerySize(
-    lpHeader: ?*c_void,
+    lpHeader: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -4771,7 +4771,7 @@ pub extern "rtm" fn RtmLockDestination(
 pub extern "rtm" fn RtmGetOpaqueInformationPointer(
     RtmRegHandle: isize,
     DestHandle: isize,
-    OpaqueInfoPointer: ?*?*c_void,
+    OpaqueInfoPointer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2000'
@@ -5080,7 +5080,7 @@ pub extern "rtm" fn RtmRegisterForChangeNotification(
     RtmRegHandle: isize,
     TargetViews: u32,
     NotifyFlags: u32,
-    NotifyContext: ?*c_void,
+    NotifyContext: ?*anyopaque,
     NotifyHandle: ?*isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

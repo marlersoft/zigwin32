@@ -1040,7 +1040,7 @@ pub const IXmlWriterLite = extern struct {
 //--------------------------------------------------------------------------------
 pub extern "XmlLite" fn CreateXmlReader(
     riid: ?*const Guid,
-    ppvObject: ?*?*c_void,
+    ppvObject: ?*?*anyopaque,
     pMalloc: ?*IMalloc,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1064,7 +1064,7 @@ pub extern "XmlLite" fn CreateXmlReaderInputWithEncodingName(
 
 pub extern "XmlLite" fn CreateXmlWriter(
     riid: ?*const Guid,
-    ppvObject: ?*?*c_void,
+    ppvObject: ?*?*anyopaque,
     pMalloc: ?*IMalloc,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

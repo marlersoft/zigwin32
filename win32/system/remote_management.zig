@@ -658,7 +658,7 @@ pub const WSMAN_OPERATION_INFO = extern struct {
     filter: WSMAN_FILTER,
     selectorSet: WSMAN_SELECTOR_SET,
     optionSet: WSMAN_OPTION_SET,
-    reserved: ?*c_void,
+    reserved: ?*anyopaque,
     version: u32,
 };
 
@@ -847,7 +847,7 @@ pub const WSMAN_RESPONSE_DATA = extern union {
 };
 
 pub const WSMAN_SHELL_COMPLETION_FUNCTION = fn(
-    operationContext: ?*c_void,
+    operationContext: ?*anyopaque,
     flags: u32,
     @"error": ?*WSMAN_ERROR,
     shell: ?*WSMAN_SHELL,
@@ -857,7 +857,7 @@ pub const WSMAN_SHELL_COMPLETION_FUNCTION = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_SHELL_ASYNC = extern struct {
-    operationContext: ?*c_void,
+    operationContext: ?*anyopaque,
     completionFunction: ?WSMAN_SHELL_COMPLETION_FUNCTION,
 };
 
@@ -892,29 +892,29 @@ pub const WSMAN_PLUGIN_REQUEST = extern struct {
 };
 
 pub const WSMAN_PLUGIN_RELEASE_SHELL_CONTEXT = fn(
-    shellContext: ?*c_void,
+    shellContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT = fn(
-    shellContext: ?*c_void,
-    commandContext: ?*c_void,
+    shellContext: ?*anyopaque,
+    commandContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_STARTUP = fn(
     flags: u32,
     applicationIdentification: ?[*:0]const u16,
     extraInfo: ?[*:0]const u16,
-    pluginContext: ?*?*c_void,
+    pluginContext: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WSMAN_PLUGIN_SHUTDOWN = fn(
-    pluginContext: ?*c_void,
+    pluginContext: ?*anyopaque,
     flags: u32,
     reason: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WSMAN_PLUGIN_SHELL = fn(
-    pluginContext: ?*c_void,
+    pluginContext: ?*anyopaque,
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
     startupInfo: ?*WSMAN_SHELL_STARTUP_INFO_V11,
@@ -924,7 +924,7 @@ pub const WSMAN_PLUGIN_SHELL = fn(
 pub const WSMAN_PLUGIN_COMMAND = fn(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    shellContext: ?*c_void,
+    shellContext: ?*anyopaque,
     commandLine: ?[*:0]const u16,
     arguments: ?*WSMAN_COMMAND_ARG_SET,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -932,8 +932,8 @@ pub const WSMAN_PLUGIN_COMMAND = fn(
 pub const WSMAN_PLUGIN_SEND = fn(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    shellContext: ?*c_void,
-    commandContext: ?*c_void,
+    shellContext: ?*anyopaque,
+    commandContext: ?*anyopaque,
     stream: ?[*:0]const u16,
     inboundData: ?*WSMAN_DATA,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -941,24 +941,24 @@ pub const WSMAN_PLUGIN_SEND = fn(
 pub const WSMAN_PLUGIN_RECEIVE = fn(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    shellContext: ?*c_void,
-    commandContext: ?*c_void,
+    shellContext: ?*anyopaque,
+    commandContext: ?*anyopaque,
     streamSet: ?*WSMAN_STREAM_ID_SET,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_SIGNAL = fn(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    shellContext: ?*c_void,
-    commandContext: ?*c_void,
+    shellContext: ?*anyopaque,
+    commandContext: ?*anyopaque,
     code: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_CONNECT = fn(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    shellContext: ?*c_void,
-    commandContext: ?*c_void,
+    shellContext: ?*anyopaque,
+    commandContext: ?*anyopaque,
     inboundConnectInformation: ?*WSMAN_DATA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -970,13 +970,13 @@ pub const WSMAN_AUTHZ_QUOTA = extern struct {
 };
 
 pub const WSMAN_PLUGIN_AUTHORIZE_USER = fn(
-    pluginContext: ?*c_void,
+    pluginContext: ?*anyopaque,
     senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_AUTHORIZE_OPERATION = fn(
-    pluginContext: ?*c_void,
+    pluginContext: ?*anyopaque,
     senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
     operation: u32,
@@ -985,13 +985,13 @@ pub const WSMAN_PLUGIN_AUTHORIZE_OPERATION = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_AUTHORIZE_QUERY_QUOTA = fn(
-    pluginContext: ?*c_void,
+    pluginContext: ?*anyopaque,
     senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT = fn(
-    userAuthorizationContext: ?*c_void,
+    userAuthorizationContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 const CLSID_WSMan_Value = @import("../zig.zig").Guid.initString("bced617b-ec03-420b-8508-977dc7a686bd");
@@ -2104,7 +2104,7 @@ pub extern "WsmSvc" fn WSManConnectShellCommand(
 pub extern "WsmSvc" fn WSManPluginReportContext(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2133,13 +2133,13 @@ pub extern "WsmSvc" fn WSManPluginGetOperationParameters(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WsmSvc" fn WSManPluginGetConfiguration(
-    pluginContext: ?*c_void,
+    pluginContext: ?*anyopaque,
     flags: u32,
     data: ?*WSMAN_DATA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "WsmSvc" fn WSManPluginReportCompletion(
-    pluginContext: ?*c_void,
+    pluginContext: ?*anyopaque,
     flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -2152,7 +2152,7 @@ pub extern "WsmSvc" fn WSManPluginFreeRequestDetails(
 pub extern "WsmSvc" fn WSManPluginAuthzUserComplete(
     senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
-    userAuthorizationContext: ?*c_void,
+    userAuthorizationContext: ?*anyopaque,
     impersonationToken: ?HANDLE,
     userIsAdministrator: BOOL,
     errorCode: u32,
@@ -2163,7 +2163,7 @@ pub extern "WsmSvc" fn WSManPluginAuthzUserComplete(
 pub extern "WsmSvc" fn WSManPluginAuthzOperationComplete(
     senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
-    userAuthorizationContext: ?*c_void,
+    userAuthorizationContext: ?*anyopaque,
     errorCode: u32,
     extendedErrorInformation: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;

@@ -460,7 +460,7 @@ pub const COLOR = extern union {
     hifi: HiFiCOLOR,
     Anonymous: extern struct {
         reserved1: u32,
-        reserved2: ?*c_void,
+        reserved2: ?*anyopaque,
     },
 };
 
@@ -653,7 +653,7 @@ pub const PROFILEHEADER = extern struct {
 
 pub const PROFILE = extern struct {
     dwType: u32,
-    pProfileData: ?*c_void,
+    pProfileData: ?*anyopaque,
     cbDataSize: u32,
 };
 
@@ -799,7 +799,7 @@ pub extern "GDI32" fn CheckColorsInGamut(
     hdc: ?HDC,
     lpRGBTriple: [*]RGBTRIPLE,
     // TODO: what to do with BytesParamIndex 3?
-    dlpBuffer: ?*c_void,
+    dlpBuffer: ?*anyopaque,
     nCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -874,13 +874,13 @@ pub extern "GDI32" fn SetICMProfileW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetDeviceGammaRamp(
     hdc: ?HDC,
-    lpRamp: ?*c_void,
+    lpRamp: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn SetDeviceGammaRamp(
     hdc: ?HDC,
-    lpRamp: ?*c_void,
+    lpRamp: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -996,7 +996,7 @@ pub extern "mscms" fn GetColorProfileElement(
     dwOffset: u32,
     pcbElement: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
-    pElement: ?*c_void,
+    pElement: ?*anyopaque,
     pbReference: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1110,12 +1110,12 @@ pub extern "mscms" fn DeleteColorTransform(
 
 pub extern "mscms" fn TranslateBitmapBits(
     hColorTransform: isize,
-    pSrcBits: ?*c_void,
+    pSrcBits: ?*anyopaque,
     bmInput: BMFORMAT,
     dwWidth: u32,
     dwHeight: u32,
     dwInputStride: u32,
-    pDestBits: ?*c_void,
+    pDestBits: ?*anyopaque,
     bmOutput: BMFORMAT,
     dwOutputStride: u32,
     pfnCallBack: ?LPBMCALLBACKFN,
@@ -1124,7 +1124,7 @@ pub extern "mscms" fn TranslateBitmapBits(
 
 pub extern "mscms" fn CheckBitmapBits(
     hColorTransform: isize,
-    pSrcBits: ?*c_void,
+    pSrcBits: ?*anyopaque,
     bmInput: BMFORMAT,
     dwWidth: u32,
     dwHeight: u32,
@@ -1381,12 +1381,12 @@ pub extern "mscms" fn WcsTranslateColors(
     cdtInput: COLORDATATYPE,
     cbInput: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pInputData: ?*c_void,
+    pInputData: ?*anyopaque,
     nOutputChannels: u32,
     cdtOutput: COLORDATATYPE,
     cbOutput: u32,
     // TODO: what to do with BytesParamIndex 8?
-    pOutputData: ?*c_void,
+    pOutputData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "mscms" fn WcsCheckColors(
@@ -1396,7 +1396,7 @@ pub extern "mscms" fn WcsCheckColors(
     cdtInput: COLORDATATYPE,
     cbInput: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pInputData: ?*c_void,
+    pInputData: ?*anyopaque,
     paResult: [*:0]u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1410,7 +1410,7 @@ pub extern "ICM32" fn CMCheckColors(
 
 pub extern "ICM32" fn CMCheckRGBs(
     hcmTransform: isize,
-    lpSrcBits: ?*c_void,
+    lpSrcBits: ?*anyopaque,
     bmInput: BMFORMAT,
     dwWidth: u32,
     dwHeight: u32,
@@ -1453,25 +1453,25 @@ pub extern "ICM32" fn CMCreateMultiProfileTransform(
 
 pub extern "ICM32" fn CMCreateProfileW(
     lpColorSpace: ?*LOGCOLORSPACEW,
-    lpProfileData: ?*?*c_void,
+    lpProfileData: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICM32" fn CMCreateTransform(
     lpColorSpace: ?*LOGCOLORSPACEA,
-    lpDevCharacter: ?*c_void,
-    lpTargetDevCharacter: ?*c_void,
+    lpDevCharacter: ?*anyopaque,
+    lpTargetDevCharacter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 pub extern "ICM32" fn CMCreateTransformW(
     lpColorSpace: ?*LOGCOLORSPACEW,
-    lpDevCharacter: ?*c_void,
-    lpTargetDevCharacter: ?*c_void,
+    lpDevCharacter: ?*anyopaque,
+    lpTargetDevCharacter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
 pub extern "ICM32" fn CMCreateTransformExt(
     lpColorSpace: ?*LOGCOLORSPACEA,
-    lpDevCharacter: ?*c_void,
-    lpTargetDevCharacter: ?*c_void,
+    lpDevCharacter: ?*anyopaque,
+    lpTargetDevCharacter: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
@@ -1485,7 +1485,7 @@ pub extern "ICM32" fn CMCheckColorsInGamut(
 
 pub extern "ICM32" fn CMCreateProfile(
     lpColorSpace: ?*LOGCOLORSPACEA,
-    lpProfileData: ?*?*c_void,
+    lpProfileData: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICM32" fn CMTranslateRGB(
@@ -1497,20 +1497,20 @@ pub extern "ICM32" fn CMTranslateRGB(
 
 pub extern "ICM32" fn CMTranslateRGBs(
     hcmTransform: isize,
-    lpSrcBits: ?*c_void,
+    lpSrcBits: ?*anyopaque,
     bmInput: BMFORMAT,
     dwWidth: u32,
     dwHeight: u32,
     dwStride: u32,
-    lpDestBits: ?*c_void,
+    lpDestBits: ?*anyopaque,
     bmOutput: BMFORMAT,
     dwTranslateDirection: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ICM32" fn CMCreateTransformExtW(
     lpColorSpace: ?*LOGCOLORSPACEW,
-    lpDevCharacter: ?*c_void,
-    lpTargetDevCharacter: ?*c_void,
+    lpDevCharacter: ?*anyopaque,
+    lpTargetDevCharacter: ?*anyopaque,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
@@ -1543,12 +1543,12 @@ pub extern "ICM32" fn CMTranslateColors(
 
 pub extern "ICM32" fn CMTranslateRGBsExt(
     hcmTransform: isize,
-    lpSrcBits: ?*c_void,
+    lpSrcBits: ?*anyopaque,
     bmInput: BMFORMAT,
     dwWidth: u32,
     dwHeight: u32,
     dwInputStride: u32,
-    lpDestBits: ?*c_void,
+    lpDestBits: ?*anyopaque,
     bmOutput: BMFORMAT,
     dwOutputStride: u32,
     lpfnCallback: ?LPBMCALLBACKFN,

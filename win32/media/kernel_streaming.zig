@@ -661,7 +661,7 @@ pub const IKsControl = extern struct {
             self: *const IKsControl,
             Property: ?*KSIDENTIFIER,
             PropertyLength: u32,
-            PropertyData: ?*c_void,
+            PropertyData: ?*anyopaque,
             DataLength: u32,
             BytesReturned: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -669,7 +669,7 @@ pub const IKsControl = extern struct {
             self: *const IKsControl,
             Method: ?*KSIDENTIFIER,
             MethodLength: u32,
-            MethodData: ?*c_void,
+            MethodData: ?*anyopaque,
             DataLength: u32,
             BytesReturned: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -677,7 +677,7 @@ pub const IKsControl = extern struct {
             self: *const IKsControl,
             Event: ?*KSIDENTIFIER,
             EventLength: u32,
-            EventData: ?*c_void,
+            EventData: ?*anyopaque,
             DataLength: u32,
             BytesReturned: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -686,15 +686,15 @@ pub const IKsControl = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsControl_KsProperty(self: *const T, Property: ?*KSIDENTIFIER, PropertyLength: u32, PropertyData: ?*c_void, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IKsControl_KsProperty(self: *const T, Property: ?*KSIDENTIFIER, PropertyLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKsControl.VTable, self.vtable).KsProperty(@ptrCast(*const IKsControl, self), Property, PropertyLength, PropertyData, DataLength, BytesReturned);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsControl_KsMethod(self: *const T, Method: ?*KSIDENTIFIER, MethodLength: u32, MethodData: ?*c_void, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IKsControl_KsMethod(self: *const T, Method: ?*KSIDENTIFIER, MethodLength: u32, MethodData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKsControl.VTable, self.vtable).KsMethod(@ptrCast(*const IKsControl, self), Method, MethodLength, MethodData, DataLength, BytesReturned);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsControl_KsEvent(self: *const T, Event: ?*KSIDENTIFIER, EventLength: u32, EventData: ?*c_void, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IKsControl_KsEvent(self: *const T, Event: ?*KSIDENTIFIER, EventLength: u32, EventData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKsControl.VTable, self.vtable).KsEvent(@ptrCast(*const IKsControl, self), Event, EventLength, EventData, DataLength, BytesReturned);
         }
     };}
@@ -962,7 +962,7 @@ pub const KSEVENTDATA = extern struct {
             Adjustment: i32,
         },
         Alignment: extern struct {
-            Unused: ?*c_void,
+            Unused: ?*anyopaque,
             Alignment: [2]isize,
         },
     },
@@ -971,7 +971,7 @@ pub const KSEVENTDATA = extern struct {
 pub const KSQUERYBUFFER = extern struct {
     Event: KSIDENTIFIER,
     EventData: ?*KSEVENTDATA,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
 };
 
 pub const KSRELATIVEEVENT = extern struct {
@@ -979,9 +979,9 @@ pub const KSRELATIVEEVENT = extern struct {
     Flags: u32,
     Anonymous: extern union {
         ObjectHandle: ?HANDLE,
-        ObjectPointer: ?*c_void,
+        ObjectPointer: ?*anyopaque,
     },
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     Event: KSIDENTIFIER,
     EventData: KSEVENTDATA,
 };
@@ -1583,8 +1583,8 @@ pub const KSTIME = extern struct {
 pub const KSSTREAM_METADATA_INFO = extern struct {
     BufferSize: u32,
     UsedSize: u32,
-    Data: ?*c_void,
-    SystemVa: ?*c_void,
+    Data: ?*anyopaque,
+    SystemVa: ?*anyopaque,
     Flags: u32,
     Reserved: u32,
 };
@@ -1620,7 +1620,7 @@ pub const KSPIN_MDL_CACHING_NOTIFY_ADDSAMPLE = KSPIN_MDL_CACHING_EVENT.ADDSAMPLE
 
 pub const KSPIN_MDL_CACHING_NOTIFICATION = extern struct {
     Event: KSPIN_MDL_CACHING_EVENT,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 };
 
 pub const KSPIN_MDL_CACHING_NOTIFICATION32 = extern struct {
@@ -1674,7 +1674,7 @@ pub const CLSID_KSPROPSETID_PinMDLCacheClearProp = &CLSID_KSPROPSETID_PinMDLCach
 
 pub const KSQUALITY_MANAGER = extern struct {
     QualityManager: ?HANDLE,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 };
 
 pub const KSFRAMETIME = extern struct {
@@ -1755,13 +1755,13 @@ pub const KSEVENT_CONNECTION_PRIORITY = KSEVENT_CONNECTION.PRIORITY;
 pub const KSEVENT_CONNECTION_ENDOFSTREAM = KSEVENT_CONNECTION.ENDOFSTREAM;
 
 pub const KSQUALITY = extern struct {
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     Proportion: u32,
     DeltaTime: i64,
 };
 
 pub const KSERROR = extern struct {
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     Status: u32,
 };
 
@@ -2529,7 +2529,7 @@ pub const KSPROPERTY_RTAUDIO_PACKETVREGISTER = KSPROPERTY_RTAUDIO.PACKETVREGISTE
 
 pub const KSRTAUDIO_BUFFER_PROPERTY = extern struct {
     Property: KSIDENTIFIER,
-    BaseAddress: ?*c_void,
+    BaseAddress: ?*anyopaque,
     RequestedBufferSize: u32,
 };
 
@@ -2541,7 +2541,7 @@ pub const KSRTAUDIO_BUFFER_PROPERTY32 = extern struct {
 
 pub const KSRTAUDIO_BUFFER_PROPERTY_WITH_NOTIFICATION = extern struct {
     Property: KSIDENTIFIER,
-    BaseAddress: ?*c_void,
+    BaseAddress: ?*anyopaque,
     RequestedBufferSize: u32,
     NotificationCount: u32,
 };
@@ -2554,7 +2554,7 @@ pub const KSRTAUDIO_BUFFER_PROPERTY_WITH_NOTIFICATION32 = extern struct {
 };
 
 pub const KSRTAUDIO_BUFFER = extern struct {
-    BufferAddress: ?*c_void,
+    BufferAddress: ?*anyopaque,
     ActualBufferSize: u32,
     CallMemoryBarrier: BOOL,
 };
@@ -2573,7 +2573,7 @@ pub const KSRTAUDIO_HWLATENCY = extern struct {
 
 pub const KSRTAUDIO_HWREGISTER_PROPERTY = extern struct {
     Property: KSIDENTIFIER,
-    BaseAddress: ?*c_void,
+    BaseAddress: ?*anyopaque,
 };
 
 pub const KSRTAUDIO_HWREGISTER_PROPERTY32 = extern struct {
@@ -2582,7 +2582,7 @@ pub const KSRTAUDIO_HWREGISTER_PROPERTY32 = extern struct {
 };
 
 pub const KSRTAUDIO_HWREGISTER = extern struct {
-    Register: ?*c_void,
+    Register: ?*anyopaque,
     Width: u32,
     Numerator: u64,
     Denominator: u64,
@@ -2622,7 +2622,7 @@ pub const KSRTAUDIO_SETWRITEPACKET_INFO = extern struct {
 
 pub const KSRTAUDIO_PACKETVREGISTER_PROPERTY = extern struct {
     Property: KSIDENTIFIER,
-    BaseAddress: ?*c_void,
+    BaseAddress: ?*anyopaque,
 };
 
 pub const KSRTAUDIO_PACKETVREGISTER = extern struct {
@@ -3325,7 +3325,7 @@ pub const KSWAVE_VOLUME = extern struct {
 pub const KSWAVE_BUFFER = extern struct {
     Attributes: u32,
     BufferSize: u32,
-    BufferAddress: ?*c_void,
+    BufferAddress: ?*anyopaque,
 };
 
 const CLSID_KSMUSIC_TECHNOLOGY_PORT_Value = @import("../zig.zig").Guid.initString("86c92e60-62e8-11cf-a5d6-28db04c10000");
@@ -4885,7 +4885,7 @@ pub const KSPROPERTY_TUNER_SCAN_CAPS_S = extern struct {
     Property: KSIDENTIFIER,
     fSupportsHardwareAssistedScanning: BOOL,
     SupportedBroadcastStandards: u32,
-    GUIDBucket: ?*c_void,
+    GUIDBucket: ?*anyopaque,
     lengthofBucket: u32,
 };
 
@@ -4893,7 +4893,7 @@ pub const KSPROPERTY_TUNER_NETWORKTYPE_SCAN_CAPS_S = extern struct {
     Property: KSIDENTIFIER,
     NetworkType: Guid,
     BufferSize: u32,
-    NetworkTunerCapabilities: ?*c_void,
+    NetworkTunerCapabilities: ?*anyopaque,
 };
 
 pub const KSPROPERTY_TUNER_SCAN_STATUS_S = extern struct {
@@ -7116,10 +7116,10 @@ pub const IKsPropertySet = extern struct {
             PropSet: ?*const Guid,
             Id: u32,
             // TODO: what to do with BytesParamIndex 3?
-            InstanceData: ?*c_void,
+            InstanceData: ?*anyopaque,
             InstanceLength: u32,
             // TODO: what to do with BytesParamIndex 5?
-            PropertyData: ?*c_void,
+            PropertyData: ?*anyopaque,
             DataLength: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Get: fn(
@@ -7127,10 +7127,10 @@ pub const IKsPropertySet = extern struct {
             PropSet: ?*const Guid,
             Id: u32,
             // TODO: what to do with BytesParamIndex 3?
-            InstanceData: ?*c_void,
+            InstanceData: ?*anyopaque,
             InstanceLength: u32,
             // TODO: what to do with BytesParamIndex 5?
-            PropertyData: ?*c_void,
+            PropertyData: ?*anyopaque,
             DataLength: u32,
             BytesReturned: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -7145,11 +7145,11 @@ pub const IKsPropertySet = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsPropertySet_Set(self: *const T, PropSet: ?*const Guid, Id: u32, InstanceData: ?*c_void, InstanceLength: u32, PropertyData: ?*c_void, DataLength: u32) callconv(.Inline) HRESULT {
+        pub fn IKsPropertySet_Set(self: *const T, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKsPropertySet.VTable, self.vtable).Set(@ptrCast(*const IKsPropertySet, self), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsPropertySet_Get(self: *const T, PropSet: ?*const Guid, Id: u32, InstanceData: ?*c_void, InstanceLength: u32, PropertyData: ?*c_void, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IKsPropertySet_Get(self: *const T, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKsPropertySet.VTable, self.vtable).Get(@ptrCast(*const IKsPropertySet, self), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength, BytesReturned);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7201,14 +7201,14 @@ pub const IKsTopology = extern struct {
             DesiredAccess: u32,
             UnkOuter: ?*IUnknown,
             InterfaceId: ?*const Guid,
-            Interface: ?*?*c_void,
+            Interface: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsTopology_CreateNodeInstance(self: *const T, NodeId: u32, Flags: u32, DesiredAccess: u32, UnkOuter: ?*IUnknown, InterfaceId: ?*const Guid, Interface: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IKsTopology_CreateNodeInstance(self: *const T, NodeId: u32, Flags: u32, DesiredAccess: u32, UnkOuter: ?*IUnknown, InterfaceId: ?*const Guid, Interface: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKsTopology.VTable, self.vtable).CreateNodeInstance(@ptrCast(*const IKsTopology, self), NodeId, Flags, DesiredAccess, UnkOuter, InterfaceId, Interface);
         }
     };}
@@ -7226,7 +7226,7 @@ pub const KSSTREAM_HEADER = switch(@import("../zig.zig").arch) {
         Duration: i64,
         FrameExtent: u32,
         DataUsed: u32,
-        Data: ?*c_void,
+        Data: ?*anyopaque,
         OptionsFlags: u32,
         Reserved: u32,
     },
@@ -7237,30 +7237,30 @@ pub const KSSTREAM_HEADER = switch(@import("../zig.zig").arch) {
         Duration: i64,
         FrameExtent: u32,
         DataUsed: u32,
-        Data: ?*c_void,
+        Data: ?*anyopaque,
         OptionsFlags: u32,
     },
 };
 pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         NodeProperty: KSNODEPROPERTY,
-        ListenerId: ?*c_void,
+        ListenerId: ?*anyopaque,
     },
     .X86 => extern struct {
         NodeProperty: KSNODEPROPERTY,
-        ListenerId: ?*c_void,
+        ListenerId: ?*anyopaque,
         Reserved: u32,
     },
 };
 pub const KSNODEPROPERTY_AUDIO_PROPERTY = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         NodeProperty: KSNODEPROPERTY,
-        AppContext: ?*c_void,
+        AppContext: ?*anyopaque,
         Length: u32,
     },
     .X86 => extern struct {
         NodeProperty: KSNODEPROPERTY,
-        AppContext: ?*c_void,
+        AppContext: ?*anyopaque,
         Length: u32,
         Reserved: u32,
     },

@@ -169,9 +169,9 @@ pub const OBJECTID = extern struct {
 
 pub const EXCEPTION_ROUTINE = fn(
     ExceptionRecord: ?*EXCEPTION_RECORD,
-    EstablisherFrame: ?*c_void,
+    EstablisherFrame: ?*anyopaque,
     ContextRecord: ?*CONTEXT,
-    DispatcherContext: ?*c_void,
+    DispatcherContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) EXCEPTION_DISPOSITION;
 
 pub const NT_PRODUCT_TYPE = enum(i32) {
@@ -238,14 +238,14 @@ pub const EXCEPTION_REGISTRATION_RECORD = extern struct {
 
 pub const NT_TIB = extern struct {
     ExceptionList: ?*EXCEPTION_REGISTRATION_RECORD,
-    StackBase: ?*c_void,
-    StackLimit: ?*c_void,
-    SubSystemTib: ?*c_void,
+    StackBase: ?*anyopaque,
+    StackLimit: ?*anyopaque,
+    SubSystemTib: ?*anyopaque,
     Anonymous: extern union {
-        FiberData: ?*c_void,
+        FiberData: ?*anyopaque,
         Version: u32,
     },
-    ArbitraryUserPointer: ?*c_void,
+    ArbitraryUserPointer: ?*anyopaque,
     Self: ?*NT_TIB,
 };
 

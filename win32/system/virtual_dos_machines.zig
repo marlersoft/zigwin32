@@ -190,7 +190,7 @@ pub const GLOBALENTRY = extern struct {
 
 pub const DEBUGEVENTPROC = fn(
     param0: ?*DEBUG_EVENT,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PROCESSENUMPROC = fn(
@@ -264,7 +264,7 @@ pub const VDMMODULEFIRSTPROC = fn(
     param1: ?HANDLE,
     param2: ?*MODULEENTRY,
     param3: ?DEBUGEVENTPROC,
-    param4: ?*c_void,
+    param4: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMMODULENEXTPROC = fn(
@@ -272,7 +272,7 @@ pub const VDMMODULENEXTPROC = fn(
     param1: ?HANDLE,
     param2: ?*MODULEENTRY,
     param3: ?DEBUGEVENTPROC,
-    param4: ?*c_void,
+    param4: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMGLOBALFIRSTPROC = fn(
@@ -281,7 +281,7 @@ pub const VDMGLOBALFIRSTPROC = fn(
     param2: ?*GLOBALENTRY,
     param3: u16,
     param4: ?DEBUGEVENTPROC,
-    param5: ?*c_void,
+    param5: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMGLOBALNEXTPROC = fn(
@@ -290,7 +290,7 @@ pub const VDMGLOBALNEXTPROC = fn(
     param2: ?*GLOBALENTRY,
     param3: u16,
     param4: ?DEBUGEVENTPROC,
-    param5: ?*c_void,
+    param5: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMENUMPROCESSWOWPROC = fn(

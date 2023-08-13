@@ -3134,7 +3134,7 @@ pub const ICaptureGraphBuilder = extern struct {
             pCategory: ?*const Guid,
             pf: ?*IBaseFilter,
             riid: ?*const Guid,
-            ppint: ?*?*c_void,
+            ppint: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RenderStream: fn(
             self: *const ICaptureGraphBuilder,
@@ -3181,7 +3181,7 @@ pub const ICaptureGraphBuilder = extern struct {
             return @ptrCast(*const ICaptureGraphBuilder.VTable, self.vtable).SetOutputFileName(@ptrCast(*const ICaptureGraphBuilder, self), pType, lpstrFile, ppf, ppSink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICaptureGraphBuilder_FindInterface(self: *const T, pCategory: ?*const Guid, pf: ?*IBaseFilter, riid: ?*const Guid, ppint: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICaptureGraphBuilder_FindInterface(self: *const T, pCategory: ?*const Guid, pf: ?*IBaseFilter, riid: ?*const Guid, ppint: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICaptureGraphBuilder.VTable, self.vtable).FindInterface(@ptrCast(*const ICaptureGraphBuilder, self), pCategory, pf, riid, ppint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3253,7 +3253,7 @@ pub const ICaptureGraphBuilder2 = extern struct {
             pType: ?*const Guid,
             pf: ?*IBaseFilter,
             riid: ?*const Guid,
-            ppint: ?*?*c_void,
+            ppint: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RenderStream: fn(
             self: *const ICaptureGraphBuilder2,
@@ -3312,7 +3312,7 @@ pub const ICaptureGraphBuilder2 = extern struct {
             return @ptrCast(*const ICaptureGraphBuilder2.VTable, self.vtable).SetOutputFileName(@ptrCast(*const ICaptureGraphBuilder2, self), pType, lpstrFile, ppf, ppSink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICaptureGraphBuilder2_FindInterface(self: *const T, pCategory: ?*const Guid, pType: ?*const Guid, pf: ?*IBaseFilter, riid: ?*const Guid, ppint: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICaptureGraphBuilder2_FindInterface(self: *const T, pCategory: ?*const Guid, pType: ?*const Guid, pf: ?*IBaseFilter, riid: ?*const Guid, ppint: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICaptureGraphBuilder2.VTable, self.vtable).FindInterface(@ptrCast(*const ICaptureGraphBuilder2, self), pCategory, pType, pf, riid, ppint);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4209,13 +4209,13 @@ pub const IAMVfwCompressDialogs = extern struct {
         GetState: fn(
             self: *const IAMVfwCompressDialogs,
             // TODO: what to do with BytesParamIndex 1?
-            pState: ?*c_void,
+            pState: ?*anyopaque,
             pcbState: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetState: fn(
             self: *const IAMVfwCompressDialogs,
             // TODO: what to do with BytesParamIndex 1?
-            pState: ?*c_void,
+            pState: ?*anyopaque,
             cbState: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SendDriverMessage: fn(
@@ -4233,11 +4233,11 @@ pub const IAMVfwCompressDialogs = extern struct {
             return @ptrCast(*const IAMVfwCompressDialogs.VTable, self.vtable).ShowDialog(@ptrCast(*const IAMVfwCompressDialogs, self), iDialog, hwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMVfwCompressDialogs_GetState(self: *const T, pState: ?*c_void, pcbState: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IAMVfwCompressDialogs_GetState(self: *const T, pState: ?*anyopaque, pcbState: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAMVfwCompressDialogs.VTable, self.vtable).GetState(@ptrCast(*const IAMVfwCompressDialogs, self), pState, pcbState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMVfwCompressDialogs_SetState(self: *const T, pState: ?*c_void, cbState: i32) callconv(.Inline) HRESULT {
+        pub fn IAMVfwCompressDialogs_SetState(self: *const T, pState: ?*anyopaque, cbState: i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAMVfwCompressDialogs.VTable, self.vtable).SetState(@ptrCast(*const IAMVfwCompressDialogs, self), pState, cbState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6331,14 +6331,14 @@ pub const IAMResourceControl = extern struct {
         Reserve: fn(
             self: *const IAMResourceControl,
             dwFlags: u32,
-            pvReserved: ?*c_void,
+            pvReserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMResourceControl_Reserve(self: *const T, dwFlags: u32, pvReserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAMResourceControl_Reserve(self: *const T, dwFlags: u32, pvReserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAMResourceControl.VTable, self.vtable).Reserve(@ptrCast(*const IAMResourceControl, self), dwFlags, pvReserved);
         }
     };}
@@ -6923,7 +6923,7 @@ pub const IAMGraphStreams = extern struct {
             self: *const IAMGraphStreams,
             pPin: ?*IPin,
             riid: ?*const Guid,
-            ppvInterface: ?*?*c_void,
+            ppvInterface: ?*?*anyopaque,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SyncUsingStreamOffset: fn(
@@ -6939,7 +6939,7 @@ pub const IAMGraphStreams = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMGraphStreams_FindUpstreamInterface(self: *const T, pPin: ?*IPin, riid: ?*const Guid, ppvInterface: ?*?*c_void, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IAMGraphStreams_FindUpstreamInterface(self: *const T, pPin: ?*IPin, riid: ?*const Guid, ppvInterface: ?*?*anyopaque, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAMGraphStreams.VTable, self.vtable).FindUpstreamInterface(@ptrCast(*const IAMGraphStreams, self), pPin, riid, ppvInterface, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7700,7 +7700,7 @@ pub const IGraphConfig = extern struct {
         Reconfigure: fn(
             self: *const IGraphConfig,
             pCallback: ?*IGraphConfigCallback,
-            pvContext: ?*c_void,
+            pvContext: ?*anyopaque,
             dwFlags: u32,
             hAbortEvent: ?HANDLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -7750,7 +7750,7 @@ pub const IGraphConfig = extern struct {
             return @ptrCast(*const IGraphConfig.VTable, self.vtable).Reconnect(@ptrCast(*const IGraphConfig, self), pOutputPin, pInputPin, pmtFirstConnection, pUsingFilter, hAbortEvent, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGraphConfig_Reconfigure(self: *const T, pCallback: ?*IGraphConfigCallback, pvContext: ?*c_void, dwFlags: u32, hAbortEvent: ?HANDLE) callconv(.Inline) HRESULT {
+        pub fn IGraphConfig_Reconfigure(self: *const T, pCallback: ?*IGraphConfigCallback, pvContext: ?*anyopaque, dwFlags: u32, hAbortEvent: ?HANDLE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGraphConfig.VTable, self.vtable).Reconfigure(@ptrCast(*const IGraphConfig, self), pCallback, pvContext, dwFlags, hAbortEvent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7797,7 +7797,7 @@ pub const IGraphConfigCallback = extern struct {
         base: IUnknown.VTable,
         Reconfigure: fn(
             self: *const IGraphConfigCallback,
-            pvContext: ?*c_void,
+            pvContext: ?*anyopaque,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -7805,7 +7805,7 @@ pub const IGraphConfigCallback = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGraphConfigCallback_Reconfigure(self: *const T, pvContext: ?*c_void, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IGraphConfigCallback_Reconfigure(self: *const T, pvContext: ?*anyopaque, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGraphConfigCallback.VTable, self.vtable).Reconfigure(@ptrCast(*const IGraphConfigCallback, self), pvContext, dwFlags);
         }
     };}
@@ -10965,7 +10965,7 @@ pub const IDvdGraphBuilder = extern struct {
         GetDvdInterface: fn(
             self: *const IDvdGraphBuilder,
             riid: ?*const Guid,
-            ppvIF: ?*?*c_void,
+            ppvIF: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RenderDvdVideoVolume: fn(
             self: *const IDvdGraphBuilder,
@@ -10982,7 +10982,7 @@ pub const IDvdGraphBuilder = extern struct {
             return @ptrCast(*const IDvdGraphBuilder.VTable, self.vtable).GetFiltergraph(@ptrCast(*const IDvdGraphBuilder, self), ppGB);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDvdGraphBuilder_GetDvdInterface(self: *const T, riid: ?*const Guid, ppvIF: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDvdGraphBuilder_GetDvdInterface(self: *const T, riid: ?*const Guid, ppvIF: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDvdGraphBuilder.VTable, self.vtable).GetDvdInterface(@ptrCast(*const IDvdGraphBuilder, self), riid, ppvIF);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17582,15 +17582,15 @@ pub const AMVACompBufferInfo = extern struct {
 
 pub const AMVABeginFrameInfo = extern struct {
     dwDestSurfaceIndex: u32,
-    pInputData: ?*c_void,
+    pInputData: ?*anyopaque,
     dwSizeInputData: u32,
-    pOutputData: ?*c_void,
+    pOutputData: ?*anyopaque,
     dwSizeOutputData: u32,
 };
 
 pub const AMVAEndFrameInfo = extern struct {
     dwSizeMiscData: u32,
-    pMiscData: ?*c_void,
+    pMiscData: ?*anyopaque,
 };
 
 pub const AMVABUFFERINFO = extern struct {
@@ -17619,7 +17619,7 @@ pub const IAMVideoAcceleratorNotify = extern struct {
             self: *const IAMVideoAcceleratorNotify,
             pGuid: ?*const Guid,
             pdwSizeMiscData: ?*u32,
-            ppMiscData: ?*?*c_void,
+            ppMiscData: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -17634,7 +17634,7 @@ pub const IAMVideoAcceleratorNotify = extern struct {
             return @ptrCast(*const IAMVideoAcceleratorNotify.VTable, self.vtable).SetUncompSurfacesInfo(@ptrCast(*const IAMVideoAcceleratorNotify, self), dwActualUncompSurfacesAllocated);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMVideoAcceleratorNotify_GetCreateVideoAcceleratorData(self: *const T, pGuid: ?*const Guid, pdwSizeMiscData: ?*u32, ppMiscData: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAMVideoAcceleratorNotify_GetCreateVideoAcceleratorData(self: *const T, pGuid: ?*const Guid, pdwSizeMiscData: ?*u32, ppMiscData: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAMVideoAcceleratorNotify.VTable, self.vtable).GetCreateVideoAcceleratorData(@ptrCast(*const IAMVideoAcceleratorNotify, self), pGuid, pdwSizeMiscData, ppMiscData);
         }
     };}
@@ -17689,7 +17689,7 @@ pub const IAMVideoAccelerator = extern struct {
             dwTypeIndex: u32,
             dwBufferIndex: u32,
             bReadOnly: BOOL,
-            ppBuffer: ?*?*c_void,
+            ppBuffer: ?*?*anyopaque,
             lpStride: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReleaseBuffer: fn(
@@ -17700,9 +17700,9 @@ pub const IAMVideoAccelerator = extern struct {
         Execute: fn(
             self: *const IAMVideoAccelerator,
             dwFunction: u32,
-            lpPrivateInputData: ?*c_void,
+            lpPrivateInputData: ?*anyopaque,
             cbPrivateInputData: u32,
-            lpPrivateOutputDat: ?*c_void,
+            lpPrivateOutputDat: ?*anyopaque,
             cbPrivateOutputData: u32,
             dwNumBuffers: u32,
             pamvaBufferInfo: [*]const AMVABUFFERINFO,
@@ -17751,7 +17751,7 @@ pub const IAMVideoAccelerator = extern struct {
             return @ptrCast(*const IAMVideoAccelerator.VTable, self.vtable).EndFrame(@ptrCast(*const IAMVideoAccelerator, self), pEndFrameInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMVideoAccelerator_GetBuffer(self: *const T, dwTypeIndex: u32, dwBufferIndex: u32, bReadOnly: BOOL, ppBuffer: ?*?*c_void, lpStride: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IAMVideoAccelerator_GetBuffer(self: *const T, dwTypeIndex: u32, dwBufferIndex: u32, bReadOnly: BOOL, ppBuffer: ?*?*anyopaque, lpStride: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAMVideoAccelerator.VTable, self.vtable).GetBuffer(@ptrCast(*const IAMVideoAccelerator, self), dwTypeIndex, dwBufferIndex, bReadOnly, ppBuffer, lpStride);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17759,7 +17759,7 @@ pub const IAMVideoAccelerator = extern struct {
             return @ptrCast(*const IAMVideoAccelerator.VTable, self.vtable).ReleaseBuffer(@ptrCast(*const IAMVideoAccelerator, self), dwTypeIndex, dwBufferIndex);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMVideoAccelerator_Execute(self: *const T, dwFunction: u32, lpPrivateInputData: ?*c_void, cbPrivateInputData: u32, lpPrivateOutputDat: ?*c_void, cbPrivateOutputData: u32, dwNumBuffers: u32, pamvaBufferInfo: [*]const AMVABUFFERINFO) callconv(.Inline) HRESULT {
+        pub fn IAMVideoAccelerator_Execute(self: *const T, dwFunction: u32, lpPrivateInputData: ?*anyopaque, cbPrivateInputData: u32, lpPrivateOutputDat: ?*anyopaque, cbPrivateOutputData: u32, dwNumBuffers: u32, pamvaBufferInfo: [*]const AMVABUFFERINFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAMVideoAccelerator.VTable, self.vtable).Execute(@ptrCast(*const IAMVideoAccelerator, self), dwFunction, lpPrivateInputData, cbPrivateInputData, lpPrivateOutputDat, cbPrivateOutputData, dwNumBuffers, pamvaBufferInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18025,7 +18025,7 @@ pub const IKsTopologyInfo = extern struct {
             self: *const IKsTopologyInfo,
             dwNodeId: u32,
             iid: ?*const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -18060,7 +18060,7 @@ pub const IKsTopologyInfo = extern struct {
             return @ptrCast(*const IKsTopologyInfo.VTable, self.vtable).get_NodeType(@ptrCast(*const IKsTopologyInfo, self), dwNodeId, pNodeType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsTopologyInfo_CreateNodeInstance(self: *const T, dwNodeId: u32, iid: ?*const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IKsTopologyInfo_CreateNodeInstance(self: *const T, dwNodeId: u32, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKsTopologyInfo.VTable, self.vtable).CreateNodeInstance(@ptrCast(*const IKsTopologyInfo, self), dwNodeId, iid, ppvObject);
         }
     };}
@@ -19111,7 +19111,7 @@ pub const IKsNodeControl = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_KsControl: fn(
             self: *const IKsNodeControl,
-            pKsControl: ?*c_void,
+            pKsControl: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -19122,7 +19122,7 @@ pub const IKsNodeControl = extern struct {
             return @ptrCast(*const IKsNodeControl.VTable, self.vtable).put_NodeId(@ptrCast(*const IKsNodeControl, self), dwNodeId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKsNodeControl_put_KsControl(self: *const T, pKsControl: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IKsNodeControl_put_KsControl(self: *const T, pKsControl: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKsNodeControl.VTable, self.vtable).put_KsControl(@ptrCast(*const IKsNodeControl, self), pKsControl);
         }
     };}
@@ -23592,7 +23592,7 @@ pub const DXVA2_VIDEOSAMPLE = extern struct {
     End: i64,
     SampleFormat: DXVA2_ExtendedFormat,
     SampleFlags: u32,
-    SrcResource: ?*c_void,
+    SrcResource: ?*anyopaque,
     SrcRect: RECT,
     DstRect: RECT,
     Pal: [16]DXVA2_AYUVSample8,
@@ -24173,14 +24173,14 @@ pub const ICreatePropBagOnRegKey = extern struct {
             ulOptions: u32,
             samDesired: u32,
             iid: ?*const Guid,
-            ppBag: ?*?*c_void,
+            ppBag: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreatePropBagOnRegKey_Create(self: *const T, hkey: ?HKEY, subkey: ?[*:0]const u16, ulOptions: u32, samDesired: u32, iid: ?*const Guid, ppBag: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICreatePropBagOnRegKey_Create(self: *const T, hkey: ?HKEY, subkey: ?[*:0]const u16, ulOptions: u32, samDesired: u32, iid: ?*const Guid, ppBag: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreatePropBagOnRegKey.VTable, self.vtable).Create(@ptrCast(*const ICreatePropBagOnRegKey, self), hkey, subkey, ulOptions, samDesired, iid, ppBag);
         }
     };}

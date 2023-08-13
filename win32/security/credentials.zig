@@ -612,7 +612,7 @@ pub const SCARD_T1_REQUEST = extern struct {
 
 pub const SCARD_READERSTATEA = extern struct {
     szReader: ?[*:0]const u8,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
     dwCurrentState: SCARD_STATE,
     dwEventState: SCARD_STATE,
     cbAtr: u32,
@@ -621,7 +621,7 @@ pub const SCARD_READERSTATEA = extern struct {
 
 pub const SCARD_READERSTATEW = extern struct {
     szReader: ?[*:0]const u16,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
     dwCurrentState: SCARD_STATE,
     dwEventState: SCARD_STATE,
     cbAtr: u32,
@@ -638,26 +638,26 @@ pub const LPOCNCONNPROCA = fn(
     param0: usize,
     param1: ?PSTR,
     param2: ?PSTR,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub const LPOCNCONNPROCW = fn(
     param0: usize,
     param1: ?PWSTR,
     param2: ?PWSTR,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub const LPOCNCHKPROC = fn(
     param0: usize,
     param1: usize,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPOCNDSCPROC = fn(
     param0: usize,
     param1: usize,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const OPENCARD_SEARCH_CRITERIAA = extern struct {
@@ -671,7 +671,7 @@ pub const OPENCARD_SEARCH_CRITERIAA = extern struct {
     lpfnCheck: ?LPOCNCHKPROC,
     lpfnConnect: ?LPOCNCONNPROCA,
     lpfnDisconnect: ?LPOCNDSCPROC,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
     dwShareMode: u32,
     dwPreferredProtocols: u32,
 };
@@ -687,7 +687,7 @@ pub const OPENCARD_SEARCH_CRITERIAW = extern struct {
     lpfnCheck: ?LPOCNCHKPROC,
     lpfnConnect: ?LPOCNCONNPROCW,
     lpfnDisconnect: ?LPOCNDSCPROC,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
     dwShareMode: u32,
     dwPreferredProtocols: u32,
 };
@@ -702,7 +702,7 @@ pub const OPENCARDNAME_EXA = extern struct {
     hIcon: ?HICON,
     pOpenCardSearchCriteria: ?*OPENCARD_SEARCH_CRITERIAA,
     lpfnConnect: ?LPOCNCONNPROCA,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
     dwShareMode: u32,
     dwPreferredProtocols: u32,
     lpstrRdr: ?PSTR,
@@ -723,7 +723,7 @@ pub const OPENCARDNAME_EXW = extern struct {
     hIcon: ?HICON,
     pOpenCardSearchCriteria: ?*OPENCARD_SEARCH_CRITERIAW,
     lpfnConnect: ?LPOCNCONNPROCW,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
     dwShareMode: u32,
     dwPreferredProtocols: u32,
     lpstrRdr: ?PWSTR,
@@ -787,7 +787,7 @@ pub const OPENCARDNAMEA = extern struct {
     nMaxCard: u32,
     lpstrTitle: ?[*:0]const u8,
     dwFlags: u32,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
     dwShareMode: u32,
     dwPreferredProtocols: u32,
     dwActiveProtocol: u32,
@@ -813,7 +813,7 @@ pub const OPENCARDNAMEW = extern struct {
     nMaxCard: u32,
     lpstrTitle: ?[*:0]const u16,
     dwFlags: u32,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
     dwShareMode: u32,
     dwPreferredProtocols: u32,
     dwActiveProtocol: u32,
@@ -845,8 +845,8 @@ pub const CredsspCredEx = CREDSPP_SUBMIT_TYPE.CredEx;
 
 pub const CREDSSP_CRED = extern struct {
     Type: CREDSPP_SUBMIT_TYPE,
-    pSchannelCred: ?*c_void,
-    pSpnegoCred: ?*c_void,
+    pSchannelCred: ?*anyopaque,
+    pSpnegoCred: ?*anyopaque,
 };
 
 pub const CREDSSP_CRED_EX = extern struct {
@@ -1001,14 +1001,14 @@ pub extern "ADVAPI32" fn CredGetTargetInfoA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CredMarshalCredentialW(
     CredType: CRED_MARSHAL_TYPE,
-    Credential: ?*c_void,
+    Credential: ?*anyopaque,
     MarshaledCredential: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CredMarshalCredentialA(
     CredType: CRED_MARSHAL_TYPE,
-    Credential: ?*c_void,
+    Credential: ?*anyopaque,
     MarshaledCredential: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -1016,14 +1016,14 @@ pub extern "ADVAPI32" fn CredMarshalCredentialA(
 pub extern "ADVAPI32" fn CredUnmarshalCredentialW(
     MarshaledCredential: ?[*:0]const u16,
     CredType: ?*CRED_MARSHAL_TYPE,
-    Credential: ?*?*c_void,
+    Credential: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CredUnmarshalCredentialA(
     MarshaledCredential: ?[*:0]const u8,
     CredType: ?*CRED_MARSHAL_TYPE,
-    Credential: ?*?*c_void,
+    Credential: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1040,7 +1040,7 @@ pub extern "ADVAPI32" fn CredIsMarshaledCredentialA(
 pub extern "credui" fn CredUnPackAuthenticationBufferW(
     dwFlags: CRED_PACK_FLAGS,
     // TODO: what to do with BytesParamIndex 2?
-    pAuthBuffer: ?*c_void,
+    pAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     pszUserName: ?[*:0]u16,
     pcchMaxUserName: ?*u32,
@@ -1054,7 +1054,7 @@ pub extern "credui" fn CredUnPackAuthenticationBufferW(
 pub extern "credui" fn CredUnPackAuthenticationBufferA(
     dwFlags: CRED_PACK_FLAGS,
     // TODO: what to do with BytesParamIndex 2?
-    pAuthBuffer: ?*c_void,
+    pAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     pszUserName: ?[*:0]u8,
     pcchlMaxUserName: ?*u32,
@@ -1158,7 +1158,7 @@ pub extern "ADVAPI32" fn CredGetSessionTypes(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn CredFree(
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1195,10 +1195,10 @@ pub extern "credui" fn CredUIPromptForWindowsCredentialsW(
     dwAuthError: u32,
     pulAuthPackage: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvInAuthBuffer: ?*const c_void,
+    pvInAuthBuffer: ?*const anyopaque,
     ulInAuthBufferSize: u32,
     // TODO: what to do with BytesParamIndex 6?
-    ppvOutAuthBuffer: ?*?*c_void,
+    ppvOutAuthBuffer: ?*?*anyopaque,
     pulOutAuthBufferSize: ?*u32,
     pfSave: ?*BOOL,
     dwFlags: CREDUIWIN_FLAGS,
@@ -1210,10 +1210,10 @@ pub extern "credui" fn CredUIPromptForWindowsCredentialsA(
     dwAuthError: u32,
     pulAuthPackage: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvInAuthBuffer: ?*const c_void,
+    pvInAuthBuffer: ?*const anyopaque,
     ulInAuthBufferSize: u32,
     // TODO: what to do with BytesParamIndex 6?
-    ppvOutAuthBuffer: ?*?*c_void,
+    ppvOutAuthBuffer: ?*?*anyopaque,
     pulOutAuthBufferSize: ?*u32,
     pfSave: ?*BOOL,
     dwFlags: CREDUIWIN_FLAGS,
@@ -1292,8 +1292,8 @@ pub extern "credui" fn CredUIReadSSOCredW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WinSCard" fn SCardEstablishContext(
     dwScope: SCARD_SCOPE,
-    pvReserved1: ?*const c_void,
-    pvReserved2: ?*const c_void,
+    pvReserved1: ?*const anyopaque,
+    pvReserved2: ?*const anyopaque,
     phContext: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -1538,7 +1538,7 @@ pub extern "WinSCard" fn SCardForgetCardTypeW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WinSCard" fn SCardFreeMemory(
     hContext: usize,
-    pvMem: ?*const c_void,
+    pvMem: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1705,10 +1705,10 @@ pub extern "WinSCard" fn SCardControl(
     hCard: usize,
     dwControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpInBuffer: ?*const c_void,
+    lpInBuffer: ?*const anyopaque,
     cbInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 5?
-    lpOutBuffer: ?*c_void,
+    lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;

@@ -3690,7 +3690,7 @@ pub const DBTF_NET = DEV_BROADCAST_VOLUME_FLAGS.NET;
 pub const PUMS_SCHEDULER_ENTRY_POINT = fn(
     Reason: RTL_UMS_SCHEDULER_REASON,
     ActivationPayload: usize,
-    SchedulerParam: ?*c_void,
+    SchedulerParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 
@@ -3973,7 +3973,7 @@ pub const DEV_BROADCAST_HANDLE = extern struct {
     dbch_devicetype: u32,
     dbch_reserved: u32,
     dbch_handle: ?HANDLE,
-    dbch_hdevnotify: ?*c_void,
+    dbch_hdevnotify: ?*anyopaque,
     dbch_eventguid: Guid,
     dbch_nameoffset: i32,
     dbch_data: [1]u8,
@@ -4199,8 +4199,8 @@ pub const NT_TIB64 = extern struct {
 
 pub const UMS_CREATE_THREAD_ATTRIBUTES = extern struct {
     UmsVersion: u32,
-    UmsContext: ?*c_void,
-    UmsCompletionList: ?*c_void,
+    UmsContext: ?*anyopaque,
+    UmsCompletionList: ?*anyopaque,
 };
 
 pub const COMPONENT_FILTER = extern struct {
@@ -4400,13 +4400,13 @@ pub const SERVERSILO_BASIC_INFORMATION = extern struct {
     State: SERVERSILO_STATE,
     ExitStatus: u32,
     IsDownlevelContainer: BOOLEAN,
-    ApiSetSchema: ?*c_void,
-    HostApiSetSchema: ?*c_void,
+    ApiSetSchema: ?*anyopaque,
+    HostApiSetSchema: ?*anyopaque,
 };
 
 pub const MEM_ADDRESS_REQUIREMENTS = extern struct {
-    LowestStartingAddress: ?*c_void,
-    HighestEndingAddress: ?*c_void,
+    LowestStartingAddress: ?*anyopaque,
+    HighestEndingAddress: ?*anyopaque,
     Alignment: usize,
 };
 
@@ -4811,7 +4811,7 @@ pub const PPM_WMI_IDLE_STATES_EX = extern struct {
     Count: u32,
     TargetState: u32,
     OldState: u32,
-    TargetProcessors: ?*c_void,
+    TargetProcessors: ?*anyopaque,
     State: [1]PPM_WMI_IDLE_STATE,
 };
 
@@ -4869,7 +4869,7 @@ pub const PPM_WMI_PERF_STATES_EX = extern struct {
     Type: u8,
     Reserved: u8,
     TimerInterval: u32,
-    TargetProcessors: ?*c_void,
+    TargetProcessors: ?*anyopaque,
     PStateHandler: u32,
     PStateContext: u32,
     TStateHandler: u32,
@@ -5354,9 +5354,9 @@ pub const IMAGE_IMPORT_BY_NAME = extern struct {
 };
 
 pub const PIMAGE_TLS_CALLBACK = fn(
-    DllHandle: ?*c_void,
+    DllHandle: ?*anyopaque,
     Reason: u32,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const IMAGE_TLS_DIRECTORY64 = extern struct {
@@ -5801,7 +5801,7 @@ pub const IMAGE_POLICY_ENTRY = extern struct {
     Type: IMAGE_POLICY_ENTRY_TYPE,
     PolicyId: IMAGE_POLICY_ID,
     u: extern union {
-        None: ?*const c_void,
+        None: ?*const anyopaque,
         BoolValue: BOOLEAN,
         Int8Value: i8,
         UInt8Value: u8,
@@ -5829,13 +5829,13 @@ pub const HEAP_OPTIMIZE_RESOURCES_INFORMATION = extern struct {
 };
 
 pub const WORKERCALLBACKFUNC = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const APC_CALLBACK_FUNCTION = fn(
     param0: u32,
-    param1: ?*c_void,
-    param2: ?*c_void,
+    param1: ?*anyopaque,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const ACTIVATION_CONTEXT_INFO_CLASS = enum(i32) {
@@ -5958,7 +5958,7 @@ pub const TAPE_CREATE_PARTITION = extern struct {
 pub const TAPE_WMI_OPERATIONS = extern struct {
     Method: u32,
     DataBufferSize: u32,
-    DataBuffer: ?*c_void,
+    DataBuffer: ?*anyopaque,
 };
 
 pub const TAPE_DRIVE_PROBLEM_TYPE = enum(i32) {
@@ -6160,20 +6160,20 @@ pub const PTERMINATION_HANDLER = switch(@import("../zig.zig").arch) {
     ) callconv(@import("std").os.windows.WINAPI) void,
     .X64 => fn(
         _abnormal_termination: BOOLEAN,
-        EstablisherFrame: ?*c_void,
+        EstablisherFrame: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) void,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
 pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = switch(@import("../zig.zig").arch) {
     .Arm64 => fn(
         Process: ?HANDLE,
-        TableAddress: ?*c_void,
+        TableAddress: ?*anyopaque,
         Entries: ?*u32,
         Functions: ?*?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
     ) callconv(@import("std").os.windows.WINAPI) u32,
     .X64 => fn(
         Process: ?HANDLE,
-        TableAddress: ?*c_void,
+        TableAddress: ?*anyopaque,
         Entries: ?*u32,
         Functions: ?*?*IMAGE_RUNTIME_FUNCTION_ENTRY,
     ) callconv(@import("std").os.windows.WINAPI) u32,
@@ -6182,7 +6182,7 @@ pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = switch(@import("../zig.zig")
 pub const PEXCEPTION_FILTER = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => fn(
         ExceptionPointers: ?*EXCEPTION_POINTERS,
-        EstablisherFrame: ?*c_void,
+        EstablisherFrame: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
@@ -6202,7 +6202,7 @@ pub const REARRANGE_FILE_DATA32 = switch(@import("../zig.zig").arch) {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn UnregisterDeviceNotification(
-    Handle: ?*c_void,
+    Handle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

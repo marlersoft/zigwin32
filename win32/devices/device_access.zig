@@ -139,7 +139,7 @@ pub const ICreateDeviceAccessAsync = extern struct {
         GetResult: fn(
             self: *const ICreateDeviceAccessAsync,
             riid: ?*const Guid,
-            deviceAccess: ?*?*c_void,
+            deviceAccess: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -158,7 +158,7 @@ pub const ICreateDeviceAccessAsync = extern struct {
             return @ptrCast(*const ICreateDeviceAccessAsync.VTable, self.vtable).Close(@ptrCast(*const ICreateDeviceAccessAsync, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateDeviceAccessAsync_GetResult(self: *const T, riid: ?*const Guid, deviceAccess: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICreateDeviceAccessAsync_GetResult(self: *const T, riid: ?*const Guid, deviceAccess: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateDeviceAccessAsync.VTable, self.vtable).GetResult(@ptrCast(*const ICreateDeviceAccessAsync, self), riid, deviceAccess);
         }
     };}

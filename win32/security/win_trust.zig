@@ -177,8 +177,8 @@ pub const WTD_UICONTEXT_INSTALL = WINTRUST_DATA_UICONTEXT.INSTALL;
 
 pub const WINTRUST_DATA = extern struct {
     cbStruct: u32,
-    pPolicyCallbackData: ?*c_void,
-    pSIPClientData: ?*c_void,
+    pPolicyCallbackData: ?*anyopaque,
+    pSIPClientData: ?*anyopaque,
     dwUIChoice: WINTRUST_DATA_UICHOICE,
     fdwRevocationChecks: WINTRUST_DATA_REVOCATION_CHECKS,
     dwUnionChoice: WINTRUST_DATA_UNION_CHOICE,
@@ -241,7 +241,7 @@ pub const WINTRUST_SGNR_INFO = extern struct {
     pcwszDisplayName: ?[*:0]const u16,
     psSignerInfo: ?*CMSG_SIGNER_INFO,
     chStores: u32,
-    pahStores: ?*?*c_void,
+    pahStores: ?*?*anyopaque,
 };
 
 pub const WINTRUST_CERT_INFO = extern struct {
@@ -249,22 +249,22 @@ pub const WINTRUST_CERT_INFO = extern struct {
     pcwszDisplayName: ?[*:0]const u16,
     psCertContext: ?*CERT_CONTEXT,
     chStores: u32,
-    pahStores: ?*?*c_void,
+    pahStores: ?*?*anyopaque,
     dwFlags: u32,
     psftVerifyAsOf: ?*FILETIME,
 };
 
 pub const PFN_CPD_MEM_ALLOC = fn(
     cbSize: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const PFN_CPD_MEM_FREE = fn(
-    pvMem2Free: ?*c_void,
+    pvMem2Free: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PFN_CPD_ADD_STORE = fn(
     pProvData: ?*CRYPT_PROVIDER_DATA,
-    hStore2Add: ?*c_void,
+    hStore2Add: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_CPD_ADD_SGNR = fn(
@@ -336,9 +336,9 @@ pub const CRYPT_PROVIDER_DATA = extern struct {
     cdwTrustStepErrors: u32,
     padwTrustStepErrors: ?*u32,
     chStores: u32,
-    pahStores: ?*?*c_void,
+    pahStores: ?*?*anyopaque,
     dwEncoding: u32,
-    hMsg: ?*c_void,
+    hMsg: ?*anyopaque,
     csSigners: u32,
     pasSigners: ?*CRYPT_PROVIDER_SGNR,
     csProvPrivData: u32,
@@ -362,8 +362,8 @@ pub const CRYPT_PROVIDER_DATA = extern struct {
 
 pub const CRYPT_PROVIDER_SIGSTATE = extern struct {
     cbStruct: u32,
-    rhSecondarySigs: ?*?*c_void,
-    hPrimarySig: ?*c_void,
+    rhSecondarySigs: ?*?*anyopaque,
+    hPrimarySig: ?*anyopaque,
     fFirstAttemptMade: BOOL,
     fNoMoreSigs: BOOL,
     cSecondarySigs: u32,
@@ -455,7 +455,7 @@ pub const CRYPT_PROVIDER_PRIVDATA = extern struct {
     cbStruct: u32,
     gProviderID: Guid,
     cbProvData: u32,
-    pvProvData: ?*c_void,
+    pvProvData: ?*anyopaque,
 };
 
 pub const PROVDATA_SIP = extern struct {
@@ -507,8 +507,8 @@ pub const CRYPT_PROVIDER_REGDEFUSAGE = extern struct {
 pub const CRYPT_PROVIDER_DEFUSAGE = extern struct {
     cbStruct: u32,
     gActionID: Guid,
-    pDefPolicyCallbackData: ?*c_void,
-    pDefSIPClientData: ?*c_void,
+    pDefPolicyCallbackData: ?*anyopaque,
+    pDefSIPClientData: ?*anyopaque,
 };
 
 pub const SPC_SERIALIZED_OBJECT = extern struct {
@@ -621,12 +621,12 @@ pub const WIN_CERTIFICATE = extern struct {
 pub const WIN_TRUST_ACTDATA_CONTEXT_WITH_SUBJECT = extern struct {
     hClientToken: ?HANDLE,
     SubjectType: ?*Guid,
-    Subject: ?*c_void,
+    Subject: ?*anyopaque,
 };
 
 pub const WIN_TRUST_ACTDATA_SUBJECT_ONLY = extern struct {
     SubjectType: ?*Guid,
-    Subject: ?*c_void,
+    Subject: ?*anyopaque,
 };
 
 pub const WIN_TRUST_SUBJECT_FILE = extern struct {
@@ -664,7 +664,7 @@ pub const PFN_WTD_GENERIC_CHAIN_POLICY_CALLBACK = fn(
     dwRegPolicySettings: u32,
     cSigner: u32,
     rgpSigner: ?*?*WTD_GENERIC_CHAIN_POLICY_SIGNER_INFO,
-    pvPolicyArg: ?*c_void,
+    pvPolicyArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WTD_GENERIC_CHAIN_POLICY_CREATE_INFO = extern struct {
@@ -675,7 +675,7 @@ pub const WTD_GENERIC_CHAIN_POLICY_CREATE_INFO = extern struct {
     hChainEngine: ?HCERTCHAINENGINE,
     pChainPara: ?*CERT_CHAIN_PARA,
     dwFlags: u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 };
 
 pub const WTD_GENERIC_CHAIN_POLICY_DATA = extern struct {
@@ -686,7 +686,7 @@ pub const WTD_GENERIC_CHAIN_POLICY_DATA = extern struct {
     pSignerChainInfo: ?*WTD_GENERIC_CHAIN_POLICY_CREATE_INFO,
     pCounterSignerChainInfo: ?*WTD_GENERIC_CHAIN_POLICY_CREATE_INFO,
     pfnPolicyCallback: ?PFN_WTD_GENERIC_CHAIN_POLICY_CALLBACK,
-    pvPolicyArg: ?*c_void,
+    pvPolicyArg: ?*anyopaque,
 };
 
 pub const DRIVER_VER_MAJORMINOR = extern struct {
@@ -732,7 +732,7 @@ pub const CONFIG_CI_PROV_INFO = extern struct {
 pub extern "WINTRUST" fn WinVerifyTrust(
     hwnd: ?HWND,
     pgActionID: ?*Guid,
-    pWVTData: ?*c_void,
+    pWVTData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -823,7 +823,7 @@ pub extern "WINTRUST" fn WTHelperCertCheckValidSignature(
 pub extern "WINTRUST" fn OpenPersonalTrustDBDialogEx(
     hwndParent: ?HWND,
     dwFlags: u32,
-    pvReserved: ?*?*c_void,
+    pvReserved: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'

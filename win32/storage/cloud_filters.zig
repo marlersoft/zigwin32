@@ -50,7 +50,7 @@ pub const CF_PLACEHOLDER_CREATE_FLAG_ALWAYS_FULL = CF_PLACEHOLDER_CREATE_FLAGS.A
 pub const CF_PLACEHOLDER_CREATE_INFO = extern struct {
     RelativeFileName: ?[*:0]const u16,
     FsMetadata: CF_FS_METADATA,
-    FileIdentity: ?*const c_void,
+    FileIdentity: ?*const anyopaque,
     FileIdentityLength: u32,
     Flags: CF_PLACEHOLDER_CREATE_FLAGS,
     Result: HRESULT,
@@ -349,9 +349,9 @@ pub const CF_SYNC_REGISTRATION = extern struct {
     StructSize: u32,
     ProviderName: ?[*:0]const u16,
     ProviderVersion: ?[*:0]const u16,
-    SyncRootIdentity: ?*const c_void,
+    SyncRootIdentity: ?*const anyopaque,
     SyncRootIdentityLength: u32,
-    FileIdentity: ?*const c_void,
+    FileIdentity: ?*const anyopaque,
     FileIdentityLength: u32,
     ProviderId: Guid,
 };
@@ -359,16 +359,16 @@ pub const CF_SYNC_REGISTRATION = extern struct {
 pub const CF_CALLBACK_INFO = extern struct {
     StructSize: u32,
     ConnectionKey: CF_CONNECTION_KEY,
-    CallbackContext: ?*c_void,
+    CallbackContext: ?*anyopaque,
     VolumeGuidName: ?[*:0]const u16,
     VolumeDosName: ?[*:0]const u16,
     VolumeSerialNumber: u32,
     SyncRootFileId: LARGE_INTEGER,
-    SyncRootIdentity: ?*const c_void,
+    SyncRootIdentity: ?*const anyopaque,
     SyncRootIdentityLength: u32,
     FileId: LARGE_INTEGER,
     FileSize: LARGE_INTEGER,
-    FileIdentity: ?*const c_void,
+    FileIdentity: ?*const anyopaque,
     FileIdentityLength: u32,
     NormalizedPath: ?[*:0]const u16,
     TransferKey: LARGE_INTEGER,
@@ -898,13 +898,13 @@ pub const CF_OPERATION_PARAMETERS = extern struct {
         TransferData: extern struct {
             Flags: CF_OPERATION_TRANSFER_DATA_FLAGS,
             CompletionStatus: NTSTATUS,
-            Buffer: ?*const c_void,
+            Buffer: ?*const anyopaque,
             Offset: LARGE_INTEGER,
             Length: LARGE_INTEGER,
         },
         RetrieveData: extern struct {
             Flags: CF_OPERATION_RETRIEVE_DATA_FLAGS,
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             Offset: LARGE_INTEGER,
             Length: LARGE_INTEGER,
             ReturnedLength: LARGE_INTEGER,
@@ -918,7 +918,7 @@ pub const CF_OPERATION_PARAMETERS = extern struct {
         RestartHydration: extern struct {
             Flags: CF_OPERATION_RESTART_HYDRATION_FLAGS,
             FsMetadata: ?*const CF_FS_METADATA,
-            FileIdentity: ?*const c_void,
+            FileIdentity: ?*const anyopaque,
             FileIdentityLength: u32,
         },
         TransferPlaceholders: extern struct {
@@ -932,7 +932,7 @@ pub const CF_OPERATION_PARAMETERS = extern struct {
         AckDehydrate: extern struct {
             Flags: CF_OPERATION_ACK_DEHYDRATE_FLAGS,
             CompletionStatus: NTSTATUS,
-            FileIdentity: ?*const c_void,
+            FileIdentity: ?*const anyopaque,
             FileIdentityLength: u32,
         },
         AckRename: extern struct {
@@ -1325,7 +1325,7 @@ pub extern "cldapi" fn CfUnregisterSyncRoot(
 pub extern "cldapi" fn CfConnectSyncRoot(
     SyncRootPath: ?[*:0]const u16,
     CallbackTable: ?*const CF_CALLBACK_REGISTRATION,
-    CallbackContext: ?*const c_void,
+    CallbackContext: ?*const anyopaque,
     ConnectFlags: CF_CONNECT_FLAGS,
     ConnectionKey: ?*CF_CONNECTION_KEY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1411,7 +1411,7 @@ pub extern "cldapi" fn CfCloseHandle(
 pub extern "cldapi" fn CfConvertToPlaceholder(
     FileHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    FileIdentity: ?*const c_void,
+    FileIdentity: ?*const anyopaque,
     FileIdentityLength: u32,
     ConvertFlags: CF_CONVERT_FLAGS,
     ConvertUsn: ?*i64,
@@ -1423,7 +1423,7 @@ pub extern "cldapi" fn CfUpdatePlaceholder(
     FileHandle: ?HANDLE,
     FsMetadata: ?*const CF_FS_METADATA,
     // TODO: what to do with BytesParamIndex 3?
-    FileIdentity: ?*const c_void,
+    FileIdentity: ?*const anyopaque,
     FileIdentityLength: u32,
     DehydrateRangeArray: ?[*]const CF_FILE_RANGE,
     DehydrateRangeCount: u32,
@@ -1492,7 +1492,7 @@ pub extern "cldapi" fn CfGetPlaceholderStateFromAttributeTag(
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "cldapi" fn CfGetPlaceholderStateFromFileInfo(
-    InfoBuffer: ?*const c_void,
+    InfoBuffer: ?*const anyopaque,
     InfoClass: FILE_INFO_BY_HANDLE_CLASS,
 ) callconv(@import("std").os.windows.WINAPI) CF_PLACEHOLDER_STATE;
 
@@ -1506,7 +1506,7 @@ pub extern "cldapi" fn CfGetPlaceholderInfo(
     FileHandle: ?HANDLE,
     InfoClass: CF_PLACEHOLDER_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    InfoBuffer: ?*c_void,
+    InfoBuffer: ?*anyopaque,
     InfoBufferLength: u32,
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1515,7 +1515,7 @@ pub extern "cldapi" fn CfGetPlaceholderInfo(
 pub extern "cldapi" fn CfGetSyncRootInfoByPath(
     FilePath: ?[*:0]const u16,
     InfoClass: CF_SYNC_ROOT_INFO_CLASS,
-    InfoBuffer: ?*c_void,
+    InfoBuffer: ?*anyopaque,
     InfoBufferLength: u32,
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1524,7 +1524,7 @@ pub extern "cldapi" fn CfGetSyncRootInfoByPath(
 pub extern "cldapi" fn CfGetSyncRootInfoByHandle(
     FileHandle: ?HANDLE,
     InfoClass: CF_SYNC_ROOT_INFO_CLASS,
-    InfoBuffer: ?*c_void,
+    InfoBuffer: ?*anyopaque,
     InfoBufferLength: u32,
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1536,7 +1536,7 @@ pub extern "cldapi" fn CfGetPlaceholderRangeInfo(
     StartingOffset: LARGE_INTEGER,
     Length: LARGE_INTEGER,
     // TODO: what to do with BytesParamIndex 5?
-    InfoBuffer: ?*c_void,
+    InfoBuffer: ?*anyopaque,
     InfoBufferLength: u32,
     ReturnedLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

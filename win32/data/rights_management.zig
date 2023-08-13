@@ -201,8 +201,8 @@ pub const DRM_DISTRIBUTION_POINT_REFERRAL_INFO = DRM_DISTRIBUTION_POINT_INFO.REF
 pub const DRMCALLBACK = fn(
     param0: DRM_STATUS_MSG,
     param1: HRESULT,
-    param2: ?*c_void,
-    param3: ?*c_void,
+    param2: ?*anyopaque,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 
@@ -211,7 +211,7 @@ pub const DRMCALLBACK = fn(
 //--------------------------------------------------------------------------------
 pub extern "msdrm" fn DRMSetGlobalOptions(
     eGlobalOptions: DRMGLOBALOPTIONS,
-    pvdata: ?*c_void,
+    pvdata: ?*anyopaque,
     dwlen: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -403,7 +403,7 @@ pub extern "msdrm" fn DRMActivate(
     uFlags: u32,
     uLangID: u32,
     pActServInfo: ?*DRM_ACTSERV_INFO,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
     hParentWnd: ?HWND,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -435,7 +435,7 @@ pub extern "msdrm" fn DRMAcquireAdvisories(
     hLicenseStorage: u32,
     wszLicense: ?PWSTR,
     wszURL: ?PWSTR,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "msdrm" fn DRMEnumerateLicense(
@@ -454,7 +454,7 @@ pub extern "msdrm" fn DRMAcquireLicense(
     wszRequestedRights: ?PWSTR,
     wszCustomData: ?PWSTR,
     wszURL: ?PWSTR,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "msdrm" fn DRMDeleteLicense(
@@ -670,7 +670,7 @@ pub extern "msdrm" fn DRMGetSignedIssuanceLicense(
     wszClientLicensorCertificate: ?PWSTR,
     pfnCallback: ?DRMCALLBACK,
     wszURL: ?PWSTR,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -682,11 +682,11 @@ pub extern "msdrm" fn DRMGetSignedIssuanceLicenseEx(
     pbSymKey: ?*u8,
     cbSymKey: u32,
     wszSymKeyType: ?PWSTR,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
     hEnablingPrincipal: u32,
     hBoundLicenseCLC: u32,
     pfnCallback: ?DRMCALLBACK,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "msdrm" fn DRMClosePubHandle(
@@ -850,11 +850,11 @@ pub extern "msdrm" fn DRMIsWindowProtected(
 pub extern "msdrm" fn DRMAcquireIssuanceLicenseTemplate(
     hClient: u32,
     uFlags: u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
     cTemplates: u32,
     pwszTemplateIds: ?[*]?PWSTR,
     wszUrl: ?PWSTR,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

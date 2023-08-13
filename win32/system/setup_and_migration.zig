@@ -7,7 +7,7 @@
 // Section: Types (1)
 //--------------------------------------------------------------------------------
 pub const OOBE_COMPLETED_CALLBACK = fn(
-    CallbackContext: ?*c_void,
+    CallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 
@@ -20,12 +20,12 @@ pub extern "KERNEL32" fn OOBEComplete(
 
 pub extern "KERNEL32" fn RegisterWaitUntilOOBECompleted(
     OOBECompletedCallback: ?OOBE_COMPLETED_CALLBACK,
-    CallbackContext: ?*c_void,
-    WaitHandle: ?*?*c_void,
+    CallbackContext: ?*anyopaque,
+    WaitHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn UnregisterWaitUntilOOBECompleted(
-    WaitHandle: ?*c_void,
+    WaitHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

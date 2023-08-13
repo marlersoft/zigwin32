@@ -107,7 +107,7 @@ pub const DXCoreAdapterMemoryBudget = extern struct {
 pub const PFN_DXCORE_NOTIFICATION_CALLBACK = fn(
     notificationType: DXCoreNotificationType,
     object: ?*IUnknown,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 const IID_IDXCoreAdapter_Value = @import("../zig.zig").Guid.initString("f0db4c7f-fe5a-42a2-bd62-f2a6cf6fc83e");
@@ -131,7 +131,7 @@ pub const IDXCoreAdapter = extern struct {
             property: DXCoreAdapterProperty,
             bufferSize: usize,
             // TODO: what to do with BytesParamIndex 1?
-            propertyData: ?*c_void,
+            propertyData: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertySize: fn(
             self: *const IDXCoreAdapter,
@@ -147,10 +147,10 @@ pub const IDXCoreAdapter = extern struct {
             state: DXCoreAdapterState,
             inputStateDetailsSize: usize,
             // TODO: what to do with BytesParamIndex 1?
-            inputStateDetails: ?*const c_void,
+            inputStateDetails: ?*const anyopaque,
             outputBufferSize: usize,
             // TODO: what to do with BytesParamIndex 3?
-            outputBuffer: ?*c_void,
+            outputBuffer: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsSetStateSupported: fn(
             self: *const IDXCoreAdapter,
@@ -161,15 +161,15 @@ pub const IDXCoreAdapter = extern struct {
             state: DXCoreAdapterState,
             inputStateDetailsSize: usize,
             // TODO: what to do with BytesParamIndex 1?
-            inputStateDetails: ?*const c_void,
+            inputStateDetails: ?*const anyopaque,
             inputDataSize: usize,
             // TODO: what to do with BytesParamIndex 3?
-            inputData: ?*const c_void,
+            inputData: ?*const anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFactory: fn(
             self: *const IDXCoreAdapter,
             riid: ?*const Guid,
-            ppvFactory: ?*?*c_void,
+            ppvFactory: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -188,7 +188,7 @@ pub const IDXCoreAdapter = extern struct {
             return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsPropertySupported(@ptrCast(*const IDXCoreAdapter, self), property);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_GetProperty(self: *const T, property: DXCoreAdapterProperty, bufferSize: usize, propertyData: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDXCoreAdapter_GetProperty(self: *const T, property: DXCoreAdapterProperty, bufferSize: usize, propertyData: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).GetProperty(@ptrCast(*const IDXCoreAdapter, self), property, bufferSize, propertyData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -200,7 +200,7 @@ pub const IDXCoreAdapter = extern struct {
             return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsQueryStateSupported(@ptrCast(*const IDXCoreAdapter, self), property);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_QueryState(self: *const T, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const c_void, outputBufferSize: usize, outputBuffer: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDXCoreAdapter_QueryState(self: *const T, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, outputBufferSize: usize, outputBuffer: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).QueryState(@ptrCast(*const IDXCoreAdapter, self), state, inputStateDetailsSize, inputStateDetails, outputBufferSize, outputBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -208,11 +208,11 @@ pub const IDXCoreAdapter = extern struct {
             return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).IsSetStateSupported(@ptrCast(*const IDXCoreAdapter, self), property);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_SetState(self: *const T, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const c_void, inputDataSize: usize, inputData: ?*const c_void) callconv(.Inline) HRESULT {
+        pub fn IDXCoreAdapter_SetState(self: *const T, state: DXCoreAdapterState, inputStateDetailsSize: usize, inputStateDetails: ?*const anyopaque, inputDataSize: usize, inputData: ?*const anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).SetState(@ptrCast(*const IDXCoreAdapter, self), state, inputStateDetailsSize, inputStateDetails, inputDataSize, inputData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapter_GetFactory(self: *const T, riid: ?*const Guid, ppvFactory: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDXCoreAdapter_GetFactory(self: *const T, riid: ?*const Guid, ppvFactory: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDXCoreAdapter.VTable, self.vtable).GetFactory(@ptrCast(*const IDXCoreAdapter, self), riid, ppvFactory);
         }
     };}
@@ -228,7 +228,7 @@ pub const IDXCoreAdapterList = extern struct {
             self: *const IDXCoreAdapterList,
             index: u32,
             riid: ?*const Guid,
-            ppvAdapter: ?*?*c_void,
+            ppvAdapter: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAdapterCount: fn(
             self: *const IDXCoreAdapterList,
@@ -239,7 +239,7 @@ pub const IDXCoreAdapterList = extern struct {
         GetFactory: fn(
             self: *const IDXCoreAdapterList,
             riid: ?*const Guid,
-            ppvFactory: ?*?*c_void,
+            ppvFactory: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Sort: fn(
             self: *const IDXCoreAdapterList,
@@ -255,7 +255,7 @@ pub const IDXCoreAdapterList = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterList_GetAdapter(self: *const T, index: u32, riid: ?*const Guid, ppvAdapter: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDXCoreAdapterList_GetAdapter(self: *const T, index: u32, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).GetAdapter(@ptrCast(*const IDXCoreAdapterList, self), index, riid, ppvAdapter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -267,7 +267,7 @@ pub const IDXCoreAdapterList = extern struct {
             return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).IsStale(@ptrCast(*const IDXCoreAdapterList, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterList_GetFactory(self: *const T, riid: ?*const Guid, ppvFactory: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDXCoreAdapterList_GetFactory(self: *const T, riid: ?*const Guid, ppvFactory: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDXCoreAdapterList.VTable, self.vtable).GetFactory(@ptrCast(*const IDXCoreAdapterList, self), riid, ppvFactory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -292,13 +292,13 @@ pub const IDXCoreAdapterFactory = extern struct {
             numAttributes: u32,
             filterAttributes: [*]const Guid,
             riid: ?*const Guid,
-            ppvAdapterList: ?*?*c_void,
+            ppvAdapterList: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAdapterByLuid: fn(
             self: *const IDXCoreAdapterFactory,
             adapterLUID: ?*const LUID,
             riid: ?*const Guid,
-            ppvAdapter: ?*?*c_void,
+            ppvAdapter: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsNotificationTypeSupported: fn(
             self: *const IDXCoreAdapterFactory,
@@ -309,7 +309,7 @@ pub const IDXCoreAdapterFactory = extern struct {
             dxCoreObject: ?*IUnknown,
             notificationType: DXCoreNotificationType,
             callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK,
-            callbackContext: ?*c_void,
+            callbackContext: ?*anyopaque,
             eventCookie: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterEventNotification: fn(
@@ -321,11 +321,11 @@ pub const IDXCoreAdapterFactory = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterFactory_CreateAdapterList(self: *const T, numAttributes: u32, filterAttributes: [*]const Guid, riid: ?*const Guid, ppvAdapterList: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDXCoreAdapterFactory_CreateAdapterList(self: *const T, numAttributes: u32, filterAttributes: [*]const Guid, riid: ?*const Guid, ppvAdapterList: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).CreateAdapterList(@ptrCast(*const IDXCoreAdapterFactory, self), numAttributes, filterAttributes, riid, ppvAdapterList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterFactory_GetAdapterByLuid(self: *const T, adapterLUID: ?*const LUID, riid: ?*const Guid, ppvAdapter: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDXCoreAdapterFactory_GetAdapterByLuid(self: *const T, adapterLUID: ?*const LUID, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).GetAdapterByLuid(@ptrCast(*const IDXCoreAdapterFactory, self), adapterLUID, riid, ppvAdapter);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -333,7 +333,7 @@ pub const IDXCoreAdapterFactory = extern struct {
             return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).IsNotificationTypeSupported(@ptrCast(*const IDXCoreAdapterFactory, self), notificationType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXCoreAdapterFactory_RegisterEventNotification(self: *const T, dxCoreObject: ?*IUnknown, notificationType: DXCoreNotificationType, callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK, callbackContext: ?*c_void, eventCookie: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDXCoreAdapterFactory_RegisterEventNotification(self: *const T, dxCoreObject: ?*IUnknown, notificationType: DXCoreNotificationType, callbackFunction: ?PFN_DXCORE_NOTIFICATION_CALLBACK, callbackContext: ?*anyopaque, eventCookie: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDXCoreAdapterFactory.VTable, self.vtable).RegisterEventNotification(@ptrCast(*const IDXCoreAdapterFactory, self), dxCoreObject, notificationType, callbackFunction, callbackContext, eventCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -350,7 +350,7 @@ pub const IDXCoreAdapterFactory = extern struct {
 //--------------------------------------------------------------------------------
 pub extern "DXCORE" fn DXCoreCreateAdapterFactory(
     riid: ?*const Guid,
-    ppvFactory: ?*?*c_void,
+    ppvFactory: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

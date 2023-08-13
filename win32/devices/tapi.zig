@@ -2179,7 +2179,7 @@ pub const PHONEEVENT = fn(
 pub const TUISPIDLLCALLBACK = fn(
     dwObjectID: usize,
     dwObjectType: u32,
-    lpParams: ?*c_void,
+    lpParams: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -2188,7 +2188,7 @@ pub const TUISPICREATEDIALOGINSTANCEPARAMS = extern struct {
     hdDlgInst: ?*HDRVDIALOGINSTANCE__,
     htDlgInst: u32,
     lpszUIDLLName: ?[*:0]const u16,
-    lpParams: ?*c_void,
+    lpParams: ?*anyopaque,
     dwSize: u32,
 };
 
@@ -10770,7 +10770,7 @@ pub const ITnef = extern struct {
             self: *const ITnef,
             ulFlags: u32,
             ulElemID: u32,
-            lpvData: ?*c_void,
+            lpvData: ?*anyopaque,
             lpPropList: ?*SPropTagArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExtractProps: fn(
@@ -10817,7 +10817,7 @@ pub const ITnef = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITnef_AddProps(self: *const T, ulFlags: u32, ulElemID: u32, lpvData: ?*c_void, lpPropList: ?*SPropTagArray) callconv(.Inline) HRESULT {
+        pub fn ITnef_AddProps(self: *const T, ulFlags: u32, ulElemID: u32, lpvData: ?*anyopaque, lpPropList: ?*SPropTagArray) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITnef.VTable, self.vtable).AddProps(@ptrCast(*const ITnef, self), ulFlags, ulElemID, lpvData, lpPropList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10849,7 +10849,7 @@ pub const ITnef = extern struct {
 };
 
 pub const LPOPENTNEFSTREAM = fn(
-    lpvSupport: ?*c_void,
+    lpvSupport: ?*anyopaque,
     lpStream: ?*IStream,
     lpszStreamName: ?*i8,
     ulFlags: u32,
@@ -10859,7 +10859,7 @@ pub const LPOPENTNEFSTREAM = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const LPOPENTNEFSTREAMEX = fn(
-    lpvSupport: ?*c_void,
+    lpvSupport: ?*anyopaque,
     lpStream: ?*IStream,
     lpszStreamName: ?*i8,
     ulFlags: u32,
@@ -10956,7 +10956,7 @@ pub extern "TAPI32" fn lineAgentSpecific(
     hLine: u32,
     dwAddressID: u32,
     dwAgentExtensionIDIndex: u32,
-    lpParams: ?*c_void,
+    lpParams: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -11024,7 +11024,7 @@ pub extern "TAPI32" fn lineConfigDialogEdit(
     dwDeviceID: u32,
     hwndOwner: ?HWND,
     lpszDeviceClass: ?[*:0]const u8,
-    lpDeviceConfigIn: ?*const c_void,
+    lpDeviceConfigIn: ?*const anyopaque,
     dwSize: u32,
     lpDeviceConfigOut: ?*VARSTRING,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -11033,7 +11033,7 @@ pub extern "TAPI32" fn lineConfigDialogEditA(
     dwDeviceID: u32,
     hwndOwner: ?HWND,
     lpszDeviceClass: ?[*:0]const u8,
-    lpDeviceConfigIn: ?*const c_void,
+    lpDeviceConfigIn: ?*const anyopaque,
     dwSize: u32,
     lpDeviceConfigOut: ?*VARSTRING,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -11042,7 +11042,7 @@ pub extern "TAPI32" fn lineConfigDialogEditW(
     dwDeviceID: u32,
     hwndOwner: ?HWND,
     lpszDeviceClass: ?[*:0]const u16,
-    lpDeviceConfigIn: ?*const c_void,
+    lpDeviceConfigIn: ?*const anyopaque,
     dwSize: u32,
     lpDeviceConfigOut: ?*VARSTRING,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -11092,14 +11092,14 @@ pub extern "TAPI32" fn lineDevSpecific(
     hLine: u32,
     dwAddressID: u32,
     hCall: u32,
-    lpParams: ?*c_void,
+    lpParams: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TAPI32" fn lineDevSpecificFeature(
     hLine: u32,
     dwFeature: u32,
-    lpParams: ?*c_void,
+    lpParams: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -11599,19 +11599,19 @@ pub extern "TAPI32" fn lineGetQueueListW(
 pub extern "TAPI32" fn lineGetRequest(
     hLineApp: u32,
     dwRequestMode: u32,
-    lpRequestBuffer: ?*c_void,
+    lpRequestBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TAPI32" fn lineGetRequestA(
     hLineApp: u32,
     dwRequestMode: u32,
-    lpRequestBuffer: ?*c_void,
+    lpRequestBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TAPI32" fn lineGetRequestW(
     hLineApp: u32,
     dwRequestMode: u32,
-    lpRequestBuffer: ?*c_void,
+    lpRequestBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TAPI32" fn lineGetStatusMessages(
@@ -11981,7 +11981,7 @@ pub extern "TAPI32" fn lineSetAppSpecific(
 
 pub extern "TAPI32" fn lineSetCallData(
     hCall: u32,
-    lpCallData: ?*c_void,
+    lpCallData: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -12000,9 +12000,9 @@ pub extern "TAPI32" fn lineSetCallPrivilege(
 
 pub extern "TAPI32" fn lineSetCallQualityOfService(
     hCall: u32,
-    lpSendingFlowspec: ?*c_void,
+    lpSendingFlowspec: ?*anyopaque,
     dwSendingFlowspecSize: u32,
-    lpReceivingFlowspec: ?*c_void,
+    lpReceivingFlowspec: ?*anyopaque,
     dwReceivingFlowspecSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -12018,21 +12018,21 @@ pub extern "TAPI32" fn lineSetCurrentLocation(
 
 pub extern "TAPI32" fn lineSetDevConfig(
     dwDeviceID: u32,
-    lpDeviceConfig: ?*const c_void,
+    lpDeviceConfig: ?*const anyopaque,
     dwSize: u32,
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TAPI32" fn lineSetDevConfigA(
     dwDeviceID: u32,
-    lpDeviceConfig: ?*const c_void,
+    lpDeviceConfig: ?*const anyopaque,
     dwSize: u32,
     lpszDeviceClass: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "TAPI32" fn lineSetDevConfigW(
     dwDeviceID: u32,
-    lpDeviceConfig: ?*const c_void,
+    lpDeviceConfig: ?*const anyopaque,
     dwSize: u32,
     lpszDeviceClass: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -12274,7 +12274,7 @@ pub extern "TAPI32" fn phoneConfigDialogW(
 
 pub extern "TAPI32" fn phoneDevSpecific(
     hPhone: u32,
-    lpParams: ?*c_void,
+    lpParams: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -12299,7 +12299,7 @@ pub extern "TAPI32" fn phoneGetButtonInfoW(
 pub extern "TAPI32" fn phoneGetData(
     hPhone: u32,
     dwDataID: u32,
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -12502,7 +12502,7 @@ pub extern "TAPI32" fn phoneSetButtonInfoW(
 pub extern "TAPI32" fn phoneSetData(
     hPhone: u32,
     dwDataID: u32,
-    lpData: ?*const c_void,
+    lpData: ?*const anyopaque,
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -12636,7 +12636,7 @@ pub extern "TAPI32" fn tapiRequestMediaCallW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MAPI32" fn OpenTnefStream(
-    lpvSupport: ?*c_void,
+    lpvSupport: ?*anyopaque,
     lpStream: ?*IStream,
     lpszStreamName: ?*i8,
     ulFlags: u32,
@@ -12646,7 +12646,7 @@ pub extern "MAPI32" fn OpenTnefStream(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "MAPI32" fn OpenTnefStreamEx(
-    lpvSupport: ?*c_void,
+    lpvSupport: ?*anyopaque,
     lpStream: ?*IStream,
     lpszStreamName: ?*i8,
     ulFlags: u32,

@@ -425,7 +425,7 @@ pub const CERT_SELECT_STRUCT_A = extern struct {
     dwFlags: CERT_SELECT_STRUCT_FLAGS,
     szTitle: ?[*:0]const u8,
     cCertStore: u32,
-    arrayCertStore: ?*?*c_void,
+    arrayCertStore: ?*?*anyopaque,
     szPurposeOid: ?[*:0]const u8,
     cCertContext: u32,
     arrayCertContext: ?*?*CERT_CONTEXT,
@@ -445,7 +445,7 @@ pub const CERT_SELECT_STRUCT_W = extern struct {
     dwFlags: CERT_SELECT_STRUCT_FLAGS,
     szTitle: ?[*:0]const u16,
     cCertStore: u32,
-    arrayCertStore: ?*?*c_void,
+    arrayCertStore: ?*?*anyopaque,
     szPurposeOid: ?[*:0]const u8,
     cCertContext: u32,
     arrayCertContext: ?*?*CERT_CONTEXT,
@@ -467,11 +467,11 @@ pub const CERT_VIEWPROPERTIES_STRUCT_A = extern struct {
     arrayPurposes: ?*?PSTR,
     cArrayPurposes: u32,
     cRootStores: u32,
-    rghstoreRoots: ?*?*c_void,
+    rghstoreRoots: ?*?*anyopaque,
     cStores: u32,
-    rghstoreCAs: ?*?*c_void,
+    rghstoreCAs: ?*?*anyopaque,
     cTrustStores: u32,
-    rghstoreTrust: ?*?*c_void,
+    rghstoreTrust: ?*?*anyopaque,
     hprov: usize,
     lCustData: LPARAM,
     dwPad: u32,
@@ -492,11 +492,11 @@ pub const CERT_VIEWPROPERTIES_STRUCT_W = extern struct {
     arrayPurposes: ?*?PSTR,
     cArrayPurposes: u32,
     cRootStores: u32,
-    rghstoreRoots: ?*?*c_void,
+    rghstoreRoots: ?*?*anyopaque,
     cStores: u32,
-    rghstoreCAs: ?*?*c_void,
+    rghstoreCAs: ?*?*anyopaque,
     cTrustStores: u32,
-    rghstoreTrust: ?*?*c_void,
+    rghstoreTrust: ?*?*anyopaque,
     hprov: usize,
     lCustData: LPARAM,
     dwPad: u32,
@@ -537,11 +537,11 @@ pub const CERT_VERIFY_CERTIFICATE_TRUST = extern struct {
     pszUsageOid: ?PSTR,
     hprov: usize,
     cRootStores: u32,
-    rghstoreRoots: ?*?*c_void,
+    rghstoreRoots: ?*?*anyopaque,
     cStores: u32,
-    rghstoreCAs: ?*?*c_void,
+    rghstoreCAs: ?*?*anyopaque,
     cTrustStores: u32,
-    rghstoreTrust: ?*?*c_void,
+    rghstoreTrust: ?*?*anyopaque,
     lCustData: LPARAM,
     pfnTrustHelper: ?PFNTRUSTHELPER,
     pcChain: ?*u32,
@@ -559,11 +559,11 @@ pub const CTL_MODIFY_REQUEST = extern struct {
 pub const PFNCFILTERPROC = fn(
     pCertContext: ?*const CERT_CONTEXT,
     pfInitialSelectedCert: ?*BOOL,
-    pvCallbackData: ?*c_void,
+    pvCallbackData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CERT_SELECTUI_INPUT = extern struct {
-    hStore: ?*c_void,
+    hStore: ?*anyopaque,
     prgpChain: ?*?*CERT_CHAIN_CONTEXT,
     cChain: u32,
 };
@@ -587,9 +587,9 @@ pub const CRYPTUI_WIZ_DIGITAL_SIGN_BLOB_INFO = extern struct {
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_STORE_INFO = extern struct {
     dwSize: u32,
     cCertStore: u32,
-    rghCertStore: ?*?*c_void,
+    rghCertStore: ?*?*anyopaque,
     pFilterCallback: ?PFNCFILTERPROC,
-    pvCallbackData: ?*c_void,
+    pvCallbackData: ?*anyopaque,
 };
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_PVK_FILE_INFO = extern struct {
@@ -616,7 +616,7 @@ pub const CRYPTUI_WIZ_DIGITAL_SIGN_EXTENDED_INFO = extern struct {
     pwszMoreInfoLocation: ?[*:0]const u16,
     pszHashAlg: ?[*:0]const u8,
     pwszSigningCertDisplayString: ?[*:0]const u16,
-    hAdditionalCertStore: ?*c_void,
+    hAdditionalCertStore: ?*anyopaque,
     psAuthenticated: ?*CRYPT_ATTRIBUTES,
     psUnauthenticated: ?*CRYPT_ATTRIBUTES,
 };
@@ -668,7 +668,7 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTW = extern struct {
     fCounterSigner: BOOL,
     idxCounterSigner: u32,
     cStores: u32,
-    rghStores: ?*?*c_void,
+    rghStores: ?*?*anyopaque,
     cPropSheetPages: u32,
     rgPropSheetPages: ?*PROPSHEETPAGEW,
     nStartPage: u32,
@@ -692,7 +692,7 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTA = extern struct {
     fCounterSigner: BOOL,
     idxCounterSigner: u32,
     cStores: u32,
-    rghStores: ?*?*c_void,
+    rghStores: ?*?*anyopaque,
     cPropSheetPages: u32,
     rgPropSheetPages: ?*PROPSHEETPAGEA,
     nStartPage: u32,
@@ -706,10 +706,10 @@ pub const CRYPTUI_WIZ_EXPORT_INFO = extern struct {
         pCertContext: ?*const CERT_CONTEXT,
         pCTLContext: ?*CTL_CONTEXT,
         pCRLContext: ?*CRL_CONTEXT,
-        hCertStore: ?*c_void,
+        hCertStore: ?*anyopaque,
     },
     cStores: u32,
-    rghStores: ?*?*c_void,
+    rghStores: ?*?*anyopaque,
 };
 
 pub const CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO = extern struct {
@@ -729,7 +729,7 @@ pub const CRYPTUI_WIZ_IMPORT_SRC_INFO = extern struct {
         pCertContext: ?*const CERT_CONTEXT,
         pCTLContext: ?*CTL_CONTEXT,
         pCRLContext: ?*CRL_CONTEXT,
-        hCertStore: ?*c_void,
+        hCertStore: ?*anyopaque,
     },
     dwFlags: CRYPT_KEY_FLAGS,
     pwszPassword: ?[*:0]const u16,
@@ -742,28 +742,28 @@ pub const CRYPTUI_WIZ_IMPORT_SRC_INFO = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPTUI" fn CryptUIDlgViewContext(
     dwContextType: u32,
-    pvContext: ?*const c_void,
+    pvContext: ?*const anyopaque,
     hwnd: ?HWND,
     pwszTitle: ?[*:0]const u16,
     dwFlags: u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "CRYPTUI" fn CryptUIDlgSelectCertificateFromStore(
-    hCertStore: ?*c_void,
+    hCertStore: ?*anyopaque,
     hwnd: ?HWND,
     pwszTitle: ?[*:0]const u16,
     pwszDisplayString: ?[*:0]const u16,
     dwDontUseColumn: u32,
     dwFlags: u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "CRYPTUI" fn CertSelectionGetSerializedBlob(
     pcsi: ?*CERT_SELECTUI_INPUT,
-    ppOutBuffer: ?*?*c_void,
+    ppOutBuffer: ?*?*anyopaque,
     pulOutBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -804,7 +804,7 @@ pub extern "CRYPTUI" fn CryptUIWizExport(
     hwndParent: ?HWND,
     pwszWizardTitle: ?[*:0]const u16,
     pExportInfo: ?*CRYPTUI_WIZ_EXPORT_INFO,
-    pvoid: ?*c_void,
+    pvoid: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -813,7 +813,7 @@ pub extern "CRYPTUI" fn CryptUIWizImport(
     hwndParent: ?HWND,
     pwszWizardTitle: ?[*:0]const u16,
     pImportSrc: ?*CRYPTUI_WIZ_IMPORT_SRC_INFO,
-    hDestCertStore: ?*c_void,
+    hDestCertStore: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

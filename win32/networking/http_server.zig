@@ -190,7 +190,7 @@ pub const HttpQosSettingTypeFlowRate = HTTP_QOS_SETTING_TYPE.FlowRate;
 
 pub const HTTP_QOS_SETTING_INFO = extern struct {
     QosType: HTTP_QOS_SETTING_TYPE,
-    QosSetting: ?*c_void,
+    QosSetting: ?*anyopaque,
 };
 
 pub const HTTP_CONNECTION_LIMIT_INFO = extern struct {
@@ -361,7 +361,7 @@ pub const HTTP_LOGGING_INFO = extern struct {
     DirectoryName: ?[*:0]const u16,
     Format: HTTP_LOGGING_TYPE,
     Fields: u32,
-    pExtFields: ?*c_void,
+    pExtFields: ?*anyopaque,
     NumOfExtFields: u16,
     MaxRecordSize: u16,
     RolloverType: HTTP_LOGGING_ROLLOVER_TYPE,
@@ -636,7 +636,7 @@ pub const HTTP_DATA_CHUNK = extern struct {
     DataChunkType: HTTP_DATA_CHUNK_TYPE,
     Anonymous: extern union {
         FromMemory: extern struct {
-            pBuffer: ?*c_void,
+            pBuffer: ?*anyopaque,
             BufferLength: u32,
         },
         FromFileHandle: extern struct {
@@ -684,7 +684,7 @@ pub const DelegateRequestDelegateUrlProperty = HTTP_DELEGATE_REQUEST_PROPERTY_ID
 pub const HTTP_DELEGATE_REQUEST_PROPERTY_INFO = extern struct {
     PropertyId: HTTP_DELEGATE_REQUEST_PROPERTY_ID,
     PropertyInfoLength: u32,
-    PropertyInfo: ?*c_void,
+    PropertyInfo: ?*anyopaque,
 };
 
 pub const HTTP_CREATE_REQUEST_QUEUE_PROPERTY_ID = enum(i32) {
@@ -697,7 +697,7 @@ pub const CreateRequestQueueMax = HTTP_CREATE_REQUEST_QUEUE_PROPERTY_ID.Max;
 pub const HTTP_CREATE_REQUEST_QUEUE_PROPERTY_INFO = extern struct {
     PropertyId: HTTP_CREATE_REQUEST_QUEUE_PROPERTY_ID,
     PropertyInfoLength: u32,
-    PropertyInfo: ?*c_void,
+    PropertyInfo: ?*anyopaque,
 };
 
 pub const HTTP_TRANSPORT_ADDRESS = extern struct {
@@ -887,7 +887,7 @@ pub const HttpRequestInfoTypeTcpInfoV1 = HTTP_REQUEST_INFO_TYPE.TcpInfoV1;
 pub const HTTP_REQUEST_INFO = extern struct {
     InfoType: HTTP_REQUEST_INFO_TYPE,
     InfoLength: u32,
-    pInfo: ?*c_void,
+    pInfo: ?*anyopaque,
 };
 
 pub const HTTP_REQUEST_AUTH_INFO = extern struct {
@@ -899,7 +899,7 @@ pub const HTTP_REQUEST_AUTH_INFO = extern struct {
     ContextAttributes: u32,
     PackedContextLength: u32,
     PackedContextType: u32,
-    PackedContext: ?*c_void,
+    PackedContext: ?*anyopaque,
     MutualAuthDataLength: u32,
     pMutualAuthData: ?[*]u8,
     PackageNameLength: u16,
@@ -958,7 +958,7 @@ pub const HttpResponseInfoTypeChannelBind = HTTP_RESPONSE_INFO_TYPE.ChannelBind;
 pub const HTTP_RESPONSE_INFO = extern struct {
     Type: HTTP_RESPONSE_INFO_TYPE,
     Length: u32,
-    pInfo: ?*c_void,
+    pInfo: ?*anyopaque,
 };
 
 pub const HTTP_MULTIPLE_KNOWN_HEADERS = extern struct {
@@ -1054,7 +1054,7 @@ pub const HTTP_SERVICE_CONFIG_SSL_CCS_KEY = extern struct {
 
 pub const HTTP_SERVICE_CONFIG_SSL_PARAM = extern struct {
     SslHashLength: u32,
-    pSslHash: ?*c_void,
+    pSslHash: ?*anyopaque,
     AppId: Guid,
     pSslCertStoreName: ?PWSTR,
     DefaultCertCheckMode: u32,
@@ -1111,12 +1111,12 @@ pub const PerformanceParamMax = HTTP_PERFORMANCE_PARAM_TYPE.Max;
 pub const HTTP_PERFORMANCE_PARAM = extern struct {
     Type: HTTP_PERFORMANCE_PARAM_TYPE,
     BufferSize: u32,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 };
 
 pub const HTTP_TLS_RESTRICTIONS_PARAM = extern struct {
     RestrictionCount: u32,
-    TlsRestrictions: ?*c_void,
+    TlsRestrictions: ?*anyopaque,
 };
 
 pub const HTTP_ERROR_HEADERS_PARAM = extern struct {
@@ -1127,7 +1127,7 @@ pub const HTTP_ERROR_HEADERS_PARAM = extern struct {
 
 pub const HTTP_TLS_SESSION_TICKET_KEYS_PARAM = extern struct {
     SessionTicketKeyCount: u32,
-    SessionTicketKeys: ?*c_void,
+    SessionTicketKeys: ?*anyopaque,
 };
 
 pub const HTTP_SERVICE_CONFIG_SSL_PARAM_EX = extern struct {
@@ -1369,13 +1369,13 @@ pub const HttpFeaturemax = HTTP_FEATURE_ID.max;
 pub extern "HTTPAPI" fn HttpInitialize(
     Version: HTTPAPI_VERSION,
     Flags: HTTP_INITIALIZE,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "HTTPAPI" fn HttpTerminate(
     Flags: HTTP_INITIALIZE,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1403,10 +1403,10 @@ pub extern "HTTPAPI" fn HttpSetRequestQueueProperty(
     RequestQueueHandle: ?HANDLE,
     Property: HTTP_SERVER_PROPERTY,
     // TODO: what to do with BytesParamIndex 3?
-    PropertyInformation: ?*c_void,
+    PropertyInformation: ?*anyopaque,
     PropertyInformationLength: u32,
     Reserved1: u32,
-    Reserved2: ?*c_void,
+    Reserved2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1414,11 +1414,11 @@ pub extern "HTTPAPI" fn HttpQueryRequestQueueProperty(
     RequestQueueHandle: ?HANDLE,
     Property: HTTP_SERVER_PROPERTY,
     // TODO: what to do with BytesParamIndex 3?
-    PropertyInformation: ?*c_void,
+    PropertyInformation: ?*anyopaque,
     PropertyInformationLength: u32,
     Reserved1: u32,
     ReturnLength: ?*u32,
-    Reserved2: ?*c_void,
+    Reserved2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "HTTPAPI" fn HttpSetRequestProperty(
@@ -1426,7 +1426,7 @@ pub extern "HTTPAPI" fn HttpSetRequestProperty(
     Id: u64,
     PropertyId: HTTP_REQUEST_PROPERTY,
     // TODO: what to do with BytesParamIndex 4?
-    Input: ?*c_void,
+    Input: ?*anyopaque,
     InputPropertySize: u32,
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1465,7 +1465,7 @@ pub extern "HTTPAPI" fn HttpQueryServerSessionProperty(
     ServerSessionId: u64,
     Property: HTTP_SERVER_PROPERTY,
     // TODO: what to do with BytesParamIndex 3?
-    PropertyInformation: ?*c_void,
+    PropertyInformation: ?*anyopaque,
     PropertyInformationLength: u32,
     ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1475,7 +1475,7 @@ pub extern "HTTPAPI" fn HttpSetServerSessionProperty(
     ServerSessionId: u64,
     Property: HTTP_SERVER_PROPERTY,
     // TODO: what to do with BytesParamIndex 3?
-    PropertyInformation: ?*c_void,
+    PropertyInformation: ?*anyopaque,
     PropertyInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1483,7 +1483,7 @@ pub extern "HTTPAPI" fn HttpSetServerSessionProperty(
 pub extern "HTTPAPI" fn HttpAddUrl(
     RequestQueueHandle: ?HANDLE,
     FullyQualifiedUrl: ?[*:0]const u16,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1524,7 +1524,7 @@ pub extern "HTTPAPI" fn HttpSetUrlGroupProperty(
     UrlGroupId: u64,
     Property: HTTP_SERVER_PROPERTY,
     // TODO: what to do with BytesParamIndex 3?
-    PropertyInformation: ?*c_void,
+    PropertyInformation: ?*anyopaque,
     PropertyInformationLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1533,14 +1533,14 @@ pub extern "HTTPAPI" fn HttpQueryUrlGroupProperty(
     UrlGroupId: u64,
     Property: HTTP_SERVER_PROPERTY,
     // TODO: what to do with BytesParamIndex 3?
-    PropertyInformation: ?*c_void,
+    PropertyInformation: ?*anyopaque,
     PropertyInformationLength: u32,
     ReturnLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "HTTPAPI" fn HttpPrepareUrl(
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     Flags: u32,
     Url: ?[*:0]const u16,
     PreparedUrl: ?*?PWSTR,
@@ -1564,7 +1564,7 @@ pub extern "HTTPAPI" fn HttpReceiveRequestEntityBody(
     RequestId: u64,
     Flags: u32,
     // TODO: what to do with BytesParamIndex 4?
-    EntityBuffer: ?*c_void,
+    EntityBuffer: ?*anyopaque,
     EntityBufferLength: u32,
     BytesReturned: ?*u32,
     Overlapped: ?*OVERLAPPED,
@@ -1578,7 +1578,7 @@ pub extern "HTTPAPI" fn HttpSendHttpResponse(
     HttpResponse: ?*HTTP_RESPONSE_V2,
     CachePolicy: ?*HTTP_CACHE_POLICY,
     BytesSent: ?*u32,
-    Reserved1: ?*c_void,
+    Reserved1: ?*anyopaque,
     Reserved2: u32,
     Overlapped: ?*OVERLAPPED,
     LogData: ?*HTTP_LOG_DATA,
@@ -1592,7 +1592,7 @@ pub extern "HTTPAPI" fn HttpSendResponseEntityBody(
     EntityChunkCount: u16,
     EntityChunks: ?[*]HTTP_DATA_CHUNK,
     BytesSent: ?*u32,
-    Reserved1: ?*c_void,
+    Reserved1: ?*anyopaque,
     Reserved2: u32,
     Overlapped: ?*OVERLAPPED,
     LogData: ?*HTTP_LOG_DATA,
@@ -1677,7 +1677,7 @@ pub extern "HTTPAPI" fn HttpReadFragmentFromCache(
     UrlPrefix: ?[*:0]const u16,
     ByteRange: ?*HTTP_BYTE_RANGE,
     // TODO: what to do with BytesParamIndex 4?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferLength: u32,
     BytesRead: ?*u32,
     Overlapped: ?*OVERLAPPED,
@@ -1688,7 +1688,7 @@ pub extern "HTTPAPI" fn HttpSetServiceConfiguration(
     ServiceHandle: ?HANDLE,
     ConfigId: HTTP_SERVICE_CONFIG_ID,
     // TODO: what to do with BytesParamIndex 3?
-    pConfigInformation: ?*c_void,
+    pConfigInformation: ?*anyopaque,
     ConfigInformationLength: u32,
     pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1698,7 +1698,7 @@ pub extern "HTTPAPI" fn HttpUpdateServiceConfiguration(
     Handle: ?HANDLE,
     ConfigId: HTTP_SERVICE_CONFIG_ID,
     // TODO: what to do with BytesParamIndex 3?
-    ConfigInfo: ?*c_void,
+    ConfigInfo: ?*anyopaque,
     ConfigInfoLength: u32,
     Overlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1708,7 +1708,7 @@ pub extern "HTTPAPI" fn HttpDeleteServiceConfiguration(
     ServiceHandle: ?HANDLE,
     ConfigId: HTTP_SERVICE_CONFIG_ID,
     // TODO: what to do with BytesParamIndex 3?
-    pConfigInformation: ?*c_void,
+    pConfigInformation: ?*anyopaque,
     ConfigInformationLength: u32,
     pOverlapped: ?*OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -1718,10 +1718,10 @@ pub extern "HTTPAPI" fn HttpQueryServiceConfiguration(
     ServiceHandle: ?HANDLE,
     ConfigId: HTTP_SERVICE_CONFIG_ID,
     // TODO: what to do with BytesParamIndex 3?
-    pInput: ?*c_void,
+    pInput: ?*anyopaque,
     InputLength: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pOutput: ?*c_void,
+    pOutput: ?*anyopaque,
     OutputLength: u32,
     pReturnLength: ?*u32,
     pOverlapped: ?*OVERLAPPED,
@@ -1730,7 +1730,7 @@ pub extern "HTTPAPI" fn HttpQueryServiceConfiguration(
 pub extern "HTTPAPI" fn HttpGetExtension(
     Version: HTTPAPI_VERSION,
     Extension: u32,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

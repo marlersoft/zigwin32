@@ -148,7 +148,7 @@ pub const PGET_MODULE_HANDLE_EXW = fn(
 pub const REDIRECTION_FUNCTION_DESCRIPTOR = extern struct {
     DllName: ?[*:0]const u8,
     FunctionName: ?[*:0]const u8,
-    RedirectionTarget: ?*c_void,
+    RedirectionTarget: ?*anyopaque,
 };
 
 pub const REDIRECTION_DESCRIPTOR = extern struct {
@@ -256,7 +256,7 @@ pub extern "KERNEL32" fn LoadResource(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn LockResource(
     hResData: isize,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn SizeofResource(
@@ -267,11 +267,11 @@ pub extern "KERNEL32" fn SizeofResource(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn AddDllDirectory(
     NewDirectory: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn RemoveDllDirectory(
-    Cookie: ?*c_void,
+    Cookie: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -373,7 +373,7 @@ pub extern "KERNEL32" fn EnumResourceNamesA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn LoadModule(
     lpModuleName: ?[*:0]const u8,
-    lpParameterBlock: ?*c_void,
+    lpParameterBlock: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -448,7 +448,7 @@ pub extern "KERNEL32" fn UpdateResourceA(
     lpName: ?[*:0]const u8,
     wLanguage: u16,
     // TODO: what to do with BytesParamIndex 5?
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -459,7 +459,7 @@ pub extern "KERNEL32" fn UpdateResourceW(
     lpName: ?[*:0]const u16,
     wLanguage: u16,
     // TODO: what to do with BytesParamIndex 5?
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

@@ -1171,7 +1171,7 @@ pub const MIXERCONTROLDETAILS = packed struct {
         cMultipleItems: u32,
     },
     cbDetails: u32,
-    paDetails: ?*c_void,
+    paDetails: ?*anyopaque,
 };
 
 pub const MIXERCONTROLDETAILS_LISTTEXTA = packed struct {
@@ -1344,7 +1344,7 @@ pub const IAudioClient = extern struct {
         GetService: fn(
             self: *const IAudioClient,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1395,7 +1395,7 @@ pub const IAudioClient = extern struct {
             return @ptrCast(*const IAudioClient.VTable, self.vtable).SetEventHandle(@ptrCast(*const IAudioClient, self), eventHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioClient_GetService(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAudioClient_GetService(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioClient.VTable, self.vtable).GetService(@ptrCast(*const IAudioClient, self), riid, ppv);
         }
     };}
@@ -2258,7 +2258,7 @@ pub const ISpatialAudioObjectRenderStreamBase = extern struct {
         GetService: fn(
             self: *const ISpatialAudioObjectRenderStreamBase,
             riid: ?*const Guid,
-            service: ?*?*c_void,
+            service: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Start: fn(
             self: *const ISpatialAudioObjectRenderStreamBase,
@@ -2286,7 +2286,7 @@ pub const ISpatialAudioObjectRenderStreamBase = extern struct {
             return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).GetAvailableDynamicObjectCount(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self), value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectRenderStreamBase_GetService(self: *const T, riid: ?*const Guid, service: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISpatialAudioObjectRenderStreamBase_GetService(self: *const T, riid: ?*const Guid, service: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpatialAudioObjectRenderStreamBase.VTable, self.vtable).GetService(@ptrCast(*const ISpatialAudioObjectRenderStreamBase, self), riid, service);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2403,7 +2403,7 @@ pub const ISpatialAudioClient = extern struct {
             self: *const ISpatialAudioClient,
             activationParams: ?*const PROPVARIANT,
             riid: ?*const Guid,
-            stream: ?*?*c_void,
+            stream: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2438,7 +2438,7 @@ pub const ISpatialAudioClient = extern struct {
             return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).IsSpatialAudioStreamAvailable(@ptrCast(*const ISpatialAudioClient, self), streamUuid, auxiliaryInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioClient_ActivateSpatialAudioStream(self: *const T, activationParams: ?*const PROPVARIANT, riid: ?*const Guid, stream: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISpatialAudioClient_ActivateSpatialAudioStream(self: *const T, activationParams: ?*const PROPVARIANT, riid: ?*const Guid, stream: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpatialAudioClient.VTable, self.vtable).ActivateSpatialAudioStream(@ptrCast(*const ISpatialAudioClient, self), activationParams, riid, stream);
         }
     };}
@@ -2789,7 +2789,7 @@ pub const IMMDevice = extern struct {
             iid: ?*const Guid,
             dwClsCtx: u32,
             pActivationParams: ?*PROPVARIANT,
-            ppInterface: ?*?*c_void,
+            ppInterface: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenPropertyStore: fn(
             self: *const IMMDevice,
@@ -2809,7 +2809,7 @@ pub const IMMDevice = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDevice_Activate(self: *const T, iid: ?*const Guid, dwClsCtx: u32, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IMMDevice_Activate(self: *const T, iid: ?*const Guid, dwClsCtx: u32, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMMDevice.VTable, self.vtable).Activate(@ptrCast(*const IMMDevice, self), iid, dwClsCtx, pActivationParams, ppInterface);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2950,14 +2950,14 @@ pub const IMMDeviceActivator = extern struct {
             iid: ?*const Guid,
             pDevice: ?*IMMDevice,
             pActivationParams: ?*PROPVARIANT,
-            ppInterface: ?*?*c_void,
+            ppInterface: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMMDeviceActivator_Activate(self: *const T, iid: ?*const Guid, pDevice: ?*IMMDevice, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IMMDeviceActivator_Activate(self: *const T, iid: ?*const Guid, pDevice: ?*IMMDevice, pActivationParams: ?*PROPVARIANT, ppInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMMDeviceActivator.VTable, self.vtable).Activate(@ptrCast(*const IMMDeviceActivator, self), iid, pDevice, pActivationParams, ppInterface);
         }
     };}
@@ -3502,12 +3502,12 @@ pub const IDeviceSpecificProperty = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetValue: fn(
             self: *const IDeviceSpecificProperty,
-            pvValue: ?*c_void,
+            pvValue: ?*anyopaque,
             pcbValue: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetValue: fn(
             self: *const IDeviceSpecificProperty,
-            pvValue: ?*c_void,
+            pvValue: ?*anyopaque,
             cbValue: u32,
             pguidEventContext: ?*const Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3526,11 +3526,11 @@ pub const IDeviceSpecificProperty = extern struct {
             return @ptrCast(*const IDeviceSpecificProperty.VTable, self.vtable).GetType(@ptrCast(*const IDeviceSpecificProperty, self), pVType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceSpecificProperty_GetValue(self: *const T, pvValue: ?*c_void, pcbValue: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDeviceSpecificProperty_GetValue(self: *const T, pvValue: ?*anyopaque, pcbValue: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceSpecificProperty.VTable, self.vtable).GetValue(@ptrCast(*const IDeviceSpecificProperty, self), pvValue, pcbValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDeviceSpecificProperty_SetValue(self: *const T, pvValue: ?*c_void, cbValue: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
+        pub fn IDeviceSpecificProperty_SetValue(self: *const T, pvValue: ?*anyopaque, cbValue: u32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDeviceSpecificProperty.VTable, self.vtable).SetValue(@ptrCast(*const IDeviceSpecificProperty, self), pvValue, cbValue, pguidEventContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3623,7 +3623,7 @@ pub const IPart = extern struct {
             self: *const IPart,
             dwClsContext: u32,
             refiid: ?*const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RegisterControlChangeCallback: fn(
             self: *const IPart,
@@ -3679,7 +3679,7 @@ pub const IPart = extern struct {
             return @ptrCast(*const IPart.VTable, self.vtable).GetTopologyObject(@ptrCast(*const IPart, self), ppTopology);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPart_Activate(self: *const T, dwClsContext: u32, refiid: ?*const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPart_Activate(self: *const T, dwClsContext: u32, refiid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPart.VTable, self.vtable).Activate(@ptrCast(*const IPart, self), dwClsContext, refiid, ppvObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4448,7 +4448,7 @@ pub const ISpatialAudioMetadataWriter = extern struct {
             self: *const ISpatialAudioMetadataWriter,
             commandID: u8,
             // TODO: what to do with BytesParamIndex 2?
-            valueBuffer: ?*const c_void,
+            valueBuffer: ?*const anyopaque,
             valueBufferLength: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
@@ -4467,7 +4467,7 @@ pub const ISpatialAudioMetadataWriter = extern struct {
             return @ptrCast(*const ISpatialAudioMetadataWriter.VTable, self.vtable).WriteNextItem(@ptrCast(*const ISpatialAudioMetadataWriter, self), frameOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataWriter_WriteNextItemCommand(self: *const T, commandID: u8, valueBuffer: ?*const c_void, valueBufferLength: u32) callconv(.Inline) HRESULT {
+        pub fn ISpatialAudioMetadataWriter_WriteNextItemCommand(self: *const T, commandID: u8, valueBuffer: ?*const anyopaque, valueBufferLength: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpatialAudioMetadataWriter.VTable, self.vtable).WriteNextItemCommand(@ptrCast(*const ISpatialAudioMetadataWriter, self), commandID, valueBuffer, valueBufferLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4497,7 +4497,7 @@ pub const ISpatialAudioMetadataReader = extern struct {
             self: *const ISpatialAudioMetadataReader,
             commandID: ?*u8,
             // TODO: what to do with BytesParamIndex 2?
-            valueBuffer: ?*c_void,
+            valueBuffer: ?*anyopaque,
             maxValueBufferLength: u32,
             valueBufferLength: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4517,7 +4517,7 @@ pub const ISpatialAudioMetadataReader = extern struct {
             return @ptrCast(*const ISpatialAudioMetadataReader.VTable, self.vtable).ReadNextItem(@ptrCast(*const ISpatialAudioMetadataReader, self), commandCount, frameOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioMetadataReader_ReadNextItemCommand(self: *const T, commandID: ?*u8, valueBuffer: ?*c_void, maxValueBufferLength: u32, valueBufferLength: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ISpatialAudioMetadataReader_ReadNextItemCommand(self: *const T, commandID: ?*u8, valueBuffer: ?*anyopaque, maxValueBufferLength: u32, valueBufferLength: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpatialAudioMetadataReader.VTable, self.vtable).ReadNextItemCommand(@ptrCast(*const ISpatialAudioMetadataReader, self), commandID, valueBuffer, maxValueBufferLength, valueBufferLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4678,7 +4678,7 @@ pub const ISpatialAudioObjectForMetadataCommands = extern struct {
             self: *const ISpatialAudioObjectForMetadataCommands,
             commandID: u8,
             // TODO: what to do with BytesParamIndex 2?
-            valueBuffer: ?*c_void,
+            valueBuffer: ?*anyopaque,
             valueBufferLength: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -4686,7 +4686,7 @@ pub const ISpatialAudioObjectForMetadataCommands = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISpatialAudioObjectBase.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialAudioObjectForMetadataCommands_WriteNextMetadataCommand(self: *const T, commandID: u8, valueBuffer: ?*c_void, valueBufferLength: u32) callconv(.Inline) HRESULT {
+        pub fn ISpatialAudioObjectForMetadataCommands_WriteNextMetadataCommand(self: *const T, commandID: u8, valueBuffer: ?*anyopaque, valueBufferLength: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpatialAudioObjectForMetadataCommands.VTable, self.vtable).WriteNextMetadataCommand(@ptrCast(*const ISpatialAudioObjectForMetadataCommands, self), commandID, valueBuffer, valueBufferLength);
         }
     };}
@@ -4775,7 +4775,7 @@ pub const AUDIOCLIENT_ACTIVATION_PARAMS = extern struct {
 
 pub const PAudioStateMonitorCallback = fn(
     audioStateMonitor: ?*IAudioStateMonitor,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const AudioStateMonitorSoundLevel = enum(i32) {
@@ -4795,7 +4795,7 @@ pub const IAudioStateMonitor = extern struct {
         RegisterCallback: fn(
             self: *const IAudioStateMonitor,
             callback: ?PAudioStateMonitorCallback,
-            context: ?*c_void,
+            context: ?*anyopaque,
             registration: ?*i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnregisterCallback: fn(
@@ -4810,7 +4810,7 @@ pub const IAudioStateMonitor = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioStateMonitor_RegisterCallback(self: *const T, callback: ?PAudioStateMonitorCallback, context: ?*c_void, registration: ?*i64) callconv(.Inline) HRESULT {
+        pub fn IAudioStateMonitor_RegisterCallback(self: *const T, callback: ?PAudioStateMonitorCallback, context: ?*anyopaque, registration: ?*i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAudioStateMonitor.VTable, self.vtable).RegisterCallback(@ptrCast(*const IAudioStateMonitor, self), callback, context, registration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5570,14 +5570,14 @@ pub extern "WINMM" fn midiStreamStop(
 pub extern "WINMM" fn midiConnect(
     hmi: ?HMIDI,
     hmo: ?HMIDIOUT,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn midiDisconnect(
     hmi: ?HMIDI,
     hmo: ?HMIDIOUT,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5999,7 +5999,7 @@ pub extern "MSACM32" fn acmGetVersion(
 pub extern "MSACM32" fn acmMetrics(
     hao: ?HACMOBJ,
     uMetric: u32,
-    pMetric: ?*c_void,
+    pMetric: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'

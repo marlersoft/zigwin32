@@ -51,23 +51,23 @@ pub const WSD_SECURITY_USE_HTTP_CLIENT_AUTH = WSD_CONFIG_PARAM_TYPE.SECURITY_USE
 
 pub const WSD_CONFIG_PARAM = extern struct {
     configParamType: WSD_CONFIG_PARAM_TYPE,
-    pConfigData: ?*c_void,
+    pConfigData: ?*anyopaque,
     dwConfigDataSize: u32,
 };
 
 pub const WSD_SECURITY_CERT_VALIDATION_V1 = extern struct {
     certMatchArray: ?*?*CERT_CONTEXT,
     dwCertMatchArrayCount: u32,
-    hCertMatchStore: ?*c_void,
-    hCertIssuerStore: ?*c_void,
+    hCertMatchStore: ?*anyopaque,
+    hCertIssuerStore: ?*anyopaque,
     dwCertCheckOptions: u32,
 };
 
 pub const WSD_SECURITY_CERT_VALIDATION = extern struct {
     certMatchArray: ?*?*CERT_CONTEXT,
     dwCertMatchArrayCount: u32,
-    hCertMatchStore: ?*c_void,
-    hCertIssuerStore: ?*c_void,
+    hCertMatchStore: ?*anyopaque,
+    hCertIssuerStore: ?*anyopaque,
     dwCertCheckOptions: u32,
     pszCNGHashAlgId: ?[*:0]const u16,
     pbCertHash: ?*u8,
@@ -77,7 +77,7 @@ pub const WSD_SECURITY_CERT_VALIDATION = extern struct {
 pub const WSD_SECURITY_SIGNATURE_VALIDATION = extern struct {
     signingCertArray: ?*?*CERT_CONTEXT,
     dwSigningCertArrayCount: u32,
-    hSigningCertStore: ?*c_void,
+    hSigningCertStore: ?*anyopaque,
     dwFlags: u32,
 };
 
@@ -972,7 +972,7 @@ pub const PWSD_SOAP_MESSAGE_HANDLER = fn(
 
 pub const WSD_HANDLER_CONTEXT = extern struct {
     Handler: ?PWSD_SOAP_MESSAGE_HANDLER,
-    PVoid: ?*c_void,
+    PVoid: ?*anyopaque,
     Unknown: ?*IUnknown,
 };
 
@@ -993,7 +993,7 @@ pub const WSD_SYNCHRONOUS_RESPONSE_CONTEXT = extern struct {
     hr: HRESULT,
     eventHandle: ?HANDLE,
     messageParameters: ?*IWSDMessageParameters,
-    results: ?*c_void,
+    results: ?*anyopaque,
 };
 
 pub const WSD_PORT_TYPE = extern struct {
@@ -1100,7 +1100,7 @@ pub const WSD_SOAP_HEADER = extern struct {
 
 pub const WSD_SOAP_MESSAGE = extern struct {
     Header: WSD_SOAP_HEADER,
-    Body: ?*c_void,
+    Body: ?*anyopaque,
     BodyType: ?*WSDXML_TYPE,
 };
 
@@ -1192,7 +1192,7 @@ pub const WSD_ENDPOINT_REFERENCE = extern struct {
 pub const WSD_METADATA_SECTION = extern struct {
     Dialect: ?[*:0]const u16,
     Identifier: ?[*:0]const u16,
-    Data: ?*c_void,
+    Data: ?*anyopaque,
     MetadataReference: ?*WSD_ENDPOINT_REFERENCE,
     Location: ?[*:0]const u16,
     Any: ?*WSDXML_ELEMENT,
@@ -1215,7 +1215,7 @@ pub const WSD_EVENTING_FILTER_ACTION = extern struct {
 pub const WSD_EVENTING_FILTER = extern struct {
     Dialect: ?[*:0]const u16,
     FilterAction: ?*WSD_EVENTING_FILTER_ACTION,
-    Data: ?*c_void,
+    Data: ?*anyopaque,
 };
 
 pub const WSD_EVENTING_EXPIRES = extern struct {
@@ -1230,7 +1230,7 @@ pub const WSD_EVENTING_DELIVERY_MODE_PUSH = extern struct {
 pub const WSD_EVENTING_DELIVERY_MODE = extern struct {
     Mode: ?[*:0]const u16,
     Push: ?*WSD_EVENTING_DELIVERY_MODE_PUSH,
-    Data: ?*c_void,
+    Data: ?*anyopaque,
 };
 
 pub const WSD_LOCALIZED_STRING = extern struct {
@@ -1783,18 +1783,18 @@ pub const IWSDEndpointProxy = extern struct {
         base: IUnknown.VTable,
         SendOneWayRequest: fn(
             self: *const IWSDEndpointProxy,
-            pBody: ?*const c_void,
+            pBody: ?*const anyopaque,
             pOperation: ?*const WSD_OPERATION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SendTwoWayRequest: fn(
             self: *const IWSDEndpointProxy,
-            pBody: ?*const c_void,
+            pBody: ?*const anyopaque,
             pOperation: ?*const WSD_OPERATION,
             pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SendTwoWayRequestAsync: fn(
             self: *const IWSDEndpointProxy,
-            pBody: ?*const c_void,
+            pBody: ?*const anyopaque,
             pOperation: ?*const WSD_OPERATION,
             pAsyncState: ?*IUnknown,
             pCallback: ?*IWSDAsyncCallback,
@@ -1821,15 +1821,15 @@ pub const IWSDEndpointProxy = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDEndpointProxy_SendOneWayRequest(self: *const T, pBody: ?*const c_void, pOperation: ?*const WSD_OPERATION) callconv(.Inline) HRESULT {
+        pub fn IWSDEndpointProxy_SendOneWayRequest(self: *const T, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDEndpointProxy.VTable, self.vtable).SendOneWayRequest(@ptrCast(*const IWSDEndpointProxy, self), pBody, pOperation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDEndpointProxy_SendTwoWayRequest(self: *const T, pBody: ?*const c_void, pOperation: ?*const WSD_OPERATION, pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT) callconv(.Inline) HRESULT {
+        pub fn IWSDEndpointProxy_SendTwoWayRequest(self: *const T, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION, pResponseContext: ?*const WSD_SYNCHRONOUS_RESPONSE_CONTEXT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDEndpointProxy.VTable, self.vtable).SendTwoWayRequest(@ptrCast(*const IWSDEndpointProxy, self), pBody, pOperation, pResponseContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDEndpointProxy_SendTwoWayRequestAsync(self: *const T, pBody: ?*const c_void, pOperation: ?*const WSD_OPERATION, pAsyncState: ?*IUnknown, pCallback: ?*IWSDAsyncCallback, pResult: ?*?*IWSDAsyncResult) callconv(.Inline) HRESULT {
+        pub fn IWSDEndpointProxy_SendTwoWayRequestAsync(self: *const T, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION, pAsyncState: ?*IUnknown, pCallback: ?*IWSDAsyncCallback, pResult: ?*?*IWSDAsyncResult) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDEndpointProxy.VTable, self.vtable).SendTwoWayRequestAsync(@ptrCast(*const IWSDEndpointProxy, self), pBody, pOperation, pAsyncState, pCallback, pResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2409,7 +2409,7 @@ pub const IWSDDeviceHost = extern struct {
         SignalEvent: fn(
             self: *const IWSDDeviceHost,
             pszServiceId: ?[*:0]const u16,
-            pBody: ?*const c_void,
+            pBody: ?*const anyopaque,
             pOperation: ?*const WSD_OPERATION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2461,7 +2461,7 @@ pub const IWSDDeviceHost = extern struct {
             return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).SetServiceDiscoverable(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, fDiscoverable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDDeviceHost_SignalEvent(self: *const T, pszServiceId: ?[*:0]const u16, pBody: ?*const c_void, pOperation: ?*const WSD_OPERATION) callconv(.Inline) HRESULT {
+        pub fn IWSDDeviceHost_SignalEvent(self: *const T, pszServiceId: ?[*:0]const u16, pBody: ?*const anyopaque, pOperation: ?*const WSD_OPERATION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDDeviceHost.VTable, self.vtable).SignalEvent(@ptrCast(*const IWSDDeviceHost, self), pszServiceId, pBody, pOperation);
         }
     };}
@@ -2499,7 +2499,7 @@ pub const IWSDServiceMessaging = extern struct {
         base: IUnknown.VTable,
         SendResponse: fn(
             self: *const IWSDServiceMessaging,
-            pBody: ?*c_void,
+            pBody: ?*anyopaque,
             pOperation: ?*WSD_OPERATION,
             pMessageParameters: ?*IWSDMessageParameters,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2514,7 +2514,7 @@ pub const IWSDServiceMessaging = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWSDServiceMessaging_SendResponse(self: *const T, pBody: ?*c_void, pOperation: ?*WSD_OPERATION, pMessageParameters: ?*IWSDMessageParameters) callconv(.Inline) HRESULT {
+        pub fn IWSDServiceMessaging_SendResponse(self: *const T, pBody: ?*anyopaque, pOperation: ?*WSD_OPERATION, pMessageParameters: ?*IWSDMessageParameters) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWSDServiceMessaging.VTable, self.vtable).SendResponse(@ptrCast(*const IWSDServiceMessaging, self), pBody, pOperation, pMessageParameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2650,7 +2650,7 @@ pub extern "wsdapi" fn WSDCreateDeviceHost2(
 pub extern "wsdapi" fn WSDSetConfigurationOption(
     dwOption: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pVoid: ?*c_void,
+    pVoid: ?*anyopaque,
     cbInBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2658,30 +2658,30 @@ pub extern "wsdapi" fn WSDSetConfigurationOption(
 pub extern "wsdapi" fn WSDGetConfigurationOption(
     dwOption: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pVoid: ?*c_void,
+    pVoid: ?*anyopaque,
     cbOutBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDAllocateLinkedMemory(
-    pParent: ?*c_void,
+    pParent: ?*anyopaque,
     cbSize: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDFreeLinkedMemory(
-    pVoid: ?*c_void,
+    pVoid: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDAttachLinkedMemory(
-    pParent: ?*c_void,
-    pChild: ?*c_void,
+    pParent: ?*anyopaque,
+    pChild: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wsdapi" fn WSDDetachLinkedMemory(
-    pVoid: ?*c_void,
+    pVoid: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

@@ -892,14 +892,14 @@ pub const IFunctionDiscoveryServiceProvider = extern struct {
             self: *const IFunctionDiscoveryServiceProvider,
             pIFunctionInstance: ?*IFunctionInstance,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryServiceProvider_Initialize(self: *const T, pIFunctionInstance: ?*IFunctionInstance, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IFunctionDiscoveryServiceProvider_Initialize(self: *const T, pIFunctionInstance: ?*IFunctionInstance, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFunctionDiscoveryServiceProvider.VTable, self.vtable).Initialize(@ptrCast(*const IFunctionDiscoveryServiceProvider, self), pIFunctionInstance, riid, ppv);
         }
     };}

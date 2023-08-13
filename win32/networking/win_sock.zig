@@ -1422,7 +1422,7 @@ pub const addrinfoexA = extern struct {
     ai_addrlen: usize,
     ai_canonname: ?PSTR,
     ai_addr: ?*SOCKADDR,
-    ai_blob: ?*c_void,
+    ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*addrinfoexA,
@@ -1436,7 +1436,7 @@ pub const addrinfoexW = extern struct {
     ai_addrlen: usize,
     ai_canonname: ?PWSTR,
     ai_addr: ?*SOCKADDR,
-    ai_blob: ?*c_void,
+    ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*addrinfoexW,
@@ -1450,7 +1450,7 @@ pub const addrinfoex2A = extern struct {
     ai_addrlen: usize,
     ai_canonname: ?PSTR,
     ai_addr: ?*SOCKADDR,
-    ai_blob: ?*c_void,
+    ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*addrinfoex2A,
@@ -1466,7 +1466,7 @@ pub const addrinfoex2W = extern struct {
     ai_addrlen: usize,
     ai_canonname: ?PWSTR,
     ai_addr: ?*SOCKADDR,
-    ai_blob: ?*c_void,
+    ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*addrinfoex2W,
@@ -1482,7 +1482,7 @@ pub const addrinfoex3 = extern struct {
     ai_addrlen: usize,
     ai_canonname: ?PWSTR,
     ai_addr: ?*SOCKADDR,
-    ai_blob: ?*c_void,
+    ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*addrinfoex3,
@@ -1499,7 +1499,7 @@ pub const addrinfoex4 = extern struct {
     ai_addrlen: usize,
     ai_canonname: ?PWSTR,
     ai_addr: ?*SOCKADDR,
-    ai_blob: ?*c_void,
+    ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*addrinfoex4,
@@ -1517,7 +1517,7 @@ pub const addrinfoex5 = extern struct {
     ai_addrlen: usize,
     ai_canonname: ?PWSTR,
     ai_addr: ?*SOCKADDR,
-    ai_blob: ?*c_void,
+    ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*addrinfoex5,
@@ -1546,7 +1546,7 @@ pub const addrinfoex6 = extern struct {
     ai_addrlen: usize,
     ai_canonname: ?PWSTR,
     ai_addr: ?*SOCKADDR,
-    ai_blob: ?*c_void,
+    ai_blob: ?*anyopaque,
     ai_bloblen: usize,
     ai_provider: ?*Guid,
     ai_next: ?*addrinfoex5,
@@ -1814,7 +1814,7 @@ pub const WSANSCLASSINFOA = extern struct {
     dwNameSpace: u32,
     dwValueType: u32,
     dwValueSize: u32,
-    lpValue: ?*c_void,
+    lpValue: ?*anyopaque,
 };
 
 pub const WSANSCLASSINFOW = extern struct {
@@ -1822,7 +1822,7 @@ pub const WSANSCLASSINFOW = extern struct {
     dwNameSpace: u32,
     dwValueType: u32,
     dwValueSize: u32,
-    lpValue: ?*c_void,
+    lpValue: ?*anyopaque,
 };
 
 pub const WSASERVICECLASSINFOA = extern struct {
@@ -1881,7 +1881,7 @@ pub const WSAPOLLFD = extern struct {
 
 pub const SOCK_NOTIFY_REGISTRATION = extern struct {
     socket: ?SOCKET,
-    completionKey: ?*c_void,
+    completionKey: ?*anyopaque,
     eventFilter: u16,
     operation: u8,
     triggerFlags: u8,
@@ -3088,9 +3088,9 @@ pub const NAPI_PROVIDER_INSTALLATION_BLOB = extern struct {
 };
 
 pub const TRANSMIT_FILE_BUFFERS = extern struct {
-    Head: ?*c_void,
+    Head: ?*anyopaque,
     HeadLength: u32,
-    Tail: ?*c_void,
+    Tail: ?*anyopaque,
     TailLength: u32,
 };
 
@@ -3107,7 +3107,7 @@ pub const LPFN_TRANSMITFILE = fn(
 pub const LPFN_ACCEPTEX = fn(
     sListenSocket: ?SOCKET,
     sAcceptSocket: ?SOCKET,
-    lpOutputBuffer: ?*c_void,
+    lpOutputBuffer: ?*anyopaque,
     dwReceiveDataLength: u32,
     dwLocalAddressLength: u32,
     dwRemoteAddressLength: u32,
@@ -3116,7 +3116,7 @@ pub const LPFN_ACCEPTEX = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPFN_GETACCEPTEXSOCKADDRS = fn(
-    lpOutputBuffer: ?*c_void,
+    lpOutputBuffer: ?*anyopaque,
     dwReceiveDataLength: u32,
     dwLocalAddressLength: u32,
     dwRemoteAddressLength: u32,
@@ -3134,7 +3134,7 @@ pub const TRANSMIT_PACKETS_ELEMENT = extern struct {
             nFileOffset: LARGE_INTEGER,
             hFile: ?HANDLE,
         },
-        pBuffer: ?*c_void,
+        pBuffer: ?*anyopaque,
     },
 };
 
@@ -3153,7 +3153,7 @@ pub const LPFN_CONNECTEX = fn(
     name: ?*const SOCKADDR,
     namelen: i32,
     // TODO: what to do with BytesParamIndex 4?
-    lpSendBuffer: ?*c_void,
+    lpSendBuffer: ?*anyopaque,
     dwSendDataLength: u32,
     lpdwBytesSent: ?*u32,
     lpOverlapped: ?*OVERLAPPED,
@@ -3274,7 +3274,7 @@ pub const LPFN_RIORECEIVE = fn(
     pData: [*]RIO_BUF,
     DataBufferCount: u32,
     Flags: u32,
-    RequestContext: ?*c_void,
+    RequestContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPFN_RIORECEIVEEX = fn(
@@ -3286,7 +3286,7 @@ pub const LPFN_RIORECEIVEEX = fn(
     pControlContext: ?*RIO_BUF,
     pFlags: ?*RIO_BUF,
     Flags: u32,
-    RequestContext: ?*c_void,
+    RequestContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LPFN_RIOSEND = fn(
@@ -3294,7 +3294,7 @@ pub const LPFN_RIOSEND = fn(
     pData: [*]RIO_BUF,
     DataBufferCount: u32,
     Flags: u32,
-    RequestContext: ?*c_void,
+    RequestContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPFN_RIOSENDEX = fn(
@@ -3306,7 +3306,7 @@ pub const LPFN_RIOSENDEX = fn(
     pControlContext: ?*RIO_BUF,
     pFlags: ?*RIO_BUF,
     Flags: u32,
-    RequestContext: ?*c_void,
+    RequestContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPFN_RIOCLOSECOMPLETIONQUEUE = fn(
@@ -3329,8 +3329,8 @@ pub const RIO_NOTIFICATION_COMPLETION = extern struct {
         },
         Iocp: extern struct {
             IocpHandle: ?HANDLE,
-            CompletionKey: ?*c_void,
-            Overlapped: ?*c_void,
+            CompletionKey: ?*anyopaque,
+            Overlapped: ?*anyopaque,
         },
     },
 };
@@ -3348,7 +3348,7 @@ pub const LPFN_RIOCREATEREQUESTQUEUE = fn(
     MaxSendDataBuffers: u32,
     ReceiveCQ: ?*RIO_CQ_t,
     SendCQ: ?*RIO_CQ_t,
-    SocketContext: ?*c_void,
+    SocketContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*RIO_RQ_t;
 
 pub const LPFN_RIODEQUEUECOMPLETION = fn(
@@ -3545,10 +3545,10 @@ pub const LPWSPIOCTL = fn(
     s: ?SOCKET,
     dwIoControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpvInBuffer: ?*c_void,
+    lpvInBuffer: ?*anyopaque,
     cbInBuffer: u32,
     // TODO: what to do with BytesParamIndex 5?
-    lpvOutBuffer: ?*c_void,
+    lpvOutBuffer: ?*anyopaque,
     cbOutBuffer: u32,
     lpcbBytesReturned: ?*u32,
     lpOverlapped: ?*OVERLAPPED,
@@ -3884,7 +3884,7 @@ pub const ProviderInfoAudit = WSC_PROVIDER_INFO_TYPE.Audit;
 
 pub const WSC_PROVIDER_AUDIT_INFO = extern struct {
     RecordSize: u32,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
 };
 
 pub const LPWSCINSTALLNAMESPACE = fn(
@@ -3928,10 +3928,10 @@ pub const LPNSPIOCTL = fn(
     hLookup: ?HANDLE,
     dwControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpvInBuffer: ?*c_void,
+    lpvInBuffer: ?*anyopaque,
     cbInBuffer: u32,
     // TODO: what to do with BytesParamIndex 5?
-    lpvOutBuffer: ?*c_void,
+    lpvOutBuffer: ?*anyopaque,
     cbOutBuffer: u32,
     lpcbBytesReturned: ?*u32,
     lpCompletion: ?*WSACOMPLETION,
@@ -3988,19 +3988,19 @@ pub const LPNSPSTARTUP = fn(
 
 pub const LPNSPV2STARTUP = fn(
     lpProviderId: ?*Guid,
-    ppvClientSessionArg: ?*?*c_void,
+    ppvClientSessionArg: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LPNSPV2CLEANUP = fn(
     lpProviderId: ?*Guid,
-    pvClientSessionArg: ?*c_void,
+    pvClientSessionArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LPNSPV2LOOKUPSERVICEBEGIN = fn(
     lpProviderId: ?*Guid,
     lpqsRestrictions: ?*WSAQUERYSET2W,
     dwControlFlags: u32,
-    lpvClientSessionArg: ?*c_void,
+    lpvClientSessionArg: ?*anyopaque,
     lphLookup: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -4022,12 +4022,12 @@ pub const LPNSPV2SETSERVICEEX = fn(
     lpqsRegInfo: ?*WSAQUERYSET2W,
     essOperation: WSAESETSERVICEOP,
     dwControlFlags: u32,
-    lpvClientSessionArg: ?*c_void,
+    lpvClientSessionArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const LPNSPV2CLIENTSESSIONRUNDOWN = fn(
     lpProviderId: ?*Guid,
-    pvClientSessionArg: ?*c_void,
+    pvClientSessionArg: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const NSPV2_ROUTINE = extern struct {
@@ -4068,7 +4068,7 @@ pub const SERVICE_TYPE_VALUE_ABSA = extern struct {
     dwValueType: u32,
     dwValueSize: u32,
     lpValueName: ?PSTR,
-    lpValue: ?*c_void,
+    lpValue: ?*anyopaque,
 };
 
 pub const SERVICE_TYPE_VALUE_ABSW = extern struct {
@@ -4076,7 +4076,7 @@ pub const SERVICE_TYPE_VALUE_ABSW = extern struct {
     dwValueType: u32,
     dwValueSize: u32,
     lpValueName: ?PWSTR,
-    lpValue: ?*c_void,
+    lpValue: ?*anyopaque,
 };
 
 pub const SERVICE_TYPE_INFO = extern struct {
@@ -4792,10 +4792,10 @@ pub extern "WS2_32" fn WSAIoctl(
     s: ?SOCKET,
     dwIoControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpvInBuffer: ?*c_void,
+    lpvInBuffer: ?*anyopaque,
     cbInBuffer: u32,
     // TODO: what to do with BytesParamIndex 5?
-    lpvOutBuffer: ?*c_void,
+    lpvOutBuffer: ?*anyopaque,
     cbOutBuffer: u32,
     lpcbBytesReturned: ?*u32,
     lpOverlapped: ?*OVERLAPPED,
@@ -5017,10 +5017,10 @@ pub extern "WS2_32" fn WSANSPIoctl(
     hLookup: ?HANDLE,
     dwControlCode: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpvInBuffer: ?*c_void,
+    lpvInBuffer: ?*anyopaque,
     cbInBuffer: u32,
     // TODO: what to do with BytesParamIndex 5?
-    lpvOutBuffer: ?*c_void,
+    lpvOutBuffer: ?*anyopaque,
     cbOutBuffer: u32,
     lpcbBytesReturned: ?*u32,
     lpCompletion: ?*WSACOMPLETION,
@@ -5312,7 +5312,7 @@ pub extern "MSWSOCK" fn TransmitFile(
 pub extern "MSWSOCK" fn AcceptEx(
     sListenSocket: ?SOCKET,
     sAcceptSocket: ?SOCKET,
-    lpOutputBuffer: ?*c_void,
+    lpOutputBuffer: ?*anyopaque,
     dwReceiveDataLength: u32,
     dwLocalAddressLength: u32,
     dwRemoteAddressLength: u32,
@@ -5322,7 +5322,7 @@ pub extern "MSWSOCK" fn AcceptEx(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "MSWSOCK" fn GetAcceptExSockaddrs(
-    lpOutputBuffer: ?*c_void,
+    lpOutputBuffer: ?*anyopaque,
     dwReceiveDataLength: u32,
     dwLocalAddressLength: u32,
     dwRemoteAddressLength: u32,
@@ -5666,7 +5666,7 @@ pub extern "WS2_32" fn WSAProviderCompleteAsyncCall(
 pub extern "MSWSOCK" fn EnumProtocolsA(
     lpiProtocols: ?*i32,
     // TODO: what to do with BytesParamIndex 2?
-    lpProtocolBuffer: ?*c_void,
+    lpProtocolBuffer: ?*anyopaque,
     lpdwBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -5674,7 +5674,7 @@ pub extern "MSWSOCK" fn EnumProtocolsA(
 pub extern "MSWSOCK" fn EnumProtocolsW(
     lpiProtocols: ?*i32,
     // TODO: what to do with BytesParamIndex 2?
-    lpProtocolBuffer: ?*c_void,
+    lpProtocolBuffer: ?*anyopaque,
     lpdwBufferLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -5687,7 +5687,7 @@ pub extern "MSWSOCK" fn GetAddressByNameA(
     dwResolution: u32,
     lpServiceAsyncInfo: ?*SERVICE_ASYNC_INFO,
     // TODO: what to do with BytesParamIndex 7?
-    lpCsaddrBuffer: ?*c_void,
+    lpCsaddrBuffer: ?*anyopaque,
     lpdwBufferLength: ?*u32,
     lpAliasBuffer: ?[*:0]u8,
     lpdwAliasBufferLength: ?*u32,
@@ -5702,7 +5702,7 @@ pub extern "MSWSOCK" fn GetAddressByNameW(
     dwResolution: u32,
     lpServiceAsyncInfo: ?*SERVICE_ASYNC_INFO,
     // TODO: what to do with BytesParamIndex 7?
-    lpCsaddrBuffer: ?*c_void,
+    lpCsaddrBuffer: ?*anyopaque,
     lpdwBufferLength: ?*u32,
     lpAliasBuffer: ?[*:0]u16,
     lpdwAliasBufferLength: ?*u32,
@@ -5763,7 +5763,7 @@ pub extern "MSWSOCK" fn GetServiceA(
     lpServiceName: ?PSTR,
     dwProperties: u32,
     // TODO: what to do with BytesParamIndex 5?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpdwBufferSize: ?*u32,
     lpServiceAsyncInfo: ?*SERVICE_ASYNC_INFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -5775,7 +5775,7 @@ pub extern "MSWSOCK" fn GetServiceW(
     lpServiceName: ?PWSTR,
     dwProperties: u32,
     // TODO: what to do with BytesParamIndex 5?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpdwBufferSize: ?*u32,
     lpServiceAsyncInfo: ?*SERVICE_ASYNC_INFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -5914,20 +5914,20 @@ pub extern "WS2_32" fn GetNameInfoW(
 pub extern "WS2_32" fn inet_pton(
     Family: i32,
     pszAddrString: ?[*:0]const u8,
-    pAddrBuf: ?*c_void,
+    pAddrBuf: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WS2_32" fn InetPtonW(
     Family: i32,
     pszAddrString: ?[*:0]const u16,
-    pAddrBuf: ?*c_void,
+    pAddrBuf: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WS2_32" fn inet_ntop(
     Family: i32,
-    pAddr: ?*const c_void,
+    pAddr: ?*const anyopaque,
     pStringBuf: [*:0]u8,
     StringBufSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?PSTR;
@@ -5935,7 +5935,7 @@ pub extern "WS2_32" fn inet_ntop(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "WS2_32" fn InetNtopW(
     Family: i32,
-    pAddr: ?*const c_void,
+    pAddr: ?*const anyopaque,
     pStringBuf: [*:0]u16,
     StringBufSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) ?PWSTR;

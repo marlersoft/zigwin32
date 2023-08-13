@@ -165,7 +165,7 @@ pub extern "USER32" fn PhysicalToLogicalPointForPerMonitorDPI(
 pub extern "USER32" fn SystemParametersInfoForDpi(
     uiAction: u32,
     uiParam: u32,
-    pvParam: ?*c_void,
+    pvParam: ?*anyopaque,
     fWinIni: u32,
     dpi: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

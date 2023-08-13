@@ -15,18 +15,18 @@ pub const IMarshal = extern struct {
         GetUnmarshalClass: fn(
             self: *const IMarshal,
             riid: ?*const Guid,
-            pv: ?*c_void,
+            pv: ?*anyopaque,
             dwDestContext: u32,
-            pvDestContext: ?*c_void,
+            pvDestContext: ?*anyopaque,
             mshlflags: u32,
             pCid: ?*Guid,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMarshalSizeMax: fn(
             self: *const IMarshal,
             riid: ?*const Guid,
-            pv: ?*c_void,
+            pv: ?*anyopaque,
             dwDestContext: u32,
-            pvDestContext: ?*c_void,
+            pvDestContext: ?*anyopaque,
             mshlflags: u32,
             pSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -34,16 +34,16 @@ pub const IMarshal = extern struct {
             self: *const IMarshal,
             pStm: ?*IStream,
             riid: ?*const Guid,
-            pv: ?*c_void,
+            pv: ?*anyopaque,
             dwDestContext: u32,
-            pvDestContext: ?*c_void,
+            pvDestContext: ?*anyopaque,
             mshlflags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnmarshalInterface: fn(
             self: *const IMarshal,
             pStm: ?*IStream,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReleaseMarshalData: fn(
             self: *const IMarshal,
@@ -58,19 +58,19 @@ pub const IMarshal = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMarshal_GetUnmarshalClass(self: *const T, riid: ?*const Guid, pv: ?*c_void, dwDestContext: u32, pvDestContext: ?*c_void, mshlflags: u32, pCid: ?*Guid) callconv(.Inline) HRESULT {
+        pub fn IMarshal_GetUnmarshalClass(self: *const T, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pCid: ?*Guid) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMarshal.VTable, self.vtable).GetUnmarshalClass(@ptrCast(*const IMarshal, self), riid, pv, dwDestContext, pvDestContext, mshlflags, pCid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMarshal_GetMarshalSizeMax(self: *const T, riid: ?*const Guid, pv: ?*c_void, dwDestContext: u32, pvDestContext: ?*c_void, mshlflags: u32, pSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IMarshal_GetMarshalSizeMax(self: *const T, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMarshal.VTable, self.vtable).GetMarshalSizeMax(@ptrCast(*const IMarshal, self), riid, pv, dwDestContext, pvDestContext, mshlflags, pSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMarshal_MarshalInterface(self: *const T, pStm: ?*IStream, riid: ?*const Guid, pv: ?*c_void, dwDestContext: u32, pvDestContext: ?*c_void, mshlflags: u32) callconv(.Inline) HRESULT {
+        pub fn IMarshal_MarshalInterface(self: *const T, pStm: ?*IStream, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMarshal.VTable, self.vtable).MarshalInterface(@ptrCast(*const IMarshal, self), pStm, riid, pv, dwDestContext, pvDestContext, mshlflags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMarshal_UnmarshalInterface(self: *const T, pStm: ?*IStream, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IMarshal_UnmarshalInterface(self: *const T, pStm: ?*IStream, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMarshal.VTable, self.vtable).UnmarshalInterface(@ptrCast(*const IMarshal, self), pStm, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -560,7 +560,7 @@ pub extern "OLE32" fn CoGetMarshalSizeMax(
     riid: ?*const Guid,
     pUnk: ?*IUnknown,
     dwDestContext: u32,
-    pvDestContext: ?*c_void,
+    pvDestContext: ?*anyopaque,
     mshlflags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -570,7 +570,7 @@ pub extern "OLE32" fn CoMarshalInterface(
     riid: ?*const Guid,
     pUnk: ?*IUnknown,
     dwDestContext: u32,
-    pvDestContext: ?*c_void,
+    pvDestContext: ?*anyopaque,
     mshlflags: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -578,7 +578,7 @@ pub extern "OLE32" fn CoMarshalInterface(
 pub extern "OLE32" fn CoUnmarshalInterface(
     pStm: ?*IStream,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -603,7 +603,7 @@ pub extern "OLE32" fn CoGetStandardMarshal(
     riid: ?*const Guid,
     pUnk: ?*IUnknown,
     dwDestContext: u32,
-    pvDestContext: ?*c_void,
+    pvDestContext: ?*anyopaque,
     mshlflags: u32,
     ppMarshal: ?*?*IMarshal,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

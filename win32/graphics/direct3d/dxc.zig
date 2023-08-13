@@ -38,14 +38,14 @@ pub const DXC_CP_UTF8 = DXC_CP.UTF8;
 pub const DxcCreateInstanceProc = fn(
     rclsid: ?*const Guid,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const DxcCreateInstance2Proc = fn(
     pMalloc: ?*IMalloc,
     rclsid: ?*const Guid,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const DxcShaderHash = extern struct {
@@ -60,7 +60,7 @@ pub const IDxcBlob = extern struct {
         base: IUnknown.VTable,
         GetBufferPointer: fn(
             self: *const IDxcBlob,
-        ) callconv(@import("std").os.windows.WINAPI) ?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
         GetBufferSize: fn(
             self: *const IDxcBlob,
         ) callconv(@import("std").os.windows.WINAPI) usize,
@@ -69,7 +69,7 @@ pub const IDxcBlob = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcBlob_GetBufferPointer(self: *const T) callconv(.Inline) ?*c_void {
+        pub fn IDxcBlob_GetBufferPointer(self: *const T) callconv(.Inline) ?*anyopaque {
             return @ptrCast(*const IDxcBlob.VTable, self.vtable).GetBufferPointer(@ptrCast(*const IDxcBlob, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -179,7 +179,7 @@ pub const IDxcIncludeHandler = extern struct {
 };
 
 pub const DxcBuffer = extern struct {
-    Ptr: ?*const c_void,
+    Ptr: ?*const anyopaque,
     Size: usize,
     Encoding: u32,
 };
@@ -268,7 +268,7 @@ pub const IDxcLibrary = extern struct {
         CreateBlobWithEncodingFromPinned: fn(
             self: *const IDxcLibrary,
             // TODO: what to do with BytesParamIndex 1?
-            pText: ?*const c_void,
+            pText: ?*const anyopaque,
             size: u32,
             codePage: DXC_CP,
             pBlobEncoding: ?*?*IDxcBlobEncoding,
@@ -276,7 +276,7 @@ pub const IDxcLibrary = extern struct {
         CreateBlobWithEncodingOnHeapCopy: fn(
             self: *const IDxcLibrary,
             // TODO: what to do with BytesParamIndex 1?
-            pText: ?*const c_void,
+            pText: ?*const anyopaque,
             size: u32,
             codePage: DXC_CP,
             pBlobEncoding: ?*?*IDxcBlobEncoding,
@@ -284,7 +284,7 @@ pub const IDxcLibrary = extern struct {
         CreateBlobWithEncodingOnMalloc: fn(
             self: *const IDxcLibrary,
             // TODO: what to do with BytesParamIndex 2?
-            pText: ?*const c_void,
+            pText: ?*const anyopaque,
             pIMalloc: ?*IMalloc,
             size: u32,
             codePage: DXC_CP,
@@ -326,15 +326,15 @@ pub const IDxcLibrary = extern struct {
             return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobFromFile(@ptrCast(*const IDxcLibrary, self), pFileName, codePage, pBlobEncoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateBlobWithEncodingFromPinned(self: *const T, pText: ?*const c_void, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+        pub fn IDxcLibrary_CreateBlobWithEncodingFromPinned(self: *const T, pText: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobWithEncodingFromPinned(@ptrCast(*const IDxcLibrary, self), pText, size, codePage, pBlobEncoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateBlobWithEncodingOnHeapCopy(self: *const T, pText: ?*const c_void, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+        pub fn IDxcLibrary_CreateBlobWithEncodingOnHeapCopy(self: *const T, pText: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobWithEncodingOnHeapCopy(@ptrCast(*const IDxcLibrary, self), pText, size, codePage, pBlobEncoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateBlobWithEncodingOnMalloc(self: *const T, pText: ?*const c_void, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+        pub fn IDxcLibrary_CreateBlobWithEncodingOnMalloc(self: *const T, pText: ?*const anyopaque, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobWithEncodingOnMalloc(@ptrCast(*const IDxcLibrary, self), pText, pIMalloc, size, codePage, pBlobEncoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -531,7 +531,7 @@ pub const IDxcUtils = extern struct {
         CreateBlobFromPinned: fn(
             self: *const IDxcUtils,
             // TODO: what to do with BytesParamIndex 1?
-            pData: ?*const c_void,
+            pData: ?*const anyopaque,
             size: u32,
             codePage: DXC_CP,
             pBlobEncoding: ?*?*IDxcBlobEncoding,
@@ -539,7 +539,7 @@ pub const IDxcUtils = extern struct {
         MoveToBlob: fn(
             self: *const IDxcUtils,
             // TODO: what to do with BytesParamIndex 2?
-            pData: ?*const c_void,
+            pData: ?*const anyopaque,
             pIMalloc: ?*IMalloc,
             size: u32,
             codePage: DXC_CP,
@@ -548,7 +548,7 @@ pub const IDxcUtils = extern struct {
         CreateBlob: fn(
             self: *const IDxcUtils,
             // TODO: what to do with BytesParamIndex 1?
-            pData: ?*const c_void,
+            pData: ?*const anyopaque,
             size: u32,
             codePage: DXC_CP,
             pBlobEncoding: ?*?*IDxcBlobEncoding,
@@ -582,14 +582,14 @@ pub const IDxcUtils = extern struct {
             self: *const IDxcUtils,
             pShader: ?*const DxcBuffer,
             DxcPart: u32,
-            ppPartData: ?*?*c_void,
+            ppPartData: ?*?*anyopaque,
             pPartSizeInBytes: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateReflection: fn(
             self: *const IDxcUtils,
             pData: ?*const DxcBuffer,
             iid: ?*const Guid,
-            ppvReflection: ?*?*c_void,
+            ppvReflection: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BuildArguments: fn(
             self: *const IDxcUtils,
@@ -617,15 +617,15 @@ pub const IDxcUtils = extern struct {
             return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateBlobFromBlob(@ptrCast(*const IDxcUtils, self), pBlob, offset, length, ppResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_CreateBlobFromPinned(self: *const T, pData: ?*const c_void, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+        pub fn IDxcUtils_CreateBlobFromPinned(self: *const T, pData: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateBlobFromPinned(@ptrCast(*const IDxcUtils, self), pData, size, codePage, pBlobEncoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_MoveToBlob(self: *const T, pData: ?*const c_void, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+        pub fn IDxcUtils_MoveToBlob(self: *const T, pData: ?*const anyopaque, pIMalloc: ?*IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcUtils.VTable, self.vtable).MoveToBlob(@ptrCast(*const IDxcUtils, self), pData, pIMalloc, size, codePage, pBlobEncoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_CreateBlob(self: *const T, pData: ?*const c_void, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
+        pub fn IDxcUtils_CreateBlob(self: *const T, pData: ?*const anyopaque, size: u32, codePage: DXC_CP, pBlobEncoding: ?*?*IDxcBlobEncoding) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateBlob(@ptrCast(*const IDxcUtils, self), pData, size, codePage, pBlobEncoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -649,11 +649,11 @@ pub const IDxcUtils = extern struct {
             return @ptrCast(*const IDxcUtils.VTable, self.vtable).GetBlobAsUtf16(@ptrCast(*const IDxcUtils, self), pBlob, pBlobEncoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_GetDxilContainerPart(self: *const T, pShader: ?*const DxcBuffer, DxcPart: u32, ppPartData: ?*?*c_void, pPartSizeInBytes: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDxcUtils_GetDxilContainerPart(self: *const T, pShader: ?*const DxcBuffer, DxcPart: u32, ppPartData: ?*?*anyopaque, pPartSizeInBytes: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcUtils.VTable, self.vtable).GetDxilContainerPart(@ptrCast(*const IDxcUtils, self), pShader, DxcPart, ppPartData, pPartSizeInBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcUtils_CreateReflection(self: *const T, pData: ?*const DxcBuffer, iid: ?*const Guid, ppvReflection: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDxcUtils_CreateReflection(self: *const T, pData: ?*const DxcBuffer, iid: ?*const Guid, ppvReflection: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcUtils.VTable, self.vtable).CreateReflection(@ptrCast(*const IDxcUtils, self), pData, iid, ppvReflection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -708,7 +708,7 @@ pub const IDxcResult = extern struct {
             self: *const IDxcResult,
             dxcOutKind: DXC_OUT_KIND,
             iid: ?*const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?*?*anyopaque,
             ppOutputName: ?*?*IDxcBlobUtf16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNumOutputs: fn(
@@ -730,7 +730,7 @@ pub const IDxcResult = extern struct {
             return @ptrCast(*const IDxcResult.VTable, self.vtable).HasOutput(@ptrCast(*const IDxcResult, self), dxcOutKind);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcResult_GetOutput(self: *const T, dxcOutKind: DXC_OUT_KIND, iid: ?*const Guid, ppvObject: ?*?*c_void, ppOutputName: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
+        pub fn IDxcResult_GetOutput(self: *const T, dxcOutKind: DXC_OUT_KIND, iid: ?*const Guid, ppvObject: ?*?*anyopaque, ppOutputName: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcResult.VTable, self.vtable).GetOutput(@ptrCast(*const IDxcResult, self), dxcOutKind, iid, ppvObject, ppOutputName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -761,7 +761,7 @@ pub const IDxcExtraOutputs = extern struct {
             self: *const IDxcExtraOutputs,
             uIndex: u32,
             iid: ?*const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?*?*anyopaque,
             ppOutputType: ?*?*IDxcBlobUtf16,
             ppOutputName: ?*?*IDxcBlobUtf16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -774,7 +774,7 @@ pub const IDxcExtraOutputs = extern struct {
             return @ptrCast(*const IDxcExtraOutputs.VTable, self.vtable).GetOutputCount(@ptrCast(*const IDxcExtraOutputs, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcExtraOutputs_GetOutput(self: *const T, uIndex: u32, iid: ?*const Guid, ppvObject: ?*?*c_void, ppOutputType: ?*?*IDxcBlobUtf16, ppOutputName: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
+        pub fn IDxcExtraOutputs_GetOutput(self: *const T, uIndex: u32, iid: ?*const Guid, ppvObject: ?*?*anyopaque, ppOutputType: ?*?*IDxcBlobUtf16, ppOutputName: ?*?*IDxcBlobUtf16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcExtraOutputs.VTable, self.vtable).GetOutput(@ptrCast(*const IDxcExtraOutputs, self), uIndex, iid, ppvObject, ppOutputType, ppOutputName);
         }
     };}
@@ -793,24 +793,24 @@ pub const IDxcCompiler3 = extern struct {
             argCount: u32,
             pIncludeHandler: ?*IDxcIncludeHandler,
             riid: ?*const Guid,
-            ppResult: ?*?*c_void,
+            ppResult: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Disassemble: fn(
             self: *const IDxcCompiler3,
             pObject: ?*const DxcBuffer,
             riid: ?*const Guid,
-            ppResult: ?*?*c_void,
+            ppResult: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompiler3_Compile(self: *const T, pSource: ?*const DxcBuffer, pArguments: ?[*]?PWSTR, argCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, riid: ?*const Guid, ppResult: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDxcCompiler3_Compile(self: *const T, pSource: ?*const DxcBuffer, pArguments: ?[*]?PWSTR, argCount: u32, pIncludeHandler: ?*IDxcIncludeHandler, riid: ?*const Guid, ppResult: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcCompiler3.VTable, self.vtable).Compile(@ptrCast(*const IDxcCompiler3, self), pSource, pArguments, argCount, pIncludeHandler, riid, ppResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcCompiler3_Disassemble(self: *const T, pObject: ?*const DxcBuffer, riid: ?*const Guid, ppResult: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDxcCompiler3_Disassemble(self: *const T, pObject: ?*const DxcBuffer, riid: ?*const Guid, ppResult: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcCompiler3.VTable, self.vtable).Disassemble(@ptrCast(*const IDxcCompiler3, self), pObject, riid, ppResult);
         }
     };}
@@ -964,7 +964,7 @@ pub const IDxcContainerReflection = extern struct {
             self: *const IDxcContainerReflection,
             idx: u32,
             iid: ?*const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -991,7 +991,7 @@ pub const IDxcContainerReflection = extern struct {
             return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).FindFirstPartKind(@ptrCast(*const IDxcContainerReflection, self), kind, pResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcContainerReflection_GetPartReflection(self: *const T, idx: u32, iid: ?*const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDxcContainerReflection_GetPartReflection(self: *const T, idx: u32, iid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcContainerReflection.VTable, self.vtable).GetPartReflection(@ptrCast(*const IDxcContainerReflection, self), idx, iid, ppvObject);
         }
     };}
@@ -1392,14 +1392,14 @@ pub const IDxcPdbUtils = extern struct {
 pub extern "dxcompiler" fn DxcCreateInstance(
     rclsid: ?*const Guid,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "dxcompiler" fn DxcCreateInstance2(
     pMalloc: ?*IMalloc,
     rclsid: ?*const Guid,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 

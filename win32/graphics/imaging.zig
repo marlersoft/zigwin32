@@ -2164,7 +2164,7 @@ pub const IWICProgressCallback = extern struct {
 };
 
 pub const PFNProgressNotification = fn(
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     uFrameNum: u32,
     operation: WICProgressOperation,
     dblProgress: f64,
@@ -2179,7 +2179,7 @@ pub const IWICBitmapCodecProgressNotification = extern struct {
         RegisterProgressNotification: fn(
             self: *const IWICBitmapCodecProgressNotification,
             pfnProgressNotification: ?PFNProgressNotification,
-            pvData: ?*c_void,
+            pvData: ?*anyopaque,
             dwProgressFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2187,7 +2187,7 @@ pub const IWICBitmapCodecProgressNotification = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWICBitmapCodecProgressNotification_RegisterProgressNotification(self: *const T, pfnProgressNotification: ?PFNProgressNotification, pvData: ?*c_void, dwProgressFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IWICBitmapCodecProgressNotification_RegisterProgressNotification(self: *const T, pfnProgressNotification: ?PFNProgressNotification, pvData: ?*anyopaque, dwProgressFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWICBitmapCodecProgressNotification.VTable, self.vtable).RegisterProgressNotification(@ptrCast(*const IWICBitmapCodecProgressNotification, self), pfnProgressNotification, pvData, dwProgressFlags);
         }
     };}

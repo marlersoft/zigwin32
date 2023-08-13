@@ -1981,7 +1981,7 @@ pub const FNCERTSRVISSERVERONLINEW = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVBACKUPGETDYNAMICFILELISTW = fn(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     ppwszzFileList: ?*?*u16,
     pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1990,53 +1990,53 @@ pub const FNCERTSRVBACKUPPREPAREW = fn(
     pwszServerName: ?[*:0]const u16,
     grbitJet: u32,
     dwBackupFlags: u32,
-    phbc: ?*?*c_void,
+    phbc: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVBACKUPGETDATABASENAMESW = fn(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     ppwszzAttachmentInformation: ?*?*u16,
     pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVBACKUPOPENFILEW = fn(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     pwszAttachmentName: ?[*:0]const u16,
     cbReadHintSize: u32,
     pliFileSize: ?*LARGE_INTEGER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVBACKUPREAD = fn(
-    hbc: ?*c_void,
-    pvBuffer: ?*c_void,
+    hbc: ?*anyopaque,
+    pvBuffer: ?*anyopaque,
     cbBuffer: u32,
     pcbRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVBACKUPCLOSE = fn(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVBACKUPGETBACKUPLOGSW = fn(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     ppwszzBackupLogFiles: ?*?*u16,
     pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVBACKUPTRUNCATELOGS = fn(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVBACKUPEND = fn(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVBACKUPFREE = fn(
-    pv: ?*c_void,
+    pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FNCERTSRVRESTOREGETDATABASELOCATIONSW = fn(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     ppwszzDatabaseLocationList: ?*?*u16,
     pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2044,11 +2044,11 @@ pub const FNCERTSRVRESTOREGETDATABASELOCATIONSW = fn(
 pub const FNCERTSRVRESTOREPREPAREW = fn(
     pwszServerName: ?[*:0]const u16,
     dwRestoreFlags: u32,
-    phbc: ?*?*c_void,
+    phbc: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVRESTOREREGISTERW = fn(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     pwszCheckPointFilePath: ?[*:0]const u16,
     pwszLogPath: ?[*:0]const u16,
     rgrstmap: ?*CSEDB_RSTMAPW,
@@ -2059,12 +2059,12 @@ pub const FNCERTSRVRESTOREREGISTERW = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVRESTOREREGISTERCOMPLETE = fn(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     hrRestoreState: HRESULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVRESTOREEND = fn(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const FNCERTSRVSERVERCONTROLW = fn(
@@ -15013,13 +15013,13 @@ pub const IEnroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT,
         getMyStore: fn(
             self: *const IEnroll,
-        ) callconv(@import("std").os.windows.WINAPI) ?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
         getCAStore: fn(
             self: *const IEnroll,
-        ) callconv(@import("std").os.windows.WINAPI) ?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
         getROOTHStore: fn(
             self: *const IEnroll,
-        ) callconv(@import("std").os.windows.WINAPI) ?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
         enumProvidersWStr: fn(
             self: *const IEnroll,
             dwIndex: i32,
@@ -15353,15 +15353,15 @@ pub const IEnroll = extern struct {
             return @ptrCast(*const IEnroll.VTable, self.vtable).getCertContextFromPKCS7(@ptrCast(*const IEnroll, self), pBlobPKCS7);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnroll_getMyStore(self: *const T) callconv(.Inline) ?*c_void {
+        pub fn IEnroll_getMyStore(self: *const T) callconv(.Inline) ?*anyopaque {
             return @ptrCast(*const IEnroll.VTable, self.vtable).getMyStore(@ptrCast(*const IEnroll, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnroll_getCAStore(self: *const T) callconv(.Inline) ?*c_void {
+        pub fn IEnroll_getCAStore(self: *const T) callconv(.Inline) ?*anyopaque {
             return @ptrCast(*const IEnroll.VTable, self.vtable).getCAStore(@ptrCast(*const IEnroll, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnroll_getROOTHStore(self: *const T) callconv(.Inline) ?*c_void {
+        pub fn IEnroll_getROOTHStore(self: *const T) callconv(.Inline) ?*anyopaque {
             return @ptrCast(*const IEnroll.VTable, self.vtable).getROOTHStore(@ptrCast(*const IEnroll, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15672,19 +15672,19 @@ pub const IEnroll2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHStoreMy: fn(
             self: *const IEnroll2,
-            hStore: ?*c_void,
+            hStore: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHStoreCA: fn(
             self: *const IEnroll2,
-            hStore: ?*c_void,
+            hStore: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHStoreROOT: fn(
             self: *const IEnroll2,
-            hStore: ?*c_void,
+            hStore: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetHStoreRequest: fn(
             self: *const IEnroll2,
-            hStore: ?*c_void,
+            hStore: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LimitExchangeKeyToEncipherment: fn(
@@ -15751,19 +15751,19 @@ pub const IEnroll2 = extern struct {
             return @ptrCast(*const IEnroll2.VTable, self.vtable).get_HashAlgID(@ptrCast(*const IEnroll2, self), hashAlgID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnroll2_SetHStoreMy(self: *const T, hStore: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IEnroll2_SetHStoreMy(self: *const T, hStore: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnroll2.VTable, self.vtable).SetHStoreMy(@ptrCast(*const IEnroll2, self), hStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnroll2_SetHStoreCA(self: *const T, hStore: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IEnroll2_SetHStoreCA(self: *const T, hStore: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnroll2.VTable, self.vtable).SetHStoreCA(@ptrCast(*const IEnroll2, self), hStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnroll2_SetHStoreROOT(self: *const T, hStore: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IEnroll2_SetHStoreROOT(self: *const T, hStore: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnroll2.VTable, self.vtable).SetHStoreROOT(@ptrCast(*const IEnroll2, self), hStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnroll2_SetHStoreRequest(self: *const T, hStore: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IEnroll2_SetHStoreRequest(self: *const T, hStore: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnroll2.VTable, self.vtable).SetHStoreRequest(@ptrCast(*const IEnroll2, self), hStore);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15900,7 +15900,7 @@ pub const IEnroll4 = extern struct {
             self: *const IEnroll4,
             lIndex: i32,
             lDesiredProperty: PENDING_REQUEST_DESIRED_PROPERTY,
-            ppProperty: ?*c_void,
+            ppProperty: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         removePendingRequestWStr: fn(
             self: *const IEnroll4,
@@ -16045,7 +16045,7 @@ pub const IEnroll4 = extern struct {
             return @ptrCast(*const IEnroll4.VTable, self.vtable).setPendingRequestInfoWStr(@ptrCast(*const IEnroll4, self), lRequestID, pwszCADNS, pwszCAName, pwszFriendlyName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnroll4_enumPendingRequestWStr(self: *const T, lIndex: i32, lDesiredProperty: PENDING_REQUEST_DESIRED_PROPERTY, ppProperty: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IEnroll4_enumPendingRequestWStr(self: *const T, lIndex: i32, lDesiredProperty: PENDING_REQUEST_DESIRED_PROPERTY, ppProperty: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnroll4.VTable, self.vtable).enumPendingRequestWStr(@ptrCast(*const IEnroll4, self), lIndex, lDesiredProperty, ppProperty);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -16215,7 +16215,7 @@ pub extern "certadm" fn CertSrvIsServerOnlineW(
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupGetDynamicFileListW(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     ppwszzFileList: ?*?PWSTR,
     pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -16225,19 +16225,19 @@ pub extern "certadm" fn CertSrvBackupPrepareW(
     pwszServerName: ?[*:0]const u16,
     grbitJet: u32,
     dwBackupFlags: CSBACKUP_TYPE,
-    phbc: ?*?*c_void,
+    phbc: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupGetDatabaseNamesW(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     ppwszzAttachmentInformation: ?*?PWSTR,
     pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupOpenFileW(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     pwszAttachmentName: ?[*:0]const u16,
     cbReadHintSize: u32,
     pliFileSize: ?*LARGE_INTEGER,
@@ -16245,42 +16245,42 @@ pub extern "certadm" fn CertSrvBackupOpenFileW(
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupRead(
-    hbc: ?*c_void,
-    pvBuffer: ?*c_void,
+    hbc: ?*anyopaque,
+    pvBuffer: ?*anyopaque,
     cbBuffer: u32,
     pcbRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupClose(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupGetBackupLogsW(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     ppwszzBackupLogFiles: ?*?PWSTR,
     pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupTruncateLogs(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupEnd(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvBackupFree(
-    pv: ?*c_void,
+    pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvRestoreGetDatabaseLocationsW(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     ppwszzDatabaseLocationList: ?*?PWSTR,
     pcbSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -16289,12 +16289,12 @@ pub extern "certadm" fn CertSrvRestoreGetDatabaseLocationsW(
 pub extern "certadm" fn CertSrvRestorePrepareW(
     pwszServerName: ?[*:0]const u16,
     dwRestoreFlags: u32,
-    phbc: ?*?*c_void,
+    phbc: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvRestoreRegisterW(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     pwszCheckPointFilePath: ?[*:0]const u16,
     pwszLogPath: ?[*:0]const u16,
     rgrstmap: ?*CSEDB_RSTMAPW,
@@ -16306,7 +16306,7 @@ pub extern "certadm" fn CertSrvRestoreRegisterW(
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvRestoreRegisterThroughFile(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     pwszCheckPointFilePath: ?[*:0]const u16,
     pwszLogPath: ?[*:0]const u16,
     rgrstmap: ?*CSEDB_RSTMAPW,
@@ -16318,13 +16318,13 @@ pub extern "certadm" fn CertSrvRestoreRegisterThroughFile(
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvRestoreRegisterComplete(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
     hrRestoreState: HRESULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "certadm" fn CertSrvRestoreEnd(
-    hbc: ?*c_void,
+    hbc: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
@@ -16377,7 +16377,7 @@ pub extern "certpoleng" fn PstValidate(
     pTargetName: ?*UNICODE_STRING,
     bIsClient: BOOL,
     pRequestedIssuancePolicy: ?*CERT_USAGE_MATCH,
-    phAdditionalCertStore: ?*?*c_void,
+    phAdditionalCertStore: ?*?*anyopaque,
     pCert: ?*const CERT_CONTEXT,
     pProvGUID: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -16386,7 +16386,7 @@ pub extern "certpoleng" fn PstValidate(
 pub extern "certpoleng" fn PstMapCertificate(
     pCert: ?*const CERT_CONTEXT,
     pTokenInformationType: ?*LSA_TOKEN_INFORMATION_TYPE,
-    ppTokenInformation: ?*?*c_void,
+    ppTokenInformation: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.1'

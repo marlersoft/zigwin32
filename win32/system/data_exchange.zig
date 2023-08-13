@@ -492,7 +492,7 @@ pub const METAFILEPICT = extern struct {
 pub const COPYDATASTRUCT = extern struct {
     dwData: usize,
     cbData: u32,
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
 };
 
 

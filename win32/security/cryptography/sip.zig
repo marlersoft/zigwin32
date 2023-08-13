@@ -47,7 +47,7 @@ pub const SIP_SUBJECTINFO = extern struct {
         psCatMember: ?*MS_ADDINFO_CATALOGMEMBER,
         psBlob: ?*MS_ADDINFO_BLOB,
     },
-    pClientData: ?*c_void,
+    pClientData: ?*anyopaque,
 };
 
 pub const MS_ADDINFO_FLAT = extern struct {

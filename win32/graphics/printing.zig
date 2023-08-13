@@ -2724,7 +2724,7 @@ pub const PRINTER_NOTIFY_INFO_DATA = extern struct {
         adwData: [2]u32,
         Data: extern struct {
             cbBuf: u32,
-            pBuf: ?*c_void,
+            pBuf: ?*anyopaque,
         },
     },
 };
@@ -2925,7 +2925,7 @@ pub const PrintPropertyValue = extern struct {
         propertyInt64: i64,
         propertyBlob: extern struct {
             cbBuf: u32,
-            pBuf: ?*c_void,
+            pBuf: ?*anyopaque,
         },
     },
 };
@@ -3112,7 +3112,7 @@ pub const DOCEVENT_CREATEDCPRE = extern struct {
 pub const DOCEVENT_ESCAPE = extern struct {
     iEscape: i32,
     cjInput: i32,
-    pvInData: ?*c_void,
+    pvInData: ?*anyopaque,
 };
 
 pub const PRINTER_EVENT_ATTRIBUTES_INFO = extern struct {
@@ -3191,13 +3191,13 @@ pub const PUBLISHERINFO = extern struct {
 
 pub const OEMDMPARAM = extern struct {
     cbSize: u32,
-    pdriverobj: ?*c_void,
+    pdriverobj: ?*anyopaque,
     hPrinter: ?HANDLE,
     hModule: ?HANDLE,
     pPublicDMIn: ?*DEVMODEA,
     pPublicDMOut: ?*DEVMODEA,
-    pOEMDMIn: ?*c_void,
-    pOEMDMOut: ?*c_void,
+    pOEMDMIn: ?*anyopaque,
+    pOEMDMOut: ?*anyopaque,
     cbBufSize: u32,
 };
 
@@ -3215,10 +3215,10 @@ pub const USERDATA = extern struct {
 };
 
 pub const PFN_DrvGetDriverSetting = fn(
-    pdriverobj: ?*c_void,
+    pdriverobj: ?*anyopaque,
     Feature: ?[*:0]const u8,
     // TODO: what to do with BytesParamIndex 3?
-    pOutput: ?*c_void,
+    pOutput: ?*anyopaque,
     cbSize: u32,
     pcbNeeded: ?*u32,
     pdwOptionsReturned: ?*u32,
@@ -3231,8 +3231,8 @@ pub const PFN_DrvUpgradeRegistrySetting = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFN_DrvUpdateUISetting = fn(
-    pdriverobj: ?*c_void,
-    pOptItem: ?*c_void,
+    pdriverobj: ?*anyopaque,
+    pOptItem: ?*anyopaque,
     dwPreviousSelection: u32,
     dwMode: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -3268,13 +3268,13 @@ pub const OEMCUIPPARAM = extern struct {
     hModule: ?HANDLE,
     hOEMHeap: ?HANDLE,
     pPublicDM: ?*DEVMODEA,
-    pOEMDM: ?*c_void,
+    pOEMDM: ?*anyopaque,
     dwFlags: u32,
     pDrvOptItems: ?*OPTITEM,
     cDrvOptItems: u32,
     pOEMOptItems: ?*OPTITEM,
     cOEMOptItems: u32,
-    pOEMUserData: ?*c_void,
+    pOEMUserData: ?*anyopaque,
     OEMCUIPCallback: ?OEMCUIPCALLBACK,
 };
 
@@ -3286,10 +3286,10 @@ pub const OEMUIPSPARAM = extern struct {
     hModule: ?HANDLE,
     hOEMHeap: ?HANDLE,
     pPublicDM: ?*DEVMODEA,
-    pOEMDM: ?*c_void,
-    pOEMUserData: ?*c_void,
+    pOEMDM: ?*anyopaque,
+    pOEMUserData: ?*anyopaque,
     dwFlags: u32,
-    pOemEntry: ?*c_void,
+    pOemEntry: ?*anyopaque,
 };
 
 pub const EATTRIBUTE_DATATYPE = enum(i32) {
@@ -3396,7 +3396,7 @@ pub const IPrintCoreHelper = extern struct {
             pUnkOuter: ?*IUnknown,
             dwClsContext: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3435,7 +3435,7 @@ pub const IPrintCoreHelper = extern struct {
             return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).SetFontSubstitution(@ptrCast(*const IPrintCoreHelper, self), pszTrueTypeFontName, pszDevFontName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintCoreHelper_CreateInstanceOfMSXMLObject(self: *const T, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPrintCoreHelper_CreateInstanceOfMSXMLObject(self: *const T, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintCoreHelper.VTable, self.vtable).CreateInstanceOfMSXMLObject(@ptrCast(*const IPrintCoreHelper, self), rclsid, pUnkOuter, dwClsContext, riid, ppv);
         }
     };}
@@ -3559,7 +3559,7 @@ pub const IPrintOemCommon = extern struct {
             self: *const IPrintOemCommon,
             dwMode: u32,
             // TODO: what to do with BytesParamIndex 2?
-            pBuffer: ?*c_void,
+            pBuffer: ?*anyopaque,
             cbSize: u32,
             pcbNeeded: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3573,7 +3573,7 @@ pub const IPrintOemCommon = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemCommon_GetInfo(self: *const T, dwMode: u32, pBuffer: ?*c_void, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IPrintOemCommon_GetInfo(self: *const T, dwMode: u32, pBuffer: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintOemCommon.VTable, self.vtable).GetInfo(@ptrCast(*const IPrintOemCommon, self), dwMode, pBuffer, cbSize, pcbNeeded);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3613,7 +3613,7 @@ pub const IPrintOemUI = extern struct {
             poemuiobj: ?*OEMUIOBJ,
             pDQPInfo: ?*DEVQUERYPRINT_INFO,
             pPublicDM: ?*DEVMODEA,
-            pOEMDM: ?*c_void,
+            pOEMDM: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeviceCapabilitiesA: fn(
             self: *const IPrintOemUI,
@@ -3621,9 +3621,9 @@ pub const IPrintOemUI = extern struct {
             hPrinter: ?HANDLE,
             pDeviceName: ?PWSTR,
             wCapability: u16,
-            pOutput: ?*c_void,
+            pOutput: ?*anyopaque,
             pPublicDM: ?*DEVMODEA,
-            pOEMDM: ?*c_void,
+            pOEMDM: ?*anyopaque,
             dwOld: u32,
             dwResult: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3651,7 +3651,7 @@ pub const IPrintOemUI = extern struct {
             hPrinter: ?HANDLE,
             poemuiobj: ?*OEMUIOBJ,
             pPublicDM: ?*DEVMODEA,
-            pOEMDM: ?*c_void,
+            pOEMDM: ?*anyopaque,
             ulQueryMode: u32,
             pvProfileData: [*]u8,
             pcbProfileData: ?*u32,
@@ -3691,11 +3691,11 @@ pub const IPrintOemUI = extern struct {
             return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DevicePropertySheets(@ptrCast(*const IPrintOemUI, self), pPSUIInfo, lParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_DevQueryPrintEx(self: *const T, poemuiobj: ?*OEMUIOBJ, pDQPInfo: ?*DEVQUERYPRINT_INFO, pPublicDM: ?*DEVMODEA, pOEMDM: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPrintOemUI_DevQueryPrintEx(self: *const T, poemuiobj: ?*OEMUIOBJ, pDQPInfo: ?*DEVQUERYPRINT_INFO, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DevQueryPrintEx(@ptrCast(*const IPrintOemUI, self), poemuiobj, pDQPInfo, pPublicDM, pOEMDM);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_DeviceCapabilitiesA(self: *const T, poemuiobj: ?*OEMUIOBJ, hPrinter: ?HANDLE, pDeviceName: ?PWSTR, wCapability: u16, pOutput: ?*c_void, pPublicDM: ?*DEVMODEA, pOEMDM: ?*c_void, dwOld: u32, dwResult: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IPrintOemUI_DeviceCapabilitiesA(self: *const T, poemuiobj: ?*OEMUIOBJ, hPrinter: ?HANDLE, pDeviceName: ?PWSTR, wCapability: u16, pOutput: ?*anyopaque, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, dwOld: u32, dwResult: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DeviceCapabilitiesA(@ptrCast(*const IPrintOemUI, self), poemuiobj, hPrinter, pDeviceName, wCapability, pOutput, pPublicDM, pOEMDM, dwOld, dwResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3711,7 +3711,7 @@ pub const IPrintOemUI = extern struct {
             return @ptrCast(*const IPrintOemUI.VTable, self.vtable).DriverEvent(@ptrCast(*const IPrintOemUI, self), dwDriverEvent, dwLevel, pDriverInfo, lParam);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI_QueryColorProfile(self: *const T, hPrinter: ?HANDLE, poemuiobj: ?*OEMUIOBJ, pPublicDM: ?*DEVMODEA, pOEMDM: ?*c_void, ulQueryMode: u32, pvProfileData: [*]u8, pcbProfileData: ?*u32, pflProfileData: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IPrintOemUI_QueryColorProfile(self: *const T, hPrinter: ?HANDLE, poemuiobj: ?*OEMUIOBJ, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, ulQueryMode: u32, pvProfileData: [*]u8, pcbProfileData: ?*u32, pflProfileData: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintOemUI.VTable, self.vtable).QueryColorProfile(@ptrCast(*const IPrintOemUI, self), hPrinter, poemuiobj, pPublicDM, pOEMDM, ulQueryMode, pvProfileData, pcbProfileData, pflProfileData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3748,9 +3748,9 @@ pub const IPrintOemUI2 = extern struct {
             hdc: ?HDC,
             iEsc: i32,
             cbIn: u32,
-            pvIn: ?*c_void,
+            pvIn: ?*anyopaque,
             cbOut: u32,
-            pvOut: ?*c_void,
+            pvOut: ?*anyopaque,
             piResult: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3766,7 +3766,7 @@ pub const IPrintOemUI2 = extern struct {
             return @ptrCast(*const IPrintOemUI2.VTable, self.vtable).HideStandardUI(@ptrCast(*const IPrintOemUI2, self), dwMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUI2_DocumentEvent(self: *const T, hPrinter: ?HANDLE, hdc: ?HDC, iEsc: i32, cbIn: u32, pvIn: ?*c_void, cbOut: u32, pvOut: ?*c_void, piResult: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IPrintOemUI2_DocumentEvent(self: *const T, hPrinter: ?HANDLE, hdc: ?HDC, iEsc: i32, cbIn: u32, pvIn: ?*anyopaque, cbOut: u32, pvOut: ?*anyopaque, piResult: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintOemUI2.VTable, self.vtable).DocumentEvent(@ptrCast(*const IPrintOemUI2, self), hPrinter, hdc, iEsc, cbIn, pvIn, cbOut, pvOut, piResult);
         }
     };}
@@ -3784,7 +3784,7 @@ pub const IPrintOemUIMXDC = extern struct {
             cbDevMode: u32,
             pDevMode: ?*const DEVMODEA,
             cbOEMDM: u32,
-            pOEMDM: ?*const c_void,
+            pOEMDM: ?*const anyopaque,
             prclImageableArea: ?*RECTL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AdjustImageCompression: fn(
@@ -3793,7 +3793,7 @@ pub const IPrintOemUIMXDC = extern struct {
             cbDevMode: u32,
             pDevMode: ?*const DEVMODEA,
             cbOEMDM: u32,
-            pOEMDM: ?*const c_void,
+            pOEMDM: ?*const anyopaque,
             pCompressionMode: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AdjustDPI: fn(
@@ -3802,7 +3802,7 @@ pub const IPrintOemUIMXDC = extern struct {
             cbDevMode: u32,
             pDevMode: ?*const DEVMODEA,
             cbOEMDM: u32,
-            pOEMDM: ?*const c_void,
+            pOEMDM: ?*const anyopaque,
             pDPI: ?*i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3810,15 +3810,15 @@ pub const IPrintOemUIMXDC = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUIMXDC_AdjustImageableArea(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const c_void, prclImageableArea: ?*RECTL) callconv(.Inline) HRESULT {
+        pub fn IPrintOemUIMXDC_AdjustImageableArea(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, prclImageableArea: ?*RECTL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintOemUIMXDC.VTable, self.vtable).AdjustImageableArea(@ptrCast(*const IPrintOemUIMXDC, self), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, prclImageableArea);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUIMXDC_AdjustImageCompression(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const c_void, pCompressionMode: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IPrintOemUIMXDC_AdjustImageCompression(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pCompressionMode: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintOemUIMXDC.VTable, self.vtable).AdjustImageCompression(@ptrCast(*const IPrintOemUIMXDC, self), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pCompressionMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemUIMXDC_AdjustDPI(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const c_void, pDPI: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IPrintOemUIMXDC_AdjustDPI(self: *const T, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pDPI: ?*i32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintOemUIMXDC.VTable, self.vtable).AdjustDPI(@ptrCast(*const IPrintOemUIMXDC, self), hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pDPI);
         }
     };}
@@ -3832,9 +3832,9 @@ pub const IPrintOemDriverUI = extern struct {
         base: IUnknown.VTable,
         DrvGetDriverSetting: fn(
             self: *const IPrintOemDriverUI,
-            pci: ?*c_void,
+            pci: ?*anyopaque,
             Feature: ?[*:0]const u8,
-            pOutput: ?*c_void,
+            pOutput: ?*anyopaque,
             cbSize: u32,
             pcbNeeded: ?*u32,
             pdwOptionsReturned: ?*u32,
@@ -3847,8 +3847,8 @@ pub const IPrintOemDriverUI = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DrvUpdateUISetting: fn(
             self: *const IPrintOemDriverUI,
-            pci: ?*c_void,
-            pOptItem: ?*c_void,
+            pci: ?*anyopaque,
+            pOptItem: ?*anyopaque,
             dwPreviousSelection: u32,
             dwMode: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3857,7 +3857,7 @@ pub const IPrintOemDriverUI = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemDriverUI_DrvGetDriverSetting(self: *const T, pci: ?*c_void, Feature: ?[*:0]const u8, pOutput: ?*c_void, cbSize: u32, pcbNeeded: ?*u32, pdwOptionsReturned: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IPrintOemDriverUI_DrvGetDriverSetting(self: *const T, pci: ?*anyopaque, Feature: ?[*:0]const u8, pOutput: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32, pdwOptionsReturned: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintOemDriverUI.VTable, self.vtable).DrvGetDriverSetting(@ptrCast(*const IPrintOemDriverUI, self), pci, Feature, pOutput, cbSize, pcbNeeded, pdwOptionsReturned);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3865,7 +3865,7 @@ pub const IPrintOemDriverUI = extern struct {
             return @ptrCast(*const IPrintOemDriverUI.VTable, self.vtable).DrvUpgradeRegistrySetting(@ptrCast(*const IPrintOemDriverUI, self), hPrinter, pFeature, pOption);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintOemDriverUI_DrvUpdateUISetting(self: *const T, pci: ?*c_void, pOptItem: ?*c_void, dwPreviousSelection: u32, dwMode: u32) callconv(.Inline) HRESULT {
+        pub fn IPrintOemDriverUI_DrvUpdateUISetting(self: *const T, pci: ?*anyopaque, pOptItem: ?*anyopaque, dwPreviousSelection: u32, dwMode: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintOemDriverUI.VTable, self.vtable).DrvUpdateUISetting(@ptrCast(*const IPrintOemDriverUI, self), pci, pOptItem, dwPreviousSelection, dwMode);
         }
     };}
@@ -6837,7 +6837,7 @@ pub const MONITORUI = extern struct {
 
 pub const ROUTER_NOTIFY_CALLBACK = fn(
     dwCommand: u32,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     dwColor: u32,
     pNofityInfo: ?*PRINTER_NOTIFY_INFO,
     fdwFlags: u32,
@@ -6857,7 +6857,7 @@ pub const NOTIFICATION_CONFIG_1 = extern struct {
     cbSize: u32,
     fdwFlags: u32,
     pfnNotifyCallback: ?ROUTER_NOTIFY_CALLBACK,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
 };
 
 pub const NOTIFICATION_CONFIG_FLAGS = enum(i32) {
@@ -7521,7 +7521,7 @@ pub extern "WINSPOOL" fn StartPagePrinter(
 pub extern "WINSPOOL" fn WritePrinter(
     hPrinter: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    pBuf: ?*c_void,
+    pBuf: ?*anyopaque,
     cbBuf: u32,
     pcWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -7529,7 +7529,7 @@ pub extern "WINSPOOL" fn WritePrinter(
 pub extern "WINSPOOL" fn FlushPrinter(
     hPrinter: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    pBuf: ?*c_void,
+    pBuf: ?*anyopaque,
     cbBuf: u32,
     pcWritten: ?*u32,
     cSleep: u32,
@@ -7546,7 +7546,7 @@ pub extern "WINSPOOL" fn AbortPrinter(
 pub extern "WINSPOOL" fn ReadPrinter(
     hPrinter: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    pBuf: ?*c_void,
+    pBuf: ?*anyopaque,
     cbBuf: u32,
     pNoBytesRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -7813,14 +7813,14 @@ pub extern "WINSPOOL" fn FindFirstPrinterChangeNotification(
     hPrinter: ?HANDLE,
     fdwFilter: u32,
     fdwOptions: u32,
-    pPrinterNotifyOptions: ?*c_void,
+    pPrinterNotifyOptions: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "WINSPOOL" fn FindNextPrinterChangeNotification(
     hChange: ?HANDLE,
     pdwChange: ?*u32,
-    pvReserved: ?*c_void,
-    ppPrinterNotifyInfo: ?*?*c_void,
+    pvReserved: ?*anyopaque,
+    ppPrinterNotifyInfo: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINSPOOL" fn FreePrinterNotifyInfo(
@@ -8147,14 +8147,14 @@ pub extern "WINSPOOL" fn AddPrinterConnection2A(
     hWnd: ?HWND,
     pszName: ?[*:0]const u8,
     dwLevel: u32,
-    pConnectionInfo: ?*c_void,
+    pConnectionInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINSPOOL" fn AddPrinterConnection2W(
     hWnd: ?HWND,
     pszName: ?[*:0]const u16,
     dwLevel: u32,
-    pConnectionInfo: ?*c_void,
+    pConnectionInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WINSPOOL" fn InstallPrinterDriverFromPackageA(
@@ -8466,7 +8466,7 @@ pub extern "SPOOLSS" fn ReplyPrinterChangeNotification(
     hPrinter: ?HANDLE,
     fdwChangeFlags: u32,
     pdwResult: ?*u32,
-    pPrinterNotifyInfo: ?*c_void,
+    pPrinterNotifyInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "SPOOLSS" fn ReplyPrinterChangeNotificationEx(
@@ -8474,7 +8474,7 @@ pub extern "SPOOLSS" fn ReplyPrinterChangeNotificationEx(
     dwColor: u32,
     fdwFlags: u32,
     pdwResult: ?*u32,
-    pPrinterNotifyInfo: ?*c_void,
+    pPrinterNotifyInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "SPOOLSS" fn PartialReplyPrinterChangeNotification(
@@ -8496,14 +8496,14 @@ pub extern "SPOOLSS" fn RouterAllocBidiResponseContainer(
 
 pub extern "SPOOLSS" fn RouterAllocBidiMem(
     NumBytes: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "WINSPOOL" fn RouterFreeBidiResponseContainer(
     pData: ?*BIDI_RESPONSE_CONTAINER,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "SPOOLSS" fn RouterFreeBidiMem(
-    pMemPointer: ?*c_void,
+    pMemPointer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "SPOOLSS" fn AppendPrinterNotifyInfoData(
@@ -8525,8 +8525,8 @@ pub extern "SPOOLSS" fn ProvidorFindFirstPrinterChangeNotification(
     fdwFlags: u32,
     fdwOptions: u32,
     hNotify: ?HANDLE,
-    pPrinterNotifyOptions: ?*c_void,
-    pvReserved1: ?*c_void,
+    pPrinterNotifyOptions: ?*anyopaque,
+    pvReserved1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "SPOOLSS" fn ProvidorFindClosePrinterChangeNotification(
@@ -8537,9 +8537,9 @@ pub extern "SPOOLSS" fn SpoolerFindFirstPrinterChangeNotification(
     hPrinter: ?HANDLE,
     fdwFilterFlags: u32,
     fdwOptions: u32,
-    pPrinterNotifyOptions: ?*c_void,
-    pvReserved: ?*c_void,
-    pNotificationConfig: ?*c_void,
+    pPrinterNotifyOptions: ?*anyopaque,
+    pvReserved: ?*anyopaque,
+    pNotificationConfig: ?*anyopaque,
     phNotify: ?*?HANDLE,
     phEvent: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -8547,8 +8547,8 @@ pub extern "SPOOLSS" fn SpoolerFindFirstPrinterChangeNotification(
 pub extern "SPOOLSS" fn SpoolerFindNextPrinterChangeNotification(
     hPrinter: ?HANDLE,
     pfdwChange: ?*u32,
-    pPrinterNotifyOptions: ?*c_void,
-    ppPrinterNotifyInfo: ?*?*c_void,
+    pPrinterNotifyOptions: ?*anyopaque,
+    ppPrinterNotifyInfo: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "SPOOLSS" fn SpoolerRefreshPrinterChangeNotification(

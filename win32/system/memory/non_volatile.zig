@@ -7,7 +7,7 @@
 // Section: Types (1)
 //--------------------------------------------------------------------------------
 pub const NV_MEMORY_RANGE = extern struct {
-    BaseAddress: ?*c_void,
+    BaseAddress: ?*anyopaque,
     Length: usize,
 };
 
@@ -20,9 +20,9 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 pub extern "ntdll" fn RtlGetNonVolatileToken(
     // TODO: what to do with BytesParamIndex 1?
-    NvBuffer: ?*c_void,
+    NvBuffer: ?*anyopaque,
     Size: usize,
-    NvToken: ?*?*c_void,
+    NvToken: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 }, else => struct { } };
@@ -31,7 +31,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ntdll" fn RtlFreeNonVolatileToken(
-    NvToken: ?*c_void,
+    NvToken: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 }, else => struct { } };
@@ -40,9 +40,9 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ntdll" fn RtlFlushNonVolatileMemory(
-    NvToken: ?*c_void,
+    NvToken: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
-    NvBuffer: ?*c_void,
+    NvBuffer: ?*anyopaque,
     Size: usize,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -53,7 +53,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ntdll" fn RtlDrainNonVolatileFlush(
-    NvToken: ?*c_void,
+    NvToken: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 }, else => struct { } };
@@ -62,11 +62,11 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ntdll" fn RtlWriteNonVolatileMemory(
-    NvToken: ?*c_void,
+    NvToken: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
-    NvDestination: ?*c_void,
+    NvDestination: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
-    Source: ?*const c_void,
+    Source: ?*const anyopaque,
     Size: usize,
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -77,9 +77,9 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ntdll" fn RtlFillNonVolatileMemory(
-    NvToken: ?*c_void,
+    NvToken: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
-    NvDestination: ?*c_void,
+    NvDestination: ?*anyopaque,
     Size: usize,
     Value: u8,
     Flags: u32,
@@ -91,7 +91,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "ntdll" fn RtlFlushNonVolatileMemoryRanges(
-    NvToken: ?*c_void,
+    NvToken: ?*anyopaque,
     NvRanges: [*]NV_MEMORY_RANGE,
     NumRanges: usize,
     Flags: u32,

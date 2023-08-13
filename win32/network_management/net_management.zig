@@ -3915,7 +3915,7 @@ pub const SMB_TREE_CONNECT_PARAMETERS = extern struct {
 
 pub const USE_OPTION_PROPERTIES = extern struct {
     Tag: u32,
-    pInfo: ?*c_void,
+    pInfo: ?*anyopaque,
     Length: usize,
 };
 
@@ -4546,7 +4546,7 @@ pub const INetCfg = extern struct {
         base: IUnknown.VTable,
         Initialize: fn(
             self: *const INetCfg,
-            pvReserved: ?*c_void,
+            pvReserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Uninitialize: fn(
             self: *const INetCfg,
@@ -4571,14 +4571,14 @@ pub const INetCfg = extern struct {
             self: *const INetCfg,
             pguidClass: ?*const Guid,
             riid: ?*const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfg_Initialize(self: *const T, pvReserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn INetCfg_Initialize(self: *const T, pvReserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const INetCfg.VTable, self.vtable).Initialize(@ptrCast(*const INetCfg, self), pvReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4602,7 +4602,7 @@ pub const INetCfg = extern struct {
             return @ptrCast(*const INetCfg.VTable, self.vtable).FindComponent(@ptrCast(*const INetCfg, self), pszwInfId, pComponent);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfg_QueryNetCfgClass(self: *const T, pguidClass: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn INetCfg_QueryNetCfgClass(self: *const T, pguidClass: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const INetCfg.VTable, self.vtable).QueryNetCfgClass(@ptrCast(*const INetCfg, self), pguidClass, riid, ppvObject);
         }
     };}
@@ -5195,7 +5195,7 @@ pub const INetCfgPnpReconfigCallback = extern struct {
             pszwUpper: ?[*:0]const u16,
             pszwLower: ?[*:0]const u16,
             // TODO: what to do with BytesParamIndex 4?
-            pvData: ?*c_void,
+            pvData: ?*anyopaque,
             dwSizeOfData: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -5203,7 +5203,7 @@ pub const INetCfgPnpReconfigCallback = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgPnpReconfigCallback_SendPnpReconfig(self: *const T, Layer: NCPNP_RECONFIG_LAYER, pszwUpper: ?[*:0]const u16, pszwLower: ?[*:0]const u16, pvData: ?*c_void, dwSizeOfData: u32) callconv(.Inline) HRESULT {
+        pub fn INetCfgPnpReconfigCallback_SendPnpReconfig(self: *const T, Layer: NCPNP_RECONFIG_LAYER, pszwUpper: ?[*:0]const u16, pszwLower: ?[*:0]const u16, pvData: ?*anyopaque, dwSizeOfData: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const INetCfgPnpReconfigCallback.VTable, self.vtable).SendPnpReconfig(@ptrCast(*const INetCfgPnpReconfigCallback, self), Layer, pszwUpper, pszwLower, pvData, dwSizeOfData);
         }
     };}
@@ -5737,7 +5737,7 @@ pub const RTR_INFO_BLOCK_HEADER = extern struct {
 };
 
 pub const WORKERFUNCTION = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MPR_PROTOCOL_0 = extern struct {
@@ -6026,7 +6026,7 @@ pub extern "NETAPI32" fn NetQueryDisplayInformation(
     EntriesRequested: u32,
     PreferredMaximumLength: u32,
     ReturnedEntryCount: ?*u32,
-    SortedBuffer: ?*?*c_void,
+    SortedBuffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6092,15 +6092,15 @@ pub extern "NETAPI32" fn NetAccessGetUserPerms(
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "NETAPI32" fn NetValidatePasswordPolicy(
     ServerName: ?[*:0]const u16,
-    Qualifier: ?*c_void,
+    Qualifier: ?*anyopaque,
     ValidationType: NET_VALIDATE_PASSWORD_TYPE,
-    InputArg: ?*c_void,
-    OutputArg: ?*?*c_void,
+    InputArg: ?*anyopaque,
+    OutputArg: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "NETAPI32" fn NetValidatePasswordPolicyFree(
-    OutputArg: ?*?*c_void,
+    OutputArg: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6166,14 +6166,14 @@ pub extern "NETAPI32" fn NetQueryServiceAccount(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAlertRaise(
     AlertType: ?[*:0]const u16,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetAlertRaiseEx(
     AlertType: ?[*:0]const u16,
-    VariableInfo: ?*c_void,
+    VariableInfo: ?*anyopaque,
     VariableInfoSize: u32,
     ServiceName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -6551,24 +6551,24 @@ pub extern "NETAPI32" fn NetWkstaTransportEnum(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetApiBufferAllocate(
     ByteCount: u32,
-    Buffer: ?*?*c_void,
+    Buffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetApiBufferFree(
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetApiBufferReallocate(
-    OldBuffer: ?*c_void,
+    OldBuffer: ?*anyopaque,
     NewByteCount: u32,
-    NewBuffer: ?*?*c_void,
+    NewBuffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetApiBufferSize(
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     ByteCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -6772,7 +6772,7 @@ pub extern "NETAPI32" fn NetRequestProvisioningPackageInstall(
     dwPackageBinDataSize: u32,
     dwProvisionOptions: NET_REQUEST_PROVISION_OPTIONS,
     lpWindowsPath: ?[*:0]const u16,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -7104,7 +7104,7 @@ pub extern "rtutils" fn MprSetupProtocolEnum(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "rtutils" fn MprSetupProtocolFree(
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

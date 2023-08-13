@@ -2467,7 +2467,7 @@ pub const DIEFFECT_DX5 = extern struct {
     rglDirection: ?*i32,
     lpEnvelope: ?*DIENVELOPE,
     cbTypeSpecificParams: u32,
-    lpvTypeSpecificParams: ?*c_void,
+    lpvTypeSpecificParams: ?*anyopaque,
 };
 
 pub const DIEFFECT = extern struct {
@@ -2483,7 +2483,7 @@ pub const DIEFFECT = extern struct {
     rglDirection: ?*i32,
     lpEnvelope: ?*DIENVELOPE,
     cbTypeSpecificParams: u32,
-    lpvTypeSpecificParams: ?*c_void,
+    lpvTypeSpecificParams: ?*anyopaque,
     dwStartDelay: u32,
 };
 
@@ -2496,15 +2496,15 @@ pub const DIFILEEFFECT = extern struct {
 
 pub const LPDIENUMEFFECTSINFILECALLBACK = fn(
     param0: ?*DIFILEEFFECT,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const DIEFFESCAPE = extern struct {
     dwSize: u32,
     dwCommand: u32,
-    lpvInBuffer: ?*c_void,
+    lpvInBuffer: ?*anyopaque,
     cbInBuffer: u32,
-    lpvOutBuffer: ?*c_void,
+    lpvOutBuffer: ?*anyopaque,
     cbOutBuffer: u32,
 };
 
@@ -2840,12 +2840,12 @@ pub const DIDEVICEOBJECTINSTANCEW = extern struct {
 
 pub const LPDIENUMDEVICEOBJECTSCALLBACKA = fn(
     param0: ?*DIDEVICEOBJECTINSTANCEA,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPDIENUMDEVICEOBJECTSCALLBACKW = fn(
     param0: ?*DIDEVICEOBJECTINSTANCEW,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const DIPROPHEADER = extern struct {
@@ -2975,7 +2975,7 @@ pub const IDirectInputDeviceW = extern struct {
         EnumObjects: fn(
             self: *const IDirectInputDeviceW,
             param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
@@ -2997,7 +2997,7 @@ pub const IDirectInputDeviceW = extern struct {
         GetDeviceState: fn(
             self: *const IDirectInputDeviceW,
             param0: u32,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceData: fn(
             self: *const IDirectInputDeviceW,
@@ -3049,7 +3049,7 @@ pub const IDirectInputDeviceW = extern struct {
             return @ptrCast(*const IDirectInputDeviceW.VTable, self.vtable).GetCapabilities(@ptrCast(*const IDirectInputDeviceW, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_EnumObjects(self: *const T, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW, param1: ?*c_void, param2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDeviceW_EnumObjects(self: *const T, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDeviceW.VTable, self.vtable).EnumObjects(@ptrCast(*const IDirectInputDeviceW, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3069,7 +3069,7 @@ pub const IDirectInputDeviceW = extern struct {
             return @ptrCast(*const IDirectInputDeviceW.VTable, self.vtable).Unacquire(@ptrCast(*const IDirectInputDeviceW, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceW_GetDeviceState(self: *const T, param0: u32, param1: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDeviceW_GetDeviceState(self: *const T, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDeviceW.VTable, self.vtable).GetDeviceState(@ptrCast(*const IDirectInputDeviceW, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3120,7 +3120,7 @@ pub const IDirectInputDeviceA = extern struct {
         EnumObjects: fn(
             self: *const IDirectInputDeviceA,
             param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
@@ -3142,7 +3142,7 @@ pub const IDirectInputDeviceA = extern struct {
         GetDeviceState: fn(
             self: *const IDirectInputDeviceA,
             param0: u32,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceData: fn(
             self: *const IDirectInputDeviceA,
@@ -3194,7 +3194,7 @@ pub const IDirectInputDeviceA = extern struct {
             return @ptrCast(*const IDirectInputDeviceA.VTable, self.vtable).GetCapabilities(@ptrCast(*const IDirectInputDeviceA, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_EnumObjects(self: *const T, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA, param1: ?*c_void, param2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDeviceA_EnumObjects(self: *const T, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDeviceA.VTable, self.vtable).EnumObjects(@ptrCast(*const IDirectInputDeviceA, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3214,7 +3214,7 @@ pub const IDirectInputDeviceA = extern struct {
             return @ptrCast(*const IDirectInputDeviceA.VTable, self.vtable).Unacquire(@ptrCast(*const IDirectInputDeviceA, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDeviceA_GetDeviceState(self: *const T, param0: u32, param1: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDeviceA_GetDeviceState(self: *const T, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDeviceA.VTable, self.vtable).GetDeviceState(@ptrCast(*const IDirectInputDeviceA, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3273,17 +3273,17 @@ pub const DIEFFECTINFOW = extern struct {
 
 pub const LPDIENUMEFFECTSCALLBACKA = fn(
     param0: ?*DIEFFECTINFOA,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPDIENUMEFFECTSCALLBACKW = fn(
     param0: ?*DIEFFECTINFOW,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPDIENUMCREATEDEFFECTOBJECTSCALLBACK = fn(
     param0: ?*IDirectInputEffect,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 const IID_IDirectInputDevice2W_Value = @import("../zig.zig").Guid.initString("5944e683-c92e-11cf-bfc7-444553540000");
@@ -3301,7 +3301,7 @@ pub const IDirectInputDevice2W = extern struct {
         EnumEffects: fn(
             self: *const IDirectInputDevice2W,
             param0: ?LPDIENUMEFFECTSCALLBACKW,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEffectInfo: fn(
@@ -3320,7 +3320,7 @@ pub const IDirectInputDevice2W = extern struct {
         EnumCreatedEffectObjects: fn(
             self: *const IDirectInputDevice2W,
             param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Escape: fn(
@@ -3346,7 +3346,7 @@ pub const IDirectInputDevice2W = extern struct {
             return @ptrCast(*const IDirectInputDevice2W.VTable, self.vtable).CreateEffect(@ptrCast(*const IDirectInputDevice2W, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2W_EnumEffects(self: *const T, param0: ?LPDIENUMEFFECTSCALLBACKW, param1: ?*c_void, param2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice2W_EnumEffects(self: *const T, param0: ?LPDIENUMEFFECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice2W.VTable, self.vtable).EnumEffects(@ptrCast(*const IDirectInputDevice2W, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3362,7 +3362,7 @@ pub const IDirectInputDevice2W = extern struct {
             return @ptrCast(*const IDirectInputDevice2W.VTable, self.vtable).SendForceFeedbackCommand(@ptrCast(*const IDirectInputDevice2W, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2W_EnumCreatedEffectObjects(self: *const T, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*c_void, param2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice2W_EnumCreatedEffectObjects(self: *const T, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice2W.VTable, self.vtable).EnumCreatedEffectObjects(@ptrCast(*const IDirectInputDevice2W, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3396,7 +3396,7 @@ pub const IDirectInputDevice2A = extern struct {
         EnumEffects: fn(
             self: *const IDirectInputDevice2A,
             param0: ?LPDIENUMEFFECTSCALLBACKA,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEffectInfo: fn(
@@ -3415,7 +3415,7 @@ pub const IDirectInputDevice2A = extern struct {
         EnumCreatedEffectObjects: fn(
             self: *const IDirectInputDevice2A,
             param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Escape: fn(
@@ -3441,7 +3441,7 @@ pub const IDirectInputDevice2A = extern struct {
             return @ptrCast(*const IDirectInputDevice2A.VTable, self.vtable).CreateEffect(@ptrCast(*const IDirectInputDevice2A, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2A_EnumEffects(self: *const T, param0: ?LPDIENUMEFFECTSCALLBACKA, param1: ?*c_void, param2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice2A_EnumEffects(self: *const T, param0: ?LPDIENUMEFFECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice2A.VTable, self.vtable).EnumEffects(@ptrCast(*const IDirectInputDevice2A, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3457,7 +3457,7 @@ pub const IDirectInputDevice2A = extern struct {
             return @ptrCast(*const IDirectInputDevice2A.VTable, self.vtable).SendForceFeedbackCommand(@ptrCast(*const IDirectInputDevice2A, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice2A_EnumCreatedEffectObjects(self: *const T, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*c_void, param2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice2A_EnumCreatedEffectObjects(self: *const T, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice2A.VTable, self.vtable).EnumCreatedEffectObjects(@ptrCast(*const IDirectInputDevice2A, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3485,7 +3485,7 @@ pub const IDirectInputDevice7W = extern struct {
             self: *const IDirectInputDevice7W,
             param0: ?[*:0]const u16,
             param1: ?LPDIENUMEFFECTSINFILECALLBACK,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WriteEffectToFile: fn(
@@ -3500,7 +3500,7 @@ pub const IDirectInputDevice7W = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectInputDevice2W.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice7W_EnumEffectsInFile(self: *const T, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*c_void, param3: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice7W_EnumEffectsInFile(self: *const T, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice7W.VTable, self.vtable).EnumEffectsInFile(@ptrCast(*const IDirectInputDevice7W, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3520,7 +3520,7 @@ pub const IDirectInputDevice7A = extern struct {
             self: *const IDirectInputDevice7A,
             param0: ?[*:0]const u8,
             param1: ?LPDIENUMEFFECTSINFILECALLBACK,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WriteEffectToFile: fn(
@@ -3535,7 +3535,7 @@ pub const IDirectInputDevice7A = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectInputDevice2A.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice7A_EnumEffectsInFile(self: *const T, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*c_void, param3: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice7A_EnumEffectsInFile(self: *const T, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice7A.VTable, self.vtable).EnumEffectsInFile(@ptrCast(*const IDirectInputDevice7A, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3558,7 +3558,7 @@ pub const IDirectInputDevice8W = extern struct {
         EnumObjects: fn(
             self: *const IDirectInputDevice8W,
             param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
@@ -3580,7 +3580,7 @@ pub const IDirectInputDevice8W = extern struct {
         GetDeviceState: fn(
             self: *const IDirectInputDevice8W,
             param0: u32,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceData: fn(
             self: *const IDirectInputDevice8W,
@@ -3633,7 +3633,7 @@ pub const IDirectInputDevice8W = extern struct {
         EnumEffects: fn(
             self: *const IDirectInputDevice8W,
             param0: ?LPDIENUMEFFECTSCALLBACKW,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEffectInfo: fn(
@@ -3652,7 +3652,7 @@ pub const IDirectInputDevice8W = extern struct {
         EnumCreatedEffectObjects: fn(
             self: *const IDirectInputDevice8W,
             param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Escape: fn(
@@ -3673,7 +3673,7 @@ pub const IDirectInputDevice8W = extern struct {
             self: *const IDirectInputDevice8W,
             param0: ?[*:0]const u16,
             param1: ?LPDIENUMEFFECTSINFILECALLBACK,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WriteEffectToFile: fn(
@@ -3708,7 +3708,7 @@ pub const IDirectInputDevice8W = extern struct {
             return @ptrCast(*const IDirectInputDevice8W.VTable, self.vtable).GetCapabilities(@ptrCast(*const IDirectInputDevice8W, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_EnumObjects(self: *const T, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW, param1: ?*c_void, param2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice8W_EnumObjects(self: *const T, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice8W.VTable, self.vtable).EnumObjects(@ptrCast(*const IDirectInputDevice8W, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3728,7 +3728,7 @@ pub const IDirectInputDevice8W = extern struct {
             return @ptrCast(*const IDirectInputDevice8W.VTable, self.vtable).Unacquire(@ptrCast(*const IDirectInputDevice8W, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_GetDeviceState(self: *const T, param0: u32, param1: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice8W_GetDeviceState(self: *const T, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice8W.VTable, self.vtable).GetDeviceState(@ptrCast(*const IDirectInputDevice8W, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3768,7 +3768,7 @@ pub const IDirectInputDevice8W = extern struct {
             return @ptrCast(*const IDirectInputDevice8W.VTable, self.vtable).CreateEffect(@ptrCast(*const IDirectInputDevice8W, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_EnumEffects(self: *const T, param0: ?LPDIENUMEFFECTSCALLBACKW, param1: ?*c_void, param2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice8W_EnumEffects(self: *const T, param0: ?LPDIENUMEFFECTSCALLBACKW, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice8W.VTable, self.vtable).EnumEffects(@ptrCast(*const IDirectInputDevice8W, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3784,7 +3784,7 @@ pub const IDirectInputDevice8W = extern struct {
             return @ptrCast(*const IDirectInputDevice8W.VTable, self.vtable).SendForceFeedbackCommand(@ptrCast(*const IDirectInputDevice8W, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_EnumCreatedEffectObjects(self: *const T, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*c_void, param2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice8W_EnumCreatedEffectObjects(self: *const T, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice8W.VTable, self.vtable).EnumCreatedEffectObjects(@ptrCast(*const IDirectInputDevice8W, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3800,7 +3800,7 @@ pub const IDirectInputDevice8W = extern struct {
             return @ptrCast(*const IDirectInputDevice8W.VTable, self.vtable).SendDeviceData(@ptrCast(*const IDirectInputDevice8W, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8W_EnumEffectsInFile(self: *const T, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*c_void, param3: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice8W_EnumEffectsInFile(self: *const T, param0: ?[*:0]const u16, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice8W.VTable, self.vtable).EnumEffectsInFile(@ptrCast(*const IDirectInputDevice8W, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3835,7 +3835,7 @@ pub const IDirectInputDevice8A = extern struct {
         EnumObjects: fn(
             self: *const IDirectInputDevice8A,
             param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProperty: fn(
@@ -3857,7 +3857,7 @@ pub const IDirectInputDevice8A = extern struct {
         GetDeviceState: fn(
             self: *const IDirectInputDevice8A,
             param0: u32,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceData: fn(
             self: *const IDirectInputDevice8A,
@@ -3910,7 +3910,7 @@ pub const IDirectInputDevice8A = extern struct {
         EnumEffects: fn(
             self: *const IDirectInputDevice8A,
             param0: ?LPDIENUMEFFECTSCALLBACKA,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEffectInfo: fn(
@@ -3929,7 +3929,7 @@ pub const IDirectInputDevice8A = extern struct {
         EnumCreatedEffectObjects: fn(
             self: *const IDirectInputDevice8A,
             param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
             param2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Escape: fn(
@@ -3950,7 +3950,7 @@ pub const IDirectInputDevice8A = extern struct {
             self: *const IDirectInputDevice8A,
             param0: ?[*:0]const u8,
             param1: ?LPDIENUMEFFECTSINFILECALLBACK,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WriteEffectToFile: fn(
@@ -3985,7 +3985,7 @@ pub const IDirectInputDevice8A = extern struct {
             return @ptrCast(*const IDirectInputDevice8A.VTable, self.vtable).GetCapabilities(@ptrCast(*const IDirectInputDevice8A, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_EnumObjects(self: *const T, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA, param1: ?*c_void, param2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice8A_EnumObjects(self: *const T, param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice8A.VTable, self.vtable).EnumObjects(@ptrCast(*const IDirectInputDevice8A, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4005,7 +4005,7 @@ pub const IDirectInputDevice8A = extern struct {
             return @ptrCast(*const IDirectInputDevice8A.VTable, self.vtable).Unacquire(@ptrCast(*const IDirectInputDevice8A, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_GetDeviceState(self: *const T, param0: u32, param1: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice8A_GetDeviceState(self: *const T, param0: u32, param1: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice8A.VTable, self.vtable).GetDeviceState(@ptrCast(*const IDirectInputDevice8A, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4045,7 +4045,7 @@ pub const IDirectInputDevice8A = extern struct {
             return @ptrCast(*const IDirectInputDevice8A.VTable, self.vtable).CreateEffect(@ptrCast(*const IDirectInputDevice8A, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_EnumEffects(self: *const T, param0: ?LPDIENUMEFFECTSCALLBACKA, param1: ?*c_void, param2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice8A_EnumEffects(self: *const T, param0: ?LPDIENUMEFFECTSCALLBACKA, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice8A.VTable, self.vtable).EnumEffects(@ptrCast(*const IDirectInputDevice8A, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4061,7 +4061,7 @@ pub const IDirectInputDevice8A = extern struct {
             return @ptrCast(*const IDirectInputDevice8A.VTable, self.vtable).SendForceFeedbackCommand(@ptrCast(*const IDirectInputDevice8A, self), param0);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_EnumCreatedEffectObjects(self: *const T, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*c_void, param2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice8A_EnumCreatedEffectObjects(self: *const T, param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK, param1: ?*anyopaque, param2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice8A.VTable, self.vtable).EnumCreatedEffectObjects(@ptrCast(*const IDirectInputDevice8A, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4077,7 +4077,7 @@ pub const IDirectInputDevice8A = extern struct {
             return @ptrCast(*const IDirectInputDevice8A.VTable, self.vtable).SendDeviceData(@ptrCast(*const IDirectInputDevice8A, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputDevice8A_EnumEffectsInFile(self: *const T, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*c_void, param3: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputDevice8A_EnumEffectsInFile(self: *const T, param0: ?[*:0]const u8, param1: ?LPDIENUMEFFECTSINFILECALLBACK, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputDevice8A.VTable, self.vtable).EnumEffectsInFile(@ptrCast(*const IDirectInputDevice8A, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4161,17 +4161,17 @@ pub const DIJOYSTATE2 = extern struct {
 
 pub const LPDIENUMDEVICESCALLBACKA = fn(
     param0: ?*DIDEVICEINSTANCEA,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPDIENUMDEVICESCALLBACKW = fn(
     param0: ?*DIDEVICEINSTANCEW,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPDICONFIGUREDEVICESCALLBACK = fn(
     param0: ?*IUnknown,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPDIENUMDEVICESBYSEMANTICSCBA = fn(
@@ -4179,7 +4179,7 @@ pub const LPDIENUMDEVICESBYSEMANTICSCBA = fn(
     param1: ?*IDirectInputDevice8A,
     param2: u32,
     param3: u32,
-    param4: ?*c_void,
+    param4: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPDIENUMDEVICESBYSEMANTICSCBW = fn(
@@ -4187,7 +4187,7 @@ pub const LPDIENUMDEVICESBYSEMANTICSCBW = fn(
     param1: ?*IDirectInputDevice8W,
     param2: u32,
     param3: u32,
-    param4: ?*c_void,
+    param4: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 const IID_IDirectInputW_Value = @import("../zig.zig").Guid.initString("89521361-aa8a-11cf-bfc7-444553540000");
@@ -4205,7 +4205,7 @@ pub const IDirectInputW = extern struct {
             self: *const IDirectInputW,
             param0: u32,
             param1: ?LPDIENUMDEVICESCALLBACKW,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceStatus: fn(
@@ -4231,7 +4231,7 @@ pub const IDirectInputW = extern struct {
             return @ptrCast(*const IDirectInputW.VTable, self.vtable).CreateDevice(@ptrCast(*const IDirectInputW, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputW_EnumDevices(self: *const T, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKW, param2: ?*c_void, param3: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputW_EnumDevices(self: *const T, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKW, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputW.VTable, self.vtable).EnumDevices(@ptrCast(*const IDirectInputW, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4265,7 +4265,7 @@ pub const IDirectInputA = extern struct {
             self: *const IDirectInputA,
             param0: u32,
             param1: ?LPDIENUMDEVICESCALLBACKA,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceStatus: fn(
@@ -4291,7 +4291,7 @@ pub const IDirectInputA = extern struct {
             return @ptrCast(*const IDirectInputA.VTable, self.vtable).CreateDevice(@ptrCast(*const IDirectInputA, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputA_EnumDevices(self: *const T, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKA, param2: ?*c_void, param3: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInputA_EnumDevices(self: *const T, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKA, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputA.VTable, self.vtable).EnumDevices(@ptrCast(*const IDirectInputA, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4365,7 +4365,7 @@ pub const IDirectInput7W = extern struct {
             self: *const IDirectInput7W,
             param0: ?*const Guid,
             param1: ?*const Guid,
-            param2: ?*?*c_void,
+            param2: ?*?*anyopaque,
             param3: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -4373,7 +4373,7 @@ pub const IDirectInput7W = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectInput2W.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput7W_CreateDeviceEx(self: *const T, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*c_void, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDirectInput7W_CreateDeviceEx(self: *const T, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*anyopaque, param3: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInput7W.VTable, self.vtable).CreateDeviceEx(@ptrCast(*const IDirectInput7W, self), param0, param1, param2, param3);
         }
     };}
@@ -4389,7 +4389,7 @@ pub const IDirectInput7A = extern struct {
             self: *const IDirectInput7A,
             param0: ?*const Guid,
             param1: ?*const Guid,
-            param2: ?*?*c_void,
+            param2: ?*?*anyopaque,
             param3: ?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -4397,7 +4397,7 @@ pub const IDirectInput7A = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectInput2A.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput7A_CreateDeviceEx(self: *const T, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*c_void, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDirectInput7A_CreateDeviceEx(self: *const T, param0: ?*const Guid, param1: ?*const Guid, param2: ?*?*anyopaque, param3: ?*IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInput7A.VTable, self.vtable).CreateDeviceEx(@ptrCast(*const IDirectInput7A, self), param0, param1, param2, param3);
         }
     };}
@@ -4419,7 +4419,7 @@ pub const IDirectInput8W = extern struct {
             self: *const IDirectInput8W,
             param0: u32,
             param1: ?LPDIENUMDEVICESCALLBACKW,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceStatus: fn(
@@ -4447,7 +4447,7 @@ pub const IDirectInput8W = extern struct {
             param0: ?[*:0]const u16,
             param1: ?*DIACTIONFORMATW,
             param2: ?LPDIENUMDEVICESBYSEMANTICSCBW,
-            param3: ?*c_void,
+            param3: ?*anyopaque,
             param4: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConfigureDevices: fn(
@@ -4455,7 +4455,7 @@ pub const IDirectInput8W = extern struct {
             param0: ?LPDICONFIGUREDEVICESCALLBACK,
             param1: ?*DICONFIGUREDEVICESPARAMSW,
             param2: u32,
-            param3: ?*c_void,
+            param3: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4466,7 +4466,7 @@ pub const IDirectInput8W = extern struct {
             return @ptrCast(*const IDirectInput8W.VTable, self.vtable).CreateDevice(@ptrCast(*const IDirectInput8W, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8W_EnumDevices(self: *const T, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKW, param2: ?*c_void, param3: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInput8W_EnumDevices(self: *const T, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKW, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInput8W.VTable, self.vtable).EnumDevices(@ptrCast(*const IDirectInput8W, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4486,11 +4486,11 @@ pub const IDirectInput8W = extern struct {
             return @ptrCast(*const IDirectInput8W.VTable, self.vtable).FindDevice(@ptrCast(*const IDirectInput8W, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8W_EnumDevicesBySemantics(self: *const T, param0: ?[*:0]const u16, param1: ?*DIACTIONFORMATW, param2: ?LPDIENUMDEVICESBYSEMANTICSCBW, param3: ?*c_void, param4: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInput8W_EnumDevicesBySemantics(self: *const T, param0: ?[*:0]const u16, param1: ?*DIACTIONFORMATW, param2: ?LPDIENUMDEVICESBYSEMANTICSCBW, param3: ?*anyopaque, param4: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInput8W.VTable, self.vtable).EnumDevicesBySemantics(@ptrCast(*const IDirectInput8W, self), param0, param1, param2, param3, param4);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8W_ConfigureDevices(self: *const T, param0: ?LPDICONFIGUREDEVICESCALLBACK, param1: ?*DICONFIGUREDEVICESPARAMSW, param2: u32, param3: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectInput8W_ConfigureDevices(self: *const T, param0: ?LPDICONFIGUREDEVICESCALLBACK, param1: ?*DICONFIGUREDEVICESPARAMSW, param2: u32, param3: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInput8W.VTable, self.vtable).ConfigureDevices(@ptrCast(*const IDirectInput8W, self), param0, param1, param2, param3);
         }
     };}
@@ -4512,7 +4512,7 @@ pub const IDirectInput8A = extern struct {
             self: *const IDirectInput8A,
             param0: u32,
             param1: ?LPDIENUMDEVICESCALLBACKA,
-            param2: ?*c_void,
+            param2: ?*anyopaque,
             param3: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDeviceStatus: fn(
@@ -4540,7 +4540,7 @@ pub const IDirectInput8A = extern struct {
             param0: ?[*:0]const u8,
             param1: ?*DIACTIONFORMATA,
             param2: ?LPDIENUMDEVICESBYSEMANTICSCBA,
-            param3: ?*c_void,
+            param3: ?*anyopaque,
             param4: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConfigureDevices: fn(
@@ -4548,7 +4548,7 @@ pub const IDirectInput8A = extern struct {
             param0: ?LPDICONFIGUREDEVICESCALLBACK,
             param1: ?*DICONFIGUREDEVICESPARAMSA,
             param2: u32,
-            param3: ?*c_void,
+            param3: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4559,7 +4559,7 @@ pub const IDirectInput8A = extern struct {
             return @ptrCast(*const IDirectInput8A.VTable, self.vtable).CreateDevice(@ptrCast(*const IDirectInput8A, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8A_EnumDevices(self: *const T, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKA, param2: ?*c_void, param3: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInput8A_EnumDevices(self: *const T, param0: u32, param1: ?LPDIENUMDEVICESCALLBACKA, param2: ?*anyopaque, param3: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInput8A.VTable, self.vtable).EnumDevices(@ptrCast(*const IDirectInput8A, self), param0, param1, param2, param3);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4579,11 +4579,11 @@ pub const IDirectInput8A = extern struct {
             return @ptrCast(*const IDirectInput8A.VTable, self.vtable).FindDevice(@ptrCast(*const IDirectInput8A, self), param0, param1, param2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8A_EnumDevicesBySemantics(self: *const T, param0: ?[*:0]const u8, param1: ?*DIACTIONFORMATA, param2: ?LPDIENUMDEVICESBYSEMANTICSCBA, param3: ?*c_void, param4: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectInput8A_EnumDevicesBySemantics(self: *const T, param0: ?[*:0]const u8, param1: ?*DIACTIONFORMATA, param2: ?LPDIENUMDEVICESBYSEMANTICSCBA, param3: ?*anyopaque, param4: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInput8A.VTable, self.vtable).EnumDevicesBySemantics(@ptrCast(*const IDirectInput8A, self), param0, param1, param2, param3, param4);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInput8A_ConfigureDevices(self: *const T, param0: ?LPDICONFIGUREDEVICESCALLBACK, param1: ?*DICONFIGUREDEVICESPARAMSA, param2: u32, param3: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectInput8A_ConfigureDevices(self: *const T, param0: ?LPDICONFIGUREDEVICESCALLBACK, param1: ?*DICONFIGUREDEVICESPARAMSA, param2: u32, param3: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInput8A.VTable, self.vtable).ConfigureDevices(@ptrCast(*const IDirectInput8A, self), param0, param1, param2, param3);
         }
     };}
@@ -4660,7 +4660,7 @@ pub const IDirectInputEffectDriver = extern struct {
             param1: u32,
             param2: u32,
             param3: u32,
-            param4: ?*c_void,
+            param4: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVersions: fn(
             self: *const IDirectInputEffectDriver,
@@ -4723,7 +4723,7 @@ pub const IDirectInputEffectDriver = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputEffectDriver_DeviceID(self: *const T, param0: u32, param1: u32, param2: u32, param3: u32, param4: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectInputEffectDriver_DeviceID(self: *const T, param0: u32, param1: u32, param2: u32, param3: u32, param4: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputEffectDriver.VTable, self.vtable).DeviceID(@ptrCast(*const IDirectInputEffectDriver, self), param0, param1, param2, param3, param4);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4821,7 +4821,7 @@ pub const JOYCALIBRATE = extern struct {
 
 pub const LPDIJOYTYPECALLBACK = fn(
     param0: ?[*:0]const u16,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const DIJOYTYPEINFO_DX5 = extern struct {
@@ -4902,7 +4902,7 @@ pub const IDirectInputJoyConfig = extern struct {
         EnumTypes: fn(
             self: *const IDirectInputJoyConfig,
             param0: ?LPDIJOYTYPECALLBACK,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTypeInfo: fn(
             self: *const IDirectInputJoyConfig,
@@ -4984,7 +4984,7 @@ pub const IDirectInputJoyConfig = extern struct {
             return @ptrCast(*const IDirectInputJoyConfig.VTable, self.vtable).SendNotify(@ptrCast(*const IDirectInputJoyConfig, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig_EnumTypes(self: *const T, param0: ?LPDIJOYTYPECALLBACK, param1: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectInputJoyConfig_EnumTypes(self: *const T, param0: ?LPDIJOYTYPECALLBACK, param1: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputJoyConfig.VTable, self.vtable).EnumTypes(@ptrCast(*const IDirectInputJoyConfig, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5057,7 +5057,7 @@ pub const IDirectInputJoyConfig8 = extern struct {
         EnumTypes: fn(
             self: *const IDirectInputJoyConfig8,
             param0: ?LPDIJOYTYPECALLBACK,
-            param1: ?*c_void,
+            param1: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetTypeInfo: fn(
             self: *const IDirectInputJoyConfig8,
@@ -5138,7 +5138,7 @@ pub const IDirectInputJoyConfig8 = extern struct {
             return @ptrCast(*const IDirectInputJoyConfig8.VTable, self.vtable).SendNotify(@ptrCast(*const IDirectInputJoyConfig8, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectInputJoyConfig8_EnumTypes(self: *const T, param0: ?LPDIJOYTYPECALLBACK, param1: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectInputJoyConfig8_EnumTypes(self: *const T, param0: ?LPDIJOYTYPECALLBACK, param1: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectInputJoyConfig8.VTable, self.vtable).EnumTypes(@ptrCast(*const IDirectInputJoyConfig8, self), param0, param1);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5390,7 +5390,7 @@ pub const HIDP_LINK_COLLECTION_NODE = extern struct {
     NextSibling: u16,
     FirstChild: u16,
     _bitfield: u32,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 };
 
 pub const _HIDP_PREPARSED_DATA = extern struct {
@@ -5461,7 +5461,7 @@ pub const HIDP_KEYBOARD_MODIFIER_STATE = extern struct {
 };
 
 pub const PHIDP_INSERT_SCANCODES = fn(
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 2?
     NewScanCodes: ?[*]u8,
     Length: u32,
@@ -5473,7 +5473,7 @@ pub const PFN_HidP_GetVersionInternal = fn(
 
 pub const HIDD_CONFIGURATION = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
-    cookie: ?*c_void,
+    cookie: ?*anyopaque,
     size: u32,
     RingBufferSize: u32,
 };
@@ -5557,7 +5557,7 @@ pub extern "DINPUT8" fn DirectInput8Create(
     hinst: ?HINSTANCE,
     dwVersion: u32,
     riidltf: ?*const Guid,
-    ppvOut: ?*?*c_void,
+    ppvOut: ?*?*anyopaque,
     punkOuter: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5822,7 +5822,7 @@ pub extern "HID" fn HidP_TranslateUsagesToI8042ScanCodes(
     KeyAction: HIDP_KEYBOARD_DIRECTION,
     ModifierState: ?*HIDP_KEYBOARD_MODIFIER_STATE,
     InsertCodesProcedure: ?PHIDP_INSERT_SCANCODES,
-    InsertCodesContext: ?*c_void,
+    InsertCodesContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub extern "HID" fn HidD_GetAttributes(
@@ -5864,28 +5864,28 @@ pub extern "HID" fn HidD_SetConfiguration(
 pub extern "HID" fn HidD_GetFeature(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    ReportBuffer: ?*c_void,
+    ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_SetFeature(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    ReportBuffer: ?*c_void,
+    ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetInputReport(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    ReportBuffer: ?*c_void,
+    ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_SetOutputReport(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    ReportBuffer: ?*c_void,
+    ReportBuffer: ?*anyopaque,
     ReportBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
@@ -5902,21 +5902,21 @@ pub extern "HID" fn HidD_SetNumInputBuffers(
 pub extern "HID" fn HidD_GetPhysicalDescriptor(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetManufacturerString(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetProductString(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
@@ -5924,21 +5924,21 @@ pub extern "HID" fn HidD_GetIndexedString(
     HidDeviceObject: ?HANDLE,
     StringIndex: u32,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetSerialNumberString(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "HID" fn HidD_GetMsGenreDescriptor(
     HidDeviceObject: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 

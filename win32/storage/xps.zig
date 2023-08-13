@@ -6280,7 +6280,7 @@ pub extern "GDI32" fn Escape(
     cjIn: i32,
     // TODO: what to do with BytesParamIndex 2?
     pvIn: ?[*:0]const u8,
-    pvOut: ?*c_void,
+    pvOut: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'

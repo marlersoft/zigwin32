@@ -593,8 +593,8 @@ pub const HANDLER_FUNCTION = fn(
 pub const HANDLER_FUNCTION_EX = fn(
     dwControl: u32,
     dwEventType: u32,
-    lpEventData: ?*c_void,
-    lpContext: ?*c_void,
+    lpEventData: ?*anyopaque,
+    lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const LPHANDLER_FUNCTION = fn(
@@ -604,18 +604,18 @@ pub const LPHANDLER_FUNCTION = fn(
 pub const LPHANDLER_FUNCTION_EX = fn(
     dwControl: u32,
     dwEventType: u32,
-    lpEventData: ?*c_void,
-    lpContext: ?*c_void,
+    lpEventData: ?*anyopaque,
+    lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PFN_SC_NOTIFY_CALLBACK = fn(
-    pParameter: ?*c_void,
+    pParameter: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const SERVICE_NOTIFY_1 = extern struct {
     dwVersion: u32,
     pfnNotifyCallback: ?PFN_SC_NOTIFY_CALLBACK,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     dwNotificationStatus: u32,
     ServiceStatus: SERVICE_STATUS_PROCESS,
 };
@@ -623,7 +623,7 @@ pub const SERVICE_NOTIFY_1 = extern struct {
 pub const SERVICE_NOTIFY_2A = extern struct {
     dwVersion: u32,
     pfnNotifyCallback: ?PFN_SC_NOTIFY_CALLBACK,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     dwNotificationStatus: u32,
     ServiceStatus: SERVICE_STATUS_PROCESS,
     dwNotificationTriggered: u32,
@@ -633,7 +633,7 @@ pub const SERVICE_NOTIFY_2A = extern struct {
 pub const SERVICE_NOTIFY_2W = extern struct {
     dwVersion: u32,
     pfnNotifyCallback: ?PFN_SC_NOTIFY_CALLBACK,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     dwNotificationStatus: u32,
     ServiceStatus: SERVICE_STATUS_PROCESS,
     dwNotificationTriggered: u32,
@@ -667,7 +667,7 @@ pub const SC_EVENT_STATUS_CHANGE = SC_EVENT_TYPE.STATUS_CHANGE;
 
 pub const PSC_NOTIFICATION_CALLBACK = fn(
     dwNotify: u32,
-    pCallbackContext: ?*c_void,
+    pCallbackContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const _SC_NOTIFICATION_REGISTRATION = extern struct {
@@ -746,14 +746,14 @@ pub extern "ADVAPI32" fn ChangeServiceConfigW(
 pub extern "ADVAPI32" fn ChangeServiceConfig2A(
     hService: SC_HANDLE,
     dwInfoLevel: SERVICE_CONFIG,
-    lpInfo: ?*c_void,
+    lpInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn ChangeServiceConfig2W(
     hService: SC_HANDLE,
     dwInfoLevel: SERVICE_CONFIG,
-    lpInfo: ?*c_void,
+    lpInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -920,7 +920,7 @@ pub extern "ADVAPI32" fn GetServiceDisplayNameW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn LockServiceDatabase(
     hSCManager: SC_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn NotifyBootConfigStatus(
@@ -1053,14 +1053,14 @@ pub extern "ADVAPI32" fn RegisterServiceCtrlHandlerW(
 pub extern "ADVAPI32" fn RegisterServiceCtrlHandlerExA(
     lpServiceName: ?[*:0]const u8,
     lpHandlerProc: ?LPHANDLER_FUNCTION_EX,
-    lpContext: ?*c_void,
+    lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) SERVICE_STATUS_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn RegisterServiceCtrlHandlerExW(
     lpServiceName: ?[*:0]const u16,
     lpHandlerProc: ?LPHANDLER_FUNCTION_EX,
-    lpContext: ?*c_void,
+    lpContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) SERVICE_STATUS_HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1102,7 +1102,7 @@ pub extern "ADVAPI32" fn StartServiceW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn UnlockServiceDatabase(
-    ScLock: ?*c_void,
+    ScLock: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1124,7 +1124,7 @@ pub extern "ADVAPI32" fn ControlServiceExA(
     hService: SC_HANDLE,
     dwControl: u32,
     dwInfoLevel: u32,
-    pControlParams: ?*c_void,
+    pControlParams: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1132,14 +1132,14 @@ pub extern "ADVAPI32" fn ControlServiceExW(
     hService: SC_HANDLE,
     dwControl: u32,
     dwInfoLevel: u32,
-    pControlParams: ?*c_void,
+    pControlParams: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ADVAPI32" fn QueryServiceDynamicInformation(
     hServiceStatus: SERVICE_STATUS_HANDLE,
     dwInfoLevel: u32,
-    ppDynamicInfo: ?*?*c_void,
+    ppDynamicInfo: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "ADVAPI32" fn WaitServiceState(

@@ -364,12 +364,12 @@ pub const CROSS_SLIDE_PARAMETER = extern struct {
 };
 
 pub const INTERACTION_CONTEXT_OUTPUT_CALLBACK = fn(
-    clientData: ?*c_void,
+    clientData: ?*anyopaque,
     output: ?*const INTERACTION_CONTEXT_OUTPUT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const INTERACTION_CONTEXT_OUTPUT_CALLBACK2 = fn(
-    clientData: ?*c_void,
+    clientData: ?*anyopaque,
     output: ?*const INTERACTION_CONTEXT_OUTPUT2,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -391,13 +391,13 @@ pub extern "NInput" fn DestroyInteractionContext(
 pub extern "NInput" fn RegisterOutputCallbackInteractionContext(
     interactionContext: ?HINTERACTIONCONTEXT,
     outputCallback: ?INTERACTION_CONTEXT_OUTPUT_CALLBACK,
-    clientData: ?*c_void,
+    clientData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "NInput" fn RegisterOutputCallbackInteractionContext2(
     interactionContext: ?HINTERACTIONCONTEXT,
     outputCallback: ?INTERACTION_CONTEXT_OUTPUT_CALLBACK2,
-    clientData: ?*c_void,
+    clientData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'

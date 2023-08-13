@@ -250,7 +250,7 @@ pub const XAPO_BUFFER_SILENT = XAPO_BUFFER_FLAGS.SILENT;
 pub const XAPO_BUFFER_VALID = XAPO_BUFFER_FLAGS.VALID;
 
 pub const XAPO_PROCESS_BUFFER_PARAMETERS = packed struct {
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     BufferFlags: XAPO_BUFFER_FLAGS,
     ValidFrameCount: u32,
 };
@@ -279,7 +279,7 @@ pub const IXAPO = extern struct {
         Initialize: fn(
             self: *const IXAPO,
             // TODO: what to do with BytesParamIndex 1?
-            pData: ?*const c_void,
+            pData: ?*const anyopaque,
             DataByteSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Reset: fn(
@@ -328,7 +328,7 @@ pub const IXAPO = extern struct {
             return @ptrCast(*const IXAPO.VTable, self.vtable).IsOutputFormatSupported(@ptrCast(*const IXAPO, self), pInputFormat, pRequestedOutputFormat, ppSupportedOutputFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPO_Initialize(self: *const T, pData: ?*const c_void, DataByteSize: u32) callconv(.Inline) HRESULT {
+        pub fn IXAPO_Initialize(self: *const T, pData: ?*const anyopaque, DataByteSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXAPO.VTable, self.vtable).Initialize(@ptrCast(*const IXAPO, self), pData, DataByteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -367,13 +367,13 @@ pub const IXAPOParameters = extern struct {
         SetParameters: fn(
             self: *const IXAPOParameters,
             // TODO: what to do with BytesParamIndex 1?
-            pParameters: ?*const c_void,
+            pParameters: ?*const anyopaque,
             ParameterByteSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
         GetParameters: fn(
             self: *const IXAPOParameters,
             // TODO: what to do with BytesParamIndex 1?
-            pParameters: ?*c_void,
+            pParameters: ?*anyopaque,
             ParameterByteSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
@@ -381,11 +381,11 @@ pub const IXAPOParameters = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPOParameters_SetParameters(self: *const T, pParameters: ?*const c_void, ParameterByteSize: u32) callconv(.Inline) void {
+        pub fn IXAPOParameters_SetParameters(self: *const T, pParameters: ?*const anyopaque, ParameterByteSize: u32) callconv(.Inline) void {
             return @ptrCast(*const IXAPOParameters.VTable, self.vtable).SetParameters(@ptrCast(*const IXAPOParameters, self), pParameters, ParameterByteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAPOParameters_GetParameters(self: *const T, pParameters: ?*c_void, ParameterByteSize: u32) callconv(.Inline) void {
+        pub fn IXAPOParameters_GetParameters(self: *const T, pParameters: ?*anyopaque, ParameterByteSize: u32) callconv(.Inline) void {
             return @ptrCast(*const IXAPOParameters.VTable, self.vtable).GetParameters(@ptrCast(*const IXAPOParameters, self), pParameters, ParameterByteSize);
         }
     };}
@@ -497,7 +497,7 @@ pub const XAUDIO2_BUFFER = packed struct {
     LoopBegin: u32,
     LoopLength: u32,
     LoopCount: u32,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
 };
 
 pub const XAUDIO2_BUFFER_WMA = packed struct {
@@ -506,7 +506,7 @@ pub const XAUDIO2_BUFFER_WMA = packed struct {
 };
 
 pub const XAUDIO2_VOICE_STATE = packed struct {
-    pCurrentBufferContext: ?*c_void,
+    pCurrentBufferContext: ?*anyopaque,
     BuffersQueued: u32,
     SamplesPlayed: u64,
 };
@@ -597,7 +597,7 @@ pub const IXAudio2 = extern struct {
         SetDebugConfiguration: fn(
             self: *const IXAudio2,
             pDebugConfiguration: ?*const XAUDIO2_DEBUG_CONFIGURATION,
-            pReserved: ?*c_void,
+            pReserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
@@ -640,7 +640,7 @@ pub const IXAudio2 = extern struct {
             return @ptrCast(*const IXAudio2.VTable, self.vtable).GetPerformanceData(@ptrCast(*const IXAudio2, self), pPerfData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2_SetDebugConfiguration(self: *const T, pDebugConfiguration: ?*const XAUDIO2_DEBUG_CONFIGURATION, pReserved: ?*c_void) callconv(.Inline) void {
+        pub fn IXAudio2_SetDebugConfiguration(self: *const T, pDebugConfiguration: ?*const XAUDIO2_DEBUG_CONFIGURATION, pReserved: ?*anyopaque) callconv(.Inline) void {
             return @ptrCast(*const IXAudio2.VTable, self.vtable).SetDebugConfiguration(@ptrCast(*const IXAudio2, self), pDebugConfiguration, pReserved);
         }
     };}
@@ -710,7 +710,7 @@ pub const IXAudio2Voice = extern struct {
             self: *const IXAudio2Voice,
             EffectIndex: u32,
             // TODO: what to do with BytesParamIndex 2?
-            pParameters: ?*const c_void,
+            pParameters: ?*const anyopaque,
             ParametersByteSize: u32,
             OperationSet: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -718,7 +718,7 @@ pub const IXAudio2Voice = extern struct {
             self: *const IXAudio2Voice,
             EffectIndex: u32,
             // TODO: what to do with BytesParamIndex 2?
-            pParameters: ?*c_void,
+            pParameters: ?*anyopaque,
             ParametersByteSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetFilterParameters: fn(
@@ -807,11 +807,11 @@ pub const IXAudio2Voice = extern struct {
             return @ptrCast(*const IXAudio2Voice.VTable, self.vtable).GetEffectState(@ptrCast(*const IXAudio2Voice, self), EffectIndex, pEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_SetEffectParameters(self: *const T, EffectIndex: u32, pParameters: ?*const c_void, ParametersByteSize: u32, OperationSet: u32) callconv(.Inline) HRESULT {
+        pub fn IXAudio2Voice_SetEffectParameters(self: *const T, EffectIndex: u32, pParameters: ?*const anyopaque, ParametersByteSize: u32, OperationSet: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXAudio2Voice.VTable, self.vtable).SetEffectParameters(@ptrCast(*const IXAudio2Voice, self), EffectIndex, pParameters, ParametersByteSize, OperationSet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2Voice_GetEffectParameters(self: *const T, EffectIndex: u32, pParameters: ?*c_void, ParametersByteSize: u32) callconv(.Inline) HRESULT {
+        pub fn IXAudio2Voice_GetEffectParameters(self: *const T, EffectIndex: u32, pParameters: ?*anyopaque, ParametersByteSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IXAudio2Voice.VTable, self.vtable).GetEffectParameters(@ptrCast(*const IXAudio2Voice, self), EffectIndex, pParameters, ParametersByteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1031,19 +1031,19 @@ pub const IXAudio2VoiceCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
         OnBufferStart: fn(
             self: *const IXAudio2VoiceCallback,
-            pBufferContext: ?*c_void,
+            pBufferContext: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) void,
         OnBufferEnd: fn(
             self: *const IXAudio2VoiceCallback,
-            pBufferContext: ?*c_void,
+            pBufferContext: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) void,
         OnLoopEnd: fn(
             self: *const IXAudio2VoiceCallback,
-            pBufferContext: ?*c_void,
+            pBufferContext: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) void,
         OnVoiceError: fn(
             self: *const IXAudio2VoiceCallback,
-            pBufferContext: ?*c_void,
+            pBufferContext: ?*anyopaque,
             Error: HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
@@ -1062,19 +1062,19 @@ pub const IXAudio2VoiceCallback = extern struct {
             return @ptrCast(*const IXAudio2VoiceCallback.VTable, self.vtable).OnStreamEnd(@ptrCast(*const IXAudio2VoiceCallback, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2VoiceCallback_OnBufferStart(self: *const T, pBufferContext: ?*c_void) callconv(.Inline) void {
+        pub fn IXAudio2VoiceCallback_OnBufferStart(self: *const T, pBufferContext: ?*anyopaque) callconv(.Inline) void {
             return @ptrCast(*const IXAudio2VoiceCallback.VTable, self.vtable).OnBufferStart(@ptrCast(*const IXAudio2VoiceCallback, self), pBufferContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2VoiceCallback_OnBufferEnd(self: *const T, pBufferContext: ?*c_void) callconv(.Inline) void {
+        pub fn IXAudio2VoiceCallback_OnBufferEnd(self: *const T, pBufferContext: ?*anyopaque) callconv(.Inline) void {
             return @ptrCast(*const IXAudio2VoiceCallback.VTable, self.vtable).OnBufferEnd(@ptrCast(*const IXAudio2VoiceCallback, self), pBufferContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2VoiceCallback_OnLoopEnd(self: *const T, pBufferContext: ?*c_void) callconv(.Inline) void {
+        pub fn IXAudio2VoiceCallback_OnLoopEnd(self: *const T, pBufferContext: ?*anyopaque) callconv(.Inline) void {
             return @ptrCast(*const IXAudio2VoiceCallback.VTable, self.vtable).OnLoopEnd(@ptrCast(*const IXAudio2VoiceCallback, self), pBufferContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IXAudio2VoiceCallback_OnVoiceError(self: *const T, pBufferContext: ?*c_void, Error: HRESULT) callconv(.Inline) void {
+        pub fn IXAudio2VoiceCallback_OnVoiceError(self: *const T, pBufferContext: ?*anyopaque, Error: HRESULT) callconv(.Inline) void {
             return @ptrCast(*const IXAudio2VoiceCallback.VTable, self.vtable).OnVoiceError(@ptrCast(*const IXAudio2VoiceCallback, self), pBufferContext, Error);
         }
     };}
@@ -1256,7 +1256,7 @@ pub extern "XAudio2_8" fn CreateFX(
     clsid: ?*const Guid,
     pEffect: ?*?*IUnknown,
     // TODO: what to do with BytesParamIndex 3?
-    pInitDat: ?*const c_void,
+    pInitDat: ?*const anyopaque,
     InitDataByteSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

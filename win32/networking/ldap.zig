@@ -316,12 +316,12 @@ pub const LDAP_BERVAL = extern struct {
 pub const LDAPMessage = extern struct {
     lm_msgid: u32,
     lm_msgtype: u32,
-    lm_ber: ?*c_void,
+    lm_ber: ?*anyopaque,
     lm_chain: ?*LDAPMessage,
     lm_next: ?*LDAPMessage,
     lm_time: u32,
     Connection: ?*ldap,
-    Request: ?*c_void,
+    Request: ?*anyopaque,
     lm_returncode: u32,
     lm_referral: u16,
     lm_chased: BOOLEAN,
@@ -427,7 +427,7 @@ pub const ldapvlvinfo = extern struct {
     ldvlv_count: u32,
     ldvlv_attrvalue: ?*LDAP_BERVAL,
     ldvlv_context: ?*LDAP_BERVAL,
-    ldvlv_extradata: ?*c_void,
+    ldvlv_extradata: ?*anyopaque,
 };
 
 pub const QUERYFORCONNECTION = fn(
@@ -436,8 +436,8 @@ pub const QUERYFORCONNECTION = fn(
     NewDN: ?[*]u16,
     HostName: ?[*]u8,
     PortNumber: u32,
-    SecAuthIdentity: ?*c_void,
-    CurrentUserToken: ?*c_void,
+    SecAuthIdentity: ?*anyopaque,
+    CurrentUserToken: ?*anyopaque,
     ConnectionToUse: ?*?*ldap,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -448,8 +448,8 @@ pub const NOTIFYOFNEWCONNECTION = fn(
     HostName: ?[*]u8,
     NewConnection: ?*ldap,
     PortNumber: u32,
-    SecAuthIdentity: ?*c_void,
-    CurrentUser: ?*c_void,
+    SecAuthIdentity: ?*anyopaque,
+    CurrentUser: ?*anyopaque,
     ErrorCodeFromBind: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
@@ -575,28 +575,28 @@ pub extern "WLDAP32" fn ldap_unbind_s(
 pub extern "WLDAP32" fn ldap_get_option(
     ld: ?*ldap,
     option: i32,
-    outvalue: ?*c_void,
+    outvalue: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WLDAP32" fn ldap_get_optionW(
     ld: ?*ldap,
     option: i32,
-    outvalue: ?*c_void,
+    outvalue: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WLDAP32" fn ldap_set_option(
     ld: ?*ldap,
     option: i32,
-    invalue: ?*const c_void,
+    invalue: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WLDAP32" fn ldap_set_optionW(
     ld: ?*ldap,
     option: i32,
-    invalue: ?*const c_void,
+    invalue: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

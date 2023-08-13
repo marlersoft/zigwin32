@@ -4042,7 +4042,7 @@ pub const RSOP_TARGET = extern struct {
     pwszAccountName: ?PWSTR,
     pwszNewSOM: ?PWSTR,
     psaSecurityGroups: ?*SAFEARRAY,
-    pRsopToken: ?*c_void,
+    pRsopToken: ?*anyopaque,
     pGPOList: ?*GROUP_POLICY_OBJECTA,
     pWbemServices: ?*IWbemServices,
 };
@@ -4600,7 +4600,7 @@ pub extern "USERENV" fn ProcessGroupPolicyCompletedEx(
 pub extern "USERENV" fn RsopAccessCheckByType(
     pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
     pPrincipalSelfSid: ?PSID,
-    pRsopToken: ?*c_void,
+    pRsopToken: ?*anyopaque,
     dwDesiredAccessMask: u32,
     pObjectTypeList: ?[*]OBJECT_TYPE_LIST,
     ObjectTypeListLength: u32,
@@ -4615,7 +4615,7 @@ pub extern "USERENV" fn RsopAccessCheckByType(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "USERENV" fn RsopFileAccessCheck(
     pszFileName: ?PWSTR,
-    pRsopToken: ?*c_void,
+    pRsopToken: ?*anyopaque,
     dwDesiredAccessMask: u32,
     pdwGrantedAccessMask: ?*u32,
     pbAccessStatus: ?*i32,

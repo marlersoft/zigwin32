@@ -15,24 +15,24 @@ pub const IPrinting3DManagerInterop = extern struct {
             self: *const IPrinting3DManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            printManager: ?*?*c_void,
+            printManager: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowPrintUIForWindowAsync: fn(
             self: *const IPrinting3DManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            asyncOperation: ?*?*c_void,
+            asyncOperation: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinting3DManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPrinting3DManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrinting3DManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IPrinting3DManagerInterop, self), appWindow, riid, printManager);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinting3DManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPrinting3DManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrinting3DManagerInterop.VTable, self.vtable).ShowPrintUIForWindowAsync(@ptrCast(*const IPrinting3DManagerInterop, self), appWindow, riid, asyncOperation);
         }
     };}
@@ -49,24 +49,24 @@ pub const IPrintManagerInterop = extern struct {
             self: *const IPrintManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            printManager: ?*?*c_void,
+            printManager: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowPrintUIForWindowAsync: fn(
             self: *const IPrintManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            asyncOperation: ?*?*c_void,
+            asyncOperation: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPrintManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IPrintManagerInterop, self), appWindow, riid, printManager);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPrintManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintManagerInterop.VTable, self.vtable).ShowPrintUIForWindowAsync(@ptrCast(*const IPrintManagerInterop, self), appWindow, riid, asyncOperation);
         }
     };}

@@ -209,9 +209,9 @@ pub extern "ADVAPI32" fn SaferGetPolicyInformation(
     SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
     InfoBufferSize: u32,
     // TODO: what to do with BytesParamIndex 2?
-    InfoBuffer: ?*c_void,
+    InfoBuffer: ?*anyopaque,
     InfoBufferRetSize: ?*u32,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -220,8 +220,8 @@ pub extern "ADVAPI32" fn SaferSetPolicyInformation(
     SaferPolicyInfoClass: SAFER_POLICY_INFO_CLASS,
     InfoBufferSize: u32,
     // TODO: what to do with BytesParamIndex 2?
-    InfoBuffer: ?*c_void,
-    lpReserved: ?*c_void,
+    InfoBuffer: ?*anyopaque,
+    lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -230,7 +230,7 @@ pub extern "ADVAPI32" fn SaferCreateLevel(
     dwLevelId: u32,
     OpenFlags: u32,
     pLevelHandle: ?*SAFER_LEVEL_HANDLE,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -243,7 +243,7 @@ pub extern "ADVAPI32" fn SaferIdentifyLevel(
     dwNumProperties: u32,
     pCodeProperties: ?[*]SAFER_CODE_PROPERTIES_V2,
     pLevelHandle: ?*SAFER_LEVEL_HANDLE,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -252,7 +252,7 @@ pub extern "ADVAPI32" fn SaferComputeTokenFromLevel(
     InAccessToken: ?HANDLE,
     OutAccessToken: ?*?HANDLE,
     dwFlags: SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -260,7 +260,7 @@ pub extern "ADVAPI32" fn SaferGetLevelInformation(
     LevelHandle: SAFER_LEVEL_HANDLE,
     dwInfoType: SAFER_OBJECT_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    lpQueryBuffer: ?*c_void,
+    lpQueryBuffer: ?*anyopaque,
     dwInBufferSize: u32,
     lpdwOutBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -270,7 +270,7 @@ pub extern "ADVAPI32" fn SaferSetLevelInformation(
     LevelHandle: SAFER_LEVEL_HANDLE,
     dwInfoType: SAFER_OBJECT_INFO_CLASS,
     // TODO: what to do with BytesParamIndex 3?
-    lpQueryBuffer: ?*c_void,
+    lpQueryBuffer: ?*anyopaque,
     dwInBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -278,7 +278,7 @@ pub extern "ADVAPI32" fn SaferSetLevelInformation(
 pub extern "ADVAPI32" fn SaferRecordEventLogEntry(
     hLevel: SAFER_LEVEL_HANDLE,
     szTargetPath: ?[*:0]const u16,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'

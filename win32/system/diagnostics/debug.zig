@@ -3522,7 +3522,7 @@ pub const EXCEPTION_DEBUG_INFO = extern struct {
 
 pub const CREATE_THREAD_DEBUG_INFO = extern struct {
     hThread: ?HANDLE,
-    lpThreadLocalBase: ?*c_void,
+    lpThreadLocalBase: ?*anyopaque,
     lpStartAddress: ?LPTHREAD_START_ROUTINE,
 };
 
@@ -3530,12 +3530,12 @@ pub const CREATE_PROCESS_DEBUG_INFO = extern struct {
     hFile: ?HANDLE,
     hProcess: ?HANDLE,
     hThread: ?HANDLE,
-    lpBaseOfImage: ?*c_void,
+    lpBaseOfImage: ?*anyopaque,
     dwDebugInfoFileOffset: u32,
     nDebugInfoSize: u32,
-    lpThreadLocalBase: ?*c_void,
+    lpThreadLocalBase: ?*anyopaque,
     lpStartAddress: ?LPTHREAD_START_ROUTINE,
-    lpImageName: ?*c_void,
+    lpImageName: ?*anyopaque,
     fUnicode: u16,
 };
 
@@ -3549,15 +3549,15 @@ pub const EXIT_PROCESS_DEBUG_INFO = extern struct {
 
 pub const LOAD_DLL_DEBUG_INFO = extern struct {
     hFile: ?HANDLE,
-    lpBaseOfDll: ?*c_void,
+    lpBaseOfDll: ?*anyopaque,
     dwDebugInfoFileOffset: u32,
     nDebugInfoSize: u32,
-    lpImageName: ?*c_void,
+    lpImageName: ?*anyopaque,
     fUnicode: u16,
 };
 
 pub const UNLOAD_DLL_DEBUG_INFO = extern struct {
-    lpBaseOfDll: ?*c_void,
+    lpBaseOfDll: ?*anyopaque,
 };
 
 pub const OUTPUT_DEBUG_STRING_INFO = extern struct {
@@ -3601,13 +3601,13 @@ pub const IDebugAdvanced = extern struct {
         GetThreadContext: fn(
             self: *const IDebugAdvanced,
             // TODO: what to do with BytesParamIndex 1?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetThreadContext: fn(
             self: *const IDebugAdvanced,
             // TODO: what to do with BytesParamIndex 1?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -3615,11 +3615,11 @@ pub const IDebugAdvanced = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced_GetThreadContext(self: *const T, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced_GetThreadContext(self: *const T, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced.VTable, self.vtable).GetThreadContext(@ptrCast(*const IDebugAdvanced, self), Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced_SetThreadContext(self: *const T, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced_SetThreadContext(self: *const T, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced.VTable, self.vtable).SetThreadContext(@ptrCast(*const IDebugAdvanced, self), Context, ContextSize);
         }
     };}
@@ -3630,7 +3630,7 @@ pub const DEBUG_READ_USER_MINIDUMP_STREAM = extern struct {
     StreamType: u32,
     Flags: u32,
     Offset: u64,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferSize: u32,
     BufferUsed: u32,
 };
@@ -3685,23 +3685,23 @@ pub const IDebugAdvanced2 = extern struct {
         GetThreadContext: fn(
             self: *const IDebugAdvanced2,
             // TODO: what to do with BytesParamIndex 1?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetThreadContext: fn(
             self: *const IDebugAdvanced2,
             // TODO: what to do with BytesParamIndex 1?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Request: fn(
             self: *const IDebugAdvanced2,
             Request: u32,
             // TODO: what to do with BytesParamIndex 2?
-            InBuffer: ?*c_void,
+            InBuffer: ?*anyopaque,
             InBufferSize: u32,
             // TODO: what to do with BytesParamIndex 4?
-            OutBuffer: ?*c_void,
+            OutBuffer: ?*anyopaque,
             OutBufferSize: u32,
             OutSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3712,7 +3712,7 @@ pub const IDebugAdvanced2 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3723,7 +3723,7 @@ pub const IDebugAdvanced2 = extern struct {
             File: ?[*:0]const u8,
             Flags: u32,
             // TODO: what to do with BytesParamIndex 5?
-            FileToken: ?*c_void,
+            FileToken: ?*anyopaque,
             FileTokenSize: u32,
             FoundElement: ?*u32,
             Buffer: ?[*:0]u8,
@@ -3736,7 +3736,7 @@ pub const IDebugAdvanced2 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
             StringBuffer: ?[*:0]u8,
@@ -3749,7 +3749,7 @@ pub const IDebugAdvanced2 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3758,31 +3758,31 @@ pub const IDebugAdvanced2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced2_GetThreadContext(self: *const T, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced2_GetThreadContext(self: *const T, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced2.VTable, self.vtable).GetThreadContext(@ptrCast(*const IDebugAdvanced2, self), Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced2_SetThreadContext(self: *const T, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced2_SetThreadContext(self: *const T, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced2.VTable, self.vtable).SetThreadContext(@ptrCast(*const IDebugAdvanced2, self), Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced2_Request(self: *const T, Request: u32, InBuffer: ?*c_void, InBufferSize: u32, OutBuffer: ?*c_void, OutBufferSize: u32, OutSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced2_Request(self: *const T, Request: u32, InBuffer: ?*anyopaque, InBufferSize: u32, OutBuffer: ?*anyopaque, OutBufferSize: u32, OutSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced2.VTable, self.vtable).Request(@ptrCast(*const IDebugAdvanced2, self), Request, InBuffer, InBufferSize, OutBuffer, OutBufferSize, OutSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced2_GetSourceFileInformation(self: *const T, Which: u32, SourceFile: ?PSTR, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced2_GetSourceFileInformation(self: *const T, Which: u32, SourceFile: ?PSTR, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced2.VTable, self.vtable).GetSourceFileInformation(@ptrCast(*const IDebugAdvanced2, self), Which, SourceFile, Arg64, Arg32, Buffer, BufferSize, InfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced2_FindSourceFileAndToken(self: *const T, StartElement: u32, ModAddr: u64, File: ?[*:0]const u8, Flags: u32, FileToken: ?*c_void, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u8, BufferSize: u32, FoundSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced2_FindSourceFileAndToken(self: *const T, StartElement: u32, ModAddr: u64, File: ?[*:0]const u8, Flags: u32, FileToken: ?*anyopaque, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u8, BufferSize: u32, FoundSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced2.VTable, self.vtable).FindSourceFileAndToken(@ptrCast(*const IDebugAdvanced2, self), StartElement, ModAddr, File, Flags, FileToken, FileTokenSize, FoundElement, Buffer, BufferSize, FoundSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced2_GetSymbolInformation(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32, StringBuffer: ?[*:0]u8, StringBufferSize: u32, StringSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced2_GetSymbolInformation(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32, StringBuffer: ?[*:0]u8, StringBufferSize: u32, StringSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced2.VTable, self.vtable).GetSymbolInformation(@ptrCast(*const IDebugAdvanced2, self), Which, Arg64, Arg32, Buffer, BufferSize, InfoSize, StringBuffer, StringBufferSize, StringSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced2_GetSystemObjectInformation(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced2_GetSystemObjectInformation(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced2.VTable, self.vtable).GetSystemObjectInformation(@ptrCast(*const IDebugAdvanced2, self), Which, Arg64, Arg32, Buffer, BufferSize, InfoSize);
         }
     };}
@@ -3797,23 +3797,23 @@ pub const IDebugAdvanced3 = extern struct {
         GetThreadContext: fn(
             self: *const IDebugAdvanced3,
             // TODO: what to do with BytesParamIndex 1?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetThreadContext: fn(
             self: *const IDebugAdvanced3,
             // TODO: what to do with BytesParamIndex 1?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Request: fn(
             self: *const IDebugAdvanced3,
             Request: u32,
             // TODO: what to do with BytesParamIndex 2?
-            InBuffer: ?*c_void,
+            InBuffer: ?*anyopaque,
             InBufferSize: u32,
             // TODO: what to do with BytesParamIndex 4?
-            OutBuffer: ?*c_void,
+            OutBuffer: ?*anyopaque,
             OutBufferSize: u32,
             OutSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3824,7 +3824,7 @@ pub const IDebugAdvanced3 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3835,7 +3835,7 @@ pub const IDebugAdvanced3 = extern struct {
             File: ?[*:0]const u8,
             Flags: u32,
             // TODO: what to do with BytesParamIndex 5?
-            FileToken: ?*c_void,
+            FileToken: ?*anyopaque,
             FileTokenSize: u32,
             FoundElement: ?*u32,
             Buffer: ?[*:0]u8,
@@ -3848,7 +3848,7 @@ pub const IDebugAdvanced3 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
             StringBuffer: ?[*:0]u8,
@@ -3861,7 +3861,7 @@ pub const IDebugAdvanced3 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3872,7 +3872,7 @@ pub const IDebugAdvanced3 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3883,7 +3883,7 @@ pub const IDebugAdvanced3 = extern struct {
             File: ?[*:0]const u16,
             Flags: u32,
             // TODO: what to do with BytesParamIndex 5?
-            FileToken: ?*c_void,
+            FileToken: ?*anyopaque,
             FileTokenSize: u32,
             FoundElement: ?*u32,
             Buffer: ?[*:0]u16,
@@ -3896,7 +3896,7 @@ pub const IDebugAdvanced3 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
             StringBuffer: ?[*:0]u16,
@@ -3908,43 +3908,43 @@ pub const IDebugAdvanced3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced3_GetThreadContext(self: *const T, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced3_GetThreadContext(self: *const T, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced3.VTable, self.vtable).GetThreadContext(@ptrCast(*const IDebugAdvanced3, self), Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced3_SetThreadContext(self: *const T, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced3_SetThreadContext(self: *const T, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced3.VTable, self.vtable).SetThreadContext(@ptrCast(*const IDebugAdvanced3, self), Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced3_Request(self: *const T, Request: u32, InBuffer: ?*c_void, InBufferSize: u32, OutBuffer: ?*c_void, OutBufferSize: u32, OutSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced3_Request(self: *const T, Request: u32, InBuffer: ?*anyopaque, InBufferSize: u32, OutBuffer: ?*anyopaque, OutBufferSize: u32, OutSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced3.VTable, self.vtable).Request(@ptrCast(*const IDebugAdvanced3, self), Request, InBuffer, InBufferSize, OutBuffer, OutBufferSize, OutSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced3_GetSourceFileInformation(self: *const T, Which: u32, SourceFile: ?PSTR, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced3_GetSourceFileInformation(self: *const T, Which: u32, SourceFile: ?PSTR, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced3.VTable, self.vtable).GetSourceFileInformation(@ptrCast(*const IDebugAdvanced3, self), Which, SourceFile, Arg64, Arg32, Buffer, BufferSize, InfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced3_FindSourceFileAndToken(self: *const T, StartElement: u32, ModAddr: u64, File: ?[*:0]const u8, Flags: u32, FileToken: ?*c_void, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u8, BufferSize: u32, FoundSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced3_FindSourceFileAndToken(self: *const T, StartElement: u32, ModAddr: u64, File: ?[*:0]const u8, Flags: u32, FileToken: ?*anyopaque, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u8, BufferSize: u32, FoundSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced3.VTable, self.vtable).FindSourceFileAndToken(@ptrCast(*const IDebugAdvanced3, self), StartElement, ModAddr, File, Flags, FileToken, FileTokenSize, FoundElement, Buffer, BufferSize, FoundSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced3_GetSymbolInformation(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32, StringBuffer: ?[*:0]u8, StringBufferSize: u32, StringSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced3_GetSymbolInformation(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32, StringBuffer: ?[*:0]u8, StringBufferSize: u32, StringSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced3.VTable, self.vtable).GetSymbolInformation(@ptrCast(*const IDebugAdvanced3, self), Which, Arg64, Arg32, Buffer, BufferSize, InfoSize, StringBuffer, StringBufferSize, StringSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced3_GetSystemObjectInformation(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced3_GetSystemObjectInformation(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced3.VTable, self.vtable).GetSystemObjectInformation(@ptrCast(*const IDebugAdvanced3, self), Which, Arg64, Arg32, Buffer, BufferSize, InfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced3_GetSourceFileInformationWide(self: *const T, Which: u32, SourceFile: ?PWSTR, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced3_GetSourceFileInformationWide(self: *const T, Which: u32, SourceFile: ?PWSTR, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced3.VTable, self.vtable).GetSourceFileInformationWide(@ptrCast(*const IDebugAdvanced3, self), Which, SourceFile, Arg64, Arg32, Buffer, BufferSize, InfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced3_FindSourceFileAndTokenWide(self: *const T, StartElement: u32, ModAddr: u64, File: ?[*:0]const u16, Flags: u32, FileToken: ?*c_void, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u16, BufferSize: u32, FoundSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced3_FindSourceFileAndTokenWide(self: *const T, StartElement: u32, ModAddr: u64, File: ?[*:0]const u16, Flags: u32, FileToken: ?*anyopaque, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u16, BufferSize: u32, FoundSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced3.VTable, self.vtable).FindSourceFileAndTokenWide(@ptrCast(*const IDebugAdvanced3, self), StartElement, ModAddr, File, Flags, FileToken, FileTokenSize, FoundElement, Buffer, BufferSize, FoundSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced3_GetSymbolInformationWide(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32, StringBuffer: ?[*:0]u16, StringBufferSize: u32, StringSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced3_GetSymbolInformationWide(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32, StringBuffer: ?[*:0]u16, StringBufferSize: u32, StringSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced3.VTable, self.vtable).GetSymbolInformationWide(@ptrCast(*const IDebugAdvanced3, self), Which, Arg64, Arg32, Buffer, BufferSize, InfoSize, StringBuffer, StringBufferSize, StringSize);
         }
     };}
@@ -3968,23 +3968,23 @@ pub const IDebugAdvanced4 = extern struct {
         GetThreadContext: fn(
             self: *const IDebugAdvanced4,
             // TODO: what to do with BytesParamIndex 1?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetThreadContext: fn(
             self: *const IDebugAdvanced4,
             // TODO: what to do with BytesParamIndex 1?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Request: fn(
             self: *const IDebugAdvanced4,
             Request: u32,
             // TODO: what to do with BytesParamIndex 2?
-            InBuffer: ?*c_void,
+            InBuffer: ?*anyopaque,
             InBufferSize: u32,
             // TODO: what to do with BytesParamIndex 4?
-            OutBuffer: ?*c_void,
+            OutBuffer: ?*anyopaque,
             OutBufferSize: u32,
             OutSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3995,7 +3995,7 @@ pub const IDebugAdvanced4 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4006,7 +4006,7 @@ pub const IDebugAdvanced4 = extern struct {
             File: ?[*:0]const u8,
             Flags: u32,
             // TODO: what to do with BytesParamIndex 5?
-            FileToken: ?*c_void,
+            FileToken: ?*anyopaque,
             FileTokenSize: u32,
             FoundElement: ?*u32,
             Buffer: ?[*:0]u8,
@@ -4019,7 +4019,7 @@ pub const IDebugAdvanced4 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
             StringBuffer: ?[*:0]u8,
@@ -4032,7 +4032,7 @@ pub const IDebugAdvanced4 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4043,7 +4043,7 @@ pub const IDebugAdvanced4 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4054,7 +4054,7 @@ pub const IDebugAdvanced4 = extern struct {
             File: ?[*:0]const u16,
             Flags: u32,
             // TODO: what to do with BytesParamIndex 5?
-            FileToken: ?*c_void,
+            FileToken: ?*anyopaque,
             FileTokenSize: u32,
             FoundElement: ?*u32,
             Buffer: ?[*:0]u16,
@@ -4067,7 +4067,7 @@ pub const IDebugAdvanced4 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
             StringBuffer: ?[*:0]u16,
@@ -4080,7 +4080,7 @@ pub const IDebugAdvanced4 = extern struct {
             Arg64: u64,
             Arg32: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
             StringBuffer: ?[*:0]u16,
@@ -4093,47 +4093,47 @@ pub const IDebugAdvanced4 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced4_GetThreadContext(self: *const T, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced4_GetThreadContext(self: *const T, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced4.VTable, self.vtable).GetThreadContext(@ptrCast(*const IDebugAdvanced4, self), Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced4_SetThreadContext(self: *const T, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced4_SetThreadContext(self: *const T, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced4.VTable, self.vtable).SetThreadContext(@ptrCast(*const IDebugAdvanced4, self), Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced4_Request(self: *const T, Request: u32, InBuffer: ?*c_void, InBufferSize: u32, OutBuffer: ?*c_void, OutBufferSize: u32, OutSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced4_Request(self: *const T, Request: u32, InBuffer: ?*anyopaque, InBufferSize: u32, OutBuffer: ?*anyopaque, OutBufferSize: u32, OutSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced4.VTable, self.vtable).Request(@ptrCast(*const IDebugAdvanced4, self), Request, InBuffer, InBufferSize, OutBuffer, OutBufferSize, OutSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced4_GetSourceFileInformation(self: *const T, Which: u32, SourceFile: ?PSTR, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced4_GetSourceFileInformation(self: *const T, Which: u32, SourceFile: ?PSTR, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced4.VTable, self.vtable).GetSourceFileInformation(@ptrCast(*const IDebugAdvanced4, self), Which, SourceFile, Arg64, Arg32, Buffer, BufferSize, InfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced4_FindSourceFileAndToken(self: *const T, StartElement: u32, ModAddr: u64, File: ?[*:0]const u8, Flags: u32, FileToken: ?*c_void, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u8, BufferSize: u32, FoundSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced4_FindSourceFileAndToken(self: *const T, StartElement: u32, ModAddr: u64, File: ?[*:0]const u8, Flags: u32, FileToken: ?*anyopaque, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u8, BufferSize: u32, FoundSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced4.VTable, self.vtable).FindSourceFileAndToken(@ptrCast(*const IDebugAdvanced4, self), StartElement, ModAddr, File, Flags, FileToken, FileTokenSize, FoundElement, Buffer, BufferSize, FoundSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced4_GetSymbolInformation(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32, StringBuffer: ?[*:0]u8, StringBufferSize: u32, StringSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced4_GetSymbolInformation(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32, StringBuffer: ?[*:0]u8, StringBufferSize: u32, StringSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced4.VTable, self.vtable).GetSymbolInformation(@ptrCast(*const IDebugAdvanced4, self), Which, Arg64, Arg32, Buffer, BufferSize, InfoSize, StringBuffer, StringBufferSize, StringSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced4_GetSystemObjectInformation(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced4_GetSystemObjectInformation(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced4.VTable, self.vtable).GetSystemObjectInformation(@ptrCast(*const IDebugAdvanced4, self), Which, Arg64, Arg32, Buffer, BufferSize, InfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced4_GetSourceFileInformationWide(self: *const T, Which: u32, SourceFile: ?PWSTR, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced4_GetSourceFileInformationWide(self: *const T, Which: u32, SourceFile: ?PWSTR, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced4.VTable, self.vtable).GetSourceFileInformationWide(@ptrCast(*const IDebugAdvanced4, self), Which, SourceFile, Arg64, Arg32, Buffer, BufferSize, InfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced4_FindSourceFileAndTokenWide(self: *const T, StartElement: u32, ModAddr: u64, File: ?[*:0]const u16, Flags: u32, FileToken: ?*c_void, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u16, BufferSize: u32, FoundSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced4_FindSourceFileAndTokenWide(self: *const T, StartElement: u32, ModAddr: u64, File: ?[*:0]const u16, Flags: u32, FileToken: ?*anyopaque, FileTokenSize: u32, FoundElement: ?*u32, Buffer: ?[*:0]u16, BufferSize: u32, FoundSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced4.VTable, self.vtable).FindSourceFileAndTokenWide(@ptrCast(*const IDebugAdvanced4, self), StartElement, ModAddr, File, Flags, FileToken, FileTokenSize, FoundElement, Buffer, BufferSize, FoundSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced4_GetSymbolInformationWide(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32, StringBuffer: ?[*:0]u16, StringBufferSize: u32, StringSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced4_GetSymbolInformationWide(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32, StringBuffer: ?[*:0]u16, StringBufferSize: u32, StringSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced4.VTable, self.vtable).GetSymbolInformationWide(@ptrCast(*const IDebugAdvanced4, self), Which, Arg64, Arg32, Buffer, BufferSize, InfoSize, StringBuffer, StringBufferSize, StringSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugAdvanced4_GetSymbolInformationWideEx(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32, StringBuffer: ?[*:0]u16, StringBufferSize: u32, StringSize: ?*u32, pInfoEx: ?*SYMBOL_INFO_EX) callconv(.Inline) HRESULT {
+        pub fn IDebugAdvanced4_GetSymbolInformationWideEx(self: *const T, Which: u32, Arg64: u64, Arg32: u32, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32, StringBuffer: ?[*:0]u16, StringBufferSize: u32, StringSize: ?*u32, pInfoEx: ?*SYMBOL_INFO_EX) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugAdvanced4.VTable, self.vtable).GetSymbolInformationWideEx(@ptrCast(*const IDebugAdvanced4, self), Which, Arg64, Arg32, Buffer, BufferSize, InfoSize, StringBuffer, StringBufferSize, StringSize, pInfoEx);
         }
     };}
@@ -4835,7 +4835,7 @@ pub const IDebugClient = extern struct {
             self: *const IDebugClient,
             Flags: u32,
             Options: ?[*:0]const u8,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectProcessServer: fn(
             self: *const IDebugClient,
@@ -5050,7 +5050,7 @@ pub const IDebugClient = extern struct {
             return @ptrCast(*const IDebugClient.VTable, self.vtable).SetKernelConnectionOptions(@ptrCast(*const IDebugClient, self), Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDebugClient_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient.VTable, self.vtable).StartProcessServer(@ptrCast(*const IDebugClient, self), Flags, Options, Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5245,7 +5245,7 @@ pub const IDebugClient2 = extern struct {
             self: *const IDebugClient2,
             Flags: u32,
             Options: ?[*:0]const u8,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectProcessServer: fn(
             self: *const IDebugClient2,
@@ -5492,7 +5492,7 @@ pub const IDebugClient2 = extern struct {
             return @ptrCast(*const IDebugClient2.VTable, self.vtable).SetKernelConnectionOptions(@ptrCast(*const IDebugClient2, self), Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient2_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDebugClient2_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient2.VTable, self.vtable).StartProcessServer(@ptrCast(*const IDebugClient2, self), Flags, Options, Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5719,7 +5719,7 @@ pub const IDebugClient3 = extern struct {
             self: *const IDebugClient3,
             Flags: u32,
             Options: ?[*:0]const u8,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectProcessServer: fn(
             self: *const IDebugClient3,
@@ -5999,7 +5999,7 @@ pub const IDebugClient3 = extern struct {
             return @ptrCast(*const IDebugClient3.VTable, self.vtable).SetKernelConnectionOptions(@ptrCast(*const IDebugClient3, self), Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient3_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDebugClient3_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient3.VTable, self.vtable).StartProcessServer(@ptrCast(*const IDebugClient3, self), Flags, Options, Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6242,7 +6242,7 @@ pub const IDebugClient4 = extern struct {
             self: *const IDebugClient4,
             Flags: u32,
             Options: ?[*:0]const u8,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectProcessServer: fn(
             self: *const IDebugClient4,
@@ -6563,7 +6563,7 @@ pub const IDebugClient4 = extern struct {
             return @ptrCast(*const IDebugClient4.VTable, self.vtable).SetKernelConnectionOptions(@ptrCast(*const IDebugClient4, self), Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient4_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDebugClient4_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient4.VTable, self.vtable).StartProcessServer(@ptrCast(*const IDebugClient4, self), Flags, Options, Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6830,7 +6830,7 @@ pub const IDebugClient5 = extern struct {
             self: *const IDebugClient5,
             Flags: u32,
             Options: ?[*:0]const u8,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectProcessServer: fn(
             self: *const IDebugClient5,
@@ -7153,7 +7153,7 @@ pub const IDebugClient5 = extern struct {
             self: *const IDebugClient5,
             Flags: u32,
             Options: ?[*:0]const u16,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectProcessServerWide: fn(
             self: *const IDebugClient5,
@@ -7213,7 +7213,7 @@ pub const IDebugClient5 = extern struct {
             Server: u64,
             CommandLine: ?PSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
             Environment: ?[*:0]const u8,
@@ -7223,7 +7223,7 @@ pub const IDebugClient5 = extern struct {
             Server: u64,
             CommandLine: ?PWSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
             Environment: ?[*:0]const u16,
@@ -7233,7 +7233,7 @@ pub const IDebugClient5 = extern struct {
             Server: u64,
             CommandLine: ?PSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
             Environment: ?[*:0]const u8,
@@ -7245,7 +7245,7 @@ pub const IDebugClient5 = extern struct {
             Server: u64,
             CommandLine: ?PWSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
             Environment: ?[*:0]const u16,
@@ -7316,7 +7316,7 @@ pub const IDebugClient5 = extern struct {
             return @ptrCast(*const IDebugClient5.VTable, self.vtable).SetKernelConnectionOptions(@ptrCast(*const IDebugClient5, self), Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient5_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDebugClient5_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient5.VTable, self.vtable).StartProcessServer(@ptrCast(*const IDebugClient5, self), Flags, Options, Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7568,7 +7568,7 @@ pub const IDebugClient5 = extern struct {
             return @ptrCast(*const IDebugClient5.VTable, self.vtable).SetKernelConnectionOptionsWide(@ptrCast(*const IDebugClient5, self), Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient5_StartProcessServerWide(self: *const T, Flags: u32, Options: ?[*:0]const u16, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDebugClient5_StartProcessServerWide(self: *const T, Flags: u32, Options: ?[*:0]const u16, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient5.VTable, self.vtable).StartProcessServerWide(@ptrCast(*const IDebugClient5, self), Flags, Options, Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7616,19 +7616,19 @@ pub const IDebugClient5 = extern struct {
             return @ptrCast(*const IDebugClient5.VTable, self.vtable).SetEventCallbacksWide(@ptrCast(*const IDebugClient5, self), Callbacks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient5_CreateProcess2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        pub fn IDebugClient5_CreateProcess2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient5.VTable, self.vtable).CreateProcess2(@ptrCast(*const IDebugClient5, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient5_CreateProcess2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IDebugClient5_CreateProcess2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient5.VTable, self.vtable).CreateProcess2Wide(@ptrCast(*const IDebugClient5, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient5_CreateProcessAndAttach2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugClient5_CreateProcessAndAttach2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient5.VTable, self.vtable).CreateProcessAndAttach2(@ptrCast(*const IDebugClient5, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient5_CreateProcessAndAttach2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugClient5_CreateProcessAndAttach2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient5.VTable, self.vtable).CreateProcessAndAttach2Wide(@ptrCast(*const IDebugClient5, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7699,7 +7699,7 @@ pub const IDebugClient6 = extern struct {
             self: *const IDebugClient6,
             Flags: u32,
             Options: ?[*:0]const u8,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectProcessServer: fn(
             self: *const IDebugClient6,
@@ -8022,7 +8022,7 @@ pub const IDebugClient6 = extern struct {
             self: *const IDebugClient6,
             Flags: u32,
             Options: ?[*:0]const u16,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectProcessServerWide: fn(
             self: *const IDebugClient6,
@@ -8082,7 +8082,7 @@ pub const IDebugClient6 = extern struct {
             Server: u64,
             CommandLine: ?PSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
             Environment: ?[*:0]const u8,
@@ -8092,7 +8092,7 @@ pub const IDebugClient6 = extern struct {
             Server: u64,
             CommandLine: ?PWSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
             Environment: ?[*:0]const u16,
@@ -8102,7 +8102,7 @@ pub const IDebugClient6 = extern struct {
             Server: u64,
             CommandLine: ?PSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
             Environment: ?[*:0]const u8,
@@ -8114,7 +8114,7 @@ pub const IDebugClient6 = extern struct {
             Server: u64,
             CommandLine: ?PWSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
             Environment: ?[*:0]const u16,
@@ -8189,7 +8189,7 @@ pub const IDebugClient6 = extern struct {
             return @ptrCast(*const IDebugClient6.VTable, self.vtable).SetKernelConnectionOptions(@ptrCast(*const IDebugClient6, self), Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient6_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDebugClient6_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient6.VTable, self.vtable).StartProcessServer(@ptrCast(*const IDebugClient6, self), Flags, Options, Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8441,7 +8441,7 @@ pub const IDebugClient6 = extern struct {
             return @ptrCast(*const IDebugClient6.VTable, self.vtable).SetKernelConnectionOptionsWide(@ptrCast(*const IDebugClient6, self), Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient6_StartProcessServerWide(self: *const T, Flags: u32, Options: ?[*:0]const u16, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDebugClient6_StartProcessServerWide(self: *const T, Flags: u32, Options: ?[*:0]const u16, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient6.VTable, self.vtable).StartProcessServerWide(@ptrCast(*const IDebugClient6, self), Flags, Options, Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8489,19 +8489,19 @@ pub const IDebugClient6 = extern struct {
             return @ptrCast(*const IDebugClient6.VTable, self.vtable).SetEventCallbacksWide(@ptrCast(*const IDebugClient6, self), Callbacks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient6_CreateProcess2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        pub fn IDebugClient6_CreateProcess2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient6.VTable, self.vtable).CreateProcess2(@ptrCast(*const IDebugClient6, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient6_CreateProcess2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IDebugClient6_CreateProcess2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient6.VTable, self.vtable).CreateProcess2Wide(@ptrCast(*const IDebugClient6, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient6_CreateProcessAndAttach2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugClient6_CreateProcessAndAttach2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient6.VTable, self.vtable).CreateProcessAndAttach2(@ptrCast(*const IDebugClient6, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient6_CreateProcessAndAttach2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugClient6_CreateProcessAndAttach2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient6.VTable, self.vtable).CreateProcessAndAttach2Wide(@ptrCast(*const IDebugClient6, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8576,7 +8576,7 @@ pub const IDebugClient7 = extern struct {
             self: *const IDebugClient7,
             Flags: u32,
             Options: ?[*:0]const u8,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectProcessServer: fn(
             self: *const IDebugClient7,
@@ -8899,7 +8899,7 @@ pub const IDebugClient7 = extern struct {
             self: *const IDebugClient7,
             Flags: u32,
             Options: ?[*:0]const u16,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectProcessServerWide: fn(
             self: *const IDebugClient7,
@@ -8959,7 +8959,7 @@ pub const IDebugClient7 = extern struct {
             Server: u64,
             CommandLine: ?PSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
             Environment: ?[*:0]const u8,
@@ -8969,7 +8969,7 @@ pub const IDebugClient7 = extern struct {
             Server: u64,
             CommandLine: ?PWSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
             Environment: ?[*:0]const u16,
@@ -8979,7 +8979,7 @@ pub const IDebugClient7 = extern struct {
             Server: u64,
             CommandLine: ?PSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
             Environment: ?[*:0]const u8,
@@ -8991,7 +8991,7 @@ pub const IDebugClient7 = extern struct {
             Server: u64,
             CommandLine: ?PWSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
             Environment: ?[*:0]const u16,
@@ -9052,7 +9052,7 @@ pub const IDebugClient7 = extern struct {
         SetClientContext: fn(
             self: *const IDebugClient7,
             // TODO: what to do with BytesParamIndex 1?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -9072,7 +9072,7 @@ pub const IDebugClient7 = extern struct {
             return @ptrCast(*const IDebugClient7.VTable, self.vtable).SetKernelConnectionOptions(@ptrCast(*const IDebugClient7, self), Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient7_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDebugClient7_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient7.VTable, self.vtable).StartProcessServer(@ptrCast(*const IDebugClient7, self), Flags, Options, Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9324,7 +9324,7 @@ pub const IDebugClient7 = extern struct {
             return @ptrCast(*const IDebugClient7.VTable, self.vtable).SetKernelConnectionOptionsWide(@ptrCast(*const IDebugClient7, self), Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient7_StartProcessServerWide(self: *const T, Flags: u32, Options: ?[*:0]const u16, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDebugClient7_StartProcessServerWide(self: *const T, Flags: u32, Options: ?[*:0]const u16, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient7.VTable, self.vtable).StartProcessServerWide(@ptrCast(*const IDebugClient7, self), Flags, Options, Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9372,19 +9372,19 @@ pub const IDebugClient7 = extern struct {
             return @ptrCast(*const IDebugClient7.VTable, self.vtable).SetEventCallbacksWide(@ptrCast(*const IDebugClient7, self), Callbacks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient7_CreateProcess2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        pub fn IDebugClient7_CreateProcess2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient7.VTable, self.vtable).CreateProcess2(@ptrCast(*const IDebugClient7, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient7_CreateProcess2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IDebugClient7_CreateProcess2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient7.VTable, self.vtable).CreateProcess2Wide(@ptrCast(*const IDebugClient7, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient7_CreateProcessAndAttach2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugClient7_CreateProcessAndAttach2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient7.VTable, self.vtable).CreateProcessAndAttach2(@ptrCast(*const IDebugClient7, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient7_CreateProcessAndAttach2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugClient7_CreateProcessAndAttach2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient7.VTable, self.vtable).CreateProcessAndAttach2Wide(@ptrCast(*const IDebugClient7, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9432,7 +9432,7 @@ pub const IDebugClient7 = extern struct {
             return @ptrCast(*const IDebugClient7.VTable, self.vtable).SetEventContextCallbacks(@ptrCast(*const IDebugClient7, self), Callbacks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient7_SetClientContext(self: *const T, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugClient7_SetClientContext(self: *const T, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient7.VTable, self.vtable).SetClientContext(@ptrCast(*const IDebugClient7, self), Context, ContextSize);
         }
     };}
@@ -9463,7 +9463,7 @@ pub const IDebugClient8 = extern struct {
             self: *const IDebugClient8,
             Flags: u32,
             Options: ?[*:0]const u8,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectProcessServer: fn(
             self: *const IDebugClient8,
@@ -9786,7 +9786,7 @@ pub const IDebugClient8 = extern struct {
             self: *const IDebugClient8,
             Flags: u32,
             Options: ?[*:0]const u16,
-            Reserved: ?*c_void,
+            Reserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectProcessServerWide: fn(
             self: *const IDebugClient8,
@@ -9846,7 +9846,7 @@ pub const IDebugClient8 = extern struct {
             Server: u64,
             CommandLine: ?PSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
             Environment: ?[*:0]const u8,
@@ -9856,7 +9856,7 @@ pub const IDebugClient8 = extern struct {
             Server: u64,
             CommandLine: ?PWSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
             Environment: ?[*:0]const u16,
@@ -9866,7 +9866,7 @@ pub const IDebugClient8 = extern struct {
             Server: u64,
             CommandLine: ?PSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u8,
             Environment: ?[*:0]const u8,
@@ -9878,7 +9878,7 @@ pub const IDebugClient8 = extern struct {
             Server: u64,
             CommandLine: ?PWSTR,
             // TODO: what to do with BytesParamIndex 3?
-            OptionsBuffer: ?*c_void,
+            OptionsBuffer: ?*anyopaque,
             OptionsBufferSize: u32,
             InitialDirectory: ?[*:0]const u16,
             Environment: ?[*:0]const u16,
@@ -9939,7 +9939,7 @@ pub const IDebugClient8 = extern struct {
         SetClientContext: fn(
             self: *const IDebugClient8,
             // TODO: what to do with BytesParamIndex 1?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OpenDumpFileWide2: fn(
@@ -9965,7 +9965,7 @@ pub const IDebugClient8 = extern struct {
             return @ptrCast(*const IDebugClient8.VTable, self.vtable).SetKernelConnectionOptions(@ptrCast(*const IDebugClient8, self), Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient8_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDebugClient8_StartProcessServer(self: *const T, Flags: u32, Options: ?[*:0]const u8, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient8.VTable, self.vtable).StartProcessServer(@ptrCast(*const IDebugClient8, self), Flags, Options, Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10217,7 +10217,7 @@ pub const IDebugClient8 = extern struct {
             return @ptrCast(*const IDebugClient8.VTable, self.vtable).SetKernelConnectionOptionsWide(@ptrCast(*const IDebugClient8, self), Options);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient8_StartProcessServerWide(self: *const T, Flags: u32, Options: ?[*:0]const u16, Reserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDebugClient8_StartProcessServerWide(self: *const T, Flags: u32, Options: ?[*:0]const u16, Reserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient8.VTable, self.vtable).StartProcessServerWide(@ptrCast(*const IDebugClient8, self), Flags, Options, Reserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10265,19 +10265,19 @@ pub const IDebugClient8 = extern struct {
             return @ptrCast(*const IDebugClient8.VTable, self.vtable).SetEventCallbacksWide(@ptrCast(*const IDebugClient8, self), Callbacks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient8_CreateProcess2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        pub fn IDebugClient8_CreateProcess2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient8.VTable, self.vtable).CreateProcess2(@ptrCast(*const IDebugClient8, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient8_CreateProcess2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IDebugClient8_CreateProcess2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient8.VTable, self.vtable).CreateProcess2Wide(@ptrCast(*const IDebugClient8, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient8_CreateProcessAndAttach2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugClient8_CreateProcessAndAttach2(self: *const T, Server: u64, CommandLine: ?PSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u8, Environment: ?[*:0]const u8, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient8.VTable, self.vtable).CreateProcessAndAttach2(@ptrCast(*const IDebugClient8, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient8_CreateProcessAndAttach2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*c_void, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugClient8_CreateProcessAndAttach2Wide(self: *const T, Server: u64, CommandLine: ?PWSTR, OptionsBuffer: ?*anyopaque, OptionsBufferSize: u32, InitialDirectory: ?[*:0]const u16, Environment: ?[*:0]const u16, ProcessId: u32, AttachFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient8.VTable, self.vtable).CreateProcessAndAttach2Wide(@ptrCast(*const IDebugClient8, self), Server, CommandLine, OptionsBuffer, OptionsBufferSize, InitialDirectory, Environment, ProcessId, AttachFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10325,7 +10325,7 @@ pub const IDebugClient8 = extern struct {
             return @ptrCast(*const IDebugClient8.VTable, self.vtable).SetEventContextCallbacks(@ptrCast(*const IDebugClient8, self), Callbacks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugClient8_SetClientContext(self: *const T, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugClient8_SetClientContext(self: *const T, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugClient8.VTable, self.vtable).SetClientContext(@ptrCast(*const IDebugClient8, self), Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11187,7 +11187,7 @@ pub const IDebugControl = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
             Description: ?[*:0]u8,
@@ -11563,7 +11563,7 @@ pub const IDebugControl = extern struct {
             return @ptrCast(*const IDebugControl.VTable, self.vtable).WaitForEvent(@ptrCast(*const IDebugControl, self), Flags, Timeout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl.VTable, self.vtable).GetLastEventInformation(@ptrCast(*const IDebugControl, self), Type, ProcessId, ThreadId, ExtraInformation, ExtraInformationSize, ExtraInformationUsed, Description, DescriptionSize, DescriptionUsed);
         }
     };}
@@ -12072,7 +12072,7 @@ pub const IDebugControl2 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
             Description: ?[*:0]u8,
@@ -12488,7 +12488,7 @@ pub const IDebugControl2 = extern struct {
             return @ptrCast(*const IDebugControl2.VTable, self.vtable).WaitForEvent(@ptrCast(*const IDebugControl2, self), Flags, Timeout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl2_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl2_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl2.VTable, self.vtable).GetLastEventInformation(@ptrCast(*const IDebugControl2, self), Type, ProcessId, ThreadId, ExtraInformation, ExtraInformationSize, ExtraInformationUsed, Description, DescriptionSize, DescriptionUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13029,7 +13029,7 @@ pub const IDebugControl3 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
             Description: ?[*:0]u8,
@@ -13509,7 +13509,7 @@ pub const IDebugControl3 = extern struct {
             return @ptrCast(*const IDebugControl3.VTable, self.vtable).WaitForEvent(@ptrCast(*const IDebugControl3, self), Flags, Timeout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl3_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl3_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl3.VTable, self.vtable).GetLastEventInformation(@ptrCast(*const IDebugControl3, self), Type, ProcessId, ThreadId, ExtraInformation, ExtraInformationSize, ExtraInformationUsed, Description, DescriptionSize, DescriptionUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14102,7 +14102,7 @@ pub const IDebugControl4 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
             Description: ?[*:0]u8,
@@ -14424,7 +14424,7 @@ pub const IDebugControl4 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
             Description: ?[*:0]u16,
@@ -14518,12 +14518,12 @@ pub const IDebugControl4 = extern struct {
         GetContextStackTrace: fn(
             self: *const IDebugControl4,
             // TODO: what to do with BytesParamIndex 1?
-            StartContext: ?*c_void,
+            StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 5?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             FramesFilled: ?*u32,
@@ -14534,7 +14534,7 @@ pub const IDebugControl4 = extern struct {
             Frames: [*]DEBUG_STACK_FRAME,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 4?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             Flags: u32,
@@ -14545,11 +14545,11 @@ pub const IDebugControl4 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
             ContextUsed: ?*u32,
             // TODO: what to do with BytesParamIndex 7?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -14942,7 +14942,7 @@ pub const IDebugControl4 = extern struct {
             return @ptrCast(*const IDebugControl4.VTable, self.vtable).WaitForEvent(@ptrCast(*const IDebugControl4, self), Flags, Timeout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl4_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl4_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl4.VTable, self.vtable).GetLastEventInformation(@ptrCast(*const IDebugControl4, self), Type, ProcessId, ThreadId, ExtraInformation, ExtraInformationSize, ExtraInformationUsed, Description, DescriptionSize, DescriptionUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15166,7 +15166,7 @@ pub const IDebugControl4 = extern struct {
             return @ptrCast(*const IDebugControl4.VTable, self.vtable).SetExceptionFilterSecondCommandWide(@ptrCast(*const IDebugControl4, self), Index, Command);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl4_GetLastEventInformationWide(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl4_GetLastEventInformationWide(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl4.VTable, self.vtable).GetLastEventInformationWide(@ptrCast(*const IDebugControl4, self), Type, ProcessId, ThreadId, ExtraInformation, ExtraInformationSize, ExtraInformationUsed, Description, DescriptionSize, DescriptionUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15218,15 +15218,15 @@ pub const IDebugControl4 = extern struct {
             return @ptrCast(*const IDebugControl4.VTable, self.vtable).GetSystemVersionStringWide(@ptrCast(*const IDebugControl4, self), Which, Buffer, BufferSize, StringSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl4_GetContextStackTrace(self: *const T, StartContext: ?*c_void, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl4_GetContextStackTrace(self: *const T, StartContext: ?*anyopaque, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl4.VTable, self.vtable).GetContextStackTrace(@ptrCast(*const IDebugControl4, self), StartContext, StartContextSize, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, FramesFilled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl4_OutputContextStackTrace(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl4_OutputContextStackTrace(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl4.VTable, self.vtable).OutputContextStackTrace(@ptrCast(*const IDebugControl4, self), OutputControl, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl4_GetStoredEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, Context: ?*c_void, ContextSize: u32, ContextUsed: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl4_GetStoredEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, Context: ?*anyopaque, ContextSize: u32, ContextUsed: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl4.VTable, self.vtable).GetStoredEventInformation(@ptrCast(*const IDebugControl4, self), Type, ProcessId, ThreadId, Context, ContextSize, ContextUsed, ExtraInformation, ExtraInformationSize, ExtraInformationUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15747,7 +15747,7 @@ pub const IDebugControl5 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
             Description: ?[*:0]u8,
@@ -16069,7 +16069,7 @@ pub const IDebugControl5 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
             Description: ?[*:0]u16,
@@ -16163,12 +16163,12 @@ pub const IDebugControl5 = extern struct {
         GetContextStackTrace: fn(
             self: *const IDebugControl5,
             // TODO: what to do with BytesParamIndex 1?
-            StartContext: ?*c_void,
+            StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 5?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             FramesFilled: ?*u32,
@@ -16179,7 +16179,7 @@ pub const IDebugControl5 = extern struct {
             Frames: [*]DEBUG_STACK_FRAME,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 4?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             Flags: u32,
@@ -16190,11 +16190,11 @@ pub const IDebugControl5 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
             ContextUsed: ?*u32,
             // TODO: what to do with BytesParamIndex 7?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -16237,12 +16237,12 @@ pub const IDebugControl5 = extern struct {
         GetContextStackTraceEx: fn(
             self: *const IDebugControl5,
             // TODO: what to do with BytesParamIndex 1?
-            StartContext: ?*c_void,
+            StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME_EX,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 5?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             FramesFilled: ?*u32,
@@ -16253,7 +16253,7 @@ pub const IDebugControl5 = extern struct {
             Frames: [*]DEBUG_STACK_FRAME_EX,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 4?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             Flags: u32,
@@ -16632,7 +16632,7 @@ pub const IDebugControl5 = extern struct {
             return @ptrCast(*const IDebugControl5.VTable, self.vtable).WaitForEvent(@ptrCast(*const IDebugControl5, self), Flags, Timeout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl5_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl5_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl5.VTable, self.vtable).GetLastEventInformation(@ptrCast(*const IDebugControl5, self), Type, ProcessId, ThreadId, ExtraInformation, ExtraInformationSize, ExtraInformationUsed, Description, DescriptionSize, DescriptionUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -16856,7 +16856,7 @@ pub const IDebugControl5 = extern struct {
             return @ptrCast(*const IDebugControl5.VTable, self.vtable).SetExceptionFilterSecondCommandWide(@ptrCast(*const IDebugControl5, self), Index, Command);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl5_GetLastEventInformationWide(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl5_GetLastEventInformationWide(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl5.VTable, self.vtable).GetLastEventInformationWide(@ptrCast(*const IDebugControl5, self), Type, ProcessId, ThreadId, ExtraInformation, ExtraInformationSize, ExtraInformationUsed, Description, DescriptionSize, DescriptionUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -16908,15 +16908,15 @@ pub const IDebugControl5 = extern struct {
             return @ptrCast(*const IDebugControl5.VTable, self.vtable).GetSystemVersionStringWide(@ptrCast(*const IDebugControl5, self), Which, Buffer, BufferSize, StringSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl5_GetContextStackTrace(self: *const T, StartContext: ?*c_void, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl5_GetContextStackTrace(self: *const T, StartContext: ?*anyopaque, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl5.VTable, self.vtable).GetContextStackTrace(@ptrCast(*const IDebugControl5, self), StartContext, StartContextSize, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, FramesFilled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl5_OutputContextStackTrace(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl5_OutputContextStackTrace(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl5.VTable, self.vtable).OutputContextStackTrace(@ptrCast(*const IDebugControl5, self), OutputControl, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl5_GetStoredEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, Context: ?*c_void, ContextSize: u32, ContextUsed: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl5_GetStoredEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, Context: ?*anyopaque, ContextSize: u32, ContextUsed: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl5.VTable, self.vtable).GetStoredEventInformation(@ptrCast(*const IDebugControl5, self), Type, ProcessId, ThreadId, Context, ContextSize, ContextUsed, ExtraInformation, ExtraInformationSize, ExtraInformationUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -16940,11 +16940,11 @@ pub const IDebugControl5 = extern struct {
             return @ptrCast(*const IDebugControl5.VTable, self.vtable).OutputStackTraceEx(@ptrCast(*const IDebugControl5, self), OutputControl, Frames, FramesSize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl5_GetContextStackTraceEx(self: *const T, StartContext: ?*c_void, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME_EX, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl5_GetContextStackTraceEx(self: *const T, StartContext: ?*anyopaque, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME_EX, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl5.VTable, self.vtable).GetContextStackTraceEx(@ptrCast(*const IDebugControl5, self), StartContext, StartContextSize, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, FramesFilled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl5_OutputContextStackTraceEx(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME_EX, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl5_OutputContextStackTraceEx(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME_EX, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl5.VTable, self.vtable).OutputContextStackTraceEx(@ptrCast(*const IDebugControl5, self), OutputControl, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -17457,7 +17457,7 @@ pub const IDebugControl6 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
             Description: ?[*:0]u8,
@@ -17779,7 +17779,7 @@ pub const IDebugControl6 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
             Description: ?[*:0]u16,
@@ -17873,12 +17873,12 @@ pub const IDebugControl6 = extern struct {
         GetContextStackTrace: fn(
             self: *const IDebugControl6,
             // TODO: what to do with BytesParamIndex 1?
-            StartContext: ?*c_void,
+            StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 5?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             FramesFilled: ?*u32,
@@ -17889,7 +17889,7 @@ pub const IDebugControl6 = extern struct {
             Frames: [*]DEBUG_STACK_FRAME,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 4?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             Flags: u32,
@@ -17900,11 +17900,11 @@ pub const IDebugControl6 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
             ContextUsed: ?*u32,
             // TODO: what to do with BytesParamIndex 7?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -17947,12 +17947,12 @@ pub const IDebugControl6 = extern struct {
         GetContextStackTraceEx: fn(
             self: *const IDebugControl6,
             // TODO: what to do with BytesParamIndex 1?
-            StartContext: ?*c_void,
+            StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME_EX,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 5?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             FramesFilled: ?*u32,
@@ -17963,7 +17963,7 @@ pub const IDebugControl6 = extern struct {
             Frames: [*]DEBUG_STACK_FRAME_EX,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 4?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             Flags: u32,
@@ -18351,7 +18351,7 @@ pub const IDebugControl6 = extern struct {
             return @ptrCast(*const IDebugControl6.VTable, self.vtable).WaitForEvent(@ptrCast(*const IDebugControl6, self), Flags, Timeout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl6_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl6_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl6.VTable, self.vtable).GetLastEventInformation(@ptrCast(*const IDebugControl6, self), Type, ProcessId, ThreadId, ExtraInformation, ExtraInformationSize, ExtraInformationUsed, Description, DescriptionSize, DescriptionUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18575,7 +18575,7 @@ pub const IDebugControl6 = extern struct {
             return @ptrCast(*const IDebugControl6.VTable, self.vtable).SetExceptionFilterSecondCommandWide(@ptrCast(*const IDebugControl6, self), Index, Command);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl6_GetLastEventInformationWide(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl6_GetLastEventInformationWide(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl6.VTable, self.vtable).GetLastEventInformationWide(@ptrCast(*const IDebugControl6, self), Type, ProcessId, ThreadId, ExtraInformation, ExtraInformationSize, ExtraInformationUsed, Description, DescriptionSize, DescriptionUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18627,15 +18627,15 @@ pub const IDebugControl6 = extern struct {
             return @ptrCast(*const IDebugControl6.VTable, self.vtable).GetSystemVersionStringWide(@ptrCast(*const IDebugControl6, self), Which, Buffer, BufferSize, StringSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl6_GetContextStackTrace(self: *const T, StartContext: ?*c_void, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl6_GetContextStackTrace(self: *const T, StartContext: ?*anyopaque, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl6.VTable, self.vtable).GetContextStackTrace(@ptrCast(*const IDebugControl6, self), StartContext, StartContextSize, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, FramesFilled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl6_OutputContextStackTrace(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl6_OutputContextStackTrace(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl6.VTable, self.vtable).OutputContextStackTrace(@ptrCast(*const IDebugControl6, self), OutputControl, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl6_GetStoredEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, Context: ?*c_void, ContextSize: u32, ContextUsed: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl6_GetStoredEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, Context: ?*anyopaque, ContextSize: u32, ContextUsed: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl6.VTable, self.vtable).GetStoredEventInformation(@ptrCast(*const IDebugControl6, self), Type, ProcessId, ThreadId, Context, ContextSize, ContextUsed, ExtraInformation, ExtraInformationSize, ExtraInformationUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -18659,11 +18659,11 @@ pub const IDebugControl6 = extern struct {
             return @ptrCast(*const IDebugControl6.VTable, self.vtable).OutputStackTraceEx(@ptrCast(*const IDebugControl6, self), OutputControl, Frames, FramesSize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl6_GetContextStackTraceEx(self: *const T, StartContext: ?*c_void, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME_EX, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl6_GetContextStackTraceEx(self: *const T, StartContext: ?*anyopaque, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME_EX, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl6.VTable, self.vtable).GetContextStackTraceEx(@ptrCast(*const IDebugControl6, self), StartContext, StartContextSize, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, FramesFilled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl6_OutputContextStackTraceEx(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME_EX, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl6_OutputContextStackTraceEx(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME_EX, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl6.VTable, self.vtable).OutputContextStackTraceEx(@ptrCast(*const IDebugControl6, self), OutputControl, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -19184,7 +19184,7 @@ pub const IDebugControl7 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
             Description: ?[*:0]u8,
@@ -19506,7 +19506,7 @@ pub const IDebugControl7 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
             Description: ?[*:0]u16,
@@ -19600,12 +19600,12 @@ pub const IDebugControl7 = extern struct {
         GetContextStackTrace: fn(
             self: *const IDebugControl7,
             // TODO: what to do with BytesParamIndex 1?
-            StartContext: ?*c_void,
+            StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 5?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             FramesFilled: ?*u32,
@@ -19616,7 +19616,7 @@ pub const IDebugControl7 = extern struct {
             Frames: [*]DEBUG_STACK_FRAME,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 4?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             Flags: u32,
@@ -19627,11 +19627,11 @@ pub const IDebugControl7 = extern struct {
             ProcessId: ?*u32,
             ThreadId: ?*u32,
             // TODO: what to do with BytesParamIndex 4?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
             ContextUsed: ?*u32,
             // TODO: what to do with BytesParamIndex 7?
-            ExtraInformation: ?*c_void,
+            ExtraInformation: ?*anyopaque,
             ExtraInformationSize: u32,
             ExtraInformationUsed: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -19674,12 +19674,12 @@ pub const IDebugControl7 = extern struct {
         GetContextStackTraceEx: fn(
             self: *const IDebugControl7,
             // TODO: what to do with BytesParamIndex 1?
-            StartContext: ?*c_void,
+            StartContext: ?*anyopaque,
             StartContextSize: u32,
             Frames: ?[*]DEBUG_STACK_FRAME_EX,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 5?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             FramesFilled: ?*u32,
@@ -19690,7 +19690,7 @@ pub const IDebugControl7 = extern struct {
             Frames: [*]DEBUG_STACK_FRAME_EX,
             FramesSize: u32,
             // TODO: what to do with BytesParamIndex 4?
-            FrameContexts: ?*c_void,
+            FrameContexts: ?*anyopaque,
             FrameContextsSize: u32,
             FrameContextsEntrySize: u32,
             Flags: u32,
@@ -20084,7 +20084,7 @@ pub const IDebugControl7 = extern struct {
             return @ptrCast(*const IDebugControl7.VTable, self.vtable).WaitForEvent(@ptrCast(*const IDebugControl7, self), Flags, Timeout);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl7_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl7_GetLastEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u8, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl7.VTable, self.vtable).GetLastEventInformation(@ptrCast(*const IDebugControl7, self), Type, ProcessId, ThreadId, ExtraInformation, ExtraInformationSize, ExtraInformationUsed, Description, DescriptionSize, DescriptionUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20308,7 +20308,7 @@ pub const IDebugControl7 = extern struct {
             return @ptrCast(*const IDebugControl7.VTable, self.vtable).SetExceptionFilterSecondCommandWide(@ptrCast(*const IDebugControl7, self), Index, Command);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl7_GetLastEventInformationWide(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl7_GetLastEventInformationWide(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32, Description: ?[*:0]u16, DescriptionSize: u32, DescriptionUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl7.VTable, self.vtable).GetLastEventInformationWide(@ptrCast(*const IDebugControl7, self), Type, ProcessId, ThreadId, ExtraInformation, ExtraInformationSize, ExtraInformationUsed, Description, DescriptionSize, DescriptionUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20360,15 +20360,15 @@ pub const IDebugControl7 = extern struct {
             return @ptrCast(*const IDebugControl7.VTable, self.vtable).GetSystemVersionStringWide(@ptrCast(*const IDebugControl7, self), Which, Buffer, BufferSize, StringSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl7_GetContextStackTrace(self: *const T, StartContext: ?*c_void, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl7_GetContextStackTrace(self: *const T, StartContext: ?*anyopaque, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl7.VTable, self.vtable).GetContextStackTrace(@ptrCast(*const IDebugControl7, self), StartContext, StartContextSize, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, FramesFilled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl7_OutputContextStackTrace(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl7_OutputContextStackTrace(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl7.VTable, self.vtable).OutputContextStackTrace(@ptrCast(*const IDebugControl7, self), OutputControl, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl7_GetStoredEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, Context: ?*c_void, ContextSize: u32, ContextUsed: ?*u32, ExtraInformation: ?*c_void, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl7_GetStoredEventInformation(self: *const T, Type: ?*u32, ProcessId: ?*u32, ThreadId: ?*u32, Context: ?*anyopaque, ContextSize: u32, ContextUsed: ?*u32, ExtraInformation: ?*anyopaque, ExtraInformationSize: u32, ExtraInformationUsed: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl7.VTable, self.vtable).GetStoredEventInformation(@ptrCast(*const IDebugControl7, self), Type, ProcessId, ThreadId, Context, ContextSize, ContextUsed, ExtraInformation, ExtraInformationSize, ExtraInformationUsed);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20392,11 +20392,11 @@ pub const IDebugControl7 = extern struct {
             return @ptrCast(*const IDebugControl7.VTable, self.vtable).OutputStackTraceEx(@ptrCast(*const IDebugControl7, self), OutputControl, Frames, FramesSize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl7_GetContextStackTraceEx(self: *const T, StartContext: ?*c_void, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME_EX, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl7_GetContextStackTraceEx(self: *const T, StartContext: ?*anyopaque, StartContextSize: u32, Frames: ?[*]DEBUG_STACK_FRAME_EX, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, FramesFilled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl7.VTable, self.vtable).GetContextStackTraceEx(@ptrCast(*const IDebugControl7, self), StartContext, StartContextSize, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, FramesFilled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugControl7_OutputContextStackTraceEx(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME_EX, FramesSize: u32, FrameContexts: ?*c_void, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugControl7_OutputContextStackTraceEx(self: *const T, OutputControl: u32, Frames: [*]DEBUG_STACK_FRAME_EX, FramesSize: u32, FrameContexts: ?*anyopaque, FrameContextsSize: u32, FrameContextsEntrySize: u32, Flags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugControl7.VTable, self.vtable).OutputContextStackTraceEx(@ptrCast(*const IDebugControl7, self), OutputControl, Frames, FramesSize, FrameContexts, FrameContextsSize, FrameContextsEntrySize, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20476,7 +20476,7 @@ pub const IDebugDataSpaces = extern struct {
             self: *const IDebugDataSpaces,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20484,7 +20484,7 @@ pub const IDebugDataSpaces = extern struct {
             self: *const IDebugDataSpaces,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20493,7 +20493,7 @@ pub const IDebugDataSpaces = extern struct {
             Offset: u64,
             Length: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Pattern: ?*c_void,
+            Pattern: ?*anyopaque,
             PatternSize: u32,
             PatternGranularity: u32,
             MatchOffset: ?*u64,
@@ -20502,7 +20502,7 @@ pub const IDebugDataSpaces = extern struct {
             self: *const IDebugDataSpaces,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20510,7 +20510,7 @@ pub const IDebugDataSpaces = extern struct {
             self: *const IDebugDataSpaces,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20530,7 +20530,7 @@ pub const IDebugDataSpaces = extern struct {
             self: *const IDebugDataSpaces,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20538,7 +20538,7 @@ pub const IDebugDataSpaces = extern struct {
             self: *const IDebugDataSpaces,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20547,7 +20547,7 @@ pub const IDebugDataSpaces = extern struct {
             Processor: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20556,7 +20556,7 @@ pub const IDebugDataSpaces = extern struct {
             Processor: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20567,7 +20567,7 @@ pub const IDebugDataSpaces = extern struct {
             AddressSpace: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20578,7 +20578,7 @@ pub const IDebugDataSpaces = extern struct {
             AddressSpace: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20599,7 +20599,7 @@ pub const IDebugDataSpaces = extern struct {
             SlotNumber: u32,
             Offset: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20610,7 +20610,7 @@ pub const IDebugDataSpaces = extern struct {
             SlotNumber: u32,
             Offset: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20621,7 +20621,7 @@ pub const IDebugDataSpaces = extern struct {
             self: *const IDebugDataSpaces,
             Index: u32,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20630,7 +20630,7 @@ pub const IDebugDataSpaces = extern struct {
             Processor: u32,
             Index: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20639,23 +20639,23 @@ pub const IDebugDataSpaces = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_ReadVirtual(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_ReadVirtual(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).ReadVirtual(@ptrCast(*const IDebugDataSpaces, self), Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_WriteVirtual(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_WriteVirtual(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).WriteVirtual(@ptrCast(*const IDebugDataSpaces, self), Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_SearchVirtual(self: *const T, Offset: u64, Length: u64, Pattern: ?*c_void, PatternSize: u32, PatternGranularity: u32, MatchOffset: ?*u64) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_SearchVirtual(self: *const T, Offset: u64, Length: u64, Pattern: ?*anyopaque, PatternSize: u32, PatternGranularity: u32, MatchOffset: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).SearchVirtual(@ptrCast(*const IDebugDataSpaces, self), Offset, Length, Pattern, PatternSize, PatternGranularity, MatchOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_ReadVirtualUncached(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_ReadVirtualUncached(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).ReadVirtualUncached(@ptrCast(*const IDebugDataSpaces, self), Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_WriteVirtualUncached(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_WriteVirtualUncached(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).WriteVirtualUncached(@ptrCast(*const IDebugDataSpaces, self), Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20667,27 +20667,27 @@ pub const IDebugDataSpaces = extern struct {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).WritePointersVirtual(@ptrCast(*const IDebugDataSpaces, self), Count, Offset, Ptrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_ReadPhysical(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_ReadPhysical(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).ReadPhysical(@ptrCast(*const IDebugDataSpaces, self), Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_WritePhysical(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_WritePhysical(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).WritePhysical(@ptrCast(*const IDebugDataSpaces, self), Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_ReadControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_ReadControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).ReadControl(@ptrCast(*const IDebugDataSpaces, self), Processor, Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_WriteControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_WriteControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).WriteControl(@ptrCast(*const IDebugDataSpaces, self), Processor, Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_ReadIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_ReadIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).ReadIo(@ptrCast(*const IDebugDataSpaces, self), InterfaceType, BusNumber, AddressSpace, Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_WriteIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_WriteIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).WriteIo(@ptrCast(*const IDebugDataSpaces, self), InterfaceType, BusNumber, AddressSpace, Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20699,11 +20699,11 @@ pub const IDebugDataSpaces = extern struct {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).WriteMsr(@ptrCast(*const IDebugDataSpaces, self), Msr, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_ReadBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_ReadBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).ReadBusData(@ptrCast(*const IDebugDataSpaces, self), BusDataType, BusNumber, SlotNumber, Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_WriteBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_WriteBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).WriteBusData(@ptrCast(*const IDebugDataSpaces, self), BusDataType, BusNumber, SlotNumber, Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20711,11 +20711,11 @@ pub const IDebugDataSpaces = extern struct {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).CheckLowMemory(@ptrCast(*const IDebugDataSpaces, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_ReadDebuggerData(self: *const T, Index: u32, Buffer: ?*c_void, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_ReadDebuggerData(self: *const T, Index: u32, Buffer: ?*anyopaque, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).ReadDebuggerData(@ptrCast(*const IDebugDataSpaces, self), Index, Buffer, BufferSize, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces_ReadProcessorSystemData(self: *const T, Processor: u32, Index: u32, Buffer: ?*c_void, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces_ReadProcessorSystemData(self: *const T, Processor: u32, Index: u32, Buffer: ?*anyopaque, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces.VTable, self.vtable).ReadProcessorSystemData(@ptrCast(*const IDebugDataSpaces, self), Processor, Index, Buffer, BufferSize, DataSize);
         }
     };}
@@ -20740,7 +20740,7 @@ pub const IDebugDataSpaces2 = extern struct {
             self: *const IDebugDataSpaces2,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20748,7 +20748,7 @@ pub const IDebugDataSpaces2 = extern struct {
             self: *const IDebugDataSpaces2,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20757,7 +20757,7 @@ pub const IDebugDataSpaces2 = extern struct {
             Offset: u64,
             Length: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Pattern: ?*c_void,
+            Pattern: ?*anyopaque,
             PatternSize: u32,
             PatternGranularity: u32,
             MatchOffset: ?*u64,
@@ -20766,7 +20766,7 @@ pub const IDebugDataSpaces2 = extern struct {
             self: *const IDebugDataSpaces2,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20774,7 +20774,7 @@ pub const IDebugDataSpaces2 = extern struct {
             self: *const IDebugDataSpaces2,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20794,7 +20794,7 @@ pub const IDebugDataSpaces2 = extern struct {
             self: *const IDebugDataSpaces2,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20802,7 +20802,7 @@ pub const IDebugDataSpaces2 = extern struct {
             self: *const IDebugDataSpaces2,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20811,7 +20811,7 @@ pub const IDebugDataSpaces2 = extern struct {
             Processor: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20820,7 +20820,7 @@ pub const IDebugDataSpaces2 = extern struct {
             Processor: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20831,7 +20831,7 @@ pub const IDebugDataSpaces2 = extern struct {
             AddressSpace: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20842,7 +20842,7 @@ pub const IDebugDataSpaces2 = extern struct {
             AddressSpace: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20863,7 +20863,7 @@ pub const IDebugDataSpaces2 = extern struct {
             SlotNumber: u32,
             Offset: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20874,7 +20874,7 @@ pub const IDebugDataSpaces2 = extern struct {
             SlotNumber: u32,
             Offset: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20885,7 +20885,7 @@ pub const IDebugDataSpaces2 = extern struct {
             self: *const IDebugDataSpaces2,
             Index: u32,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20894,7 +20894,7 @@ pub const IDebugDataSpaces2 = extern struct {
             Processor: u32,
             Index: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20915,7 +20915,7 @@ pub const IDebugDataSpaces2 = extern struct {
             Handle: u64,
             DataType: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20924,7 +20924,7 @@ pub const IDebugDataSpaces2 = extern struct {
             Start: u64,
             Size: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Pattern: ?*c_void,
+            Pattern: ?*anyopaque,
             PatternSize: u32,
             Filled: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20933,7 +20933,7 @@ pub const IDebugDataSpaces2 = extern struct {
             Start: u64,
             Size: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Pattern: ?*c_void,
+            Pattern: ?*anyopaque,
             PatternSize: u32,
             Filled: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -20947,23 +20947,23 @@ pub const IDebugDataSpaces2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_ReadVirtual(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_ReadVirtual(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).ReadVirtual(@ptrCast(*const IDebugDataSpaces2, self), Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_WriteVirtual(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_WriteVirtual(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).WriteVirtual(@ptrCast(*const IDebugDataSpaces2, self), Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_SearchVirtual(self: *const T, Offset: u64, Length: u64, Pattern: ?*c_void, PatternSize: u32, PatternGranularity: u32, MatchOffset: ?*u64) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_SearchVirtual(self: *const T, Offset: u64, Length: u64, Pattern: ?*anyopaque, PatternSize: u32, PatternGranularity: u32, MatchOffset: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).SearchVirtual(@ptrCast(*const IDebugDataSpaces2, self), Offset, Length, Pattern, PatternSize, PatternGranularity, MatchOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_ReadVirtualUncached(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_ReadVirtualUncached(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).ReadVirtualUncached(@ptrCast(*const IDebugDataSpaces2, self), Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_WriteVirtualUncached(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_WriteVirtualUncached(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).WriteVirtualUncached(@ptrCast(*const IDebugDataSpaces2, self), Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -20975,27 +20975,27 @@ pub const IDebugDataSpaces2 = extern struct {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).WritePointersVirtual(@ptrCast(*const IDebugDataSpaces2, self), Count, Offset, Ptrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_ReadPhysical(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_ReadPhysical(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).ReadPhysical(@ptrCast(*const IDebugDataSpaces2, self), Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_WritePhysical(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_WritePhysical(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).WritePhysical(@ptrCast(*const IDebugDataSpaces2, self), Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_ReadControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_ReadControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).ReadControl(@ptrCast(*const IDebugDataSpaces2, self), Processor, Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_WriteControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_WriteControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).WriteControl(@ptrCast(*const IDebugDataSpaces2, self), Processor, Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_ReadIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_ReadIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).ReadIo(@ptrCast(*const IDebugDataSpaces2, self), InterfaceType, BusNumber, AddressSpace, Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_WriteIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_WriteIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).WriteIo(@ptrCast(*const IDebugDataSpaces2, self), InterfaceType, BusNumber, AddressSpace, Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21007,11 +21007,11 @@ pub const IDebugDataSpaces2 = extern struct {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).WriteMsr(@ptrCast(*const IDebugDataSpaces2, self), Msr, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_ReadBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_ReadBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).ReadBusData(@ptrCast(*const IDebugDataSpaces2, self), BusDataType, BusNumber, SlotNumber, Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_WriteBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_WriteBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).WriteBusData(@ptrCast(*const IDebugDataSpaces2, self), BusDataType, BusNumber, SlotNumber, Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21019,11 +21019,11 @@ pub const IDebugDataSpaces2 = extern struct {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).CheckLowMemory(@ptrCast(*const IDebugDataSpaces2, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_ReadDebuggerData(self: *const T, Index: u32, Buffer: ?*c_void, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_ReadDebuggerData(self: *const T, Index: u32, Buffer: ?*anyopaque, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).ReadDebuggerData(@ptrCast(*const IDebugDataSpaces2, self), Index, Buffer, BufferSize, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_ReadProcessorSystemData(self: *const T, Processor: u32, Index: u32, Buffer: ?*c_void, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_ReadProcessorSystemData(self: *const T, Processor: u32, Index: u32, Buffer: ?*anyopaque, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).ReadProcessorSystemData(@ptrCast(*const IDebugDataSpaces2, self), Processor, Index, Buffer, BufferSize, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21035,15 +21035,15 @@ pub const IDebugDataSpaces2 = extern struct {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).GetVirtualTranslationPhysicalOffsets(@ptrCast(*const IDebugDataSpaces2, self), Virtual, Offsets, OffsetsSize, Levels);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_ReadHandleData(self: *const T, Handle: u64, DataType: u32, Buffer: ?*c_void, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_ReadHandleData(self: *const T, Handle: u64, DataType: u32, Buffer: ?*anyopaque, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).ReadHandleData(@ptrCast(*const IDebugDataSpaces2, self), Handle, DataType, Buffer, BufferSize, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_FillVirtual(self: *const T, Start: u64, Size: u32, Pattern: ?*c_void, PatternSize: u32, Filled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_FillVirtual(self: *const T, Start: u64, Size: u32, Pattern: ?*anyopaque, PatternSize: u32, Filled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).FillVirtual(@ptrCast(*const IDebugDataSpaces2, self), Start, Size, Pattern, PatternSize, Filled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces2_FillPhysical(self: *const T, Start: u64, Size: u32, Pattern: ?*c_void, PatternSize: u32, Filled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces2_FillPhysical(self: *const T, Start: u64, Size: u32, Pattern: ?*anyopaque, PatternSize: u32, Filled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces2.VTable, self.vtable).FillPhysical(@ptrCast(*const IDebugDataSpaces2, self), Start, Size, Pattern, PatternSize, Filled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21063,7 +21063,7 @@ pub const IDebugDataSpaces3 = extern struct {
             self: *const IDebugDataSpaces3,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21071,7 +21071,7 @@ pub const IDebugDataSpaces3 = extern struct {
             self: *const IDebugDataSpaces3,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21080,7 +21080,7 @@ pub const IDebugDataSpaces3 = extern struct {
             Offset: u64,
             Length: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Pattern: ?*c_void,
+            Pattern: ?*anyopaque,
             PatternSize: u32,
             PatternGranularity: u32,
             MatchOffset: ?*u64,
@@ -21089,7 +21089,7 @@ pub const IDebugDataSpaces3 = extern struct {
             self: *const IDebugDataSpaces3,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21097,7 +21097,7 @@ pub const IDebugDataSpaces3 = extern struct {
             self: *const IDebugDataSpaces3,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21117,7 +21117,7 @@ pub const IDebugDataSpaces3 = extern struct {
             self: *const IDebugDataSpaces3,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21125,7 +21125,7 @@ pub const IDebugDataSpaces3 = extern struct {
             self: *const IDebugDataSpaces3,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21134,7 +21134,7 @@ pub const IDebugDataSpaces3 = extern struct {
             Processor: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21143,7 +21143,7 @@ pub const IDebugDataSpaces3 = extern struct {
             Processor: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21154,7 +21154,7 @@ pub const IDebugDataSpaces3 = extern struct {
             AddressSpace: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21165,7 +21165,7 @@ pub const IDebugDataSpaces3 = extern struct {
             AddressSpace: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21186,7 +21186,7 @@ pub const IDebugDataSpaces3 = extern struct {
             SlotNumber: u32,
             Offset: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21197,7 +21197,7 @@ pub const IDebugDataSpaces3 = extern struct {
             SlotNumber: u32,
             Offset: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21208,7 +21208,7 @@ pub const IDebugDataSpaces3 = extern struct {
             self: *const IDebugDataSpaces3,
             Index: u32,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21217,7 +21217,7 @@ pub const IDebugDataSpaces3 = extern struct {
             Processor: u32,
             Index: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21238,7 +21238,7 @@ pub const IDebugDataSpaces3 = extern struct {
             Handle: u64,
             DataType: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21247,7 +21247,7 @@ pub const IDebugDataSpaces3 = extern struct {
             Start: u64,
             Size: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Pattern: ?*c_void,
+            Pattern: ?*anyopaque,
             PatternSize: u32,
             Filled: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21256,7 +21256,7 @@ pub const IDebugDataSpaces3 = extern struct {
             Start: u64,
             Size: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Pattern: ?*c_void,
+            Pattern: ?*anyopaque,
             PatternSize: u32,
             Filled: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21275,7 +21275,7 @@ pub const IDebugDataSpaces3 = extern struct {
             Tag: ?*Guid,
             Offset: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             TotalSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21298,23 +21298,23 @@ pub const IDebugDataSpaces3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_ReadVirtual(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_ReadVirtual(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).ReadVirtual(@ptrCast(*const IDebugDataSpaces3, self), Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_WriteVirtual(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_WriteVirtual(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).WriteVirtual(@ptrCast(*const IDebugDataSpaces3, self), Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_SearchVirtual(self: *const T, Offset: u64, Length: u64, Pattern: ?*c_void, PatternSize: u32, PatternGranularity: u32, MatchOffset: ?*u64) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_SearchVirtual(self: *const T, Offset: u64, Length: u64, Pattern: ?*anyopaque, PatternSize: u32, PatternGranularity: u32, MatchOffset: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).SearchVirtual(@ptrCast(*const IDebugDataSpaces3, self), Offset, Length, Pattern, PatternSize, PatternGranularity, MatchOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_ReadVirtualUncached(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_ReadVirtualUncached(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).ReadVirtualUncached(@ptrCast(*const IDebugDataSpaces3, self), Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_WriteVirtualUncached(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_WriteVirtualUncached(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).WriteVirtualUncached(@ptrCast(*const IDebugDataSpaces3, self), Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21326,27 +21326,27 @@ pub const IDebugDataSpaces3 = extern struct {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).WritePointersVirtual(@ptrCast(*const IDebugDataSpaces3, self), Count, Offset, Ptrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_ReadPhysical(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_ReadPhysical(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).ReadPhysical(@ptrCast(*const IDebugDataSpaces3, self), Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_WritePhysical(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_WritePhysical(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).WritePhysical(@ptrCast(*const IDebugDataSpaces3, self), Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_ReadControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_ReadControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).ReadControl(@ptrCast(*const IDebugDataSpaces3, self), Processor, Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_WriteControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_WriteControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).WriteControl(@ptrCast(*const IDebugDataSpaces3, self), Processor, Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_ReadIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_ReadIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).ReadIo(@ptrCast(*const IDebugDataSpaces3, self), InterfaceType, BusNumber, AddressSpace, Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_WriteIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_WriteIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).WriteIo(@ptrCast(*const IDebugDataSpaces3, self), InterfaceType, BusNumber, AddressSpace, Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21358,11 +21358,11 @@ pub const IDebugDataSpaces3 = extern struct {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).WriteMsr(@ptrCast(*const IDebugDataSpaces3, self), Msr, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_ReadBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_ReadBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).ReadBusData(@ptrCast(*const IDebugDataSpaces3, self), BusDataType, BusNumber, SlotNumber, Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_WriteBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_WriteBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).WriteBusData(@ptrCast(*const IDebugDataSpaces3, self), BusDataType, BusNumber, SlotNumber, Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21370,11 +21370,11 @@ pub const IDebugDataSpaces3 = extern struct {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).CheckLowMemory(@ptrCast(*const IDebugDataSpaces3, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_ReadDebuggerData(self: *const T, Index: u32, Buffer: ?*c_void, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_ReadDebuggerData(self: *const T, Index: u32, Buffer: ?*anyopaque, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).ReadDebuggerData(@ptrCast(*const IDebugDataSpaces3, self), Index, Buffer, BufferSize, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_ReadProcessorSystemData(self: *const T, Processor: u32, Index: u32, Buffer: ?*c_void, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_ReadProcessorSystemData(self: *const T, Processor: u32, Index: u32, Buffer: ?*anyopaque, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).ReadProcessorSystemData(@ptrCast(*const IDebugDataSpaces3, self), Processor, Index, Buffer, BufferSize, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21386,15 +21386,15 @@ pub const IDebugDataSpaces3 = extern struct {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).GetVirtualTranslationPhysicalOffsets(@ptrCast(*const IDebugDataSpaces3, self), Virtual, Offsets, OffsetsSize, Levels);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_ReadHandleData(self: *const T, Handle: u64, DataType: u32, Buffer: ?*c_void, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_ReadHandleData(self: *const T, Handle: u64, DataType: u32, Buffer: ?*anyopaque, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).ReadHandleData(@ptrCast(*const IDebugDataSpaces3, self), Handle, DataType, Buffer, BufferSize, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_FillVirtual(self: *const T, Start: u64, Size: u32, Pattern: ?*c_void, PatternSize: u32, Filled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_FillVirtual(self: *const T, Start: u64, Size: u32, Pattern: ?*anyopaque, PatternSize: u32, Filled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).FillVirtual(@ptrCast(*const IDebugDataSpaces3, self), Start, Size, Pattern, PatternSize, Filled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_FillPhysical(self: *const T, Start: u64, Size: u32, Pattern: ?*c_void, PatternSize: u32, Filled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_FillPhysical(self: *const T, Start: u64, Size: u32, Pattern: ?*anyopaque, PatternSize: u32, Filled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).FillPhysical(@ptrCast(*const IDebugDataSpaces3, self), Start, Size, Pattern, PatternSize, Filled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21406,7 +21406,7 @@ pub const IDebugDataSpaces3 = extern struct {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).ReadImageNtHeaders(@ptrCast(*const IDebugDataSpaces3, self), ImageBase, Headers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces3_ReadTagged(self: *const T, Tag: ?*Guid, Offset: u32, Buffer: ?*c_void, BufferSize: u32, TotalSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces3_ReadTagged(self: *const T, Tag: ?*Guid, Offset: u32, Buffer: ?*anyopaque, BufferSize: u32, TotalSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces3.VTable, self.vtable).ReadTagged(@ptrCast(*const IDebugDataSpaces3, self), Tag, Offset, Buffer, BufferSize, TotalSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21434,7 +21434,7 @@ pub const IDebugDataSpaces4 = extern struct {
             self: *const IDebugDataSpaces4,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21442,7 +21442,7 @@ pub const IDebugDataSpaces4 = extern struct {
             self: *const IDebugDataSpaces4,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21451,7 +21451,7 @@ pub const IDebugDataSpaces4 = extern struct {
             Offset: u64,
             Length: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Pattern: ?*c_void,
+            Pattern: ?*anyopaque,
             PatternSize: u32,
             PatternGranularity: u32,
             MatchOffset: ?*u64,
@@ -21460,7 +21460,7 @@ pub const IDebugDataSpaces4 = extern struct {
             self: *const IDebugDataSpaces4,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21468,7 +21468,7 @@ pub const IDebugDataSpaces4 = extern struct {
             self: *const IDebugDataSpaces4,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21488,7 +21488,7 @@ pub const IDebugDataSpaces4 = extern struct {
             self: *const IDebugDataSpaces4,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21496,7 +21496,7 @@ pub const IDebugDataSpaces4 = extern struct {
             self: *const IDebugDataSpaces4,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21505,7 +21505,7 @@ pub const IDebugDataSpaces4 = extern struct {
             Processor: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21514,7 +21514,7 @@ pub const IDebugDataSpaces4 = extern struct {
             Processor: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21525,7 +21525,7 @@ pub const IDebugDataSpaces4 = extern struct {
             AddressSpace: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21536,7 +21536,7 @@ pub const IDebugDataSpaces4 = extern struct {
             AddressSpace: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21557,7 +21557,7 @@ pub const IDebugDataSpaces4 = extern struct {
             SlotNumber: u32,
             Offset: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21568,7 +21568,7 @@ pub const IDebugDataSpaces4 = extern struct {
             SlotNumber: u32,
             Offset: u32,
             // TODO: what to do with BytesParamIndex 5?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21579,7 +21579,7 @@ pub const IDebugDataSpaces4 = extern struct {
             self: *const IDebugDataSpaces4,
             Index: u32,
             // TODO: what to do with BytesParamIndex 2?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21588,7 +21588,7 @@ pub const IDebugDataSpaces4 = extern struct {
             Processor: u32,
             Index: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21609,7 +21609,7 @@ pub const IDebugDataSpaces4 = extern struct {
             Handle: u64,
             DataType: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             DataSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21618,7 +21618,7 @@ pub const IDebugDataSpaces4 = extern struct {
             Start: u64,
             Size: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Pattern: ?*c_void,
+            Pattern: ?*anyopaque,
             PatternSize: u32,
             Filled: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21627,7 +21627,7 @@ pub const IDebugDataSpaces4 = extern struct {
             Start: u64,
             Size: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Pattern: ?*c_void,
+            Pattern: ?*anyopaque,
             PatternSize: u32,
             Filled: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21646,7 +21646,7 @@ pub const IDebugDataSpaces4 = extern struct {
             Tag: ?*Guid,
             Offset: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             TotalSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21670,7 +21670,7 @@ pub const IDebugDataSpaces4 = extern struct {
             Which: u32,
             Offset: u64,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             InfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21692,7 +21692,7 @@ pub const IDebugDataSpaces4 = extern struct {
             Length: u64,
             Flags: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Pattern: ?*c_void,
+            Pattern: ?*anyopaque,
             PatternSize: u32,
             PatternGranularity: u32,
             MatchOffset: ?*u64,
@@ -21736,7 +21736,7 @@ pub const IDebugDataSpaces4 = extern struct {
             Offset: u64,
             Flags: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21745,7 +21745,7 @@ pub const IDebugDataSpaces4 = extern struct {
             Offset: u64,
             Flags: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -21754,23 +21754,23 @@ pub const IDebugDataSpaces4 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_ReadVirtual(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_ReadVirtual(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadVirtual(@ptrCast(*const IDebugDataSpaces4, self), Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_WriteVirtual(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_WriteVirtual(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).WriteVirtual(@ptrCast(*const IDebugDataSpaces4, self), Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_SearchVirtual(self: *const T, Offset: u64, Length: u64, Pattern: ?*c_void, PatternSize: u32, PatternGranularity: u32, MatchOffset: ?*u64) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_SearchVirtual(self: *const T, Offset: u64, Length: u64, Pattern: ?*anyopaque, PatternSize: u32, PatternGranularity: u32, MatchOffset: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).SearchVirtual(@ptrCast(*const IDebugDataSpaces4, self), Offset, Length, Pattern, PatternSize, PatternGranularity, MatchOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_ReadVirtualUncached(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_ReadVirtualUncached(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadVirtualUncached(@ptrCast(*const IDebugDataSpaces4, self), Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_WriteVirtualUncached(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_WriteVirtualUncached(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).WriteVirtualUncached(@ptrCast(*const IDebugDataSpaces4, self), Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21782,27 +21782,27 @@ pub const IDebugDataSpaces4 = extern struct {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).WritePointersVirtual(@ptrCast(*const IDebugDataSpaces4, self), Count, Offset, Ptrs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_ReadPhysical(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_ReadPhysical(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadPhysical(@ptrCast(*const IDebugDataSpaces4, self), Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_WritePhysical(self: *const T, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_WritePhysical(self: *const T, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).WritePhysical(@ptrCast(*const IDebugDataSpaces4, self), Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_ReadControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_ReadControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadControl(@ptrCast(*const IDebugDataSpaces4, self), Processor, Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_WriteControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_WriteControl(self: *const T, Processor: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).WriteControl(@ptrCast(*const IDebugDataSpaces4, self), Processor, Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_ReadIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_ReadIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadIo(@ptrCast(*const IDebugDataSpaces4, self), InterfaceType, BusNumber, AddressSpace, Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_WriteIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_WriteIo(self: *const T, InterfaceType: u32, BusNumber: u32, AddressSpace: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).WriteIo(@ptrCast(*const IDebugDataSpaces4, self), InterfaceType, BusNumber, AddressSpace, Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21814,11 +21814,11 @@ pub const IDebugDataSpaces4 = extern struct {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).WriteMsr(@ptrCast(*const IDebugDataSpaces4, self), Msr, Value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_ReadBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_ReadBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadBusData(@ptrCast(*const IDebugDataSpaces4, self), BusDataType, BusNumber, SlotNumber, Offset, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_WriteBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_WriteBusData(self: *const T, BusDataType: u32, BusNumber: u32, SlotNumber: u32, Offset: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).WriteBusData(@ptrCast(*const IDebugDataSpaces4, self), BusDataType, BusNumber, SlotNumber, Offset, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21826,11 +21826,11 @@ pub const IDebugDataSpaces4 = extern struct {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).CheckLowMemory(@ptrCast(*const IDebugDataSpaces4, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_ReadDebuggerData(self: *const T, Index: u32, Buffer: ?*c_void, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_ReadDebuggerData(self: *const T, Index: u32, Buffer: ?*anyopaque, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadDebuggerData(@ptrCast(*const IDebugDataSpaces4, self), Index, Buffer, BufferSize, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_ReadProcessorSystemData(self: *const T, Processor: u32, Index: u32, Buffer: ?*c_void, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_ReadProcessorSystemData(self: *const T, Processor: u32, Index: u32, Buffer: ?*anyopaque, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadProcessorSystemData(@ptrCast(*const IDebugDataSpaces4, self), Processor, Index, Buffer, BufferSize, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21842,15 +21842,15 @@ pub const IDebugDataSpaces4 = extern struct {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).GetVirtualTranslationPhysicalOffsets(@ptrCast(*const IDebugDataSpaces4, self), Virtual, Offsets, OffsetsSize, Levels);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_ReadHandleData(self: *const T, Handle: u64, DataType: u32, Buffer: ?*c_void, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_ReadHandleData(self: *const T, Handle: u64, DataType: u32, Buffer: ?*anyopaque, BufferSize: u32, DataSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadHandleData(@ptrCast(*const IDebugDataSpaces4, self), Handle, DataType, Buffer, BufferSize, DataSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_FillVirtual(self: *const T, Start: u64, Size: u32, Pattern: ?*c_void, PatternSize: u32, Filled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_FillVirtual(self: *const T, Start: u64, Size: u32, Pattern: ?*anyopaque, PatternSize: u32, Filled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).FillVirtual(@ptrCast(*const IDebugDataSpaces4, self), Start, Size, Pattern, PatternSize, Filled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_FillPhysical(self: *const T, Start: u64, Size: u32, Pattern: ?*c_void, PatternSize: u32, Filled: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_FillPhysical(self: *const T, Start: u64, Size: u32, Pattern: ?*anyopaque, PatternSize: u32, Filled: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).FillPhysical(@ptrCast(*const IDebugDataSpaces4, self), Start, Size, Pattern, PatternSize, Filled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21862,7 +21862,7 @@ pub const IDebugDataSpaces4 = extern struct {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadImageNtHeaders(@ptrCast(*const IDebugDataSpaces4, self), ImageBase, Headers);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_ReadTagged(self: *const T, Tag: ?*Guid, Offset: u32, Buffer: ?*c_void, BufferSize: u32, TotalSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_ReadTagged(self: *const T, Tag: ?*Guid, Offset: u32, Buffer: ?*anyopaque, BufferSize: u32, TotalSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadTagged(@ptrCast(*const IDebugDataSpaces4, self), Tag, Offset, Buffer, BufferSize, TotalSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21878,7 +21878,7 @@ pub const IDebugDataSpaces4 = extern struct {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).EndEnumTagged(@ptrCast(*const IDebugDataSpaces4, self), Handle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_GetOffsetInformation(self: *const T, Space: u32, Which: u32, Offset: u64, Buffer: ?*c_void, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_GetOffsetInformation(self: *const T, Space: u32, Which: u32, Offset: u64, Buffer: ?*anyopaque, BufferSize: u32, InfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).GetOffsetInformation(@ptrCast(*const IDebugDataSpaces4, self), Space, Which, Offset, Buffer, BufferSize, InfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21890,7 +21890,7 @@ pub const IDebugDataSpaces4 = extern struct {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).GetValidRegionVirtual(@ptrCast(*const IDebugDataSpaces4, self), Base, Size, ValidBase, ValidSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_SearchVirtual2(self: *const T, Offset: u64, Length: u64, Flags: u32, Pattern: ?*c_void, PatternSize: u32, PatternGranularity: u32, MatchOffset: ?*u64) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_SearchVirtual2(self: *const T, Offset: u64, Length: u64, Flags: u32, Pattern: ?*anyopaque, PatternSize: u32, PatternGranularity: u32, MatchOffset: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).SearchVirtual2(@ptrCast(*const IDebugDataSpaces4, self), Offset, Length, Flags, Pattern, PatternSize, PatternGranularity, MatchOffset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21910,11 +21910,11 @@ pub const IDebugDataSpaces4 = extern struct {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadUnicodeStringVirtualWide(@ptrCast(*const IDebugDataSpaces4, self), Offset, MaxBytes, Buffer, BufferSize, StringBytes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_ReadPhysical2(self: *const T, Offset: u64, Flags: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_ReadPhysical2(self: *const T, Offset: u64, Flags: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).ReadPhysical2(@ptrCast(*const IDebugDataSpaces4, self), Offset, Flags, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugDataSpaces4_WritePhysical2(self: *const T, Offset: u64, Flags: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugDataSpaces4_WritePhysical2(self: *const T, Offset: u64, Flags: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugDataSpaces4.VTable, self.vtable).WritePhysical2(@ptrCast(*const IDebugDataSpaces4, self), Offset, Flags, Buffer, BufferSize, BytesWritten);
         }
     };}
@@ -22239,7 +22239,7 @@ pub const IDebugEventContextCallbacks = extern struct {
             self: *const IDebugEventContextCallbacks,
             Bp: ?*IDebugBreakpoint2,
             // TODO: what to do with BytesParamIndex 2?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Exception: fn(
@@ -22247,7 +22247,7 @@ pub const IDebugEventContextCallbacks = extern struct {
             Exception: ?*EXCEPTION_RECORD64,
             FirstChance: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateThread: fn(
@@ -22256,14 +22256,14 @@ pub const IDebugEventContextCallbacks = extern struct {
             DataOffset: u64,
             StartOffset: u64,
             // TODO: what to do with BytesParamIndex 4?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExitThread: fn(
             self: *const IDebugEventContextCallbacks,
             ExitCode: u32,
             // TODO: what to do with BytesParamIndex 2?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateProcessA: fn(
@@ -22280,14 +22280,14 @@ pub const IDebugEventContextCallbacks = extern struct {
             ThreadDataOffset: u64,
             StartOffset: u64,
             // TODO: what to do with BytesParamIndex 12?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ExitProcess: fn(
             self: *const IDebugEventContextCallbacks,
             ExitCode: u32,
             // TODO: what to do with BytesParamIndex 2?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) noreturn,
         LoadModule: fn(
@@ -22300,7 +22300,7 @@ pub const IDebugEventContextCallbacks = extern struct {
             CheckSum: u32,
             TimeDateStamp: u32,
             // TODO: what to do with BytesParamIndex 8?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         UnloadModule: fn(
@@ -22308,7 +22308,7 @@ pub const IDebugEventContextCallbacks = extern struct {
             ImageBaseName: ?[*:0]const u16,
             BaseOffset: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SystemError: fn(
@@ -22316,7 +22316,7 @@ pub const IDebugEventContextCallbacks = extern struct {
             Error: u32,
             Level: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionStatus: fn(
@@ -22328,7 +22328,7 @@ pub const IDebugEventContextCallbacks = extern struct {
             Flags: u32,
             Argument: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ChangeEngineState: fn(
@@ -22336,7 +22336,7 @@ pub const IDebugEventContextCallbacks = extern struct {
             Flags: u32,
             Argument: u64,
             // TODO: what to do with BytesParamIndex 3?
-            Context: ?*c_void,
+            Context: ?*anyopaque,
             ContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ChangeSymbolState: fn(
@@ -22353,39 +22353,39 @@ pub const IDebugEventContextCallbacks = extern struct {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).GetInterestMask(@ptrCast(*const IDebugEventContextCallbacks, self), Mask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugEventContextCallbacks_Breakpoint(self: *const T, Bp: ?*IDebugBreakpoint2, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugEventContextCallbacks_Breakpoint(self: *const T, Bp: ?*IDebugBreakpoint2, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).Breakpoint(@ptrCast(*const IDebugEventContextCallbacks, self), Bp, Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugEventContextCallbacks_Exception(self: *const T, Exception: ?*EXCEPTION_RECORD64, FirstChance: u32, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugEventContextCallbacks_Exception(self: *const T, Exception: ?*EXCEPTION_RECORD64, FirstChance: u32, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).Exception(@ptrCast(*const IDebugEventContextCallbacks, self), Exception, FirstChance, Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugEventContextCallbacks_CreateThread(self: *const T, Handle: u64, DataOffset: u64, StartOffset: u64, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugEventContextCallbacks_CreateThread(self: *const T, Handle: u64, DataOffset: u64, StartOffset: u64, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).CreateThread(@ptrCast(*const IDebugEventContextCallbacks, self), Handle, DataOffset, StartOffset, Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugEventContextCallbacks_ExitThread(self: *const T, ExitCode: u32, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugEventContextCallbacks_ExitThread(self: *const T, ExitCode: u32, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).ExitThread(@ptrCast(*const IDebugEventContextCallbacks, self), ExitCode, Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugEventContextCallbacks_CreateProcessA(self: *const T, ImageFileHandle: u64, Handle: u64, BaseOffset: u64, ModuleSize: u32, ModuleName: ?[*:0]const u16, ImageName: ?[*:0]const u16, CheckSum: u32, TimeDateStamp: u32, InitialThreadHandle: u64, ThreadDataOffset: u64, StartOffset: u64, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugEventContextCallbacks_CreateProcessA(self: *const T, ImageFileHandle: u64, Handle: u64, BaseOffset: u64, ModuleSize: u32, ModuleName: ?[*:0]const u16, ImageName: ?[*:0]const u16, CheckSum: u32, TimeDateStamp: u32, InitialThreadHandle: u64, ThreadDataOffset: u64, StartOffset: u64, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).CreateProcessA(@ptrCast(*const IDebugEventContextCallbacks, self), ImageFileHandle, Handle, BaseOffset, ModuleSize, ModuleName, ImageName, CheckSum, TimeDateStamp, InitialThreadHandle, ThreadDataOffset, StartOffset, Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugEventContextCallbacks_ExitProcess(self: *const T, ExitCode: u32, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugEventContextCallbacks_ExitProcess(self: *const T, ExitCode: u32, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).ExitProcess(@ptrCast(*const IDebugEventContextCallbacks, self), ExitCode, Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugEventContextCallbacks_LoadModule(self: *const T, ImageFileHandle: u64, BaseOffset: u64, ModuleSize: u32, ModuleName: ?[*:0]const u16, ImageName: ?[*:0]const u16, CheckSum: u32, TimeDateStamp: u32, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugEventContextCallbacks_LoadModule(self: *const T, ImageFileHandle: u64, BaseOffset: u64, ModuleSize: u32, ModuleName: ?[*:0]const u16, ImageName: ?[*:0]const u16, CheckSum: u32, TimeDateStamp: u32, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).LoadModule(@ptrCast(*const IDebugEventContextCallbacks, self), ImageFileHandle, BaseOffset, ModuleSize, ModuleName, ImageName, CheckSum, TimeDateStamp, Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugEventContextCallbacks_UnloadModule(self: *const T, ImageBaseName: ?[*:0]const u16, BaseOffset: u64, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugEventContextCallbacks_UnloadModule(self: *const T, ImageBaseName: ?[*:0]const u16, BaseOffset: u64, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).UnloadModule(@ptrCast(*const IDebugEventContextCallbacks, self), ImageBaseName, BaseOffset, Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugEventContextCallbacks_SystemError(self: *const T, Error: u32, Level: u32, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugEventContextCallbacks_SystemError(self: *const T, Error: u32, Level: u32, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).SystemError(@ptrCast(*const IDebugEventContextCallbacks, self), Error, Level, Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -22393,11 +22393,11 @@ pub const IDebugEventContextCallbacks = extern struct {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).SessionStatus(@ptrCast(*const IDebugEventContextCallbacks, self), Status);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugEventContextCallbacks_ChangeDebuggeeState(self: *const T, Flags: u32, Argument: u64, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugEventContextCallbacks_ChangeDebuggeeState(self: *const T, Flags: u32, Argument: u64, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).ChangeDebuggeeState(@ptrCast(*const IDebugEventContextCallbacks, self), Flags, Argument, Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugEventContextCallbacks_ChangeEngineState(self: *const T, Flags: u32, Argument: u64, Context: ?*c_void, ContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugEventContextCallbacks_ChangeEngineState(self: *const T, Flags: u32, Argument: u64, Context: ?*anyopaque, ContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugEventContextCallbacks.VTable, self.vtable).ChangeEngineState(@ptrCast(*const IDebugEventContextCallbacks, self), Flags, Argument, Context, ContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23447,7 +23447,7 @@ pub const IDebugSymbols = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -23457,7 +23457,7 @@ pub const IDebugSymbols = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -23475,7 +23475,7 @@ pub const IDebugSymbols = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -23485,7 +23485,7 @@ pub const IDebugSymbols = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -23502,7 +23502,7 @@ pub const IDebugSymbols = extern struct {
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetScope: fn(
@@ -23510,7 +23510,7 @@ pub const IDebugSymbols = extern struct {
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResetScope: fn(
@@ -23706,11 +23706,11 @@ pub const IDebugSymbols = extern struct {
             return @ptrCast(*const IDebugSymbols.VTable, self.vtable).GetOffsetTypeId(@ptrCast(*const IDebugSymbols, self), Offset, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols_ReadTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols_ReadTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols.VTable, self.vtable).ReadTypedDataVirtual(@ptrCast(*const IDebugSymbols, self), Offset, Module, TypeId, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols_WriteTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols_WriteTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols.VTable, self.vtable).WriteTypedDataVirtual(@ptrCast(*const IDebugSymbols, self), Offset, Module, TypeId, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23718,11 +23718,11 @@ pub const IDebugSymbols = extern struct {
             return @ptrCast(*const IDebugSymbols.VTable, self.vtable).OutputTypedDataVirtual(@ptrCast(*const IDebugSymbols, self), OutputControl, Offset, Module, TypeId, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols_ReadTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols_ReadTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols.VTable, self.vtable).ReadTypedDataPhysical(@ptrCast(*const IDebugSymbols, self), Offset, Module, TypeId, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols_WriteTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols_WriteTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols.VTable, self.vtable).WriteTypedDataPhysical(@ptrCast(*const IDebugSymbols, self), Offset, Module, TypeId, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23730,11 +23730,11 @@ pub const IDebugSymbols = extern struct {
             return @ptrCast(*const IDebugSymbols.VTable, self.vtable).OutputTypedDataPhysical(@ptrCast(*const IDebugSymbols, self), OutputControl, Offset, Module, TypeId, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols_GetScope(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols_GetScope(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols.VTable, self.vtable).GetScope(@ptrCast(*const IDebugSymbols, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols_SetScope(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols_SetScope(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols.VTable, self.vtable).SetScope(@ptrCast(*const IDebugSymbols, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23970,7 +23970,7 @@ pub const IDebugSymbols2 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -23980,7 +23980,7 @@ pub const IDebugSymbols2 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -23998,7 +23998,7 @@ pub const IDebugSymbols2 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -24008,7 +24008,7 @@ pub const IDebugSymbols2 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -24025,7 +24025,7 @@ pub const IDebugSymbols2 = extern struct {
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetScope: fn(
@@ -24033,7 +24033,7 @@ pub const IDebugSymbols2 = extern struct {
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResetScope: fn(
@@ -24142,7 +24142,7 @@ pub const IDebugSymbols2 = extern struct {
             Base: u64,
             Item: ?[*:0]const u8,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -24282,11 +24282,11 @@ pub const IDebugSymbols2 = extern struct {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetOffsetTypeId(@ptrCast(*const IDebugSymbols2, self), Offset, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols2_ReadTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols2_ReadTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).ReadTypedDataVirtual(@ptrCast(*const IDebugSymbols2, self), Offset, Module, TypeId, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols2_WriteTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols2_WriteTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).WriteTypedDataVirtual(@ptrCast(*const IDebugSymbols2, self), Offset, Module, TypeId, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24294,11 +24294,11 @@ pub const IDebugSymbols2 = extern struct {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).OutputTypedDataVirtual(@ptrCast(*const IDebugSymbols2, self), OutputControl, Offset, Module, TypeId, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols2_ReadTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols2_ReadTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).ReadTypedDataPhysical(@ptrCast(*const IDebugSymbols2, self), Offset, Module, TypeId, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols2_WriteTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols2_WriteTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).WriteTypedDataPhysical(@ptrCast(*const IDebugSymbols2, self), Offset, Module, TypeId, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24306,11 +24306,11 @@ pub const IDebugSymbols2 = extern struct {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).OutputTypedDataPhysical(@ptrCast(*const IDebugSymbols2, self), OutputControl, Offset, Module, TypeId, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols2_GetScope(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols2_GetScope(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetScope(@ptrCast(*const IDebugSymbols2, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols2_SetScope(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols2_SetScope(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).SetScope(@ptrCast(*const IDebugSymbols2, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24390,7 +24390,7 @@ pub const IDebugSymbols2 = extern struct {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetSourceFileLineOffsets(@ptrCast(*const IDebugSymbols2, self), File, Buffer, BufferLines, FileLines);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols2_GetModuleVersionInformation(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u8, Buffer: ?*c_void, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols2_GetModuleVersionInformation(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u8, Buffer: ?*anyopaque, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols2.VTable, self.vtable).GetModuleVersionInformation(@ptrCast(*const IDebugSymbols2, self), Index, Base, Item, Buffer, BufferSize, VerInfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24598,7 +24598,7 @@ pub const IDebugSymbols3 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -24608,7 +24608,7 @@ pub const IDebugSymbols3 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -24626,7 +24626,7 @@ pub const IDebugSymbols3 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -24636,7 +24636,7 @@ pub const IDebugSymbols3 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -24653,7 +24653,7 @@ pub const IDebugSymbols3 = extern struct {
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetScope: fn(
@@ -24661,7 +24661,7 @@ pub const IDebugSymbols3 = extern struct {
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResetScope: fn(
@@ -24770,7 +24770,7 @@ pub const IDebugSymbols3 = extern struct {
             Base: u64,
             Item: ?[*:0]const u8,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -24992,7 +24992,7 @@ pub const IDebugSymbols3 = extern struct {
             Base: u64,
             Item: ?[*:0]const u16,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -25099,7 +25099,7 @@ pub const IDebugSymbols3 = extern struct {
             Offset: u64,
             Flags: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BufferNeeded: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -25354,11 +25354,11 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetOffsetTypeId(@ptrCast(*const IDebugSymbols3, self), Offset, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_ReadTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols3_ReadTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).ReadTypedDataVirtual(@ptrCast(*const IDebugSymbols3, self), Offset, Module, TypeId, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_WriteTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols3_WriteTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).WriteTypedDataVirtual(@ptrCast(*const IDebugSymbols3, self), Offset, Module, TypeId, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25366,11 +25366,11 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).OutputTypedDataVirtual(@ptrCast(*const IDebugSymbols3, self), OutputControl, Offset, Module, TypeId, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_ReadTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols3_ReadTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).ReadTypedDataPhysical(@ptrCast(*const IDebugSymbols3, self), Offset, Module, TypeId, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_WriteTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols3_WriteTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).WriteTypedDataPhysical(@ptrCast(*const IDebugSymbols3, self), Offset, Module, TypeId, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25378,11 +25378,11 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).OutputTypedDataPhysical(@ptrCast(*const IDebugSymbols3, self), OutputControl, Offset, Module, TypeId, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_GetScope(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols3_GetScope(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetScope(@ptrCast(*const IDebugSymbols3, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_SetScope(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols3_SetScope(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).SetScope(@ptrCast(*const IDebugSymbols3, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25462,7 +25462,7 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSourceFileLineOffsets(@ptrCast(*const IDebugSymbols3, self), File, Buffer, BufferLines, FileLines);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_GetModuleVersionInformation(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u8, Buffer: ?*c_void, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols3_GetModuleVersionInformation(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u8, Buffer: ?*anyopaque, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetModuleVersionInformation(@ptrCast(*const IDebugSymbols3, self), Index, Base, Item, Buffer, BufferSize, VerInfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25606,7 +25606,7 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetSourceFileLineOffsetsWide(@ptrCast(*const IDebugSymbols3, self), File, Buffer, BufferLines, FileLines);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_GetModuleVersionInformationWide(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u16, Buffer: ?*c_void, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols3_GetModuleVersionInformationWide(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u16, Buffer: ?*anyopaque, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetModuleVersionInformationWide(@ptrCast(*const IDebugSymbols3, self), Index, Base, Item, Buffer, BufferSize, VerInfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25670,7 +25670,7 @@ pub const IDebugSymbols3 = extern struct {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).OutputSymbolByOffset(@ptrCast(*const IDebugSymbols3, self), OutputControl, Flags, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols3_GetFunctionEntryByOffset(self: *const T, Offset: u64, Flags: u32, Buffer: ?*c_void, BufferSize: u32, BufferNeeded: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols3_GetFunctionEntryByOffset(self: *const T, Offset: u64, Flags: u32, Buffer: ?*anyopaque, BufferSize: u32, BufferNeeded: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols3.VTable, self.vtable).GetFunctionEntryByOffset(@ptrCast(*const IDebugSymbols3, self), Offset, Flags, Buffer, BufferSize, BufferNeeded);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25914,7 +25914,7 @@ pub const IDebugSymbols4 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -25924,7 +25924,7 @@ pub const IDebugSymbols4 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -25942,7 +25942,7 @@ pub const IDebugSymbols4 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -25952,7 +25952,7 @@ pub const IDebugSymbols4 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -25969,7 +25969,7 @@ pub const IDebugSymbols4 = extern struct {
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetScope: fn(
@@ -25977,7 +25977,7 @@ pub const IDebugSymbols4 = extern struct {
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResetScope: fn(
@@ -26086,7 +26086,7 @@ pub const IDebugSymbols4 = extern struct {
             Base: u64,
             Item: ?[*:0]const u8,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -26308,7 +26308,7 @@ pub const IDebugSymbols4 = extern struct {
             Base: u64,
             Item: ?[*:0]const u16,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -26415,7 +26415,7 @@ pub const IDebugSymbols4 = extern struct {
             Offset: u64,
             Flags: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BufferNeeded: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -26582,7 +26582,7 @@ pub const IDebugSymbols4 = extern struct {
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME_EX,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetScopeEx: fn(
@@ -26590,7 +26590,7 @@ pub const IDebugSymbols4 = extern struct {
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME_EX,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNameByInlineContext: fn(
@@ -26731,11 +26731,11 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetOffsetTypeId(@ptrCast(*const IDebugSymbols4, self), Offset, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_ReadTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols4_ReadTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).ReadTypedDataVirtual(@ptrCast(*const IDebugSymbols4, self), Offset, Module, TypeId, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_WriteTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols4_WriteTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).WriteTypedDataVirtual(@ptrCast(*const IDebugSymbols4, self), Offset, Module, TypeId, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -26743,11 +26743,11 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).OutputTypedDataVirtual(@ptrCast(*const IDebugSymbols4, self), OutputControl, Offset, Module, TypeId, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_ReadTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols4_ReadTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).ReadTypedDataPhysical(@ptrCast(*const IDebugSymbols4, self), Offset, Module, TypeId, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_WriteTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols4_WriteTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).WriteTypedDataPhysical(@ptrCast(*const IDebugSymbols4, self), Offset, Module, TypeId, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -26755,11 +26755,11 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).OutputTypedDataPhysical(@ptrCast(*const IDebugSymbols4, self), OutputControl, Offset, Module, TypeId, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetScope(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols4_GetScope(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetScope(@ptrCast(*const IDebugSymbols4, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_SetScope(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols4_SetScope(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).SetScope(@ptrCast(*const IDebugSymbols4, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -26839,7 +26839,7 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSourceFileLineOffsets(@ptrCast(*const IDebugSymbols4, self), File, Buffer, BufferLines, FileLines);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetModuleVersionInformation(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u8, Buffer: ?*c_void, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols4_GetModuleVersionInformation(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u8, Buffer: ?*anyopaque, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetModuleVersionInformation(@ptrCast(*const IDebugSymbols4, self), Index, Base, Item, Buffer, BufferSize, VerInfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -26983,7 +26983,7 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSourceFileLineOffsetsWide(@ptrCast(*const IDebugSymbols4, self), File, Buffer, BufferLines, FileLines);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetModuleVersionInformationWide(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u16, Buffer: ?*c_void, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols4_GetModuleVersionInformationWide(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u16, Buffer: ?*anyopaque, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetModuleVersionInformationWide(@ptrCast(*const IDebugSymbols4, self), Index, Base, Item, Buffer, BufferSize, VerInfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27047,7 +27047,7 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).OutputSymbolByOffset(@ptrCast(*const IDebugSymbols4, self), OutputControl, Flags, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetFunctionEntryByOffset(self: *const T, Offset: u64, Flags: u32, Buffer: ?*c_void, BufferSize: u32, BufferNeeded: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols4_GetFunctionEntryByOffset(self: *const T, Offset: u64, Flags: u32, Buffer: ?*anyopaque, BufferSize: u32, BufferNeeded: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetFunctionEntryByOffset(@ptrCast(*const IDebugSymbols4, self), Offset, Flags, Buffer, BufferSize, BufferNeeded);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27135,11 +27135,11 @@ pub const IDebugSymbols4 = extern struct {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetSourceEntryBySourceEntry(@ptrCast(*const IDebugSymbols4, self), FromEntry, Flags, ToEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_GetScopeEx(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME_EX, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols4_GetScopeEx(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME_EX, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).GetScopeEx(@ptrCast(*const IDebugSymbols4, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols4_SetScopeEx(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME_EX, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols4_SetScopeEx(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME_EX, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols4.VTable, self.vtable).SetScopeEx(@ptrCast(*const IDebugSymbols4, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -27319,7 +27319,7 @@ pub const IDebugSymbols5 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -27329,7 +27329,7 @@ pub const IDebugSymbols5 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -27347,7 +27347,7 @@ pub const IDebugSymbols5 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesRead: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -27357,7 +27357,7 @@ pub const IDebugSymbols5 = extern struct {
             Module: u64,
             TypeId: u32,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BytesWritten: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -27374,7 +27374,7 @@ pub const IDebugSymbols5 = extern struct {
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetScope: fn(
@@ -27382,7 +27382,7 @@ pub const IDebugSymbols5 = extern struct {
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResetScope: fn(
@@ -27491,7 +27491,7 @@ pub const IDebugSymbols5 = extern struct {
             Base: u64,
             Item: ?[*:0]const u8,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -27713,7 +27713,7 @@ pub const IDebugSymbols5 = extern struct {
             Base: u64,
             Item: ?[*:0]const u16,
             // TODO: what to do with BytesParamIndex 4?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             VerInfoSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -27820,7 +27820,7 @@ pub const IDebugSymbols5 = extern struct {
             Offset: u64,
             Flags: u32,
             // TODO: what to do with BytesParamIndex 3?
-            Buffer: ?*c_void,
+            Buffer: ?*anyopaque,
             BufferSize: u32,
             BufferNeeded: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -27987,7 +27987,7 @@ pub const IDebugSymbols5 = extern struct {
             InstructionOffset: ?*u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME_EX,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetScopeEx: fn(
@@ -27995,7 +27995,7 @@ pub const IDebugSymbols5 = extern struct {
             InstructionOffset: u64,
             ScopeFrame: ?*DEBUG_STACK_FRAME_EX,
             // TODO: what to do with BytesParamIndex 3?
-            ScopeContext: ?*c_void,
+            ScopeContext: ?*anyopaque,
             ScopeContextSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNameByInlineContext: fn(
@@ -28146,11 +28146,11 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetOffsetTypeId(@ptrCast(*const IDebugSymbols5, self), Offset, TypeId, Module);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_ReadTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols5_ReadTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).ReadTypedDataVirtual(@ptrCast(*const IDebugSymbols5, self), Offset, Module, TypeId, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_WriteTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols5_WriteTypedDataVirtual(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).WriteTypedDataVirtual(@ptrCast(*const IDebugSymbols5, self), Offset, Module, TypeId, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28158,11 +28158,11 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).OutputTypedDataVirtual(@ptrCast(*const IDebugSymbols5, self), OutputControl, Offset, Module, TypeId, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_ReadTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols5_ReadTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).ReadTypedDataPhysical(@ptrCast(*const IDebugSymbols5, self), Offset, Module, TypeId, Buffer, BufferSize, BytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_WriteTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*c_void, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols5_WriteTypedDataPhysical(self: *const T, Offset: u64, Module: u64, TypeId: u32, Buffer: ?*anyopaque, BufferSize: u32, BytesWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).WriteTypedDataPhysical(@ptrCast(*const IDebugSymbols5, self), Offset, Module, TypeId, Buffer, BufferSize, BytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28170,11 +28170,11 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).OutputTypedDataPhysical(@ptrCast(*const IDebugSymbols5, self), OutputControl, Offset, Module, TypeId, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetScope(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols5_GetScope(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetScope(@ptrCast(*const IDebugSymbols5, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_SetScope(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols5_SetScope(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).SetScope(@ptrCast(*const IDebugSymbols5, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28254,7 +28254,7 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSourceFileLineOffsets(@ptrCast(*const IDebugSymbols5, self), File, Buffer, BufferLines, FileLines);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetModuleVersionInformation(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u8, Buffer: ?*c_void, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols5_GetModuleVersionInformation(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u8, Buffer: ?*anyopaque, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetModuleVersionInformation(@ptrCast(*const IDebugSymbols5, self), Index, Base, Item, Buffer, BufferSize, VerInfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28398,7 +28398,7 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSourceFileLineOffsetsWide(@ptrCast(*const IDebugSymbols5, self), File, Buffer, BufferLines, FileLines);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetModuleVersionInformationWide(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u16, Buffer: ?*c_void, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols5_GetModuleVersionInformationWide(self: *const T, Index: u32, Base: u64, Item: ?[*:0]const u16, Buffer: ?*anyopaque, BufferSize: u32, VerInfoSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetModuleVersionInformationWide(@ptrCast(*const IDebugSymbols5, self), Index, Base, Item, Buffer, BufferSize, VerInfoSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28462,7 +28462,7 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).OutputSymbolByOffset(@ptrCast(*const IDebugSymbols5, self), OutputControl, Flags, Offset);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetFunctionEntryByOffset(self: *const T, Offset: u64, Flags: u32, Buffer: ?*c_void, BufferSize: u32, BufferNeeded: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols5_GetFunctionEntryByOffset(self: *const T, Offset: u64, Flags: u32, Buffer: ?*anyopaque, BufferSize: u32, BufferNeeded: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetFunctionEntryByOffset(@ptrCast(*const IDebugSymbols5, self), Offset, Flags, Buffer, BufferSize, BufferNeeded);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28550,11 +28550,11 @@ pub const IDebugSymbols5 = extern struct {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetSourceEntryBySourceEntry(@ptrCast(*const IDebugSymbols5, self), FromEntry, Flags, ToEntry);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_GetScopeEx(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME_EX, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols5_GetScopeEx(self: *const T, InstructionOffset: ?*u64, ScopeFrame: ?*DEBUG_STACK_FRAME_EX, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).GetScopeEx(@ptrCast(*const IDebugSymbols5, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugSymbols5_SetScopeEx(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME_EX, ScopeContext: ?*c_void, ScopeContextSize: u32) callconv(.Inline) HRESULT {
+        pub fn IDebugSymbols5_SetScopeEx(self: *const T, InstructionOffset: u64, ScopeFrame: ?*DEBUG_STACK_FRAME_EX, ScopeContext: ?*anyopaque, ScopeContextSize: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugSymbols5.VTable, self.vtable).SetScopeEx(@ptrCast(*const IDebugSymbols5, self), InstructionOffset, ScopeFrame, ScopeContext, ScopeContextSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -31889,7 +31889,7 @@ pub const IDebugHostMemory = extern struct {
             context: ?*IDebugHostContext,
             location: Location,
             // TODO: what to do with BytesParamIndex 3?
-            buffer: ?*c_void,
+            buffer: ?*anyopaque,
             bufferSize: u64,
             bytesRead: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -31898,7 +31898,7 @@ pub const IDebugHostMemory = extern struct {
             context: ?*IDebugHostContext,
             location: Location,
             // TODO: what to do with BytesParamIndex 3?
-            buffer: ?*c_void,
+            buffer: ?*anyopaque,
             bufferSize: u64,
             bytesWritten: ?*u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -31928,11 +31928,11 @@ pub const IDebugHostMemory = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugHostMemory_ReadBytes(self: *const T, context: ?*IDebugHostContext, location: Location, buffer: ?*c_void, bufferSize: u64, bytesRead: ?*u64) callconv(.Inline) HRESULT {
+        pub fn IDebugHostMemory_ReadBytes(self: *const T, context: ?*IDebugHostContext, location: Location, buffer: ?*anyopaque, bufferSize: u64, bytesRead: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugHostMemory.VTable, self.vtable).ReadBytes(@ptrCast(*const IDebugHostMemory, self), context, location, buffer, bufferSize, bytesRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDebugHostMemory_WriteBytes(self: *const T, context: ?*IDebugHostContext, location: Location, buffer: ?*c_void, bufferSize: u64, bytesWritten: ?*u64) callconv(.Inline) HRESULT {
+        pub fn IDebugHostMemory_WriteBytes(self: *const T, context: ?*IDebugHostContext, location: Location, buffer: ?*anyopaque, bufferSize: u64, bytesWritten: ?*u64) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDebugHostMemory.VTable, self.vtable).WriteBytes(@ptrCast(*const IDebugHostMemory, self), context, location, buffer, bufferSize, bytesWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -33347,7 +33347,7 @@ pub const PWINDBG_GET_EXPRESSION64 = fn(
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
 pub const PWINDBG_GET_SYMBOL = fn(
-    offset: ?*c_void,
+    offset: ?*anyopaque,
     pchBuffer: ?[*]u8,
     pDisplacement: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -33387,42 +33387,42 @@ pub const PWINDBG_CHECK_CONTROL_C = fn(
 
 pub const PWINDBG_READ_PROCESS_MEMORY_ROUTINE = fn(
     offset: usize,
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     cb: u32,
     lpcbBytesRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PWINDBG_READ_PROCESS_MEMORY_ROUTINE32 = fn(
     offset: u32,
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     cb: u32,
     lpcbBytesRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PWINDBG_READ_PROCESS_MEMORY_ROUTINE64 = fn(
     offset: u64,
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     cb: u32,
     lpcbBytesRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE = fn(
     offset: usize,
-    lpBuffer: ?*const c_void,
+    lpBuffer: ?*const anyopaque,
     cb: u32,
     lpcbBytesWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE32 = fn(
     offset: u32,
-    lpBuffer: ?*const c_void,
+    lpBuffer: ?*const anyopaque,
     cb: u32,
     lpcbBytesWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PWINDBG_WRITE_PROCESS_MEMORY_ROUTINE64 = fn(
     offset: u64,
-    lpBuffer: ?*const c_void,
+    lpBuffer: ?*const anyopaque,
     cb: u32,
     lpcbBytesWritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -33441,20 +33441,20 @@ pub const PWINDBG_SET_THREAD_CONTEXT_ROUTINE = fn(
 
 pub const PWINDBG_IOCTL_ROUTINE = fn(
     IoctlType: u16,
-    lpvData: ?*c_void,
+    lpvData: ?*anyopaque,
     cbSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PWINDBG_OLDKD_READ_PHYSICAL_MEMORY = fn(
     address: u64,
-    buffer: ?*c_void,
+    buffer: ?*anyopaque,
     count: u32,
     bytesread: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PWINDBG_OLDKD_WRITE_PHYSICAL_MEMORY = fn(
     address: u64,
-    buffer: ?*c_void,
+    buffer: ?*anyopaque,
     length: u32,
     byteswritten: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -33713,7 +33713,7 @@ pub const _GETSETBUSDATA = extern struct {
     BusDataType: u32,
     BusNumber: u32,
     SlotNumber: u32,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     Offset: u32,
     Length: u32,
 };
@@ -33723,7 +33723,7 @@ pub const SEARCHMEMORY = extern struct {
     SearchLength: u64,
     FoundAddress: u64,
     PatternLength: u32,
-    Pattern: ?*c_void,
+    Pattern: ?*anyopaque,
 };
 
 pub const PHYSICAL = extern struct {
@@ -33805,7 +33805,7 @@ pub const PHYSICAL_TO_VIRTUAL = extern struct {
 pub const GET_CONTEXT_EX = extern struct {
     Status: u32,
     ContextSize: u32,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
 };
 
 pub const POINTER_SEARCH_PHYSICAL = extern struct {
@@ -33834,7 +33834,7 @@ pub const WDBGEXTS_THREAD_OS_INFO = extern struct {
 
 pub const WDBGEXTS_CLR_DATA_INTERFACE = extern struct {
     Iid: ?*const Guid,
-    Iface: ?*c_void,
+    Iface: ?*anyopaque,
 };
 
 pub const EXT_MATCH_PATTERN_A = extern struct {
@@ -33848,10 +33848,10 @@ pub const EXT_FIND_FILE = extern struct {
     IndexedSize: u64,
     ImageTimeDateStamp: u32,
     ImageCheckSum: u32,
-    ExtraInfo: ?*c_void,
+    ExtraInfo: ?*anyopaque,
     ExtraInfoSize: u32,
     Flags: u32,
-    FileMapping: ?*c_void,
+    FileMapping: ?*anyopaque,
     FileMappingSize: u64,
     FileHandle: ?HANDLE,
     FoundFileName: ?PWSTR,
@@ -33937,7 +33937,7 @@ pub const EXT_TYPED_DATA = extern struct {
 
 pub const WDBGEXTS_QUERY_INTERFACE = extern struct {
     Iid: ?*const Guid,
-    Iface: ?*c_void,
+    Iface: ?*anyopaque,
 };
 
 pub const WDBGEXTS_DISASSEMBLE_BUFFER = extern struct {
@@ -33947,7 +33947,7 @@ pub const WDBGEXTS_DISASSEMBLE_BUFFER = extern struct {
     FormatFlags: u32,
     DataBufferBytes: u32,
     DisasmBufferChars: u32,
-    DataBuffer: ?*c_void,
+    DataBuffer: ?*anyopaque,
     DisasmBuffer: ?PWSTR,
     Reserved0: [3]u64,
 };
@@ -34264,7 +34264,7 @@ pub const KDDEBUGGER_DATA64 = extern struct {
 
 pub const PSYM_DUMP_FIELD_CALLBACK = fn(
     pField: ?*FIELD_INFO,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const FIELD_INFO = extern struct {
@@ -34278,8 +34278,8 @@ pub const FIELD_INFO = extern struct {
     fOptions: u32,
     address: u64,
     Anonymous: extern union {
-        fieldCallBack: ?*c_void,
-        pBuffer: ?*c_void,
+        fieldCallBack: ?*anyopaque,
+        pBuffer: ?*anyopaque,
     },
     TypeId: u32,
     FieldOffset: u32,
@@ -34295,8 +34295,8 @@ pub const SYM_DUMP_PARAM = extern struct {
     addr: u64,
     listLink: ?*FIELD_INFO,
     Anonymous: extern union {
-        Context: ?*c_void,
-        pBuffer: ?*c_void,
+        Context: ?*anyopaque,
+        pBuffer: ?*anyopaque,
     },
     CallbackRoutine: ?PSYM_DUMP_FIELD_CALLBACK,
     nFields: u32,
@@ -34424,7 +34424,7 @@ pub const EXCEPTION_RECORD = extern struct {
     ExceptionCode: NTSTATUS,
     ExceptionFlags: u32,
     ExceptionRecord: ?*EXCEPTION_RECORD,
-    ExceptionAddress: ?*c_void,
+    ExceptionAddress: ?*anyopaque,
     NumberParameters: u32,
     ExceptionInformation: [15]usize,
 };
@@ -34890,7 +34890,7 @@ pub const WAITCHAIN_NODE_INFO = extern struct {
 };
 
 pub const PWAITCHAINCALLBACK = fn(
-    WctHandle: ?*c_void,
+    WctHandle: ?*anyopaque,
     Context: usize,
     CallbackStatus: u32,
     NodeCount: ?*u32,
@@ -35607,7 +35607,7 @@ pub const MINIDUMP_USER_STREAM = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
     Type: u32,
     BufferSize: u32,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 };
 
 pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
@@ -35692,9 +35692,9 @@ pub const MINIDUMP_MODULE_CALLBACK = extern struct {
     CheckSum: u32,
     TimeDateStamp: u32,
     VersionInfo: VS_FIXEDFILEINFO,
-    CvRecord: ?*c_void,
+    CvRecord: ?*anyopaque,
     SizeOfCvRecord: u32,
-    MiscRecord: ?*c_void,
+    MiscRecord: ?*anyopaque,
     SizeOfMiscRecord: u32,
 };
 
@@ -35724,7 +35724,7 @@ pub const MINIDUMP_IO_CALLBACK = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
     Handle: ?HANDLE,
     Offset: u64,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     BufferBytes: u32,
 };
 
@@ -35743,14 +35743,14 @@ pub const MINIDUMP_VM_QUERY_CALLBACK = extern struct {
 pub const MINIDUMP_VM_PRE_READ_CALLBACK = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
     Offset: u64,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     Size: u32,
 };
 
 pub const MINIDUMP_VM_POST_READ_CALLBACK = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
     Offset: u64,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     Size: u32,
     Completed: u32,
     Status: HRESULT,
@@ -35933,7 +35933,7 @@ pub const MiniSecondaryWithoutPowerInfo = MINIDUMP_SECONDARY_FLAGS.WithoutPowerI
 pub const MiniSecondaryValidFlags = MINIDUMP_SECONDARY_FLAGS.WithoutPowerInfo;
 
 pub const MINIDUMP_CALLBACK_ROUTINE = fn(
-    CallbackParam: ?*c_void,
+    CallbackParam: ?*anyopaque,
     CallbackInput: ?*MINIDUMP_CALLBACK_INPUT,
     CallbackOutput: ?*MINIDUMP_CALLBACK_OUTPUT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -35941,7 +35941,7 @@ pub const MINIDUMP_CALLBACK_ROUTINE = fn(
 pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
     // WARNING: unable to add field alignment because it's causing a compiler bug
     CallbackRoutine: ?MINIDUMP_CALLBACK_ROUTINE,
-    CallbackParam: ?*c_void,
+    CallbackParam: ?*anyopaque,
 };
 
 const CLSID_ProcessDebugManager_Value = @import("../../zig.zig").Guid.initString("78a51822-51f4-11d0-8f20-00805f2cd064");
@@ -36261,7 +36261,7 @@ pub const IActiveScript = extern struct {
         GetScriptSite: fn(
             self: *const IActiveScript,
             riid: ?*const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetScriptState: fn(
             self: *const IActiveScript,
@@ -36324,7 +36324,7 @@ pub const IActiveScript = extern struct {
             return @ptrCast(*const IActiveScript.VTable, self.vtable).SetScriptSite(@ptrCast(*const IActiveScript, self), pass);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IActiveScript_GetScriptSite(self: *const T, riid: ?*const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IActiveScript_GetScriptSite(self: *const T, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IActiveScript.VTable, self.vtable).GetScriptSite(@ptrCast(*const IActiveScript, self), riid, ppvObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -41080,7 +41080,7 @@ pub const PROFILER_HEAP_OBJECT_RELATIONSHIP = extern struct {
         stringValue: ?[*:0]const u16,
         bstrValue: ?BSTR,
         objectId: usize,
-        externalObjectAddress: ?*c_void,
+        externalObjectAddress: ?*anyopaque,
         subString: ?*PROFILER_PROPERTY_TYPE_SUBSTRING_INFO,
     },
 };
@@ -41113,7 +41113,7 @@ pub const PROFILER_HEAP_OBJECT = extern struct {
     size: u32,
     Anonymous: extern union {
         objectId: usize,
-        externalObjectAddress: ?*c_void,
+        externalObjectAddress: ?*anyopaque,
     },
     typeNameId: u32,
     flags: u32,
@@ -41436,7 +41436,7 @@ pub const PIMAGEHLP_STATUS_ROUTINE64 = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const DIGEST_FUNCTION = fn(
-    refdata: ?*c_void,
+    refdata: ?*anyopaque,
     pData: ?*u8,
     dwLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -41444,51 +41444,51 @@ pub const DIGEST_FUNCTION = fn(
 pub const PFIND_DEBUG_FILE_CALLBACK = fn(
     FileHandle: ?HANDLE,
     FileName: ?[*:0]const u8,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFIND_DEBUG_FILE_CALLBACKW = fn(
     FileHandle: ?HANDLE,
     FileName: ?[*:0]const u16,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFINDFILEINPATHCALLBACK = fn(
     filename: ?[*:0]const u8,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFINDFILEINPATHCALLBACKW = fn(
     filename: ?[*:0]const u16,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFIND_EXE_FILE_CALLBACK = fn(
     FileHandle: ?HANDLE,
     FileName: ?[*:0]const u8,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PFIND_EXE_FILE_CALLBACKW = fn(
     FileHandle: ?HANDLE,
     FileName: ?[*:0]const u16,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PENUMDIRTREE_CALLBACK = fn(
     FilePath: ?[*:0]const u8,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PENUMDIRTREE_CALLBACKW = fn(
     FilePath: ?[*:0]const u16,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const MODLOAD_DATA = extern struct {
     ssize: u32,
     ssig: MODLOAD_DATA_TYPE,
-    data: ?*c_void,
+    data: ?*anyopaque,
     size: u32,
     flags: u32,
 };
@@ -41550,7 +41550,7 @@ pub const STACKFRAME64 = extern struct {
     AddrFrame: ADDRESS64,
     AddrStack: ADDRESS64,
     AddrBStore: ADDRESS64,
-    FuncTableEntry: ?*c_void,
+    FuncTableEntry: ?*anyopaque,
     Params: [4]u64,
     Far: BOOL,
     Virtual: BOOL,
@@ -41564,7 +41564,7 @@ pub const STACKFRAME_EX = extern struct {
     AddrFrame: ADDRESS64,
     AddrStack: ADDRESS64,
     AddrBStore: ADDRESS64,
-    FuncTableEntry: ?*c_void,
+    FuncTableEntry: ?*anyopaque,
     Params: [4]u64,
     Far: BOOL,
     Virtual: BOOL,
@@ -41578,7 +41578,7 @@ pub const PREAD_PROCESS_MEMORY_ROUTINE64 = fn(
     hProcess: ?HANDLE,
     qwBaseAddress: u64,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     nSize: u32,
     lpNumberOfBytesRead: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -41586,7 +41586,7 @@ pub const PREAD_PROCESS_MEMORY_ROUTINE64 = fn(
 pub const PFUNCTION_TABLE_ACCESS_ROUTINE64 = fn(
     ahProcess: ?HANDLE,
     AddrBase: u64,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const PGET_MODULE_BASE_ROUTINE64 = fn(
     hProcess: ?HANDLE,
@@ -41609,41 +41609,41 @@ pub const API_VERSION = extern struct {
 pub const PSYM_ENUMMODULES_CALLBACK64 = fn(
     ModuleName: ?[*:0]const u8,
     BaseOfDll: u64,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PSYM_ENUMMODULES_CALLBACKW64 = fn(
     ModuleName: ?[*:0]const u16,
     BaseOfDll: u64,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PENUMLOADED_MODULES_CALLBACK64 = fn(
     ModuleName: ?[*:0]const u8,
     ModuleBase: u64,
     ModuleSize: u32,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PENUMLOADED_MODULES_CALLBACKW64 = fn(
     ModuleName: ?[*:0]const u16,
     ModuleBase: u64,
     ModuleSize: u32,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PSYM_ENUMSYMBOLS_CALLBACK64 = fn(
     SymbolName: ?[*:0]const u8,
     SymbolAddress: u64,
     SymbolSize: u32,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PSYM_ENUMSYMBOLS_CALLBACK64W = fn(
     SymbolName: ?[*:0]const u16,
     SymbolAddress: u64,
     SymbolSize: u32,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PSYMBOL_REGISTERED_CALLBACK64 = fn(
@@ -41656,14 +41656,14 @@ pub const PSYMBOL_REGISTERED_CALLBACK64 = fn(
 pub const PSYMBOL_FUNCENTRY_CALLBACK = fn(
     hProcess: ?HANDLE,
     AddrBase: u32,
-    UserContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    UserContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const PSYMBOL_FUNCENTRY_CALLBACK64 = fn(
     hProcess: ?HANDLE,
     AddrBase: u64,
     UserContext: u64,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const SYM_TYPE = enum(i32) {
     SymNone = 0,
@@ -41784,7 +41784,7 @@ pub const IMAGEHLP_MODULEW64_EX = extern struct {
 
 pub const IMAGEHLP_LINE64 = extern struct {
     SizeOfStruct: u32,
-    Key: ?*c_void,
+    Key: ?*anyopaque,
     LineNumber: u32,
     FileName: ?[*]u8,
     Address: u64,
@@ -41792,7 +41792,7 @@ pub const IMAGEHLP_LINE64 = extern struct {
 
 pub const IMAGEHLP_LINEW64 = extern struct {
     SizeOfStruct: u32,
-    Key: ?*c_void,
+    Key: ?*anyopaque,
     LineNumber: u32,
     FileName: ?PWSTR,
     Address: u64,
@@ -41810,7 +41810,7 @@ pub const SOURCEFILEW = extern struct {
 
 pub const IMAGEHLP_CBA_READ_MEMORY = extern struct {
     addr: u64,
-    buf: ?*c_void,
+    buf: ?*anyopaque,
     bytes: u32,
     bytesread: ?*u32,
 };
@@ -41819,14 +41819,14 @@ pub const IMAGEHLP_CBA_EVENT = extern struct {
     severity: IMAGEHLP_CBA_EVENT_SEVERITY,
     code: u32,
     desc: ?[*]u8,
-    object: ?*c_void,
+    object: ?*anyopaque,
 };
 
 pub const IMAGEHLP_CBA_EVENTW = extern struct {
     severity: IMAGEHLP_CBA_EVENT_SEVERITY,
     code: u32,
     desc: ?[*:0]const u16,
-    object: ?*c_void,
+    object: ?*anyopaque,
 };
 
 pub const IMAGEHLP_DEFERRED_SYMBOL_LOAD64 = extern struct {
@@ -41895,17 +41895,17 @@ pub const SYMOPT_EX_MAX = IMAGEHLP_EXTENDED_OPTIONS.MAX;
 
 pub const PSYM_ENUMSOURCEFILES_CALLBACK = fn(
     pSourceFile: ?*SOURCEFILE,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PSYM_ENUMSOURCEFILES_CALLBACKW = fn(
     pSourceFile: ?*SOURCEFILEW,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const SRCCODEINFO = extern struct {
     SizeOfStruct: u32,
-    Key: ?*c_void,
+    Key: ?*anyopaque,
     ModBase: u64,
     Obj: [261]CHAR,
     FileName: [261]CHAR,
@@ -41915,7 +41915,7 @@ pub const SRCCODEINFO = extern struct {
 
 pub const SRCCODEINFOW = extern struct {
     SizeOfStruct: u32,
-    Key: ?*c_void,
+    Key: ?*anyopaque,
     ModBase: u64,
     Obj: [261]u16,
     FileName: [261]u16,
@@ -41925,16 +41925,16 @@ pub const SRCCODEINFOW = extern struct {
 
 pub const PSYM_ENUMLINES_CALLBACK = fn(
     LineInfo: ?*SRCCODEINFO,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PSYM_ENUMLINES_CALLBACKW = fn(
     LineInfo: ?*SRCCODEINFOW,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PENUMSOURCEFILETOKENSCALLBACK = fn(
-    token: ?*c_void,
+    token: ?*anyopaque,
     size: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -42011,19 +42011,19 @@ pub const IMAGEHLP_STACK_FRAME = extern struct {
 
 pub const PSYM_ENUMPROCESSES_CALLBACK = fn(
     hProcess: ?HANDLE,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PSYM_ENUMERATESYMBOLS_CALLBACK = fn(
     pSymInfo: ?*SYMBOL_INFO,
     SymbolSize: u32,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PSYM_ENUMERATESYMBOLS_CALLBACKW = fn(
     pSymInfo: ?*SYMBOL_INFOW,
     SymbolSize: u32,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const IMAGEHLP_SYMBOL_TYPE_INFO = enum(i32) {
@@ -42119,7 +42119,7 @@ pub const IMAGEHLP_GET_TYPE_INFO_PARAMS = extern struct {
     ReqSizes: ?*u32,
     ReqStride: usize,
     BufferSize: usize,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     EntriesMatched: u32,
     EntriesFilled: u32,
     TagsFound: u64,
@@ -42185,9 +42185,9 @@ pub const sfMax = IMAGEHLP_SF_TYPE.Max;
 
 pub const PDBGHELP_CREATE_USER_DUMP_CALLBACK = fn(
     DataType: u32,
-    Data: ?*?*c_void,
+    Data: ?*?*anyopaque,
     DataLength: ?*u32,
-    UserData: ?*c_void,
+    UserData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const SYMSRV_EXTENDED_OUTPUT_DATA = extern struct {
@@ -42199,7 +42199,7 @@ pub const SYMSRV_EXTENDED_OUTPUT_DATA = extern struct {
 pub const PSYMBOLSERVERPROC = fn(
     param0: ?[*:0]const u8,
     param1: ?[*:0]const u8,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
     param3: u32,
     param4: u32,
     param5: ?PSTR,
@@ -42208,7 +42208,7 @@ pub const PSYMBOLSERVERPROC = fn(
 pub const PSYMBOLSERVERPROCA = fn(
     param0: ?[*:0]const u8,
     param1: ?[*:0]const u8,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
     param3: u32,
     param4: u32,
     param5: ?PSTR,
@@ -42217,7 +42217,7 @@ pub const PSYMBOLSERVERPROCA = fn(
 pub const PSYMBOLSERVERPROCW = fn(
     param0: ?[*:0]const u16,
     param1: ?[*:0]const u16,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
     param3: u32,
     param4: u32,
     param5: ?PWSTR,
@@ -42287,10 +42287,10 @@ pub const PSYMBOLSERVERGETVERSION = fn(
 
 pub const PSYMBOLSERVERDELTANAME = fn(
     param0: ?[*:0]const u8,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
     param2: u32,
     param3: u32,
-    param4: ?*c_void,
+    param4: ?*anyopaque,
     param5: u32,
     param6: u32,
     param7: ?PSTR,
@@ -42299,10 +42299,10 @@ pub const PSYMBOLSERVERDELTANAME = fn(
 
 pub const PSYMBOLSERVERDELTANAMEW = fn(
     param0: ?[*:0]const u16,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
     param2: u32,
     param3: u32,
-    param4: ?*c_void,
+    param4: ?*anyopaque,
     param5: u32,
     param6: u32,
     param7: ?PWSTR,
@@ -42344,7 +42344,7 @@ pub const PSYMBOLSERVERSTORESUPPLEMENTW = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PSYMBOLSERVERGETINDEXSTRING = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: u32,
     param2: u32,
     param3: ?PSTR,
@@ -42352,7 +42352,7 @@ pub const PSYMBOLSERVERGETINDEXSTRING = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PSYMBOLSERVERGETINDEXSTRINGW = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: u32,
     param2: u32,
     param3: ?PWSTR,
@@ -42362,7 +42362,7 @@ pub const PSYMBOLSERVERGETINDEXSTRINGW = fn(
 pub const PSYMBOLSERVERSTOREFILE = fn(
     param0: ?[*:0]const u8,
     param1: ?[*:0]const u8,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
     param3: u32,
     param4: u32,
     param5: ?PSTR,
@@ -42373,7 +42373,7 @@ pub const PSYMBOLSERVERSTOREFILE = fn(
 pub const PSYMBOLSERVERSTOREFILEW = fn(
     param0: ?[*:0]const u16,
     param1: ?[*:0]const u16,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
     param3: u32,
     param4: u32,
     param5: ?PWSTR,
@@ -42401,7 +42401,7 @@ pub const PSYMBOLSERVERMESSAGEPROC = fn(
 pub const PSYMBOLSERVERWEXPROC = fn(
     param0: ?[*:0]const u16,
     param1: ?[*:0]const u16,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
     param3: u32,
     param4: u32,
     param5: ?PWSTR,
@@ -44190,16 +44190,16 @@ pub const WheaErrSrcStateRemoved = WHEA_ERROR_SOURCE_STATE.Removed;
 pub const WheaErrSrcStateRemovePending = WHEA_ERROR_SOURCE_STATE.RemovePending;
 
 pub const WHEA_ERROR_SOURCE_INITIALIZE_DEVICE_DRIVER = fn(
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     ErrorSourceId: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const WHEA_ERROR_SOURCE_UNINITIALIZE_DEVICE_DRIVER = fn(
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WHEA_ERROR_SOURCE_CORRECT_DEVICE_DRIVER = fn(
-    ErrorSourceDesc: ?*c_void,
+    ErrorSourceDesc: ?*anyopaque,
     MaximumSectionLength: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -44760,7 +44760,7 @@ pub const DISPATCHER_CONTEXT = switch(@import("../../zig.zig").arch) {
         TargetPc: usize,
         ContextRecord: ?*CONTEXT,
         LanguageHandler: ?EXCEPTION_ROUTINE,
-        HandlerData: ?*c_void,
+        HandlerData: ?*anyopaque,
         HistoryTable: ?*UNWIND_HISTORY_TABLE,
         ScopeIndex: u32,
         ControlPcIsUnwound: BOOLEAN,
@@ -44774,7 +44774,7 @@ pub const DISPATCHER_CONTEXT = switch(@import("../../zig.zig").arch) {
         TargetIp: u64,
         ContextRecord: ?*CONTEXT,
         LanguageHandler: ?EXCEPTION_ROUTINE,
-        HandlerData: ?*c_void,
+        HandlerData: ?*anyopaque,
         HistoryTable: ?*UNWIND_HISTORY_TABLE,
         ScopeIndex: u32,
         Fill0: u32,
@@ -44784,11 +44784,11 @@ pub const DISPATCHER_CONTEXT = switch(@import("../../zig.zig").arch) {
 pub const PGET_RUNTIME_FUNCTION_CALLBACK = switch(@import("../../zig.zig").arch) {
     .Arm64 => fn(
         ControlPc: u64,
-        Context: ?*c_void,
+        Context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
     .X64 => fn(
         ControlPc: u64,
-        Context: ?*c_void,
+        Context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
@@ -44934,7 +44934,7 @@ pub const XSTATE_CONTEXT = switch(@import("../../zig.zig").arch) {
         Length: u32,
         Reserved1: u32,
         Area: ?*XSAVE_AREA,
-        Buffer: ?*c_void,
+        Buffer: ?*anyopaque,
     },
     .X86 => extern struct {
         Mask: u64,
@@ -44942,7 +44942,7 @@ pub const XSTATE_CONTEXT = switch(@import("../../zig.zig").arch) {
         Reserved1: u32,
         Area: ?*XSAVE_AREA,
         Reserved2: u32,
-        Buffer: ?*c_void,
+        Buffer: ?*anyopaque,
         Reserved3: u32,
     },
 };
@@ -45057,7 +45057,7 @@ pub const DISPATCHER_CONTEXT_ARM64 = switch(@import("../../zig.zig").arch) {
         TargetPc: usize,
         ContextRecord: ?*ARM64_NT_CONTEXT,
         LanguageHandler: ?EXCEPTION_ROUTINE,
-        HandlerData: ?*c_void,
+        HandlerData: ?*anyopaque,
         HistoryTable: ?*UNWIND_HISTORY_TABLE,
         ScopeIndex: u32,
         ControlPcIsUnwound: BOOLEAN,
@@ -45116,7 +45116,7 @@ pub const IMAGE_DEBUG_INFORMATION = switch(@import("../../zig.zig").arch) {
     .X86 => extern struct {
         List: LIST_ENTRY,
         ReservedSize: u32,
-        ReservedMappedBase: ?*c_void,
+        ReservedMappedBase: ?*anyopaque,
         ReservedMachine: u16,
         ReservedCharacteristics: u16,
         ReservedCheckSum: u32,
@@ -45135,7 +45135,7 @@ pub const IMAGE_DEBUG_INFORMATION = switch(@import("../../zig.zig").arch) {
         SizeOfCoffSymbols: u32,
         CoffSymbols: ?*IMAGE_COFF_SYMBOLS_HEADER,
         ReservedSizeOfCodeViewSymbols: u32,
-        ReservedCodeViewSymbols: ?*c_void,
+        ReservedCodeViewSymbols: ?*anyopaque,
         ImageFilePath: ?PSTR,
         ImageFileName: ?PSTR,
         ReservedDebugFilePath: ?PSTR,
@@ -45179,7 +45179,7 @@ pub const STACKFRAME = switch(@import("../../zig.zig").arch) {
         AddrReturn: ADDRESS,
         AddrFrame: ADDRESS,
         AddrStack: ADDRESS,
-        FuncTableEntry: ?*c_void,
+        FuncTableEntry: ?*anyopaque,
         Params: [4]u32,
         Far: BOOL,
         Virtual: BOOL,
@@ -45194,7 +45194,7 @@ pub const PREAD_PROCESS_MEMORY_ROUTINE = switch(@import("../../zig.zig").arch) {
         hProcess: ?HANDLE,
         lpBaseAddress: u32,
         // TODO: what to do with BytesParamIndex 3?
-        lpBuffer: ?*c_void,
+        lpBuffer: ?*anyopaque,
         nSize: u32,
         lpNumberOfBytesRead: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
@@ -45204,7 +45204,7 @@ pub const PFUNCTION_TABLE_ACCESS_ROUTINE = switch(@import("../../zig.zig").arch)
     .X86 => fn(
         hProcess: ?HANDLE,
         AddrBase: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*c_void,
+    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
 pub const PGET_MODULE_BASE_ROUTINE = switch(@import("../../zig.zig").arch) {
@@ -45226,7 +45226,7 @@ pub const PSYM_ENUMMODULES_CALLBACK = switch(@import("../../zig.zig").arch) {
     .X86 => fn(
         ModuleName: ?[*:0]const u8,
         BaseOfDll: u32,
-        UserContext: ?*c_void,
+        UserContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
@@ -45235,7 +45235,7 @@ pub const PSYM_ENUMSYMBOLS_CALLBACK = switch(@import("../../zig.zig").arch) {
         SymbolName: ?[*:0]const u8,
         SymbolAddress: u32,
         SymbolSize: u32,
-        UserContext: ?*c_void,
+        UserContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
@@ -45244,7 +45244,7 @@ pub const PSYM_ENUMSYMBOLS_CALLBACKW = switch(@import("../../zig.zig").arch) {
         SymbolName: ?[*:0]const u16,
         SymbolAddress: u32,
         SymbolSize: u32,
-        UserContext: ?*c_void,
+        UserContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
@@ -45253,7 +45253,7 @@ pub const PENUMLOADED_MODULES_CALLBACK = switch(@import("../../zig.zig").arch) {
         ModuleName: ?[*:0]const u8,
         ModuleBase: u32,
         ModuleSize: u32,
-        UserContext: ?*c_void,
+        UserContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
@@ -45261,8 +45261,8 @@ pub const PSYMBOL_REGISTERED_CALLBACK = switch(@import("../../zig.zig").arch) {
     .X86 => fn(
         hProcess: ?HANDLE,
         ActionCode: u32,
-        CallbackData: ?*c_void,
-        UserContext: ?*c_void,
+        CallbackData: ?*anyopaque,
+        UserContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
@@ -45335,7 +45335,7 @@ pub const IMAGEHLP_MODULEW = switch(@import("../../zig.zig").arch) {
 pub const IMAGEHLP_LINE = switch(@import("../../zig.zig").arch) {
     .X86 => extern struct {
         SizeOfStruct: u32,
-        Key: ?*c_void,
+        Key: ?*anyopaque,
         LineNumber: u32,
         FileName: ?[*]u8,
         Address: u32,
@@ -45345,7 +45345,7 @@ pub const IMAGEHLP_LINE = switch(@import("../../zig.zig").arch) {
 pub const IMAGEHLP_LINEW = switch(@import("../../zig.zig").arch) {
     .X86 => extern struct {
         SizeOfStruct: u32,
-        Key: ?*c_void,
+        Key: ?*anyopaque,
         LineNumber: u32,
         FileName: ?[*]u8,
         Address: u64,
@@ -45402,7 +45402,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ntdll" fn RtlAddGrowableFunctionTable(
-    DynamicTable: ?*?*c_void,
+    DynamicTable: ?*?*anyopaque,
     FunctionTable: [*]IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
     EntryCount: u32,
     MaximumEntryCount: u32,
@@ -45432,7 +45432,7 @@ pub extern "KERNEL32" fn RtlVirtualUnwind(
     ControlPc: usize,
     FunctionEntry: ?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
     ContextRecord: ?*CONTEXT,
-    HandlerData: ?*?*c_void,
+    HandlerData: ?*?*anyopaque,
     EstablisherFrame: ?*usize,
     ContextPointers: ?*KNONVOLATILE_CONTEXT_POINTERS_ARM64,
 ) callconv(@import("std").os.windows.WINAPI) ?EXCEPTION_ROUTINE;
@@ -45442,24 +45442,24 @@ pub extern "KERNEL32" fn RtlVirtualUnwind(
 pub extern "dbgeng" fn DebugConnect(
     RemoteOptions: ?[*:0]const u8,
     InterfaceId: ?*const Guid,
-    Interface: ?*?*c_void,
+    Interface: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "dbgeng" fn DebugConnectWide(
     RemoteOptions: ?[*:0]const u16,
     InterfaceId: ?*const Guid,
-    Interface: ?*?*c_void,
+    Interface: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "dbgeng" fn DebugCreate(
     InterfaceId: ?*const Guid,
-    Interface: ?*?*c_void,
+    Interface: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "dbgeng" fn DebugCreateEx(
     InterfaceId: ?*const Guid,
     DbgEngOptions: u32,
-    Interface: ?*?*c_void,
+    Interface: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "dbgmodel" fn CreateDataModelManager(
@@ -45470,9 +45470,9 @@ pub extern "dbgmodel" fn CreateDataModelManager(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn ReadProcessMemory(
     hProcess: ?HANDLE,
-    lpBaseAddress: ?*const c_void,
+    lpBaseAddress: ?*const anyopaque,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     nSize: usize,
     lpNumberOfBytesRead: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -45480,9 +45480,9 @@ pub extern "KERNEL32" fn ReadProcessMemory(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn WriteProcessMemory(
     hProcess: ?HANDLE,
-    lpBaseAddress: ?*c_void,
+    lpBaseAddress: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*const c_void,
+    lpBuffer: ?*const anyopaque,
     nSize: usize,
     lpNumberOfBytesWritten: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -45503,7 +45503,7 @@ pub extern "KERNEL32" fn SetThreadContext(
 pub extern "KERNEL32" fn FlushInstructionCache(
     hProcess: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    lpBaseAddress: ?*const c_void,
+    lpBaseAddress: ?*const anyopaque,
     dwSize: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -45523,7 +45523,7 @@ pub extern "KERNEL32" fn Wow64SetThreadContext(
 pub extern "KERNEL32" fn RtlCaptureStackBackTrace(
     FramesToSkip: u32,
     FramesToCapture: u32,
-    BackTrace: [*]?*c_void,
+    BackTrace: [*]?*anyopaque,
     BackTraceHash: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u16;
 
@@ -45543,10 +45543,10 @@ pub extern "KERNEL32" fn RtlCaptureContext2(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn RtlUnwind(
-    TargetFrame: ?*c_void,
-    TargetIp: ?*c_void,
+    TargetFrame: ?*anyopaque,
+    TargetIp: ?*anyopaque,
     ExceptionRecord: ?*EXCEPTION_RECORD,
-    ReturnValue: ?*c_void,
+    ReturnValue: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub usingnamespace switch (@import("../../zig.zig").arch) {
@@ -45577,7 +45577,7 @@ pub extern "KERNEL32" fn RtlInstallFunctionTableCallback(
     BaseAddress: u64,
     Length: u32,
     Callback: ?PGET_RUNTIME_FUNCTION_CALLBACK,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     OutOfProcessCallbackDll: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
@@ -45588,7 +45588,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ntdll" fn RtlAddGrowableFunctionTable(
-    DynamicTable: ?*?*c_void,
+    DynamicTable: ?*?*anyopaque,
     FunctionTable: [*]IMAGE_RUNTIME_FUNCTION_ENTRY,
     EntryCount: u32,
     MaximumEntryCount: u32,
@@ -45603,7 +45603,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ntdll" fn RtlGrowFunctionTable(
-    DynamicTable: ?*c_void,
+    DynamicTable: ?*anyopaque,
     NewEntryCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -45614,7 +45614,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ntdll" fn RtlDeleteGrowableFunctionTable(
-    DynamicTable: ?*c_void,
+    DynamicTable: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 }, else => struct { } };
@@ -45639,10 +45639,10 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "KERNEL32" fn RtlUnwindEx(
-    TargetFrame: ?*c_void,
-    TargetIp: ?*c_void,
+    TargetFrame: ?*anyopaque,
+    TargetIp: ?*anyopaque,
     ExceptionRecord: ?*EXCEPTION_RECORD,
-    ReturnValue: ?*c_void,
+    ReturnValue: ?*anyopaque,
     ContextRecord: ?*CONTEXT,
     HistoryTable: ?*UNWIND_HISTORY_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -45658,7 +45658,7 @@ pub extern "KERNEL32" fn RtlVirtualUnwind(
     ControlPc: u64,
     FunctionEntry: ?*IMAGE_RUNTIME_FUNCTION_ENTRY,
     ContextRecord: ?*CONTEXT,
-    HandlerData: ?*?*c_void,
+    HandlerData: ?*?*anyopaque,
     EstablisherFrame: ?*u64,
     ContextPointers: ?*KNONVOLATILE_CONTEXT_POINTERS,
 ) callconv(@import("std").os.windows.WINAPI) ?EXCEPTION_ROUTINE;
@@ -45670,9 +45670,9 @@ pub extern "KERNEL32" fn RtlRaiseException(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "KERNEL32" fn RtlPcToFileHeader(
-    PcValue: ?*c_void,
-    BaseOfImage: ?*?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    PcValue: ?*anyopaque,
+    BaseOfImage: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn IsDebuggerPresent(
@@ -45728,31 +45728,31 @@ pub extern "KERNEL32" fn WaitForDebugEventEx(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "KERNEL32" fn EncodePointer(
-    Ptr: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    Ptr: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "KERNEL32" fn DecodePointer(
-    Ptr: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    Ptr: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "KERNEL32" fn EncodeSystemPointer(
-    Ptr: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    Ptr: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "KERNEL32" fn DecodeSystemPointer(
-    Ptr: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    Ptr: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "api-ms-win-core-util-l1-1-1" fn EncodeRemotePointer(
     ProcessHandle: ?HANDLE,
-    Ptr: ?*c_void,
-    EncodedPtr: ?*?*c_void,
+    Ptr: ?*anyopaque,
+    EncodedPtr: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-core-util-l1-1-1" fn DecodeRemotePointer(
     ProcessHandle: ?HANDLE,
-    Ptr: ?*c_void,
-    DecodedPtr: ?*?*c_void,
+    Ptr: ?*anyopaque,
+    DecodedPtr: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -45792,22 +45792,22 @@ pub extern "KERNEL32" fn SetErrorMode(
 pub extern "KERNEL32" fn AddVectoredExceptionHandler(
     First: u32,
     Handler: ?PVECTORED_EXCEPTION_HANDLER,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn RemoveVectoredExceptionHandler(
-    Handle: ?*c_void,
+    Handle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn AddVectoredContinueHandler(
     First: u32,
     Handler: ?PVECTORED_EXCEPTION_HANDLER,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn RemoveVectoredContinueHandler(
-    Handle: ?*c_void,
+    Handle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -45847,16 +45847,16 @@ pub extern "api-ms-win-core-errorhandling-l1-1-3" fn TerminateProcessOnMemoryExh
 pub extern "ADVAPI32" fn OpenThreadWaitChainSession(
     Flags: OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS,
     callback: ?PWAITCHAINCALLBACK,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn CloseThreadWaitChainSession(
-    WctHandle: ?*c_void,
+    WctHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ADVAPI32" fn GetThreadWaitChain(
-    WctHandle: ?*c_void,
+    WctHandle: ?*anyopaque,
     Context: usize,
     Flags: WAIT_CHAIN_THREAD_OPTIONS,
     ThreadId: u32,
@@ -45882,10 +45882,10 @@ pub extern "dbghelp" fn MiniDumpWriteDump(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn MiniDumpReadDumpStream(
-    BaseOfDump: ?*c_void,
+    BaseOfDump: ?*anyopaque,
     StreamNumber: u32,
     Dir: ?*?*MINIDUMP_DIRECTORY,
-    StreamPointer: ?*?*c_void,
+    StreamPointer: ?*?*anyopaque,
     StreamSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -45940,7 +45940,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imagehlp" fn CheckSumMappedFile(
-    BaseAddress: ?*c_void,
+    BaseAddress: ?*anyopaque,
     FileLength: u32,
     HeaderSum: ?*u32,
     CheckSum: ?*u32,
@@ -45995,7 +45995,7 @@ pub extern "imagehlp" fn ImageGetDigestStream(
     FileHandle: ?HANDLE,
     DigestLevel: u32,
     DigestFunction: ?DIGEST_FUNCTION,
-    DigestHandle: ?*c_void,
+    DigestHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -46088,7 +46088,7 @@ pub extern "dbghelp" fn SymFindDebugInfoFile(
     FileName: ?[*:0]const u8,
     DebugFilePath: ?PSTR,
     Callback: ?PFIND_DEBUG_FILE_CALLBACK,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "dbghelp" fn SymFindDebugInfoFileW(
@@ -46096,7 +46096,7 @@ pub extern "dbghelp" fn SymFindDebugInfoFileW(
     FileName: ?[*:0]const u16,
     DebugFilePath: ?PWSTR,
     Callback: ?PFIND_DEBUG_FILE_CALLBACKW,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "dbghelp" fn FindDebugInfoFile(
@@ -46110,7 +46110,7 @@ pub extern "dbghelp" fn FindDebugInfoFileEx(
     SymbolPath: ?[*:0]const u8,
     DebugFilePath: ?PSTR,
     Callback: ?PFIND_DEBUG_FILE_CALLBACK,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "dbghelp" fn FindDebugInfoFileExW(
@@ -46118,33 +46118,33 @@ pub extern "dbghelp" fn FindDebugInfoFileExW(
     SymbolPath: ?[*:0]const u16,
     DebugFilePath: ?PWSTR,
     Callback: ?PFIND_DEBUG_FILE_CALLBACKW,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "dbghelp" fn SymFindFileInPath(
     hprocess: ?HANDLE,
     SearchPathA: ?[*:0]const u8,
     FileName: ?[*:0]const u8,
-    id: ?*c_void,
+    id: ?*anyopaque,
     two: u32,
     three: u32,
     flags: SYM_FIND_ID_OPTION,
     FoundFile: ?PSTR,
     callback: ?PFINDFILEINPATHCALLBACK,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymFindFileInPathW(
     hprocess: ?HANDLE,
     SearchPathA: ?[*:0]const u16,
     FileName: ?[*:0]const u16,
-    id: ?*c_void,
+    id: ?*anyopaque,
     two: u32,
     three: u32,
     flags: SYM_FIND_ID_OPTION,
     FoundFile: ?PWSTR,
     callback: ?PFINDFILEINPATHCALLBACKW,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymFindExecutableImage(
@@ -46152,7 +46152,7 @@ pub extern "dbghelp" fn SymFindExecutableImage(
     FileName: ?[*:0]const u8,
     ImageFilePath: ?PSTR,
     Callback: ?PFIND_EXE_FILE_CALLBACK,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "dbghelp" fn SymFindExecutableImageW(
@@ -46160,7 +46160,7 @@ pub extern "dbghelp" fn SymFindExecutableImageW(
     FileName: ?[*:0]const u16,
     ImageFilePath: ?PWSTR,
     Callback: ?PFIND_EXE_FILE_CALLBACKW,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "dbghelp" fn FindExecutableImage(
@@ -46174,7 +46174,7 @@ pub extern "dbghelp" fn FindExecutableImageEx(
     SymbolPath: ?[*:0]const u8,
     ImageFilePath: ?PSTR,
     Callback: ?PFIND_EXE_FILE_CALLBACK,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub extern "dbghelp" fn FindExecutableImageExW(
@@ -46182,39 +46182,39 @@ pub extern "dbghelp" fn FindExecutableImageExW(
     SymbolPath: ?[*:0]const u16,
     ImageFilePath: ?PWSTR,
     Callback: ?PFIND_EXE_FILE_CALLBACKW,
-    CallerData: ?*c_void,
+    CallerData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "dbghelp" fn ImageNtHeader(
-    Base: ?*c_void,
+    Base: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_NT_HEADERS64;
 
 }, else => struct { } };
 
 pub extern "dbghelp" fn ImageDirectoryEntryToDataEx(
-    Base: ?*c_void,
+    Base: ?*anyopaque,
     MappedAsImage: BOOLEAN,
     DirectoryEntry: IMAGE_DIRECTORY_ENTRY,
     Size: ?*u32,
     FoundHeader: ?*?*IMAGE_SECTION_HEADER,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "dbghelp" fn ImageDirectoryEntryToData(
-    Base: ?*c_void,
+    Base: ?*anyopaque,
     MappedAsImage: BOOLEAN,
     DirectoryEntry: IMAGE_DIRECTORY_ENTRY,
     Size: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
 pub extern "dbghelp" fn ImageRvaToSection(
     NtHeaders: ?*IMAGE_NT_HEADERS64,
-    Base: ?*c_void,
+    Base: ?*anyopaque,
     Rva: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_SECTION_HEADER;
 
@@ -46225,10 +46225,10 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 pub extern "dbghelp" fn ImageRvaToVa(
     NtHeaders: ?*IMAGE_NT_HEADERS64,
-    Base: ?*c_void,
+    Base: ?*anyopaque,
     Rva: u32,
     LastRvaSection: ?*?*IMAGE_SECTION_HEADER,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 }, else => struct { } };
 
@@ -46250,7 +46250,7 @@ pub extern "dbghelp" fn EnumDirTree(
     InputPathName: ?[*:0]const u8,
     OutputPathBuffer: ?PSTR,
     cb: ?PENUMDIRTREE_CALLBACK,
-    data: ?*c_void,
+    data: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn EnumDirTreeW(
@@ -46259,7 +46259,7 @@ pub extern "dbghelp" fn EnumDirTreeW(
     InputPathName: ?[*:0]const u16,
     OutputPathBuffer: ?PWSTR,
     cb: ?PENUMDIRTREE_CALLBACKW,
-    data: ?*c_void,
+    data: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn MakeSureDirectoryPathExists(
@@ -46285,7 +46285,7 @@ pub extern "dbghelp" fn StackWalk64(
     hProcess: ?HANDLE,
     hThread: ?HANDLE,
     StackFrame: ?*STACKFRAME64,
-    ContextRecord: ?*c_void,
+    ContextRecord: ?*anyopaque,
     ReadMemoryRoutine: ?PREAD_PROCESS_MEMORY_ROUTINE64,
     FunctionTableAccessRoutine: ?PFUNCTION_TABLE_ACCESS_ROUTINE64,
     GetModuleBaseRoutine: ?PGET_MODULE_BASE_ROUTINE64,
@@ -46297,7 +46297,7 @@ pub extern "dbghelp" fn StackWalkEx(
     hProcess: ?HANDLE,
     hThread: ?HANDLE,
     StackFrame: ?*STACKFRAME_EX,
-    ContextRecord: ?*c_void,
+    ContextRecord: ?*anyopaque,
     ReadMemoryRoutine: ?PREAD_PROCESS_MEMORY_ROUTINE64,
     FunctionTableAccessRoutine: ?PFUNCTION_TABLE_ACCESS_ROUTINE64,
     GetModuleBaseRoutine: ?PGET_MODULE_BASE_ROUTINE64,
@@ -46394,7 +46394,7 @@ pub extern "dbghelp" fn SymEnumSourceFiles(
     ModBase: u64,
     Mask: ?[*:0]const u8,
     cbSrcFiles: ?PSYM_ENUMSOURCEFILES_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumSourceFilesW(
@@ -46402,62 +46402,62 @@ pub extern "dbghelp" fn SymEnumSourceFilesW(
     ModBase: u64,
     Mask: ?[*:0]const u16,
     cbSrcFiles: ?PSYM_ENUMSOURCEFILES_CALLBACKW,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumerateModules64(
     hProcess: ?HANDLE,
     EnumModulesCallback: ?PSYM_ENUMMODULES_CALLBACK64,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumerateModulesW64(
     hProcess: ?HANDLE,
     EnumModulesCallback: ?PSYM_ENUMMODULES_CALLBACKW64,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn EnumerateLoadedModulesEx(
     hProcess: ?HANDLE,
     EnumLoadedModulesCallback: ?PENUMLOADED_MODULES_CALLBACK64,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn EnumerateLoadedModulesExW(
     hProcess: ?HANDLE,
     EnumLoadedModulesCallback: ?PENUMLOADED_MODULES_CALLBACKW64,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn EnumerateLoadedModules64(
     hProcess: ?HANDLE,
     EnumLoadedModulesCallback: ?PENUMLOADED_MODULES_CALLBACK64,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn EnumerateLoadedModulesW64(
     hProcess: ?HANDLE,
     EnumLoadedModulesCallback: ?PENUMLOADED_MODULES_CALLBACKW64,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymFunctionTableAccess64(
     hProcess: ?HANDLE,
     AddrBase: u64,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "dbghelp" fn SymFunctionTableAccess64AccessRoutines(
     hProcess: ?HANDLE,
     AddrBase: u64,
     ReadMemoryRoutine: ?PREAD_PROCESS_MEMORY_ROUTINE64,
     GetModuleBaseRoutine: ?PGET_MODULE_BASE_ROUTINE64,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "dbghelp" fn SymGetUnwindInfo(
     hProcess: ?HANDLE,
     Address: u64,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     Size: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -46484,7 +46484,7 @@ pub extern "dbghelp" fn SymEnumLines(
     Obj: ?[*:0]const u8,
     File: ?[*:0]const u8,
     EnumLinesCallback: ?PSYM_ENUMLINES_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumLinesW(
@@ -46493,7 +46493,7 @@ pub extern "dbghelp" fn SymEnumLinesW(
     Obj: ?[*:0]const u16,
     File: ?[*:0]const u16,
     EnumLinesCallback: ?PSYM_ENUMLINES_CALLBACKW,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymGetLineFromAddr64(
@@ -46536,7 +46536,7 @@ pub extern "dbghelp" fn SymEnumSourceLines(
     Line: u32,
     Flags: u32,
     EnumLinesCallback: ?PSYM_ENUMLINES_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumSourceLinesW(
@@ -46547,7 +46547,7 @@ pub extern "dbghelp" fn SymEnumSourceLinesW(
     Line: u32,
     Flags: u32,
     EnumLinesCallback: ?PSYM_ENUMLINES_CALLBACKW,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymAddrIncludeInlineTrace(
@@ -46656,7 +46656,7 @@ pub extern "dbghelp" fn SymGetSourceFileToken(
     hProcess: ?HANDLE,
     Base: u64,
     FileSpec: ?[*:0]const u8,
-    Token: ?*?*c_void,
+    Token: ?*?*anyopaque,
     Size: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -46666,7 +46666,7 @@ pub extern "dbghelp" fn SymGetSourceFileTokenByTokenName(
     FileSpec: ?[*:0]const u8,
     TokenName: ?[*:0]const u8,
     TokenParameters: ?[*:0]const u8,
-    Token: ?*?*c_void,
+    Token: ?*?*anyopaque,
     Size: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -46694,7 +46694,7 @@ pub extern "dbghelp" fn SymGetSourceFileTokenW(
     hProcess: ?HANDLE,
     Base: u64,
     FileSpec: ?[*:0]const u16,
-    Token: ?*?*c_void,
+    Token: ?*?*anyopaque,
     Size: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -46704,13 +46704,13 @@ pub extern "dbghelp" fn SymGetSourceFileTokenByTokenNameW(
     FileSpec: ?[*:0]const u16,
     TokenName: ?[*:0]const u16,
     TokenParameters: ?[*:0]const u16,
-    Token: ?*?*c_void,
+    Token: ?*?*anyopaque,
     Size: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymGetSourceFileFromToken(
     hProcess: ?HANDLE,
-    Token: ?*c_void,
+    Token: ?*anyopaque,
     Params: ?[*:0]const u8,
     FilePath: [*:0]u8,
     Size: u32,
@@ -46718,7 +46718,7 @@ pub extern "dbghelp" fn SymGetSourceFileFromToken(
 
 pub extern "dbghelp" fn SymGetSourceFileFromTokenByTokenName(
     hProcess: ?HANDLE,
-    Token: ?*c_void,
+    Token: ?*anyopaque,
     TokenName: ?[*:0]const u8,
     Params: ?[*:0]const u8,
     FilePath: [*:0]u8,
@@ -46727,7 +46727,7 @@ pub extern "dbghelp" fn SymGetSourceFileFromTokenByTokenName(
 
 pub extern "dbghelp" fn SymGetSourceFileFromTokenW(
     hProcess: ?HANDLE,
-    Token: ?*c_void,
+    Token: ?*anyopaque,
     Params: ?[*:0]const u16,
     FilePath: [*:0]u16,
     Size: u32,
@@ -46735,7 +46735,7 @@ pub extern "dbghelp" fn SymGetSourceFileFromTokenW(
 
 pub extern "dbghelp" fn SymGetSourceFileFromTokenByTokenNameW(
     hProcess: ?HANDLE,
-    Token: ?*c_void,
+    Token: ?*anyopaque,
     TokenName: ?[*:0]const u16,
     Params: ?[*:0]const u16,
     FilePath: [*:0]u16,
@@ -46744,7 +46744,7 @@ pub extern "dbghelp" fn SymGetSourceFileFromTokenByTokenNameW(
 
 pub extern "dbghelp" fn SymGetSourceVarFromToken(
     hProcess: ?HANDLE,
-    Token: ?*c_void,
+    Token: ?*anyopaque,
     Params: ?[*:0]const u8,
     VarName: ?[*:0]const u8,
     Value: [*:0]u8,
@@ -46753,7 +46753,7 @@ pub extern "dbghelp" fn SymGetSourceVarFromToken(
 
 pub extern "dbghelp" fn SymGetSourceVarFromTokenW(
     hProcess: ?HANDLE,
-    Token: ?*c_void,
+    Token: ?*anyopaque,
     Params: ?[*:0]const u16,
     VarName: ?[*:0]const u16,
     Value: [*:0]u16,
@@ -46838,7 +46838,7 @@ pub extern "dbghelp" fn SymRegisterFunctionEntryCallback64(
 pub extern "dbghelp" fn SymSetContext(
     hProcess: ?HANDLE,
     StackFrame: ?*IMAGEHLP_STACK_FRAME,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymSetScopeFromAddr(
@@ -46860,7 +46860,7 @@ pub extern "dbghelp" fn SymSetScopeFromIndex(
 
 pub extern "dbghelp" fn SymEnumProcesses(
     EnumProcessesCallback: ?PSYM_ENUMPROCESSES_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymFromAddr(
@@ -46944,7 +46944,7 @@ pub extern "dbghelp" fn SymEnumSymbols(
     BaseOfDll: u64,
     Mask: ?[*:0]const u8,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumSymbolsEx(
@@ -46952,7 +46952,7 @@ pub extern "dbghelp" fn SymEnumSymbolsEx(
     BaseOfDll: u64,
     Mask: ?[*:0]const u8,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -46961,7 +46961,7 @@ pub extern "dbghelp" fn SymEnumSymbolsW(
     BaseOfDll: u64,
     Mask: ?[*:0]const u16,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACKW,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumSymbolsExW(
@@ -46969,7 +46969,7 @@ pub extern "dbghelp" fn SymEnumSymbolsExW(
     BaseOfDll: u64,
     Mask: ?[*:0]const u16,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACKW,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -46977,14 +46977,14 @@ pub extern "dbghelp" fn SymEnumSymbolsForAddr(
     hProcess: ?HANDLE,
     Address: u64,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumSymbolsForAddrW(
     hProcess: ?HANDLE,
     Address: u64,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACKW,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymSearch(
@@ -46995,7 +46995,7 @@ pub extern "dbghelp" fn SymSearch(
     Mask: ?[*:0]const u8,
     Address: u64,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -47007,7 +47007,7 @@ pub extern "dbghelp" fn SymSearchW(
     Mask: ?[*:0]const u16,
     Address: u64,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACKW,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
     Options: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -47044,7 +47044,7 @@ pub extern "dbghelp" fn SymGetTypeInfo(
     ModBase: u64,
     TypeId: u32,
     GetType: IMAGEHLP_SYMBOL_TYPE_INFO,
-    pInfo: ?*c_void,
+    pInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymGetTypeInfoEx(
@@ -47057,14 +47057,14 @@ pub extern "dbghelp" fn SymEnumTypes(
     hProcess: ?HANDLE,
     BaseOfDll: u64,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumTypesW(
     hProcess: ?HANDLE,
     BaseOfDll: u64,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACKW,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumTypesByName(
@@ -47072,7 +47072,7 @@ pub extern "dbghelp" fn SymEnumTypesByName(
     BaseOfDll: u64,
     mask: ?[*:0]const u8,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumTypesByNameW(
@@ -47080,7 +47080,7 @@ pub extern "dbghelp" fn SymEnumTypesByNameW(
     BaseOfDll: u64,
     mask: ?[*:0]const u16,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACKW,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymGetTypeFromName(
@@ -47303,13 +47303,13 @@ pub extern "dbghelp" fn SymGetSymbolFileW(
 pub extern "dbghelp" fn DbgHelpCreateUserDump(
     FileName: ?[*:0]const u8,
     Callback: ?PDBGHELP_CREATE_USER_DUMP_CALLBACK,
-    UserData: ?*c_void,
+    UserData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn DbgHelpCreateUserDumpW(
     FileName: ?[*:0]const u16,
     Callback: ?PDBGHELP_CREATE_USER_DUMP_CALLBACK,
-    UserData: ?*c_void,
+    UserData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymGetSymFromAddr64(
@@ -47329,7 +47329,7 @@ pub extern "dbghelp" fn FindFileInPath(
     hprocess: ?HANDLE,
     SearchPathA: ?[*:0]const u8,
     FileName: ?[*:0]const u8,
-    id: ?*c_void,
+    id: ?*anyopaque,
     two: u32,
     three: u32,
     flags: u32,
@@ -47350,21 +47350,21 @@ pub extern "dbghelp" fn SymEnumSym(
     hProcess: ?HANDLE,
     BaseOfDll: u64,
     EnumSymbolsCallback: ?PSYM_ENUMERATESYMBOLS_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumerateSymbols64(
     hProcess: ?HANDLE,
     BaseOfDll: u64,
     EnumSymbolsCallback: ?PSYM_ENUMSYMBOLS_CALLBACK64,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymEnumerateSymbolsW64(
     hProcess: ?HANDLE,
     BaseOfDll: u64,
     EnumSymbolsCallback: ?PSYM_ENUMSYMBOLS_CALLBACK64W,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn SymLoadModule64(
@@ -47408,17 +47408,17 @@ pub extern "dbghelp" fn RemoveInvalidModuleList(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "dbghelp" fn RangeMapCreate(
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "dbghelp" fn RangeMapFree(
-    RmapHandle: ?*c_void,
+    RmapHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "dbghelp" fn RangeMapAddPeImageSections(
-    RmapHandle: ?*c_void,
+    RmapHandle: ?*anyopaque,
     ImageName: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
-    MappedImage: ?*c_void,
+    MappedImage: ?*anyopaque,
     MappingBytes: u32,
     ImageBase: u64,
     UserTag: u64,
@@ -47426,25 +47426,25 @@ pub extern "dbghelp" fn RangeMapAddPeImageSections(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn RangeMapRemove(
-    RmapHandle: ?*c_void,
+    RmapHandle: ?*anyopaque,
     UserTag: u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn RangeMapRead(
-    RmapHandle: ?*c_void,
+    RmapHandle: ?*anyopaque,
     Offset: u64,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     RequestBytes: u32,
     Flags: u32,
     DoneBytes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "dbghelp" fn RangeMapWrite(
-    RmapHandle: ?*c_void,
+    RmapHandle: ?*anyopaque,
     Offset: u64,
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     RequestBytes: u32,
     Flags: u32,
     DoneBytes: ?*u32,
@@ -47487,7 +47487,7 @@ pub extern "KERNEL32" fn DebugBreakProcess(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FormatMessageA(
     dwFlags: FORMAT_MESSAGE_OPTIONS,
-    lpSource: ?*const c_void,
+    lpSource: ?*const anyopaque,
     dwMessageId: u32,
     dwLanguageId: u32,
     lpBuffer: ?PSTR,
@@ -47498,7 +47498,7 @@ pub extern "KERNEL32" fn FormatMessageA(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn FormatMessageW(
     dwFlags: FORMAT_MESSAGE_OPTIONS,
-    lpSource: ?*const c_void,
+    lpSource: ?*const anyopaque,
     dwMessageId: u32,
     dwLanguageId: u32,
     lpBuffer: ?PWSTR,
@@ -47516,7 +47516,7 @@ pub extern "KERNEL32" fn CopyContext(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn InitializeContext(
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     ContextFlags: u32,
     Context: ?*?*CONTEXT,
     ContextLength: ?*u32,
@@ -47524,7 +47524,7 @@ pub extern "KERNEL32" fn InitializeContext(
 
 pub extern "KERNEL32" fn InitializeContext2(
     // TODO: what to do with BytesParamIndex 3?
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
     ContextFlags: u32,
     Context: ?*?*CONTEXT,
     ContextLength: ?*u32,
@@ -47559,7 +47559,7 @@ pub extern "KERNEL32" fn LocateXStateFeature(
     Context: ?*CONTEXT,
     FeatureId: u32,
     Length: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 }, else => struct { } };
 
@@ -47579,7 +47579,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "imagehlp" fn CheckSumMappedFile(
-    BaseAddress: ?*c_void,
+    BaseAddress: ?*anyopaque,
     FileLength: u32,
     HeaderSum: ?*u32,
     CheckSum: ?*u32,
@@ -47613,7 +47613,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X86 => struct {
 
 pub extern "dbghelp" fn ImageNtHeader(
-    Base: ?*c_void,
+    Base: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_NT_HEADERS32;
 
 }, else => struct { } };
@@ -47623,7 +47623,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 pub extern "dbghelp" fn ImageRvaToSection(
     NtHeaders: ?*IMAGE_NT_HEADERS32,
-    Base: ?*c_void,
+    Base: ?*anyopaque,
     Rva: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?*IMAGE_SECTION_HEADER;
 
@@ -47634,10 +47634,10 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 
 pub extern "dbghelp" fn ImageRvaToVa(
     NtHeaders: ?*IMAGE_NT_HEADERS32,
-    Base: ?*c_void,
+    Base: ?*anyopaque,
     Rva: u32,
     LastRvaSection: ?*?*IMAGE_SECTION_HEADER,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 }, else => struct { } };
 
@@ -47649,7 +47649,7 @@ pub extern "dbghelp" fn StackWalk(
     hProcess: ?HANDLE,
     hThread: ?HANDLE,
     StackFrame: ?*STACKFRAME,
-    ContextRecord: ?*c_void,
+    ContextRecord: ?*anyopaque,
     ReadMemoryRoutine: ?PREAD_PROCESS_MEMORY_ROUTINE,
     FunctionTableAccessRoutine: ?PFUNCTION_TABLE_ACCESS_ROUTINE,
     GetModuleBaseRoutine: ?PGET_MODULE_BASE_ROUTINE,
@@ -47664,7 +47664,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 pub extern "dbghelp" fn SymEnumerateModules(
     hProcess: ?HANDLE,
     EnumModulesCallback: ?PSYM_ENUMMODULES_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 }, else => struct { } };
@@ -47675,7 +47675,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 pub extern "dbghelp" fn EnumerateLoadedModules(
     hProcess: ?HANDLE,
     EnumLoadedModulesCallback: ?PENUMLOADED_MODULES_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 }, else => struct { } };
@@ -47686,7 +47686,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 pub extern "dbghelp" fn SymFunctionTableAccess(
     hProcess: ?HANDLE,
     AddrBase: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 }, else => struct { } };
 
@@ -47795,7 +47795,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 pub extern "dbghelp" fn SymRegisterCallback(
     hProcess: ?HANDLE,
     CallbackFunction: ?PSYMBOL_REGISTERED_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 }, else => struct { } };
@@ -47806,7 +47806,7 @@ pub usingnamespace switch (@import("../../zig.zig").arch) {
 pub extern "dbghelp" fn SymRegisterFunctionEntryCallback(
     hProcess: ?HANDLE,
     CallbackFunction: ?PSYMBOL_FUNCENTRY_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 }, else => struct { } };
@@ -47841,7 +47841,7 @@ pub extern "dbghelp" fn SymEnumerateSymbols(
     hProcess: ?HANDLE,
     BaseOfDll: u32,
     EnumSymbolsCallback: ?PSYM_ENUMSYMBOLS_CALLBACK,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 }, else => struct { } };
@@ -47853,7 +47853,7 @@ pub extern "dbghelp" fn SymEnumerateSymbolsW(
     hProcess: ?HANDLE,
     BaseOfDll: u32,
     EnumSymbolsCallback: ?PSYM_ENUMSYMBOLS_CALLBACKW,
-    UserContext: ?*c_void,
+    UserContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 }, else => struct { } };

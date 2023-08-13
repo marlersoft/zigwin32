@@ -270,7 +270,7 @@ pub const DEV_QUERY_PARAMETER = extern struct {
     Key: DEVPROPKEY,
     Type: u32,
     BufferSize: u32,
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 };
 
 pub const HDEVQUERY__ = extern struct {
@@ -279,7 +279,7 @@ pub const HDEVQUERY__ = extern struct {
 
 pub const PDEV_QUERY_RESULT_CALLBACK = fn(
     hDevQuery: ?*HDEVQUERY__,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     pActionData: ?*const DEV_QUERY_RESULT_ACTION_DATA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -295,7 +295,7 @@ pub extern "api-ms-win-devices-query-l1-1-0" fn DevCreateObjectQuery(
     cFilterExpressionCount: u32,
     pFilter: ?[*]const DEVPROP_FILTER_EXPRESSION,
     pCallback: ?PDEV_QUERY_RESULT_CALLBACK,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     phDevQuery: ?*?*HDEVQUERY__,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -309,7 +309,7 @@ pub extern "api-ms-win-devices-query-l1-1-1" fn DevCreateObjectQueryEx(
     cExtendedParameterCount: u32,
     pExtendedParameters: ?[*]const DEV_QUERY_PARAMETER,
     pCallback: ?PDEV_QUERY_RESULT_CALLBACK,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     phDevQuery: ?*?*HDEVQUERY__,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -322,7 +322,7 @@ pub extern "api-ms-win-devices-query-l1-1-0" fn DevCreateObjectQueryFromId(
     cFilterExpressionCount: u32,
     pFilter: ?[*]const DEVPROP_FILTER_EXPRESSION,
     pCallback: ?PDEV_QUERY_RESULT_CALLBACK,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     phDevQuery: ?*?*HDEVQUERY__,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -337,7 +337,7 @@ pub extern "api-ms-win-devices-query-l1-1-1" fn DevCreateObjectQueryFromIdEx(
     cExtendedParameterCount: u32,
     pExtendedParameters: ?[*]const DEV_QUERY_PARAMETER,
     pCallback: ?PDEV_QUERY_RESULT_CALLBACK,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     phDevQuery: ?*?*HDEVQUERY__,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -350,7 +350,7 @@ pub extern "api-ms-win-devices-query-l1-1-0" fn DevCreateObjectQueryFromIds(
     cFilterExpressionCount: u32,
     pFilter: ?[*]const DEVPROP_FILTER_EXPRESSION,
     pCallback: ?PDEV_QUERY_RESULT_CALLBACK,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     phDevQuery: ?*?*HDEVQUERY__,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -365,7 +365,7 @@ pub extern "api-ms-win-devices-query-l1-1-1" fn DevCreateObjectQueryFromIdsEx(
     cExtendedParameterCount: u32,
     pExtendedParameters: ?[*]const DEV_QUERY_PARAMETER,
     pCallback: ?PDEV_QUERY_RESULT_CALLBACK,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     phDevQuery: ?*?*HDEVQUERY__,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

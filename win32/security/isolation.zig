@@ -51,7 +51,7 @@ pub extern "KERNEL32" fn GetAppContainerNamedObjectPath(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "api-ms-win-security-isolatedcontainer-l1-1-1" fn IsProcessInWDAGContainer(
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
     isProcessInWDAGContainer: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

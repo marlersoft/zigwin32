@@ -3579,7 +3579,7 @@ pub const IParseAndCreateItem = extern struct {
         GetItem: fn(
             self: *const IParseAndCreateItem,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3590,7 +3590,7 @@ pub const IParseAndCreateItem = extern struct {
             return @ptrCast(*const IParseAndCreateItem.VTable, self.vtable).SetItem(@ptrCast(*const IParseAndCreateItem, self), psi);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IParseAndCreateItem_GetItem(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IParseAndCreateItem_GetItem(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IParseAndCreateItem.VTable, self.vtable).GetItem(@ptrCast(*const IParseAndCreateItem, self), riid, ppv);
         }
     };}
@@ -3623,14 +3623,14 @@ pub const IShellFolder = extern struct {
             pidl: ?*ITEMIDLIST,
             pbc: ?*IBindCtx,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BindToStorage: fn(
             self: *const IShellFolder,
             pidl: ?*ITEMIDLIST,
             pbc: ?*IBindCtx,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareIDs: fn(
             self: *const IShellFolder,
@@ -3642,7 +3642,7 @@ pub const IShellFolder = extern struct {
             self: *const IShellFolder,
             hwndOwner: ?HWND,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributesOf: fn(
             self: *const IShellFolder,
@@ -3657,7 +3657,7 @@ pub const IShellFolder = extern struct {
             apidl: [*]?*ITEMIDLIST,
             riid: ?*const Guid,
             rgfReserved: ?*u32,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDisplayNameOf: fn(
             self: *const IShellFolder,
@@ -3686,11 +3686,11 @@ pub const IShellFolder = extern struct {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).EnumObjects(@ptrCast(*const IShellFolder, self), hwnd, grfFlags, ppenumIDList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFolder_BindToObject(self: *const T, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellFolder_BindToObject(self: *const T, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).BindToObject(@ptrCast(*const IShellFolder, self), pidl, pbc, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFolder_BindToStorage(self: *const T, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellFolder_BindToStorage(self: *const T, pidl: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).BindToStorage(@ptrCast(*const IShellFolder, self), pidl, pbc, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3698,7 +3698,7 @@ pub const IShellFolder = extern struct {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).CompareIDs(@ptrCast(*const IShellFolder, self), lParam, pidl1, pidl2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFolder_CreateViewObject(self: *const T, hwndOwner: ?HWND, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellFolder_CreateViewObject(self: *const T, hwndOwner: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).CreateViewObject(@ptrCast(*const IShellFolder, self), hwndOwner, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3706,7 +3706,7 @@ pub const IShellFolder = extern struct {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).GetAttributesOf(@ptrCast(*const IShellFolder, self), cidl, apidl, rgfInOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFolder_GetUIObjectOf(self: *const T, hwndOwner: ?HWND, cidl: u32, apidl: [*]?*ITEMIDLIST, riid: ?*const Guid, rgfReserved: ?*u32, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellFolder_GetUIObjectOf(self: *const T, hwndOwner: ?HWND, cidl: u32, apidl: [*]?*ITEMIDLIST, riid: ?*const Guid, rgfReserved: ?*u32, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).GetUIObjectOf(@ptrCast(*const IShellFolder, self), hwndOwner, cidl, apidl, riid, rgfReserved, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4079,7 +4079,7 @@ pub const IShellView = extern struct {
             self: *const IShellView,
             uItem: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -4126,7 +4126,7 @@ pub const IShellView = extern struct {
             return @ptrCast(*const IShellView.VTable, self.vtable).SelectItem(@ptrCast(*const IShellView, self), pidlItem, uFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellView_GetItemObject(self: *const T, uItem: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellView_GetItemObject(self: *const T, uItem: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellView.VTable, self.vtable).GetItemObject(@ptrCast(*const IShellView, self), uItem, riid, ppv);
         }
     };}
@@ -4209,7 +4209,7 @@ pub const IFolderView = extern struct {
         GetFolder: fn(
             self: *const IFolderView,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: fn(
             self: *const IFolderView,
@@ -4225,7 +4225,7 @@ pub const IFolderView = extern struct {
             self: *const IFolderView,
             uFlags: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSelectionMarkedItem: fn(
             self: *const IFolderView,
@@ -4276,7 +4276,7 @@ pub const IFolderView = extern struct {
             return @ptrCast(*const IFolderView.VTable, self.vtable).SetCurrentViewMode(@ptrCast(*const IFolderView, self), ViewMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFolderView_GetFolder(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IFolderView_GetFolder(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFolderView.VTable, self.vtable).GetFolder(@ptrCast(*const IFolderView, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4288,7 +4288,7 @@ pub const IFolderView = extern struct {
             return @ptrCast(*const IFolderView.VTable, self.vtable).ItemCount(@ptrCast(*const IFolderView, self), uFlags, pcItems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFolderView_Items(self: *const T, uFlags: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IFolderView_Items(self: *const T, uFlags: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFolderView.VTable, self.vtable).Items(@ptrCast(*const IFolderView, self), uFlags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4414,7 +4414,7 @@ pub const IFolderView2 = extern struct {
             self: *const IFolderView2,
             iItem: i32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVisibleItem: fn(
             self: *const IFolderView2,
@@ -4522,7 +4522,7 @@ pub const IFolderView2 = extern struct {
             return @ptrCast(*const IFolderView2.VTable, self.vtable).GetSortColumns(@ptrCast(*const IFolderView2, self), rgSortColumns, cColumns);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFolderView2_GetItem(self: *const T, iItem: i32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IFolderView2_GetItem(self: *const T, iItem: i32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFolderView2.VTable, self.vtable).GetItem(@ptrCast(*const IFolderView2, self), iItem, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4586,7 +4586,7 @@ pub const IFolderViewSettings = extern struct {
         GetColumnPropertyList: fn(
             self: *const IFolderViewSettings,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGroupByProperty: fn(
             self: *const IFolderViewSettings,
@@ -4621,7 +4621,7 @@ pub const IFolderViewSettings = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFolderViewSettings_GetColumnPropertyList(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IFolderViewSettings_GetColumnPropertyList(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFolderViewSettings.VTable, self.vtable).GetColumnPropertyList(@ptrCast(*const IFolderViewSettings, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5341,7 +5341,7 @@ pub const IShellItem = extern struct {
             pbc: ?*IBindCtx,
             bhid: ?*const Guid,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParent: fn(
             self: *const IShellItem,
@@ -5368,7 +5368,7 @@ pub const IShellItem = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItem_BindToHandler(self: *const T, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItem_BindToHandler(self: *const T, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItem.VTable, self.vtable).BindToHandler(@ptrCast(*const IShellItem, self), pbc, bhid, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5414,14 +5414,14 @@ pub const IShellItem2 = extern struct {
             self: *const IShellItem2,
             flags: GETPROPERTYSTOREFLAGS,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStoreWithCreateObject: fn(
             self: *const IShellItem2,
             flags: GETPROPERTYSTOREFLAGS,
             punkCreateObject: ?*IUnknown,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStoreForKeys: fn(
             self: *const IShellItem2,
@@ -5429,13 +5429,13 @@ pub const IShellItem2 = extern struct {
             cKeys: u32,
             flags: GETPROPERTYSTOREFLAGS,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDescriptionList: fn(
             self: *const IShellItem2,
             keyType: ?*const PROPERTYKEY,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Update: fn(
             self: *const IShellItem2,
@@ -5486,19 +5486,19 @@ pub const IShellItem2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IShellItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItem2_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItem2_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItem2.VTable, self.vtable).GetPropertyStore(@ptrCast(*const IShellItem2, self), flags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItem2_GetPropertyStoreWithCreateObject(self: *const T, flags: GETPROPERTYSTOREFLAGS, punkCreateObject: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItem2_GetPropertyStoreWithCreateObject(self: *const T, flags: GETPROPERTYSTOREFLAGS, punkCreateObject: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItem2.VTable, self.vtable).GetPropertyStoreWithCreateObject(@ptrCast(*const IShellItem2, self), flags, punkCreateObject, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItem2_GetPropertyStoreForKeys(self: *const T, rgKeys: [*]const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItem2_GetPropertyStoreForKeys(self: *const T, rgKeys: [*]const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItem2.VTable, self.vtable).GetPropertyStoreForKeys(@ptrCast(*const IShellItem2, self), rgKeys, cKeys, flags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItem2_GetPropertyDescriptionList(self: *const T, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItem2_GetPropertyDescriptionList(self: *const T, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItem2.VTable, self.vtable).GetPropertyDescriptionList(@ptrCast(*const IShellItem2, self), keyType, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5829,7 +5829,7 @@ pub const ITransferSource = extern struct {
             psi: ?*IShellItem,
             flags: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MoveItem: fn(
             self: *const ITransferSource,
@@ -5902,7 +5902,7 @@ pub const ITransferSource = extern struct {
             return @ptrCast(*const ITransferSource.VTable, self.vtable).SetProperties(@ptrCast(*const ITransferSource, self), pproparray);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransferSource_OpenItem(self: *const T, psi: ?*IShellItem, flags: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ITransferSource_OpenItem(self: *const T, psi: ?*IShellItem, flags: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransferSource.VTable, self.vtable).OpenItem(@ptrCast(*const ITransferSource, self), psi, flags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6040,13 +6040,13 @@ pub const IShellItemResources = extern struct {
             self: *const IShellItemResources,
             pcsir: ?*const SHELL_ITEM_RESOURCE,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateResource: fn(
             self: *const IShellItemResources,
             pcsir: ?*const SHELL_ITEM_RESOURCE,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MarkForDelete: fn(
             self: *const IShellItemResources,
@@ -6084,11 +6084,11 @@ pub const IShellItemResources = extern struct {
             return @ptrCast(*const IShellItemResources.VTable, self.vtable).SupportsResource(@ptrCast(*const IShellItemResources, self), pcsir);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItemResources_OpenResource(self: *const T, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItemResources_OpenResource(self: *const T, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItemResources.VTable, self.vtable).OpenResource(@ptrCast(*const IShellItemResources, self), pcsir, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItemResources_CreateResource(self: *const T, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItemResources_CreateResource(self: *const T, pcsir: ?*const SHELL_ITEM_RESOURCE, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItemResources.VTable, self.vtable).CreateResource(@ptrCast(*const IShellItemResources, self), pcsir, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6121,9 +6121,9 @@ pub const ITransferDestination = extern struct {
             ullSize: u64,
             flags: u32,
             riidItem: ?*const Guid,
-            ppvItem: ?*?*c_void,
+            ppvItem: ?*?*anyopaque,
             riidResources: ?*const Guid,
-            ppvResources: ?*?*c_void,
+            ppvResources: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6138,7 +6138,7 @@ pub const ITransferDestination = extern struct {
             return @ptrCast(*const ITransferDestination.VTable, self.vtable).Unadvise(@ptrCast(*const ITransferDestination, self), dwCookie);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITransferDestination_CreateItem(self: *const T, pszName: ?[*:0]const u16, dwAttributes: u32, ullSize: u64, flags: u32, riidItem: ?*const Guid, ppvItem: ?*?*c_void, riidResources: ?*const Guid, ppvResources: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ITransferDestination_CreateItem(self: *const T, pszName: ?[*:0]const u16, dwAttributes: u32, ullSize: u64, flags: u32, riidItem: ?*const Guid, ppvItem: ?*?*anyopaque, riidResources: ?*const Guid, ppvResources: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITransferDestination.VTable, self.vtable).CreateItem(@ptrCast(*const ITransferDestination, self), pszName, dwAttributes, ullSize, flags, riidItem, ppvItem, riidResources, ppvResources);
         }
     };}
@@ -6342,19 +6342,19 @@ pub const IShellItemArray = extern struct {
             pbc: ?*IBindCtx,
             bhid: ?*const Guid,
             riid: ?*const Guid,
-            ppvOut: ?*?*c_void,
+            ppvOut: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStore: fn(
             self: *const IShellItemArray,
             flags: GETPROPERTYSTOREFLAGS,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDescriptionList: fn(
             self: *const IShellItemArray,
             keyType: ?*const PROPERTYKEY,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributes: fn(
             self: *const IShellItemArray,
@@ -6380,15 +6380,15 @@ pub const IShellItemArray = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItemArray_BindToHandler(self: *const T, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppvOut: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItemArray_BindToHandler(self: *const T, pbc: ?*IBindCtx, bhid: ?*const Guid, riid: ?*const Guid, ppvOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItemArray.VTable, self.vtable).BindToHandler(@ptrCast(*const IShellItemArray, self), pbc, bhid, riid, ppvOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItemArray_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItemArray_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItemArray.VTable, self.vtable).GetPropertyStore(@ptrCast(*const IShellItemArray, self), flags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItemArray_GetPropertyDescriptionList(self: *const T, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItemArray_GetPropertyDescriptionList(self: *const T, keyType: ?*const PROPERTYKEY, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItemArray.VTable, self.vtable).GetPropertyDescriptionList(@ptrCast(*const IShellItemArray, self), keyType, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6447,7 +6447,7 @@ pub const IObjectWithSelection = extern struct {
         GetSelection: fn(
             self: *const IObjectWithSelection,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6458,7 +6458,7 @@ pub const IObjectWithSelection = extern struct {
             return @ptrCast(*const IObjectWithSelection.VTable, self.vtable).SetSelection(@ptrCast(*const IObjectWithSelection, self), psia);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectWithSelection_GetSelection(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IObjectWithSelection_GetSelection(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectWithSelection.VTable, self.vtable).GetSelection(@ptrCast(*const IObjectWithSelection, self), riid, ppv);
         }
     };}
@@ -6520,7 +6520,7 @@ pub const ICategoryProvider = extern struct {
             self: *const ICategoryProvider,
             pguid: ?*const Guid,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6547,7 +6547,7 @@ pub const ICategoryProvider = extern struct {
             return @ptrCast(*const ICategoryProvider.VTable, self.vtable).GetCategoryName(@ptrCast(*const ICategoryProvider, self), pguid, pszName, cch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategoryProvider_CreateCategory(self: *const T, pguid: ?*const Guid, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICategoryProvider_CreateCategory(self: *const T, pguid: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICategoryProvider.VTable, self.vtable).CreateCategory(@ptrCast(*const ICategoryProvider, self), pguid, riid, ppv);
         }
     };}
@@ -7130,12 +7130,12 @@ pub const IShellLinkDataList = extern struct {
         base: IUnknown.VTable,
         AddDataBlock: fn(
             self: *const IShellLinkDataList,
-            pDataBlock: ?*c_void,
+            pDataBlock: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CopyDataBlock: fn(
             self: *const IShellLinkDataList,
             dwSig: u32,
-            ppDataBlock: ?*?*c_void,
+            ppDataBlock: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveDataBlock: fn(
             self: *const IShellLinkDataList,
@@ -7154,11 +7154,11 @@ pub const IShellLinkDataList = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellLinkDataList_AddDataBlock(self: *const T, pDataBlock: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellLinkDataList_AddDataBlock(self: *const T, pDataBlock: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellLinkDataList.VTable, self.vtable).AddDataBlock(@ptrCast(*const IShellLinkDataList, self), pDataBlock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellLinkDataList_CopyDataBlock(self: *const T, dwSig: u32, ppDataBlock: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellLinkDataList_CopyDataBlock(self: *const T, dwSig: u32, ppDataBlock: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellLinkDataList.VTable, self.vtable).CopyDataBlock(@ptrCast(*const IShellLinkDataList, self), dwSig, ppDataBlock);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7628,7 +7628,7 @@ pub const ISearchFolderItemFactory = extern struct {
         GetShellItem: fn(
             self: *const ISearchFolderItemFactory,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIDList: fn(
             self: *const ISearchFolderItemFactory,
@@ -7679,7 +7679,7 @@ pub const ISearchFolderItemFactory = extern struct {
             return @ptrCast(*const ISearchFolderItemFactory.VTable, self.vtable).SetCondition(@ptrCast(*const ISearchFolderItemFactory, self), pCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchFolderItemFactory_GetShellItem(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISearchFolderItemFactory_GetShellItem(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISearchFolderItemFactory.VTable, self.vtable).GetShellItem(@ptrCast(*const ISearchFolderItemFactory, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7758,14 +7758,14 @@ pub const IThumbnailHandlerFactory = extern struct {
             pidlChild: ?*ITEMIDLIST,
             pbc: ?*IBindCtx,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IThumbnailHandlerFactory_GetThumbnailHandler(self: *const T, pidlChild: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IThumbnailHandlerFactory_GetThumbnailHandler(self: *const T, pidlChild: ?*ITEMIDLIST, pbc: ?*IBindCtx, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IThumbnailHandlerFactory.VTable, self.vtable).GetThumbnailHandler(@ptrCast(*const IThumbnailHandlerFactory, self), pidlChild, pbc, riid, ppv);
         }
     };}
@@ -8356,7 +8356,7 @@ pub const IExplorerBrowser = extern struct {
         GetCurrentView: fn(
             self: *const IExplorerBrowser,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8419,7 +8419,7 @@ pub const IExplorerBrowser = extern struct {
             return @ptrCast(*const IExplorerBrowser.VTable, self.vtable).RemoveAll(@ptrCast(*const IExplorerBrowser, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IExplorerBrowser_GetCurrentView(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IExplorerBrowser_GetCurrentView(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IExplorerBrowser.VTable, self.vtable).GetCurrentView(@ptrCast(*const IExplorerBrowser, self), riid, ppv);
         }
     };}
@@ -8436,7 +8436,7 @@ pub const IEnumObjects = extern struct {
             self: *const IEnumObjects,
             celt: u32,
             riid: ?*const Guid,
-            rgelt: [*]?*c_void,
+            rgelt: [*]?*anyopaque,
             pceltFetched: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Skip: fn(
@@ -8455,7 +8455,7 @@ pub const IEnumObjects = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumObjects_Next(self: *const T, celt: u32, riid: ?*const Guid, rgelt: [*]?*c_void, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IEnumObjects_Next(self: *const T, celt: u32, riid: ?*const Guid, rgelt: [*]?*anyopaque, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEnumObjects.VTable, self.vtable).Next(@ptrCast(*const IEnumObjects, self), celt, riid, rgelt, pceltFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8873,14 +8873,14 @@ pub const IObjectProvider = extern struct {
             self: *const IObjectProvider,
             guidObject: ?*const Guid,
             riid: ?*const Guid,
-            ppvOut: ?*?*c_void,
+            ppvOut: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectProvider_QueryObject(self: *const T, guidObject: ?*const Guid, riid: ?*const Guid, ppvOut: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IObjectProvider_QueryObject(self: *const T, guidObject: ?*const Guid, riid: ?*const Guid, ppvOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectProvider.VTable, self.vtable).QueryObject(@ptrCast(*const IObjectProvider, self), guidObject, riid, ppvOut);
         }
     };}
@@ -9080,7 +9080,7 @@ pub const IBandSite = extern struct {
             self: *const IBandSite,
             dwBandID: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBandSiteInfo: fn(
             self: *const IBandSite,
@@ -9115,7 +9115,7 @@ pub const IBandSite = extern struct {
             return @ptrCast(*const IBandSite.VTable, self.vtable).RemoveBand(@ptrCast(*const IBandSite, self), dwBandID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBandSite_GetBandObject(self: *const T, dwBandID: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IBandSite_GetBandObject(self: *const T, dwBandID: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBandSite.VTable, self.vtable).GetBandObject(@ptrCast(*const IBandSite, self), dwBandID, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10520,7 +10520,7 @@ pub const SMDATA = extern struct {
     pidlFolder: ?*ITEMIDLIST,
     pidlItem: ?*ITEMIDLIST,
     psf: ?*IShellFolder,
-    pvUserData: ?*c_void,
+    pvUserData: ?*anyopaque,
 };
 
 pub const SMINFO = extern struct {
@@ -10638,7 +10638,7 @@ pub const IShellMenu = extern struct {
             pdwFlags: ?*u32,
             ppidl: ?*?*ITEMIDLIST,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetMenu: fn(
             self: *const IShellMenu,
@@ -10683,7 +10683,7 @@ pub const IShellMenu = extern struct {
             return @ptrCast(*const IShellMenu.VTable, self.vtable).SetShellFolder(@ptrCast(*const IShellMenu, self), psf, pidlFolder, hKey, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellMenu_GetShellFolder(self: *const T, pdwFlags: ?*u32, ppidl: ?*?*ITEMIDLIST, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellMenu_GetShellFolder(self: *const T, pdwFlags: ?*u32, ppidl: ?*?*ITEMIDLIST, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellMenu.VTable, self.vtable).GetShellFolder(@ptrCast(*const IShellMenu, self), pdwFlags, ppidl, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10810,7 +10810,7 @@ pub const IKnownFolder = extern struct {
             self: *const IKnownFolder,
             dwFlags: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPath: fn(
             self: *const IKnownFolder,
@@ -10852,7 +10852,7 @@ pub const IKnownFolder = extern struct {
             return @ptrCast(*const IKnownFolder.VTable, self.vtable).GetCategory(@ptrCast(*const IKnownFolder, self), pCategory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnownFolder_GetShellItem(self: *const T, dwFlags: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IKnownFolder_GetShellItem(self: *const T, dwFlags: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKnownFolder.VTable, self.vtable).GetShellItem(@ptrCast(*const IKnownFolder, self), dwFlags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12269,24 +12269,24 @@ pub const IExplorerCommandProvider = extern struct {
             self: *const IExplorerCommandProvider,
             punkSite: ?*IUnknown,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCommand: fn(
             self: *const IExplorerCommandProvider,
             rguidCommandId: ?*const Guid,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IExplorerCommandProvider_GetCommands(self: *const T, punkSite: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IExplorerCommandProvider_GetCommands(self: *const T, punkSite: ?*IUnknown, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IExplorerCommandProvider.VTable, self.vtable).GetCommands(@ptrCast(*const IExplorerCommandProvider, self), punkSite, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IExplorerCommandProvider_GetCommand(self: *const T, rguidCommandId: ?*const Guid, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IExplorerCommandProvider_GetCommand(self: *const T, rguidCommandId: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IExplorerCommandProvider.VTable, self.vtable).GetCommand(@ptrCast(*const IExplorerCommandProvider, self), rguidCommandId, riid, ppv);
         }
     };}
@@ -12443,7 +12443,7 @@ pub const ICustomDestinationList = extern struct {
             self: *const ICustomDestinationList,
             pcMinSlots: ?*u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AppendCategory: fn(
             self: *const ICustomDestinationList,
@@ -12464,7 +12464,7 @@ pub const ICustomDestinationList = extern struct {
         GetRemovedDestinations: fn(
             self: *const ICustomDestinationList,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteList: fn(
             self: *const ICustomDestinationList,
@@ -12482,7 +12482,7 @@ pub const ICustomDestinationList = extern struct {
             return @ptrCast(*const ICustomDestinationList.VTable, self.vtable).SetAppID(@ptrCast(*const ICustomDestinationList, self), pszAppID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICustomDestinationList_BeginList(self: *const T, pcMinSlots: ?*u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICustomDestinationList_BeginList(self: *const T, pcMinSlots: ?*u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICustomDestinationList.VTable, self.vtable).BeginList(@ptrCast(*const ICustomDestinationList, self), pcMinSlots, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12502,7 +12502,7 @@ pub const ICustomDestinationList = extern struct {
             return @ptrCast(*const ICustomDestinationList.VTable, self.vtable).CommitList(@ptrCast(*const ICustomDestinationList, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICustomDestinationList_GetRemovedDestinations(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICustomDestinationList_GetRemovedDestinations(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICustomDestinationList.VTable, self.vtable).GetRemovedDestinations(@ptrCast(*const ICustomDestinationList, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12576,7 +12576,7 @@ pub const IApplicationDocumentLists = extern struct {
             listtype: APPDOCLISTTYPE,
             cItemsDesired: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -12587,7 +12587,7 @@ pub const IApplicationDocumentLists = extern struct {
             return @ptrCast(*const IApplicationDocumentLists.VTable, self.vtable).SetAppID(@ptrCast(*const IApplicationDocumentLists, self), pszAppID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApplicationDocumentLists_GetList(self: *const T, listtype: APPDOCLISTTYPE, cItemsDesired: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IApplicationDocumentLists_GetList(self: *const T, listtype: APPDOCLISTTYPE, cItemsDesired: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IApplicationDocumentLists.VTable, self.vtable).GetList(@ptrCast(*const IApplicationDocumentLists, self), listtype, cItemsDesired, riid, ppv);
         }
     };}
@@ -12944,14 +12944,14 @@ pub const IOpenSearchSource = extern struct {
             dwStartIndex: u32,
             dwCount: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOpenSearchSource_GetResults(self: *const T, hwnd: ?HWND, pszQuery: ?[*:0]const u16, dwStartIndex: u32, dwCount: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IOpenSearchSource_GetResults(self: *const T, hwnd: ?HWND, pszQuery: ?[*:0]const u16, dwStartIndex: u32, dwCount: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOpenSearchSource.VTable, self.vtable).GetResults(@ptrCast(*const IOpenSearchSource, self), hwnd, pszQuery, dwStartIndex, dwCount, riid, ppv);
         }
     };}
@@ -13022,20 +13022,20 @@ pub const IShellLibrary = extern struct {
             self: *const IShellLibrary,
             lff: LIBRARYFOLDERFILTER,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResolveFolder: fn(
             self: *const IShellLibrary,
             psiFolderToResolve: ?*IShellItem,
             dwTimeout: u32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultSaveFolder: fn(
             self: *const IShellLibrary,
             dsft: DEFAULTSAVEFOLDERTYPE,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDefaultSaveFolder: fn(
             self: *const IShellLibrary,
@@ -13105,15 +13105,15 @@ pub const IShellLibrary = extern struct {
             return @ptrCast(*const IShellLibrary.VTable, self.vtable).RemoveFolder(@ptrCast(*const IShellLibrary, self), psiLocation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellLibrary_GetFolders(self: *const T, lff: LIBRARYFOLDERFILTER, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellLibrary_GetFolders(self: *const T, lff: LIBRARYFOLDERFILTER, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellLibrary.VTable, self.vtable).GetFolders(@ptrCast(*const IShellLibrary, self), lff, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellLibrary_ResolveFolder(self: *const T, psiFolderToResolve: ?*IShellItem, dwTimeout: u32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellLibrary_ResolveFolder(self: *const T, psiFolderToResolve: ?*IShellItem, dwTimeout: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellLibrary.VTable, self.vtable).ResolveFolder(@ptrCast(*const IShellLibrary, self), psiFolderToResolve, dwTimeout, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellLibrary_GetDefaultSaveFolder(self: *const T, dsft: DEFAULTSAVEFOLDERTYPE, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellLibrary_GetDefaultSaveFolder(self: *const T, dsft: DEFAULTSAVEFOLDERTYPE, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellLibrary.VTable, self.vtable).GetDefaultSaveFolder(@ptrCast(*const IShellLibrary, self), dsft, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13536,7 +13536,7 @@ pub const IDataTransferManagerInterop = extern struct {
             self: *const IDataTransferManagerInterop,
             appWindow: ?HWND,
             riid: ?*const Guid,
-            dataTransferManager: ?*?*c_void,
+            dataTransferManager: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowShareUIForWindow: fn(
             self: *const IDataTransferManagerInterop,
@@ -13547,7 +13547,7 @@ pub const IDataTransferManagerInterop = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataTransferManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, dataTransferManager: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDataTransferManagerInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, dataTransferManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataTransferManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IDataTransferManagerInterop, self), appWindow, riid, dataTransferManager);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14856,7 +14856,7 @@ pub const ISearchBoxInfo = extern struct {
         GetCondition: fn(
             self: *const ISearchBoxInfo,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetText: fn(
             self: *const ISearchBoxInfo,
@@ -14867,7 +14867,7 @@ pub const ISearchBoxInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchBoxInfo_GetCondition(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISearchBoxInfo_GetCondition(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISearchBoxInfo.VTable, self.vtable).GetCondition(@ptrCast(*const ISearchBoxInfo, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -15052,7 +15052,7 @@ pub const IStreamAsync = extern struct {
         ReadAsync: fn(
             self: *const IStreamAsync,
             // TODO: what to do with BytesParamIndex 1?
-            pv: ?*c_void,
+            pv: ?*anyopaque,
             cb: u32,
             pcbRead: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
@@ -15060,7 +15060,7 @@ pub const IStreamAsync = extern struct {
         WriteAsync: fn(
             self: *const IStreamAsync,
             // TODO: what to do with BytesParamIndex 1?
-            lpBuffer: ?*const c_void,
+            lpBuffer: ?*const anyopaque,
             cb: u32,
             pcbWritten: ?*u32,
             lpOverlapped: ?*OVERLAPPED,
@@ -15079,11 +15079,11 @@ pub const IStreamAsync = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStreamAsync_ReadAsync(self: *const T, pv: ?*c_void, cb: u32, pcbRead: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStreamAsync_ReadAsync(self: *const T, pv: ?*anyopaque, cb: u32, pcbRead: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStreamAsync.VTable, self.vtable).ReadAsync(@ptrCast(*const IStreamAsync, self), pv, cb, pcbRead, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IStreamAsync_WriteAsync(self: *const T, lpBuffer: ?*const c_void, cb: u32, pcbWritten: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
+        pub fn IStreamAsync_WriteAsync(self: *const T, lpBuffer: ?*const anyopaque, cb: u32, pcbWritten: ?*u32, lpOverlapped: ?*OVERLAPPED) callconv(.Inline) HRESULT {
             return @ptrCast(*const IStreamAsync.VTable, self.vtable).WriteAsync(@ptrCast(*const IStreamAsync, self), lpBuffer, cb, pcbWritten, lpOverlapped);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -16265,14 +16265,14 @@ pub const INameSpaceTreeControlEvents = extern struct {
             self: *const INameSpaceTreeControlEvents,
             psi: ?*IShellItem,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnAfterContextMenu: fn(
             self: *const INameSpaceTreeControlEvents,
             psi: ?*IShellItem,
             pcmIn: ?*IContextMenu,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnBeforeStateImageChange: fn(
             self: *const INameSpaceTreeControlEvents,
@@ -16345,11 +16345,11 @@ pub const INameSpaceTreeControlEvents = extern struct {
             return @ptrCast(*const INameSpaceTreeControlEvents.VTable, self.vtable).OnItemDeleted(@ptrCast(*const INameSpaceTreeControlEvents, self), psi, fIsRoot);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INameSpaceTreeControlEvents_OnBeforeContextMenu(self: *const T, psi: ?*IShellItem, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn INameSpaceTreeControlEvents_OnBeforeContextMenu(self: *const T, psi: ?*IShellItem, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const INameSpaceTreeControlEvents.VTable, self.vtable).OnBeforeContextMenu(@ptrCast(*const INameSpaceTreeControlEvents, self), psi, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INameSpaceTreeControlEvents_OnAfterContextMenu(self: *const T, psi: ?*IShellItem, pcmIn: ?*IContextMenu, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn INameSpaceTreeControlEvents_OnAfterContextMenu(self: *const T, psi: ?*IShellItem, pcmIn: ?*IContextMenu, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const INameSpaceTreeControlEvents.VTable, self.vtable).OnAfterContextMenu(@ptrCast(*const INameSpaceTreeControlEvents, self), psi, pcmIn, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -16607,7 +16607,7 @@ pub const IBandHost = extern struct {
             fAvailable: BOOL,
             fVisible: BOOL,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBandAvailability: fn(
             self: *const IBandHost,
@@ -16623,7 +16623,7 @@ pub const IBandHost = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBandHost_CreateBand(self: *const T, rclsidBand: ?*const Guid, fAvailable: BOOL, fVisible: BOOL, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IBandHost_CreateBand(self: *const T, rclsidBand: ?*const Guid, fAvailable: BOOL, fVisible: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBandHost.VTable, self.vtable).CreateBand(@ptrCast(*const IBandHost, self), rclsidBand, fAvailable, fVisible, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21713,7 +21713,7 @@ pub const IProgressDialog = extern struct {
             hwndParent: ?HWND,
             punkEnableModless: ?*IUnknown,
             dwFlags: u32,
-            pvResevered: ?*const c_void,
+            pvResevered: ?*const anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StopProgressDialog: fn(
             self: *const IProgressDialog,
@@ -21745,24 +21745,24 @@ pub const IProgressDialog = extern struct {
             dwLineNum: u32,
             pwzString: ?[*:0]const u16,
             fCompactPath: BOOL,
-            pvResevered: ?*const c_void,
+            pvResevered: ?*const anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetCancelMsg: fn(
             self: *const IProgressDialog,
             pwzCancelMsg: ?[*:0]const u16,
-            pvResevered: ?*const c_void,
+            pvResevered: ?*const anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Timer: fn(
             self: *const IProgressDialog,
             dwTimerAction: u32,
-            pvResevered: ?*const c_void,
+            pvResevered: ?*const anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProgressDialog_StartProgressDialog(self: *const T, hwndParent: ?HWND, punkEnableModless: ?*IUnknown, dwFlags: u32, pvResevered: ?*const c_void) callconv(.Inline) HRESULT {
+        pub fn IProgressDialog_StartProgressDialog(self: *const T, hwndParent: ?HWND, punkEnableModless: ?*IUnknown, dwFlags: u32, pvResevered: ?*const anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProgressDialog.VTable, self.vtable).StartProgressDialog(@ptrCast(*const IProgressDialog, self), hwndParent, punkEnableModless, dwFlags, pvResevered);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -21790,15 +21790,15 @@ pub const IProgressDialog = extern struct {
             return @ptrCast(*const IProgressDialog.VTable, self.vtable).SetProgress64(@ptrCast(*const IProgressDialog, self), ullCompleted, ullTotal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProgressDialog_SetLine(self: *const T, dwLineNum: u32, pwzString: ?[*:0]const u16, fCompactPath: BOOL, pvResevered: ?*const c_void) callconv(.Inline) HRESULT {
+        pub fn IProgressDialog_SetLine(self: *const T, dwLineNum: u32, pwzString: ?[*:0]const u16, fCompactPath: BOOL, pvResevered: ?*const anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProgressDialog.VTable, self.vtable).SetLine(@ptrCast(*const IProgressDialog, self), dwLineNum, pwzString, fCompactPath, pvResevered);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProgressDialog_SetCancelMsg(self: *const T, pwzCancelMsg: ?[*:0]const u16, pvResevered: ?*const c_void) callconv(.Inline) HRESULT {
+        pub fn IProgressDialog_SetCancelMsg(self: *const T, pwzCancelMsg: ?[*:0]const u16, pvResevered: ?*const anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProgressDialog.VTable, self.vtable).SetCancelMsg(@ptrCast(*const IProgressDialog, self), pwzCancelMsg, pvResevered);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IProgressDialog_Timer(self: *const T, dwTimerAction: u32, pvResevered: ?*const c_void) callconv(.Inline) HRESULT {
+        pub fn IProgressDialog_Timer(self: *const T, dwTimerAction: u32, pvResevered: ?*const anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IProgressDialog.VTable, self.vtable).Timer(@ptrCast(*const IProgressDialog, self), dwTimerAction, pvResevered);
         }
     };}
@@ -23156,7 +23156,7 @@ pub const IDockingWindowFrame = extern struct {
             self: *const IDockingWindowFrame,
             pwszItem: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -23171,7 +23171,7 @@ pub const IDockingWindowFrame = extern struct {
             return @ptrCast(*const IDockingWindowFrame.VTable, self.vtable).RemoveToolbar(@ptrCast(*const IDockingWindowFrame, self), punkSrc, dwRemoveFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDockingWindowFrame_FindToolbar(self: *const T, pwszItem: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDockingWindowFrame_FindToolbar(self: *const T, pwszItem: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDockingWindowFrame.VTable, self.vtable).FindToolbar(@ptrCast(*const IDockingWindowFrame, self), pwszItem, riid, ppv);
         }
     };}
@@ -23475,7 +23475,7 @@ pub const AASHELLMENUFILENAME = extern struct {
 };
 
 pub const AASHELLMENUITEM = extern struct {
-    lpReserved1: ?*c_void,
+    lpReserved1: ?*anyopaque,
     iReserved: i32,
     uiReserved: u32,
     lpName: ?*AASHELLMENUFILENAME,
@@ -24099,7 +24099,7 @@ pub const IQueryAssociations = extern struct {
             data: ASSOCDATA,
             pszExtra: ?[*:0]const u16,
             // TODO: what to do with BytesParamIndex 4?
-            pvOut: ?*c_void,
+            pvOut: ?*anyopaque,
             pcbOut: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetEnum: fn(
@@ -24108,7 +24108,7 @@ pub const IQueryAssociations = extern struct {
             assocenum: ASSOCENUM,
             pszExtra: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppvOut: ?*?*c_void,
+            ppvOut: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -24127,11 +24127,11 @@ pub const IQueryAssociations = extern struct {
             return @ptrCast(*const IQueryAssociations.VTable, self.vtable).GetKey(@ptrCast(*const IQueryAssociations, self), flags, key, pszExtra, phkeyOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueryAssociations_GetData(self: *const T, flags: u32, data: ASSOCDATA, pszExtra: ?[*:0]const u16, pvOut: ?*c_void, pcbOut: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IQueryAssociations_GetData(self: *const T, flags: u32, data: ASSOCDATA, pszExtra: ?[*:0]const u16, pvOut: ?*anyopaque, pcbOut: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IQueryAssociations.VTable, self.vtable).GetData(@ptrCast(*const IQueryAssociations, self), flags, data, pszExtra, pvOut, pcbOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueryAssociations_GetEnum(self: *const T, flags: u32, assocenum: ASSOCENUM, pszExtra: ?[*:0]const u16, riid: ?*const Guid, ppvOut: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IQueryAssociations_GetEnum(self: *const T, flags: u32, assocenum: ASSOCENUM, pszExtra: ?[*:0]const u16, riid: ?*const Guid, ppvOut: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IQueryAssociations.VTable, self.vtable).GetEnum(@ptrCast(*const IQueryAssociations, self), flags, assocenum, pszExtra, riid, ppvOut);
         }
     };}
@@ -25464,7 +25464,7 @@ pub const ISyncMgrHandlerCollection = extern struct {
             self: *const ISyncMgrHandlerCollection,
             pszHandlerID: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -25475,7 +25475,7 @@ pub const ISyncMgrHandlerCollection = extern struct {
             return @ptrCast(*const ISyncMgrHandlerCollection.VTable, self.vtable).GetHandlerEnumerator(@ptrCast(*const ISyncMgrHandlerCollection, self), ppenum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrHandlerCollection_BindToHandler(self: *const T, pszHandlerID: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncMgrHandlerCollection_BindToHandler(self: *const T, pszHandlerID: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMgrHandlerCollection.VTable, self.vtable).BindToHandler(@ptrCast(*const ISyncMgrHandlerCollection, self), pszHandlerID, riid, ppv);
         }
     };}
@@ -25562,7 +25562,7 @@ pub const ISyncMgrHandler = extern struct {
             self: *const ISyncMgrHandler,
             rguidObjectID: ?*const Guid,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCapabilities: fn(
             self: *const ISyncMgrHandler,
@@ -25601,7 +25601,7 @@ pub const ISyncMgrHandler = extern struct {
             return @ptrCast(*const ISyncMgrHandler.VTable, self.vtable).GetHandlerInfo(@ptrCast(*const ISyncMgrHandler, self), ppHandlerInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrHandler_GetObject(self: *const T, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncMgrHandler_GetObject(self: *const T, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMgrHandler.VTable, self.vtable).GetObject(@ptrCast(*const ISyncMgrHandler, self), rguidObjectID, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -25827,7 +25827,7 @@ pub const ISyncMgrSyncItem = extern struct {
             self: *const ISyncMgrSyncItem,
             rguidObjectID: ?*const Guid,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCapabilities: fn(
             self: *const ISyncMgrSyncItem,
@@ -25861,7 +25861,7 @@ pub const ISyncMgrSyncItem = extern struct {
             return @ptrCast(*const ISyncMgrSyncItem.VTable, self.vtable).GetItemInfo(@ptrCast(*const ISyncMgrSyncItem, self), ppItemInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrSyncItem_GetObject(self: *const T, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncMgrSyncItem_GetObject(self: *const T, rguidObjectID: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMgrSyncItem.VTable, self.vtable).GetObject(@ptrCast(*const ISyncMgrSyncItem, self), rguidObjectID, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -26670,7 +26670,7 @@ pub const ISyncMgrConflictStore = extern struct {
             self: *const ISyncMgrConflictStore,
             pConflictIdInfo: ?*const SYNCMGR_CONFLICT_ID_INFO,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveConflicts: fn(
             self: *const ISyncMgrConflictStore,
@@ -26692,7 +26692,7 @@ pub const ISyncMgrConflictStore = extern struct {
             return @ptrCast(*const ISyncMgrConflictStore.VTable, self.vtable).EnumConflicts(@ptrCast(*const ISyncMgrConflictStore, self), pszHandlerID, pszItemID, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrConflictStore_BindToConflict(self: *const T, pConflictIdInfo: ?*const SYNCMGR_CONFLICT_ID_INFO, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncMgrConflictStore_BindToConflict(self: *const T, pConflictIdInfo: ?*const SYNCMGR_CONFLICT_ID_INFO, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMgrConflictStore.VTable, self.vtable).BindToConflict(@ptrCast(*const ISyncMgrConflictStore, self), pConflictIdInfo, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -26787,7 +26787,7 @@ pub const ISyncMgrConflict = extern struct {
         GetResolutionHandler: fn(
             self: *const ISyncMgrConflict,
             riid: ?*const Guid,
-            ppvResolutionHandler: ?*?*c_void,
+            ppvResolutionHandler: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -26810,7 +26810,7 @@ pub const ISyncMgrConflict = extern struct {
             return @ptrCast(*const ISyncMgrConflict.VTable, self.vtable).Resolve(@ptrCast(*const ISyncMgrConflict, self), pResolveInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrConflict_GetResolutionHandler(self: *const T, riid: ?*const Guid, ppvResolutionHandler: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncMgrConflict_GetResolutionHandler(self: *const T, riid: ?*const Guid, ppvResolutionHandler: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMgrConflict.VTable, self.vtable).GetResolutionHandler(@ptrCast(*const ISyncMgrConflict, self), riid, ppvResolutionHandler);
         }
     };}
@@ -28106,7 +28106,7 @@ pub const ISyncMgrSynchronize = extern struct {
             self: *const ISyncMgrSynchronize,
             ItemID: ?*const Guid,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowProperties: fn(
             self: *const ISyncMgrSynchronize,
@@ -28155,7 +28155,7 @@ pub const ISyncMgrSynchronize = extern struct {
             return @ptrCast(*const ISyncMgrSynchronize.VTable, self.vtable).EnumSyncMgrItems(@ptrCast(*const ISyncMgrSynchronize, self), ppSyncMgrEnumItems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrSynchronize_GetItemObject(self: *const T, ItemID: ?*const Guid, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncMgrSynchronize_GetItemObject(self: *const T, ItemID: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMgrSynchronize.VTable, self.vtable).GetItemObject(@ptrCast(*const ISyncMgrSynchronize, self), ItemID, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -29452,7 +29452,7 @@ pub const CIE4ConnectionPoint = extern struct {
         DoInvokeIE4: fn(
             self: *const CIE4ConnectionPoint,
             pf: ?*BOOL,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
             dispid: i32,
             pdispparams: ?*DISPPARAMS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -29467,7 +29467,7 @@ pub const CIE4ConnectionPoint = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IConnectionPoint.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn CIE4ConnectionPoint_DoInvokeIE4(self: *const T, pf: ?*BOOL, ppv: ?*?*c_void, dispid: i32, pdispparams: ?*DISPPARAMS) callconv(.Inline) HRESULT {
+        pub fn CIE4ConnectionPoint_DoInvokeIE4(self: *const T, pf: ?*BOOL, ppv: ?*?*anyopaque, dispid: i32, pdispparams: ?*DISPPARAMS) callconv(.Inline) HRESULT {
             return @ptrCast(*const CIE4ConnectionPoint.VTable, self.vtable).DoInvokeIE4(@ptrCast(*const CIE4ConnectionPoint, self), pf, ppv, dispid, pdispparams);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30055,7 +30055,7 @@ pub const IBrowserService2 = extern struct {
         CreateBrowserPropSheetExt: fn(
             self: *const IBrowserService2,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetViewWindow: fn(
             self: *const IBrowserService2,
@@ -30322,7 +30322,7 @@ pub const IBrowserService2 = extern struct {
             return @ptrCast(*const IBrowserService2.VTable, self.vtable).CreateViewWindow(@ptrCast(*const IBrowserService2, self), psvNew, psvOld, prcView, phwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBrowserService2_CreateBrowserPropSheetExt(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IBrowserService2_CreateBrowserPropSheetExt(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBrowserService2.VTable, self.vtable).CreateBrowserPropSheetExt(@ptrCast(*const IBrowserService2, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -30877,12 +30877,12 @@ pub const MIMEASSOCDLG_FL_REGISTER_ASSOC = mimeassociationdialog_in_flags.C;
 
 pub const PAPPSTATE_CHANGE_ROUTINE = fn(
     Quiesced: BOOLEAN,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PAPPCONSTRAIN_CHANGE_ROUTINE = fn(
     Constrained: BOOLEAN,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 const CLSID_ShowInputPaneAnimationCoordinator_Value = @import("../zig.zig").Guid.initString("1f046abf-3202-4dc1-8cb5-3c67617ce1fa");
@@ -30991,7 +30991,7 @@ pub const SHFILEOPSTRUCTA = switch(@import("../zig.zig").arch) {
         pTo: ?*i8,
         fFlags: u16,
         fAnyOperationsAborted: BOOL,
-        hNameMappings: ?*c_void,
+        hNameMappings: ?*anyopaque,
         lpszProgressTitle: ?[*:0]const u8,
     },
     .X86 => packed struct {
@@ -31001,7 +31001,7 @@ pub const SHFILEOPSTRUCTA = switch(@import("../zig.zig").arch) {
         pTo: ?*i8,
         fFlags: u16,
         fAnyOperationsAborted: BOOL,
-        hNameMappings: ?*c_void,
+        hNameMappings: ?*anyopaque,
         lpszProgressTitle: ?[*:0]const u8,
     },
 };
@@ -31013,7 +31013,7 @@ pub const SHFILEOPSTRUCTW = switch(@import("../zig.zig").arch) {
         pTo: ?[*]const u16,
         fFlags: u16,
         fAnyOperationsAborted: BOOL,
-        hNameMappings: ?*c_void,
+        hNameMappings: ?*anyopaque,
         lpszProgressTitle: ?[*:0]const u16,
     },
     .X86 => packed struct {
@@ -31023,7 +31023,7 @@ pub const SHFILEOPSTRUCTW = switch(@import("../zig.zig").arch) {
         pTo: ?[*]const u16,
         fFlags: u16,
         fAnyOperationsAborted: BOOL,
-        hNameMappings: ?*c_void,
+        hNameMappings: ?*anyopaque,
         lpszProgressTitle: ?[*:0]const u16,
     },
 };
@@ -31066,7 +31066,7 @@ pub const SHELLEXECUTEINFOA = switch(@import("../zig.zig").arch) {
         lpDirectory: ?[*:0]const u8,
         nShow: i32,
         hInstApp: ?HINSTANCE,
-        lpIDList: ?*c_void,
+        lpIDList: ?*anyopaque,
         lpClass: ?[*:0]const u8,
         hkeyClass: ?HKEY,
         dwHotKey: u32,
@@ -31086,7 +31086,7 @@ pub const SHELLEXECUTEINFOA = switch(@import("../zig.zig").arch) {
         lpDirectory: ?[*:0]const u8,
         nShow: i32,
         hInstApp: ?HINSTANCE,
-        lpIDList: ?*c_void,
+        lpIDList: ?*anyopaque,
         lpClass: ?[*:0]const u8,
         hkeyClass: ?HKEY,
         dwHotKey: u32,
@@ -31108,7 +31108,7 @@ pub const SHELLEXECUTEINFOW = switch(@import("../zig.zig").arch) {
         lpDirectory: ?[*:0]const u16,
         nShow: i32,
         hInstApp: ?HINSTANCE,
-        lpIDList: ?*c_void,
+        lpIDList: ?*anyopaque,
         lpClass: ?[*:0]const u16,
         hkeyClass: ?HKEY,
         dwHotKey: u32,
@@ -31128,7 +31128,7 @@ pub const SHELLEXECUTEINFOW = switch(@import("../zig.zig").arch) {
         lpDirectory: ?[*:0]const u16,
         nShow: i32,
         hInstApp: ?HINSTANCE,
-        lpIDList: ?*c_void,
+        lpIDList: ?*anyopaque,
         lpClass: ?[*:0]const u16,
         hkeyClass: ?HKEY,
         dwHotKey: u32,
@@ -31550,7 +31550,7 @@ pub extern "SHELL32" fn SHSimpleIDListFromPath(
 pub extern "SHELL32" fn SHCreateItemFromIDList(
     pidl: ?*ITEMIDLIST,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -31558,7 +31558,7 @@ pub extern "SHELL32" fn SHCreateItemFromParsingName(
     pszPath: ?[*:0]const u16,
     pbc: ?*IBindCtx,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -31567,7 +31567,7 @@ pub extern "SHELL32" fn SHCreateItemWithParent(
     psfParent: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
     riid: ?*const Guid,
-    ppvItem: ?*?*c_void,
+    ppvItem: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -31576,7 +31576,7 @@ pub extern "SHELL32" fn SHCreateItemFromRelativeName(
     pszName: ?[*:0]const u16,
     pbc: ?*IBindCtx,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -31585,7 +31585,7 @@ pub extern "SHELL32" fn SHCreateItemInKnownFolder(
     dwKFFlags: u32,
     pszItem: ?[*:0]const u16,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -31598,7 +31598,7 @@ pub extern "SHELL32" fn SHGetIDListFromObject(
 pub extern "SHELL32" fn SHGetItemFromObject(
     punk: ?*IUnknown,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -31613,7 +31613,7 @@ pub extern "SHELL32" fn SHGetItemFromDataObject(
     pdtobj: ?*IDataObject,
     dwFlags: DATAOBJ_GET_ITEM_FLAGS,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -31629,7 +31629,7 @@ pub extern "SHELL32" fn SHCreateShellItemArray(
 pub extern "SHELL32" fn SHCreateShellItemArrayFromDataObject(
     pdo: ?*IDataObject,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -31643,19 +31643,19 @@ pub extern "SHELL32" fn SHCreateShellItemArrayFromIDLists(
 pub extern "SHELL32" fn SHCreateShellItemArrayFromShellItem(
     psi: ?*IShellItem,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateAssociationRegistration(
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHELL32" fn SHCreateDefaultExtractIcon(
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -31707,7 +31707,7 @@ pub extern "SHELL32" fn SHAssocEnumHandlers(
 pub extern "SHELL32" fn SHAssocEnumHandlersForProtocolByApplication(
     protocol: ?[*:0]const u16,
     riid: ?*const Guid,
-    enumHandlers: ?*?*c_void,
+    enumHandlers: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLE32" fn HMONITOR_UserSize(
@@ -31778,11 +31778,11 @@ pub extern "SHELL32" fn SHGetMalloc(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHAlloc(
     cb: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHFree(
-    pv: ?*c_void,
+    pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -32076,7 +32076,7 @@ pub extern "SHELL32" fn SHGetKnownFolderItem(
     flags: KNOWN_FOLDER_FLAG,
     hToken: ?HANDLE,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -32110,14 +32110,14 @@ pub extern "SHELL32" fn SHGetDesktopFolder(
 pub extern "SHELL32" fn SHChangeNotify(
     wEventId: SHCNE_ID,
     uFlags: SHCNF_FLAGS,
-    dwItem1: ?*const c_void,
-    dwItem2: ?*const c_void,
+    dwItem1: ?*const anyopaque,
+    dwItem2: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHAddToRecentDocs(
     uFlags: u32,
-    pv: ?*const c_void,
+    pv: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -32187,7 +32187,7 @@ pub extern "SHELL32" fn SHGetDataFromIDListA(
     pidl: ?*ITEMIDLIST,
     nFormat: SHGDFIL_FORMAT,
     // TODO: what to do with BytesParamIndex 4?
-    pv: ?*c_void,
+    pv: ?*anyopaque,
     cb: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -32197,7 +32197,7 @@ pub extern "SHELL32" fn SHGetDataFromIDListW(
     pidl: ?*ITEMIDLIST,
     nFormat: SHGDFIL_FORMAT,
     // TODO: what to do with BytesParamIndex 4?
-    pv: ?*c_void,
+    pv: ?*anyopaque,
     cb: i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -32222,7 +32222,7 @@ pub extern "SHELL32" fn SHCoCreateInstance(
     pclsid: ?*const Guid,
     pUnkOuter: ?*IUnknown,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -32232,7 +32232,7 @@ pub extern "SHELL32" fn SHCreateDataObject(
     apidl: ?[*]?*ITEMIDLIST,
     pdtInner: ?*IDataObject,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -32568,7 +32568,7 @@ pub extern "SHELL32" fn CDefFolderMenu_Create2(
 pub extern "SHELL32" fn SHCreateDefaultContextMenu(
     pdcm: ?*const DEFCONTEXTMENU,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -32602,7 +32602,7 @@ pub extern "SHELL32" fn SHGetSettings(
 pub extern "SHELL32" fn SHBindToParent(
     pidl: ?*ITEMIDLIST,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
     ppidlLast: ?*?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -32611,7 +32611,7 @@ pub extern "SHELL32" fn SHBindToFolderIDListParent(
     psfRoot: ?*IShellFolder,
     pidl: ?*ITEMIDLIST,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
     ppidlLast: ?*?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -32621,7 +32621,7 @@ pub extern "SHELL32" fn SHBindToFolderIDListParentEx(
     pidl: ?*ITEMIDLIST,
     ppbc: ?*IBindCtx,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
     ppidlLast: ?*?*ITEMIDLIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -32631,7 +32631,7 @@ pub extern "SHELL32" fn SHBindToObject(
     pidl: ?*ITEMIDLIST,
     pbc: ?*IBindCtx,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -32664,7 +32664,7 @@ pub extern "SHELL32" fn SHCreateFileExtractIconW(
     pszFile: ?[*:0]const u16,
     dwFileAttributes: u32,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -32708,7 +32708,7 @@ pub extern "SHELL32" fn StgMakeUniqueName(
     pszFileSpec: ?[*:0]const u16,
     grfMode: u32,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -33034,7 +33034,7 @@ pub extern "SHELL32" fn AssocCreateForClasses(
     rgClasses: [*]const ASSOCIATIONELEMENT,
     cClasses: u32,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -33256,7 +33256,7 @@ pub extern "SHELL32" fn SHTestTokenMembership(
 pub extern "SHELL32" fn SHGetImageList(
     iImageList: i32,
     riid: ?*const Guid,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -33767,7 +33767,7 @@ pub extern "SHLWAPI" fn SHLoadIndirectString(
     pszSource: ?[*:0]const u16,
     pszOutBuf: [*:0]u16,
     cchOutBuf: u32,
-    ppvReserved: ?*?*c_void,
+    ppvReserved: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -34756,7 +34756,7 @@ pub extern "SHLWAPI" fn SHGetValueA(
     pszValue: ?[*:0]const u8,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -34767,7 +34767,7 @@ pub extern "SHLWAPI" fn SHGetValueW(
     pszValue: ?[*:0]const u16,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -34778,7 +34778,7 @@ pub extern "SHLWAPI" fn SHSetValueA(
     pszValue: ?[*:0]const u8,
     dwType: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pvData: ?*const c_void,
+    pvData: ?*const anyopaque,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -34789,7 +34789,7 @@ pub extern "SHLWAPI" fn SHSetValueW(
     pszValue: ?[*:0]const u16,
     dwType: u32,
     // TODO: what to do with BytesParamIndex 5?
-    pvData: ?*const c_void,
+    pvData: ?*const anyopaque,
     cbData: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -34801,7 +34801,7 @@ pub extern "SHLWAPI" fn SHRegGetValueA(
     srrfFlags: i32,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 6?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -34813,7 +34813,7 @@ pub extern "SHLWAPI" fn SHRegGetValueW(
     srrfFlags: i32,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 6?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -34824,7 +34824,7 @@ pub extern "SHLWAPI" fn SHRegGetValueFromHKCUHKLM(
     srrfFlags: i32,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -34835,7 +34835,7 @@ pub extern "SHLWAPI" fn SHQueryValueExA(
     pdwReserved: ?*u32,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -34846,7 +34846,7 @@ pub extern "SHLWAPI" fn SHQueryValueExW(
     pdwReserved: ?*u32,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 5?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -34874,7 +34874,7 @@ pub extern "SHLWAPI" fn SHEnumValueA(
     pcchValueName: ?*u32,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 6?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -34886,7 +34886,7 @@ pub extern "SHLWAPI" fn SHEnumValueW(
     pcchValueName: ?*u32,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 6?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -35002,11 +35002,11 @@ pub extern "SHLWAPI" fn SHRegQueryUSValueA(
     pszValue: ?[*:0]const u8,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
     fIgnoreHKCU: BOOL,
     // TODO: what to do with BytesParamIndex 7?
-    pvDefaultData: ?*c_void,
+    pvDefaultData: ?*anyopaque,
     dwDefaultDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -35016,11 +35016,11 @@ pub extern "SHLWAPI" fn SHRegQueryUSValueW(
     pszValue: ?[*:0]const u16,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
     fIgnoreHKCU: BOOL,
     // TODO: what to do with BytesParamIndex 7?
-    pvDefaultData: ?*c_void,
+    pvDefaultData: ?*anyopaque,
     dwDefaultDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -35030,7 +35030,7 @@ pub extern "SHLWAPI" fn SHRegWriteUSValueA(
     pszValue: ?[*:0]const u8,
     dwType: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvData: ?*const c_void,
+    pvData: ?*const anyopaque,
     cbData: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
@@ -35041,7 +35041,7 @@ pub extern "SHLWAPI" fn SHRegWriteUSValueW(
     pwzValue: ?[*:0]const u16,
     dwType: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvData: ?*const c_void,
+    pvData: ?*const anyopaque,
     cbData: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
@@ -35100,7 +35100,7 @@ pub extern "SHLWAPI" fn SHRegEnumUSValueA(
     pcchValueName: ?*u32,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 6?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
     enumRegFlags: SHREGENUM_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
@@ -35113,7 +35113,7 @@ pub extern "SHLWAPI" fn SHRegEnumUSValueW(
     pcchValueName: ?*u32,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 6?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
     enumRegFlags: SHREGENUM_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
@@ -35149,11 +35149,11 @@ pub extern "SHLWAPI" fn SHRegGetUSValueA(
     pszValue: ?[*:0]const u8,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
     fIgnoreHKCU: BOOL,
     // TODO: what to do with BytesParamIndex 7?
-    pvDefaultData: ?*c_void,
+    pvDefaultData: ?*anyopaque,
     dwDefaultDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -35163,11 +35163,11 @@ pub extern "SHLWAPI" fn SHRegGetUSValueW(
     pszValue: ?[*:0]const u16,
     pdwType: ?*u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     pcbData: ?*u32,
     fIgnoreHKCU: BOOL,
     // TODO: what to do with BytesParamIndex 7?
-    pvDefaultData: ?*c_void,
+    pvDefaultData: ?*anyopaque,
     dwDefaultDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
@@ -35177,7 +35177,7 @@ pub extern "SHLWAPI" fn SHRegSetUSValueA(
     pszValue: ?[*:0]const u8,
     dwType: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvData: ?*const c_void,
+    pvData: ?*const anyopaque,
     cbData: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
@@ -35188,7 +35188,7 @@ pub extern "SHLWAPI" fn SHRegSetUSValueW(
     pwzValue: ?[*:0]const u16,
     dwType: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvData: ?*const c_void,
+    pvData: ?*const anyopaque,
     cbData: u32,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
@@ -35220,7 +35220,7 @@ pub extern "SHLWAPI" fn SHRegGetBoolUSValueW(
 pub extern "SHLWAPI" fn AssocCreate(
     clsid: Guid,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -35377,7 +35377,7 @@ pub extern "SHLWAPI" fn IUnknown_Set(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IUnknown_AtomicRelease(
-    ppunk: ?*?*c_void,
+    ppunk: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -35396,7 +35396,7 @@ pub extern "SHLWAPI" fn IUnknown_SetSite(
 pub extern "SHLWAPI" fn IUnknown_GetSite(
     punk: ?*IUnknown,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -35404,13 +35404,13 @@ pub extern "SHLWAPI" fn IUnknown_QueryService(
     punk: ?*IUnknown,
     guidService: ?*const Guid,
     riid: ?*const Guid,
-    ppvOut: ?*?*c_void,
+    ppvOut: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IStream_Read(
     pstm: ?*IStream,
-    pv: ?*c_void,
+    pv: ?*anyopaque,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -35418,7 +35418,7 @@ pub extern "SHLWAPI" fn IStream_Read(
 pub extern "SHLWAPI" fn IStream_Write(
     pstm: ?*IStream,
     // TODO: what to do with BytesParamIndex 2?
-    pv: ?*const c_void,
+    pv: ?*const anyopaque,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -35480,7 +35480,7 @@ pub extern "SHLWAPI" fn SHGetViewStatePropertyBag(
     pszBagName: ?[*:0]const u16,
     dwFlags: u32,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -35594,7 +35594,7 @@ pub extern "SHLWAPI" fn SHGlobalCounterDecrement(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHAllocShared(
     // TODO: what to do with BytesParamIndex 1?
-    pvData: ?*const c_void,
+    pvData: ?*const anyopaque,
     dwSize: u32,
     dwProcessId: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
@@ -35609,11 +35609,11 @@ pub extern "SHLWAPI" fn SHFreeShared(
 pub extern "SHLWAPI" fn SHLockShared(
     hData: ?HANDLE,
     dwProcessId: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHLWAPI" fn SHUnlockShared(
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -35622,10 +35622,10 @@ pub extern "SHLWAPI" fn WhichPlatform(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn QISearch(
-    that: ?*c_void,
+    that: ?*anyopaque,
     pqit: ?*QITAB,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -35677,7 +35677,7 @@ pub extern "SHLWAPI" fn SHSkipJunction(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHCreateThread(
     pfnThreadProc: ?LPTHREAD_START_ROUTINE,
-    pData: ?*c_void,
+    pData: ?*anyopaque,
     flags: u32,
     pfnCallback: ?LPTHREAD_START_ROUTINE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -35685,7 +35685,7 @@ pub extern "SHLWAPI" fn SHCreateThread(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "SHLWAPI" fn SHCreateThreadWithHandle(
     pfnThreadProc: ?LPTHREAD_START_ROUTINE,
-    pData: ?*c_void,
+    pData: ?*anyopaque,
     flags: u32,
     pfnCallback: ?LPTHREAD_START_ROUTINE,
     pHandle: ?*?HANDLE,
@@ -35734,7 +35734,7 @@ pub extern "hlink" fn HlinkCreateFromMoniker(
     dwSiteData: u32,
     piunkOuter: ?*IUnknown,
     riid: ?*const Guid,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "hlink" fn HlinkCreateFromString(
@@ -35745,7 +35745,7 @@ pub extern "hlink" fn HlinkCreateFromString(
     dwSiteData: u32,
     piunkOuter: ?*IUnknown,
     riid: ?*const Guid,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "hlink" fn HlinkCreateFromData(
@@ -35754,7 +35754,7 @@ pub extern "hlink" fn HlinkCreateFromData(
     dwSiteData: u32,
     piunkOuter: ?*IUnknown,
     riid: ?*const Guid,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "hlink" fn HlinkQueryCreateFromData(
@@ -35766,13 +35766,13 @@ pub extern "hlink" fn HlinkClone(
     riid: ?*const Guid,
     pihlsiteForClone: ?*IHlinkSite,
     dwSiteData: u32,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "hlink" fn HlinkCreateBrowseContext(
     piunkOuter: ?*IUnknown,
     riid: ?*const Guid,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "hlink" fn HlinkNavigateToStringReference(
@@ -35857,7 +35857,7 @@ pub extern "hlink" fn HlinkCreateExtensionServices(
     pszPassword: ?[*:0]const u16,
     piunkOuter: ?*IUnknown,
     riid: ?*const Guid,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "hlink" fn HlinkPreprocessMoniker(
@@ -35917,7 +35917,7 @@ pub extern "hlink" fn HlinkResolveShortcut(
     dwSiteData: u32,
     piunkOuter: ?*IUnknown,
     riid: ?*const Guid,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "hlink" fn HlinkResolveShortcutToMoniker(
@@ -36102,7 +36102,7 @@ pub extern "api-ms-win-core-path-l1-1-0" fn PathAllocCanonicalize(
 
 pub extern "api-ms-win-core-psm-appnotify-l1-1-0" fn RegisterAppStateChangeNotification(
     Routine: ?PAPPSTATE_CHANGE_ROUTINE,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     Registration: ?*?*_APPSTATE_REGISTRATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -36112,7 +36112,7 @@ pub extern "api-ms-win-core-psm-appnotify-l1-1-0" fn UnregisterAppStateChangeNot
 
 pub extern "api-ms-win-core-psm-appnotify-l1-1-1" fn RegisterAppConstrainedChangeNotification(
     Routine: ?PAPPCONSTRAIN_CHANGE_ROUTINE,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     Registration: ?*?*_APPCONSTRAIN_REGISTRATION,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

@@ -1030,7 +1030,7 @@ pub const VARFLAG_FIMMEDIATEBIND = VARFLAGS.IMMEDIATEBIND;
 
 pub const CLEANLOCALSTORAGE = extern struct {
     pInterface: ?*IUnknown,
-    pStorage: ?*c_void,
+    pStorage: ?*anyopaque,
     flags: u32,
 };
 
@@ -1725,16 +1725,16 @@ pub const ITypeMarshal = extern struct {
         base: IUnknown.VTable,
         Size: fn(
             self: *const ITypeMarshal,
-            pvType: ?*c_void,
+            pvType: ?*anyopaque,
             dwDestContext: u32,
-            pvDestContext: ?*c_void,
+            pvDestContext: ?*anyopaque,
             pSize: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Marshal: fn(
             self: *const ITypeMarshal,
-            pvType: ?*c_void,
+            pvType: ?*anyopaque,
             dwDestContext: u32,
-            pvDestContext: ?*c_void,
+            pvDestContext: ?*anyopaque,
             cbBufferLength: u32,
             // TODO: what to do with BytesParamIndex 3?
             pBuffer: ?*u8,
@@ -1742,7 +1742,7 @@ pub const ITypeMarshal = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unmarshal: fn(
             self: *const ITypeMarshal,
-            pvType: ?*c_void,
+            pvType: ?*anyopaque,
             dwFlags: u32,
             cbBufferLength: u32,
             pBuffer: [*:0]u8,
@@ -1750,26 +1750,26 @@ pub const ITypeMarshal = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Free: fn(
             self: *const ITypeMarshal,
-            pvType: ?*c_void,
+            pvType: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeMarshal_Size(self: *const T, pvType: ?*c_void, dwDestContext: u32, pvDestContext: ?*c_void, pSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ITypeMarshal_Size(self: *const T, pvType: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, pSize: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeMarshal.VTable, self.vtable).Size(@ptrCast(*const ITypeMarshal, self), pvType, dwDestContext, pvDestContext, pSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeMarshal_Marshal(self: *const T, pvType: ?*c_void, dwDestContext: u32, pvDestContext: ?*c_void, cbBufferLength: u32, pBuffer: ?*u8, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ITypeMarshal_Marshal(self: *const T, pvType: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, cbBufferLength: u32, pBuffer: ?*u8, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeMarshal.VTable, self.vtable).Marshal(@ptrCast(*const ITypeMarshal, self), pvType, dwDestContext, pvDestContext, cbBufferLength, pBuffer, pcbWritten);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeMarshal_Unmarshal(self: *const T, pvType: ?*c_void, dwFlags: u32, cbBufferLength: u32, pBuffer: [*:0]u8, pcbRead: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ITypeMarshal_Unmarshal(self: *const T, pvType: ?*anyopaque, dwFlags: u32, cbBufferLength: u32, pBuffer: [*:0]u8, pcbRead: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeMarshal.VTable, self.vtable).Unmarshal(@ptrCast(*const ITypeMarshal, self), pvType, dwFlags, cbBufferLength, pBuffer, pcbRead);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeMarshal_Free(self: *const T, pvType: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn ITypeMarshal_Free(self: *const T, pvType: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeMarshal.VTable, self.vtable).Free(@ptrCast(*const ITypeMarshal, self), pvType);
         }
     };}
@@ -1783,16 +1783,16 @@ pub const IRecordInfo = extern struct {
         base: IUnknown.VTable,
         RecordInit: fn(
             self: *const IRecordInfo,
-            pvNew: ?*c_void,
+            pvNew: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RecordClear: fn(
             self: *const IRecordInfo,
-            pvExisting: ?*c_void,
+            pvExisting: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RecordCopy: fn(
             self: *const IRecordInfo,
-            pvExisting: ?*c_void,
-            pvNew: ?*c_void,
+            pvExisting: ?*anyopaque,
+            pvNew: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGuid: fn(
             self: *const IRecordInfo,
@@ -1812,28 +1812,28 @@ pub const IRecordInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetField: fn(
             self: *const IRecordInfo,
-            pvData: ?*c_void,
+            pvData: ?*anyopaque,
             szFieldName: ?[*:0]const u16,
             pvarField: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFieldNoCopy: fn(
             self: *const IRecordInfo,
-            pvData: ?*c_void,
+            pvData: ?*anyopaque,
             szFieldName: ?[*:0]const u16,
             pvarField: ?*VARIANT,
-            ppvDataCArray: ?*?*c_void,
+            ppvDataCArray: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PutField: fn(
             self: *const IRecordInfo,
             wFlags: u32,
-            pvData: ?*c_void,
+            pvData: ?*anyopaque,
             szFieldName: ?[*:0]const u16,
             pvarField: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PutFieldNoCopy: fn(
             self: *const IRecordInfo,
             wFlags: u32,
-            pvData: ?*c_void,
+            pvData: ?*anyopaque,
             szFieldName: ?[*:0]const u16,
             pvarField: ?*VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1848,30 +1848,30 @@ pub const IRecordInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
         RecordCreate: fn(
             self: *const IRecordInfo,
-        ) callconv(@import("std").os.windows.WINAPI) ?*c_void,
+        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
         RecordCreateCopy: fn(
             self: *const IRecordInfo,
-            pvSource: ?*c_void,
-            ppvDest: ?*?*c_void,
+            pvSource: ?*anyopaque,
+            ppvDest: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RecordDestroy: fn(
             self: *const IRecordInfo,
-            pvRecord: ?*c_void,
+            pvRecord: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordInit(self: *const T, pvNew: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_RecordInit(self: *const T, pvNew: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).RecordInit(@ptrCast(*const IRecordInfo, self), pvNew);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordClear(self: *const T, pvExisting: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_RecordClear(self: *const T, pvExisting: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).RecordClear(@ptrCast(*const IRecordInfo, self), pvExisting);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordCopy(self: *const T, pvExisting: ?*c_void, pvNew: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_RecordCopy(self: *const T, pvExisting: ?*anyopaque, pvNew: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).RecordCopy(@ptrCast(*const IRecordInfo, self), pvExisting, pvNew);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1891,19 +1891,19 @@ pub const IRecordInfo = extern struct {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).GetTypeInfo(@ptrCast(*const IRecordInfo, self), ppTypeInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetField(self: *const T, pvData: ?*c_void, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_GetField(self: *const T, pvData: ?*anyopaque, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).GetField(@ptrCast(*const IRecordInfo, self), pvData, szFieldName, pvarField);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_GetFieldNoCopy(self: *const T, pvData: ?*c_void, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT, ppvDataCArray: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_GetFieldNoCopy(self: *const T, pvData: ?*anyopaque, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT, ppvDataCArray: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).GetFieldNoCopy(@ptrCast(*const IRecordInfo, self), pvData, szFieldName, pvarField, ppvDataCArray);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_PutField(self: *const T, wFlags: u32, pvData: ?*c_void, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_PutField(self: *const T, wFlags: u32, pvData: ?*anyopaque, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).PutField(@ptrCast(*const IRecordInfo, self), wFlags, pvData, szFieldName, pvarField);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_PutFieldNoCopy(self: *const T, wFlags: u32, pvData: ?*c_void, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_PutFieldNoCopy(self: *const T, wFlags: u32, pvData: ?*anyopaque, szFieldName: ?[*:0]const u16, pvarField: ?*VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).PutFieldNoCopy(@ptrCast(*const IRecordInfo, self), wFlags, pvData, szFieldName, pvarField);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1915,15 +1915,15 @@ pub const IRecordInfo = extern struct {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).IsMatchingType(@ptrCast(*const IRecordInfo, self), pRecordInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordCreate(self: *const T) callconv(.Inline) ?*c_void {
+        pub fn IRecordInfo_RecordCreate(self: *const T) callconv(.Inline) ?*anyopaque {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).RecordCreate(@ptrCast(*const IRecordInfo, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordCreateCopy(self: *const T, pvSource: ?*c_void, ppvDest: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_RecordCreateCopy(self: *const T, pvSource: ?*anyopaque, ppvDest: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).RecordCreateCopy(@ptrCast(*const IRecordInfo, self), pvSource, ppvDest);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRecordInfo_RecordDestroy(self: *const T, pvRecord: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRecordInfo_RecordDestroy(self: *const T, pvRecord: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRecordInfo.VTable, self.vtable).RecordDestroy(@ptrCast(*const IRecordInfo, self), pvRecord);
         }
     };}
@@ -2066,7 +2066,7 @@ pub const IOleCache2 = extern struct {
             self: *const IOleCache2,
             pDataObject: ?*IDataObject,
             grfUpdf: UPDFCACHE_FLAGS,
-            pReserved: ?*c_void,
+            pReserved: ?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DiscardCache: fn(
             self: *const IOleCache2,
@@ -2077,7 +2077,7 @@ pub const IOleCache2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IOleCache.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleCache2_UpdateCache(self: *const T, pDataObject: ?*IDataObject, grfUpdf: UPDFCACHE_FLAGS, pReserved: ?*c_void) callconv(.Inline) HRESULT {
+        pub fn IOleCache2_UpdateCache(self: *const T, pDataObject: ?*IDataObject, grfUpdf: UPDFCACHE_FLAGS, pReserved: ?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOleCache2.VTable, self.vtable).UpdateCache(@ptrCast(*const IOleCache2, self), pDataObject, grfUpdf, pReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2695,14 +2695,14 @@ pub const IOleItemContainer = extern struct {
             dwSpeedNeeded: u32,
             pbc: ?*IBindCtx,
             riid: ?*const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetObjectStorage: fn(
             self: *const IOleItemContainer,
             pszItem: ?PWSTR,
             pbc: ?*IBindCtx,
             riid: ?*const Guid,
-            ppvStorage: ?*?*c_void,
+            ppvStorage: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         IsRunning: fn(
             self: *const IOleItemContainer,
@@ -2713,11 +2713,11 @@ pub const IOleItemContainer = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IOleContainer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleItemContainer_GetObject(self: *const T, pszItem: ?PWSTR, dwSpeedNeeded: u32, pbc: ?*IBindCtx, riid: ?*const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IOleItemContainer_GetObject(self: *const T, pszItem: ?PWSTR, dwSpeedNeeded: u32, pbc: ?*IBindCtx, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOleItemContainer.VTable, self.vtable).GetObject(@ptrCast(*const IOleItemContainer, self), pszItem, dwSpeedNeeded, pbc, riid, ppvObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOleItemContainer_GetObjectStorage(self: *const T, pszItem: ?PWSTR, pbc: ?*IBindCtx, riid: ?*const Guid, ppvStorage: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IOleItemContainer_GetObjectStorage(self: *const T, pszItem: ?PWSTR, pbc: ?*IBindCtx, riid: ?*const Guid, ppvStorage: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOleItemContainer.VTable, self.vtable).GetObjectStorage(@ptrCast(*const IOleItemContainer, self), pszItem, pbc, riid, ppvStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3075,7 +3075,7 @@ pub const IViewObject = extern struct {
             self: *const IViewObject,
             dwDrawAspect: u32,
             lindex: i32,
-            pvAspect: ?*c_void,
+            pvAspect: ?*anyopaque,
             ptd: ?*DVTARGETDEVICE,
             hdcTargetDev: ?HDC,
             hdcDraw: ?HDC,
@@ -3088,7 +3088,7 @@ pub const IViewObject = extern struct {
             self: *const IViewObject,
             dwDrawAspect: u32,
             lindex: i32,
-            pvAspect: ?*c_void,
+            pvAspect: ?*anyopaque,
             ptd: ?*DVTARGETDEVICE,
             hicTargetDev: ?HDC,
             ppColorSet: ?*?*LOGPALETTE,
@@ -3097,7 +3097,7 @@ pub const IViewObject = extern struct {
             self: *const IViewObject,
             dwDrawAspect: u32,
             lindex: i32,
-            pvAspect: ?*c_void,
+            pvAspect: ?*anyopaque,
             pdwFreeze: ?*u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unfreeze: fn(
@@ -3121,15 +3121,15 @@ pub const IViewObject = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObject_Draw(self: *const T, dwDrawAspect: u32, lindex: i32, pvAspect: ?*c_void, ptd: ?*DVTARGETDEVICE, hdcTargetDev: ?HDC, hdcDraw: ?HDC, lprcBounds: ?*RECTL, lprcWBounds: ?*RECTL, pfnContinue: isize, dwContinue: usize) callconv(.Inline) HRESULT {
+        pub fn IViewObject_Draw(self: *const T, dwDrawAspect: u32, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcTargetDev: ?HDC, hdcDraw: ?HDC, lprcBounds: ?*RECTL, lprcWBounds: ?*RECTL, pfnContinue: isize, dwContinue: usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IViewObject.VTable, self.vtable).Draw(@ptrCast(*const IViewObject, self), dwDrawAspect, lindex, pvAspect, ptd, hdcTargetDev, hdcDraw, lprcBounds, lprcWBounds, pfnContinue, dwContinue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObject_GetColorSet(self: *const T, dwDrawAspect: u32, lindex: i32, pvAspect: ?*c_void, ptd: ?*DVTARGETDEVICE, hicTargetDev: ?HDC, ppColorSet: ?*?*LOGPALETTE) callconv(.Inline) HRESULT {
+        pub fn IViewObject_GetColorSet(self: *const T, dwDrawAspect: u32, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hicTargetDev: ?HDC, ppColorSet: ?*?*LOGPALETTE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IViewObject.VTable, self.vtable).GetColorSet(@ptrCast(*const IViewObject, self), dwDrawAspect, lindex, pvAspect, ptd, hicTargetDev, ppColorSet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IViewObject_Freeze(self: *const T, dwDrawAspect: u32, lindex: i32, pvAspect: ?*c_void, pdwFreeze: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IViewObject_Freeze(self: *const T, dwDrawAspect: u32, lindex: i32, pvAspect: ?*anyopaque, pdwFreeze: ?*u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IViewObject.VTable, self.vtable).Freeze(@ptrCast(*const IViewObject, self), dwDrawAspect, lindex, pvAspect, pdwFreeze);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3472,7 +3472,7 @@ pub const IClassFactory2 = extern struct {
             pUnkReserved: ?*IUnknown,
             riid: ?*const Guid,
             bstrKey: ?BSTR,
-            ppvObj: ?*?*c_void,
+            ppvObj: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -3487,7 +3487,7 @@ pub const IClassFactory2 = extern struct {
             return @ptrCast(*const IClassFactory2.VTable, self.vtable).RequestLicKey(@ptrCast(*const IClassFactory2, self), dwReserved, pBstrKey);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClassFactory2_CreateInstanceLic(self: *const T, pUnkOuter: ?*IUnknown, pUnkReserved: ?*IUnknown, riid: ?*const Guid, bstrKey: ?BSTR, ppvObj: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IClassFactory2_CreateInstanceLic(self: *const T, pUnkOuter: ?*IUnknown, pUnkReserved: ?*IUnknown, riid: ?*const Guid, bstrKey: ?BSTR, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IClassFactory2.VTable, self.vtable).CreateInstanceLic(@ptrCast(*const IClassFactory2, self), pUnkOuter, pUnkReserved, riid, bstrKey, ppvObj);
         }
     };}
@@ -5270,7 +5270,7 @@ pub const IObjectWithSite = extern struct {
         GetSite: fn(
             self: *const IObjectWithSite,
             riid: ?*const Guid,
-            ppvSite: ?*?*c_void,
+            ppvSite: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -5281,7 +5281,7 @@ pub const IObjectWithSite = extern struct {
             return @ptrCast(*const IObjectWithSite.VTable, self.vtable).SetSite(@ptrCast(*const IObjectWithSite, self), pUnkSite);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectWithSite_GetSite(self: *const T, riid: ?*const Guid, ppvSite: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IObjectWithSite_GetSite(self: *const T, riid: ?*const Guid, ppvSite: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectWithSite.VTable, self.vtable).GetSite(@ptrCast(*const IObjectWithSite, self), riid, ppvSite);
         }
     };}
@@ -5608,14 +5608,14 @@ pub const IGetOleObject = extern struct {
         GetOleObject: fn(
             self: *const IGetOleObject,
             riid: ?*const Guid,
-            ppvObj: ?*?*c_void,
+            ppvObj: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetOleObject_GetOleObject(self: *const T, riid: ?*const Guid, ppvObj: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IGetOleObject_GetOleObject(self: *const T, riid: ?*const Guid, ppvObj: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGetOleObject.VTable, self.vtable).GetOleObject(@ptrCast(*const IGetOleObject, self), riid, ppvObj);
         }
     };}
@@ -5631,7 +5631,7 @@ pub const IVBFormat = extern struct {
             self: *const IVBFormat,
             vData: ?*VARIANT,
             bstrFormat: ?BSTR,
-            lpBuffer: ?*c_void,
+            lpBuffer: ?*anyopaque,
             cb: u16,
             lcid: i32,
             sFirstDayOfWeek: i16,
@@ -5643,7 +5643,7 @@ pub const IVBFormat = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVBFormat_Format(self: *const T, vData: ?*VARIANT, bstrFormat: ?BSTR, lpBuffer: ?*c_void, cb: u16, lcid: i32, sFirstDayOfWeek: i16, sFirstWeekOfYear: u16, rcb: ?*u16) callconv(.Inline) HRESULT {
+        pub fn IVBFormat_Format(self: *const T, vData: ?*VARIANT, bstrFormat: ?BSTR, lpBuffer: ?*anyopaque, cb: u16, lcid: i32, sFirstDayOfWeek: i16, sFirstWeekOfYear: u16, rcb: ?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IVBFormat.VTable, self.vtable).Format(@ptrCast(*const IVBFormat, self), vData, bstrFormat, lpBuffer, cb, lcid, sFirstDayOfWeek, sFirstWeekOfYear, rcb);
         }
     };}
@@ -5658,7 +5658,7 @@ pub const IGetVBAObject = extern struct {
         GetObject: fn(
             self: *const IGetVBAObject,
             riid: ?*const Guid,
-            ppvObj: ?*?*c_void,
+            ppvObj: ?*?*anyopaque,
             dwReserved: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -5666,7 +5666,7 @@ pub const IGetVBAObject = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetVBAObject_GetObject(self: *const T, riid: ?*const Guid, ppvObj: ?*?*c_void, dwReserved: u32) callconv(.Inline) HRESULT {
+        pub fn IGetVBAObject_GetObject(self: *const T, riid: ?*const Guid, ppvObj: ?*?*anyopaque, dwReserved: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IGetVBAObject.VTable, self.vtable).GetObject(@ptrCast(*const IGetVBAObject, self), riid, ppvObj, dwReserved);
         }
     };}
@@ -6610,7 +6610,7 @@ pub const OLEUIINSERTOBJECTW = extern struct {
     lpFormatEtc: ?*FORMATETC,
     lpIOleClientSite: ?*IOleClientSite,
     lpIStorage: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
     sc: i32,
     hMetaPict: isize,
 };
@@ -6635,7 +6635,7 @@ pub const OLEUIINSERTOBJECTA = extern struct {
     lpFormatEtc: ?*FORMATETC,
     lpIOleClientSite: ?*IOleClientSite,
     lpIStorage: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
     sc: i32,
     hMetaPict: isize,
 };
@@ -7651,7 +7651,7 @@ pub extern "OLEAUT32" fn SafeArrayCreateEx(
     vt: u16,
     cDims: u32,
     rgsabound: ?*SAFEARRAYBOUND,
-    pvExtra: ?*c_void,
+    pvExtra: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*SAFEARRAY;
 
 pub extern "OLEAUT32" fn SafeArrayCopyData(
@@ -7670,7 +7670,7 @@ pub extern "OLEAUT32" fn SafeArrayDestroyDescriptor(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn SafeArrayReleaseData(
-    pData: ?*c_void,
+    pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn SafeArrayDestroyData(
@@ -7680,7 +7680,7 @@ pub extern "OLEAUT32" fn SafeArrayDestroyData(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn SafeArrayAddRef(
     psa: ?*SAFEARRAY,
-    ppDataToRelease: ?*?*c_void,
+    ppDataToRelease: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayDestroy(
@@ -7722,7 +7722,7 @@ pub extern "OLEAUT32" fn SafeArrayUnlock(
 
 pub extern "OLEAUT32" fn SafeArrayAccessData(
     psa: ?*SAFEARRAY,
-    ppvData: ?*?*c_void,
+    ppvData: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayUnaccessData(
@@ -7732,13 +7732,13 @@ pub extern "OLEAUT32" fn SafeArrayUnaccessData(
 pub extern "OLEAUT32" fn SafeArrayGetElement(
     psa: ?*SAFEARRAY,
     rgIndices: ?*i32,
-    pv: ?*c_void,
+    pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayPutElement(
     psa: ?*SAFEARRAY,
     rgIndices: ?*i32,
-    pv: ?*c_void,
+    pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArrayCopy(
@@ -7749,7 +7749,7 @@ pub extern "OLEAUT32" fn SafeArrayCopy(
 pub extern "OLEAUT32" fn SafeArrayPtrOfIndex(
     psa: ?*SAFEARRAY,
     rgIndices: ?*i32,
-    ppvData: ?*?*c_void,
+    ppvData: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn SafeArraySetRecordInfo(
@@ -7787,7 +7787,7 @@ pub extern "OLEAUT32" fn SafeArrayCreateVectorEx(
     vt: u16,
     lLbound: i32,
     cElements: u32,
-    pvExtra: ?*c_void,
+    pvExtra: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?*SAFEARRAY;
 
 pub extern "OLEAUT32" fn VariantInit(
@@ -9506,7 +9506,7 @@ pub extern "OLEAUT32" fn DispGetIDsOfNames(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn DispInvoke(
-    _this: ?*c_void,
+    _this: ?*anyopaque,
     ptinfo: ?*ITypeInfo,
     dispidMember: i32,
     wFlags: u16,
@@ -9524,13 +9524,13 @@ pub extern "OLEAUT32" fn CreateDispTypeInfo(
 
 pub extern "OLEAUT32" fn CreateStdDispatch(
     punkOuter: ?*IUnknown,
-    pvThis: ?*c_void,
+    pvThis: ?*anyopaque,
     ptinfo: ?*ITypeInfo,
     ppunkStdDisp: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn DispCallFunc(
-    pvInstance: ?*c_void,
+    pvInstance: ?*anyopaque,
     oVft: usize,
     cc: CALLCONV,
     vtReturn: u16,
@@ -9549,12 +9549,12 @@ pub extern "OLEAUT32" fn RegisterActiveObject(
 
 pub extern "OLEAUT32" fn RevokeActiveObject(
     dwRegister: u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn GetActiveObject(
     rclsid: ?*const Guid,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
     ppunk: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -9591,7 +9591,7 @@ pub extern "ole32" fn OleBuildVersion(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn OleInitialize(
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9616,7 +9616,7 @@ pub extern "OLE32" fn OleCreate(
     pFormatEtc: ?*FORMATETC,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9632,7 +9632,7 @@ pub extern "ole32" fn OleCreateEx(
     rgdwConnection: ?*u32,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9643,7 +9643,7 @@ pub extern "OLE32" fn OleCreateFromData(
     pFormatEtc: ?*FORMATETC,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9659,7 +9659,7 @@ pub extern "ole32" fn OleCreateFromDataEx(
     rgdwConnection: ?*u32,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9670,7 +9670,7 @@ pub extern "OLE32" fn OleCreateLinkFromData(
     pFormatEtc: ?*FORMATETC,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9686,7 +9686,7 @@ pub extern "ole32" fn OleCreateLinkFromDataEx(
     rgdwConnection: ?*u32,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9697,7 +9697,7 @@ pub extern "OLE32" fn OleCreateStaticFromData(
     pFormatEtc: ?*FORMATETC,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9708,7 +9708,7 @@ pub extern "ole32" fn OleCreateLink(
     lpFormatEtc: ?*FORMATETC,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9724,7 +9724,7 @@ pub extern "ole32" fn OleCreateLinkEx(
     rgdwConnection: ?*u32,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9735,7 +9735,7 @@ pub extern "OLE32" fn OleCreateLinkToFile(
     lpFormatEtc: ?*FORMATETC,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9751,7 +9751,7 @@ pub extern "ole32" fn OleCreateLinkToFileEx(
     rgdwConnection: ?*u32,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9763,7 +9763,7 @@ pub extern "OLE32" fn OleCreateFromFile(
     lpFormatEtc: ?*FORMATETC,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9780,7 +9780,7 @@ pub extern "ole32" fn OleCreateFromFileEx(
     rgdwConnection: ?*u32,
     pClientSite: ?*IOleClientSite,
     pStg: ?*IStorage,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9788,7 +9788,7 @@ pub extern "OLE32" fn OleLoad(
     pStg: ?*IStorage,
     riid: ?*const Guid,
     pClientSite: ?*IOleClientSite,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9802,7 +9802,7 @@ pub extern "OLE32" fn OleSave(
 pub extern "OLE32" fn OleLoadFromStream(
     pStm: ?*IStream,
     iidInterface: ?*const Guid,
-    ppvObj: ?*?*c_void,
+    ppvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9944,7 +9944,7 @@ pub extern "ole32" fn OleCreateDefaultHandler(
     clsid: ?*const Guid,
     pUnkOuter: ?*IUnknown,
     riid: ?*const Guid,
-    lplpObj: ?*?*c_void,
+    lplpObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -9954,7 +9954,7 @@ pub extern "OLE32" fn OleCreateEmbeddingHelper(
     flags: u32,
     pCF: ?*IClassFactory,
     riid: ?*const Guid,
-    lplpObj: ?*?*c_void,
+    lplpObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10089,7 +10089,7 @@ pub extern "OLEAUT32" fn OleCreatePropertyFrame(
     pPageClsID: ?*Guid,
     lcid: u32,
     dwReserved: u32,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10108,7 +10108,7 @@ pub extern "OLEAUT32" fn OleTranslateColor(
 pub extern "OLEAUT32" fn OleCreateFontIndirect(
     lpFontDesc: ?*FONTDESC,
     riid: ?*const Guid,
-    lplpvObj: ?*?*c_void,
+    lplpvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10116,7 +10116,7 @@ pub extern "OLEAUT32" fn OleCreatePictureIndirect(
     lpPictDesc: ?*PICTDESC,
     riid: ?*const Guid,
     fOwn: BOOL,
-    lplpvObj: ?*?*c_void,
+    lplpvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10125,7 +10125,7 @@ pub extern "OLEAUT32" fn OleLoadPicture(
     lSize: i32,
     fRunmode: BOOL,
     riid: ?*const Guid,
-    lplpvObj: ?*?*c_void,
+    lplpvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10137,7 +10137,7 @@ pub extern "OLEAUT32" fn OleLoadPictureEx(
     xSizeDesired: u32,
     ySizeDesired: u32,
     dwFlags: u32,
-    lplpvObj: ?*?*c_void,
+    lplpvObj: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10147,7 +10147,7 @@ pub extern "OLEAUT32" fn OleLoadPicturePath(
     dwReserved: u32,
     clrReserved: u32,
     riid: ?*const Guid,
-    ppvRet: ?*?*c_void,
+    ppvRet: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn OleLoadPictureFile(

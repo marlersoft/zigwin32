@@ -3214,9 +3214,9 @@ pub const NDIS_PORT_CHARACTERISTICS = extern struct {
 
 pub const NDIS_PORT = extern struct {
     Next: ?*NDIS_PORT,
-    NdisReserved: ?*c_void,
-    MiniportReserved: ?*c_void,
-    ProtocolReserved: ?*c_void,
+    NdisReserved: ?*anyopaque,
+    MiniportReserved: ?*anyopaque,
+    ProtocolReserved: ?*anyopaque,
     PortCharacteristics: NDIS_PORT_CHARACTERISTICS,
 };
 
@@ -3455,11 +3455,11 @@ pub const WDIAG_IHV_WLAN_ID = extern struct {
 
 pub const DOT11EXT_ALLOCATE_BUFFER = fn(
     dwByteCount: u32,
-    ppvBuffer: ?*?*c_void,
+    ppvBuffer: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXT_FREE_BUFFER = fn(
-    pvMemory: ?*c_void,
+    pvMemory: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA = fn(
@@ -3468,7 +3468,7 @@ pub const DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA = fn(
     dwSessionID: u32,
     dwDataSize: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA = fn(
@@ -3476,7 +3476,7 @@ pub const DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA = fn(
     hConnectSession: ?HANDLE,
     dwSessionID: u32,
     pdwDataSize: ?*u32,
-    ppvData: ?*?*c_void,
+    ppvData: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXT_SET_CURRENT_PROFILE = fn(
@@ -3515,7 +3515,7 @@ pub const DOT11EXT_SEND_PACKET = fn(
     hDot11SvcHandle: ?HANDLE,
     uPacketLen: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pvPacket: ?*c_void,
+    pvPacket: ?*anyopaque,
     hSendCompletion: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3568,10 +3568,10 @@ pub const DOT11EXT_NIC_SPECIFIC_EXTENSION = fn(
     hDot11SvcHandle: ?HANDLE,
     dwInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pvInBuffer: ?*c_void,
+    pvInBuffer: ?*anyopaque,
     pdwOutBufferSize: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
-    pvOutBuffer: ?*c_void,
+    pvOutBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXT_ONEX_START = fn(
@@ -3587,24 +3587,24 @@ pub const DOT11EXT_PROCESS_ONEX_PACKET = fn(
     hDot11SvcHandle: ?HANDLE,
     dwInPacketSize: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pvInPacket: ?*c_void,
+    pvInPacket: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXT_REQUEST_VIRTUAL_STATION = fn(
     hDot11PrimaryHandle: ?HANDLE,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXT_RELEASE_VIRTUAL_STATION = fn(
     hDot11PrimaryHandle: ?HANDLE,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES = fn(
     hDot11SvcHandle: ?HANDLE,
     pbIsVirtualStation: ?*BOOL,
     pgPrimary: ?*Guid,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES = fn(
@@ -3612,7 +3612,7 @@ pub const DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES = fn(
     hConnectSession: ?HANDLE,
     dwNumProperties: u32,
     pProperties: [*]DOT11EXT_VIRTUAL_STATION_AP_PROPERTY,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXTIHV_GET_VERSION_INFO = fn(
@@ -3622,13 +3622,13 @@ pub const DOT11EXTIHV_GET_VERSION_INFO = fn(
 pub const DOT11EXTIHV_INIT_SERVICE = fn(
     dwVerNumUsed: u32,
     pDot11ExtAPI: ?*DOT11EXT_APIS,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
     pDot11IHVHandlers: ?*DOT11EXT_IHV_HANDLERS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXTIHV_INIT_VIRTUAL_STATION = fn(
     pDot11ExtVSAPI: ?*DOT11EXT_VIRTUAL_STATION_APIS,
-    pvReserved: ?*c_void,
+    pvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXTIHV_DEINIT_SERVICE = fn(
@@ -3709,14 +3709,14 @@ pub const DOT11EXTIHV_RECEIVE_INDICATION = fn(
     indicationType: DOT11EXT_IHV_INDICATION_TYPE,
     uBufferLength: u32,
     // TODO: what to do with BytesParamIndex 2?
-    pvBuffer: ?*c_void,
+    pvBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXTIHV_RECEIVE_PACKET = fn(
     hIhvExtAdapter: ?HANDLE,
     dwInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pvInBuffer: ?*c_void,
+    pvInBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXTIHV_SEND_PACKET_COMPLETION = fn(
@@ -3732,7 +3732,7 @@ pub const DOT11EXTIHV_PROCESS_UI_RESPONSE = fn(
     guidUIRequest: Guid,
     dwByteCount: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pvResponseBuffer: ?*c_void,
+    pvResponseBuffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DOT11EXTIHV_QUERY_UI_REQUEST = fn(

@@ -2795,7 +2795,7 @@ pub const BITMAP = extern struct {
     bmWidthBytes: i32,
     bmPlanes: u16,
     bmBitsPixel: u16,
-    bmBits: ?*c_void,
+    bmBits: ?*anyopaque,
 };
 
 pub const RGBTRIPLE = extern struct {
@@ -3549,7 +3549,7 @@ pub const FONTENUMPROCW = fn(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const GOBJENUMPROC = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -4283,26 +4283,26 @@ pub const WGLSWAP = extern struct {
 
 pub const CFP_ALLOCPROC = fn(
     param0: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const CFP_REALLOCPROC = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const CFP_FREEPROC = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const READEMBEDPROC = fn(
-    param0: ?*c_void,
-    param1: ?*c_void,
+    param0: ?*anyopaque,
+    param1: ?*anyopaque,
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WRITEEMBEDPROC = fn(
-    param0: ?*c_void,
-    param1: ?*const c_void,
+    param0: ?*anyopaque,
+    param1: ?*const anyopaque,
     param2: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -4401,7 +4401,7 @@ pub extern "GDI32" fn GetObjectA(
     h: ?HGDIOBJ,
     c: i32,
     // TODO: what to do with BytesParamIndex 1?
-    pv: ?*c_void,
+    pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4497,7 +4497,7 @@ pub extern "GDI32" fn CreateBitmap(
     nHeight: i32,
     nPlanes: u32,
     nBitCount: u32,
-    lpBits: ?*const c_void,
+    lpBits: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -4550,7 +4550,7 @@ pub extern "GDI32" fn CreateDIBitmap(
     hdc: ?HDC,
     pbmih: ?*const BITMAPINFOHEADER,
     flInit: u32,
-    pjBits: ?*const c_void,
+    pjBits: ?*const anyopaque,
     pbmi: ?*const BITMAPINFO,
     iUsage: DIB_USAGE,
 ) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
@@ -4563,7 +4563,7 @@ pub extern "GDI32" fn CreateDIBPatternBrush(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateDIBPatternBrushPt(
-    lpPackedDIB: ?*const c_void,
+    lpPackedDIB: ?*const anyopaque,
     iUsage: DIB_USAGE,
 ) callconv(@import("std").os.windows.WINAPI) ?HBRUSH;
 
@@ -4915,7 +4915,7 @@ pub extern "GDI32" fn GetBitmapBits(
     hbit: ?HBITMAP,
     cb: i32,
     // TODO: what to do with BytesParamIndex 1?
-    lpvBits: ?*c_void,
+    lpvBits: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5059,7 +5059,7 @@ pub extern "GDI32" fn GetDIBits(
     hbm: ?HBITMAP,
     start: u32,
     cLines: u32,
-    lpvBits: ?*c_void,
+    lpvBits: ?*anyopaque,
     lpbmi: ?*BITMAPINFO,
     usage: DIB_USAGE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -5070,7 +5070,7 @@ pub extern "GDI32" fn GetFontData(
     dwTable: u32,
     dwOffset: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvBuffer: ?*c_void,
+    pvBuffer: ?*anyopaque,
     cjBuffer: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5082,7 +5082,7 @@ pub extern "GDI32" fn GetGlyphOutlineA(
     lpgm: ?*GLYPHMETRICS,
     cjBuffer: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvBuffer: ?*c_void,
+    pvBuffer: ?*anyopaque,
     lpmat2: ?*const MAT2,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5094,7 +5094,7 @@ pub extern "GDI32" fn GetGlyphOutlineW(
     lpgm: ?*GLYPHMETRICS,
     cjBuffer: u32,
     // TODO: what to do with BytesParamIndex 4?
-    pvBuffer: ?*c_void,
+    pvBuffer: ?*anyopaque,
     lpmat2: ?*const MAT2,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5113,7 +5113,7 @@ pub extern "GDI32" fn GetMetaFileBitsEx(
     hMF: ?HMETAFILE,
     cbBuffer: u32,
     // TODO: what to do with BytesParamIndex 1?
-    lpData: ?*c_void,
+    lpData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "GDI32" fn GetMetaFileA(
@@ -5387,36 +5387,36 @@ pub extern "GDI32" fn GetCharABCWidthsI(
 pub extern "GDI32" fn AddFontResourceExA(
     name: ?[*:0]const u8,
     fl: FONT_RESOURCE_CHARACTERISTICS,
-    res: ?*c_void,
+    res: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn AddFontResourceExW(
     name: ?[*:0]const u16,
     fl: FONT_RESOURCE_CHARACTERISTICS,
-    res: ?*c_void,
+    res: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn RemoveFontResourceExA(
     name: ?[*:0]const u8,
     fl: u32,
-    pdv: ?*c_void,
+    pdv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn RemoveFontResourceExW(
     name: ?[*:0]const u16,
     fl: u32,
-    pdv: ?*c_void,
+    pdv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn AddFontMemResourceEx(
     // TODO: what to do with BytesParamIndex 1?
-    pFileView: ?*c_void,
+    pFileView: ?*anyopaque,
     cjSize: u32,
-    pvResrved: ?*c_void,
+    pvResrved: ?*anyopaque,
     pNumFonts: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
@@ -5728,7 +5728,7 @@ pub extern "GDI32" fn SetBitmapBits(
     hbm: ?HBITMAP,
     cb: u32,
     // TODO: what to do with BytesParamIndex 1?
-    pvBits: ?*const c_void,
+    pvBits: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5744,7 +5744,7 @@ pub extern "GDI32" fn SetDIBits(
     hbm: ?HBITMAP,
     start: u32,
     cLines: u32,
-    lpBits: ?*const c_void,
+    lpBits: ?*const anyopaque,
     lpbmi: ?*const BITMAPINFO,
     ColorUse: DIB_USAGE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -5760,7 +5760,7 @@ pub extern "GDI32" fn SetDIBitsToDevice(
     ySrc: i32,
     StartScan: u32,
     cLines: u32,
-    lpvBits: ?*const c_void,
+    lpvBits: ?*const anyopaque,
     lpbmi: ?*const BITMAPINFO,
     ColorUse: DIB_USAGE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -5866,7 +5866,7 @@ pub extern "GDI32" fn StretchDIBits(
     ySrc: i32,
     SrcWidth: i32,
     SrcHeight: i32,
-    lpBits: ?*const c_void,
+    lpBits: ?*const anyopaque,
     lpbmi: ?*const BITMAPINFO,
     iUsage: DIB_USAGE,
     rop: ROP_CODE,
@@ -5955,7 +5955,7 @@ pub extern "MSIMG32" fn GradientFill(
     hdc: ?HDC,
     pVertex: [*]TRIVERTEX,
     nVertex: u32,
-    pMesh: ?*c_void,
+    pMesh: ?*anyopaque,
     nMesh: u32,
     ulMode: GRADIENT_FILL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -5995,7 +5995,7 @@ pub extern "GDI32" fn GdiGradientFill(
     hdc: ?HDC,
     pVertex: [*]TRIVERTEX,
     nVertex: u32,
-    pMesh: ?*c_void,
+    pMesh: ?*anyopaque,
     nCount: u32,
     ulMode: GRADIENT_FILL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -6059,7 +6059,7 @@ pub extern "GDI32" fn EnumEnhMetaFile(
     hdc: ?HDC,
     hmf: ?HENHMETAFILE,
     proc: ?ENHMFENUMPROC,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
     lpRect: ?*const RECT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6211,7 +6211,7 @@ pub extern "GDI32" fn CreateDIBSection(
     hdc: ?HDC,
     pbmi: ?*const BITMAPINFO,
     usage: DIB_USAGE,
-    ppvBits: ?*?*c_void,
+    ppvBits: ?*?*anyopaque,
     hSection: ?HANDLE,
     offset: u32,
 ) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
@@ -6372,7 +6372,7 @@ pub extern "GDI32" fn GetObjectW(
     h: ?HGDIOBJ,
     c: i32,
     // TODO: what to do with BytesParamIndex 1?
-    pv: ?*c_void,
+    pv: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6661,7 +6661,7 @@ pub extern "FONTSUB" fn CreateFontPackage(
     lpfnAllocate: ?CFP_ALLOCPROC,
     lpfnReAllocate: ?CFP_REALLOCPROC,
     lpfnFree: ?CFP_FREEPROC,
-    lpvReserved: ?*c_void,
+    lpvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -6677,7 +6677,7 @@ pub extern "FONTSUB" fn MergeFontPackage(
     lpfnAllocate: ?CFP_ALLOCPROC,
     lpfnReAllocate: ?CFP_REALLOCPROC,
     lpfnFree: ?CFP_FREEPROC,
-    lpvReserved: ?*c_void,
+    lpvReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -6688,7 +6688,7 @@ pub extern "t2embed" fn TTEmbedFont(
     pulPrivStatus: ?*EMBEDDED_FONT_PRIV_STATUS,
     pulStatus: ?*u32,
     lpfnWriteToStream: ?WRITEEMBEDPROC,
-    lpvWriteStream: ?*c_void,
+    lpvWriteStream: ?*anyopaque,
     pusCharCodeSet: [*:0]u16,
     usCharCodeCount: u16,
     usLanguage: u16,
@@ -6705,7 +6705,7 @@ pub extern "t2embed" fn TTEmbedFontFromFileA(
     pulPrivStatus: ?*EMBEDDED_FONT_PRIV_STATUS,
     pulStatus: ?*u32,
     lpfnWriteToStream: ?WRITEEMBEDPROC,
-    lpvWriteStream: ?*c_void,
+    lpvWriteStream: ?*anyopaque,
     pusCharCodeSet: [*:0]u16,
     usCharCodeCount: u16,
     usLanguage: u16,
@@ -6720,7 +6720,7 @@ pub extern "t2embed" fn TTLoadEmbeddedFont(
     ulPrivs: FONT_LICENSE_PRIVS,
     pulStatus: ?*TTLOAD_EMBEDDED_FONT_STATUS,
     lpfnReadFromStream: ?READEMBEDPROC,
-    lpvReadStream: ?*c_void,
+    lpvReadStream: ?*anyopaque,
     szWinFamilyName: ?PWSTR,
     szMacFamilyName: ?PSTR,
     pTTLoadInfo: ?*TTLOADINFO,
@@ -6733,7 +6733,7 @@ pub extern "t2embed" fn TTGetEmbeddedFontInfo(
     ulPrivs: FONT_LICENSE_PRIVS,
     pulStatus: ?*u32,
     lpfnReadFromStream: ?READEMBEDPROC,
-    lpvReadStream: ?*c_void,
+    lpvReadStream: ?*anyopaque,
     pTTLoadInfo: ?*TTLOADINFO,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -6792,7 +6792,7 @@ pub extern "t2embed" fn TTEmbedFontEx(
     pulPrivStatus: ?*EMBEDDED_FONT_PRIV_STATUS,
     pulStatus: ?*u32,
     lpfnWriteToStream: ?WRITEEMBEDPROC,
-    lpvWriteStream: ?*c_void,
+    lpvWriteStream: ?*anyopaque,
     pulCharCodeSet: [*]u32,
     usCharCodeCount: u16,
     usLanguage: u16,
@@ -7261,7 +7261,7 @@ pub extern "USER32" fn ChangeDisplaySettingsExA(
     lpDevMode: ?*DEVMODEA,
     hwnd: ?HWND,
     dwflags: CDS_TYPE,
-    lParam: ?*c_void,
+    lParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) DISP_CHANGE;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7270,7 +7270,7 @@ pub extern "USER32" fn ChangeDisplaySettingsExW(
     lpDevMode: ?*DEVMODEW,
     hwnd: ?HWND,
     dwflags: CDS_TYPE,
-    lParam: ?*c_void,
+    lParam: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) DISP_CHANGE;
 
 // TODO: this type is limited to platform 'windows5.0'

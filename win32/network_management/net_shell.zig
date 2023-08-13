@@ -111,7 +111,7 @@ pub const PNS_CONTEXT_DUMP_FN = fn(
     pwszRouter: ?[*:0]const u16,
     ppwcArguments: [*]?PWSTR,
     dwArgCount: u32,
-    pvData: ?*const c_void,
+    pvData: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PNS_DLL_STOP_FN = fn(
@@ -133,7 +133,7 @@ pub const PFN_HANDLE_CMD = fn(
     dwCurrentIndex: u32,
     dwArgCount: u32,
     dwFlags: u32,
-    pvData: ?*const c_void,
+    pvData: ?*const anyopaque,
     pbDone: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -198,7 +198,7 @@ pub const NS_CONTEXT_ATTRIBUTES = extern struct {
     pfnCommitFn: ?PNS_CONTEXT_COMMIT_FN,
     pfnDumpFn: ?PNS_CONTEXT_DUMP_FN,
     pfnConnectFn: ?PNS_CONTEXT_CONNECT_FN,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     pfnOsVersionCheck: ?PNS_OSVERSIONCHECK,
 };
 
@@ -210,7 +210,7 @@ pub const TAG_TYPE = extern struct {
 
 pub const PNS_DLL_INIT_FN = fn(
     dwNetshVersion: u32,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

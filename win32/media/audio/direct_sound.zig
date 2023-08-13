@@ -465,14 +465,14 @@ pub const LPDSENUMCALLBACKA = fn(
     param0: ?*Guid,
     param1: ?[*:0]const u8,
     param2: ?[*:0]const u8,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPDSENUMCALLBACKW = fn(
     param0: ?*Guid,
     param1: ?[*:0]const u16,
     param2: ?[*:0]const u16,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 const IID_IDirectSound_Value = @import("../../zig.zig").Guid.initString("279afa83-4981-11ce-a521-0020af0be560");
@@ -622,9 +622,9 @@ pub const IDirectSoundBuffer = extern struct {
             self: *const IDirectSoundBuffer,
             dwOffset: u32,
             dwBytes: u32,
-            ppvAudioPtr1: ?*?*c_void,
+            ppvAudioPtr1: ?*?*anyopaque,
             pdwAudioBytes1: ?*u32,
-            ppvAudioPtr2: ?*?*c_void,
+            ppvAudioPtr2: ?*?*anyopaque,
             pdwAudioBytes2: ?*u32,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -660,10 +660,10 @@ pub const IDirectSoundBuffer = extern struct {
         Unlock: fn(
             self: *const IDirectSoundBuffer,
             // TODO: what to do with BytesParamIndex 1?
-            pvAudioPtr1: ?*c_void,
+            pvAudioPtr1: ?*anyopaque,
             dwAudioBytes1: u32,
             // TODO: what to do with BytesParamIndex 3?
-            pvAudioPtr2: ?*c_void,
+            pvAudioPtr2: ?*anyopaque,
             dwAudioBytes2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Restore: fn(
@@ -706,7 +706,7 @@ pub const IDirectSoundBuffer = extern struct {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Initialize(@ptrCast(*const IDirectSoundBuffer, self), pDirectSound, pcDSBufferDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*c_void, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*c_void, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*anyopaque, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*anyopaque, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Lock(@ptrCast(*const IDirectSoundBuffer, self), dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -738,7 +738,7 @@ pub const IDirectSoundBuffer = extern struct {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Stop(@ptrCast(*const IDirectSoundBuffer, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer_Unlock(self: *const T, pvAudioPtr1: ?*c_void, dwAudioBytes1: u32, pvAudioPtr2: ?*c_void, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer_Unlock(self: *const T, pvAudioPtr1: ?*anyopaque, dwAudioBytes1: u32, pvAudioPtr2: ?*anyopaque, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer.VTable, self.vtable).Unlock(@ptrCast(*const IDirectSoundBuffer, self), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -771,7 +771,7 @@ pub const IDirectSoundBuffer8 = extern struct {
             rguidObject: ?*const Guid,
             dwIndex: u32,
             rguidInterface: ?*const Guid,
-            ppObject: ?*?*c_void,
+            ppObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -786,7 +786,7 @@ pub const IDirectSoundBuffer8 = extern struct {
             return @ptrCast(*const IDirectSoundBuffer8.VTable, self.vtable).AcquireResources(@ptrCast(*const IDirectSoundBuffer8, self), dwFlags, dwEffectsCount, pdwResultCodes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundBuffer8_GetObjectInPath(self: *const T, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundBuffer8_GetObjectInPath(self: *const T, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundBuffer8.VTable, self.vtable).GetObjectInPath(@ptrCast(*const IDirectSoundBuffer8, self), rguidObject, dwIndex, rguidInterface, ppObject);
         }
     };}
@@ -1189,9 +1189,9 @@ pub const IDirectSoundCaptureBuffer = extern struct {
             self: *const IDirectSoundCaptureBuffer,
             dwOffset: u32,
             dwBytes: u32,
-            ppvAudioPtr1: ?*?*c_void,
+            ppvAudioPtr1: ?*?*anyopaque,
             pdwAudioBytes1: ?*u32,
-            ppvAudioPtr2: ?*?*c_void,
+            ppvAudioPtr2: ?*?*anyopaque,
             pdwAudioBytes2: ?*u32,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1205,10 +1205,10 @@ pub const IDirectSoundCaptureBuffer = extern struct {
         Unlock: fn(
             self: *const IDirectSoundCaptureBuffer,
             // TODO: what to do with BytesParamIndex 1?
-            pvAudioPtr1: ?*c_void,
+            pvAudioPtr1: ?*anyopaque,
             dwAudioBytes1: u32,
             // TODO: what to do with BytesParamIndex 3?
-            pvAudioPtr2: ?*c_void,
+            pvAudioPtr2: ?*anyopaque,
             dwAudioBytes2: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -1236,7 +1236,7 @@ pub const IDirectSoundCaptureBuffer = extern struct {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Initialize(@ptrCast(*const IDirectSoundCaptureBuffer, self), pDirectSoundCapture, pcDSCBufferDesc);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*c_void, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*c_void, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureBuffer_Lock(self: *const T, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*anyopaque, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*anyopaque, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Lock(@ptrCast(*const IDirectSoundCaptureBuffer, self), dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1248,7 +1248,7 @@ pub const IDirectSoundCaptureBuffer = extern struct {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Stop(@ptrCast(*const IDirectSoundCaptureBuffer, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureBuffer_Unlock(self: *const T, pvAudioPtr1: ?*c_void, dwAudioBytes1: u32, pvAudioPtr2: ?*c_void, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureBuffer_Unlock(self: *const T, pvAudioPtr1: ?*anyopaque, dwAudioBytes1: u32, pvAudioPtr2: ?*anyopaque, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureBuffer.VTable, self.vtable).Unlock(@ptrCast(*const IDirectSoundCaptureBuffer, self), pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
         }
     };}
@@ -1265,7 +1265,7 @@ pub const IDirectSoundCaptureBuffer8 = extern struct {
             rguidObject: ?*const Guid,
             dwIndex: u32,
             rguidInterface: ?*const Guid,
-            ppObject: ?*?*c_void,
+            ppObject: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFXStatus: fn(
             self: *const IDirectSoundCaptureBuffer8,
@@ -1277,7 +1277,7 @@ pub const IDirectSoundCaptureBuffer8 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectSoundCaptureBuffer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectSoundCaptureBuffer8_GetObjectInPath(self: *const T, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDirectSoundCaptureBuffer8_GetObjectInPath(self: *const T, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectSoundCaptureBuffer8.VTable, self.vtable).GetObjectInPath(@ptrCast(*const IDirectSoundCaptureBuffer8, self), rguidObject, dwIndex, rguidInterface, ppObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1811,12 +1811,12 @@ pub extern "DSOUND" fn DirectSoundCreate(
 
 pub extern "DSOUND" fn DirectSoundEnumerateA(
     pDSEnumCallback: ?LPDSENUMCALLBACKA,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn DirectSoundEnumerateW(
     pDSEnumCallback: ?LPDSENUMCALLBACKW,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn DirectSoundCaptureCreate(
@@ -1827,12 +1827,12 @@ pub extern "DSOUND" fn DirectSoundCaptureCreate(
 
 pub extern "DSOUND" fn DirectSoundCaptureEnumerateA(
     pDSEnumCallback: ?LPDSENUMCALLBACKA,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn DirectSoundCaptureEnumerateW(
     pDSEnumCallback: ?LPDSENUMCALLBACKW,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "DSOUND" fn DirectSoundCreate8(

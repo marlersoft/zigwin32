@@ -1770,7 +1770,7 @@ pub const INET_FIREWALL_APP_CONTAINER = extern struct {
 };
 
 pub const PAC_CHANGES_CALLBACK_FN = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     pChange: ?*const INET_FIREWALL_AC_CHANGE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1788,7 +1788,7 @@ pub const NETISO_ERROR_TYPE_INTERNET_CLIENT_SERVER = NETISO_ERROR_TYPE.INTERNET_
 pub const NETISO_ERROR_TYPE_MAX = NETISO_ERROR_TYPE.MAX;
 
 pub const PNETISO_EDP_ID_CALLBACK_FN = fn(
-    context: ?*c_void,
+    context: ?*anyopaque,
     wszEnterpriseId: ?[*:0]const u16,
     dwErr: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -3873,7 +3873,7 @@ pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationSetupAppContaine
 pub extern "api-ms-win-net-isolation-l1-1-0" fn NetworkIsolationRegisterForAppContainerChanges(
     flags: u32,
     callback: ?PAC_CHANGES_CALLBACK_FN,
-    context: ?*c_void,
+    context: ?*anyopaque,
     registrationObject: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 

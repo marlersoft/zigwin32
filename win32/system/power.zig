@@ -240,7 +240,7 @@ pub const EffectivePowerModeMixedReality = EFFECTIVE_POWER_MODE.MixedReality;
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub const EFFECTIVE_POWER_MODE_CALLBACK = fn(
     Mode: EFFECTIVE_POWER_MODE,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLOBAL_MACHINE_POWER_POLICY = extern struct {
@@ -404,14 +404,14 @@ pub const ACCESS_OVERLAY_SCHEME = POWER_DATA_ACCESSOR.OVERLAY_SCHEME;
 pub const ACCESS_ACTIVE_OVERLAY_SCHEME = POWER_DATA_ACCESSOR.ACTIVE_OVERLAY_SCHEME;
 
 pub const PDEVICE_NOTIFY_CALLBACK_ROUTINE = fn(
-    Context: ?*c_void,
+    Context: ?*anyopaque,
     Type: u32,
-    Setting: ?*c_void,
+    Setting: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS = extern struct {
     Callback: ?PDEVICE_NOTIFY_CALLBACK_ROUTINE,
-    Context: ?*c_void,
+    Context: ?*anyopaque,
 };
 
 pub const THERMAL_EVENT = extern struct {
@@ -527,7 +527,7 @@ pub const BATTERY_USB_CHARGER_STATUS = extern struct {
     Voltage: u32,
     PortType: USB_CHARGER_PORT,
     PortId: u64,
-    PowerSourceInformation: ?*c_void,
+    PowerSourceInformation: ?*anyopaque,
     OemCharger: Guid,
 };
 
@@ -1137,10 +1137,10 @@ pub const SYSTEM_POWER_STATUS = extern struct {
 pub extern "POWRPROF" fn CallNtPowerInformation(
     InformationLevel: POWER_INFORMATION_LEVEL,
     // TODO: what to do with BytesParamIndex 2?
-    InputBuffer: ?*c_void,
+    InputBuffer: ?*anyopaque,
     InputBufferLength: u32,
     // TODO: what to do with BytesParamIndex 4?
-    OutputBuffer: ?*c_void,
+    OutputBuffer: ?*anyopaque,
     OutputBufferLength: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -1158,7 +1158,7 @@ pub extern "POWRPROF" fn PowerDeterminePlatformRoleEx(
 pub extern "POWRPROF" fn PowerRegisterSuspendResumeNotification(
     Flags: u32,
     Recipient: ?HANDLE,
-    RegistrationHandle: ?*?*c_void,
+    RegistrationHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1225,7 +1225,7 @@ pub extern "POWRPROF" fn PowerSettingRegisterNotification(
     SettingGuid: ?*const Guid,
     Flags: POWER_SETTING_REGISTER_NOTIFICATION_FLAGS,
     Recipient: ?HANDLE,
-    RegistrationHandle: ?*?*c_void,
+    RegistrationHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1237,13 +1237,13 @@ pub extern "POWRPROF" fn PowerSettingUnregisterNotification(
 pub extern "POWRPROF" fn PowerRegisterForEffectivePowerModeNotifications(
     Version: u32,
     Callback: ?EFFECTIVE_POWER_MODE_CALLBACK,
-    Context: ?*c_void,
-    RegistrationHandle: ?*?*c_void,
+    Context: ?*anyopaque,
+    RegistrationHandle: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 pub extern "POWRPROF" fn PowerUnregisterFromEffectivePowerModeNotifications(
-    RegistrationHandle: ?*c_void,
+    RegistrationHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1738,7 +1738,7 @@ pub extern "POWRPROF" fn DevicePowerEnumDevices(
 pub extern "POWRPROF" fn DevicePowerSetDeviceState(
     DeviceDescription: ?[*:0]const u16,
     SetFlags: u32,
-    SetData: ?*c_void,
+    SetData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

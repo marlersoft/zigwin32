@@ -434,7 +434,7 @@ pub const Fts5Tokenizer = extern struct {
 };
 
 pub const sqlite3_callback = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: i32,
     param2: ?*?*i8,
     param3: ?*?*i8,
@@ -475,7 +475,7 @@ pub const sqlite3_vfs = extern struct {
     mxPathname: i32,
     pNext: ?*sqlite3_vfs,
     zName: ?[*:0]const u8,
-    pAppData: ?*c_void,
+    pAppData: ?*anyopaque,
     xOpen: isize,
     xDelete: isize,
     xAccess: isize,
@@ -502,11 +502,11 @@ pub const sqlite3_mem_methods = extern struct {
     xRoundup: isize,
     xInit: isize,
     xShutdown: isize,
-    pAppData: ?*c_void,
+    pAppData: ?*anyopaque,
 };
 
 pub const sqlite3_destructor_type = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const sqlite3_module = extern struct {
@@ -589,13 +589,13 @@ pub const sqlite3_mutex_methods = extern struct {
 };
 
 pub const sqlite3_pcache_page = extern struct {
-    pBuf: ?*c_void,
-    pExtra: ?*c_void,
+    pBuf: ?*anyopaque,
+    pExtra: ?*anyopaque,
 };
 
 pub const sqlite3_pcache_methods2 = extern struct {
     iVersion: i32,
-    pArg: ?*c_void,
+    pArg: ?*anyopaque,
     xInit: isize,
     xShutdown: isize,
     xCreate: ?*?*?*?*?*?*?*?*?*sqlite3_pcache,
@@ -610,7 +610,7 @@ pub const sqlite3_pcache_methods2 = extern struct {
 };
 
 pub const sqlite3_pcache_methods = extern struct {
-    pArg: ?*c_void,
+    pArg: ?*anyopaque,
     xInit: isize,
     xShutdown: isize,
     xCreate: ?*?*?*?*?*?*?*?*?*sqlite3_pcache,
@@ -628,18 +628,18 @@ pub const sqlite3_snapshot = extern struct {
 };
 
 pub const sqlite3_rtree_geometry = extern struct {
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     nParam: i32,
     aParam: ?*f64,
-    pUser: ?*c_void,
+    pUser: ?*anyopaque,
     xDelUser: isize,
 };
 
 pub const sqlite3_rtree_query_info = extern struct {
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     nParam: i32,
     aParam: ?*f64,
-    pUser: ?*c_void,
+    pUser: ?*anyopaque,
     xDelUser: isize,
     aCoord: ?*f64,
     anQueue: ?*u32,
@@ -1259,7 +1259,7 @@ pub extern "winsqlite3" fn sqlite3_exec(
     param0: ?*sqlite3,
     sql: ?[*:0]const u8,
     callback: isize,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
     errmsg: ?*?*i8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -1315,13 +1315,13 @@ pub extern "winsqlite3" fn sqlite3_complete(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_complete16(
-    sql: ?*const c_void,
+    sql: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_busy_handler(
     param0: ?*sqlite3,
     param1: isize,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_busy_timeout(
@@ -1366,28 +1366,28 @@ pub extern "winsqlite3" fn sqlite3_vsnprintf(
 
 pub extern "winsqlite3" fn sqlite3_malloc(
     param0: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_malloc64(
     param0: u64,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_realloc(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_realloc64(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: u64,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_free(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "winsqlite3" fn sqlite3_msize(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u64;
 
 pub extern "winsqlite3" fn sqlite3_memory_used(
@@ -1399,39 +1399,39 @@ pub extern "winsqlite3" fn sqlite3_memory_highwater(
 
 pub extern "winsqlite3" fn sqlite3_randomness(
     N: i32,
-    P: ?*c_void,
+    P: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "winsqlite3" fn sqlite3_set_authorizer(
     param0: ?*sqlite3,
     xAuth: isize,
-    pUserData: ?*c_void,
+    pUserData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_trace(
     param0: ?*sqlite3,
     xTrace: isize,
-    param2: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_profile(
     param0: ?*sqlite3,
     xProfile: isize,
-    param2: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_trace_v2(
     param0: ?*sqlite3,
     uMask: u32,
     xCallback: isize,
-    pCtx: ?*c_void,
+    pCtx: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_progress_handler(
     param0: ?*sqlite3,
     param1: i32,
     param2: isize,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "winsqlite3" fn sqlite3_open(
@@ -1440,7 +1440,7 @@ pub extern "winsqlite3" fn sqlite3_open(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_open16(
-    filename: ?*const c_void,
+    filename: ?*const anyopaque,
     ppDb: ?*?*sqlite3,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -1515,7 +1515,7 @@ pub extern "winsqlite3" fn sqlite3_errmsg(
 
 pub extern "winsqlite3" fn sqlite3_errmsg16(
     param0: ?*sqlite3,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_errstr(
     param0: i32,
@@ -1554,27 +1554,27 @@ pub extern "winsqlite3" fn sqlite3_prepare_v3(
 
 pub extern "winsqlite3" fn sqlite3_prepare16(
     db: ?*sqlite3,
-    zSql: ?*const c_void,
+    zSql: ?*const anyopaque,
     nByte: i32,
     ppStmt: ?*?*sqlite3_stmt,
-    pzTail: ?*const ?*c_void,
+    pzTail: ?*const ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_prepare16_v2(
     db: ?*sqlite3,
-    zSql: ?*const c_void,
+    zSql: ?*const anyopaque,
     nByte: i32,
     ppStmt: ?*?*sqlite3_stmt,
-    pzTail: ?*const ?*c_void,
+    pzTail: ?*const ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_prepare16_v3(
     db: ?*sqlite3,
-    zSql: ?*const c_void,
+    zSql: ?*const anyopaque,
     nByte: i32,
     prepFlags: u32,
     ppStmt: ?*?*sqlite3_stmt,
-    pzTail: ?*const ?*c_void,
+    pzTail: ?*const ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_sql(
@@ -1600,7 +1600,7 @@ pub extern "winsqlite3" fn sqlite3_stmt_busy(
 pub extern "winsqlite3" fn sqlite3_bind_blob(
     param0: ?*sqlite3_stmt,
     param1: i32,
-    param2: ?*const c_void,
+    param2: ?*const anyopaque,
     n: i32,
     param4: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1608,7 +1608,7 @@ pub extern "winsqlite3" fn sqlite3_bind_blob(
 pub extern "winsqlite3" fn sqlite3_bind_blob64(
     param0: ?*sqlite3_stmt,
     param1: i32,
-    param2: ?*const c_void,
+    param2: ?*const anyopaque,
     param3: u64,
     param4: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1647,7 +1647,7 @@ pub extern "winsqlite3" fn sqlite3_bind_text(
 pub extern "winsqlite3" fn sqlite3_bind_text16(
     param0: ?*sqlite3_stmt,
     param1: i32,
-    param2: ?*const c_void,
+    param2: ?*const anyopaque,
     param3: i32,
     param4: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1670,7 +1670,7 @@ pub extern "winsqlite3" fn sqlite3_bind_value(
 pub extern "winsqlite3" fn sqlite3_bind_pointer(
     param0: ?*sqlite3_stmt,
     param1: i32,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
     param3: ?[*:0]const u8,
     param4: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1717,7 +1717,7 @@ pub extern "winsqlite3" fn sqlite3_column_name(
 pub extern "winsqlite3" fn sqlite3_column_name16(
     param0: ?*sqlite3_stmt,
     N: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_column_database_name(
     param0: ?*sqlite3_stmt,
@@ -1727,7 +1727,7 @@ pub extern "winsqlite3" fn sqlite3_column_database_name(
 pub extern "winsqlite3" fn sqlite3_column_database_name16(
     param0: ?*sqlite3_stmt,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_column_table_name(
     param0: ?*sqlite3_stmt,
@@ -1737,7 +1737,7 @@ pub extern "winsqlite3" fn sqlite3_column_table_name(
 pub extern "winsqlite3" fn sqlite3_column_table_name16(
     param0: ?*sqlite3_stmt,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_column_origin_name(
     param0: ?*sqlite3_stmt,
@@ -1747,7 +1747,7 @@ pub extern "winsqlite3" fn sqlite3_column_origin_name(
 pub extern "winsqlite3" fn sqlite3_column_origin_name16(
     param0: ?*sqlite3_stmt,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_column_decltype(
     param0: ?*sqlite3_stmt,
@@ -1757,7 +1757,7 @@ pub extern "winsqlite3" fn sqlite3_column_decltype(
 pub extern "winsqlite3" fn sqlite3_column_decltype16(
     param0: ?*sqlite3_stmt,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_step(
     param0: ?*sqlite3_stmt,
@@ -1770,7 +1770,7 @@ pub extern "winsqlite3" fn sqlite3_data_count(
 pub extern "winsqlite3" fn sqlite3_column_blob(
     param0: ?*sqlite3_stmt,
     iCol: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_column_double(
     param0: ?*sqlite3_stmt,
@@ -1795,7 +1795,7 @@ pub extern "winsqlite3" fn sqlite3_column_text(
 pub extern "winsqlite3" fn sqlite3_column_text16(
     param0: ?*sqlite3_stmt,
     iCol: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_column_value(
     param0: ?*sqlite3_stmt,
@@ -1830,7 +1830,7 @@ pub extern "winsqlite3" fn sqlite3_create_function(
     zFunctionName: ?[*:0]const u8,
     nArg: i32,
     eTextRep: i32,
-    pApp: ?*c_void,
+    pApp: ?*anyopaque,
     xFunc: isize,
     xStep: isize,
     xFinal: isize,
@@ -1838,10 +1838,10 @@ pub extern "winsqlite3" fn sqlite3_create_function(
 
 pub extern "winsqlite3" fn sqlite3_create_function16(
     db: ?*sqlite3,
-    zFunctionName: ?*const c_void,
+    zFunctionName: ?*const anyopaque,
     nArg: i32,
     eTextRep: i32,
-    pApp: ?*c_void,
+    pApp: ?*anyopaque,
     xFunc: isize,
     xStep: isize,
     xFinal: isize,
@@ -1852,7 +1852,7 @@ pub extern "winsqlite3" fn sqlite3_create_function_v2(
     zFunctionName: ?[*:0]const u8,
     nArg: i32,
     eTextRep: i32,
-    pApp: ?*c_void,
+    pApp: ?*anyopaque,
     xFunc: isize,
     xStep: isize,
     xFinal: isize,
@@ -1864,7 +1864,7 @@ pub extern "winsqlite3" fn sqlite3_create_window_function(
     zFunctionName: ?[*:0]const u8,
     nArg: i32,
     eTextRep: i32,
-    pApp: ?*c_void,
+    pApp: ?*anyopaque,
     xStep: isize,
     xFinal: isize,
     xValue: isize,
@@ -1893,13 +1893,13 @@ pub extern "winsqlite3" fn sqlite3_thread_cleanup(
 
 pub extern "winsqlite3" fn sqlite3_memory_alarm(
     param0: isize,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
     param2: i64,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_value_blob(
     param0: ?*sqlite3_value,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_value_double(
     param0: ?*sqlite3_value,
@@ -1916,7 +1916,7 @@ pub extern "winsqlite3" fn sqlite3_value_int64(
 pub extern "winsqlite3" fn sqlite3_value_pointer(
     param0: ?*sqlite3_value,
     param1: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_value_text(
     param0: ?*sqlite3_value,
@@ -1924,15 +1924,15 @@ pub extern "winsqlite3" fn sqlite3_value_text(
 
 pub extern "winsqlite3" fn sqlite3_value_text16(
     param0: ?*sqlite3_value,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_value_text16le(
     param0: ?*sqlite3_value,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_value_text16be(
     param0: ?*sqlite3_value,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_value_bytes(
     param0: ?*sqlite3_value,
@@ -1973,11 +1973,11 @@ pub extern "winsqlite3" fn sqlite3_value_free(
 pub extern "winsqlite3" fn sqlite3_aggregate_context(
     param0: ?*sqlite3_context,
     nBytes: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_user_data(
     param0: ?*sqlite3_context,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_context_db_handle(
     param0: ?*sqlite3_context,
@@ -1986,25 +1986,25 @@ pub extern "winsqlite3" fn sqlite3_context_db_handle(
 pub extern "winsqlite3" fn sqlite3_get_auxdata(
     param0: ?*sqlite3_context,
     N: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_set_auxdata(
     param0: ?*sqlite3_context,
     N: i32,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
     param3: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "winsqlite3" fn sqlite3_result_blob(
     param0: ?*sqlite3_context,
-    param1: ?*const c_void,
+    param1: ?*const anyopaque,
     param2: i32,
     param3: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "winsqlite3" fn sqlite3_result_blob64(
     param0: ?*sqlite3_context,
-    param1: ?*const c_void,
+    param1: ?*const anyopaque,
     param2: u64,
     param3: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -2022,7 +2022,7 @@ pub extern "winsqlite3" fn sqlite3_result_error(
 
 pub extern "winsqlite3" fn sqlite3_result_error16(
     param0: ?*sqlite3_context,
-    param1: ?*const c_void,
+    param1: ?*const anyopaque,
     param2: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -2070,21 +2070,21 @@ pub extern "winsqlite3" fn sqlite3_result_text64(
 
 pub extern "winsqlite3" fn sqlite3_result_text16(
     param0: ?*sqlite3_context,
-    param1: ?*const c_void,
+    param1: ?*const anyopaque,
     param2: i32,
     param3: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "winsqlite3" fn sqlite3_result_text16le(
     param0: ?*sqlite3_context,
-    param1: ?*const c_void,
+    param1: ?*const anyopaque,
     param2: i32,
     param3: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "winsqlite3" fn sqlite3_result_text16be(
     param0: ?*sqlite3_context,
-    param1: ?*const c_void,
+    param1: ?*const anyopaque,
     param2: i32,
     param3: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -2096,7 +2096,7 @@ pub extern "winsqlite3" fn sqlite3_result_value(
 
 pub extern "winsqlite3" fn sqlite3_result_pointer(
     param0: ?*sqlite3_context,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
     param2: ?[*:0]const u8,
     param3: isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -2120,7 +2120,7 @@ pub extern "winsqlite3" fn sqlite3_create_collation(
     param0: ?*sqlite3,
     zName: ?[*:0]const u8,
     eTextRep: i32,
-    pArg: ?*c_void,
+    pArg: ?*anyopaque,
     xCompare: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -2128,28 +2128,28 @@ pub extern "winsqlite3" fn sqlite3_create_collation_v2(
     param0: ?*sqlite3,
     zName: ?[*:0]const u8,
     eTextRep: i32,
-    pArg: ?*c_void,
+    pArg: ?*anyopaque,
     xCompare: isize,
     xDestroy: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_create_collation16(
     param0: ?*sqlite3,
-    zName: ?*const c_void,
+    zName: ?*const anyopaque,
     eTextRep: i32,
-    pArg: ?*c_void,
+    pArg: ?*anyopaque,
     xCompare: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_collation_needed(
     param0: ?*sqlite3,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
     param2: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_collation_needed16(
     param0: ?*sqlite3,
-    param1: ?*c_void,
+    param1: ?*anyopaque,
     param2: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -2159,7 +2159,7 @@ pub extern "winsqlite3" fn sqlite3_sleep(
 
 pub extern "winsqlite3" fn sqlite3_win32_set_directory(
     type: u32,
-    zValue: ?*c_void,
+    zValue: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_win32_set_directory8(
@@ -2169,7 +2169,7 @@ pub extern "winsqlite3" fn sqlite3_win32_set_directory8(
 
 pub extern "winsqlite3" fn sqlite3_win32_set_directory16(
     type: u32,
-    zValue: ?*const c_void,
+    zValue: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_get_autocommit(
@@ -2203,20 +2203,20 @@ pub extern "winsqlite3" fn sqlite3_next_stmt(
 pub extern "winsqlite3" fn sqlite3_commit_hook(
     param0: ?*sqlite3,
     param1: isize,
-    param2: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_rollback_hook(
     param0: ?*sqlite3,
     param1: isize,
-    param2: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_update_hook(
     param0: ?*sqlite3,
     param1: isize,
-    param2: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_enable_shared_cache(
     param0: i32,
@@ -2281,14 +2281,14 @@ pub extern "winsqlite3" fn sqlite3_create_module(
     db: ?*sqlite3,
     zName: ?[*:0]const u8,
     p: ?*const sqlite3_module,
-    pClientData: ?*c_void,
+    pClientData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_create_module_v2(
     db: ?*sqlite3,
     zName: ?[*:0]const u8,
     p: ?*const sqlite3_module,
-    pClientData: ?*c_void,
+    pClientData: ?*anyopaque,
     xDestroy: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -2333,14 +2333,14 @@ pub extern "winsqlite3" fn sqlite3_blob_bytes(
 
 pub extern "winsqlite3" fn sqlite3_blob_read(
     param0: ?*sqlite3_blob,
-    Z: ?*c_void,
+    Z: ?*anyopaque,
     N: i32,
     iOffset: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_blob_write(
     param0: ?*sqlite3_blob,
-    z: ?*const c_void,
+    z: ?*const anyopaque,
     n: i32,
     iOffset: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -2386,7 +2386,7 @@ pub extern "winsqlite3" fn sqlite3_file_control(
     param0: ?*sqlite3,
     zDbName: ?[*:0]const u8,
     op: i32,
-    param3: ?*c_void,
+    param3: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_test_control(
@@ -2541,8 +2541,8 @@ pub extern "winsqlite3" fn sqlite3_log(
 pub extern "winsqlite3" fn sqlite3_wal_hook(
     param0: ?*sqlite3,
     param1: isize,
-    param2: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub extern "winsqlite3" fn sqlite3_wal_autocheckpoint(
     db: ?*sqlite3,
@@ -2608,14 +2608,14 @@ pub extern "winsqlite3" fn sqlite3_rtree_geometry_callback(
     db: ?*sqlite3,
     zGeom: ?[*:0]const u8,
     xGeom: isize,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "winsqlite3" fn sqlite3_rtree_query_callback(
     db: ?*sqlite3,
     zQueryFunc: ?[*:0]const u8,
     xQueryFunc: isize,
-    pContext: ?*c_void,
+    pContext: ?*anyopaque,
     xDestructor: isize,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 

@@ -98,7 +98,7 @@ pub const MaxDeviceInfoClass = REGISTRATION_INFORMATION_CLASS.MaxDeviceInfoClass
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "MDMRegistration" fn GetDeviceRegistrationInfo(
     DeviceInformationClass: REGISTRATION_INFORMATION_CLASS,
-    ppDeviceRegistrationInfo: ?*?*c_void,
+    ppDeviceRegistrationInfo: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'

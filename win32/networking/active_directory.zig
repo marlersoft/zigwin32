@@ -583,14 +583,14 @@ pub const IPersistQuery = extern struct {
             self: *const IPersistQuery,
             pSection: ?[*:0]const u16,
             pValueName: ?[*:0]const u16,
-            pStruct: ?*c_void,
+            pStruct: ?*anyopaque,
             cbStruct: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ReadStruct: fn(
             self: *const IPersistQuery,
             pSection: ?[*:0]const u16,
             pValueName: ?[*:0]const u16,
-            pStruct: ?*c_void,
+            pStruct: ?*anyopaque,
             cbStruct: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clear: fn(
@@ -617,11 +617,11 @@ pub const IPersistQuery = extern struct {
             return @ptrCast(*const IPersistQuery.VTable, self.vtable).ReadInt(@ptrCast(*const IPersistQuery, self), pSection, pValueName, pValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistQuery_WriteStruct(self: *const T, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, pStruct: ?*c_void, cbStruct: u32) callconv(.Inline) HRESULT {
+        pub fn IPersistQuery_WriteStruct(self: *const T, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, pStruct: ?*anyopaque, cbStruct: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPersistQuery.VTable, self.vtable).WriteStruct(@ptrCast(*const IPersistQuery, self), pSection, pValueName, pStruct, cbStruct);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistQuery_ReadStruct(self: *const T, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, pStruct: ?*c_void, cbStruct: u32) callconv(.Inline) HRESULT {
+        pub fn IPersistQuery_ReadStruct(self: *const T, pSection: ?[*:0]const u16, pValueName: ?[*:0]const u16, pStruct: ?*anyopaque, cbStruct: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPersistQuery.VTable, self.vtable).ReadStruct(@ptrCast(*const IPersistQuery, self), pSection, pValueName, pStruct, cbStruct);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -636,11 +636,11 @@ pub const OPENQUERYWINDOW = extern struct {
     cbStruct: u32,
     dwFlags: u32,
     clsidHandler: Guid,
-    pHandlerParameters: ?*c_void,
+    pHandlerParameters: ?*anyopaque,
     clsidDefaultForm: Guid,
     pPersistQuery: ?*IPersistQuery,
     Anonymous: extern union {
-        pFormParameters: ?*c_void,
+        pFormParameters: ?*anyopaque,
         ppbFormParameters: ?*IPropertyBag,
     },
 };
@@ -8051,7 +8051,7 @@ pub const IDsDisplaySpecifier = extern struct {
             self: *const IDsDisplaySpecifier,
             pszObjectClass: ?[*:0]const u16,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIconLocation: fn(
             self: *const IDsDisplaySpecifier,
@@ -8115,7 +8115,7 @@ pub const IDsDisplaySpecifier = extern struct {
             return @ptrCast(*const IDsDisplaySpecifier.VTable, self.vtable).SetLanguageID(@ptrCast(*const IDsDisplaySpecifier, self), langid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDsDisplaySpecifier_GetDisplaySpecifier(self: *const T, pszObjectClass: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDsDisplaySpecifier_GetDisplaySpecifier(self: *const T, pszObjectClass: ?[*:0]const u16, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDsDisplaySpecifier.VTable, self.vtable).GetDisplaySpecifier(@ptrCast(*const IDsDisplaySpecifier, self), pszObjectClass, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9336,7 +9336,7 @@ pub const GetDcContextHandle = isize;
 pub extern "ACTIVEDS" fn ADsGetObject(
     lpszPathName: ?[*:0]const u16,
     riid: ?*const Guid,
-    ppObject: ?*?*c_void,
+    ppObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9379,7 +9379,7 @@ pub extern "ACTIVEDS" fn ADsOpenObject(
     lpszPassword: ?[*:0]const u16,
     dwReserved: ADS_AUTHENTICATION_ENUM,
     riid: ?*const Guid,
-    ppObject: ?*?*c_void,
+    ppObject: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9401,19 +9401,19 @@ pub extern "ACTIVEDS" fn ADsSetLastError(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn AllocADsMem(
     cb: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn FreeADsMem(
-    pMem: ?*c_void,
+    pMem: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn ReallocADsMem(
-    pOldMem: ?*c_void,
+    pOldMem: ?*anyopaque,
     cbOld: u32,
     cbNew: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ACTIVEDS" fn AllocADsStr(
@@ -9753,7 +9753,7 @@ pub extern "NTDSAPI" fn DsBindA(
 pub extern "NTDSAPI" fn DsBindWithCredW(
     DomainControllerName: ?[*:0]const u16,
     DnsDomainName: ?[*:0]const u16,
-    AuthIdentity: ?*c_void,
+    AuthIdentity: ?*anyopaque,
     phDS: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -9761,7 +9761,7 @@ pub extern "NTDSAPI" fn DsBindWithCredW(
 pub extern "NTDSAPI" fn DsBindWithCredA(
     DomainControllerName: ?[*:0]const u8,
     DnsDomainName: ?[*:0]const u8,
-    AuthIdentity: ?*c_void,
+    AuthIdentity: ?*anyopaque,
     phDS: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -9769,7 +9769,7 @@ pub extern "NTDSAPI" fn DsBindWithCredA(
 pub extern "NTDSAPI" fn DsBindWithSpnW(
     DomainControllerName: ?[*:0]const u16,
     DnsDomainName: ?[*:0]const u16,
-    AuthIdentity: ?*c_void,
+    AuthIdentity: ?*anyopaque,
     ServicePrincipalName: ?[*:0]const u16,
     phDS: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -9778,7 +9778,7 @@ pub extern "NTDSAPI" fn DsBindWithSpnW(
 pub extern "NTDSAPI" fn DsBindWithSpnA(
     DomainControllerName: ?[*:0]const u8,
     DnsDomainName: ?[*:0]const u8,
-    AuthIdentity: ?*c_void,
+    AuthIdentity: ?*anyopaque,
     ServicePrincipalName: ?[*:0]const u8,
     phDS: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -9787,7 +9787,7 @@ pub extern "NTDSAPI" fn DsBindWithSpnA(
 pub extern "NTDSAPI" fn DsBindWithSpnExW(
     DomainControllerName: ?[*:0]const u16,
     DnsDomainName: ?[*:0]const u16,
-    AuthIdentity: ?*c_void,
+    AuthIdentity: ?*anyopaque,
     ServicePrincipalName: ?[*:0]const u16,
     BindFlags: u32,
     phDS: ?*?HANDLE,
@@ -9797,7 +9797,7 @@ pub extern "NTDSAPI" fn DsBindWithSpnExW(
 pub extern "NTDSAPI" fn DsBindWithSpnExA(
     DomainControllerName: ?[*:0]const u8,
     DnsDomainName: ?[*:0]const u8,
-    AuthIdentity: ?*c_void,
+    AuthIdentity: ?*anyopaque,
     ServicePrincipalName: ?[*:0]const u8,
     BindFlags: u32,
     phDS: ?*?HANDLE,
@@ -9809,7 +9809,7 @@ pub extern "NTDSAPI" fn DsBindByInstanceW(
     Annotation: ?[*:0]const u16,
     InstanceGuid: ?*Guid,
     DnsDomainName: ?[*:0]const u16,
-    AuthIdentity: ?*c_void,
+    AuthIdentity: ?*anyopaque,
     ServicePrincipalName: ?[*:0]const u16,
     BindFlags: u32,
     phDS: ?*?HANDLE,
@@ -9821,7 +9821,7 @@ pub extern "NTDSAPI" fn DsBindByInstanceA(
     Annotation: ?[*:0]const u8,
     InstanceGuid: ?*Guid,
     DnsDomainName: ?[*:0]const u8,
-    AuthIdentity: ?*c_void,
+    AuthIdentity: ?*anyopaque,
     ServicePrincipalName: ?[*:0]const u8,
     BindFlags: u32,
     phDS: ?*?HANDLE,
@@ -9860,7 +9860,7 @@ pub extern "NTDSAPI" fn DsMakePasswordCredentialsW(
     User: ?[*:0]const u16,
     Domain: ?[*:0]const u16,
     Password: ?[*:0]const u16,
-    pAuthIdentity: ?*?*c_void,
+    pAuthIdentity: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -9868,12 +9868,12 @@ pub extern "NTDSAPI" fn DsMakePasswordCredentialsA(
     User: ?[*:0]const u8,
     Domain: ?[*:0]const u8,
     Password: ?[*:0]const u8,
-    pAuthIdentity: ?*?*c_void,
+    pAuthIdentity: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsFreePasswordCredentials(
-    AuthIdentity: ?*c_void,
+    AuthIdentity: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -10098,7 +10098,7 @@ pub extern "NTDSAPI" fn DsReplicaSyncAllA(
     pszNameContext: ?[*:0]const u8,
     ulFlags: u32,
     pFnCallBack: isize,
-    pCallbackData: ?*c_void,
+    pCallbackData: ?*anyopaque,
     pErrors: ?*?*?*DS_REPSYNCALL_ERRINFOA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -10108,7 +10108,7 @@ pub extern "NTDSAPI" fn DsReplicaSyncAllW(
     pszNameContext: ?[*:0]const u16,
     ulFlags: u32,
     pFnCallBack: isize,
-    pCallbackData: ?*c_void,
+    pCallbackData: ?*anyopaque,
     pErrors: ?*?*?*DS_REPSYNCALL_ERRINFOW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -10281,7 +10281,7 @@ pub extern "NTDSAPI" fn DsGetDomainControllerInfoA(
     DomainName: ?[*:0]const u8,
     InfoLevel: u32,
     pcOut: ?*u32,
-    ppInfo: ?*?*c_void,
+    ppInfo: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -10290,7 +10290,7 @@ pub extern "NTDSAPI" fn DsGetDomainControllerInfoW(
     DomainName: ?[*:0]const u16,
     InfoLevel: u32,
     pcOut: ?*u32,
-    ppInfo: ?*?*c_void,
+    ppInfo: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -10336,7 +10336,7 @@ pub extern "NTDSAPI" fn DsReplicaGetInfoW(
     InfoType: DS_REPL_INFO_TYPE,
     pszObject: ?[*:0]const u16,
     puuidForSourceDsaObjGuid: ?*Guid,
-    ppInfo: ?*?*c_void,
+    ppInfo: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -10349,13 +10349,13 @@ pub extern "NTDSAPI" fn DsReplicaGetInfo2W(
     pszValue: ?[*:0]const u16,
     dwFlags: u32,
     dwEnumerationContext: u32,
-    ppInfo: ?*?*c_void,
+    ppInfo: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NTDSAPI" fn DsReplicaFreeInfo(
     InfoType: DS_REPL_INFO_TYPE,
-    pInfo: ?*c_void,
+    pInfo: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -10365,7 +10365,7 @@ pub extern "NTDSAPI" fn DsAddSidHistoryW(
     SrcDomain: ?[*:0]const u16,
     SrcPrincipal: ?[*:0]const u16,
     SrcDomainController: ?[*:0]const u16,
-    SrcDomainCreds: ?*c_void,
+    SrcDomainCreds: ?*anyopaque,
     DstDomain: ?[*:0]const u16,
     DstPrincipal: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -10377,7 +10377,7 @@ pub extern "NTDSAPI" fn DsAddSidHistoryA(
     SrcDomain: ?[*:0]const u8,
     SrcPrincipal: ?[*:0]const u8,
     SrcDomainController: ?[*:0]const u8,
-    SrcDomainCreds: ?*c_void,
+    SrcDomainCreds: ?*anyopaque,
     DstDomain: ?[*:0]const u8,
     DstPrincipal: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -10407,7 +10407,7 @@ pub extern "NETAPI32" fn DsRoleGetPrimaryDomainInformation(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "NETAPI32" fn DsRoleFreeMemory(
-    Buffer: ?*c_void,
+    Buffer: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

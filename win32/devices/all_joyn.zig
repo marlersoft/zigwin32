@@ -963,7 +963,7 @@ pub const alljoyn_applicationstatelistener_state_ptr = fn(
     busName: ?*i8,
     publicKey: ?*i8,
     applicationState: alljoyn_applicationstate,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_applicationstatelistener_callbacks = extern struct {
@@ -971,24 +971,24 @@ pub const alljoyn_applicationstatelistener_callbacks = extern struct {
 };
 
 pub const alljoyn_keystorelistener_loadrequest_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     listener: alljoyn_keystorelistener,
     keyStore: alljoyn_keystore,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub const alljoyn_keystorelistener_storerequest_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     listener: alljoyn_keystorelistener,
     keyStore: alljoyn_keystore,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub const alljoyn_keystorelistener_acquireexclusivelock_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     listener: alljoyn_keystorelistener,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub const alljoyn_keystorelistener_releaseexclusivelock_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     listener: alljoyn_keystorelistener,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1018,7 +1018,7 @@ pub const ALLJOYN_MESSAGE_ERROR = alljoyn_messagetype.ERROR;
 pub const ALLJOYN_MESSAGE_SIGNAL = alljoyn_messagetype.SIGNAL;
 
 pub const alljoyn_authlistener_requestcredentials_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     authMechanism: ?[*:0]const u8,
     peerName: ?[*:0]const u8,
     authCount: u16,
@@ -1028,40 +1028,40 @@ pub const alljoyn_authlistener_requestcredentials_ptr = fn(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const alljoyn_authlistener_requestcredentialsasync_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     listener: alljoyn_authlistener,
     authMechanism: ?[*:0]const u8,
     peerName: ?[*:0]const u8,
     authCount: u16,
     userName: ?[*:0]const u8,
     credMask: u16,
-    authContext: ?*c_void,
+    authContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub const alljoyn_authlistener_verifycredentials_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     authMechanism: ?[*:0]const u8,
     peerName: ?[*:0]const u8,
     credentials: alljoyn_credentials,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const alljoyn_authlistener_verifycredentialsasync_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     listener: alljoyn_authlistener,
     authMechanism: ?[*:0]const u8,
     peerName: ?[*:0]const u8,
     credentials: alljoyn_credentials,
-    authContext: ?*c_void,
+    authContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub const alljoyn_authlistener_securityviolation_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     status: QStatus,
     msg: alljoyn_message,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_authlistener_authenticationcomplete_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     authMechanism: ?[*:0]const u8,
     peerName: ?[*:0]const u8,
     success: i32,
@@ -1082,45 +1082,45 @@ pub const alljoyn_authlistenerasync_callbacks = extern struct {
 };
 
 pub const alljoyn_buslistener_listener_registered_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     bus: alljoyn_busattachment,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_buslistener_listener_unregistered_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_buslistener_found_advertised_name_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     name: ?[*:0]const u8,
     transport: u16,
     namePrefix: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_buslistener_lost_advertised_name_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     name: ?[*:0]const u8,
     transport: u16,
     namePrefix: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_buslistener_name_owner_changed_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     busName: ?[*:0]const u8,
     previousOwner: ?[*:0]const u8,
     newOwner: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_buslistener_bus_stopping_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_buslistener_bus_disconnected_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_buslistener_bus_prop_changed_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     prop_name: ?[*:0]const u8,
     prop_value: alljoyn_msgarg,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1152,7 +1152,7 @@ pub const alljoyn_interfacedescription_member = extern struct {
     signature: ?[*:0]const u8,
     returnSignature: ?[*:0]const u8,
     argNames: ?[*:0]const u8,
-    internal_member: ?*const c_void,
+    internal_member: ?*const anyopaque,
 };
 
 pub const alljoyn_interfacedescription_translation_callback_ptr = fn(
@@ -1165,7 +1165,7 @@ pub const alljoyn_interfacedescription_property = extern struct {
     name: ?[*:0]const u8,
     signature: ?[*:0]const u8,
     access: u8,
-    internal_property: ?*const c_void,
+    internal_property: ?*const anyopaque,
 };
 
 pub const alljoyn_messagereceiver_methodhandler_ptr = fn(
@@ -1176,7 +1176,7 @@ pub const alljoyn_messagereceiver_methodhandler_ptr = fn(
 
 pub const alljoyn_messagereceiver_replyhandler_ptr = fn(
     message: alljoyn_message,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_messagereceiver_signalhandler_ptr = fn(
@@ -1186,21 +1186,21 @@ pub const alljoyn_messagereceiver_signalhandler_ptr = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_busobject_prop_get_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     ifcName: ?[*:0]const u8,
     propName: ?[*:0]const u8,
     val: alljoyn_msgarg,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub const alljoyn_busobject_prop_set_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     ifcName: ?[*:0]const u8,
     propName: ?[*:0]const u8,
     val: alljoyn_msgarg,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub const alljoyn_busobject_object_registration_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_busobject_callbacks = extern struct {
@@ -1218,27 +1218,27 @@ pub const alljoyn_busobject_methodentry = extern struct {
 pub const alljoyn_proxybusobject_listener_introspectcb_ptr = fn(
     status: QStatus,
     obj: alljoyn_proxybusobject,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_proxybusobject_listener_getpropertycb_ptr = fn(
     status: QStatus,
     obj: alljoyn_proxybusobject,
     value: alljoyn_msgarg,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_proxybusobject_listener_getallpropertiescb_ptr = fn(
     status: QStatus,
     obj: alljoyn_proxybusobject,
     values: alljoyn_msgarg,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_proxybusobject_listener_setpropertycb_ptr = fn(
     status: QStatus,
     obj: alljoyn_proxybusobject,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_proxybusobject_listener_propertieschanged_ptr = fn(
@@ -1246,23 +1246,23 @@ pub const alljoyn_proxybusobject_listener_propertieschanged_ptr = fn(
     ifaceName: ?[*:0]const u8,
     changed: alljoyn_msgarg,
     invalidated: alljoyn_msgarg,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_permissionconfigurationlistener_factoryreset_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub const alljoyn_permissionconfigurationlistener_policychanged_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_permissionconfigurationlistener_startmanagement_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_permissionconfigurationlistener_endmanagement_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_permissionconfigurationlistener_callbacks = extern struct {
@@ -1288,19 +1288,19 @@ pub const ALLJOYN_SESSIONLOST_LINK_TIMEOUT = alljoyn_sessionlostreason.LINK_TIME
 pub const ALLJOYN_SESSIONLOST_REASON_OTHER = alljoyn_sessionlostreason.REASON_OTHER;
 
 pub const alljoyn_sessionlistener_sessionlost_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     sessionId: u32,
     reason: alljoyn_sessionlostreason,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_sessionlistener_sessionmemberadded_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     sessionId: u32,
     uniqueName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_sessionlistener_sessionmemberremoved_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     sessionId: u32,
     uniqueName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1312,14 +1312,14 @@ pub const alljoyn_sessionlistener_callbacks = extern struct {
 };
 
 pub const alljoyn_sessionportlistener_acceptsessionjoiner_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     sessionPort: u16,
     joiner: ?[*:0]const u8,
     opts: alljoyn_sessionopts,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const alljoyn_sessionportlistener_sessionjoined_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     sessionPort: u16,
     id: u32,
     joiner: ?[*:0]const u8,
@@ -1331,7 +1331,7 @@ pub const alljoyn_sessionportlistener_callbacks = extern struct {
 };
 
 pub const alljoyn_about_announced_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     busName: ?[*:0]const u8,
     version: u16,
     port: u16,
@@ -1347,13 +1347,13 @@ pub const alljoyn_busattachment_joinsessioncb_ptr = fn(
     status: QStatus,
     sessionId: u32,
     opts: alljoyn_sessionopts,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_busattachment_setlinktimeoutcb_ptr = fn(
     status: QStatus,
     timeout: u32,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const _alljoyn_abouticonobj_handle = extern struct {
@@ -1365,13 +1365,13 @@ pub const _alljoyn_abouticonproxy_handle = extern struct {
 };
 
 pub const alljoyn_aboutdatalistener_getaboutdata_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     msgArg: alljoyn_msgarg,
     language: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub const alljoyn_aboutdatalistener_getannouncedaboutdata_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     msgArg: alljoyn_msgarg,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
@@ -1381,13 +1381,13 @@ pub const alljoyn_aboutdatalistener_callbacks = extern struct {
 };
 
 pub const alljoyn_autopinger_destination_lost_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     group: ?[*:0]const u8,
     destination: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_autopinger_destination_found_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     group: ?[*:0]const u8,
     destination: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1398,12 +1398,12 @@ pub const alljoyn_pinglistener_callback = extern struct {
 };
 
 pub const alljoyn_observer_object_discovered_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     proxyref: alljoyn_proxybusobject_ref,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const alljoyn_observer_object_lost_ptr = fn(
-    context: ?*const c_void,
+    context: ?*const anyopaque,
     proxyref: alljoyn_proxybusobject_ref,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1488,20 +1488,20 @@ pub extern "MSAJApi" fn AllJoynCloseBusHandle(
 pub extern "MSAJApi" fn AllJoynSendToBus(
     connectedBusHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    buffer: ?*const c_void,
+    buffer: ?*const anyopaque,
     bytesToWrite: u32,
     bytesTransferred: ?*u32,
-    reserved: ?*c_void,
+    reserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "MSAJApi" fn AllJoynReceiveFromBus(
     connectedBusHandle: ?HANDLE,
     // TODO: what to do with BytesParamIndex 2?
-    buffer: ?*c_void,
+    buffer: ?*anyopaque,
     bytesToRead: u32,
     bytesTransferred: ?*u32,
-    reserved: ?*c_void,
+    reserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -2404,7 +2404,7 @@ pub extern "MSAJApi" fn alljoyn_permissionconfigurator_endmanagement(
 
 pub extern "MSAJApi" fn alljoyn_applicationstatelistener_create(
     callbacks: ?*const alljoyn_applicationstatelistener_callbacks,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_applicationstatelistener;
 
 pub extern "MSAJApi" fn alljoyn_applicationstatelistener_destroy(
@@ -2413,12 +2413,12 @@ pub extern "MSAJApi" fn alljoyn_applicationstatelistener_destroy(
 
 pub extern "MSAJApi" fn alljoyn_keystorelistener_create(
     callbacks: ?*const alljoyn_keystorelistener_callbacks,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_keystorelistener;
 
 pub extern "MSAJApi" fn alljoyn_keystorelistener_with_synchronization_create(
     callbacks: ?*const alljoyn_keystorelistener_with_synchronization_callbacks,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_keystorelistener;
 
 pub extern "MSAJApi" fn alljoyn_keystorelistener_destroy(
@@ -2634,25 +2634,25 @@ pub extern "MSAJApi" fn alljoyn_message_setendianess(
 
 pub extern "MSAJApi" fn alljoyn_authlistener_requestcredentialsresponse(
     listener: alljoyn_authlistener,
-    authContext: ?*c_void,
+    authContext: ?*anyopaque,
     accept: i32,
     credentials: alljoyn_credentials,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub extern "MSAJApi" fn alljoyn_authlistener_verifycredentialsresponse(
     listener: alljoyn_authlistener,
-    authContext: ?*c_void,
+    authContext: ?*anyopaque,
     accept: i32,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub extern "MSAJApi" fn alljoyn_authlistener_create(
     callbacks: ?*const alljoyn_authlistener_callbacks,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_authlistener;
 
 pub extern "MSAJApi" fn alljoyn_authlistenerasync_create(
     callbacks: ?*const alljoyn_authlistenerasync_callbacks,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_authlistener;
 
 pub extern "MSAJApi" fn alljoyn_authlistener_destroy(
@@ -2741,7 +2741,7 @@ pub extern "MSAJApi" fn alljoyn_credentials_clear(
 
 pub extern "MSAJApi" fn alljoyn_buslistener_create(
     callbacks: ?*const alljoyn_buslistener_callbacks,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_buslistener;
 
 pub extern "MSAJApi" fn alljoyn_buslistener_destroy(
@@ -3128,7 +3128,7 @@ pub extern "MSAJApi" fn alljoyn_busobject_create(
     path: ?[*:0]const u8,
     isPlaceholder: i32,
     callbacks_in: ?*const alljoyn_busobject_callbacks,
-    context_in: ?*const c_void,
+    context_in: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_busobject;
 
 pub extern "MSAJApi" fn alljoyn_busobject_destroy(
@@ -3170,7 +3170,7 @@ pub extern "MSAJApi" fn alljoyn_busobject_addmethodhandler(
     bus: alljoyn_busobject,
     member: alljoyn_interfacedescription_member,
     handler: ?alljoyn_messagereceiver_methodhandler_ptr,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub extern "MSAJApi" fn alljoyn_busobject_addmethodhandlers(
@@ -3302,7 +3302,7 @@ pub extern "MSAJApi" fn alljoyn_proxybusobject_introspectremoteobject(
 pub extern "MSAJApi" fn alljoyn_proxybusobject_introspectremoteobjectasync(
     proxyObj: alljoyn_proxybusobject,
     callback: ?alljoyn_proxybusobject_listener_introspectcb_ptr,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub extern "MSAJApi" fn alljoyn_proxybusobject_getproperty(
@@ -3318,7 +3318,7 @@ pub extern "MSAJApi" fn alljoyn_proxybusobject_getpropertyasync(
     property: ?[*:0]const u8,
     callback: ?alljoyn_proxybusobject_listener_getpropertycb_ptr,
     timeout: u32,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub extern "MSAJApi" fn alljoyn_proxybusobject_getallproperties(
@@ -3332,7 +3332,7 @@ pub extern "MSAJApi" fn alljoyn_proxybusobject_getallpropertiesasync(
     iface: ?[*:0]const u8,
     callback: ?alljoyn_proxybusobject_listener_getallpropertiescb_ptr,
     timeout: u32,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub extern "MSAJApi" fn alljoyn_proxybusobject_setproperty(
@@ -3348,7 +3348,7 @@ pub extern "MSAJApi" fn alljoyn_proxybusobject_registerpropertieschangedlistener
     properties: ?*const ?*i8,
     numProperties: usize,
     callback: ?alljoyn_proxybusobject_listener_propertieschanged_ptr,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub extern "MSAJApi" fn alljoyn_proxybusobject_unregisterpropertieschangedlistener(
@@ -3364,7 +3364,7 @@ pub extern "MSAJApi" fn alljoyn_proxybusobject_setpropertyasync(
     value: alljoyn_msgarg,
     callback: ?alljoyn_proxybusobject_listener_setpropertycb_ptr,
     timeout: u32,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub extern "MSAJApi" fn alljoyn_proxybusobject_methodcall(
@@ -3412,7 +3412,7 @@ pub extern "MSAJApi" fn alljoyn_proxybusobject_methodcallasync(
     replyFunc: ?alljoyn_messagereceiver_replyhandler_ptr,
     args: alljoyn_msgarg,
     numArgs: usize,
-    context: ?*c_void,
+    context: ?*anyopaque,
     timeout: u32,
     flags: u8,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
@@ -3423,7 +3423,7 @@ pub extern "MSAJApi" fn alljoyn_proxybusobject_methodcallasync_member(
     replyFunc: ?alljoyn_messagereceiver_replyhandler_ptr,
     args: alljoyn_msgarg,
     numArgs: usize,
-    context: ?*c_void,
+    context: ?*anyopaque,
     timeout: u32,
     flags: u8,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
@@ -3494,7 +3494,7 @@ pub extern "MSAJApi" fn alljoyn_proxybusobject_enablepropertycaching(
 
 pub extern "MSAJApi" fn alljoyn_permissionconfigurationlistener_create(
     callbacks: ?*const alljoyn_permissionconfigurationlistener_callbacks,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_permissionconfigurationlistener;
 
 pub extern "MSAJApi" fn alljoyn_permissionconfigurationlistener_destroy(
@@ -3503,7 +3503,7 @@ pub extern "MSAJApi" fn alljoyn_permissionconfigurationlistener_destroy(
 
 pub extern "MSAJApi" fn alljoyn_sessionlistener_create(
     callbacks: ?*const alljoyn_sessionlistener_callbacks,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_sessionlistener;
 
 pub extern "MSAJApi" fn alljoyn_sessionlistener_destroy(
@@ -3512,7 +3512,7 @@ pub extern "MSAJApi" fn alljoyn_sessionlistener_destroy(
 
 pub extern "MSAJApi" fn alljoyn_sessionportlistener_create(
     callbacks: ?*const alljoyn_sessionportlistener_callbacks,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_sessionportlistener;
 
 pub extern "MSAJApi" fn alljoyn_sessionportlistener_destroy(
@@ -3521,7 +3521,7 @@ pub extern "MSAJApi" fn alljoyn_sessionportlistener_destroy(
 
 pub extern "MSAJApi" fn alljoyn_aboutlistener_create(
     callback: ?*const alljoyn_aboutlistener_callback,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_aboutlistener;
 
 pub extern "MSAJApi" fn alljoyn_aboutlistener_destroy(
@@ -3650,7 +3650,7 @@ pub extern "MSAJApi" fn alljoyn_busattachment_joinsessionasync(
     listener: alljoyn_sessionlistener,
     opts: alljoyn_sessionopts,
     callback: ?alljoyn_busattachment_joinsessioncb_ptr,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub extern "MSAJApi" fn alljoyn_busattachment_registerbusobject(
@@ -3884,7 +3884,7 @@ pub extern "MSAJApi" fn alljoyn_busattachment_setlinktimeoutasync(
     sessionid: u32,
     linkTimeout: u32,
     callback: ?alljoyn_busattachment_setlinktimeoutcb_ptr,
-    context: ?*c_void,
+    context: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) QStatus;
 
 pub extern "MSAJApi" fn alljoyn_busattachment_namehasowner(
@@ -4000,7 +4000,7 @@ pub extern "MSAJApi" fn alljoyn_abouticonproxy_getversion(
 
 pub extern "MSAJApi" fn alljoyn_aboutdatalistener_create(
     callbacks: ?*const alljoyn_aboutdatalistener_callbacks,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_aboutdatalistener;
 
 pub extern "MSAJApi" fn alljoyn_aboutdatalistener_destroy(
@@ -4121,7 +4121,7 @@ pub extern "MSAJApi" fn alljoyn_aboutproxy_getversion(
 
 pub extern "MSAJApi" fn alljoyn_pinglistener_create(
     callback: ?*const alljoyn_pinglistener_callback,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_pinglistener;
 
 pub extern "MSAJApi" fn alljoyn_pinglistener_destroy(
@@ -4218,7 +4218,7 @@ pub extern "MSAJApi" fn alljoyn_proxybusobject_ref_decref(
 
 pub extern "MSAJApi" fn alljoyn_observerlistener_create(
     callback: ?*const alljoyn_observerlistener_callback,
-    context: ?*const c_void,
+    context: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) alljoyn_observerlistener;
 
 pub extern "MSAJApi" fn alljoyn_observerlistener_destroy(

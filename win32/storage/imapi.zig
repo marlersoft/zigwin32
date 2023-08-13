@@ -5371,7 +5371,7 @@ pub const IDiscMaster = extern struct {
         SetActiveDiscMasterFormat: fn(
             self: *const IDiscMaster,
             riid: ?*const Guid,
-            ppUnk: ?*?*c_void,
+            ppUnk: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumDiscRecorders: fn(
             self: *const IDiscMaster,
@@ -5422,7 +5422,7 @@ pub const IDiscMaster = extern struct {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).GetActiveDiscMasterFormat(@ptrCast(*const IDiscMaster, self), lpiid);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscMaster_SetActiveDiscMasterFormat(self: *const T, riid: ?*const Guid, ppUnk: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDiscMaster_SetActiveDiscMasterFormat(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDiscMaster.VTable, self.vtable).SetActiveDiscMasterFormat(@ptrCast(*const IDiscMaster, self), riid, ppUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5757,7 +5757,7 @@ pub extern "MAPI32" fn OpenIMsgOnIStg(
     lpAllocateMore: ?LPALLOCATEMORE,
     lpFreeBuffer: ?LPFREEBUFFER,
     lpMalloc: ?*IMalloc,
-    lpMapiSup: ?*c_void,
+    lpMapiSup: ?*anyopaque,
     lpStg: ?*IStorage,
     lpfMsgCallRelease: ?*?MSGCALLRELEASE,
     ulCallerData: u32,
@@ -5766,13 +5766,13 @@ pub extern "MAPI32" fn OpenIMsgOnIStg(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "MAPI32" fn GetAttribIMsgOnIStg(
-    lpObject: ?*c_void,
+    lpObject: ?*anyopaque,
     lpPropTagArray: ?*SPropTagArray,
     lppPropAttrArray: ?*?*SPropAttrArray,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "MAPI32" fn SetAttribIMsgOnIStg(
-    lpObject: ?*c_void,
+    lpObject: ?*anyopaque,
     lpPropTags: ?*SPropTagArray,
     lpPropAttrs: ?*SPropAttrArray,
     lppPropProblems: ?*?*SPropProblemArray,

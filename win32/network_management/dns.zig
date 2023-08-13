@@ -1008,7 +1008,7 @@ pub const DNS_RRSET = extern struct {
 };
 
 pub const DNS_PROXY_COMPLETION_ROUTINE = fn(
-    completionContext: ?*c_void,
+    completionContext: ?*anyopaque,
     status: i32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1054,11 +1054,11 @@ pub const DNS_QUERY_RESULT = extern struct {
     QueryStatus: i32,
     QueryOptions: u64,
     pQueryRecords: ?*DNS_RECORDA,
-    Reserved: ?*c_void,
+    Reserved: ?*anyopaque,
 };
 
 pub const PDNS_QUERY_COMPLETION_ROUTINE = fn(
-    pQueryContext: ?*c_void,
+    pQueryContext: ?*anyopaque,
     pQueryResults: ?*DNS_QUERY_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1070,7 +1070,7 @@ pub const DNS_QUERY_REQUEST = extern struct {
     pDnsServerList: ?*DNS_ADDR_ARRAY,
     InterfaceIndex: u32,
     pQueryCompletionCallback: ?PDNS_QUERY_COMPLETION_ROUTINE,
-    pQueryContext: ?*c_void,
+    pQueryContext: ?*anyopaque,
 };
 
 pub const DNS_QUERY_CANCEL = extern struct {
@@ -1096,7 +1096,7 @@ pub const DNS_QUERY_REQUEST3 = extern struct {
     pDnsServerList: ?*DNS_ADDR_ARRAY,
     InterfaceIndex: u32,
     pQueryCompletionCallback: ?PDNS_QUERY_COMPLETION_ROUTINE,
-    pQueryContext: ?*c_void,
+    pQueryContext: ?*anyopaque,
     IsNetworkQueryRequired: BOOL,
     RequiredNetworkIndex: u32,
     cCustomServers: u32,
@@ -1252,12 +1252,12 @@ pub const DNS_SERVICE_INSTANCE = extern struct {
 };
 
 pub const DNS_SERVICE_CANCEL = extern struct {
-    reserved: ?*c_void,
+    reserved: ?*anyopaque,
 };
 
 pub const PDNS_SERVICE_BROWSE_CALLBACK = fn(
     Status: u32,
-    pQueryContext: ?*c_void,
+    pQueryContext: ?*anyopaque,
     pDnsRecord: ?*DNS_RECORDA,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1269,12 +1269,12 @@ pub const DNS_SERVICE_BROWSE_REQUEST = extern struct {
         pBrowseCallback: ?PDNS_SERVICE_BROWSE_CALLBACK,
         pBrowseCallbackV2: ?PDNS_QUERY_COMPLETION_ROUTINE,
     },
-    pQueryContext: ?*c_void,
+    pQueryContext: ?*anyopaque,
 };
 
 pub const PDNS_SERVICE_RESOLVE_COMPLETE = fn(
     Status: u32,
-    pQueryContext: ?*c_void,
+    pQueryContext: ?*anyopaque,
     pInstance: ?*DNS_SERVICE_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1283,12 +1283,12 @@ pub const DNS_SERVICE_RESOLVE_REQUEST = extern struct {
     InterfaceIndex: u32,
     QueryName: ?PWSTR,
     pResolveCompletionCallback: ?PDNS_SERVICE_RESOLVE_COMPLETE,
-    pQueryContext: ?*c_void,
+    pQueryContext: ?*anyopaque,
 };
 
 pub const PDNS_SERVICE_REGISTER_COMPLETE = fn(
     Status: u32,
-    pQueryContext: ?*c_void,
+    pQueryContext: ?*anyopaque,
     pInstance: ?*DNS_SERVICE_INSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1297,7 +1297,7 @@ pub const DNS_SERVICE_REGISTER_REQUEST = extern struct {
     InterfaceIndex: u32,
     pServiceInstance: ?*DNS_SERVICE_INSTANCE,
     pRegisterCompletionCallback: ?PDNS_SERVICE_REGISTER_COMPLETE,
-    pQueryContext: ?*c_void,
+    pQueryContext: ?*anyopaque,
     hCredentials: ?HANDLE,
     unicastEnabled: BOOL,
 };
@@ -1305,13 +1305,13 @@ pub const DNS_SERVICE_REGISTER_REQUEST = extern struct {
 pub const MDNS_QUERY_HANDLE = extern struct {
     nameBuf: [256]u16,
     wType: u16,
-    pSubscription: ?*c_void,
-    pWnfCallbackParams: ?*c_void,
+    pSubscription: ?*anyopaque,
+    pWnfCallbackParams: ?*anyopaque,
     stateNameData: [2]u32,
 };
 
 pub const PMDNS_QUERY_CALLBACK = fn(
-    pQueryContext: ?*c_void,
+    pQueryContext: ?*anyopaque,
     pQueryHandle: ?*MDNS_QUERY_HANDLE,
     pQueryResults: ?*DNS_QUERY_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) void;
@@ -1324,7 +1324,7 @@ pub const MDNS_QUERY_REQUEST = extern struct {
     QueryOptions: u64,
     InterfaceIndex: u32,
     pQueryCallback: ?PMDNS_QUERY_CALLBACK,
-    pQueryContext: ?*c_void,
+    pQueryContext: ?*anyopaque,
     fAnswerReceived: BOOL,
     ulResendCount: u32,
 };
@@ -1352,9 +1352,9 @@ pub extern "DNSAPI" fn DnsQueryConfig(
     Config: DNS_CONFIG_TYPE,
     Flag: u32,
     pwsAdapterName: ?[*:0]const u16,
-    pReserved: ?*c_void,
+    pReserved: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 5?
-    pBuffer: ?*c_void,
+    pBuffer: ?*anyopaque,
     pBufLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -1393,7 +1393,7 @@ pub extern "DNSAPI" fn DnsRecordSetDetach(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "DNSAPI" fn DnsFree(
-    pData: ?*c_void,
+    pData: ?*anyopaque,
     FreeType: DNS_FREE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -1402,9 +1402,9 @@ pub extern "DNSAPI" fn DnsQuery_A(
     pszName: ?[*:0]const u8,
     wType: u16,
     Options: u32,
-    pExtra: ?*c_void,
+    pExtra: ?*anyopaque,
     ppQueryResults: ?*?*DNS_RECORDA,
-    pReserved: ?*?*c_void,
+    pReserved: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1412,9 +1412,9 @@ pub extern "DNSAPI" fn DnsQuery_UTF8(
     pszName: ?[*:0]const u8,
     wType: u16,
     Options: u32,
-    pExtra: ?*c_void,
+    pExtra: ?*anyopaque,
     ppQueryResults: ?*?*DNS_RECORDA,
-    pReserved: ?*?*c_void,
+    pReserved: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1422,9 +1422,9 @@ pub extern "DNSAPI" fn DnsQuery_W(
     pszName: ?[*:0]const u16,
     wType: u16,
     Options: u32,
-    pExtra: ?*c_void,
+    pExtra: ?*anyopaque,
     ppQueryResults: ?*?*DNS_RECORDA,
-    pReserved: ?*?*c_void,
+    pReserved: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -1459,14 +1459,14 @@ pub extern "DNSAPI" fn DnsSetApplicationSettings(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsAcquireContextHandle_W(
     CredentialFlags: u32,
-    Credentials: ?*c_void,
+    Credentials: ?*anyopaque,
     pContext: ?*DnsContextHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "DNSAPI" fn DnsAcquireContextHandle_A(
     CredentialFlags: u32,
-    Credentials: ?*c_void,
+    Credentials: ?*anyopaque,
     pContext: ?*DnsContextHandle,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -1481,8 +1481,8 @@ pub extern "DNSAPI" fn DnsModifyRecordsInSet_W(
     pDeleteRecords: ?*DNS_RECORDA,
     Options: u32,
     hCredentials: ?HANDLE,
-    pExtraList: ?*c_void,
-    pReserved: ?*c_void,
+    pExtraList: ?*anyopaque,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1491,8 +1491,8 @@ pub extern "DNSAPI" fn DnsModifyRecordsInSet_A(
     pDeleteRecords: ?*DNS_RECORDA,
     Options: u32,
     hCredentials: ?HANDLE,
-    pExtraList: ?*c_void,
-    pReserved: ?*c_void,
+    pExtraList: ?*anyopaque,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1501,8 +1501,8 @@ pub extern "DNSAPI" fn DnsModifyRecordsInSet_UTF8(
     pDeleteRecords: ?*DNS_RECORDA,
     Options: u32,
     hCredentials: ?HANDLE,
-    pExtraList: ?*c_void,
-    pReserved: ?*c_void,
+    pExtraList: ?*anyopaque,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1510,8 +1510,8 @@ pub extern "DNSAPI" fn DnsReplaceRecordSetW(
     pReplaceSet: ?*DNS_RECORDA,
     Options: u32,
     hContext: ?HANDLE,
-    pExtraInfo: ?*c_void,
-    pReserved: ?*c_void,
+    pExtraInfo: ?*anyopaque,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1519,8 +1519,8 @@ pub extern "DNSAPI" fn DnsReplaceRecordSetA(
     pReplaceSet: ?*DNS_RECORDA,
     Options: u32,
     hContext: ?HANDLE,
-    pExtraInfo: ?*c_void,
-    pReserved: ?*c_void,
+    pExtraInfo: ?*anyopaque,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1528,8 +1528,8 @@ pub extern "DNSAPI" fn DnsReplaceRecordSetUTF8(
     pReplaceSet: ?*DNS_RECORDA,
     Options: u32,
     hContext: ?HANDLE,
-    pExtraInfo: ?*c_void,
-    pReserved: ?*c_void,
+    pExtraInfo: ?*anyopaque,
+    pReserved: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1602,7 +1602,7 @@ pub extern "DNSAPI" fn DnsGetProxyInformation(
     proxyInformation: ?*DNS_PROXY_INFORMATION,
     defaultProxyInformation: ?*DNS_PROXY_INFORMATION,
     completionRoutine: ?DNS_PROXY_COMPLETION_ROUTINE,
-    completionContext: ?*c_void,
+    completionContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.1'

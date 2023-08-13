@@ -3847,7 +3847,7 @@ pub const LPFNSVADDPROPSHEETPAGE = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const LPFNADDPROPSHEETPAGES = fn(
-    param0: ?*c_void,
+    param0: ?*anyopaque,
     param1: ?LPFNSVADDPROPSHEETPAGE,
     param2: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -3885,7 +3885,7 @@ pub const NMOBJECTNOTIFY = extern struct {
     hdr: NMHDR,
     iItem: i32,
     piid: ?*const Guid,
-    pObject: ?*c_void,
+    pObject: ?*anyopaque,
     hResult: HRESULT,
     dwFlags: u32,
 };
@@ -3984,7 +3984,7 @@ pub const HDITEMA = extern struct {
     iImage: i32,
     iOrder: i32,
     type: u32,
-    pvFilter: ?*c_void,
+    pvFilter: ?*anyopaque,
     state: u32,
 };
 
@@ -3999,7 +3999,7 @@ pub const HDITEMW = extern struct {
     iImage: i32,
     iOrder: i32,
     type: u32,
-    pvFilter: ?*c_void,
+    pvFilter: ?*anyopaque,
     state: u32,
 };
 
@@ -4345,7 +4345,7 @@ pub const TTTOOLINFOA = extern struct {
     hinst: ?HINSTANCE,
     lpszText: ?PSTR,
     lParam: LPARAM,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
 };
 
 pub const TTTOOLINFOW = extern struct {
@@ -4357,7 +4357,7 @@ pub const TTTOOLINFOW = extern struct {
     hinst: ?HINSTANCE,
     lpszText: ?PWSTR,
     lParam: LPARAM,
-    lpReserved: ?*c_void,
+    lpReserved: ?*anyopaque,
 };
 
 pub const TTGETTITLE = extern struct {
@@ -4601,12 +4601,12 @@ pub const LVGROUPMETRICS = extern struct {
 pub const PFNLVGROUPCOMPARE = fn(
     param0: i32,
     param1: i32,
-    param2: ?*c_void,
+    param2: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LVINSERTGROUPSORTED = extern struct {
     pfnGroupCompare: ?PFNLVGROUPCOMPARE,
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
     lvGroup: LVGROUP,
 };
 
@@ -5473,51 +5473,51 @@ pub const TASKDIALOGCONFIG = packed struct {
 };
 
 pub const PFNDAENUMCALLBACK = fn(
-    p: ?*c_void,
-    pData: ?*c_void,
+    p: ?*anyopaque,
+    pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFNDAENUMCALLBACKCONST = fn(
-    p: ?*const c_void,
-    pData: ?*c_void,
+    p: ?*const anyopaque,
+    pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFNDACOMPARE = fn(
-    p1: ?*c_void,
-    p2: ?*c_void,
+    p1: ?*anyopaque,
+    p2: ?*anyopaque,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PFNDACOMPARECONST = fn(
-    p1: ?*const c_void,
-    p2: ?*const c_void,
+    p1: ?*const anyopaque,
+    p2: ?*const anyopaque,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const DPASTREAMINFO = extern struct {
     iPos: i32,
-    pvItem: ?*c_void,
+    pvItem: ?*anyopaque,
 };
 
 pub const PFNDPASTREAM = fn(
     pinfo: ?*DPASTREAMINFO,
     pstream: ?*IStream,
-    pvInstData: ?*c_void,
+    pvInstData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFNDPAMERGE = fn(
     uMsg: DPAMM_MESSAGE,
-    pvDest: ?*c_void,
-    pvSrc: ?*c_void,
+    pvDest: ?*anyopaque,
+    pvSrc: ?*anyopaque,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const PFNDPAMERGECONST = fn(
     uMsg: DPAMM_MESSAGE,
-    pvDest: ?*const c_void,
-    pvSrc: ?*const c_void,
+    pvDest: ?*const anyopaque,
+    pvSrc: ?*const anyopaque,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const _LI_METRIC = enum(i32) {
     SMALL = 0,
@@ -5598,12 +5598,12 @@ pub const IImageList = extern struct {
             dx: i32,
             dy: i32,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Clone: fn(
             self: *const IImageList,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetImageRect: fn(
             self: *const IImageList,
@@ -5677,7 +5677,7 @@ pub const IImageList = extern struct {
             ppt: ?*POINT,
             pptHotspot: ?*POINT,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetItemFlags: fn(
             self: *const IImageList,
@@ -5734,11 +5734,11 @@ pub const IImageList = extern struct {
             return @ptrCast(*const IImageList.VTable, self.vtable).Copy(@ptrCast(*const IImageList, self), iDst, punkSrc, iSrc, uFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_Merge(self: *const T, i1_: i32, punk2: ?*IUnknown, i2_: i32, dx: i32, dy: i32, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IImageList_Merge(self: *const T, i1_: i32, punk2: ?*IUnknown, i2_: i32, dx: i32, dy: i32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IImageList.VTable, self.vtable).Merge(@ptrCast(*const IImageList, self), i1_, punk2, i2_, dx, dy, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_Clone(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IImageList_Clone(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IImageList.VTable, self.vtable).Clone(@ptrCast(*const IImageList, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5798,7 +5798,7 @@ pub const IImageList = extern struct {
             return @ptrCast(*const IImageList.VTable, self.vtable).DragShowNolock(@ptrCast(*const IImageList, self), fShow);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_GetDragImage(self: *const T, ppt: ?*POINT, pptHotspot: ?*POINT, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IImageList_GetDragImage(self: *const T, ppt: ?*POINT, pptHotspot: ?*POINT, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IImageList.VTable, self.vtable).GetDragImage(@ptrCast(*const IImageList, self), ppt, pptHotspot, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5851,7 +5851,7 @@ pub const IImageList2 = extern struct {
         GetCallback: fn(
             self: *const IImageList2,
             riid: ?*const Guid,
-            ppv: ?*?*c_void,
+            ppv: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ForceImagePresent: fn(
             self: *const IImageList2,
@@ -5917,7 +5917,7 @@ pub const IImageList2 = extern struct {
             return @ptrCast(*const IImageList2.VTable, self.vtable).SetCallback(@ptrCast(*const IImageList2, self), punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList2_GetCallback(self: *const T, riid: ?*const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IImageList2_GetCallback(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IImageList2.VTable, self.vtable).GetCallback(@ptrCast(*const IImageList2, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7248,7 +7248,7 @@ pub extern "COMCTL32" fn ImageList_ReadEx(
     dwFlags: u32,
     pstm: ?*IStream,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7298,7 +7298,7 @@ pub extern "COMCTL32" fn ImageList_Duplicate(
 pub extern "COMCTL32" fn HIMAGELIST_QueryInterface(
     himl: ?HIMAGELIST,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7463,7 +7463,7 @@ pub extern "COMCTL32" fn DSA_Destroy(
 pub extern "COMCTL32" fn DSA_DestroyCallback(
     hdsa: ?HDSA,
     pfnCB: ?PFNDAENUMCALLBACK,
-    pData: ?*c_void,
+    pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7481,34 +7481,34 @@ pub extern "COMCTL32" fn DSA_DeleteAllItems(
 pub extern "COMCTL32" fn DSA_EnumCallback(
     hdsa: ?HDSA,
     pfnCB: ?PFNDAENUMCALLBACK,
-    pData: ?*c_void,
+    pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_InsertItem(
     hdsa: ?HDSA,
     i: i32,
-    pitem: ?*const c_void,
+    pitem: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_GetItemPtr(
     hdsa: ?HDSA,
     i: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_GetItem(
     hdsa: ?HDSA,
     i: i32,
-    pitem: ?*c_void,
+    pitem: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DSA_SetItem(
     hdsa: ?HDSA,
     i: i32,
-    pitem: ?*const c_void,
+    pitem: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7554,14 +7554,14 @@ pub extern "COMCTL32" fn DPA_Destroy(
 pub extern "COMCTL32" fn DPA_DestroyCallback(
     hdpa: ?HDPA,
     pfnCB: ?PFNDAENUMCALLBACK,
-    pData: ?*c_void,
+    pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_DeletePtr(
     hdpa: ?HDPA,
     i: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_DeleteAllPtrs(
@@ -7572,7 +7572,7 @@ pub extern "COMCTL32" fn DPA_DeleteAllPtrs(
 pub extern "COMCTL32" fn DPA_EnumCallback(
     hdpa: ?HDPA,
     pfnCB: ?PFNDAENUMCALLBACK,
-    pData: ?*c_void,
+    pData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7585,26 +7585,26 @@ pub extern "COMCTL32" fn DPA_Grow(
 pub extern "COMCTL32" fn DPA_InsertPtr(
     hdpa: ?HDPA,
     i: i32,
-    p: ?*c_void,
+    p: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_SetPtr(
     hdpa: ?HDPA,
     i: i32,
-    p: ?*c_void,
+    p: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_GetPtr(
     hdpa: ?HDPA,
     i: isize,
-) callconv(@import("std").os.windows.WINAPI) ?*c_void;
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_GetPtrIndex(
     hdpa: ?HDPA,
-    p: ?*const c_void,
+    p: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7624,7 +7624,7 @@ pub extern "COMCTL32" fn DPA_LoadStream(
     phdpa: ?*?HDPA,
     pfn: ?PFNDPASTREAM,
     pstream: ?*IStream,
-    pvInstData: ?*c_void,
+    pvInstData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7632,7 +7632,7 @@ pub extern "COMCTL32" fn DPA_SaveStream(
     hdpa: ?HDPA,
     pfn: ?PFNDPASTREAM,
     pstream: ?*IStream,
-    pvInstData: ?*c_void,
+    pvInstData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -7648,7 +7648,7 @@ pub extern "COMCTL32" fn DPA_Merge(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "COMCTL32" fn DPA_Search(
     hdpa: ?HDPA,
-    pFind: ?*c_void,
+    pFind: ?*anyopaque,
     iStart: i32,
     pfnCompare: ?PFNDACOMPARE,
     lParam: LPARAM,
@@ -7781,7 +7781,7 @@ pub extern "COMCTL32" fn ImageList_CoCreateInstance(
     rclsid: ?*const Guid,
     punkOuter: ?*IUnknown,
     riid: ?*const Guid,
-    ppv: ?*?*c_void,
+    ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -7810,7 +7810,7 @@ pub extern "UXTHEME" fn GetThemeAnimationProperty(
     iTargetId: i32,
     eProperty: TA_PROPERTY,
     // TODO: what to do with BytesParamIndex 5?
-    pvProperty: ?*c_void,
+    pvProperty: ?*anyopaque,
     cbSize: u32,
     pcbSizeOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -8253,7 +8253,7 @@ pub extern "UXTHEME" fn SetWindowThemeAttribute(
     hwnd: ?HWND,
     eAttribute: WINDOWTHEMEATTRIBUTETYPE,
     // TODO: what to do with BytesParamIndex 3?
-    pvAttribute: ?*c_void,
+    pvAttribute: ?*anyopaque,
     cbAttribute: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -8286,7 +8286,7 @@ pub extern "UXTHEME" fn GetThemeStream(
     iPartId: i32,
     iStateId: i32,
     iPropId: i32,
-    ppvStream: ?*?*c_void,
+    ppvStream: ?*?*anyopaque,
     pcbStream: ?*u32,
     hInst: ?HINSTANCE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -8464,7 +8464,7 @@ pub extern "USER32" fn GetWindowFeedbackSetting(
     dwFlags: u32,
     pSize: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
-    config: ?*c_void,
+    config: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -8474,7 +8474,7 @@ pub extern "USER32" fn SetWindowFeedbackSetting(
     dwFlags: u32,
     size: u32,
     // TODO: what to do with BytesParamIndex 3?
-    configuration: ?*const c_void,
+    configuration: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

@@ -425,29 +425,29 @@ pub const PEER_GRAPH_EVENT_DATA = extern struct {
 };
 
 pub const PFNPEER_VALIDATE_RECORD = fn(
-    hGraph: ?*c_void,
-    pvContext: ?*c_void,
+    hGraph: ?*anyopaque,
+    pvContext: ?*anyopaque,
     pRecord: ?*PEER_RECORD,
     changeType: PEER_RECORD_CHANGE_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFNPEER_SECURE_RECORD = fn(
-    hGraph: ?*c_void,
-    pvContext: ?*c_void,
+    hGraph: ?*anyopaque,
+    pvContext: ?*anyopaque,
     pRecord: ?*PEER_RECORD,
     changeType: PEER_RECORD_CHANGE_TYPE,
     ppSecurityData: ?*?*PEER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFNPEER_FREE_SECURITY_DATA = fn(
-    hGraph: ?*c_void,
-    pvContext: ?*c_void,
+    hGraph: ?*anyopaque,
+    pvContext: ?*anyopaque,
     pSecurityData: ?*PEER_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PFNPEER_ON_PASSWORD_AUTH_FAILED = fn(
-    hGraph: ?*c_void,
-    pvContext: ?*c_void,
+    hGraph: ?*anyopaque,
+    pvContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PEER_SECURITY_INTERFACE = extern struct {
@@ -456,7 +456,7 @@ pub const PEER_SECURITY_INTERFACE = extern struct {
     pwzPackageName: ?PWSTR,
     cbSecurityInfo: u32,
     pbSecurityInfo: ?*u8,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
     pfnValidateRecord: ?PFNPEER_VALIDATE_RECORD,
     pfnSecureRecord: ?PFNPEER_SECURE_RECORD,
     pfnFreeSecurityData: ?PFNPEER_FREE_SECURITY_DATA,
@@ -956,7 +956,7 @@ pub const DRT_REGISTRATION = extern struct {
 };
 
 pub const DRT_SECURITY_PROVIDER = extern struct {
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
     Attach: isize,
     Detach: isize,
     RegisterKey: isize,
@@ -974,13 +974,13 @@ pub const DRT_SECURITY_PROVIDER = extern struct {
 
 pub const DRT_BOOTSTRAP_RESOLVE_CALLBACK = fn(
     hr: HRESULT,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
     pAddresses: ?*SOCKET_ADDRESS_LIST,
     fFatalError: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DRT_BOOTSTRAP_PROVIDER = extern struct {
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
     Attach: isize,
     Detach: isize,
     InitResolve: isize,
@@ -997,7 +997,7 @@ pub const DRT_SETTINGS = extern struct {
     bProtocolMinorVersion: u8,
     ulMaxRoutingAddresses: u32,
     pwzDrtInstancePrefix: ?PWSTR,
-    hTransport: ?*c_void,
+    hTransport: ?*anyopaque,
     pSecurityProvider: ?*DRT_SECURITY_PROVIDER,
     pBootstrapProvider: ?*DRT_BOOTSTRAP_PROVIDER,
     eSecurityMode: DRT_SECURITY_MODE,
@@ -1028,14 +1028,14 @@ pub const DRT_ADDRESS_LIST = extern struct {
 pub const DRT_SEARCH_RESULT = extern struct {
     dwSize: u32,
     type: DRT_MATCH_TYPE,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
     registration: DRT_REGISTRATION,
 };
 
 pub const DRT_EVENT_DATA = extern struct {
     type: DRT_EVENT_TYPE,
     hr: HRESULT,
-    pvContext: ?*c_void,
+    pvContext: ?*anyopaque,
     Anonymous: extern union {
         leafsetKeyChange: extern struct {
             change: DRT_LEAFSET_KEY_CHANGE_TYPE,
@@ -1115,25 +1115,25 @@ pub extern "P2PGRAPH" fn PeerGraphShutdown(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphFreeData(
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphGetItemCount(
-    hPeerEnum: ?*c_void,
+    hPeerEnum: ?*anyopaque,
     pCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphGetNextItem(
-    hPeerEnum: ?*c_void,
+    hPeerEnum: ?*anyopaque,
     pCount: ?*u32,
-    pppvItems: ?*?*?*c_void,
+    pppvItems: ?*?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphEndEnumeration(
-    hPeerEnum: ?*c_void,
+    hPeerEnum: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1141,7 +1141,7 @@ pub extern "P2PGRAPH" fn PeerGraphCreate(
     pGraphProperties: ?*PEER_GRAPH_PROPERTIES,
     pwzDatabaseName: ?[*:0]const u16,
     pSecurityInterface: ?*PEER_SECURITY_INTERFACE,
-    phGraph: ?*?*c_void,
+    phGraph: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1152,12 +1152,12 @@ pub extern "P2PGRAPH" fn PeerGraphOpen(
     pSecurityInterface: ?*PEER_SECURITY_INTERFACE,
     cRecordTypeSyncPrecedence: u32,
     pRecordTypeSyncPrecedence: ?[*]const Guid,
-    phGraph: ?*?*c_void,
+    phGraph: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphListen(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     dwScope: u32,
     dwScopeId: u32,
     wPort: u16,
@@ -1165,7 +1165,7 @@ pub extern "P2PGRAPH" fn PeerGraphListen(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphConnect(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pwzPeerId: ?[*:0]const u16,
     pAddress: ?*PEER_ADDRESS,
     pullConnectionId: ?*u64,
@@ -1173,7 +1173,7 @@ pub extern "P2PGRAPH" fn PeerGraphConnect(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphClose(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1185,106 +1185,106 @@ pub extern "P2PGRAPH" fn PeerGraphDelete(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphGetStatus(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pdwStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphGetProperties(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     ppGraphProperties: ?*?*PEER_GRAPH_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphSetProperties(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pGraphProperties: ?*PEER_GRAPH_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphRegisterEvent(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     hEvent: ?HANDLE,
     cEventRegistrations: u32,
     pEventRegistrations: [*]PEER_GRAPH_EVENT_REGISTRATION,
-    phPeerEvent: ?*?*c_void,
+    phPeerEvent: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphUnregisterEvent(
-    hPeerEvent: ?*c_void,
+    hPeerEvent: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphGetEventData(
-    hPeerEvent: ?*c_void,
+    hPeerEvent: ?*anyopaque,
     ppEventData: ?*?*PEER_GRAPH_EVENT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphGetRecord(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pRecordId: ?*const Guid,
     ppRecord: ?*?*PEER_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphAddRecord(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pRecord: ?*PEER_RECORD,
     pRecordId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphUpdateRecord(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pRecord: ?*PEER_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphDeleteRecord(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pRecordId: ?*const Guid,
     fLocal: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphEnumRecords(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pRecordType: ?*const Guid,
     pwzPeerId: ?[*:0]const u16,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphSearchRecords(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pwzCriteria: ?[*:0]const u16,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphExportDatabase(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pwzFilePath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphImportDatabase(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pwzFilePath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphValidateDeferredRecords(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     cRecordIds: u32,
     pRecordIds: [*]const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphOpenDirectConnection(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pwzPeerId: ?[*:0]const u16,
     pAddress: ?*PEER_ADDRESS,
     pullConnectionId: ?*u64,
@@ -1292,88 +1292,88 @@ pub extern "P2PGRAPH" fn PeerGraphOpenDirectConnection(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphSendData(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     ullConnectionId: u64,
     pType: ?*const Guid,
     cbData: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphCloseDirectConnection(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     ullConnectionId: u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphEnumConnections(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     dwFlags: u32,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphEnumNodes(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pwzPeerId: ?[*:0]const u16,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphSetPresence(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     fPresent: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphGetNodeInfo(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     ullNodeId: u64,
     ppNodeInfo: ?*?*PEER_NODE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphSetNodeAttributes(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pwzAttributes: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphPeerTimeToUniversalTime(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pftPeerTime: ?*FILETIME,
     pftUniversalTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2PGRAPH" fn PeerGraphUniversalTimeToPeerTime(
-    hGraph: ?*c_void,
+    hGraph: ?*anyopaque,
     pftUniversalTime: ?*FILETIME,
     pftPeerTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerFreeData(
-    pvData: ?*const c_void,
+    pvData: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGetItemCount(
-    hPeerEnum: ?*c_void,
+    hPeerEnum: ?*anyopaque,
     pCount: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGetNextItem(
-    hPeerEnum: ?*c_void,
+    hPeerEnum: ?*anyopaque,
     pCount: ?*u32,
-    pppvItems: ?*?*?*c_void,
+    pppvItems: ?*?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerEndEnumeration(
-    hPeerEnum: ?*c_void,
+    hPeerEnum: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1389,7 +1389,7 @@ pub extern "P2P" fn PeerGroupShutdown(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupCreate(
     pProperties: ?*PEER_GROUP_PROPERTIES,
-    phGroup: ?*?*c_void,
+    phGroup: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1397,7 +1397,7 @@ pub extern "P2P" fn PeerGroupOpen(
     pwzIdentity: ?[*:0]const u16,
     pwzGroupPeerName: ?[*:0]const u16,
     pwzCloud: ?[*:0]const u16,
-    phGroup: ?*?*c_void,
+    phGroup: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1405,7 +1405,7 @@ pub extern "P2P" fn PeerGroupJoin(
     pwzIdentity: ?[*:0]const u16,
     pwzInvitation: ?[*:0]const u16,
     pwzCloud: ?[*:0]const u16,
-    phGroup: ?*?*c_void,
+    phGroup: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1414,24 +1414,24 @@ pub extern "P2P" fn PeerGroupPasswordJoin(
     pwzInvitation: ?[*:0]const u16,
     pwzPassword: ?[*:0]const u16,
     pwzCloud: ?[*:0]const u16,
-    phGroup: ?*?*c_void,
+    phGroup: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupConnect(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupConnectByAddress(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     cAddresses: u32,
     pAddresses: [*]PEER_ADDRESS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupClose(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1442,7 +1442,7 @@ pub extern "P2P" fn PeerGroupDelete(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupCreateInvitation(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pwzIdentityInfo: ?[*:0]const u16,
     pftExpiration: ?*FILETIME,
     cRoles: u32,
@@ -1452,7 +1452,7 @@ pub extern "P2P" fn PeerGroupCreateInvitation(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupCreatePasswordInvitation(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     ppwzInvitation: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1464,33 +1464,33 @@ pub extern "P2P" fn PeerGroupParseInvitation(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupGetStatus(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pdwStatus: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupGetProperties(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     ppProperties: ?*?*PEER_GROUP_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupSetProperties(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pProperties: ?*PEER_GROUP_PROPERTIES,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupEnumMembers(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     dwFlags: u32,
     pwzIdentity: ?[*:0]const u16,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupOpenDirectConnection(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pwzIdentity: ?[*:0]const u16,
     pAddress: ?*PEER_ADDRESS,
     pullConnectionId: ?*u64,
@@ -1498,102 +1498,102 @@ pub extern "P2P" fn PeerGroupOpenDirectConnection(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupCloseDirectConnection(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     ullConnectionId: u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupEnumConnections(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     dwFlags: u32,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupSendData(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     ullConnectionId: u64,
     pType: ?*const Guid,
     cbData: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pvData: ?*c_void,
+    pvData: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupRegisterEvent(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     hEvent: ?HANDLE,
     cEventRegistration: u32,
     pEventRegistrations: [*]PEER_GROUP_EVENT_REGISTRATION,
-    phPeerEvent: ?*?*c_void,
+    phPeerEvent: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupUnregisterEvent(
-    hPeerEvent: ?*c_void,
+    hPeerEvent: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupGetEventData(
-    hPeerEvent: ?*c_void,
+    hPeerEvent: ?*anyopaque,
     ppEventData: ?*?*PEER_GROUP_EVENT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupGetRecord(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pRecordId: ?*const Guid,
     ppRecord: ?*?*PEER_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupAddRecord(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pRecord: ?*PEER_RECORD,
     pRecordId: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupUpdateRecord(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pRecord: ?*PEER_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupDeleteRecord(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pRecordId: ?*const Guid,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupEnumRecords(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pRecordType: ?*const Guid,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupSearchRecords(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pwzCriteria: ?[*:0]const u16,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupExportDatabase(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pwzFilePath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupImportDatabase(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pwzFilePath: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupIssueCredentials(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pwzSubjectIdentity: ?[*:0]const u16,
     pCredentialInfo: ?*PEER_CREDENTIAL_INFO,
     dwFlags: u32,
@@ -1602,7 +1602,7 @@ pub extern "P2P" fn PeerGroupIssueCredentials(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupExportConfig(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pwzPassword: ?[*:0]const u16,
     ppwzXML: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -1618,21 +1618,21 @@ pub extern "P2P" fn PeerGroupImportConfig(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupPeerTimeToUniversalTime(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pftPeerTime: ?*FILETIME,
     pftUniversalTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerGroupUniversalTimeToPeerTime(
-    hGroup: ?*c_void,
+    hGroup: ?*anyopaque,
     pftUniversalTime: ?*FILETIME,
     pftPeerTime: ?*FILETIME,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "P2P" fn PeerGroupResumePasswordAuthentication(
-    hGroup: ?*c_void,
-    hPeerEventHandle: ?*c_void,
+    hGroup: ?*anyopaque,
+    hPeerEventHandle: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1668,13 +1668,13 @@ pub extern "P2P" fn PeerIdentityDelete(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerEnumIdentities(
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerEnumGroups(
     pwzIdentity: ?[*:0]const u16,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1809,7 +1809,7 @@ pub extern "P2P" fn PeerCollabGetApplicationRegistrationInfo(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "P2P" fn PeerCollabEnumApplicationRegistrationInfo(
     registrationType: PEER_APPLICATION_REGISTRATION_TYPE,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1822,20 +1822,20 @@ pub extern "P2P" fn PeerCollabGetPresenceInfo(
 pub extern "P2P" fn PeerCollabEnumApplications(
     pcEndpoint: ?*PEER_ENDPOINT,
     pApplicationId: ?*const Guid,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "P2P" fn PeerCollabEnumObjects(
     pcEndpoint: ?*PEER_ENDPOINT,
     pObjectId: ?*const Guid,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "P2P" fn PeerCollabEnumEndpoints(
     pcContact: ?*PEER_CONTACT,
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1894,23 +1894,23 @@ pub extern "P2P" fn PeerCollabRegisterEvent(
     hEvent: ?HANDLE,
     cEventRegistration: u32,
     pEventRegistrations: [*]PEER_COLLAB_EVENT_REGISTRATION,
-    phPeerEvent: ?*?*c_void,
+    phPeerEvent: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "P2P" fn PeerCollabGetEventData(
-    hPeerEvent: ?*c_void,
+    hPeerEvent: ?*anyopaque,
     ppEventData: ?*?*PEER_COLLAB_EVENT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "P2P" fn PeerCollabUnregisterEvent(
-    hPeerEvent: ?*c_void,
+    hPeerEvent: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "P2P" fn PeerCollabEnumPeopleNearMe(
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1937,7 +1937,7 @@ pub extern "P2P" fn PeerCollabUpdateContact(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "P2P" fn PeerCollabEnumContacts(
-    phPeerEnum: ?*?*c_void,
+    phPeerEnum: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1977,18 +1977,18 @@ pub extern "P2P" fn PeerPnrpShutdown(
 pub extern "P2P" fn PeerPnrpRegister(
     pcwzPeerName: ?[*:0]const u16,
     pRegistrationInfo: ?*PEER_PNRP_REGISTRATION_INFO,
-    phRegistration: ?*?*c_void,
+    phRegistration: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerPnrpUpdateRegistration(
-    hRegistration: ?*c_void,
+    hRegistration: ?*anyopaque,
     pRegistrationInfo: ?*PEER_PNRP_REGISTRATION_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerPnrpUnregister(
-    hRegistration: ?*c_void,
+    hRegistration: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2005,7 +2005,7 @@ pub extern "P2P" fn PeerPnrpStartResolve(
     pcwzCloudName: ?[*:0]const u16,
     cMaxEndpoints: u32,
     hEvent: ?HANDLE,
-    phResolve: ?*?*c_void,
+    phResolve: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2016,13 +2016,13 @@ pub extern "P2P" fn PeerPnrpGetCloudInfo(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerPnrpGetEndpoint(
-    hResolve: ?*c_void,
+    hResolve: ?*anyopaque,
     ppEndpoint: ?*?*PEER_PNRP_ENDPOINT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "P2P" fn PeerPnrpEndResolve(
-    hResolve: ?*c_void,
+    hResolve: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2057,12 +2057,12 @@ pub extern "drttransport" fn DrtCreateIpv6UdpTransport(
     dwScopeId: u32,
     dwLocalityThreshold: u32,
     pwPort: ?*u16,
-    phTransport: ?*?*c_void,
+    phTransport: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drttransport" fn DrtDeleteIpv6UdpTransport(
-    hTransport: ?*c_void,
+    hTransport: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2097,104 +2097,104 @@ pub extern "drtprov" fn DrtDeleteNullSecurityProvider(
 pub extern "drt" fn DrtOpen(
     pSettings: ?*const DRT_SETTINGS,
     hEvent: ?HANDLE,
-    pvContext: ?*const c_void,
-    phDrt: ?*?*c_void,
+    pvContext: ?*const anyopaque,
+    phDrt: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtClose(
-    hDrt: ?*c_void,
+    hDrt: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtGetEventDataSize(
-    hDrt: ?*c_void,
+    hDrt: ?*anyopaque,
     pulEventDataLen: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtGetEventData(
-    hDrt: ?*c_void,
+    hDrt: ?*anyopaque,
     ulEventDataLen: u32,
     pEventData: ?*DRT_EVENT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtRegisterKey(
-    hDrt: ?*c_void,
+    hDrt: ?*anyopaque,
     pRegistration: ?*DRT_REGISTRATION,
-    pvKeyContext: ?*c_void,
-    phKeyRegistration: ?*?*c_void,
+    pvKeyContext: ?*anyopaque,
+    phKeyRegistration: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtUpdateKey(
-    hKeyRegistration: ?*c_void,
+    hKeyRegistration: ?*anyopaque,
     pAppData: ?*DRT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtUnregisterKey(
-    hKeyRegistration: ?*c_void,
+    hKeyRegistration: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtStartSearch(
-    hDrt: ?*c_void,
+    hDrt: ?*anyopaque,
     pKey: ?*DRT_DATA,
     pInfo: ?*const DRT_SEARCH_INFO,
     timeout: u32,
     hEvent: ?HANDLE,
-    pvContext: ?*const c_void,
-    hSearchContext: ?*?*c_void,
+    pvContext: ?*const anyopaque,
+    hSearchContext: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtContinueSearch(
-    hSearchContext: ?*c_void,
+    hSearchContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtGetSearchResultSize(
-    hSearchContext: ?*c_void,
+    hSearchContext: ?*anyopaque,
     pulSearchResultSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtGetSearchResult(
-    hSearchContext: ?*c_void,
+    hSearchContext: ?*anyopaque,
     ulSearchResultSize: u32,
     pSearchResult: ?*DRT_SEARCH_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtGetSearchPathSize(
-    hSearchContext: ?*c_void,
+    hSearchContext: ?*anyopaque,
     pulSearchPathSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtGetSearchPath(
-    hSearchContext: ?*c_void,
+    hSearchContext: ?*anyopaque,
     ulSearchPathSize: u32,
     pSearchPath: ?*DRT_ADDRESS_LIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtEndSearch(
-    hSearchContext: ?*c_void,
+    hSearchContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtGetInstanceName(
-    hDrt: ?*c_void,
+    hDrt: ?*anyopaque,
     ulcbInstanceNameSize: u32,
     pwzDrtInstanceName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "drt" fn DrtGetInstanceNameSize(
-    hDrt: ?*c_void,
+    hDrt: ?*anyopaque,
     pulcbInstanceNameSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2435,7 +2435,7 @@ pub extern "PeerDist" fn PeerDistClientGetInformationByHandle(
     PeerDistClientInfoClass: PEERDIST_CLIENT_INFO_BY_HANDLE_CLASS,
     dwBufferSize: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpInformation: ?*c_void,
+    lpInformation: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 

@@ -421,7 +421,7 @@ pub const PF_NPAddConnection4 = fn(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 3?
-    lpAuthBuffer: ?*c_void,
+    lpAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 6?
@@ -450,7 +450,7 @@ pub const PF_NPGetConnection3 = fn(
     lpLocalName: ?[*:0]const u16,
     dwLevel: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -458,7 +458,7 @@ pub const PF_NPGetUniversalName = fn(
     lpLocalPath: ?[*:0]const u16,
     dwInfoLevel: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpnBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -479,7 +479,7 @@ pub const PF_NPEnumResource = fn(
     hEnum: ?HANDLE,
     lpcCount: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -522,14 +522,14 @@ pub const PF_NPSearchDialog = fn(
 pub const PF_NPGetResourceParent = fn(
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PF_NPGetResourceInformation = fn(
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
     lplpSystem: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -574,28 +574,28 @@ pub const PF_NPDirectoryNotify = fn(
 pub const PF_NPLogonNotify = fn(
     lpLogonId: ?*LUID,
     lpAuthentInfoType: ?[*:0]const u16,
-    lpAuthentInfo: ?*c_void,
+    lpAuthentInfo: ?*anyopaque,
     lpPreviousAuthentInfoType: ?[*:0]const u16,
-    lpPreviousAuthentInfo: ?*c_void,
+    lpPreviousAuthentInfo: ?*anyopaque,
     lpStationName: ?PWSTR,
-    StationHandle: ?*c_void,
+    StationHandle: ?*anyopaque,
     lpLogonScript: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PF_NPPasswordChangeNotify = fn(
     lpAuthentInfoType: ?[*:0]const u16,
-    lpAuthentInfo: ?*c_void,
+    lpAuthentInfo: ?*anyopaque,
     lpPreviousAuthentInfoType: ?[*:0]const u16,
-    lpPreviousAuthentInfo: ?*c_void,
+    lpPreviousAuthentInfo: ?*anyopaque,
     lpStationName: ?PWSTR,
-    StationHandle: ?*c_void,
+    StationHandle: ?*anyopaque,
     dwChangeInfo: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const NOTIFYINFO = extern struct {
     dwNotifyStatus: u32,
     dwOperationStatus: u32,
-    lpContext: ?*c_void,
+    lpContext: ?*anyopaque,
 };
 
 pub const NOTIFYADD = extern struct {
@@ -696,7 +696,7 @@ pub extern "MPR" fn WNetAddConnection4A(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEA,
     // TODO: what to do with BytesParamIndex 3?
-    pAuthBuffer: ?*c_void,
+    pAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 6?
@@ -708,7 +708,7 @@ pub extern "MPR" fn WNetAddConnection4W(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 3?
-    pAuthBuffer: ?*c_void,
+    pAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 6?
@@ -784,7 +784,7 @@ pub extern "MPR" fn WNetUseConnection4A(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEA,
     // TODO: what to do with BytesParamIndex 3?
-    pAuthBuffer: ?*c_void,
+    pAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 6?
@@ -799,7 +799,7 @@ pub extern "MPR" fn WNetUseConnection4W(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 3?
-    pAuthBuffer: ?*c_void,
+    pAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 6?
@@ -865,7 +865,7 @@ pub extern "MPR" fn WNetEnumResourceA(
     hEnum: ?HANDLE,
     lpcCount: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -874,7 +874,7 @@ pub extern "MPR" fn WNetEnumResourceW(
     hEnum: ?HANDLE,
     lpcCount: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -887,7 +887,7 @@ pub extern "MPR" fn WNetCloseEnum(
 pub extern "MPR" fn WNetGetResourceParentA(
     lpNetResource: ?*NETRESOURCEA,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpcbBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -895,7 +895,7 @@ pub extern "MPR" fn WNetGetResourceParentA(
 pub extern "MPR" fn WNetGetResourceParentW(
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpcbBuffer: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -903,7 +903,7 @@ pub extern "MPR" fn WNetGetResourceParentW(
 pub extern "MPR" fn WNetGetResourceInformationA(
     lpNetResource: ?*NETRESOURCEA,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpcbBuffer: ?*u32,
     lplpSystem: ?*?PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -912,7 +912,7 @@ pub extern "MPR" fn WNetGetResourceInformationA(
 pub extern "MPR" fn WNetGetResourceInformationW(
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpcbBuffer: ?*u32,
     lplpSystem: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -922,7 +922,7 @@ pub extern "MPR" fn WNetGetUniversalNameA(
     lpLocalPath: ?[*:0]const u8,
     dwInfoLevel: UNC_INFO_LEVEL,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -931,7 +931,7 @@ pub extern "MPR" fn WNetGetUniversalNameW(
     lpLocalPath: ?[*:0]const u16,
     dwInfoLevel: UNC_INFO_LEVEL,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1025,7 +1025,7 @@ pub extern "NTLANMAN" fn NPAddConnection4(
     hwndOwner: ?HWND,
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 3?
-    lpAuthBuffer: ?*c_void,
+    lpAuthBuffer: ?*anyopaque,
     cbAuthBuffer: u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 6?
@@ -1057,7 +1057,7 @@ pub extern "NTLANMAN" fn NPGetConnection3(
     lpLocalName: ?[*:0]const u16,
     dwLevel: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1066,7 +1066,7 @@ pub extern "davclnt" fn NPGetUniversalName(
     lpLocalPath: ?[*:0]const u16,
     dwInfoLevel: UNC_INFO_LEVEL,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1090,7 +1090,7 @@ pub extern "davclnt" fn NPEnumResource(
     hEnum: ?HANDLE,
     lpcCount: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1125,7 +1125,7 @@ pub extern "NTLANMAN" fn NPGetPersistentUseOptionsForConnection(
 pub extern "davclnt" fn NPGetResourceParent(
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -1133,7 +1133,7 @@ pub extern "davclnt" fn NPGetResourceParent(
 pub extern "davclnt" fn NPGetResourceInformation(
     lpNetResource: ?*NETRESOURCEW,
     // TODO: what to do with BytesParamIndex 2?
-    lpBuffer: ?*c_void,
+    lpBuffer: ?*anyopaque,
     lpBufferSize: ?*u32,
     lplpSystem: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;

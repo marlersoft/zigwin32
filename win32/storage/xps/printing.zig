@@ -100,7 +100,7 @@ pub const IPrintDocumentPackageTarget = extern struct {
             self: *const IPrintDocumentPackageTarget,
             guidTargetType: ?*const Guid,
             riid: ?*const Guid,
-            ppvTarget: ?*?*c_void,
+            ppvTarget: ?*?*anyopaque,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPrintDocumentPackageTarget,
@@ -114,7 +114,7 @@ pub const IPrintDocumentPackageTarget = extern struct {
             return @ptrCast(*const IPrintDocumentPackageTarget.VTable, self.vtable).GetPackageTargetTypes(@ptrCast(*const IPrintDocumentPackageTarget, self), targetCount, targetTypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDocumentPackageTarget_GetPackageTarget(self: *const T, guidTargetType: ?*const Guid, riid: ?*const Guid, ppvTarget: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPrintDocumentPackageTarget_GetPackageTarget(self: *const T, guidTargetType: ?*const Guid, riid: ?*const Guid, ppvTarget: ?*?*anyopaque) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintDocumentPackageTarget.VTable, self.vtable).GetPackageTarget(@ptrCast(*const IPrintDocumentPackageTarget, self), guidTargetType, riid, ppvTarget);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
