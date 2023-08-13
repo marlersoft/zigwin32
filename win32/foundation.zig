@@ -13059,7 +13059,7 @@ pub const BSTR = *u16;
 pub const HANDLE = @import("std").os.windows.HANDLE;
 
 // TODO: this type has a FreeFunc 'FreeLibrary', what can Zig do with this information?
-pub const HINSTANCE = *opaque{};
+pub const HINSTANCE = @import("std").os.windows.HINSTANCE;
 
 pub const HRESULT = i32;
 
