@@ -71,12 +71,22 @@ pub const DWRITE_FONT_FACE_TYPE_UNKNOWN = DWRITE_FONT_FACE_TYPE.UNKNOWN;
 pub const DWRITE_FONT_FACE_TYPE_RAW_CFF = DWRITE_FONT_FACE_TYPE.RAW_CFF;
 pub const DWRITE_FONT_FACE_TYPE_TRUETYPE_COLLECTION = DWRITE_FONT_FACE_TYPE.TRUETYPE_COLLECTION;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DWRITE_FONT_SIMULATIONS = extern enum(u32) {
     NONE = 0,
     BOLD = 1,
     OBLIQUE = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        BOLD: u1 = 0,
+        OBLIQUE: u1 = 0,
+    }) DWRITE_FONT_SIMULATIONS {
+        return @intToEnum(DWRITE_FONT_SIMULATIONS,
+              (if (o.NONE == 1) @enumToInt(DWRITE_FONT_SIMULATIONS.NONE) else 0)
+            | (if (o.BOLD == 1) @enumToInt(DWRITE_FONT_SIMULATIONS.BOLD) else 0)
+            | (if (o.OBLIQUE == 1) @enumToInt(DWRITE_FONT_SIMULATIONS.OBLIQUE) else 0)
+        );
+    }
 };
 pub const DWRITE_FONT_SIMULATIONS_NONE = DWRITE_FONT_SIMULATIONS.NONE;
 pub const DWRITE_FONT_SIMULATIONS_BOLD = DWRITE_FONT_SIMULATIONS.BOLD;
@@ -1519,11 +1529,19 @@ pub const IDWriteTypography = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DWRITE_SCRIPT_SHAPES = extern enum(u32) {
     DEFAULT = 0,
     NO_VISUAL = 1,
     _,
+    pub fn initFlags(o: struct {
+        DEFAULT: u1 = 0,
+        NO_VISUAL: u1 = 0,
+    }) DWRITE_SCRIPT_SHAPES {
+        return @intToEnum(DWRITE_SCRIPT_SHAPES,
+              (if (o.DEFAULT == 1) @enumToInt(DWRITE_SCRIPT_SHAPES.DEFAULT) else 0)
+            | (if (o.NO_VISUAL == 1) @enumToInt(DWRITE_SCRIPT_SHAPES.NO_VISUAL) else 0)
+        );
+    }
 };
 pub const DWRITE_SCRIPT_SHAPES_DEFAULT = DWRITE_SCRIPT_SHAPES.DEFAULT;
 pub const DWRITE_SCRIPT_SHAPES_NO_VISUAL = DWRITE_SCRIPT_SHAPES.NO_VISUAL;
@@ -6314,21 +6332,39 @@ pub const DWRITE_FONT_FAMILY_MODEL = extern enum(i32) {
 pub const DWRITE_FONT_FAMILY_MODEL_TYPOGRAPHIC = DWRITE_FONT_FAMILY_MODEL.TYPOGRAPHIC;
 pub const DWRITE_FONT_FAMILY_MODEL_WEIGHT_STRETCH_STYLE = DWRITE_FONT_FAMILY_MODEL.WEIGHT_STRETCH_STYLE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DWRITE_AUTOMATIC_FONT_AXES = extern enum(u32) {
     NONE = 0,
     OPTICAL_SIZE = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        OPTICAL_SIZE: u1 = 0,
+    }) DWRITE_AUTOMATIC_FONT_AXES {
+        return @intToEnum(DWRITE_AUTOMATIC_FONT_AXES,
+              (if (o.NONE == 1) @enumToInt(DWRITE_AUTOMATIC_FONT_AXES.NONE) else 0)
+            | (if (o.OPTICAL_SIZE == 1) @enumToInt(DWRITE_AUTOMATIC_FONT_AXES.OPTICAL_SIZE) else 0)
+        );
+    }
 };
 pub const DWRITE_AUTOMATIC_FONT_AXES_NONE = DWRITE_AUTOMATIC_FONT_AXES.NONE;
 pub const DWRITE_AUTOMATIC_FONT_AXES_OPTICAL_SIZE = DWRITE_AUTOMATIC_FONT_AXES.OPTICAL_SIZE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DWRITE_FONT_AXIS_ATTRIBUTES = extern enum(u32) {
     NONE = 0,
     VARIABLE = 1,
     HIDDEN = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        VARIABLE: u1 = 0,
+        HIDDEN: u1 = 0,
+    }) DWRITE_FONT_AXIS_ATTRIBUTES {
+        return @intToEnum(DWRITE_FONT_AXIS_ATTRIBUTES,
+              (if (o.NONE == 1) @enumToInt(DWRITE_FONT_AXIS_ATTRIBUTES.NONE) else 0)
+            | (if (o.VARIABLE == 1) @enumToInt(DWRITE_FONT_AXIS_ATTRIBUTES.VARIABLE) else 0)
+            | (if (o.HIDDEN == 1) @enumToInt(DWRITE_FONT_AXIS_ATTRIBUTES.HIDDEN) else 0)
+        );
+    }
 };
 pub const DWRITE_FONT_AXIS_ATTRIBUTES_NONE = DWRITE_FONT_AXIS_ATTRIBUTES.NONE;
 pub const DWRITE_FONT_AXIS_ATTRIBUTES_VARIABLE = DWRITE_FONT_AXIS_ATTRIBUTES.VARIABLE;
@@ -7184,7 +7220,6 @@ pub const DWRITE_MEASURING_MODE_NATURAL = DWRITE_MEASURING_MODE.NATURAL;
 pub const DWRITE_MEASURING_MODE_GDI_CLASSIC = DWRITE_MEASURING_MODE.GDI_CLASSIC;
 pub const DWRITE_MEASURING_MODE_GDI_NATURAL = DWRITE_MEASURING_MODE.GDI_NATURAL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DWRITE_GLYPH_IMAGE_FORMATS = extern enum(u32) {
     NONE = 0,
     TRUETYPE = 1,
@@ -7196,6 +7231,29 @@ pub const DWRITE_GLYPH_IMAGE_FORMATS = extern enum(u32) {
     TIFF = 64,
     PREMULTIPLIED_B8G8R8A8 = 128,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        TRUETYPE: u1 = 0,
+        CFF: u1 = 0,
+        COLR: u1 = 0,
+        SVG: u1 = 0,
+        PNG: u1 = 0,
+        JPEG: u1 = 0,
+        TIFF: u1 = 0,
+        PREMULTIPLIED_B8G8R8A8: u1 = 0,
+    }) DWRITE_GLYPH_IMAGE_FORMATS {
+        return @intToEnum(DWRITE_GLYPH_IMAGE_FORMATS,
+              (if (o.NONE == 1) @enumToInt(DWRITE_GLYPH_IMAGE_FORMATS.NONE) else 0)
+            | (if (o.TRUETYPE == 1) @enumToInt(DWRITE_GLYPH_IMAGE_FORMATS.TRUETYPE) else 0)
+            | (if (o.CFF == 1) @enumToInt(DWRITE_GLYPH_IMAGE_FORMATS.CFF) else 0)
+            | (if (o.COLR == 1) @enumToInt(DWRITE_GLYPH_IMAGE_FORMATS.COLR) else 0)
+            | (if (o.SVG == 1) @enumToInt(DWRITE_GLYPH_IMAGE_FORMATS.SVG) else 0)
+            | (if (o.PNG == 1) @enumToInt(DWRITE_GLYPH_IMAGE_FORMATS.PNG) else 0)
+            | (if (o.JPEG == 1) @enumToInt(DWRITE_GLYPH_IMAGE_FORMATS.JPEG) else 0)
+            | (if (o.TIFF == 1) @enumToInt(DWRITE_GLYPH_IMAGE_FORMATS.TIFF) else 0)
+            | (if (o.PREMULTIPLIED_B8G8R8A8 == 1) @enumToInt(DWRITE_GLYPH_IMAGE_FORMATS.PREMULTIPLIED_B8G8R8A8) else 0)
+        );
+    }
 };
 pub const DWRITE_GLYPH_IMAGE_FORMATS_NONE = DWRITE_GLYPH_IMAGE_FORMATS.NONE;
 pub const DWRITE_GLYPH_IMAGE_FORMATS_TRUETYPE = DWRITE_GLYPH_IMAGE_FORMATS.TRUETYPE;

@@ -19,7 +19,6 @@ pub const E_PRINTDEVICECAPABILITIES_FORMAT = @as(u32, 2147745798);
 //--------------------------------------------------------------------------------
 // Section: Types (119)
 //--------------------------------------------------------------------------------
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PSINJECT_POINT = extern enum(u16) {
     BEGINSTREAM = 1,
     PSADOBE = 2,
@@ -53,6 +52,73 @@ pub const PSINJECT_POINT = extern enum(u16) {
     VMSAVE = 200,
     VMRESTORE = 201,
     _,
+    pub fn initFlags(o: struct {
+        BEGINSTREAM: u1 = 0,
+        PSADOBE: u1 = 0,
+        PAGESATEND: u1 = 0,
+        PAGES: u1 = 0,
+        DOCNEEDEDRES: u1 = 0,
+        DOCSUPPLIEDRES: u1 = 0,
+        PAGEORDER: u1 = 0,
+        ORIENTATION: u1 = 0,
+        BOUNDINGBOX: u1 = 0,
+        DOCUMENTPROCESSCOLORS: u1 = 0,
+        COMMENTS: u1 = 0,
+        BEGINDEFAULTS: u1 = 0,
+        ENDDEFAULTS: u1 = 0,
+        BEGINPROLOG: u1 = 0,
+        ENDPROLOG: u1 = 0,
+        BEGINSETUP: u1 = 0,
+        ENDSETUP: u1 = 0,
+        TRAILER: u1 = 0,
+        EOF: u1 = 0,
+        ENDSTREAM: u1 = 0,
+        DOCUMENTPROCESSCOLORSATEND: u1 = 0,
+        PAGENUMBER: u1 = 0,
+        BEGINPAGESETUP: u1 = 0,
+        ENDPAGESETUP: u1 = 0,
+        PAGETRAILER: u1 = 0,
+        PLATECOLOR: u1 = 0,
+        SHOWPAGE: u1 = 0,
+        PAGEBBOX: u1 = 0,
+        ENDPAGECOMMENTS: u1 = 0,
+        VMSAVE: u1 = 0,
+        VMRESTORE: u1 = 0,
+    }) PSINJECT_POINT {
+        return @intToEnum(PSINJECT_POINT,
+              (if (o.BEGINSTREAM == 1) @enumToInt(PSINJECT_POINT.BEGINSTREAM) else 0)
+            | (if (o.PSADOBE == 1) @enumToInt(PSINJECT_POINT.PSADOBE) else 0)
+            | (if (o.PAGESATEND == 1) @enumToInt(PSINJECT_POINT.PAGESATEND) else 0)
+            | (if (o.PAGES == 1) @enumToInt(PSINJECT_POINT.PAGES) else 0)
+            | (if (o.DOCNEEDEDRES == 1) @enumToInt(PSINJECT_POINT.DOCNEEDEDRES) else 0)
+            | (if (o.DOCSUPPLIEDRES == 1) @enumToInt(PSINJECT_POINT.DOCSUPPLIEDRES) else 0)
+            | (if (o.PAGEORDER == 1) @enumToInt(PSINJECT_POINT.PAGEORDER) else 0)
+            | (if (o.ORIENTATION == 1) @enumToInt(PSINJECT_POINT.ORIENTATION) else 0)
+            | (if (o.BOUNDINGBOX == 1) @enumToInt(PSINJECT_POINT.BOUNDINGBOX) else 0)
+            | (if (o.DOCUMENTPROCESSCOLORS == 1) @enumToInt(PSINJECT_POINT.DOCUMENTPROCESSCOLORS) else 0)
+            | (if (o.COMMENTS == 1) @enumToInt(PSINJECT_POINT.COMMENTS) else 0)
+            | (if (o.BEGINDEFAULTS == 1) @enumToInt(PSINJECT_POINT.BEGINDEFAULTS) else 0)
+            | (if (o.ENDDEFAULTS == 1) @enumToInt(PSINJECT_POINT.ENDDEFAULTS) else 0)
+            | (if (o.BEGINPROLOG == 1) @enumToInt(PSINJECT_POINT.BEGINPROLOG) else 0)
+            | (if (o.ENDPROLOG == 1) @enumToInt(PSINJECT_POINT.ENDPROLOG) else 0)
+            | (if (o.BEGINSETUP == 1) @enumToInt(PSINJECT_POINT.BEGINSETUP) else 0)
+            | (if (o.ENDSETUP == 1) @enumToInt(PSINJECT_POINT.ENDSETUP) else 0)
+            | (if (o.TRAILER == 1) @enumToInt(PSINJECT_POINT.TRAILER) else 0)
+            | (if (o.EOF == 1) @enumToInt(PSINJECT_POINT.EOF) else 0)
+            | (if (o.ENDSTREAM == 1) @enumToInt(PSINJECT_POINT.ENDSTREAM) else 0)
+            | (if (o.DOCUMENTPROCESSCOLORSATEND == 1) @enumToInt(PSINJECT_POINT.DOCUMENTPROCESSCOLORSATEND) else 0)
+            | (if (o.PAGENUMBER == 1) @enumToInt(PSINJECT_POINT.PAGENUMBER) else 0)
+            | (if (o.BEGINPAGESETUP == 1) @enumToInt(PSINJECT_POINT.BEGINPAGESETUP) else 0)
+            | (if (o.ENDPAGESETUP == 1) @enumToInt(PSINJECT_POINT.ENDPAGESETUP) else 0)
+            | (if (o.PAGETRAILER == 1) @enumToInt(PSINJECT_POINT.PAGETRAILER) else 0)
+            | (if (o.PLATECOLOR == 1) @enumToInt(PSINJECT_POINT.PLATECOLOR) else 0)
+            | (if (o.SHOWPAGE == 1) @enumToInt(PSINJECT_POINT.SHOWPAGE) else 0)
+            | (if (o.PAGEBBOX == 1) @enumToInt(PSINJECT_POINT.PAGEBBOX) else 0)
+            | (if (o.ENDPAGECOMMENTS == 1) @enumToInt(PSINJECT_POINT.ENDPAGECOMMENTS) else 0)
+            | (if (o.VMSAVE == 1) @enumToInt(PSINJECT_POINT.VMSAVE) else 0)
+            | (if (o.VMRESTORE == 1) @enumToInt(PSINJECT_POINT.VMRESTORE) else 0)
+        );
+    }
 };
 pub const PSINJECT_BEGINSTREAM = PSINJECT_POINT.BEGINSTREAM;
 pub const PSINJECT_PSADOBE = PSINJECT_POINT.PSADOBE;

@@ -21,7 +21,6 @@ pub const SYNCHRONIZATION_BARRIER_FLAGS_NO_DELETE = @as(u32, 4);
 //--------------------------------------------------------------------------------
 // Section: Types (29)
 //--------------------------------------------------------------------------------
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PROCESS_CREATION_FLAGS = extern enum(u32) {
     DEBUG_PROCESS = 1,
     DEBUG_ONLY_THIS_PROCESS = 2,
@@ -55,6 +54,73 @@ pub const PROCESS_CREATION_FLAGS = extern enum(u32) {
     PROFILE_SERVER = 1073741824,
     CREATE_IGNORE_SYSTEM_DEFAULT = 2147483648,
     _,
+    pub fn initFlags(o: struct {
+        DEBUG_PROCESS: u1 = 0,
+        DEBUG_ONLY_THIS_PROCESS: u1 = 0,
+        CREATE_SUSPENDED: u1 = 0,
+        DETACHED_PROCESS: u1 = 0,
+        CREATE_NEW_CONSOLE: u1 = 0,
+        NORMAL_PRIORITY_CLASS: u1 = 0,
+        IDLE_PRIORITY_CLASS: u1 = 0,
+        HIGH_PRIORITY_CLASS: u1 = 0,
+        REALTIME_PRIORITY_CLASS: u1 = 0,
+        CREATE_NEW_PROCESS_GROUP: u1 = 0,
+        CREATE_UNICODE_ENVIRONMENT: u1 = 0,
+        CREATE_SEPARATE_WOW_VDM: u1 = 0,
+        CREATE_SHARED_WOW_VDM: u1 = 0,
+        CREATE_FORCEDOS: u1 = 0,
+        BELOW_NORMAL_PRIORITY_CLASS: u1 = 0,
+        ABOVE_NORMAL_PRIORITY_CLASS: u1 = 0,
+        INHERIT_PARENT_AFFINITY: u1 = 0,
+        INHERIT_CALLER_PRIORITY: u1 = 0,
+        CREATE_PROTECTED_PROCESS: u1 = 0,
+        EXTENDED_STARTUPINFO_PRESENT: u1 = 0,
+        PROCESS_MODE_BACKGROUND_BEGIN: u1 = 0,
+        PROCESS_MODE_BACKGROUND_END: u1 = 0,
+        CREATE_SECURE_PROCESS: u1 = 0,
+        CREATE_BREAKAWAY_FROM_JOB: u1 = 0,
+        CREATE_PRESERVE_CODE_AUTHZ_LEVEL: u1 = 0,
+        CREATE_DEFAULT_ERROR_MODE: u1 = 0,
+        CREATE_NO_WINDOW: u1 = 0,
+        PROFILE_USER: u1 = 0,
+        PROFILE_KERNEL: u1 = 0,
+        PROFILE_SERVER: u1 = 0,
+        CREATE_IGNORE_SYSTEM_DEFAULT: u1 = 0,
+    }) PROCESS_CREATION_FLAGS {
+        return @intToEnum(PROCESS_CREATION_FLAGS,
+              (if (o.DEBUG_PROCESS == 1) @enumToInt(PROCESS_CREATION_FLAGS.DEBUG_PROCESS) else 0)
+            | (if (o.DEBUG_ONLY_THIS_PROCESS == 1) @enumToInt(PROCESS_CREATION_FLAGS.DEBUG_ONLY_THIS_PROCESS) else 0)
+            | (if (o.CREATE_SUSPENDED == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_SUSPENDED) else 0)
+            | (if (o.DETACHED_PROCESS == 1) @enumToInt(PROCESS_CREATION_FLAGS.DETACHED_PROCESS) else 0)
+            | (if (o.CREATE_NEW_CONSOLE == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_NEW_CONSOLE) else 0)
+            | (if (o.NORMAL_PRIORITY_CLASS == 1) @enumToInt(PROCESS_CREATION_FLAGS.NORMAL_PRIORITY_CLASS) else 0)
+            | (if (o.IDLE_PRIORITY_CLASS == 1) @enumToInt(PROCESS_CREATION_FLAGS.IDLE_PRIORITY_CLASS) else 0)
+            | (if (o.HIGH_PRIORITY_CLASS == 1) @enumToInt(PROCESS_CREATION_FLAGS.HIGH_PRIORITY_CLASS) else 0)
+            | (if (o.REALTIME_PRIORITY_CLASS == 1) @enumToInt(PROCESS_CREATION_FLAGS.REALTIME_PRIORITY_CLASS) else 0)
+            | (if (o.CREATE_NEW_PROCESS_GROUP == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_NEW_PROCESS_GROUP) else 0)
+            | (if (o.CREATE_UNICODE_ENVIRONMENT == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_UNICODE_ENVIRONMENT) else 0)
+            | (if (o.CREATE_SEPARATE_WOW_VDM == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_SEPARATE_WOW_VDM) else 0)
+            | (if (o.CREATE_SHARED_WOW_VDM == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_SHARED_WOW_VDM) else 0)
+            | (if (o.CREATE_FORCEDOS == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_FORCEDOS) else 0)
+            | (if (o.BELOW_NORMAL_PRIORITY_CLASS == 1) @enumToInt(PROCESS_CREATION_FLAGS.BELOW_NORMAL_PRIORITY_CLASS) else 0)
+            | (if (o.ABOVE_NORMAL_PRIORITY_CLASS == 1) @enumToInt(PROCESS_CREATION_FLAGS.ABOVE_NORMAL_PRIORITY_CLASS) else 0)
+            | (if (o.INHERIT_PARENT_AFFINITY == 1) @enumToInt(PROCESS_CREATION_FLAGS.INHERIT_PARENT_AFFINITY) else 0)
+            | (if (o.INHERIT_CALLER_PRIORITY == 1) @enumToInt(PROCESS_CREATION_FLAGS.INHERIT_CALLER_PRIORITY) else 0)
+            | (if (o.CREATE_PROTECTED_PROCESS == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_PROTECTED_PROCESS) else 0)
+            | (if (o.EXTENDED_STARTUPINFO_PRESENT == 1) @enumToInt(PROCESS_CREATION_FLAGS.EXTENDED_STARTUPINFO_PRESENT) else 0)
+            | (if (o.PROCESS_MODE_BACKGROUND_BEGIN == 1) @enumToInt(PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_BEGIN) else 0)
+            | (if (o.PROCESS_MODE_BACKGROUND_END == 1) @enumToInt(PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_END) else 0)
+            | (if (o.CREATE_SECURE_PROCESS == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_SECURE_PROCESS) else 0)
+            | (if (o.CREATE_BREAKAWAY_FROM_JOB == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_BREAKAWAY_FROM_JOB) else 0)
+            | (if (o.CREATE_PRESERVE_CODE_AUTHZ_LEVEL == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_PRESERVE_CODE_AUTHZ_LEVEL) else 0)
+            | (if (o.CREATE_DEFAULT_ERROR_MODE == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_DEFAULT_ERROR_MODE) else 0)
+            | (if (o.CREATE_NO_WINDOW == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_NO_WINDOW) else 0)
+            | (if (o.PROFILE_USER == 1) @enumToInt(PROCESS_CREATION_FLAGS.PROFILE_USER) else 0)
+            | (if (o.PROFILE_KERNEL == 1) @enumToInt(PROCESS_CREATION_FLAGS.PROFILE_KERNEL) else 0)
+            | (if (o.PROFILE_SERVER == 1) @enumToInt(PROCESS_CREATION_FLAGS.PROFILE_SERVER) else 0)
+            | (if (o.CREATE_IGNORE_SYSTEM_DEFAULT == 1) @enumToInt(PROCESS_CREATION_FLAGS.CREATE_IGNORE_SYSTEM_DEFAULT) else 0)
+        );
+    }
 };
 pub const DEBUG_PROCESS = PROCESS_CREATION_FLAGS.DEBUG_PROCESS;
 pub const DEBUG_ONLY_THIS_PROCESS = PROCESS_CREATION_FLAGS.DEBUG_ONLY_THIS_PROCESS;
@@ -88,7 +154,6 @@ pub const PROFILE_KERNEL = PROCESS_CREATION_FLAGS.PROFILE_KERNEL;
 pub const PROFILE_SERVER = PROCESS_CREATION_FLAGS.PROFILE_SERVER;
 pub const CREATE_IGNORE_SYSTEM_DEFAULT = PROCESS_CREATION_FLAGS.CREATE_IGNORE_SYSTEM_DEFAULT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PROCESS_ACCESS_RIGHTS = extern enum(u32) {
     TERMINATE = 1,
     CREATE_THREAD = 2,
@@ -112,6 +177,53 @@ pub const PROCESS_ACCESS_RIGHTS = extern enum(u32) {
     SYNCHRONIZE = 1048576,
     STANDARD_RIGHTS_REQUIRED = 983040,
     _,
+    pub fn initFlags(o: struct {
+        TERMINATE: u1 = 0,
+        CREATE_THREAD: u1 = 0,
+        SET_SESSIONID: u1 = 0,
+        VM_OPERATION: u1 = 0,
+        VM_READ: u1 = 0,
+        VM_WRITE: u1 = 0,
+        DUP_HANDLE: u1 = 0,
+        CREATE_PROCESS: u1 = 0,
+        SET_QUOTA: u1 = 0,
+        SET_INFORMATION: u1 = 0,
+        QUERY_INFORMATION: u1 = 0,
+        SUSPEND_RESUME: u1 = 0,
+        QUERY_LIMITED_INFORMATION: u1 = 0,
+        SET_LIMITED_INFORMATION: u1 = 0,
+        ALL_ACCESS: u1 = 0,
+        DELETE: u1 = 0,
+        READ_CONTROL: u1 = 0,
+        WRITE_DAC: u1 = 0,
+        WRITE_OWNER: u1 = 0,
+        SYNCHRONIZE: u1 = 0,
+        STANDARD_RIGHTS_REQUIRED: u1 = 0,
+    }) PROCESS_ACCESS_RIGHTS {
+        return @intToEnum(PROCESS_ACCESS_RIGHTS,
+              (if (o.TERMINATE == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.TERMINATE) else 0)
+            | (if (o.CREATE_THREAD == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.CREATE_THREAD) else 0)
+            | (if (o.SET_SESSIONID == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.SET_SESSIONID) else 0)
+            | (if (o.VM_OPERATION == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.VM_OPERATION) else 0)
+            | (if (o.VM_READ == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.VM_READ) else 0)
+            | (if (o.VM_WRITE == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.VM_WRITE) else 0)
+            | (if (o.DUP_HANDLE == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.DUP_HANDLE) else 0)
+            | (if (o.CREATE_PROCESS == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.CREATE_PROCESS) else 0)
+            | (if (o.SET_QUOTA == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.SET_QUOTA) else 0)
+            | (if (o.SET_INFORMATION == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.SET_INFORMATION) else 0)
+            | (if (o.QUERY_INFORMATION == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.QUERY_INFORMATION) else 0)
+            | (if (o.SUSPEND_RESUME == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.SUSPEND_RESUME) else 0)
+            | (if (o.QUERY_LIMITED_INFORMATION == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.QUERY_LIMITED_INFORMATION) else 0)
+            | (if (o.SET_LIMITED_INFORMATION == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.SET_LIMITED_INFORMATION) else 0)
+            | (if (o.ALL_ACCESS == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.ALL_ACCESS) else 0)
+            | (if (o.DELETE == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.DELETE) else 0)
+            | (if (o.READ_CONTROL == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.READ_CONTROL) else 0)
+            | (if (o.WRITE_DAC == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.WRITE_DAC) else 0)
+            | (if (o.WRITE_OWNER == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.WRITE_OWNER) else 0)
+            | (if (o.SYNCHRONIZE == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.SYNCHRONIZE) else 0)
+            | (if (o.STANDARD_RIGHTS_REQUIRED == 1) @enumToInt(PROCESS_ACCESS_RIGHTS.STANDARD_RIGHTS_REQUIRED) else 0)
+        );
+    }
 };
 pub const PROCESS_TERMINATE = PROCESS_ACCESS_RIGHTS.TERMINATE;
 pub const PROCESS_CREATE_THREAD = PROCESS_ACCESS_RIGHTS.CREATE_THREAD;
@@ -158,22 +270,40 @@ pub const PTP_POOL = isize;
 
 pub const LPPROC_THREAD_ATTRIBUTE_LIST = *c_void;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const THREAD_CREATION_FLAGS = extern enum(u32) {
     THREAD_CREATE_RUN_IMMEDIATELY = 0,
     THREAD_CREATE_SUSPENDED = 4,
     STACK_SIZE_PARAM_IS_A_RESERVATION = 65536,
     _,
+    pub fn initFlags(o: struct {
+        THREAD_CREATE_RUN_IMMEDIATELY: u1 = 0,
+        THREAD_CREATE_SUSPENDED: u1 = 0,
+        STACK_SIZE_PARAM_IS_A_RESERVATION: u1 = 0,
+    }) THREAD_CREATION_FLAGS {
+        return @intToEnum(THREAD_CREATION_FLAGS,
+              (if (o.THREAD_CREATE_RUN_IMMEDIATELY == 1) @enumToInt(THREAD_CREATION_FLAGS.THREAD_CREATE_RUN_IMMEDIATELY) else 0)
+            | (if (o.THREAD_CREATE_SUSPENDED == 1) @enumToInt(THREAD_CREATION_FLAGS.THREAD_CREATE_SUSPENDED) else 0)
+            | (if (o.STACK_SIZE_PARAM_IS_A_RESERVATION == 1) @enumToInt(THREAD_CREATION_FLAGS.STACK_SIZE_PARAM_IS_A_RESERVATION) else 0)
+        );
+    }
 };
 pub const THREAD_CREATE_RUN_IMMEDIATELY = THREAD_CREATION_FLAGS.THREAD_CREATE_RUN_IMMEDIATELY;
 pub const THREAD_CREATE_SUSPENDED = THREAD_CREATION_FLAGS.THREAD_CREATE_SUSPENDED;
 pub const STACK_SIZE_PARAM_IS_A_RESERVATION = THREAD_CREATION_FLAGS.STACK_SIZE_PARAM_IS_A_RESERVATION;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CREATE_EVENT = extern enum(u32) {
     INITIAL_SET = 2,
     MANUAL_RESET = 1,
     _,
+    pub fn initFlags(o: struct {
+        INITIAL_SET: u1 = 0,
+        MANUAL_RESET: u1 = 0,
+    }) CREATE_EVENT {
+        return @intToEnum(CREATE_EVENT,
+              (if (o.INITIAL_SET == 1) @enumToInt(CREATE_EVENT.INITIAL_SET) else 0)
+            | (if (o.MANUAL_RESET == 1) @enumToInt(CREATE_EVENT.MANUAL_RESET) else 0)
+        );
+    }
 };
 pub const CREATE_EVENT_INITIAL_SET = CREATE_EVENT.INITIAL_SET;
 pub const CREATE_EVENT_MANUAL_RESET = CREATE_EVENT.MANUAL_RESET;
@@ -244,7 +374,6 @@ pub const PF_ARM_V8_CRYPTO_INSTRUCTIONS_AVAILABLE = PROCESSOR_FEATURE_ID.ARM_V8_
 pub const PF_ARM_V8_CRC32_INSTRUCTIONS_AVAILABLE = PROCESSOR_FEATURE_ID.ARM_V8_CRC32_INSTRUCTIONS_AVAILABLE;
 pub const PF_ARM_V81_ATOMIC_INSTRUCTIONS_AVAILABLE = PROCESSOR_FEATURE_ID.ARM_V81_ATOMIC_INSTRUCTIONS_AVAILABLE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const STARTUPINFOW_FLAGS = extern enum(u32) {
     FORCEONFEEDBACK = 64,
     FORCEOFFFEEDBACK = 128,
@@ -261,6 +390,39 @@ pub const STARTUPINFOW_FLAGS = extern enum(u32) {
     USESIZE = 2,
     USESTDHANDLES = 256,
     _,
+    pub fn initFlags(o: struct {
+        FORCEONFEEDBACK: u1 = 0,
+        FORCEOFFFEEDBACK: u1 = 0,
+        PREVENTPINNING: u1 = 0,
+        RUNFULLSCREEN: u1 = 0,
+        TITLEISAPPID: u1 = 0,
+        TITLEISLINKNAME: u1 = 0,
+        UNTRUSTEDSOURCE: u1 = 0,
+        USECOUNTCHARS: u1 = 0,
+        USEFILLATTRIBUTE: u1 = 0,
+        USEHOTKEY: u1 = 0,
+        USEPOSITION: u1 = 0,
+        USESHOWWINDOW: u1 = 0,
+        USESIZE: u1 = 0,
+        USESTDHANDLES: u1 = 0,
+    }) STARTUPINFOW_FLAGS {
+        return @intToEnum(STARTUPINFOW_FLAGS,
+              (if (o.FORCEONFEEDBACK == 1) @enumToInt(STARTUPINFOW_FLAGS.FORCEONFEEDBACK) else 0)
+            | (if (o.FORCEOFFFEEDBACK == 1) @enumToInt(STARTUPINFOW_FLAGS.FORCEOFFFEEDBACK) else 0)
+            | (if (o.PREVENTPINNING == 1) @enumToInt(STARTUPINFOW_FLAGS.PREVENTPINNING) else 0)
+            | (if (o.RUNFULLSCREEN == 1) @enumToInt(STARTUPINFOW_FLAGS.RUNFULLSCREEN) else 0)
+            | (if (o.TITLEISAPPID == 1) @enumToInt(STARTUPINFOW_FLAGS.TITLEISAPPID) else 0)
+            | (if (o.TITLEISLINKNAME == 1) @enumToInt(STARTUPINFOW_FLAGS.TITLEISLINKNAME) else 0)
+            | (if (o.UNTRUSTEDSOURCE == 1) @enumToInt(STARTUPINFOW_FLAGS.UNTRUSTEDSOURCE) else 0)
+            | (if (o.USECOUNTCHARS == 1) @enumToInt(STARTUPINFOW_FLAGS.USECOUNTCHARS) else 0)
+            | (if (o.USEFILLATTRIBUTE == 1) @enumToInt(STARTUPINFOW_FLAGS.USEFILLATTRIBUTE) else 0)
+            | (if (o.USEHOTKEY == 1) @enumToInt(STARTUPINFOW_FLAGS.USEHOTKEY) else 0)
+            | (if (o.USEPOSITION == 1) @enumToInt(STARTUPINFOW_FLAGS.USEPOSITION) else 0)
+            | (if (o.USESHOWWINDOW == 1) @enumToInt(STARTUPINFOW_FLAGS.USESHOWWINDOW) else 0)
+            | (if (o.USESIZE == 1) @enumToInt(STARTUPINFOW_FLAGS.USESIZE) else 0)
+            | (if (o.USESTDHANDLES == 1) @enumToInt(STARTUPINFOW_FLAGS.USESTDHANDLES) else 0)
+        );
+    }
 };
 pub const STARTF_FORCEONFEEDBACK = STARTUPINFOW_FLAGS.FORCEONFEEDBACK;
 pub const STARTF_FORCEOFFFEEDBACK = STARTUPINFOW_FLAGS.FORCEOFFFEEDBACK;

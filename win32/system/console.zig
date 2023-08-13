@@ -71,7 +71,6 @@ pub const FOCUS_EVENT = @as(u32, 16);
 //--------------------------------------------------------------------------------
 // Section: Types (19)
 //--------------------------------------------------------------------------------
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CONSOLE_MODE = extern enum(u32) {
     ENABLE_ECHO_INPUT = 4,
     ENABLE_INSERT_MODE = 32,
@@ -87,6 +86,37 @@ pub const CONSOLE_MODE = extern enum(u32) {
     DISABLE_NEWLINE_AUTO_RETURN = 8,
     ENABLE_LVB_GRID_WORLDWIDE = 16,
     _,
+    pub fn initFlags(o: struct {
+        ENABLE_ECHO_INPUT: u1 = 0,
+        ENABLE_INSERT_MODE: u1 = 0,
+        ENABLE_LINE_INPUT: u1 = 0,
+        ENABLE_MOUSE_INPUT: u1 = 0,
+        ENABLE_PROCESSED_INPUT: u1 = 0,
+        ENABLE_QUICK_EDIT_MODE: u1 = 0,
+        ENABLE_WINDOW_INPUT: u1 = 0,
+        ENABLE_VIRTUAL_TERMINAL_INPUT: u1 = 0,
+        ENABLE_PROCESSED_OUTPUT: u1 = 0,
+        ENABLE_WRAP_AT_EOL_OUTPUT: u1 = 0,
+        ENABLE_VIRTUAL_TERMINAL_PROCESSING: u1 = 0,
+        DISABLE_NEWLINE_AUTO_RETURN: u1 = 0,
+        ENABLE_LVB_GRID_WORLDWIDE: u1 = 0,
+    }) CONSOLE_MODE {
+        return @intToEnum(CONSOLE_MODE,
+              (if (o.ENABLE_ECHO_INPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_ECHO_INPUT) else 0)
+            | (if (o.ENABLE_INSERT_MODE == 1) @enumToInt(CONSOLE_MODE.ENABLE_INSERT_MODE) else 0)
+            | (if (o.ENABLE_LINE_INPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_LINE_INPUT) else 0)
+            | (if (o.ENABLE_MOUSE_INPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_MOUSE_INPUT) else 0)
+            | (if (o.ENABLE_PROCESSED_INPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_PROCESSED_INPUT) else 0)
+            | (if (o.ENABLE_QUICK_EDIT_MODE == 1) @enumToInt(CONSOLE_MODE.ENABLE_QUICK_EDIT_MODE) else 0)
+            | (if (o.ENABLE_WINDOW_INPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_WINDOW_INPUT) else 0)
+            | (if (o.ENABLE_VIRTUAL_TERMINAL_INPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_VIRTUAL_TERMINAL_INPUT) else 0)
+            | (if (o.ENABLE_PROCESSED_OUTPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_PROCESSED_OUTPUT) else 0)
+            | (if (o.ENABLE_WRAP_AT_EOL_OUTPUT == 1) @enumToInt(CONSOLE_MODE.ENABLE_WRAP_AT_EOL_OUTPUT) else 0)
+            | (if (o.ENABLE_VIRTUAL_TERMINAL_PROCESSING == 1) @enumToInt(CONSOLE_MODE.ENABLE_VIRTUAL_TERMINAL_PROCESSING) else 0)
+            | (if (o.DISABLE_NEWLINE_AUTO_RETURN == 1) @enumToInt(CONSOLE_MODE.DISABLE_NEWLINE_AUTO_RETURN) else 0)
+            | (if (o.ENABLE_LVB_GRID_WORLDWIDE == 1) @enumToInt(CONSOLE_MODE.ENABLE_LVB_GRID_WORLDWIDE) else 0)
+        );
+    }
 };
 pub const ENABLE_ECHO_INPUT = CONSOLE_MODE.ENABLE_ECHO_INPUT;
 pub const ENABLE_INSERT_MODE = CONSOLE_MODE.ENABLE_INSERT_MODE;

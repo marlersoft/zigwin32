@@ -718,12 +718,22 @@ pub const IMLOperatorKernel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MLOperatorParameterOptions = extern enum(u32) {
     Single = 0,
     Optional = 1,
     Variadic = 2,
     _,
+    pub fn initFlags(o: struct {
+        Single: u1 = 0,
+        Optional: u1 = 0,
+        Variadic: u1 = 0,
+    }) MLOperatorParameterOptions {
+        return @intToEnum(MLOperatorParameterOptions,
+              (if (o.Single == 1) @enumToInt(MLOperatorParameterOptions.Single) else 0)
+            | (if (o.Optional == 1) @enumToInt(MLOperatorParameterOptions.Optional) else 0)
+            | (if (o.Variadic == 1) @enumToInt(MLOperatorParameterOptions.Variadic) else 0)
+        );
+    }
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
@@ -971,11 +981,19 @@ pub const MLOperatorSetId = extern struct {
     version: i32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MLOperatorKernelOptions = extern enum(u32) {
     None = 0,
     s = 1,
     _,
+    pub fn initFlags(o: struct {
+        None: u1 = 0,
+        s: u1 = 0,
+    }) MLOperatorKernelOptions {
+        return @intToEnum(MLOperatorKernelOptions,
+              (if (o.None == 1) @enumToInt(MLOperatorKernelOptions.None) else 0)
+            | (if (o.s == 1) @enumToInt(MLOperatorKernelOptions.s) else 0)
+        );
+    }
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 

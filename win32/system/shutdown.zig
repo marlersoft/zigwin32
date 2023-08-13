@@ -19,7 +19,6 @@ pub const MAX_NUM_REASONS = @as(u32, 256);
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SHUTDOWN_REASON = extern enum(u32) {
     NONE = 0,
     FLAG_COMMENT_REQUIRED = 16777216,
@@ -73,6 +72,113 @@ pub const SHUTDOWN_REASON = extern enum(u32) {
     LEGACY_API = 2147942400,
     VALID_BIT_MASK = 3238002687,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        FLAG_COMMENT_REQUIRED: u1 = 0,
+        FLAG_DIRTY_PROBLEM_ID_REQUIRED: u1 = 0,
+        FLAG_CLEAN_UI: u1 = 0,
+        FLAG_DIRTY_UI: u1 = 0,
+        FLAG_MOBILE_UI_RESERVED: u1 = 0,
+        FLAG_USER_DEFINED: u1 = 0,
+        FLAG_PLANNED: u1 = 0,
+        MAJOR_OTHER: u1 = 0,
+        MAJOR_NONE: u1 = 0,
+        MAJOR_HARDWARE: u1 = 0,
+        MAJOR_OPERATINGSYSTEM: u1 = 0,
+        MAJOR_SOFTWARE: u1 = 0,
+        MAJOR_APPLICATION: u1 = 0,
+        MAJOR_SYSTEM: u1 = 0,
+        MAJOR_POWER: u1 = 0,
+        MAJOR_LEGACY_API: u1 = 0,
+        MINOR_OTHER: u1 = 0,
+        MINOR_NONE: u1 = 0,
+        MINOR_MAINTENANCE: u1 = 0,
+        MINOR_INSTALLATION: u1 = 0,
+        MINOR_UPGRADE: u1 = 0,
+        MINOR_RECONFIG: u1 = 0,
+        MINOR_HUNG: u1 = 0,
+        MINOR_UNSTABLE: u1 = 0,
+        MINOR_DISK: u1 = 0,
+        MINOR_PROCESSOR: u1 = 0,
+        MINOR_NETWORKCARD: u1 = 0,
+        MINOR_POWER_SUPPLY: u1 = 0,
+        MINOR_CORDUNPLUGGED: u1 = 0,
+        MINOR_ENVIRONMENT: u1 = 0,
+        MINOR_HARDWARE_DRIVER: u1 = 0,
+        MINOR_OTHERDRIVER: u1 = 0,
+        MINOR_BLUESCREEN: u1 = 0,
+        MINOR_SERVICEPACK: u1 = 0,
+        MINOR_HOTFIX: u1 = 0,
+        MINOR_SECURITYFIX: u1 = 0,
+        MINOR_SECURITY: u1 = 0,
+        MINOR_NETWORK_CONNECTIVITY: u1 = 0,
+        MINOR_WMI: u1 = 0,
+        MINOR_SERVICEPACK_UNINSTALL: u1 = 0,
+        MINOR_HOTFIX_UNINSTALL: u1 = 0,
+        MINOR_SECURITYFIX_UNINSTALL: u1 = 0,
+        MINOR_MMC: u1 = 0,
+        MINOR_SYSTEMRESTORE: u1 = 0,
+        MINOR_TERMSRV: u1 = 0,
+        MINOR_DC_PROMOTION: u1 = 0,
+        MINOR_DC_DEMOTION: u1 = 0,
+        UNKNOWN: u1 = 0,
+        LEGACY_API: u1 = 0,
+        VALID_BIT_MASK: u1 = 0,
+    }) SHUTDOWN_REASON {
+        return @intToEnum(SHUTDOWN_REASON,
+              (if (o.NONE == 1) @enumToInt(SHUTDOWN_REASON.NONE) else 0)
+            | (if (o.FLAG_COMMENT_REQUIRED == 1) @enumToInt(SHUTDOWN_REASON.FLAG_COMMENT_REQUIRED) else 0)
+            | (if (o.FLAG_DIRTY_PROBLEM_ID_REQUIRED == 1) @enumToInt(SHUTDOWN_REASON.FLAG_DIRTY_PROBLEM_ID_REQUIRED) else 0)
+            | (if (o.FLAG_CLEAN_UI == 1) @enumToInt(SHUTDOWN_REASON.FLAG_CLEAN_UI) else 0)
+            | (if (o.FLAG_DIRTY_UI == 1) @enumToInt(SHUTDOWN_REASON.FLAG_DIRTY_UI) else 0)
+            | (if (o.FLAG_MOBILE_UI_RESERVED == 1) @enumToInt(SHUTDOWN_REASON.FLAG_MOBILE_UI_RESERVED) else 0)
+            | (if (o.FLAG_USER_DEFINED == 1) @enumToInt(SHUTDOWN_REASON.FLAG_USER_DEFINED) else 0)
+            | (if (o.FLAG_PLANNED == 1) @enumToInt(SHUTDOWN_REASON.FLAG_PLANNED) else 0)
+            | (if (o.MAJOR_OTHER == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_OTHER) else 0)
+            | (if (o.MAJOR_NONE == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_NONE) else 0)
+            | (if (o.MAJOR_HARDWARE == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_HARDWARE) else 0)
+            | (if (o.MAJOR_OPERATINGSYSTEM == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_OPERATINGSYSTEM) else 0)
+            | (if (o.MAJOR_SOFTWARE == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_SOFTWARE) else 0)
+            | (if (o.MAJOR_APPLICATION == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_APPLICATION) else 0)
+            | (if (o.MAJOR_SYSTEM == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_SYSTEM) else 0)
+            | (if (o.MAJOR_POWER == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_POWER) else 0)
+            | (if (o.MAJOR_LEGACY_API == 1) @enumToInt(SHUTDOWN_REASON.MAJOR_LEGACY_API) else 0)
+            | (if (o.MINOR_OTHER == 1) @enumToInt(SHUTDOWN_REASON.MINOR_OTHER) else 0)
+            | (if (o.MINOR_NONE == 1) @enumToInt(SHUTDOWN_REASON.MINOR_NONE) else 0)
+            | (if (o.MINOR_MAINTENANCE == 1) @enumToInt(SHUTDOWN_REASON.MINOR_MAINTENANCE) else 0)
+            | (if (o.MINOR_INSTALLATION == 1) @enumToInt(SHUTDOWN_REASON.MINOR_INSTALLATION) else 0)
+            | (if (o.MINOR_UPGRADE == 1) @enumToInt(SHUTDOWN_REASON.MINOR_UPGRADE) else 0)
+            | (if (o.MINOR_RECONFIG == 1) @enumToInt(SHUTDOWN_REASON.MINOR_RECONFIG) else 0)
+            | (if (o.MINOR_HUNG == 1) @enumToInt(SHUTDOWN_REASON.MINOR_HUNG) else 0)
+            | (if (o.MINOR_UNSTABLE == 1) @enumToInt(SHUTDOWN_REASON.MINOR_UNSTABLE) else 0)
+            | (if (o.MINOR_DISK == 1) @enumToInt(SHUTDOWN_REASON.MINOR_DISK) else 0)
+            | (if (o.MINOR_PROCESSOR == 1) @enumToInt(SHUTDOWN_REASON.MINOR_PROCESSOR) else 0)
+            | (if (o.MINOR_NETWORKCARD == 1) @enumToInt(SHUTDOWN_REASON.MINOR_NETWORKCARD) else 0)
+            | (if (o.MINOR_POWER_SUPPLY == 1) @enumToInt(SHUTDOWN_REASON.MINOR_POWER_SUPPLY) else 0)
+            | (if (o.MINOR_CORDUNPLUGGED == 1) @enumToInt(SHUTDOWN_REASON.MINOR_CORDUNPLUGGED) else 0)
+            | (if (o.MINOR_ENVIRONMENT == 1) @enumToInt(SHUTDOWN_REASON.MINOR_ENVIRONMENT) else 0)
+            | (if (o.MINOR_HARDWARE_DRIVER == 1) @enumToInt(SHUTDOWN_REASON.MINOR_HARDWARE_DRIVER) else 0)
+            | (if (o.MINOR_OTHERDRIVER == 1) @enumToInt(SHUTDOWN_REASON.MINOR_OTHERDRIVER) else 0)
+            | (if (o.MINOR_BLUESCREEN == 1) @enumToInt(SHUTDOWN_REASON.MINOR_BLUESCREEN) else 0)
+            | (if (o.MINOR_SERVICEPACK == 1) @enumToInt(SHUTDOWN_REASON.MINOR_SERVICEPACK) else 0)
+            | (if (o.MINOR_HOTFIX == 1) @enumToInt(SHUTDOWN_REASON.MINOR_HOTFIX) else 0)
+            | (if (o.MINOR_SECURITYFIX == 1) @enumToInt(SHUTDOWN_REASON.MINOR_SECURITYFIX) else 0)
+            | (if (o.MINOR_SECURITY == 1) @enumToInt(SHUTDOWN_REASON.MINOR_SECURITY) else 0)
+            | (if (o.MINOR_NETWORK_CONNECTIVITY == 1) @enumToInt(SHUTDOWN_REASON.MINOR_NETWORK_CONNECTIVITY) else 0)
+            | (if (o.MINOR_WMI == 1) @enumToInt(SHUTDOWN_REASON.MINOR_WMI) else 0)
+            | (if (o.MINOR_SERVICEPACK_UNINSTALL == 1) @enumToInt(SHUTDOWN_REASON.MINOR_SERVICEPACK_UNINSTALL) else 0)
+            | (if (o.MINOR_HOTFIX_UNINSTALL == 1) @enumToInt(SHUTDOWN_REASON.MINOR_HOTFIX_UNINSTALL) else 0)
+            | (if (o.MINOR_SECURITYFIX_UNINSTALL == 1) @enumToInt(SHUTDOWN_REASON.MINOR_SECURITYFIX_UNINSTALL) else 0)
+            | (if (o.MINOR_MMC == 1) @enumToInt(SHUTDOWN_REASON.MINOR_MMC) else 0)
+            | (if (o.MINOR_SYSTEMRESTORE == 1) @enumToInt(SHUTDOWN_REASON.MINOR_SYSTEMRESTORE) else 0)
+            | (if (o.MINOR_TERMSRV == 1) @enumToInt(SHUTDOWN_REASON.MINOR_TERMSRV) else 0)
+            | (if (o.MINOR_DC_PROMOTION == 1) @enumToInt(SHUTDOWN_REASON.MINOR_DC_PROMOTION) else 0)
+            | (if (o.MINOR_DC_DEMOTION == 1) @enumToInt(SHUTDOWN_REASON.MINOR_DC_DEMOTION) else 0)
+            | (if (o.UNKNOWN == 1) @enumToInt(SHUTDOWN_REASON.UNKNOWN) else 0)
+            | (if (o.LEGACY_API == 1) @enumToInt(SHUTDOWN_REASON.LEGACY_API) else 0)
+            | (if (o.VALID_BIT_MASK == 1) @enumToInt(SHUTDOWN_REASON.VALID_BIT_MASK) else 0)
+        );
+    }
 };
 pub const SHTDN_REASON_NONE = SHUTDOWN_REASON.NONE;
 pub const SHTDN_REASON_FLAG_COMMENT_REQUIRED = SHUTDOWN_REASON.FLAG_COMMENT_REQUIRED;
@@ -126,7 +232,6 @@ pub const SHTDN_REASON_UNKNOWN = SHUTDOWN_REASON.UNKNOWN;
 pub const SHTDN_REASON_LEGACY_API = SHUTDOWN_REASON.LEGACY_API;
 pub const SHTDN_REASON_VALID_BIT_MASK = SHUTDOWN_REASON.VALID_BIT_MASK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SHUTDOWN_FLAGS = extern enum(u32) {
     FORCE_OTHERS = 1,
     FORCE_SELF = 2,
@@ -143,6 +248,39 @@ pub const SHUTDOWN_FLAGS = extern enum(u32) {
     MOBILE_UI = 4096,
     ARSO = 8192,
     _,
+    pub fn initFlags(o: struct {
+        FORCE_OTHERS: u1 = 0,
+        FORCE_SELF: u1 = 0,
+        RESTART: u1 = 0,
+        POWEROFF: u1 = 0,
+        NOREBOOT: u1 = 0,
+        GRACE_OVERRIDE: u1 = 0,
+        INSTALL_UPDATES: u1 = 0,
+        RESTARTAPPS: u1 = 0,
+        SKIP_SVC_PRESHUTDOWN: u1 = 0,
+        HYBRID: u1 = 0,
+        RESTART_BOOTOPTIONS: u1 = 0,
+        SOFT_REBOOT: u1 = 0,
+        MOBILE_UI: u1 = 0,
+        ARSO: u1 = 0,
+    }) SHUTDOWN_FLAGS {
+        return @intToEnum(SHUTDOWN_FLAGS,
+              (if (o.FORCE_OTHERS == 1) @enumToInt(SHUTDOWN_FLAGS.FORCE_OTHERS) else 0)
+            | (if (o.FORCE_SELF == 1) @enumToInt(SHUTDOWN_FLAGS.FORCE_SELF) else 0)
+            | (if (o.RESTART == 1) @enumToInt(SHUTDOWN_FLAGS.RESTART) else 0)
+            | (if (o.POWEROFF == 1) @enumToInt(SHUTDOWN_FLAGS.POWEROFF) else 0)
+            | (if (o.NOREBOOT == 1) @enumToInt(SHUTDOWN_FLAGS.NOREBOOT) else 0)
+            | (if (o.GRACE_OVERRIDE == 1) @enumToInt(SHUTDOWN_FLAGS.GRACE_OVERRIDE) else 0)
+            | (if (o.INSTALL_UPDATES == 1) @enumToInt(SHUTDOWN_FLAGS.INSTALL_UPDATES) else 0)
+            | (if (o.RESTARTAPPS == 1) @enumToInt(SHUTDOWN_FLAGS.RESTARTAPPS) else 0)
+            | (if (o.SKIP_SVC_PRESHUTDOWN == 1) @enumToInt(SHUTDOWN_FLAGS.SKIP_SVC_PRESHUTDOWN) else 0)
+            | (if (o.HYBRID == 1) @enumToInt(SHUTDOWN_FLAGS.HYBRID) else 0)
+            | (if (o.RESTART_BOOTOPTIONS == 1) @enumToInt(SHUTDOWN_FLAGS.RESTART_BOOTOPTIONS) else 0)
+            | (if (o.SOFT_REBOOT == 1) @enumToInt(SHUTDOWN_FLAGS.SOFT_REBOOT) else 0)
+            | (if (o.MOBILE_UI == 1) @enumToInt(SHUTDOWN_FLAGS.MOBILE_UI) else 0)
+            | (if (o.ARSO == 1) @enumToInt(SHUTDOWN_FLAGS.ARSO) else 0)
+        );
+    }
 };
 pub const SHUTDOWN_FORCE_OTHERS = SHUTDOWN_FLAGS.FORCE_OTHERS;
 pub const SHUTDOWN_FORCE_SELF = SHUTDOWN_FLAGS.FORCE_SELF;

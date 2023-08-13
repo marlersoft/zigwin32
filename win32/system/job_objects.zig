@@ -6,7 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const JOB_OBJECT_LIMIT = extern enum(u32) {
     LIMIT_WORKINGSET = 1,
     LIMIT_PROCESS_TIME = 2,
@@ -36,6 +35,65 @@ pub const JOB_OBJECT_LIMIT = extern enum(u32) {
     EXTENDED_LIMIT_VALID_FLAGS = 32767,
     NOTIFICATION_LIMIT_VALID_FLAGS = 2064900,
     _,
+    pub fn initFlags(o: struct {
+        LIMIT_WORKINGSET: u1 = 0,
+        LIMIT_PROCESS_TIME: u1 = 0,
+        LIMIT_JOB_TIME: u1 = 0,
+        LIMIT_ACTIVE_PROCESS: u1 = 0,
+        LIMIT_AFFINITY: u1 = 0,
+        LIMIT_PRIORITY_CLASS: u1 = 0,
+        LIMIT_PRESERVE_JOB_TIME: u1 = 0,
+        LIMIT_SCHEDULING_CLASS: u1 = 0,
+        LIMIT_PROCESS_MEMORY: u1 = 0,
+        LIMIT_JOB_MEMORY: u1 = 0,
+        LIMIT_JOB_MEMORY_HIGH: u1 = 0,
+        LIMIT_DIE_ON_UNHANDLED_EXCEPTION: u1 = 0,
+        LIMIT_BREAKAWAY_OK: u1 = 0,
+        LIMIT_SILENT_BREAKAWAY_OK: u1 = 0,
+        LIMIT_KILL_ON_JOB_CLOSE: u1 = 0,
+        LIMIT_SUBSET_AFFINITY: u1 = 0,
+        LIMIT_JOB_MEMORY_LOW: u1 = 0,
+        LIMIT_JOB_READ_BYTES: u1 = 0,
+        LIMIT_JOB_WRITE_BYTES: u1 = 0,
+        LIMIT_RATE_CONTROL: u1 = 0,
+        LIMIT_CPU_RATE_CONTROL: u1 = 0,
+        LIMIT_IO_RATE_CONTROL: u1 = 0,
+        LIMIT_NET_RATE_CONTROL: u1 = 0,
+        LIMIT_VALID_FLAGS: u1 = 0,
+        BASIC_LIMIT_VALID_FLAGS: u1 = 0,
+        EXTENDED_LIMIT_VALID_FLAGS: u1 = 0,
+        NOTIFICATION_LIMIT_VALID_FLAGS: u1 = 0,
+    }) JOB_OBJECT_LIMIT {
+        return @intToEnum(JOB_OBJECT_LIMIT,
+              (if (o.LIMIT_WORKINGSET == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_WORKINGSET) else 0)
+            | (if (o.LIMIT_PROCESS_TIME == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_PROCESS_TIME) else 0)
+            | (if (o.LIMIT_JOB_TIME == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_JOB_TIME) else 0)
+            | (if (o.LIMIT_ACTIVE_PROCESS == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_ACTIVE_PROCESS) else 0)
+            | (if (o.LIMIT_AFFINITY == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_AFFINITY) else 0)
+            | (if (o.LIMIT_PRIORITY_CLASS == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_PRIORITY_CLASS) else 0)
+            | (if (o.LIMIT_PRESERVE_JOB_TIME == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_PRESERVE_JOB_TIME) else 0)
+            | (if (o.LIMIT_SCHEDULING_CLASS == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_SCHEDULING_CLASS) else 0)
+            | (if (o.LIMIT_PROCESS_MEMORY == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_PROCESS_MEMORY) else 0)
+            | (if (o.LIMIT_JOB_MEMORY == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY) else 0)
+            | (if (o.LIMIT_JOB_MEMORY_HIGH == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY_HIGH) else 0)
+            | (if (o.LIMIT_DIE_ON_UNHANDLED_EXCEPTION == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_DIE_ON_UNHANDLED_EXCEPTION) else 0)
+            | (if (o.LIMIT_BREAKAWAY_OK == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_BREAKAWAY_OK) else 0)
+            | (if (o.LIMIT_SILENT_BREAKAWAY_OK == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_SILENT_BREAKAWAY_OK) else 0)
+            | (if (o.LIMIT_KILL_ON_JOB_CLOSE == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_KILL_ON_JOB_CLOSE) else 0)
+            | (if (o.LIMIT_SUBSET_AFFINITY == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_SUBSET_AFFINITY) else 0)
+            | (if (o.LIMIT_JOB_MEMORY_LOW == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY_LOW) else 0)
+            | (if (o.LIMIT_JOB_READ_BYTES == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_JOB_READ_BYTES) else 0)
+            | (if (o.LIMIT_JOB_WRITE_BYTES == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_JOB_WRITE_BYTES) else 0)
+            | (if (o.LIMIT_RATE_CONTROL == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_RATE_CONTROL) else 0)
+            | (if (o.LIMIT_CPU_RATE_CONTROL == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_CPU_RATE_CONTROL) else 0)
+            | (if (o.LIMIT_IO_RATE_CONTROL == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_IO_RATE_CONTROL) else 0)
+            | (if (o.LIMIT_NET_RATE_CONTROL == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_NET_RATE_CONTROL) else 0)
+            | (if (o.LIMIT_VALID_FLAGS == 1) @enumToInt(JOB_OBJECT_LIMIT.LIMIT_VALID_FLAGS) else 0)
+            | (if (o.BASIC_LIMIT_VALID_FLAGS == 1) @enumToInt(JOB_OBJECT_LIMIT.BASIC_LIMIT_VALID_FLAGS) else 0)
+            | (if (o.EXTENDED_LIMIT_VALID_FLAGS == 1) @enumToInt(JOB_OBJECT_LIMIT.EXTENDED_LIMIT_VALID_FLAGS) else 0)
+            | (if (o.NOTIFICATION_LIMIT_VALID_FLAGS == 1) @enumToInt(JOB_OBJECT_LIMIT.NOTIFICATION_LIMIT_VALID_FLAGS) else 0)
+        );
+    }
 };
 pub const JOB_OBJECT_LIMIT_WORKINGSET = JOB_OBJECT_LIMIT.LIMIT_WORKINGSET;
 pub const JOB_OBJECT_LIMIT_PROCESS_TIME = JOB_OBJECT_LIMIT.LIMIT_PROCESS_TIME;
@@ -65,7 +123,6 @@ pub const JOB_OBJECT_BASIC_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.BASIC_LIMIT_VALI
 pub const JOB_OBJECT_EXTENDED_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.EXTENDED_LIMIT_VALID_FLAGS;
 pub const JOB_OBJECT_NOTIFICATION_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.NOTIFICATION_LIMIT_VALID_FLAGS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const JOB_OBJECT_UILIMIT = extern enum(u32) {
     NONE = 0,
     HANDLES = 1,
@@ -77,6 +134,29 @@ pub const JOB_OBJECT_UILIMIT = extern enum(u32) {
     DESKTOP = 64,
     EXITWINDOWS = 128,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        HANDLES: u1 = 0,
+        READCLIPBOARD: u1 = 0,
+        WRITECLIPBOARD: u1 = 0,
+        SYSTEMPARAMETERS: u1 = 0,
+        DISPLAYSETTINGS: u1 = 0,
+        GLOBALATOMS: u1 = 0,
+        DESKTOP: u1 = 0,
+        EXITWINDOWS: u1 = 0,
+    }) JOB_OBJECT_UILIMIT {
+        return @intToEnum(JOB_OBJECT_UILIMIT,
+              (if (o.NONE == 1) @enumToInt(JOB_OBJECT_UILIMIT.NONE) else 0)
+            | (if (o.HANDLES == 1) @enumToInt(JOB_OBJECT_UILIMIT.HANDLES) else 0)
+            | (if (o.READCLIPBOARD == 1) @enumToInt(JOB_OBJECT_UILIMIT.READCLIPBOARD) else 0)
+            | (if (o.WRITECLIPBOARD == 1) @enumToInt(JOB_OBJECT_UILIMIT.WRITECLIPBOARD) else 0)
+            | (if (o.SYSTEMPARAMETERS == 1) @enumToInt(JOB_OBJECT_UILIMIT.SYSTEMPARAMETERS) else 0)
+            | (if (o.DISPLAYSETTINGS == 1) @enumToInt(JOB_OBJECT_UILIMIT.DISPLAYSETTINGS) else 0)
+            | (if (o.GLOBALATOMS == 1) @enumToInt(JOB_OBJECT_UILIMIT.GLOBALATOMS) else 0)
+            | (if (o.DESKTOP == 1) @enumToInt(JOB_OBJECT_UILIMIT.DESKTOP) else 0)
+            | (if (o.EXITWINDOWS == 1) @enumToInt(JOB_OBJECT_UILIMIT.EXITWINDOWS) else 0)
+        );
+    }
 };
 pub const JOB_OBJECT_UILIMIT_NONE = JOB_OBJECT_UILIMIT.NONE;
 pub const JOB_OBJECT_UILIMIT_HANDLES = JOB_OBJECT_UILIMIT.HANDLES;
@@ -88,7 +168,6 @@ pub const JOB_OBJECT_UILIMIT_GLOBALATOMS = JOB_OBJECT_UILIMIT.GLOBALATOMS;
 pub const JOB_OBJECT_UILIMIT_DESKTOP = JOB_OBJECT_UILIMIT.DESKTOP;
 pub const JOB_OBJECT_UILIMIT_EXITWINDOWS = JOB_OBJECT_UILIMIT.EXITWINDOWS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const JOB_OBJECT_SECURITY = extern enum(u32) {
     NO_ADMIN = 1,
     RESTRICTED_TOKEN = 2,
@@ -96,6 +175,21 @@ pub const JOB_OBJECT_SECURITY = extern enum(u32) {
     FILTER_TOKENS = 8,
     VALID_FLAGS = 15,
     _,
+    pub fn initFlags(o: struct {
+        NO_ADMIN: u1 = 0,
+        RESTRICTED_TOKEN: u1 = 0,
+        ONLY_TOKEN: u1 = 0,
+        FILTER_TOKENS: u1 = 0,
+        VALID_FLAGS: u1 = 0,
+    }) JOB_OBJECT_SECURITY {
+        return @intToEnum(JOB_OBJECT_SECURITY,
+              (if (o.NO_ADMIN == 1) @enumToInt(JOB_OBJECT_SECURITY.NO_ADMIN) else 0)
+            | (if (o.RESTRICTED_TOKEN == 1) @enumToInt(JOB_OBJECT_SECURITY.RESTRICTED_TOKEN) else 0)
+            | (if (o.ONLY_TOKEN == 1) @enumToInt(JOB_OBJECT_SECURITY.ONLY_TOKEN) else 0)
+            | (if (o.FILTER_TOKENS == 1) @enumToInt(JOB_OBJECT_SECURITY.FILTER_TOKENS) else 0)
+            | (if (o.VALID_FLAGS == 1) @enumToInt(JOB_OBJECT_SECURITY.VALID_FLAGS) else 0)
+        );
+    }
 };
 pub const JOB_OBJECT_SECURITY_NO_ADMIN = JOB_OBJECT_SECURITY.NO_ADMIN;
 pub const JOB_OBJECT_SECURITY_RESTRICTED_TOKEN = JOB_OBJECT_SECURITY.RESTRICTED_TOKEN;

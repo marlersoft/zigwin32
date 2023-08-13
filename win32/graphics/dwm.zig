@@ -208,7 +208,6 @@ pub const GT_TOUCH_PRESSANDHOLD = GESTURE_TYPE.TOUCH_PRESSANDHOLD;
 pub const GT_TOUCH_PRESSANDHOLDABORT = GESTURE_TYPE.TOUCH_PRESSANDHOLDABORT;
 pub const GT_TOUCH_PRESSANDTAP = GESTURE_TYPE.TOUCH_PRESSANDTAP;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DWM_SHOWCONTACT = extern enum(u32) {
     DOWN = 1,
     UP = 2,
@@ -218,6 +217,25 @@ pub const DWM_SHOWCONTACT = extern enum(u32) {
     NONE = 0,
     ALL = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        DOWN: u1 = 0,
+        UP: u1 = 0,
+        DRAG: u1 = 0,
+        HOLD: u1 = 0,
+        PENBARREL: u1 = 0,
+        NONE: u1 = 0,
+        ALL: u1 = 0,
+    }) DWM_SHOWCONTACT {
+        return @intToEnum(DWM_SHOWCONTACT,
+              (if (o.DOWN == 1) @enumToInt(DWM_SHOWCONTACT.DOWN) else 0)
+            | (if (o.UP == 1) @enumToInt(DWM_SHOWCONTACT.UP) else 0)
+            | (if (o.DRAG == 1) @enumToInt(DWM_SHOWCONTACT.DRAG) else 0)
+            | (if (o.HOLD == 1) @enumToInt(DWM_SHOWCONTACT.HOLD) else 0)
+            | (if (o.PENBARREL == 1) @enumToInt(DWM_SHOWCONTACT.PENBARREL) else 0)
+            | (if (o.NONE == 1) @enumToInt(DWM_SHOWCONTACT.NONE) else 0)
+            | (if (o.ALL == 1) @enumToInt(DWM_SHOWCONTACT.ALL) else 0)
+        );
+    }
 };
 pub const DWMSC_DOWN = DWM_SHOWCONTACT.DOWN;
 pub const DWMSC_UP = DWM_SHOWCONTACT.UP;
@@ -227,7 +245,6 @@ pub const DWMSC_PENBARREL = DWM_SHOWCONTACT.PENBARREL;
 pub const DWMSC_NONE = DWM_SHOWCONTACT.NONE;
 pub const DWMSC_ALL = DWM_SHOWCONTACT.ALL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DWM_TAB_WINDOW_REQUIREMENTS = extern enum(u32) {
     NONE = 0,
     IMPLEMENTED_BY_SYSTEM = 1,
@@ -241,6 +258,33 @@ pub const DWM_TAB_WINDOW_REQUIREMENTS = extern enum(u32) {
     GROUP_POLICY = 256,
     APP_COMPAT = 512,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        IMPLEMENTED_BY_SYSTEM: u1 = 0,
+        WINDOW_RELATIONSHIP: u1 = 0,
+        WINDOW_STYLES: u1 = 0,
+        WINDOW_REGION: u1 = 0,
+        WINDOW_DWM_ATTRIBUTES: u1 = 0,
+        WINDOW_MARGINS: u1 = 0,
+        TABBING_ENABLED: u1 = 0,
+        USER_POLICY: u1 = 0,
+        GROUP_POLICY: u1 = 0,
+        APP_COMPAT: u1 = 0,
+    }) DWM_TAB_WINDOW_REQUIREMENTS {
+        return @intToEnum(DWM_TAB_WINDOW_REQUIREMENTS,
+              (if (o.NONE == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.NONE) else 0)
+            | (if (o.IMPLEMENTED_BY_SYSTEM == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.IMPLEMENTED_BY_SYSTEM) else 0)
+            | (if (o.WINDOW_RELATIONSHIP == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_RELATIONSHIP) else 0)
+            | (if (o.WINDOW_STYLES == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_STYLES) else 0)
+            | (if (o.WINDOW_REGION == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_REGION) else 0)
+            | (if (o.WINDOW_DWM_ATTRIBUTES == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_DWM_ATTRIBUTES) else 0)
+            | (if (o.WINDOW_MARGINS == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_MARGINS) else 0)
+            | (if (o.TABBING_ENABLED == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.TABBING_ENABLED) else 0)
+            | (if (o.USER_POLICY == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.USER_POLICY) else 0)
+            | (if (o.GROUP_POLICY == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.GROUP_POLICY) else 0)
+            | (if (o.APP_COMPAT == 1) @enumToInt(DWM_TAB_WINDOW_REQUIREMENTS.APP_COMPAT) else 0)
+        );
+    }
 };
 pub const DWMTWR_NONE = DWM_TAB_WINDOW_REQUIREMENTS.NONE;
 pub const DWMTWR_IMPLEMENTED_BY_SYSTEM = DWM_TAB_WINDOW_REQUIREMENTS.IMPLEMENTED_BY_SYSTEM;

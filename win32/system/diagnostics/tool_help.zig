@@ -9,7 +9,6 @@ pub const HF32_SHARED = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CREATE_TOOLHELP_SNAPSHOT_FLAGS = extern enum(u32) {
     INHERIT = 2147483648,
     SNAPALL = 15,
@@ -19,6 +18,25 @@ pub const CREATE_TOOLHELP_SNAPSHOT_FLAGS = extern enum(u32) {
     SNAPPROCESS = 2,
     SNAPTHREAD = 4,
     _,
+    pub fn initFlags(o: struct {
+        INHERIT: u1 = 0,
+        SNAPALL: u1 = 0,
+        SNAPHEAPLIST: u1 = 0,
+        SNAPMODULE: u1 = 0,
+        SNAPMODULE32: u1 = 0,
+        SNAPPROCESS: u1 = 0,
+        SNAPTHREAD: u1 = 0,
+    }) CREATE_TOOLHELP_SNAPSHOT_FLAGS {
+        return @intToEnum(CREATE_TOOLHELP_SNAPSHOT_FLAGS,
+              (if (o.INHERIT == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.INHERIT) else 0)
+            | (if (o.SNAPALL == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPALL) else 0)
+            | (if (o.SNAPHEAPLIST == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPHEAPLIST) else 0)
+            | (if (o.SNAPMODULE == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE) else 0)
+            | (if (o.SNAPMODULE32 == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE32) else 0)
+            | (if (o.SNAPPROCESS == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPPROCESS) else 0)
+            | (if (o.SNAPTHREAD == 1) @enumToInt(CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPTHREAD) else 0)
+        );
+    }
 };
 pub const TH32CS_INHERIT = CREATE_TOOLHELP_SNAPSHOT_FLAGS.INHERIT;
 pub const TH32CS_SNAPALL = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPALL;

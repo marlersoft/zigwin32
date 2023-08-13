@@ -6,13 +6,25 @@
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const REGISTER_APPLICATION_RESTART_FLAGS = extern enum(u32) {
     CRASH = 1,
     HANG = 2,
     PATCH = 4,
     REBOOT = 8,
     _,
+    pub fn initFlags(o: struct {
+        CRASH: u1 = 0,
+        HANG: u1 = 0,
+        PATCH: u1 = 0,
+        REBOOT: u1 = 0,
+    }) REGISTER_APPLICATION_RESTART_FLAGS {
+        return @intToEnum(REGISTER_APPLICATION_RESTART_FLAGS,
+              (if (o.CRASH == 1) @enumToInt(REGISTER_APPLICATION_RESTART_FLAGS.CRASH) else 0)
+            | (if (o.HANG == 1) @enumToInt(REGISTER_APPLICATION_RESTART_FLAGS.HANG) else 0)
+            | (if (o.PATCH == 1) @enumToInt(REGISTER_APPLICATION_RESTART_FLAGS.PATCH) else 0)
+            | (if (o.REBOOT == 1) @enumToInt(REGISTER_APPLICATION_RESTART_FLAGS.REBOOT) else 0)
+        );
+    }
 };
 pub const RESTART_NO_CRASH = REGISTER_APPLICATION_RESTART_FLAGS.CRASH;
 pub const RESTART_NO_HANG = REGISTER_APPLICATION_RESTART_FLAGS.HANG;

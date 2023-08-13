@@ -1873,7 +1873,6 @@ pub const ITraceRelogger = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TRACE_MESSAGE_FLAGS = extern enum(u32) {
     COMPONENTID = 4,
     GUID = 2,
@@ -1881,6 +1880,21 @@ pub const TRACE_MESSAGE_FLAGS = extern enum(u32) {
     SYSTEMINFO = 32,
     TIMESTAMP = 8,
     _,
+    pub fn initFlags(o: struct {
+        COMPONENTID: u1 = 0,
+        GUID: u1 = 0,
+        SEQUENCE: u1 = 0,
+        SYSTEMINFO: u1 = 0,
+        TIMESTAMP: u1 = 0,
+    }) TRACE_MESSAGE_FLAGS {
+        return @intToEnum(TRACE_MESSAGE_FLAGS,
+              (if (o.COMPONENTID == 1) @enumToInt(TRACE_MESSAGE_FLAGS.COMPONENTID) else 0)
+            | (if (o.GUID == 1) @enumToInt(TRACE_MESSAGE_FLAGS.GUID) else 0)
+            | (if (o.SEQUENCE == 1) @enumToInt(TRACE_MESSAGE_FLAGS.SEQUENCE) else 0)
+            | (if (o.SYSTEMINFO == 1) @enumToInt(TRACE_MESSAGE_FLAGS.SYSTEMINFO) else 0)
+            | (if (o.TIMESTAMP == 1) @enumToInt(TRACE_MESSAGE_FLAGS.TIMESTAMP) else 0)
+        );
+    }
 };
 pub const TRACE_MESSAGE_COMPONENTID = TRACE_MESSAGE_FLAGS.COMPONENTID;
 pub const TRACE_MESSAGE_GUID = TRACE_MESSAGE_FLAGS.GUID;
@@ -1908,7 +1922,6 @@ pub const EVENT_TRACE_CONTROL_QUERY = EVENT_TRACE_CONTROL.QUERY;
 pub const EVENT_TRACE_CONTROL_STOP = EVENT_TRACE_CONTROL.STOP;
 pub const EVENT_TRACE_CONTROL_UPDATE = EVENT_TRACE_CONTROL.UPDATE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const EVENT_TRACE_FLAG = extern enum(u32) {
     ALPC = 1048576,
     CSWITCH = 16,
@@ -1938,6 +1951,65 @@ pub const EVENT_TRACE_FLAG = extern enum(u32) {
     VAMAP = 32768,
     VIRTUAL_ALLOC = 16384,
     _,
+    pub fn initFlags(o: struct {
+        ALPC: u1 = 0,
+        CSWITCH: u1 = 0,
+        DBGPRINT: u1 = 0,
+        DISK_FILE_IO: u1 = 0,
+        DISK_IO: u1 = 0,
+        DISK_IO_INIT: u1 = 0,
+        DISPATCHER: u1 = 0,
+        DPC: u1 = 0,
+        DRIVER: u1 = 0,
+        FILE_IO: u1 = 0,
+        FILE_IO_INIT: u1 = 0,
+        IMAGE_LOAD: u1 = 0,
+        INTERRUPT: u1 = 0,
+        JOB: u1 = 0,
+        MEMORY_HARD_FAULTS: u1 = 0,
+        MEMORY_PAGE_FAULTS: u1 = 0,
+        NETWORK_TCPIP: u1 = 0,
+        NO_SYSCONFIG: u1 = 0,
+        PROCESS: u1 = 0,
+        PROCESS_COUNTERS: u1 = 0,
+        PROFILE: u1 = 0,
+        REGISTRY: u1 = 0,
+        SPLIT_IO: u1 = 0,
+        SYSTEMCALL: u1 = 0,
+        THREAD: u1 = 0,
+        VAMAP: u1 = 0,
+        VIRTUAL_ALLOC: u1 = 0,
+    }) EVENT_TRACE_FLAG {
+        return @intToEnum(EVENT_TRACE_FLAG,
+              (if (o.ALPC == 1) @enumToInt(EVENT_TRACE_FLAG.ALPC) else 0)
+            | (if (o.CSWITCH == 1) @enumToInt(EVENT_TRACE_FLAG.CSWITCH) else 0)
+            | (if (o.DBGPRINT == 1) @enumToInt(EVENT_TRACE_FLAG.DBGPRINT) else 0)
+            | (if (o.DISK_FILE_IO == 1) @enumToInt(EVENT_TRACE_FLAG.DISK_FILE_IO) else 0)
+            | (if (o.DISK_IO == 1) @enumToInt(EVENT_TRACE_FLAG.DISK_IO) else 0)
+            | (if (o.DISK_IO_INIT == 1) @enumToInt(EVENT_TRACE_FLAG.DISK_IO_INIT) else 0)
+            | (if (o.DISPATCHER == 1) @enumToInt(EVENT_TRACE_FLAG.DISPATCHER) else 0)
+            | (if (o.DPC == 1) @enumToInt(EVENT_TRACE_FLAG.DPC) else 0)
+            | (if (o.DRIVER == 1) @enumToInt(EVENT_TRACE_FLAG.DRIVER) else 0)
+            | (if (o.FILE_IO == 1) @enumToInt(EVENT_TRACE_FLAG.FILE_IO) else 0)
+            | (if (o.FILE_IO_INIT == 1) @enumToInt(EVENT_TRACE_FLAG.FILE_IO_INIT) else 0)
+            | (if (o.IMAGE_LOAD == 1) @enumToInt(EVENT_TRACE_FLAG.IMAGE_LOAD) else 0)
+            | (if (o.INTERRUPT == 1) @enumToInt(EVENT_TRACE_FLAG.INTERRUPT) else 0)
+            | (if (o.JOB == 1) @enumToInt(EVENT_TRACE_FLAG.JOB) else 0)
+            | (if (o.MEMORY_HARD_FAULTS == 1) @enumToInt(EVENT_TRACE_FLAG.MEMORY_HARD_FAULTS) else 0)
+            | (if (o.MEMORY_PAGE_FAULTS == 1) @enumToInt(EVENT_TRACE_FLAG.MEMORY_PAGE_FAULTS) else 0)
+            | (if (o.NETWORK_TCPIP == 1) @enumToInt(EVENT_TRACE_FLAG.NETWORK_TCPIP) else 0)
+            | (if (o.NO_SYSCONFIG == 1) @enumToInt(EVENT_TRACE_FLAG.NO_SYSCONFIG) else 0)
+            | (if (o.PROCESS == 1) @enumToInt(EVENT_TRACE_FLAG.PROCESS) else 0)
+            | (if (o.PROCESS_COUNTERS == 1) @enumToInt(EVENT_TRACE_FLAG.PROCESS_COUNTERS) else 0)
+            | (if (o.PROFILE == 1) @enumToInt(EVENT_TRACE_FLAG.PROFILE) else 0)
+            | (if (o.REGISTRY == 1) @enumToInt(EVENT_TRACE_FLAG.REGISTRY) else 0)
+            | (if (o.SPLIT_IO == 1) @enumToInt(EVENT_TRACE_FLAG.SPLIT_IO) else 0)
+            | (if (o.SYSTEMCALL == 1) @enumToInt(EVENT_TRACE_FLAG.SYSTEMCALL) else 0)
+            | (if (o.THREAD == 1) @enumToInt(EVENT_TRACE_FLAG.THREAD) else 0)
+            | (if (o.VAMAP == 1) @enumToInt(EVENT_TRACE_FLAG.VAMAP) else 0)
+            | (if (o.VIRTUAL_ALLOC == 1) @enumToInt(EVENT_TRACE_FLAG.VIRTUAL_ALLOC) else 0)
+        );
+    }
 };
 pub const EVENT_TRACE_FLAG_ALPC = EVENT_TRACE_FLAG.ALPC;
 pub const EVENT_TRACE_FLAG_CSWITCH = EVENT_TRACE_FLAG.CSWITCH;

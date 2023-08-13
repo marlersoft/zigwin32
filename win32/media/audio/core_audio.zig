@@ -7451,13 +7451,25 @@ pub const AUDCLNT_BUFFERFLAGS_DATA_DISCONTINUITY = _AUDCLNT_BUFFERFLAGS.DATA_DIS
 pub const AUDCLNT_BUFFERFLAGS_SILENT = _AUDCLNT_BUFFERFLAGS.SILENT;
 pub const AUDCLNT_BUFFERFLAGS_TIMESTAMP_ERROR = _AUDCLNT_BUFFERFLAGS.TIMESTAMP_ERROR;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const AUDCLNT_STREAMOPTIONS = extern enum(u32) {
     NONE = 0,
     RAW = 1,
     MATCH_FORMAT = 2,
     AMBISONICS = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        RAW: u1 = 0,
+        MATCH_FORMAT: u1 = 0,
+        AMBISONICS: u1 = 0,
+    }) AUDCLNT_STREAMOPTIONS {
+        return @intToEnum(AUDCLNT_STREAMOPTIONS,
+              (if (o.NONE == 1) @enumToInt(AUDCLNT_STREAMOPTIONS.NONE) else 0)
+            | (if (o.RAW == 1) @enumToInt(AUDCLNT_STREAMOPTIONS.RAW) else 0)
+            | (if (o.MATCH_FORMAT == 1) @enumToInt(AUDCLNT_STREAMOPTIONS.MATCH_FORMAT) else 0)
+            | (if (o.AMBISONICS == 1) @enumToInt(AUDCLNT_STREAMOPTIONS.AMBISONICS) else 0)
+        );
+    }
 };
 pub const AUDCLNT_STREAMOPTIONS_NONE = AUDCLNT_STREAMOPTIONS.NONE;
 pub const AUDCLNT_STREAMOPTIONS_RAW = AUDCLNT_STREAMOPTIONS.RAW;
@@ -8080,7 +8092,6 @@ pub const IChannelAudioVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const AudioObjectType = extern enum(u32) {
     None = 0,
     Dynamic = 1,
@@ -8102,6 +8113,49 @@ pub const AudioObjectType = extern enum(u32) {
     BottomBackRight = 65536,
     BackCenter = 131072,
     _,
+    pub fn initFlags(o: struct {
+        None: u1 = 0,
+        Dynamic: u1 = 0,
+        FrontLeft: u1 = 0,
+        FrontRight: u1 = 0,
+        FrontCenter: u1 = 0,
+        LowFrequency: u1 = 0,
+        SideLeft: u1 = 0,
+        SideRight: u1 = 0,
+        BackLeft: u1 = 0,
+        BackRight: u1 = 0,
+        TopFrontLeft: u1 = 0,
+        TopFrontRight: u1 = 0,
+        TopBackLeft: u1 = 0,
+        TopBackRight: u1 = 0,
+        BottomFrontLeft: u1 = 0,
+        BottomFrontRight: u1 = 0,
+        BottomBackLeft: u1 = 0,
+        BottomBackRight: u1 = 0,
+        BackCenter: u1 = 0,
+    }) AudioObjectType {
+        return @intToEnum(AudioObjectType,
+              (if (o.None == 1) @enumToInt(AudioObjectType.None) else 0)
+            | (if (o.Dynamic == 1) @enumToInt(AudioObjectType.Dynamic) else 0)
+            | (if (o.FrontLeft == 1) @enumToInt(AudioObjectType.FrontLeft) else 0)
+            | (if (o.FrontRight == 1) @enumToInt(AudioObjectType.FrontRight) else 0)
+            | (if (o.FrontCenter == 1) @enumToInt(AudioObjectType.FrontCenter) else 0)
+            | (if (o.LowFrequency == 1) @enumToInt(AudioObjectType.LowFrequency) else 0)
+            | (if (o.SideLeft == 1) @enumToInt(AudioObjectType.SideLeft) else 0)
+            | (if (o.SideRight == 1) @enumToInt(AudioObjectType.SideRight) else 0)
+            | (if (o.BackLeft == 1) @enumToInt(AudioObjectType.BackLeft) else 0)
+            | (if (o.BackRight == 1) @enumToInt(AudioObjectType.BackRight) else 0)
+            | (if (o.TopFrontLeft == 1) @enumToInt(AudioObjectType.TopFrontLeft) else 0)
+            | (if (o.TopFrontRight == 1) @enumToInt(AudioObjectType.TopFrontRight) else 0)
+            | (if (o.TopBackLeft == 1) @enumToInt(AudioObjectType.TopBackLeft) else 0)
+            | (if (o.TopBackRight == 1) @enumToInt(AudioObjectType.TopBackRight) else 0)
+            | (if (o.BottomFrontLeft == 1) @enumToInt(AudioObjectType.BottomFrontLeft) else 0)
+            | (if (o.BottomFrontRight == 1) @enumToInt(AudioObjectType.BottomFrontRight) else 0)
+            | (if (o.BottomBackLeft == 1) @enumToInt(AudioObjectType.BottomBackLeft) else 0)
+            | (if (o.BottomBackRight == 1) @enumToInt(AudioObjectType.BottomBackRight) else 0)
+            | (if (o.BackCenter == 1) @enumToInt(AudioObjectType.BackCenter) else 0)
+        );
+    }
 };
 pub const AudioObjectType_None = AudioObjectType.None;
 pub const AudioObjectType_Dynamic = AudioObjectType.Dynamic;

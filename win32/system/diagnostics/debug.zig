@@ -2654,7 +2654,6 @@ pub const MINIDUMP_CALLBACK_OUTPUT = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MINIDUMP_TYPE = extern enum(u32) {
     Normal = 0,
     WithDataSegs = 1,
@@ -2683,6 +2682,63 @@ pub const MINIDUMP_TYPE = extern enum(u32) {
     ScanInaccessiblePartialPages = 8388608,
     ValidTypeFlags = 16777215,
     _,
+    pub fn initFlags(o: struct {
+        Normal: u1 = 0,
+        WithDataSegs: u1 = 0,
+        WithFullMemory: u1 = 0,
+        WithHandleData: u1 = 0,
+        FilterMemory: u1 = 0,
+        ScanMemory: u1 = 0,
+        WithUnloadedModules: u1 = 0,
+        WithIndirectlyReferencedMemory: u1 = 0,
+        FilterModulePaths: u1 = 0,
+        WithProcessThreadData: u1 = 0,
+        WithPrivateReadWriteMemory: u1 = 0,
+        WithoutOptionalData: u1 = 0,
+        WithFullMemoryInfo: u1 = 0,
+        WithThreadInfo: u1 = 0,
+        WithCodeSegs: u1 = 0,
+        WithoutAuxiliaryState: u1 = 0,
+        WithFullAuxiliaryState: u1 = 0,
+        WithPrivateWriteCopyMemory: u1 = 0,
+        IgnoreInaccessibleMemory: u1 = 0,
+        WithTokenInformation: u1 = 0,
+        WithModuleHeaders: u1 = 0,
+        FilterTriage: u1 = 0,
+        WithAvxXStateContext: u1 = 0,
+        WithIptTrace: u1 = 0,
+        ScanInaccessiblePartialPages: u1 = 0,
+        ValidTypeFlags: u1 = 0,
+    }) MINIDUMP_TYPE {
+        return @intToEnum(MINIDUMP_TYPE,
+              (if (o.Normal == 1) @enumToInt(MINIDUMP_TYPE.Normal) else 0)
+            | (if (o.WithDataSegs == 1) @enumToInt(MINIDUMP_TYPE.WithDataSegs) else 0)
+            | (if (o.WithFullMemory == 1) @enumToInt(MINIDUMP_TYPE.WithFullMemory) else 0)
+            | (if (o.WithHandleData == 1) @enumToInt(MINIDUMP_TYPE.WithHandleData) else 0)
+            | (if (o.FilterMemory == 1) @enumToInt(MINIDUMP_TYPE.FilterMemory) else 0)
+            | (if (o.ScanMemory == 1) @enumToInt(MINIDUMP_TYPE.ScanMemory) else 0)
+            | (if (o.WithUnloadedModules == 1) @enumToInt(MINIDUMP_TYPE.WithUnloadedModules) else 0)
+            | (if (o.WithIndirectlyReferencedMemory == 1) @enumToInt(MINIDUMP_TYPE.WithIndirectlyReferencedMemory) else 0)
+            | (if (o.FilterModulePaths == 1) @enumToInt(MINIDUMP_TYPE.FilterModulePaths) else 0)
+            | (if (o.WithProcessThreadData == 1) @enumToInt(MINIDUMP_TYPE.WithProcessThreadData) else 0)
+            | (if (o.WithPrivateReadWriteMemory == 1) @enumToInt(MINIDUMP_TYPE.WithPrivateReadWriteMemory) else 0)
+            | (if (o.WithoutOptionalData == 1) @enumToInt(MINIDUMP_TYPE.WithoutOptionalData) else 0)
+            | (if (o.WithFullMemoryInfo == 1) @enumToInt(MINIDUMP_TYPE.WithFullMemoryInfo) else 0)
+            | (if (o.WithThreadInfo == 1) @enumToInt(MINIDUMP_TYPE.WithThreadInfo) else 0)
+            | (if (o.WithCodeSegs == 1) @enumToInt(MINIDUMP_TYPE.WithCodeSegs) else 0)
+            | (if (o.WithoutAuxiliaryState == 1) @enumToInt(MINIDUMP_TYPE.WithoutAuxiliaryState) else 0)
+            | (if (o.WithFullAuxiliaryState == 1) @enumToInt(MINIDUMP_TYPE.WithFullAuxiliaryState) else 0)
+            | (if (o.WithPrivateWriteCopyMemory == 1) @enumToInt(MINIDUMP_TYPE.WithPrivateWriteCopyMemory) else 0)
+            | (if (o.IgnoreInaccessibleMemory == 1) @enumToInt(MINIDUMP_TYPE.IgnoreInaccessibleMemory) else 0)
+            | (if (o.WithTokenInformation == 1) @enumToInt(MINIDUMP_TYPE.WithTokenInformation) else 0)
+            | (if (o.WithModuleHeaders == 1) @enumToInt(MINIDUMP_TYPE.WithModuleHeaders) else 0)
+            | (if (o.FilterTriage == 1) @enumToInt(MINIDUMP_TYPE.FilterTriage) else 0)
+            | (if (o.WithAvxXStateContext == 1) @enumToInt(MINIDUMP_TYPE.WithAvxXStateContext) else 0)
+            | (if (o.WithIptTrace == 1) @enumToInt(MINIDUMP_TYPE.WithIptTrace) else 0)
+            | (if (o.ScanInaccessiblePartialPages == 1) @enumToInt(MINIDUMP_TYPE.ScanInaccessiblePartialPages) else 0)
+            | (if (o.ValidTypeFlags == 1) @enumToInt(MINIDUMP_TYPE.ValidTypeFlags) else 0)
+        );
+    }
 };
 pub const MiniDumpNormal = MINIDUMP_TYPE.Normal;
 pub const MiniDumpWithDataSegs = MINIDUMP_TYPE.WithDataSegs;
@@ -3715,7 +3771,6 @@ pub const IActiveScriptStringCompare = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DBGPROP_ATTRIB_FLAGS = extern enum(u32) {
     NO_ATTRIB = 0,
     VALUE_IS_INVALID = 8,
@@ -3743,6 +3798,61 @@ pub const DBGPROP_ATTRIB_FLAGS = extern enum(u32) {
     VALUE_IS_RETURN_VALUE = 134217728,
     VALUE_PENDING_MUTATION = 268435456,
     _,
+    pub fn initFlags(o: struct {
+        NO_ATTRIB: u1 = 0,
+        VALUE_IS_INVALID: u1 = 0,
+        VALUE_IS_EXPANDABLE: u1 = 0,
+        VALUE_IS_FAKE: u1 = 0,
+        VALUE_IS_METHOD: u1 = 0,
+        VALUE_IS_EVENT: u1 = 0,
+        VALUE_IS_RAW_STRING: u1 = 0,
+        VALUE_READONLY: u1 = 0,
+        ACCESS_PUBLIC: u1 = 0,
+        ACCESS_PRIVATE: u1 = 0,
+        ACCESS_PROTECTED: u1 = 0,
+        ACCESS_FINAL: u1 = 0,
+        STORAGE_GLOBAL: u1 = 0,
+        STORAGE_STATIC: u1 = 0,
+        STORAGE_FIELD: u1 = 0,
+        STORAGE_VIRTUAL: u1 = 0,
+        TYPE_IS_CONSTANT: u1 = 0,
+        TYPE_IS_SYNCHRONIZED: u1 = 0,
+        TYPE_IS_VOLATILE: u1 = 0,
+        HAS_EXTENDED_ATTRIBS: u1 = 0,
+        FRAME_INTRYBLOCK: u1 = 0,
+        FRAME_INCATCHBLOCK: u1 = 0,
+        FRAME_INFINALLYBLOCK: u1 = 0,
+        VALUE_IS_RETURN_VALUE: u1 = 0,
+        VALUE_PENDING_MUTATION: u1 = 0,
+    }) DBGPROP_ATTRIB_FLAGS {
+        return @intToEnum(DBGPROP_ATTRIB_FLAGS,
+              (if (o.NO_ATTRIB == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.NO_ATTRIB) else 0)
+            | (if (o.VALUE_IS_INVALID == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_INVALID) else 0)
+            | (if (o.VALUE_IS_EXPANDABLE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_EXPANDABLE) else 0)
+            | (if (o.VALUE_IS_FAKE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_FAKE) else 0)
+            | (if (o.VALUE_IS_METHOD == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_METHOD) else 0)
+            | (if (o.VALUE_IS_EVENT == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_EVENT) else 0)
+            | (if (o.VALUE_IS_RAW_STRING == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_RAW_STRING) else 0)
+            | (if (o.VALUE_READONLY == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_READONLY) else 0)
+            | (if (o.ACCESS_PUBLIC == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.ACCESS_PUBLIC) else 0)
+            | (if (o.ACCESS_PRIVATE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.ACCESS_PRIVATE) else 0)
+            | (if (o.ACCESS_PROTECTED == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.ACCESS_PROTECTED) else 0)
+            | (if (o.ACCESS_FINAL == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.ACCESS_FINAL) else 0)
+            | (if (o.STORAGE_GLOBAL == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.STORAGE_GLOBAL) else 0)
+            | (if (o.STORAGE_STATIC == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.STORAGE_STATIC) else 0)
+            | (if (o.STORAGE_FIELD == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.STORAGE_FIELD) else 0)
+            | (if (o.STORAGE_VIRTUAL == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.STORAGE_VIRTUAL) else 0)
+            | (if (o.TYPE_IS_CONSTANT == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.TYPE_IS_CONSTANT) else 0)
+            | (if (o.TYPE_IS_SYNCHRONIZED == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.TYPE_IS_SYNCHRONIZED) else 0)
+            | (if (o.TYPE_IS_VOLATILE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.TYPE_IS_VOLATILE) else 0)
+            | (if (o.HAS_EXTENDED_ATTRIBS == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.HAS_EXTENDED_ATTRIBS) else 0)
+            | (if (o.FRAME_INTRYBLOCK == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.FRAME_INTRYBLOCK) else 0)
+            | (if (o.FRAME_INCATCHBLOCK == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.FRAME_INCATCHBLOCK) else 0)
+            | (if (o.FRAME_INFINALLYBLOCK == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.FRAME_INFINALLYBLOCK) else 0)
+            | (if (o.VALUE_IS_RETURN_VALUE == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_IS_RETURN_VALUE) else 0)
+            | (if (o.VALUE_PENDING_MUTATION == 1) @enumToInt(DBGPROP_ATTRIB_FLAGS.VALUE_PENDING_MUTATION) else 0)
+        );
+    }
 };
 pub const DBGPROP_ATTRIB_NO_ATTRIB = DBGPROP_ATTRIB_FLAGS.NO_ATTRIB;
 pub const DBGPROP_ATTRIB_VALUE_IS_INVALID = DBGPROP_ATTRIB_FLAGS.VALUE_IS_INVALID;
@@ -3770,7 +3880,6 @@ pub const DBGPROP_ATTRIB_FRAME_INFINALLYBLOCK = DBGPROP_ATTRIB_FLAGS.FRAME_INFIN
 pub const DBGPROP_ATTRIB_VALUE_IS_RETURN_VALUE = DBGPROP_ATTRIB_FLAGS.VALUE_IS_RETURN_VALUE;
 pub const DBGPROP_ATTRIB_VALUE_PENDING_MUTATION = DBGPROP_ATTRIB_FLAGS.VALUE_PENDING_MUTATION;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DBGPROP_INFO = extern enum(u32) {
     NAME = 1,
     TYPE = 2,
@@ -3782,6 +3891,29 @@ pub const DBGPROP_INFO = extern enum(u32) {
     CALLTOSTRING = 67108864,
     AUTOEXPAND = 134217728,
     _,
+    pub fn initFlags(o: struct {
+        NAME: u1 = 0,
+        TYPE: u1 = 0,
+        VALUE: u1 = 0,
+        FULLNAME: u1 = 0,
+        ATTRIBUTES: u1 = 0,
+        DEBUGPROP: u1 = 0,
+        BEAUTIFY: u1 = 0,
+        CALLTOSTRING: u1 = 0,
+        AUTOEXPAND: u1 = 0,
+    }) DBGPROP_INFO {
+        return @intToEnum(DBGPROP_INFO,
+              (if (o.NAME == 1) @enumToInt(DBGPROP_INFO.NAME) else 0)
+            | (if (o.TYPE == 1) @enumToInt(DBGPROP_INFO.TYPE) else 0)
+            | (if (o.VALUE == 1) @enumToInt(DBGPROP_INFO.VALUE) else 0)
+            | (if (o.FULLNAME == 1) @enumToInt(DBGPROP_INFO.FULLNAME) else 0)
+            | (if (o.ATTRIBUTES == 1) @enumToInt(DBGPROP_INFO.ATTRIBUTES) else 0)
+            | (if (o.DEBUGPROP == 1) @enumToInt(DBGPROP_INFO.DEBUGPROP) else 0)
+            | (if (o.BEAUTIFY == 1) @enumToInt(DBGPROP_INFO.BEAUTIFY) else 0)
+            | (if (o.CALLTOSTRING == 1) @enumToInt(DBGPROP_INFO.CALLTOSTRING) else 0)
+            | (if (o.AUTOEXPAND == 1) @enumToInt(DBGPROP_INFO.AUTOEXPAND) else 0)
+        );
+    }
 };
 pub const DBGPROP_INFO_NAME = DBGPROP_INFO.NAME;
 pub const DBGPROP_INFO_TYPE = DBGPROP_INFO.TYPE;
@@ -3793,7 +3925,6 @@ pub const DBGPROP_INFO_BEAUTIFY = DBGPROP_INFO.BEAUTIFY;
 pub const DBGPROP_INFO_CALLTOSTRING = DBGPROP_INFO.CALLTOSTRING;
 pub const DBGPROP_INFO_AUTOEXPAND = DBGPROP_INFO.AUTOEXPAND;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const OBJECT_ATTRIB_FLAG = extern enum(u32) {
     NO_ATTRIB = 0,
     NO_NAME = 1,
@@ -3831,6 +3962,81 @@ pub const OBJECT_ATTRIB_FLAG = extern enum(u32) {
     IS_INHERITED = 1073741824,
     IS_INTERFACE = 2147483648,
     _,
+    pub fn initFlags(o: struct {
+        NO_ATTRIB: u1 = 0,
+        NO_NAME: u1 = 0,
+        NO_TYPE: u1 = 0,
+        NO_VALUE: u1 = 0,
+        VALUE_IS_INVALID: u1 = 0,
+        VALUE_IS_OBJECT: u1 = 0,
+        VALUE_IS_ENUM: u1 = 0,
+        VALUE_IS_CUSTOM: u1 = 0,
+        OBJECT_IS_EXPANDABLE: u1 = 0,
+        VALUE_HAS_CODE: u1 = 0,
+        TYPE_IS_OBJECT: u1 = 0,
+        TYPE_HAS_CODE: u1 = 0,
+        TYPE_IS_EXPANDABLE: u1 = 0,
+        SLOT_IS_CATEGORY: u1 = 0,
+        VALUE_READONLY: u1 = 0,
+        ACCESS_PUBLIC: u1 = 0,
+        ACCESS_PRIVATE: u1 = 0,
+        ACCESS_PROTECTED: u1 = 0,
+        ACCESS_FINAL: u1 = 0,
+        STORAGE_GLOBAL: u1 = 0,
+        STORAGE_STATIC: u1 = 0,
+        STORAGE_FIELD: u1 = 0,
+        STORAGE_VIRTUAL: u1 = 0,
+        TYPE_IS_CONSTANT: u1 = 0,
+        TYPE_IS_SYNCHRONIZED: u1 = 0,
+        TYPE_IS_VOLATILE: u1 = 0,
+        HAS_EXTENDED_ATTRIBS: u1 = 0,
+        IS_CLASS: u1 = 0,
+        IS_FUNCTION: u1 = 0,
+        IS_VARIABLE: u1 = 0,
+        IS_PROPERTY: u1 = 0,
+        IS_MACRO: u1 = 0,
+        IS_TYPE: u1 = 0,
+        IS_INHERITED: u1 = 0,
+        IS_INTERFACE: u1 = 0,
+    }) OBJECT_ATTRIB_FLAG {
+        return @intToEnum(OBJECT_ATTRIB_FLAG,
+              (if (o.NO_ATTRIB == 1) @enumToInt(OBJECT_ATTRIB_FLAG.NO_ATTRIB) else 0)
+            | (if (o.NO_NAME == 1) @enumToInt(OBJECT_ATTRIB_FLAG.NO_NAME) else 0)
+            | (if (o.NO_TYPE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.NO_TYPE) else 0)
+            | (if (o.NO_VALUE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.NO_VALUE) else 0)
+            | (if (o.VALUE_IS_INVALID == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_IS_INVALID) else 0)
+            | (if (o.VALUE_IS_OBJECT == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_IS_OBJECT) else 0)
+            | (if (o.VALUE_IS_ENUM == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_IS_ENUM) else 0)
+            | (if (o.VALUE_IS_CUSTOM == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_IS_CUSTOM) else 0)
+            | (if (o.OBJECT_IS_EXPANDABLE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.OBJECT_IS_EXPANDABLE) else 0)
+            | (if (o.VALUE_HAS_CODE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_HAS_CODE) else 0)
+            | (if (o.TYPE_IS_OBJECT == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_OBJECT) else 0)
+            | (if (o.TYPE_HAS_CODE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_HAS_CODE) else 0)
+            | (if (o.TYPE_IS_EXPANDABLE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_EXPANDABLE) else 0)
+            | (if (o.SLOT_IS_CATEGORY == 1) @enumToInt(OBJECT_ATTRIB_FLAG.SLOT_IS_CATEGORY) else 0)
+            | (if (o.VALUE_READONLY == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_READONLY) else 0)
+            | (if (o.ACCESS_PUBLIC == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_PUBLIC) else 0)
+            | (if (o.ACCESS_PRIVATE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_PRIVATE) else 0)
+            | (if (o.ACCESS_PROTECTED == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_PROTECTED) else 0)
+            | (if (o.ACCESS_FINAL == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_FINAL) else 0)
+            | (if (o.STORAGE_GLOBAL == 1) @enumToInt(OBJECT_ATTRIB_FLAG.STORAGE_GLOBAL) else 0)
+            | (if (o.STORAGE_STATIC == 1) @enumToInt(OBJECT_ATTRIB_FLAG.STORAGE_STATIC) else 0)
+            | (if (o.STORAGE_FIELD == 1) @enumToInt(OBJECT_ATTRIB_FLAG.STORAGE_FIELD) else 0)
+            | (if (o.STORAGE_VIRTUAL == 1) @enumToInt(OBJECT_ATTRIB_FLAG.STORAGE_VIRTUAL) else 0)
+            | (if (o.TYPE_IS_CONSTANT == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_CONSTANT) else 0)
+            | (if (o.TYPE_IS_SYNCHRONIZED == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_SYNCHRONIZED) else 0)
+            | (if (o.TYPE_IS_VOLATILE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_VOLATILE) else 0)
+            | (if (o.HAS_EXTENDED_ATTRIBS == 1) @enumToInt(OBJECT_ATTRIB_FLAG.HAS_EXTENDED_ATTRIBS) else 0)
+            | (if (o.IS_CLASS == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_CLASS) else 0)
+            | (if (o.IS_FUNCTION == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_FUNCTION) else 0)
+            | (if (o.IS_VARIABLE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_VARIABLE) else 0)
+            | (if (o.IS_PROPERTY == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_PROPERTY) else 0)
+            | (if (o.IS_MACRO == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_MACRO) else 0)
+            | (if (o.IS_TYPE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_TYPE) else 0)
+            | (if (o.IS_INHERITED == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_INHERITED) else 0)
+            | (if (o.IS_INTERFACE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.IS_INTERFACE) else 0)
+        );
+    }
 };
 pub const OBJECT_ATTRIB_NO_ATTRIB = OBJECT_ATTRIB_FLAG.NO_ATTRIB;
 pub const OBJECT_ATTRIB_NO_NAME = OBJECT_ATTRIB_FLAG.NO_NAME;
@@ -7438,7 +7644,6 @@ pub const PROFILER_SCRIPT_TYPE_DYNAMIC = PROFILER_SCRIPT_TYPE.DYNAMIC;
 pub const PROFILER_SCRIPT_TYPE_NATIVE = PROFILER_SCRIPT_TYPE.NATIVE;
 pub const PROFILER_SCRIPT_TYPE_DOM = PROFILER_SCRIPT_TYPE.DOM;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PROFILER_EVENT_MASK = extern enum(u32) {
     SCRIPT_FUNCTION_CALL = 1,
     NATIVE_FUNCTION_CALL = 2,
@@ -7446,6 +7651,21 @@ pub const PROFILER_EVENT_MASK = extern enum(u32) {
     ALL = 3,
     ALL_WITH_DOM = 7,
     _,
+    pub fn initFlags(o: struct {
+        SCRIPT_FUNCTION_CALL: u1 = 0,
+        NATIVE_FUNCTION_CALL: u1 = 0,
+        DOM_FUNCTION_CALL: u1 = 0,
+        ALL: u1 = 0,
+        ALL_WITH_DOM: u1 = 0,
+    }) PROFILER_EVENT_MASK {
+        return @intToEnum(PROFILER_EVENT_MASK,
+              (if (o.SCRIPT_FUNCTION_CALL == 1) @enumToInt(PROFILER_EVENT_MASK.SCRIPT_FUNCTION_CALL) else 0)
+            | (if (o.NATIVE_FUNCTION_CALL == 1) @enumToInt(PROFILER_EVENT_MASK.NATIVE_FUNCTION_CALL) else 0)
+            | (if (o.DOM_FUNCTION_CALL == 1) @enumToInt(PROFILER_EVENT_MASK.DOM_FUNCTION_CALL) else 0)
+            | (if (o.ALL == 1) @enumToInt(PROFILER_EVENT_MASK.ALL) else 0)
+            | (if (o.ALL_WITH_DOM == 1) @enumToInt(PROFILER_EVENT_MASK.ALL_WITH_DOM) else 0)
+        );
+    }
 };
 pub const PROFILER_EVENT_MASK_TRACE_SCRIPT_FUNCTION_CALL = PROFILER_EVENT_MASK.SCRIPT_FUNCTION_CALL;
 pub const PROFILER_EVENT_MASK_TRACE_NATIVE_FUNCTION_CALL = PROFILER_EVENT_MASK.NATIVE_FUNCTION_CALL;
@@ -7519,7 +7739,6 @@ pub const IActiveScriptProfilerControl2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PROFILER_HEAP_OBJECT_FLAGS = extern enum(u32) {
     NEW_OBJECT = 1,
     IS_ROOT = 2,
@@ -7535,6 +7754,37 @@ pub const PROFILER_HEAP_OBJECT_FLAGS = extern enum(u32) {
     WINRT_DELEGATE = 2048,
     WINRT_NAMESPACE = 4096,
     _,
+    pub fn initFlags(o: struct {
+        NEW_OBJECT: u1 = 0,
+        IS_ROOT: u1 = 0,
+        SITE_CLOSED: u1 = 0,
+        EXTERNAL: u1 = 0,
+        EXTERNAL_UNKNOWN: u1 = 0,
+        EXTERNAL_DISPATCH: u1 = 0,
+        SIZE_APPROXIMATE: u1 = 0,
+        SIZE_UNAVAILABLE: u1 = 0,
+        NEW_STATE_UNAVAILABLE: u1 = 0,
+        WINRT_INSTANCE: u1 = 0,
+        WINRT_RUNTIMECLASS: u1 = 0,
+        WINRT_DELEGATE: u1 = 0,
+        WINRT_NAMESPACE: u1 = 0,
+    }) PROFILER_HEAP_OBJECT_FLAGS {
+        return @intToEnum(PROFILER_HEAP_OBJECT_FLAGS,
+              (if (o.NEW_OBJECT == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.NEW_OBJECT) else 0)
+            | (if (o.IS_ROOT == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.IS_ROOT) else 0)
+            | (if (o.SITE_CLOSED == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.SITE_CLOSED) else 0)
+            | (if (o.EXTERNAL == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL) else 0)
+            | (if (o.EXTERNAL_UNKNOWN == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL_UNKNOWN) else 0)
+            | (if (o.EXTERNAL_DISPATCH == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.EXTERNAL_DISPATCH) else 0)
+            | (if (o.SIZE_APPROXIMATE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.SIZE_APPROXIMATE) else 0)
+            | (if (o.SIZE_UNAVAILABLE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.SIZE_UNAVAILABLE) else 0)
+            | (if (o.NEW_STATE_UNAVAILABLE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.NEW_STATE_UNAVAILABLE) else 0)
+            | (if (o.WINRT_INSTANCE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.WINRT_INSTANCE) else 0)
+            | (if (o.WINRT_RUNTIMECLASS == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.WINRT_RUNTIMECLASS) else 0)
+            | (if (o.WINRT_DELEGATE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.WINRT_DELEGATE) else 0)
+            | (if (o.WINRT_NAMESPACE == 1) @enumToInt(PROFILER_HEAP_OBJECT_FLAGS.WINRT_NAMESPACE) else 0)
+        );
+    }
 };
 pub const PROFILER_HEAP_OBJECT_FLAGS_NEW_OBJECT = PROFILER_HEAP_OBJECT_FLAGS.NEW_OBJECT;
 pub const PROFILER_HEAP_OBJECT_FLAGS_IS_ROOT = PROFILER_HEAP_OBJECT_FLAGS.IS_ROOT;
@@ -7581,7 +7831,6 @@ pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_MAP_COLLECTION_LIST = PROFILER_HEAP
 pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_SET_COLLECTION_LIST = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.SET_COLLECTION_LIST;
 pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_MAX_VALUE = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.MAX_VALUE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS = extern enum(u32) {
     NONE = 0,
     IS_GET_ACCESSOR = 65536,
@@ -7589,6 +7838,21 @@ pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS = extern enum(u32) {
     LET_VARIABLE = 262144,
     CONST_VARIABLE = 524288,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        IS_GET_ACCESSOR: u1 = 0,
+        IS_SET_ACCESSOR: u1 = 0,
+        LET_VARIABLE: u1 = 0,
+        CONST_VARIABLE: u1 = 0,
+    }) PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS {
+        return @intToEnum(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS,
+              (if (o.NONE == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.NONE) else 0)
+            | (if (o.IS_GET_ACCESSOR == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.IS_GET_ACCESSOR) else 0)
+            | (if (o.IS_SET_ACCESSOR == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.IS_SET_ACCESSOR) else 0)
+            | (if (o.LET_VARIABLE == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.LET_VARIABLE) else 0)
+            | (if (o.CONST_VARIABLE == 1) @enumToInt(PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.CONST_VARIABLE) else 0)
+        );
+    }
 };
 pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_NONE = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.NONE;
 pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_IS_GET_ACCESSOR = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.IS_GET_ACCESSOR;
@@ -7596,13 +7860,25 @@ pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_IS_SET_ACCESSOR = PROFILER_HEA
 pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_LET_VARIABLE = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.LET_VARIABLE;
 pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_CONST_VARIABLE = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.CONST_VARIABLE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PROFILER_HEAP_ENUM_FLAGS = extern enum(u32) {
     NONE = 0,
     STORE_RELATIONSHIP_FLAGS = 1,
     SUBSTRINGS = 2,
     RELATIONSHIP_SUBSTRINGS = 3,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        STORE_RELATIONSHIP_FLAGS: u1 = 0,
+        SUBSTRINGS: u1 = 0,
+        RELATIONSHIP_SUBSTRINGS: u1 = 0,
+    }) PROFILER_HEAP_ENUM_FLAGS {
+        return @intToEnum(PROFILER_HEAP_ENUM_FLAGS,
+              (if (o.NONE == 1) @enumToInt(PROFILER_HEAP_ENUM_FLAGS.NONE) else 0)
+            | (if (o.STORE_RELATIONSHIP_FLAGS == 1) @enumToInt(PROFILER_HEAP_ENUM_FLAGS.STORE_RELATIONSHIP_FLAGS) else 0)
+            | (if (o.SUBSTRINGS == 1) @enumToInt(PROFILER_HEAP_ENUM_FLAGS.SUBSTRINGS) else 0)
+            | (if (o.RELATIONSHIP_SUBSTRINGS == 1) @enumToInt(PROFILER_HEAP_ENUM_FLAGS.RELATIONSHIP_SUBSTRINGS) else 0)
+        );
+    }
 };
 pub const PROFILER_HEAP_ENUM_FLAGS_NONE = PROFILER_HEAP_ENUM_FLAGS.NONE;
 pub const PROFILER_HEAP_ENUM_FLAGS_STORE_RELATIONSHIP_FLAGS = PROFILER_HEAP_ENUM_FLAGS.STORE_RELATIONSHIP_FLAGS;
@@ -38957,20 +39233,31 @@ pub const FLASHWINFO = extern struct {
     dwTimeout: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SYM_LOAD_FLAGS = extern enum(u32) {
     NONE = 0,
     VIRTUAL = 1,
     ALT_INDEX = 2,
     NO_SYMBOLS = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        VIRTUAL: u1 = 0,
+        ALT_INDEX: u1 = 0,
+        NO_SYMBOLS: u1 = 0,
+    }) SYM_LOAD_FLAGS {
+        return @intToEnum(SYM_LOAD_FLAGS,
+              (if (o.NONE == 1) @enumToInt(SYM_LOAD_FLAGS.NONE) else 0)
+            | (if (o.VIRTUAL == 1) @enumToInt(SYM_LOAD_FLAGS.VIRTUAL) else 0)
+            | (if (o.ALT_INDEX == 1) @enumToInt(SYM_LOAD_FLAGS.ALT_INDEX) else 0)
+            | (if (o.NO_SYMBOLS == 1) @enumToInt(SYM_LOAD_FLAGS.NO_SYMBOLS) else 0)
+        );
+    }
 };
 pub const SLMFLAG_NONE = SYM_LOAD_FLAGS.NONE;
 pub const SLMFLAG_VIRTUAL = SYM_LOAD_FLAGS.VIRTUAL;
 pub const SLMFLAG_ALT_INDEX = SYM_LOAD_FLAGS.ALT_INDEX;
 pub const SLMFLAG_NO_SYMBOLS = SYM_LOAD_FLAGS.NO_SYMBOLS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const IMAGE_SECTION_CHARACTERISTICS = extern enum(u32) {
     TYPE_NO_PAD = 8,
     CNT_CODE = 32,
@@ -39012,6 +39299,89 @@ pub const IMAGE_SECTION_CHARACTERISTICS = extern enum(u32) {
     MEM_WRITE = 2147483648,
     SCALE_INDEX = 1,
     _,
+    pub fn initFlags(o: struct {
+        TYPE_NO_PAD: u1 = 0,
+        CNT_CODE: u1 = 0,
+        CNT_INITIALIZED_DATA: u1 = 0,
+        CNT_UNINITIALIZED_DATA: u1 = 0,
+        LNK_OTHER: u1 = 0,
+        LNK_INFO: u1 = 0,
+        LNK_REMOVE: u1 = 0,
+        LNK_COMDAT: u1 = 0,
+        NO_DEFER_SPEC_EXC: u1 = 0,
+        GPREL: u1 = 0,
+        MEM_FARDATA: u1 = 0,
+        MEM_PURGEABLE: u1 = 0,
+        MEM_16BIT: u1 = 0,
+        MEM_LOCKED: u1 = 0,
+        MEM_PRELOAD: u1 = 0,
+        ALIGN_1BYTES: u1 = 0,
+        ALIGN_2BYTES: u1 = 0,
+        ALIGN_4BYTES: u1 = 0,
+        ALIGN_8BYTES: u1 = 0,
+        ALIGN_16BYTES: u1 = 0,
+        ALIGN_32BYTES: u1 = 0,
+        ALIGN_64BYTES: u1 = 0,
+        ALIGN_128BYTES: u1 = 0,
+        ALIGN_256BYTES: u1 = 0,
+        ALIGN_512BYTES: u1 = 0,
+        ALIGN_1024BYTES: u1 = 0,
+        ALIGN_2048BYTES: u1 = 0,
+        ALIGN_4096BYTES: u1 = 0,
+        ALIGN_8192BYTES: u1 = 0,
+        ALIGN_MASK: u1 = 0,
+        LNK_NRELOC_OVFL: u1 = 0,
+        MEM_DISCARDABLE: u1 = 0,
+        MEM_NOT_CACHED: u1 = 0,
+        MEM_NOT_PAGED: u1 = 0,
+        MEM_SHARED: u1 = 0,
+        MEM_EXECUTE: u1 = 0,
+        MEM_READ: u1 = 0,
+        MEM_WRITE: u1 = 0,
+        SCALE_INDEX: u1 = 0,
+    }) IMAGE_SECTION_CHARACTERISTICS {
+        return @intToEnum(IMAGE_SECTION_CHARACTERISTICS,
+              (if (o.TYPE_NO_PAD == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.TYPE_NO_PAD) else 0)
+            | (if (o.CNT_CODE == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.CNT_CODE) else 0)
+            | (if (o.CNT_INITIALIZED_DATA == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.CNT_INITIALIZED_DATA) else 0)
+            | (if (o.CNT_UNINITIALIZED_DATA == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.CNT_UNINITIALIZED_DATA) else 0)
+            | (if (o.LNK_OTHER == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.LNK_OTHER) else 0)
+            | (if (o.LNK_INFO == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.LNK_INFO) else 0)
+            | (if (o.LNK_REMOVE == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.LNK_REMOVE) else 0)
+            | (if (o.LNK_COMDAT == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.LNK_COMDAT) else 0)
+            | (if (o.NO_DEFER_SPEC_EXC == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.NO_DEFER_SPEC_EXC) else 0)
+            | (if (o.GPREL == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.GPREL) else 0)
+            | (if (o.MEM_FARDATA == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_FARDATA) else 0)
+            | (if (o.MEM_PURGEABLE == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_PURGEABLE) else 0)
+            | (if (o.MEM_16BIT == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_16BIT) else 0)
+            | (if (o.MEM_LOCKED == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_LOCKED) else 0)
+            | (if (o.MEM_PRELOAD == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_PRELOAD) else 0)
+            | (if (o.ALIGN_1BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_1BYTES) else 0)
+            | (if (o.ALIGN_2BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_2BYTES) else 0)
+            | (if (o.ALIGN_4BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_4BYTES) else 0)
+            | (if (o.ALIGN_8BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_8BYTES) else 0)
+            | (if (o.ALIGN_16BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_16BYTES) else 0)
+            | (if (o.ALIGN_32BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_32BYTES) else 0)
+            | (if (o.ALIGN_64BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_64BYTES) else 0)
+            | (if (o.ALIGN_128BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_128BYTES) else 0)
+            | (if (o.ALIGN_256BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_256BYTES) else 0)
+            | (if (o.ALIGN_512BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_512BYTES) else 0)
+            | (if (o.ALIGN_1024BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_1024BYTES) else 0)
+            | (if (o.ALIGN_2048BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_2048BYTES) else 0)
+            | (if (o.ALIGN_4096BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_4096BYTES) else 0)
+            | (if (o.ALIGN_8192BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_8192BYTES) else 0)
+            | (if (o.ALIGN_MASK == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_MASK) else 0)
+            | (if (o.LNK_NRELOC_OVFL == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.LNK_NRELOC_OVFL) else 0)
+            | (if (o.MEM_DISCARDABLE == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_DISCARDABLE) else 0)
+            | (if (o.MEM_NOT_CACHED == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_NOT_CACHED) else 0)
+            | (if (o.MEM_NOT_PAGED == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_NOT_PAGED) else 0)
+            | (if (o.MEM_SHARED == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_SHARED) else 0)
+            | (if (o.MEM_EXECUTE == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_EXECUTE) else 0)
+            | (if (o.MEM_READ == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_READ) else 0)
+            | (if (o.MEM_WRITE == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_WRITE) else 0)
+            | (if (o.SCALE_INDEX == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.SCALE_INDEX) else 0)
+        );
+    }
 };
 pub const IMAGE_SCN_TYPE_NO_PAD = IMAGE_SECTION_CHARACTERISTICS.TYPE_NO_PAD;
 pub const IMAGE_SCN_CNT_CODE = IMAGE_SECTION_CHARACTERISTICS.CNT_CODE;
@@ -39153,7 +39523,6 @@ pub const IMAGE_SUBSYSTEM_XBOX = IMAGE_SUBSYSTEM.XBOX;
 pub const IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION = IMAGE_SUBSYSTEM.WINDOWS_BOOT_APPLICATION;
 pub const IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG = IMAGE_SUBSYSTEM.XBOX_CODE_CATALOG;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const IMAGE_DLL_CHARACTERISTICS = extern enum(u32) {
     HIGH_ENTROPY_VA = 32,
     DYNAMIC_BASE = 64,
@@ -39168,6 +39537,35 @@ pub const IMAGE_DLL_CHARACTERISTICS = extern enum(u32) {
     TERMINAL_SERVER_AWARE = 32768,
     EX_CET_COMPAT = 1,
     _,
+    pub fn initFlags(o: struct {
+        HIGH_ENTROPY_VA: u1 = 0,
+        DYNAMIC_BASE: u1 = 0,
+        FORCE_INTEGRITY: u1 = 0,
+        NX_COMPAT: u1 = 0,
+        NO_ISOLATION: u1 = 0,
+        NO_SEH: u1 = 0,
+        NO_BIND: u1 = 0,
+        APPCONTAINER: u1 = 0,
+        WDM_DRIVER: u1 = 0,
+        GUARD_CF: u1 = 0,
+        TERMINAL_SERVER_AWARE: u1 = 0,
+        EX_CET_COMPAT: u1 = 0,
+    }) IMAGE_DLL_CHARACTERISTICS {
+        return @intToEnum(IMAGE_DLL_CHARACTERISTICS,
+              (if (o.HIGH_ENTROPY_VA == 1) @enumToInt(IMAGE_DLL_CHARACTERISTICS.HIGH_ENTROPY_VA) else 0)
+            | (if (o.DYNAMIC_BASE == 1) @enumToInt(IMAGE_DLL_CHARACTERISTICS.DYNAMIC_BASE) else 0)
+            | (if (o.FORCE_INTEGRITY == 1) @enumToInt(IMAGE_DLL_CHARACTERISTICS.FORCE_INTEGRITY) else 0)
+            | (if (o.NX_COMPAT == 1) @enumToInt(IMAGE_DLL_CHARACTERISTICS.NX_COMPAT) else 0)
+            | (if (o.NO_ISOLATION == 1) @enumToInt(IMAGE_DLL_CHARACTERISTICS.NO_ISOLATION) else 0)
+            | (if (o.NO_SEH == 1) @enumToInt(IMAGE_DLL_CHARACTERISTICS.NO_SEH) else 0)
+            | (if (o.NO_BIND == 1) @enumToInt(IMAGE_DLL_CHARACTERISTICS.NO_BIND) else 0)
+            | (if (o.APPCONTAINER == 1) @enumToInt(IMAGE_DLL_CHARACTERISTICS.APPCONTAINER) else 0)
+            | (if (o.WDM_DRIVER == 1) @enumToInt(IMAGE_DLL_CHARACTERISTICS.WDM_DRIVER) else 0)
+            | (if (o.GUARD_CF == 1) @enumToInt(IMAGE_DLL_CHARACTERISTICS.GUARD_CF) else 0)
+            | (if (o.TERMINAL_SERVER_AWARE == 1) @enumToInt(IMAGE_DLL_CHARACTERISTICS.TERMINAL_SERVER_AWARE) else 0)
+            | (if (o.EX_CET_COMPAT == 1) @enumToInt(IMAGE_DLL_CHARACTERISTICS.EX_CET_COMPAT) else 0)
+        );
+    }
 };
 pub const IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA = IMAGE_DLL_CHARACTERISTICS.HIGH_ENTROPY_VA;
 pub const IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE = IMAGE_DLL_CHARACTERISTICS.DYNAMIC_BASE;
@@ -45737,7 +46135,6 @@ pub const FACILITY_GAME = FACILITY_CODE.GAME;
 pub const FACILITY_PIX = FACILITY_CODE.PIX;
 pub const FACILITY_NT_BIT = FACILITY_CODE.NT_BIT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const THREAD_ERROR_MODE = extern enum(u32) {
     ALL_ERRORS = 0,
     FAILCRITICALERRORS = 1,
@@ -45745,6 +46142,21 @@ pub const THREAD_ERROR_MODE = extern enum(u32) {
     NOOPENFILEERRORBOX = 32768,
     NOALIGNMENTFAULTEXCEPT = 4,
     _,
+    pub fn initFlags(o: struct {
+        ALL_ERRORS: u1 = 0,
+        FAILCRITICALERRORS: u1 = 0,
+        NOGPFAULTERRORBOX: u1 = 0,
+        NOOPENFILEERRORBOX: u1 = 0,
+        NOALIGNMENTFAULTEXCEPT: u1 = 0,
+    }) THREAD_ERROR_MODE {
+        return @intToEnum(THREAD_ERROR_MODE,
+              (if (o.ALL_ERRORS == 1) @enumToInt(THREAD_ERROR_MODE.ALL_ERRORS) else 0)
+            | (if (o.FAILCRITICALERRORS == 1) @enumToInt(THREAD_ERROR_MODE.FAILCRITICALERRORS) else 0)
+            | (if (o.NOGPFAULTERRORBOX == 1) @enumToInt(THREAD_ERROR_MODE.NOGPFAULTERRORBOX) else 0)
+            | (if (o.NOOPENFILEERRORBOX == 1) @enumToInt(THREAD_ERROR_MODE.NOOPENFILEERRORBOX) else 0)
+            | (if (o.NOALIGNMENTFAULTEXCEPT == 1) @enumToInt(THREAD_ERROR_MODE.NOALIGNMENTFAULTEXCEPT) else 0)
+        );
+    }
 };
 pub const SEM_ALL_ERRORS = THREAD_ERROR_MODE.ALL_ERRORS;
 pub const SEM_FAILCRITICALERRORS = THREAD_ERROR_MODE.FAILCRITICALERRORS;
@@ -45752,7 +46164,6 @@ pub const SEM_NOGPFAULTERRORBOX = THREAD_ERROR_MODE.NOGPFAULTERRORBOX;
 pub const SEM_NOOPENFILEERRORBOX = THREAD_ERROR_MODE.NOOPENFILEERRORBOX;
 pub const SEM_NOALIGNMENTFAULTEXCEPT = THREAD_ERROR_MODE.NOALIGNMENTFAULTEXCEPT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FORMAT_MESSAGE_OPTIONS = extern enum(u32) {
     ALLOCATE_BUFFER = 256,
     ARGUMENT_ARRAY = 8192,
@@ -45761,6 +46172,23 @@ pub const FORMAT_MESSAGE_OPTIONS = extern enum(u32) {
     FROM_SYSTEM = 4096,
     IGNORE_INSERTS = 512,
     _,
+    pub fn initFlags(o: struct {
+        ALLOCATE_BUFFER: u1 = 0,
+        ARGUMENT_ARRAY: u1 = 0,
+        FROM_HMODULE: u1 = 0,
+        FROM_STRING: u1 = 0,
+        FROM_SYSTEM: u1 = 0,
+        IGNORE_INSERTS: u1 = 0,
+    }) FORMAT_MESSAGE_OPTIONS {
+        return @intToEnum(FORMAT_MESSAGE_OPTIONS,
+              (if (o.ALLOCATE_BUFFER == 1) @enumToInt(FORMAT_MESSAGE_OPTIONS.ALLOCATE_BUFFER) else 0)
+            | (if (o.ARGUMENT_ARRAY == 1) @enumToInt(FORMAT_MESSAGE_OPTIONS.ARGUMENT_ARRAY) else 0)
+            | (if (o.FROM_HMODULE == 1) @enumToInt(FORMAT_MESSAGE_OPTIONS.FROM_HMODULE) else 0)
+            | (if (o.FROM_STRING == 1) @enumToInt(FORMAT_MESSAGE_OPTIONS.FROM_STRING) else 0)
+            | (if (o.FROM_SYSTEM == 1) @enumToInt(FORMAT_MESSAGE_OPTIONS.FROM_SYSTEM) else 0)
+            | (if (o.IGNORE_INSERTS == 1) @enumToInt(FORMAT_MESSAGE_OPTIONS.IGNORE_INSERTS) else 0)
+        );
+    }
 };
 pub const FORMAT_MESSAGE_ALLOCATE_BUFFER = FORMAT_MESSAGE_OPTIONS.ALLOCATE_BUFFER;
 pub const FORMAT_MESSAGE_ARGUMENT_ARRAY = FORMAT_MESSAGE_OPTIONS.ARGUMENT_ARRAY;
@@ -45849,7 +46277,6 @@ pub const SSRVOPT_DWORD = SYM_FIND_ID_OPTION.DWORD;
 pub const SSRVOPT_DWORDPTR = SYM_FIND_ID_OPTION.DWORDPTR;
 pub const SSRVOPT_GUIDPTR = SYM_FIND_ID_OPTION.GUIDPTR;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const IMAGE_FILE_CHARACTERISTICS = extern enum(u32) {
     RELOCS_STRIPPED = 1,
     EXECUTABLE_IMAGE = 2,
@@ -45867,6 +46294,41 @@ pub const IMAGE_FILE_CHARACTERISTICS = extern enum(u32) {
     UP_SYSTEM_ONLY = 16384,
     BYTES_REVERSED_HI = 32768,
     _,
+    pub fn initFlags(o: struct {
+        RELOCS_STRIPPED: u1 = 0,
+        EXECUTABLE_IMAGE: u1 = 0,
+        LINE_NUMS_STRIPPED: u1 = 0,
+        LOCAL_SYMS_STRIPPED: u1 = 0,
+        AGGRESIVE_WS_TRIM: u1 = 0,
+        LARGE_ADDRESS_AWARE: u1 = 0,
+        BYTES_REVERSED_LO: u1 = 0,
+        @"32BIT_MACHINE": u1 = 0,
+        DEBUG_STRIPPED: u1 = 0,
+        REMOVABLE_RUN_FROM_SWAP: u1 = 0,
+        NET_RUN_FROM_SWAP: u1 = 0,
+        SYSTEM: u1 = 0,
+        DLL: u1 = 0,
+        UP_SYSTEM_ONLY: u1 = 0,
+        BYTES_REVERSED_HI: u1 = 0,
+    }) IMAGE_FILE_CHARACTERISTICS {
+        return @intToEnum(IMAGE_FILE_CHARACTERISTICS,
+              (if (o.RELOCS_STRIPPED == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.RELOCS_STRIPPED) else 0)
+            | (if (o.EXECUTABLE_IMAGE == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.EXECUTABLE_IMAGE) else 0)
+            | (if (o.LINE_NUMS_STRIPPED == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.LINE_NUMS_STRIPPED) else 0)
+            | (if (o.LOCAL_SYMS_STRIPPED == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.LOCAL_SYMS_STRIPPED) else 0)
+            | (if (o.AGGRESIVE_WS_TRIM == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.AGGRESIVE_WS_TRIM) else 0)
+            | (if (o.LARGE_ADDRESS_AWARE == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.LARGE_ADDRESS_AWARE) else 0)
+            | (if (o.BYTES_REVERSED_LO == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.BYTES_REVERSED_LO) else 0)
+            | (if (o.@"32BIT_MACHINE" == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.@"32BIT_MACHINE") else 0)
+            | (if (o.DEBUG_STRIPPED == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.DEBUG_STRIPPED) else 0)
+            | (if (o.REMOVABLE_RUN_FROM_SWAP == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.REMOVABLE_RUN_FROM_SWAP) else 0)
+            | (if (o.NET_RUN_FROM_SWAP == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.NET_RUN_FROM_SWAP) else 0)
+            | (if (o.SYSTEM == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.SYSTEM) else 0)
+            | (if (o.DLL == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.DLL) else 0)
+            | (if (o.UP_SYSTEM_ONLY == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.UP_SYSTEM_ONLY) else 0)
+            | (if (o.BYTES_REVERSED_HI == 1) @enumToInt(IMAGE_FILE_CHARACTERISTICS.BYTES_REVERSED_HI) else 0)
+        );
+    }
 };
 pub const IMAGE_FILE_RELOCS_STRIPPED = IMAGE_FILE_CHARACTERISTICS.RELOCS_STRIPPED;
 pub const IMAGE_FILE_EXECUTABLE_IMAGE = IMAGE_FILE_CHARACTERISTICS.EXECUTABLE_IMAGE;
@@ -45884,7 +46346,6 @@ pub const IMAGE_FILE_DLL = IMAGE_FILE_CHARACTERISTICS.DLL;
 pub const IMAGE_FILE_UP_SYSTEM_ONLY = IMAGE_FILE_CHARACTERISTICS.UP_SYSTEM_ONLY;
 pub const IMAGE_FILE_BYTES_REVERSED_HI = IMAGE_FILE_CHARACTERISTICS.BYTES_REVERSED_HI;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SYMBOL_INFO_FLAGS = extern enum(u32) {
     CLR_TOKEN = 262144,
     CONSTANT = 256,
@@ -45904,6 +46365,45 @@ pub const SYMBOL_INFO_FLAGS = extern enum(u32) {
     VALUEPRESENT = 1,
     VIRTUAL = 4096,
     _,
+    pub fn initFlags(o: struct {
+        CLR_TOKEN: u1 = 0,
+        CONSTANT: u1 = 0,
+        EXPORT: u1 = 0,
+        FORWARDER: u1 = 0,
+        FRAMEREL: u1 = 0,
+        FUNCTION: u1 = 0,
+        ILREL: u1 = 0,
+        LOCAL: u1 = 0,
+        METADATA: u1 = 0,
+        PARAMETER: u1 = 0,
+        REGISTER: u1 = 0,
+        REGREL: u1 = 0,
+        SLOT: u1 = 0,
+        THUNK: u1 = 0,
+        TLSREL: u1 = 0,
+        VALUEPRESENT: u1 = 0,
+        VIRTUAL: u1 = 0,
+    }) SYMBOL_INFO_FLAGS {
+        return @intToEnum(SYMBOL_INFO_FLAGS,
+              (if (o.CLR_TOKEN == 1) @enumToInt(SYMBOL_INFO_FLAGS.CLR_TOKEN) else 0)
+            | (if (o.CONSTANT == 1) @enumToInt(SYMBOL_INFO_FLAGS.CONSTANT) else 0)
+            | (if (o.EXPORT == 1) @enumToInt(SYMBOL_INFO_FLAGS.EXPORT) else 0)
+            | (if (o.FORWARDER == 1) @enumToInt(SYMBOL_INFO_FLAGS.FORWARDER) else 0)
+            | (if (o.FRAMEREL == 1) @enumToInt(SYMBOL_INFO_FLAGS.FRAMEREL) else 0)
+            | (if (o.FUNCTION == 1) @enumToInt(SYMBOL_INFO_FLAGS.FUNCTION) else 0)
+            | (if (o.ILREL == 1) @enumToInt(SYMBOL_INFO_FLAGS.ILREL) else 0)
+            | (if (o.LOCAL == 1) @enumToInt(SYMBOL_INFO_FLAGS.LOCAL) else 0)
+            | (if (o.METADATA == 1) @enumToInt(SYMBOL_INFO_FLAGS.METADATA) else 0)
+            | (if (o.PARAMETER == 1) @enumToInt(SYMBOL_INFO_FLAGS.PARAMETER) else 0)
+            | (if (o.REGISTER == 1) @enumToInt(SYMBOL_INFO_FLAGS.REGISTER) else 0)
+            | (if (o.REGREL == 1) @enumToInt(SYMBOL_INFO_FLAGS.REGREL) else 0)
+            | (if (o.SLOT == 1) @enumToInt(SYMBOL_INFO_FLAGS.SLOT) else 0)
+            | (if (o.THUNK == 1) @enumToInt(SYMBOL_INFO_FLAGS.THUNK) else 0)
+            | (if (o.TLSREL == 1) @enumToInt(SYMBOL_INFO_FLAGS.TLSREL) else 0)
+            | (if (o.VALUEPRESENT == 1) @enumToInt(SYMBOL_INFO_FLAGS.VALUEPRESENT) else 0)
+            | (if (o.VIRTUAL == 1) @enumToInt(SYMBOL_INFO_FLAGS.VIRTUAL) else 0)
+        );
+    }
 };
 pub const SYMFLAG_CLR_TOKEN = SYMBOL_INFO_FLAGS.CLR_TOKEN;
 pub const SYMFLAG_CONSTANT = SYMBOL_INFO_FLAGS.CONSTANT;
@@ -45923,7 +46423,6 @@ pub const SYMFLAG_TLSREL = SYMBOL_INFO_FLAGS.TLSREL;
 pub const SYMFLAG_VALUEPRESENT = SYMBOL_INFO_FLAGS.VALUEPRESENT;
 pub const SYMFLAG_VIRTUAL = SYMBOL_INFO_FLAGS.VIRTUAL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FLASHWINFO_FLAGS = extern enum(u32) {
     ALL = 3,
     CAPTION = 1,
@@ -45932,6 +46431,23 @@ pub const FLASHWINFO_FLAGS = extern enum(u32) {
     TIMERNOFG = 12,
     TRAY = 2,
     _,
+    pub fn initFlags(o: struct {
+        ALL: u1 = 0,
+        CAPTION: u1 = 0,
+        STOP: u1 = 0,
+        TIMER: u1 = 0,
+        TIMERNOFG: u1 = 0,
+        TRAY: u1 = 0,
+    }) FLASHWINFO_FLAGS {
+        return @intToEnum(FLASHWINFO_FLAGS,
+              (if (o.ALL == 1) @enumToInt(FLASHWINFO_FLAGS.ALL) else 0)
+            | (if (o.CAPTION == 1) @enumToInt(FLASHWINFO_FLAGS.CAPTION) else 0)
+            | (if (o.STOP == 1) @enumToInt(FLASHWINFO_FLAGS.STOP) else 0)
+            | (if (o.TIMER == 1) @enumToInt(FLASHWINFO_FLAGS.TIMER) else 0)
+            | (if (o.TIMERNOFG == 1) @enumToInt(FLASHWINFO_FLAGS.TIMERNOFG) else 0)
+            | (if (o.TRAY == 1) @enumToInt(FLASHWINFO_FLAGS.TRAY) else 0)
+        );
+    }
 };
 pub const FLASHW_ALL = FLASHWINFO_FLAGS.ALL;
 pub const FLASHW_CAPTION = FLASHWINFO_FLAGS.CAPTION;
@@ -46028,11 +46544,19 @@ pub const OUTPUT_DEBUG_STRING_EVENT = DEBUG_EVENT_CODE.OUTPUT_DEBUG_STRING_EVENT
 pub const RIP_EVENT = DEBUG_EVENT_CODE.RIP_EVENT;
 pub const UNLOAD_DLL_DEBUG_EVENT = DEBUG_EVENT_CODE.UNLOAD_DLL_DEBUG_EVENT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MINIDUMP_MISC_INFO_FLAGS = extern enum(u32) {
     ID = 1,
     TIMES = 2,
     _,
+    pub fn initFlags(o: struct {
+        ID: u1 = 0,
+        TIMES: u1 = 0,
+    }) MINIDUMP_MISC_INFO_FLAGS {
+        return @intToEnum(MINIDUMP_MISC_INFO_FLAGS,
+              (if (o.ID == 1) @enumToInt(MINIDUMP_MISC_INFO_FLAGS.ID) else 0)
+            | (if (o.TIMES == 1) @enumToInt(MINIDUMP_MISC_INFO_FLAGS.TIMES) else 0)
+        );
+    }
 };
 pub const MINIDUMP_MISC1_PROCESS_ID = MINIDUMP_MISC_INFO_FLAGS.ID;
 pub const MINIDUMP_MISC1_PROCESS_TIMES = MINIDUMP_MISC_INFO_FLAGS.TIMES;

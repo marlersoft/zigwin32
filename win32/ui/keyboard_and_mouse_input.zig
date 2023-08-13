@@ -158,7 +158,6 @@ pub const RAW_INPUT_DATA_COMMAND_FLAGS = extern enum(u32) {
 pub const RID_HEADER = RAW_INPUT_DATA_COMMAND_FLAGS.HEADER;
 pub const RID_INPUT = RAW_INPUT_DATA_COMMAND_FLAGS.INPUT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const HOT_KEY_MODIFIERS = extern enum(u32) {
     ALT = 1,
     CONTROL = 2,
@@ -166,6 +165,21 @@ pub const HOT_KEY_MODIFIERS = extern enum(u32) {
     SHIFT = 4,
     WIN = 8,
     _,
+    pub fn initFlags(o: struct {
+        ALT: u1 = 0,
+        CONTROL: u1 = 0,
+        NOREPEAT: u1 = 0,
+        SHIFT: u1 = 0,
+        WIN: u1 = 0,
+    }) HOT_KEY_MODIFIERS {
+        return @intToEnum(HOT_KEY_MODIFIERS,
+              (if (o.ALT == 1) @enumToInt(HOT_KEY_MODIFIERS.ALT) else 0)
+            | (if (o.CONTROL == 1) @enumToInt(HOT_KEY_MODIFIERS.CONTROL) else 0)
+            | (if (o.NOREPEAT == 1) @enumToInt(HOT_KEY_MODIFIERS.NOREPEAT) else 0)
+            | (if (o.SHIFT == 1) @enumToInt(HOT_KEY_MODIFIERS.SHIFT) else 0)
+            | (if (o.WIN == 1) @enumToInt(HOT_KEY_MODIFIERS.WIN) else 0)
+        );
+    }
 };
 pub const MOD_ALT = HOT_KEY_MODIFIERS.ALT;
 pub const MOD_CONTROL = HOT_KEY_MODIFIERS.CONTROL;
@@ -208,20 +222,31 @@ pub const GET_MOUSE_MOVE_POINTS_EX_RESOLUTION = extern enum(u32) {
 pub const GMMP_USE_DISPLAY_POINTS = GET_MOUSE_MOVE_POINTS_EX_RESOLUTION.DISPLAY_POINTS;
 pub const GMMP_USE_HIGH_RESOLUTION_POINTS = GET_MOUSE_MOVE_POINTS_EX_RESOLUTION.HIGH_RESOLUTION_POINTS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const KEYBD_EVENT_FLAGS = extern enum(u32) {
     EXTENDEDKEY = 1,
     KEYUP = 2,
     SCANCODE = 8,
     UNICODE = 4,
     _,
+    pub fn initFlags(o: struct {
+        EXTENDEDKEY: u1 = 0,
+        KEYUP: u1 = 0,
+        SCANCODE: u1 = 0,
+        UNICODE: u1 = 0,
+    }) KEYBD_EVENT_FLAGS {
+        return @intToEnum(KEYBD_EVENT_FLAGS,
+              (if (o.EXTENDEDKEY == 1) @enumToInt(KEYBD_EVENT_FLAGS.EXTENDEDKEY) else 0)
+            | (if (o.KEYUP == 1) @enumToInt(KEYBD_EVENT_FLAGS.KEYUP) else 0)
+            | (if (o.SCANCODE == 1) @enumToInt(KEYBD_EVENT_FLAGS.SCANCODE) else 0)
+            | (if (o.UNICODE == 1) @enumToInt(KEYBD_EVENT_FLAGS.UNICODE) else 0)
+        );
+    }
 };
 pub const KEYEVENTF_EXTENDEDKEY = KEYBD_EVENT_FLAGS.EXTENDEDKEY;
 pub const KEYEVENTF_KEYUP = KEYBD_EVENT_FLAGS.KEYUP;
 pub const KEYEVENTF_SCANCODE = KEYBD_EVENT_FLAGS.SCANCODE;
 pub const KEYEVENTF_UNICODE = KEYBD_EVENT_FLAGS.UNICODE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MOUSE_EVENT_FLAGS = extern enum(u32) {
     ABSOLUTE = 32768,
     LEFTDOWN = 2,
@@ -238,6 +263,39 @@ pub const MOUSE_EVENT_FLAGS = extern enum(u32) {
     MOVE_NOCOALESCE = 8192,
     VIRTUALDESK = 16384,
     _,
+    pub fn initFlags(o: struct {
+        ABSOLUTE: u1 = 0,
+        LEFTDOWN: u1 = 0,
+        LEFTUP: u1 = 0,
+        MIDDLEDOWN: u1 = 0,
+        MIDDLEUP: u1 = 0,
+        MOVE: u1 = 0,
+        RIGHTDOWN: u1 = 0,
+        RIGHTUP: u1 = 0,
+        WHEEL: u1 = 0,
+        XDOWN: u1 = 0,
+        XUP: u1 = 0,
+        HWHEEL: u1 = 0,
+        MOVE_NOCOALESCE: u1 = 0,
+        VIRTUALDESK: u1 = 0,
+    }) MOUSE_EVENT_FLAGS {
+        return @intToEnum(MOUSE_EVENT_FLAGS,
+              (if (o.ABSOLUTE == 1) @enumToInt(MOUSE_EVENT_FLAGS.ABSOLUTE) else 0)
+            | (if (o.LEFTDOWN == 1) @enumToInt(MOUSE_EVENT_FLAGS.LEFTDOWN) else 0)
+            | (if (o.LEFTUP == 1) @enumToInt(MOUSE_EVENT_FLAGS.LEFTUP) else 0)
+            | (if (o.MIDDLEDOWN == 1) @enumToInt(MOUSE_EVENT_FLAGS.MIDDLEDOWN) else 0)
+            | (if (o.MIDDLEUP == 1) @enumToInt(MOUSE_EVENT_FLAGS.MIDDLEUP) else 0)
+            | (if (o.MOVE == 1) @enumToInt(MOUSE_EVENT_FLAGS.MOVE) else 0)
+            | (if (o.RIGHTDOWN == 1) @enumToInt(MOUSE_EVENT_FLAGS.RIGHTDOWN) else 0)
+            | (if (o.RIGHTUP == 1) @enumToInt(MOUSE_EVENT_FLAGS.RIGHTUP) else 0)
+            | (if (o.WHEEL == 1) @enumToInt(MOUSE_EVENT_FLAGS.WHEEL) else 0)
+            | (if (o.XDOWN == 1) @enumToInt(MOUSE_EVENT_FLAGS.XDOWN) else 0)
+            | (if (o.XUP == 1) @enumToInt(MOUSE_EVENT_FLAGS.XUP) else 0)
+            | (if (o.HWHEEL == 1) @enumToInt(MOUSE_EVENT_FLAGS.HWHEEL) else 0)
+            | (if (o.MOVE_NOCOALESCE == 1) @enumToInt(MOUSE_EVENT_FLAGS.MOVE_NOCOALESCE) else 0)
+            | (if (o.VIRTUALDESK == 1) @enumToInt(MOUSE_EVENT_FLAGS.VIRTUALDESK) else 0)
+        );
+    }
 };
 pub const MOUSEEVENTF_ABSOLUTE = MOUSE_EVENT_FLAGS.ABSOLUTE;
 pub const MOUSEEVENTF_LEFTDOWN = MOUSE_EVENT_FLAGS.LEFTDOWN;
@@ -295,7 +353,6 @@ pub const INPUT_MOUSE = INPUT_TYPE.MOUSE;
 pub const INPUT_KEYBOARD = INPUT_TYPE.KEYBOARD;
 pub const INPUT_HARDWARE = INPUT_TYPE.HARDWARE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TRACKMOUSEEVENT_FLAGS = extern enum(u32) {
     CANCEL = 2147483648,
     HOVER = 1,
@@ -303,6 +360,21 @@ pub const TRACKMOUSEEVENT_FLAGS = extern enum(u32) {
     NONCLIENT = 16,
     QUERY = 1073741824,
     _,
+    pub fn initFlags(o: struct {
+        CANCEL: u1 = 0,
+        HOVER: u1 = 0,
+        LEAVE: u1 = 0,
+        NONCLIENT: u1 = 0,
+        QUERY: u1 = 0,
+    }) TRACKMOUSEEVENT_FLAGS {
+        return @intToEnum(TRACKMOUSEEVENT_FLAGS,
+              (if (o.CANCEL == 1) @enumToInt(TRACKMOUSEEVENT_FLAGS.CANCEL) else 0)
+            | (if (o.HOVER == 1) @enumToInt(TRACKMOUSEEVENT_FLAGS.HOVER) else 0)
+            | (if (o.LEAVE == 1) @enumToInt(TRACKMOUSEEVENT_FLAGS.LEAVE) else 0)
+            | (if (o.NONCLIENT == 1) @enumToInt(TRACKMOUSEEVENT_FLAGS.NONCLIENT) else 0)
+            | (if (o.QUERY == 1) @enumToInt(TRACKMOUSEEVENT_FLAGS.QUERY) else 0)
+        );
+    }
 };
 pub const TME_CANCEL = TRACKMOUSEEVENT_FLAGS.CANCEL;
 pub const TME_HOVER = TRACKMOUSEEVENT_FLAGS.HOVER;

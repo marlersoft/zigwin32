@@ -2305,13 +2305,25 @@ pub const REGPINMEDIUM = extern struct {
     dw2: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const REG_PINFLAG = extern enum(u32) {
     ZERO = 1,
     RENDERER = 2,
     MANY = 4,
     OUTPUT = 8,
     _,
+    pub fn initFlags(o: struct {
+        ZERO: u1 = 0,
+        RENDERER: u1 = 0,
+        MANY: u1 = 0,
+        OUTPUT: u1 = 0,
+    }) REG_PINFLAG {
+        return @intToEnum(REG_PINFLAG,
+              (if (o.ZERO == 1) @enumToInt(REG_PINFLAG.ZERO) else 0)
+            | (if (o.RENDERER == 1) @enumToInt(REG_PINFLAG.RENDERER) else 0)
+            | (if (o.MANY == 1) @enumToInt(REG_PINFLAG.MANY) else 0)
+            | (if (o.OUTPUT == 1) @enumToInt(REG_PINFLAG.OUTPUT) else 0)
+        );
+    }
 };
 pub const REG_PINFLAG_B_ZERO = REG_PINFLAG.ZERO;
 pub const REG_PINFLAG_B_RENDERER = REG_PINFLAG.RENDERER;
@@ -2495,7 +2507,6 @@ pub const COLORKEY = extern struct {
     HighColorValue: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const ADVISE_TYPE = extern enum(u32) {
     NONE = 0,
     CLIPPING = 1,
@@ -2504,6 +2515,23 @@ pub const ADVISE_TYPE = extern enum(u32) {
     POSITION = 8,
     DISPLAY_CHANGE = 16,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        CLIPPING: u1 = 0,
+        PALETTE: u1 = 0,
+        COLORKEY: u1 = 0,
+        POSITION: u1 = 0,
+        DISPLAY_CHANGE: u1 = 0,
+    }) ADVISE_TYPE {
+        return @intToEnum(ADVISE_TYPE,
+              (if (o.NONE == 1) @enumToInt(ADVISE_TYPE.NONE) else 0)
+            | (if (o.CLIPPING == 1) @enumToInt(ADVISE_TYPE.CLIPPING) else 0)
+            | (if (o.PALETTE == 1) @enumToInt(ADVISE_TYPE.PALETTE) else 0)
+            | (if (o.COLORKEY == 1) @enumToInt(ADVISE_TYPE.COLORKEY) else 0)
+            | (if (o.POSITION == 1) @enumToInt(ADVISE_TYPE.POSITION) else 0)
+            | (if (o.DISPLAY_CHANGE == 1) @enumToInt(ADVISE_TYPE.DISPLAY_CHANGE) else 0)
+        );
+    }
 };
 pub const ADVISE_NONE = ADVISE_TYPE.NONE;
 pub const ADVISE_CLIPPING = ADVISE_TYPE.CLIPPING;
@@ -13281,12 +13309,22 @@ pub const IBDA_DigitalDemodulator3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const KSPROPERTY_IPSINK = extern enum(u32) {
     MULTICASTLIST = 0,
     ADAPTER_DESCRIPTION = 1,
     ADAPTER_ADDRESS = 2,
     _,
+    pub fn initFlags(o: struct {
+        MULTICASTLIST: u1 = 0,
+        ADAPTER_DESCRIPTION: u1 = 0,
+        ADAPTER_ADDRESS: u1 = 0,
+    }) KSPROPERTY_IPSINK {
+        return @intToEnum(KSPROPERTY_IPSINK,
+              (if (o.MULTICASTLIST == 1) @enumToInt(KSPROPERTY_IPSINK.MULTICASTLIST) else 0)
+            | (if (o.ADAPTER_DESCRIPTION == 1) @enumToInt(KSPROPERTY_IPSINK.ADAPTER_DESCRIPTION) else 0)
+            | (if (o.ADAPTER_ADDRESS == 1) @enumToInt(KSPROPERTY_IPSINK.ADAPTER_ADDRESS) else 0)
+        );
+    }
 };
 pub const KSPROPERTY_IPSINK_MULTICASTLIST = KSPROPERTY_IPSINK.MULTICASTLIST;
 pub const KSPROPERTY_IPSINK_ADAPTER_DESCRIPTION = KSPROPERTY_IPSINK.ADAPTER_DESCRIPTION;
@@ -19095,12 +19133,22 @@ pub const COMPSTAT_NOUPDATEOK = COMPLETION_STATUS_FLAGS.NOUPDATEOK;
 pub const COMPSTAT_WAIT = COMPLETION_STATUS_FLAGS.WAIT;
 pub const COMPSTAT_ABORT = COMPLETION_STATUS_FLAGS.ABORT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MMSSF_GET_INFORMATION_FLAGS = extern enum(u32) {
     HASCLOCK = 1,
     SUPPORTSEEK = 2,
     ASYNCHRONOUS = 4,
     _,
+    pub fn initFlags(o: struct {
+        HASCLOCK: u1 = 0,
+        SUPPORTSEEK: u1 = 0,
+        ASYNCHRONOUS: u1 = 0,
+    }) MMSSF_GET_INFORMATION_FLAGS {
+        return @intToEnum(MMSSF_GET_INFORMATION_FLAGS,
+              (if (o.HASCLOCK == 1) @enumToInt(MMSSF_GET_INFORMATION_FLAGS.HASCLOCK) else 0)
+            | (if (o.SUPPORTSEEK == 1) @enumToInt(MMSSF_GET_INFORMATION_FLAGS.SUPPORTSEEK) else 0)
+            | (if (o.ASYNCHRONOUS == 1) @enumToInt(MMSSF_GET_INFORMATION_FLAGS.ASYNCHRONOUS) else 0)
+        );
+    }
 };
 pub const MMSSF_HASCLOCK = MMSSF_GET_INFORMATION_FLAGS.HASCLOCK;
 pub const MMSSF_SUPPORTSEEK = MMSSF_GET_INFORMATION_FLAGS.SUPPORTSEEK;
@@ -19327,10 +19375,16 @@ pub const IStreamSample = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DDSFF_FLAGS = extern enum(u32) {
     R = 1,
     _,
+    pub fn initFlags(o: struct {
+        R: u1 = 0,
+    }) DDSFF_FLAGS {
+        return @intToEnum(DDSFF_FLAGS,
+              (if (o.R == 1) @enumToInt(DDSFF_FLAGS.R) else 0)
+        );
+    }
 };
 pub const DDSFF_PROGRESSIVERENDER = DDSFF_FLAGS.R;
 
@@ -19562,27 +19616,44 @@ pub const IAudioData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const AMMSF_MMS_INIT_FLAGS = extern enum(u32) {
     D = 1,
     _,
+    pub fn initFlags(o: struct {
+        D: u1 = 0,
+    }) AMMSF_MMS_INIT_FLAGS {
+        return @intToEnum(AMMSF_MMS_INIT_FLAGS,
+              (if (o.D == 1) @enumToInt(AMMSF_MMS_INIT_FLAGS.D) else 0)
+        );
+    }
 };
 pub const AMMSF_NOGRAPHTHREAD = AMMSF_MMS_INIT_FLAGS.D;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const AMMSF_MS_FLAGS = extern enum(u32) {
     ADDDEFAULTRENDERER = 1,
     CREATEPEER = 2,
     STOPIFNOSAMPLES = 4,
     NOSTALL = 8,
     _,
+    pub fn initFlags(o: struct {
+        ADDDEFAULTRENDERER: u1 = 0,
+        CREATEPEER: u1 = 0,
+        STOPIFNOSAMPLES: u1 = 0,
+        NOSTALL: u1 = 0,
+    }) AMMSF_MS_FLAGS {
+        return @intToEnum(AMMSF_MS_FLAGS,
+              (if (o.ADDDEFAULTRENDERER == 1) @enumToInt(AMMSF_MS_FLAGS.ADDDEFAULTRENDERER) else 0)
+            | (if (o.CREATEPEER == 1) @enumToInt(AMMSF_MS_FLAGS.CREATEPEER) else 0)
+            | (if (o.STOPIFNOSAMPLES == 1) @enumToInt(AMMSF_MS_FLAGS.STOPIFNOSAMPLES) else 0)
+            | (if (o.NOSTALL == 1) @enumToInt(AMMSF_MS_FLAGS.NOSTALL) else 0)
+        );
+    }
 };
 pub const AMMSF_ADDDEFAULTRENDERER = AMMSF_MS_FLAGS.ADDDEFAULTRENDERER;
 pub const AMMSF_CREATEPEER = AMMSF_MS_FLAGS.CREATEPEER;
 pub const AMMSF_STOPIFNOSAMPLES = AMMSF_MS_FLAGS.STOPIFNOSAMPLES;
 pub const AMMSF_NOSTALL = AMMSF_MS_FLAGS.NOSTALL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const AMMSF_RENDER_FLAGS = extern enum(u32) {
     RENDERTYPEMASK = 3,
     RENDERTOEXISTING = 0,
@@ -19591,6 +19662,23 @@ pub const AMMSF_RENDER_FLAGS = extern enum(u32) {
     NOCLOCK = 4,
     RUN = 8,
     _,
+    pub fn initFlags(o: struct {
+        RENDERTYPEMASK: u1 = 0,
+        RENDERTOEXISTING: u1 = 0,
+        RENDERALLSTREAMS: u1 = 0,
+        NORENDER: u1 = 0,
+        NOCLOCK: u1 = 0,
+        RUN: u1 = 0,
+    }) AMMSF_RENDER_FLAGS {
+        return @intToEnum(AMMSF_RENDER_FLAGS,
+              (if (o.RENDERTYPEMASK == 1) @enumToInt(AMMSF_RENDER_FLAGS.RENDERTYPEMASK) else 0)
+            | (if (o.RENDERTOEXISTING == 1) @enumToInt(AMMSF_RENDER_FLAGS.RENDERTOEXISTING) else 0)
+            | (if (o.RENDERALLSTREAMS == 1) @enumToInt(AMMSF_RENDER_FLAGS.RENDERALLSTREAMS) else 0)
+            | (if (o.NORENDER == 1) @enumToInt(AMMSF_RENDER_FLAGS.NORENDER) else 0)
+            | (if (o.NOCLOCK == 1) @enumToInt(AMMSF_RENDER_FLAGS.NOCLOCK) else 0)
+            | (if (o.RUN == 1) @enumToInt(AMMSF_RENDER_FLAGS.RUN) else 0)
+        );
+    }
 };
 pub const AMMSF_RENDERTYPEMASK = AMMSF_RENDER_FLAGS.RENDERTYPEMASK;
 pub const AMMSF_RENDERTOEXISTING = AMMSF_RENDER_FLAGS.RENDERTOEXISTING;
@@ -19599,12 +19687,22 @@ pub const AMMSF_NORENDER = AMMSF_RENDER_FLAGS.NORENDER;
 pub const AMMSF_NOCLOCK = AMMSF_RENDER_FLAGS.NOCLOCK;
 pub const AMMSF_RUN = AMMSF_RENDER_FLAGS.RUN;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const OUTPUT_STATE = extern enum(u32) {
     Disabled = 0,
     ReadData = 1,
     RenderData = 2,
     _,
+    pub fn initFlags(o: struct {
+        Disabled: u1 = 0,
+        ReadData: u1 = 0,
+        RenderData: u1 = 0,
+    }) OUTPUT_STATE {
+        return @intToEnum(OUTPUT_STATE,
+              (if (o.Disabled == 1) @enumToInt(OUTPUT_STATE.Disabled) else 0)
+            | (if (o.ReadData == 1) @enumToInt(OUTPUT_STATE.ReadData) else 0)
+            | (if (o.RenderData == 1) @enumToInt(OUTPUT_STATE.RenderData) else 0)
+        );
+    }
 };
 pub const Disabled = OUTPUT_STATE.Disabled;
 pub const ReadData = OUTPUT_STATE.ReadData;
@@ -23587,7 +23685,6 @@ pub const OA_BOOL = extern enum(i32) {
 pub const OATRUE = OA_BOOL.TRUE;
 pub const OAFALSE = OA_BOOL.FALSE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MPEG2VIDEOINFO_FLAGS = extern enum(u32) {
     DoPanScan = 1,
     DVDLine21Field1 = 2,
@@ -23600,6 +23697,31 @@ pub const MPEG2VIDEOINFO_FLAGS = extern enum(u32) {
     @"27MhzTimebase" = 256,
     WidescreenAnalogOut = 512,
     _,
+    pub fn initFlags(o: struct {
+        DoPanScan: u1 = 0,
+        DVDLine21Field1: u1 = 0,
+        DVDLine21Field2: u1 = 0,
+        SourceIsLetterboxed: u1 = 0,
+        FilmCameraMode: u1 = 0,
+        LetterboxAnalogOut: u1 = 0,
+        DSS_UserData: u1 = 0,
+        DVB_UserData: u1 = 0,
+        @"27MhzTimebase": u1 = 0,
+        WidescreenAnalogOut: u1 = 0,
+    }) MPEG2VIDEOINFO_FLAGS {
+        return @intToEnum(MPEG2VIDEOINFO_FLAGS,
+              (if (o.DoPanScan == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DoPanScan) else 0)
+            | (if (o.DVDLine21Field1 == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVDLine21Field1) else 0)
+            | (if (o.DVDLine21Field2 == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVDLine21Field2) else 0)
+            | (if (o.SourceIsLetterboxed == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed) else 0)
+            | (if (o.FilmCameraMode == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.FilmCameraMode) else 0)
+            | (if (o.LetterboxAnalogOut == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut) else 0)
+            | (if (o.DSS_UserData == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DSS_UserData) else 0)
+            | (if (o.DVB_UserData == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVB_UserData) else 0)
+            | (if (o.@"27MhzTimebase" == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase") else 0)
+            | (if (o.WidescreenAnalogOut == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut) else 0)
+        );
+    }
 };
 pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_FLAGS.DoPanScan;
 pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field1;

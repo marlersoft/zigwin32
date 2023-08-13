@@ -53,7 +53,6 @@ pub const OPEN_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const VIRTUAL_DISK_ACCESS_MASK = extern enum(u32) {
     NONE = 0,
     ATTACH_RO = 65536,
@@ -66,6 +65,31 @@ pub const VIRTUAL_DISK_ACCESS_MASK = extern enum(u32) {
     ALL = 4128768,
     WRITABLE = 3276800,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ATTACH_RO: u1 = 0,
+        ATTACH_RW: u1 = 0,
+        DETACH: u1 = 0,
+        GET_INFO: u1 = 0,
+        CREATE: u1 = 0,
+        METAOPS: u1 = 0,
+        READ: u1 = 0,
+        ALL: u1 = 0,
+        WRITABLE: u1 = 0,
+    }) VIRTUAL_DISK_ACCESS_MASK {
+        return @intToEnum(VIRTUAL_DISK_ACCESS_MASK,
+              (if (o.NONE == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.NONE) else 0)
+            | (if (o.ATTACH_RO == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.ATTACH_RO) else 0)
+            | (if (o.ATTACH_RW == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.ATTACH_RW) else 0)
+            | (if (o.DETACH == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.DETACH) else 0)
+            | (if (o.GET_INFO == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.GET_INFO) else 0)
+            | (if (o.CREATE == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.CREATE) else 0)
+            | (if (o.METAOPS == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.METAOPS) else 0)
+            | (if (o.READ == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.READ) else 0)
+            | (if (o.ALL == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.ALL) else 0)
+            | (if (o.WRITABLE == 1) @enumToInt(VIRTUAL_DISK_ACCESS_MASK.WRITABLE) else 0)
+        );
+    }
 };
 pub const VIRTUAL_DISK_ACCESS_NONE = VIRTUAL_DISK_ACCESS_MASK.NONE;
 pub const VIRTUAL_DISK_ACCESS_ATTACH_RO = VIRTUAL_DISK_ACCESS_MASK.ATTACH_RO;
@@ -78,7 +102,6 @@ pub const VIRTUAL_DISK_ACCESS_READ = VIRTUAL_DISK_ACCESS_MASK.READ;
 pub const VIRTUAL_DISK_ACCESS_ALL = VIRTUAL_DISK_ACCESS_MASK.ALL;
 pub const VIRTUAL_DISK_ACCESS_WRITABLE = VIRTUAL_DISK_ACCESS_MASK.WRITABLE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const OPEN_VIRTUAL_DISK_FLAG = extern enum(u32) {
     NONE = 0,
     NO_PARENTS = 1,
@@ -92,6 +115,33 @@ pub const OPEN_VIRTUAL_DISK_FLAG = extern enum(u32) {
     NO_WRITE_HARDENING = 256,
     SUPPORT_COMPRESSED_VOLUMES = 512,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        NO_PARENTS: u1 = 0,
+        BLANK_FILE: u1 = 0,
+        BOOT_DRIVE: u1 = 0,
+        CACHED_IO: u1 = 0,
+        CUSTOM_DIFF_CHAIN: u1 = 0,
+        PARENT_CACHED_IO: u1 = 0,
+        VHDSET_FILE_ONLY: u1 = 0,
+        IGNORE_RELATIVE_PARENT_LOCATOR: u1 = 0,
+        NO_WRITE_HARDENING: u1 = 0,
+        SUPPORT_COMPRESSED_VOLUMES: u1 = 0,
+    }) OPEN_VIRTUAL_DISK_FLAG {
+        return @intToEnum(OPEN_VIRTUAL_DISK_FLAG,
+              (if (o.NONE == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.NONE) else 0)
+            | (if (o.NO_PARENTS == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.NO_PARENTS) else 0)
+            | (if (o.BLANK_FILE == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.BLANK_FILE) else 0)
+            | (if (o.BOOT_DRIVE == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.BOOT_DRIVE) else 0)
+            | (if (o.CACHED_IO == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.CACHED_IO) else 0)
+            | (if (o.CUSTOM_DIFF_CHAIN == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.CUSTOM_DIFF_CHAIN) else 0)
+            | (if (o.PARENT_CACHED_IO == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.PARENT_CACHED_IO) else 0)
+            | (if (o.VHDSET_FILE_ONLY == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.VHDSET_FILE_ONLY) else 0)
+            | (if (o.IGNORE_RELATIVE_PARENT_LOCATOR == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.IGNORE_RELATIVE_PARENT_LOCATOR) else 0)
+            | (if (o.NO_WRITE_HARDENING == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.NO_WRITE_HARDENING) else 0)
+            | (if (o.SUPPORT_COMPRESSED_VOLUMES == 1) @enumToInt(OPEN_VIRTUAL_DISK_FLAG.SUPPORT_COMPRESSED_VOLUMES) else 0)
+        );
+    }
 };
 pub const OPEN_VIRTUAL_DISK_FLAG_NONE = OPEN_VIRTUAL_DISK_FLAG.NONE;
 pub const OPEN_VIRTUAL_DISK_FLAG_NO_PARENTS = OPEN_VIRTUAL_DISK_FLAG.NO_PARENTS;
@@ -177,7 +227,6 @@ pub const CREATE_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CREATE_VIRTUAL_DISK_FLAG = extern enum(u32) {
     NONE = 0,
     FULL_PHYSICAL_ALLOCATION = 1,
@@ -190,6 +239,31 @@ pub const CREATE_VIRTUAL_DISK_FLAG = extern enum(u32) {
     SPARSE_FILE = 128,
     PMEM_COMPATIBLE = 256,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        FULL_PHYSICAL_ALLOCATION: u1 = 0,
+        PREVENT_WRITES_TO_SOURCE_DISK: u1 = 0,
+        DO_NOT_COPY_METADATA_FROM_PARENT: u1 = 0,
+        CREATE_BACKING_STORAGE: u1 = 0,
+        USE_CHANGE_TRACKING_SOURCE_LIMIT: u1 = 0,
+        PRESERVE_PARENT_CHANGE_TRACKING_STATE: u1 = 0,
+        VHD_SET_USE_ORIGINAL_BACKING_STORAGE: u1 = 0,
+        SPARSE_FILE: u1 = 0,
+        PMEM_COMPATIBLE: u1 = 0,
+    }) CREATE_VIRTUAL_DISK_FLAG {
+        return @intToEnum(CREATE_VIRTUAL_DISK_FLAG,
+              (if (o.NONE == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.NONE) else 0)
+            | (if (o.FULL_PHYSICAL_ALLOCATION == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.FULL_PHYSICAL_ALLOCATION) else 0)
+            | (if (o.PREVENT_WRITES_TO_SOURCE_DISK == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.PREVENT_WRITES_TO_SOURCE_DISK) else 0)
+            | (if (o.DO_NOT_COPY_METADATA_FROM_PARENT == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.DO_NOT_COPY_METADATA_FROM_PARENT) else 0)
+            | (if (o.CREATE_BACKING_STORAGE == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.CREATE_BACKING_STORAGE) else 0)
+            | (if (o.USE_CHANGE_TRACKING_SOURCE_LIMIT == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.USE_CHANGE_TRACKING_SOURCE_LIMIT) else 0)
+            | (if (o.PRESERVE_PARENT_CHANGE_TRACKING_STATE == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.PRESERVE_PARENT_CHANGE_TRACKING_STATE) else 0)
+            | (if (o.VHD_SET_USE_ORIGINAL_BACKING_STORAGE == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.VHD_SET_USE_ORIGINAL_BACKING_STORAGE) else 0)
+            | (if (o.SPARSE_FILE == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.SPARSE_FILE) else 0)
+            | (if (o.PMEM_COMPATIBLE == 1) @enumToInt(CREATE_VIRTUAL_DISK_FLAG.PMEM_COMPATIBLE) else 0)
+        );
+    }
 };
 pub const CREATE_VIRTUAL_DISK_FLAG_NONE = CREATE_VIRTUAL_DISK_FLAG.NONE;
 pub const CREATE_VIRTUAL_DISK_FLAG_FULL_PHYSICAL_ALLOCATION = CREATE_VIRTUAL_DISK_FLAG.FULL_PHYSICAL_ALLOCATION;
@@ -224,7 +298,6 @@ pub const ATTACH_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const ATTACH_VIRTUAL_DISK_FLAG = extern enum(u32) {
     NONE = 0,
     READ_ONLY = 1,
@@ -238,6 +311,33 @@ pub const ATTACH_VIRTUAL_DISK_FLAG = extern enum(u32) {
     SINGLE_PARTITION = 256,
     REGISTER_VOLUME = 512,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        READ_ONLY: u1 = 0,
+        NO_DRIVE_LETTER: u1 = 0,
+        PERMANENT_LIFETIME: u1 = 0,
+        NO_LOCAL_HOST: u1 = 0,
+        NO_SECURITY_DESCRIPTOR: u1 = 0,
+        BYPASS_DEFAULT_ENCRYPTION_POLICY: u1 = 0,
+        NON_PNP: u1 = 0,
+        RESTRICTED_RANGE: u1 = 0,
+        SINGLE_PARTITION: u1 = 0,
+        REGISTER_VOLUME: u1 = 0,
+    }) ATTACH_VIRTUAL_DISK_FLAG {
+        return @intToEnum(ATTACH_VIRTUAL_DISK_FLAG,
+              (if (o.NONE == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.NONE) else 0)
+            | (if (o.READ_ONLY == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.READ_ONLY) else 0)
+            | (if (o.NO_DRIVE_LETTER == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.NO_DRIVE_LETTER) else 0)
+            | (if (o.PERMANENT_LIFETIME == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.PERMANENT_LIFETIME) else 0)
+            | (if (o.NO_LOCAL_HOST == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.NO_LOCAL_HOST) else 0)
+            | (if (o.NO_SECURITY_DESCRIPTOR == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.NO_SECURITY_DESCRIPTOR) else 0)
+            | (if (o.BYPASS_DEFAULT_ENCRYPTION_POLICY == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.BYPASS_DEFAULT_ENCRYPTION_POLICY) else 0)
+            | (if (o.NON_PNP == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.NON_PNP) else 0)
+            | (if (o.RESTRICTED_RANGE == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.RESTRICTED_RANGE) else 0)
+            | (if (o.SINGLE_PARTITION == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.SINGLE_PARTITION) else 0)
+            | (if (o.REGISTER_VOLUME == 1) @enumToInt(ATTACH_VIRTUAL_DISK_FLAG.REGISTER_VOLUME) else 0)
+        );
+    }
 };
 pub const ATTACH_VIRTUAL_DISK_FLAG_NONE = ATTACH_VIRTUAL_DISK_FLAG.NONE;
 pub const ATTACH_VIRTUAL_DISK_FLAG_READ_ONLY = ATTACH_VIRTUAL_DISK_FLAG.READ_ONLY;
@@ -251,14 +351,19 @@ pub const ATTACH_VIRTUAL_DISK_FLAG_RESTRICTED_RANGE = ATTACH_VIRTUAL_DISK_FLAG.R
 pub const ATTACH_VIRTUAL_DISK_FLAG_SINGLE_PARTITION = ATTACH_VIRTUAL_DISK_FLAG.SINGLE_PARTITION;
 pub const ATTACH_VIRTUAL_DISK_FLAG_REGISTER_VOLUME = ATTACH_VIRTUAL_DISK_FLAG.REGISTER_VOLUME;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DETACH_VIRTUAL_DISK_FLAG = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) DETACH_VIRTUAL_DISK_FLAG {
+        return @intToEnum(DETACH_VIRTUAL_DISK_FLAG,
+              (if (o.E == 1) @enumToInt(DETACH_VIRTUAL_DISK_FLAG.E) else 0)
+        );
+    }
 };
 pub const DETACH_VIRTUAL_DISK_FLAG_NONE = DETACH_VIRTUAL_DISK_FLAG.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DEPENDENT_DISK_FLAG = extern enum(u32) {
     NONE = 0,
     MULT_BACKING_FILES = 1,
@@ -274,6 +379,37 @@ pub const DEPENDENT_DISK_FLAG = extern enum(u32) {
     PERMANENT_LIFETIME = 1024,
     SUPPORT_COMPRESSED_VOLUMES = 2048,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        MULT_BACKING_FILES: u1 = 0,
+        FULLY_ALLOCATED: u1 = 0,
+        READ_ONLY: u1 = 0,
+        REMOTE: u1 = 0,
+        SYSTEM_VOLUME: u1 = 0,
+        SYSTEM_VOLUME_PARENT: u1 = 0,
+        REMOVABLE: u1 = 0,
+        NO_DRIVE_LETTER: u1 = 0,
+        PARENT: u1 = 0,
+        NO_HOST_DISK: u1 = 0,
+        PERMANENT_LIFETIME: u1 = 0,
+        SUPPORT_COMPRESSED_VOLUMES: u1 = 0,
+    }) DEPENDENT_DISK_FLAG {
+        return @intToEnum(DEPENDENT_DISK_FLAG,
+              (if (o.NONE == 1) @enumToInt(DEPENDENT_DISK_FLAG.NONE) else 0)
+            | (if (o.MULT_BACKING_FILES == 1) @enumToInt(DEPENDENT_DISK_FLAG.MULT_BACKING_FILES) else 0)
+            | (if (o.FULLY_ALLOCATED == 1) @enumToInt(DEPENDENT_DISK_FLAG.FULLY_ALLOCATED) else 0)
+            | (if (o.READ_ONLY == 1) @enumToInt(DEPENDENT_DISK_FLAG.READ_ONLY) else 0)
+            | (if (o.REMOTE == 1) @enumToInt(DEPENDENT_DISK_FLAG.REMOTE) else 0)
+            | (if (o.SYSTEM_VOLUME == 1) @enumToInt(DEPENDENT_DISK_FLAG.SYSTEM_VOLUME) else 0)
+            | (if (o.SYSTEM_VOLUME_PARENT == 1) @enumToInt(DEPENDENT_DISK_FLAG.SYSTEM_VOLUME_PARENT) else 0)
+            | (if (o.REMOVABLE == 1) @enumToInt(DEPENDENT_DISK_FLAG.REMOVABLE) else 0)
+            | (if (o.NO_DRIVE_LETTER == 1) @enumToInt(DEPENDENT_DISK_FLAG.NO_DRIVE_LETTER) else 0)
+            | (if (o.PARENT == 1) @enumToInt(DEPENDENT_DISK_FLAG.PARENT) else 0)
+            | (if (o.NO_HOST_DISK == 1) @enumToInt(DEPENDENT_DISK_FLAG.NO_HOST_DISK) else 0)
+            | (if (o.PERMANENT_LIFETIME == 1) @enumToInt(DEPENDENT_DISK_FLAG.PERMANENT_LIFETIME) else 0)
+            | (if (o.SUPPORT_COMPRESSED_VOLUMES == 1) @enumToInt(DEPENDENT_DISK_FLAG.SUPPORT_COMPRESSED_VOLUMES) else 0)
+        );
+    }
 };
 pub const DEPENDENT_DISK_FLAG_NONE = DEPENDENT_DISK_FLAG.NONE;
 pub const DEPENDENT_DISK_FLAG_MULT_BACKING_FILES = DEPENDENT_DISK_FLAG.MULT_BACKING_FILES;
@@ -324,12 +460,22 @@ pub const STORAGE_DEPENDENCY_INFO = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GET_STORAGE_DEPENDENCY_FLAG = extern enum(u32) {
     NONE = 0,
     HOST_VOLUMES = 1,
     DISK_HANDLE = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        HOST_VOLUMES: u1 = 0,
+        DISK_HANDLE: u1 = 0,
+    }) GET_STORAGE_DEPENDENCY_FLAG {
+        return @intToEnum(GET_STORAGE_DEPENDENCY_FLAG,
+              (if (o.NONE == 1) @enumToInt(GET_STORAGE_DEPENDENCY_FLAG.NONE) else 0)
+            | (if (o.HOST_VOLUMES == 1) @enumToInt(GET_STORAGE_DEPENDENCY_FLAG.HOST_VOLUMES) else 0)
+            | (if (o.DISK_HANDLE == 1) @enumToInt(GET_STORAGE_DEPENDENCY_FLAG.DISK_HANDLE) else 0)
+        );
+    }
 };
 pub const GET_STORAGE_DEPENDENCY_FLAG_NONE = GET_STORAGE_DEPENDENCY_FLAG.NONE;
 pub const GET_STORAGE_DEPENDENCY_FLAG_HOST_VOLUMES = GET_STORAGE_DEPENDENCY_FLAG.HOST_VOLUMES;
@@ -467,12 +613,22 @@ pub const COMPACT_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const COMPACT_VIRTUAL_DISK_FLAG = extern enum(u32) {
     NE = 0,
     _ZERO_SCAN = 1,
     _BLOCK_MOVES = 2,
     _,
+    pub fn initFlags(o: struct {
+        NE: u1 = 0,
+        _ZERO_SCAN: u1 = 0,
+        _BLOCK_MOVES: u1 = 0,
+    }) COMPACT_VIRTUAL_DISK_FLAG {
+        return @intToEnum(COMPACT_VIRTUAL_DISK_FLAG,
+              (if (o.NE == 1) @enumToInt(COMPACT_VIRTUAL_DISK_FLAG.NE) else 0)
+            | (if (o._ZERO_SCAN == 1) @enumToInt(COMPACT_VIRTUAL_DISK_FLAG._ZERO_SCAN) else 0)
+            | (if (o._BLOCK_MOVES == 1) @enumToInt(COMPACT_VIRTUAL_DISK_FLAG._BLOCK_MOVES) else 0)
+        );
+    }
 };
 pub const COMPACT_VIRTUAL_DISK_FLAG_NONE = COMPACT_VIRTUAL_DISK_FLAG.NE;
 pub const COMPACT_VIRTUAL_DISK_FLAG_NO_ZERO_SCAN = COMPACT_VIRTUAL_DISK_FLAG._ZERO_SCAN;
@@ -500,10 +656,16 @@ pub const MERGE_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MERGE_VIRTUAL_DISK_FLAG = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) MERGE_VIRTUAL_DISK_FLAG {
+        return @intToEnum(MERGE_VIRTUAL_DISK_FLAG,
+              (if (o.E == 1) @enumToInt(MERGE_VIRTUAL_DISK_FLAG.E) else 0)
+        );
+    }
 };
 pub const MERGE_VIRTUAL_DISK_FLAG_NONE = MERGE_VIRTUAL_DISK_FLAG.E;
 
@@ -523,10 +685,16 @@ pub const EXPAND_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const EXPAND_VIRTUAL_DISK_FLAG = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) EXPAND_VIRTUAL_DISK_FLAG {
+        return @intToEnum(EXPAND_VIRTUAL_DISK_FLAG,
+              (if (o.E == 1) @enumToInt(EXPAND_VIRTUAL_DISK_FLAG.E) else 0)
+        );
+    }
 };
 pub const EXPAND_VIRTUAL_DISK_FLAG_NONE = EXPAND_VIRTUAL_DISK_FLAG.E;
 
@@ -546,12 +714,22 @@ pub const RESIZE_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const RESIZE_VIRTUAL_DISK_FLAG = extern enum(u32) {
     NONE = 0,
     ALLOW_UNSAFE_VIRTUAL_SIZE = 1,
     RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ALLOW_UNSAFE_VIRTUAL_SIZE: u1 = 0,
+        RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE: u1 = 0,
+    }) RESIZE_VIRTUAL_DISK_FLAG {
+        return @intToEnum(RESIZE_VIRTUAL_DISK_FLAG,
+              (if (o.NONE == 1) @enumToInt(RESIZE_VIRTUAL_DISK_FLAG.NONE) else 0)
+            | (if (o.ALLOW_UNSAFE_VIRTUAL_SIZE == 1) @enumToInt(RESIZE_VIRTUAL_DISK_FLAG.ALLOW_UNSAFE_VIRTUAL_SIZE) else 0)
+            | (if (o.RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE == 1) @enumToInt(RESIZE_VIRTUAL_DISK_FLAG.RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE) else 0)
+        );
+    }
 };
 pub const RESIZE_VIRTUAL_DISK_FLAG_NONE = RESIZE_VIRTUAL_DISK_FLAG.NONE;
 pub const RESIZE_VIRTUAL_DISK_FLAG_ALLOW_UNSAFE_VIRTUAL_SIZE = RESIZE_VIRTUAL_DISK_FLAG.ALLOW_UNSAFE_VIRTUAL_SIZE;
@@ -573,7 +751,6 @@ pub const MIRROR_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MIRROR_VIRTUAL_DISK_FLAG = extern enum(u32) {
     NONE = 0,
     EXISTING_FILE = 1,
@@ -581,6 +758,21 @@ pub const MIRROR_VIRTUAL_DISK_FLAG = extern enum(u32) {
     ENABLE_SMB_COMPRESSION = 4,
     IS_LIVE_MIGRATION = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        EXISTING_FILE: u1 = 0,
+        SKIP_MIRROR_ACTIVATION: u1 = 0,
+        ENABLE_SMB_COMPRESSION: u1 = 0,
+        IS_LIVE_MIGRATION: u1 = 0,
+    }) MIRROR_VIRTUAL_DISK_FLAG {
+        return @intToEnum(MIRROR_VIRTUAL_DISK_FLAG,
+              (if (o.NONE == 1) @enumToInt(MIRROR_VIRTUAL_DISK_FLAG.NONE) else 0)
+            | (if (o.EXISTING_FILE == 1) @enumToInt(MIRROR_VIRTUAL_DISK_FLAG.EXISTING_FILE) else 0)
+            | (if (o.SKIP_MIRROR_ACTIVATION == 1) @enumToInt(MIRROR_VIRTUAL_DISK_FLAG.SKIP_MIRROR_ACTIVATION) else 0)
+            | (if (o.ENABLE_SMB_COMPRESSION == 1) @enumToInt(MIRROR_VIRTUAL_DISK_FLAG.ENABLE_SMB_COMPRESSION) else 0)
+            | (if (o.IS_LIVE_MIGRATION == 1) @enumToInt(MIRROR_VIRTUAL_DISK_FLAG.IS_LIVE_MIGRATION) else 0)
+        );
+    }
 };
 pub const MIRROR_VIRTUAL_DISK_FLAG_NONE = MIRROR_VIRTUAL_DISK_FLAG.NONE;
 pub const MIRROR_VIRTUAL_DISK_FLAG_EXISTING_FILE = MIRROR_VIRTUAL_DISK_FLAG.EXISTING_FILE;
@@ -594,18 +786,32 @@ pub const QUERY_CHANGES_VIRTUAL_DISK_RANGE = extern struct {
     Reserved: u64,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const QUERY_CHANGES_VIRTUAL_DISK_FLAG = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) QUERY_CHANGES_VIRTUAL_DISK_FLAG {
+        return @intToEnum(QUERY_CHANGES_VIRTUAL_DISK_FLAG,
+              (if (o.E == 1) @enumToInt(QUERY_CHANGES_VIRTUAL_DISK_FLAG.E) else 0)
+        );
+    }
 };
 pub const QUERY_CHANGES_VIRTUAL_DISK_FLAG_NONE = QUERY_CHANGES_VIRTUAL_DISK_FLAG.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TAKE_SNAPSHOT_VHDSET_FLAG = extern enum(u32) {
     NONE = 0,
     WRITEABLE = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        WRITEABLE: u1 = 0,
+    }) TAKE_SNAPSHOT_VHDSET_FLAG {
+        return @intToEnum(TAKE_SNAPSHOT_VHDSET_FLAG,
+              (if (o.NONE == 1) @enumToInt(TAKE_SNAPSHOT_VHDSET_FLAG.NONE) else 0)
+            | (if (o.WRITEABLE == 1) @enumToInt(TAKE_SNAPSHOT_VHDSET_FLAG.WRITEABLE) else 0)
+        );
+    }
 };
 pub const TAKE_SNAPSHOT_VHDSET_FLAG_NONE = TAKE_SNAPSHOT_VHDSET_FLAG.NONE;
 pub const TAKE_SNAPSHOT_VHDSET_FLAG_WRITEABLE = TAKE_SNAPSHOT_VHDSET_FLAG.WRITEABLE;
@@ -626,11 +832,19 @@ pub const TAKE_SNAPSHOT_VHDSET_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DELETE_SNAPSHOT_VHDSET_FLAG = extern enum(u32) {
     NONE = 0,
     PERSIST_RCT = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        PERSIST_RCT: u1 = 0,
+    }) DELETE_SNAPSHOT_VHDSET_FLAG {
+        return @intToEnum(DELETE_SNAPSHOT_VHDSET_FLAG,
+              (if (o.NONE == 1) @enumToInt(DELETE_SNAPSHOT_VHDSET_FLAG.NONE) else 0)
+            | (if (o.PERSIST_RCT == 1) @enumToInt(DELETE_SNAPSHOT_VHDSET_FLAG.PERSIST_RCT) else 0)
+        );
+    }
 };
 pub const DELETE_SNAPSHOT_VHDSET_FLAG_NONE = DELETE_SNAPSHOT_VHDSET_FLAG.NONE;
 pub const DELETE_SNAPSHOT_VHDSET_FLAG_PERSIST_RCT = DELETE_SNAPSHOT_VHDSET_FLAG.PERSIST_RCT;
@@ -662,11 +876,19 @@ pub const MODIFY_VHDSET_SNAPSHOT_PATH = MODIFY_VHDSET_VERSION.SNAPSHOT_PATH;
 pub const MODIFY_VHDSET_REMOVE_SNAPSHOT = MODIFY_VHDSET_VERSION.REMOVE_SNAPSHOT;
 pub const MODIFY_VHDSET_DEFAULT_SNAPSHOT_PATH = MODIFY_VHDSET_VERSION.DEFAULT_SNAPSHOT_PATH;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MODIFY_VHDSET_FLAG = extern enum(u32) {
     NONE = 0,
     WRITEABLE_SNAPSHOT = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        WRITEABLE_SNAPSHOT: u1 = 0,
+    }) MODIFY_VHDSET_FLAG {
+        return @intToEnum(MODIFY_VHDSET_FLAG,
+              (if (o.NONE == 1) @enumToInt(MODIFY_VHDSET_FLAG.NONE) else 0)
+            | (if (o.WRITEABLE_SNAPSHOT == 1) @enumToInt(MODIFY_VHDSET_FLAG.WRITEABLE_SNAPSHOT) else 0)
+        );
+    }
 };
 pub const MODIFY_VHDSET_FLAG_NONE = MODIFY_VHDSET_FLAG.NONE;
 pub const MODIFY_VHDSET_FLAG_WRITEABLE_SNAPSHOT = MODIFY_VHDSET_FLAG.WRITEABLE_SNAPSHOT;
@@ -683,11 +905,19 @@ pub const MODIFY_VHDSET_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const APPLY_SNAPSHOT_VHDSET_FLAG = extern enum(u32) {
     NONE = 0,
     WRITEABLE = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        WRITEABLE: u1 = 0,
+    }) APPLY_SNAPSHOT_VHDSET_FLAG {
+        return @intToEnum(APPLY_SNAPSHOT_VHDSET_FLAG,
+              (if (o.NONE == 1) @enumToInt(APPLY_SNAPSHOT_VHDSET_FLAG.NONE) else 0)
+            | (if (o.WRITEABLE == 1) @enumToInt(APPLY_SNAPSHOT_VHDSET_FLAG.WRITEABLE) else 0)
+        );
+    }
 };
 pub const APPLY_SNAPSHOT_VHDSET_FLAG_NONE = APPLY_SNAPSHOT_VHDSET_FLAG.NONE;
 pub const APPLY_SNAPSHOT_VHDSET_FLAG_WRITEABLE = APPLY_SNAPSHOT_VHDSET_FLAG.WRITEABLE;
@@ -709,10 +939,16 @@ pub const APPLY_SNAPSHOT_VHDSET_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const RAW_SCSI_VIRTUAL_DISK_FLAG = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) RAW_SCSI_VIRTUAL_DISK_FLAG {
+        return @intToEnum(RAW_SCSI_VIRTUAL_DISK_FLAG,
+              (if (o.E == 1) @enumToInt(RAW_SCSI_VIRTUAL_DISK_FLAG.E) else 0)
+        );
+    }
 };
 pub const RAW_SCSI_VIRTUAL_DISK_FLAG_NONE = RAW_SCSI_VIRTUAL_DISK_FLAG.E;
 
@@ -767,11 +1003,19 @@ pub const FORK_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const FORK_VIRTUAL_DISK_FLAG = extern enum(u32) {
     NONE = 0,
     EXISTING_FILE = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        EXISTING_FILE: u1 = 0,
+    }) FORK_VIRTUAL_DISK_FLAG {
+        return @intToEnum(FORK_VIRTUAL_DISK_FLAG,
+              (if (o.NONE == 1) @enumToInt(FORK_VIRTUAL_DISK_FLAG.NONE) else 0)
+            | (if (o.EXISTING_FILE == 1) @enumToInt(FORK_VIRTUAL_DISK_FLAG.EXISTING_FILE) else 0)
+        );
+    }
 };
 pub const FORK_VIRTUAL_DISK_FLAG_NONE = FORK_VIRTUAL_DISK_FLAG.NONE;
 pub const FORK_VIRTUAL_DISK_FLAG_EXISTING_FILE = FORK_VIRTUAL_DISK_FLAG.EXISTING_FILE;

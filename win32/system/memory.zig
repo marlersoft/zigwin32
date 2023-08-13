@@ -66,7 +66,6 @@ pub const WIN32_MEMORY_REGION_INFORMATION = extern struct {
     CommitSize: usize,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const HEAP_FLAGS = extern enum(u32) {
     NONE = 0,
     NO_SERIALIZE = 1,
@@ -86,6 +85,45 @@ pub const HEAP_FLAGS = extern enum(u32) {
     CREATE_SEGMENT_HEAP = 256,
     CREATE_HARDENED = 512,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        NO_SERIALIZE: u1 = 0,
+        GROWABLE: u1 = 0,
+        GENERATE_EXCEPTIONS: u1 = 0,
+        ZERO_MEMORY: u1 = 0,
+        REALLOC_IN_PLACE_ONLY: u1 = 0,
+        TAIL_CHECKING_ENABLED: u1 = 0,
+        FREE_CHECKING_ENABLED: u1 = 0,
+        DISABLE_COALESCE_ON_FREE: u1 = 0,
+        CREATE_ALIGN_16: u1 = 0,
+        CREATE_ENABLE_TRACING: u1 = 0,
+        CREATE_ENABLE_EXECUTE: u1 = 0,
+        MAXIMUM_TAG: u1 = 0,
+        PSEUDO_TAG_FLAG: u1 = 0,
+        TAG_SHIFT: u1 = 0,
+        CREATE_SEGMENT_HEAP: u1 = 0,
+        CREATE_HARDENED: u1 = 0,
+    }) HEAP_FLAGS {
+        return @intToEnum(HEAP_FLAGS,
+              (if (o.NONE == 1) @enumToInt(HEAP_FLAGS.NONE) else 0)
+            | (if (o.NO_SERIALIZE == 1) @enumToInt(HEAP_FLAGS.NO_SERIALIZE) else 0)
+            | (if (o.GROWABLE == 1) @enumToInt(HEAP_FLAGS.GROWABLE) else 0)
+            | (if (o.GENERATE_EXCEPTIONS == 1) @enumToInt(HEAP_FLAGS.GENERATE_EXCEPTIONS) else 0)
+            | (if (o.ZERO_MEMORY == 1) @enumToInt(HEAP_FLAGS.ZERO_MEMORY) else 0)
+            | (if (o.REALLOC_IN_PLACE_ONLY == 1) @enumToInt(HEAP_FLAGS.REALLOC_IN_PLACE_ONLY) else 0)
+            | (if (o.TAIL_CHECKING_ENABLED == 1) @enumToInt(HEAP_FLAGS.TAIL_CHECKING_ENABLED) else 0)
+            | (if (o.FREE_CHECKING_ENABLED == 1) @enumToInt(HEAP_FLAGS.FREE_CHECKING_ENABLED) else 0)
+            | (if (o.DISABLE_COALESCE_ON_FREE == 1) @enumToInt(HEAP_FLAGS.DISABLE_COALESCE_ON_FREE) else 0)
+            | (if (o.CREATE_ALIGN_16 == 1) @enumToInt(HEAP_FLAGS.CREATE_ALIGN_16) else 0)
+            | (if (o.CREATE_ENABLE_TRACING == 1) @enumToInt(HEAP_FLAGS.CREATE_ENABLE_TRACING) else 0)
+            | (if (o.CREATE_ENABLE_EXECUTE == 1) @enumToInt(HEAP_FLAGS.CREATE_ENABLE_EXECUTE) else 0)
+            | (if (o.MAXIMUM_TAG == 1) @enumToInt(HEAP_FLAGS.MAXIMUM_TAG) else 0)
+            | (if (o.PSEUDO_TAG_FLAG == 1) @enumToInt(HEAP_FLAGS.PSEUDO_TAG_FLAG) else 0)
+            | (if (o.TAG_SHIFT == 1) @enumToInt(HEAP_FLAGS.TAG_SHIFT) else 0)
+            | (if (o.CREATE_SEGMENT_HEAP == 1) @enumToInt(HEAP_FLAGS.CREATE_SEGMENT_HEAP) else 0)
+            | (if (o.CREATE_HARDENED == 1) @enumToInt(HEAP_FLAGS.CREATE_HARDENED) else 0)
+        );
+    }
 };
 pub const HEAP_NONE = HEAP_FLAGS.NONE;
 pub const HEAP_NO_SERIALIZE = HEAP_FLAGS.NO_SERIALIZE;
@@ -140,7 +178,6 @@ pub const MEM_LARGE_PAGES = VIRTUAL_ALLOCATION_TYPE.LARGE_PAGES;
 pub const MEM_RESERVE_PLACEHOLDER = VIRTUAL_ALLOCATION_TYPE.RESERVE_PLACEHOLDER;
 pub const MEM_FREE = VIRTUAL_ALLOCATION_TYPE.FREE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const LOCAL_ALLOC_FLAGS = extern enum(u32) {
     LHND = 66,
     LMEM_FIXED = 0,
@@ -150,6 +187,25 @@ pub const LOCAL_ALLOC_FLAGS = extern enum(u32) {
     NONZEROLHND = 2,
     NONZEROLPTR = 0,
     _,
+    pub fn initFlags(o: struct {
+        LHND: u1 = 0,
+        LMEM_FIXED: u1 = 0,
+        LMEM_MOVEABLE: u1 = 0,
+        LMEM_ZEROINIT: u1 = 0,
+        LPTR: u1 = 0,
+        NONZEROLHND: u1 = 0,
+        NONZEROLPTR: u1 = 0,
+    }) LOCAL_ALLOC_FLAGS {
+        return @intToEnum(LOCAL_ALLOC_FLAGS,
+              (if (o.LHND == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LHND) else 0)
+            | (if (o.LMEM_FIXED == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LMEM_FIXED) else 0)
+            | (if (o.LMEM_MOVEABLE == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LMEM_MOVEABLE) else 0)
+            | (if (o.LMEM_ZEROINIT == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LMEM_ZEROINIT) else 0)
+            | (if (o.LPTR == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LPTR) else 0)
+            | (if (o.NONZEROLHND == 1) @enumToInt(LOCAL_ALLOC_FLAGS.NONZEROLHND) else 0)
+            | (if (o.NONZEROLPTR == 1) @enumToInt(LOCAL_ALLOC_FLAGS.NONZEROLPTR) else 0)
+        );
+    }
 };
 pub const LHND = LOCAL_ALLOC_FLAGS.LHND;
 pub const LMEM_FIXED = LOCAL_ALLOC_FLAGS.LMEM_FIXED;
@@ -159,7 +215,6 @@ pub const LPTR = LOCAL_ALLOC_FLAGS.LPTR;
 pub const NONZEROLHND = LOCAL_ALLOC_FLAGS.NONZEROLHND;
 pub const NONZEROLPTR = LOCAL_ALLOC_FLAGS.NONZEROLPTR;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GLOBAL_ALLOC_FLAGS = extern enum(u32) {
     HND = 66,
     MEM_FIXED = 0,
@@ -167,6 +222,21 @@ pub const GLOBAL_ALLOC_FLAGS = extern enum(u32) {
     MEM_ZEROINIT = 64,
     PTR = 64,
     _,
+    pub fn initFlags(o: struct {
+        HND: u1 = 0,
+        MEM_FIXED: u1 = 0,
+        MEM_MOVEABLE: u1 = 0,
+        MEM_ZEROINIT: u1 = 0,
+        PTR: u1 = 0,
+    }) GLOBAL_ALLOC_FLAGS {
+        return @intToEnum(GLOBAL_ALLOC_FLAGS,
+              (if (o.HND == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.HND) else 0)
+            | (if (o.MEM_FIXED == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.MEM_FIXED) else 0)
+            | (if (o.MEM_MOVEABLE == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.MEM_MOVEABLE) else 0)
+            | (if (o.MEM_ZEROINIT == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.MEM_ZEROINIT) else 0)
+            | (if (o.PTR == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.PTR) else 0)
+        );
+    }
 };
 pub const GHND = GLOBAL_ALLOC_FLAGS.HND;
 pub const GMEM_FIXED = GLOBAL_ALLOC_FLAGS.MEM_FIXED;

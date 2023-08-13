@@ -10,7 +10,6 @@ pub const PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT = isize;
 
 pub const PRJ_DIR_ENTRY_BUFFER_HANDLE = isize;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PRJ_NOTIFY_TYPES = extern enum(u32) {
     NONE = 0,
     SUPPRESS_NOTIFICATIONS = 1,
@@ -28,6 +27,41 @@ pub const PRJ_NOTIFY_TYPES = extern enum(u32) {
     FILE_PRE_CONVERT_TO_FULL = 4096,
     USE_EXISTING_MASK = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        SUPPRESS_NOTIFICATIONS: u1 = 0,
+        FILE_OPENED: u1 = 0,
+        NEW_FILE_CREATED: u1 = 0,
+        FILE_OVERWRITTEN: u1 = 0,
+        PRE_DELETE: u1 = 0,
+        PRE_RENAME: u1 = 0,
+        PRE_SET_HARDLINK: u1 = 0,
+        FILE_RENAMED: u1 = 0,
+        HARDLINK_CREATED: u1 = 0,
+        FILE_HANDLE_CLOSED_NO_MODIFICATION: u1 = 0,
+        FILE_HANDLE_CLOSED_FILE_MODIFIED: u1 = 0,
+        FILE_HANDLE_CLOSED_FILE_DELETED: u1 = 0,
+        FILE_PRE_CONVERT_TO_FULL: u1 = 0,
+        USE_EXISTING_MASK: u1 = 0,
+    }) PRJ_NOTIFY_TYPES {
+        return @intToEnum(PRJ_NOTIFY_TYPES,
+              (if (o.NONE == 1) @enumToInt(PRJ_NOTIFY_TYPES.NONE) else 0)
+            | (if (o.SUPPRESS_NOTIFICATIONS == 1) @enumToInt(PRJ_NOTIFY_TYPES.SUPPRESS_NOTIFICATIONS) else 0)
+            | (if (o.FILE_OPENED == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_OPENED) else 0)
+            | (if (o.NEW_FILE_CREATED == 1) @enumToInt(PRJ_NOTIFY_TYPES.NEW_FILE_CREATED) else 0)
+            | (if (o.FILE_OVERWRITTEN == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_OVERWRITTEN) else 0)
+            | (if (o.PRE_DELETE == 1) @enumToInt(PRJ_NOTIFY_TYPES.PRE_DELETE) else 0)
+            | (if (o.PRE_RENAME == 1) @enumToInt(PRJ_NOTIFY_TYPES.PRE_RENAME) else 0)
+            | (if (o.PRE_SET_HARDLINK == 1) @enumToInt(PRJ_NOTIFY_TYPES.PRE_SET_HARDLINK) else 0)
+            | (if (o.FILE_RENAMED == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_RENAMED) else 0)
+            | (if (o.HARDLINK_CREATED == 1) @enumToInt(PRJ_NOTIFY_TYPES.HARDLINK_CREATED) else 0)
+            | (if (o.FILE_HANDLE_CLOSED_NO_MODIFICATION == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_HANDLE_CLOSED_NO_MODIFICATION) else 0)
+            | (if (o.FILE_HANDLE_CLOSED_FILE_MODIFIED == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_HANDLE_CLOSED_FILE_MODIFIED) else 0)
+            | (if (o.FILE_HANDLE_CLOSED_FILE_DELETED == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_HANDLE_CLOSED_FILE_DELETED) else 0)
+            | (if (o.FILE_PRE_CONVERT_TO_FULL == 1) @enumToInt(PRJ_NOTIFY_TYPES.FILE_PRE_CONVERT_TO_FULL) else 0)
+            | (if (o.USE_EXISTING_MASK == 1) @enumToInt(PRJ_NOTIFY_TYPES.USE_EXISTING_MASK) else 0)
+        );
+    }
 };
 pub const PRJ_NOTIFY_NONE = PRJ_NOTIFY_TYPES.NONE;
 pub const PRJ_NOTIFY_SUPPRESS_NOTIFICATIONS = PRJ_NOTIFY_TYPES.SUPPRESS_NOTIFICATIONS;
@@ -92,11 +126,19 @@ pub const PRJ_NOTIFICATION_MAPPING = extern struct {
     NotificationRoot: [*:0]const u16,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PRJ_STARTVIRTUALIZING_FLAGS = extern enum(u32) {
     NONE = 0,
     USE_NEGATIVE_PATH_CACHE = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        USE_NEGATIVE_PATH_CACHE: u1 = 0,
+    }) PRJ_STARTVIRTUALIZING_FLAGS {
+        return @intToEnum(PRJ_STARTVIRTUALIZING_FLAGS,
+              (if (o.NONE == 1) @enumToInt(PRJ_STARTVIRTUALIZING_FLAGS.NONE) else 0)
+            | (if (o.USE_NEGATIVE_PATH_CACHE == 1) @enumToInt(PRJ_STARTVIRTUALIZING_FLAGS.USE_NEGATIVE_PATH_CACHE) else 0)
+        );
+    }
 };
 pub const PRJ_FLAG_NONE = PRJ_STARTVIRTUALIZING_FLAGS.NONE;
 pub const PRJ_FLAG_USE_NEGATIVE_PATH_CACHE = PRJ_STARTVIRTUALIZING_FLAGS.USE_NEGATIVE_PATH_CACHE;
@@ -152,7 +194,6 @@ pub const PRJ_PLACEHOLDER_INFO = extern struct {
     VariableData: [1]u8,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PRJ_UPDATE_TYPES = extern enum(u32) {
     NONE = 0,
     ALLOW_DIRTY_METADATA = 1,
@@ -163,6 +204,27 @@ pub const PRJ_UPDATE_TYPES = extern enum(u32) {
     ALLOW_READ_ONLY = 32,
     MAX_VAL = 64,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ALLOW_DIRTY_METADATA: u1 = 0,
+        ALLOW_DIRTY_DATA: u1 = 0,
+        ALLOW_TOMBSTONE: u1 = 0,
+        RESERVED1: u1 = 0,
+        RESERVED2: u1 = 0,
+        ALLOW_READ_ONLY: u1 = 0,
+        MAX_VAL: u1 = 0,
+    }) PRJ_UPDATE_TYPES {
+        return @intToEnum(PRJ_UPDATE_TYPES,
+              (if (o.NONE == 1) @enumToInt(PRJ_UPDATE_TYPES.NONE) else 0)
+            | (if (o.ALLOW_DIRTY_METADATA == 1) @enumToInt(PRJ_UPDATE_TYPES.ALLOW_DIRTY_METADATA) else 0)
+            | (if (o.ALLOW_DIRTY_DATA == 1) @enumToInt(PRJ_UPDATE_TYPES.ALLOW_DIRTY_DATA) else 0)
+            | (if (o.ALLOW_TOMBSTONE == 1) @enumToInt(PRJ_UPDATE_TYPES.ALLOW_TOMBSTONE) else 0)
+            | (if (o.RESERVED1 == 1) @enumToInt(PRJ_UPDATE_TYPES.RESERVED1) else 0)
+            | (if (o.RESERVED2 == 1) @enumToInt(PRJ_UPDATE_TYPES.RESERVED2) else 0)
+            | (if (o.ALLOW_READ_ONLY == 1) @enumToInt(PRJ_UPDATE_TYPES.ALLOW_READ_ONLY) else 0)
+            | (if (o.MAX_VAL == 1) @enumToInt(PRJ_UPDATE_TYPES.MAX_VAL) else 0)
+        );
+    }
 };
 pub const PRJ_UPDATE_NONE = PRJ_UPDATE_TYPES.NONE;
 pub const PRJ_UPDATE_ALLOW_DIRTY_METADATA = PRJ_UPDATE_TYPES.ALLOW_DIRTY_METADATA;
@@ -173,7 +235,6 @@ pub const PRJ_UPDATE_RESERVED2 = PRJ_UPDATE_TYPES.RESERVED2;
 pub const PRJ_UPDATE_ALLOW_READ_ONLY = PRJ_UPDATE_TYPES.ALLOW_READ_ONLY;
 pub const PRJ_UPDATE_MAX_VAL = PRJ_UPDATE_TYPES.MAX_VAL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PRJ_UPDATE_FAILURE_CAUSES = extern enum(u32) {
     NONE = 0,
     DIRTY_METADATA = 1,
@@ -181,6 +242,21 @@ pub const PRJ_UPDATE_FAILURE_CAUSES = extern enum(u32) {
     TOMBSTONE = 4,
     READ_ONLY = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        DIRTY_METADATA: u1 = 0,
+        DIRTY_DATA: u1 = 0,
+        TOMBSTONE: u1 = 0,
+        READ_ONLY: u1 = 0,
+    }) PRJ_UPDATE_FAILURE_CAUSES {
+        return @intToEnum(PRJ_UPDATE_FAILURE_CAUSES,
+              (if (o.NONE == 1) @enumToInt(PRJ_UPDATE_FAILURE_CAUSES.NONE) else 0)
+            | (if (o.DIRTY_METADATA == 1) @enumToInt(PRJ_UPDATE_FAILURE_CAUSES.DIRTY_METADATA) else 0)
+            | (if (o.DIRTY_DATA == 1) @enumToInt(PRJ_UPDATE_FAILURE_CAUSES.DIRTY_DATA) else 0)
+            | (if (o.TOMBSTONE == 1) @enumToInt(PRJ_UPDATE_FAILURE_CAUSES.TOMBSTONE) else 0)
+            | (if (o.READ_ONLY == 1) @enumToInt(PRJ_UPDATE_FAILURE_CAUSES.READ_ONLY) else 0)
+        );
+    }
 };
 pub const PRJ_UPDATE_FAILURE_CAUSE_NONE = PRJ_UPDATE_FAILURE_CAUSES.NONE;
 pub const PRJ_UPDATE_FAILURE_CAUSE_DIRTY_METADATA = PRJ_UPDATE_FAILURE_CAUSES.DIRTY_METADATA;
@@ -188,7 +264,6 @@ pub const PRJ_UPDATE_FAILURE_CAUSE_DIRTY_DATA = PRJ_UPDATE_FAILURE_CAUSES.DIRTY_
 pub const PRJ_UPDATE_FAILURE_CAUSE_TOMBSTONE = PRJ_UPDATE_FAILURE_CAUSES.TOMBSTONE;
 pub const PRJ_UPDATE_FAILURE_CAUSE_READ_ONLY = PRJ_UPDATE_FAILURE_CAUSES.READ_ONLY;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PRJ_FILE_STATE = extern enum(u32) {
     PLACEHOLDER = 1,
     HYDRATED_PLACEHOLDER = 2,
@@ -196,6 +271,21 @@ pub const PRJ_FILE_STATE = extern enum(u32) {
     FULL = 8,
     TOMBSTONE = 16,
     _,
+    pub fn initFlags(o: struct {
+        PLACEHOLDER: u1 = 0,
+        HYDRATED_PLACEHOLDER: u1 = 0,
+        DIRTY_PLACEHOLDER: u1 = 0,
+        FULL: u1 = 0,
+        TOMBSTONE: u1 = 0,
+    }) PRJ_FILE_STATE {
+        return @intToEnum(PRJ_FILE_STATE,
+              (if (o.PLACEHOLDER == 1) @enumToInt(PRJ_FILE_STATE.PLACEHOLDER) else 0)
+            | (if (o.HYDRATED_PLACEHOLDER == 1) @enumToInt(PRJ_FILE_STATE.HYDRATED_PLACEHOLDER) else 0)
+            | (if (o.DIRTY_PLACEHOLDER == 1) @enumToInt(PRJ_FILE_STATE.DIRTY_PLACEHOLDER) else 0)
+            | (if (o.FULL == 1) @enumToInt(PRJ_FILE_STATE.FULL) else 0)
+            | (if (o.TOMBSTONE == 1) @enumToInt(PRJ_FILE_STATE.TOMBSTONE) else 0)
+        );
+    }
 };
 pub const PRJ_FILE_STATE_PLACEHOLDER = PRJ_FILE_STATE.PLACEHOLDER;
 pub const PRJ_FILE_STATE_HYDRATED_PLACEHOLDER = PRJ_FILE_STATE.HYDRATED_PLACEHOLDER;

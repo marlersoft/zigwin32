@@ -2644,14 +2644,19 @@ pub const WKSTA_TRANSPORT_INFO_0 = extern struct {
     wkti0_wan_ish: BOOL,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NET_REQUEST_PROVISION_OPTIONS = extern enum(u32) {
     R = 1073741824,
     _,
+    pub fn initFlags(o: struct {
+        R: u1 = 0,
+    }) NET_REQUEST_PROVISION_OPTIONS {
+        return @intToEnum(NET_REQUEST_PROVISION_OPTIONS,
+              (if (o.R == 1) @enumToInt(NET_REQUEST_PROVISION_OPTIONS.R) else 0)
+        );
+    }
 };
 pub const NETSETUP_PROVISION_ONLINE_CALLER = NET_REQUEST_PROVISION_OPTIONS.R;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NET_JOIN_DOMAIN_JOIN_OPTIONS = extern enum(u32) {
     JOIN_DOMAIN = 1,
     ACCT_CREATE = 2,
@@ -2671,6 +2676,45 @@ pub const NET_JOIN_DOMAIN_JOIN_OPTIONS = extern enum(u32) {
     NO_ACCT_REUSE = 131072,
     IGNORE_UNSUPPORTED_FLAGS = 268435456,
     _,
+    pub fn initFlags(o: struct {
+        JOIN_DOMAIN: u1 = 0,
+        ACCT_CREATE: u1 = 0,
+        WIN9X_UPGRADE: u1 = 0,
+        DOMAIN_JOIN_IF_JOINED: u1 = 0,
+        JOIN_UNSECURE: u1 = 0,
+        MACHINE_PWD_PASSED: u1 = 0,
+        DEFER_SPN_SET: u1 = 0,
+        JOIN_DC_ACCOUNT: u1 = 0,
+        JOIN_WITH_NEW_NAME: u1 = 0,
+        JOIN_READONLY: u1 = 0,
+        AMBIGUOUS_DC: u1 = 0,
+        NO_NETLOGON_CACHE: u1 = 0,
+        DONT_CONTROL_SERVICES: u1 = 0,
+        SET_MACHINE_NAME: u1 = 0,
+        FORCE_SPN_SET: u1 = 0,
+        NO_ACCT_REUSE: u1 = 0,
+        IGNORE_UNSUPPORTED_FLAGS: u1 = 0,
+    }) NET_JOIN_DOMAIN_JOIN_OPTIONS {
+        return @intToEnum(NET_JOIN_DOMAIN_JOIN_OPTIONS,
+              (if (o.JOIN_DOMAIN == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_DOMAIN) else 0)
+            | (if (o.ACCT_CREATE == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.ACCT_CREATE) else 0)
+            | (if (o.WIN9X_UPGRADE == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.WIN9X_UPGRADE) else 0)
+            | (if (o.DOMAIN_JOIN_IF_JOINED == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.DOMAIN_JOIN_IF_JOINED) else 0)
+            | (if (o.JOIN_UNSECURE == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_UNSECURE) else 0)
+            | (if (o.MACHINE_PWD_PASSED == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.MACHINE_PWD_PASSED) else 0)
+            | (if (o.DEFER_SPN_SET == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.DEFER_SPN_SET) else 0)
+            | (if (o.JOIN_DC_ACCOUNT == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_DC_ACCOUNT) else 0)
+            | (if (o.JOIN_WITH_NEW_NAME == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_WITH_NEW_NAME) else 0)
+            | (if (o.JOIN_READONLY == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_READONLY) else 0)
+            | (if (o.AMBIGUOUS_DC == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.AMBIGUOUS_DC) else 0)
+            | (if (o.NO_NETLOGON_CACHE == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.NO_NETLOGON_CACHE) else 0)
+            | (if (o.DONT_CONTROL_SERVICES == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.DONT_CONTROL_SERVICES) else 0)
+            | (if (o.SET_MACHINE_NAME == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.SET_MACHINE_NAME) else 0)
+            | (if (o.FORCE_SPN_SET == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.FORCE_SPN_SET) else 0)
+            | (if (o.NO_ACCT_REUSE == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.NO_ACCT_REUSE) else 0)
+            | (if (o.IGNORE_UNSUPPORTED_FLAGS == 1) @enumToInt(NET_JOIN_DOMAIN_JOIN_OPTIONS.IGNORE_UNSUPPORTED_FLAGS) else 0)
+        );
+    }
 };
 pub const NETSETUP_JOIN_DOMAIN = NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_DOMAIN;
 pub const NETSETUP_ACCT_CREATE = NET_JOIN_DOMAIN_JOIN_OPTIONS.ACCT_CREATE;
@@ -2712,7 +2756,6 @@ pub const USE_NOFORCE = FORCE_LEVEL_FLAGS.NOFORCE;
 pub const USE_FORCE = FORCE_LEVEL_FLAGS.FORCE;
 pub const USE_LOTS_OF_FORCE = FORCE_LEVEL_FLAGS.LOTS_OF_FORCE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NET_SERVER_TYPE = extern enum(u32) {
     WORKSTATION = 1,
     SERVER = 2,
@@ -2748,6 +2791,77 @@ pub const NET_SERVER_TYPE = extern enum(u32) {
     DOMAIN_ENUM = 2147483648,
     ALL = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        WORKSTATION: u1 = 0,
+        SERVER: u1 = 0,
+        SQLSERVER: u1 = 0,
+        DOMAIN_CTRL: u1 = 0,
+        DOMAIN_BAKCTRL: u1 = 0,
+        TIME_SOURCE: u1 = 0,
+        AFP: u1 = 0,
+        NOVELL: u1 = 0,
+        DOMAIN_MEMBER: u1 = 0,
+        PRINTQ_SERVER: u1 = 0,
+        DIALIN_SERVER: u1 = 0,
+        XENIX_SERVER: u1 = 0,
+        SERVER_UNIX: u1 = 0,
+        NT: u1 = 0,
+        WFW: u1 = 0,
+        SERVER_MFPN: u1 = 0,
+        SERVER_NT: u1 = 0,
+        POTENTIAL_BROWSER: u1 = 0,
+        BACKUP_BROWSER: u1 = 0,
+        MASTER_BROWSER: u1 = 0,
+        DOMAIN_MASTER: u1 = 0,
+        SERVER_OSF: u1 = 0,
+        SERVER_VMS: u1 = 0,
+        WINDOWS: u1 = 0,
+        DFS: u1 = 0,
+        CLUSTER_NT: u1 = 0,
+        TERMINALSERVER: u1 = 0,
+        CLUSTER_VS_NT: u1 = 0,
+        DCE: u1 = 0,
+        ALTERNATE_XPORT: u1 = 0,
+        LOCAL_LIST_ONLY: u1 = 0,
+        DOMAIN_ENUM: u1 = 0,
+        ALL: u1 = 0,
+    }) NET_SERVER_TYPE {
+        return @intToEnum(NET_SERVER_TYPE,
+              (if (o.WORKSTATION == 1) @enumToInt(NET_SERVER_TYPE.WORKSTATION) else 0)
+            | (if (o.SERVER == 1) @enumToInt(NET_SERVER_TYPE.SERVER) else 0)
+            | (if (o.SQLSERVER == 1) @enumToInt(NET_SERVER_TYPE.SQLSERVER) else 0)
+            | (if (o.DOMAIN_CTRL == 1) @enumToInt(NET_SERVER_TYPE.DOMAIN_CTRL) else 0)
+            | (if (o.DOMAIN_BAKCTRL == 1) @enumToInt(NET_SERVER_TYPE.DOMAIN_BAKCTRL) else 0)
+            | (if (o.TIME_SOURCE == 1) @enumToInt(NET_SERVER_TYPE.TIME_SOURCE) else 0)
+            | (if (o.AFP == 1) @enumToInt(NET_SERVER_TYPE.AFP) else 0)
+            | (if (o.NOVELL == 1) @enumToInt(NET_SERVER_TYPE.NOVELL) else 0)
+            | (if (o.DOMAIN_MEMBER == 1) @enumToInt(NET_SERVER_TYPE.DOMAIN_MEMBER) else 0)
+            | (if (o.PRINTQ_SERVER == 1) @enumToInt(NET_SERVER_TYPE.PRINTQ_SERVER) else 0)
+            | (if (o.DIALIN_SERVER == 1) @enumToInt(NET_SERVER_TYPE.DIALIN_SERVER) else 0)
+            | (if (o.XENIX_SERVER == 1) @enumToInt(NET_SERVER_TYPE.XENIX_SERVER) else 0)
+            | (if (o.SERVER_UNIX == 1) @enumToInt(NET_SERVER_TYPE.SERVER_UNIX) else 0)
+            | (if (o.NT == 1) @enumToInt(NET_SERVER_TYPE.NT) else 0)
+            | (if (o.WFW == 1) @enumToInt(NET_SERVER_TYPE.WFW) else 0)
+            | (if (o.SERVER_MFPN == 1) @enumToInt(NET_SERVER_TYPE.SERVER_MFPN) else 0)
+            | (if (o.SERVER_NT == 1) @enumToInt(NET_SERVER_TYPE.SERVER_NT) else 0)
+            | (if (o.POTENTIAL_BROWSER == 1) @enumToInt(NET_SERVER_TYPE.POTENTIAL_BROWSER) else 0)
+            | (if (o.BACKUP_BROWSER == 1) @enumToInt(NET_SERVER_TYPE.BACKUP_BROWSER) else 0)
+            | (if (o.MASTER_BROWSER == 1) @enumToInt(NET_SERVER_TYPE.MASTER_BROWSER) else 0)
+            | (if (o.DOMAIN_MASTER == 1) @enumToInt(NET_SERVER_TYPE.DOMAIN_MASTER) else 0)
+            | (if (o.SERVER_OSF == 1) @enumToInt(NET_SERVER_TYPE.SERVER_OSF) else 0)
+            | (if (o.SERVER_VMS == 1) @enumToInt(NET_SERVER_TYPE.SERVER_VMS) else 0)
+            | (if (o.WINDOWS == 1) @enumToInt(NET_SERVER_TYPE.WINDOWS) else 0)
+            | (if (o.DFS == 1) @enumToInt(NET_SERVER_TYPE.DFS) else 0)
+            | (if (o.CLUSTER_NT == 1) @enumToInt(NET_SERVER_TYPE.CLUSTER_NT) else 0)
+            | (if (o.TERMINALSERVER == 1) @enumToInt(NET_SERVER_TYPE.TERMINALSERVER) else 0)
+            | (if (o.CLUSTER_VS_NT == 1) @enumToInt(NET_SERVER_TYPE.CLUSTER_VS_NT) else 0)
+            | (if (o.DCE == 1) @enumToInt(NET_SERVER_TYPE.DCE) else 0)
+            | (if (o.ALTERNATE_XPORT == 1) @enumToInt(NET_SERVER_TYPE.ALTERNATE_XPORT) else 0)
+            | (if (o.LOCAL_LIST_ONLY == 1) @enumToInt(NET_SERVER_TYPE.LOCAL_LIST_ONLY) else 0)
+            | (if (o.DOMAIN_ENUM == 1) @enumToInt(NET_SERVER_TYPE.DOMAIN_ENUM) else 0)
+            | (if (o.ALL == 1) @enumToInt(NET_SERVER_TYPE.ALL) else 0)
+        );
+    }
 };
 pub const SV_TYPE_WORKSTATION = NET_SERVER_TYPE.WORKSTATION;
 pub const SV_TYPE_SERVER = NET_SERVER_TYPE.SERVER;
@@ -2783,7 +2897,6 @@ pub const SV_TYPE_LOCAL_LIST_ONLY = NET_SERVER_TYPE.LOCAL_LIST_ONLY;
 pub const SV_TYPE_DOMAIN_ENUM = NET_SERVER_TYPE.DOMAIN_ENUM;
 pub const SV_TYPE_ALL = NET_SERVER_TYPE.ALL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NET_USER_ENUM_FILTER_FLAGS = extern enum(u32) {
     TEMP_DUPLICATE_ACCOUNT = 1,
     NORMAL_ACCOUNT = 2,
@@ -2791,6 +2904,21 @@ pub const NET_USER_ENUM_FILTER_FLAGS = extern enum(u32) {
     WORKSTATION_TRUST_ACCOUNT = 16,
     SERVER_TRUST_ACCOUNT = 32,
     _,
+    pub fn initFlags(o: struct {
+        TEMP_DUPLICATE_ACCOUNT: u1 = 0,
+        NORMAL_ACCOUNT: u1 = 0,
+        INTERDOMAIN_TRUST_ACCOUNT: u1 = 0,
+        WORKSTATION_TRUST_ACCOUNT: u1 = 0,
+        SERVER_TRUST_ACCOUNT: u1 = 0,
+    }) NET_USER_ENUM_FILTER_FLAGS {
+        return @intToEnum(NET_USER_ENUM_FILTER_FLAGS,
+              (if (o.TEMP_DUPLICATE_ACCOUNT == 1) @enumToInt(NET_USER_ENUM_FILTER_FLAGS.TEMP_DUPLICATE_ACCOUNT) else 0)
+            | (if (o.NORMAL_ACCOUNT == 1) @enumToInt(NET_USER_ENUM_FILTER_FLAGS.NORMAL_ACCOUNT) else 0)
+            | (if (o.INTERDOMAIN_TRUST_ACCOUNT == 1) @enumToInt(NET_USER_ENUM_FILTER_FLAGS.INTERDOMAIN_TRUST_ACCOUNT) else 0)
+            | (if (o.WORKSTATION_TRUST_ACCOUNT == 1) @enumToInt(NET_USER_ENUM_FILTER_FLAGS.WORKSTATION_TRUST_ACCOUNT) else 0)
+            | (if (o.SERVER_TRUST_ACCOUNT == 1) @enumToInt(NET_USER_ENUM_FILTER_FLAGS.SERVER_TRUST_ACCOUNT) else 0)
+        );
+    }
 };
 pub const FILTER_TEMP_DUPLICATE_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.TEMP_DUPLICATE_ACCOUNT;
 pub const FILTER_NORMAL_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.NORMAL_ACCOUNT;
@@ -2798,7 +2926,6 @@ pub const FILTER_INTERDOMAIN_TRUST_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.INTERDOM
 pub const FILTER_WORKSTATION_TRUST_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.WORKSTATION_TRUST_ACCOUNT;
 pub const FILTER_SERVER_TRUST_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.SERVER_TRUST_ACCOUNT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NETSETUP_PROVISION = extern enum(u32) {
     DOWNLEVEL_PRIV_SUPPORT = 1,
     REUSE_ACCOUNT = 2,
@@ -2806,6 +2933,21 @@ pub const NETSETUP_PROVISION = extern enum(u32) {
     SKIP_ACCOUNT_SEARCH = 8,
     ROOT_CA_CERTS = 16,
     _,
+    pub fn initFlags(o: struct {
+        DOWNLEVEL_PRIV_SUPPORT: u1 = 0,
+        REUSE_ACCOUNT: u1 = 0,
+        USE_DEFAULT_PASSWORD: u1 = 0,
+        SKIP_ACCOUNT_SEARCH: u1 = 0,
+        ROOT_CA_CERTS: u1 = 0,
+    }) NETSETUP_PROVISION {
+        return @intToEnum(NETSETUP_PROVISION,
+              (if (o.DOWNLEVEL_PRIV_SUPPORT == 1) @enumToInt(NETSETUP_PROVISION.DOWNLEVEL_PRIV_SUPPORT) else 0)
+            | (if (o.REUSE_ACCOUNT == 1) @enumToInt(NETSETUP_PROVISION.REUSE_ACCOUNT) else 0)
+            | (if (o.USE_DEFAULT_PASSWORD == 1) @enumToInt(NETSETUP_PROVISION.USE_DEFAULT_PASSWORD) else 0)
+            | (if (o.SKIP_ACCOUNT_SEARCH == 1) @enumToInt(NETSETUP_PROVISION.SKIP_ACCOUNT_SEARCH) else 0)
+            | (if (o.ROOT_CA_CERTS == 1) @enumToInt(NETSETUP_PROVISION.ROOT_CA_CERTS) else 0)
+        );
+    }
 };
 pub const NETSETUP_PROVISION_DOWNLEVEL_PRIV_SUPPORT = NETSETUP_PROVISION.DOWNLEVEL_PRIV_SUPPORT;
 pub const NETSETUP_PROVISION_REUSE_ACCOUNT = NETSETUP_PROVISION.REUSE_ACCOUNT;
@@ -2813,7 +2955,6 @@ pub const NETSETUP_PROVISION_USE_DEFAULT_PASSWORD = NETSETUP_PROVISION.USE_DEFAU
 pub const NETSETUP_PROVISION_SKIP_ACCOUNT_SEARCH = NETSETUP_PROVISION.SKIP_ACCOUNT_SEARCH;
 pub const NETSETUP_PROVISION_ROOT_CA_CERTS = NETSETUP_PROVISION.ROOT_CA_CERTS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const USER_ACCOUNT_FLAGS = extern enum(u32) {
     SCRIPT = 1,
     ACCOUNTDISABLE = 2,
@@ -2831,6 +2972,41 @@ pub const USER_ACCOUNT_FLAGS = extern enum(u32) {
     PASSWORD_EXPIRED = 8388608,
     TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = 16777216,
     _,
+    pub fn initFlags(o: struct {
+        SCRIPT: u1 = 0,
+        ACCOUNTDISABLE: u1 = 0,
+        HOMEDIR_REQUIRED: u1 = 0,
+        PASSWD_NOTREQD: u1 = 0,
+        PASSWD_CANT_CHANGE: u1 = 0,
+        LOCKOUT: u1 = 0,
+        DONT_EXPIRE_PASSWD: u1 = 0,
+        ENCRYPTED_TEXT_PASSWORD_ALLOWED: u1 = 0,
+        NOT_DELEGATED: u1 = 0,
+        SMARTCARD_REQUIRED: u1 = 0,
+        USE_DES_KEY_ONLY: u1 = 0,
+        DONT_REQUIRE_PREAUTH: u1 = 0,
+        TRUSTED_FOR_DELEGATION: u1 = 0,
+        PASSWORD_EXPIRED: u1 = 0,
+        TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION: u1 = 0,
+    }) USER_ACCOUNT_FLAGS {
+        return @intToEnum(USER_ACCOUNT_FLAGS,
+              (if (o.SCRIPT == 1) @enumToInt(USER_ACCOUNT_FLAGS.SCRIPT) else 0)
+            | (if (o.ACCOUNTDISABLE == 1) @enumToInt(USER_ACCOUNT_FLAGS.ACCOUNTDISABLE) else 0)
+            | (if (o.HOMEDIR_REQUIRED == 1) @enumToInt(USER_ACCOUNT_FLAGS.HOMEDIR_REQUIRED) else 0)
+            | (if (o.PASSWD_NOTREQD == 1) @enumToInt(USER_ACCOUNT_FLAGS.PASSWD_NOTREQD) else 0)
+            | (if (o.PASSWD_CANT_CHANGE == 1) @enumToInt(USER_ACCOUNT_FLAGS.PASSWD_CANT_CHANGE) else 0)
+            | (if (o.LOCKOUT == 1) @enumToInt(USER_ACCOUNT_FLAGS.LOCKOUT) else 0)
+            | (if (o.DONT_EXPIRE_PASSWD == 1) @enumToInt(USER_ACCOUNT_FLAGS.DONT_EXPIRE_PASSWD) else 0)
+            | (if (o.ENCRYPTED_TEXT_PASSWORD_ALLOWED == 1) @enumToInt(USER_ACCOUNT_FLAGS.ENCRYPTED_TEXT_PASSWORD_ALLOWED) else 0)
+            | (if (o.NOT_DELEGATED == 1) @enumToInt(USER_ACCOUNT_FLAGS.NOT_DELEGATED) else 0)
+            | (if (o.SMARTCARD_REQUIRED == 1) @enumToInt(USER_ACCOUNT_FLAGS.SMARTCARD_REQUIRED) else 0)
+            | (if (o.USE_DES_KEY_ONLY == 1) @enumToInt(USER_ACCOUNT_FLAGS.USE_DES_KEY_ONLY) else 0)
+            | (if (o.DONT_REQUIRE_PREAUTH == 1) @enumToInt(USER_ACCOUNT_FLAGS.DONT_REQUIRE_PREAUTH) else 0)
+            | (if (o.TRUSTED_FOR_DELEGATION == 1) @enumToInt(USER_ACCOUNT_FLAGS.TRUSTED_FOR_DELEGATION) else 0)
+            | (if (o.PASSWORD_EXPIRED == 1) @enumToInt(USER_ACCOUNT_FLAGS.PASSWORD_EXPIRED) else 0)
+            | (if (o.TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION == 1) @enumToInt(USER_ACCOUNT_FLAGS.TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION) else 0)
+        );
+    }
 };
 pub const UF_SCRIPT = USER_ACCOUNT_FLAGS.SCRIPT;
 pub const UF_ACCOUNTDISABLE = USER_ACCOUNT_FLAGS.ACCOUNTDISABLE;
@@ -2848,13 +3024,25 @@ pub const UF_TRUSTED_FOR_DELEGATION = USER_ACCOUNT_FLAGS.TRUSTED_FOR_DELEGATION;
 pub const UF_PASSWORD_EXPIRED = USER_ACCOUNT_FLAGS.PASSWORD_EXPIRED;
 pub const UF_TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = USER_ACCOUNT_FLAGS.TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const AF_OP = extern enum(u32) {
     PRINT = 1,
     COMM = 2,
     SERVER = 4,
     ACCOUNTS = 8,
     _,
+    pub fn initFlags(o: struct {
+        PRINT: u1 = 0,
+        COMM: u1 = 0,
+        SERVER: u1 = 0,
+        ACCOUNTS: u1 = 0,
+    }) AF_OP {
+        return @intToEnum(AF_OP,
+              (if (o.PRINT == 1) @enumToInt(AF_OP.PRINT) else 0)
+            | (if (o.COMM == 1) @enumToInt(AF_OP.COMM) else 0)
+            | (if (o.SERVER == 1) @enumToInt(AF_OP.SERVER) else 0)
+            | (if (o.ACCOUNTS == 1) @enumToInt(AF_OP.ACCOUNTS) else 0)
+        );
+    }
 };
 pub const AF_OP_PRINT = AF_OP.PRINT;
 pub const AF_OP_COMM = AF_OP.COMM;

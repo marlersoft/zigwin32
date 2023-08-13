@@ -3040,7 +3040,6 @@ pub const PCM_NOTIFY_CALLBACK = fn(
     EventDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SP_COPY_STYLE = extern enum(u32) {
     DELETESOURCE = 1,
     REPLACEONLY = 2,
@@ -3071,6 +3070,67 @@ pub const SP_COPY_STYLE = extern enum(u32) {
     INBOX_INF = 134217728,
     HARDLINK = 268435456,
     _,
+    pub fn initFlags(o: struct {
+        DELETESOURCE: u1 = 0,
+        REPLACEONLY: u1 = 0,
+        NEWER_OR_SAME: u1 = 0,
+        NEWER_ONLY: u1 = 0,
+        NOOVERWRITE: u1 = 0,
+        NODECOMP: u1 = 0,
+        LANGUAGEAWARE: u1 = 0,
+        SOURCE_ABSOLUTE: u1 = 0,
+        SOURCEPATH_ABSOLUTE: u1 = 0,
+        FORCE_IN_USE: u1 = 0,
+        IN_USE_NEEDS_REBOOT: u1 = 0,
+        NOSKIP: u1 = 0,
+        FORCE_NOOVERWRITE: u1 = 0,
+        FORCE_NEWER: u1 = 0,
+        WARNIFSKIP: u1 = 0,
+        NOBROWSE: u1 = 0,
+        NEWER: u1 = 0,
+        RESERVED: u1 = 0,
+        OEMINF_CATALOG_ONLY: u1 = 0,
+        REPLACE_BOOT_FILE: u1 = 0,
+        NOPRUNE: u1 = 0,
+        OEM_F6_INF: u1 = 0,
+        ALREADYDECOMP: u1 = 0,
+        WINDOWS_SIGNED: u1 = 0,
+        PNPLOCKED: u1 = 0,
+        IN_USE_TRY_RENAME: u1 = 0,
+        INBOX_INF: u1 = 0,
+        HARDLINK: u1 = 0,
+    }) SP_COPY_STYLE {
+        return @intToEnum(SP_COPY_STYLE,
+              (if (o.DELETESOURCE == 1) @enumToInt(SP_COPY_STYLE.DELETESOURCE) else 0)
+            | (if (o.REPLACEONLY == 1) @enumToInt(SP_COPY_STYLE.REPLACEONLY) else 0)
+            | (if (o.NEWER_OR_SAME == 1) @enumToInt(SP_COPY_STYLE.NEWER_OR_SAME) else 0)
+            | (if (o.NEWER_ONLY == 1) @enumToInt(SP_COPY_STYLE.NEWER_ONLY) else 0)
+            | (if (o.NOOVERWRITE == 1) @enumToInt(SP_COPY_STYLE.NOOVERWRITE) else 0)
+            | (if (o.NODECOMP == 1) @enumToInt(SP_COPY_STYLE.NODECOMP) else 0)
+            | (if (o.LANGUAGEAWARE == 1) @enumToInt(SP_COPY_STYLE.LANGUAGEAWARE) else 0)
+            | (if (o.SOURCE_ABSOLUTE == 1) @enumToInt(SP_COPY_STYLE.SOURCE_ABSOLUTE) else 0)
+            | (if (o.SOURCEPATH_ABSOLUTE == 1) @enumToInt(SP_COPY_STYLE.SOURCEPATH_ABSOLUTE) else 0)
+            | (if (o.FORCE_IN_USE == 1) @enumToInt(SP_COPY_STYLE.FORCE_IN_USE) else 0)
+            | (if (o.IN_USE_NEEDS_REBOOT == 1) @enumToInt(SP_COPY_STYLE.IN_USE_NEEDS_REBOOT) else 0)
+            | (if (o.NOSKIP == 1) @enumToInt(SP_COPY_STYLE.NOSKIP) else 0)
+            | (if (o.FORCE_NOOVERWRITE == 1) @enumToInt(SP_COPY_STYLE.FORCE_NOOVERWRITE) else 0)
+            | (if (o.FORCE_NEWER == 1) @enumToInt(SP_COPY_STYLE.FORCE_NEWER) else 0)
+            | (if (o.WARNIFSKIP == 1) @enumToInt(SP_COPY_STYLE.WARNIFSKIP) else 0)
+            | (if (o.NOBROWSE == 1) @enumToInt(SP_COPY_STYLE.NOBROWSE) else 0)
+            | (if (o.NEWER == 1) @enumToInt(SP_COPY_STYLE.NEWER) else 0)
+            | (if (o.RESERVED == 1) @enumToInt(SP_COPY_STYLE.RESERVED) else 0)
+            | (if (o.OEMINF_CATALOG_ONLY == 1) @enumToInt(SP_COPY_STYLE.OEMINF_CATALOG_ONLY) else 0)
+            | (if (o.REPLACE_BOOT_FILE == 1) @enumToInt(SP_COPY_STYLE.REPLACE_BOOT_FILE) else 0)
+            | (if (o.NOPRUNE == 1) @enumToInt(SP_COPY_STYLE.NOPRUNE) else 0)
+            | (if (o.OEM_F6_INF == 1) @enumToInt(SP_COPY_STYLE.OEM_F6_INF) else 0)
+            | (if (o.ALREADYDECOMP == 1) @enumToInt(SP_COPY_STYLE.ALREADYDECOMP) else 0)
+            | (if (o.WINDOWS_SIGNED == 1) @enumToInt(SP_COPY_STYLE.WINDOWS_SIGNED) else 0)
+            | (if (o.PNPLOCKED == 1) @enumToInt(SP_COPY_STYLE.PNPLOCKED) else 0)
+            | (if (o.IN_USE_TRY_RENAME == 1) @enumToInt(SP_COPY_STYLE.IN_USE_TRY_RENAME) else 0)
+            | (if (o.INBOX_INF == 1) @enumToInt(SP_COPY_STYLE.INBOX_INF) else 0)
+            | (if (o.HARDLINK == 1) @enumToInt(SP_COPY_STYLE.HARDLINK) else 0)
+        );
+    }
 };
 pub const SP_COPY_DELETESOURCE = SP_COPY_STYLE.DELETESOURCE;
 pub const SP_COPY_REPLACEONLY = SP_COPY_STYLE.REPLACEONLY;

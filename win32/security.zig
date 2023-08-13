@@ -3250,7 +3250,6 @@ pub const SEC_THREAD_START = fn(
     lpThreadParameter: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TOKEN_ACCESS_MASK = extern enum(u32) {
     DELETE = 65536,
     READ_CONTROL = 131072,
@@ -3268,6 +3267,41 @@ pub const TOKEN_ACCESS_MASK = extern enum(u32) {
     ADJUST_SESSIONID = 256,
     ALL_ACCESS = 983295,
     _,
+    pub fn initFlags(o: struct {
+        DELETE: u1 = 0,
+        READ_CONTROL: u1 = 0,
+        WRITE_DAC: u1 = 0,
+        WRITE_OWNER: u1 = 0,
+        ACCESS_SYSTEM_SECURITY: u1 = 0,
+        ASSIGN_PRIMARY: u1 = 0,
+        DUPLICATE: u1 = 0,
+        IMPERSONATE: u1 = 0,
+        QUERY: u1 = 0,
+        QUERY_SOURCE: u1 = 0,
+        ADJUST_PRIVILEGES: u1 = 0,
+        ADJUST_GROUPS: u1 = 0,
+        ADJUST_DEFAULT: u1 = 0,
+        ADJUST_SESSIONID: u1 = 0,
+        ALL_ACCESS: u1 = 0,
+    }) TOKEN_ACCESS_MASK {
+        return @intToEnum(TOKEN_ACCESS_MASK,
+              (if (o.DELETE == 1) @enumToInt(TOKEN_ACCESS_MASK.DELETE) else 0)
+            | (if (o.READ_CONTROL == 1) @enumToInt(TOKEN_ACCESS_MASK.READ_CONTROL) else 0)
+            | (if (o.WRITE_DAC == 1) @enumToInt(TOKEN_ACCESS_MASK.WRITE_DAC) else 0)
+            | (if (o.WRITE_OWNER == 1) @enumToInt(TOKEN_ACCESS_MASK.WRITE_OWNER) else 0)
+            | (if (o.ACCESS_SYSTEM_SECURITY == 1) @enumToInt(TOKEN_ACCESS_MASK.ACCESS_SYSTEM_SECURITY) else 0)
+            | (if (o.ASSIGN_PRIMARY == 1) @enumToInt(TOKEN_ACCESS_MASK.ASSIGN_PRIMARY) else 0)
+            | (if (o.DUPLICATE == 1) @enumToInt(TOKEN_ACCESS_MASK.DUPLICATE) else 0)
+            | (if (o.IMPERSONATE == 1) @enumToInt(TOKEN_ACCESS_MASK.IMPERSONATE) else 0)
+            | (if (o.QUERY == 1) @enumToInt(TOKEN_ACCESS_MASK.QUERY) else 0)
+            | (if (o.QUERY_SOURCE == 1) @enumToInt(TOKEN_ACCESS_MASK.QUERY_SOURCE) else 0)
+            | (if (o.ADJUST_PRIVILEGES == 1) @enumToInt(TOKEN_ACCESS_MASK.ADJUST_PRIVILEGES) else 0)
+            | (if (o.ADJUST_GROUPS == 1) @enumToInt(TOKEN_ACCESS_MASK.ADJUST_GROUPS) else 0)
+            | (if (o.ADJUST_DEFAULT == 1) @enumToInt(TOKEN_ACCESS_MASK.ADJUST_DEFAULT) else 0)
+            | (if (o.ADJUST_SESSIONID == 1) @enumToInt(TOKEN_ACCESS_MASK.ADJUST_SESSIONID) else 0)
+            | (if (o.ALL_ACCESS == 1) @enumToInt(TOKEN_ACCESS_MASK.ALL_ACCESS) else 0)
+        );
+    }
 };
 pub const TOKEN_DELETE = TOKEN_ACCESS_MASK.DELETE;
 pub const TOKEN_READ_CONTROL = TOKEN_ACCESS_MASK.READ_CONTROL;
@@ -12228,11 +12262,19 @@ pub const SCH_EXTENSION_DATA = extern struct {
     cbExtData: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SchGetExtensionsOptions = extern enum(u32) {
     EXTENSIONS_OPTIONS_NONE = 0,
     NO_RECORD_HEADER = 1,
     _,
+    pub fn initFlags(o: struct {
+        EXTENSIONS_OPTIONS_NONE: u1 = 0,
+        NO_RECORD_HEADER: u1 = 0,
+    }) SchGetExtensionsOptions {
+        return @intToEnum(SchGetExtensionsOptions,
+              (if (o.EXTENSIONS_OPTIONS_NONE == 1) @enumToInt(SchGetExtensionsOptions.EXTENSIONS_OPTIONS_NONE) else 0)
+            | (if (o.NO_RECORD_HEADER == 1) @enumToInt(SchGetExtensionsOptions.NO_RECORD_HEADER) else 0)
+        );
+    }
 };
 pub const SCH_EXTENSIONS_OPTIONS_NONE = SchGetExtensionsOptions.EXTENSIONS_OPTIONS_NONE;
 pub const SCH_NO_RECORD_HEADER = SchGetExtensionsOptions.NO_RECORD_HEADER;
@@ -13070,7 +13112,6 @@ pub const ITpmVirtualSmartCardManager3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const KeyCredentialManagerOperationErrorStates = extern enum(u32) {
     None = 0,
     DeviceJoinFailure = 1,
@@ -13081,6 +13122,27 @@ pub const KeyCredentialManagerOperationErrorStates = extern enum(u32) {
     HardwareFailure = 32,
     PinExistsFailure = 64,
     _,
+    pub fn initFlags(o: struct {
+        None: u1 = 0,
+        DeviceJoinFailure: u1 = 0,
+        TokenFailure: u1 = 0,
+        CertificateFailure: u1 = 0,
+        RemoteSessionFailure: u1 = 0,
+        PolicyFailure: u1 = 0,
+        HardwareFailure: u1 = 0,
+        PinExistsFailure: u1 = 0,
+    }) KeyCredentialManagerOperationErrorStates {
+        return @intToEnum(KeyCredentialManagerOperationErrorStates,
+              (if (o.None == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.None) else 0)
+            | (if (o.DeviceJoinFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.DeviceJoinFailure) else 0)
+            | (if (o.TokenFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.TokenFailure) else 0)
+            | (if (o.CertificateFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.CertificateFailure) else 0)
+            | (if (o.RemoteSessionFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.RemoteSessionFailure) else 0)
+            | (if (o.PolicyFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.PolicyFailure) else 0)
+            | (if (o.HardwareFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.HardwareFailure) else 0)
+            | (if (o.PinExistsFailure == 1) @enumToInt(KeyCredentialManagerOperationErrorStates.PinExistsFailure) else 0)
+        );
+    }
 };
 pub const KeyCredentialManagerOperationErrorStateNone = KeyCredentialManagerOperationErrorStates.None;
 pub const KeyCredentialManagerOperationErrorStateDeviceJoinFailure = KeyCredentialManagerOperationErrorStates.DeviceJoinFailure;
@@ -13672,7 +13734,6 @@ pub const MSV1_0_VALIDATION_INFO = extern struct {
     UserId: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const IdentityUpdateEvent = extern enum(u32) {
     ASSOCIATED = 1,
     DISASSOCIATED = 2,
@@ -13683,6 +13744,27 @@ pub const IdentityUpdateEvent = extern enum(u32) {
     CONNECTED = 64,
     DISCONNECTED = 128,
     _,
+    pub fn initFlags(o: struct {
+        ASSOCIATED: u1 = 0,
+        DISASSOCIATED: u1 = 0,
+        CREATED: u1 = 0,
+        IMPORTED: u1 = 0,
+        DELETED: u1 = 0,
+        PROPCHANGED: u1 = 0,
+        CONNECTED: u1 = 0,
+        DISCONNECTED: u1 = 0,
+    }) IdentityUpdateEvent {
+        return @intToEnum(IdentityUpdateEvent,
+              (if (o.ASSOCIATED == 1) @enumToInt(IdentityUpdateEvent.ASSOCIATED) else 0)
+            | (if (o.DISASSOCIATED == 1) @enumToInt(IdentityUpdateEvent.DISASSOCIATED) else 0)
+            | (if (o.CREATED == 1) @enumToInt(IdentityUpdateEvent.CREATED) else 0)
+            | (if (o.IMPORTED == 1) @enumToInt(IdentityUpdateEvent.IMPORTED) else 0)
+            | (if (o.DELETED == 1) @enumToInt(IdentityUpdateEvent.DELETED) else 0)
+            | (if (o.PROPCHANGED == 1) @enumToInt(IdentityUpdateEvent.PROPCHANGED) else 0)
+            | (if (o.CONNECTED == 1) @enumToInt(IdentityUpdateEvent.CONNECTED) else 0)
+            | (if (o.DISCONNECTED == 1) @enumToInt(IdentityUpdateEvent.DISCONNECTED) else 0)
+        );
+    }
 };
 pub const IDENTITY_ASSOCIATED = IdentityUpdateEvent.ASSOCIATED;
 pub const IDENTITY_DISASSOCIATED = IdentityUpdateEvent.DISASSOCIATED;
@@ -37445,7 +37527,6 @@ pub const DIAGNOSTIC_REPORT_DATA = extern struct {
     reportKey: PWSTR,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRED_FLAGS = extern enum(u32) {
     PASSWORD_FOR_CERT = 1,
     PROMPT_NOW = 2,
@@ -37458,6 +37539,31 @@ pub const CRED_FLAGS = extern enum(u32) {
     VALID_FLAGS = 61695,
     VALID_INPUT_FLAGS = 61599,
     _,
+    pub fn initFlags(o: struct {
+        PASSWORD_FOR_CERT: u1 = 0,
+        PROMPT_NOW: u1 = 0,
+        USERNAME_TARGET: u1 = 0,
+        OWF_CRED_BLOB: u1 = 0,
+        REQUIRE_CONFIRMATION: u1 = 0,
+        WILDCARD_MATCH: u1 = 0,
+        VSM_PROTECTED: u1 = 0,
+        NGC_CERT: u1 = 0,
+        VALID_FLAGS: u1 = 0,
+        VALID_INPUT_FLAGS: u1 = 0,
+    }) CRED_FLAGS {
+        return @intToEnum(CRED_FLAGS,
+              (if (o.PASSWORD_FOR_CERT == 1) @enumToInt(CRED_FLAGS.PASSWORD_FOR_CERT) else 0)
+            | (if (o.PROMPT_NOW == 1) @enumToInt(CRED_FLAGS.PROMPT_NOW) else 0)
+            | (if (o.USERNAME_TARGET == 1) @enumToInt(CRED_FLAGS.USERNAME_TARGET) else 0)
+            | (if (o.OWF_CRED_BLOB == 1) @enumToInt(CRED_FLAGS.OWF_CRED_BLOB) else 0)
+            | (if (o.REQUIRE_CONFIRMATION == 1) @enumToInt(CRED_FLAGS.REQUIRE_CONFIRMATION) else 0)
+            | (if (o.WILDCARD_MATCH == 1) @enumToInt(CRED_FLAGS.WILDCARD_MATCH) else 0)
+            | (if (o.VSM_PROTECTED == 1) @enumToInt(CRED_FLAGS.VSM_PROTECTED) else 0)
+            | (if (o.NGC_CERT == 1) @enumToInt(CRED_FLAGS.NGC_CERT) else 0)
+            | (if (o.VALID_FLAGS == 1) @enumToInt(CRED_FLAGS.VALID_FLAGS) else 0)
+            | (if (o.VALID_INPUT_FLAGS == 1) @enumToInt(CRED_FLAGS.VALID_INPUT_FLAGS) else 0)
+        );
+    }
 };
 pub const CRED_FLAGS_PASSWORD_FOR_CERT = CRED_FLAGS.PASSWORD_FOR_CERT;
 pub const CRED_FLAGS_PROMPT_NOW = CRED_FLAGS.PROMPT_NOW;
@@ -37500,7 +37606,6 @@ pub const CRED_PERSIST_SESSION = CRED_PERSIST.SESSION;
 pub const CRED_PERSIST_LOCAL_MACHINE = CRED_PERSIST.LOCAL_MACHINE;
 pub const CRED_PERSIST_ENTERPRISE = CRED_PERSIST.ENTERPRISE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const BCRYPT_OPERATION = extern enum(u32) {
     CIPHER_OPERATION = 1,
     HASH_OPERATION = 2,
@@ -37509,6 +37614,23 @@ pub const BCRYPT_OPERATION = extern enum(u32) {
     SIGNATURE_OPERATION = 16,
     RNG_OPERATION = 32,
     _,
+    pub fn initFlags(o: struct {
+        CIPHER_OPERATION: u1 = 0,
+        HASH_OPERATION: u1 = 0,
+        ASYMMETRIC_ENCRYPTION_OPERATION: u1 = 0,
+        SECRET_AGREEMENT_OPERATION: u1 = 0,
+        SIGNATURE_OPERATION: u1 = 0,
+        RNG_OPERATION: u1 = 0,
+    }) BCRYPT_OPERATION {
+        return @intToEnum(BCRYPT_OPERATION,
+              (if (o.CIPHER_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.CIPHER_OPERATION) else 0)
+            | (if (o.HASH_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.HASH_OPERATION) else 0)
+            | (if (o.ASYMMETRIC_ENCRYPTION_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.ASYMMETRIC_ENCRYPTION_OPERATION) else 0)
+            | (if (o.SECRET_AGREEMENT_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.SECRET_AGREEMENT_OPERATION) else 0)
+            | (if (o.SIGNATURE_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.SIGNATURE_OPERATION) else 0)
+            | (if (o.RNG_OPERATION == 1) @enumToInt(BCRYPT_OPERATION.RNG_OPERATION) else 0)
+        );
+    }
 };
 pub const BCRYPT_CIPHER_OPERATION = BCRYPT_OPERATION.CIPHER_OPERATION;
 pub const BCRYPT_HASH_OPERATION = BCRYPT_OPERATION.HASH_OPERATION;
@@ -37517,7 +37639,6 @@ pub const BCRYPT_SECRET_AGREEMENT_OPERATION = BCRYPT_OPERATION.SECRET_AGREEMENT_
 pub const BCRYPT_SIGNATURE_OPERATION = BCRYPT_OPERATION.SIGNATURE_OPERATION;
 pub const BCRYPT_RNG_OPERATION = BCRYPT_OPERATION.RNG_OPERATION;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NCRYPT_OPERATION = extern enum(u32) {
     CIPHER_OPERATION = 1,
     HASH_OPERATION = 2,
@@ -37525,6 +37646,21 @@ pub const NCRYPT_OPERATION = extern enum(u32) {
     SECRET_AGREEMENT_OPERATION = 8,
     SIGNATURE_OPERATION = 16,
     _,
+    pub fn initFlags(o: struct {
+        CIPHER_OPERATION: u1 = 0,
+        HASH_OPERATION: u1 = 0,
+        ASYMMETRIC_ENCRYPTION_OPERATION: u1 = 0,
+        SECRET_AGREEMENT_OPERATION: u1 = 0,
+        SIGNATURE_OPERATION: u1 = 0,
+    }) NCRYPT_OPERATION {
+        return @intToEnum(NCRYPT_OPERATION,
+              (if (o.CIPHER_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.CIPHER_OPERATION) else 0)
+            | (if (o.HASH_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.HASH_OPERATION) else 0)
+            | (if (o.ASYMMETRIC_ENCRYPTION_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.ASYMMETRIC_ENCRYPTION_OPERATION) else 0)
+            | (if (o.SECRET_AGREEMENT_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.SECRET_AGREEMENT_OPERATION) else 0)
+            | (if (o.SIGNATURE_OPERATION == 1) @enumToInt(NCRYPT_OPERATION.SIGNATURE_OPERATION) else 0)
+        );
+    }
 };
 pub const NCRYPT_CIPHER_OPERATION = NCRYPT_OPERATION.CIPHER_OPERATION;
 pub const NCRYPT_HASH_OPERATION = NCRYPT_OPERATION.HASH_OPERATION;
@@ -37532,7 +37668,6 @@ pub const NCRYPT_ASYMMETRIC_ENCRYPTION_OPERATION = NCRYPT_OPERATION.ASYMMETRIC_E
 pub const NCRYPT_SECRET_AGREEMENT_OPERATION = NCRYPT_OPERATION.SECRET_AGREEMENT_OPERATION;
 pub const NCRYPT_SIGNATURE_OPERATION = NCRYPT_OPERATION.SIGNATURE_OPERATION;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CERT_FIND_FLAGS = extern enum(u32) {
     ANY = 0,
     CERT_ID = 1048576,
@@ -37577,6 +37712,95 @@ pub const CERT_FIND_FLAGS = extern enum(u32) {
     OR_CTL_USAGE_FLAG = 16,
     VALID_CTL_USAGE_FLAG = 32,
     _,
+    pub fn initFlags(o: struct {
+        ANY: u1 = 0,
+        CERT_ID: u1 = 0,
+        CTL_USAGE: u1 = 0,
+        ENHKEY_USAGE: u1 = 0,
+        EXISTING: u1 = 0,
+        HASH: u1 = 0,
+        HAS_PRIVATE_KEY: u1 = 0,
+        ISSUER_ATTR: u1 = 0,
+        ISSUER_NAME: u1 = 0,
+        ISSUER_OF: u1 = 0,
+        ISSUER_STR: u1 = 0,
+        KEY_IDENTIFIER: u1 = 0,
+        KEY_SPEC: u1 = 0,
+        MD5_HASH: u1 = 0,
+        PROPERTY: u1 = 0,
+        PUBLIC_KEY: u1 = 0,
+        SHA1_HASH: u1 = 0,
+        SIGNATURE_HASH: u1 = 0,
+        SUBJECT_ATTR: u1 = 0,
+        SUBJECT_CERT: u1 = 0,
+        SUBJECT_NAME: u1 = 0,
+        SUBJECT_STR: u1 = 0,
+        CROSS_CERT_DIST_POINTS: u1 = 0,
+        PUBKEY_MD5_HASH: u1 = 0,
+        SUBJECT_STR_A: u1 = 0,
+        SUBJECT_STR_W: u1 = 0,
+        ISSUER_STR_A: u1 = 0,
+        ISSUER_STR_W: u1 = 0,
+        SUBJECT_INFO_ACCESS: u1 = 0,
+        HASH_STR: u1 = 0,
+        OPTIONAL_ENHKEY_USAGE_FLAG: u1 = 0,
+        EXT_ONLY_ENHKEY_USAGE_FLAG: u1 = 0,
+        PROP_ONLY_ENHKEY_USAGE_FLAG: u1 = 0,
+        NO_ENHKEY_USAGE_FLAG: u1 = 0,
+        OR_ENHKEY_USAGE_FLAG: u1 = 0,
+        VALID_ENHKEY_USAGE_FLAG: u1 = 0,
+        OPTIONAL_CTL_USAGE_FLAG: u1 = 0,
+        EXT_ONLY_CTL_USAGE_FLAG: u1 = 0,
+        PROP_ONLY_CTL_USAGE_FLAG: u1 = 0,
+        NO_CTL_USAGE_FLAG: u1 = 0,
+        OR_CTL_USAGE_FLAG: u1 = 0,
+        VALID_CTL_USAGE_FLAG: u1 = 0,
+    }) CERT_FIND_FLAGS {
+        return @intToEnum(CERT_FIND_FLAGS,
+              (if (o.ANY == 1) @enumToInt(CERT_FIND_FLAGS.ANY) else 0)
+            | (if (o.CERT_ID == 1) @enumToInt(CERT_FIND_FLAGS.CERT_ID) else 0)
+            | (if (o.CTL_USAGE == 1) @enumToInt(CERT_FIND_FLAGS.CTL_USAGE) else 0)
+            | (if (o.ENHKEY_USAGE == 1) @enumToInt(CERT_FIND_FLAGS.ENHKEY_USAGE) else 0)
+            | (if (o.EXISTING == 1) @enumToInt(CERT_FIND_FLAGS.EXISTING) else 0)
+            | (if (o.HASH == 1) @enumToInt(CERT_FIND_FLAGS.HASH) else 0)
+            | (if (o.HAS_PRIVATE_KEY == 1) @enumToInt(CERT_FIND_FLAGS.HAS_PRIVATE_KEY) else 0)
+            | (if (o.ISSUER_ATTR == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_ATTR) else 0)
+            | (if (o.ISSUER_NAME == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_NAME) else 0)
+            | (if (o.ISSUER_OF == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_OF) else 0)
+            | (if (o.ISSUER_STR == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_STR) else 0)
+            | (if (o.KEY_IDENTIFIER == 1) @enumToInt(CERT_FIND_FLAGS.KEY_IDENTIFIER) else 0)
+            | (if (o.KEY_SPEC == 1) @enumToInt(CERT_FIND_FLAGS.KEY_SPEC) else 0)
+            | (if (o.MD5_HASH == 1) @enumToInt(CERT_FIND_FLAGS.MD5_HASH) else 0)
+            | (if (o.PROPERTY == 1) @enumToInt(CERT_FIND_FLAGS.PROPERTY) else 0)
+            | (if (o.PUBLIC_KEY == 1) @enumToInt(CERT_FIND_FLAGS.PUBLIC_KEY) else 0)
+            | (if (o.SHA1_HASH == 1) @enumToInt(CERT_FIND_FLAGS.SHA1_HASH) else 0)
+            | (if (o.SIGNATURE_HASH == 1) @enumToInt(CERT_FIND_FLAGS.SIGNATURE_HASH) else 0)
+            | (if (o.SUBJECT_ATTR == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_ATTR) else 0)
+            | (if (o.SUBJECT_CERT == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_CERT) else 0)
+            | (if (o.SUBJECT_NAME == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_NAME) else 0)
+            | (if (o.SUBJECT_STR == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_STR) else 0)
+            | (if (o.CROSS_CERT_DIST_POINTS == 1) @enumToInt(CERT_FIND_FLAGS.CROSS_CERT_DIST_POINTS) else 0)
+            | (if (o.PUBKEY_MD5_HASH == 1) @enumToInt(CERT_FIND_FLAGS.PUBKEY_MD5_HASH) else 0)
+            | (if (o.SUBJECT_STR_A == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_STR_A) else 0)
+            | (if (o.SUBJECT_STR_W == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_STR_W) else 0)
+            | (if (o.ISSUER_STR_A == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_STR_A) else 0)
+            | (if (o.ISSUER_STR_W == 1) @enumToInt(CERT_FIND_FLAGS.ISSUER_STR_W) else 0)
+            | (if (o.SUBJECT_INFO_ACCESS == 1) @enumToInt(CERT_FIND_FLAGS.SUBJECT_INFO_ACCESS) else 0)
+            | (if (o.HASH_STR == 1) @enumToInt(CERT_FIND_FLAGS.HASH_STR) else 0)
+            | (if (o.OPTIONAL_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.OPTIONAL_ENHKEY_USAGE_FLAG) else 0)
+            | (if (o.EXT_ONLY_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.EXT_ONLY_ENHKEY_USAGE_FLAG) else 0)
+            | (if (o.PROP_ONLY_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.PROP_ONLY_ENHKEY_USAGE_FLAG) else 0)
+            | (if (o.NO_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.NO_ENHKEY_USAGE_FLAG) else 0)
+            | (if (o.OR_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.OR_ENHKEY_USAGE_FLAG) else 0)
+            | (if (o.VALID_ENHKEY_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.VALID_ENHKEY_USAGE_FLAG) else 0)
+            | (if (o.OPTIONAL_CTL_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.OPTIONAL_CTL_USAGE_FLAG) else 0)
+            | (if (o.EXT_ONLY_CTL_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.EXT_ONLY_CTL_USAGE_FLAG) else 0)
+            | (if (o.PROP_ONLY_CTL_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.PROP_ONLY_CTL_USAGE_FLAG) else 0)
+            | (if (o.NO_CTL_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.NO_CTL_USAGE_FLAG) else 0)
+            | (if (o.OR_CTL_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.OR_CTL_USAGE_FLAG) else 0)
+            | (if (o.VALID_CTL_USAGE_FLAG == 1) @enumToInt(CERT_FIND_FLAGS.VALID_CTL_USAGE_FLAG) else 0)
+        );
+    }
 };
 pub const CERT_FIND_ANY = CERT_FIND_FLAGS.ANY;
 pub const CERT_FIND_CERT_ID = CERT_FIND_FLAGS.CERT_ID;
@@ -37621,13 +37845,25 @@ pub const CERT_FIND_NO_CTL_USAGE_FLAG = CERT_FIND_FLAGS.NO_CTL_USAGE_FLAG;
 pub const CERT_FIND_OR_CTL_USAGE_FLAG = CERT_FIND_FLAGS.OR_CTL_USAGE_FLAG;
 pub const CERT_FIND_VALID_CTL_USAGE_FLAG = CERT_FIND_FLAGS.VALID_CTL_USAGE_FLAG;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const TOKEN_PRIVILEGES_ATTRIBUTES = extern enum(u32) {
     ENABLED = 2,
     ENABLED_BY_DEFAULT = 1,
     REMOVED = 4,
     USED_FOR_ACCESS = 2147483648,
     _,
+    pub fn initFlags(o: struct {
+        ENABLED: u1 = 0,
+        ENABLED_BY_DEFAULT: u1 = 0,
+        REMOVED: u1 = 0,
+        USED_FOR_ACCESS: u1 = 0,
+    }) TOKEN_PRIVILEGES_ATTRIBUTES {
+        return @intToEnum(TOKEN_PRIVILEGES_ATTRIBUTES,
+              (if (o.ENABLED == 1) @enumToInt(TOKEN_PRIVILEGES_ATTRIBUTES.ENABLED) else 0)
+            | (if (o.ENABLED_BY_DEFAULT == 1) @enumToInt(TOKEN_PRIVILEGES_ATTRIBUTES.ENABLED_BY_DEFAULT) else 0)
+            | (if (o.REMOVED == 1) @enumToInt(TOKEN_PRIVILEGES_ATTRIBUTES.REMOVED) else 0)
+            | (if (o.USED_FOR_ACCESS == 1) @enumToInt(TOKEN_PRIVILEGES_ATTRIBUTES.USED_FOR_ACCESS) else 0)
+        );
+    }
 };
 pub const SE_PRIVILEGE_ENABLED = TOKEN_PRIVILEGES_ATTRIBUTES.ENABLED;
 pub const SE_PRIVILEGE_ENABLED_BY_DEFAULT = TOKEN_PRIVILEGES_ATTRIBUTES.ENABLED_BY_DEFAULT;
@@ -38025,13 +38261,25 @@ pub const CVRC_COLUMN_RESULT = CVRC_COLUMN.RESULT;
 pub const CVRC_COLUMN_VALUE = CVRC_COLUMN.VALUE;
 pub const CVRC_COLUMN_MASK = CVRC_COLUMN.MASK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CREATE_RESTRICTED_TOKEN_FLAGS = extern enum(u32) {
     DISABLE_MAX_PRIVILEGE = 1,
     SANDBOX_INERT = 2,
     LUA_TOKEN = 4,
     WRITE_RESTRICTED = 8,
     _,
+    pub fn initFlags(o: struct {
+        DISABLE_MAX_PRIVILEGE: u1 = 0,
+        SANDBOX_INERT: u1 = 0,
+        LUA_TOKEN: u1 = 0,
+        WRITE_RESTRICTED: u1 = 0,
+    }) CREATE_RESTRICTED_TOKEN_FLAGS {
+        return @intToEnum(CREATE_RESTRICTED_TOKEN_FLAGS,
+              (if (o.DISABLE_MAX_PRIVILEGE == 1) @enumToInt(CREATE_RESTRICTED_TOKEN_FLAGS.DISABLE_MAX_PRIVILEGE) else 0)
+            | (if (o.SANDBOX_INERT == 1) @enumToInt(CREATE_RESTRICTED_TOKEN_FLAGS.SANDBOX_INERT) else 0)
+            | (if (o.LUA_TOKEN == 1) @enumToInt(CREATE_RESTRICTED_TOKEN_FLAGS.LUA_TOKEN) else 0)
+            | (if (o.WRITE_RESTRICTED == 1) @enumToInt(CREATE_RESTRICTED_TOKEN_FLAGS.WRITE_RESTRICTED) else 0)
+        );
+    }
 };
 pub const DISABLE_MAX_PRIVILEGE = CREATE_RESTRICTED_TOKEN_FLAGS.DISABLE_MAX_PRIVILEGE;
 pub const SANDBOX_INERT = CREATE_RESTRICTED_TOKEN_FLAGS.SANDBOX_INERT;
@@ -38071,7 +38319,6 @@ pub const LOGON32_LOGON_NEW_CREDENTIALS = LOGON32_LOGON.NEW_CREDENTIALS;
 pub const LOGON32_LOGON_SERVICE = LOGON32_LOGON.SERVICE;
 pub const LOGON32_LOGON_UNLOCK = LOGON32_LOGON.UNLOCK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const ENUM_SERVICE_TYPE = extern enum(u32) {
     DRIVER = 11,
     FILE_SYSTEM_DRIVER_ = 2,
@@ -38086,6 +38333,35 @@ pub const ENUM_SERVICE_TYPE = extern enum(u32) {
     USER_OWN_PROCESS = 80,
     USER_SHARE_PROCESS = 96,
     _,
+    pub fn initFlags(o: struct {
+        DRIVER: u1 = 0,
+        FILE_SYSTEM_DRIVER_: u1 = 0,
+        KERNEL_DRIVER: u1 = 0,
+        WIN32: u1 = 0,
+        WIN32_OWN_PROCESS_: u1 = 0,
+        WIN32_SHARE_PROCESS: u1 = 0,
+        ADAPTER: u1 = 0,
+        FILE_SYSTEM_DRIVER: u1 = 0,
+        RECOGNIZER_DRIVER: u1 = 0,
+        WIN32_OWN_PROCESS: u1 = 0,
+        USER_OWN_PROCESS: u1 = 0,
+        USER_SHARE_PROCESS: u1 = 0,
+    }) ENUM_SERVICE_TYPE {
+        return @intToEnum(ENUM_SERVICE_TYPE,
+              (if (o.DRIVER == 1) @enumToInt(ENUM_SERVICE_TYPE.DRIVER) else 0)
+            | (if (o.FILE_SYSTEM_DRIVER_ == 1) @enumToInt(ENUM_SERVICE_TYPE.FILE_SYSTEM_DRIVER_) else 0)
+            | (if (o.KERNEL_DRIVER == 1) @enumToInt(ENUM_SERVICE_TYPE.KERNEL_DRIVER) else 0)
+            | (if (o.WIN32 == 1) @enumToInt(ENUM_SERVICE_TYPE.WIN32) else 0)
+            | (if (o.WIN32_OWN_PROCESS_ == 1) @enumToInt(ENUM_SERVICE_TYPE.WIN32_OWN_PROCESS_) else 0)
+            | (if (o.WIN32_SHARE_PROCESS == 1) @enumToInt(ENUM_SERVICE_TYPE.WIN32_SHARE_PROCESS) else 0)
+            | (if (o.ADAPTER == 1) @enumToInt(ENUM_SERVICE_TYPE.ADAPTER) else 0)
+            | (if (o.FILE_SYSTEM_DRIVER == 1) @enumToInt(ENUM_SERVICE_TYPE.FILE_SYSTEM_DRIVER) else 0)
+            | (if (o.RECOGNIZER_DRIVER == 1) @enumToInt(ENUM_SERVICE_TYPE.RECOGNIZER_DRIVER) else 0)
+            | (if (o.WIN32_OWN_PROCESS == 1) @enumToInt(ENUM_SERVICE_TYPE.WIN32_OWN_PROCESS) else 0)
+            | (if (o.USER_OWN_PROCESS == 1) @enumToInt(ENUM_SERVICE_TYPE.USER_OWN_PROCESS) else 0)
+            | (if (o.USER_SHARE_PROCESS == 1) @enumToInt(ENUM_SERVICE_TYPE.USER_SHARE_PROCESS) else 0)
+        );
+    }
 };
 pub const SERVICE_DRIVER = ENUM_SERVICE_TYPE.DRIVER;
 pub const SERVICE_FILE_SYSTEM_DRIVER_ = ENUM_SERVICE_TYPE.FILE_SYSTEM_DRIVER_;
@@ -38100,7 +38376,6 @@ pub const SERVICE_WIN32_OWN_PROCESS = ENUM_SERVICE_TYPE.WIN32_OWN_PROCESS;
 pub const SERVICE_USER_OWN_PROCESS = ENUM_SERVICE_TYPE.USER_OWN_PROCESS;
 pub const SERVICE_USER_SHARE_PROCESS = ENUM_SERVICE_TYPE.USER_SHARE_PROCESS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CREDUI_FLAGS = extern enum(u32) {
     ALWAYS_SHOW_UI = 128,
     COMPLETE_USERNAME = 2048,
@@ -38120,6 +38395,45 @@ pub const CREDUI_FLAGS = extern enum(u32) {
     USERNAME_TARGET_CREDENTIALS = 524288,
     VALIDATE_USERNAME = 1024,
     _,
+    pub fn initFlags(o: struct {
+        ALWAYS_SHOW_UI: u1 = 0,
+        COMPLETE_USERNAME: u1 = 0,
+        DO_NOT_PERSIST: u1 = 0,
+        EXCLUDE_CERTIFICATES: u1 = 0,
+        EXPECT_CONFIRMATION: u1 = 0,
+        GENERIC_CREDENTIALS: u1 = 0,
+        INCORRECT_PASSWORD: u1 = 0,
+        KEEP_USERNAME: u1 = 0,
+        PASSWORD_ONLY_OK: u1 = 0,
+        PERSIST: u1 = 0,
+        REQUEST_ADMINISTRATOR: u1 = 0,
+        REQUIRE_CERTIFICATE: u1 = 0,
+        REQUIRE_SMARTCARD: u1 = 0,
+        SERVER_CREDENTIAL: u1 = 0,
+        SHOW_SAVE_CHECK_BOX: u1 = 0,
+        USERNAME_TARGET_CREDENTIALS: u1 = 0,
+        VALIDATE_USERNAME: u1 = 0,
+    }) CREDUI_FLAGS {
+        return @intToEnum(CREDUI_FLAGS,
+              (if (o.ALWAYS_SHOW_UI == 1) @enumToInt(CREDUI_FLAGS.ALWAYS_SHOW_UI) else 0)
+            | (if (o.COMPLETE_USERNAME == 1) @enumToInt(CREDUI_FLAGS.COMPLETE_USERNAME) else 0)
+            | (if (o.DO_NOT_PERSIST == 1) @enumToInt(CREDUI_FLAGS.DO_NOT_PERSIST) else 0)
+            | (if (o.EXCLUDE_CERTIFICATES == 1) @enumToInt(CREDUI_FLAGS.EXCLUDE_CERTIFICATES) else 0)
+            | (if (o.EXPECT_CONFIRMATION == 1) @enumToInt(CREDUI_FLAGS.EXPECT_CONFIRMATION) else 0)
+            | (if (o.GENERIC_CREDENTIALS == 1) @enumToInt(CREDUI_FLAGS.GENERIC_CREDENTIALS) else 0)
+            | (if (o.INCORRECT_PASSWORD == 1) @enumToInt(CREDUI_FLAGS.INCORRECT_PASSWORD) else 0)
+            | (if (o.KEEP_USERNAME == 1) @enumToInt(CREDUI_FLAGS.KEEP_USERNAME) else 0)
+            | (if (o.PASSWORD_ONLY_OK == 1) @enumToInt(CREDUI_FLAGS.PASSWORD_ONLY_OK) else 0)
+            | (if (o.PERSIST == 1) @enumToInt(CREDUI_FLAGS.PERSIST) else 0)
+            | (if (o.REQUEST_ADMINISTRATOR == 1) @enumToInt(CREDUI_FLAGS.REQUEST_ADMINISTRATOR) else 0)
+            | (if (o.REQUIRE_CERTIFICATE == 1) @enumToInt(CREDUI_FLAGS.REQUIRE_CERTIFICATE) else 0)
+            | (if (o.REQUIRE_SMARTCARD == 1) @enumToInt(CREDUI_FLAGS.REQUIRE_SMARTCARD) else 0)
+            | (if (o.SERVER_CREDENTIAL == 1) @enumToInt(CREDUI_FLAGS.SERVER_CREDENTIAL) else 0)
+            | (if (o.SHOW_SAVE_CHECK_BOX == 1) @enumToInt(CREDUI_FLAGS.SHOW_SAVE_CHECK_BOX) else 0)
+            | (if (o.USERNAME_TARGET_CREDENTIALS == 1) @enumToInt(CREDUI_FLAGS.USERNAME_TARGET_CREDENTIALS) else 0)
+            | (if (o.VALIDATE_USERNAME == 1) @enumToInt(CREDUI_FLAGS.VALIDATE_USERNAME) else 0)
+        );
+    }
 };
 pub const CREDUI_FLAGS_ALWAYS_SHOW_UI = CREDUI_FLAGS.ALWAYS_SHOW_UI;
 pub const CREDUI_FLAGS_COMPLETE_USERNAME = CREDUI_FLAGS.COMPLETE_USERNAME;
@@ -38160,7 +38474,6 @@ pub const NCRYPT_KEY_STORAGE_INTERFACE = BCRYPT_INTERFACE.NCRYPT_KEY_STORAGE_INT
 pub const NCRYPT_SCHANNEL_INTERFACE = BCRYPT_INTERFACE.NCRYPT_SCHANNEL_INTERFACE;
 pub const NCRYPT_SCHANNEL_SIGNATURE_INTERFACE = BCRYPT_INTERFACE.NCRYPT_SCHANNEL_SIGNATURE_INTERFACE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRYPTUI_WIZ_FLAGS = extern enum(u32) {
     NO_UI = 1,
     IGNORE_NO_UI_FLAG_FOR_CSPS = 2,
@@ -38175,6 +38488,35 @@ pub const CRYPTUI_WIZ_FLAGS = extern enum(u32) {
     EXPORT_PRIVATE_KEY = 256,
     EXPORT_NO_DELETE_PRIVATE_KEY = 512,
     _,
+    pub fn initFlags(o: struct {
+        NO_UI: u1 = 0,
+        IGNORE_NO_UI_FLAG_FOR_CSPS: u1 = 0,
+        NO_UI_EXCEPT_CSP: u1 = 0,
+        IMPORT_ALLOW_CERT: u1 = 0,
+        IMPORT_ALLOW_CRL: u1 = 0,
+        IMPORT_ALLOW_CTL: u1 = 0,
+        IMPORT_NO_CHANGE_DEST_STORE: u1 = 0,
+        IMPORT_TO_LOCALMACHINE: u1 = 0,
+        IMPORT_TO_CURRENTUSER: u1 = 0,
+        IMPORT_REMOTE_DEST_STORE: u1 = 0,
+        EXPORT_PRIVATE_KEY: u1 = 0,
+        EXPORT_NO_DELETE_PRIVATE_KEY: u1 = 0,
+    }) CRYPTUI_WIZ_FLAGS {
+        return @intToEnum(CRYPTUI_WIZ_FLAGS,
+              (if (o.NO_UI == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.NO_UI) else 0)
+            | (if (o.IGNORE_NO_UI_FLAG_FOR_CSPS == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IGNORE_NO_UI_FLAG_FOR_CSPS) else 0)
+            | (if (o.NO_UI_EXCEPT_CSP == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.NO_UI_EXCEPT_CSP) else 0)
+            | (if (o.IMPORT_ALLOW_CERT == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_ALLOW_CERT) else 0)
+            | (if (o.IMPORT_ALLOW_CRL == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_ALLOW_CRL) else 0)
+            | (if (o.IMPORT_ALLOW_CTL == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_ALLOW_CTL) else 0)
+            | (if (o.IMPORT_NO_CHANGE_DEST_STORE == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_NO_CHANGE_DEST_STORE) else 0)
+            | (if (o.IMPORT_TO_LOCALMACHINE == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_TO_LOCALMACHINE) else 0)
+            | (if (o.IMPORT_TO_CURRENTUSER == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_TO_CURRENTUSER) else 0)
+            | (if (o.IMPORT_REMOTE_DEST_STORE == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.IMPORT_REMOTE_DEST_STORE) else 0)
+            | (if (o.EXPORT_PRIVATE_KEY == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.EXPORT_PRIVATE_KEY) else 0)
+            | (if (o.EXPORT_NO_DELETE_PRIVATE_KEY == 1) @enumToInt(CRYPTUI_WIZ_FLAGS.EXPORT_NO_DELETE_PRIVATE_KEY) else 0)
+        );
+    }
 };
 pub const CRYPTUI_WIZ_NO_UI = CRYPTUI_WIZ_FLAGS.NO_UI;
 pub const CRYPTUI_WIZ_IGNORE_NO_UI_FLAG_FOR_CSPS = CRYPTUI_WIZ_FLAGS.IGNORE_NO_UI_FLAG_FOR_CSPS;
@@ -38204,7 +38546,6 @@ pub const CC_LOCALCONFIG = CERT_GET_CONFIG_FLAGS.LOCALCONFIG;
 pub const CC_UIPICKCONFIG = CERT_GET_CONFIG_FLAGS.UIPICKCONFIG;
 pub const CC_UIPICKCONFIGSKIPLOCALCA_ = CERT_GET_CONFIG_FLAGS.UIPICKCONFIGSKIPLOCALCA_;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NCRYPT_FLAGS = extern enum(u32) {
     BCRYPT_PAD_NONE = 1,
     BCRYPT_PAD_OAEP = 4,
@@ -38225,6 +38566,47 @@ pub const NCRYPT_FLAGS = extern enum(u32) {
     NCRYPT_PERSIST_FLAG = 2147483648,
     NCRYPT_PERSIST_ONLY_FLAG = 1073741824,
     _,
+    pub fn initFlags(o: struct {
+        BCRYPT_PAD_NONE: u1 = 0,
+        BCRYPT_PAD_OAEP: u1 = 0,
+        BCRYPT_PAD_PKCS1: u1 = 0,
+        BCRYPT_PAD_PSS: u1 = 0,
+        NCRYPT_SILENT_FLAG: u1 = 0,
+        NCRYPT_NO_PADDING_FLAG: u1 = 0,
+        NCRYPT_PAD_OAEP_FLAG: u1 = 0,
+        NCRYPT_PAD_PKCS1_FLAG: u1 = 0,
+        NCRYPT_REGISTER_NOTIFY_FLAG: u1 = 0,
+        NCRYPT_UNREGISTER_NOTIFY_FLAG: u1 = 0,
+        NCRYPT_MACHINE_KEY_FLAG: u1 = 0,
+        NCRYPT_UNPROTECT_NO_DECRYPT: u1 = 0,
+        NCRYPT_OVERWRITE_KEY_FLAG: u1 = 0,
+        NCRYPT_NO_KEY_VALIDATION: u1 = 0,
+        NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG: u1 = 0,
+        NCRYPT_PAD_PSS_FLAG: u1 = 0,
+        NCRYPT_PERSIST_FLAG: u1 = 0,
+        NCRYPT_PERSIST_ONLY_FLAG: u1 = 0,
+    }) NCRYPT_FLAGS {
+        return @intToEnum(NCRYPT_FLAGS,
+              (if (o.BCRYPT_PAD_NONE == 1) @enumToInt(NCRYPT_FLAGS.BCRYPT_PAD_NONE) else 0)
+            | (if (o.BCRYPT_PAD_OAEP == 1) @enumToInt(NCRYPT_FLAGS.BCRYPT_PAD_OAEP) else 0)
+            | (if (o.BCRYPT_PAD_PKCS1 == 1) @enumToInt(NCRYPT_FLAGS.BCRYPT_PAD_PKCS1) else 0)
+            | (if (o.BCRYPT_PAD_PSS == 1) @enumToInt(NCRYPT_FLAGS.BCRYPT_PAD_PSS) else 0)
+            | (if (o.NCRYPT_SILENT_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_SILENT_FLAG) else 0)
+            | (if (o.NCRYPT_NO_PADDING_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_NO_PADDING_FLAG) else 0)
+            | (if (o.NCRYPT_PAD_OAEP_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_PAD_OAEP_FLAG) else 0)
+            | (if (o.NCRYPT_PAD_PKCS1_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_PAD_PKCS1_FLAG) else 0)
+            | (if (o.NCRYPT_REGISTER_NOTIFY_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_REGISTER_NOTIFY_FLAG) else 0)
+            | (if (o.NCRYPT_UNREGISTER_NOTIFY_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_UNREGISTER_NOTIFY_FLAG) else 0)
+            | (if (o.NCRYPT_MACHINE_KEY_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_MACHINE_KEY_FLAG) else 0)
+            | (if (o.NCRYPT_UNPROTECT_NO_DECRYPT == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_UNPROTECT_NO_DECRYPT) else 0)
+            | (if (o.NCRYPT_OVERWRITE_KEY_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_OVERWRITE_KEY_FLAG) else 0)
+            | (if (o.NCRYPT_NO_KEY_VALIDATION == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_NO_KEY_VALIDATION) else 0)
+            | (if (o.NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG) else 0)
+            | (if (o.NCRYPT_PAD_PSS_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_PAD_PSS_FLAG) else 0)
+            | (if (o.NCRYPT_PERSIST_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_PERSIST_FLAG) else 0)
+            | (if (o.NCRYPT_PERSIST_ONLY_FLAG == 1) @enumToInt(NCRYPT_FLAGS.NCRYPT_PERSIST_ONLY_FLAG) else 0)
+        );
+    }
 };
 pub const BCRYPT_PAD_NONE = NCRYPT_FLAGS.BCRYPT_PAD_NONE;
 pub const BCRYPT_PAD_OAEP = NCRYPT_FLAGS.BCRYPT_PAD_OAEP;
@@ -38310,16 +38692,23 @@ pub const XEPR_CANAME = PENDING_REQUEST_DESIRED_PROPERTY.CANAME;
 pub const XEPR_HASH = PENDING_REQUEST_DESIRED_PROPERTY.HASH;
 pub const XEPR_REQUESTID = PENDING_REQUEST_DESIRED_PROPERTY.REQUESTID;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRYPT_IMPORT_PUBLIC_KEY_FLAGS = extern enum(u32) {
     SIGN_KEY_FLAG = 2147483648,
     ENCRYPT_KEY_FLAG = 1073741824,
     _,
+    pub fn initFlags(o: struct {
+        SIGN_KEY_FLAG: u1 = 0,
+        ENCRYPT_KEY_FLAG: u1 = 0,
+    }) CRYPT_IMPORT_PUBLIC_KEY_FLAGS {
+        return @intToEnum(CRYPT_IMPORT_PUBLIC_KEY_FLAGS,
+              (if (o.SIGN_KEY_FLAG == 1) @enumToInt(CRYPT_IMPORT_PUBLIC_KEY_FLAGS.SIGN_KEY_FLAG) else 0)
+            | (if (o.ENCRYPT_KEY_FLAG == 1) @enumToInt(CRYPT_IMPORT_PUBLIC_KEY_FLAGS.ENCRYPT_KEY_FLAG) else 0)
+        );
+    }
 };
 pub const CRYPT_OID_INFO_PUBKEY_SIGN_KEY_FLAG = CRYPT_IMPORT_PUBLIC_KEY_FLAGS.SIGN_KEY_FLAG;
 pub const CRYPT_OID_INFO_PUBKEY_ENCRYPT_KEY_FLAG = CRYPT_IMPORT_PUBLIC_KEY_FLAGS.ENCRYPT_KEY_FLAG;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CERTADMIN_GET_ROLES_FLAGS = extern enum(u32) {
     ADMIN = 1,
     AUDITOR = 4,
@@ -38328,6 +38717,23 @@ pub const CERTADMIN_GET_ROLES_FLAGS = extern enum(u32) {
     OPERATOR = 8,
     READ = 256,
     _,
+    pub fn initFlags(o: struct {
+        ADMIN: u1 = 0,
+        AUDITOR: u1 = 0,
+        ENROLL: u1 = 0,
+        OFFICER: u1 = 0,
+        OPERATOR: u1 = 0,
+        READ: u1 = 0,
+    }) CERTADMIN_GET_ROLES_FLAGS {
+        return @intToEnum(CERTADMIN_GET_ROLES_FLAGS,
+              (if (o.ADMIN == 1) @enumToInt(CERTADMIN_GET_ROLES_FLAGS.ADMIN) else 0)
+            | (if (o.AUDITOR == 1) @enumToInt(CERTADMIN_GET_ROLES_FLAGS.AUDITOR) else 0)
+            | (if (o.ENROLL == 1) @enumToInt(CERTADMIN_GET_ROLES_FLAGS.ENROLL) else 0)
+            | (if (o.OFFICER == 1) @enumToInt(CERTADMIN_GET_ROLES_FLAGS.OFFICER) else 0)
+            | (if (o.OPERATOR == 1) @enumToInt(CERTADMIN_GET_ROLES_FLAGS.OPERATOR) else 0)
+            | (if (o.READ == 1) @enumToInt(CERTADMIN_GET_ROLES_FLAGS.READ) else 0)
+        );
+    }
 };
 pub const CA_ACCESS_ADMIN = CERTADMIN_GET_ROLES_FLAGS.ADMIN;
 pub const CA_ACCESS_AUDITOR = CERTADMIN_GET_ROLES_FLAGS.AUDITOR;
@@ -38345,7 +38751,6 @@ pub const CRYPT_XML_FLAG_DISABLE_EXTENSIONS = CRYPT_XML_FLAGS.FLAG_DISABLE_EXTEN
 pub const CRYPT_XML_FLAG_NO_SERIALIZE = CRYPT_XML_FLAGS.FLAG_NO_SERIALIZE;
 pub const CRYPT_XML_SIGN_ADD_KEYVALUE = CRYPT_XML_FLAGS.SIGN_ADD_KEYVALUE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const ACE_FLAGS = extern enum(u32) {
     CONTAINER_INHERIT_ACE = 2,
     FAILED_ACCESS_ACE_FLAG = 128,
@@ -38362,6 +38767,39 @@ pub const ACE_FLAGS = extern enum(u32) {
     NO_INHERITANCE = 0,
     INHERIT_ONLY_ACE_ = 8,
     _,
+    pub fn initFlags(o: struct {
+        CONTAINER_INHERIT_ACE: u1 = 0,
+        FAILED_ACCESS_ACE_FLAG: u1 = 0,
+        INHERIT_ONLY_ACE: u1 = 0,
+        INHERITED_ACE: u1 = 0,
+        NO_PROPAGATE_INHERIT_ACE: u1 = 0,
+        OBJECT_INHERIT_ACE: u1 = 0,
+        SUCCESSFUL_ACCESS_ACE_FLAG: u1 = 0,
+        SUB_CONTAINERS_AND_OBJECTS_INHERIT: u1 = 0,
+        SUB_CONTAINERS_ONLY_INHERIT: u1 = 0,
+        SUB_OBJECTS_ONLY_INHERIT: u1 = 0,
+        INHERIT_NO_PROPAGATE: u1 = 0,
+        INHERIT_ONLY: u1 = 0,
+        NO_INHERITANCE: u1 = 0,
+        INHERIT_ONLY_ACE_: u1 = 0,
+    }) ACE_FLAGS {
+        return @intToEnum(ACE_FLAGS,
+              (if (o.CONTAINER_INHERIT_ACE == 1) @enumToInt(ACE_FLAGS.CONTAINER_INHERIT_ACE) else 0)
+            | (if (o.FAILED_ACCESS_ACE_FLAG == 1) @enumToInt(ACE_FLAGS.FAILED_ACCESS_ACE_FLAG) else 0)
+            | (if (o.INHERIT_ONLY_ACE == 1) @enumToInt(ACE_FLAGS.INHERIT_ONLY_ACE) else 0)
+            | (if (o.INHERITED_ACE == 1) @enumToInt(ACE_FLAGS.INHERITED_ACE) else 0)
+            | (if (o.NO_PROPAGATE_INHERIT_ACE == 1) @enumToInt(ACE_FLAGS.NO_PROPAGATE_INHERIT_ACE) else 0)
+            | (if (o.OBJECT_INHERIT_ACE == 1) @enumToInt(ACE_FLAGS.OBJECT_INHERIT_ACE) else 0)
+            | (if (o.SUCCESSFUL_ACCESS_ACE_FLAG == 1) @enumToInt(ACE_FLAGS.SUCCESSFUL_ACCESS_ACE_FLAG) else 0)
+            | (if (o.SUB_CONTAINERS_AND_OBJECTS_INHERIT == 1) @enumToInt(ACE_FLAGS.SUB_CONTAINERS_AND_OBJECTS_INHERIT) else 0)
+            | (if (o.SUB_CONTAINERS_ONLY_INHERIT == 1) @enumToInt(ACE_FLAGS.SUB_CONTAINERS_ONLY_INHERIT) else 0)
+            | (if (o.SUB_OBJECTS_ONLY_INHERIT == 1) @enumToInt(ACE_FLAGS.SUB_OBJECTS_ONLY_INHERIT) else 0)
+            | (if (o.INHERIT_NO_PROPAGATE == 1) @enumToInt(ACE_FLAGS.INHERIT_NO_PROPAGATE) else 0)
+            | (if (o.INHERIT_ONLY == 1) @enumToInt(ACE_FLAGS.INHERIT_ONLY) else 0)
+            | (if (o.NO_INHERITANCE == 1) @enumToInt(ACE_FLAGS.NO_INHERITANCE) else 0)
+            | (if (o.INHERIT_ONLY_ACE_ == 1) @enumToInt(ACE_FLAGS.INHERIT_ONLY_ACE_) else 0)
+        );
+    }
 };
 pub const CONTAINER_INHERIT_ACE = ACE_FLAGS.CONTAINER_INHERIT_ACE;
 pub const FAILED_ACCESS_ACE_FLAG = ACE_FLAGS.FAILED_ACCESS_ACE_FLAG;
@@ -38378,12 +38816,22 @@ pub const INHERIT_ONLY = ACE_FLAGS.INHERIT_ONLY;
 pub const NO_INHERITANCE = ACE_FLAGS.NO_INHERITANCE;
 pub const INHERIT_ONLY_ACE_ = ACE_FLAGS.INHERIT_ONLY_ACE_;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const AUTHZ_RESOURCE_MANAGER_FLAGS = extern enum(u32) {
     NO_AUDIT = 1,
     INITIALIZE_UNDER_IMPERSONATION = 2,
     NO_CENTRAL_ACCESS_POLICIES = 4,
     _,
+    pub fn initFlags(o: struct {
+        NO_AUDIT: u1 = 0,
+        INITIALIZE_UNDER_IMPERSONATION: u1 = 0,
+        NO_CENTRAL_ACCESS_POLICIES: u1 = 0,
+    }) AUTHZ_RESOURCE_MANAGER_FLAGS {
+        return @intToEnum(AUTHZ_RESOURCE_MANAGER_FLAGS,
+              (if (o.NO_AUDIT == 1) @enumToInt(AUTHZ_RESOURCE_MANAGER_FLAGS.NO_AUDIT) else 0)
+            | (if (o.INITIALIZE_UNDER_IMPERSONATION == 1) @enumToInt(AUTHZ_RESOURCE_MANAGER_FLAGS.INITIALIZE_UNDER_IMPERSONATION) else 0)
+            | (if (o.NO_CENTRAL_ACCESS_POLICIES == 1) @enumToInt(AUTHZ_RESOURCE_MANAGER_FLAGS.NO_CENTRAL_ACCESS_POLICIES) else 0)
+        );
+    }
 };
 pub const AUTHZ_RM_FLAG_NO_AUDIT = AUTHZ_RESOURCE_MANAGER_FLAGS.NO_AUDIT;
 pub const AUTHZ_RM_FLAG_INITIALIZE_UNDER_IMPERSONATION = AUTHZ_RESOURCE_MANAGER_FLAGS.INITIALIZE_UNDER_IMPERSONATION;
@@ -38413,7 +38861,6 @@ pub const XEKL_KEYSIZE_MIN = XEKL_KEYSIZE.MIN;
 pub const XEKL_KEYSIZE_MAX = XEKL_KEYSIZE.MAX;
 pub const XEKL_KEYSIZE_INC = XEKL_KEYSIZE.INC;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRYPT_ENCODE_OBJECT_FLAGS = extern enum(u32) {
     ENCODE_ALLOC_FLAG = 32768,
     ENCODE_ENABLE_PUNYCODE_FLAG = 131072,
@@ -38421,6 +38868,21 @@ pub const CRYPT_ENCODE_OBJECT_FLAGS = extern enum(u32) {
     UNICODE_NAME_ENCODE_ENABLE_T61_UNICODE_FLAG = 2147483648,
     UNICODE_NAME_ENCODE_ENABLE_UTF8_UNICODE_FLAG = 536870912,
     _,
+    pub fn initFlags(o: struct {
+        ENCODE_ALLOC_FLAG: u1 = 0,
+        ENCODE_ENABLE_PUNYCODE_FLAG: u1 = 0,
+        UNICODE_NAME_ENCODE_DISABLE_CHECK_TYPE_FLAG: u1 = 0,
+        UNICODE_NAME_ENCODE_ENABLE_T61_UNICODE_FLAG: u1 = 0,
+        UNICODE_NAME_ENCODE_ENABLE_UTF8_UNICODE_FLAG: u1 = 0,
+    }) CRYPT_ENCODE_OBJECT_FLAGS {
+        return @intToEnum(CRYPT_ENCODE_OBJECT_FLAGS,
+              (if (o.ENCODE_ALLOC_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.ENCODE_ALLOC_FLAG) else 0)
+            | (if (o.ENCODE_ENABLE_PUNYCODE_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.ENCODE_ENABLE_PUNYCODE_FLAG) else 0)
+            | (if (o.UNICODE_NAME_ENCODE_DISABLE_CHECK_TYPE_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.UNICODE_NAME_ENCODE_DISABLE_CHECK_TYPE_FLAG) else 0)
+            | (if (o.UNICODE_NAME_ENCODE_ENABLE_T61_UNICODE_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.UNICODE_NAME_ENCODE_ENABLE_T61_UNICODE_FLAG) else 0)
+            | (if (o.UNICODE_NAME_ENCODE_ENABLE_UTF8_UNICODE_FLAG == 1) @enumToInt(CRYPT_ENCODE_OBJECT_FLAGS.UNICODE_NAME_ENCODE_ENABLE_UTF8_UNICODE_FLAG) else 0)
+        );
+    }
 };
 pub const CRYPT_ENCODE_ALLOC_FLAG = CRYPT_ENCODE_OBJECT_FLAGS.ENCODE_ALLOC_FLAG;
 pub const CRYPT_ENCODE_ENABLE_PUNYCODE_FLAG = CRYPT_ENCODE_OBJECT_FLAGS.ENCODE_ENABLE_PUNYCODE_FLAG;
@@ -38428,13 +38890,25 @@ pub const CRYPT_UNICODE_NAME_ENCODE_DISABLE_CHECK_TYPE_FLAG = CRYPT_ENCODE_OBJEC
 pub const CRYPT_UNICODE_NAME_ENCODE_ENABLE_T61_UNICODE_FLAG = CRYPT_ENCODE_OBJECT_FLAGS.UNICODE_NAME_ENCODE_ENABLE_T61_UNICODE_FLAG;
 pub const CRYPT_UNICODE_NAME_ENCODE_ENABLE_UTF8_UNICODE_FLAG = CRYPT_ENCODE_OBJECT_FLAGS.UNICODE_NAME_ENCODE_ENABLE_UTF8_UNICODE_FLAG;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const OBJECT_SECURITY_INFORMATION = extern enum(u32) {
     DACL_SECURITY_INFORMATION = 4,
     GROUP_SECURITY_INFORMATION = 2,
     OWNER_SECURITY_INFORMATION = 1,
     SACL_SECURITY_INFORMATION = 8,
     _,
+    pub fn initFlags(o: struct {
+        DACL_SECURITY_INFORMATION: u1 = 0,
+        GROUP_SECURITY_INFORMATION: u1 = 0,
+        OWNER_SECURITY_INFORMATION: u1 = 0,
+        SACL_SECURITY_INFORMATION: u1 = 0,
+    }) OBJECT_SECURITY_INFORMATION {
+        return @intToEnum(OBJECT_SECURITY_INFORMATION,
+              (if (o.DACL_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.DACL_SECURITY_INFORMATION) else 0)
+            | (if (o.GROUP_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.GROUP_SECURITY_INFORMATION) else 0)
+            | (if (o.OWNER_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.OWNER_SECURITY_INFORMATION) else 0)
+            | (if (o.SACL_SECURITY_INFORMATION == 1) @enumToInt(OBJECT_SECURITY_INFORMATION.SACL_SECURITY_INFORMATION) else 0)
+        );
+    }
 };
 pub const DACL_SECURITY_INFORMATION = OBJECT_SECURITY_INFORMATION.DACL_SECURITY_INFORMATION;
 pub const GROUP_SECURITY_INFORMATION = OBJECT_SECURITY_INFORMATION.GROUP_SECURITY_INFORMATION;
@@ -38452,7 +38926,6 @@ pub const CRYPT_OBJECT_LOCATOR_RELEASE_SERVICE_STOP = CRYPT_OBJECT_LOCATOR_RELEA
 pub const CRYPT_OBJECT_LOCATOR_RELEASE_PROCESS_EXIT = CRYPT_OBJECT_LOCATOR_RELEASE_REASON.PROCESS_EXIT;
 pub const CRYPT_OBJECT_LOCATOR_RELEASE_DLL_UNLOAD = CRYPT_OBJECT_LOCATOR_RELEASE_REASON.DLL_UNLOAD;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRYPT_ACQUIRE_FLAGS = extern enum(u32) {
     CACHE_FLAG = 1,
     COMPARE_KEY_FLAG = 4,
@@ -38460,6 +38933,21 @@ pub const CRYPT_ACQUIRE_FLAGS = extern enum(u32) {
     SILENT_FLAG = 64,
     USE_PROV_INFO_FLAG = 2,
     _,
+    pub fn initFlags(o: struct {
+        CACHE_FLAG: u1 = 0,
+        COMPARE_KEY_FLAG: u1 = 0,
+        NO_HEALING: u1 = 0,
+        SILENT_FLAG: u1 = 0,
+        USE_PROV_INFO_FLAG: u1 = 0,
+    }) CRYPT_ACQUIRE_FLAGS {
+        return @intToEnum(CRYPT_ACQUIRE_FLAGS,
+              (if (o.CACHE_FLAG == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.CACHE_FLAG) else 0)
+            | (if (o.COMPARE_KEY_FLAG == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.COMPARE_KEY_FLAG) else 0)
+            | (if (o.NO_HEALING == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.NO_HEALING) else 0)
+            | (if (o.SILENT_FLAG == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.SILENT_FLAG) else 0)
+            | (if (o.USE_PROV_INFO_FLAG == 1) @enumToInt(CRYPT_ACQUIRE_FLAGS.USE_PROV_INFO_FLAG) else 0)
+        );
+    }
 };
 pub const CRYPT_ACQUIRE_CACHE_FLAG = CRYPT_ACQUIRE_FLAGS.CACHE_FLAG;
 pub const CRYPT_ACQUIRE_COMPARE_KEY_FLAG = CRYPT_ACQUIRE_FLAGS.COMPARE_KEY_FLAG;
@@ -38485,31 +38973,52 @@ pub const SECPKG_CRED = extern enum(u32) {
 pub const SECPKG_CRED_INBOUND = SECPKG_CRED.INBOUND;
 pub const SECPKG_CRED_OUTBOUND = SECPKG_CRED.OUTBOUND;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRYPT_GET_URL_FLAGS = extern enum(u32) {
     PROPERTY = 1,
     EXTENSION = 2,
     UNAUTH_ATTRIBUTE = 4,
     AUTH_ATTRIBUTE = 8,
     _,
+    pub fn initFlags(o: struct {
+        PROPERTY: u1 = 0,
+        EXTENSION: u1 = 0,
+        UNAUTH_ATTRIBUTE: u1 = 0,
+        AUTH_ATTRIBUTE: u1 = 0,
+    }) CRYPT_GET_URL_FLAGS {
+        return @intToEnum(CRYPT_GET_URL_FLAGS,
+              (if (o.PROPERTY == 1) @enumToInt(CRYPT_GET_URL_FLAGS.PROPERTY) else 0)
+            | (if (o.EXTENSION == 1) @enumToInt(CRYPT_GET_URL_FLAGS.EXTENSION) else 0)
+            | (if (o.UNAUTH_ATTRIBUTE == 1) @enumToInt(CRYPT_GET_URL_FLAGS.UNAUTH_ATTRIBUTE) else 0)
+            | (if (o.AUTH_ATTRIBUTE == 1) @enumToInt(CRYPT_GET_URL_FLAGS.AUTH_ATTRIBUTE) else 0)
+        );
+    }
 };
 pub const CRYPT_GET_URL_FROM_PROPERTY = CRYPT_GET_URL_FLAGS.PROPERTY;
 pub const CRYPT_GET_URL_FROM_EXTENSION = CRYPT_GET_URL_FLAGS.EXTENSION;
 pub const CRYPT_GET_URL_FROM_UNAUTH_ATTRIBUTE = CRYPT_GET_URL_FLAGS.UNAUTH_ATTRIBUTE;
 pub const CRYPT_GET_URL_FROM_AUTH_ATTRIBUTE = CRYPT_GET_URL_FLAGS.AUTH_ATTRIBUTE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SECURITY_INFO_PAGE_FLAGS = extern enum(u32) {
     ADVANCED = 16,
     EDIT_AUDITS = 2,
     EDIT_PROPERTIES = 128,
     _,
+    pub fn initFlags(o: struct {
+        ADVANCED: u1 = 0,
+        EDIT_AUDITS: u1 = 0,
+        EDIT_PROPERTIES: u1 = 0,
+    }) SECURITY_INFO_PAGE_FLAGS {
+        return @intToEnum(SECURITY_INFO_PAGE_FLAGS,
+              (if (o.ADVANCED == 1) @enumToInt(SECURITY_INFO_PAGE_FLAGS.ADVANCED) else 0)
+            | (if (o.EDIT_AUDITS == 1) @enumToInt(SECURITY_INFO_PAGE_FLAGS.EDIT_AUDITS) else 0)
+            | (if (o.EDIT_PROPERTIES == 1) @enumToInt(SECURITY_INFO_PAGE_FLAGS.EDIT_PROPERTIES) else 0)
+        );
+    }
 };
 pub const SI_ADVANCED = SECURITY_INFO_PAGE_FLAGS.ADVANCED;
 pub const SI_EDIT_AUDITS = SECURITY_INFO_PAGE_FLAGS.EDIT_AUDITS;
 pub const SI_EDIT_PROPERTIES = SECURITY_INFO_PAGE_FLAGS.EDIT_PROPERTIES;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CERT_EXIT_EVENT_MASK = extern enum(u32) {
     CERTDENIED = 4,
     CERTISSUED = 1,
@@ -38519,6 +39028,25 @@ pub const CERT_EXIT_EVENT_MASK = extern enum(u32) {
     CRLISSUED = 32,
     SHUTDOWN = 64,
     _,
+    pub fn initFlags(o: struct {
+        CERTDENIED: u1 = 0,
+        CERTISSUED: u1 = 0,
+        CERTPENDING: u1 = 0,
+        CERTRETRIEVEPENDING: u1 = 0,
+        CERTREVOKED: u1 = 0,
+        CRLISSUED: u1 = 0,
+        SHUTDOWN: u1 = 0,
+    }) CERT_EXIT_EVENT_MASK {
+        return @intToEnum(CERT_EXIT_EVENT_MASK,
+              (if (o.CERTDENIED == 1) @enumToInt(CERT_EXIT_EVENT_MASK.CERTDENIED) else 0)
+            | (if (o.CERTISSUED == 1) @enumToInt(CERT_EXIT_EVENT_MASK.CERTISSUED) else 0)
+            | (if (o.CERTPENDING == 1) @enumToInt(CERT_EXIT_EVENT_MASK.CERTPENDING) else 0)
+            | (if (o.CERTRETRIEVEPENDING == 1) @enumToInt(CERT_EXIT_EVENT_MASK.CERTRETRIEVEPENDING) else 0)
+            | (if (o.CERTREVOKED == 1) @enumToInt(CERT_EXIT_EVENT_MASK.CERTREVOKED) else 0)
+            | (if (o.CRLISSUED == 1) @enumToInt(CERT_EXIT_EVENT_MASK.CRLISSUED) else 0)
+            | (if (o.SHUTDOWN == 1) @enumToInt(CERT_EXIT_EVENT_MASK.SHUTDOWN) else 0)
+        );
+    }
 };
 pub const EXITEVENT_CERTDENIED = CERT_EXIT_EVENT_MASK.CERTDENIED;
 pub const EXITEVENT_CERTISSUED = CERT_EXIT_EVENT_MASK.CERTISSUED;
@@ -38528,7 +39056,6 @@ pub const EXITEVENT_CERTREVOKED = CERT_EXIT_EVENT_MASK.CERTREVOKED;
 pub const EXITEVENT_CRLISSUED = CERT_EXIT_EVENT_MASK.CRLISSUED;
 pub const EXITEVENT_SHUTDOWN = CERT_EXIT_EVENT_MASK.SHUTDOWN;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SECURITY_AUTO_INHERIT_FLAGS = extern enum(u32) {
     AVOID_OWNER_CHECK = 16,
     AVOID_OWNER_RESTRICTION = 4096,
@@ -38542,6 +39069,33 @@ pub const SECURITY_AUTO_INHERIT_FLAGS = extern enum(u32) {
     MACL_NO_WRITE_UP = 256,
     SACL_AUTO_INHERIT = 2,
     _,
+    pub fn initFlags(o: struct {
+        AVOID_OWNER_CHECK: u1 = 0,
+        AVOID_OWNER_RESTRICTION: u1 = 0,
+        AVOID_PRIVILEGE_CHECK: u1 = 0,
+        DACL_AUTO_INHERIT: u1 = 0,
+        DEFAULT_DESCRIPTOR_FOR_OBJECT: u1 = 0,
+        DEFAULT_GROUP_FROM_PARENT: u1 = 0,
+        DEFAULT_OWNER_FROM_PARENT: u1 = 0,
+        MACL_NO_EXECUTE_UP: u1 = 0,
+        MACL_NO_READ_UP: u1 = 0,
+        MACL_NO_WRITE_UP: u1 = 0,
+        SACL_AUTO_INHERIT: u1 = 0,
+    }) SECURITY_AUTO_INHERIT_FLAGS {
+        return @intToEnum(SECURITY_AUTO_INHERIT_FLAGS,
+              (if (o.AVOID_OWNER_CHECK == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.AVOID_OWNER_CHECK) else 0)
+            | (if (o.AVOID_OWNER_RESTRICTION == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.AVOID_OWNER_RESTRICTION) else 0)
+            | (if (o.AVOID_PRIVILEGE_CHECK == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.AVOID_PRIVILEGE_CHECK) else 0)
+            | (if (o.DACL_AUTO_INHERIT == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.DACL_AUTO_INHERIT) else 0)
+            | (if (o.DEFAULT_DESCRIPTOR_FOR_OBJECT == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.DEFAULT_DESCRIPTOR_FOR_OBJECT) else 0)
+            | (if (o.DEFAULT_GROUP_FROM_PARENT == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.DEFAULT_GROUP_FROM_PARENT) else 0)
+            | (if (o.DEFAULT_OWNER_FROM_PARENT == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.DEFAULT_OWNER_FROM_PARENT) else 0)
+            | (if (o.MACL_NO_EXECUTE_UP == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.MACL_NO_EXECUTE_UP) else 0)
+            | (if (o.MACL_NO_READ_UP == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.MACL_NO_READ_UP) else 0)
+            | (if (o.MACL_NO_WRITE_UP == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.MACL_NO_WRITE_UP) else 0)
+            | (if (o.SACL_AUTO_INHERIT == 1) @enumToInt(SECURITY_AUTO_INHERIT_FLAGS.SACL_AUTO_INHERIT) else 0)
+        );
+    }
 };
 pub const SEF_AVOID_OWNER_CHECK = SECURITY_AUTO_INHERIT_FLAGS.AVOID_OWNER_CHECK;
 pub const SEF_AVOID_OWNER_RESTRICTION = SECURITY_AUTO_INHERIT_FLAGS.AVOID_OWNER_RESTRICTION;
@@ -38598,7 +39152,6 @@ pub const ADDED_CERT_TYPE = extern enum(u32) {
 pub const XECT_EXTENSION_V1 = ADDED_CERT_TYPE.@"1";
 pub const XECT_EXTENSION_V2 = ADDED_CERT_TYPE.@"2";
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CERT_FIND_CHAIN_IN_STORE_FLAGS = extern enum(u32) {
     COMPARE_KEY_FLAG = 1,
     COMPLEX_CHAIN_FLAG = 2,
@@ -38607,6 +39160,23 @@ pub const CERT_FIND_CHAIN_IN_STORE_FLAGS = extern enum(u32) {
     LOCAL_MACHINE_FLAG = 8,
     NO_KEY_FLAG = 16384,
     _,
+    pub fn initFlags(o: struct {
+        COMPARE_KEY_FLAG: u1 = 0,
+        COMPLEX_CHAIN_FLAG: u1 = 0,
+        CACHE_ONLY_FLAG: u1 = 0,
+        CACHE_ONLY_URL_FLAG: u1 = 0,
+        LOCAL_MACHINE_FLAG: u1 = 0,
+        NO_KEY_FLAG: u1 = 0,
+    }) CERT_FIND_CHAIN_IN_STORE_FLAGS {
+        return @intToEnum(CERT_FIND_CHAIN_IN_STORE_FLAGS,
+              (if (o.COMPARE_KEY_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.COMPARE_KEY_FLAG) else 0)
+            | (if (o.COMPLEX_CHAIN_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.COMPLEX_CHAIN_FLAG) else 0)
+            | (if (o.CACHE_ONLY_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.CACHE_ONLY_FLAG) else 0)
+            | (if (o.CACHE_ONLY_URL_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.CACHE_ONLY_URL_FLAG) else 0)
+            | (if (o.LOCAL_MACHINE_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.LOCAL_MACHINE_FLAG) else 0)
+            | (if (o.NO_KEY_FLAG == 1) @enumToInt(CERT_FIND_CHAIN_IN_STORE_FLAGS.NO_KEY_FLAG) else 0)
+        );
+    }
 };
 pub const CERT_CHAIN_FIND_BY_ISSUER_COMPARE_KEY_FLAG = CERT_FIND_CHAIN_IN_STORE_FLAGS.COMPARE_KEY_FLAG;
 pub const CERT_CHAIN_FIND_BY_ISSUER_COMPLEX_CHAIN_FLAG = CERT_FIND_CHAIN_IN_STORE_FLAGS.COMPLEX_CHAIN_FLAG;
@@ -38629,12 +39199,22 @@ pub const AUTHZ_ACCESS_CHECK_FLAGS = extern enum(u32) {
 };
 pub const AUTHZ_ACCESS_CHECK_NO_DEEP_COPY_SD = AUTHZ_ACCESS_CHECK_FLAGS.D;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS = extern enum(u32) {
     ALG_HANDLE_HMAC_FLAG = 8,
     PROV_DISPATCH = 1,
     HASH_REUSABLE_FLAG = 32,
     _,
+    pub fn initFlags(o: struct {
+        ALG_HANDLE_HMAC_FLAG: u1 = 0,
+        PROV_DISPATCH: u1 = 0,
+        HASH_REUSABLE_FLAG: u1 = 0,
+    }) BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS {
+        return @intToEnum(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS,
+              (if (o.ALG_HANDLE_HMAC_FLAG == 1) @enumToInt(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS.ALG_HANDLE_HMAC_FLAG) else 0)
+            | (if (o.PROV_DISPATCH == 1) @enumToInt(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS.PROV_DISPATCH) else 0)
+            | (if (o.HASH_REUSABLE_FLAG == 1) @enumToInt(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS.HASH_REUSABLE_FLAG) else 0)
+        );
+    }
 };
 pub const BCRYPT_ALG_HANDLE_HMAC_FLAG = BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS.ALG_HANDLE_HMAC_FLAG;
 pub const BCRYPT_PROV_DISPATCH = BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS.PROV_DISPATCH;
@@ -38649,13 +39229,25 @@ pub const AUTHZ_NO_SUCCESS_AUDIT = AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FL
 pub const AUTHZ_NO_FAILURE_AUDIT = AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS.FAILURE_AUDIT;
 pub const AUTHZ_NO_ALLOC_STRINGS = AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS.ALLOC_STRINGS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS = extern enum(u32) {
     NULL_IF_EQUAL = 1,
     COMPARE_ONLY = 2,
     MAKE_INERT = 4,
     WANT_FLAGS = 8,
     _,
+    pub fn initFlags(o: struct {
+        NULL_IF_EQUAL: u1 = 0,
+        COMPARE_ONLY: u1 = 0,
+        MAKE_INERT: u1 = 0,
+        WANT_FLAGS: u1 = 0,
+    }) SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS {
+        return @intToEnum(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS,
+              (if (o.NULL_IF_EQUAL == 1) @enumToInt(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.NULL_IF_EQUAL) else 0)
+            | (if (o.COMPARE_ONLY == 1) @enumToInt(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.COMPARE_ONLY) else 0)
+            | (if (o.MAKE_INERT == 1) @enumToInt(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.MAKE_INERT) else 0)
+            | (if (o.WANT_FLAGS == 1) @enumToInt(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.WANT_FLAGS) else 0)
+        );
+    }
 };
 pub const SAFER_TOKEN_NULL_IF_EQUAL = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.NULL_IF_EQUAL;
 pub const SAFER_TOKEN_COMPARE_ONLY = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.COMPARE_ONLY;
@@ -38774,7 +39366,6 @@ pub const LOGON_SERVER_TRUST_ACCOUNT = MSV_SUB_AUTHENTICATION_FILTER.SERVER_TRUS
 pub const LOGON_PROFILE_PATH_RETURNED = MSV_SUB_AUTHENTICATION_FILTER.PROFILE_PATH_RETURNED;
 pub const LOGON_RESOURCE_GROUPS = MSV_SUB_AUTHENTICATION_FILTER.RESOURCE_GROUPS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRYPT_KEY_FLAGS = extern enum(u32) {
     CRYPT_EXPORTABLE = 1,
     CRYPT_USER_PROTECTED = 2,
@@ -38808,6 +39399,73 @@ pub const CRYPT_KEY_FLAGS = extern enum(u32) {
     CERT_SET_KEY_PROV_HANDLE_PROP_ID = 1,
     CERT_SET_KEY_CONTEXT_PROP_ID = 1,
     _,
+    pub fn initFlags(o: struct {
+        CRYPT_EXPORTABLE: u1 = 0,
+        CRYPT_USER_PROTECTED: u1 = 0,
+        CRYPT_ARCHIVABLE: u1 = 0,
+        CRYPT_CREATE_IV: u1 = 0,
+        CRYPT_CREATE_SALT: u1 = 0,
+        CRYPT_DATA_KEY: u1 = 0,
+        CRYPT_FORCE_KEY_PROTECTION_HIGH: u1 = 0,
+        CRYPT_KEK: u1 = 0,
+        CRYPT_INITIATOR: u1 = 0,
+        CRYPT_NO_SALT: u1 = 0,
+        CRYPT_ONLINE: u1 = 0,
+        CRYPT_PREGEN: u1 = 0,
+        CRYPT_RECIPIENT: u1 = 0,
+        CRYPT_SF: u1 = 0,
+        CRYPT_SGCKEY: u1 = 0,
+        CRYPT_VOLATILE: u1 = 0,
+        CRYPT_MACHINE_KEYSET: u1 = 0,
+        CRYPT_USER_KEYSET: u1 = 0,
+        PKCS12_PREFER_CNG_KSP: u1 = 0,
+        PKCS12_ALWAYS_CNG_KSP: u1 = 0,
+        PKCS12_ALLOW_OVERWRITE_KEY: u1 = 0,
+        PKCS12_NO_PERSIST_KEY: u1 = 0,
+        PKCS12_INCLUDE_EXTENDED_PROPERTIES: u1 = 0,
+        CRYPT_OAEP: u1 = 0,
+        CRYPT_BLOB_VER3: u1 = 0,
+        CRYPT_DESTROYKEY: u1 = 0,
+        CRYPT_SSL2_FALLBACK: u1 = 0,
+        CRYPT_Y_ONLY: u1 = 0,
+        CRYPT_IPSEC_HMAC_KEY: u1 = 0,
+        CERT_SET_KEY_PROV_HANDLE_PROP_ID: u1 = 0,
+        CERT_SET_KEY_CONTEXT_PROP_ID: u1 = 0,
+    }) CRYPT_KEY_FLAGS {
+        return @intToEnum(CRYPT_KEY_FLAGS,
+              (if (o.CRYPT_EXPORTABLE == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_EXPORTABLE) else 0)
+            | (if (o.CRYPT_USER_PROTECTED == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_USER_PROTECTED) else 0)
+            | (if (o.CRYPT_ARCHIVABLE == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_ARCHIVABLE) else 0)
+            | (if (o.CRYPT_CREATE_IV == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_CREATE_IV) else 0)
+            | (if (o.CRYPT_CREATE_SALT == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_CREATE_SALT) else 0)
+            | (if (o.CRYPT_DATA_KEY == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_DATA_KEY) else 0)
+            | (if (o.CRYPT_FORCE_KEY_PROTECTION_HIGH == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_FORCE_KEY_PROTECTION_HIGH) else 0)
+            | (if (o.CRYPT_KEK == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_KEK) else 0)
+            | (if (o.CRYPT_INITIATOR == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_INITIATOR) else 0)
+            | (if (o.CRYPT_NO_SALT == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_NO_SALT) else 0)
+            | (if (o.CRYPT_ONLINE == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_ONLINE) else 0)
+            | (if (o.CRYPT_PREGEN == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_PREGEN) else 0)
+            | (if (o.CRYPT_RECIPIENT == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_RECIPIENT) else 0)
+            | (if (o.CRYPT_SF == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_SF) else 0)
+            | (if (o.CRYPT_SGCKEY == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_SGCKEY) else 0)
+            | (if (o.CRYPT_VOLATILE == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_VOLATILE) else 0)
+            | (if (o.CRYPT_MACHINE_KEYSET == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_MACHINE_KEYSET) else 0)
+            | (if (o.CRYPT_USER_KEYSET == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_USER_KEYSET) else 0)
+            | (if (o.PKCS12_PREFER_CNG_KSP == 1) @enumToInt(CRYPT_KEY_FLAGS.PKCS12_PREFER_CNG_KSP) else 0)
+            | (if (o.PKCS12_ALWAYS_CNG_KSP == 1) @enumToInt(CRYPT_KEY_FLAGS.PKCS12_ALWAYS_CNG_KSP) else 0)
+            | (if (o.PKCS12_ALLOW_OVERWRITE_KEY == 1) @enumToInt(CRYPT_KEY_FLAGS.PKCS12_ALLOW_OVERWRITE_KEY) else 0)
+            | (if (o.PKCS12_NO_PERSIST_KEY == 1) @enumToInt(CRYPT_KEY_FLAGS.PKCS12_NO_PERSIST_KEY) else 0)
+            | (if (o.PKCS12_INCLUDE_EXTENDED_PROPERTIES == 1) @enumToInt(CRYPT_KEY_FLAGS.PKCS12_INCLUDE_EXTENDED_PROPERTIES) else 0)
+            | (if (o.CRYPT_OAEP == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_OAEP) else 0)
+            | (if (o.CRYPT_BLOB_VER3 == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_BLOB_VER3) else 0)
+            | (if (o.CRYPT_DESTROYKEY == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_DESTROYKEY) else 0)
+            | (if (o.CRYPT_SSL2_FALLBACK == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_SSL2_FALLBACK) else 0)
+            | (if (o.CRYPT_Y_ONLY == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_Y_ONLY) else 0)
+            | (if (o.CRYPT_IPSEC_HMAC_KEY == 1) @enumToInt(CRYPT_KEY_FLAGS.CRYPT_IPSEC_HMAC_KEY) else 0)
+            | (if (o.CERT_SET_KEY_PROV_HANDLE_PROP_ID == 1) @enumToInt(CRYPT_KEY_FLAGS.CERT_SET_KEY_PROV_HANDLE_PROP_ID) else 0)
+            | (if (o.CERT_SET_KEY_CONTEXT_PROP_ID == 1) @enumToInt(CRYPT_KEY_FLAGS.CERT_SET_KEY_CONTEXT_PROP_ID) else 0)
+        );
+    }
 };
 pub const CRYPT_EXPORTABLE = CRYPT_KEY_FLAGS.CRYPT_EXPORTABLE;
 pub const CRYPT_USER_PROTECTED = CRYPT_KEY_FLAGS.CRYPT_USER_PROTECTED;
@@ -38857,12 +39515,22 @@ pub const TREE_SEC_INFO_SET = TREE_SEC_INFO.SET;
 pub const TREE_SEC_INFO_RESET = TREE_SEC_INFO.RESET;
 pub const TREE_SEC_INFO_RESET_KEEP_EXPLICIT = TREE_SEC_INFO.RESET_KEEP_EXPLICIT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const EXPORT_SECURITY_CONTEXT_FLAGS = extern enum(u32) {
     RESET_NEW = 1,
     DELETE_OLD = 2,
     TO_KERNEL = 4,
     _,
+    pub fn initFlags(o: struct {
+        RESET_NEW: u1 = 0,
+        DELETE_OLD: u1 = 0,
+        TO_KERNEL: u1 = 0,
+    }) EXPORT_SECURITY_CONTEXT_FLAGS {
+        return @intToEnum(EXPORT_SECURITY_CONTEXT_FLAGS,
+              (if (o.RESET_NEW == 1) @enumToInt(EXPORT_SECURITY_CONTEXT_FLAGS.RESET_NEW) else 0)
+            | (if (o.DELETE_OLD == 1) @enumToInt(EXPORT_SECURITY_CONTEXT_FLAGS.DELETE_OLD) else 0)
+            | (if (o.TO_KERNEL == 1) @enumToInt(EXPORT_SECURITY_CONTEXT_FLAGS.TO_KERNEL) else 0)
+        );
+    }
 };
 pub const SECPKG_CONTEXT_EXPORT_RESET_NEW = EXPORT_SECURITY_CONTEXT_FLAGS.RESET_NEW;
 pub const SECPKG_CONTEXT_EXPORT_DELETE_OLD = EXPORT_SECURITY_CONTEXT_FLAGS.DELETE_OLD;
@@ -38912,7 +39580,6 @@ pub const CSBACKUP_TYPE = extern enum(u32) {
 pub const CSBACKUP_TYPE_FULL = CSBACKUP_TYPE.FULL;
 pub const CSBACKUP_TYPE_LOGS_ONLY = CSBACKUP_TYPE.LOGS_ONLY;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SERVICE_NOTIFY = extern enum(u32) {
     CREATED = 128,
     CONTINUE_PENDING = 16,
@@ -38925,6 +39592,31 @@ pub const SERVICE_NOTIFY = extern enum(u32) {
     STOP_PENDING = 4,
     STOPPED = 1,
     _,
+    pub fn initFlags(o: struct {
+        CREATED: u1 = 0,
+        CONTINUE_PENDING: u1 = 0,
+        DELETE_PENDING: u1 = 0,
+        DELETED: u1 = 0,
+        PAUSE_PENDING: u1 = 0,
+        PAUSED: u1 = 0,
+        RUNNING: u1 = 0,
+        START_PENDING: u1 = 0,
+        STOP_PENDING: u1 = 0,
+        STOPPED: u1 = 0,
+    }) SERVICE_NOTIFY {
+        return @intToEnum(SERVICE_NOTIFY,
+              (if (o.CREATED == 1) @enumToInt(SERVICE_NOTIFY.CREATED) else 0)
+            | (if (o.CONTINUE_PENDING == 1) @enumToInt(SERVICE_NOTIFY.CONTINUE_PENDING) else 0)
+            | (if (o.DELETE_PENDING == 1) @enumToInt(SERVICE_NOTIFY.DELETE_PENDING) else 0)
+            | (if (o.DELETED == 1) @enumToInt(SERVICE_NOTIFY.DELETED) else 0)
+            | (if (o.PAUSE_PENDING == 1) @enumToInt(SERVICE_NOTIFY.PAUSE_PENDING) else 0)
+            | (if (o.PAUSED == 1) @enumToInt(SERVICE_NOTIFY.PAUSED) else 0)
+            | (if (o.RUNNING == 1) @enumToInt(SERVICE_NOTIFY.RUNNING) else 0)
+            | (if (o.START_PENDING == 1) @enumToInt(SERVICE_NOTIFY.START_PENDING) else 0)
+            | (if (o.STOP_PENDING == 1) @enumToInt(SERVICE_NOTIFY.STOP_PENDING) else 0)
+            | (if (o.STOPPED == 1) @enumToInt(SERVICE_NOTIFY.STOPPED) else 0)
+        );
+    }
 };
 pub const SERVICE_NOTIFY_CREATED = SERVICE_NOTIFY.CREATED;
 pub const SERVICE_NOTIFY_CONTINUE_PENDING = SERVICE_NOTIFY.CONTINUE_PENDING;
@@ -38971,11 +39663,19 @@ pub const CERT_STORE_SET_LOCALIZED_NAME_FLAG = CERT_OPEN_STORE_FLAGS.SET_LOCALIZ
 pub const CERT_STORE_SHARE_CONTEXT_FLAG = CERT_OPEN_STORE_FLAGS.SHARE_CONTEXT_FLAG;
 pub const CERT_STORE_UPDATE_KEYID_FLAG = CERT_OPEN_STORE_FLAGS.UPDATE_KEYID_FLAG;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRYPT_DEFAULT_CONTEXT_FLAGS = extern enum(u32) {
     AUTO_RELEASE_FLAG = 1,
     PROCESS_FLAG = 2,
     _,
+    pub fn initFlags(o: struct {
+        AUTO_RELEASE_FLAG: u1 = 0,
+        PROCESS_FLAG: u1 = 0,
+    }) CRYPT_DEFAULT_CONTEXT_FLAGS {
+        return @intToEnum(CRYPT_DEFAULT_CONTEXT_FLAGS,
+              (if (o.AUTO_RELEASE_FLAG == 1) @enumToInt(CRYPT_DEFAULT_CONTEXT_FLAGS.AUTO_RELEASE_FLAG) else 0)
+            | (if (o.PROCESS_FLAG == 1) @enumToInt(CRYPT_DEFAULT_CONTEXT_FLAGS.PROCESS_FLAG) else 0)
+        );
+    }
 };
 pub const CRYPT_DEFAULT_CONTEXT_AUTO_RELEASE_FLAG = CRYPT_DEFAULT_CONTEXT_FLAGS.AUTO_RELEASE_FLAG;
 pub const CRYPT_DEFAULT_CONTEXT_PROCESS_FLAG = CRYPT_DEFAULT_CONTEXT_FLAGS.PROCESS_FLAG;
@@ -39005,7 +39705,6 @@ pub const CR_OUT_BASE64HEADER = CERT_REQUEST_OUT_TYPE.ASE64HEADER;
 pub const CR_OUT_BASE64 = CERT_REQUEST_OUT_TYPE.ASE64;
 pub const CR_OUT_BINARY = CERT_REQUEST_OUT_TYPE.INARY;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WINTRUST_POLICY_FLAGS = extern enum(u32) {
     TRUSTTEST = 32,
     TESTCANBEVALID = 128,
@@ -39019,6 +39718,33 @@ pub const WINTRUST_POLICY_FLAGS = extern enum(u32) {
     IGNOREREVOCATIONONTS = 131072,
     ALLOWONLYPERTRUST = 262144,
     _,
+    pub fn initFlags(o: struct {
+        TRUSTTEST: u1 = 0,
+        TESTCANBEVALID: u1 = 0,
+        IGNOREEXPIRATION: u1 = 0,
+        IGNOREREVOKATION: u1 = 0,
+        OFFLINEOK_IND: u1 = 0,
+        OFFLINEOK_COM: u1 = 0,
+        OFFLINEOKNBU_IND: u1 = 0,
+        OFFLINEOKNBU_COM: u1 = 0,
+        VERIFY_V1_OFF: u1 = 0,
+        IGNOREREVOCATIONONTS: u1 = 0,
+        ALLOWONLYPERTRUST: u1 = 0,
+    }) WINTRUST_POLICY_FLAGS {
+        return @intToEnum(WINTRUST_POLICY_FLAGS,
+              (if (o.TRUSTTEST == 1) @enumToInt(WINTRUST_POLICY_FLAGS.TRUSTTEST) else 0)
+            | (if (o.TESTCANBEVALID == 1) @enumToInt(WINTRUST_POLICY_FLAGS.TESTCANBEVALID) else 0)
+            | (if (o.IGNOREEXPIRATION == 1) @enumToInt(WINTRUST_POLICY_FLAGS.IGNOREEXPIRATION) else 0)
+            | (if (o.IGNOREREVOKATION == 1) @enumToInt(WINTRUST_POLICY_FLAGS.IGNOREREVOKATION) else 0)
+            | (if (o.OFFLINEOK_IND == 1) @enumToInt(WINTRUST_POLICY_FLAGS.OFFLINEOK_IND) else 0)
+            | (if (o.OFFLINEOK_COM == 1) @enumToInt(WINTRUST_POLICY_FLAGS.OFFLINEOK_COM) else 0)
+            | (if (o.OFFLINEOKNBU_IND == 1) @enumToInt(WINTRUST_POLICY_FLAGS.OFFLINEOKNBU_IND) else 0)
+            | (if (o.OFFLINEOKNBU_COM == 1) @enumToInt(WINTRUST_POLICY_FLAGS.OFFLINEOKNBU_COM) else 0)
+            | (if (o.VERIFY_V1_OFF == 1) @enumToInt(WINTRUST_POLICY_FLAGS.VERIFY_V1_OFF) else 0)
+            | (if (o.IGNOREREVOCATIONONTS == 1) @enumToInt(WINTRUST_POLICY_FLAGS.IGNOREREVOCATIONONTS) else 0)
+            | (if (o.ALLOWONLYPERTRUST == 1) @enumToInt(WINTRUST_POLICY_FLAGS.ALLOWONLYPERTRUST) else 0)
+        );
+    }
 };
 pub const WTPF_TRUSTTEST = WINTRUST_POLICY_FLAGS.TRUSTTEST;
 pub const WTPF_TESTCANBEVALID = WINTRUST_POLICY_FLAGS.TESTCANBEVALID;
@@ -39068,14 +39794,19 @@ pub const WLX_SAS_ACTION_SHUTDOWN = WLX_SHUTDOWN_TYPE.N;
 pub const WLX_SAS_ACTION_SHUTDOWN_REBOOT = WLX_SHUTDOWN_TYPE._REBOOT;
 pub const WLX_SAS_ACTION_SHUTDOWN_POWER_OFF = WLX_SHUTDOWN_TYPE._POWER_OFF;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRED_ENUMERATE_FLAGS = extern enum(u32) {
     S = 1,
     _,
+    pub fn initFlags(o: struct {
+        S: u1 = 0,
+    }) CRED_ENUMERATE_FLAGS {
+        return @intToEnum(CRED_ENUMERATE_FLAGS,
+              (if (o.S == 1) @enumToInt(CRED_ENUMERATE_FLAGS.S) else 0)
+        );
+    }
 };
 pub const CRED_ENUMERATE_ALL_CREDENTIALS = CRED_ENUMERATE_FLAGS.S;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ = extern enum(u32) {
     ALLOCATE_MEMORY = 256,
     CONNECTION = 2048,
@@ -39085,6 +39816,25 @@ pub const ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ = extern enum(u32) {
     SEQUENCE_DETECT = 8,
     STREAM = 65536,
     _,
+    pub fn initFlags(o: struct {
+        ALLOCATE_MEMORY: u1 = 0,
+        CONNECTION: u1 = 0,
+        DELEGATE: u1 = 0,
+        EXTENDED_ERROR: u1 = 0,
+        REPLAY_DETECT: u1 = 0,
+        SEQUENCE_DETECT: u1 = 0,
+        STREAM: u1 = 0,
+    }) ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ {
+        return @intToEnum(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ,
+              (if (o.ALLOCATE_MEMORY == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.ALLOCATE_MEMORY) else 0)
+            | (if (o.CONNECTION == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.CONNECTION) else 0)
+            | (if (o.DELEGATE == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.DELEGATE) else 0)
+            | (if (o.EXTENDED_ERROR == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.EXTENDED_ERROR) else 0)
+            | (if (o.REPLAY_DETECT == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.REPLAY_DETECT) else 0)
+            | (if (o.SEQUENCE_DETECT == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.SEQUENCE_DETECT) else 0)
+            | (if (o.STREAM == 1) @enumToInt(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.STREAM) else 0)
+        );
+    }
 };
 pub const ASC_REQ_ALLOCATE_MEMORY = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.ALLOCATE_MEMORY;
 pub const ASC_REQ_CONNECTION = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.CONNECTION;
@@ -39108,7 +39858,6 @@ pub const CERT_SYSTEM_STORE_FLAGS = extern enum(u32) {
 pub const CERT_SYSTEM_STORE_LOCATION_MASK = CERT_SYSTEM_STORE_FLAGS.LOCATION_MASK;
 pub const CERT_SYSTEM_STORE_RELOCATE_FLAG = CERT_SYSTEM_STORE_FLAGS.RELOCATE_FLAG;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CREDUIWIN_FLAGS = extern enum(u32) {
     GENERIC = 1,
     CHECKBOX = 2,
@@ -39120,6 +39869,29 @@ pub const CREDUIWIN_FLAGS = extern enum(u32) {
     PREPROMPTING = 8192,
     PACK_32_WOW = 268435456,
     _,
+    pub fn initFlags(o: struct {
+        GENERIC: u1 = 0,
+        CHECKBOX: u1 = 0,
+        AUTHPACKAGE_ONLY: u1 = 0,
+        IN_CRED_ONLY: u1 = 0,
+        ENUMERATE_ADMINS: u1 = 0,
+        ENUMERATE_CURRENT_USER: u1 = 0,
+        SECURE_PROMPT: u1 = 0,
+        PREPROMPTING: u1 = 0,
+        PACK_32_WOW: u1 = 0,
+    }) CREDUIWIN_FLAGS {
+        return @intToEnum(CREDUIWIN_FLAGS,
+              (if (o.GENERIC == 1) @enumToInt(CREDUIWIN_FLAGS.GENERIC) else 0)
+            | (if (o.CHECKBOX == 1) @enumToInt(CREDUIWIN_FLAGS.CHECKBOX) else 0)
+            | (if (o.AUTHPACKAGE_ONLY == 1) @enumToInt(CREDUIWIN_FLAGS.AUTHPACKAGE_ONLY) else 0)
+            | (if (o.IN_CRED_ONLY == 1) @enumToInt(CREDUIWIN_FLAGS.IN_CRED_ONLY) else 0)
+            | (if (o.ENUMERATE_ADMINS == 1) @enumToInt(CREDUIWIN_FLAGS.ENUMERATE_ADMINS) else 0)
+            | (if (o.ENUMERATE_CURRENT_USER == 1) @enumToInt(CREDUIWIN_FLAGS.ENUMERATE_CURRENT_USER) else 0)
+            | (if (o.SECURE_PROMPT == 1) @enumToInt(CREDUIWIN_FLAGS.SECURE_PROMPT) else 0)
+            | (if (o.PREPROMPTING == 1) @enumToInt(CREDUIWIN_FLAGS.PREPROMPTING) else 0)
+            | (if (o.PACK_32_WOW == 1) @enumToInt(CREDUIWIN_FLAGS.PACK_32_WOW) else 0)
+        );
+    }
 };
 pub const CREDUIWIN_GENERIC = CREDUIWIN_FLAGS.GENERIC;
 pub const CREDUIWIN_CHECKBOX = CREDUIWIN_FLAGS.CHECKBOX;
@@ -39131,11 +39903,19 @@ pub const CREDUIWIN_SECURE_PROMPT = CREDUIWIN_FLAGS.SECURE_PROMPT;
 pub const CREDUIWIN_PREPROMPTING = CREDUIWIN_FLAGS.PREPROMPTING;
 pub const CREDUIWIN_PACK_32_WOW = CREDUIWIN_FLAGS.PACK_32_WOW;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CERT_CREATE_SELFSIGN_FLAGS = extern enum(u32) {
     KEY_INFO = 2,
     SIGN = 1,
     _,
+    pub fn initFlags(o: struct {
+        KEY_INFO: u1 = 0,
+        SIGN: u1 = 0,
+    }) CERT_CREATE_SELFSIGN_FLAGS {
+        return @intToEnum(CERT_CREATE_SELFSIGN_FLAGS,
+              (if (o.KEY_INFO == 1) @enumToInt(CERT_CREATE_SELFSIGN_FLAGS.KEY_INFO) else 0)
+            | (if (o.SIGN == 1) @enumToInt(CERT_CREATE_SELFSIGN_FLAGS.SIGN) else 0)
+        );
+    }
 };
 pub const CERT_CREATE_SELFSIGN_NO_KEY_INFO = CERT_CREATE_SELFSIGN_FLAGS.KEY_INFO;
 pub const CERT_CREATE_SELFSIGN_NO_SIGN = CERT_CREATE_SELFSIGN_FLAGS.SIGN;
@@ -39147,7 +39927,6 @@ pub const CRYPT_DEFAULT_CONTEXT_TYPE = extern enum(u32) {
 pub const CRYPT_DEFAULT_CONTEXT_CERT_SIGN_OID = CRYPT_DEFAULT_CONTEXT_TYPE.CERT_SIGN_OID;
 pub const CRYPT_DEFAULT_CONTEXT_MULTI_CERT_SIGN_OID = CRYPT_DEFAULT_CONTEXT_TYPE.MULTI_CERT_SIGN_OID;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRYPTCAT_OPEN_FLAGS = extern enum(u32) {
     ALWAYS = 2,
     CREATENEW = 1,
@@ -39159,6 +39938,29 @@ pub const CRYPTCAT_OPEN_FLAGS = extern enum(u32) {
     SORTED = 1073741824,
     FLAGS_MASK = 4294901760,
     _,
+    pub fn initFlags(o: struct {
+        ALWAYS: u1 = 0,
+        CREATENEW: u1 = 0,
+        EXISTING: u1 = 0,
+        EXCLUDE_PAGE_HASHES: u1 = 0,
+        INCLUDE_PAGE_HASHES: u1 = 0,
+        VERIFYSIGHASH: u1 = 0,
+        NO_CONTENT_HCRYPTMSG: u1 = 0,
+        SORTED: u1 = 0,
+        FLAGS_MASK: u1 = 0,
+    }) CRYPTCAT_OPEN_FLAGS {
+        return @intToEnum(CRYPTCAT_OPEN_FLAGS,
+              (if (o.ALWAYS == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.ALWAYS) else 0)
+            | (if (o.CREATENEW == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.CREATENEW) else 0)
+            | (if (o.EXISTING == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.EXISTING) else 0)
+            | (if (o.EXCLUDE_PAGE_HASHES == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.EXCLUDE_PAGE_HASHES) else 0)
+            | (if (o.INCLUDE_PAGE_HASHES == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.INCLUDE_PAGE_HASHES) else 0)
+            | (if (o.VERIFYSIGHASH == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.VERIFYSIGHASH) else 0)
+            | (if (o.NO_CONTENT_HCRYPTMSG == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.NO_CONTENT_HCRYPTMSG) else 0)
+            | (if (o.SORTED == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.SORTED) else 0)
+            | (if (o.FLAGS_MASK == 1) @enumToInt(CRYPTCAT_OPEN_FLAGS.FLAGS_MASK) else 0)
+        );
+    }
 };
 pub const CRYPTCAT_OPEN_ALWAYS = CRYPTCAT_OPEN_FLAGS.ALWAYS;
 pub const CRYPTCAT_OPEN_CREATENEW = CRYPTCAT_OPEN_FLAGS.CREATENEW;
@@ -39170,11 +39972,19 @@ pub const CRYPTCAT_OPEN_NO_CONTENT_HCRYPTMSG = CRYPTCAT_OPEN_FLAGS.NO_CONTENT_HC
 pub const CRYPTCAT_OPEN_SORTED = CRYPTCAT_OPEN_FLAGS.SORTED;
 pub const CRYPTCAT_OPEN_FLAGS_MASK = CRYPTCAT_OPEN_FLAGS.FLAGS_MASK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const BCRYPT_RESOLVE_PROVIDERS_FLAGS = extern enum(u32) {
     FUNCTIONS = 1,
     PROVIDERS = 2,
     _,
+    pub fn initFlags(o: struct {
+        FUNCTIONS: u1 = 0,
+        PROVIDERS: u1 = 0,
+    }) BCRYPT_RESOLVE_PROVIDERS_FLAGS {
+        return @intToEnum(BCRYPT_RESOLVE_PROVIDERS_FLAGS,
+              (if (o.FUNCTIONS == 1) @enumToInt(BCRYPT_RESOLVE_PROVIDERS_FLAGS.FUNCTIONS) else 0)
+            | (if (o.PROVIDERS == 1) @enumToInt(BCRYPT_RESOLVE_PROVIDERS_FLAGS.PROVIDERS) else 0)
+        );
+    }
 };
 pub const CRYPT_ALL_FUNCTIONS = BCRYPT_RESOLVE_PROVIDERS_FLAGS.FUNCTIONS;
 pub const CRYPT_ALL_PROVIDERS = BCRYPT_RESOLVE_PROVIDERS_FLAGS.PROVIDERS;
@@ -39223,7 +40033,6 @@ pub const AUTHZ_GENERATE_RESULTS = extern enum(u32) {
 pub const AUTHZ_GENERATE_SUCCESS_AUDIT = AUTHZ_GENERATE_RESULTS.SUCCESS_AUDIT;
 pub const AUTHZ_GENERATE_FAILURE_AUDIT = AUTHZ_GENERATE_RESULTS.FAILURE_AUDIT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRYPTUI_VIEWCERTIFICATE_FLAGS = extern enum(u32) {
     HIDE_HIERARCHYPAGE = 1,
     HIDE_DETAILPAGE = 2,
@@ -39246,6 +40055,51 @@ pub const CRYPTUI_VIEWCERTIFICATE_FLAGS = extern enum(u32) {
     DISABLE_ISSUERSTATEMENT = 131072,
     CACHE_ONLY_URL_RETRIEVAL = 262144,
     _,
+    pub fn initFlags(o: struct {
+        HIDE_HIERARCHYPAGE: u1 = 0,
+        HIDE_DETAILPAGE: u1 = 0,
+        DISABLE_EDITPROPERTIES: u1 = 0,
+        ENABLE_EDITPROPERTIES: u1 = 0,
+        DISABLE_ADDTOSTORE: u1 = 0,
+        ENABLE_ADDTOSTORE: u1 = 0,
+        ACCEPT_DECLINE_STYLE: u1 = 0,
+        IGNORE_UNTRUSTED_ROOT: u1 = 0,
+        DONT_OPEN_STORES: u1 = 0,
+        ONLY_OPEN_ROOT_STORE: u1 = 0,
+        WARN_UNTRUSTED_ROOT: u1 = 0,
+        ENABLE_REVOCATION_CHECKING: u1 = 0,
+        WARN_REMOTE_TRUST: u1 = 0,
+        DISABLE_EXPORT: u1 = 0,
+        ENABLE_REVOCATION_CHECK_END_CERT: u1 = 0,
+        ENABLE_REVOCATION_CHECK_CHAIN: u1 = 0,
+        ENABLE_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT: u1 = 0,
+        DISABLE_HTMLLINK: u1 = 0,
+        DISABLE_ISSUERSTATEMENT: u1 = 0,
+        CACHE_ONLY_URL_RETRIEVAL: u1 = 0,
+    }) CRYPTUI_VIEWCERTIFICATE_FLAGS {
+        return @intToEnum(CRYPTUI_VIEWCERTIFICATE_FLAGS,
+              (if (o.HIDE_HIERARCHYPAGE == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.HIDE_HIERARCHYPAGE) else 0)
+            | (if (o.HIDE_DETAILPAGE == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.HIDE_DETAILPAGE) else 0)
+            | (if (o.DISABLE_EDITPROPERTIES == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_EDITPROPERTIES) else 0)
+            | (if (o.ENABLE_EDITPROPERTIES == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_EDITPROPERTIES) else 0)
+            | (if (o.DISABLE_ADDTOSTORE == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_ADDTOSTORE) else 0)
+            | (if (o.ENABLE_ADDTOSTORE == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_ADDTOSTORE) else 0)
+            | (if (o.ACCEPT_DECLINE_STYLE == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ACCEPT_DECLINE_STYLE) else 0)
+            | (if (o.IGNORE_UNTRUSTED_ROOT == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.IGNORE_UNTRUSTED_ROOT) else 0)
+            | (if (o.DONT_OPEN_STORES == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.DONT_OPEN_STORES) else 0)
+            | (if (o.ONLY_OPEN_ROOT_STORE == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ONLY_OPEN_ROOT_STORE) else 0)
+            | (if (o.WARN_UNTRUSTED_ROOT == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.WARN_UNTRUSTED_ROOT) else 0)
+            | (if (o.ENABLE_REVOCATION_CHECKING == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_REVOCATION_CHECKING) else 0)
+            | (if (o.WARN_REMOTE_TRUST == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.WARN_REMOTE_TRUST) else 0)
+            | (if (o.DISABLE_EXPORT == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_EXPORT) else 0)
+            | (if (o.ENABLE_REVOCATION_CHECK_END_CERT == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_REVOCATION_CHECK_END_CERT) else 0)
+            | (if (o.ENABLE_REVOCATION_CHECK_CHAIN == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_REVOCATION_CHECK_CHAIN) else 0)
+            | (if (o.ENABLE_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.ENABLE_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT) else 0)
+            | (if (o.DISABLE_HTMLLINK == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_HTMLLINK) else 0)
+            | (if (o.DISABLE_ISSUERSTATEMENT == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_ISSUERSTATEMENT) else 0)
+            | (if (o.CACHE_ONLY_URL_RETRIEVAL == 1) @enumToInt(CRYPTUI_VIEWCERTIFICATE_FLAGS.CACHE_ONLY_URL_RETRIEVAL) else 0)
+        );
+    }
 };
 pub const CRYPTUI_HIDE_HIERARCHYPAGE = CRYPTUI_VIEWCERTIFICATE_FLAGS.HIDE_HIERARCHYPAGE;
 pub const CRYPTUI_HIDE_DETAILPAGE = CRYPTUI_VIEWCERTIFICATE_FLAGS.HIDE_DETAILPAGE;
@@ -39268,7 +40122,6 @@ pub const CRYPTUI_DISABLE_HTMLLINK = CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_HTMLL
 pub const CRYPTUI_DISABLE_ISSUERSTATEMENT = CRYPTUI_VIEWCERTIFICATE_FLAGS.DISABLE_ISSUERSTATEMENT;
 pub const CRYPTUI_CACHE_ONLY_URL_RETRIEVAL = CRYPTUI_VIEWCERTIFICATE_FLAGS.CACHE_ONLY_URL_RETRIEVAL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const KERB_TICKET_FLAGS = extern enum(u32) {
     forwardable = 1073741824,
     forwarded = 536870912,
@@ -39285,6 +40138,39 @@ pub const KERB_TICKET_FLAGS = extern enum(u32) {
     reserved = 2147483648,
     reserved1 = 1,
     _,
+    pub fn initFlags(o: struct {
+        forwardable: u1 = 0,
+        forwarded: u1 = 0,
+        hw_authent: u1 = 0,
+        initial: u1 = 0,
+        invalid: u1 = 0,
+        may_postdate: u1 = 0,
+        ok_as_delegate: u1 = 0,
+        postdated: u1 = 0,
+        pre_authent: u1 = 0,
+        proxiable: u1 = 0,
+        proxy: u1 = 0,
+        renewable: u1 = 0,
+        reserved: u1 = 0,
+        reserved1: u1 = 0,
+    }) KERB_TICKET_FLAGS {
+        return @intToEnum(KERB_TICKET_FLAGS,
+              (if (o.forwardable == 1) @enumToInt(KERB_TICKET_FLAGS.forwardable) else 0)
+            | (if (o.forwarded == 1) @enumToInt(KERB_TICKET_FLAGS.forwarded) else 0)
+            | (if (o.hw_authent == 1) @enumToInt(KERB_TICKET_FLAGS.hw_authent) else 0)
+            | (if (o.initial == 1) @enumToInt(KERB_TICKET_FLAGS.initial) else 0)
+            | (if (o.invalid == 1) @enumToInt(KERB_TICKET_FLAGS.invalid) else 0)
+            | (if (o.may_postdate == 1) @enumToInt(KERB_TICKET_FLAGS.may_postdate) else 0)
+            | (if (o.ok_as_delegate == 1) @enumToInt(KERB_TICKET_FLAGS.ok_as_delegate) else 0)
+            | (if (o.postdated == 1) @enumToInt(KERB_TICKET_FLAGS.postdated) else 0)
+            | (if (o.pre_authent == 1) @enumToInt(KERB_TICKET_FLAGS.pre_authent) else 0)
+            | (if (o.proxiable == 1) @enumToInt(KERB_TICKET_FLAGS.proxiable) else 0)
+            | (if (o.proxy == 1) @enumToInt(KERB_TICKET_FLAGS.proxy) else 0)
+            | (if (o.renewable == 1) @enumToInt(KERB_TICKET_FLAGS.renewable) else 0)
+            | (if (o.reserved == 1) @enumToInt(KERB_TICKET_FLAGS.reserved) else 0)
+            | (if (o.reserved1 == 1) @enumToInt(KERB_TICKET_FLAGS.reserved1) else 0)
+        );
+    }
 };
 pub const KERB_TICKET_FLAGS_forwardable = KERB_TICKET_FLAGS.forwardable;
 pub const KERB_TICKET_FLAGS_forwarded = KERB_TICKET_FLAGS.forwarded;
@@ -39301,20 +40187,36 @@ pub const KERB_TICKET_FLAGS_renewable = KERB_TICKET_FLAGS.renewable;
 pub const KERB_TICKET_FLAGS_reserved = KERB_TICKET_FLAGS.reserved;
 pub const KERB_TICKET_FLAGS_reserved1 = KERB_TICKET_FLAGS.reserved1;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SYSTEM_AUDIT_OBJECT_ACE_FLAGS = extern enum(u32) {
     OBJECT_TYPE_PRESENT = 1,
     INHERITED_OBJECT_TYPE_PRESENT = 2,
     _,
+    pub fn initFlags(o: struct {
+        OBJECT_TYPE_PRESENT: u1 = 0,
+        INHERITED_OBJECT_TYPE_PRESENT: u1 = 0,
+    }) SYSTEM_AUDIT_OBJECT_ACE_FLAGS {
+        return @intToEnum(SYSTEM_AUDIT_OBJECT_ACE_FLAGS,
+              (if (o.OBJECT_TYPE_PRESENT == 1) @enumToInt(SYSTEM_AUDIT_OBJECT_ACE_FLAGS.OBJECT_TYPE_PRESENT) else 0)
+            | (if (o.INHERITED_OBJECT_TYPE_PRESENT == 1) @enumToInt(SYSTEM_AUDIT_OBJECT_ACE_FLAGS.INHERITED_OBJECT_TYPE_PRESENT) else 0)
+        );
+    }
 };
 pub const ACE_OBJECT_TYPE_PRESENT = SYSTEM_AUDIT_OBJECT_ACE_FLAGS.OBJECT_TYPE_PRESENT;
 pub const ACE_INHERITED_OBJECT_TYPE_PRESENT = SYSTEM_AUDIT_OBJECT_ACE_FLAGS.INHERITED_OBJECT_TYPE_PRESENT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRYPT_IMAGE_REF_FLAGS = extern enum(u32) {
     MIN_DEPENDENCIES = 1,
     PROCESS_ISOLATE = 65536,
     _,
+    pub fn initFlags(o: struct {
+        MIN_DEPENDENCIES: u1 = 0,
+        PROCESS_ISOLATE: u1 = 0,
+    }) CRYPT_IMAGE_REF_FLAGS {
+        return @intToEnum(CRYPT_IMAGE_REF_FLAGS,
+              (if (o.MIN_DEPENDENCIES == 1) @enumToInt(CRYPT_IMAGE_REF_FLAGS.MIN_DEPENDENCIES) else 0)
+            | (if (o.PROCESS_ISOLATE == 1) @enumToInt(CRYPT_IMAGE_REF_FLAGS.PROCESS_ISOLATE) else 0)
+        );
+    }
 };
 pub const CRYPT_MIN_DEPENDENCIES = CRYPT_IMAGE_REF_FLAGS.MIN_DEPENDENCIES;
 pub const CRYPT_PROCESS_ISOLATE = CRYPT_IMAGE_REF_FLAGS.PROCESS_ISOLATE;
@@ -39345,12 +40247,22 @@ pub const CRL_REASON_CESSATION_OF_OPERATION = CERT_REVOCATION_STATUS_REASON.CESS
 pub const CRL_REASON_CERTIFICATE_HOLD = CERT_REVOCATION_STATUS_REASON.CERTIFICATE_HOLD;
 pub const CRL_REASON_REMOVE_FROM_CRL = CERT_REVOCATION_STATUS_REASON.REMOVE_FROM_CRL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CERT_ROOT_PROGRAM_FLAGS = extern enum(u32) {
     LSC = 64,
     ORG = 128,
     SUBJECT_LOGO = 32,
     _,
+    pub fn initFlags(o: struct {
+        LSC: u1 = 0,
+        ORG: u1 = 0,
+        SUBJECT_LOGO: u1 = 0,
+    }) CERT_ROOT_PROGRAM_FLAGS {
+        return @intToEnum(CERT_ROOT_PROGRAM_FLAGS,
+              (if (o.LSC == 1) @enumToInt(CERT_ROOT_PROGRAM_FLAGS.LSC) else 0)
+            | (if (o.ORG == 1) @enumToInt(CERT_ROOT_PROGRAM_FLAGS.ORG) else 0)
+            | (if (o.SUBJECT_LOGO == 1) @enumToInt(CERT_ROOT_PROGRAM_FLAGS.SUBJECT_LOGO) else 0)
+        );
+    }
 };
 pub const CERT_ROOT_PROGRAM_FLAG_LSC = CERT_ROOT_PROGRAM_FLAGS.LSC;
 pub const CERT_ROOT_PROGRAM_FLAG_ORG = CERT_ROOT_PROGRAM_FLAGS.ORG;
@@ -39376,7 +40288,6 @@ pub const CERT_LOGOTYPE_NO_IMAGE_RESOLUTION_CHOICE = CERT_LOGOTYPE_CHOICE.NO_IMA
 pub const CERT_LOGOTYPE_BITS_IMAGE_RESOLUTION_CHOICE = CERT_LOGOTYPE_CHOICE.BITS_IMAGE_RESOLUTION_CHOICE;
 pub const CERT_LOGOTYPE_TABLE_SIZE_IMAGE_RESOLUTION_CHOICE = CERT_LOGOTYPE_CHOICE.TABLE_SIZE_IMAGE_RESOLUTION_CHOICE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CERT_SELECT_STRUCT_FLAGS = extern enum(u32) {
     HIDE_PROPERTIES = 1,
     ENABLEHOOK = 2,
@@ -39385,6 +40296,23 @@ pub const CERT_SELECT_STRUCT_FLAGS = extern enum(u32) {
     ENABLETEMPLATE = 32,
     ENABLETEMPLATEHANDLE = 64,
     _,
+    pub fn initFlags(o: struct {
+        HIDE_PROPERTIES: u1 = 0,
+        ENABLEHOOK: u1 = 0,
+        ALLOWMULTISELECT: u1 = 0,
+        SHOW_HELP: u1 = 0,
+        ENABLETEMPLATE: u1 = 0,
+        ENABLETEMPLATEHANDLE: u1 = 0,
+    }) CERT_SELECT_STRUCT_FLAGS {
+        return @intToEnum(CERT_SELECT_STRUCT_FLAGS,
+              (if (o.HIDE_PROPERTIES == 1) @enumToInt(CERT_SELECT_STRUCT_FLAGS.HIDE_PROPERTIES) else 0)
+            | (if (o.ENABLEHOOK == 1) @enumToInt(CERT_SELECT_STRUCT_FLAGS.ENABLEHOOK) else 0)
+            | (if (o.ALLOWMULTISELECT == 1) @enumToInt(CERT_SELECT_STRUCT_FLAGS.ALLOWMULTISELECT) else 0)
+            | (if (o.SHOW_HELP == 1) @enumToInt(CERT_SELECT_STRUCT_FLAGS.SHOW_HELP) else 0)
+            | (if (o.ENABLETEMPLATE == 1) @enumToInt(CERT_SELECT_STRUCT_FLAGS.ENABLETEMPLATE) else 0)
+            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(CERT_SELECT_STRUCT_FLAGS.ENABLETEMPLATEHANDLE) else 0)
+        );
+    }
 };
 pub const CSS_HIDE_PROPERTIES = CERT_SELECT_STRUCT_FLAGS.HIDE_PROPERTIES;
 pub const CSS_ENABLEHOOK = CERT_SELECT_STRUCT_FLAGS.ENABLEHOOK;
@@ -39400,7 +40328,6 @@ pub const CMSG_KEY_AGREE_OPTION = extern enum(u32) {
 pub const CMSG_KEY_AGREE_EPHEMERAL_KEY_CHOICE = CMSG_KEY_AGREE_OPTION.EPHEMERAL_KEY_CHOICE;
 pub const CMSG_KEY_AGREE_STATIC_KEY_CHOICE = CMSG_KEY_AGREE_OPTION.STATIC_KEY_CHOICE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CLAIM_SECURITY_ATTRIBUTE_FLAGS = extern enum(u32) {
     NON_INHERITABLE = 1,
     VALUE_CASE_SENSITIVE = 2,
@@ -39409,6 +40336,23 @@ pub const CLAIM_SECURITY_ATTRIBUTE_FLAGS = extern enum(u32) {
     DISABLED = 16,
     MANDATORY = 32,
     _,
+    pub fn initFlags(o: struct {
+        NON_INHERITABLE: u1 = 0,
+        VALUE_CASE_SENSITIVE: u1 = 0,
+        USE_FOR_DENY_ONLY: u1 = 0,
+        DISABLED_BY_DEFAULT: u1 = 0,
+        DISABLED: u1 = 0,
+        MANDATORY: u1 = 0,
+    }) CLAIM_SECURITY_ATTRIBUTE_FLAGS {
+        return @intToEnum(CLAIM_SECURITY_ATTRIBUTE_FLAGS,
+              (if (o.NON_INHERITABLE == 1) @enumToInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS.NON_INHERITABLE) else 0)
+            | (if (o.VALUE_CASE_SENSITIVE == 1) @enumToInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS.VALUE_CASE_SENSITIVE) else 0)
+            | (if (o.USE_FOR_DENY_ONLY == 1) @enumToInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS.USE_FOR_DENY_ONLY) else 0)
+            | (if (o.DISABLED_BY_DEFAULT == 1) @enumToInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS.DISABLED_BY_DEFAULT) else 0)
+            | (if (o.DISABLED == 1) @enumToInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS.DISABLED) else 0)
+            | (if (o.MANDATORY == 1) @enumToInt(CLAIM_SECURITY_ATTRIBUTE_FLAGS.MANDATORY) else 0)
+        );
+    }
 };
 pub const CLAIM_SECURITY_ATTRIBUTE_NON_INHERITABLE = CLAIM_SECURITY_ATTRIBUTE_FLAGS.NON_INHERITABLE;
 pub const CLAIM_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE = CLAIM_SECURITY_ATTRIBUTE_FLAGS.VALUE_CASE_SENSITIVE;
@@ -39487,7 +40431,6 @@ pub const WINTRUST_SIGNATURE_SETTINGS_FLAGS = extern enum(u32) {
 pub const WSS_VERIFY_SPECIFIC = WINTRUST_SIGNATURE_SETTINGS_FLAGS.VERIFY_SPECIFIC;
 pub const WSS_GET_SECONDARY_SIG_COUNT = WINTRUST_SIGNATURE_SETTINGS_FLAGS.GET_SECONDARY_SIG_COUNT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SCHANNEL_CRED_FLAGS = extern enum(u32) {
     CRED_AUTO_CRED_VALIDATION = 32,
     CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE = 131072,
@@ -39507,6 +40450,45 @@ pub const SCHANNEL_CRED_FLAGS = extern enum(u32) {
     USE_STRONG_CRYPTO = 4194304,
     USE_PRESHAREDKEY_ONLY = 8388608,
     _,
+    pub fn initFlags(o: struct {
+        CRED_AUTO_CRED_VALIDATION: u1 = 0,
+        CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE: u1 = 0,
+        DISABLE_RECONNECTS: u1 = 0,
+        CRED_IGNORE_NO_REVOCATION_CHECK: u1 = 0,
+        CRED_IGNORE_REVOCATION_OFFLINE: u1 = 0,
+        CRED_MANUAL_CRED_VALIDATION: u1 = 0,
+        CRED_NO_DEFAULT_CREDS: u1 = 0,
+        CRED_NO_SERVERNAME_CHECK: u1 = 0,
+        CRED_NO_SYSTEM_MAPPER: u1 = 0,
+        CRED_REVOCATION_CHECK_CHAIN: u1 = 0,
+        CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT: u1 = 0,
+        CRED_REVOCATION_CHECK_END_CERT: u1 = 0,
+        CRED_USE_DEFAULT_CREDS: u1 = 0,
+        SEND_AUX_RECORD: u1 = 0,
+        SEND_ROOT_CERT: u1 = 0,
+        USE_STRONG_CRYPTO: u1 = 0,
+        USE_PRESHAREDKEY_ONLY: u1 = 0,
+    }) SCHANNEL_CRED_FLAGS {
+        return @intToEnum(SCHANNEL_CRED_FLAGS,
+              (if (o.CRED_AUTO_CRED_VALIDATION == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_AUTO_CRED_VALIDATION) else 0)
+            | (if (o.CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE) else 0)
+            | (if (o.DISABLE_RECONNECTS == 1) @enumToInt(SCHANNEL_CRED_FLAGS.DISABLE_RECONNECTS) else 0)
+            | (if (o.CRED_IGNORE_NO_REVOCATION_CHECK == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_IGNORE_NO_REVOCATION_CHECK) else 0)
+            | (if (o.CRED_IGNORE_REVOCATION_OFFLINE == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_IGNORE_REVOCATION_OFFLINE) else 0)
+            | (if (o.CRED_MANUAL_CRED_VALIDATION == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_MANUAL_CRED_VALIDATION) else 0)
+            | (if (o.CRED_NO_DEFAULT_CREDS == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_NO_DEFAULT_CREDS) else 0)
+            | (if (o.CRED_NO_SERVERNAME_CHECK == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_NO_SERVERNAME_CHECK) else 0)
+            | (if (o.CRED_NO_SYSTEM_MAPPER == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_NO_SYSTEM_MAPPER) else 0)
+            | (if (o.CRED_REVOCATION_CHECK_CHAIN == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_CHAIN) else 0)
+            | (if (o.CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT) else 0)
+            | (if (o.CRED_REVOCATION_CHECK_END_CERT == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_END_CERT) else 0)
+            | (if (o.CRED_USE_DEFAULT_CREDS == 1) @enumToInt(SCHANNEL_CRED_FLAGS.CRED_USE_DEFAULT_CREDS) else 0)
+            | (if (o.SEND_AUX_RECORD == 1) @enumToInt(SCHANNEL_CRED_FLAGS.SEND_AUX_RECORD) else 0)
+            | (if (o.SEND_ROOT_CERT == 1) @enumToInt(SCHANNEL_CRED_FLAGS.SEND_ROOT_CERT) else 0)
+            | (if (o.USE_STRONG_CRYPTO == 1) @enumToInt(SCHANNEL_CRED_FLAGS.USE_STRONG_CRYPTO) else 0)
+            | (if (o.USE_PRESHAREDKEY_ONLY == 1) @enumToInt(SCHANNEL_CRED_FLAGS.USE_PRESHAREDKEY_ONLY) else 0)
+        );
+    }
 };
 pub const SCH_CRED_AUTO_CRED_VALIDATION = SCHANNEL_CRED_FLAGS.CRED_AUTO_CRED_VALIDATION;
 pub const SCH_CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE = SCHANNEL_CRED_FLAGS.CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE;
@@ -39526,7 +40508,6 @@ pub const SCH_SEND_ROOT_CERT = SCHANNEL_CRED_FLAGS.SEND_ROOT_CERT;
 pub const SCH_USE_STRONG_CRYPTO = SCHANNEL_CRED_FLAGS.USE_STRONG_CRYPTO;
 pub const SCH_USE_PRESHAREDKEY_ONLY = SCHANNEL_CRED_FLAGS.USE_PRESHAREDKEY_ONLY;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DOMAIN_PASSWORD_PROPERTIES = extern enum(u32) {
     PASSWORD_COMPLEX = 1,
     PASSWORD_NO_ANON_CHANGE = 2,
@@ -39535,6 +40516,23 @@ pub const DOMAIN_PASSWORD_PROPERTIES = extern enum(u32) {
     PASSWORD_STORE_CLEARTEXT = 16,
     REFUSE_PASSWORD_CHANGE = 32,
     _,
+    pub fn initFlags(o: struct {
+        PASSWORD_COMPLEX: u1 = 0,
+        PASSWORD_NO_ANON_CHANGE: u1 = 0,
+        PASSWORD_NO_CLEAR_CHANGE: u1 = 0,
+        LOCKOUT_ADMINS: u1 = 0,
+        PASSWORD_STORE_CLEARTEXT: u1 = 0,
+        REFUSE_PASSWORD_CHANGE: u1 = 0,
+    }) DOMAIN_PASSWORD_PROPERTIES {
+        return @intToEnum(DOMAIN_PASSWORD_PROPERTIES,
+              (if (o.PASSWORD_COMPLEX == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_COMPLEX) else 0)
+            | (if (o.PASSWORD_NO_ANON_CHANGE == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_NO_ANON_CHANGE) else 0)
+            | (if (o.PASSWORD_NO_CLEAR_CHANGE == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_NO_CLEAR_CHANGE) else 0)
+            | (if (o.LOCKOUT_ADMINS == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.LOCKOUT_ADMINS) else 0)
+            | (if (o.PASSWORD_STORE_CLEARTEXT == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_STORE_CLEARTEXT) else 0)
+            | (if (o.REFUSE_PASSWORD_CHANGE == 1) @enumToInt(DOMAIN_PASSWORD_PROPERTIES.REFUSE_PASSWORD_CHANGE) else 0)
+        );
+    }
 };
 pub const DOMAIN_PASSWORD_COMPLEX = DOMAIN_PASSWORD_PROPERTIES.PASSWORD_COMPLEX;
 pub const DOMAIN_PASSWORD_NO_ANON_CHANGE = DOMAIN_PASSWORD_PROPERTIES.PASSWORD_NO_ANON_CHANGE;
@@ -39556,7 +40554,6 @@ pub const WTD_STATEACTION_CLOSE = WINTRUST_DATA_STATE_ACTION.CLOSE;
 pub const WTD_STATEACTION_AUTO_CACHE = WINTRUST_DATA_STATE_ACTION.AUTO_CACHE;
 pub const WTD_STATEACTION_AUTO_CACHE_FLUSH = WINTRUST_DATA_STATE_ACTION.AUTO_CACHE_FLUSH;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CERT_STORE_PROV_FLAGS = extern enum(u32) {
     EXTERNAL_FLAG = 1,
     DELETED_FLAG = 2,
@@ -39564,6 +40561,21 @@ pub const CERT_STORE_PROV_FLAGS = extern enum(u32) {
     SYSTEM_STORE_FLAG = 8,
     LM_SYSTEM_STORE_FLAG = 16,
     _,
+    pub fn initFlags(o: struct {
+        EXTERNAL_FLAG: u1 = 0,
+        DELETED_FLAG: u1 = 0,
+        NO_PERSIST_FLAG: u1 = 0,
+        SYSTEM_STORE_FLAG: u1 = 0,
+        LM_SYSTEM_STORE_FLAG: u1 = 0,
+    }) CERT_STORE_PROV_FLAGS {
+        return @intToEnum(CERT_STORE_PROV_FLAGS,
+              (if (o.EXTERNAL_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.EXTERNAL_FLAG) else 0)
+            | (if (o.DELETED_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.DELETED_FLAG) else 0)
+            | (if (o.NO_PERSIST_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.NO_PERSIST_FLAG) else 0)
+            | (if (o.SYSTEM_STORE_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.SYSTEM_STORE_FLAG) else 0)
+            | (if (o.LM_SYSTEM_STORE_FLAG == 1) @enumToInt(CERT_STORE_PROV_FLAGS.LM_SYSTEM_STORE_FLAG) else 0)
+        );
+    }
 };
 pub const CERT_STORE_PROV_EXTERNAL_FLAG = CERT_STORE_PROV_FLAGS.EXTERNAL_FLAG;
 pub const CERT_STORE_PROV_DELETED_FLAG = CERT_STORE_PROV_FLAGS.DELETED_FLAG;
@@ -39604,11 +40616,19 @@ pub const CRYPTUI_WIZ_DIGITAL_SIGN_SUBJECT_BLOB = CRYPTUI_WIZ_DIGITAL_SIGN_SUBJE
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_SUBJECT_FILE = CRYPTUI_WIZ_DIGITAL_SIGN_SUBJECT.FILE;
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_SUBJECT_NONE = CRYPTUI_WIZ_DIGITAL_SIGN_SUBJECT.NONE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRYPT_CONTEXT_CONFIG_FLAGS = extern enum(u32) {
     EXCLUSIVE = 1,
     OVERRIDE = 65536,
     _,
+    pub fn initFlags(o: struct {
+        EXCLUSIVE: u1 = 0,
+        OVERRIDE: u1 = 0,
+    }) CRYPT_CONTEXT_CONFIG_FLAGS {
+        return @intToEnum(CRYPT_CONTEXT_CONFIG_FLAGS,
+              (if (o.EXCLUSIVE == 1) @enumToInt(CRYPT_CONTEXT_CONFIG_FLAGS.EXCLUSIVE) else 0)
+            | (if (o.OVERRIDE == 1) @enumToInt(CRYPT_CONTEXT_CONFIG_FLAGS.OVERRIDE) else 0)
+        );
+    }
 };
 pub const CRYPT_EXCLUSIVE = CRYPT_CONTEXT_CONFIG_FLAGS.EXCLUSIVE;
 pub const CRYPT_OVERRIDE = CRYPT_CONTEXT_CONFIG_FLAGS.OVERRIDE;
@@ -39684,7 +40704,6 @@ pub const CRYPT_XML_X509DATA_TYPE_CERTIFICATE = CRYPT_XML_X509DATA_TYPE.CERTIFIC
 pub const CRYPT_XML_X509DATA_TYPE_CRL = CRYPT_XML_X509DATA_TYPE.CRL;
 pub const CRYPT_XML_X509DATA_TYPE_CUSTOM = CRYPT_XML_X509DATA_TYPE.CUSTOM;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MSV_SUBAUTH_LOGON_PARAMETER_CONTROL = extern enum(u32) {
     CLEARTEXT_PASSWORD_ALLOWED = 2,
     UPDATE_LOGON_STATISTICS = 4,
@@ -39697,6 +40716,31 @@ pub const MSV_SUBAUTH_LOGON_PARAMETER_CONTROL = extern enum(u32) {
     RETURN_PROFILE_PATH = 512,
     TRY_SPECIFIED_DOMAIN_ONLY = 1024,
     _,
+    pub fn initFlags(o: struct {
+        CLEARTEXT_PASSWORD_ALLOWED: u1 = 0,
+        UPDATE_LOGON_STATISTICS: u1 = 0,
+        RETURN_USER_PARAMETERS: u1 = 0,
+        DONT_TRY_GUEST_ACCOUNT: u1 = 0,
+        ALLOW_SERVER_TRUST_ACCOUNT: u1 = 0,
+        RETURN_PASSWORD_EXPIRY: u1 = 0,
+        ALLOW_WORKSTATION_TRUST_ACCOUNT: u1 = 0,
+        TRY_GUEST_ACCOUNT_ONLY: u1 = 0,
+        RETURN_PROFILE_PATH: u1 = 0,
+        TRY_SPECIFIED_DOMAIN_ONLY: u1 = 0,
+    }) MSV_SUBAUTH_LOGON_PARAMETER_CONTROL {
+        return @intToEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL,
+              (if (o.CLEARTEXT_PASSWORD_ALLOWED == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.CLEARTEXT_PASSWORD_ALLOWED) else 0)
+            | (if (o.UPDATE_LOGON_STATISTICS == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.UPDATE_LOGON_STATISTICS) else 0)
+            | (if (o.RETURN_USER_PARAMETERS == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_USER_PARAMETERS) else 0)
+            | (if (o.DONT_TRY_GUEST_ACCOUNT == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.DONT_TRY_GUEST_ACCOUNT) else 0)
+            | (if (o.ALLOW_SERVER_TRUST_ACCOUNT == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.ALLOW_SERVER_TRUST_ACCOUNT) else 0)
+            | (if (o.RETURN_PASSWORD_EXPIRY == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_PASSWORD_EXPIRY) else 0)
+            | (if (o.ALLOW_WORKSTATION_TRUST_ACCOUNT == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.ALLOW_WORKSTATION_TRUST_ACCOUNT) else 0)
+            | (if (o.TRY_GUEST_ACCOUNT_ONLY == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.TRY_GUEST_ACCOUNT_ONLY) else 0)
+            | (if (o.RETURN_PROFILE_PATH == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_PROFILE_PATH) else 0)
+            | (if (o.TRY_SPECIFIED_DOMAIN_ONLY == 1) @enumToInt(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.TRY_SPECIFIED_DOMAIN_ONLY) else 0)
+        );
+    }
 };
 pub const MSV1_0_CLEARTEXT_PASSWORD_ALLOWED = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.CLEARTEXT_PASSWORD_ALLOWED;
 pub const MSV1_0_UPDATE_LOGON_STATISTICS = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.UPDATE_LOGON_STATISTICS;
@@ -39788,11 +40832,19 @@ pub const SERVICE_TRIGGER_TYPE_GROUP_POLICY = SERVICE_TRIGGER_TYPE.GROUP_POLICY;
 pub const SERVICE_TRIGGER_TYPE_IP_ADDRESS_AVAILABILITY = SERVICE_TRIGGER_TYPE.IP_ADDRESS_AVAILABILITY;
 pub const SERVICE_TRIGGER_TYPE_NETWORK_ENDPOINT = SERVICE_TRIGGER_TYPE.NETWORK_ENDPOINT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CERT_STRONG_SIGN_FLAGS = extern enum(u32) {
     CRL_CHECK = 1,
     OCSP_CHECK = 2,
     _,
+    pub fn initFlags(o: struct {
+        CRL_CHECK: u1 = 0,
+        OCSP_CHECK: u1 = 0,
+    }) CERT_STRONG_SIGN_FLAGS {
+        return @intToEnum(CERT_STRONG_SIGN_FLAGS,
+              (if (o.CRL_CHECK == 1) @enumToInt(CERT_STRONG_SIGN_FLAGS.CRL_CHECK) else 0)
+            | (if (o.OCSP_CHECK == 1) @enumToInt(CERT_STRONG_SIGN_FLAGS.OCSP_CHECK) else 0)
+        );
+    }
 };
 pub const CERT_STRONG_SIGN_ENABLE_CRL_CHECK = CERT_STRONG_SIGN_FLAGS.CRL_CHECK;
 pub const CERT_STRONG_SIGN_ENABLE_OCSP_CHECK = CERT_STRONG_SIGN_FLAGS.OCSP_CHECK;
@@ -39819,12 +40871,22 @@ pub const CRYPT_XML_STATUS_DIGEST_VALID = CRYPT_XML_STATUS_INFO_STATUS.DIGEST_VA
 pub const CRYPT_XML_STATUS_SIGNATURE_VALID = CRYPT_XML_STATUS_INFO_STATUS.SIGNATURE_VALID;
 pub const CRYPT_XML_STATUS_OPENED_TO_ENCODE = CRYPT_XML_STATUS_INFO_STATUS.OPENED_TO_ENCODE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CRYPT_XML_TRANSFORM_FLAGS = extern enum(u32) {
     ON_STREAM = 1,
     ON_NODESET = 2,
     URI_QUERY_STRING = 3,
     _,
+    pub fn initFlags(o: struct {
+        ON_STREAM: u1 = 0,
+        ON_NODESET: u1 = 0,
+        URI_QUERY_STRING: u1 = 0,
+    }) CRYPT_XML_TRANSFORM_FLAGS {
+        return @intToEnum(CRYPT_XML_TRANSFORM_FLAGS,
+              (if (o.ON_STREAM == 1) @enumToInt(CRYPT_XML_TRANSFORM_FLAGS.ON_STREAM) else 0)
+            | (if (o.ON_NODESET == 1) @enumToInt(CRYPT_XML_TRANSFORM_FLAGS.ON_NODESET) else 0)
+            | (if (o.URI_QUERY_STRING == 1) @enumToInt(CRYPT_XML_TRANSFORM_FLAGS.URI_QUERY_STRING) else 0)
+        );
+    }
 };
 pub const CRYPT_XML_TRANSFORM_ON_STREAM = CRYPT_XML_TRANSFORM_FLAGS.ON_STREAM;
 pub const CRYPT_XML_TRANSFORM_ON_NODESET = CRYPT_XML_TRANSFORM_FLAGS.ON_NODESET;
@@ -39875,7 +40937,6 @@ pub const CERT_SELECT_BY_ISSUER_NAME = CERT_SELECT_CRITERIA_TYPE.ISSUER_NAME;
 pub const CERT_SELECT_BY_PUBLIC_KEY = CERT_SELECT_CRITERIA_TYPE.PUBLIC_KEY;
 pub const CERT_SELECT_BY_TLS_SIGNATURES = CERT_SELECT_CRITERIA_TYPE.TLS_SIGNATURES;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SI_OBJECT_INFO_FLAGS = extern enum(u32) {
     AUDITS_ELEVATION_REQUIRED = 33554432,
     DISABLE_DENY_ACE = 2147483648,
@@ -39892,6 +40953,39 @@ pub const SI_OBJECT_INFO_FLAGS = extern enum(u32) {
     SCOPE_ELEVATION_REQUIRED = 134217728,
     VIEW_ONLY = 4194304,
     _,
+    pub fn initFlags(o: struct {
+        AUDITS_ELEVATION_REQUIRED: u1 = 0,
+        DISABLE_DENY_ACE: u1 = 0,
+        EDIT_EFFECTIVE: u1 = 0,
+        ENABLE_CENTRAL_POLICY: u1 = 0,
+        ENABLE_EDIT_ATTRIBUTE_CONDITION: u1 = 0,
+        MAY_WRITE: u1 = 0,
+        NO_ADDITIONAL_PERMISSION: u1 = 0,
+        OWNER_ELEVATION_REQUIRED: u1 = 0,
+        PERMS_ELEVATION_REQUIRED: u1 = 0,
+        RESET_DACL: u1 = 0,
+        RESET_OWNER: u1 = 0,
+        RESET_SACL: u1 = 0,
+        SCOPE_ELEVATION_REQUIRED: u1 = 0,
+        VIEW_ONLY: u1 = 0,
+    }) SI_OBJECT_INFO_FLAGS {
+        return @intToEnum(SI_OBJECT_INFO_FLAGS,
+              (if (o.AUDITS_ELEVATION_REQUIRED == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.AUDITS_ELEVATION_REQUIRED) else 0)
+            | (if (o.DISABLE_DENY_ACE == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.DISABLE_DENY_ACE) else 0)
+            | (if (o.EDIT_EFFECTIVE == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.EDIT_EFFECTIVE) else 0)
+            | (if (o.ENABLE_CENTRAL_POLICY == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.ENABLE_CENTRAL_POLICY) else 0)
+            | (if (o.ENABLE_EDIT_ATTRIBUTE_CONDITION == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.ENABLE_EDIT_ATTRIBUTE_CONDITION) else 0)
+            | (if (o.MAY_WRITE == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.MAY_WRITE) else 0)
+            | (if (o.NO_ADDITIONAL_PERMISSION == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.NO_ADDITIONAL_PERMISSION) else 0)
+            | (if (o.OWNER_ELEVATION_REQUIRED == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.OWNER_ELEVATION_REQUIRED) else 0)
+            | (if (o.PERMS_ELEVATION_REQUIRED == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.PERMS_ELEVATION_REQUIRED) else 0)
+            | (if (o.RESET_DACL == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.RESET_DACL) else 0)
+            | (if (o.RESET_OWNER == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.RESET_OWNER) else 0)
+            | (if (o.RESET_SACL == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.RESET_SACL) else 0)
+            | (if (o.SCOPE_ELEVATION_REQUIRED == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.SCOPE_ELEVATION_REQUIRED) else 0)
+            | (if (o.VIEW_ONLY == 1) @enumToInt(SI_OBJECT_INFO_FLAGS.VIEW_ONLY) else 0)
+        );
+    }
 };
 pub const SI_AUDITS_ELEVATION_REQUIRED = SI_OBJECT_INFO_FLAGS.AUDITS_ELEVATION_REQUIRED;
 pub const SI_DISABLE_DENY_ACE = SI_OBJECT_INFO_FLAGS.DISABLE_DENY_ACE;
@@ -39919,12 +41013,22 @@ pub const TRUST_DIRECTION_INBOUND = TRUSTED_DOMAIN_TRUST_DIRECTION.INBOUND;
 pub const TRUST_DIRECTION_OUTBOUND = TRUSTED_DOMAIN_TRUST_DIRECTION.OUTBOUND;
 pub const TRUST_DIRECTION_BIDIRECTIONAL = TRUSTED_DOMAIN_TRUST_DIRECTION.BIDIRECTIONAL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS = extern enum(u32) {
     LM_PRESENT = 1,
     NT_PRESENT = 2,
     VERSION = 0,
     _,
+    pub fn initFlags(o: struct {
+        LM_PRESENT: u1 = 0,
+        NT_PRESENT: u1 = 0,
+        VERSION: u1 = 0,
+    }) MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS {
+        return @intToEnum(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS,
+              (if (o.LM_PRESENT == 1) @enumToInt(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.LM_PRESENT) else 0)
+            | (if (o.NT_PRESENT == 1) @enumToInt(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.NT_PRESENT) else 0)
+            | (if (o.VERSION == 1) @enumToInt(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.VERSION) else 0)
+        );
+    }
 };
 pub const MSV1_0_CRED_LM_PRESENT = MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.LM_PRESENT;
 pub const MSV1_0_CRED_NT_PRESENT = MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.NT_PRESENT;
@@ -39975,11 +41079,19 @@ pub const CRYPT_XML_KEYINFO_TYPE_RETRIEVAL = CRYPT_XML_KEYINFO_TYPE.RETRIEVAL;
 pub const CRYPT_XML_KEYINFO_TYPE_X509DATA = CRYPT_XML_KEYINFO_TYPE.X509DATA;
 pub const CRYPT_XML_KEYINFO_TYPE_CUSTOM = CRYPT_XML_KEYINFO_TYPE.CUSTOM;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const AUTHZ_SECURITY_ATTRIBUTE_FLAGS = extern enum(u32) {
     NON_INHERITABLE = 1,
     VALUE_CASE_SENSITIVE = 2,
     _,
+    pub fn initFlags(o: struct {
+        NON_INHERITABLE: u1 = 0,
+        VALUE_CASE_SENSITIVE: u1 = 0,
+    }) AUTHZ_SECURITY_ATTRIBUTE_FLAGS {
+        return @intToEnum(AUTHZ_SECURITY_ATTRIBUTE_FLAGS,
+              (if (o.NON_INHERITABLE == 1) @enumToInt(AUTHZ_SECURITY_ATTRIBUTE_FLAGS.NON_INHERITABLE) else 0)
+            | (if (o.VALUE_CASE_SENSITIVE == 1) @enumToInt(AUTHZ_SECURITY_ATTRIBUTE_FLAGS.VALUE_CASE_SENSITIVE) else 0)
+        );
+    }
 };
 pub const AUTHZ_SECURITY_ATTRIBUTE_NON_INHERITABLE = AUTHZ_SECURITY_ATTRIBUTE_FLAGS.NON_INHERITABLE;
 pub const AUTHZ_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE = AUTHZ_SECURITY_ATTRIBUTE_FLAGS.VALUE_CASE_SENSITIVE;

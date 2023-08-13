@@ -889,7 +889,6 @@ pub const IUIAnimationTransitionLibrary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const UI_ANIMATION_DEPENDENCIES = extern enum(u32) {
     NONE = 0,
     INTERMEDIATE_VALUES = 1,
@@ -897,6 +896,21 @@ pub const UI_ANIMATION_DEPENDENCIES = extern enum(u32) {
     FINAL_VELOCITY = 4,
     DURATION = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        INTERMEDIATE_VALUES: u1 = 0,
+        FINAL_VALUE: u1 = 0,
+        FINAL_VELOCITY: u1 = 0,
+        DURATION: u1 = 0,
+    }) UI_ANIMATION_DEPENDENCIES {
+        return @intToEnum(UI_ANIMATION_DEPENDENCIES,
+              (if (o.NONE == 1) @enumToInt(UI_ANIMATION_DEPENDENCIES.NONE) else 0)
+            | (if (o.INTERMEDIATE_VALUES == 1) @enumToInt(UI_ANIMATION_DEPENDENCIES.INTERMEDIATE_VALUES) else 0)
+            | (if (o.FINAL_VALUE == 1) @enumToInt(UI_ANIMATION_DEPENDENCIES.FINAL_VALUE) else 0)
+            | (if (o.FINAL_VELOCITY == 1) @enumToInt(UI_ANIMATION_DEPENDENCIES.FINAL_VELOCITY) else 0)
+            | (if (o.DURATION == 1) @enumToInt(UI_ANIMATION_DEPENDENCIES.DURATION) else 0)
+        );
+    }
 };
 pub const UI_ANIMATION_DEPENDENCY_NONE = UI_ANIMATION_DEPENDENCIES.NONE;
 pub const UI_ANIMATION_DEPENDENCY_INTERMEDIATE_VALUES = UI_ANIMATION_DEPENDENCIES.INTERMEDIATE_VALUES;

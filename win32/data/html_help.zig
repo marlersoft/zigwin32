@@ -289,10 +289,16 @@ pub const IITStopWordList = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WORD_WHEEL_OPEN_FLAGS = extern enum(u32) {
     T = 0,
     _,
+    pub fn initFlags(o: struct {
+        T: u1 = 0,
+    }) WORD_WHEEL_OPEN_FLAGS {
+        return @intToEnum(WORD_WHEEL_OPEN_FLAGS,
+              (if (o.T == 1) @enumToInt(WORD_WHEEL_OPEN_FLAGS.T) else 0)
+        );
+    }
 };
 pub const ITWW_OPEN_CONNECT = WORD_WHEEL_OPEN_FLAGS.T;
 

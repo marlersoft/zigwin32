@@ -11,7 +11,6 @@ pub const HPSS = ?*opaque{};
 
 pub const HPSSWALK = ?*opaque{};
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PSS_HANDLE_FLAGS = extern enum(u32) {
     NONE = 0,
     HAVE_TYPE = 1,
@@ -19,6 +18,21 @@ pub const PSS_HANDLE_FLAGS = extern enum(u32) {
     HAVE_BASIC_INFORMATION = 4,
     HAVE_TYPE_SPECIFIC_INFORMATION = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        HAVE_TYPE: u1 = 0,
+        HAVE_NAME: u1 = 0,
+        HAVE_BASIC_INFORMATION: u1 = 0,
+        HAVE_TYPE_SPECIFIC_INFORMATION: u1 = 0,
+    }) PSS_HANDLE_FLAGS {
+        return @intToEnum(PSS_HANDLE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(PSS_HANDLE_FLAGS.NONE) else 0)
+            | (if (o.HAVE_TYPE == 1) @enumToInt(PSS_HANDLE_FLAGS.HAVE_TYPE) else 0)
+            | (if (o.HAVE_NAME == 1) @enumToInt(PSS_HANDLE_FLAGS.HAVE_NAME) else 0)
+            | (if (o.HAVE_BASIC_INFORMATION == 1) @enumToInt(PSS_HANDLE_FLAGS.HAVE_BASIC_INFORMATION) else 0)
+            | (if (o.HAVE_TYPE_SPECIFIC_INFORMATION == 1) @enumToInt(PSS_HANDLE_FLAGS.HAVE_TYPE_SPECIFIC_INFORMATION) else 0)
+        );
+    }
 };
 pub const PSS_HANDLE_NONE = PSS_HANDLE_FLAGS.NONE;
 pub const PSS_HANDLE_HAVE_TYPE = PSS_HANDLE_FLAGS.HAVE_TYPE;
@@ -43,7 +57,6 @@ pub const PSS_OBJECT_TYPE_EVENT = PSS_OBJECT_TYPE.EVENT;
 pub const PSS_OBJECT_TYPE_SECTION = PSS_OBJECT_TYPE.SECTION;
 pub const PSS_OBJECT_TYPE_SEMAPHORE = PSS_OBJECT_TYPE.SEMAPHORE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PSS_CAPTURE_FLAGS = extern enum(u32) {
     APTURE_NONE = 0,
     APTURE_VA_CLONE = 1,
@@ -68,6 +81,55 @@ pub const PSS_CAPTURE_FLAGS = extern enum(u32) {
     REATE_MEASURE_PERFORMANCE = 1073741824,
     REATE_RELEASE_SECTION = 2147483648,
     _,
+    pub fn initFlags(o: struct {
+        APTURE_NONE: u1 = 0,
+        APTURE_VA_CLONE: u1 = 0,
+        APTURE_RESERVED_00000002: u1 = 0,
+        APTURE_HANDLES: u1 = 0,
+        APTURE_HANDLE_NAME_INFORMATION: u1 = 0,
+        APTURE_HANDLE_BASIC_INFORMATION: u1 = 0,
+        APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION: u1 = 0,
+        APTURE_HANDLE_TRACE: u1 = 0,
+        APTURE_THREADS: u1 = 0,
+        APTURE_THREAD_CONTEXT: u1 = 0,
+        APTURE_THREAD_CONTEXT_EXTENDED: u1 = 0,
+        APTURE_RESERVED_00000400: u1 = 0,
+        APTURE_VA_SPACE: u1 = 0,
+        APTURE_VA_SPACE_SECTION_INFORMATION: u1 = 0,
+        APTURE_IPT_TRACE: u1 = 0,
+        APTURE_RESERVED_00004000: u1 = 0,
+        REATE_BREAKAWAY_OPTIONAL: u1 = 0,
+        REATE_BREAKAWAY: u1 = 0,
+        REATE_FORCE_BREAKAWAY: u1 = 0,
+        REATE_USE_VM_ALLOCATIONS: u1 = 0,
+        REATE_MEASURE_PERFORMANCE: u1 = 0,
+        REATE_RELEASE_SECTION: u1 = 0,
+    }) PSS_CAPTURE_FLAGS {
+        return @intToEnum(PSS_CAPTURE_FLAGS,
+              (if (o.APTURE_NONE == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_NONE) else 0)
+            | (if (o.APTURE_VA_CLONE == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_VA_CLONE) else 0)
+            | (if (o.APTURE_RESERVED_00000002 == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_RESERVED_00000002) else 0)
+            | (if (o.APTURE_HANDLES == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_HANDLES) else 0)
+            | (if (o.APTURE_HANDLE_NAME_INFORMATION == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_HANDLE_NAME_INFORMATION) else 0)
+            | (if (o.APTURE_HANDLE_BASIC_INFORMATION == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_HANDLE_BASIC_INFORMATION) else 0)
+            | (if (o.APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION) else 0)
+            | (if (o.APTURE_HANDLE_TRACE == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_HANDLE_TRACE) else 0)
+            | (if (o.APTURE_THREADS == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_THREADS) else 0)
+            | (if (o.APTURE_THREAD_CONTEXT == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_THREAD_CONTEXT) else 0)
+            | (if (o.APTURE_THREAD_CONTEXT_EXTENDED == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_THREAD_CONTEXT_EXTENDED) else 0)
+            | (if (o.APTURE_RESERVED_00000400 == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_RESERVED_00000400) else 0)
+            | (if (o.APTURE_VA_SPACE == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_VA_SPACE) else 0)
+            | (if (o.APTURE_VA_SPACE_SECTION_INFORMATION == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_VA_SPACE_SECTION_INFORMATION) else 0)
+            | (if (o.APTURE_IPT_TRACE == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_IPT_TRACE) else 0)
+            | (if (o.APTURE_RESERVED_00004000 == 1) @enumToInt(PSS_CAPTURE_FLAGS.APTURE_RESERVED_00004000) else 0)
+            | (if (o.REATE_BREAKAWAY_OPTIONAL == 1) @enumToInt(PSS_CAPTURE_FLAGS.REATE_BREAKAWAY_OPTIONAL) else 0)
+            | (if (o.REATE_BREAKAWAY == 1) @enumToInt(PSS_CAPTURE_FLAGS.REATE_BREAKAWAY) else 0)
+            | (if (o.REATE_FORCE_BREAKAWAY == 1) @enumToInt(PSS_CAPTURE_FLAGS.REATE_FORCE_BREAKAWAY) else 0)
+            | (if (o.REATE_USE_VM_ALLOCATIONS == 1) @enumToInt(PSS_CAPTURE_FLAGS.REATE_USE_VM_ALLOCATIONS) else 0)
+            | (if (o.REATE_MEASURE_PERFORMANCE == 1) @enumToInt(PSS_CAPTURE_FLAGS.REATE_MEASURE_PERFORMANCE) else 0)
+            | (if (o.REATE_RELEASE_SECTION == 1) @enumToInt(PSS_CAPTURE_FLAGS.REATE_RELEASE_SECTION) else 0)
+        );
+    }
 };
 pub const PSS_CAPTURE_NONE = PSS_CAPTURE_FLAGS.APTURE_NONE;
 pub const PSS_CAPTURE_VA_CLONE = PSS_CAPTURE_FLAGS.APTURE_VA_CLONE;
@@ -122,16 +184,23 @@ pub const PSS_WALK_VA_SPACE = PSS_WALK_INFORMATION_CLASS.VA_SPACE;
 pub const PSS_WALK_HANDLES = PSS_WALK_INFORMATION_CLASS.HANDLES;
 pub const PSS_WALK_THREADS = PSS_WALK_INFORMATION_CLASS.THREADS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PSS_DUPLICATE_FLAGS = extern enum(u32) {
     NONE = 0,
     CLOSE_SOURCE = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        CLOSE_SOURCE: u1 = 0,
+    }) PSS_DUPLICATE_FLAGS {
+        return @intToEnum(PSS_DUPLICATE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(PSS_DUPLICATE_FLAGS.NONE) else 0)
+            | (if (o.CLOSE_SOURCE == 1) @enumToInt(PSS_DUPLICATE_FLAGS.CLOSE_SOURCE) else 0)
+        );
+    }
 };
 pub const PSS_DUPLICATE_NONE = PSS_DUPLICATE_FLAGS.NONE;
 pub const PSS_DUPLICATE_CLOSE_SOURCE = PSS_DUPLICATE_FLAGS.CLOSE_SOURCE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PSS_PROCESS_FLAGS = extern enum(u32) {
     NONE = 0,
     PROTECTED = 1,
@@ -140,6 +209,23 @@ pub const PSS_PROCESS_FLAGS = extern enum(u32) {
     RESERVED_04 = 8,
     FROZEN = 16,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        PROTECTED: u1 = 0,
+        WOW64: u1 = 0,
+        RESERVED_03: u1 = 0,
+        RESERVED_04: u1 = 0,
+        FROZEN: u1 = 0,
+    }) PSS_PROCESS_FLAGS {
+        return @intToEnum(PSS_PROCESS_FLAGS,
+              (if (o.NONE == 1) @enumToInt(PSS_PROCESS_FLAGS.NONE) else 0)
+            | (if (o.PROTECTED == 1) @enumToInt(PSS_PROCESS_FLAGS.PROTECTED) else 0)
+            | (if (o.WOW64 == 1) @enumToInt(PSS_PROCESS_FLAGS.WOW64) else 0)
+            | (if (o.RESERVED_03 == 1) @enumToInt(PSS_PROCESS_FLAGS.RESERVED_03) else 0)
+            | (if (o.RESERVED_04 == 1) @enumToInt(PSS_PROCESS_FLAGS.RESERVED_04) else 0)
+            | (if (o.FROZEN == 1) @enumToInt(PSS_PROCESS_FLAGS.FROZEN) else 0)
+        );
+    }
 };
 pub const PSS_PROCESS_FLAGS_NONE = PSS_PROCESS_FLAGS.NONE;
 pub const PSS_PROCESS_FLAGS_PROTECTED = PSS_PROCESS_FLAGS.PROTECTED;
@@ -300,11 +386,19 @@ pub const PSS_HANDLE_ENTRY = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PSS_THREAD_FLAGS = extern enum(u32) {
     NONE = 0,
     TERMINATED = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        TERMINATED: u1 = 0,
+    }) PSS_THREAD_FLAGS {
+        return @intToEnum(PSS_THREAD_FLAGS,
+              (if (o.NONE == 1) @enumToInt(PSS_THREAD_FLAGS.NONE) else 0)
+            | (if (o.TERMINATED == 1) @enumToInt(PSS_THREAD_FLAGS.TERMINATED) else 0)
+        );
+    }
 };
 pub const PSS_THREAD_FLAGS_NONE = PSS_THREAD_FLAGS.NONE;
 pub const PSS_THREAD_FLAGS_TERMINATED = PSS_THREAD_FLAGS.TERMINATED;

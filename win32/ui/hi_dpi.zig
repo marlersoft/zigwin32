@@ -51,24 +51,46 @@ pub const MDT_ANGULAR_DPI = MONITOR_DPI_TYPE.ANGULAR_DPI;
 pub const MDT_RAW_DPI = MONITOR_DPI_TYPE.RAW_DPI;
 pub const MDT_DEFAULT = MONITOR_DPI_TYPE.DEFAULT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS = extern enum(u32) {
     EFAULT = 0,
     ISABLE_FONT_UPDATE = 1,
     ISABLE_RELAYOUT = 2,
     _,
+    pub fn initFlags(o: struct {
+        EFAULT: u1 = 0,
+        ISABLE_FONT_UPDATE: u1 = 0,
+        ISABLE_RELAYOUT: u1 = 0,
+    }) DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS {
+        return @intToEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS,
+              (if (o.EFAULT == 1) @enumToInt(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT) else 0)
+            | (if (o.ISABLE_FONT_UPDATE == 1) @enumToInt(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_FONT_UPDATE) else 0)
+            | (if (o.ISABLE_RELAYOUT == 1) @enumToInt(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_RELAYOUT) else 0)
+        );
+    }
 };
 pub const DCDC_DEFAULT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT;
 pub const DCDC_DISABLE_FONT_UPDATE = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_FONT_UPDATE;
 pub const DCDC_DISABLE_RELAYOUT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_RELAYOUT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DIALOG_DPI_CHANGE_BEHAVIORS = extern enum(u32) {
     EFAULT = 0,
     ISABLE_ALL = 1,
     ISABLE_RESIZE = 2,
     ISABLE_CONTROL_RELAYOUT = 4,
     _,
+    pub fn initFlags(o: struct {
+        EFAULT: u1 = 0,
+        ISABLE_ALL: u1 = 0,
+        ISABLE_RESIZE: u1 = 0,
+        ISABLE_CONTROL_RELAYOUT: u1 = 0,
+    }) DIALOG_DPI_CHANGE_BEHAVIORS {
+        return @intToEnum(DIALOG_DPI_CHANGE_BEHAVIORS,
+              (if (o.EFAULT == 1) @enumToInt(DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT) else 0)
+            | (if (o.ISABLE_ALL == 1) @enumToInt(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL) else 0)
+            | (if (o.ISABLE_RESIZE == 1) @enumToInt(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_RESIZE) else 0)
+            | (if (o.ISABLE_CONTROL_RELAYOUT == 1) @enumToInt(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONTROL_RELAYOUT) else 0)
+        );
+    }
 };
 pub const DDC_DEFAULT = DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT;
 pub const DDC_DISABLE_ALL = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL;

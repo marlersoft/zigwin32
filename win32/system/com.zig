@@ -858,7 +858,6 @@ pub const MEMCTX_MACSYSTEM = MEMCTX.MACSYSTEM;
 pub const MEMCTX_UNKNOWN = MEMCTX.UNKNOWN;
 pub const MEMCTX_SAME = MEMCTX.SAME;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CLSCTX = extern enum(u32) {
     INPROC_SERVER = 1,
     INPROC_HANDLER = 2,
@@ -890,6 +889,69 @@ pub const CLSCTX = extern enum(u32) {
     ALL = 23,
     SERVER = 21,
     _,
+    pub fn initFlags(o: struct {
+        INPROC_SERVER: u1 = 0,
+        INPROC_HANDLER: u1 = 0,
+        LOCAL_SERVER: u1 = 0,
+        INPROC_SERVER16: u1 = 0,
+        REMOTE_SERVER: u1 = 0,
+        INPROC_HANDLER16: u1 = 0,
+        RESERVED1: u1 = 0,
+        RESERVED2: u1 = 0,
+        RESERVED3: u1 = 0,
+        RESERVED4: u1 = 0,
+        NO_CODE_DOWNLOAD: u1 = 0,
+        RESERVED5: u1 = 0,
+        NO_CUSTOM_MARSHAL: u1 = 0,
+        ENABLE_CODE_DOWNLOAD: u1 = 0,
+        NO_FAILURE_LOG: u1 = 0,
+        DISABLE_AAA: u1 = 0,
+        ENABLE_AAA: u1 = 0,
+        FROM_DEFAULT_CONTEXT: u1 = 0,
+        ACTIVATE_X86_SERVER: u1 = 0,
+        ACTIVATE_32_BIT_SERVER: u1 = 0,
+        ACTIVATE_64_BIT_SERVER: u1 = 0,
+        ENABLE_CLOAKING: u1 = 0,
+        APPCONTAINER: u1 = 0,
+        ACTIVATE_AAA_AS_IU: u1 = 0,
+        RESERVED6: u1 = 0,
+        ACTIVATE_ARM32_SERVER: u1 = 0,
+        PS_DLL: u1 = 0,
+        ALL: u1 = 0,
+        SERVER: u1 = 0,
+    }) CLSCTX {
+        return @intToEnum(CLSCTX,
+              (if (o.INPROC_SERVER == 1) @enumToInt(CLSCTX.INPROC_SERVER) else 0)
+            | (if (o.INPROC_HANDLER == 1) @enumToInt(CLSCTX.INPROC_HANDLER) else 0)
+            | (if (o.LOCAL_SERVER == 1) @enumToInt(CLSCTX.LOCAL_SERVER) else 0)
+            | (if (o.INPROC_SERVER16 == 1) @enumToInt(CLSCTX.INPROC_SERVER16) else 0)
+            | (if (o.REMOTE_SERVER == 1) @enumToInt(CLSCTX.REMOTE_SERVER) else 0)
+            | (if (o.INPROC_HANDLER16 == 1) @enumToInt(CLSCTX.INPROC_HANDLER16) else 0)
+            | (if (o.RESERVED1 == 1) @enumToInt(CLSCTX.RESERVED1) else 0)
+            | (if (o.RESERVED2 == 1) @enumToInt(CLSCTX.RESERVED2) else 0)
+            | (if (o.RESERVED3 == 1) @enumToInt(CLSCTX.RESERVED3) else 0)
+            | (if (o.RESERVED4 == 1) @enumToInt(CLSCTX.RESERVED4) else 0)
+            | (if (o.NO_CODE_DOWNLOAD == 1) @enumToInt(CLSCTX.NO_CODE_DOWNLOAD) else 0)
+            | (if (o.RESERVED5 == 1) @enumToInt(CLSCTX.RESERVED5) else 0)
+            | (if (o.NO_CUSTOM_MARSHAL == 1) @enumToInt(CLSCTX.NO_CUSTOM_MARSHAL) else 0)
+            | (if (o.ENABLE_CODE_DOWNLOAD == 1) @enumToInt(CLSCTX.ENABLE_CODE_DOWNLOAD) else 0)
+            | (if (o.NO_FAILURE_LOG == 1) @enumToInt(CLSCTX.NO_FAILURE_LOG) else 0)
+            | (if (o.DISABLE_AAA == 1) @enumToInt(CLSCTX.DISABLE_AAA) else 0)
+            | (if (o.ENABLE_AAA == 1) @enumToInt(CLSCTX.ENABLE_AAA) else 0)
+            | (if (o.FROM_DEFAULT_CONTEXT == 1) @enumToInt(CLSCTX.FROM_DEFAULT_CONTEXT) else 0)
+            | (if (o.ACTIVATE_X86_SERVER == 1) @enumToInt(CLSCTX.ACTIVATE_X86_SERVER) else 0)
+            | (if (o.ACTIVATE_32_BIT_SERVER == 1) @enumToInt(CLSCTX.ACTIVATE_32_BIT_SERVER) else 0)
+            | (if (o.ACTIVATE_64_BIT_SERVER == 1) @enumToInt(CLSCTX.ACTIVATE_64_BIT_SERVER) else 0)
+            | (if (o.ENABLE_CLOAKING == 1) @enumToInt(CLSCTX.ENABLE_CLOAKING) else 0)
+            | (if (o.APPCONTAINER == 1) @enumToInt(CLSCTX.APPCONTAINER) else 0)
+            | (if (o.ACTIVATE_AAA_AS_IU == 1) @enumToInt(CLSCTX.ACTIVATE_AAA_AS_IU) else 0)
+            | (if (o.RESERVED6 == 1) @enumToInt(CLSCTX.RESERVED6) else 0)
+            | (if (o.ACTIVATE_ARM32_SERVER == 1) @enumToInt(CLSCTX.ACTIVATE_ARM32_SERVER) else 0)
+            | (if (o.PS_DLL == 1) @enumToInt(CLSCTX.PS_DLL) else 0)
+            | (if (o.ALL == 1) @enumToInt(CLSCTX.ALL) else 0)
+            | (if (o.SERVER == 1) @enumToInt(CLSCTX.SERVER) else 0)
+        );
+    }
 };
 pub const CLSCTX_INPROC_SERVER = CLSCTX.INPROC_SERVER;
 pub const CLSCTX_INPROC_HANDLER = CLSCTX.INPROC_HANDLER;
@@ -12984,7 +13046,6 @@ pub const IContinueCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PRINTFLAG = extern enum(u32) {
     MAYBOTHERUSER = 1,
     PROMPTUSER = 2,
@@ -12994,6 +13055,25 @@ pub const PRINTFLAG = extern enum(u32) {
     FORCEPROPERTIES = 32,
     PRINTTOFILE = 64,
     _,
+    pub fn initFlags(o: struct {
+        MAYBOTHERUSER: u1 = 0,
+        PROMPTUSER: u1 = 0,
+        USERMAYCHANGEPRINTER: u1 = 0,
+        RECOMPOSETODEVICE: u1 = 0,
+        DONTACTUALLYPRINT: u1 = 0,
+        FORCEPROPERTIES: u1 = 0,
+        PRINTTOFILE: u1 = 0,
+    }) PRINTFLAG {
+        return @intToEnum(PRINTFLAG,
+              (if (o.MAYBOTHERUSER == 1) @enumToInt(PRINTFLAG.MAYBOTHERUSER) else 0)
+            | (if (o.PROMPTUSER == 1) @enumToInt(PRINTFLAG.PROMPTUSER) else 0)
+            | (if (o.USERMAYCHANGEPRINTER == 1) @enumToInt(PRINTFLAG.USERMAYCHANGEPRINTER) else 0)
+            | (if (o.RECOMPOSETODEVICE == 1) @enumToInt(PRINTFLAG.RECOMPOSETODEVICE) else 0)
+            | (if (o.DONTACTUALLYPRINT == 1) @enumToInt(PRINTFLAG.DONTACTUALLYPRINT) else 0)
+            | (if (o.FORCEPROPERTIES == 1) @enumToInt(PRINTFLAG.FORCEPROPERTIES) else 0)
+            | (if (o.PRINTTOFILE == 1) @enumToInt(PRINTFLAG.PRINTTOFILE) else 0)
+        );
+    }
 };
 pub const PRINTFLAG_MAYBOTHERUSER = PRINTFLAG.MAYBOTHERUSER;
 pub const PRINTFLAG_PROMPTUSER = PRINTFLAG.PROMPTUSER;
@@ -15461,13 +15541,25 @@ pub const IAccessibilityDockingService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const COINIT = extern enum(u32) {
     APARTMENTTHREADED = 2,
     MULTITHREADED = 0,
     DISABLE_OLE1DDE = 4,
     SPEED_OVER_MEMORY = 8,
     _,
+    pub fn initFlags(o: struct {
+        APARTMENTTHREADED: u1 = 0,
+        MULTITHREADED: u1 = 0,
+        DISABLE_OLE1DDE: u1 = 0,
+        SPEED_OVER_MEMORY: u1 = 0,
+    }) COINIT {
+        return @intToEnum(COINIT,
+              (if (o.APARTMENTTHREADED == 1) @enumToInt(COINIT.APARTMENTTHREADED) else 0)
+            | (if (o.MULTITHREADED == 1) @enumToInt(COINIT.MULTITHREADED) else 0)
+            | (if (o.DISABLE_OLE1DDE == 1) @enumToInt(COINIT.DISABLE_OLE1DDE) else 0)
+            | (if (o.SPEED_OVER_MEMORY == 1) @enumToInt(COINIT.SPEED_OVER_MEMORY) else 0)
+        );
+    }
 };
 pub const COINIT_APARTMENTTHREADED = COINIT.APARTMENTTHREADED;
 pub const COINIT_MULTITHREADED = COINIT.MULTITHREADED;
@@ -15485,7 +15577,6 @@ pub const SD_ACCESSPERMISSIONS = COMSD.ACCESSPERMISSIONS;
 pub const SD_LAUNCHRESTRICTIONS = COMSD.LAUNCHRESTRICTIONS;
 pub const SD_ACCESSRESTRICTIONS = COMSD.ACCESSRESTRICTIONS;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const UPDFCACHE_FLAGS = extern enum(u32) {
     ALL = 2147483647,
     ALLBUTNODATACACHE = 2147483646,
@@ -15497,6 +15588,29 @@ pub const UPDFCACHE_FLAGS = extern enum(u32) {
     ONSTOPCACHE = 4,
     IFBLANKORONSAVECACHE = 18,
     _,
+    pub fn initFlags(o: struct {
+        ALL: u1 = 0,
+        ALLBUTNODATACACHE: u1 = 0,
+        NORMALCACHE: u1 = 0,
+        IFBLANK: u1 = 0,
+        ONLYIFBLANK: u1 = 0,
+        NODATACACHE: u1 = 0,
+        ONSAVECACHE: u1 = 0,
+        ONSTOPCACHE: u1 = 0,
+        IFBLANKORONSAVECACHE: u1 = 0,
+    }) UPDFCACHE_FLAGS {
+        return @intToEnum(UPDFCACHE_FLAGS,
+              (if (o.ALL == 1) @enumToInt(UPDFCACHE_FLAGS.ALL) else 0)
+            | (if (o.ALLBUTNODATACACHE == 1) @enumToInt(UPDFCACHE_FLAGS.ALLBUTNODATACACHE) else 0)
+            | (if (o.NORMALCACHE == 1) @enumToInt(UPDFCACHE_FLAGS.NORMALCACHE) else 0)
+            | (if (o.IFBLANK == 1) @enumToInt(UPDFCACHE_FLAGS.IFBLANK) else 0)
+            | (if (o.ONLYIFBLANK == 1) @enumToInt(UPDFCACHE_FLAGS.ONLYIFBLANK) else 0)
+            | (if (o.NODATACACHE == 1) @enumToInt(UPDFCACHE_FLAGS.NODATACACHE) else 0)
+            | (if (o.ONSAVECACHE == 1) @enumToInt(UPDFCACHE_FLAGS.ONSAVECACHE) else 0)
+            | (if (o.ONSTOPCACHE == 1) @enumToInt(UPDFCACHE_FLAGS.ONSTOPCACHE) else 0)
+            | (if (o.IFBLANKORONSAVECACHE == 1) @enumToInt(UPDFCACHE_FLAGS.IFBLANKORONSAVECACHE) else 0)
+        );
+    }
 };
 pub const UPDFCACHE_ALL = UPDFCACHE_FLAGS.ALL;
 pub const UPDFCACHE_ALLBUTNODATACACHE = UPDFCACHE_FLAGS.ALLBUTNODATACACHE;
@@ -15508,7 +15622,6 @@ pub const UPDFCACHE_ONSAVECACHE = UPDFCACHE_FLAGS.ONSAVECACHE;
 pub const UPDFCACHE_ONSTOPCACHE = UPDFCACHE_FLAGS.ONSTOPCACHE;
 pub const UPDFCACHE_IFBLANKORONSAVECACHE = UPDFCACHE_FLAGS.IFBLANKORONSAVECACHE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const URI_CREATE_FLAGS = extern enum(u32) {
     ALLOW_RELATIVE = 1,
     ALLOW_IMPLICIT_WILDCARD_SCHEME = 2,
@@ -15529,6 +15642,47 @@ pub const URI_CREATE_FLAGS = extern enum(u32) {
     NORMALIZE_INTL_CHARACTERS = 65536,
     CANONICALIZE_ABSOLUTE = 131072,
     _,
+    pub fn initFlags(o: struct {
+        ALLOW_RELATIVE: u1 = 0,
+        ALLOW_IMPLICIT_WILDCARD_SCHEME: u1 = 0,
+        ALLOW_IMPLICIT_FILE_SCHEME: u1 = 0,
+        NOFRAG: u1 = 0,
+        NO_CANONICALIZE: u1 = 0,
+        CANONICALIZE: u1 = 0,
+        FILE_USE_DOS_PATH: u1 = 0,
+        DECODE_EXTRA_INFO: u1 = 0,
+        NO_DECODE_EXTRA_INFO: u1 = 0,
+        CRACK_UNKNOWN_SCHEMES: u1 = 0,
+        NO_CRACK_UNKNOWN_SCHEMES: u1 = 0,
+        PRE_PROCESS_HTML_URI: u1 = 0,
+        NO_PRE_PROCESS_HTML_URI: u1 = 0,
+        IE_SETTINGS: u1 = 0,
+        NO_IE_SETTINGS: u1 = 0,
+        NO_ENCODE_FORBIDDEN_CHARACTERS: u1 = 0,
+        NORMALIZE_INTL_CHARACTERS: u1 = 0,
+        CANONICALIZE_ABSOLUTE: u1 = 0,
+    }) URI_CREATE_FLAGS {
+        return @intToEnum(URI_CREATE_FLAGS,
+              (if (o.ALLOW_RELATIVE == 1) @enumToInt(URI_CREATE_FLAGS.ALLOW_RELATIVE) else 0)
+            | (if (o.ALLOW_IMPLICIT_WILDCARD_SCHEME == 1) @enumToInt(URI_CREATE_FLAGS.ALLOW_IMPLICIT_WILDCARD_SCHEME) else 0)
+            | (if (o.ALLOW_IMPLICIT_FILE_SCHEME == 1) @enumToInt(URI_CREATE_FLAGS.ALLOW_IMPLICIT_FILE_SCHEME) else 0)
+            | (if (o.NOFRAG == 1) @enumToInt(URI_CREATE_FLAGS.NOFRAG) else 0)
+            | (if (o.NO_CANONICALIZE == 1) @enumToInt(URI_CREATE_FLAGS.NO_CANONICALIZE) else 0)
+            | (if (o.CANONICALIZE == 1) @enumToInt(URI_CREATE_FLAGS.CANONICALIZE) else 0)
+            | (if (o.FILE_USE_DOS_PATH == 1) @enumToInt(URI_CREATE_FLAGS.FILE_USE_DOS_PATH) else 0)
+            | (if (o.DECODE_EXTRA_INFO == 1) @enumToInt(URI_CREATE_FLAGS.DECODE_EXTRA_INFO) else 0)
+            | (if (o.NO_DECODE_EXTRA_INFO == 1) @enumToInt(URI_CREATE_FLAGS.NO_DECODE_EXTRA_INFO) else 0)
+            | (if (o.CRACK_UNKNOWN_SCHEMES == 1) @enumToInt(URI_CREATE_FLAGS.CRACK_UNKNOWN_SCHEMES) else 0)
+            | (if (o.NO_CRACK_UNKNOWN_SCHEMES == 1) @enumToInt(URI_CREATE_FLAGS.NO_CRACK_UNKNOWN_SCHEMES) else 0)
+            | (if (o.PRE_PROCESS_HTML_URI == 1) @enumToInt(URI_CREATE_FLAGS.PRE_PROCESS_HTML_URI) else 0)
+            | (if (o.NO_PRE_PROCESS_HTML_URI == 1) @enumToInt(URI_CREATE_FLAGS.NO_PRE_PROCESS_HTML_URI) else 0)
+            | (if (o.IE_SETTINGS == 1) @enumToInt(URI_CREATE_FLAGS.IE_SETTINGS) else 0)
+            | (if (o.NO_IE_SETTINGS == 1) @enumToInt(URI_CREATE_FLAGS.NO_IE_SETTINGS) else 0)
+            | (if (o.NO_ENCODE_FORBIDDEN_CHARACTERS == 1) @enumToInt(URI_CREATE_FLAGS.NO_ENCODE_FORBIDDEN_CHARACTERS) else 0)
+            | (if (o.NORMALIZE_INTL_CHARACTERS == 1) @enumToInt(URI_CREATE_FLAGS.NORMALIZE_INTL_CHARACTERS) else 0)
+            | (if (o.CANONICALIZE_ABSOLUTE == 1) @enumToInt(URI_CREATE_FLAGS.CANONICALIZE_ABSOLUTE) else 0)
+        );
+    }
 };
 pub const Uri_CREATE_ALLOW_RELATIVE = URI_CREATE_FLAGS.ALLOW_RELATIVE;
 pub const Uri_CREATE_ALLOW_IMPLICIT_WILDCARD_SCHEME = URI_CREATE_FLAGS.ALLOW_IMPLICIT_WILDCARD_SCHEME;

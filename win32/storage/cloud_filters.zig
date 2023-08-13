@@ -16,7 +16,6 @@ pub const CF_FS_METADATA = extern struct {
     FileSize: LARGE_INTEGER,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_PLACEHOLDER_CREATE_FLAGS = extern enum(u32) {
     NONE = 0,
     DISABLE_ON_DEMAND_POPULATION = 1,
@@ -24,6 +23,21 @@ pub const CF_PLACEHOLDER_CREATE_FLAGS = extern enum(u32) {
     SUPERSEDE = 4,
     ALWAYS_FULL = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        DISABLE_ON_DEMAND_POPULATION: u1 = 0,
+        MARK_IN_SYNC: u1 = 0,
+        SUPERSEDE: u1 = 0,
+        ALWAYS_FULL: u1 = 0,
+    }) CF_PLACEHOLDER_CREATE_FLAGS {
+        return @intToEnum(CF_PLACEHOLDER_CREATE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_PLACEHOLDER_CREATE_FLAGS.NONE) else 0)
+            | (if (o.DISABLE_ON_DEMAND_POPULATION == 1) @enumToInt(CF_PLACEHOLDER_CREATE_FLAGS.DISABLE_ON_DEMAND_POPULATION) else 0)
+            | (if (o.MARK_IN_SYNC == 1) @enumToInt(CF_PLACEHOLDER_CREATE_FLAGS.MARK_IN_SYNC) else 0)
+            | (if (o.SUPERSEDE == 1) @enumToInt(CF_PLACEHOLDER_CREATE_FLAGS.SUPERSEDE) else 0)
+            | (if (o.ALWAYS_FULL == 1) @enumToInt(CF_PLACEHOLDER_CREATE_FLAGS.ALWAYS_FULL) else 0)
+        );
+    }
 };
 pub const CF_PLACEHOLDER_CREATE_FLAG_NONE = CF_PLACEHOLDER_CREATE_FLAGS.NONE;
 pub const CF_PLACEHOLDER_CREATE_FLAG_DISABLE_ON_DEMAND_POPULATION = CF_PLACEHOLDER_CREATE_FLAGS.DISABLE_ON_DEMAND_POPULATION;
@@ -41,7 +55,6 @@ pub const CF_PLACEHOLDER_CREATE_INFO = extern struct {
     CreateUsn: i64,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_SYNC_PROVIDER_STATUS = extern enum(u32) {
     DISCONNECTED = 0,
     IDLE = 1,
@@ -55,6 +68,33 @@ pub const CF_SYNC_PROVIDER_STATUS = extern enum(u32) {
     TERMINATED = 3221225473,
     ERROR = 3221225474,
     _,
+    pub fn initFlags(o: struct {
+        DISCONNECTED: u1 = 0,
+        IDLE: u1 = 0,
+        POPULATE_NAMESPACE: u1 = 0,
+        POPULATE_METADATA: u1 = 0,
+        POPULATE_CONTENT: u1 = 0,
+        SYNC_INCREMENTAL: u1 = 0,
+        SYNC_FULL: u1 = 0,
+        CONNECTIVITY_LOST: u1 = 0,
+        CLEAR_FLAGS: u1 = 0,
+        TERMINATED: u1 = 0,
+        ERROR: u1 = 0,
+    }) CF_SYNC_PROVIDER_STATUS {
+        return @intToEnum(CF_SYNC_PROVIDER_STATUS,
+              (if (o.DISCONNECTED == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.DISCONNECTED) else 0)
+            | (if (o.IDLE == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.IDLE) else 0)
+            | (if (o.POPULATE_NAMESPACE == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.POPULATE_NAMESPACE) else 0)
+            | (if (o.POPULATE_METADATA == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.POPULATE_METADATA) else 0)
+            | (if (o.POPULATE_CONTENT == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.POPULATE_CONTENT) else 0)
+            | (if (o.SYNC_INCREMENTAL == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.SYNC_INCREMENTAL) else 0)
+            | (if (o.SYNC_FULL == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.SYNC_FULL) else 0)
+            | (if (o.CONNECTIVITY_LOST == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.CONNECTIVITY_LOST) else 0)
+            | (if (o.CLEAR_FLAGS == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.CLEAR_FLAGS) else 0)
+            | (if (o.TERMINATED == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.TERMINATED) else 0)
+            | (if (o.ERROR == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.ERROR) else 0)
+        );
+    }
 };
 pub const CF_PROVIDER_STATUS_DISCONNECTED = CF_SYNC_PROVIDER_STATUS.DISCONNECTED;
 pub const CF_PROVIDER_STATUS_IDLE = CF_SYNC_PROVIDER_STATUS.IDLE;
@@ -84,13 +124,25 @@ pub const CF_PLATFORM_INFO = extern struct {
     IntegrationNumber: u32,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_REGISTER_FLAGS = extern enum(u32) {
     NONE = 0,
     UPDATE = 1,
     DISABLE_ON_DEMAND_POPULATION_ON_ROOT = 2,
     MARK_IN_SYNC_ON_ROOT = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        UPDATE: u1 = 0,
+        DISABLE_ON_DEMAND_POPULATION_ON_ROOT: u1 = 0,
+        MARK_IN_SYNC_ON_ROOT: u1 = 0,
+    }) CF_REGISTER_FLAGS {
+        return @intToEnum(CF_REGISTER_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_REGISTER_FLAGS.NONE) else 0)
+            | (if (o.UPDATE == 1) @enumToInt(CF_REGISTER_FLAGS.UPDATE) else 0)
+            | (if (o.DISABLE_ON_DEMAND_POPULATION_ON_ROOT == 1) @enumToInt(CF_REGISTER_FLAGS.DISABLE_ON_DEMAND_POPULATION_ON_ROOT) else 0)
+            | (if (o.MARK_IN_SYNC_ON_ROOT == 1) @enumToInt(CF_REGISTER_FLAGS.MARK_IN_SYNC_ON_ROOT) else 0)
+        );
+    }
 };
 pub const CF_REGISTER_FLAG_NONE = CF_REGISTER_FLAGS.NONE;
 pub const CF_REGISTER_FLAG_UPDATE = CF_REGISTER_FLAGS.UPDATE;
@@ -112,13 +164,25 @@ pub const CF_HYDRATION_POLICY_PRIMARY_USHORT = extern struct {
     us: u16,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_HYDRATION_POLICY_MODIFIER = extern enum(u32) {
     NONE = 0,
     VALIDATION_REQUIRED = 1,
     STREAMING_ALLOWED = 2,
     AUTO_DEHYDRATION_ALLOWED = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        VALIDATION_REQUIRED: u1 = 0,
+        STREAMING_ALLOWED: u1 = 0,
+        AUTO_DEHYDRATION_ALLOWED: u1 = 0,
+    }) CF_HYDRATION_POLICY_MODIFIER {
+        return @intToEnum(CF_HYDRATION_POLICY_MODIFIER,
+              (if (o.NONE == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.NONE) else 0)
+            | (if (o.VALIDATION_REQUIRED == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.VALIDATION_REQUIRED) else 0)
+            | (if (o.STREAMING_ALLOWED == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.STREAMING_ALLOWED) else 0)
+            | (if (o.AUTO_DEHYDRATION_ALLOWED == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.AUTO_DEHYDRATION_ALLOWED) else 0)
+        );
+    }
 };
 pub const CF_HYDRATION_POLICY_MODIFIER_NONE = CF_HYDRATION_POLICY_MODIFIER.NONE;
 pub const CF_HYDRATION_POLICY_MODIFIER_VALIDATION_REQUIRED = CF_HYDRATION_POLICY_MODIFIER.VALIDATION_REQUIRED;
@@ -147,10 +211,16 @@ pub const CF_POPULATION_POLICY_PRIMARY_USHORT = extern struct {
     us: u16,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_POPULATION_POLICY_MODIFIER = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_POPULATION_POLICY_MODIFIER {
+        return @intToEnum(CF_POPULATION_POLICY_MODIFIER,
+              (if (o.E == 1) @enumToInt(CF_POPULATION_POLICY_MODIFIER.E) else 0)
+        );
+    }
 };
 pub const CF_POPULATION_POLICY_MODIFIER_NONE = CF_POPULATION_POLICY_MODIFIER.E;
 
@@ -174,7 +244,6 @@ pub const CF_PLACEHOLDER_MANAGEMENT_POLICY_CREATE_UNRESTRICTED = CF_PLACEHOLDER_
 pub const CF_PLACEHOLDER_MANAGEMENT_POLICY_CONVERT_TO_UNRESTRICTED = CF_PLACEHOLDER_MANAGEMENT_POLICY.CONVERT_TO_UNRESTRICTED;
 pub const CF_PLACEHOLDER_MANAGEMENT_POLICY_UPDATE_UNRESTRICTED = CF_PLACEHOLDER_MANAGEMENT_POLICY.UPDATE_UNRESTRICTED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_INSYNC_POLICY = extern enum(u32) {
     NONE = 0,
     TRACK_FILE_CREATION_TIME = 1,
@@ -192,6 +261,41 @@ pub const CF_INSYNC_POLICY = extern enum(u32) {
     TRACK_ALL = 16777215,
     PRESERVE_INSYNC_FOR_SYNC_ENGINE = 2147483648,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        TRACK_FILE_CREATION_TIME: u1 = 0,
+        TRACK_FILE_READONLY_ATTRIBUTE: u1 = 0,
+        TRACK_FILE_HIDDEN_ATTRIBUTE: u1 = 0,
+        TRACK_FILE_SYSTEM_ATTRIBUTE: u1 = 0,
+        TRACK_DIRECTORY_CREATION_TIME: u1 = 0,
+        TRACK_DIRECTORY_READONLY_ATTRIBUTE: u1 = 0,
+        TRACK_DIRECTORY_HIDDEN_ATTRIBUTE: u1 = 0,
+        TRACK_DIRECTORY_SYSTEM_ATTRIBUTE: u1 = 0,
+        TRACK_FILE_LAST_WRITE_TIME: u1 = 0,
+        TRACK_DIRECTORY_LAST_WRITE_TIME: u1 = 0,
+        TRACK_FILE_ALL: u1 = 0,
+        TRACK_DIRECTORY_ALL: u1 = 0,
+        TRACK_ALL: u1 = 0,
+        PRESERVE_INSYNC_FOR_SYNC_ENGINE: u1 = 0,
+    }) CF_INSYNC_POLICY {
+        return @intToEnum(CF_INSYNC_POLICY,
+              (if (o.NONE == 1) @enumToInt(CF_INSYNC_POLICY.NONE) else 0)
+            | (if (o.TRACK_FILE_CREATION_TIME == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_FILE_CREATION_TIME) else 0)
+            | (if (o.TRACK_FILE_READONLY_ATTRIBUTE == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_FILE_READONLY_ATTRIBUTE) else 0)
+            | (if (o.TRACK_FILE_HIDDEN_ATTRIBUTE == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_FILE_HIDDEN_ATTRIBUTE) else 0)
+            | (if (o.TRACK_FILE_SYSTEM_ATTRIBUTE == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_FILE_SYSTEM_ATTRIBUTE) else 0)
+            | (if (o.TRACK_DIRECTORY_CREATION_TIME == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_DIRECTORY_CREATION_TIME) else 0)
+            | (if (o.TRACK_DIRECTORY_READONLY_ATTRIBUTE == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_DIRECTORY_READONLY_ATTRIBUTE) else 0)
+            | (if (o.TRACK_DIRECTORY_HIDDEN_ATTRIBUTE == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_DIRECTORY_HIDDEN_ATTRIBUTE) else 0)
+            | (if (o.TRACK_DIRECTORY_SYSTEM_ATTRIBUTE == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_DIRECTORY_SYSTEM_ATTRIBUTE) else 0)
+            | (if (o.TRACK_FILE_LAST_WRITE_TIME == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_FILE_LAST_WRITE_TIME) else 0)
+            | (if (o.TRACK_DIRECTORY_LAST_WRITE_TIME == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_DIRECTORY_LAST_WRITE_TIME) else 0)
+            | (if (o.TRACK_FILE_ALL == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_FILE_ALL) else 0)
+            | (if (o.TRACK_DIRECTORY_ALL == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_DIRECTORY_ALL) else 0)
+            | (if (o.TRACK_ALL == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_ALL) else 0)
+            | (if (o.PRESERVE_INSYNC_FOR_SYNC_ENGINE == 1) @enumToInt(CF_INSYNC_POLICY.PRESERVE_INSYNC_FOR_SYNC_ENGINE) else 0)
+        );
+    }
 };
 pub const CF_INSYNC_POLICY_NONE = CF_INSYNC_POLICY.NONE;
 pub const CF_INSYNC_POLICY_TRACK_FILE_CREATION_TIME = CF_INSYNC_POLICY.TRACK_FILE_CREATION_TIME;
@@ -209,11 +313,19 @@ pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_ALL = CF_INSYNC_POLICY.TRACK_DIRECTOR
 pub const CF_INSYNC_POLICY_TRACK_ALL = CF_INSYNC_POLICY.TRACK_ALL;
 pub const CF_INSYNC_POLICY_PRESERVE_INSYNC_FOR_SYNC_ENGINE = CF_INSYNC_POLICY.PRESERVE_INSYNC_FOR_SYNC_ENGINE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_HARDLINK_POLICY = extern enum(u32) {
     NONE = 0,
     ALLOWED = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        ALLOWED: u1 = 0,
+    }) CF_HARDLINK_POLICY {
+        return @intToEnum(CF_HARDLINK_POLICY,
+              (if (o.NONE == 1) @enumToInt(CF_HARDLINK_POLICY.NONE) else 0)
+            | (if (o.ALLOWED == 1) @enumToInt(CF_HARDLINK_POLICY.ALLOWED) else 0)
+        );
+    }
 };
 pub const CF_HARDLINK_POLICY_NONE = CF_HARDLINK_POLICY.NONE;
 pub const CF_HARDLINK_POLICY_ALLOWED = CF_HARDLINK_POLICY.ALLOWED;
@@ -260,119 +372,223 @@ pub const CF_CALLBACK_INFO = extern struct {
     RequestKey: LARGE_INTEGER,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CALLBACK_CANCEL_FLAGS = extern enum(u32) {
     NONE = 0,
     IO_TIMEOUT = 1,
     IO_ABORTED = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        IO_TIMEOUT: u1 = 0,
+        IO_ABORTED: u1 = 0,
+    }) CF_CALLBACK_CANCEL_FLAGS {
+        return @intToEnum(CF_CALLBACK_CANCEL_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_CANCEL_FLAGS.NONE) else 0)
+            | (if (o.IO_TIMEOUT == 1) @enumToInt(CF_CALLBACK_CANCEL_FLAGS.IO_TIMEOUT) else 0)
+            | (if (o.IO_ABORTED == 1) @enumToInt(CF_CALLBACK_CANCEL_FLAGS.IO_ABORTED) else 0)
+        );
+    }
 };
 pub const CF_CALLBACK_CANCEL_FLAG_NONE = CF_CALLBACK_CANCEL_FLAGS.NONE;
 pub const CF_CALLBACK_CANCEL_FLAG_IO_TIMEOUT = CF_CALLBACK_CANCEL_FLAGS.IO_TIMEOUT;
 pub const CF_CALLBACK_CANCEL_FLAG_IO_ABORTED = CF_CALLBACK_CANCEL_FLAGS.IO_ABORTED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CALLBACK_FETCH_DATA_FLAGS = extern enum(u32) {
     NONE = 0,
     RECOVERY = 1,
     EXPLICIT_HYDRATION = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        RECOVERY: u1 = 0,
+        EXPLICIT_HYDRATION: u1 = 0,
+    }) CF_CALLBACK_FETCH_DATA_FLAGS {
+        return @intToEnum(CF_CALLBACK_FETCH_DATA_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_FETCH_DATA_FLAGS.NONE) else 0)
+            | (if (o.RECOVERY == 1) @enumToInt(CF_CALLBACK_FETCH_DATA_FLAGS.RECOVERY) else 0)
+            | (if (o.EXPLICIT_HYDRATION == 1) @enumToInt(CF_CALLBACK_FETCH_DATA_FLAGS.EXPLICIT_HYDRATION) else 0)
+        );
+    }
 };
 pub const CF_CALLBACK_FETCH_DATA_FLAG_NONE = CF_CALLBACK_FETCH_DATA_FLAGS.NONE;
 pub const CF_CALLBACK_FETCH_DATA_FLAG_RECOVERY = CF_CALLBACK_FETCH_DATA_FLAGS.RECOVERY;
 pub const CF_CALLBACK_FETCH_DATA_FLAG_EXPLICIT_HYDRATION = CF_CALLBACK_FETCH_DATA_FLAGS.EXPLICIT_HYDRATION;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CALLBACK_VALIDATE_DATA_FLAGS = extern enum(u32) {
     NONE = 0,
     EXPLICIT_HYDRATION = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        EXPLICIT_HYDRATION: u1 = 0,
+    }) CF_CALLBACK_VALIDATE_DATA_FLAGS {
+        return @intToEnum(CF_CALLBACK_VALIDATE_DATA_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_VALIDATE_DATA_FLAGS.NONE) else 0)
+            | (if (o.EXPLICIT_HYDRATION == 1) @enumToInt(CF_CALLBACK_VALIDATE_DATA_FLAGS.EXPLICIT_HYDRATION) else 0)
+        );
+    }
 };
 pub const CF_CALLBACK_VALIDATE_DATA_FLAG_NONE = CF_CALLBACK_VALIDATE_DATA_FLAGS.NONE;
 pub const CF_CALLBACK_VALIDATE_DATA_FLAG_EXPLICIT_HYDRATION = CF_CALLBACK_VALIDATE_DATA_FLAGS.EXPLICIT_HYDRATION;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS {
+        return @intToEnum(CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS,
+              (if (o.E == 1) @enumToInt(CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS.E) else 0)
+        );
+    }
 };
 pub const CF_CALLBACK_FETCH_PLACEHOLDERS_FLAG_NONE = CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CALLBACK_OPEN_COMPLETION_FLAGS = extern enum(u32) {
     NONE = 0,
     PLACEHOLDER_UNKNOWN = 1,
     PLACEHOLDER_UNSUPPORTED = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        PLACEHOLDER_UNKNOWN: u1 = 0,
+        PLACEHOLDER_UNSUPPORTED: u1 = 0,
+    }) CF_CALLBACK_OPEN_COMPLETION_FLAGS {
+        return @intToEnum(CF_CALLBACK_OPEN_COMPLETION_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_OPEN_COMPLETION_FLAGS.NONE) else 0)
+            | (if (o.PLACEHOLDER_UNKNOWN == 1) @enumToInt(CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNKNOWN) else 0)
+            | (if (o.PLACEHOLDER_UNSUPPORTED == 1) @enumToInt(CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNSUPPORTED) else 0)
+        );
+    }
 };
 pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_NONE = CF_CALLBACK_OPEN_COMPLETION_FLAGS.NONE;
 pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_PLACEHOLDER_UNKNOWN = CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNKNOWN;
 pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_PLACEHOLDER_UNSUPPORTED = CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNSUPPORTED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CALLBACK_CLOSE_COMPLETION_FLAGS = extern enum(u32) {
     NONE = 0,
     DELETED = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        DELETED: u1 = 0,
+    }) CF_CALLBACK_CLOSE_COMPLETION_FLAGS {
+        return @intToEnum(CF_CALLBACK_CLOSE_COMPLETION_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_CLOSE_COMPLETION_FLAGS.NONE) else 0)
+            | (if (o.DELETED == 1) @enumToInt(CF_CALLBACK_CLOSE_COMPLETION_FLAGS.DELETED) else 0)
+        );
+    }
 };
 pub const CF_CALLBACK_CLOSE_COMPLETION_FLAG_NONE = CF_CALLBACK_CLOSE_COMPLETION_FLAGS.NONE;
 pub const CF_CALLBACK_CLOSE_COMPLETION_FLAG_DELETED = CF_CALLBACK_CLOSE_COMPLETION_FLAGS.DELETED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CALLBACK_DEHYDRATE_FLAGS = extern enum(u32) {
     NONE = 0,
     BACKGROUND = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        BACKGROUND: u1 = 0,
+    }) CF_CALLBACK_DEHYDRATE_FLAGS {
+        return @intToEnum(CF_CALLBACK_DEHYDRATE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_DEHYDRATE_FLAGS.NONE) else 0)
+            | (if (o.BACKGROUND == 1) @enumToInt(CF_CALLBACK_DEHYDRATE_FLAGS.BACKGROUND) else 0)
+        );
+    }
 };
 pub const CF_CALLBACK_DEHYDRATE_FLAG_NONE = CF_CALLBACK_DEHYDRATE_FLAGS.NONE;
 pub const CF_CALLBACK_DEHYDRATE_FLAG_BACKGROUND = CF_CALLBACK_DEHYDRATE_FLAGS.BACKGROUND;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS = extern enum(u32) {
     NONE = 0,
     BACKGROUND = 1,
     DEHYDRATED = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        BACKGROUND: u1 = 0,
+        DEHYDRATED: u1 = 0,
+    }) CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS {
+        return @intToEnum(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.NONE) else 0)
+            | (if (o.BACKGROUND == 1) @enumToInt(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.BACKGROUND) else 0)
+            | (if (o.DEHYDRATED == 1) @enumToInt(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.DEHYDRATED) else 0)
+        );
+    }
 };
 pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_NONE = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.NONE;
 pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_BACKGROUND = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.BACKGROUND;
 pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_DEHYDRATED = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.DEHYDRATED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CALLBACK_DELETE_FLAGS = extern enum(u32) {
     NONE = 0,
     IS_DIRECTORY = 1,
     IS_UNDELETE = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        IS_DIRECTORY: u1 = 0,
+        IS_UNDELETE: u1 = 0,
+    }) CF_CALLBACK_DELETE_FLAGS {
+        return @intToEnum(CF_CALLBACK_DELETE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_DELETE_FLAGS.NONE) else 0)
+            | (if (o.IS_DIRECTORY == 1) @enumToInt(CF_CALLBACK_DELETE_FLAGS.IS_DIRECTORY) else 0)
+            | (if (o.IS_UNDELETE == 1) @enumToInt(CF_CALLBACK_DELETE_FLAGS.IS_UNDELETE) else 0)
+        );
+    }
 };
 pub const CF_CALLBACK_DELETE_FLAG_NONE = CF_CALLBACK_DELETE_FLAGS.NONE;
 pub const CF_CALLBACK_DELETE_FLAG_IS_DIRECTORY = CF_CALLBACK_DELETE_FLAGS.IS_DIRECTORY;
 pub const CF_CALLBACK_DELETE_FLAG_IS_UNDELETE = CF_CALLBACK_DELETE_FLAGS.IS_UNDELETE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CALLBACK_DELETE_COMPLETION_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_CALLBACK_DELETE_COMPLETION_FLAGS {
+        return @intToEnum(CF_CALLBACK_DELETE_COMPLETION_FLAGS,
+              (if (o.E == 1) @enumToInt(CF_CALLBACK_DELETE_COMPLETION_FLAGS.E) else 0)
+        );
+    }
 };
 pub const CF_CALLBACK_DELETE_COMPLETION_FLAG_NONE = CF_CALLBACK_DELETE_COMPLETION_FLAGS.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CALLBACK_RENAME_FLAGS = extern enum(u32) {
     NONE = 0,
     IS_DIRECTORY = 1,
     SOURCE_IN_SCOPE = 2,
     TARGET_IN_SCOPE = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        IS_DIRECTORY: u1 = 0,
+        SOURCE_IN_SCOPE: u1 = 0,
+        TARGET_IN_SCOPE: u1 = 0,
+    }) CF_CALLBACK_RENAME_FLAGS {
+        return @intToEnum(CF_CALLBACK_RENAME_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_RENAME_FLAGS.NONE) else 0)
+            | (if (o.IS_DIRECTORY == 1) @enumToInt(CF_CALLBACK_RENAME_FLAGS.IS_DIRECTORY) else 0)
+            | (if (o.SOURCE_IN_SCOPE == 1) @enumToInt(CF_CALLBACK_RENAME_FLAGS.SOURCE_IN_SCOPE) else 0)
+            | (if (o.TARGET_IN_SCOPE == 1) @enumToInt(CF_CALLBACK_RENAME_FLAGS.TARGET_IN_SCOPE) else 0)
+        );
+    }
 };
 pub const CF_CALLBACK_RENAME_FLAG_NONE = CF_CALLBACK_RENAME_FLAGS.NONE;
 pub const CF_CALLBACK_RENAME_FLAG_IS_DIRECTORY = CF_CALLBACK_RENAME_FLAGS.IS_DIRECTORY;
 pub const CF_CALLBACK_RENAME_FLAG_SOURCE_IN_SCOPE = CF_CALLBACK_RENAME_FLAGS.SOURCE_IN_SCOPE;
 pub const CF_CALLBACK_RENAME_FLAG_TARGET_IN_SCOPE = CF_CALLBACK_RENAME_FLAGS.TARGET_IN_SCOPE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CALLBACK_RENAME_COMPLETION_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_CALLBACK_RENAME_COMPLETION_FLAGS {
+        return @intToEnum(CF_CALLBACK_RENAME_COMPLETION_FLAGS,
+              (if (o.E == 1) @enumToInt(CF_CALLBACK_RENAME_COMPLETION_FLAGS.E) else 0)
+        );
+    }
 };
 pub const CF_CALLBACK_RENAME_COMPLETION_FLAG_NONE = CF_CALLBACK_RENAME_COMPLETION_FLAGS.E;
 
@@ -491,13 +707,25 @@ pub const CF_CALLBACK_REGISTRATION = extern struct {
     Callback: CF_CALLBACK,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CONNECT_FLAGS = extern enum(u32) {
     NONE = 0,
     REQUIRE_PROCESS_INFO = 2,
     REQUIRE_FULL_FILE_PATH = 4,
     BLOCK_SELF_IMPLICIT_HYDRATION = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        REQUIRE_PROCESS_INFO: u1 = 0,
+        REQUIRE_FULL_FILE_PATH: u1 = 0,
+        BLOCK_SELF_IMPLICIT_HYDRATION: u1 = 0,
+    }) CF_CONNECT_FLAGS {
+        return @intToEnum(CF_CONNECT_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_CONNECT_FLAGS.NONE) else 0)
+            | (if (o.REQUIRE_PROCESS_INFO == 1) @enumToInt(CF_CONNECT_FLAGS.REQUIRE_PROCESS_INFO) else 0)
+            | (if (o.REQUIRE_FULL_FILE_PATH == 1) @enumToInt(CF_CONNECT_FLAGS.REQUIRE_FULL_FILE_PATH) else 0)
+            | (if (o.BLOCK_SELF_IMPLICIT_HYDRATION == 1) @enumToInt(CF_CONNECT_FLAGS.BLOCK_SELF_IMPLICIT_HYDRATION) else 0)
+        );
+    }
 };
 pub const CF_CONNECT_FLAG_NONE = CF_CONNECT_FLAGS.NONE;
 pub const CF_CONNECT_FLAG_REQUIRE_PROCESS_INFO = CF_CONNECT_FLAGS.REQUIRE_PROCESS_INFO;
@@ -542,65 +770,119 @@ pub const CF_OPERATION_INFO = extern struct {
     RequestKey: LARGE_INTEGER,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_OPERATION_TRANSFER_DATA_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_OPERATION_TRANSFER_DATA_FLAGS {
+        return @intToEnum(CF_OPERATION_TRANSFER_DATA_FLAGS,
+              (if (o.E == 1) @enumToInt(CF_OPERATION_TRANSFER_DATA_FLAGS.E) else 0)
+        );
+    }
 };
 pub const CF_OPERATION_TRANSFER_DATA_FLAG_NONE = CF_OPERATION_TRANSFER_DATA_FLAGS.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_OPERATION_RETRIEVE_DATA_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_OPERATION_RETRIEVE_DATA_FLAGS {
+        return @intToEnum(CF_OPERATION_RETRIEVE_DATA_FLAGS,
+              (if (o.E == 1) @enumToInt(CF_OPERATION_RETRIEVE_DATA_FLAGS.E) else 0)
+        );
+    }
 };
 pub const CF_OPERATION_RETRIEVE_DATA_FLAG_NONE = CF_OPERATION_RETRIEVE_DATA_FLAGS.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_OPERATION_ACK_DATA_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_OPERATION_ACK_DATA_FLAGS {
+        return @intToEnum(CF_OPERATION_ACK_DATA_FLAGS,
+              (if (o.E == 1) @enumToInt(CF_OPERATION_ACK_DATA_FLAGS.E) else 0)
+        );
+    }
 };
 pub const CF_OPERATION_ACK_DATA_FLAG_NONE = CF_OPERATION_ACK_DATA_FLAGS.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_OPERATION_RESTART_HYDRATION_FLAGS = extern enum(u32) {
     NONE = 0,
     MARK_IN_SYNC = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        MARK_IN_SYNC: u1 = 0,
+    }) CF_OPERATION_RESTART_HYDRATION_FLAGS {
+        return @intToEnum(CF_OPERATION_RESTART_HYDRATION_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_OPERATION_RESTART_HYDRATION_FLAGS.NONE) else 0)
+            | (if (o.MARK_IN_SYNC == 1) @enumToInt(CF_OPERATION_RESTART_HYDRATION_FLAGS.MARK_IN_SYNC) else 0)
+        );
+    }
 };
 pub const CF_OPERATION_RESTART_HYDRATION_FLAG_NONE = CF_OPERATION_RESTART_HYDRATION_FLAGS.NONE;
 pub const CF_OPERATION_RESTART_HYDRATION_FLAG_MARK_IN_SYNC = CF_OPERATION_RESTART_HYDRATION_FLAGS.MARK_IN_SYNC;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS = extern enum(u32) {
     NONE = 0,
     STOP_ON_ERROR = 1,
     DISABLE_ON_DEMAND_POPULATION = 2,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        STOP_ON_ERROR: u1 = 0,
+        DISABLE_ON_DEMAND_POPULATION: u1 = 0,
+    }) CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS {
+        return @intToEnum(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.NONE) else 0)
+            | (if (o.STOP_ON_ERROR == 1) @enumToInt(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.STOP_ON_ERROR) else 0)
+            | (if (o.DISABLE_ON_DEMAND_POPULATION == 1) @enumToInt(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.DISABLE_ON_DEMAND_POPULATION) else 0)
+        );
+    }
 };
 pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_NONE = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.NONE;
 pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_STOP_ON_ERROR = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.STOP_ON_ERROR;
 pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_DISABLE_ON_DEMAND_POPULATION = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.DISABLE_ON_DEMAND_POPULATION;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_OPERATION_ACK_DEHYDRATE_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_OPERATION_ACK_DEHYDRATE_FLAGS {
+        return @intToEnum(CF_OPERATION_ACK_DEHYDRATE_FLAGS,
+              (if (o.E == 1) @enumToInt(CF_OPERATION_ACK_DEHYDRATE_FLAGS.E) else 0)
+        );
+    }
 };
 pub const CF_OPERATION_ACK_DEHYDRATE_FLAG_NONE = CF_OPERATION_ACK_DEHYDRATE_FLAGS.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_OPERATION_ACK_RENAME_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_OPERATION_ACK_RENAME_FLAGS {
+        return @intToEnum(CF_OPERATION_ACK_RENAME_FLAGS,
+              (if (o.E == 1) @enumToInt(CF_OPERATION_ACK_RENAME_FLAGS.E) else 0)
+        );
+    }
 };
 pub const CF_OPERATION_ACK_RENAME_FLAG_NONE = CF_OPERATION_ACK_RENAME_FLAGS.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_OPERATION_ACK_DELETE_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_OPERATION_ACK_DELETE_FLAGS {
+        return @intToEnum(CF_OPERATION_ACK_DELETE_FLAGS,
+              (if (o.E == 1) @enumToInt(CF_OPERATION_ACK_DELETE_FLAGS.E) else 0)
+        );
+    }
 };
 pub const CF_OPERATION_ACK_DELETE_FLAG_NONE = CF_OPERATION_ACK_DELETE_FLAGS.E;
 
@@ -658,16 +940,23 @@ pub const CF_OPERATION_PARAMETERS = extern struct {
     },
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CREATE_FLAGS = extern enum(u32) {
     NONE = 0,
     STOP_ON_ERROR = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        STOP_ON_ERROR: u1 = 0,
+    }) CF_CREATE_FLAGS {
+        return @intToEnum(CF_CREATE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_CREATE_FLAGS.NONE) else 0)
+            | (if (o.STOP_ON_ERROR == 1) @enumToInt(CF_CREATE_FLAGS.STOP_ON_ERROR) else 0)
+        );
+    }
 };
 pub const CF_CREATE_FLAG_NONE = CF_CREATE_FLAGS.NONE;
 pub const CF_CREATE_FLAG_STOP_ON_ERROR = CF_CREATE_FLAGS.STOP_ON_ERROR;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_OPEN_FILE_FLAGS = extern enum(u32) {
     NONE = 0,
     EXCLUSIVE = 1,
@@ -675,6 +964,21 @@ pub const CF_OPEN_FILE_FLAGS = extern enum(u32) {
     DELETE_ACCESS = 4,
     FOREGROUND = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        EXCLUSIVE: u1 = 0,
+        WRITE_ACCESS: u1 = 0,
+        DELETE_ACCESS: u1 = 0,
+        FOREGROUND: u1 = 0,
+    }) CF_OPEN_FILE_FLAGS {
+        return @intToEnum(CF_OPEN_FILE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_OPEN_FILE_FLAGS.NONE) else 0)
+            | (if (o.EXCLUSIVE == 1) @enumToInt(CF_OPEN_FILE_FLAGS.EXCLUSIVE) else 0)
+            | (if (o.WRITE_ACCESS == 1) @enumToInt(CF_OPEN_FILE_FLAGS.WRITE_ACCESS) else 0)
+            | (if (o.DELETE_ACCESS == 1) @enumToInt(CF_OPEN_FILE_FLAGS.DELETE_ACCESS) else 0)
+            | (if (o.FOREGROUND == 1) @enumToInt(CF_OPEN_FILE_FLAGS.FOREGROUND) else 0)
+        );
+    }
 };
 pub const CF_OPEN_FILE_FLAG_NONE = CF_OPEN_FILE_FLAGS.NONE;
 pub const CF_OPEN_FILE_FLAG_EXCLUSIVE = CF_OPEN_FILE_FLAGS.EXCLUSIVE;
@@ -687,7 +991,6 @@ pub const CF_FILE_RANGE = extern struct {
     Length: LARGE_INTEGER,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_CONVERT_FLAGS = extern enum(u32) {
     NONE = 0,
     MARK_IN_SYNC = 1,
@@ -695,6 +998,21 @@ pub const CF_CONVERT_FLAGS = extern enum(u32) {
     ENABLE_ON_DEMAND_POPULATION = 4,
     ALWAYS_FULL = 8,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        MARK_IN_SYNC: u1 = 0,
+        DEHYDRATE: u1 = 0,
+        ENABLE_ON_DEMAND_POPULATION: u1 = 0,
+        ALWAYS_FULL: u1 = 0,
+    }) CF_CONVERT_FLAGS {
+        return @intToEnum(CF_CONVERT_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_CONVERT_FLAGS.NONE) else 0)
+            | (if (o.MARK_IN_SYNC == 1) @enumToInt(CF_CONVERT_FLAGS.MARK_IN_SYNC) else 0)
+            | (if (o.DEHYDRATE == 1) @enumToInt(CF_CONVERT_FLAGS.DEHYDRATE) else 0)
+            | (if (o.ENABLE_ON_DEMAND_POPULATION == 1) @enumToInt(CF_CONVERT_FLAGS.ENABLE_ON_DEMAND_POPULATION) else 0)
+            | (if (o.ALWAYS_FULL == 1) @enumToInt(CF_CONVERT_FLAGS.ALWAYS_FULL) else 0)
+        );
+    }
 };
 pub const CF_CONVERT_FLAG_NONE = CF_CONVERT_FLAGS.NONE;
 pub const CF_CONVERT_FLAG_MARK_IN_SYNC = CF_CONVERT_FLAGS.MARK_IN_SYNC;
@@ -702,7 +1020,6 @@ pub const CF_CONVERT_FLAG_DEHYDRATE = CF_CONVERT_FLAGS.DEHYDRATE;
 pub const CF_CONVERT_FLAG_ENABLE_ON_DEMAND_POPULATION = CF_CONVERT_FLAGS.ENABLE_ON_DEMAND_POPULATION;
 pub const CF_CONVERT_FLAG_ALWAYS_FULL = CF_CONVERT_FLAGS.ALWAYS_FULL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_UPDATE_FLAGS = extern enum(u32) {
     NONE = 0,
     VERIFY_IN_SYNC = 1,
@@ -717,6 +1034,35 @@ pub const CF_UPDATE_FLAGS = extern enum(u32) {
     ALWAYS_FULL = 512,
     ALLOW_PARTIAL = 1024,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        VERIFY_IN_SYNC: u1 = 0,
+        MARK_IN_SYNC: u1 = 0,
+        DEHYDRATE: u1 = 0,
+        ENABLE_ON_DEMAND_POPULATION: u1 = 0,
+        DISABLE_ON_DEMAND_POPULATION: u1 = 0,
+        REMOVE_FILE_IDENTITY: u1 = 0,
+        CLEAR_IN_SYNC: u1 = 0,
+        REMOVE_PROPERTY: u1 = 0,
+        PASSTHROUGH_FS_METADATA: u1 = 0,
+        ALWAYS_FULL: u1 = 0,
+        ALLOW_PARTIAL: u1 = 0,
+    }) CF_UPDATE_FLAGS {
+        return @intToEnum(CF_UPDATE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_UPDATE_FLAGS.NONE) else 0)
+            | (if (o.VERIFY_IN_SYNC == 1) @enumToInt(CF_UPDATE_FLAGS.VERIFY_IN_SYNC) else 0)
+            | (if (o.MARK_IN_SYNC == 1) @enumToInt(CF_UPDATE_FLAGS.MARK_IN_SYNC) else 0)
+            | (if (o.DEHYDRATE == 1) @enumToInt(CF_UPDATE_FLAGS.DEHYDRATE) else 0)
+            | (if (o.ENABLE_ON_DEMAND_POPULATION == 1) @enumToInt(CF_UPDATE_FLAGS.ENABLE_ON_DEMAND_POPULATION) else 0)
+            | (if (o.DISABLE_ON_DEMAND_POPULATION == 1) @enumToInt(CF_UPDATE_FLAGS.DISABLE_ON_DEMAND_POPULATION) else 0)
+            | (if (o.REMOVE_FILE_IDENTITY == 1) @enumToInt(CF_UPDATE_FLAGS.REMOVE_FILE_IDENTITY) else 0)
+            | (if (o.CLEAR_IN_SYNC == 1) @enumToInt(CF_UPDATE_FLAGS.CLEAR_IN_SYNC) else 0)
+            | (if (o.REMOVE_PROPERTY == 1) @enumToInt(CF_UPDATE_FLAGS.REMOVE_PROPERTY) else 0)
+            | (if (o.PASSTHROUGH_FS_METADATA == 1) @enumToInt(CF_UPDATE_FLAGS.PASSTHROUGH_FS_METADATA) else 0)
+            | (if (o.ALWAYS_FULL == 1) @enumToInt(CF_UPDATE_FLAGS.ALWAYS_FULL) else 0)
+            | (if (o.ALLOW_PARTIAL == 1) @enumToInt(CF_UPDATE_FLAGS.ALLOW_PARTIAL) else 0)
+        );
+    }
 };
 pub const CF_UPDATE_FLAG_NONE = CF_UPDATE_FLAGS.NONE;
 pub const CF_UPDATE_FLAG_VERIFY_IN_SYNC = CF_UPDATE_FLAGS.VERIFY_IN_SYNC;
@@ -731,25 +1077,45 @@ pub const CF_UPDATE_FLAG_PASSTHROUGH_FS_METADATA = CF_UPDATE_FLAGS.PASSTHROUGH_F
 pub const CF_UPDATE_FLAG_ALWAYS_FULL = CF_UPDATE_FLAGS.ALWAYS_FULL;
 pub const CF_UPDATE_FLAG_ALLOW_PARTIAL = CF_UPDATE_FLAGS.ALLOW_PARTIAL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_REVERT_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_REVERT_FLAGS {
+        return @intToEnum(CF_REVERT_FLAGS,
+              (if (o.E == 1) @enumToInt(CF_REVERT_FLAGS.E) else 0)
+        );
+    }
 };
 pub const CF_REVERT_FLAG_NONE = CF_REVERT_FLAGS.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_HYDRATE_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_HYDRATE_FLAGS {
+        return @intToEnum(CF_HYDRATE_FLAGS,
+              (if (o.E == 1) @enumToInt(CF_HYDRATE_FLAGS.E) else 0)
+        );
+    }
 };
 pub const CF_HYDRATE_FLAG_NONE = CF_HYDRATE_FLAGS.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_DEHYDRATE_FLAGS = extern enum(u32) {
     NONE = 0,
     BACKGROUND = 1,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        BACKGROUND: u1 = 0,
+    }) CF_DEHYDRATE_FLAGS {
+        return @intToEnum(CF_DEHYDRATE_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_DEHYDRATE_FLAGS.NONE) else 0)
+            | (if (o.BACKGROUND == 1) @enumToInt(CF_DEHYDRATE_FLAGS.BACKGROUND) else 0)
+        );
+    }
 };
 pub const CF_DEHYDRATE_FLAG_NONE = CF_DEHYDRATE_FLAGS.NONE;
 pub const CF_DEHYDRATE_FLAG_BACKGROUND = CF_DEHYDRATE_FLAGS.BACKGROUND;
@@ -767,13 +1133,25 @@ pub const CF_PIN_STATE_UNPINNED = CF_PIN_STATE.UNPINNED;
 pub const CF_PIN_STATE_EXCLUDED = CF_PIN_STATE.EXCLUDED;
 pub const CF_PIN_STATE_INHERIT = CF_PIN_STATE.INHERIT;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_SET_PIN_FLAGS = extern enum(u32) {
     NONE = 0,
     RECURSE = 1,
     RECURSE_ONLY = 2,
     RECURSE_STOP_ON_ERROR = 4,
     _,
+    pub fn initFlags(o: struct {
+        NONE: u1 = 0,
+        RECURSE: u1 = 0,
+        RECURSE_ONLY: u1 = 0,
+        RECURSE_STOP_ON_ERROR: u1 = 0,
+    }) CF_SET_PIN_FLAGS {
+        return @intToEnum(CF_SET_PIN_FLAGS,
+              (if (o.NONE == 1) @enumToInt(CF_SET_PIN_FLAGS.NONE) else 0)
+            | (if (o.RECURSE == 1) @enumToInt(CF_SET_PIN_FLAGS.RECURSE) else 0)
+            | (if (o.RECURSE_ONLY == 1) @enumToInt(CF_SET_PIN_FLAGS.RECURSE_ONLY) else 0)
+            | (if (o.RECURSE_STOP_ON_ERROR == 1) @enumToInt(CF_SET_PIN_FLAGS.RECURSE_STOP_ON_ERROR) else 0)
+        );
+    }
 };
 pub const CF_SET_PIN_FLAG_NONE = CF_SET_PIN_FLAGS.NONE;
 pub const CF_SET_PIN_FLAG_RECURSE = CF_SET_PIN_FLAGS.RECURSE;
@@ -787,14 +1165,19 @@ pub const CF_IN_SYNC_STATE = extern enum(i32) {
 pub const CF_IN_SYNC_STATE_NOT_IN_SYNC = CF_IN_SYNC_STATE.NOT_IN_SYNC;
 pub const CF_IN_SYNC_STATE_IN_SYNC = CF_IN_SYNC_STATE.IN_SYNC;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_SET_IN_SYNC_FLAGS = extern enum(u32) {
     E = 0,
     _,
+    pub fn initFlags(o: struct {
+        E: u1 = 0,
+    }) CF_SET_IN_SYNC_FLAGS {
+        return @intToEnum(CF_SET_IN_SYNC_FLAGS,
+              (if (o.E == 1) @enumToInt(CF_SET_IN_SYNC_FLAGS.E) else 0)
+        );
+    }
 };
 pub const CF_SET_IN_SYNC_FLAG_NONE = CF_SET_IN_SYNC_FLAGS.E;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const CF_PLACEHOLDER_STATE = extern enum(u32) {
     NO_STATES = 0,
     PLACEHOLDER = 1,
@@ -805,6 +1188,27 @@ pub const CF_PLACEHOLDER_STATE = extern enum(u32) {
     PARTIALLY_ON_DISK = 32,
     INVALID = 4294967295,
     _,
+    pub fn initFlags(o: struct {
+        NO_STATES: u1 = 0,
+        PLACEHOLDER: u1 = 0,
+        SYNC_ROOT: u1 = 0,
+        ESSENTIAL_PROP_PRESENT: u1 = 0,
+        IN_SYNC: u1 = 0,
+        PARTIAL: u1 = 0,
+        PARTIALLY_ON_DISK: u1 = 0,
+        INVALID: u1 = 0,
+    }) CF_PLACEHOLDER_STATE {
+        return @intToEnum(CF_PLACEHOLDER_STATE,
+              (if (o.NO_STATES == 1) @enumToInt(CF_PLACEHOLDER_STATE.NO_STATES) else 0)
+            | (if (o.PLACEHOLDER == 1) @enumToInt(CF_PLACEHOLDER_STATE.PLACEHOLDER) else 0)
+            | (if (o.SYNC_ROOT == 1) @enumToInt(CF_PLACEHOLDER_STATE.SYNC_ROOT) else 0)
+            | (if (o.ESSENTIAL_PROP_PRESENT == 1) @enumToInt(CF_PLACEHOLDER_STATE.ESSENTIAL_PROP_PRESENT) else 0)
+            | (if (o.IN_SYNC == 1) @enumToInt(CF_PLACEHOLDER_STATE.IN_SYNC) else 0)
+            | (if (o.PARTIAL == 1) @enumToInt(CF_PLACEHOLDER_STATE.PARTIAL) else 0)
+            | (if (o.PARTIALLY_ON_DISK == 1) @enumToInt(CF_PLACEHOLDER_STATE.PARTIALLY_ON_DISK) else 0)
+            | (if (o.INVALID == 1) @enumToInt(CF_PLACEHOLDER_STATE.INVALID) else 0)
+        );
+    }
 };
 pub const CF_PLACEHOLDER_STATE_NO_STATES = CF_PLACEHOLDER_STATE.NO_STATES;
 pub const CF_PLACEHOLDER_STATE_PLACEHOLDER = CF_PLACEHOLDER_STATE.PLACEHOLDER;

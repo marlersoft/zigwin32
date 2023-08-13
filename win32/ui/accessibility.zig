@@ -10498,7 +10498,6 @@ pub const WINEVENTPROC = fn(
     dwmsEventTime: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const STICKYKEYS_FLAGS = extern enum(u32) {
     STICKYKEYSON = 1,
     AVAILABLE = 2,
@@ -10526,6 +10525,61 @@ pub const STICKYKEYS_FLAGS = extern enum(u32) {
     LWINLOCKED = 4194304,
     RWINLOCKED = 8388608,
     _,
+    pub fn initFlags(o: struct {
+        STICKYKEYSON: u1 = 0,
+        AVAILABLE: u1 = 0,
+        HOTKEYACTIVE: u1 = 0,
+        CONFIRMHOTKEY: u1 = 0,
+        HOTKEYSOUND: u1 = 0,
+        INDICATOR: u1 = 0,
+        AUDIBLEFEEDBACK: u1 = 0,
+        TRISTATE: u1 = 0,
+        TWOKEYSOFF: u1 = 0,
+        LALTLATCHED: u1 = 0,
+        LCTLLATCHED: u1 = 0,
+        LSHIFTLATCHED: u1 = 0,
+        RALTLATCHED: u1 = 0,
+        RCTLLATCHED: u1 = 0,
+        RSHIFTLATCHED: u1 = 0,
+        LWINLATCHED: u1 = 0,
+        RWINLATCHED: u1 = 0,
+        LALTLOCKED: u1 = 0,
+        LCTLLOCKED: u1 = 0,
+        LSHIFTLOCKED: u1 = 0,
+        RALTLOCKED: u1 = 0,
+        RCTLLOCKED: u1 = 0,
+        RSHIFTLOCKED: u1 = 0,
+        LWINLOCKED: u1 = 0,
+        RWINLOCKED: u1 = 0,
+    }) STICKYKEYS_FLAGS {
+        return @intToEnum(STICKYKEYS_FLAGS,
+              (if (o.STICKYKEYSON == 1) @enumToInt(STICKYKEYS_FLAGS.STICKYKEYSON) else 0)
+            | (if (o.AVAILABLE == 1) @enumToInt(STICKYKEYS_FLAGS.AVAILABLE) else 0)
+            | (if (o.HOTKEYACTIVE == 1) @enumToInt(STICKYKEYS_FLAGS.HOTKEYACTIVE) else 0)
+            | (if (o.CONFIRMHOTKEY == 1) @enumToInt(STICKYKEYS_FLAGS.CONFIRMHOTKEY) else 0)
+            | (if (o.HOTKEYSOUND == 1) @enumToInt(STICKYKEYS_FLAGS.HOTKEYSOUND) else 0)
+            | (if (o.INDICATOR == 1) @enumToInt(STICKYKEYS_FLAGS.INDICATOR) else 0)
+            | (if (o.AUDIBLEFEEDBACK == 1) @enumToInt(STICKYKEYS_FLAGS.AUDIBLEFEEDBACK) else 0)
+            | (if (o.TRISTATE == 1) @enumToInt(STICKYKEYS_FLAGS.TRISTATE) else 0)
+            | (if (o.TWOKEYSOFF == 1) @enumToInt(STICKYKEYS_FLAGS.TWOKEYSOFF) else 0)
+            | (if (o.LALTLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.LALTLATCHED) else 0)
+            | (if (o.LCTLLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.LCTLLATCHED) else 0)
+            | (if (o.LSHIFTLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.LSHIFTLATCHED) else 0)
+            | (if (o.RALTLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.RALTLATCHED) else 0)
+            | (if (o.RCTLLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.RCTLLATCHED) else 0)
+            | (if (o.RSHIFTLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.RSHIFTLATCHED) else 0)
+            | (if (o.LWINLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.LWINLATCHED) else 0)
+            | (if (o.RWINLATCHED == 1) @enumToInt(STICKYKEYS_FLAGS.RWINLATCHED) else 0)
+            | (if (o.LALTLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.LALTLOCKED) else 0)
+            | (if (o.LCTLLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.LCTLLOCKED) else 0)
+            | (if (o.LSHIFTLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.LSHIFTLOCKED) else 0)
+            | (if (o.RALTLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.RALTLOCKED) else 0)
+            | (if (o.RCTLLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.RCTLLOCKED) else 0)
+            | (if (o.RSHIFTLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.RSHIFTLOCKED) else 0)
+            | (if (o.LWINLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.LWINLOCKED) else 0)
+            | (if (o.RWINLOCKED == 1) @enumToInt(STICKYKEYS_FLAGS.RWINLOCKED) else 0)
+        );
+    }
 };
 pub const SKF_STICKYKEYSON = STICKYKEYS_FLAGS.STICKYKEYSON;
 pub const SKF_AVAILABLE = STICKYKEYS_FLAGS.AVAILABLE;
@@ -10553,24 +10607,46 @@ pub const SKF_RSHIFTLOCKED = STICKYKEYS_FLAGS.RSHIFTLOCKED;
 pub const SKF_LWINLOCKED = STICKYKEYS_FLAGS.LWINLOCKED;
 pub const SKF_RWINLOCKED = STICKYKEYS_FLAGS.RWINLOCKED;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SOUNDSENTRY_FLAGS = extern enum(u32) {
     SOUNDSENTRYON = 1,
     AVAILABLE = 2,
     INDICATOR = 4,
     _,
+    pub fn initFlags(o: struct {
+        SOUNDSENTRYON: u1 = 0,
+        AVAILABLE: u1 = 0,
+        INDICATOR: u1 = 0,
+    }) SOUNDSENTRY_FLAGS {
+        return @intToEnum(SOUNDSENTRY_FLAGS,
+              (if (o.SOUNDSENTRYON == 1) @enumToInt(SOUNDSENTRY_FLAGS.SOUNDSENTRYON) else 0)
+            | (if (o.AVAILABLE == 1) @enumToInt(SOUNDSENTRY_FLAGS.AVAILABLE) else 0)
+            | (if (o.INDICATOR == 1) @enumToInt(SOUNDSENTRY_FLAGS.INDICATOR) else 0)
+        );
+    }
 };
 pub const SSF_SOUNDSENTRYON = SOUNDSENTRY_FLAGS.SOUNDSENTRYON;
 pub const SSF_AVAILABLE = SOUNDSENTRY_FLAGS.AVAILABLE;
 pub const SSF_INDICATOR = SOUNDSENTRY_FLAGS.INDICATOR;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const ACC_UTILITY_STATE_FLAGS = extern enum(u32) {
     ON_SCREEN_KEYBOARD_ACTIVE = 1,
     TOUCH_MODIFICATION_ACTIVE = 2,
     PRIORITY_AUDIO_ACTIVE = 4,
     PRIORITY_AUDIO_ACTIVE_NODUCK = 8,
     _,
+    pub fn initFlags(o: struct {
+        ON_SCREEN_KEYBOARD_ACTIVE: u1 = 0,
+        TOUCH_MODIFICATION_ACTIVE: u1 = 0,
+        PRIORITY_AUDIO_ACTIVE: u1 = 0,
+        PRIORITY_AUDIO_ACTIVE_NODUCK: u1 = 0,
+    }) ACC_UTILITY_STATE_FLAGS {
+        return @intToEnum(ACC_UTILITY_STATE_FLAGS,
+              (if (o.ON_SCREEN_KEYBOARD_ACTIVE == 1) @enumToInt(ACC_UTILITY_STATE_FLAGS.ON_SCREEN_KEYBOARD_ACTIVE) else 0)
+            | (if (o.TOUCH_MODIFICATION_ACTIVE == 1) @enumToInt(ACC_UTILITY_STATE_FLAGS.TOUCH_MODIFICATION_ACTIVE) else 0)
+            | (if (o.PRIORITY_AUDIO_ACTIVE == 1) @enumToInt(ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE) else 0)
+            | (if (o.PRIORITY_AUDIO_ACTIVE_NODUCK == 1) @enumToInt(ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE_NODUCK) else 0)
+        );
+    }
 };
 pub const ANRUS_ON_SCREEN_KEYBOARD_ACTIVE = ACC_UTILITY_STATE_FLAGS.ON_SCREEN_KEYBOARD_ACTIVE;
 pub const ANRUS_TOUCH_MODIFICATION_ACTIVE = ACC_UTILITY_STATE_FLAGS.TOUCH_MODIFICATION_ACTIVE;
@@ -10584,18 +10660,27 @@ pub const SOUND_SENTRY_GRAPHICS_EFFECT = extern enum(u32) {
 pub const SSGF_DISPLAY = SOUND_SENTRY_GRAPHICS_EFFECT.DISPLAY;
 pub const SSGF_NONE = SOUND_SENTRY_GRAPHICS_EFFECT.NONE;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SERIALKEYS_FLAGS = extern enum(u32) {
     AVAILABLE = 2,
     INDICATOR = 4,
     SERIALKEYSON = 1,
     _,
+    pub fn initFlags(o: struct {
+        AVAILABLE: u1 = 0,
+        INDICATOR: u1 = 0,
+        SERIALKEYSON: u1 = 0,
+    }) SERIALKEYS_FLAGS {
+        return @intToEnum(SERIALKEYS_FLAGS,
+              (if (o.AVAILABLE == 1) @enumToInt(SERIALKEYS_FLAGS.AVAILABLE) else 0)
+            | (if (o.INDICATOR == 1) @enumToInt(SERIALKEYS_FLAGS.INDICATOR) else 0)
+            | (if (o.SERIALKEYSON == 1) @enumToInt(SERIALKEYS_FLAGS.SERIALKEYSON) else 0)
+        );
+    }
 };
 pub const SERKF_AVAILABLE = SERIALKEYS_FLAGS.AVAILABLE;
 pub const SERKF_INDICATOR = SERIALKEYS_FLAGS.INDICATOR;
 pub const SERKF_SERIALKEYSON = SERIALKEYS_FLAGS.SERIALKEYSON;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
 pub const HIGHCONTRASTW_FLAGS = extern enum(u32) {
     HIGHCONTRASTON = 1,
     AVAILABLE = 2,
@@ -10606,6 +10691,27 @@ pub const HIGHCONTRASTW_FLAGS = extern enum(u32) {
     HOTKEYAVAILABLE = 64,
     OPTION_NOTHEMECHANGE = 4096,
     _,
+    pub fn initFlags(o: struct {
+        HIGHCONTRASTON: u1 = 0,
+        AVAILABLE: u1 = 0,
+        HOTKEYACTIVE: u1 = 0,
+        CONFIRMHOTKEY: u1 = 0,
+        HOTKEYSOUND: u1 = 0,
+        INDICATOR: u1 = 0,
+        HOTKEYAVAILABLE: u1 = 0,
+        OPTION_NOTHEMECHANGE: u1 = 0,
+    }) HIGHCONTRASTW_FLAGS {
+        return @intToEnum(HIGHCONTRASTW_FLAGS,
+              (if (o.HIGHCONTRASTON == 1) @enumToInt(HIGHCONTRASTW_FLAGS.HIGHCONTRASTON) else 0)
+            | (if (o.AVAILABLE == 1) @enumToInt(HIGHCONTRASTW_FLAGS.AVAILABLE) else 0)
+            | (if (o.HOTKEYACTIVE == 1) @enumToInt(HIGHCONTRASTW_FLAGS.HOTKEYACTIVE) else 0)
+            | (if (o.CONFIRMHOTKEY == 1) @enumToInt(HIGHCONTRASTW_FLAGS.CONFIRMHOTKEY) else 0)
+            | (if (o.HOTKEYSOUND == 1) @enumToInt(HIGHCONTRASTW_FLAGS.HOTKEYSOUND) else 0)
+            | (if (o.INDICATOR == 1) @enumToInt(HIGHCONTRASTW_FLAGS.INDICATOR) else 0)
+            | (if (o.HOTKEYAVAILABLE == 1) @enumToInt(HIGHCONTRASTW_FLAGS.HOTKEYAVAILABLE) else 0)
+            | (if (o.OPTION_NOTHEMECHANGE == 1) @enumToInt(HIGHCONTRASTW_FLAGS.OPTION_NOTHEMECHANGE) else 0)
+        );
+    }
 };
 pub const HCF_HIGHCONTRASTON = HIGHCONTRASTW_FLAGS.HIGHCONTRASTON;
 pub const HCF_AVAILABLE = HIGHCONTRASTW_FLAGS.AVAILABLE;
