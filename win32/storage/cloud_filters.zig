@@ -391,8 +391,63 @@ pub const CF_CALLBACK_DEHYDRATION_REASON_SYSTEM_OS_UPGRADE = CF_CALLBACK_DEHYDRA
 
 pub const CF_CALLBACK_PARAMETERS = extern struct {
     ParamSize: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Cancel: extern struct {
+            Flags: CF_CALLBACK_CANCEL_FLAGS,
+            Anonymous: extern union {
+                FetchData: extern struct {
+                    FileOffset: LARGE_INTEGER,
+                    Length: LARGE_INTEGER,
+                },
+            },
+        },
+        FetchData: extern struct {
+            Flags: CF_CALLBACK_FETCH_DATA_FLAGS,
+            RequiredFileOffset: LARGE_INTEGER,
+            RequiredLength: LARGE_INTEGER,
+            OptionalFileOffset: LARGE_INTEGER,
+            OptionalLength: LARGE_INTEGER,
+            LastDehydrationTime: LARGE_INTEGER,
+            LastDehydrationReason: CF_CALLBACK_DEHYDRATION_REASON,
+        },
+        ValidateData: extern struct {
+            Flags: CF_CALLBACK_VALIDATE_DATA_FLAGS,
+            RequiredFileOffset: LARGE_INTEGER,
+            RequiredLength: LARGE_INTEGER,
+        },
+        FetchPlaceholders: extern struct {
+            Flags: CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS,
+            Pattern: [*:0]const u16,
+        },
+        OpenCompletion: extern struct {
+            Flags: CF_CALLBACK_OPEN_COMPLETION_FLAGS,
+        },
+        CloseCompletion: extern struct {
+            Flags: CF_CALLBACK_CLOSE_COMPLETION_FLAGS,
+        },
+        Dehydrate: extern struct {
+            Flags: CF_CALLBACK_DEHYDRATE_FLAGS,
+            Reason: CF_CALLBACK_DEHYDRATION_REASON,
+        },
+        DehydrateCompletion: extern struct {
+            Flags: CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS,
+            Reason: CF_CALLBACK_DEHYDRATION_REASON,
+        },
+        Delete: extern struct {
+            Flags: CF_CALLBACK_DELETE_FLAGS,
+        },
+        DeleteCompletion: extern struct {
+            Flags: CF_CALLBACK_DELETE_COMPLETION_FLAGS,
+        },
+        Rename: extern struct {
+            Flags: CF_CALLBACK_RENAME_FLAGS,
+            TargetPath: [*:0]const u16,
+        },
+        RenameCompletion: extern struct {
+            Flags: CF_CALLBACK_RENAME_COMPLETION_FLAGS,
+            SourcePath: [*:0]const u16,
+        },
+    },
 };
 
 pub const CF_CALLBACK = fn(
@@ -551,8 +606,56 @@ pub const CF_OPERATION_ACK_DELETE_FLAG_NONE = CF_OPERATION_ACK_DELETE_FLAGS.E;
 
 pub const CF_OPERATION_PARAMETERS = extern struct {
     ParamSize: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        TransferData: extern struct {
+            Flags: CF_OPERATION_TRANSFER_DATA_FLAGS,
+            CompletionStatus: NTSTATUS,
+            Buffer: *const c_void,
+            Offset: LARGE_INTEGER,
+            Length: LARGE_INTEGER,
+        },
+        RetrieveData: extern struct {
+            Flags: CF_OPERATION_RETRIEVE_DATA_FLAGS,
+            Buffer: *c_void,
+            Offset: LARGE_INTEGER,
+            Length: LARGE_INTEGER,
+            ReturnedLength: LARGE_INTEGER,
+        },
+        AckData: extern struct {
+            Flags: CF_OPERATION_ACK_DATA_FLAGS,
+            CompletionStatus: NTSTATUS,
+            Offset: LARGE_INTEGER,
+            Length: LARGE_INTEGER,
+        },
+        RestartHydration: extern struct {
+            Flags: CF_OPERATION_RESTART_HYDRATION_FLAGS,
+            FsMetadata: *const CF_FS_METADATA,
+            FileIdentity: *const c_void,
+            FileIdentityLength: u32,
+        },
+        TransferPlaceholders: extern struct {
+            Flags: CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS,
+            CompletionStatus: NTSTATUS,
+            PlaceholderTotalCount: LARGE_INTEGER,
+            PlaceholderArray: *CF_PLACEHOLDER_CREATE_INFO,
+            PlaceholderCount: u32,
+            EntriesProcessed: u32,
+        },
+        AckDehydrate: extern struct {
+            Flags: CF_OPERATION_ACK_DEHYDRATE_FLAGS,
+            CompletionStatus: NTSTATUS,
+            FileIdentity: *const c_void,
+            FileIdentityLength: u32,
+        },
+        AckRename: extern struct {
+            Flags: CF_OPERATION_ACK_RENAME_FLAGS,
+            CompletionStatus: NTSTATUS,
+        },
+        AckDelete: extern struct {
+            Flags: CF_OPERATION_ACK_DELETE_FLAGS,
+            CompletionStatus: NTSTATUS,
+        },
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -1057,9 +1160,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const FILE_INFO_BY_HANDLE_CLASS = @import("../storage/file_system.zig").FILE_INFO_BY_HANDLE_CLASS;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const FILE_BASIC_INFO = @import("../storage/file_system.zig").FILE_BASIC_INFO;
 const PWSTR = @import("../system/system_services.zig").PWSTR;
@@ -1068,7 +1172,7 @@ const HRESULT = @import("../system/com.zig").HRESULT;
 const HANDLE = @import("../system/system_services.zig").HANDLE;
 const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 const CORRELATION_VECTOR = @import("../system/system_services.zig").CORRELATION_VECTOR;
-const FILE_INFO_BY_HANDLE_CLASS = @import("../storage/file_system.zig").FILE_INFO_BY_HANDLE_CLASS;
+const NTSTATUS = @import("../system/system_services.zig").NTSTATUS;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

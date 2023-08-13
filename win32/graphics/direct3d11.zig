@@ -509,7 +509,7 @@ pub const D3DX11_FFT_MAX_DIMENSIONS = @as(u32, 32);
 // Section: Types (312)
 //--------------------------------------------------------------------------------
 pub const CD3D11_VIDEO_DEFAULT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const D3D_DRIVER_TYPE = extern enum(i32) {
@@ -2545,10 +2545,14 @@ pub const ID3D11View = extern struct {
 };
 
 pub const D3D11_BUFFER_SRV = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        FirstElement: u32,
+        ElementOffset: u32,
+    },
+    Anonymous2: extern union {
+        NumElements: u32,
+        ElementWidth: u32,
+    },
 };
 
 pub const D3D11_BUFFEREX_SRV_FLAG = extern enum(i32) {
@@ -2615,8 +2619,19 @@ pub const D3D11_TEX2DMS_ARRAY_SRV = extern struct {
 pub const D3D11_SHADER_RESOURCE_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D_SRV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Buffer: D3D11_BUFFER_SRV,
+        Texture1D: D3D11_TEX1D_SRV,
+        Texture1DArray: D3D11_TEX1D_ARRAY_SRV,
+        Texture2D: D3D11_TEX2D_SRV,
+        Texture2DArray: D3D11_TEX2D_ARRAY_SRV,
+        Texture2DMS: D3D11_TEX2DMS_SRV,
+        Texture2DMSArray: D3D11_TEX2DMS_ARRAY_SRV,
+        Texture3D: D3D11_TEX3D_SRV,
+        TextureCube: D3D11_TEXCUBE_SRV,
+        TextureCubeArray: D3D11_TEXCUBE_ARRAY_SRV,
+        BufferEx: D3D11_BUFFEREX_SRV,
+    },
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2642,10 +2657,14 @@ pub const ID3D11ShaderResourceView = extern struct {
 };
 
 pub const D3D11_BUFFER_RTV = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        FirstElement: u32,
+        ElementOffset: u32,
+    },
+    Anonymous2: extern union {
+        NumElements: u32,
+        ElementWidth: u32,
+    },
 };
 
 pub const D3D11_TEX1D_RTV = extern struct {
@@ -2686,8 +2705,16 @@ pub const D3D11_TEX3D_RTV = extern struct {
 pub const D3D11_RENDER_TARGET_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_RTV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Buffer: D3D11_BUFFER_RTV,
+        Texture1D: D3D11_TEX1D_RTV,
+        Texture1DArray: D3D11_TEX1D_ARRAY_RTV,
+        Texture2D: D3D11_TEX2D_RTV,
+        Texture2DArray: D3D11_TEX2D_ARRAY_RTV,
+        Texture2DMS: D3D11_TEX2DMS_RTV,
+        Texture2DMSArray: D3D11_TEX2DMS_ARRAY_RTV,
+        Texture3D: D3D11_TEX3D_RTV,
+    },
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2752,8 +2779,14 @@ pub const D3D11_DEPTH_STENCIL_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_DSV_DIMENSION,
     Flags: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Texture1D: D3D11_TEX1D_DSV,
+        Texture1DArray: D3D11_TEX1D_ARRAY_DSV,
+        Texture2D: D3D11_TEX2D_DSV,
+        Texture2DArray: D3D11_TEX2D_ARRAY_DSV,
+        Texture2DMS: D3D11_TEX2DMS_DSV,
+        Texture2DMSArray: D3D11_TEX2DMS_ARRAY_DSV,
+    },
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -2822,8 +2855,14 @@ pub const D3D11_TEX3D_UAV = extern struct {
 pub const D3D11_UNORDERED_ACCESS_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_UAV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Buffer: D3D11_BUFFER_UAV,
+        Texture1D: D3D11_TEX1D_UAV,
+        Texture1DArray: D3D11_TEX1D_ARRAY_UAV,
+        Texture2D: D3D11_TEX2D_UAV,
+        Texture2DArray: D3D11_TEX2D_ARRAY_UAV,
+        Texture3D: D3D11_TEX3D_UAV,
+    },
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -4758,9 +4797,10 @@ pub const ID3D11DeviceContext = extern struct {
 };
 
 pub const D3D11_AUTHENTICATED_PROTECTION_FLAGS = extern union {
-    Flags: _Flags_e__Struct,
+    Flags: extern struct {
+        _bitfield: u32,
+    },
     Value: u32,
-    const _Flags_e__Struct = u32; // TODO: generate this nested type!
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -9389,8 +9429,19 @@ pub const D3D11_TEX2D_ARRAY_SRV1 = extern struct {
 pub const D3D11_SHADER_RESOURCE_VIEW_DESC1 = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D_SRV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Buffer: D3D11_BUFFER_SRV,
+        Texture1D: D3D11_TEX1D_SRV,
+        Texture1DArray: D3D11_TEX1D_ARRAY_SRV,
+        Texture2D: D3D11_TEX2D_SRV1,
+        Texture2DArray: D3D11_TEX2D_ARRAY_SRV1,
+        Texture2DMS: D3D11_TEX2DMS_SRV,
+        Texture2DMSArray: D3D11_TEX2DMS_ARRAY_SRV,
+        Texture3D: D3D11_TEX3D_SRV,
+        TextureCube: D3D11_TEXCUBE_SRV,
+        TextureCubeArray: D3D11_TEXCUBE_ARRAY_SRV,
+        BufferEx: D3D11_BUFFEREX_SRV,
+    },
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -9430,8 +9481,16 @@ pub const D3D11_TEX2D_ARRAY_RTV1 = extern struct {
 pub const D3D11_RENDER_TARGET_VIEW_DESC1 = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_RTV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Buffer: D3D11_BUFFER_RTV,
+        Texture1D: D3D11_TEX1D_RTV,
+        Texture1DArray: D3D11_TEX1D_ARRAY_RTV,
+        Texture2D: D3D11_TEX2D_RTV1,
+        Texture2DArray: D3D11_TEX2D_ARRAY_RTV1,
+        Texture2DMS: D3D11_TEX2DMS_RTV,
+        Texture2DMSArray: D3D11_TEX2DMS_ARRAY_RTV,
+        Texture3D: D3D11_TEX3D_RTV,
+    },
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -9471,8 +9530,14 @@ pub const D3D11_TEX2D_ARRAY_UAV1 = extern struct {
 pub const D3D11_UNORDERED_ACCESS_VIEW_DESC1 = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_UAV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Buffer: D3D11_BUFFER_UAV,
+        Texture1D: D3D11_TEX1D_UAV,
+        Texture1DArray: D3D11_TEX1D_ARRAY_UAV,
+        Texture2D: D3D11_TEX2D_UAV1,
+        Texture2DArray: D3D11_TEX2D_ARRAY_UAV1,
+        Texture3D: D3D11_TEX3D_UAV,
+    },
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -10975,8 +11040,14 @@ pub const D3D11_COMPUTE_SHADER_TRACE_DESC = extern struct {
 pub const D3D11_SHADER_TRACE_DESC = extern struct {
     Type: D3D11_SHADER_TYPE,
     Flags: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        VertexShaderTraceDesc: D3D11_VERTEX_SHADER_TRACE_DESC,
+        HullShaderTraceDesc: D3D11_HULL_SHADER_TRACE_DESC,
+        DomainShaderTraceDesc: D3D11_DOMAIN_SHADER_TRACE_DESC,
+        GeometryShaderTraceDesc: D3D11_GEOMETRY_SHADER_TRACE_DESC,
+        PixelShaderTraceDesc: D3D11_PIXEL_SHADER_TRACE_DESC,
+        ComputeShaderTraceDesc: D3D11_COMPUTE_SHADER_TRACE_DESC,
+    },
 };
 
 pub const D3D11_TRACE_GS_INPUT_PRIMITIVE = extern enum(i32) {
@@ -11102,10 +11173,12 @@ pub const D3D11_TRACE_INTERFACE_POINTER = D3D11_TRACE_REGISTER_TYPE.INTERFACE_PO
 
 pub const D3D11_TRACE_REGISTER = extern struct {
     RegType: D3D11_TRACE_REGISTER_TYPE,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Index1D: u16,
+        Index2D: [2]u16,
+    },
     OperandIndex: u8,
     Flags: u8,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3D11_TRACE_STEP = extern struct {

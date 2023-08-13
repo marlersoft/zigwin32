@@ -81,18 +81,28 @@ pub const WINML_TENSOR_BINDING_DESC = extern struct {
 pub const WINML_SEQUENCE_BINDING_DESC = extern struct {
     ElementCount: u32,
     ElementType: WINML_TENSOR_DATA_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pStrings: *PWSTR,
+        pInts: *i64,
+        pFloats: *f32,
+        pDoubles: *f64,
+    },
 };
 
 pub const WINML_MAP_BINDING_DESC = extern struct {
     ElementCount: u32,
     KeyType: WINML_TENSOR_DATA_TYPE,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        pStringKeys: *PWSTR,
+        pIntKeys: *i64,
+    },
     Fields: WINML_TENSOR_DATA_TYPE,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous2: extern union {
+        pStringFields: *PWSTR,
+        pIntFields: *i64,
+        pFloatFields: *f32,
+        pDoubleFields: *f64,
+    },
 };
 
 pub const WINML_IMAGE_BINDING_DESC = extern struct {
@@ -113,8 +123,13 @@ pub const WINML_RESOURCE_BINDING_DESC = extern struct {
 pub const WINML_BINDING_DESC = extern struct {
     Name: [*:0]const u16,
     BindType: WINML_BINDING_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Tensor: WINML_TENSOR_BINDING_DESC,
+        Sequence: WINML_SEQUENCE_BINDING_DESC,
+        Map: WINML_MAP_BINDING_DESC,
+        Image: WINML_IMAGE_BINDING_DESC,
+        Resource: WINML_RESOURCE_BINDING_DESC,
+    },
 };
 
 pub const WINML_TENSOR_VARIABLE_DESC = extern struct {
@@ -143,8 +158,12 @@ pub const WINML_VARIABLE_DESC = extern struct {
     Description: PWSTR,
     FeatureType: WINML_FEATURE_TYPE,
     Required: BOOL,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Tensor: WINML_TENSOR_VARIABLE_DESC,
+        Sequence: WINML_SEQUENCE_VARIABLE_DESC,
+        Map: WINML_MAP_VARIABLE_DESC,
+        Image: WINML_IMAGE_VARIABLE_DESC,
+    },
 };
 
 pub const WINML_MODEL_DESC = extern struct {
@@ -350,8 +369,10 @@ pub const MLOperatorEdgeType = extern enum(u32) {
 
 pub const MLOperatorEdgeDescription = extern struct {
     edgeType: MLOperatorEdgeType,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        reserved: u64,
+        tensorDataType: MLOperatorTensorDataType,
+    },
 };
 
 const IID_IMLOperatorAttributes_Value = @import("../../zig.zig").Guid.initString("4b1b1759-ec40-466c-aab4-beb5347fd24c");
@@ -715,8 +736,11 @@ pub const MLOperatorSchemaEdgeTypeFormat = extern enum(i32) {
 pub const MLOperatorSchemaEdgeDescription = extern struct {
     options: MLOperatorParameterOptions,
     typeFormat: MLOperatorSchemaEdgeTypeFormat,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        reserved: *const c_void,
+        typeLabel: [*:0]const u8,
+        edgeDescription: MLOperatorEdgeDescription,
+    },
 };
 
 pub const MLOperatorEdgeTypeConstraint = extern struct {
@@ -919,8 +943,12 @@ pub const MLOperatorAttributeNameValue = extern struct {
     name: [*:0]const u8,
     type: MLOperatorAttributeType,
     valueCount: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        reserved: *const c_void,
+        ints: *const i64,
+        strings: *const *const i8,
+        floats: *const f32,
+    },
 };
 
 pub const MLOperatorSchemaDescription = extern struct {

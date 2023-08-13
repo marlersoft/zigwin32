@@ -178,9 +178,11 @@ pub const PXE_DHCP_MESSAGE = packed struct {
     HardwareAddress: [16]u8,
     HostName: [64]u8,
     BootFileName: [128]u8,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: packed union {
+        bMagicCookie: [4]u8,
+        uMagicCookie: u32,
+    },
     Option: PXE_DHCP_OPTION,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PXE_DHCPV6_OPTION = packed struct {
@@ -220,10 +222,12 @@ pub const PXE_PROVIDER = extern struct {
 
 pub const PXE_ADDRESS = extern struct {
     uFlags: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        bAddress: [16]u8,
+        uIpAddress: u32,
+    },
     uAddrLen: u32,
     uPort: u16,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PXE_DHCPV6_NESTED_RELAY_MESSAGE = extern struct {

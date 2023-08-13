@@ -1105,13 +1105,15 @@ pub const SP_ALTPLATFORM_INFO_V3 = extern struct {
     MajorVersion: u32,
     MinorVersion: u32,
     ProcessorArchitecture: u16,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Reserved: u16,
+        Flags: u16,
+    },
     FirstValidatedMajorVersion: u32,
     FirstValidatedMinorVersion: u32,
     ProductType: u8,
     SuiteMask: u16,
     BuildNumber: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -1125,10 +1127,12 @@ pub const SP_ALTPLATFORM_INFO_V2 = extern struct {
     MajorVersion: u32,
     MinorVersion: u32,
     ProcessorArchitecture: u16,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Reserved: u16,
+        Flags: u16,
+    },
     FirstValidatedMajorVersion: u32,
     FirstValidatedMinorVersion: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -1873,13 +1877,15 @@ pub const SP_ALTPLATFORM_INFO_V3 = packed struct {
     MajorVersion: u32,
     MinorVersion: u32,
     ProcessorArchitecture: u16,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: packed union {
+        Reserved: u16,
+        Flags: u16,
+    },
     FirstValidatedMajorVersion: u32,
     FirstValidatedMinorVersion: u32,
     ProductType: u8,
     SuiteMask: u16,
     BuildNumber: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -1893,10 +1899,12 @@ pub const SP_ALTPLATFORM_INFO_V2 = packed struct {
     MajorVersion: u32,
     MinorVersion: u32,
     ProcessorArchitecture: u16,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: packed union {
+        Reserved: u16,
+        Flags: u16,
+    },
     FirstValidatedMajorVersion: u32,
     FirstValidatedMinorVersion: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -2965,8 +2973,17 @@ pub const CM_NOTIFY_FILTER = extern struct {
     Flags: u32,
     FilterType: CM_NOTIFY_FILTER_TYPE,
     Reserved: u32,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        DeviceInterface: extern struct {
+            ClassGuid: Guid,
+        },
+        DeviceHandle: extern struct {
+            hTarget: HANDLE,
+        },
+        DeviceInstance: extern struct {
+            InstanceId: [200]u16,
+        },
+    },
 };
 
 pub const CM_NOTIFY_ACTION = extern enum(i32) {
@@ -2997,8 +3014,21 @@ pub const CM_NOTIFY_ACTION_MAX = CM_NOTIFY_ACTION.MAX;
 pub const CM_NOTIFY_EVENT_DATA = extern struct {
     FilterType: CM_NOTIFY_FILTER_TYPE,
     Reserved: u32,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        DeviceInterface: extern struct {
+            ClassGuid: Guid,
+            SymbolicLink: [1]u16,
+        },
+        DeviceHandle: extern struct {
+            EventGuid: Guid,
+            NameOffset: i32,
+            DataSize: u32,
+            Data: [1]u8,
+        },
+        DeviceInstance: extern struct {
+            InstanceId: [1]u16,
+        },
+    },
 };
 
 pub const PCM_NOTIFY_CALLBACK = fn(

@@ -357,13 +357,21 @@ pub const TDH_HANDLE = isize;
 pub const WNODE_HEADER = extern struct {
     BufferSize: u32,
     ProviderId: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        HistoricalContext: u64,
+        Anonymous: extern struct {
+            Version: u32,
+            Linkage: u32,
+        },
+    },
+    Anonymous2: extern union {
+        CountLost: u32,
+        KernelHandle: HANDLE,
+        TimeStamp: LARGE_INTEGER,
+    },
     Guid: Guid,
     ClientContext: u32,
     Flags: u32,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const OFFSETINSTANCEDATAANDLENGTH = extern struct {
@@ -376,8 +384,10 @@ pub const WNODE_ALL_DATA = extern struct {
     DataBlockOffset: u32,
     InstanceCount: u32,
     OffsetInstanceNameOffsets: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        FixedInstanceSize: u32,
+        OffsetInstanceDataAndLength: OFFSETINSTANCEDATAANDLENGTH,
+    },
 };
 
 pub const WNODE_SINGLE_INSTANCE = extern struct {
@@ -417,8 +427,10 @@ pub const WNODE_EVENT_REFERENCE = extern struct {
     WnodeHeader: WNODE_HEADER,
     TargetGuid: Guid,
     TargetDataBlockSize: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        TargetInstanceIndex: u32,
+        TargetInstanceName: u16,
+    },
 };
 
 pub const WNODE_TOO_SMALL = extern struct {
@@ -430,8 +442,12 @@ pub const WMIREGGUIDW = extern struct {
     Guid: Guid,
     Flags: u32,
     InstanceCount: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        InstanceNameList: u32,
+        BaseNameOffset: u32,
+        Pdo: usize,
+        InstanceInfo: usize,
+    },
 };
 
 pub const WMIREGINFOW = extern struct {
@@ -479,34 +495,76 @@ pub const EtwCompressionModeNoRestart = ETW_COMPRESSION_RESUMPTION_MODE.NoRestar
 
 pub const EVENT_TRACE_HEADER = extern struct {
     Size: u16,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        FieldTypeFlags: u16,
+        Anonymous: extern struct {
+            HeaderType: u8,
+            MarkerFlags: u8,
+        },
+    },
+    Anonymous2: extern union {
+        Version: u32,
+        Class: extern struct {
+            Type: u8,
+            Level: u8,
+            Version: u16,
+        },
+    },
     ThreadId: u32,
     ProcessId: u32,
     TimeStamp: LARGE_INTEGER,
-    Anonymous3: _Anonymous3_e__Union,
-    Anonymous4: _Anonymous4_e__Union,
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    Anonymous3: extern union {
+        Guid: Guid,
+        GuidPtr: u64,
+    },
+    Anonymous4: extern union {
+        Anonymous1: extern struct {
+            KernelTime: u32,
+            UserTime: u32,
+        },
+        ProcessorTime: u64,
+        Anonymous2: extern struct {
+            ClientContext: u32,
+            Flags: u32,
+        },
+    },
 };
 
 pub const EVENT_INSTANCE_HEADER = extern struct {
     Size: u16,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        FieldTypeFlags: u16,
+        Anonymous: extern struct {
+            HeaderType: u8,
+            MarkerFlags: u8,
+        },
+    },
+    Anonymous2: extern union {
+        Version: u32,
+        Class: extern struct {
+            Type: u8,
+            Level: u8,
+            Version: u16,
+        },
+    },
     ThreadId: u32,
     ProcessId: u32,
     TimeStamp: LARGE_INTEGER,
     RegHandle: u64,
     InstanceId: u32,
     ParentInstanceId: u32,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous3: extern union {
+        Anonymous1: extern struct {
+            KernelTime: u32,
+            UserTime: u32,
+        },
+        ProcessorTime: u64,
+        Anonymous2: extern struct {
+            EventId: u32,
+            Flags: u32,
+        },
+    },
     ParentRegHandle: u64,
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MOF_FIELD = extern struct {
@@ -517,7 +575,15 @@ pub const MOF_FIELD = extern struct {
 
 pub const TRACE_LOGFILE_HEADER = extern struct {
     BufferSize: u32,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        Version: u32,
+        VersionDetail: extern struct {
+            MajorVersion: u8,
+            MinorVersion: u8,
+            SubVersion: u8,
+            SubMinorVersion: u8,
+        },
+    },
     ProviderVersion: u32,
     NumberOfProcessors: u32,
     EndTime: LARGE_INTEGER,
@@ -525,7 +591,15 @@ pub const TRACE_LOGFILE_HEADER = extern struct {
     MaximumFileSize: u32,
     LogFileMode: u32,
     BuffersWritten: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        LogInstanceGuid: Guid,
+        Anonymous: extern struct {
+            StartBuffers: u32,
+            PointerSize: u32,
+            EventsLost: u32,
+            CpuSpeedInMHz: u32,
+        },
+    },
     LoggerName: PWSTR,
     LogFileName: PWSTR,
     TimeZone: TIME_ZONE_INFORMATION,
@@ -534,13 +608,19 @@ pub const TRACE_LOGFILE_HEADER = extern struct {
     StartTime: LARGE_INTEGER,
     ReservedFlags: u32,
     BuffersLost: u32,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const TRACE_LOGFILE_HEADER32 = extern struct {
     BufferSize: u32,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        Version: u32,
+        VersionDetail: extern struct {
+            MajorVersion: u8,
+            MinorVersion: u8,
+            SubVersion: u8,
+            SubMinorVersion: u8,
+        },
+    },
     ProviderVersion: u32,
     NumberOfProcessors: u32,
     EndTime: LARGE_INTEGER,
@@ -548,7 +628,15 @@ pub const TRACE_LOGFILE_HEADER32 = extern struct {
     MaximumFileSize: u32,
     LogFileMode: u32,
     BuffersWritten: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        LogInstanceGuid: Guid,
+        Anonymous: extern struct {
+            StartBuffers: u32,
+            PointerSize: u32,
+            EventsLost: u32,
+            CpuSpeedInMHz: u32,
+        },
+    },
     LoggerName: u32,
     LogFileName: u32,
     TimeZone: TIME_ZONE_INFORMATION,
@@ -557,13 +645,19 @@ pub const TRACE_LOGFILE_HEADER32 = extern struct {
     StartTime: LARGE_INTEGER,
     ReservedFlags: u32,
     BuffersLost: u32,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const TRACE_LOGFILE_HEADER64 = extern struct {
     BufferSize: u32,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        Version: u32,
+        VersionDetail: extern struct {
+            MajorVersion: u8,
+            MinorVersion: u8,
+            SubVersion: u8,
+            SubMinorVersion: u8,
+        },
+    },
     ProviderVersion: u32,
     NumberOfProcessors: u32,
     EndTime: LARGE_INTEGER,
@@ -571,7 +665,15 @@ pub const TRACE_LOGFILE_HEADER64 = extern struct {
     MaximumFileSize: u32,
     LogFileMode: u32,
     BuffersWritten: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        LogInstanceGuid: Guid,
+        Anonymous: extern struct {
+            StartBuffers: u32,
+            PointerSize: u32,
+            EventsLost: u32,
+            CpuSpeedInMHz: u32,
+        },
+    },
     LoggerName: u64,
     LogFileName: u64,
     TimeZone: TIME_ZONE_INFORMATION,
@@ -580,8 +682,6 @@ pub const TRACE_LOGFILE_HEADER64 = extern struct {
     StartTime: LARGE_INTEGER,
     ReservedFlags: u32,
     BuffersLost: u32,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const EVENT_INSTANCE_INFO = extern struct {
@@ -598,7 +698,10 @@ pub const EVENT_TRACE_PROPERTIES = extern struct {
     LogFileMode: u32,
     FlushTimer: u32,
     EnableFlags: EVENT_TRACE_FLAG,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        AgeLimit: i32,
+        FlushThreshold: i32,
+    },
     NumberOfBuffers: u32,
     FreeBuffers: u32,
     EventsLost: u32,
@@ -608,7 +711,6 @@ pub const EVENT_TRACE_PROPERTIES = extern struct {
     LoggerThreadId: HANDLE,
     LogFileNameOffset: u32,
     LoggerNameOffset: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const EVENT_TRACE_PROPERTIES_V2 = extern struct {
@@ -620,7 +722,10 @@ pub const EVENT_TRACE_PROPERTIES_V2 = extern struct {
     LogFileMode: u32,
     FlushTimer: u32,
     EnableFlags: EVENT_TRACE_FLAG,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        AgeLimit: i32,
+        FlushThreshold: i32,
+    },
     NumberOfBuffers: u32,
     FreeBuffers: u32,
     EventsLost: u32,
@@ -630,13 +735,20 @@ pub const EVENT_TRACE_PROPERTIES_V2 = extern struct {
     LoggerThreadId: HANDLE,
     LogFileNameOffset: u32,
     LoggerNameOffset: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        V2Control: u32,
+    },
     FilterDescCount: u32,
     FilterDesc: *EVENT_FILTER_DESCRIPTOR,
-    Anonymous3: _Anonymous3_e__Union,
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous3: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        V2Options: u64,
+    },
 };
 
 pub const TRACE_GUID_REGISTRATION = extern struct {
@@ -654,9 +766,14 @@ pub const TRACE_GUID_PROPERTIES = extern struct {
 };
 
 pub const ETW_BUFFER_CONTEXT = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            ProcessorNumber: u8,
+            Alignment: u8,
+        },
+        ProcessorIndex: u16,
+    },
     LoggerId: u16,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const TRACE_ENABLE_INFO = extern struct {
@@ -698,8 +815,10 @@ pub const EVENT_TRACE = extern struct {
     ParentGuid: Guid,
     MofData: *c_void,
     MofLength: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        ClientContext: u32,
+        BufferContext: ETW_BUFFER_CONTEXT,
+    },
 };
 
 pub const PEVENT_TRACE_BUFFER_CALLBACKW = fn(
@@ -730,18 +849,22 @@ pub const EVENT_TRACE_LOGFILEW = extern struct {
     LoggerName: PWSTR,
     CurrentTime: i64,
     BuffersRead: u32,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        LogFileMode: u32,
+        ProcessTraceMode: u32,
+    },
     CurrentEvent: EVENT_TRACE,
     LogfileHeader: TRACE_LOGFILE_HEADER,
     BufferCallback: PEVENT_TRACE_BUFFER_CALLBACKW,
     BufferSize: u32,
     Filled: u32,
     EventsLost: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        EventCallback: PEVENT_CALLBACK,
+        EventRecordCallback: PEVENT_RECORD_CALLBACK,
+    },
     IsKernelTrace: u32,
     Context: *c_void,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const EVENT_TRACE_LOGFILEA = extern struct {
@@ -749,18 +872,22 @@ pub const EVENT_TRACE_LOGFILEA = extern struct {
     LoggerName: PSTR,
     CurrentTime: i64,
     BuffersRead: u32,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        LogFileMode: u32,
+        ProcessTraceMode: u32,
+    },
     CurrentEvent: EVENT_TRACE,
     LogfileHeader: TRACE_LOGFILE_HEADER,
     BufferCallback: PEVENT_TRACE_BUFFER_CALLBACKA,
     BufferSize: u32,
     Filled: u32,
     EventsLost: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        EventCallback: PEVENT_CALLBACK,
+        EventRecordCallback: PEVENT_RECORD_CALLBACK,
+    },
     IsKernelTrace: u32,
     Context: *c_void,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const ENABLE_TRACE_PARAMETERS_V1 = extern struct {
@@ -881,8 +1008,14 @@ pub const ETW_TRACE_PARTITION_INFORMATION_V2 = extern struct {
 pub const EVENT_DATA_DESCRIPTOR = extern struct {
     Ptr: u64,
     Size: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Reserved: u32,
+        Anonymous: extern struct {
+            Type: u8,
+            Reserved1: u8,
+            Reserved2: u16,
+        },
+    },
 };
 
 pub const EVENT_DESCRIPTOR = extern struct {
@@ -959,10 +1092,11 @@ pub const PENABLECALLBACK = fn(
 pub const EVENT_HEADER_EXTENDED_DATA_ITEM = extern struct {
     Reserved1: u16,
     ExtType: u16,
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u16,
+    },
     DataSize: u16,
     DataPtr: u64,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const EVENT_EXTENDED_ITEM_INSTANCE = extern struct {
@@ -1015,9 +1149,14 @@ pub const EVENT_HEADER = extern struct {
     TimeStamp: LARGE_INTEGER,
     ProviderId: Guid,
     EventDescriptor: EVENT_DESCRIPTOR,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            KernelTime: u32,
+            UserTime: u32,
+        },
+        ProcessorTime: u64,
+    },
     ActivityId: Guid,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const EVENT_RECORD = extern struct {
@@ -1054,8 +1193,10 @@ pub const EventSecurityMax = EVENTSECURITYOPERATION.Max;
 
 pub const EVENT_MAP_ENTRY = extern struct {
     OutputOffset: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Value: u32,
+        InputOffset: u32,
+    },
 };
 
 pub const MAP_FLAGS = extern enum(i32) {
@@ -1086,9 +1227,11 @@ pub const EVENT_MAP_INFO = extern struct {
     NameOffset: u32,
     Flag: MAP_FLAGS,
     EntryCount: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        MapEntryValueType: MAP_VALUETYPE,
+        FormatStringOffset: u32,
+    },
     MapEntryArray: [1]EVENT_MAP_ENTRY,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const _TDH_IN_TYPE = extern enum(i32) {
@@ -1275,14 +1418,40 @@ pub const PropertyHasCustomSchema = PROPERTY_FLAGS.HasCustomSchema;
 pub const EVENT_PROPERTY_INFO = extern struct {
     Flags: PROPERTY_FLAGS,
     NameOffset: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
-    Anonymous4: _Anonymous4_e__Union,
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        pub const _structType = extern struct {
+            StructStartIndex: u16,
+            NumOfStructMembers: u16,
+            padding: u32,
+        };
+        pub const _customSchemaType = extern struct {
+            InType: u16,
+            OutType: u16,
+            CustomSchemaOffset: u32,
+        };
+        pub const _nonStructType = extern struct {
+            InType: u16,
+            OutType: u16,
+            MapNameOffset: u32,
+        };
+        nonStructType: _nonStructType,
+        structType: _structType,
+        customSchemaType: _customSchemaType,
+    },
+    Anonymous2: extern union {
+        count: u16,
+        countPropertyIndex: u16,
+    },
+    Anonymous3: extern union {
+        length: u16,
+        lengthPropertyIndex: u16,
+    },
+    Anonymous4: extern union {
+        Reserved: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const DECODING_SOURCE = extern enum(i32) {
@@ -1322,15 +1491,23 @@ pub const TRACE_EVENT_INFO = extern struct {
     ProviderMessageOffset: u32,
     BinaryXMLOffset: u32,
     BinaryXMLSize: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        EventNameOffset: u32,
+        ActivityIDNameOffset: u32,
+    },
+    Anonymous2: extern union {
+        EventAttributesOffset: u32,
+        RelatedActivityIDNameOffset: u32,
+    },
     PropertyCount: u32,
     TopLevelPropertyCount: u32,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous3: extern union {
+        Flags: TEMPLATE_FLAGS,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
     EventPropertyInfoArray: [1]EVENT_PROPERTY_INFO,
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPERTY_DATA_DESCRIPTOR = extern struct {

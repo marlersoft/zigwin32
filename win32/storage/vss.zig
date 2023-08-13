@@ -612,7 +612,7 @@ pub const VSS_CF_APP_ROLLBACK_RECOVERY = VSS_COMPONENT_FLAGS.APP_ROLLBACK_RECOVE
 pub const VSS_CF_NOT_SYSTEM_STATE = VSS_COMPONENT_FLAGS.NOT_SYSTEM_STATE;
 
 pub const IVssExamineWriterMetadata = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IVssWMFiledesc = extern struct {

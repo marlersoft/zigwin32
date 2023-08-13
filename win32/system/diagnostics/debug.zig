@@ -1118,8 +1118,8 @@ pub const CONTEXT = usize;
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     ThreadId: u32,
     ExceptionPointers: *EXCEPTION_POINTERS,
     ClientPointers: BOOL,
@@ -1130,8 +1130,8 @@ pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_USER_STREAM = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Type: u32,
     BufferSize: u32,
     Buffer: *c_void,
@@ -1142,8 +1142,8 @@ pub const MINIDUMP_USER_STREAM = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     UserStreamCount: u32,
     UserStreamArray: *MINIDUMP_USER_STREAM,
 };
@@ -1185,8 +1185,8 @@ pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     CallbackRoutine: MINIDUMP_CALLBACK_ROUTINE,
     CallbackParam: *c_void,
 };
@@ -1226,8 +1226,17 @@ pub const CONTEXT = usize;
 pub const LDT_ENTRY = extern struct {
     LimitLow: u16,
     BaseLow: u16,
-    HighWord: _HighWord_e__Union,
-    const _HighWord_e__Union = u32; // TODO: generate this nested type!
+    HighWord: extern union {
+        Bytes: extern struct {
+            BaseMid: u8,
+            Flags1: u8,
+            Flags2: u8,
+            BaseHi: u8,
+        },
+        Bits: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const WOW64_FLOATING_SAVE_AREA = extern struct {
@@ -1273,8 +1282,17 @@ pub const WOW64_CONTEXT = extern struct {
 pub const WOW64_LDT_ENTRY = extern struct {
     LimitLow: u16,
     BaseLow: u16,
-    HighWord: _HighWord_e__Union,
-    const _HighWord_e__Union = u32; // TODO: generate this nested type!
+    HighWord: extern union {
+        Bytes: extern struct {
+            BaseMid: u8,
+            Flags1: u8,
+            Flags2: u8,
+            BaseHi: u8,
+        },
+        Bits: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 pub const EXCEPTION_RECORD = extern struct {
@@ -1351,8 +1369,8 @@ pub const IMAGE_OPTIONAL_HEADER32 = extern struct {
     DataDirectory: [16]IMAGE_DATA_DIRECTORY,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const IMAGE_OPTIONAL_HEADER64 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Magic: IMAGE_OPTIONAL_HEADER_MAGIC,
     MajorLinkerVersion: u8,
     MinorLinkerVersion: u8,
@@ -1400,7 +1418,10 @@ pub const IMAGE_NT_HEADERS32 = extern struct {
 
 pub const IMAGE_SECTION_HEADER = extern struct {
     Name: [8]u8,
-    Misc: _Misc_e__Union,
+    Misc: extern union {
+        PhysicalAddress: u32,
+        VirtualSize: u32,
+    },
     VirtualAddress: u32,
     SizeOfRawData: u32,
     PointerToRawData: u32,
@@ -1409,7 +1430,6 @@ pub const IMAGE_SECTION_HEADER = extern struct {
     NumberOfRelocations: u16,
     NumberOfLinenumbers: u16,
     Characteristics: IMAGE_SECTION_CHARACTERISTICS,
-    const _Misc_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IMAGE_LOAD_CONFIG_DIRECTORY32 = extern struct {
@@ -1459,8 +1479,8 @@ pub const IMAGE_LOAD_CONFIG_DIRECTORY32 = extern struct {
     GuardEHContinuationCount: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const IMAGE_LOAD_CONFIG_DIRECTORY64 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Size: u32,
     TimeDateStamp: u32,
     MajorVersion: u16,
@@ -1543,12 +1563,15 @@ pub const IMAGE_FUNCTION_ENTRY = extern struct {
     EndOfPrologue: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const IMAGE_FUNCTION_ENTRY64 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     StartingAddress: u64,
     EndingAddress: u64,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        // WARNING: this type has PackingSize=4, how to handle this in Zig?
+        EndOfPrologue: u64,
+        UnwindInfoAddress: u64,
+    },
 };
 
 pub const PVECTORED_EXCEPTION_HANDLER = fn(
@@ -1615,8 +1638,17 @@ pub const DEBUG_EVENT = extern struct {
     dwDebugEventCode: DEBUG_EVENT_CODE,
     dwProcessId: u32,
     dwThreadId: u32,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        Exception: EXCEPTION_DEBUG_INFO,
+        CreateThread: CREATE_THREAD_DEBUG_INFO,
+        CreateProcessInfo: CREATE_PROCESS_DEBUG_INFO,
+        ExitThread: EXIT_THREAD_DEBUG_INFO,
+        ExitProcess: EXIT_PROCESS_DEBUG_INFO,
+        LoadDll: LOAD_DLL_DEBUG_INFO,
+        UnloadDll: UNLOAD_DLL_DEBUG_INFO,
+        DebugString: OUTPUT_DEBUG_STRING_INFO,
+        RipInfo: RIP_INFO,
+    },
 };
 
 pub const LPTOP_LEVEL_EXCEPTION_FILTER = fn(
@@ -1680,8 +1712,19 @@ pub const WctStatusMax = WCT_OBJECT_STATUS.Max;
 pub const WAITCHAIN_NODE_INFO = extern struct {
     ObjectType: WCT_OBJECT_TYPE,
     ObjectStatus: WCT_OBJECT_STATUS,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        LockObject: extern struct {
+            ObjectName: [128]u16,
+            Timeout: LARGE_INTEGER,
+            Alertable: BOOL,
+        },
+        ThreadObject: extern struct {
+            ProcessId: u32,
+            ThreadId: u32,
+            WaitTime: u32,
+            ContextSwitches: u32,
+        },
+    },
 };
 
 pub const PWAITCHAINCALLBACK = fn(
@@ -1709,34 +1752,36 @@ pub const MINIDUMP_LOCATION_DESCRIPTOR = extern struct {
     Rva: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_LOCATION_DESCRIPTOR64 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     DataSize: u64,
     Rva: u64,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MEMORY_DESCRIPTOR = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     StartOfMemoryRange: u64,
     Memory: MINIDUMP_LOCATION_DESCRIPTOR,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MEMORY_DESCRIPTOR64 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     StartOfMemoryRange: u64,
     DataSize: u64,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_HEADER = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Signature: u32,
     Version: u32,
     NumberOfStreams: u32,
     StreamDirectoryRva: u32,
     CheckSum: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Reserved: u32,
+        TimeDateStamp: u32,
+    },
     Flags: u64,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MINIDUMP_DIRECTORY = extern struct {
@@ -1831,30 +1876,46 @@ pub const ceStreamDiagnosisList = MINIDUMP_STREAM_TYPE.ceStreamDiagnosisList;
 pub const LastReservedStream = MINIDUMP_STREAM_TYPE.LastReservedStream;
 
 pub const CPU_INFORMATION = extern union {
-    X86CpuInfo: _X86CpuInfo_e__Struct,
-    OtherCpuInfo: _OtherCpuInfo_e__Struct,
-    const _X86CpuInfo_e__Struct = u32; // TODO: generate this nested type!
-    const _OtherCpuInfo_e__Struct = u32; // TODO: generate this nested type!
+    X86CpuInfo: extern struct {
+        VendorId: [3]u32,
+        VersionInformation: u32,
+        FeatureInformation: u32,
+        AMDExtendedCpuFeatures: u32,
+    },
+    OtherCpuInfo: extern struct {
+        // WARNING: this type has PackingSize=4, how to handle this in Zig?
+        ProcessorFeatures: [2]u64,
+    },
 };
 
 pub const MINIDUMP_SYSTEM_INFO = extern struct {
     ProcessorArchitecture: PROCESSOR_ARCHITECTURE,
     ProcessorLevel: u16,
     ProcessorRevision: u16,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        Reserved0: u16,
+        Anonymous: extern struct {
+            NumberOfProcessors: u8,
+            ProductType: u8,
+        },
+    },
     MajorVersion: u32,
     MinorVersion: u32,
     BuildNumber: u32,
     PlatformId: VER_PLATFORM,
     CSDVersionRva: u32,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        Reserved1: u32,
+        Anonymous: extern struct {
+            SuiteMask: u16,
+            Reserved2: u16,
+        },
+    },
     Cpu: CPU_INFORMATION,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_THREAD = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     ThreadId: u32,
     SuspendCount: u32,
     PriorityClass: u32,
@@ -1869,8 +1930,8 @@ pub const MINIDUMP_THREAD_LIST = extern struct {
     Threads: [1]MINIDUMP_THREAD,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_THREAD_EX = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     ThreadId: u32,
     SuspendCount: u32,
     PriorityClass: u32,
@@ -1886,8 +1947,8 @@ pub const MINIDUMP_THREAD_EX_LIST = extern struct {
     Threads: [1]MINIDUMP_THREAD_EX,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_EXCEPTION = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     ExceptionCode: u32,
     ExceptionFlags: u32,
     ExceptionRecord: u64,
@@ -1904,8 +1965,8 @@ pub const MINIDUMP_EXCEPTION_STREAM = extern struct {
     ThreadContext: MINIDUMP_LOCATION_DESCRIPTOR,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MODULE = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     BaseOfImage: u64,
     SizeOfImage: u32,
     CheckSum: u32,
@@ -1928,15 +1989,15 @@ pub const MINIDUMP_MEMORY_LIST = extern struct {
     MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MEMORY64_LIST = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     NumberOfMemoryRanges: u64,
     BaseRva: u64,
     MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR64,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_EXCEPTION_INFORMATION64 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     ThreadId: u32,
     ExceptionRecord: u64,
     ContextRecord: u64,
@@ -1972,8 +2033,8 @@ pub const MINIDUMP_HANDLE_OBJECT_INFORMATION = extern struct {
     SizeOfInfo: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_HANDLE_DESCRIPTOR = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Handle: u64,
     TypeNameRva: u32,
     ObjectNameRva: u32,
@@ -1983,8 +2044,8 @@ pub const MINIDUMP_HANDLE_DESCRIPTOR = extern struct {
     PointerCount: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_HANDLE_DESCRIPTOR_2 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Handle: u64,
     TypeNameRva: u32,
     ObjectNameRva: u32,
@@ -2010,8 +2071,8 @@ pub const MINIDUMP_HANDLE_OPERATION_LIST = extern struct {
     Reserved: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_FUNCTION_TABLE_DESCRIPTOR = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     MinimumAddress: u64,
     MaximumAddress: u64,
     BaseAddress: u64,
@@ -2028,8 +2089,8 @@ pub const MINIDUMP_FUNCTION_TABLE_STREAM = extern struct {
     SizeOfAlignPad: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_UNLOADED_MODULE = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     BaseOfImage: u64,
     SizeOfImage: u32,
     CheckSum: u32,
@@ -2043,8 +2104,8 @@ pub const MINIDUMP_UNLOADED_MODULE_LIST = extern struct {
     NumberOfEntries: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const XSTATE_CONFIG_FEATURE_MSC_INFO = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     SizeOfInfo: u32,
     ContextSize: u32,
     EnabledFeatures: u64,
@@ -2137,8 +2198,8 @@ pub const MINIDUMP_MISC_INFO_5 = extern struct {
     ProcessCookie: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MEMORY_INFO = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     BaseAddress: u64,
     AllocationBase: u64,
     AllocationProtect: u32,
@@ -2150,15 +2211,15 @@ pub const MINIDUMP_MEMORY_INFO = extern struct {
     __alignment2: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MEMORY_INFO_LIST = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     SizeOfHeader: u32,
     SizeOfEntry: u32,
     NumberOfEntries: u64,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_THREAD_NAME = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     ThreadId: u32,
     RvaOfThreadName: u64,
 };
@@ -2168,8 +2229,8 @@ pub const MINIDUMP_THREAD_NAME_LIST = extern struct {
     ThreadNames: [1]MINIDUMP_THREAD_NAME,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_THREAD_INFO = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     ThreadId: u32,
     DumpFlags: MINIDUMP_THREAD_INFO_DUMP_FLAGS,
     DumpError: u32,
@@ -2188,8 +2249,8 @@ pub const MINIDUMP_THREAD_INFO_LIST = extern struct {
     NumberOfEntries: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_TOKEN_INFO_HEADER = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     TokenSize: u32,
     TokenId: u32,
     TokenHandle: u64,
@@ -2202,8 +2263,8 @@ pub const MINIDUMP_TOKEN_INFO_LIST = extern struct {
     ElementHeaderSize: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_SYSTEM_BASIC_INFORMATION = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     TimerResolution: u32,
     PageSize: u32,
     NumberOfPhysicalPages: u32,
@@ -2216,8 +2277,8 @@ pub const MINIDUMP_SYSTEM_BASIC_INFORMATION = extern struct {
     NumberOfProcessors: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_SYSTEM_FILECACHE_INFORMATION = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     CurrentSize: u64,
     PeakSize: u64,
     PageFaultCount: u32,
@@ -2229,16 +2290,16 @@ pub const MINIDUMP_SYSTEM_FILECACHE_INFORMATION = extern struct {
     Flags: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_SYSTEM_BASIC_PERFORMANCE_INFORMATION = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     AvailablePages: u64,
     CommittedPages: u64,
     CommitLimit: u64,
     PeakCommitment: u64,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     IdleProcessTime: u64,
     IoReadTransferCount: u64,
     IoWriteTransferCount: u64,
@@ -2328,8 +2389,8 @@ pub const MINIDUMP_SYSTEM_MEMORY_INFO_1 = extern struct {
     PerfInfo: MINIDUMP_SYSTEM_PERFORMANCE_INFORMATION,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_PROCESS_VM_COUNTERS_1 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Revision: u16,
     PageFaultCount: u32,
     PeakWorkingSetSize: u64,
@@ -2343,8 +2404,8 @@ pub const MINIDUMP_PROCESS_VM_COUNTERS_1 = extern struct {
     PrivateUsage: u64,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_PROCESS_VM_COUNTERS_2 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Revision: u16,
     Flags: u16,
     PageFaultCount: u32,
@@ -2469,8 +2530,8 @@ pub const ThreadWriteInstructionWindow = THREAD_WRITE_FLAGS.InstructionWindow;
 pub const ThreadWriteThreadData = THREAD_WRITE_FLAGS.ThreadData;
 pub const ThreadWriteThreadInfo = THREAD_WRITE_FLAGS.ThreadInfo;
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_MODULE_CALLBACK = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     FullPath: [*]u16,
     BaseOfImage: u64,
     SizeOfImage: u32,
@@ -2483,8 +2544,8 @@ pub const MINIDUMP_MODULE_CALLBACK = extern struct {
     SizeOfMiscRecord: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_INCLUDE_MODULE_CALLBACK = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     BaseOfImage: u64,
 };
 
@@ -2505,35 +2566,35 @@ pub const ModuleReferencedByMemory = MODULE_WRITE_FLAGS.ReferencedByMemory;
 pub const ModuleWriteTlsData = MODULE_WRITE_FLAGS.WriteTlsData;
 pub const ModuleWriteCodeSegs = MODULE_WRITE_FLAGS.WriteCodeSegs;
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_IO_CALLBACK = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Handle: HANDLE,
     Offset: u64,
     Buffer: *c_void,
     BufferBytes: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_READ_MEMORY_FAILURE_CALLBACK = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Offset: u64,
     Bytes: u32,
     FailureStatus: HRESULT,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_VM_QUERY_CALLBACK = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Offset: u64,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_VM_PRE_READ_CALLBACK = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Offset: u64,
     Buffer: *c_void,
     Size: u32,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_VM_POST_READ_CALLBACK = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Offset: u64,
     Buffer: *c_void,
     Size: u32,
@@ -2545,13 +2606,52 @@ pub const MINIDUMP_CALLBACK_INPUT = extern struct {
     ProcessId: u32,
     ProcessHandle: HANDLE,
     CallbackType: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Status: HRESULT,
+        Thread: MINIDUMP_THREAD_CALLBACK,
+        ThreadEx: MINIDUMP_THREAD_EX_CALLBACK,
+        Module: MINIDUMP_MODULE_CALLBACK,
+        IncludeThread: MINIDUMP_INCLUDE_THREAD_CALLBACK,
+        IncludeModule: MINIDUMP_INCLUDE_MODULE_CALLBACK,
+        Io: MINIDUMP_IO_CALLBACK,
+        ReadMemoryFailure: MINIDUMP_READ_MEMORY_FAILURE_CALLBACK,
+        SecondaryFlags: u32,
+        VmQuery: MINIDUMP_VM_QUERY_CALLBACK,
+        VmPreRead: MINIDUMP_VM_PRE_READ_CALLBACK,
+        VmPostRead: MINIDUMP_VM_POST_READ_CALLBACK,
+    },
 };
 
 pub const MINIDUMP_CALLBACK_OUTPUT = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        // WARNING: this type has PackingSize=4, how to handle this in Zig?
+        ModuleWriteFlags: u32,
+        ThreadWriteFlags: u32,
+        SecondaryFlags: u32,
+        Anonymous1: extern struct {
+            // WARNING: this type has PackingSize=4, how to handle this in Zig?
+            MemoryBase: u64,
+            MemorySize: u32,
+        },
+        Anonymous2: extern struct {
+            CheckCancel: BOOL,
+            Cancel: BOOL,
+        },
+        Handle: HANDLE,
+        Anonymous3: extern struct {
+            VmRegion: MINIDUMP_MEMORY_INFO,
+            Continue: BOOL,
+        },
+        Anonymous4: extern struct {
+            VmQueryStatus: HRESULT,
+            VmQueryResult: MINIDUMP_MEMORY_INFO,
+        },
+        Anonymous5: extern struct {
+            VmReadStatus: HRESULT,
+            VmReadBytesCompleted: u32,
+        },
+        Status: HRESULT,
+    },
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
@@ -7537,8 +7637,14 @@ pub const PROFILER_PROPERTY_TYPE_SUBSTRING_INFO = extern struct {
 pub const PROFILER_HEAP_OBJECT_RELATIONSHIP = extern struct {
     relationshipId: u32,
     relationshipInfo: PROFILER_RELATIONSHIP_INFO,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        numberValue: f64,
+        stringValue: [*:0]const u16,
+        bstrValue: BSTR,
+        objectId: usize,
+        externalObjectAddress: *c_void,
+        subString: *PROFILER_PROPERTY_TYPE_SUBSTRING_INFO,
+    },
 };
 
 pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST = extern struct {
@@ -7548,18 +7654,33 @@ pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST = extern struct {
 
 pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO = extern struct {
     infoType: PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        prototype: usize,
+        functionName: [*:0]const u16,
+        elementAttributesSize: u32,
+        elementTextChildrenSize: u32,
+        scopeList: *PROFILER_HEAP_OBJECT_SCOPE_LIST,
+        internalProperty: *PROFILER_HEAP_OBJECT_RELATIONSHIP,
+        namePropertyList: *PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+        indexPropertyList: *PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+        relationshipList: *PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+        eventList: *PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+        weakMapCollectionList: *PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+        mapCollectionList: *PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+        setCollectionList: *PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST,
+    },
 };
 
 pub const PROFILER_HEAP_OBJECT = extern struct {
     size: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        objectId: usize,
+        externalObjectAddress: *c_void,
+    },
     typeNameId: u32,
     flags: u32,
     unused: u16,
     optionalInfoCount: u16,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 const IID_IActiveScriptProfilerHeapEnum_Value = @import("../../zig.zig").Guid.initString("32e4694e-0d37-419b-b93d-fa20ded6e8ea");
@@ -15122,8 +15243,11 @@ pub const DEBUG_STACK_FRAME_EX = extern struct {
 
 pub const INLINE_FRAME_CONTEXT = extern union {
     ContextValue: u32,
-    Anonymous: _Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Anonymous: extern struct {
+        FrameId: u8,
+        FrameType: u8,
+        FrameSignature: u16,
+    },
 };
 
 pub const STACK_SRC_INFO = extern struct {
@@ -15194,10 +15318,37 @@ pub const DEBUG_LAST_EVENT_INFO_SERVICE_EXCEPTION = extern struct {
 };
 
 pub const DEBUG_VALUE = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        I8: u8,
+        I16: u16,
+        I32: u32,
+        Anonymous: extern struct {
+            I64: u64,
+            Nat: BOOL,
+        },
+        F32: f32,
+        F64: f64,
+        F80Bytes: [10]u8,
+        F82Bytes: [11]u8,
+        F128Bytes: [16]u8,
+        VI8: [16]u8,
+        VI16: [8]u16,
+        VI32: [4]u32,
+        VI64: [2]u64,
+        VF32: [4]f32,
+        VF64: [2]f64,
+        I64Parts32: extern struct {
+            LowPart: u32,
+            HighPart: u32,
+        },
+        F128Parts64: extern struct {
+            LowPart: u64,
+            HighPart: i64,
+        },
+        RawBytes: [24]u8,
+    },
     TailOfRawBytes: u32,
     Type: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 const IID_IDebugControl_Value = @import("../../zig.zig").Guid.initString("5182e668-105e-416e-ad92-24ef800424ba");
@@ -37379,8 +37530,14 @@ pub const ScriptDebugEventInformation = extern struct {
     DebugEvent: ScriptDebugEvent,
     EventPosition: ScriptDebugPosition,
     EventSpanEnd: ScriptDebugPosition,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        ExceptionInformation: extern struct {
+            IsUncaught: bool,
+        },
+        BreakpointInformation: extern struct {
+            BreakpointId: u64,
+        },
+    },
 };
 
 const IID_IDataModelScriptDebugClient_Value = @import("../../zig.zig").Guid.initString("53159b6d-d4c4-471b-a863-5b110ca800ca");
@@ -38752,19 +38909,24 @@ pub const PSYM_DUMP_FIELD_CALLBACK = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const FIELD_INFO = extern struct {
+    pub const _BitField = extern struct {
+        Position: u16,
+        Size: u16,
+    };
     fName: *u8,
     printName: *u8,
     size: u32,
     fOptions: u32,
     address: u64,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        fieldCallBack: *c_void,
+        pBuffer: *c_void,
+    },
     TypeId: u32,
     FieldOffset: u32,
     BufferSize: u32,
     BitField: _BitField,
     _bitfield: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-    const _BitField = u32; // TODO: generate this nested type!
 };
 
 pub const SYM_DUMP_PARAM = extern struct {
@@ -38773,7 +38935,10 @@ pub const SYM_DUMP_PARAM = extern struct {
     Options: u32,
     addr: u64,
     listLink: *FIELD_INFO,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Context: *c_void,
+        pBuffer: *c_void,
+    },
     CallbackRoutine: PSYM_DUMP_FIELD_CALLBACK,
     nFields: u32,
     Fields: *FIELD_INFO,
@@ -38782,7 +38947,6 @@ pub const SYM_DUMP_PARAM = extern struct {
     TypeSize: u32,
     BufferSize: u32,
     _bitfield: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const FLASHWINFO = extern struct {
@@ -45923,8 +46087,8 @@ pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_THREAD_CALLBACK = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     ThreadId: u32,
     ThreadHandle: HANDLE,
     Context: CONTEXT,
@@ -45938,8 +46102,8 @@ pub const MINIDUMP_THREAD_CALLBACK = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     ThreadId: u32,
     ThreadHandle: HANDLE,
     Context: CONTEXT,
@@ -48616,7 +48780,7 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (44)
+// Section: Imports (45)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const VS_FIXEDFILEINFO = @import("../../ui/windows_and_messaging.zig").VS_FIXEDFILEINFO;
@@ -48656,6 +48820,7 @@ const HWND = @import("../../ui/windows_and_messaging.zig").HWND;
 const VIRTUAL_ALLOCATION_TYPE = @import("../../system/memory.zig").VIRTUAL_ALLOCATION_TYPE;
 const IMAGE_LOAD_CONFIG_CODE_INTEGRITY = @import("../../system/system_services.zig").IMAGE_LOAD_CONFIG_CODE_INTEGRITY;
 const LIST_ENTRY64 = @import("../../system/kernel.zig").LIST_ENTRY64;
+const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
 const XSTATE_FEATURE = @import("../../system/system_services.zig").XSTATE_FEATURE;
 const VARIANT = @import("../../system/ole_automation.zig").VARIANT;
 const HANDLE = @import("../../system/system_services.zig").HANDLE;

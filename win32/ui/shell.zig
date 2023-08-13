@@ -2179,9 +2179,11 @@ pub const SHELLEXECUTEINFOA = extern struct {
     lpClass: [*:0]const u8,
     hkeyClass: HKEY,
     dwHotKey: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        hIcon: HANDLE,
+        hMonitor: HANDLE,
+    },
     hProcess: HANDLE,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -2203,9 +2205,11 @@ pub const SHELLEXECUTEINFOW = extern struct {
     lpClass: [*:0]const u16,
     hkeyClass: HKEY,
     dwHotKey: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        hIcon: HANDLE,
+        hMonitor: HANDLE,
+    },
     hProcess: HANDLE,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -2267,12 +2271,14 @@ pub const NOTIFYICONDATAA = extern struct {
     dwState: u32,
     dwStateMask: u32,
     szInfo: [256]CHAR,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        uTimeout: u32,
+        uVersion: u32,
+    },
     szInfoTitle: [64]CHAR,
     dwInfoFlags: u32,
     guidItem: Guid,
     hBalloonIcon: HICON,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -2291,12 +2297,14 @@ pub const NOTIFYICONDATAW = extern struct {
     dwState: u32,
     dwStateMask: u32,
     szInfo: [256]u16,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        uTimeout: u32,
+        uVersion: u32,
+    },
     szInfoTitle: [64]u16,
     dwInfoFlags: u32,
     guidItem: Guid,
     hBalloonIcon: HICON,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -2379,11 +2387,11 @@ pub const OPEN_PRINTER_PROPS_INFOW = extern struct {
 }, else => struct { } };
 
 pub const _APPSTATE_REGISTRATION = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _APPCONSTRAIN_REGISTRATION = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 const CLSID_QueryCancelAutoPlay_Value = @import("../zig.zig").Guid.initString("331f1768-05a9-4ddd-b86e-dae34ddc998a");
@@ -2490,8 +2498,11 @@ pub const STRRET_CSTR = STRRET_TYPE.CSTR;
 
 pub const STRRET = extern struct {
     uType: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pOleStr: PWSTR,
+        uOffset: u32,
+        cStr: [260]u8,
+    },
 };
 
 pub const SHELLDETAILS = packed struct {
@@ -21213,10 +21224,12 @@ pub const PFNSHOWSHAREFOLDERUIW = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const NC_ADDRESS = extern struct {
+    pub const NET_ADDRESS_INFO = extern struct {
+        placeholder: usize, // TODO: why is this type empty?
+    };
     pAddrInfo: *NET_ADDRESS_INFO,
     PortNumber: u16,
     PrefixLength: u8,
-    const NET_ADDRESS_INFO = u32; // TODO: generate this nested type!
 };
 
 pub const SFBS_FLAGS = extern enum(i32) {
@@ -28846,9 +28859,11 @@ pub const SHELLEXECUTEINFOA = packed struct {
     lpClass: [*:0]const u8,
     hkeyClass: HKEY,
     dwHotKey: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: packed union {
+        hIcon: HANDLE,
+        hMonitor: HANDLE,
+    },
     hProcess: HANDLE,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -28870,9 +28885,11 @@ pub const SHELLEXECUTEINFOW = packed struct {
     lpClass: [*:0]const u16,
     hkeyClass: HKEY,
     dwHotKey: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: packed union {
+        hIcon: HANDLE,
+        hMonitor: HANDLE,
+    },
     hProcess: HANDLE,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -28934,12 +28951,14 @@ pub const NOTIFYICONDATAA = packed struct {
     dwState: u32,
     dwStateMask: u32,
     szInfo: [256]CHAR,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: packed union {
+        uTimeout: u32,
+        uVersion: u32,
+    },
     szInfoTitle: [64]CHAR,
     dwInfoFlags: u32,
     guidItem: Guid,
     hBalloonIcon: HICON,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };
@@ -28958,12 +28977,14 @@ pub const NOTIFYICONDATAW = packed struct {
     dwState: u32,
     dwStateMask: u32,
     szInfo: [256]u16,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: packed union {
+        uTimeout: u32,
+        uVersion: u32,
+    },
     szInfoTitle: [64]u16,
     dwInfoFlags: u32,
     guidItem: Guid,
     hBalloonIcon: HICON,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 }, else => struct { } };

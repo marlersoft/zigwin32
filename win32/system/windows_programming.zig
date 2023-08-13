@@ -1117,8 +1117,17 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 pub const VDMLDT_ENTRY = extern struct {
     LimitLow: u16,
     BaseLow: u16,
-    HighWord: _HighWord_e__Union,
-    const _HighWord_e__Union = u32; // TODO: generate this nested type!
+    HighWord: extern union {
+        Bytes: extern struct {
+            BaseMid: u8,
+            Flags1: u8,
+            Flags2: u8,
+            BaseHi: u8,
+        },
+        Bits: extern struct {
+            _bitfield: u32,
+        },
+    },
 };
 
 }, else => struct { } };
@@ -1126,8 +1135,8 @@ pub const VDMLDT_ENTRY = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MODULEENTRY = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     szModule: [10]CHAR,
     hModule: HANDLE,
@@ -1141,8 +1150,8 @@ pub const MODULEENTRY = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const GLOBALENTRY = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwSize: u32,
     dwAddress: u32,
     dwBlockSize: u32,
@@ -1210,71 +1219,71 @@ pub const VDMSETCONTEXTPROC = fn(
 }, else => struct { } };
 
 pub const IDirectDrawClipperVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawPaletteVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawSurfaceVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawSurface2Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawSurface3Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawSurface4Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawSurface7Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawColorControlVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDraw2Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDraw4Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDraw7Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawKernelVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawSurfaceKernelVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const IDirectDrawGammaControlVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _D3DHAL_CALLBACKS = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _D3DHAL_GLOBALDRIVERDATA = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
@@ -1331,7 +1340,13 @@ pub const NETLOGON_INFO_4 = extern struct {
 };
 
 pub const SYSTEM_INFO = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dwOemId: u32,
+        Anonymous: extern struct {
+            wProcessorArchitecture: u16,
+            wReserved: u16,
+        },
+    },
     dwPageSize: u32,
     lpMinimumApplicationAddress: *c_void,
     lpMaximumApplicationAddress: *c_void,
@@ -1341,7 +1356,6 @@ pub const SYSTEM_INFO = extern struct {
     dwAllocationGranularity: u32,
     wProcessorLevel: u16,
     wProcessorRevision: u16,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MEMORYSTATUSEX = extern struct {
@@ -3927,9 +3941,11 @@ pub const LDR_DATA_TABLE_ENTRY = extern struct {
     FullDllName: UNICODE_STRING,
     Reserved4: [8]u8,
     Reserved5: [3]*c_void,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        CheckSum: u32,
+        Reserved6: *c_void,
+    },
     TimeDateStamp: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PPS_POST_PROCESS_INIT_ROUTINE = fn(
@@ -3945,9 +3961,11 @@ pub const OBJECT_ATTRIBUTES = extern struct {
 };
 
 pub const IO_STATUS_BLOCK = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Status: NTSTATUS,
+        Pointer: *c_void,
+    },
     Information: usize,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PIO_APC_ROUTINE = fn(
@@ -4614,8 +4632,27 @@ pub const fdidtDECRYPT = FDIDECRYPTTYPE.DECRYPT;
 pub const FDIDECRYPT = extern struct {
     fdidt: FDIDECRYPTTYPE,
     pvUser: *c_void,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        cabinet: extern struct {
+            pHeaderReserve: *c_void,
+            cbHeaderReserve: u16,
+            setID: u16,
+            iCabinet: i32,
+        },
+        folder: extern struct {
+            pFolderReserve: *c_void,
+            cbFolderReserve: u16,
+            iFolder: u16,
+        },
+        decrypt: extern struct {
+            pDataReserve: *c_void,
+            cbDataReserve: u16,
+            pbData: *c_void,
+            cbData: u16,
+            fSplit: BOOL,
+            cbPartial: u16,
+        },
+    },
 };
 
 pub const PFNALLOC = fn(
@@ -5628,12 +5665,16 @@ pub const LPDD32BITDRIVERINIT = fn(
 pub const VIDMEM = extern struct {
     dwFlags: u32,
     fpStart: usize,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        fpEnd: usize,
+        dwWidth: u32,
+    },
     ddsCaps: DDSCAPS,
     ddsCapsAlt: DDSCAPS,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous2: extern union {
+        lpHeap: *VMEMHEAP,
+        dwHeight: u32,
+    },
 };
 
 pub const VIDMEMINFO = extern struct {
@@ -6068,10 +6109,13 @@ pub const DDNONLOCALVIDMEMCAPS = extern struct {
 };
 
 pub const DDMORESURFACECAPS = extern struct {
+    pub const ExtendedHeapRestrictions = extern struct {
+        ddsCapsEx: DDSCAPSEX,
+        ddsCapsExAlt: DDSCAPSEX,
+    };
     dwSize: u32,
     ddsCapsMore: DDSCAPSEX,
     ddsExtendedHeapRestrictions: [1]ExtendedHeapRestrictions,
-    const ExtendedHeapRestrictions = u32; // TODO: generate this nested type!
 };
 
 pub const DDSTEREOMODE = extern struct {
@@ -6096,12 +6140,14 @@ pub const DDRAWI_DDRAWPALETTE_GBL = extern struct {
     lpDD_lcl: *DDRAWI_DIRECTDRAW_LCL,
     dwProcessId: u32,
     lpColorTable: *PALETTEENTRY,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dwReserved1: usize,
+        hHELGDIPalette: HPALETTE,
+    },
     dwDriverReserved: u32,
     dwContentsStamp: u32,
     dwSaveStamp: u32,
     dwHandle: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDRAWI_DDRAWPALETTE_LCL = extern struct {
@@ -6178,25 +6224,37 @@ pub const DDRAWI_DDRAWSURFACE_INT = extern struct {
 pub const DDRAWI_DDRAWSURFACE_GBL = extern struct {
     dwRefCnt: u32,
     dwGlobalFlags: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous1: extern union {
+        lpRectList: *ACCESSRECTLIST,
+        dwBlockSizeY: u32,
+        lSlicePitch: i32,
+    },
+    Anonymous2: extern union {
+        lpVidMemHeap: *VMEMHEAP,
+        dwBlockSizeX: u32,
+    },
+    Anonymous3: extern union {
+        lpDD: *DDRAWI_DIRECTDRAW_GBL,
+        lpDDHandle: *c_void,
+    },
     fpVidMem: usize,
-    Anonymous4: _Anonymous4_e__Union,
+    Anonymous4: extern union {
+        lPitch: i32,
+        dwLinearSize: u32,
+    },
     wHeight: u16,
     wWidth: u16,
     dwUsageCount: u32,
     dwReserved1: usize,
     ddpfSurface: DDPIXELFORMAT,
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDRAWI_DDRAWSURFACE_GBL_MORE = extern struct {
     dwSize: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dwPhysicalPageTable: u32,
+        fpPhysicalVidMem: usize,
+    },
     pPageTable: *u32,
     cPages: u32,
     dwSavedDCContext: usize,
@@ -6214,7 +6272,6 @@ pub const DDRAWI_DDRAWSURFACE_GBL_MORE = extern struct {
     dwDDRAWReserved1: u32,
     dwDDRAWReserved2: u32,
     fpAliasOfVidMem: usize,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDRAWI_DDRAWSURFACE_MORE = extern struct {
@@ -6261,8 +6318,14 @@ pub const DDRAWI_DDRAWSURFACE_LCL = extern struct {
     dwProcessId: u32,
     dwFlags: u32,
     ddsCaps: DDSCAPS,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        lpDDPalette: *DDRAWI_DDRAWPALETTE_INT,
+        lp16DDPalette: *DDRAWI_DDRAWPALETTE_INT,
+    },
+    Anonymous2: extern union {
+        lpDDClipper: *DDRAWI_DDRAWCLIPPER_LCL,
+        lp16DDClipper: *DDRAWI_DDRAWCLIPPER_INT,
+    },
     dwModeCreatedIn: u32,
     dwBackBufferCount: u32,
     ddckCKDestBlt: DDCOLORKEY,
@@ -6279,8 +6342,6 @@ pub const DDRAWI_DDRAWSURFACE_LCL = extern struct {
     dwAlpha: u32,
     lOverlayX: i32,
     lOverlayY: i32,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDHALMODEINFO = extern struct {
@@ -6941,11 +7002,12 @@ pub const DDHAL_CREATESURFACEEXDATA = extern struct {
 
 pub const DDHAL_GETDRIVERSTATEDATA = extern struct {
     dwFlags: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dwhContext: usize,
+    },
     lpdwStates: *u32,
     dwLength: u32,
     ddRVal: HRESULT,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDHAL_SYNCSURFACEDATA = extern struct {
@@ -9862,12 +9924,14 @@ pub const SocketIoControlType = TDI_TL_IO_CONTROL_TYPE.SocketIoControlType;
 pub const TDI_TL_IO_CONTROL_ENDPOINT = extern struct {
     Type: TDI_TL_IO_CONTROL_TYPE,
     Level: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        IoControlCode: u32,
+        OptionName: u32,
+    },
     InputBuffer: *c_void,
     InputBufferLength: u32,
     OutputBuffer: *c_void,
     OutputBufferLength: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const WLDP_HOST = extern enum(i32) {
@@ -11191,9 +11255,12 @@ pub const DEV_OBJECT = extern struct {
 };
 
 pub const DEV_QUERY_RESULT_ACTION_DATA = extern struct {
+    pub const _DEV_QUERY_RESULT_UPDATE_PAYLOAD = extern union {
+        State: DEV_QUERY_STATE,
+        DeviceObject: DEV_OBJECT,
+    };
     Action: DEV_QUERY_RESULT_ACTION,
     Data: _DEV_QUERY_RESULT_UPDATE_PAYLOAD,
-    const _DEV_QUERY_RESULT_UPDATE_PAYLOAD = u32; // TODO: generate this nested type!
 };
 
 pub const DEV_QUERY_PARAMETER = extern struct {
@@ -14791,18 +14858,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (82)
+// Section: Imports (84)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
+const DDSCAPSEX = @import("../graphics/direct_draw.zig").DDSCAPSEX;
 const DDOVERLAYFX = @import("../graphics/direct_draw.zig").DDOVERLAYFX;
 const DDKERNELCAPS = @import("../ui/display_devices.zig").DDKERNELCAPS;
 const OLECMDF = @import("../system/com.zig").OLECMDF;
+const NTSTATUS = @import("../system/system_services.zig").NTSTATUS;
 const OLECMDEXECOPT = @import("../system/com.zig").OLECMDEXECOPT;
-const DDSCAPSEX = @import("../graphics/direct_draw.zig").DDSCAPSEX;
 const DEVPROPERTY = @import("../system/system_services.zig").DEVPROPERTY;
 const SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = @import("../system/system_services.zig").SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX;
-const NTSTATUS = @import("../system/system_services.zig").NTSTATUS;
 const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
 const MIDL_STUB_MESSAGE = @import("../system/rpc.zig").MIDL_STUB_MESSAGE;
 const WPARAM = @import("../ui/windows_and_messaging.zig").WPARAM;
@@ -14827,6 +14894,7 @@ const LPTHREAD_START_ROUTINE = @import("../system/system_services.zig").LPTHREAD
 const DDSCAPS2 = @import("../graphics/direct_draw.zig").DDSCAPS2;
 const DEVPROPCOMPKEY = @import("../system/system_services.zig").DEVPROPCOMPKEY;
 const DEVPROPSTORE = @import("../system/system_services.zig").DEVPROPSTORE;
+const VMEMHEAP = @import("../devices/display.zig").VMEMHEAP;
 const OLECMDID = @import("../system/com.zig").OLECMDID;
 const HANDLE = @import("../system/system_services.zig").HANDLE;
 const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
@@ -14846,6 +14914,7 @@ const STARTUPINFOA = @import("../system/threading.zig").STARTUPINFOA;
 const LDT_ENTRY = @import("../system/diagnostics/debug.zig").LDT_ENTRY;
 const BOOL = @import("../system/system_services.zig").BOOL;
 const PRIVILEGE_SET = @import("../security.zig").PRIVILEGE_SET;
+const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
 const DDSURFACEDESC = @import("../graphics/direct_draw.zig").DDSURFACEDESC;
 const FILE_SHARE_MODE = @import("../storage/file_system.zig").FILE_SHARE_MODE;
 const SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION = @import("../system/system_services.zig").SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION;

@@ -102,63 +102,63 @@ pub const WS_URL_FLAGS_ZERO_TERMINATE = @as(i32, 4);
 // Section: Types (450)
 //--------------------------------------------------------------------------------
 pub const WS_XML_READER = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_XML_WRITER = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_XML_BUFFER = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_CHANNEL = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_OPERATION_CONTEXT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_ERROR = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_HEAP = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_LISTENER = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_MESSAGE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_SECURITY_TOKEN = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_SECURITY_CONTEXT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_SERVICE_HOST = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_SERVICE_PROXY = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_METADATA = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_POLICY = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WS_XML_READER_PROPERTY_ID = extern enum(i32) {
@@ -3739,8 +3739,9 @@ pub const WS_SECURITY_BINDING_PROPERTY_CONSTRAINT = extern struct {
     id: WS_SECURITY_BINDING_PROPERTY_ID,
     allowedValues: *c_void,
     allowedValuesSize: u32,
-    out: _out_e__Struct,
-    const _out_e__Struct = u32; // TODO: generate this nested type!
+    out: extern struct {
+        securityBindingProperty: WS_SECURITY_BINDING_PROPERTY,
+    },
 };
 
 pub const WS_SECURITY_BINDING_CONSTRAINT = extern struct {
@@ -3751,8 +3752,9 @@ pub const WS_SECURITY_BINDING_CONSTRAINT = extern struct {
 
 pub const WS_SSL_TRANSPORT_SECURITY_BINDING_CONSTRAINT = extern struct {
     bindingConstraint: WS_SECURITY_BINDING_CONSTRAINT,
-    out: _out_e__Struct,
-    const _out_e__Struct = u32; // TODO: generate this nested type!
+    out: extern struct {
+        clientCertCredentialRequired: BOOL,
+    },
 };
 
 pub const WS_USERNAME_MESSAGE_SECURITY_BINDING_CONSTRAINT = extern struct {
@@ -3782,8 +3784,9 @@ pub const WS_REQUEST_SECURITY_TOKEN_PROPERTY_CONSTRAINT = extern struct {
     id: WS_REQUEST_SECURITY_TOKEN_PROPERTY_ID,
     allowedValues: *c_void,
     allowedValuesSize: u32,
-    out: _out_e__Struct,
-    const _out_e__Struct = u32; // TODO: generate this nested type!
+    out: extern struct {
+        requestSecurityTokenProperty: WS_REQUEST_SECURITY_TOKEN_PROPERTY,
+    },
 };
 
 pub const WS_ISSUED_TOKEN_MESSAGE_SECURITY_BINDING_CONSTRAINT = extern struct {
@@ -3793,16 +3796,19 @@ pub const WS_ISSUED_TOKEN_MESSAGE_SECURITY_BINDING_CONSTRAINT = extern struct {
     claimConstraintCount: u32,
     requestSecurityTokenPropertyConstraints: *WS_REQUEST_SECURITY_TOKEN_PROPERTY_CONSTRAINT,
     requestSecurityTokenPropertyConstraintCount: u32,
-    out: _out_e__Struct,
-    const _out_e__Struct = u32; // TODO: generate this nested type!
+    out: extern struct {
+        issuerAddress: *WS_ENDPOINT_ADDRESS,
+        requestSecurityTokenTemplate: *WS_XML_BUFFER,
+    },
 };
 
 pub const WS_SECURITY_PROPERTY_CONSTRAINT = extern struct {
     id: WS_SECURITY_PROPERTY_ID,
     allowedValues: *c_void,
     allowedValuesSize: u32,
-    out: _out_e__Struct,
-    const _out_e__Struct = u32; // TODO: generate this nested type!
+    out: extern struct {
+        securityProperty: WS_SECURITY_PROPERTY,
+    },
 };
 
 pub const WS_SECURITY_CONSTRAINTS = extern struct {
@@ -3822,8 +3828,9 @@ pub const WS_CHANNEL_PROPERTY_CONSTRAINT = extern struct {
     id: WS_CHANNEL_PROPERTY_ID,
     allowedValues: *c_void,
     allowedValuesSize: u32,
-    out: _out_e__Struct,
-    const _out_e__Struct = u32; // TODO: generate this nested type!
+    out: extern struct {
+        channelProperty: WS_CHANNEL_PROPERTY,
+    },
 };
 
 pub const WS_POLICY_EXTENSION = extern struct {
@@ -3834,8 +3841,9 @@ pub const WS_ENDPOINT_POLICY_EXTENSION = extern struct {
     policyExtension: WS_POLICY_EXTENSION,
     assertionName: *WS_XML_STRING,
     assertionNs: *WS_XML_STRING,
-    out: _out_e__Struct,
-    const _out_e__Struct = u32; // TODO: generate this nested type!
+    out: extern struct {
+        assertionValue: *WS_XML_BUFFER,
+    },
 };
 
 pub const WS_POLICY_CONSTRAINTS = extern struct {

@@ -601,8 +601,24 @@ pub const HttpDataChunkMaximum = HTTP_DATA_CHUNK_TYPE.Maximum;
 
 pub const HTTP_DATA_CHUNK = extern struct {
     DataChunkType: HTTP_DATA_CHUNK_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        FromMemory: extern struct {
+            pBuffer: *c_void,
+            BufferLength: u32,
+        },
+        FromFileHandle: extern struct {
+            ByteRange: HTTP_BYTE_RANGE,
+            FileHandle: HANDLE,
+        },
+        FromFragmentCache: extern struct {
+            FragmentNameLength: u16,
+            pFragmentName: [*:0]const u16,
+        },
+        FromFragmentCacheEx: extern struct {
+            ByteRange: HTTP_BYTE_RANGE,
+            pFragmentName: [*:0]const u16,
+        },
+    },
 };
 
 pub const HTTP_REQUEST_HEADERS = extern struct {
@@ -1027,8 +1043,11 @@ pub const HTTP_PERFORMANCE_PARAM = extern struct {
 pub const HTTP_SERVICE_CONFIG_SSL_PARAM_EX = extern struct {
     ParamType: HTTP_SSL_SERVICE_CONFIG_EX_PARAM_TYPE,
     Flags: u64,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Http2WindowSizeParam: HTTP2_WINDOW_SIZE_PARAM,
+        Http2SettingsLimitsParam: HTTP2_SETTINGS_LIMITS_PARAM,
+        HttpPerformanceParam: HTTP_PERFORMANCE_PARAM,
+    },
 };
 
 pub const HTTP_SERVICE_CONFIG_SSL_SET = extern struct {

@@ -1731,8 +1731,10 @@ pub const RADIUS_ATTRIBUTE = extern struct {
     dwAttrType: u32,
     fDataType: RADIUS_DATA_TYPE,
     cbDataLength: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        dwValue: u32,
+        lpValue: *const u8,
+    },
 };
 
 pub const RADIUS_VSA_FORMAT = extern struct {

@@ -1037,10 +1037,14 @@ pub const ID3D10View = extern struct {
 };
 
 pub const D3D10_BUFFER_SRV = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        FirstElement: u32,
+        ElementOffset: u32,
+    },
+    Anonymous2: extern union {
+        NumElements: u32,
+        ElementWidth: u32,
+    },
 };
 
 pub const D3D10_TEX1D_SRV = extern struct {
@@ -1089,8 +1093,17 @@ pub const D3D10_TEX2DMS_ARRAY_SRV = extern struct {
 pub const D3D10_SHADER_RESOURCE_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D_SRV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Buffer: D3D10_BUFFER_SRV,
+        Texture1D: D3D10_TEX1D_SRV,
+        Texture1DArray: D3D10_TEX1D_ARRAY_SRV,
+        Texture2D: D3D10_TEX2D_SRV,
+        Texture2DArray: D3D10_TEX2D_ARRAY_SRV,
+        Texture2DMS: D3D10_TEX2DMS_SRV,
+        Texture2DMSArray: D3D10_TEX2DMS_ARRAY_SRV,
+        Texture3D: D3D10_TEX3D_SRV,
+        TextureCube: D3D10_TEXCUBE_SRV,
+    },
 };
 
 const IID_ID3D10ShaderResourceView_Value = @import("../zig.zig").Guid.initString("9b7e4c07-342c-4106-a19f-4f2704f689f0");
@@ -1115,10 +1128,14 @@ pub const ID3D10ShaderResourceView = extern struct {
 };
 
 pub const D3D10_BUFFER_RTV = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        FirstElement: u32,
+        ElementOffset: u32,
+    },
+    Anonymous2: extern union {
+        NumElements: u32,
+        ElementWidth: u32,
+    },
 };
 
 pub const D3D10_TEX1D_RTV = extern struct {
@@ -1159,8 +1176,16 @@ pub const D3D10_TEX3D_RTV = extern struct {
 pub const D3D10_RENDER_TARGET_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D10_RTV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Buffer: D3D10_BUFFER_RTV,
+        Texture1D: D3D10_TEX1D_RTV,
+        Texture1DArray: D3D10_TEX1D_ARRAY_RTV,
+        Texture2D: D3D10_TEX2D_RTV,
+        Texture2DArray: D3D10_TEX2D_ARRAY_RTV,
+        Texture2DMS: D3D10_TEX2DMS_RTV,
+        Texture2DMSArray: D3D10_TEX2DMS_ARRAY_RTV,
+        Texture3D: D3D10_TEX3D_RTV,
+    },
 };
 
 const IID_ID3D10RenderTargetView_Value = @import("../zig.zig").Guid.initString("9b7e4c08-342c-4106-a19f-4f2704f689f0");
@@ -1216,8 +1241,14 @@ pub const D3D10_TEX2DMS_ARRAY_DSV = extern struct {
 pub const D3D10_DEPTH_STENCIL_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D10_DSV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Texture1D: D3D10_TEX1D_DSV,
+        Texture1DArray: D3D10_TEX1D_ARRAY_DSV,
+        Texture2D: D3D10_TEX2D_DSV,
+        Texture2DArray: D3D10_TEX2D_ARRAY_DSV,
+        Texture2DMS: D3D10_TEX2DMS_DSV,
+        Texture2DMSArray: D3D10_TEX2DMS_ARRAY_DSV,
+    },
 };
 
 const IID_ID3D10DepthStencilView_Value = @import("../zig.zig").Guid.initString("9b7e4c09-342c-4106-a19f-4f2704f689f0");
@@ -5899,8 +5930,18 @@ pub const D3D10_TEXCUBE_ARRAY_SRV1 = extern struct {
 pub const D3D10_SHADER_RESOURCE_VIEW_DESC1 = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D_SRV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Buffer: D3D10_BUFFER_SRV,
+        Texture1D: D3D10_TEX1D_SRV,
+        Texture1DArray: D3D10_TEX1D_ARRAY_SRV,
+        Texture2D: D3D10_TEX2D_SRV,
+        Texture2DArray: D3D10_TEX2D_ARRAY_SRV,
+        Texture2DMS: D3D10_TEX2DMS_SRV,
+        Texture2DMSArray: D3D10_TEX2DMS_ARRAY_SRV,
+        Texture3D: D3D10_TEX3D_SRV,
+        TextureCube: D3D10_TEXCUBE_SRV,
+        TextureCubeArray: D3D10_TEXCUBE_ARRAY_SRV1,
+    },
 };
 
 const IID_ID3D10ShaderResourceView1_Value = @import("../zig.zig").Guid.initString("9b7e4c87-342c-4106-a19f-4f2704f689f0");

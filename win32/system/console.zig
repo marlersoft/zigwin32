@@ -119,9 +119,11 @@ pub const KEY_EVENT_RECORD = extern struct {
     wRepeatCount: u16,
     wVirtualKeyCode: u16,
     wVirtualScanCode: u16,
-    uChar: _uChar_e__Union,
+    uChar: extern union {
+        UnicodeChar: u16,
+        AsciiChar: CHAR,
+    },
     dwControlKeyState: u32,
-    const _uChar_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MOUSE_EVENT_RECORD = extern struct {
@@ -145,14 +147,21 @@ pub const FOCUS_EVENT_RECORD = extern struct {
 
 pub const INPUT_RECORD = extern struct {
     EventType: u16,
-    Event: _Event_e__Union,
-    const _Event_e__Union = u32; // TODO: generate this nested type!
+    Event: extern union {
+        KeyEvent: KEY_EVENT_RECORD,
+        MouseEvent: MOUSE_EVENT_RECORD,
+        WindowBufferSizeEvent: WINDOW_BUFFER_SIZE_RECORD,
+        MenuEvent: MENU_EVENT_RECORD,
+        FocusEvent: FOCUS_EVENT_RECORD,
+    },
 };
 
 pub const CHAR_INFO = extern struct {
-    Char: _Char_e__Union,
+    Char: extern union {
+        UnicodeChar: u16,
+        AsciiChar: CHAR,
+    },
     Attributes: u16,
-    const _Char_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CONSOLE_FONT_INFO = extern struct {

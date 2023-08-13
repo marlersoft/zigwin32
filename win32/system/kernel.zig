@@ -47,10 +47,14 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .Arm64 => struct {
 
 pub const SLIST_HEADER = extern union {
-    Anonymous: _Anonymous_e__Struct,
-    HeaderArm64: _HeaderArm64_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
-    const _HeaderArm64_e__Struct = u32; // TODO: generate this nested type!
+    Anonymous: extern struct {
+        Alignment: u64,
+        Region: u64,
+    },
+    HeaderArm64: extern struct {
+        _bitfield1: u64,
+        _bitfield2: u64,
+    },
 };
 
 }, else => struct { } };
@@ -66,10 +70,14 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64 => struct {
 
 pub const SLIST_HEADER = extern union {
-    Anonymous: _Anonymous_e__Struct,
-    HeaderX64: _HeaderX64_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
-    const _HeaderX64_e__Struct = u32; // TODO: generate this nested type!
+    Anonymous: extern struct {
+        Alignment: u64,
+        Region: u64,
+    },
+    HeaderX64: extern struct {
+        _bitfield1: u64,
+        _bitfield2: u64,
+    },
 };
 
 }, else => struct { } };
@@ -92,8 +100,10 @@ pub const FLOATING_SAVE_AREA = extern struct {
 }, else => struct { } };
 
 pub const QUAD = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        UseThisFieldToCopy: i64,
+        DoNotUseThisField: f64,
+    },
 };
 
 pub const PROCESSOR_NUMBER = extern struct {
@@ -157,10 +167,17 @@ pub const LIST_ENTRY = extern struct {
 };
 
 pub const RTL_BALANCED_NODE = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        Children: [2]*RTL_BALANCED_NODE,
+        Anonymous: extern struct {
+            Left: *RTL_BALANCED_NODE,
+            Right: *RTL_BALANCED_NODE,
+        },
+    },
+    Anonymous2: extern union {
+        _bitfield: u8,
+        ParentValue: usize,
+    },
 };
 
 pub const LIST_ENTRY32 = extern struct {
@@ -295,8 +312,11 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 
 pub const SLIST_HEADER = extern union {
     Alignment: u64,
-    Anonymous: _Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Anonymous: extern struct {
+        Next: SLIST_ENTRY,
+        Depth: u16,
+        CpuId: u16,
+    },
 };
 
 }, else => struct { } };

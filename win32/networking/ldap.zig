@@ -140,7 +140,7 @@ pub const LDAP_OPT_REF_DEREF_CONN_PER_MSG = @as(u32, 148);
 // Section: Types (26)
 //--------------------------------------------------------------------------------
 pub const ldapsearch = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const LDAP_RETCODE = extern enum(i32) {
@@ -273,7 +273,12 @@ pub const LDAP_CLIENT_LOOP = LDAP_RETCODE.CLIENT_LOOP;
 pub const LDAP_REFERRAL_LIMIT_EXCEEDED = LDAP_RETCODE.REFERRAL_LIMIT_EXCEEDED;
 
 pub const ldap = extern struct {
-    ld_sb: _ld_sb_e__Struct,
+    ld_sb: extern struct {
+        sb_sd: usize,
+        Reserved1: [41]u8,
+        sb_naddr: usize,
+        Reserved2: [24]u8,
+    },
     ld_host: [*]u8,
     ld_version: u32,
     ld_lberoptions: u8,
@@ -289,7 +294,6 @@ pub const ldap = extern struct {
     ld_cldaptimeout: u32,
     ld_refhoplimit: u32,
     ld_options: u32,
-    const _ld_sb_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const LDAP_TIMEVAL = extern struct {
@@ -333,15 +337,19 @@ pub const ldapcontrolW = extern struct {
 pub const ldapmodW = extern struct {
     mod_op: u32,
     mod_type: [*]u16,
-    mod_vals: _mod_vals_e__Union,
-    const _mod_vals_e__Union = u32; // TODO: generate this nested type!
+    mod_vals: extern union {
+        modv_strvals: *PWSTR,
+        modv_bvals: **LDAP_BERVAL,
+    },
 };
 
 pub const ldapmodA = extern struct {
     mod_op: u32,
     mod_type: [*]u8,
-    mod_vals: _mod_vals_e__Union,
-    const _mod_vals_e__Union = u32; // TODO: generate this nested type!
+    mod_vals: extern union {
+        modv_strvals: *PSTR,
+        modv_bvals: **LDAP_BERVAL,
+    },
 };
 
 pub const berelement = extern struct {

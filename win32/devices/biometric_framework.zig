@@ -18,15 +18,15 @@ pub const WINBIO_BIR_ALIGN_SIZE = @as(u32, 8);
 // Section: Types (178)
 //--------------------------------------------------------------------------------
 pub const _WINIBIO_SENSOR_CONTEXT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _WINIBIO_ENGINE_CONTEXT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _WINIBIO_STORAGE_CONTEXT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WINBIO_SETTING_SOURCE = extern enum(u32) {
@@ -63,8 +63,16 @@ pub const WINBIO_VERSION = extern struct {
 
 pub const WINBIO_IDENTITY = extern struct {
     Type: u32,
-    Value: _Value_e__Union,
-    const _Value_e__Union = u32; // TODO: generate this nested type!
+    Value: extern union {
+        Null: u32,
+        Wildcard: u32,
+        TemplateGuid: Guid,
+        AccountSid: extern struct {
+            Size: u32,
+            Data: [68]u8,
+        },
+        SecureId: [32]u8,
+    },
 };
 
 pub const WINBIO_SECURE_CONNECTION_PARAMS = extern struct {
@@ -109,10 +117,12 @@ pub const WINBIO_BIR_HEADER = extern struct {
     Purpose: u8,
     DataQuality: i8,
     CreationDate: LARGE_INTEGER,
-    ValidityPeriod: _ValidityPeriod_e__Struct,
+    ValidityPeriod: extern struct {
+        BeginDate: LARGE_INTEGER,
+        EndDate: LARGE_INTEGER,
+    },
     BiometricDataFormat: WINBIO_REGISTERED_FORMAT,
     ProductId: WINBIO_REGISTERED_FORMAT,
-    const _ValidityPeriod_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const WINBIO_BDB_ANSI_381_HEADER = extern struct {
@@ -154,15 +164,39 @@ pub const WINBIO_SECURE_BUFFER_HEADER_V1 = extern struct {
 
 pub const WINBIO_EVENT = extern struct {
     Type: u32,
-    Parameters: _Parameters_e__Union,
-    const _Parameters_e__Union = u32; // TODO: generate this nested type!
+    Parameters: extern union {
+        Unclaimed: extern struct {
+            UnitId: u32,
+            RejectDetail: u32,
+        },
+        UnclaimedIdentify: extern struct {
+            UnitId: u32,
+            Identity: WINBIO_IDENTITY,
+            SubFactor: u8,
+            RejectDetail: u32,
+        },
+        Error: extern struct {
+            ErrorCode: HRESULT,
+        },
+    },
 };
 
 pub const WINBIO_PRESENCE_PROPERTIES = extern union {
-    FacialFeatures: _FacialFeatures_e__Struct,
-    Iris: _Iris_e__Struct,
-    const _Iris_e__Struct = u32; // TODO: generate this nested type!
-    const _FacialFeatures_e__Struct = u32; // TODO: generate this nested type!
+    FacialFeatures: extern struct {
+        BoundingBox: RECT,
+        Distance: i32,
+        OpaqueEngineData: extern struct {
+            AdapterId: Guid,
+            Data: [77]u32,
+        },
+    },
+    Iris: extern struct {
+        EyeBoundingBox_1: RECT,
+        EyeBoundingBox_2: RECT,
+        PupilCenter_1: POINT,
+        PupilCenter_2: POINT,
+        Distance: i32,
+    },
 };
 
 pub const WINBIO_PRESENCE = extern struct {
@@ -174,8 +208,10 @@ pub const WINBIO_PRESENCE = extern struct {
     TrackingId: u64,
     Ticket: u64,
     Properties: WINBIO_PRESENCE_PROPERTIES,
-    Authorization: _Authorization_e__Struct,
-    const _Authorization_e__Struct = u32; // TODO: generate this nested type!
+    Authorization: extern struct {
+        Size: u32,
+        Data: [32]u8,
+    },
 };
 
 pub const WINBIO_BSP_SCHEMA = extern struct {
@@ -212,22 +248,87 @@ pub const WINBIO_STORAGE_SCHEMA = extern struct {
 pub const WINBIO_EXTENDED_SENSOR_INFO = extern struct {
     GenericSensorCapabilities: u32,
     Factor: u32,
-    Specific: _Specific_e__Union,
-    const _Specific_e__Union = u32; // TODO: generate this nested type!
+    Specific: extern union {
+        Null: u32,
+        FacialFeatures: extern struct {
+            FrameSize: RECT,
+            FrameOffset: POINT,
+            MandatoryOrientation: u32,
+            HardwareInfo: extern struct {
+                ColorSensorId: [260]u16,
+                InfraredSensorId: [260]u16,
+                InfraredSensorRotationAngle: u32,
+            },
+        },
+        Fingerprint: extern struct {
+            Reserved: u32,
+        },
+        Iris: extern struct {
+            FrameSize: RECT,
+            FrameOffset: POINT,
+            MandatoryOrientation: u32,
+        },
+        Voice: extern struct {
+            Reserved: u32,
+        },
+    },
 };
 
 pub const WINBIO_EXTENDED_ENGINE_INFO = extern struct {
     GenericEngineCapabilities: u32,
     Factor: u32,
-    Specific: _Specific_e__Union,
-    const _Specific_e__Union = u32; // TODO: generate this nested type!
+    Specific: extern union {
+        Null: u32,
+        FacialFeatures: extern struct {
+            Capabilities: u32,
+            EnrollmentRequirements: extern struct {
+                Null: u32,
+            },
+        },
+        Fingerprint: extern struct {
+            Capabilities: u32,
+            EnrollmentRequirements: extern struct {
+                GeneralSamples: u32,
+                Center: u32,
+                TopEdge: u32,
+                BottomEdge: u32,
+                LeftEdge: u32,
+                RightEdge: u32,
+            },
+        },
+        Iris: extern struct {
+            Capabilities: u32,
+            EnrollmentRequirements: extern struct {
+                Null: u32,
+            },
+        },
+        Voice: extern struct {
+            Capabilities: u32,
+            EnrollmentRequirements: extern struct {
+                Null: u32,
+            },
+        },
+    },
 };
 
 pub const WINBIO_EXTENDED_STORAGE_INFO = extern struct {
     GenericStorageCapabilities: u32,
     Factor: u32,
-    Specific: _Specific_e__Union,
-    const _Specific_e__Union = u32; // TODO: generate this nested type!
+    Specific: extern union {
+        Null: u32,
+        FacialFeatures: extern struct {
+            Capabilities: u32,
+        },
+        Fingerprint: extern struct {
+            Capabilities: u32,
+        },
+        Iris: extern struct {
+            Capabilities: u32,
+        },
+        Voice: extern struct {
+            Capabilities: u32,
+        },
+    },
 };
 
 pub const WINBIO_EXTENDED_ENROLLMENT_STATUS = extern struct {
@@ -236,8 +337,43 @@ pub const WINBIO_EXTENDED_ENROLLMENT_STATUS = extern struct {
     PercentComplete: u32,
     Factor: u32,
     SubFactor: u8,
-    Specific: _Specific_e__Union,
-    const _Specific_e__Union = u32; // TODO: generate this nested type!
+    Specific: extern union {
+        Null: u32,
+        FacialFeatures: extern struct {
+            BoundingBox: RECT,
+            Distance: i32,
+            OpaqueEngineData: extern struct {
+                AdapterId: Guid,
+                Data: [77]u32,
+            },
+        },
+        Fingerprint: extern struct {
+            GeneralSamples: u32,
+            Center: u32,
+            TopEdge: u32,
+            BottomEdge: u32,
+            LeftEdge: u32,
+            RightEdge: u32,
+        },
+        Iris: extern struct {
+            EyeBoundingBox_1: RECT,
+            EyeBoundingBox_2: RECT,
+            PupilCenter_1: POINT,
+            PupilCenter_2: POINT,
+            Distance: i32,
+            GridPointCompletionPercent: u32,
+            GridPointIndex: u16,
+            Point3D: extern struct {
+                X: f64,
+                Y: f64,
+                Z: f64,
+            },
+            StopCaptureAndShowCriticalFeedback: BOOL,
+        },
+        Voice: extern struct {
+            Reserved: u32,
+        },
+    },
 };
 
 pub const WINBIO_EXTENDED_UNIT_STATUS = extern struct {
@@ -343,8 +479,108 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
     ApiStatus: HRESULT,
     UnitId: u32,
     UserData: *c_void,
-    Parameters: _Parameters_e__Union,
-    const _Parameters_e__Union = u32; // TODO: generate this nested type!
+    Parameters: extern union {
+        Verify: extern struct {
+            Match: u8,
+            RejectDetail: u32,
+        },
+        Identify: extern struct {
+            Identity: WINBIO_IDENTITY,
+            SubFactor: u8,
+            RejectDetail: u32,
+        },
+        EnrollBegin: extern struct {
+            SubFactor: u8,
+        },
+        EnrollCapture: extern struct {
+            RejectDetail: u32,
+        },
+        EnrollCommit: extern struct {
+            Identity: WINBIO_IDENTITY,
+            IsNewTemplate: u8,
+        },
+        EnumEnrollments: extern struct {
+            Identity: WINBIO_IDENTITY,
+            SubFactorCount: usize,
+            SubFactorArray: *u8,
+        },
+        CaptureSample: extern struct {
+            Sample: *WINBIO_BIR,
+            SampleSize: usize,
+            RejectDetail: u32,
+        },
+        DeleteTemplate: extern struct {
+            Identity: WINBIO_IDENTITY,
+            SubFactor: u8,
+        },
+        GetProperty: extern struct {
+            PropertyType: u32,
+            PropertyId: u32,
+            Identity: WINBIO_IDENTITY,
+            SubFactor: u8,
+            PropertyBufferSize: usize,
+            PropertyBuffer: *c_void,
+        },
+        SetProperty: extern struct {
+            PropertyType: u32,
+            PropertyId: u32,
+            Identity: WINBIO_IDENTITY,
+            SubFactor: u8,
+            PropertyBufferSize: usize,
+            PropertyBuffer: *c_void,
+        },
+        GetEvent: extern struct {
+            Event: WINBIO_EVENT,
+        },
+        ControlUnit: extern struct {
+            Component: WINBIO_COMPONENT,
+            ControlCode: u32,
+            OperationStatus: u32,
+            SendBuffer: *u8,
+            SendBufferSize: usize,
+            ReceiveBuffer: *u8,
+            ReceiveBufferSize: usize,
+            ReceiveDataSize: usize,
+        },
+        EnumServiceProviders: extern struct {
+            BspCount: usize,
+            BspSchemaArray: *WINBIO_BSP_SCHEMA,
+        },
+        EnumBiometricUnits: extern struct {
+            UnitCount: usize,
+            UnitSchemaArray: *WINBIO_UNIT_SCHEMA,
+        },
+        EnumDatabases: extern struct {
+            StorageCount: usize,
+            StorageSchemaArray: *WINBIO_STORAGE_SCHEMA,
+        },
+        VerifyAndReleaseTicket: extern struct {
+            Match: u8,
+            RejectDetail: u32,
+            Ticket: u64,
+        },
+        IdentifyAndReleaseTicket: extern struct {
+            Identity: WINBIO_IDENTITY,
+            SubFactor: u8,
+            RejectDetail: u32,
+            Ticket: u64,
+        },
+        EnrollSelect: extern struct {
+            SelectorValue: u64,
+        },
+        MonitorPresence: extern struct {
+            ChangeType: u32,
+            PresenceCount: usize,
+            PresenceArray: *WINBIO_PRESENCE,
+        },
+        GetProtectionPolicy: extern struct {
+            Identity: WINBIO_IDENTITY,
+            Policy: WINBIO_PROTECTION_POLICY,
+        },
+        NotifyUnitStatusChange: extern struct {
+            ExtendedStatus: WINBIO_EXTENDED_UNIT_STATUS,
+        },
+    },
 };
 
 pub const PWINBIO_ASYNC_COMPLETION_CALLBACK = fn(
@@ -1782,13 +2018,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const PWSTR = @import("../system/system_services.zig").PWSTR;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 const HRESULT = @import("../system/com.zig").HRESULT;
+const POINT = @import("../ui/display_devices.zig").POINT;
+const RECT = @import("../ui/display_devices.zig").RECT;
 const HANDLE = @import("../system/system_services.zig").HANDLE;
 const BOOL = @import("../system/system_services.zig").BOOL;
 const HWND = @import("../ui/windows_and_messaging.zig").HWND;

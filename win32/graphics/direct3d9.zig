@@ -406,8 +406,27 @@ pub const D3DRECT = extern struct {
 };
 
 pub const D3DMATRIX = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _11: f32,
+            _12: f32,
+            _13: f32,
+            _14: f32,
+            _21: f32,
+            _22: f32,
+            _23: f32,
+            _24: f32,
+            _31: f32,
+            _32: f32,
+            _33: f32,
+            _34: f32,
+            _41: f32,
+            _42: f32,
+            _43: f32,
+            _44: f32,
+        },
+        m: [16]f32,
+    },
 };
 
 pub const D3DVIEWPORT9 = extern struct {
@@ -2126,8 +2145,12 @@ pub const D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT = extern struct {
 };
 
 pub const D3DAUTHENTICATEDCHANNEL_PROTECTION_FLAGS = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        Value: u32,
+    },
 };
 
 pub const D3DAUTHENTICATEDCHANNEL_QUERYPROTECTION_OUTPUT = extern struct {
@@ -4734,8 +4757,8 @@ pub const IDirect3DSwapChain9Ex = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const D3DADAPTER_IDENTIFIER9 = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Driver: [512]CHAR,
     Description: [512]CHAR,
     DeviceName: [32]CHAR,
@@ -4753,8 +4776,8 @@ pub const D3DADAPTER_IDENTIFIER9 = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const D3DMEMORYPRESSURE = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     BytesEvictedFromProcess: u64,
     SizeOfInefficientAllocation: u64,
     LevelOfEfficiency: u32,
@@ -4765,8 +4788,8 @@ pub const D3DMEMORYPRESSURE = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const D3DPRESENTSTATS = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     PresentCount: u32,
     PresentRefreshCount: u32,
     SyncRefreshCount: u32,
@@ -4779,8 +4802,8 @@ pub const D3DPRESENTSTATS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const D3DAUTHENTICATEDCHANNEL_QUERYOUTPUTID_OUTPUT = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Output: D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT,
     DeviceHandle: HANDLE,
     CryptoSessionHandle: HANDLE,
@@ -4793,8 +4816,8 @@ pub const D3DAUTHENTICATEDCHANNEL_QUERYOUTPUTID_OUTPUT = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const D3DAES_CTR_IV = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     IV: u64,
     Count: u64,
 };

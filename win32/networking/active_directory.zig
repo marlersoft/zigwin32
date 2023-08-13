@@ -625,8 +625,10 @@ pub const OPENQUERYWINDOW = extern struct {
     pHandlerParameters: *c_void,
     clsidDefaultForm: Guid,
     pPersistQuery: *IPersistQuery,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pFormParameters: *c_void,
+        ppbFormParameters: *IPropertyBag,
+    },
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -884,8 +886,35 @@ pub const ADS_DN_WITH_STRING = extern struct {
 
 pub const ADSVALUE = extern struct {
     dwType: ADSTYPEENUM,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        DNString: *u16,
+        CaseExactString: *u16,
+        CaseIgnoreString: *u16,
+        PrintableString: *u16,
+        NumericString: *u16,
+        Boolean: u32,
+        Integer: u32,
+        OctetString: ADS_OCTET_STRING,
+        UTCTime: SYSTEMTIME,
+        LargeInteger: LARGE_INTEGER,
+        ClassName: *u16,
+        ProviderSpecific: ADS_PROV_SPECIFIC,
+        pCaseIgnoreList: *ADS_CASEIGNORE_LIST,
+        pOctetList: *ADS_OCTET_LIST,
+        pPath: *ADS_PATH,
+        pPostalAddress: *ADS_POSTALADDRESS,
+        Timestamp: ADS_TIMESTAMP,
+        BackLink: ADS_BACKLINK,
+        pTypedName: *ADS_TYPEDNAME,
+        Hold: ADS_HOLD,
+        pNetAddress: *ADS_NETADDRESS,
+        pReplicaPointer: *ADS_REPLICAPOINTER,
+        pFaxNumber: *ADS_FAXNUMBER,
+        Email: ADS_EMAIL,
+        SecurityDescriptor: ADS_NT_SECURITY_DESCRIPTOR,
+        pDNWithBinary: *ADS_DN_WITH_BINARY,
+        pDNWithString: *ADS_DN_WITH_STRING,
+    },
 };
 
 pub const ADS_ATTR_INFO = extern struct {
@@ -10840,7 +10869,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (31)
+// Section: Imports (34)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
@@ -10868,8 +10897,11 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const BSTR = @import("../system/ole_automation.zig").BSTR;
 const PSTR = @import("../system/system_services.zig").PSTR;
 const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const IPropertyBag = @import("../system/ole_automation.zig").IPropertyBag;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IDataObject = @import("../system/com.zig").IDataObject;
+const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
 const HANDLE = @import("../system/system_services.zig").HANDLE;
 const SOCKET_ADDRESS = @import("../networking/win_sock.zig").SOCKET_ADDRESS;
 const LSA_FOREST_TRUST_INFORMATION = @import("../security.zig").LSA_FOREST_TRUST_INFORMATION;

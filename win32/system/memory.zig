@@ -56,10 +56,14 @@ pub const MemoryRegionInfo = WIN32_MEMORY_INFORMATION_CLASS.o;
 pub const WIN32_MEMORY_REGION_INFORMATION = extern struct {
     AllocationBase: *c_void,
     AllocationProtect: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Flags: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
     RegionSize: usize,
     CommitSize: usize,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?

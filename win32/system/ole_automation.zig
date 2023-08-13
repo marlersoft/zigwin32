@@ -156,8 +156,18 @@ pub const SF_HAVEIID = SF_TYPE.HAVEIID;
 
 pub const _wireSAFEARRAY_UNION = extern struct {
     sfType: u32,
-    u: _u_e__Struct,
-    const _u_e__Struct = u32; // TODO: generate this nested type!
+    u: extern struct {
+        BstrStr: _wireSAFEARR_BSTR,
+        UnknownStr: _wireSAFEARR_UNKNOWN,
+        DispatchStr: _wireSAFEARR_DISPATCH,
+        VariantStr: _wireSAFEARR_VARIANT,
+        RecordStr: _wireSAFEARR_BRECORD,
+        HaveIidStr: _wireSAFEARR_HAVEIID,
+        ByteStr: BYTE_SIZEDARR,
+        WordStr: SHORT_SIZEDARR,
+        LongStr: LONG_SIZEDARR,
+        HyperStr: HYPER_SIZEDARR,
+    },
 };
 
 pub const _wireSAFEARRAY = extern struct {
@@ -179,8 +189,66 @@ pub const SAFEARRAY = extern struct {
 };
 
 pub const VARIANT = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            vt: u16,
+            wReserved1: u16,
+            wReserved2: u16,
+            wReserved3: u16,
+            Anonymous: extern union {
+                llVal: i64,
+                lVal: i32,
+                bVal: u8,
+                iVal: i16,
+                fltVal: f32,
+                dblVal: f64,
+                boolVal: i16,
+                __OBSOLETE__VARIANT_BOOL: i16,
+                scode: i32,
+                cyVal: CY,
+                date: f64,
+                bstrVal: BSTR,
+                punkVal: *IUnknown,
+                pdispVal: *IDispatch,
+                parray: *SAFEARRAY,
+                pbVal: *u8,
+                piVal: *i16,
+                plVal: *i32,
+                pllVal: *i64,
+                pfltVal: *f32,
+                pdblVal: *f64,
+                pboolVal: *i16,
+                __OBSOLETE__VARIANT_PBOOL: *i16,
+                pscode: *i32,
+                pcyVal: *CY,
+                pdate: *f64,
+                pbstrVal: *BSTR,
+                ppunkVal: **IUnknown,
+                ppdispVal: **IDispatch,
+                pparray: **SAFEARRAY,
+                pvarVal: *VARIANT,
+                byref: *c_void,
+                cVal: CHAR,
+                uiVal: u16,
+                ulVal: u32,
+                ullVal: u64,
+                intVal: i32,
+                uintVal: u32,
+                pdecVal: *DECIMAL,
+                pcVal: PSTR,
+                puiVal: *u16,
+                pulVal: *u32,
+                pullVal: *u64,
+                pintVal: *i32,
+                puintVal: *u32,
+                Anonymous: extern struct {
+                    pvRecord: *c_void,
+                    pRecInfo: *IRecordInfo,
+                },
+            },
+        },
+        decVal: DECIMAL,
+    },
 };
 
 pub const _wireBRECORD = extern struct {
@@ -197,8 +265,52 @@ pub const _wireVARIANT = extern struct {
     wReserved1: u16,
     wReserved2: u16,
     wReserved3: u16,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        llVal: i64,
+        lVal: i32,
+        bVal: u8,
+        iVal: i16,
+        fltVal: f32,
+        dblVal: f64,
+        boolVal: i16,
+        scode: i32,
+        cyVal: CY,
+        date: f64,
+        bstrVal: *FLAGGED_WORD_BLOB,
+        punkVal: *IUnknown,
+        pdispVal: *IDispatch,
+        parray: **_wireSAFEARRAY,
+        brecVal: *_wireBRECORD,
+        pbVal: *u8,
+        piVal: *i16,
+        plVal: *i32,
+        pllVal: *i64,
+        pfltVal: *f32,
+        pdblVal: *f64,
+        pboolVal: *i16,
+        pscode: *i32,
+        pcyVal: *CY,
+        pdate: *f64,
+        pbstrVal: **FLAGGED_WORD_BLOB,
+        ppunkVal: **IUnknown,
+        ppdispVal: **IDispatch,
+        pparray: ***_wireSAFEARRAY,
+        pvarVal: **_wireVARIANT,
+        cVal: CHAR,
+        uiVal: u16,
+        ulVal: u32,
+        ullVal: u64,
+        intVal: i32,
+        uintVal: u32,
+        decVal: DECIMAL,
+        pdecVal: *DECIMAL,
+        pcVal: PSTR,
+        puiVal: *u16,
+        pulVal: *u32,
+        pullVal: *u64,
+        pintVal: *i32,
+        puintVal: *u32,
+    },
 };
 
 pub const TYPEKIND = extern enum(i32) {
@@ -223,9 +335,12 @@ pub const TKIND_UNION = TYPEKIND.UNION;
 pub const TKIND_MAX = TYPEKIND.MAX;
 
 pub const TYPEDESC = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        lptdesc: *TYPEDESC,
+        lpadesc: *ARRAYDESC,
+        hreftype: u32,
+    },
     vt: u16,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const ARRAYDESC = extern struct {
@@ -251,8 +366,10 @@ pub const IDLDESC = extern struct {
 
 pub const ELEMDESC = extern struct {
     tdesc: TYPEDESC,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        idldesc: IDLDESC,
+        paramdesc: PARAMDESC,
+    },
 };
 
 pub const TYPEATTR = extern struct {
@@ -373,11 +490,13 @@ pub const VAR_DISPATCH = VARKIND.DISPATCH;
 pub const VARDESC = extern struct {
     memid: i32,
     lpstrSchema: PWSTR,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        oInst: u32,
+        lpvarValue: *VARIANT,
+    },
     elemdescVar: ELEMDESC,
     wVarFlags: u16,
     varkind: VARKIND,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const TYPEFLAGS = extern enum(i32) {
@@ -4965,18 +5084,22 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (15)
+// Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const LONG_SIZEDARR = @import("../system/com.zig").LONG_SIZEDARR;
 const FLAGGED_WORD_BLOB = @import("../system/com.zig").FLAGGED_WORD_BLOB;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const CY = @import("../system/system_services.zig").CY;
+const SHORT_SIZEDARR = @import("../system/com.zig").SHORT_SIZEDARR;
 const HRESULT = @import("../system/com.zig").HRESULT;
-const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
+const HYPER_SIZEDARR = @import("../system/com.zig").HYPER_SIZEDARR;
+const PWSTR = @import("../system/system_services.zig").PWSTR;
 const PSTR = @import("../system/system_services.zig").PSTR;
+const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
 const BOOL = @import("../system/system_services.zig").BOOL;
+const BYTE_SIZEDARR = @import("../system/com.zig").BYTE_SIZEDARR;
 const HWND = @import("../ui/windows_and_messaging.zig").HWND;
 const DECIMAL = @import("../system/system_services.zig").DECIMAL;
 const STGMEDIUM = @import("../system/com.zig").STGMEDIUM;

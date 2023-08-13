@@ -34,23 +34,23 @@ pub const WSMAN_FLAG_SEND_NO_MORE_DATA = @as(u32, 1);
 // Section: Types (76)
 //--------------------------------------------------------------------------------
 pub const WSMAN_API = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WSMAN_SESSION = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WSMAN_OPERATION = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WSMAN_SHELL = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WSMAN_COMMAND = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WSMAN_DATA_TEXT = extern struct {
@@ -76,8 +76,11 @@ pub const WSMAN_DATA_TYPE_DWORD = WSManDataType.TYPE_DWORD;
 
 pub const WSMAN_DATA = extern struct {
     type: WSManDataType,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        text: WSMAN_DATA_TEXT,
+        binaryData: WSMAN_DATA_BINARY,
+        number: u32,
+    },
 };
 
 pub const WSMAN_ERROR = extern struct {
@@ -114,8 +117,10 @@ pub const WSMAN_FLAG_AUTH_CLIENT_CERTIFICATE = WSManAuthenticationFlags.AUTH_CLI
 
 pub const WSMAN_AUTHENTICATION_CREDENTIALS = extern struct {
     authenticationMechanism: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        userAccount: WSMAN_USERNAME_PASSWORD_CREDS,
+        certificateThumbprint: [*:0]const u16,
+    },
 };
 
 pub const WSMAN_OPTION = extern struct {

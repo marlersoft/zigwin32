@@ -307,8 +307,10 @@ pub const VIDEO_CLUTDATA = extern struct {
 pub const VIDEO_CLUT = extern struct {
     NumEntries: u16,
     FirstEntry: u16,
-    LookupTable: [1]_Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    LookupTable: [1]extern union {
+        RgbArray: VIDEO_CLUTDATA,
+        RgbLong: u32,
+    },
 };
 
 pub const VIDEO_CURSOR_POSITION = extern struct {
@@ -480,8 +482,10 @@ pub const DISPLAY_BRIGHTNESS = extern struct {
 pub const VIDEO_BRIGHTNESS_POLICY = extern struct {
     DefaultToBiosPolicy: u8,
     LevelCount: u8,
-    Level: [1]_Anonymous_e__Struct,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+    Level: [1]extern struct {
+        BatteryLevel: u8,
+        Brightness: u8,
+    },
 };
 
 pub const FSCNTL_SCREEN_INFO = extern struct {
@@ -580,8 +584,12 @@ pub const BRIGHTNESS_INTERFACE_VERSION_3 = BRIGHTNESS_INTERFACE_VERSION.@"3";
 
 pub const PANEL_QUERY_BRIGHTNESS_CAPS = extern struct {
     Version: BRIGHTNESS_INTERFACE_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        Value: u32,
+    },
 };
 
 pub const BRIGHTNESS_LEVEL = extern struct {
@@ -604,14 +612,21 @@ pub const BRIGHTNESS_NIT_RANGES = extern struct {
 
 pub const PANEL_QUERY_BRIGHTNESS_RANGES = extern struct {
     Version: BRIGHTNESS_INTERFACE_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        BrightnessLevel: BRIGHTNESS_LEVEL,
+        NitRanges: BRIGHTNESS_NIT_RANGES,
+    },
 };
 
 pub const PANEL_GET_BRIGHTNESS = extern struct {
     Version: BRIGHTNESS_INTERFACE_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Level: u8,
+        Anonymous: extern struct {
+            CurrentInMillinits: u32,
+            TargetInMillinits: u32,
+        },
+    },
 };
 
 pub const CHROMATICITY_COORDINATE = extern struct {
@@ -620,22 +635,36 @@ pub const CHROMATICITY_COORDINATE = extern struct {
 };
 
 pub const PANEL_BRIGHTNESS_SENSOR_DATA = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        Value: u32,
+    },
     AlsReading: f32,
     ChromaticityCoordinate: CHROMATICITY_COORDINATE,
     ColorTemperature: f32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PANEL_SET_BRIGHTNESS = extern struct {
     Version: BRIGHTNESS_INTERFACE_VERSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Level: u8,
+        Anonymous: extern struct {
+            Millinits: u32,
+            TransitionTimeInMs: u32,
+            SensorData: PANEL_BRIGHTNESS_SENSOR_DATA,
+        },
+    },
 };
 
 pub const PANEL_SET_BRIGHTNESS_STATE = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        Value: u32,
+    },
 };
 
 pub const BACKLIGHT_OPTIMIZATION_LEVEL = extern enum(i32) {
@@ -676,10 +705,17 @@ pub const COLORSPACE_TRANSFORM_DATA_TYPE_FLOAT = COLORSPACE_TRANSFORM_DATA_TYPE.
 
 pub const COLORSPACE_TRANSFORM_DATA_CAP = extern struct {
     DataType: COLORSPACE_TRANSFORM_DATA_TYPE,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous1: extern struct {
+            _bitfield: u32,
+        },
+        Anonymous2: extern struct {
+            _bitfield: u32,
+        },
+        Value: u32,
+    },
     NumericRangeMin: f32,
     NumericRangeMax: f32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const COLORSPACE_TRANSFORM_1DLUT_CAP = extern struct {
@@ -688,9 +724,13 @@ pub const COLORSPACE_TRANSFORM_1DLUT_CAP = extern struct {
 };
 
 pub const COLORSPACE_TRANSFORM_MATRIX_CAP = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        Value: u32,
+    },
     DataCap: COLORSPACE_TRANSFORM_DATA_CAP,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const COLORSPACE_TRANSFORM_TARGET_CAPS_VERSION = extern enum(i32) {
@@ -805,8 +845,12 @@ pub const COLORSPACE_TRANSFORM_MATRIX_V2 = extern struct {
 
 pub const COLORSPACE_TRANSFORM = extern struct {
     Type: COLORSPACE_TRANSFORM_TYPE,
-    Data: _Data_e__Union,
-    const _Data_e__Union = u32; // TODO: generate this nested type!
+    Data: extern union {
+        Rgb256x3x16: GAMMA_RAMP_RGB256x3x16,
+        Dxgi1: GAMMA_RAMP_DXGI_1,
+        T3x4: COLORSPACE_TRANSFORM_3x4,
+        MatrixV2: COLORSPACE_TRANSFORM_MATRIX_V2,
+    },
 };
 
 pub const COLORSPACE_TRANSFORM_SET_INPUT = extern struct {
@@ -850,36 +894,62 @@ pub const DCT_FORCE_LOW_POWER = DSI_CONTROL_TRANSMISSION_MODE.FORCE_LOW_POWER;
 pub const DCT_FORCE_HIGH_PERFORMANCE = DSI_CONTROL_TRANSMISSION_MODE.FORCE_HIGH_PERFORMANCE;
 
 pub const MIPI_DSI_PACKET = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        DataId: u8,
+        Anonymous: extern struct {
+            _bitfield: u8,
+        },
+    },
+    Anonymous2: extern union {
+        Anonymous: extern struct {
+            Data0: u8,
+            Data1: u8,
+        },
+        LongWriteWordCount: u16,
+    },
     EccFiller: u8,
     Payload: [8]u8,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIPI_DSI_TRANSMISSION = extern struct {
     TotalBufferSize: u32,
     PacketCount: u8,
     FailedPacket: u8,
-    Anonymous: _Anonymous_e__Struct,
+    Anonymous: extern struct {
+        _bitfield: u16,
+    },
     ReadWordCount: u16,
     FinalCommandExtraPayload: u16,
     MipiErrors: u16,
     HostErrors: u16,
     Packets: [1]MIPI_DSI_PACKET,
-    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const MIPI_DSI_RESET = extern struct {
     Flags: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        Results: u32,
+    },
 };
 
 pub const SURFACEALIGNMENT = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Linear: extern struct {
+            dwStartAlignment: u32,
+            dwPitchAlignment: u32,
+            dwFlags: u32,
+            dwReserved2: u32,
+        },
+        Rectangular: extern struct {
+            dwXAlignment: u32,
+            dwYAlignment: u32,
+            dwFlags: u32,
+            dwReserved2: u32,
+        },
+    },
 };
 
 pub const HEAPALIGNMENT = extern struct {

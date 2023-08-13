@@ -1523,8 +1523,8 @@ pub const BITMAPCOREINFO = extern struct {
     bmciColors: [1]RGBTRIPLE,
 };
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const BITMAPFILEHEADER = extern struct {
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     bfType: u16,
     bfSize: u32,
     bfReserved1: u16,
@@ -1542,8 +1542,8 @@ pub const METARECORD = extern struct {
     rdParm: [1]u16,
 };
 
-// WARNING: this type has a packing size of 2, not sure how to handle this
 pub const METAHEADER = extern struct {
+    // WARNING: this type has PackingSize=2, how to handle this in Zig?
     mtType: u16,
     mtHeaderSize: u16,
     mtVersion: u16,
@@ -1884,16 +1884,24 @@ pub const DISPLAYCONFIG_COLOR_ENCODING_FORCE_UINT32 = DISPLAYCONFIG_COLOR_ENCODI
 
 pub const DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO = extern struct {
     header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        value: u32,
+    },
     colorEncoding: DISPLAYCONFIG_COLOR_ENCODING,
     bitsPerColorChannel: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DISPLAYCONFIG_SET_ADVANCED_COLOR_STATE = extern struct {
     header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        value: u32,
+    },
 };
 
 pub const DISPLAYCONFIG_SDR_WHITE_LEVEL = extern struct {

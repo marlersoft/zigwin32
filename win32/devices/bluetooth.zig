@@ -832,8 +832,10 @@ pub const MITMProtectionRequiredGeneralBonding = AUTHENTICATION_REQUIREMENTS.Req
 pub const MITMProtectionNotDefined = AUTHENTICATION_REQUIREMENTS.NotDefined;
 
 pub const BLUETOOTH_ADDRESS = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        ullLong: u64,
+        rgBytes: [6]u8,
+    },
 };
 
 pub const BLUETOOTH_LOCAL_SERVICE_INFO = extern struct {
@@ -916,8 +918,10 @@ pub const BLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS = extern struct {
     authenticationMethod: BLUETOOTH_AUTHENTICATION_METHOD,
     ioCapability: BLUETOOTH_IO_CAPABILITY,
     authenticationRequirements: BLUETOOTH_AUTHENTICATION_REQUIREMENTS,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Numeric_Value: u32,
+        Passkey: u32,
+    },
 };
 
 pub const BLUETOOTH_DEVICE_SEARCH_PARAMS = extern struct {
@@ -990,16 +994,50 @@ pub const PFN_AUTHENTICATION_CALLBACK_EX = fn(
 pub const BLUETOOTH_AUTHENTICATE_RESPONSE = extern struct {
     bthAddressRemote: BLUETOOTH_ADDRESS,
     authMethod: BLUETOOTH_AUTHENTICATION_METHOD,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        pinInfo: BLUETOOTH_PIN_INFO,
+        oobInfo: BLUETOOTH_OOB_DATA_INFO,
+        numericCompInfo: BLUETOOTH_NUMERIC_COMPARISON_INFO,
+        passkeyInfo: BLUETOOTH_PASSKEY_INFO,
+    },
     negativeResponse: u8,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const SDP_ELEMENT_DATA = extern struct {
     type: SDP_TYPE,
     specificType: SDP_SPECIFICTYPE,
-    data: _data_e__Union,
-    const _data_e__Union = u32; // TODO: generate this nested type!
+    data: extern union {
+        int128: SDP_LARGE_INTEGER_16,
+        int64: i64,
+        int32: i32,
+        int16: i16,
+        int8: CHAR,
+        uint128: SDP_ULARGE_INTEGER_16,
+        uint64: u64,
+        uint32: u32,
+        uint16: u16,
+        uint8: u8,
+        booleanVal: u8,
+        uuid128: Guid,
+        uuid32: u32,
+        uuid16: u16,
+        string: extern struct {
+            value: *u8,
+            length: u32,
+        },
+        url: extern struct {
+            value: *u8,
+            length: u32,
+        },
+        sequence: extern struct {
+            value: *u8,
+            length: u32,
+        },
+        alternative: extern struct {
+            value: *u8,
+            length: u32,
+        },
+    },
 };
 
 pub const SDP_STRING_TYPE_DATA = extern struct {
@@ -1066,8 +1104,11 @@ pub const RFCOMM_RPN_DATA = extern struct {
 
 pub const RFCOMM_COMMAND = packed struct {
     CmdType: u32,
-    Data: _Data_e__Union,
-    const _Data_e__Union = u32; // TODO: generate this nested type!
+    Data: extern union {
+        MSC: RFCOMM_MSC_DATA,
+        RLS: RFCOMM_RLS_DATA,
+        RPN: RFCOMM_RPN_DATA,
+    },
 };
 
 pub const BTH_PING_REQ = packed struct {
@@ -1089,8 +1130,10 @@ pub const BTH_INFO_REQ = packed struct {
 pub const BTH_INFO_RSP = packed struct {
     result: u16,
     dataLen: u8,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: packed union {
+        connectionlessMTU: u16,
+        data: [44]u8,
+    },
 };
 
 

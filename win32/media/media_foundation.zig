@@ -6174,8 +6174,12 @@ pub const DXVAHD_BLT_STATE_BACKGROUND_COLOR_DATA = extern struct {
 };
 
 pub const DXVAHD_BLT_STATE_OUTPUT_COLOR_SPACE_DATA = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        Value: u32,
+    },
 };
 
 pub const DXVAHD_BLT_STATE_ALPHA_FILL_DATA = extern struct {
@@ -6203,8 +6207,12 @@ pub const DXVAHD_STREAM_STATE_FRAME_FORMAT_DATA = extern struct {
 };
 
 pub const DXVAHD_STREAM_STATE_INPUT_COLOR_SPACE_DATA = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        Value: u32,
+    },
 };
 
 pub const DXVAHD_STREAM_STATE_OUTPUT_RATE_DATA = extern struct {
@@ -6627,8 +6635,12 @@ pub const PDXVAHD_CreateDevice = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const DXVA2_ExtendedFormat = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        value: u32,
+    },
 };
 
 pub const DXVA2_SampleFormat = extern enum(i32) {
@@ -6963,8 +6975,13 @@ pub const DXVA2_VideoProcessorCaps = extern struct {
 };
 
 pub const DXVA2_Fixed32 = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            Fraction: u16,
+            Value: i16,
+        },
+        ll: i32,
+    },
 };
 
 pub const DXVA2_AYUVSample8 = extern struct {
@@ -13843,8 +13860,11 @@ pub const MFTOPONODE_ATTRIBUTE_UPDATE = extern struct {
     NodeId: u64,
     guidAttributeKey: Guid,
     attrType: MF_ATTRIBUTE_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        u32: u32,
+        u64: u64,
+        d: f64,
+    },
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -25132,9 +25152,11 @@ pub const MFVideoAlphaBitmapParams = extern struct {
 
 pub const MFVideoAlphaBitmap = extern struct {
     GetBitmapFromDC: BOOL,
-    bitmap: _bitmap_e__Union,
+    bitmap: extern union {
+        hdc: HDC,
+        pDDS: *IDirect3DSurface9,
+    },
     params: MFVideoAlphaBitmapParams,
-    const _bitmap_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MFVideoAlphaBitmapFlags = extern enum(i32) {
@@ -26091,8 +26113,10 @@ pub const D3D11_VIDEO_COLOR_YCbCrA = extern struct {
 };
 
 pub const D3D11_VIDEO_COLOR = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        YCbCr: D3D11_VIDEO_COLOR_YCbCrA,
+        RGBA: D3D11_VIDEO_COLOR_RGBA,
+    },
 };
 
 pub const D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE = extern enum(i32) {
@@ -26532,8 +26556,9 @@ pub const D3D11_TEX2D_VDOV = extern struct {
 pub const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC = extern struct {
     DecodeProfile: Guid,
     ViewDimension: D3D11_VDOV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Texture2D: D3D11_TEX2D_VDOV,
+    },
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -26573,8 +26598,9 @@ pub const D3D11_TEX2D_VPIV = extern struct {
 pub const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC = extern struct {
     FourCC: u32,
     ViewDimension: D3D11_VPIV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Texture2D: D3D11_TEX2D_VPIV,
+    },
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -26620,8 +26646,10 @@ pub const D3D11_TEX2D_ARRAY_VPOV = extern struct {
 
 pub const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC = extern struct {
     ViewDimension: D3D11_VPOV_DIMENSION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Texture2D: D3D11_TEX2D_VPOV,
+        Texture2DArray: D3D11_TEX2D_ARRAY_VPOV,
+    },
 };
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -27895,8 +27923,8 @@ pub const D3D11_FEATURE_VIDEO_DECODER_HISTOGRAM = D3D11_FEATURE_VIDEO.M;
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const D3DCONTENTPROTECTIONCAPS = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     Caps: u32,
     KeyExchangeType: Guid,
     BufferAlignmentStart: u32,
@@ -29515,7 +29543,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (67)
+// Section: Imports (68)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const D3DDISPLAYROTATION = @import("../graphics/direct3d9.zig").D3DDISPLAYROTATION;
@@ -29553,6 +29581,7 @@ const D3D12_COMMAND_LIST_SUPPORT_FLAGS = @import("../graphics/direct3d12.zig").D
 const AudioObjectType = @import("../media/audio/core_audio.zig").AudioObjectType;
 const HANDLE = @import("../system/system_services.zig").HANDLE;
 const ID3D11DeviceChild = @import("../graphics/direct3d11.zig").ID3D11DeviceChild;
+const HDC = @import("../graphics/gdi.zig").HDC;
 const IDirect3DDevice9 = @import("../graphics/direct3d9.zig").IDirect3DDevice9;
 const ID3D12Pageable = @import("../graphics/direct3d12.zig").ID3D12Pageable;
 const D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT = @import("../graphics/direct3d9.zig").D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT;

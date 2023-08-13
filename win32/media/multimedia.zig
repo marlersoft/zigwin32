@@ -3602,10 +3602,13 @@ pub const CLSID_KSDATAFORMAT_SUBTYPE_WAVEFORMATEX = &CLSID_KSDATAFORMAT_SUBTYPE_
 
 pub const WAVEFORMATEXTENSIBLE = packed struct {
     Format: WAVEFORMATEX,
-    Samples: _Samples_e__Union,
+    Samples: packed union {
+        wValidBitsPerSample: u16,
+        wSamplesPerBlock: u16,
+        wReserved: u16,
+    },
     dwChannelMask: u32,
     SubFormat: Guid,
-    const _Samples_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const ADPCMCOEFSET = packed struct {
@@ -3853,8 +3856,24 @@ pub const JPEGINFOHEADER = packed struct {
 
 pub const MMTIME = packed struct {
     wType: u32,
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: packed union {
+        ms: u32,
+        sample: u32,
+        cb: u32,
+        ticks: u32,
+        smpte: extern struct {
+            hour: u8,
+            min: u8,
+            sec: u8,
+            frame: u8,
+            fps: u8,
+            dummy: u8,
+            pad: [2]u8,
+        },
+        midi: packed struct {
+            songptrpos: u32,
+        },
+    },
 };
 
 pub const LPDRVCALLBACK = fn(
@@ -4263,8 +4282,14 @@ pub const MIXERLINEA = packed struct {
     cControls: u32,
     szShortName: [16]CHAR,
     szName: [64]CHAR,
-    Target: _Target_e__Struct,
-    const _Target_e__Struct = u32; // TODO: generate this nested type!
+    Target: packed struct {
+        dwType: u32,
+        dwDeviceID: u32,
+        wMid: u16,
+        wPid: u16,
+        vDriverVersion: u32,
+        szPname: [32]CHAR,
+    },
 };
 
 pub const MIXERLINEW = packed struct {
@@ -4280,8 +4305,14 @@ pub const MIXERLINEW = packed struct {
     cControls: u32,
     szShortName: [16]u16,
     szName: [64]u16,
-    Target: _Target_e__Struct,
-    const _Target_e__Struct = u32; // TODO: generate this nested type!
+    Target: packed struct {
+        dwType: u32,
+        dwDeviceID: u32,
+        wMid: u16,
+        wPid: u16,
+        vDriverVersion: u32,
+        szPname: [32]u16,
+    },
 };
 
 pub const MIXERCONTROLA = packed struct {
@@ -4292,10 +4323,22 @@ pub const MIXERCONTROLA = packed struct {
     cMultipleItems: u32,
     szShortName: [16]CHAR,
     szName: [64]CHAR,
-    Bounds: _Bounds_e__Union,
-    Metrics: _Metrics_e__Union,
-    const _Bounds_e__Union = u32; // TODO: generate this nested type!
-    const _Metrics_e__Union = u32; // TODO: generate this nested type!
+    Bounds: packed union {
+        Anonymous1: packed struct {
+            lMinimum: i32,
+            lMaximum: i32,
+        },
+        Anonymous2: packed struct {
+            dwMinimum: u32,
+            dwMaximum: u32,
+        },
+        dwReserved: [6]u32,
+    },
+    Metrics: packed union {
+        cSteps: u32,
+        cbCustomData: u32,
+        dwReserved: [6]u32,
+    },
 };
 
 pub const MIXERCONTROLW = packed struct {
@@ -4306,40 +4349,58 @@ pub const MIXERCONTROLW = packed struct {
     cMultipleItems: u32,
     szShortName: [16]u16,
     szName: [64]u16,
-    Bounds: _Bounds_e__Union,
-    Metrics: _Metrics_e__Union,
-    const _Metrics_e__Union = u32; // TODO: generate this nested type!
-    const _Bounds_e__Union = u32; // TODO: generate this nested type!
+    Bounds: packed union {
+        Anonymous1: packed struct {
+            lMinimum: i32,
+            lMaximum: i32,
+        },
+        Anonymous2: packed struct {
+            dwMinimum: u32,
+            dwMaximum: u32,
+        },
+        dwReserved: [6]u32,
+    },
+    Metrics: packed union {
+        cSteps: u32,
+        cbCustomData: u32,
+        dwReserved: [6]u32,
+    },
 };
 
 pub const MIXERLINECONTROLSA = packed struct {
     cbStruct: u32,
     dwLineID: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: packed union {
+        dwControlID: u32,
+        dwControlType: u32,
+    },
     cControls: u32,
     cbmxctrl: u32,
     pamxctrl: *MIXERCONTROLA,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIXERLINECONTROLSW = packed struct {
     cbStruct: u32,
     dwLineID: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: packed union {
+        dwControlID: u32,
+        dwControlType: u32,
+    },
     cControls: u32,
     cbmxctrl: u32,
     pamxctrl: *MIXERCONTROLW,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIXERCONTROLDETAILS = packed struct {
     cbStruct: u32,
     dwControlID: u32,
     cChannels: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: packed union {
+        hwndOwner: HWND,
+        cMultipleItems: u32,
+    },
     cbDetails: u32,
     paDetails: *c_void,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIXERCONTROLDETAILS_LISTTEXTA = packed struct {

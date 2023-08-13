@@ -106,10 +106,15 @@ pub const WEB_SOCKET_HTTP_HEADER = extern struct {
 };
 
 pub const WEB_SOCKET_BUFFER = extern union {
-    Data: _Data_e__Struct,
-    CloseStatus: _CloseStatus_e__Struct,
-    const _Data_e__Struct = u32; // TODO: generate this nested type!
-    const _CloseStatus_e__Struct = u32; // TODO: generate this nested type!
+    Data: extern struct {
+        pbBuffer: *u8,
+        ulBufferLength: u32,
+    },
+    CloseStatus: extern struct {
+        pbReason: *u8,
+        ulReasonLength: u32,
+        usStatus: u16,
+    },
 };
 
 

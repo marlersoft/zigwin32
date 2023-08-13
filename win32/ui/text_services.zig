@@ -5865,8 +5865,10 @@ pub const TF_CT_COLORREF = TF_DA_COLORTYPE.COLORREF;
 
 pub const TF_DA_COLOR = extern struct {
     type: TF_DA_COLORTYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        nIndex: i32,
+        cr: u32,
+    },
 };
 
 pub const TF_DA_ATTR_INFO = extern enum(i32) {
@@ -7449,9 +7451,10 @@ pub const TF_LMLATTELEMENT = extern struct {
     dwFrameStart: u32,
     dwFrameLen: u32,
     dwFlags: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        iCost: i32,
+    },
     bstrText: BSTR,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 // TODO: this type is limited to platform 'windows5.0'

@@ -1751,8 +1751,10 @@ pub const INET_FIREWALL_AC_CHANGE = extern struct {
     appContainerSid: *SID,
     userSid: *SID,
     displayName: PWSTR,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        capabilities: INET_FIREWALL_AC_CAPABILITIES,
+        binaries: INET_FIREWALL_AC_BINARIES,
+    },
 };
 
 pub const INET_FIREWALL_APP_CONTAINER = extern struct {

@@ -4107,8 +4107,13 @@ pub const CLAIM_SECURITY_ATTRIBUTE_V1 = extern struct {
     Reserved: u16,
     Flags: u32,
     ValueCount: u32,
-    Values: _Values_e__Union,
-    const _Values_e__Union = u32; // TODO: generate this nested type!
+    Values: extern union {
+        pInt64: *i64,
+        pUint64: *u64,
+        ppString: *PWSTR,
+        pFqbn: *CLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE,
+        pOctetString: *CLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE,
+    },
 };
 
 pub const CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = extern struct {
@@ -4117,16 +4122,22 @@ pub const CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = extern struct {
     Reserved: u16,
     Flags: CLAIM_SECURITY_ATTRIBUTE_FLAGS,
     ValueCount: u32,
-    Values: _Values_e__Union,
-    const _Values_e__Union = u32; // TODO: generate this nested type!
+    Values: extern union {
+        pInt64: [1]u32,
+        pUint64: [1]u32,
+        ppString: [1]u32,
+        pFqbn: [1]u32,
+        pOctetString: [1]u32,
+    },
 };
 
 pub const CLAIM_SECURITY_ATTRIBUTES_INFORMATION = extern struct {
     Version: u16,
     Reserved: u16,
     AttributeCount: u32,
-    Attribute: _Attribute_e__Union,
-    const _Attribute_e__Union = u32; // TODO: generate this nested type!
+    Attribute: extern union {
+        pAttributeV1: *CLAIM_SECURITY_ATTRIBUTE_V1,
+    },
 };
 
 pub const SECURITY_QUALITY_OF_SERVICE = extern struct {
@@ -4153,11 +4164,11 @@ pub const QUOTA_LIMITS = extern struct {
 };
 
 pub const _SC_NOTIFICATION_REGISTRATION = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _HMAPPER = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const NETRESOURCEA = extern struct {
@@ -4239,8 +4250,13 @@ pub const SERVICE_TRIGGER_CUSTOM_STATE_ID = extern struct {
 };
 
 pub const SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM = extern struct {
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        CustomStateId: SERVICE_TRIGGER_CUSTOM_STATE_ID,
+        s: extern struct {
+            DataOffset: u32,
+            Data: [1]u8,
+        },
+    },
 };
 
 pub const SERVICE_DESCRIPTIONA = extern struct {
@@ -5052,8 +5068,11 @@ pub const LSA_FOREST_TRUST_RECORD = extern struct {
     Flags: u32,
     ForestTrustType: LSA_FOREST_TRUST_RECORD_TYPE,
     Time: LARGE_INTEGER,
-    ForestTrustData: _ForestTrustData_e__Union,
-    const _ForestTrustData_e__Union = u32; // TODO: generate this nested type!
+    ForestTrustData: extern union {
+        TopLevelName: UNICODE_STRING,
+        DomainInfo: LSA_FOREST_TRUST_DOMAIN_INFO,
+        Data: LSA_FOREST_TRUST_BINARY_DATA,
+    },
 };
 
 pub const LSA_FOREST_TRUST_INFORMATION = extern struct {
@@ -7553,8 +7572,14 @@ pub const SECPKG_NEGO2_INFO = extern struct {
 
 pub const SECPKG_EXTENDED_INFORMATION = extern struct {
     Class: SECPKG_EXTENDED_INFORMATION_CLASS,
-    Info: _Info_e__Union,
-    const _Info_e__Union = u32; // TODO: generate this nested type!
+    Info: extern union {
+        GssInfo: SECPKG_GSS_INFO,
+        ContextThunks: SECPKG_CONTEXT_THUNKS,
+        MutualAuthLevel: SECPKG_MUTUAL_AUTH_LEVEL,
+        WowClientDll: SECPKG_WOW_CLIENT_DLL,
+        ExtraOids: SECPKG_EXTRA_OIDS,
+        Nego2Info: SECPKG_NEGO2_INFO,
+    },
 };
 
 pub const SECPKG_TARGETINFO = extern struct {
@@ -9691,8 +9716,15 @@ pub const CERT_OTHER_NAME = extern struct {
 
 pub const CERT_ALT_NAME_ENTRY = extern struct {
     dwAltNameChoice: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pOtherName: *CERT_OTHER_NAME,
+        pwszRfc822Name: PWSTR,
+        pwszDNSName: PWSTR,
+        DirectoryName: CRYPTOAPI_BLOB,
+        pwszURL: PWSTR,
+        IPAddress: CRYPTOAPI_BLOB,
+        pszRegisteredID: PSTR,
+    },
 };
 
 pub const CERT_ALT_NAME_INFO = extern struct {
@@ -9806,8 +9838,9 @@ pub const CERT_AUTHORITY_INFO_ACCESS = extern struct {
 
 pub const CRL_DIST_POINT_NAME = extern struct {
     dwDistPointNameChoice: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        FullName: CERT_ALT_NAME_INFO,
+    },
 };
 
 pub const CRL_DIST_POINT = extern struct {
@@ -9957,8 +9990,9 @@ pub const CMC_TAGGED_CERT_REQUEST = extern struct {
 
 pub const CMC_TAGGED_REQUEST = extern struct {
     dwTaggedRequestChoice: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pTaggedCertRequest: *CMC_TAGGED_CERT_REQUEST,
+    },
 };
 
 pub const CMC_TAGGED_CONTENT_INFO = extern struct {
@@ -10003,8 +10037,10 @@ pub const CMC_STATUS_INFO = extern struct {
     rgdwBodyList: *u32,
     pwszStatusString: PWSTR,
     dwOtherInfoChoice: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        dwFailInfo: u32,
+        pPendInfo: *CMC_PEND_INFO,
+    },
 };
 
 pub const CMC_ADD_EXTENSIONS_INFO = extern struct {
@@ -10053,9 +10089,11 @@ pub const CERT_LOGOTYPE_IMAGE_INFO = extern struct {
     dwXSize: u32,
     dwYSize: u32,
     dwLogotypeImageResolutionChoice: CERT_LOGOTYPE_CHOICE,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dwNumBits: u32,
+        dwTableSize: u32,
+    },
     pwszLanguage: PWSTR,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CERT_LOGOTYPE_IMAGE = extern struct {
@@ -10085,8 +10123,10 @@ pub const CERT_LOGOTYPE_DATA = extern struct {
 
 pub const CERT_LOGOTYPE_INFO = extern struct {
     dwLogotypeInfoChoice: CERT_LOGOTYPE_OPTION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pLogotypeDirectInfo: *CERT_LOGOTYPE_DATA,
+        pLogotypeIndirectInfo: *CERT_LOGOTYPE_REFERENCE,
+    },
 };
 
 pub const CERT_OTHER_LOGOTYPE_INFO = extern struct {
@@ -10105,9 +10145,11 @@ pub const CERT_LOGOTYPE_EXT_INFO = extern struct {
 
 pub const CERT_BIOMETRIC_DATA = extern struct {
     dwTypeOfBiometricDataChoice: CERT_BIOMETRIC_DATA_TYPE,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dwPredefined: u32,
+        pszObjId: PSTR,
+    },
     HashedUrl: CERT_HASHED_URL,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CERT_BIOMETRIC_EXT_INFO = extern struct {
@@ -10168,24 +10210,27 @@ pub const OCSP_BASIC_REVOKED_INFO = extern struct {
 pub const OCSP_BASIC_RESPONSE_ENTRY = extern struct {
     CertId: OCSP_CERT_ID,
     dwCertStatus: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        pRevokedInfo: *OCSP_BASIC_REVOKED_INFO,
+    },
     ThisUpdate: FILETIME,
     NextUpdate: FILETIME,
     cExtension: u32,
     rgExtension: *CERT_EXTENSION,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const OCSP_BASIC_RESPONSE_INFO = extern struct {
     dwVersion: u32,
     dwResponderIdChoice: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        ByNameResponderId: CRYPTOAPI_BLOB,
+        ByKeyResponderId: CRYPTOAPI_BLOB,
+    },
     ProducedAt: FILETIME,
     cResponseEntry: u32,
     rgResponseEntry: *OCSP_BASIC_RESPONSE_ENTRY,
     cExtension: u32,
     rgExtension: *CERT_EXTENSION,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CERT_SUPPORTED_ALGORITHM_INFO = extern struct {
@@ -10222,9 +10267,12 @@ pub const CRYPT_OID_INFO = extern struct {
     pszOID: [*:0]const u8,
     pwszName: [*:0]const u16,
     dwGroupId: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dwValue: u32,
+        Algid: u32,
+        dwLength: u32,
+    },
     ExtraInfo: CRYPTOAPI_BLOB,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PFN_CRYPT_ENUM_OID_INFO = fn(
@@ -10241,8 +10289,11 @@ pub const CERT_STRONG_SIGN_SERIALIZED_INFO = extern struct {
 pub const CERT_STRONG_SIGN_PARA = extern struct {
     cbSize: u32,
     dwInfoChoice: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pvInfo: *c_void,
+        pSerializedInfo: *CERT_STRONG_SIGN_SERIALIZED_INFO,
+        pszOID: PSTR,
+    },
 };
 
 pub const CERT_ISSUER_SERIAL_NUMBER = extern struct {
@@ -10252,14 +10303,20 @@ pub const CERT_ISSUER_SERIAL_NUMBER = extern struct {
 
 pub const CERT_ID = extern struct {
     dwIdChoice: CERT_ID_OPTION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        IssuerSerialNumber: CERT_ISSUER_SERIAL_NUMBER,
+        KeyId: CRYPTOAPI_BLOB,
+        HashId: CRYPTOAPI_BLOB,
+    },
 };
 
 pub const CMSG_SIGNER_ENCODE_INFO = extern struct {
     cbSize: u32,
     pCertInfo: *CERT_INFO,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        hCryptProv: usize,
+        hNCryptKey: usize,
+    },
     dwKeySpec: u32,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     pvHashAuxInfo: *c_void,
@@ -10267,7 +10324,6 @@ pub const CMSG_SIGNER_ENCODE_INFO = extern struct {
     rgAuthAttr: *CRYPT_ATTRIBUTE,
     cUnauthAttr: u32,
     rgUnauthAttr: *CRYPT_ATTRIBUTE,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CMSG_SIGNED_ENCODE_INFO = extern struct {
@@ -10315,11 +10371,13 @@ pub const CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO = extern struct {
     hCryptProv: usize,
     dwKeySpec: u32,
     dwKeyChoice: CMSG_KEY_AGREE_OPTION,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        pEphemeralAlgorithm: *CRYPT_ALGORITHM_IDENTIFIER,
+        pSenderId: *CERT_ID,
+    },
     UserKeyingMaterial: CRYPTOAPI_BLOB,
     cRecipientEncryptedKeys: u32,
     rgpRecipientEncryptedKeys: **CMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO = extern struct {
@@ -10328,17 +10386,22 @@ pub const CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO = extern struct {
     pvKeyEncryptionAuxInfo: *c_void,
     hCryptProv: usize,
     dwKeyChoice: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        hKeyEncryptionKey: usize,
+        pvKeyEncryptionKey: *c_void,
+    },
     KeyId: CRYPTOAPI_BLOB,
     Date: FILETIME,
     pOtherAttr: *CRYPT_ATTRIBUTE_TYPE_VALUE,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CMSG_RECIPIENT_ENCODE_INFO = extern struct {
     dwRecipientChoice: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pKeyTrans: *CMSG_KEY_TRANS_RECIPIENT_ENCODE_INFO,
+        pKeyAgree: *CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO,
+        pMailList: *CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO,
+    },
 };
 
 pub const CMSG_RC2_AUX_INFO = extern struct {
@@ -10427,12 +10490,14 @@ pub const CMSG_RECIPIENT_ENCRYPTED_KEY_INFO = extern struct {
 pub const CMSG_KEY_AGREE_RECIPIENT_INFO = extern struct {
     dwVersion: u32,
     dwOriginatorChoice: CMSG_KEY_AGREE_ORIGINATOR,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        OriginatorCertId: CERT_ID,
+        OriginatorPublicKeyInfo: CERT_PUBLIC_KEY_INFO,
+    },
     UserKeyingMaterial: CRYPTOAPI_BLOB,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     cRecipientEncryptedKeys: u32,
     rgpRecipientEncryptedKeys: **CMSG_RECIPIENT_ENCRYPTED_KEY_INFO,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CMSG_MAIL_LIST_RECIPIENT_INFO = extern struct {
@@ -10446,8 +10511,11 @@ pub const CMSG_MAIL_LIST_RECIPIENT_INFO = extern struct {
 
 pub const CMSG_CMS_RECIPIENT_INFO = extern struct {
     dwRecipientChoice: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pKeyTrans: *CMSG_KEY_TRANS_RECIPIENT_INFO,
+        pKeyAgree: *CMSG_KEY_AGREE_RECIPIENT_INFO,
+        pMailList: *CMSG_MAIL_LIST_RECIPIENT_INFO,
+    },
 };
 
 pub const CMSG_CTRL_VERIFY_SIGNATURE_EX_PARA = extern struct {
@@ -10460,30 +10528,36 @@ pub const CMSG_CTRL_VERIFY_SIGNATURE_EX_PARA = extern struct {
 
 pub const CMSG_CTRL_DECRYPT_PARA = extern struct {
     cbSize: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        hCryptProv: usize,
+        hNCryptKey: usize,
+    },
     dwKeySpec: u32,
     dwRecipientIndex: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CMSG_CTRL_KEY_TRANS_DECRYPT_PARA = extern struct {
     cbSize: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        hCryptProv: usize,
+        hNCryptKey: usize,
+    },
     dwKeySpec: u32,
     pKeyTrans: *CMSG_KEY_TRANS_RECIPIENT_INFO,
     dwRecipientIndex: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CMSG_CTRL_KEY_AGREE_DECRYPT_PARA = extern struct {
     cbSize: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        hCryptProv: usize,
+        hNCryptKey: usize,
+    },
     dwKeySpec: u32,
     pKeyAgree: *CMSG_KEY_AGREE_RECIPIENT_INFO,
     dwRecipientIndex: u32,
     dwRecipientEncryptedKeyIndex: u32,
     OriginatorPublicKey: CRYPT_BIT_BLOB,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CMSG_CTRL_MAIL_LIST_DECRYPT_PARA = extern struct {
@@ -10492,8 +10566,10 @@ pub const CMSG_CTRL_MAIL_LIST_DECRYPT_PARA = extern struct {
     pMailList: *CMSG_MAIL_LIST_RECIPIENT_INFO,
     dwRecipientIndex: u32,
     dwKeyChoice: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        hKeyEncryptionKey: usize,
+        pvKeyEncryptionKey: *c_void,
+    },
 };
 
 pub const CMSG_CTRL_ADD_SIGNER_UNAUTH_ATTR_PARA = extern struct {
@@ -10557,13 +10633,15 @@ pub const CMSG_CONTENT_ENCRYPT_INFO = extern struct {
     pfnAlloc: PFN_CMSG_ALLOC,
     pfnFree: PFN_CMSG_FREE,
     dwEncryptFlags: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        hContentEncryptKey: usize,
+        hCNGContentEncryptKey: *c_void,
+    },
     dwFlags: u32,
     fCNG: BOOL,
     pbCNGContentEncryptKeyObject: *u8,
     pbContentEncryptKey: *u8,
     cbContentEncryptKey: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PFN_CMSG_GEN_CONTENT_ENCRYPT_KEY = fn(
@@ -10599,11 +10677,13 @@ pub const CMSG_KEY_AGREE_ENCRYPT_INFO = extern struct {
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     UserKeyingMaterial: CRYPTOAPI_BLOB,
     dwOriginatorChoice: CMSG_KEY_AGREE_ORIGINATOR,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        OriginatorCertId: CERT_ID,
+        OriginatorPublicKeyInfo: CERT_PUBLIC_KEY_INFO,
+    },
     cKeyAgreeKeyEncryptInfo: u32,
     rgpKeyAgreeKeyEncryptInfo: **CMSG_KEY_AGREE_KEY_ENCRYPT_INFO,
     dwFlags: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PFN_CMSG_EXPORT_KEY_AGREE = fn(
@@ -10753,9 +10833,11 @@ pub const CRYPT_KEY_PROV_INFO = extern struct {
 
 pub const CERT_KEY_CONTEXT = extern struct {
     cbSize: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        hCryptProv: usize,
+        hNCryptKey: usize,
+    },
     dwKeySpec: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const ROOT_INFO_LUID = extern struct {
@@ -10769,10 +10851,15 @@ pub const CRYPT_SMART_CARD_ROOT_INFO = extern struct {
 };
 
 pub const CERT_SYSTEM_STORE_RELOCATE_PARA = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        hKeyBase: HKEY,
+        pvBase: *c_void,
+    },
+    Anonymous2: extern union {
+        pvSystemStore: *c_void,
+        pszSystemStore: [*:0]const u8,
+        pwszSystemStore: [*:0]const u16,
+    },
 };
 
 pub const CERT_REGISTRY_STORE_CLIENT_GPT_PARA = extern struct {
@@ -11272,12 +11359,14 @@ pub const CRYPT_HASH_MESSAGE_PARA = extern struct {
 pub const CRYPT_KEY_SIGN_MESSAGE_PARA = extern struct {
     cbSize: u32,
     dwMsgAndCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        hCryptProv: usize,
+        hNCryptKey: usize,
+    },
     dwKeySpec: CERT_KEY_SPEC,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     pvHashAuxInfo: *c_void,
     PubKeyAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CRYPT_KEY_VERIFY_MESSAGE_PARA = extern struct {
@@ -11577,11 +11666,13 @@ pub const AUTHENTICODE_TS_EXTRA_CERT_CHAIN_POLICY_PARA = extern struct {
 };
 
 pub const HTTPSPolicyCallbackData = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        cbStruct: u32,
+        cbSize: u32,
+    },
     dwAuthType: HTTPSPOLICY_CALLBACK_DATA_AUTH_TYPE,
     fdwChecks: u32,
     pwszServerName: PWSTR,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const EV_EXTRA_CERT_CHAIN_POLICY_PARA = extern struct {
@@ -12312,10 +12403,12 @@ pub const TRUSTEE_ACCESSW = extern struct {
 };
 
 pub const ACTRL_OVERLAPPED = extern struct {
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        Provider: *c_void,
+        Reserved1: u32,
+    },
     Reserved2: u32,
     hEvent: HANDLE,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const ACTRL_ACCESS_INFOA = extern struct {
@@ -13385,8 +13478,21 @@ pub const READER_SEL_REQUEST = extern struct {
     dwShareMode: u32,
     dwPreferredProtocols: u32,
     MatchType: READER_SEL_REQUEST_MATCH_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        ReaderAndContainerParameter: extern struct {
+            cbReaderNameOffset: u32,
+            cchReaderNameLength: u32,
+            cbContainerNameOffset: u32,
+            cchContainerNameLength: u32,
+            dwDesiredCardModuleVersion: u32,
+            dwCspFlags: u32,
+        },
+        SerialNumberParameter: extern struct {
+            cbSerialNumberOffset: u32,
+            cbSerialNumberLength: u32,
+            dwDesiredCardModuleVersion: u32,
+        },
+    },
 };
 
 pub const READER_SEL_RESPONSE = extern struct {
@@ -13458,8 +13564,8 @@ pub const SR_SECURITY_DESCRIPTOR = extern struct {
     SecurityDescriptor: *u8,
 };
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const USER_ALL_INFORMATION = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     LastLogon: LARGE_INTEGER,
     LastLogoff: LARGE_INTEGER,
     PasswordLastSet: LARGE_INTEGER,
@@ -14542,10 +14648,20 @@ pub const AUDIT_PARAM = extern struct {
     Type: AUDIT_PARAM_TYPE,
     Length: u32,
     Flags: u32,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        Data0: usize,
+        String: PWSTR,
+        u: usize,
+        psid: *SID,
+        pguid: *Guid,
+        LogonId_LowPart: u32,
+        pObjectTypes: *AUDIT_OBJECT_TYPES,
+        pIpAddress: *AUDIT_IP_ADDRESS,
+    },
+    Anonymous2: extern union {
+        Data1: usize,
+        LogonId_HighPart: i32,
+    },
 };
 
 pub const AUDIT_PARAMS = extern struct {
@@ -14667,16 +14783,22 @@ pub const AUTHZ_SECURITY_ATTRIBUTE_V1 = extern struct {
     Reserved: u16,
     Flags: AUTHZ_SECURITY_ATTRIBUTE_FLAGS,
     ValueCount: u32,
-    Values: _Values_e__Union,
-    const _Values_e__Union = u32; // TODO: generate this nested type!
+    Values: extern union {
+        pInt64: *i64,
+        pUint64: *u64,
+        ppString: *PWSTR,
+        pFqbn: *AUTHZ_SECURITY_ATTRIBUTE_FQBN_VALUE,
+        pOctetString: *AUTHZ_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE,
+    },
 };
 
 pub const AUTHZ_SECURITY_ATTRIBUTES_INFORMATION = extern struct {
     Version: u16,
     Reserved: u16,
     AttributeCount: u32,
-    Attribute: _Attribute_e__Union,
-    const _Attribute_e__Union = u32; // TODO: generate this nested type!
+    Attribute: extern union {
+        pAttributeV1: *AUTHZ_SECURITY_ATTRIBUTE_V1,
+    },
 };
 
 pub const AUTHZ_RPC_INIT_INFO_CLIENT = extern struct {
@@ -14759,10 +14881,12 @@ pub const AUTHZ_SOURCE_SCHEMA_REGISTRATION = extern struct {
     szEventSourceXmlSchemaFile: PWSTR,
     szEventAccessStringsFile: PWSTR,
     szExecutableImagePath: PWSTR,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        pReserved: *c_void,
+        pProviderGuid: *Guid,
+    },
     dwObjectTypeNameCount: u32,
     ObjectTypeNames: [1]AUTHZ_REGISTRATION_OBJECT_TYPE_NAME_OFFSET,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 const CLSID_AzAuthorizationStore_Value = @import("zig.zig").Guid.initString("b2bcff59-a757-4b0b-a1bc-ea69981da69e");
@@ -30652,8 +30776,12 @@ pub const CRYPT_XML_KEY_RSA_KEY_VALUE = extern struct {
 
 pub const CRYPT_XML_KEY_VALUE = extern struct {
     dwType: CRYPT_XML_KEY_VALUE_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        DSAKeyValue: CRYPT_XML_KEY_DSA_KEY_VALUE,
+        RSAKeyValue: CRYPT_XML_KEY_RSA_KEY_VALUE,
+        ECDSAKeyValue: CRYPT_XML_KEY_ECDSA_KEY_VALUE,
+        Custom: CRYPT_XML_BLOB,
+    },
 };
 
 pub const CRYPT_XML_ISSUER_SERIAL = extern struct {
@@ -30663,8 +30791,14 @@ pub const CRYPT_XML_ISSUER_SERIAL = extern struct {
 
 pub const CRYPT_XML_X509DATA_ITEM = extern struct {
     dwType: CRYPT_XML_X509DATA_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        IssuerSerial: CRYPT_XML_ISSUER_SERIAL,
+        SKI: CRYPT_XML_DATA_BLOB,
+        wszSubjectName: [*:0]const u16,
+        Certificate: CRYPT_XML_DATA_BLOB,
+        CRL: CRYPT_XML_DATA_BLOB,
+        Custom: CRYPT_XML_BLOB,
+    },
 };
 
 pub const CRYPT_XML_X509DATA = extern struct {
@@ -30674,8 +30808,13 @@ pub const CRYPT_XML_X509DATA = extern struct {
 
 pub const CRYPT_XML_KEY_INFO_ITEM = extern struct {
     dwType: CRYPT_XML_KEYINFO_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        wszKeyName: [*:0]const u16,
+        KeyValue: CRYPT_XML_KEY_VALUE,
+        RetrievalMethod: CRYPT_XML_BLOB,
+        X509Data: CRYPT_XML_X509DATA,
+        Custom: CRYPT_XML_BLOB,
+    },
 };
 
 pub const CRYPT_XML_KEY_INFO = extern struct {
@@ -33602,8 +33741,10 @@ pub const ENUM_PERIOD_MONTHS = ENUM_PERIOD.MONTHS;
 pub const ENUM_PERIOD_YEARS = ENUM_PERIOD.YEARS;
 
 pub const LLFILETIME = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        ll: i64,
+        ft: FILETIME,
+    },
 };
 
 pub const PFNCMFILTERPROC = fn(
@@ -33766,14 +33907,19 @@ pub const WINTRUST_DATA = extern struct {
     dwUIChoice: WINTRUST_DATA_UICHOICE,
     fdwRevocationChecks: WINTRUST_DATA_REVOCATION_CHECKS,
     dwUnionChoice: WINTRUST_DATA_UNION_CHOICE,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        pFile: *WINTRUST_FILE_INFO,
+        pCatalog: *WINTRUST_CATALOG_INFO,
+        pBlob: *WINTRUST_BLOB_INFO,
+        pSgnr: *WINTRUST_SGNR_INFO,
+        pCert: *WINTRUST_CERT_INFO,
+    },
     dwStateAction: WINTRUST_DATA_STATE_ACTION,
     hWVTStateData: HANDLE,
     pwszURLReference: PWSTR,
     dwProvFlags: u32,
     dwUIContext: WINTRUST_DATA_UICONTEXT,
     pSignatureSettings: *WINTRUST_SIGNATURE_SETTINGS,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const WINTRUST_SIGNATURE_SETTINGS = extern struct {
@@ -33923,7 +34069,9 @@ pub const CRYPT_PROVIDER_DATA = extern struct {
     csProvPrivData: u32,
     pasProvPrivData: *CRYPT_PROVIDER_PRIVDATA,
     dwSubjectChoice: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        pPDSip: *PROVDATA_SIP,
+    },
     pszUsageOID: PSTR,
     fRecallWithState: BOOL,
     sftSystemTime: FILETIME,
@@ -33935,7 +34083,6 @@ pub const CRYPT_PROVIDER_DATA = extern struct {
     dwUIStateFlags: u32,
     pSigState: *CRYPT_PROVIDER_SIGSTATE,
     pSigSettings: *WINTRUST_SIGNATURE_SETTINGS,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CRYPT_PROVIDER_SIGSTATE = extern struct {
@@ -34106,8 +34253,11 @@ pub const SPC_SIGINFO = extern struct {
 
 pub const SPC_LINK = extern struct {
     dwLinkChoice: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pwszUrl: PWSTR,
+        Moniker: SPC_SERIALIZED_OBJECT,
+        pwszFile: PWSTR,
+    },
 };
 
 pub const SPC_PE_IMAGE_DATA = extern struct {
@@ -34267,8 +34417,10 @@ pub const CRYPTUI_WIZ_DIGITAL_SIGN_CERT_PVK_INFO = extern struct {
     dwSize: u32,
     pwszSigningCertFileName: PWSTR,
     dwPvkChoice: CRYPTUI_WIZ_DIGITAL_SIGN_PVK_OPTION,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        pPvkFileInfo: *CRYPTUI_WIZ_DIGITAL_SIGN_PVK_FILE_INFO,
+        pPvkProvInfo: *CRYPT_KEY_PROV_INFO,
+    },
 };
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_EXTENDED_INFO = extern struct {
@@ -34286,14 +34438,19 @@ pub const CRYPTUI_WIZ_DIGITAL_SIGN_EXTENDED_INFO = extern struct {
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_INFO = extern struct {
     dwSize: u32,
     dwSubjectChoice: CRYPTUI_WIZ_DIGITAL_SIGN_SUBJECT,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        pwszFileName: [*:0]const u16,
+        pSignBlobInfo: *CRYPTUI_WIZ_DIGITAL_SIGN_BLOB_INFO,
+    },
     dwSigningCertChoice: CRYPTUI_WIZ_DIGITAL_SIGN,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: extern union {
+        pSigningCertContext: *const CERT_CONTEXT,
+        pSigningCertStore: *CRYPTUI_WIZ_DIGITAL_SIGN_STORE_INFO,
+        pSigningCertPvkInfo: *CRYPTUI_WIZ_DIGITAL_SIGN_CERT_PVK_INFO,
+    },
     pwszTimestampURL: [*:0]const u16,
     dwAdditionalCertChoice: CRYPTUI_WIZ_DIGITAL_ADDITIONAL_CERT_CHOICE,
     pSignExtInfo: *CRYPTUI_WIZ_DIGITAL_SIGN_EXTENDED_INFO,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT = extern struct {
@@ -34315,7 +34472,10 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTW = extern struct {
     pCertContext: *const CERT_CONTEXT,
     rgszPurposes: *PSTR,
     cPurposes: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        pCryptProviderData: *const CRYPT_PROVIDER_DATA,
+        hWVTStateData: HANDLE,
+    },
     fpCryptProviderDataTrustedUsage: BOOL,
     idxSigner: u32,
     idxCert: u32,
@@ -34326,7 +34486,6 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTW = extern struct {
     cPropSheetPages: u32,
     rgPropSheetPages: *PROPSHEETPAGEW,
     nStartPage: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CRYPTUI_VIEWCERTIFICATE_STRUCTA = extern struct {
@@ -34337,7 +34496,10 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTA = extern struct {
     pCertContext: *const CERT_CONTEXT,
     rgszPurposes: *PSTR,
     cPurposes: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        pCryptProviderData: *const CRYPT_PROVIDER_DATA,
+        hWVTStateData: HANDLE,
+    },
     fpCryptProviderDataTrustedUsage: BOOL,
     idxSigner: u32,
     idxCert: u32,
@@ -34348,17 +34510,20 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTA = extern struct {
     cPropSheetPages: u32,
     rgPropSheetPages: *PROPSHEETPAGEA,
     nStartPage: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CRYPTUI_WIZ_EXPORT_INFO = extern struct {
     dwSize: u32,
     pwszExportFileName: [*:0]const u16,
     dwSubjectChoice: CRYPTUI_WIZ_EXPORT_SUBJECT,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        pCertContext: *const CERT_CONTEXT,
+        pCTLContext: *CTL_CONTEXT,
+        pCRLContext: *CRL_CONTEXT,
+        hCertStore: *c_void,
+    },
     cStores: u32,
     rghStores: **c_void,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO = extern struct {
@@ -34373,10 +34538,15 @@ pub const CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO = extern struct {
 pub const CRYPTUI_WIZ_IMPORT_SRC_INFO = extern struct {
     dwSize: u32,
     dwSubjectChoice: CRYPTUI_WIZ_IMPORT_SUBJECT_OPTION,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        pwszFileName: [*:0]const u16,
+        pCertContext: *const CERT_CONTEXT,
+        pCTLContext: *CTL_CONTEXT,
+        pCRLContext: *CRL_CONTEXT,
+        hCertStore: *c_void,
+    },
     dwFlags: CRYPT_KEY_FLAGS,
     pwszPassword: [*:0]const u16,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const SIP_SUBJECTINFO = extern struct {
@@ -34396,9 +34566,12 @@ pub const SIP_SUBJECTINFO = extern struct {
     fdwSecuritySettings: u32,
     dwIndex: u32,
     dwUnionChoice: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        psFlat: *MS_ADDINFO_FLAT,
+        psCatMember: *MS_ADDINFO_CATALOGMEMBER,
+        psBlob: *MS_ADDINFO_BLOB,
+    },
     pClientData: *c_void,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MS_ADDINFO_FLAT = extern struct {
@@ -34431,8 +34604,10 @@ pub const SIP_CAP_SET_V3 = extern struct {
     cbSize: u32,
     dwVersion: u32,
     isMultiSign: BOOL,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        dwFlags: u32,
+        dwReserved: u32,
+    },
 };
 
 pub const SIP_INDIRECT_DATA = extern struct {

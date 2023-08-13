@@ -1646,7 +1646,14 @@ pub const SPPPUT_ARRAY_INDEX = SPPHRASEPROPERTYUNIONTYPE.ARRAY_INDEX;
 
 pub const SPPHRASEPROPERTY = extern struct {
     pszName: [*:0]const u16,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        ulId: u32,
+        Anonymous: extern struct {
+            bType: u8,
+            bReserved: u8,
+            usArrayIndex: u16,
+        },
+    },
     pszValue: [*:0]const u16,
     vValue: VARIANT,
     ulFirstElement: u32,
@@ -1655,7 +1662,6 @@ pub const SPPHRASEPROPERTY = extern struct {
     pFirstChild: *const SPPHRASEPROPERTY,
     SREngineConfidence: f32,
     Confidence: i8,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const SPPHRASEREPLACEMENT = extern struct {

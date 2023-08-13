@@ -2047,7 +2047,7 @@ pub const FSB_REGULAR_MODE = @as(u32, 0);
 // Section: Types (499)
 //--------------------------------------------------------------------------------
 pub const _IMAGELIST = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
@@ -2066,22 +2066,22 @@ pub const TBBUTTON = extern struct {
 }, else => struct { } };
 
 pub const _TREEITEM = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _DSA = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const _DPA = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const RICHEDIT_IMAGE_PARAMETERS = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     xWidth: i32,
     yHeight: i32,
     Ascent: i32,
@@ -2095,8 +2095,8 @@ pub const RICHEDIT_IMAGE_PARAMETERS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENDCOMPOSITIONNOTIFY = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     dwCode: ENDCOMPOSITIONNOTIFY_CODE,
 };
@@ -2106,8 +2106,8 @@ pub const ENDCOMPOSITIONNOTIFY = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const TEXTRANGEA = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     chrg: CHARRANGE,
     lpstrText: PSTR,
 };
@@ -2117,8 +2117,8 @@ pub const TEXTRANGEA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const TEXTRANGEW = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     chrg: CHARRANGE,
     lpstrText: PWSTR,
 };
@@ -2128,8 +2128,8 @@ pub const TEXTRANGEW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const EDITSTREAM = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwCookie: usize,
     dwError: u32,
     pfnCallback: EDITSTREAMCALLBACK,
@@ -2140,8 +2140,8 @@ pub const EDITSTREAM = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const FINDTEXTA = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     chrg: CHARRANGE,
     lpstrText: [*:0]const u8,
 };
@@ -2151,8 +2151,8 @@ pub const FINDTEXTA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const FINDTEXTW = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     chrg: CHARRANGE,
     lpstrText: [*:0]const u16,
 };
@@ -2162,8 +2162,8 @@ pub const FINDTEXTW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const FINDTEXTEXA = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     chrg: CHARRANGE,
     lpstrText: [*:0]const u8,
     chrgText: CHARRANGE,
@@ -2174,8 +2174,8 @@ pub const FINDTEXTEXA = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const FINDTEXTEXW = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     chrg: CHARRANGE,
     lpstrText: [*:0]const u16,
     chrgText: CHARRANGE,
@@ -2186,8 +2186,8 @@ pub const FINDTEXTEXW = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const FORMATRANGE = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     hdc: HDC,
     hdcTarget: HDC,
     rc: RECT,
@@ -2200,8 +2200,8 @@ pub const FORMATRANGE = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const MSGFILTER = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     msg: u32,
     wParam: WPARAM,
@@ -2213,8 +2213,8 @@ pub const MSGFILTER = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const REQRESIZE = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     rc: RECT,
 };
@@ -2224,8 +2224,8 @@ pub const REQRESIZE = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const SELCHANGE = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     chrg: CHARRANGE,
     seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
@@ -2236,8 +2236,8 @@ pub const SELCHANGE = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const _grouptypingchange = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     fGroupTyping: BOOL,
 };
@@ -2247,8 +2247,8 @@ pub const _grouptypingchange = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const CLIPBOARDFORMAT = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     cf: u16,
 };
@@ -2258,8 +2258,8 @@ pub const CLIPBOARDFORMAT = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const GETCONTEXTMENUEX = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     chrg: CHARRANGE,
     dwFlags: u32,
     pt: POINT,
@@ -2271,8 +2271,8 @@ pub const GETCONTEXTMENUEX = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENDROPFILES = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     hDrop: HANDLE,
     cp: i32,
@@ -2284,8 +2284,8 @@ pub const ENDROPFILES = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENPROTECTED = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     msg: u32,
     wParam: WPARAM,
@@ -2298,8 +2298,8 @@ pub const ENPROTECTED = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENSAVECLIPBOARD = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     cObjectCount: i32,
     cch: i32,
@@ -2310,8 +2310,8 @@ pub const ENSAVECLIPBOARD = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENOLEOPFAILED = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     iob: i32,
     lOper: i32,
@@ -2323,8 +2323,8 @@ pub const ENOLEOPFAILED = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const OBJECTPOSITIONS = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     cObjectCount: i32,
     pcpPositions: *i32,
@@ -2335,8 +2335,8 @@ pub const OBJECTPOSITIONS = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENLINK = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     msg: u32,
     wParam: WPARAM,
@@ -2349,8 +2349,8 @@ pub const ENLINK = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENLOWFIRTF = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     szControl: PSTR,
 };
@@ -2360,8 +2360,8 @@ pub const ENLOWFIRTF = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ENCORRECTTEXT = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     nmhdr: NMHDR,
     chrg: CHARRANGE,
     seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
@@ -2372,8 +2372,8 @@ pub const ENCORRECTTEXT = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const PUNCTUATION = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     iSize: u32,
     szPunctuation: PSTR,
 };
@@ -2383,8 +2383,8 @@ pub const PUNCTUATION = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const REPASTESPECIAL = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     dwAspect: DVASPECT,
     dwParam: usize,
 };
@@ -2394,8 +2394,8 @@ pub const REPASTESPECIAL = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const GETTEXTEX = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     cb: u32,
     flags: GETTEXTEX_FLAGS,
     codepage: u32,
@@ -2408,8 +2408,8 @@ pub const GETTEXTEX = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const HYPHENATEINFO = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     cbSize: i16,
     dxHyphenateZone: i16,
     pfnHyphenate: isize,
@@ -2433,23 +2433,33 @@ pub const PROPSHEETPAGEA_V1 = extern struct {
     dwSize: u32,
     dwFlags: u32,
     hInstance: HINSTANCE,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        pszTemplate: [*:0]const u8,
+        pResource: *DLGTEMPLATE,
+    },
+    Anonymous2: extern union {
+        hIcon: HICON,
+        pszIcon: [*:0]const u8,
+    },
     pszTitle: [*:0]const u8,
     pfnDlgProc: DLGPROC,
     lParam: LPARAM,
     pfnCallback: LPFNPSPCALLBACKA,
     pcRefParent: *u32,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEA_V2 = extern struct {
     dwSize: u32,
     dwFlags: u32,
     hInstance: HINSTANCE,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        pszTemplate: [*:0]const u8,
+        pResource: *DLGTEMPLATE,
+    },
+    Anonymous2: extern union {
+        hIcon: HICON,
+        pszIcon: [*:0]const u8,
+    },
     pszTitle: [*:0]const u8,
     pfnDlgProc: DLGPROC,
     lParam: LPARAM,
@@ -2457,16 +2467,20 @@ pub const PROPSHEETPAGEA_V2 = extern struct {
     pcRefParent: *u32,
     pszHeaderTitle: [*:0]const u8,
     pszHeaderSubTitle: [*:0]const u8,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEA_V3 = extern struct {
     dwSize: u32,
     dwFlags: u32,
     hInstance: HINSTANCE,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        pszTemplate: [*:0]const u8,
+        pResource: *DLGTEMPLATE,
+    },
+    Anonymous2: extern union {
+        hIcon: HICON,
+        pszIcon: [*:0]const u8,
+    },
     pszTitle: [*:0]const u8,
     pfnDlgProc: DLGPROC,
     lParam: LPARAM,
@@ -2475,16 +2489,20 @@ pub const PROPSHEETPAGEA_V3 = extern struct {
     pszHeaderTitle: [*:0]const u8,
     pszHeaderSubTitle: [*:0]const u8,
     hActCtx: HANDLE,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEA = extern struct {
     dwSize: u32,
     dwFlags: u32,
     hInstance: HINSTANCE,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        pszTemplate: [*:0]const u8,
+        pResource: *DLGTEMPLATE,
+    },
+    Anonymous2: extern union {
+        hIcon: HICON,
+        pszIcon: [*:0]const u8,
+    },
     pszTitle: [*:0]const u8,
     pfnDlgProc: DLGPROC,
     lParam: LPARAM,
@@ -2493,33 +2511,43 @@ pub const PROPSHEETPAGEA = extern struct {
     pszHeaderTitle: [*:0]const u8,
     pszHeaderSubTitle: [*:0]const u8,
     hActCtx: HANDLE,
-    Anonymous3: _Anonymous3_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous3: extern union {
+        hbmHeader: HBITMAP,
+        pszbmHeader: [*:0]const u8,
+    },
 };
 
 pub const PROPSHEETPAGEW_V1 = extern struct {
     dwSize: u32,
     dwFlags: u32,
     hInstance: HINSTANCE,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        pszTemplate: [*:0]const u16,
+        pResource: *DLGTEMPLATE,
+    },
+    Anonymous2: extern union {
+        hIcon: HICON,
+        pszIcon: [*:0]const u16,
+    },
     pszTitle: [*:0]const u16,
     pfnDlgProc: DLGPROC,
     lParam: LPARAM,
     pfnCallback: LPFNPSPCALLBACKW,
     pcRefParent: *u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEW_V2 = extern struct {
     dwSize: u32,
     dwFlags: u32,
     hInstance: HINSTANCE,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        pszTemplate: [*:0]const u16,
+        pResource: *DLGTEMPLATE,
+    },
+    Anonymous2: extern union {
+        hIcon: HICON,
+        pszIcon: [*:0]const u16,
+    },
     pszTitle: [*:0]const u16,
     pfnDlgProc: DLGPROC,
     lParam: LPARAM,
@@ -2527,16 +2555,20 @@ pub const PROPSHEETPAGEW_V2 = extern struct {
     pcRefParent: *u32,
     pszHeaderTitle: [*:0]const u16,
     pszHeaderSubTitle: [*:0]const u16,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEW_V3 = extern struct {
     dwSize: u32,
     dwFlags: u32,
     hInstance: HINSTANCE,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        pszTemplate: [*:0]const u16,
+        pResource: *DLGTEMPLATE,
+    },
+    Anonymous2: extern union {
+        hIcon: HICON,
+        pszIcon: [*:0]const u16,
+    },
     pszTitle: [*:0]const u16,
     pfnDlgProc: DLGPROC,
     lParam: LPARAM,
@@ -2545,16 +2577,20 @@ pub const PROPSHEETPAGEW_V3 = extern struct {
     pszHeaderTitle: [*:0]const u16,
     pszHeaderSubTitle: [*:0]const u16,
     hActCtx: HANDLE,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETPAGEW = extern struct {
     dwSize: u32,
     dwFlags: u32,
     hInstance: HINSTANCE,
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous1: extern union {
+        pszTemplate: [*:0]const u16,
+        pResource: *DLGTEMPLATE,
+    },
+    Anonymous2: extern union {
+        hIcon: HICON,
+        pszIcon: [*:0]const u16,
+    },
     pszTitle: [*:0]const u16,
     pfnDlgProc: DLGPROC,
     lParam: LPARAM,
@@ -2563,10 +2599,10 @@ pub const PROPSHEETPAGEW = extern struct {
     pszHeaderTitle: [*:0]const u16,
     pszHeaderSubTitle: [*:0]const u16,
     hActCtx: HANDLE,
-    Anonymous3: _Anonymous3_e__Union,
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous3: extern union {
+        hbmHeader: HBITMAP,
+        pszbmHeader: [*:0]const u16,
+    },
 };
 
 pub const PFNPROPSHEETCALLBACK = fn(
@@ -2580,15 +2616,21 @@ pub const PROPSHEETHEADERA_V1 = extern struct {
     dwFlags: u32,
     hwndParent: HWND,
     hInstance: HINSTANCE,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        hIcon: HICON,
+        pszIcon: [*:0]const u8,
+    },
     pszCaption: [*:0]const u8,
     nPages: u32,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous2: extern union {
+        nStartPage: u32,
+        pStartPage: [*:0]const u8,
+    },
+    Anonymous3: extern union {
+        ppsp: *PROPSHEETPAGEA,
+        phpage: *HPROPSHEETPAGE,
+    },
     pfnCallback: PFNPROPSHEETCALLBACK,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETHEADERA_V2 = extern struct {
@@ -2596,20 +2638,30 @@ pub const PROPSHEETHEADERA_V2 = extern struct {
     dwFlags: u32,
     hwndParent: HWND,
     hInstance: HINSTANCE,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        hIcon: HICON,
+        pszIcon: [*:0]const u8,
+    },
     pszCaption: [*:0]const u8,
     nPages: u32,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous2: extern union {
+        nStartPage: u32,
+        pStartPage: [*:0]const u8,
+    },
+    Anonymous3: extern union {
+        ppsp: *PROPSHEETPAGEA,
+        phpage: *HPROPSHEETPAGE,
+    },
     pfnCallback: PFNPROPSHEETCALLBACK,
-    Anonymous4: _Anonymous4_e__Union,
+    Anonymous4: extern union {
+        hbmWatermark: HBITMAP,
+        pszbmWatermark: [*:0]const u8,
+    },
     hplWatermark: HPALETTE,
-    Anonymous5: _Anonymous5_e__Union,
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous5: extern union {
+        hbmHeader: HBITMAP,
+        pszbmHeader: [*:0]const u8,
+    },
 };
 
 pub const PROPSHEETHEADERW_V1 = extern struct {
@@ -2617,15 +2669,21 @@ pub const PROPSHEETHEADERW_V1 = extern struct {
     dwFlags: u32,
     hwndParent: HWND,
     hInstance: HINSTANCE,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        hIcon: HICON,
+        pszIcon: [*:0]const u16,
+    },
     pszCaption: [*:0]const u16,
     nPages: u32,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous2: extern union {
+        nStartPage: u32,
+        pStartPage: [*:0]const u16,
+    },
+    Anonymous3: extern union {
+        ppsp: *PROPSHEETPAGEW,
+        phpage: *HPROPSHEETPAGE,
+    },
     pfnCallback: PFNPROPSHEETCALLBACK,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROPSHEETHEADERW_V2 = extern struct {
@@ -2633,20 +2691,30 @@ pub const PROPSHEETHEADERW_V2 = extern struct {
     dwFlags: u32,
     hwndParent: HWND,
     hInstance: HINSTANCE,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: extern union {
+        hIcon: HICON,
+        pszIcon: [*:0]const u16,
+    },
     pszCaption: [*:0]const u16,
     nPages: u32,
-    Anonymous2: _Anonymous2_e__Union,
-    Anonymous3: _Anonymous3_e__Union,
+    Anonymous2: extern union {
+        nStartPage: u32,
+        pStartPage: [*:0]const u16,
+    },
+    Anonymous3: extern union {
+        ppsp: *PROPSHEETPAGEW,
+        phpage: *HPROPSHEETPAGE,
+    },
     pfnCallback: PFNPROPSHEETCALLBACK,
-    Anonymous4: _Anonymous4_e__Union,
+    Anonymous4: extern union {
+        hbmWatermark: HBITMAP,
+        pszbmWatermark: [*:0]const u16,
+    },
     hplWatermark: HPALETTE,
-    Anonymous5: _Anonymous5_e__Union,
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous5: extern union {
+        hbmHeader: HBITMAP,
+        pszbmHeader: [*:0]const u16,
+    },
 };
 
 pub const LPFNSVADDPROPSHEETPAGE = fn(
@@ -3661,15 +3729,19 @@ pub const TVITEMEXW = extern struct {
 pub const TVINSERTSTRUCTA = extern struct {
     hParent: *_TREEITEM,
     hInsertAfter: *_TREEITEM,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        itemex: TVITEMEXA,
+        item: TVITEMA,
+    },
 };
 
 pub const TVINSERTSTRUCTW = extern struct {
     hParent: *_TREEITEM,
     hInsertAfter: *_TREEITEM,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        itemex: TVITEMEXW,
+        item: TVITEMW,
+    },
 };
 
 pub const TVHITTESTINFO = extern struct {
@@ -4249,7 +4321,10 @@ pub const TASKDIALOGCONFIG = packed struct {
     dwFlags: i32,
     dwCommonButtons: i32,
     pszWindowTitle: [*:0]const u16,
-    Anonymous1: _Anonymous1_e__Union,
+    Anonymous1: packed union {
+        hMainIcon: HICON,
+        pszMainIcon: [*:0]const u16,
+    },
     pszMainInstruction: [*:0]const u16,
     pszContent: [*:0]const u16,
     cButtons: u32,
@@ -4262,13 +4337,14 @@ pub const TASKDIALOGCONFIG = packed struct {
     pszExpandedInformation: [*:0]const u16,
     pszExpandedControlText: [*:0]const u16,
     pszCollapsedControlText: [*:0]const u16,
-    Anonymous2: _Anonymous2_e__Union,
+    Anonymous2: packed union {
+        hFooterIcon: HICON,
+        pszFooterIcon: [*:0]const u16,
+    },
     pszFooter: [*:0]const u16,
     pfCallback: PFTASKDIALOGCALLBACK,
     lpCallbackData: isize,
     cxWidth: u32,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PFNDAENUMCALLBACK = fn(
@@ -4846,14 +4922,16 @@ pub const CHARFORMAT2W = extern struct {
     sSpacing: i16,
     crBackColor: u32,
     lcid: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dwReserved: u32,
+        dwCookie: u32,
+    },
     sStyle: i16,
     wKerning: u16,
     bUnderlineType: u8,
     bAnimation: u8,
     bRevAuthor: u8,
     bUnderlineColor: u8,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CHARFORMAT2A = extern struct {
@@ -4862,14 +4940,16 @@ pub const CHARFORMAT2A = extern struct {
     sSpacing: i16,
     crBackColor: u32,
     lcid: u32,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        dwReserved: u32,
+        dwCookie: u32,
+    },
     sStyle: i16,
     wKerning: u16,
     bUnderlineType: u8,
     bAnimation: u8,
     bRevAuthor: u8,
     bUnderlineColor: u8,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CHARRANGE = extern struct {
@@ -4888,14 +4968,16 @@ pub const PARAFORMAT = extern struct {
     cbSize: u32,
     dwMask: PARAFORMAT_MASK,
     wNumbering: u16,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        wReserved: u16,
+        wEffects: u16,
+    },
     dxStartIndent: i32,
     dxRightIndent: i32,
     dxOffset: i32,
     wAlignment: PARAFORMAT_ALIGNMENT,
     cTabCount: i16,
     rgxTabs: [32]u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PARAFORMAT2 = extern struct {
@@ -12087,8 +12169,10 @@ pub const USAGE_PROPERTIES = extern struct {
 
 pub const POINTER_TYPE_INFO = extern struct {
     type: POINTER_INPUT_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        touchInfo: POINTER_TOUCH_INFO,
+        penInfo: POINTER_PEN_INFO,
+    },
 };
 
 pub const INPUT_INJECTION_VALUE = extern struct {
@@ -16250,7 +16334,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (58)
+// Section: Imports (60)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
@@ -16268,8 +16352,8 @@ const IOleInPlaceFrame = @import("../system/com.zig").IOleInPlaceFrame;
 const IStream = @import("../storage/structured_storage.zig").IStream;
 const DVASPECT = @import("../system/com.zig").DVASPECT;
 const PWSTR = @import("../system/system_services.zig").PWSTR;
-const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
 const POINTER_TOUCH_INFO = @import("../ui/pointer_input.zig").POINTER_TOUCH_INFO;
+const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
 const BSTR = @import("../system/ole_automation.zig").BSTR;
 const PSTR = @import("../system/system_services.zig").PSTR;
 const RECT = @import("../ui/display_devices.zig").RECT;
@@ -16299,9 +16383,11 @@ const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
 const TEXTMETRICW = @import("../graphics/gdi.zig").TEXTMETRICW;
 const DVTARGETDEVICE = @import("../system/com.zig").DVTARGETDEVICE;
 const HICON = @import("../ui/menus_and_resources.zig").HICON;
+const DLGTEMPLATE = @import("../ui/windows_and_messaging.zig").DLGTEMPLATE;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IDropTarget = @import("../system/com.zig").IDropTarget;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
+const POINTER_PEN_INFO = @import("../ui/pointer_input.zig").POINTER_PEN_INFO;
 const HWND = @import("../ui/windows_and_messaging.zig").HWND;
 const WINDOWPOS = @import("../ui/windows_and_messaging.zig").WINDOWPOS;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;

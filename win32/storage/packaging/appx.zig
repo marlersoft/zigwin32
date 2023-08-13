@@ -25,8 +25,8 @@ pub const PACKAGE_FILTER_ALL_LOADED = @as(u32, 0);
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const PACKAGE_ID = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     reserved: u32,
     processorArchitecture: u32,
     version: PACKAGE_VERSION,
@@ -41,8 +41,8 @@ pub const PACKAGE_ID = extern struct {
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const PACKAGE_INFO = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     reserved: u32,
     flags: u32,
     path: PWSTR,
@@ -3258,8 +3258,16 @@ pub const IAppxPackageEditor = extern struct {
 };
 
 pub const PACKAGE_VERSION = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        // WARNING: this type has PackingSize=4, how to handle this in Zig?
+        Version: u64,
+        Anonymous: extern struct {
+            Revision: u16,
+            Build: u16,
+            Minor: u16,
+            Major: u16,
+        },
+    },
 };
 
 pub const PackagePathType = extern enum(i32) {

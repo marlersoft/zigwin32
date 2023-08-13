@@ -109,8 +109,11 @@ pub const RM_FILTER_INFO = extern struct {
     FilterAction: RM_FILTER_ACTION,
     FilterTrigger: RM_FILTER_TRIGGER,
     cbNextOffset: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        strFilename: PWSTR,
+        Process: RM_UNIQUE_PROCESS,
+        strServiceShortName: PWSTR,
+    },
 };
 
 pub const RM_WRITE_STATUS_CALLBACK = fn(

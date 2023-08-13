@@ -47,8 +47,11 @@ pub const HARDWAREINPUT = extern struct {
 
 pub const INPUT = extern struct {
     type: INPUT_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        mi: MOUSEINPUT,
+        ki: KEYBDINPUT,
+        hi: HARDWAREINPUT,
+    },
 };
 
 pub const LASTINPUTINFO = extern struct {
@@ -65,12 +68,17 @@ pub const RAWINPUTHEADER = extern struct {
 
 pub const RAWMOUSE = extern struct {
     usFlags: u16,
-    Anonymous: _Anonymous_e__Union,
+    Anonymous: extern union {
+        ulButtons: u32,
+        Anonymous: extern struct {
+            usButtonFlags: u16,
+            usButtonData: u16,
+        },
+    },
     ulRawButtons: u32,
     lLastX: i32,
     lLastY: i32,
     ulExtraInformation: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const RAWKEYBOARD = extern struct {
@@ -90,8 +98,11 @@ pub const RAWHID = extern struct {
 
 pub const RAWINPUT = extern struct {
     header: RAWINPUTHEADER,
-    data: _data_e__Union,
-    const _data_e__Union = u32; // TODO: generate this nested type!
+    data: extern union {
+        mouse: RAWMOUSE,
+        keyboard: RAWKEYBOARD,
+        hid: RAWHID,
+    },
 };
 
 pub const RID_DEVICE_INFO_MOUSE = extern struct {
@@ -121,8 +132,11 @@ pub const RID_DEVICE_INFO_HID = extern struct {
 pub const RID_DEVICE_INFO = extern struct {
     cbSize: u32,
     dwType: RID_DEVICE_INFO_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        mouse: RID_DEVICE_INFO_MOUSE,
+        keyboard: RID_DEVICE_INFO_KEYBOARD,
+        hid: RID_DEVICE_INFO_HID,
+    },
 };
 
 pub const RAWINPUTDEVICE = extern struct {

@@ -847,22 +847,22 @@ pub const WSAData = extern struct {
 }, else => struct { } };
 
 pub const RIO_BUFFERID_t = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const RIO_CQ_t = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const RIO_RQ_t = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const ATM_PVC_PARAMS = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     PvcConnectionId: ATM_CONNECTION_ID,
     PvcQos: QOS,
 };
@@ -1107,8 +1107,19 @@ pub const RESOURCEDISPLAYTYPE_SHARE = RESOURCE_DISPLAY_TYPE.SHARE;
 pub const RESOURCEDISPLAYTYPE_TREE = RESOURCE_DISPLAY_TYPE.TREE;
 
 pub const IN_ADDR = extern struct {
-    S_un: _S_un_e__Union,
-    const _S_un_e__Union = u32; // TODO: generate this nested type!
+    S_un: extern union {
+        S_un_b: extern struct {
+            s_b1: u8,
+            s_b2: u8,
+            s_b3: u8,
+            s_b4: u8,
+        },
+        S_un_w: extern struct {
+            s_w1: u16,
+            s_w2: u16,
+        },
+        S_addr: u32,
+    },
 };
 
 pub const SOCKADDR = extern struct {
@@ -1246,8 +1257,12 @@ pub const ScopeLevelGlobal = SCOPE_LEVEL.Global;
 pub const ScopeLevelCount = SCOPE_LEVEL.Count;
 
 pub const SCOPE_ID = extern struct {
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        Value: u32,
+    },
 };
 
 pub const SOCKADDR_IN = extern struct {
@@ -1530,8 +1545,25 @@ pub const NSP_NOTIFY_APC = WSACOMPLETIONTYPE.APC;
 
 pub const WSACOMPLETION = extern struct {
     Type: WSACOMPLETIONTYPE,
-    Parameters: _Parameters_e__Union,
-    const _Parameters_e__Union = u32; // TODO: generate this nested type!
+    Parameters: extern union {
+        WindowMessage: extern struct {
+            hWnd: HWND,
+            uMsg: u32,
+            context: WPARAM,
+        },
+        Event: extern struct {
+            lpOverlapped: *OVERLAPPED,
+        },
+        Apc: extern struct {
+            lpOverlapped: *OVERLAPPED,
+            lpfnCompletionProc: LPWSAOVERLAPPED_COMPLETION_ROUTINE,
+        },
+        Port: extern struct {
+            lpOverlapped: *OVERLAPPED,
+            hPort: HANDLE,
+            Key: usize,
+        },
+    },
 };
 
 pub const AFPROTOCOLS = extern struct {
@@ -1701,8 +1733,10 @@ pub const WSAPOLLFD = extern struct {
 };
 
 pub const IN6_ADDR = extern struct {
-    u: _u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
+    u: extern union {
+        Byte: [16]u8,
+        Word: [8]u16,
+    },
 };
 
 pub const sockaddr_in6_old = extern struct {
@@ -1750,8 +1784,10 @@ pub const SOCKADDR_IN6 = extern struct {
     sin6_port: u16,
     sin6_flowinfo: u32,
     sin6_addr: IN6_ADDR,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        sin6_scope_id: u32,
+        sin6_scope_struct: SCOPE_ID,
+    },
 };
 
 pub const SOCKADDR_IN6_W2KSP1 = extern struct {
@@ -1998,8 +2034,18 @@ pub const WINDOWS_IAS_SET = extern struct {
     irdaClassName: [64]CHAR,
     irdaAttribName: [256]CHAR,
     irdaAttribType: u32,
-    irdaAttribute: _irdaAttribute_e__Union,
-    const _irdaAttribute_e__Union = u32; // TODO: generate this nested type!
+    irdaAttribute: extern union {
+        irdaAttribInt: i32,
+        irdaAttribOctetSeq: extern struct {
+            Len: u16,
+            OctetSeq: [1024]u8,
+        },
+        irdaAttribUsrStr: extern struct {
+            Len: u8,
+            CharSet: u8,
+            UsrStr: [256]u8,
+        },
+    },
 };
 
 pub const WINDOWS_IAS_QUERY = extern struct {
@@ -2007,8 +2053,18 @@ pub const WINDOWS_IAS_QUERY = extern struct {
     irdaClassName: [64]CHAR,
     irdaAttribName: [256]CHAR,
     irdaAttribType: u32,
-    irdaAttribute: _irdaAttribute_e__Union,
-    const _irdaAttribute_e__Union = u32; // TODO: generate this nested type!
+    irdaAttribute: extern union {
+        irdaAttribInt: i32,
+        irdaAttribOctetSeq: extern struct {
+            Len: u32,
+            OctetSeq: [1024]u8,
+        },
+        irdaAttribUsrStr: extern struct {
+            Len: u32,
+            CharSet: u32,
+            UsrStr: [256]u8,
+        },
+    },
 };
 
 pub const NL_PREFIX_ORIGIN = extern enum(i32) {
@@ -2742,8 +2798,10 @@ pub const AALUSER_PARAMETERS = extern struct {
 
 pub const AAL_PARAMETERS_IE = extern struct {
     AALType: AAL_TYPE,
-    AALSpecificParameters: _AALSpecificParameters_e__Union,
-    const _AALSpecificParameters_e__Union = u32; // TODO: generate this nested type!
+    AALSpecificParameters: extern union {
+        AAL5Parameters: AAL5_PARAMETERS,
+        AALUserParameters: AALUSER_PARAMETERS,
+    },
 };
 
 pub const ATM_TD = extern struct {
@@ -2888,8 +2946,13 @@ pub const LPFN_GETACCEPTEXSOCKADDRS = fn(
 pub const TRANSMIT_PACKETS_ELEMENT = extern struct {
     dwElFlags: u32,
     cLength: u32,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            nFileOffset: LARGE_INTEGER,
+            hFile: HANDLE,
+        },
+        pBuffer: *c_void,
+    },
 };
 
 pub const LPFN_TRANSMITPACKETS = fn(
@@ -2954,10 +3017,35 @@ pub const NLA_INTERNET_NO = NLA_INTERNET.NO;
 pub const NLA_INTERNET_YES = NLA_INTERNET.YES;
 
 pub const NLA_BLOB = extern struct {
-    header: _header_e__Struct,
-    data: _data_e__Union,
-    const _data_e__Union = u32; // TODO: generate this nested type!
-    const _header_e__Struct = u32; // TODO: generate this nested type!
+    header: extern struct {
+        type: NLA_BLOB_DATA_TYPE,
+        dwSize: u32,
+        nextOffset: u32,
+    },
+    data: extern union {
+        rawData: [1]CHAR,
+        interfaceData: extern struct {
+            dwType: u32,
+            dwSpeed: u32,
+            adapterName: [1]CHAR,
+        },
+        locationData: extern struct {
+            information: [1]CHAR,
+        },
+        connectivity: extern struct {
+            type: NLA_CONNECTIVITY_TYPE,
+            internet: NLA_INTERNET,
+        },
+        ICS: extern struct {
+            remote: extern struct {
+                speed: u32,
+                type: u32,
+                state: u32,
+                machineName: [256]u16,
+                sharedAdapterName: [256]u16,
+            },
+        },
+    },
 };
 
 pub const LPFN_WSARECVMSG = fn(
@@ -3051,8 +3139,17 @@ pub const RIO_IOCP_COMPLETION = RIO_NOTIFICATION_COMPLETION_TYPE.IOCP_COMPLETION
 
 pub const RIO_NOTIFICATION_COMPLETION = extern struct {
     Type: RIO_NOTIFICATION_COMPLETION_TYPE,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        Event: extern struct {
+            EventHandle: HANDLE,
+            NotifyReset: BOOL,
+        },
+        Iocp: extern struct {
+            IocpHandle: HANDLE,
+            CompletionKey: *c_void,
+            Overlapped: *c_void,
+        },
+    },
 };
 
 pub const LPFN_RIOCREATECOMPLETIONQUEUE = fn(
@@ -5916,7 +6013,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (16)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
@@ -5931,6 +6028,7 @@ const BOOL = @import("../system/system_services.zig").BOOL;
 const HWND = @import("../ui/windows_and_messaging.zig").HWND;
 const QOS = @import("../network_management/qo_s.zig").QOS;
 const WPARAM = @import("../ui/windows_and_messaging.zig").WPARAM;
+const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 const FARPROC = @import("../system/system_services.zig").FARPROC;
 const HANDLE = @import("../system/system_services.zig").HANDLE;

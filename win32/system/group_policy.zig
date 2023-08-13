@@ -4090,12 +4090,16 @@ pub const PROGID = INSTALLSPECTYPE.PROGID;
 pub const COMCLASS = INSTALLSPECTYPE.COMCLASS;
 
 pub const INSTALLSPEC = extern union {
-    AppName: _AppName_e__Struct,
+    AppName: extern struct {
+        Name: PWSTR,
+        GPOId: Guid,
+    },
     FileExt: PWSTR,
     ProgId: PWSTR,
-    COMClass: _COMClass_e__Struct,
-    const _AppName_e__Struct = u32; // TODO: generate this nested type!
-    const _COMClass_e__Struct = u32; // TODO: generate this nested type!
+    COMClass: extern struct {
+        Clsid: Guid,
+        ClsCtx: u32,
+    },
 };
 
 pub const INSTALLDATA = extern struct {

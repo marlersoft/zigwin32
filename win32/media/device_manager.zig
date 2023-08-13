@@ -643,8 +643,10 @@ pub const WMDM_PROP_VALUES_ENUM = extern struct {
 pub const WMDM_PROP_DESC = extern struct {
     pwszPropName: PWSTR,
     ValidValuesForm: WMDM_ENUM_PROP_VALID_VALUES_FORM,
-    ValidValues: _ValidValues_e__Union,
-    const _ValidValues_e__Union = u32; // TODO: generate this nested type!
+    ValidValues: extern union {
+        ValidValuesRange: WMDM_PROP_VALUES_RANGE,
+        EnumeratedValidValues: WMDM_PROP_VALUES_ENUM,
+    },
 };
 
 pub const WMDM_PROP_CONFIG = extern struct {

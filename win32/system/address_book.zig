@@ -302,8 +302,14 @@ pub const STATUS_OBJECT_NOTIFICATION = extern struct {
 pub const NOTIFICATION = extern struct {
     ulEventType: u32,
     ulAlignPad: u32,
-    info: _info_e__Union,
-    const _info_e__Union = u32; // TODO: generate this nested type!
+    info: extern union {
+        err: ERROR_NOTIFICATION,
+        newmail: NEWMAIL_NOTIFICATION,
+        obj: OBJECT_NOTIFICATION,
+        tab: TABLE_NOTIFICATION,
+        ext: EXTENDED_NOTIFICATION,
+        statobj: STATUS_OBJECT_NOTIFICATION,
+    },
 };
 
 pub const IMAPIAdviseSink = extern struct {
@@ -390,8 +396,10 @@ pub const IMAPIProgress = extern struct {
 pub const MAPINAMEID = extern struct {
     lpguid: *Guid,
     ulKind: u32,
-    Kind: _Kind_e__Union,
-    const _Kind_e__Union = u32; // TODO: generate this nested type!
+    Kind: extern union {
+        lID: i32,
+        lpwstrName: PWSTR,
+    },
 };
 
 pub const IMAPIProp = extern struct {
@@ -603,8 +611,19 @@ pub const SCommentRestriction = extern struct {
 
 pub const SRestriction = extern struct {
     rt: u32,
-    res: _res_e__Union,
-    const _res_e__Union = u32; // TODO: generate this nested type!
+    res: extern union {
+        resCompareProps: SComparePropsRestriction,
+        resAnd: SAndRestriction,
+        resOr: SOrRestriction,
+        resNot: SNotRestriction,
+        resContent: SContentRestriction,
+        resProperty: SPropertyRestriction,
+        resBitMask: SBitMaskRestriction,
+        resSize: SSizeRestriction,
+        resExist: SExistRestriction,
+        resSub: SSubRestriction,
+        resComment: SCommentRestriction,
+    },
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1904,7 +1923,7 @@ pub const IAddrBook = extern struct {
 };
 
 pub const _WABACTIONITEM = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 // TODO: this type is limited to platform 'windows5.0'

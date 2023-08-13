@@ -661,10 +661,14 @@ pub const WinHttpRequestStatLast = WINHTTP_REQUEST_STAT_ENTRY.RequestStatLast;
 pub const WinHttpRequestStatMax = WINHTTP_REQUEST_STAT_ENTRY.RequestStatMax;
 
 pub const WINHTTP_EXTENDED_HEADER = extern struct {
-    Anonymous1: _Anonymous1_e__Union,
-    Anonymous2: _Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: extern union {
+        pwszName: [*:0]const u16,
+        pszName: [*:0]const u8,
+    },
+    Anonymous2: extern union {
+        pwszValue: [*:0]const u16,
+        pszValue: [*:0]const u8,
+    },
 };
 
 pub const WINHTTP_CREDS = extern struct {
@@ -823,8 +827,8 @@ pub const WINHTTP_AUTH_SCHEME_NEGOTIATE = WINHTTP_CREDS_AUTHSCHEME.NEGOTIATE;
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const WINHTTP_CONNECTION_INFO = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     cbSize: u32,
     LocalAddress: SOCKADDR_STORAGE,
     RemoteAddress: SOCKADDR_STORAGE,
@@ -835,8 +839,8 @@ pub const WINHTTP_CONNECTION_INFO = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const WINHTTP_REQUEST_TIMES = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     cTimes: u32,
     rgullTimes: [64]u64,
 };
@@ -846,8 +850,8 @@ pub const WINHTTP_REQUEST_TIMES = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-// WARNING: this type has a packing size of 4, not sure how to handle this
 pub const WINHTTP_REQUEST_STATS = extern struct {
+    // WARNING: this type has PackingSize=4, how to handle this in Zig?
     ullFlags: u64,
     ulIndex: u32,
     cStats: u32,

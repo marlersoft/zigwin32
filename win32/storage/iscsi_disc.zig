@@ -338,7 +338,7 @@ pub const MPIO_PASS_THROUGH_PATH_DIRECT32_EX = extern struct {
 }, else => struct { } };
 
 pub const _ADAPTER_OBJECT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const SCSI_PASS_THROUGH = extern struct {
@@ -560,11 +560,15 @@ pub const NVCACHE_HINT_PAYLOAD = extern struct {
 pub const NV_SEP_CACHE_PARAMETER = extern struct {
     Version: u32,
     Size: u32,
-    Flags: _Flags_e__Union,
+    Flags: extern union {
+        CacheFlags: extern struct {
+            _bitfield: u8,
+        },
+        CacheFlagsSet: u8,
+    },
     WriteCacheType: u8,
     WriteCacheTypeEffective: u8,
     ParameterReserve1: [3]u8,
-    const _Flags_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const NV_SEP_WRITE_CACHE_TYPE = extern enum(i32) {
@@ -672,10 +676,24 @@ pub const HYBRID_INFORMATION = extern struct {
     CacheTypeDefault: NVCACHE_TYPE,
     FractionBase: u32,
     CacheSize: u64,
-    Attributes: _Attributes_e__Struct,
-    Priorities: _Priorities_e__Struct,
-    const _Priorities_e__Struct = u32; // TODO: generate this nested type!
-    const _Attributes_e__Struct = u32; // TODO: generate this nested type!
+    Attributes: extern struct {
+        _bitfield: u32,
+    },
+    Priorities: extern struct {
+        PriorityLevelCount: u8,
+        MaxPriorityBehavior: u8,
+        OptimalWriteGranularity: u8,
+        Reserved: u8,
+        DirtyThresholdLow: u32,
+        DirtyThresholdHigh: u32,
+        SupportedCommands: extern struct {
+            _bitfield: u32,
+            MaxEvictCommands: u32,
+            MaxLbaRangeCountForEvict: u32,
+            MaxLbaRangeCountForChangeLba: u32,
+        },
+        Priority: [1]NVCACHE_PRIORITY_LEVEL_DESCRIPTOR,
+    },
 };
 
 pub const HYBRID_DIRTY_THRESHOLDS = extern struct {
@@ -708,8 +726,10 @@ pub const STORAGE_FIRMWARE_SLOT_INFO = extern struct {
     SlotNumber: u8,
     ReadOnly: u8,
     Reserved: [6]u8,
-    Revision: _Revision_e__Union,
-    const _Revision_e__Union = u32; // TODO: generate this nested type!
+    Revision: extern union {
+        Info: [8]u8,
+        AsUlonglong: u64,
+    },
 };
 
 pub const STORAGE_FIRMWARE_SLOT_INFO_V2 = extern struct {
@@ -855,11 +875,12 @@ pub const DUMP_DRIVER_EX = extern struct {
 pub const STORAGE_ENDURANCE_INFO = extern struct {
     ValidFields: u32,
     GroupId: u32,
-    Flags: _Flags_e__Struct,
+    Flags: extern struct {
+        _bitfield: u32,
+    },
     LifePercentage: u32,
     BytesReadCount: [16]u8,
     ByteWriteCount: [16]u8,
-    const _Flags_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const STORAGE_ENDURANCE_DATA_DESCRIPTOR = extern struct {
@@ -916,8 +937,9 @@ pub const IKE_AUTHENTICATION_PRESHARED_KEY = extern struct {
 
 pub const IKE_AUTHENTICATION_INFORMATION = extern struct {
     AuthMethod: IKE_AUTHENTICATION_METHOD,
-    Anonymous: _Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    Anonymous: extern union {
+        PsKey: IKE_AUTHENTICATION_PRESHARED_KEY,
+    },
 };
 
 pub const ISCSI_UNIQUE_SESSION_ID = extern struct {
