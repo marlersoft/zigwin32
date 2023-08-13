@@ -1824,7 +1824,7 @@ pub const LPTOP_LEVEL_EXCEPTION_FILTER = fn(
     ExceptionInfo: *EXCEPTION_POINTERS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const WCT_OBJECT_TYPE = extern enum(i32) {
+pub const WCT_OBJECT_TYPE = enum(i32) {
     CriticalSectionType = 1,
     SendMessageType = 2,
     MutexType = 3,
@@ -1853,7 +1853,7 @@ pub const WctSocketIoType = WCT_OBJECT_TYPE.SocketIoType;
 pub const WctSmbIoType = WCT_OBJECT_TYPE.SmbIoType;
 pub const WctMaxType = WCT_OBJECT_TYPE.MaxType;
 
-pub const WCT_OBJECT_STATUS = extern enum(i32) {
+pub const WCT_OBJECT_STATUS = enum(i32) {
     NoAccess = 1,
     Running = 2,
     Blocked = 3,
@@ -1963,7 +1963,7 @@ pub const MINIDUMP_STRING = extern struct {
     Buffer: [1]u16,
 };
 
-pub const MINIDUMP_STREAM_TYPE = extern enum(i32) {
+pub const MINIDUMP_STREAM_TYPE = enum(i32) {
     UnusedStream = 0,
     ReservedStream0 = 1,
     ReservedStream1 = 2,
@@ -2173,7 +2173,7 @@ pub const MINIDUMP_EXCEPTION_INFORMATION64 = extern struct {
     ClientPointers: BOOL,
 };
 
-pub const MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE = extern enum(i32) {
+pub const MINIDUMP_HANDLE_OBJECT_INFORMATION_TYPE = enum(i32) {
     HandleObjectInformationNone = 0,
     ThreadInformation1 = 1,
     MutantInformation1 = 2,
@@ -2603,7 +2603,7 @@ pub const MINIDUMP_USER_RECORD = extern struct {
     Memory: MINIDUMP_LOCATION_DESCRIPTOR,
 };
 
-pub const MINIDUMP_CALLBACK_TYPE = extern enum(i32) {
+pub const MINIDUMP_CALLBACK_TYPE = enum(i32) {
     ModuleCallback = 0,
     ThreadCallback = 1,
     ThreadExCallback = 2,
@@ -2682,7 +2682,7 @@ pub const MINIDUMP_INCLUDE_THREAD_CALLBACK = extern struct {
     ThreadId: u32,
 };
 
-pub const THREAD_WRITE_FLAGS = extern enum(i32) {
+pub const THREAD_WRITE_FLAGS = enum(i32) {
     Thread = 1,
     Stack = 2,
     Context = 4,
@@ -2718,7 +2718,7 @@ pub const MINIDUMP_INCLUDE_MODULE_CALLBACK = extern struct {
     BaseOfImage: u64,
 };
 
-pub const MODULE_WRITE_FLAGS = extern enum(i32) {
+pub const MODULE_WRITE_FLAGS = enum(i32) {
     WriteModule = 1,
     WriteDataSeg = 2,
     WriteMiscRecord = 4,
@@ -2823,7 +2823,7 @@ pub const MINIDUMP_CALLBACK_OUTPUT = extern struct {
     },
 };
 
-pub const MINIDUMP_TYPE = extern enum(u32) {
+pub const MINIDUMP_TYPE = enum(u32) {
     Normal = 0,
     WithDataSegs = 1,
     WithFullMemory = 2,
@@ -2936,12 +2936,12 @@ pub const MiniDumpWithIptTrace = MINIDUMP_TYPE.WithIptTrace;
 pub const MiniDumpScanInaccessiblePartialPages = MINIDUMP_TYPE.ScanInaccessiblePartialPages;
 pub const MiniDumpValidTypeFlags = MINIDUMP_TYPE.ValidTypeFlags;
 
-pub const MINIDUMP_SECONDARY_FLAGS = extern enum(i32) {
+pub const MINIDUMP_SECONDARY_FLAGS = enum(i32) {
     WithoutPowerInfo = 1,
-    ValidFlags = 1,
+    // ValidFlags = 1, this enum value conflicts with WithoutPowerInfo
 };
 pub const MiniSecondaryWithoutPowerInfo = MINIDUMP_SECONDARY_FLAGS.WithoutPowerInfo;
-pub const MiniSecondaryValidFlags = MINIDUMP_SECONDARY_FLAGS.ValidFlags;
+pub const MiniSecondaryValidFlags = MINIDUMP_SECONDARY_FLAGS.WithoutPowerInfo;
 
 pub const MINIDUMP_CALLBACK_ROUTINE = fn(
     CallbackParam: *c_void,
@@ -2967,7 +2967,7 @@ pub const CLSID_MachineDebugManager_DEBUG = &CLSID_MachineDebugManager_DEBUG_Val
 const CLSID_DefaultDebugSessionProvider_Value = @import("../../zig.zig").Guid.initString("834128a2-51f4-11d0-8f20-00805f2cd064");
 pub const CLSID_DefaultDebugSessionProvider = &CLSID_DefaultDebugSessionProvider_Value;
 
-pub const SCRIPTLANGUAGEVERSION = extern enum(i32) {
+pub const SCRIPTLANGUAGEVERSION = enum(i32) {
     DEFAULT = 0,
     @"5_7" = 1,
     @"5_8" = 2,
@@ -2978,7 +2978,7 @@ pub const SCRIPTLANGUAGEVERSION_5_7 = SCRIPTLANGUAGEVERSION.@"5_7";
 pub const SCRIPTLANGUAGEVERSION_5_8 = SCRIPTLANGUAGEVERSION.@"5_8";
 pub const SCRIPTLANGUAGEVERSION_MAX = SCRIPTLANGUAGEVERSION.MAX;
 
-pub const SCRIPTSTATE = extern enum(i32) {
+pub const SCRIPTSTATE = enum(i32) {
     UNINITIALIZED = 0,
     INITIALIZED = 5,
     STARTED = 1,
@@ -2993,7 +2993,7 @@ pub const SCRIPTSTATE_CONNECTED = SCRIPTSTATE.CONNECTED;
 pub const SCRIPTSTATE_DISCONNECTED = SCRIPTSTATE.DISCONNECTED;
 pub const SCRIPTSTATE_CLOSED = SCRIPTSTATE.CLOSED;
 
-pub const SCRIPTTRACEINFO = extern enum(i32) {
+pub const SCRIPTTRACEINFO = enum(i32) {
     SCRIPTSTART = 0,
     SCRIPTEND = 1,
     COMCALLSTART = 2,
@@ -3012,28 +3012,28 @@ pub const SCRIPTTRACEINFO_CREATEOBJEND = SCRIPTTRACEINFO.CREATEOBJEND;
 pub const SCRIPTTRACEINFO_GETOBJSTART = SCRIPTTRACEINFO.GETOBJSTART;
 pub const SCRIPTTRACEINFO_GETOBJEND = SCRIPTTRACEINFO.GETOBJEND;
 
-pub const SCRIPTTHREADSTATE = extern enum(i32) {
+pub const SCRIPTTHREADSTATE = enum(i32) {
     NOTINSCRIPT = 0,
     RUNNING = 1,
 };
 pub const SCRIPTTHREADSTATE_NOTINSCRIPT = SCRIPTTHREADSTATE.NOTINSCRIPT;
 pub const SCRIPTTHREADSTATE_RUNNING = SCRIPTTHREADSTATE.RUNNING;
 
-pub const SCRIPTGCTYPE = extern enum(i32) {
+pub const SCRIPTGCTYPE = enum(i32) {
     NORMAL = 0,
     EXHAUSTIVE = 1,
 };
 pub const SCRIPTGCTYPE_NORMAL = SCRIPTGCTYPE.NORMAL;
 pub const SCRIPTGCTYPE_EXHAUSTIVE = SCRIPTGCTYPE.EXHAUSTIVE;
 
-pub const SCRIPTUICITEM = extern enum(i32) {
+pub const SCRIPTUICITEM = enum(i32) {
     INPUTBOX = 1,
     MSGBOX = 2,
 };
 pub const SCRIPTUICITEM_INPUTBOX = SCRIPTUICITEM.INPUTBOX;
 pub const SCRIPTUICITEM_MSGBOX = SCRIPTUICITEM.MSGBOX;
 
-pub const SCRIPTUICHANDLING = extern enum(i32) {
+pub const SCRIPTUICHANDLING = enum(i32) {
     ALLOW = 0,
     NOUIERROR = 1,
     NOUIDEFAULT = 2,
@@ -3940,7 +3940,7 @@ pub const IActiveScriptStringCompare = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DBGPROP_ATTRIB_FLAGS = extern enum(u32) {
+pub const DBGPROP_ATTRIB_FLAGS = enum(u32) {
     NO_ATTRIB = 0,
     VALUE_IS_INVALID = 8,
     VALUE_IS_EXPANDABLE = 16,
@@ -4049,7 +4049,7 @@ pub const DBGPROP_ATTRIB_FRAME_INFINALLYBLOCK = DBGPROP_ATTRIB_FLAGS.FRAME_INFIN
 pub const DBGPROP_ATTRIB_VALUE_IS_RETURN_VALUE = DBGPROP_ATTRIB_FLAGS.VALUE_IS_RETURN_VALUE;
 pub const DBGPROP_ATTRIB_VALUE_PENDING_MUTATION = DBGPROP_ATTRIB_FLAGS.VALUE_PENDING_MUTATION;
 
-pub const DBGPROP_INFO = extern enum(u32) {
+pub const DBGPROP_INFO = enum(u32) {
     NAME = 1,
     TYPE = 2,
     VALUE = 4,
@@ -4094,7 +4094,7 @@ pub const DBGPROP_INFO_BEAUTIFY = DBGPROP_INFO.BEAUTIFY;
 pub const DBGPROP_INFO_CALLTOSTRING = DBGPROP_INFO.CALLTOSTRING;
 pub const DBGPROP_INFO_AUTOEXPAND = DBGPROP_INFO.AUTOEXPAND;
 
-pub const OBJECT_ATTRIB_FLAG = extern enum(u32) {
+pub const OBJECT_ATTRIB_FLAG = enum(u32) {
     NO_ATTRIB = 0,
     NO_NAME = 1,
     NO_TYPE = 2,
@@ -4107,7 +4107,7 @@ pub const OBJECT_ATTRIB_FLAG = extern enum(u32) {
     VALUE_HAS_CODE = 128,
     TYPE_IS_OBJECT = 256,
     TYPE_HAS_CODE = 512,
-    TYPE_IS_EXPANDABLE = 256,
+    // TYPE_IS_EXPANDABLE = 256, this enum value conflicts with TYPE_IS_OBJECT
     SLOT_IS_CATEGORY = 1024,
     VALUE_READONLY = 2048,
     ACCESS_PUBLIC = 4096,
@@ -4144,7 +4144,6 @@ pub const OBJECT_ATTRIB_FLAG = extern enum(u32) {
         VALUE_HAS_CODE: u1 = 0,
         TYPE_IS_OBJECT: u1 = 0,
         TYPE_HAS_CODE: u1 = 0,
-        TYPE_IS_EXPANDABLE: u1 = 0,
         SLOT_IS_CATEGORY: u1 = 0,
         VALUE_READONLY: u1 = 0,
         ACCESS_PUBLIC: u1 = 0,
@@ -4181,7 +4180,6 @@ pub const OBJECT_ATTRIB_FLAG = extern enum(u32) {
             | (if (o.VALUE_HAS_CODE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_HAS_CODE) else 0)
             | (if (o.TYPE_IS_OBJECT == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_OBJECT) else 0)
             | (if (o.TYPE_HAS_CODE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_HAS_CODE) else 0)
-            | (if (o.TYPE_IS_EXPANDABLE == 1) @enumToInt(OBJECT_ATTRIB_FLAG.TYPE_IS_EXPANDABLE) else 0)
             | (if (o.SLOT_IS_CATEGORY == 1) @enumToInt(OBJECT_ATTRIB_FLAG.SLOT_IS_CATEGORY) else 0)
             | (if (o.VALUE_READONLY == 1) @enumToInt(OBJECT_ATTRIB_FLAG.VALUE_READONLY) else 0)
             | (if (o.ACCESS_PUBLIC == 1) @enumToInt(OBJECT_ATTRIB_FLAG.ACCESS_PUBLIC) else 0)
@@ -4219,7 +4217,7 @@ pub const OBJECT_ATTRIB_OBJECT_IS_EXPANDABLE = OBJECT_ATTRIB_FLAG.OBJECT_IS_EXPA
 pub const OBJECT_ATTRIB_VALUE_HAS_CODE = OBJECT_ATTRIB_FLAG.VALUE_HAS_CODE;
 pub const OBJECT_ATTRIB_TYPE_IS_OBJECT = OBJECT_ATTRIB_FLAG.TYPE_IS_OBJECT;
 pub const OBJECT_ATTRIB_TYPE_HAS_CODE = OBJECT_ATTRIB_FLAG.TYPE_HAS_CODE;
-pub const OBJECT_ATTRIB_TYPE_IS_EXPANDABLE = OBJECT_ATTRIB_FLAG.TYPE_IS_EXPANDABLE;
+pub const OBJECT_ATTRIB_TYPE_IS_EXPANDABLE = OBJECT_ATTRIB_FLAG.TYPE_IS_OBJECT;
 pub const OBJECT_ATTRIB_SLOT_IS_CATEGORY = OBJECT_ATTRIB_FLAG.SLOT_IS_CATEGORY;
 pub const OBJECT_ATTRIB_VALUE_READONLY = OBJECT_ATTRIB_FLAG.VALUE_READONLY;
 pub const OBJECT_ATTRIB_ACCESS_PUBLIC = OBJECT_ATTRIB_FLAG.ACCESS_PUBLIC;
@@ -4243,7 +4241,7 @@ pub const OBJECT_ATTRIB_IS_TYPE = OBJECT_ATTRIB_FLAG.IS_TYPE;
 pub const OBJECT_ATTRIB_IS_INHERITED = OBJECT_ATTRIB_FLAG.IS_INHERITED;
 pub const OBJECT_ATTRIB_IS_INTERFACE = OBJECT_ATTRIB_FLAG.IS_INTERFACE;
 
-pub const PROP_INFO_FLAGS = extern enum(i32) {
+pub const PROP_INFO_FLAGS = enum(i32) {
     NAME = 1,
     TYPE = 2,
     VALUE = 4,
@@ -4270,7 +4268,7 @@ pub const DebugPropertyInfo = extern struct {
     m_pDebugProp: *IDebugProperty,
 };
 
-pub const EX_PROP_INFO_FLAGS = extern enum(i32) {
+pub const EX_PROP_INFO_FLAGS = enum(i32) {
     ID = 256,
     NTYPE = 512,
     NVALUE = 1024,
@@ -4623,7 +4621,7 @@ pub const IDebugPropertyEnumType_Registers = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const BREAKPOINT_STATE = extern enum(i32) {
+pub const BREAKPOINT_STATE = enum(i32) {
     DELETED = 0,
     DISABLED = 1,
     ENABLED = 2,
@@ -4632,7 +4630,7 @@ pub const BREAKPOINT_DELETED = BREAKPOINT_STATE.DELETED;
 pub const BREAKPOINT_DISABLED = BREAKPOINT_STATE.DISABLED;
 pub const BREAKPOINT_ENABLED = BREAKPOINT_STATE.ENABLED;
 
-pub const BREAKREASON = extern enum(i32) {
+pub const BREAKREASON = enum(i32) {
     STEP = 0,
     BREAKPOINT = 1,
     DEBUGGER_BLOCK = 2,
@@ -4653,7 +4651,7 @@ pub const BREAKREASON_ERROR = BREAKREASON.ERROR;
 pub const BREAKREASON_JIT = BREAKREASON.JIT;
 pub const BREAKREASON_MUTATION_BREAKPOINT = BREAKREASON.MUTATION_BREAKPOINT;
 
-pub const BREAKRESUME_ACTION = extern enum(i32) {
+pub const BREAKRESUME_ACTION = enum(i32) {
     ABORT = 0,
     CONTINUE = 1,
     STEP_INTO = 2,
@@ -4670,7 +4668,7 @@ pub const BREAKRESUMEACTION_STEP_OUT = BREAKRESUME_ACTION.STEP_OUT;
 pub const BREAKRESUMEACTION_IGNORE = BREAKRESUME_ACTION.IGNORE;
 pub const BREAKRESUMEACTION_STEP_DOCUMENT = BREAKRESUME_ACTION.STEP_DOCUMENT;
 
-pub const ERRORRESUMEACTION = extern enum(i32) {
+pub const ERRORRESUMEACTION = enum(i32) {
     ReexecuteErrorStatement = 0,
     AbortCallAndReturnErrorToCaller = 1,
     SkipErrorStatement = 2,
@@ -4679,7 +4677,7 @@ pub const ERRORRESUMEACTION_ReexecuteErrorStatement = ERRORRESUMEACTION.Reexecut
 pub const ERRORRESUMEACTION_AbortCallAndReturnErrorToCaller = ERRORRESUMEACTION.AbortCallAndReturnErrorToCaller;
 pub const ERRORRESUMEACTION_SkipErrorStatement = ERRORRESUMEACTION.SkipErrorStatement;
 
-pub const DOCUMENTNAMETYPE = extern enum(i32) {
+pub const DOCUMENTNAMETYPE = enum(i32) {
     APPNODE = 0,
     TITLE = 1,
     FILE_TAIL = 2,
@@ -7802,7 +7800,7 @@ pub const IProvideExpressionContexts = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROFILER_SCRIPT_TYPE = extern enum(i32) {
+pub const PROFILER_SCRIPT_TYPE = enum(i32) {
     USER = 0,
     DYNAMIC = 1,
     NATIVE = 2,
@@ -7813,7 +7811,7 @@ pub const PROFILER_SCRIPT_TYPE_DYNAMIC = PROFILER_SCRIPT_TYPE.DYNAMIC;
 pub const PROFILER_SCRIPT_TYPE_NATIVE = PROFILER_SCRIPT_TYPE.NATIVE;
 pub const PROFILER_SCRIPT_TYPE_DOM = PROFILER_SCRIPT_TYPE.DOM;
 
-pub const PROFILER_EVENT_MASK = extern enum(u32) {
+pub const PROFILER_EVENT_MASK = enum(u32) {
     SCRIPT_FUNCTION_CALL = 1,
     NATIVE_FUNCTION_CALL = 2,
     DOM_FUNCTION_CALL = 4,
@@ -7908,7 +7906,7 @@ pub const IActiveScriptProfilerControl2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROFILER_HEAP_OBJECT_FLAGS = extern enum(u32) {
+pub const PROFILER_HEAP_OBJECT_FLAGS = enum(u32) {
     NEW_OBJECT = 1,
     IS_ROOT = 2,
     SITE_CLOSED = 4,
@@ -7969,7 +7967,7 @@ pub const PROFILER_HEAP_OBJECT_FLAGS_WINRT_RUNTIMECLASS = PROFILER_HEAP_OBJECT_F
 pub const PROFILER_HEAP_OBJECT_FLAGS_WINRT_DELEGATE = PROFILER_HEAP_OBJECT_FLAGS.WINRT_DELEGATE;
 pub const PROFILER_HEAP_OBJECT_FLAGS_WINRT_NAMESPACE = PROFILER_HEAP_OBJECT_FLAGS.WINRT_NAMESPACE;
 
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE = extern enum(i32) {
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE = enum(i32) {
     PROTOTYPE = 1,
     FUNCTION_NAME = 2,
     SCOPE_LIST = 3,
@@ -7983,7 +7981,7 @@ pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE = extern enum(i32) {
     WEAKMAP_COLLECTION_LIST = 11,
     MAP_COLLECTION_LIST = 12,
     SET_COLLECTION_LIST = 13,
-    MAX_VALUE = 13,
+    // MAX_VALUE = 13, this enum value conflicts with SET_COLLECTION_LIST
 };
 pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_PROTOTYPE = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.PROTOTYPE;
 pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_FUNCTION_NAME = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.FUNCTION_NAME;
@@ -7998,9 +7996,9 @@ pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_WINRTEVENTS = PROFILER_HEAP_OBJECT_
 pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_WEAKMAP_COLLECTION_LIST = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.WEAKMAP_COLLECTION_LIST;
 pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_MAP_COLLECTION_LIST = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.MAP_COLLECTION_LIST;
 pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_SET_COLLECTION_LIST = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.SET_COLLECTION_LIST;
-pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_MAX_VALUE = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.MAX_VALUE;
+pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO_MAX_VALUE = PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE.SET_COLLECTION_LIST;
 
-pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS = extern enum(u32) {
+pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS = enum(u32) {
     NONE = 0,
     IS_GET_ACCESSOR = 65536,
     IS_SET_ACCESSOR = 131072,
@@ -8029,7 +8027,7 @@ pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_IS_SET_ACCESSOR = PROFILER_HEA
 pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_LET_VARIABLE = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.LET_VARIABLE;
 pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS_CONST_VARIABLE = PROFILER_HEAP_OBJECT_RELATIONSHIP_FLAGS.CONST_VARIABLE;
 
-pub const PROFILER_HEAP_ENUM_FLAGS = extern enum(u32) {
+pub const PROFILER_HEAP_ENUM_FLAGS = enum(u32) {
     NONE = 0,
     STORE_RELATIONSHIP_FLAGS = 1,
     SUBSTRINGS = 2,
@@ -8059,7 +8057,7 @@ pub const PROFILER_HEAP_OBJECT_SCOPE_LIST = extern struct {
     scopes: [1]usize,
 };
 
-pub const PROFILER_RELATIONSHIP_INFO = extern enum(i32) {
+pub const PROFILER_RELATIONSHIP_INFO = enum(i32) {
     NUMBER = 1,
     STRING = 2,
     HEAP_OBJECT = 3,
@@ -8200,7 +8198,7 @@ pub const IActiveScriptProfilerControl3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROFILER_HEAP_SUMMARY_VERSION = extern enum(i32) {
+pub const PROFILER_HEAP_SUMMARY_VERSION = enum(i32) {
     @"1" = 1,
 };
 pub const PROFILER_HEAP_SUMMARY_VERSION_1 = PROFILER_HEAP_SUMMARY_VERSION.@"1";
@@ -8702,7 +8700,7 @@ pub const MODLOAD_PDBGUID_PDBAGE = extern struct {
     PdbAge: u32,
 };
 
-pub const ADDRESS_MODE = extern enum(i32) {
+pub const ADDRESS_MODE = enum(i32) {
     @"1616" = 0,
     @"1632" = 1,
     Real = 2,
@@ -8860,7 +8858,7 @@ pub const PSYMBOL_FUNCENTRY_CALLBACK64 = fn(
     UserContext: u64,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
-pub const SYM_TYPE = extern enum(i32) {
+pub const SYM_TYPE = enum(i32) {
     SymNone = 0,
     SymCoff = 1,
     SymCv = 2,
@@ -9043,7 +9041,7 @@ pub const IMAGEHLP_DUPLICATE_SYMBOL64 = extern struct {
     SelectedSymbol: u32,
 };
 
-pub const IMAGEHLP_HD_TYPE = extern enum(i32) {
+pub const IMAGEHLP_HD_TYPE = enum(i32) {
     Base = 0,
     Sym = 1,
     Src = 2,
@@ -9059,7 +9057,7 @@ pub const OMAP = extern struct {
     rvaTo: u32,
 };
 
-pub const IMAGEHLP_EXTENDED_OPTIONS = extern enum(i32) {
+pub const IMAGEHLP_EXTENDED_OPTIONS = enum(i32) {
     DISABLEACCESSTIMEUPDATE = 0,
     LASTVALIDDEBUGDIRECTORY = 1,
     MAX = 2,
@@ -9201,7 +9199,7 @@ pub const PSYM_ENUMERATESYMBOLS_CALLBACKW = fn(
     UserContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const IMAGEHLP_SYMBOL_TYPE_INFO = extern enum(i32) {
+pub const IMAGEHLP_SYMBOL_TYPE_INFO = enum(i32) {
     TI_GET_SYMTAG = 0,
     TI_GET_SYMNAME = 1,
     TI_GET_LENGTH = 2,
@@ -9343,7 +9341,7 @@ pub const SYMSRV_INDEX_INFOW = extern struct {
     age: u32,
 };
 
-pub const IMAGEHLP_SF_TYPE = extern enum(i32) {
+pub const IMAGEHLP_SF_TYPE = enum(i32) {
     Image = 0,
     Dbg = 1,
     Pdb = 2,
@@ -35638,7 +35636,7 @@ pub const Location = extern struct {
     Offset: u64,
 };
 
-pub const ModelObjectKind = extern enum(i32) {
+pub const ModelObjectKind = enum(i32) {
     PropertyAccessor = 0,
     Context = 1,
     TargetObject = 2,
@@ -35661,7 +35659,7 @@ pub const ObjectIntrinsic = ModelObjectKind.Intrinsic;
 pub const ObjectMethod = ModelObjectKind.Method;
 pub const ObjectKeyReference = ModelObjectKind.KeyReference;
 
-pub const SymbolKind = extern enum(i32) {
+pub const SymbolKind = enum(i32) {
     l = 0,
     Module = 1,
     Type = 2,
@@ -35682,7 +35680,7 @@ pub const SymbolBaseClass = SymbolKind.BaseClass;
 pub const SymbolPublic = SymbolKind.Public;
 pub const SymbolFunction = SymbolKind.Function;
 
-pub const TypeKind = extern enum(i32) {
+pub const TypeKind = enum(i32) {
     UDT = 0,
     Pointer = 1,
     MemberPointer = 2,
@@ -35703,7 +35701,7 @@ pub const TypeEnum = TypeKind.Enum;
 pub const TypeIntrinsic = TypeKind.Intrinsic;
 pub const TypeExtendedArray = TypeKind.ExtendedArray;
 
-pub const IntrinsicKind = extern enum(i32) {
+pub const IntrinsicKind = enum(i32) {
     Void = 0,
     Bool = 1,
     Char = 2,
@@ -35730,7 +35728,7 @@ pub const IntrinsicHRESULT = IntrinsicKind.HRESULT;
 pub const IntrinsicChar16 = IntrinsicKind.Char16;
 pub const IntrinsicChar32 = IntrinsicKind.Char32;
 
-pub const PointerKind = extern enum(i32) {
+pub const PointerKind = enum(i32) {
     Standard = 0,
     Reference = 1,
     RValueReference = 2,
@@ -35743,7 +35741,7 @@ pub const PointerRValueReference = PointerKind.RValueReference;
 pub const PointerCXHat = PointerKind.CXHat;
 pub const PointerManagedReference = PointerKind.ManagedReference;
 
-pub const CallingConventionKind = extern enum(i32) {
+pub const CallingConventionKind = enum(i32) {
     Unknown = 0,
     CDecl = 1,
     FastCall = 2,
@@ -35758,7 +35756,7 @@ pub const CallingConventionStdCall = CallingConventionKind.StdCall;
 pub const CallingConventionSysCall = CallingConventionKind.SysCall;
 pub const CallingConventionThisCall = CallingConventionKind.ThisCall;
 
-pub const LocationKind = extern enum(i32) {
+pub const LocationKind = enum(i32) {
     Member = 0,
     Static = 1,
     Constant = 2,
@@ -35769,7 +35767,7 @@ pub const LocationStatic = LocationKind.Static;
 pub const LocationConstant = LocationKind.Constant;
 pub const LocationNone = LocationKind.None;
 
-pub const PreferredFormat = extern enum(i32) {
+pub const PreferredFormat = enum(i32) {
     None = 0,
     SingleCharacter = 1,
     QuotedString = 2,
@@ -35885,7 +35883,7 @@ pub const IKeyStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const RawSearchFlags = extern enum(i32) {
+pub const RawSearchFlags = enum(i32) {
     ne = 0,
     Bases = 1,
 };
@@ -36829,7 +36827,7 @@ pub const IDebugHostContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ErrorClass = extern enum(i32) {
+pub const ErrorClass = enum(i32) {
     Warning = 0,
     Error = 1,
 };
@@ -37554,7 +37552,7 @@ pub const IDebugHostEvaluator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SignatureComparison = extern enum(i32) {
+pub const SignatureComparison = enum(i32) {
     Unrelated = 0,
     Ambiguous = 1,
     LessSpecific = 2,
@@ -37629,14 +37627,14 @@ pub const IDebugHostTypeSignature = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SymbolSearchOptions = extern enum(i32) {
+pub const SymbolSearchOptions = enum(i32) {
     None = 0,
     Completion = 1,
 };
 pub const SymbolSearchNone = SymbolSearchOptions.None;
 pub const SymbolSearchCompletion = SymbolSearchOptions.Completion;
 
-pub const LanguageKind = extern enum(i32) {
+pub const LanguageKind = enum(i32) {
     Unknown = 0,
     C = 1,
     CPP = 2,
@@ -37668,7 +37666,7 @@ pub const IDebugHostSymbol2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VarArgsKind = extern enum(i32) {
+pub const VarArgsKind = enum(i32) {
     None = 0,
     CStyle = 1,
 };
@@ -38155,7 +38153,7 @@ pub const IDynamicConceptProviderConcept = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ScriptChangeKind = extern enum(i32) {
+pub const ScriptChangeKind = enum(i32) {
     e = 0,
 };
 pub const ScriptRename = ScriptChangeKind.e;
@@ -38399,7 +38397,7 @@ pub const IDebugHostExtensibility = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ScriptDebugState = extern enum(i32) {
+pub const ScriptDebugState = enum(i32) {
     NoDebugger = 0,
     NotExecuting = 1,
     Executing = 2,
@@ -38410,7 +38408,7 @@ pub const ScriptDebugNotExecuting = ScriptDebugState.NotExecuting;
 pub const ScriptDebugExecuting = ScriptDebugState.Executing;
 pub const ScriptDebugBreak = ScriptDebugState.Break;
 
-pub const ScriptDebugEventFilter = extern enum(i32) {
+pub const ScriptDebugEventFilter = enum(i32) {
     Entry = 0,
     Exception = 1,
     UnhandledException = 2,
@@ -38421,7 +38419,7 @@ pub const ScriptDebugEventFilterException = ScriptDebugEventFilter.Exception;
 pub const ScriptDebugEventFilterUnhandledException = ScriptDebugEventFilter.UnhandledException;
 pub const ScriptDebugEventFilterAbort = ScriptDebugEventFilter.Abort;
 
-pub const ScriptDebugEvent = extern enum(i32) {
+pub const ScriptDebugEvent = enum(i32) {
     Breakpoint = 0,
     Step = 1,
     Exception = 2,
@@ -38432,7 +38430,7 @@ pub const ScriptDebugStep = ScriptDebugEvent.Step;
 pub const ScriptDebugException = ScriptDebugEvent.Exception;
 pub const ScriptDebugAsyncBreak = ScriptDebugEvent.AsyncBreak;
 
-pub const ScriptExecutionKind = extern enum(i32) {
+pub const ScriptExecutionKind = enum(i32) {
     Normal = 0,
     StepIn = 1,
     StepOut = 2,
@@ -39436,7 +39434,7 @@ pub const DEBUG_TYPED_DATA = extern struct {
     Internal: [9]u64,
 };
 
-pub const EXT_TDOP = extern enum(i32) {
+pub const EXT_TDOP = enum(i32) {
     COPY = 0,
     RELEASE = 1,
     SET_FROM_EXPR = 2,
@@ -39523,7 +39521,7 @@ pub const WDBGEXTS_MODULE_IN_RANGE = extern struct {
     FoundModSize: u32,
 };
 
-pub const DBGKD_MAJOR_TYPES = extern enum(i32) {
+pub const DBGKD_MAJOR_TYPES = enum(i32) {
     NT = 0,
     XBOX = 1,
     BIG = 2,
@@ -39871,7 +39869,7 @@ pub const SYM_DUMP_PARAM = extern struct {
     _bitfield: u32,
 };
 
-pub const SYM_LOAD_FLAGS = extern enum(u32) {
+pub const SYM_LOAD_FLAGS = enum(u32) {
     NONE = 0,
     VIRTUAL = 1,
     ALT_INDEX = 2,
@@ -39896,7 +39894,7 @@ pub const SLMFLAG_VIRTUAL = SYM_LOAD_FLAGS.VIRTUAL;
 pub const SLMFLAG_ALT_INDEX = SYM_LOAD_FLAGS.ALT_INDEX;
 pub const SLMFLAG_NO_SYMBOLS = SYM_LOAD_FLAGS.NO_SYMBOLS;
 
-pub const IMAGE_SECTION_CHARACTERISTICS = extern enum(u32) {
+pub const IMAGE_SECTION_CHARACTERISTICS = enum(u32) {
     TYPE_NO_PAD = 8,
     CNT_CODE = 32,
     CNT_INITIALIZED_DATA = 64,
@@ -39907,9 +39905,9 @@ pub const IMAGE_SECTION_CHARACTERISTICS = extern enum(u32) {
     LNK_COMDAT = 4096,
     NO_DEFER_SPEC_EXC = 16384,
     GPREL = 32768,
-    MEM_FARDATA = 32768,
+    // MEM_FARDATA = 32768, this enum value conflicts with GPREL
     MEM_PURGEABLE = 131072,
-    MEM_16BIT = 131072,
+    // MEM_16BIT = 131072, this enum value conflicts with MEM_PURGEABLE
     MEM_LOCKED = 262144,
     MEM_PRELOAD = 524288,
     ALIGN_1BYTES = 1048576,
@@ -39948,9 +39946,7 @@ pub const IMAGE_SECTION_CHARACTERISTICS = extern enum(u32) {
         LNK_COMDAT: u1 = 0,
         NO_DEFER_SPEC_EXC: u1 = 0,
         GPREL: u1 = 0,
-        MEM_FARDATA: u1 = 0,
         MEM_PURGEABLE: u1 = 0,
-        MEM_16BIT: u1 = 0,
         MEM_LOCKED: u1 = 0,
         MEM_PRELOAD: u1 = 0,
         ALIGN_1BYTES: u1 = 0,
@@ -39989,9 +39985,7 @@ pub const IMAGE_SECTION_CHARACTERISTICS = extern enum(u32) {
             | (if (o.LNK_COMDAT == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.LNK_COMDAT) else 0)
             | (if (o.NO_DEFER_SPEC_EXC == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.NO_DEFER_SPEC_EXC) else 0)
             | (if (o.GPREL == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.GPREL) else 0)
-            | (if (o.MEM_FARDATA == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_FARDATA) else 0)
             | (if (o.MEM_PURGEABLE == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_PURGEABLE) else 0)
-            | (if (o.MEM_16BIT == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_16BIT) else 0)
             | (if (o.MEM_LOCKED == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_LOCKED) else 0)
             | (if (o.MEM_PRELOAD == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.MEM_PRELOAD) else 0)
             | (if (o.ALIGN_1BYTES == 1) @enumToInt(IMAGE_SECTION_CHARACTERISTICS.ALIGN_1BYTES) else 0)
@@ -40031,9 +40025,9 @@ pub const IMAGE_SCN_LNK_REMOVE = IMAGE_SECTION_CHARACTERISTICS.LNK_REMOVE;
 pub const IMAGE_SCN_LNK_COMDAT = IMAGE_SECTION_CHARACTERISTICS.LNK_COMDAT;
 pub const IMAGE_SCN_NO_DEFER_SPEC_EXC = IMAGE_SECTION_CHARACTERISTICS.NO_DEFER_SPEC_EXC;
 pub const IMAGE_SCN_GPREL = IMAGE_SECTION_CHARACTERISTICS.GPREL;
-pub const IMAGE_SCN_MEM_FARDATA = IMAGE_SECTION_CHARACTERISTICS.MEM_FARDATA;
+pub const IMAGE_SCN_MEM_FARDATA = IMAGE_SECTION_CHARACTERISTICS.GPREL;
 pub const IMAGE_SCN_MEM_PURGEABLE = IMAGE_SECTION_CHARACTERISTICS.MEM_PURGEABLE;
-pub const IMAGE_SCN_MEM_16BIT = IMAGE_SECTION_CHARACTERISTICS.MEM_16BIT;
+pub const IMAGE_SCN_MEM_16BIT = IMAGE_SECTION_CHARACTERISTICS.MEM_PURGEABLE;
 pub const IMAGE_SCN_MEM_LOCKED = IMAGE_SECTION_CHARACTERISTICS.MEM_LOCKED;
 pub const IMAGE_SCN_MEM_PRELOAD = IMAGE_SECTION_CHARACTERISTICS.MEM_PRELOAD;
 pub const IMAGE_SCN_ALIGN_1BYTES = IMAGE_SECTION_CHARACTERISTICS.ALIGN_1BYTES;
@@ -40061,7 +40055,7 @@ pub const IMAGE_SCN_MEM_READ = IMAGE_SECTION_CHARACTERISTICS.MEM_READ;
 pub const IMAGE_SCN_MEM_WRITE = IMAGE_SECTION_CHARACTERISTICS.MEM_WRITE;
 pub const IMAGE_SCN_SCALE_INDEX = IMAGE_SECTION_CHARACTERISTICS.SCALE_INDEX;
 
-pub const IMAGE_FILE_MACHINE = extern enum(u16) {
+pub const IMAGE_FILE_MACHINE = enum(u16) {
     AXP64 = 644,
     I386 = 332,
     IA64 = 512,
@@ -40085,7 +40079,7 @@ pub const IMAGE_FILE_MACHINE = extern enum(u16) {
     POWERPC = 496,
     POWERPCFP = 497,
     MIPS16 = 614,
-    ALPHA64 = 644,
+    // ALPHA64 = 644, this enum value conflicts with AXP64
     MIPSFPU = 870,
     MIPSFPU16 = 1126,
     TRICORE = 1312,
@@ -40118,7 +40112,7 @@ pub const IMAGE_FILE_MACHINE_AM33 = IMAGE_FILE_MACHINE.AM33;
 pub const IMAGE_FILE_MACHINE_POWERPC = IMAGE_FILE_MACHINE.POWERPC;
 pub const IMAGE_FILE_MACHINE_POWERPCFP = IMAGE_FILE_MACHINE.POWERPCFP;
 pub const IMAGE_FILE_MACHINE_MIPS16 = IMAGE_FILE_MACHINE.MIPS16;
-pub const IMAGE_FILE_MACHINE_ALPHA64 = IMAGE_FILE_MACHINE.ALPHA64;
+pub const IMAGE_FILE_MACHINE_ALPHA64 = IMAGE_FILE_MACHINE.AXP64;
 pub const IMAGE_FILE_MACHINE_MIPSFPU = IMAGE_FILE_MACHINE.MIPSFPU;
 pub const IMAGE_FILE_MACHINE_MIPSFPU16 = IMAGE_FILE_MACHINE.MIPSFPU16;
 pub const IMAGE_FILE_MACHINE_TRICORE = IMAGE_FILE_MACHINE.TRICORE;
@@ -40128,7 +40122,7 @@ pub const IMAGE_FILE_MACHINE_M32R = IMAGE_FILE_MACHINE.M32R;
 pub const IMAGE_FILE_MACHINE_ARM64 = IMAGE_FILE_MACHINE.ARM64;
 pub const IMAGE_FILE_MACHINE_CEE = IMAGE_FILE_MACHINE.CEE;
 
-pub const IMAGE_SUBSYSTEM = extern enum(u32) {
+pub const IMAGE_SUBSYSTEM = enum(u32) {
     UNKNOWN = 0,
     NATIVE = 1,
     WINDOWS_GUI = 2,
@@ -40161,7 +40155,7 @@ pub const IMAGE_SUBSYSTEM_XBOX = IMAGE_SUBSYSTEM.XBOX;
 pub const IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION = IMAGE_SUBSYSTEM.WINDOWS_BOOT_APPLICATION;
 pub const IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG = IMAGE_SUBSYSTEM.XBOX_CODE_CATALOG;
 
-pub const IMAGE_DLL_CHARACTERISTICS = extern enum(u32) {
+pub const IMAGE_DLL_CHARACTERISTICS = enum(u32) {
     HIGH_ENTROPY_VA = 32,
     DYNAMIC_BASE = 64,
     FORCE_INTEGRITY = 128,
@@ -40218,20 +40212,20 @@ pub const IMAGE_DLLCHARACTERISTICS_GUARD_CF = IMAGE_DLL_CHARACTERISTICS.GUARD_CF
 pub const IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE = IMAGE_DLL_CHARACTERISTICS.TERMINAL_SERVER_AWARE;
 pub const IMAGE_DLLCHARACTERISTICS_EX_CET_COMPAT = IMAGE_DLL_CHARACTERISTICS.EX_CET_COMPAT;
 
-pub const IMAGE_OPTIONAL_HEADER_MAGIC = extern enum(u32) {
+pub const IMAGE_OPTIONAL_HEADER_MAGIC = enum(u32) {
     NT_OPTIONAL_HDR_MAGIC = 523,
     NT_OPTIONAL_HDR32_MAGIC = 267,
-    NT_OPTIONAL_HDR64_MAGIC = 523,
+    // NT_OPTIONAL_HDR64_MAGIC = 523, this enum value conflicts with NT_OPTIONAL_HDR_MAGIC
     ROM_OPTIONAL_HDR_MAGIC = 263,
 };
 pub const IMAGE_NT_OPTIONAL_HDR_MAGIC = IMAGE_OPTIONAL_HEADER_MAGIC.NT_OPTIONAL_HDR_MAGIC;
 pub const IMAGE_NT_OPTIONAL_HDR32_MAGIC = IMAGE_OPTIONAL_HEADER_MAGIC.NT_OPTIONAL_HDR32_MAGIC;
-pub const IMAGE_NT_OPTIONAL_HDR64_MAGIC = IMAGE_OPTIONAL_HEADER_MAGIC.NT_OPTIONAL_HDR64_MAGIC;
+pub const IMAGE_NT_OPTIONAL_HDR64_MAGIC = IMAGE_OPTIONAL_HEADER_MAGIC.NT_OPTIONAL_HDR_MAGIC;
 pub const IMAGE_ROM_OPTIONAL_HDR_MAGIC = IMAGE_OPTIONAL_HEADER_MAGIC.ROM_OPTIONAL_HDR_MAGIC;
 
-pub const WIN32_ERROR = extern enum(u32) {
+pub const WIN32_ERROR = enum(u32) {
     NO_ERROR = 0,
-    ERROR_SUCCESS = 0,
+    // ERROR_SUCCESS = 0, this enum value conflicts with NO_ERROR
     ERROR_INVALID_FUNCTION = 1,
     ERROR_FILE_NOT_FOUND = 2,
     ERROR_PATH_NOT_FOUND = 3,
@@ -42390,8 +42384,8 @@ pub const WIN32_ERROR = extern enum(u32) {
     ERROR_DS_MISSING_FOREST_TRUST = 8649,
     ERROR_DS_VALUE_KEY_NOT_UNIQUE = 8650,
     DNS_ERROR_RESPONSE_CODES_BASE = 9000,
-    DNS_ERROR_RCODE_NO_ERROR = 0,
-    DNS_ERROR_MASK = 9000,
+    // DNS_ERROR_RCODE_NO_ERROR = 0, this enum value conflicts with NO_ERROR
+    // DNS_ERROR_MASK = 9000, this enum value conflicts with DNS_ERROR_RESPONSE_CODES_BASE
     DNS_ERROR_RCODE_FORMAT_ERROR = 9001,
     DNS_ERROR_RCODE_SERVER_FAILURE = 9002,
     DNS_ERROR_RCODE_NAME_ERROR = 9003,
@@ -42405,7 +42399,7 @@ pub const WIN32_ERROR = extern enum(u32) {
     DNS_ERROR_RCODE_BADSIG = 9016,
     DNS_ERROR_RCODE_BADKEY = 9017,
     DNS_ERROR_RCODE_BADTIME = 9018,
-    DNS_ERROR_RCODE_LAST = 9018,
+    // DNS_ERROR_RCODE_LAST = 9018, this enum value conflicts with DNS_ERROR_RCODE_BADTIME
     DNS_ERROR_DNSSEC_BASE = 9100,
     DNS_ERROR_KEYMASTER_REQUIRED = 9101,
     DNS_ERROR_NOT_ALLOWED_ON_SIGNED_ZONE = 9102,
@@ -42442,9 +42436,9 @@ pub const WIN32_ERROR = extern enum(u32) {
     DNS_ERROR_NO_PACKET = 9503,
     DNS_ERROR_RCODE = 9504,
     DNS_ERROR_UNSECURE_PACKET = 9505,
-    DNS_ERROR_NO_MEMORY = 14,
-    DNS_ERROR_INVALID_NAME = 123,
-    DNS_ERROR_INVALID_DATA = 13,
+    // DNS_ERROR_NO_MEMORY = 14, this enum value conflicts with ERROR_OUTOFMEMORY
+    // DNS_ERROR_INVALID_NAME = 123, this enum value conflicts with ERROR_INVALID_NAME
+    // DNS_ERROR_INVALID_DATA = 13, this enum value conflicts with ERROR_INVALID_DATA
     DNS_ERROR_GENERAL_API_BASE = 9550,
     DNS_ERROR_INVALID_TYPE = 9551,
     DNS_ERROR_INVALID_IP_ADDRESS = 9552,
@@ -43354,7 +43348,7 @@ pub const WIN32_ERROR = extern enum(u32) {
     ERROR_QUERY_STORAGE_ERROR = 2151284737,
 };
 pub const NO_ERROR = WIN32_ERROR.NO_ERROR;
-pub const ERROR_SUCCESS = WIN32_ERROR.ERROR_SUCCESS;
+pub const ERROR_SUCCESS = WIN32_ERROR.NO_ERROR;
 pub const ERROR_INVALID_FUNCTION = WIN32_ERROR.ERROR_INVALID_FUNCTION;
 pub const ERROR_FILE_NOT_FOUND = WIN32_ERROR.ERROR_FILE_NOT_FOUND;
 pub const ERROR_PATH_NOT_FOUND = WIN32_ERROR.ERROR_PATH_NOT_FOUND;
@@ -45513,8 +45507,8 @@ pub const ERROR_DS_UPN_VALUE_NOT_UNIQUE_IN_FOREST = WIN32_ERROR.ERROR_DS_UPN_VAL
 pub const ERROR_DS_MISSING_FOREST_TRUST = WIN32_ERROR.ERROR_DS_MISSING_FOREST_TRUST;
 pub const ERROR_DS_VALUE_KEY_NOT_UNIQUE = WIN32_ERROR.ERROR_DS_VALUE_KEY_NOT_UNIQUE;
 pub const DNS_ERROR_RESPONSE_CODES_BASE = WIN32_ERROR.DNS_ERROR_RESPONSE_CODES_BASE;
-pub const DNS_ERROR_RCODE_NO_ERROR = WIN32_ERROR.DNS_ERROR_RCODE_NO_ERROR;
-pub const DNS_ERROR_MASK = WIN32_ERROR.DNS_ERROR_MASK;
+pub const DNS_ERROR_RCODE_NO_ERROR = WIN32_ERROR.NO_ERROR;
+pub const DNS_ERROR_MASK = WIN32_ERROR.DNS_ERROR_RESPONSE_CODES_BASE;
 pub const DNS_ERROR_RCODE_FORMAT_ERROR = WIN32_ERROR.DNS_ERROR_RCODE_FORMAT_ERROR;
 pub const DNS_ERROR_RCODE_SERVER_FAILURE = WIN32_ERROR.DNS_ERROR_RCODE_SERVER_FAILURE;
 pub const DNS_ERROR_RCODE_NAME_ERROR = WIN32_ERROR.DNS_ERROR_RCODE_NAME_ERROR;
@@ -45528,7 +45522,7 @@ pub const DNS_ERROR_RCODE_NOTZONE = WIN32_ERROR.DNS_ERROR_RCODE_NOTZONE;
 pub const DNS_ERROR_RCODE_BADSIG = WIN32_ERROR.DNS_ERROR_RCODE_BADSIG;
 pub const DNS_ERROR_RCODE_BADKEY = WIN32_ERROR.DNS_ERROR_RCODE_BADKEY;
 pub const DNS_ERROR_RCODE_BADTIME = WIN32_ERROR.DNS_ERROR_RCODE_BADTIME;
-pub const DNS_ERROR_RCODE_LAST = WIN32_ERROR.DNS_ERROR_RCODE_LAST;
+pub const DNS_ERROR_RCODE_LAST = WIN32_ERROR.DNS_ERROR_RCODE_BADTIME;
 pub const DNS_ERROR_DNSSEC_BASE = WIN32_ERROR.DNS_ERROR_DNSSEC_BASE;
 pub const DNS_ERROR_KEYMASTER_REQUIRED = WIN32_ERROR.DNS_ERROR_KEYMASTER_REQUIRED;
 pub const DNS_ERROR_NOT_ALLOWED_ON_SIGNED_ZONE = WIN32_ERROR.DNS_ERROR_NOT_ALLOWED_ON_SIGNED_ZONE;
@@ -45565,9 +45559,9 @@ pub const DNS_ERROR_BAD_PACKET = WIN32_ERROR.DNS_ERROR_BAD_PACKET;
 pub const DNS_ERROR_NO_PACKET = WIN32_ERROR.DNS_ERROR_NO_PACKET;
 pub const DNS_ERROR_RCODE = WIN32_ERROR.DNS_ERROR_RCODE;
 pub const DNS_ERROR_UNSECURE_PACKET = WIN32_ERROR.DNS_ERROR_UNSECURE_PACKET;
-pub const DNS_ERROR_NO_MEMORY = WIN32_ERROR.DNS_ERROR_NO_MEMORY;
-pub const DNS_ERROR_INVALID_NAME = WIN32_ERROR.DNS_ERROR_INVALID_NAME;
-pub const DNS_ERROR_INVALID_DATA = WIN32_ERROR.DNS_ERROR_INVALID_DATA;
+pub const DNS_ERROR_NO_MEMORY = WIN32_ERROR.ERROR_OUTOFMEMORY;
+pub const DNS_ERROR_INVALID_NAME = WIN32_ERROR.ERROR_INVALID_NAME;
+pub const DNS_ERROR_INVALID_DATA = WIN32_ERROR.ERROR_INVALID_DATA;
 pub const DNS_ERROR_GENERAL_API_BASE = WIN32_ERROR.DNS_ERROR_GENERAL_API_BASE;
 pub const DNS_ERROR_INVALID_TYPE = WIN32_ERROR.DNS_ERROR_INVALID_TYPE;
 pub const DNS_ERROR_INVALID_IP_ADDRESS = WIN32_ERROR.DNS_ERROR_INVALID_IP_ADDRESS;
@@ -46476,7 +46470,7 @@ pub const ERROR_VHD_CHANGE_TRACKING_DISABLED = WIN32_ERROR.ERROR_VHD_CHANGE_TRAC
 pub const ERROR_VHD_MISSING_CHANGE_TRACKING_INFORMATION = WIN32_ERROR.ERROR_VHD_MISSING_CHANGE_TRACKING_INFORMATION;
 pub const ERROR_QUERY_STORAGE_ERROR = WIN32_ERROR.ERROR_QUERY_STORAGE_ERROR;
 
-pub const FACILITY_CODE = extern enum(u32) {
+pub const FACILITY_CODE = enum(u32) {
     NULL = 0,
     RPC = 1,
     DISPATCH = 2,
@@ -46485,7 +46479,7 @@ pub const FACILITY_CODE = extern enum(u32) {
     WIN32 = 7,
     WINDOWS = 8,
     SSPI = 9,
-    SECURITY = 9,
+    // SECURITY = 9, this enum value conflicts with SSPI
     CONTROL = 10,
     CERT = 11,
     INTERNET = 12,
@@ -46507,21 +46501,21 @@ pub const FACILITY_CODE = extern enum(u32) {
     USERMODE_FILTER_MANAGER = 31,
     BACKGROUNDCOPY = 32,
     CONFIGURATION = 33,
-    WIA = 33,
+    // WIA = 33, this enum value conflicts with CONFIGURATION
     STATE_MANAGEMENT = 34,
     METADIRECTORY = 35,
     WINDOWSUPDATE = 36,
     DIRECTORYSERVICE = 37,
     GRAPHICS = 38,
     SHELL = 39,
-    NAP = 39,
+    // NAP = 39, this enum value conflicts with SHELL
     TPM_SERVICES = 40,
     TPM_SOFTWARE = 41,
     UI = 42,
     XAML = 43,
     ACTION_QUEUE = 44,
     PLA = 48,
-    WINDOWS_SETUP = 48,
+    // WINDOWS_SETUP = 48, this enum value conflicts with PLA
     FVE = 49,
     FWP = 50,
     WINRM = 51,
@@ -46535,7 +46529,7 @@ pub const FACILITY_CODE = extern enum(u32) {
     USERMODE_HNS = 59,
     SDIAG = 60,
     WEBSERVICES = 61,
-    WINPE = 61,
+    // WINPE = 61, this enum value conflicts with WEBSERVICES
     WPN = 62,
     WINDOWS_STORE = 63,
     INPUT = 64,
@@ -46545,7 +46539,7 @@ pub const FACILITY_CODE = extern enum(u32) {
     OPC = 81,
     XPS = 82,
     MBN = 84,
-    POWERSHELL = 84,
+    // POWERSHELL = 84, this enum value conflicts with MBN
     RAS = 83,
     P2P_INT = 98,
     P2P = 99,
@@ -46575,8 +46569,8 @@ pub const FACILITY_CODE = extern enum(u32) {
     SOS = 160,
     DEBUGGERS = 176,
     SPP = 256,
-    RESTORE = 256,
-    DMSERVER = 256,
+    // RESTORE = 256, this enum value conflicts with SPP
+    // DMSERVER = 256, this enum value conflicts with SPP
     DEPLOYMENT_SERVICES_SERVER = 257,
     DEPLOYMENT_SERVICES_IMAGING = 258,
     DEPLOYMENT_SERVICES_MANAGEMENT = 259,
@@ -46633,7 +46627,7 @@ pub const FACILITY_ITF = FACILITY_CODE.ITF;
 pub const FACILITY_WIN32 = FACILITY_CODE.WIN32;
 pub const FACILITY_WINDOWS = FACILITY_CODE.WINDOWS;
 pub const FACILITY_SSPI = FACILITY_CODE.SSPI;
-pub const FACILITY_SECURITY = FACILITY_CODE.SECURITY;
+pub const FACILITY_SECURITY = FACILITY_CODE.SSPI;
 pub const FACILITY_CONTROL = FACILITY_CODE.CONTROL;
 pub const FACILITY_CERT = FACILITY_CODE.CERT;
 pub const FACILITY_INTERNET = FACILITY_CODE.INTERNET;
@@ -46655,21 +46649,21 @@ pub const FACILITY_WER = FACILITY_CODE.WER;
 pub const FACILITY_USERMODE_FILTER_MANAGER = FACILITY_CODE.USERMODE_FILTER_MANAGER;
 pub const FACILITY_BACKGROUNDCOPY = FACILITY_CODE.BACKGROUNDCOPY;
 pub const FACILITY_CONFIGURATION = FACILITY_CODE.CONFIGURATION;
-pub const FACILITY_WIA = FACILITY_CODE.WIA;
+pub const FACILITY_WIA = FACILITY_CODE.CONFIGURATION;
 pub const FACILITY_STATE_MANAGEMENT = FACILITY_CODE.STATE_MANAGEMENT;
 pub const FACILITY_METADIRECTORY = FACILITY_CODE.METADIRECTORY;
 pub const FACILITY_WINDOWSUPDATE = FACILITY_CODE.WINDOWSUPDATE;
 pub const FACILITY_DIRECTORYSERVICE = FACILITY_CODE.DIRECTORYSERVICE;
 pub const FACILITY_GRAPHICS = FACILITY_CODE.GRAPHICS;
 pub const FACILITY_SHELL = FACILITY_CODE.SHELL;
-pub const FACILITY_NAP = FACILITY_CODE.NAP;
+pub const FACILITY_NAP = FACILITY_CODE.SHELL;
 pub const FACILITY_TPM_SERVICES = FACILITY_CODE.TPM_SERVICES;
 pub const FACILITY_TPM_SOFTWARE = FACILITY_CODE.TPM_SOFTWARE;
 pub const FACILITY_UI = FACILITY_CODE.UI;
 pub const FACILITY_XAML = FACILITY_CODE.XAML;
 pub const FACILITY_ACTION_QUEUE = FACILITY_CODE.ACTION_QUEUE;
 pub const FACILITY_PLA = FACILITY_CODE.PLA;
-pub const FACILITY_WINDOWS_SETUP = FACILITY_CODE.WINDOWS_SETUP;
+pub const FACILITY_WINDOWS_SETUP = FACILITY_CODE.PLA;
 pub const FACILITY_FVE = FACILITY_CODE.FVE;
 pub const FACILITY_FWP = FACILITY_CODE.FWP;
 pub const FACILITY_WINRM = FACILITY_CODE.WINRM;
@@ -46683,7 +46677,7 @@ pub const FACILITY_USERMODE_VHD = FACILITY_CODE.USERMODE_VHD;
 pub const FACILITY_USERMODE_HNS = FACILITY_CODE.USERMODE_HNS;
 pub const FACILITY_SDIAG = FACILITY_CODE.SDIAG;
 pub const FACILITY_WEBSERVICES = FACILITY_CODE.WEBSERVICES;
-pub const FACILITY_WINPE = FACILITY_CODE.WINPE;
+pub const FACILITY_WINPE = FACILITY_CODE.WEBSERVICES;
 pub const FACILITY_WPN = FACILITY_CODE.WPN;
 pub const FACILITY_WINDOWS_STORE = FACILITY_CODE.WINDOWS_STORE;
 pub const FACILITY_INPUT = FACILITY_CODE.INPUT;
@@ -46693,7 +46687,7 @@ pub const FACILITY_WINDOWS_DEFENDER = FACILITY_CODE.WINDOWS_DEFENDER;
 pub const FACILITY_OPC = FACILITY_CODE.OPC;
 pub const FACILITY_XPS = FACILITY_CODE.XPS;
 pub const FACILITY_MBN = FACILITY_CODE.MBN;
-pub const FACILITY_POWERSHELL = FACILITY_CODE.POWERSHELL;
+pub const FACILITY_POWERSHELL = FACILITY_CODE.MBN;
 pub const FACILITY_RAS = FACILITY_CODE.RAS;
 pub const FACILITY_P2P_INT = FACILITY_CODE.P2P_INT;
 pub const FACILITY_P2P = FACILITY_CODE.P2P;
@@ -46723,8 +46717,8 @@ pub const FACILITY_USERMODE_LICENSING = FACILITY_CODE.USERMODE_LICENSING;
 pub const FACILITY_SOS = FACILITY_CODE.SOS;
 pub const FACILITY_DEBUGGERS = FACILITY_CODE.DEBUGGERS;
 pub const FACILITY_SPP = FACILITY_CODE.SPP;
-pub const FACILITY_RESTORE = FACILITY_CODE.RESTORE;
-pub const FACILITY_DMSERVER = FACILITY_CODE.DMSERVER;
+pub const FACILITY_RESTORE = FACILITY_CODE.SPP;
+pub const FACILITY_DMSERVER = FACILITY_CODE.SPP;
 pub const FACILITY_DEPLOYMENT_SERVICES_SERVER = FACILITY_CODE.DEPLOYMENT_SERVICES_SERVER;
 pub const FACILITY_DEPLOYMENT_SERVICES_IMAGING = FACILITY_CODE.DEPLOYMENT_SERVICES_IMAGING;
 pub const FACILITY_DEPLOYMENT_SERVICES_MANAGEMENT = FACILITY_CODE.DEPLOYMENT_SERVICES_MANAGEMENT;
@@ -46773,7 +46767,7 @@ pub const FACILITY_GAME = FACILITY_CODE.GAME;
 pub const FACILITY_PIX = FACILITY_CODE.PIX;
 pub const FACILITY_NT_BIT = FACILITY_CODE.NT_BIT;
 
-pub const THREAD_ERROR_MODE = extern enum(u32) {
+pub const THREAD_ERROR_MODE = enum(u32) {
     ALL_ERRORS = 0,
     FAILCRITICALERRORS = 1,
     NOGPFAULTERRORBOX = 2,
@@ -46802,7 +46796,7 @@ pub const SEM_NOGPFAULTERRORBOX = THREAD_ERROR_MODE.NOGPFAULTERRORBOX;
 pub const SEM_NOOPENFILEERRORBOX = THREAD_ERROR_MODE.NOOPENFILEERRORBOX;
 pub const SEM_NOALIGNMENTFAULTEXCEPT = THREAD_ERROR_MODE.NOALIGNMENTFAULTEXCEPT;
 
-pub const FORMAT_MESSAGE_OPTIONS = extern enum(u32) {
+pub const FORMAT_MESSAGE_OPTIONS = enum(u32) {
     ALLOCATE_BUFFER = 256,
     ARGUMENT_ARRAY = 8192,
     FROM_HMODULE = 2048,
@@ -46835,7 +46829,7 @@ pub const FORMAT_MESSAGE_FROM_STRING = FORMAT_MESSAGE_OPTIONS.FROM_STRING;
 pub const FORMAT_MESSAGE_FROM_SYSTEM = FORMAT_MESSAGE_OPTIONS.FROM_SYSTEM;
 pub const FORMAT_MESSAGE_IGNORE_INSERTS = FORMAT_MESSAGE_OPTIONS.IGNORE_INSERTS;
 
-pub const RTL_VIRTUAL_UNWIND_HANDLER_TYPE = extern enum(u32) {
+pub const RTL_VIRTUAL_UNWIND_HANDLER_TYPE = enum(u32) {
     NHANDLER = 0,
     EHANDLER = 1,
     UHANDLER = 2,
@@ -46846,12 +46840,12 @@ pub const UNW_FLAG_EHANDLER = RTL_VIRTUAL_UNWIND_HANDLER_TYPE.EHANDLER;
 pub const UNW_FLAG_UHANDLER = RTL_VIRTUAL_UNWIND_HANDLER_TYPE.UHANDLER;
 pub const UNW_FLAG_CHAININFO = RTL_VIRTUAL_UNWIND_HANDLER_TYPE.CHAININFO;
 
-pub const OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS = extern enum(u32) {
+pub const OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS = enum(u32) {
     G = 1,
 };
 pub const WCT_ASYNC_OPEN_FLAG = OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS.G;
 
-pub const SYM_SRV_STORE_FILE_FLAGS = extern enum(u32) {
+pub const SYM_SRV_STORE_FILE_FLAGS = enum(u32) {
     COMPRESS = 1,
     OVERWRITE = 2,
     PASS_IF_EXISTS = 64,
@@ -46864,7 +46858,7 @@ pub const SYMSTOREOPT_PASS_IF_EXISTS = SYM_SRV_STORE_FILE_FLAGS.PASS_IF_EXISTS;
 pub const SYMSTOREOPT_POINTER = SYM_SRV_STORE_FILE_FLAGS.POINTER;
 pub const SYMSTOREOPT_RETURNINDEX = SYM_SRV_STORE_FILE_FLAGS.RETURNINDEX;
 
-pub const IMAGE_DIRECTORY_ENTRY = extern enum(u32) {
+pub const IMAGE_DIRECTORY_ENTRY = enum(u32) {
     ARCHITECTURE = 7,
     BASERELOC = 5,
     BOUND_IMPORT = 11,
@@ -46897,7 +46891,7 @@ pub const IMAGE_DIRECTORY_ENTRY_RESOURCE = IMAGE_DIRECTORY_ENTRY.RESOURCE;
 pub const IMAGE_DIRECTORY_ENTRY_SECURITY = IMAGE_DIRECTORY_ENTRY.SECURITY;
 pub const IMAGE_DIRECTORY_ENTRY_TLS = IMAGE_DIRECTORY_ENTRY.TLS;
 
-pub const WAIT_CHAIN_THREAD_OPTIONS = extern enum(u32) {
+pub const WAIT_CHAIN_THREAD_OPTIONS = enum(u32) {
     COM_FLAG = 2,
     CS_FLAG = 4,
     FLAG = 1,
@@ -46906,7 +46900,7 @@ pub const WCT_OUT_OF_PROC_COM_FLAG = WAIT_CHAIN_THREAD_OPTIONS.COM_FLAG;
 pub const WCT_OUT_OF_PROC_CS_FLAG = WAIT_CHAIN_THREAD_OPTIONS.CS_FLAG;
 pub const WCT_OUT_OF_PROC_FLAG = WAIT_CHAIN_THREAD_OPTIONS.FLAG;
 
-pub const SYM_FIND_ID_OPTION = extern enum(u32) {
+pub const SYM_FIND_ID_OPTION = enum(u32) {
     DWORD = 2,
     DWORDPTR = 4,
     GUIDPTR = 8,
@@ -46915,7 +46909,7 @@ pub const SSRVOPT_DWORD = SYM_FIND_ID_OPTION.DWORD;
 pub const SSRVOPT_DWORDPTR = SYM_FIND_ID_OPTION.DWORDPTR;
 pub const SSRVOPT_GUIDPTR = SYM_FIND_ID_OPTION.GUIDPTR;
 
-pub const IMAGE_FILE_CHARACTERISTICS = extern enum(u32) {
+pub const IMAGE_FILE_CHARACTERISTICS = enum(u32) {
     RELOCS_STRIPPED = 1,
     EXECUTABLE_IMAGE = 2,
     LINE_NUMS_STRIPPED = 4,
@@ -46984,7 +46978,7 @@ pub const IMAGE_FILE_DLL = IMAGE_FILE_CHARACTERISTICS.DLL;
 pub const IMAGE_FILE_UP_SYSTEM_ONLY = IMAGE_FILE_CHARACTERISTICS.UP_SYSTEM_ONLY;
 pub const IMAGE_FILE_BYTES_REVERSED_HI = IMAGE_FILE_CHARACTERISTICS.BYTES_REVERSED_HI;
 
-pub const SYMBOL_INFO_FLAGS = extern enum(u32) {
+pub const SYMBOL_INFO_FLAGS = enum(u32) {
     CLR_TOKEN = 262144,
     CONSTANT = 256,
     EXPORT = 512,
@@ -47061,7 +47055,7 @@ pub const SYMFLAG_TLSREL = SYMBOL_INFO_FLAGS.TLSREL;
 pub const SYMFLAG_VALUEPRESENT = SYMBOL_INFO_FLAGS.VALUEPRESENT;
 pub const SYMFLAG_VIRTUAL = SYMBOL_INFO_FLAGS.VIRTUAL;
 
-pub const FLASHWINFO_FLAGS = extern enum(u32) {
+pub const FLASHWINFO_FLAGS = enum(u32) {
     ALL = 3,
     CAPTION = 1,
     STOP = 0,
@@ -47094,7 +47088,7 @@ pub const FLASHW_TIMER = FLASHWINFO_FLAGS.TIMER;
 pub const FLASHW_TIMERNOFG = FLASHWINFO_FLAGS.TIMERNOFG;
 pub const FLASHW_TRAY = FLASHWINFO_FLAGS.TRAY;
 
-pub const IMAGEHLP_CBA_EVENT_SEVERITY = extern enum(u32) {
+pub const IMAGEHLP_CBA_EVENT_SEVERITY = enum(u32) {
     Info = 0,
     Problem = 1,
     Attn = 2,
@@ -47102,14 +47096,14 @@ pub const IMAGEHLP_CBA_EVENT_SEVERITY = extern enum(u32) {
 };
 // TODO: enum 'IMAGEHLP_CBA_EVENT_SEVERITY' has known issues with its value aliases
 
-pub const IMAGEHLP_GET_TYPE_INFO_FLAGS = extern enum(u32) {
+pub const IMAGEHLP_GET_TYPE_INFO_FLAGS = enum(u32) {
     CHILDREN = 2,
     UNCACHED = 1,
 };
 pub const IMAGEHLP_GET_TYPE_INFO_CHILDREN = IMAGEHLP_GET_TYPE_INFO_FLAGS.CHILDREN;
 pub const IMAGEHLP_GET_TYPE_INFO_UNCACHED = IMAGEHLP_GET_TYPE_INFO_FLAGS.UNCACHED;
 
-pub const RIP_INFO_TYPE = extern enum(u32) {
+pub const RIP_INFO_TYPE = enum(u32) {
     ERROR = 1,
     MINORERROR = 2,
     WARNING = 3,
@@ -47118,7 +47112,7 @@ pub const SLE_ERROR = RIP_INFO_TYPE.ERROR;
 pub const SLE_MINORERROR = RIP_INFO_TYPE.MINORERROR;
 pub const SLE_WARNING = RIP_INFO_TYPE.WARNING;
 
-pub const VER_PLATFORM = extern enum(u32) {
+pub const VER_PLATFORM = enum(u32) {
     s = 0,
     _WINDOWS = 1,
     _NT = 2,
@@ -47127,7 +47121,7 @@ pub const VER_PLATFORM_WIN32s = VER_PLATFORM.s;
 pub const VER_PLATFORM_WIN32_WINDOWS = VER_PLATFORM._WINDOWS;
 pub const VER_PLATFORM_WIN32_NT = VER_PLATFORM._NT;
 
-pub const IMAGE_DEBUG_TYPE = extern enum(u32) {
+pub const IMAGE_DEBUG_TYPE = enum(u32) {
     UNKNOWN = 0,
     COFF = 1,
     CODEVIEW = 2,
@@ -47146,7 +47140,7 @@ pub const IMAGE_DEBUG_TYPE_EXCEPTION = IMAGE_DEBUG_TYPE.EXCEPTION;
 pub const IMAGE_DEBUG_TYPE_FIXUP = IMAGE_DEBUG_TYPE.FIXUP;
 pub const IMAGE_DEBUG_TYPE_BORLAND = IMAGE_DEBUG_TYPE.BORLAND;
 
-pub const MINIDUMP_THREAD_INFO_DUMP_FLAGS = extern enum(u32) {
+pub const MINIDUMP_THREAD_INFO_DUMP_FLAGS = enum(u32) {
     ERROR_THREAD = 1,
     EXITED_THREAD = 4,
     INVALID_CONTEXT = 16,
@@ -47161,7 +47155,7 @@ pub const MINIDUMP_THREAD_INFO_INVALID_INFO = MINIDUMP_THREAD_INFO_DUMP_FLAGS.IN
 pub const MINIDUMP_THREAD_INFO_INVALID_TEB = MINIDUMP_THREAD_INFO_DUMP_FLAGS.INVALID_TEB;
 pub const MINIDUMP_THREAD_INFO_WRITING_THREAD = MINIDUMP_THREAD_INFO_DUMP_FLAGS.WRITING_THREAD;
 
-pub const DEBUG_EVENT_CODE = extern enum(u32) {
+pub const DEBUG_EVENT_CODE = enum(u32) {
     CREATE_PROCESS_DEBUG_EVENT = 3,
     CREATE_THREAD_DEBUG_EVENT = 2,
     EXCEPTION_DEBUG_EVENT = 1,
@@ -47182,7 +47176,7 @@ pub const OUTPUT_DEBUG_STRING_EVENT = DEBUG_EVENT_CODE.OUTPUT_DEBUG_STRING_EVENT
 pub const RIP_EVENT = DEBUG_EVENT_CODE.RIP_EVENT;
 pub const UNLOAD_DLL_DEBUG_EVENT = DEBUG_EVENT_CODE.UNLOAD_DLL_DEBUG_EVENT;
 
-pub const MINIDUMP_MISC_INFO_FLAGS = extern enum(u32) {
+pub const MINIDUMP_MISC_INFO_FLAGS = enum(u32) {
     ID = 1,
     TIMES = 2,
     _,
@@ -47199,7 +47193,7 @@ pub const MINIDUMP_MISC_INFO_FLAGS = extern enum(u32) {
 pub const MINIDUMP_MISC1_PROCESS_ID = MINIDUMP_MISC_INFO_FLAGS.ID;
 pub const MINIDUMP_MISC1_PROCESS_TIMES = MINIDUMP_MISC_INFO_FLAGS.TIMES;
 
-pub const MODLOAD_DATA_TYPE = extern enum(u32) {
+pub const MODLOAD_DATA_TYPE = enum(u32) {
     DEBUGDIRS = 1,
     CVMISC = 2,
 };

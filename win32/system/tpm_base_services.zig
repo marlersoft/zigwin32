@@ -33,7 +33,7 @@ pub const TBS_TCGLOG_DRTM_RESUME = @as(u32, 5);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const TBS_COMMAND_PRIORITY = extern enum(u32) {
+pub const TBS_COMMAND_PRIORITY = enum(u32) {
     LOW = 100,
     NORMAL = 200,
     SYSTEM = 400,
@@ -46,7 +46,7 @@ pub const TBS_COMMAND_PRIORITY_SYSTEM = TBS_COMMAND_PRIORITY.SYSTEM;
 pub const TBS_COMMAND_PRIORITY_HIGH = TBS_COMMAND_PRIORITY.HIGH;
 pub const TBS_COMMAND_PRIORITY_MAX = TBS_COMMAND_PRIORITY.MAX;
 
-pub const TBS_COMMAND_LOCALITY = extern enum(u32) {
+pub const TBS_COMMAND_LOCALITY = enum(u32) {
     ZERO = 0,
     ONE = 1,
     TWO = 2,

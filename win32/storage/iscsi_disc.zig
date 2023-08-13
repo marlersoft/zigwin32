@@ -592,7 +592,7 @@ pub const NV_SEP_CACHE_PARAMETER = extern struct {
     ParameterReserve1: [3]u8,
 };
 
-pub const NV_SEP_WRITE_CACHE_TYPE = extern enum(i32) {
+pub const NV_SEP_WRITE_CACHE_TYPE = enum(i32) {
     Unknown = 0,
     None = 1,
     WriteBack = 2,
@@ -603,14 +603,14 @@ pub const NVSEPWriteCacheTypeNone = NV_SEP_WRITE_CACHE_TYPE.None;
 pub const NVSEPWriteCacheTypeWriteBack = NV_SEP_WRITE_CACHE_TYPE.WriteBack;
 pub const NVSEPWriteCacheTypeWriteThrough = NV_SEP_WRITE_CACHE_TYPE.WriteThrough;
 
-pub const MP_STORAGE_DIAGNOSTIC_LEVEL = extern enum(i32) {
+pub const MP_STORAGE_DIAGNOSTIC_LEVEL = enum(i32) {
     Default = 0,
     Max = 1,
 };
 pub const MpStorageDiagnosticLevelDefault = MP_STORAGE_DIAGNOSTIC_LEVEL.Default;
 pub const MpStorageDiagnosticLevelMax = MP_STORAGE_DIAGNOSTIC_LEVEL.Max;
 
-pub const MP_STORAGE_DIAGNOSTIC_TARGET_TYPE = extern enum(i32) {
+pub const MP_STORAGE_DIAGNOSTIC_TARGET_TYPE = enum(i32) {
     Undefined = 0,
     Miniport = 2,
     HbaFirmware = 3,
@@ -656,7 +656,7 @@ pub const HYBRID_REQUEST_BLOCK = extern struct {
     DataBufferLength: u32,
 };
 
-pub const NVCACHE_TYPE = extern enum(i32) {
+pub const NVCACHE_TYPE = enum(i32) {
     Unknown = 0,
     None = 1,
     WriteBack = 2,
@@ -667,7 +667,7 @@ pub const NvCacheTypeNone = NVCACHE_TYPE.None;
 pub const NvCacheTypeWriteBack = NVCACHE_TYPE.WriteBack;
 pub const NvCacheTypeWriteThrough = NVCACHE_TYPE.WriteThrough;
 
-pub const NVCACHE_STATUS = extern enum(i32) {
+pub const NVCACHE_STATUS = enum(i32) {
     Unknown = 0,
     Disabling = 1,
     Disabled = 2,
@@ -910,14 +910,14 @@ pub const STORAGE_ENDURANCE_DATA_DESCRIPTOR = extern struct {
     EnduranceInfo: STORAGE_ENDURANCE_INFO,
 };
 
-pub const ISCSI_DIGEST_TYPES = extern enum(i32) {
+pub const ISCSI_DIGEST_TYPES = enum(i32) {
     NONE = 0,
     CRC32C = 1,
 };
 pub const ISCSI_DIGEST_TYPE_NONE = ISCSI_DIGEST_TYPES.NONE;
 pub const ISCSI_DIGEST_TYPE_CRC32C = ISCSI_DIGEST_TYPES.CRC32C;
 
-pub const ISCSI_AUTH_TYPES = extern enum(i32) {
+pub const ISCSI_AUTH_TYPES = enum(i32) {
     NO_AUTH_TYPE = 0,
     CHAP_AUTH_TYPE = 1,
     MUTUAL_CHAP_AUTH_TYPE = 2,
@@ -942,7 +942,7 @@ pub const ISCSI_LOGIN_OPTIONS = extern struct {
     Password: *u8,
 };
 
-pub const IKE_AUTHENTICATION_METHOD = extern enum(i32) {
+pub const IKE_AUTHENTICATION_METHOD = enum(i32) {
     D = 1,
 };
 pub const IKE_AUTHENTICATION_PRESHARED_KEY_METHOD = IKE_AUTHENTICATION_METHOD.D;
@@ -1165,12 +1165,12 @@ pub const PERSISTENT_ISCSI_LOGIN_INFOA = extern struct {
     LoginOptions: ISCSI_LOGIN_OPTIONS,
 };
 
-pub const TARGETPROTOCOLTYPE = extern enum(i32) {
+pub const TARGETPROTOCOLTYPE = enum(i32) {
     E = 0,
 };
 pub const ISCSI_TCP_PROTOCOL_TYPE = TARGETPROTOCOLTYPE.E;
 
-pub const TARGET_INFORMATION_CLASS = extern enum(i32) {
+pub const TARGET_INFORMATION_CLASS = enum(i32) {
     ProtocolType = 0,
     TargetAlias = 1,
     DiscoveryMechanisms = 2,

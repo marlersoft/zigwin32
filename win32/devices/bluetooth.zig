@@ -699,14 +699,14 @@ pub const SDP_ULARGE_INTEGER_16 = extern struct {
     HighPart: u64,
 };
 
-pub const NodeContainerType = extern enum(i32) {
+pub const NodeContainerType = enum(i32) {
     Sequence = 0,
     Alternative = 1,
 };
 pub const NodeContainerTypeSequence = NodeContainerType.Sequence;
 pub const NodeContainerTypeAlternative = NodeContainerType.Alternative;
 
-pub const SDP_TYPE = extern enum(i32) {
+pub const SDP_TYPE = enum(i32) {
     NIL = 0,
     UINT = 1,
     INT = 2,
@@ -729,7 +729,7 @@ pub const SDP_TYPE_ALTERNATIVE = SDP_TYPE.ALTERNATIVE;
 pub const SDP_TYPE_URL = SDP_TYPE.URL;
 pub const SDP_TYPE_CONTAINER = SDP_TYPE.CONTAINER;
 
-pub const SDP_SPECIFICTYPE = extern enum(i32) {
+pub const SDP_SPECIFICTYPE = enum(i32) {
     NONE = 0,
     UINT8 = 16,
     UINT16 = 272,
@@ -742,7 +742,7 @@ pub const SDP_SPECIFICTYPE = extern enum(i32) {
     INT64 = 800,
     INT128 = 1056,
     UUID16 = 304,
-    UUID32 = 544,
+    // UUID32 = 544, this enum value conflicts with INT32
     UUID128 = 1072,
 };
 pub const SDP_ST_NONE = SDP_SPECIFICTYPE.NONE;
@@ -757,7 +757,7 @@ pub const SDP_ST_INT32 = SDP_SPECIFICTYPE.INT32;
 pub const SDP_ST_INT64 = SDP_SPECIFICTYPE.INT64;
 pub const SDP_ST_INT128 = SDP_SPECIFICTYPE.INT128;
 pub const SDP_ST_UUID16 = SDP_SPECIFICTYPE.UUID16;
-pub const SDP_ST_UUID32 = SDP_SPECIFICTYPE.UUID32;
+pub const SDP_ST_UUID32 = SDP_SPECIFICTYPE.INT32;
 pub const SDP_ST_UUID128 = SDP_SPECIFICTYPE.UUID128;
 
 pub const SdpAttributeRange = extern struct {
@@ -801,7 +801,7 @@ pub const BTH_HCI_EVENT_INFO = extern struct {
     connected: u8,
 };
 
-pub const IO_CAPABILITY = extern enum(i32) {
+pub const IO_CAPABILITY = enum(i32) {
     DisplayOnly = 0,
     DisplayYesNo = 1,
     KeyboardOnly = 2,
@@ -814,7 +814,7 @@ pub const IoCaps_KeyboardOnly = IO_CAPABILITY.KeyboardOnly;
 pub const IoCaps_NoInputNoOutput = IO_CAPABILITY.NoInputNoOutput;
 pub const IoCaps_Undefined = IO_CAPABILITY.Undefined;
 
-pub const AUTHENTICATION_REQUIREMENTS = extern enum(i32) {
+pub const AUTHENTICATION_REQUIREMENTS = enum(i32) {
     NotRequired = 0,
     Required = 1,
     NotRequiredBonding = 2,
@@ -870,7 +870,7 @@ pub const BLUETOOTH_DEVICE_INFO = extern struct {
     szName: [248]u16,
 };
 
-pub const BLUETOOTH_AUTHENTICATION_METHOD = extern enum(i32) {
+pub const BLUETOOTH_AUTHENTICATION_METHOD = enum(i32) {
     LEGACY = 1,
     OOB = 2,
     NUMERIC_COMPARISON = 3,
@@ -883,7 +883,7 @@ pub const BLUETOOTH_AUTHENTICATION_METHOD_NUMERIC_COMPARISON = BLUETOOTH_AUTHENT
 pub const BLUETOOTH_AUTHENTICATION_METHOD_PASSKEY_NOTIFICATION = BLUETOOTH_AUTHENTICATION_METHOD.PASSKEY_NOTIFICATION;
 pub const BLUETOOTH_AUTHENTICATION_METHOD_PASSKEY = BLUETOOTH_AUTHENTICATION_METHOD.PASSKEY;
 
-pub const BLUETOOTH_IO_CAPABILITY = extern enum(i32) {
+pub const BLUETOOTH_IO_CAPABILITY = enum(i32) {
     DISPLAYONLY = 0,
     DISPLAYYESNO = 1,
     KEYBOARDONLY = 2,
@@ -896,7 +896,7 @@ pub const BLUETOOTH_IO_CAPABILITY_KEYBOARDONLY = BLUETOOTH_IO_CAPABILITY.KEYBOAR
 pub const BLUETOOTH_IO_CAPABILITY_NOINPUTNOOUTPUT = BLUETOOTH_IO_CAPABILITY.NOINPUTNOOUTPUT;
 pub const BLUETOOTH_IO_CAPABILITY_UNDEFINED = BLUETOOTH_IO_CAPABILITY.UNDEFINED;
 
-pub const BLUETOOTH_AUTHENTICATION_REQUIREMENTS = extern enum(i32) {
+pub const BLUETOOTH_AUTHENTICATION_REQUIREMENTS = enum(i32) {
     NotRequired = 0,
     Required = 1,
     NotRequiredBonding = 2,

@@ -80,7 +80,7 @@ pub const MANAGEMENT_REGISTRATION_INFO = extern struct {
     pszMDMServiceUri: PWSTR,
 };
 
-pub const REGISTRATION_INFORMATION_CLASS = extern enum(i32) {
+pub const REGISTRATION_INFORMATION_CLASS = enum(i32) {
     DeviceRegistrationBasicInfo = 1,
     MaxDeviceInfoClass = 2,
 };

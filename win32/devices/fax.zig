@@ -128,7 +128,7 @@ pub const FAX_JOB_MANAGE = @as(u32, 64);
 //--------------------------------------------------------------------------------
 // Section: Types (260)
 //--------------------------------------------------------------------------------
-pub const FAX_ENUM_LOG_LEVELS = extern enum(i32) {
+pub const FAX_ENUM_LOG_LEVELS = enum(i32) {
     NONE = 0,
     MIN = 1,
     MED = 2,
@@ -139,7 +139,7 @@ pub const FAXLOG_LEVEL_MIN = FAX_ENUM_LOG_LEVELS.MIN;
 pub const FAXLOG_LEVEL_MED = FAX_ENUM_LOG_LEVELS.MED;
 pub const FAXLOG_LEVEL_MAX = FAX_ENUM_LOG_LEVELS.MAX;
 
-pub const FAX_ENUM_LOG_CATEGORIES = extern enum(i32) {
+pub const FAX_ENUM_LOG_CATEGORIES = enum(i32) {
     INIT = 1,
     OUTBOUND = 2,
     INBOUND = 3,
@@ -199,7 +199,7 @@ pub const FAX_CONFIGURATIONW = extern struct {
     Reserved: [*:0]const u16,
 };
 
-pub const FAX_ENUM_JOB_COMMANDS = extern enum(i32) {
+pub const FAX_ENUM_JOB_COMMANDS = enum(i32) {
     UNKNOWN = 0,
     DELETE = 1,
     PAUSE = 2,
@@ -434,7 +434,7 @@ pub const FAX_COVERPAGE_INFOW = extern struct {
     PageCount: u32,
 };
 
-pub const FAX_ENUM_JOB_SEND_ATTRIBUTES = extern enum(i32) {
+pub const FAX_ENUM_JOB_SEND_ATTRIBUTES = enum(i32) {
     NOW = 0,
     SPECIFIC_TIME = 1,
     DISCOUNT_PERIOD = 2,
@@ -443,7 +443,7 @@ pub const JSA_NOW = FAX_ENUM_JOB_SEND_ATTRIBUTES.NOW;
 pub const JSA_SPECIFIC_TIME = FAX_ENUM_JOB_SEND_ATTRIBUTES.SPECIFIC_TIME;
 pub const JSA_DISCOUNT_PERIOD = FAX_ENUM_JOB_SEND_ATTRIBUTES.DISCOUNT_PERIOD;
 
-pub const FAX_ENUM_DELIVERY_REPORT_TYPES = extern enum(i32) {
+pub const FAX_ENUM_DELIVERY_REPORT_TYPES = enum(i32) {
     NONE = 0,
     EMAIL = 1,
     INBOX = 2,
@@ -558,7 +558,7 @@ pub const PFAXCLOSE = fn(
     FaxHandle: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const FAX_ENUM_PORT_OPEN_TYPE = extern enum(i32) {
+pub const FAX_ENUM_PORT_OPEN_TYPE = enum(i32) {
     QUERY = 1,
     MODIFY = 2,
 };
@@ -1176,7 +1176,7 @@ pub const CLSID_FaxAccountOutgoingArchive = &CLSID_FaxAccountOutgoingArchive_Val
 const CLSID_FaxSecurity2_Value = @import("../zig.zig").Guid.initString("735c1248-ec89-4c30-a127-656e92e3c4ea");
 pub const CLSID_FaxSecurity2 = &CLSID_FaxSecurity2_Value;
 
-pub const FAX_JOB_STATUS_ENUM = extern enum(i32) {
+pub const FAX_JOB_STATUS_ENUM = enum(i32) {
     PENDING = 1,
     INPROGRESS = 2,
     FAILED = 8,
@@ -1201,7 +1201,7 @@ pub const fjsCANCELED = FAX_JOB_STATUS_ENUM.CANCELED;
 pub const fjsCANCELING = FAX_JOB_STATUS_ENUM.CANCELING;
 pub const fjsROUTING = FAX_JOB_STATUS_ENUM.ROUTING;
 
-pub const FAX_JOB_EXTENDED_STATUS_ENUM = extern enum(i32) {
+pub const FAX_JOB_EXTENDED_STATUS_ENUM = enum(i32) {
     NONE = 0,
     DISCONNECTED = 1,
     INITIALIZING = 2,
@@ -1246,7 +1246,7 @@ pub const fjesCALL_COMPLETED = FAX_JOB_EXTENDED_STATUS_ENUM.CALL_COMPLETED;
 pub const fjesCALL_ABORTED = FAX_JOB_EXTENDED_STATUS_ENUM.CALL_ABORTED;
 pub const fjesPROPRIETARY = FAX_JOB_EXTENDED_STATUS_ENUM.PROPRIETARY;
 
-pub const FAX_JOB_OPERATIONS_ENUM = extern enum(i32) {
+pub const FAX_JOB_OPERATIONS_ENUM = enum(i32) {
     VIEW = 1,
     PAUSE = 2,
     RESUME = 4,
@@ -1263,7 +1263,7 @@ pub const fjoDELETE = FAX_JOB_OPERATIONS_ENUM.DELETE;
 pub const fjoRECIPIENT_INFO = FAX_JOB_OPERATIONS_ENUM.RECIPIENT_INFO;
 pub const fjoSENDER_INFO = FAX_JOB_OPERATIONS_ENUM.SENDER_INFO;
 
-pub const FAX_JOB_TYPE_ENUM = extern enum(i32) {
+pub const FAX_JOB_TYPE_ENUM = enum(i32) {
     SEND = 0,
     RECEIVE = 1,
     ROUTING = 2,
@@ -1439,7 +1439,7 @@ pub const IFaxJobStatus = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FAX_SERVER_EVENTS_TYPE_ENUM = extern enum(i32) {
+pub const FAX_SERVER_EVENTS_TYPE_ENUM = enum(i32) {
     NONE = 0,
     IN_QUEUE = 1,
     OUT_QUEUE = 2,
@@ -1464,7 +1464,7 @@ pub const fsetFXSSVC_ENDED = FAX_SERVER_EVENTS_TYPE_ENUM.FXSSVC_ENDED;
 pub const fsetDEVICE_STATUS = FAX_SERVER_EVENTS_TYPE_ENUM.DEVICE_STATUS;
 pub const fsetINCOMING_CALL = FAX_SERVER_EVENTS_TYPE_ENUM.INCOMING_CALL;
 
-pub const FAX_SERVER_APIVERSION_ENUM = extern enum(i32) {
+pub const FAX_SERVER_APIVERSION_ENUM = enum(i32) {
     @"0" = 0,
     @"1" = 65536,
     @"2" = 131072,
@@ -2013,7 +2013,7 @@ pub const IFaxOutboundRouting = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FAX_SMTP_AUTHENTICATION_TYPE_ENUM = extern enum(i32) {
+pub const FAX_SMTP_AUTHENTICATION_TYPE_ENUM = enum(i32) {
     ANONYMOUS = 0,
     BASIC = 1,
     NTLM = 2,
@@ -2022,7 +2022,7 @@ pub const fsatANONYMOUS = FAX_SMTP_AUTHENTICATION_TYPE_ENUM.ANONYMOUS;
 pub const fsatBASIC = FAX_SMTP_AUTHENTICATION_TYPE_ENUM.BASIC;
 pub const fsatNTLM = FAX_SMTP_AUTHENTICATION_TYPE_ENUM.NTLM;
 
-pub const FAX_RECEIPT_TYPE_ENUM = extern enum(i32) {
+pub const FAX_RECEIPT_TYPE_ENUM = enum(i32) {
     NONE = 0,
     MAIL = 1,
     MSGBOX = 4,
@@ -2203,7 +2203,7 @@ pub const IFaxReceiptOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FAX_ACCESS_RIGHTS_ENUM = extern enum(i32) {
+pub const FAX_ACCESS_RIGHTS_ENUM = enum(i32) {
     SUBMIT_LOW = 1,
     SUBMIT_NORMAL = 2,
     SUBMIT_HIGH = 4,
@@ -2301,7 +2301,7 @@ pub const IFaxSecurity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FAX_PRIORITY_TYPE_ENUM = extern enum(i32) {
+pub const FAX_PRIORITY_TYPE_ENUM = enum(i32) {
     LOW = 0,
     NORMAL = 1,
     HIGH = 2,
@@ -2310,7 +2310,7 @@ pub const fptLOW = FAX_PRIORITY_TYPE_ENUM.LOW;
 pub const fptNORMAL = FAX_PRIORITY_TYPE_ENUM.NORMAL;
 pub const fptHIGH = FAX_PRIORITY_TYPE_ENUM.HIGH;
 
-pub const FAX_COVERPAGE_TYPE_ENUM = extern enum(i32) {
+pub const FAX_COVERPAGE_TYPE_ENUM = enum(i32) {
     NONE = 0,
     LOCAL = 1,
     SERVER = 2,
@@ -2319,7 +2319,7 @@ pub const fcptNONE = FAX_COVERPAGE_TYPE_ENUM.NONE;
 pub const fcptLOCAL = FAX_COVERPAGE_TYPE_ENUM.LOCAL;
 pub const fcptSERVER = FAX_COVERPAGE_TYPE_ENUM.SERVER;
 
-pub const FAX_SCHEDULE_TYPE_ENUM = extern enum(i32) {
+pub const FAX_SCHEDULE_TYPE_ENUM = enum(i32) {
     NOW = 0,
     SPECIFIC_TIME = 1,
     DISCOUNT_PERIOD = 2,
@@ -4689,7 +4689,7 @@ pub const IFaxIncomingJob = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FAX_PROVIDER_STATUS_ENUM = extern enum(i32) {
+pub const FAX_PROVIDER_STATUS_ENUM = enum(i32) {
     SUCCESS = 0,
     SERVER_ERROR = 1,
     BAD_GUID = 2,
@@ -4828,7 +4828,7 @@ pub const IFaxDeviceProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FAX_DEVICE_RECEIVE_MODE_ENUM = extern enum(i32) {
+pub const FAX_DEVICE_RECEIVE_MODE_ENUM = enum(i32) {
     NO_ANSWER = 0,
     AUTO_ANSWER = 1,
     MANUAL_ANSWER = 2,
@@ -5161,7 +5161,7 @@ pub const IFaxActivityLogging = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FAX_LOG_LEVEL_ENUM = extern enum(i32) {
+pub const FAX_LOG_LEVEL_ENUM = enum(i32) {
     NONE = 0,
     MIN = 1,
     MED = 2,
@@ -5331,7 +5331,7 @@ pub const IFaxOutboundRoutingGroups = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FAX_GROUP_STATUS_ENUM = extern enum(i32) {
+pub const FAX_GROUP_STATUS_ENUM = enum(i32) {
     ALL_DEV_VALID = 0,
     EMPTY = 1,
     ALL_DEV_NOT_VALID = 2,
@@ -5532,7 +5532,7 @@ pub const IFaxOutboundRoutingRules = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FAX_RULE_STATUS_ENUM = extern enum(i32) {
+pub const FAX_RULE_STATUS_ENUM = enum(i32) {
     VALID = 0,
     EMPTY_GROUP = 1,
     ALL_GROUP_DEV_NOT_VALID = 2,
@@ -6531,7 +6531,7 @@ pub const IFaxAccounts = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FAX_ACCOUNT_EVENTS_TYPE_ENUM = extern enum(i32) {
+pub const FAX_ACCOUNT_EVENTS_TYPE_ENUM = enum(i32) {
     NONE = 0,
     IN_QUEUE = 1,
     OUT_QUEUE = 2,
@@ -6935,7 +6935,7 @@ pub const IFaxAccountOutgoingArchive = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FAX_ACCESS_RIGHTS_ENUM_2 = extern enum(i32) {
+pub const FAX_ACCESS_RIGHTS_ENUM_2 = enum(i32) {
     SUBMIT_LOW = 1,
     SUBMIT_NORMAL = 2,
     SUBMIT_HIGH = 4,
@@ -7183,7 +7183,7 @@ pub const IFaxIncomingMessage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FAX_ROUTING_RULE_CODE_ENUM = extern enum(i32) {
+pub const FAX_ROUTING_RULE_CODE_ENUM = enum(i32) {
     E = 0,
 };
 pub const frrcANY_CODE = FAX_ROUTING_RULE_CODE_ENUM.E;
@@ -7662,7 +7662,7 @@ pub const FAX_ROUTE = extern struct {
     RoutingInfoDataSize: u32,
 };
 
-pub const FAXROUTE_ENABLE = extern enum(i32) {
+pub const FAXROUTE_ENABLE = enum(i32) {
     QUERY_STATUS = -1,
     STATUS_DISABLE = 0,
     STATUS_ENABLE = 1,
@@ -7707,7 +7707,7 @@ pub const PFAXROUTESETROUTINGINFO = fn(
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const FAX_ENUM_DEVICE_ID_SOURCE = extern enum(i32) {
+pub const FAX_ENUM_DEVICE_ID_SOURCE = enum(i32) {
     FAX = 0,
     TAPI = 1,
 };
@@ -7762,7 +7762,7 @@ pub const PFAX_EXT_INITIALIZE_CONFIG = fn(
     param4: PFAX_EXT_FREE_BUFFER,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const SendToMode = extern enum(i32) {
+pub const SendToMode = enum(i32) {
     T = 0,
 };
 pub const SEND_TO_FAX_RECIPIENT_ATTACHMENT = SendToMode.T;

@@ -1040,7 +1040,7 @@ pub const JET_OSSNAPID = usize;
 
 pub const JET_LS = usize;
 
-pub const STGC = extern enum(i32) {
+pub const STGC = enum(i32) {
     DEFAULT = 0,
     OVERWRITE = 1,
     ONLYIFCURRENT = 2,
@@ -1053,7 +1053,7 @@ pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
 pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
 pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
 
-pub const STGMOVE = extern enum(i32) {
+pub const STGMOVE = enum(i32) {
     MOVE = 0,
     COPY = 1,
     SHALLOWCOPY = 2,
@@ -1062,7 +1062,7 @@ pub const STGMOVE_MOVE = STGMOVE.MOVE;
 pub const STGMOVE_COPY = STGMOVE.COPY;
 pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
 
-pub const STATFLAG = extern enum(i32) {
+pub const STATFLAG = enum(i32) {
     DEFAULT = 0,
     NONAME = 1,
     NOOPEN = 2,
@@ -1121,7 +1121,7 @@ pub const STATSTG = extern struct {
     reserved: u32,
 };
 
-pub const STGTY = extern enum(i32) {
+pub const STGTY = enum(i32) {
     STORAGE = 1,
     STREAM = 2,
     LOCKBYTES = 3,
@@ -1132,7 +1132,7 @@ pub const STGTY_STREAM = STGTY.STREAM;
 pub const STGTY_LOCKBYTES = STGTY.LOCKBYTES;
 pub const STGTY_PROPERTY = STGTY.PROPERTY;
 
-pub const STREAM_SEEK = extern enum(u32) {
+pub const STREAM_SEEK = enum(u32) {
     SET = 0,
     CUR = 1,
     END = 2,
@@ -1141,7 +1141,7 @@ pub const STREAM_SEEK_SET = STREAM_SEEK.SET;
 pub const STREAM_SEEK_CUR = STREAM_SEEK.CUR;
 pub const STREAM_SEEK_END = STREAM_SEEK.END;
 
-pub const LOCKTYPE = extern enum(i32) {
+pub const LOCKTYPE = enum(i32) {
     WRITE = 1,
     EXCLUSIVE = 2,
     ONLYONCE = 4,
@@ -2407,7 +2407,7 @@ pub const STGOPTIONS = extern struct {
     pwcsTemplateFile: [*:0]const u16,
 };
 
-pub const PIDMSI_STATUS_VALUE = extern enum(i32) {
+pub const PIDMSI_STATUS_VALUE = enum(i32) {
     NORMAL = 0,
     NEW = 1,
     PRELIM = 2,
@@ -3007,7 +3007,7 @@ pub const JET_INDEXRANGE = extern struct {
     grbit: u32,
 };
 
-pub const JET_RELOP = extern enum(i32) {
+pub const JET_RELOP = enum(i32) {
     Equals = 0,
     PrefixEquals = 1,
     NotEquals = 2,
@@ -3281,7 +3281,7 @@ pub const JET_RSTINFO_W = extern struct {
     pfnStatus: JET_PFNSTATUS,
 };
 
-pub const JET_ERRCAT = extern enum(i32) {
+pub const JET_ERRCAT = enum(i32) {
     Unknown = 0,
     Error = 1,
     Operation = 2,
@@ -3335,7 +3335,7 @@ pub const JET_PFNDURABLECOMMITCALLBACK = fn(
     grbit: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const JET_INDEXCHECKING = extern enum(i32) {
+pub const JET_INDEXCHECKING = enum(i32) {
     Off = 0,
     On = 1,
     DeferToOpenTable = 2,
@@ -3456,7 +3456,7 @@ pub const JET_INSTANCE_INFO_W = extern struct {
     szDatabaseSLVFileName_Obsolete: **u16,
 };
 
-pub const PROPSPEC_KIND = extern enum(u32) {
+pub const PROPSPEC_KIND = enum(u32) {
     LPWSTR = 0,
     PROPID = 1,
 };

@@ -78,7 +78,7 @@ pub const CLSID_SimilarityTraitsMapping = &CLSID_SimilarityTraitsMapping_Value;
 const CLSID_SimilarityTraitsMappedView_Value = @import("../zig.zig").Guid.initString("96236a95-9dbc-11da-9e3f-0011114ae311");
 pub const CLSID_SimilarityTraitsMappedView = &CLSID_SimilarityTraitsMappedView_Value;
 
-pub const RDC_ErrorCode = extern enum(i32) {
+pub const RDC_ErrorCode = enum(i32) {
     NoError = 0,
     HeaderVersionNewer = 1,
     HeaderVersionOlder = 2,
@@ -103,14 +103,14 @@ pub const RDC_ApplicationError = RDC_ErrorCode.ApplicationError;
 pub const RDC_Aborted = RDC_ErrorCode.Aborted;
 pub const RDC_Win32Error = RDC_ErrorCode.Win32Error;
 
-pub const GeneratorParametersType = extern enum(i32) {
+pub const GeneratorParametersType = enum(i32) {
     Unused = 0,
     FilterMax = 1,
 };
 pub const RDCGENTYPE_Unused = GeneratorParametersType.Unused;
 pub const RDCGENTYPE_FilterMax = GeneratorParametersType.FilterMax;
 
-pub const RdcNeedType = extern enum(i32) {
+pub const RdcNeedType = enum(i32) {
     SOURCE = 0,
     TARGET = 1,
     SEED = 2,
@@ -150,7 +150,7 @@ pub const RdcSignaturePointer = extern struct {
     m_Data: *RdcSignature,
 };
 
-pub const RdcCreatedTables = extern enum(i32) {
+pub const RdcCreatedTables = enum(i32) {
     InvalidOrUnknown = 0,
     Existing = 1,
     New = 2,
@@ -159,7 +159,7 @@ pub const RDCTABLE_InvalidOrUnknown = RdcCreatedTables.InvalidOrUnknown;
 pub const RDCTABLE_Existing = RdcCreatedTables.Existing;
 pub const RDCTABLE_New = RdcCreatedTables.New;
 
-pub const RdcMappingAccessMode = extern enum(i32) {
+pub const RdcMappingAccessMode = enum(i32) {
     Undefined = 0,
     ReadOnly = 1,
     ReadWrite = 2,

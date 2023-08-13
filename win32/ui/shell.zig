@@ -1443,7 +1443,7 @@ pub const HDROP = *opaque{};
 
 pub const HPSXA = *opaque{};
 
-pub const SHGFI_FLAGS = extern enum(i32) {
+pub const SHGFI_FLAGS = enum(i32) {
     ADDOVERLAYS = 32,
     ATTR_SPECIFIED = 131072,
     ATTRIBUTES = 2048,
@@ -1524,7 +1524,7 @@ pub const SHGFI_SYSICONINDEX = SHGFI_FLAGS.SYSICONINDEX;
 pub const SHGFI_TYPENAME = SHGFI_FLAGS.TYPENAME;
 pub const SHGFI_USEFILEATTRIBUTES = SHGFI_FLAGS.USEFILEATTRIBUTES;
 
-pub const SHCNE_ID = extern enum(u32) {
+pub const SHCNE_ID = enum(u32) {
     RENAMEITEM = 1,
     CREATE = 2,
     DELETE = 4,
@@ -1633,7 +1633,7 @@ pub const SHCNE_GLOBALEVENTS = SHCNE_ID.GLOBALEVENTS;
 pub const SHCNE_ALLEVENTS = SHCNE_ID.ALLEVENTS;
 pub const SHCNE_INTERRUPT = SHCNE_ID.INTERRUPT;
 
-pub const SHCNRF_SOURCE = extern enum(i32) {
+pub const SHCNRF_SOURCE = enum(i32) {
     InterruptLevel = 1,
     ShellLevel = 2,
     RecursiveInterrupt = 4096,
@@ -1658,7 +1658,7 @@ pub const SHCNRF_ShellLevel = SHCNRF_SOURCE.ShellLevel;
 pub const SHCNRF_RecursiveInterrupt = SHCNRF_SOURCE.RecursiveInterrupt;
 pub const SHCNRF_NewDelivery = SHCNRF_SOURCE.NewDelivery;
 
-pub const SHCNF_FLAGS = extern enum(u32) {
+pub const SHCNF_FLAGS = enum(u32) {
     IDLIST = 0,
     PATHA = 1,
     PRINTERA = 2,
@@ -1669,8 +1669,8 @@ pub const SHCNF_FLAGS = extern enum(u32) {
     FLUSH = 4096,
     FLUSHNOWAIT = 12288,
     NOTIFYRECURSIVE = 65536,
-    PATH = 5,
-    PRINTER = 6,
+    // PATH = 5, this enum value conflicts with PATHW
+    // PRINTER = 6, this enum value conflicts with PRINTERW
     _,
     pub fn initFlags(o: struct {
         IDLIST: u1 = 0,
@@ -1683,8 +1683,6 @@ pub const SHCNF_FLAGS = extern enum(u32) {
         FLUSH: u1 = 0,
         FLUSHNOWAIT: u1 = 0,
         NOTIFYRECURSIVE: u1 = 0,
-        PATH: u1 = 0,
-        PRINTER: u1 = 0,
     }) SHCNF_FLAGS {
         return @intToEnum(SHCNF_FLAGS,
               (if (o.IDLIST == 1) @enumToInt(SHCNF_FLAGS.IDLIST) else 0)
@@ -1697,8 +1695,6 @@ pub const SHCNF_FLAGS = extern enum(u32) {
             | (if (o.FLUSH == 1) @enumToInt(SHCNF_FLAGS.FLUSH) else 0)
             | (if (o.FLUSHNOWAIT == 1) @enumToInt(SHCNF_FLAGS.FLUSHNOWAIT) else 0)
             | (if (o.NOTIFYRECURSIVE == 1) @enumToInt(SHCNF_FLAGS.NOTIFYRECURSIVE) else 0)
-            | (if (o.PATH == 1) @enumToInt(SHCNF_FLAGS.PATH) else 0)
-            | (if (o.PRINTER == 1) @enumToInt(SHCNF_FLAGS.PRINTER) else 0)
         );
     }
 };
@@ -1712,18 +1708,18 @@ pub const SHCNF_TYPE = SHCNF_FLAGS.TYPE;
 pub const SHCNF_FLUSH = SHCNF_FLAGS.FLUSH;
 pub const SHCNF_FLUSHNOWAIT = SHCNF_FLAGS.FLUSHNOWAIT;
 pub const SHCNF_NOTIFYRECURSIVE = SHCNF_FLAGS.NOTIFYRECURSIVE;
-pub const SHCNF_PATH = SHCNF_FLAGS.PATH;
-pub const SHCNF_PRINTER = SHCNF_FLAGS.PRINTER;
+pub const SHCNF_PATH = SHCNF_FLAGS.PATHW;
+pub const SHCNF_PRINTER = SHCNF_FLAGS.PRINTERW;
 
-pub const QITIPF_FLAGS = extern enum(i32) {
+pub const QITIPF_FLAGS = enum(i32) {
     TIPF_DEFAULT = 0,
     TIPF_USENAME = 1,
     TIPF_LINKNOTARGET = 2,
     TIPF_LINKUSETARGET = 4,
     TIPF_USESLOWTIP = 8,
     TIPF_SINGLELINE = 16,
-    F_CACHED = 1,
-    F_DONTEXPANDFOLDER = 2,
+    // F_CACHED = 1, this enum value conflicts with TIPF_USENAME
+    // F_DONTEXPANDFOLDER = 2, this enum value conflicts with TIPF_LINKNOTARGET
     _,
     pub fn initFlags(o: struct {
         TIPF_DEFAULT: u1 = 0,
@@ -1732,8 +1728,6 @@ pub const QITIPF_FLAGS = extern enum(i32) {
         TIPF_LINKUSETARGET: u1 = 0,
         TIPF_USESLOWTIP: u1 = 0,
         TIPF_SINGLELINE: u1 = 0,
-        F_CACHED: u1 = 0,
-        F_DONTEXPANDFOLDER: u1 = 0,
     }) QITIPF_FLAGS {
         return @intToEnum(QITIPF_FLAGS,
               (if (o.TIPF_DEFAULT == 1) @enumToInt(QITIPF_FLAGS.TIPF_DEFAULT) else 0)
@@ -1742,8 +1736,6 @@ pub const QITIPF_FLAGS = extern enum(i32) {
             | (if (o.TIPF_LINKUSETARGET == 1) @enumToInt(QITIPF_FLAGS.TIPF_LINKUSETARGET) else 0)
             | (if (o.TIPF_USESLOWTIP == 1) @enumToInt(QITIPF_FLAGS.TIPF_USESLOWTIP) else 0)
             | (if (o.TIPF_SINGLELINE == 1) @enumToInt(QITIPF_FLAGS.TIPF_SINGLELINE) else 0)
-            | (if (o.F_CACHED == 1) @enumToInt(QITIPF_FLAGS.F_CACHED) else 0)
-            | (if (o.F_DONTEXPANDFOLDER == 1) @enumToInt(QITIPF_FLAGS.F_DONTEXPANDFOLDER) else 0)
         );
     }
 };
@@ -1753,10 +1745,10 @@ pub const QITIPF_LINKNOTARGET = QITIPF_FLAGS.TIPF_LINKNOTARGET;
 pub const QITIPF_LINKUSETARGET = QITIPF_FLAGS.TIPF_LINKUSETARGET;
 pub const QITIPF_USESLOWTIP = QITIPF_FLAGS.TIPF_USESLOWTIP;
 pub const QITIPF_SINGLELINE = QITIPF_FLAGS.TIPF_SINGLELINE;
-pub const QIF_CACHED = QITIPF_FLAGS.F_CACHED;
-pub const QIF_DONTEXPANDFOLDER = QITIPF_FLAGS.F_DONTEXPANDFOLDER;
+pub const QIF_CACHED = QITIPF_FLAGS.TIPF_USENAME;
+pub const QIF_DONTEXPANDFOLDER = QITIPF_FLAGS.TIPF_LINKNOTARGET;
 
-pub const SHDID_ID = extern enum(i32) {
+pub const SHDID_ID = enum(i32) {
     ROOT_REGITEM = 1,
     FS_FILE = 2,
     FS_DIRECTORY = 3,
@@ -1803,7 +1795,7 @@ pub const SHDID_COMPUTER_SHAREDDOCS = SHDID_ID.COMPUTER_SHAREDDOCS;
 pub const SHDID_MOBILE_DEVICE = SHDID_ID.MOBILE_DEVICE;
 pub const SHDID_REMOTE_DESKTOP_DRIVE = SHDID_ID.REMOTE_DESKTOP_DRIVE;
 
-pub const SHGDFIL_FORMAT = extern enum(i32) {
+pub const SHGDFIL_FORMAT = enum(i32) {
     FINDDATA = 1,
     NETRESOURCE = 2,
     DESCRIPTIONID = 3,
@@ -1812,7 +1804,7 @@ pub const SHGDFIL_FINDDATA = SHGDFIL_FORMAT.FINDDATA;
 pub const SHGDFIL_NETRESOURCE = SHGDFIL_FORMAT.NETRESOURCE;
 pub const SHGDFIL_DESCRIPTIONID = SHGDFIL_FORMAT.DESCRIPTIONID;
 
-pub const PRF_FLAGS = extern enum(i32) {
+pub const PRF_FLAGS = enum(i32) {
     VERIFYEXISTS = 1,
     TRYPROGRAMEXTENSIONS = 3,
     FIRSTDIRDEF = 4,
@@ -1841,7 +1833,7 @@ pub const PRF_FIRSTDIRDEF = PRF_FLAGS.FIRSTDIRDEF;
 pub const PRF_DONTFINDLNK = PRF_FLAGS.DONTFINDLNK;
 pub const PRF_REQUIREABSOLUTE = PRF_FLAGS.REQUIREABSOLUTE;
 
-pub const PCS_RET = extern enum(u32) {
+pub const PCS_RET = enum(u32) {
     FATAL = 2147483648,
     REPLACEDCHAR = 1,
     REMOVEDCHAR = 2,
@@ -1870,7 +1862,7 @@ pub const PCS_REMOVEDCHAR = PCS_RET.REMOVEDCHAR;
 pub const PCS_TRUNCATED = PCS_RET.TRUNCATED;
 pub const PCS_PATHTOOLONG = PCS_RET.PATHTOOLONG;
 
-pub const MM_FLAGS = extern enum(u32) {
+pub const MM_FLAGS = enum(u32) {
     ADDSEPARATOR = 1,
     SUBMENUSHAVEIDS = 2,
     DONTREMOVESEPS = 4,
@@ -1891,7 +1883,7 @@ pub const MM_ADDSEPARATOR = MM_FLAGS.ADDSEPARATOR;
 pub const MM_SUBMENUSHAVEIDS = MM_FLAGS.SUBMENUSHAVEIDS;
 pub const MM_DONTREMOVESEPS = MM_FLAGS.DONTREMOVESEPS;
 
-pub const SHOP_TYPE = extern enum(i32) {
+pub const SHOP_TYPE = enum(i32) {
     PRINTERNAME = 1,
     FILEPATH = 2,
     VOLUMEGUID = 4,
@@ -1912,12 +1904,12 @@ pub const SHOP_PRINTERNAME = SHOP_TYPE.PRINTERNAME;
 pub const SHOP_FILEPATH = SHOP_TYPE.FILEPATH;
 pub const SHOP_VOLUMEGUID = SHOP_TYPE.VOLUMEGUID;
 
-pub const SHFMT_ID = extern enum(u32) {
+pub const SHFMT_ID = enum(u32) {
     T = 65535,
 };
 pub const SHFMT_ID_DEFAULT = SHFMT_ID.T;
 
-pub const SHFMT_OPT = extern enum(i32) {
+pub const SHFMT_OPT = enum(i32) {
     NONE = 0,
     FULL = 1,
     SYSONLY = 2,
@@ -1938,7 +1930,7 @@ pub const SHFMT_OPT_NONE = SHFMT_OPT.NONE;
 pub const SHFMT_OPT_FULL = SHFMT_OPT.FULL;
 pub const SHFMT_OPT_SYSONLY = SHFMT_OPT.SYSONLY;
 
-pub const SHFMT_RET = extern enum(u32) {
+pub const SHFMT_RET = enum(u32) {
     ERROR = 4294967295,
     CANCEL = 4294967294,
     NOFORMAT = 4294967293,
@@ -1947,7 +1939,7 @@ pub const SHFMT_ERROR = SHFMT_RET.ERROR;
 pub const SHFMT_CANCEL = SHFMT_RET.CANCEL;
 pub const SHFMT_NOFORMAT = SHFMT_RET.NOFORMAT;
 
-pub const VALIDATEUNC_OPTION = extern enum(i32) {
+pub const VALIDATEUNC_OPTION = enum(i32) {
     CONNECT = 1,
     NOUI = 2,
     PRINT = 4,
@@ -1976,7 +1968,7 @@ pub const VALIDATEUNC_PRINT = VALIDATEUNC_OPTION.PRINT;
 pub const VALIDATEUNC_PERSIST = VALIDATEUNC_OPTION.PERSIST;
 pub const VALIDATEUNC_VALID = VALIDATEUNC_OPTION.VALID;
 
-pub const SFVM_MESSAGE_ID = extern enum(i32) {
+pub const SFVM_MESSAGE_ID = enum(i32) {
     MERGEMENU = 1,
     INVOKECOMMAND = 2,
     GETHELPTEXT = 3,
@@ -2037,7 +2029,7 @@ pub const SFVM_GETPANE = SFVM_MESSAGE_ID.GETPANE;
 pub const SFVM_GETHELPTOPIC = SFVM_MESSAGE_ID.GETHELPTOPIC;
 pub const SFVM_GETANIMATION = SFVM_MESSAGE_ID.GETANIMATION;
 
-pub const SFVS_SELECT = extern enum(i32) {
+pub const SFVS_SELECT = enum(i32) {
     NONE = 0,
     ALLITEMS = 1,
     INVERT = 2,
@@ -2046,7 +2038,7 @@ pub const SFVS_SELECT_NONE = SFVS_SELECT.NONE;
 pub const SFVS_SELECT_ALLITEMS = SFVS_SELECT.ALLITEMS;
 pub const SFVS_SELECT_INVERT = SFVS_SELECT.INVERT;
 
-pub const DFM_MESSAGE_ID = extern enum(i32) {
+pub const DFM_MESSAGE_ID = enum(i32) {
     MERGECONTEXTMENU = 1,
     INVOKECOMMAND = 2,
     GETHELPTEXT = 5,
@@ -2081,7 +2073,7 @@ pub const DFM_GETVERBA = DFM_MESSAGE_ID.GETVERBA;
 pub const DFM_MERGECONTEXTMENU_BOTTOM = DFM_MESSAGE_ID.MERGECONTEXTMENU_BOTTOM;
 pub const DFM_MODIFYQCMFLAGS = DFM_MESSAGE_ID.MODIFYQCMFLAGS;
 
-pub const DFM_CMD = extern enum(i32) {
+pub const DFM_CMD = enum(i32) {
     DELETE = -1,
     MOVE = -2,
     COPY = -3,
@@ -2110,7 +2102,7 @@ pub const DFM_CMD_PASTESPECIAL = DFM_CMD.PASTESPECIAL;
 pub const DFM_CMD_MODALPROP = DFM_CMD.MODALPROP;
 pub const DFM_CMD_RENAME = DFM_CMD.RENAME;
 
-pub const PID_IS = extern enum(i32) {
+pub const PID_IS = enum(i32) {
     URL = 2,
     NAME = 4,
     WORKINGDIR = 5,
@@ -2137,7 +2129,7 @@ pub const PID_IS_DESCRIPTION = PID_IS.DESCRIPTION;
 pub const PID_IS_COMMENT = PID_IS.COMMENT;
 pub const PID_IS_ROAMED = PID_IS.ROAMED;
 
-pub const PID_INTSITE = extern enum(i32) {
+pub const PID_INTSITE = enum(i32) {
     WHATSNEW = 2,
     AUTHOR = 3,
     LASTVISIT = 4,
@@ -2180,7 +2172,7 @@ pub const PID_INTSITE_ICONINDEX = PID_INTSITE.ICONINDEX;
 pub const PID_INTSITE_ICONFILE = PID_INTSITE.ICONFILE;
 pub const PID_INTSITE_ROAMED = PID_INTSITE.ROAMED;
 
-pub const PIDISF_FLAGS = extern enum(i32) {
+pub const PIDISF_FLAGS = enum(i32) {
     RECENTLYCHANGED = 1,
     CACHEDSTICKY = 2,
     CACHEIMAGES = 16,
@@ -2205,7 +2197,7 @@ pub const PIDISF_CACHEDSTICKY = PIDISF_FLAGS.CACHEDSTICKY;
 pub const PIDISF_CACHEIMAGES = PIDISF_FLAGS.CACHEIMAGES;
 pub const PIDISF_FOLLOWALLLINKS = PIDISF_FLAGS.FOLLOWALLLINKS;
 
-pub const PIDISM_OPTIONS = extern enum(i32) {
+pub const PIDISM_OPTIONS = enum(i32) {
     GLOBAL = 0,
     WATCH = 1,
     DONTWATCH = 2,
@@ -2214,7 +2206,7 @@ pub const PIDISM_GLOBAL = PIDISM_OPTIONS.GLOBAL;
 pub const PIDISM_WATCH = PIDISM_OPTIONS.WATCH;
 pub const PIDISM_DONTWATCH = PIDISM_OPTIONS.DONTWATCH;
 
-pub const PIDISR_INFO = extern enum(i32) {
+pub const PIDISR_INFO = enum(i32) {
     UP_TO_DATE = 0,
     NEEDS_ADD = 1,
     NEEDS_UPDATE = 2,
@@ -2225,11 +2217,11 @@ pub const PIDISR_NEEDS_ADD = PIDISR_INFO.NEEDS_ADD;
 pub const PIDISR_NEEDS_UPDATE = PIDISR_INFO.NEEDS_UPDATE;
 pub const PIDISR_NEEDS_DELETE = PIDISR_INFO.NEEDS_DELETE;
 
-pub const SSF_MASK = extern enum(u32) {
+pub const SSF_MASK = enum(u32) {
     SHOWALLOBJECTS = 1,
     SHOWEXTENSIONS = 2,
     HIDDENFILEEXTS = 4,
-    SERVERADMINUI = 4,
+    // SERVERADMINUI = 4, this enum value conflicts with HIDDENFILEEXTS
     SHOWCOMPCOLOR = 8,
     SORTCOLUMNS = 16,
     SHOWSYSFILES = 32,
@@ -2258,7 +2250,6 @@ pub const SSF_MASK = extern enum(u32) {
         SHOWALLOBJECTS: u1 = 0,
         SHOWEXTENSIONS: u1 = 0,
         HIDDENFILEEXTS: u1 = 0,
-        SERVERADMINUI: u1 = 0,
         SHOWCOMPCOLOR: u1 = 0,
         SORTCOLUMNS: u1 = 0,
         SHOWSYSFILES: u1 = 0,
@@ -2287,7 +2278,6 @@ pub const SSF_MASK = extern enum(u32) {
               (if (o.SHOWALLOBJECTS == 1) @enumToInt(SSF_MASK.SHOWALLOBJECTS) else 0)
             | (if (o.SHOWEXTENSIONS == 1) @enumToInt(SSF_MASK.SHOWEXTENSIONS) else 0)
             | (if (o.HIDDENFILEEXTS == 1) @enumToInt(SSF_MASK.HIDDENFILEEXTS) else 0)
-            | (if (o.SERVERADMINUI == 1) @enumToInt(SSF_MASK.SERVERADMINUI) else 0)
             | (if (o.SHOWCOMPCOLOR == 1) @enumToInt(SSF_MASK.SHOWCOMPCOLOR) else 0)
             | (if (o.SORTCOLUMNS == 1) @enumToInt(SSF_MASK.SORTCOLUMNS) else 0)
             | (if (o.SHOWSYSFILES == 1) @enumToInt(SSF_MASK.SHOWSYSFILES) else 0)
@@ -2317,7 +2307,7 @@ pub const SSF_MASK = extern enum(u32) {
 pub const SSF_SHOWALLOBJECTS = SSF_MASK.SHOWALLOBJECTS;
 pub const SSF_SHOWEXTENSIONS = SSF_MASK.SHOWEXTENSIONS;
 pub const SSF_HIDDENFILEEXTS = SSF_MASK.HIDDENFILEEXTS;
-pub const SSF_SERVERADMINUI = SSF_MASK.SERVERADMINUI;
+pub const SSF_SERVERADMINUI = SSF_MASK.HIDDENFILEEXTS;
 pub const SSF_SHOWCOMPCOLOR = SSF_MASK.SHOWCOMPCOLOR;
 pub const SSF_SORTCOLUMNS = SSF_MASK.SORTCOLUMNS;
 pub const SSF_SHOWSYSFILES = SSF_MASK.SHOWSYSFILES;
@@ -2365,7 +2355,7 @@ pub const INotifyReplica = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NOTIFY_ICON_MESSAGE = extern enum(u32) {
+pub const NOTIFY_ICON_MESSAGE = enum(u32) {
     ADD = 0,
     MODIFY = 1,
     DELETE = 2,
@@ -2378,7 +2368,7 @@ pub const NIM_DELETE = NOTIFY_ICON_MESSAGE.DELETE;
 pub const NIM_SETFOCUS = NOTIFY_ICON_MESSAGE.SETFOCUS;
 pub const NIM_SETVERSION = NOTIFY_ICON_MESSAGE.SETVERSION;
 
-pub const NOTIFY_ICON_DATA_FLAGS = extern enum(u32) {
+pub const NOTIFY_ICON_DATA_FLAGS = enum(u32) {
     MESSAGE = 1,
     ICON = 2,
     TIP = 4,
@@ -2435,7 +2425,7 @@ pub const SOFTDISTINFO = extern struct {
     dwReserved: u32,
 };
 
-pub const ShellWindowTypeConstants = extern enum(i32) {
+pub const ShellWindowTypeConstants = enum(i32) {
     EXPLORER = 0,
     BROWSER = 1,
     @"3RDPARTY" = 2,
@@ -2448,7 +2438,7 @@ pub const SWC_3RDPARTY = ShellWindowTypeConstants.@"3RDPARTY";
 pub const SWC_CALLBACK = ShellWindowTypeConstants.CALLBACK;
 pub const SWC_DESKTOP = ShellWindowTypeConstants.DESKTOP;
 
-pub const ShellWindowFindWindowOptions = extern enum(i32) {
+pub const ShellWindowFindWindowOptions = enum(i32) {
     NEEDDISPATCH = 1,
     INCLUDEPENDING = 2,
     COOKIEPASSED = 4,
@@ -3057,7 +3047,7 @@ pub const ITEMIDLIST = extern struct {
     mkid: SHITEMID,
 };
 
-pub const STRRET_TYPE = extern enum(i32) {
+pub const STRRET_TYPE = enum(i32) {
     WSTR = 0,
     OFFSET = 1,
     CSTR = 2,
@@ -3081,9 +3071,9 @@ pub const SHELLDETAILS = packed struct {
     str: STRRET,
 };
 
-pub const PERCEIVED = extern enum(i32) {
+pub const PERCEIVED = enum(i32) {
     FIRST = -3,
-    CUSTOM = -3,
+    // CUSTOM = -3, this enum value conflicts with FIRST
     UNSPECIFIED = -2,
     FOLDER = -1,
     UNKNOWN = 0,
@@ -3097,10 +3087,10 @@ pub const PERCEIVED = extern enum(i32) {
     APPLICATION = 8,
     GAMEMEDIA = 9,
     CONTACTS = 10,
-    LAST = 10,
+    // LAST = 10, this enum value conflicts with CONTACTS
 };
 pub const PERCEIVED_TYPE_FIRST = PERCEIVED.FIRST;
-pub const PERCEIVED_TYPE_CUSTOM = PERCEIVED.CUSTOM;
+pub const PERCEIVED_TYPE_CUSTOM = PERCEIVED.FIRST;
 pub const PERCEIVED_TYPE_UNSPECIFIED = PERCEIVED.UNSPECIFIED;
 pub const PERCEIVED_TYPE_FOLDER = PERCEIVED.FOLDER;
 pub const PERCEIVED_TYPE_UNKNOWN = PERCEIVED.UNKNOWN;
@@ -3114,14 +3104,14 @@ pub const PERCEIVED_TYPE_SYSTEM = PERCEIVED.SYSTEM;
 pub const PERCEIVED_TYPE_APPLICATION = PERCEIVED.APPLICATION;
 pub const PERCEIVED_TYPE_GAMEMEDIA = PERCEIVED.GAMEMEDIA;
 pub const PERCEIVED_TYPE_CONTACTS = PERCEIVED.CONTACTS;
-pub const PERCEIVED_TYPE_LAST = PERCEIVED.LAST;
+pub const PERCEIVED_TYPE_LAST = PERCEIVED.CONTACTS;
 
 pub const COMDLG_FILTERSPEC = extern struct {
     pszName: [*:0]const u16,
     pszSpec: [*:0]const u16,
 };
 
-pub const SHCOLSTATE = extern enum(i32) {
+pub const SHCOLSTATE = enum(i32) {
     DEFAULT = 0,
     TYPE_STR = 1,
     TYPE_INT = 2,
@@ -3164,7 +3154,7 @@ pub const SHCOLSTATE_NODPISCALE = SHCOLSTATE.NODPISCALE;
 pub const SHCOLSTATE_FIXED_RATIO = SHCOLSTATE.FIXED_RATIO;
 pub const SHCOLSTATE_DISPLAYMASK = SHCOLSTATE.DISPLAYMASK;
 
-pub const DEVICE_SCALE_FACTOR = extern enum(i32) {
+pub const DEVICE_SCALE_FACTOR = enum(i32) {
     DEVICE_SCALE_FACTOR_INVALID = 0,
     SCALE_100_PERCENT = 100,
     SCALE_120_PERCENT = 120,
@@ -3908,7 +3898,7 @@ pub const IEnumFullIDList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _SHGDNF = extern enum(i32) {
+pub const _SHGDNF = enum(i32) {
     NORMAL = 0,
     INFOLDER = 1,
     FOREDITING = 4096,
@@ -3921,7 +3911,7 @@ pub const SHGDN_FOREDITING = _SHGDNF.FOREDITING;
 pub const SHGDN_FORADDRESSBAR = _SHGDNF.FORADDRESSBAR;
 pub const SHGDN_FORPARSING = _SHGDNF.FORPARSING;
 
-pub const _SHCONTF = extern enum(i32) {
+pub const _SHCONTF = enum(i32) {
     CHECKING_FOR_CHILDREN = 16,
     FOLDERS = 32,
     NONFOLDERS = 64,
@@ -3950,7 +3940,7 @@ pub const SHCONTF_FLATLIST = _SHCONTF.FLATLIST;
 pub const SHCONTF_ENABLE_ASYNC = _SHCONTF.ENABLE_ASYNC;
 pub const SHCONTF_INCLUDESUPERHIDDEN = _SHCONTF.INCLUDESUPERHIDDEN;
 
-pub const STORAGE_PROVIDER_FILE_FLAGS = extern enum(i32) {
+pub const STORAGE_PROVIDER_FILE_FLAGS = enum(i32) {
     NONE = 0,
     DOWNLOAD_BY_DEFAULT = 1,
     CREATED_ON_THIS_DEVICE = 2,
@@ -3959,7 +3949,7 @@ pub const SPFF_NONE = STORAGE_PROVIDER_FILE_FLAGS.NONE;
 pub const SPFF_DOWNLOAD_BY_DEFAULT = STORAGE_PROVIDER_FILE_FLAGS.DOWNLOAD_BY_DEFAULT;
 pub const SPFF_CREATED_ON_THIS_DEVICE = STORAGE_PROVIDER_FILE_FLAGS.CREATED_ON_THIS_DEVICE;
 
-pub const MERGE_UPDATE_STATUS = extern enum(i32) {
+pub const MERGE_UPDATE_STATUS = enum(i32) {
     COMPLETE = 0,
     USERINPUTNEEDED = 1,
     FAILED = 2,
@@ -4001,7 +3991,7 @@ pub const IFileSyncMergeHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FOLDER_ENUM_MODE = extern enum(i32) {
+pub const FOLDER_ENUM_MODE = enum(i32) {
     VIEWRESULT = 0,
     NAVIGATION = 1,
 };
@@ -4324,7 +4314,7 @@ pub const IShellFolder2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FOLDERFLAGS = extern enum(i32) {
+pub const FOLDERFLAGS = enum(i32) {
     NONE = 0,
     AUTOARRANGE = 1,
     ABBREVIATEDNAMES = 2,
@@ -4393,10 +4383,10 @@ pub const FWF_SUBSETGROUPS = FOLDERFLAGS.SUBSETGROUPS;
 pub const FWF_USESEARCHFOLDER = FOLDERFLAGS.USESEARCHFOLDER;
 pub const FWF_ALLOWRTLREADING = FOLDERFLAGS.ALLOWRTLREADING;
 
-pub const FOLDERVIEWMODE = extern enum(i32) {
+pub const FOLDERVIEWMODE = enum(i32) {
     AUTO = -1,
     FIRST = 1,
-    ICON = 1,
+    // ICON = 1, this enum value conflicts with FIRST
     SMALLICON = 2,
     LIST = 3,
     DETAILS = 4,
@@ -4404,11 +4394,11 @@ pub const FOLDERVIEWMODE = extern enum(i32) {
     TILE = 6,
     THUMBSTRIP = 7,
     CONTENT = 8,
-    LAST = 8,
+    // LAST = 8, this enum value conflicts with CONTENT
 };
 pub const FVM_AUTO = FOLDERVIEWMODE.AUTO;
 pub const FVM_FIRST = FOLDERVIEWMODE.FIRST;
-pub const FVM_ICON = FOLDERVIEWMODE.ICON;
+pub const FVM_ICON = FOLDERVIEWMODE.FIRST;
 pub const FVM_SMALLICON = FOLDERVIEWMODE.SMALLICON;
 pub const FVM_LIST = FOLDERVIEWMODE.LIST;
 pub const FVM_DETAILS = FOLDERVIEWMODE.DETAILS;
@@ -4416,33 +4406,33 @@ pub const FVM_THUMBNAIL = FOLDERVIEWMODE.THUMBNAIL;
 pub const FVM_TILE = FOLDERVIEWMODE.TILE;
 pub const FVM_THUMBSTRIP = FOLDERVIEWMODE.THUMBSTRIP;
 pub const FVM_CONTENT = FOLDERVIEWMODE.CONTENT;
-pub const FVM_LAST = FOLDERVIEWMODE.LAST;
+pub const FVM_LAST = FOLDERVIEWMODE.CONTENT;
 
-pub const FOLDERLOGICALVIEWMODE = extern enum(i32) {
+pub const FOLDERLOGICALVIEWMODE = enum(i32) {
     UNSPECIFIED = -1,
     FIRST = 1,
-    DETAILS = 1,
+    // DETAILS = 1, this enum value conflicts with FIRST
     TILES = 2,
     ICONS = 3,
     LIST = 4,
     CONTENT = 5,
-    LAST = 5,
+    // LAST = 5, this enum value conflicts with CONTENT
 };
 pub const FLVM_UNSPECIFIED = FOLDERLOGICALVIEWMODE.UNSPECIFIED;
 pub const FLVM_FIRST = FOLDERLOGICALVIEWMODE.FIRST;
-pub const FLVM_DETAILS = FOLDERLOGICALVIEWMODE.DETAILS;
+pub const FLVM_DETAILS = FOLDERLOGICALVIEWMODE.FIRST;
 pub const FLVM_TILES = FOLDERLOGICALVIEWMODE.TILES;
 pub const FLVM_ICONS = FOLDERLOGICALVIEWMODE.ICONS;
 pub const FLVM_LIST = FOLDERLOGICALVIEWMODE.LIST;
 pub const FLVM_CONTENT = FOLDERLOGICALVIEWMODE.CONTENT;
-pub const FLVM_LAST = FOLDERLOGICALVIEWMODE.LAST;
+pub const FLVM_LAST = FOLDERLOGICALVIEWMODE.CONTENT;
 
 pub const FOLDERSETTINGS = extern struct {
     ViewMode: u32,
     fFlags: u32,
 };
 
-pub const _SVSIF = extern enum(i32) {
+pub const _SVSIF = enum(i32) {
     DESELECT = 0,
     SELECT = 1,
     EDIT = 3,
@@ -4471,7 +4461,7 @@ pub const SVSI_CHECK2 = _SVSIF.CHECK2;
 pub const SVSI_KEYBOARDSELECT = _SVSIF.KEYBOARDSELECT;
 pub const SVSI_NOTAKEFOCUS = _SVSIF.NOTAKEFOCUS;
 
-pub const _SVGIO = extern enum(i32) {
+pub const _SVGIO = enum(i32) {
     BACKGROUND = 0,
     SELECTION = 1,
     ALLVIEW = 2,
@@ -4486,7 +4476,7 @@ pub const SVGIO_CHECKED = _SVGIO.CHECKED;
 pub const SVGIO_TYPE_MASK = _SVGIO.TYPE_MASK;
 pub const SVGIO_FLAG_VIEWORDER = _SVGIO.FLAG_VIEWORDER;
 
-pub const SVUIA_STATUS = extern enum(i32) {
+pub const SVUIA_STATUS = enum(i32) {
     DEACTIVATE = 0,
     ACTIVATE_NOFOCUS = 1,
     ACTIVATE_FOCUS = 2,
@@ -4799,7 +4789,7 @@ pub const IFolderView = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SORTDIRECTION = extern enum(i32) {
+pub const SORTDIRECTION = enum(i32) {
     DESCENDING = -1,
     ASCENDING = 1,
 };
@@ -4811,7 +4801,7 @@ pub const SORTCOLUMN = extern struct {
     direction: SORTDIRECTION,
 };
 
-pub const FVTEXTTYPE = extern enum(i32) {
+pub const FVTEXTTYPE = enum(i32) {
     T = 0,
 };
 pub const FVST_EMPTYTEXT = FVTEXTTYPE.T;
@@ -5309,7 +5299,7 @@ pub const ICommDlgBrowser2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CM_MASK = extern enum(i32) {
+pub const CM_MASK = enum(i32) {
     WIDTH = 1,
     DEFAULTWIDTH = 2,
     IDEALWIDTH = 4,
@@ -5322,7 +5312,7 @@ pub const CM_MASK_IDEALWIDTH = CM_MASK.IDEALWIDTH;
 pub const CM_MASK_NAME = CM_MASK.NAME;
 pub const CM_MASK_STATE = CM_MASK.STATE;
 
-pub const CM_STATE = extern enum(i32) {
+pub const CM_STATE = enum(i32) {
     NONE = 0,
     VISIBLE = 1,
     FIXEDWIDTH = 2,
@@ -5335,14 +5325,14 @@ pub const CM_STATE_FIXEDWIDTH = CM_STATE.FIXEDWIDTH;
 pub const CM_STATE_NOSORTBYFOLDERNESS = CM_STATE.NOSORTBYFOLDERNESS;
 pub const CM_STATE_ALWAYSVISIBLE = CM_STATE.ALWAYSVISIBLE;
 
-pub const CM_ENUM_FLAGS = extern enum(i32) {
+pub const CM_ENUM_FLAGS = enum(i32) {
     ALL = 1,
     VISIBLE = 2,
 };
 pub const CM_ENUM_ALL = CM_ENUM_FLAGS.ALL;
 pub const CM_ENUM_VISIBLE = CM_ENUM_FLAGS.VISIBLE;
 
-pub const CM_SET_WIDTH_VALUE = extern enum(i32) {
+pub const CM_SET_WIDTH_VALUE = enum(i32) {
     USEDEFAULT = -1,
     AUTOSIZE = -2,
 };
@@ -5746,7 +5736,7 @@ pub const IProfferService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SIGDN = extern enum(i32) {
+pub const SIGDN = enum(i32) {
     NORMALDISPLAY = 0,
     PARENTRELATIVEPARSING = -2147385343,
     DESKTOPABSOLUTEPARSING = -2147319808,
@@ -5769,7 +5759,7 @@ pub const SIGDN_PARENTRELATIVEFORADDRESSBAR = SIGDN.PARENTRELATIVEFORADDRESSBAR;
 pub const SIGDN_PARENTRELATIVE = SIGDN.PARENTRELATIVE;
 pub const SIGDN_PARENTRELATIVEFORUI = SIGDN.PARENTRELATIVEFORUI;
 
-pub const _SICHINTF = extern enum(i32) {
+pub const _SICHINTF = enum(i32) {
     DISPLAY = 0,
     ALLFIELDS = -2147483648,
     CANONICAL = 268435456,
@@ -5841,7 +5831,7 @@ pub const IShellItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DATAOBJ_GET_ITEM_FLAGS = extern enum(i32) {
+pub const DATAOBJ_GET_ITEM_FLAGS = enum(i32) {
     DEFAULT = 0,
     TRAVERSE_LINK = 1,
     NO_HDROP = 2,
@@ -5991,7 +5981,7 @@ pub const IShellItem2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _SIIGBF = extern enum(i32) {
+pub const _SIIGBF = enum(i32) {
     RESIZETOFIT = 0,
     BIGGERSIZEOK = 1,
     MEMORYONLY = 2,
@@ -6085,7 +6075,7 @@ pub const IEnumShellItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const STGOP = extern enum(i32) {
+pub const STGOP = enum(i32) {
     MOVE = 1,
     COPY = 2,
     SYNC = 3,
@@ -6102,9 +6092,9 @@ pub const STGOP_RENAME = STGOP.RENAME;
 pub const STGOP_APPLYPROPERTIES = STGOP.APPLYPROPERTIES;
 pub const STGOP_NEW = STGOP.NEW;
 
-pub const _TRANSFER_SOURCE_FLAGS = extern enum(i32) {
+pub const _TRANSFER_SOURCE_FLAGS = enum(i32) {
     NORMAL = 0,
-    FAIL_EXIST = 0,
+    // FAIL_EXIST = 0, this enum value conflicts with NORMAL
     RENAME_EXIST = 1,
     OVERWRITE_EXIST = 2,
     ALLOW_DECRYPTION = 4,
@@ -6119,7 +6109,7 @@ pub const _TRANSFER_SOURCE_FLAGS = extern enum(i32) {
     SUSPEND_SHELLEVENTS = 2048,
 };
 pub const TSF_NORMAL = _TRANSFER_SOURCE_FLAGS.NORMAL;
-pub const TSF_FAIL_EXIST = _TRANSFER_SOURCE_FLAGS.FAIL_EXIST;
+pub const TSF_FAIL_EXIST = _TRANSFER_SOURCE_FLAGS.NORMAL;
 pub const TSF_RENAME_EXIST = _TRANSFER_SOURCE_FLAGS.RENAME_EXIST;
 pub const TSF_OVERWRITE_EXIST = _TRANSFER_SOURCE_FLAGS.OVERWRITE_EXIST;
 pub const TSF_ALLOW_DECRYPTION = _TRANSFER_SOURCE_FLAGS.ALLOW_DECRYPTION;
@@ -6133,7 +6123,7 @@ pub const TSF_COPY_LOCALIZED_NAME = _TRANSFER_SOURCE_FLAGS.COPY_LOCALIZED_NAME;
 pub const TSF_MOVE_AS_COPY_DELETE = _TRANSFER_SOURCE_FLAGS.MOVE_AS_COPY_DELETE;
 pub const TSF_SUSPEND_SHELLEVENTS = _TRANSFER_SOURCE_FLAGS.SUSPEND_SHELLEVENTS;
 
-pub const _TRANSFER_ADVISE_STATE = extern enum(i32) {
+pub const _TRANSFER_ADVISE_STATE = enum(i32) {
     NONE = 0,
     PERFORMING = 1,
     PREPARING = 2,
@@ -6742,17 +6732,17 @@ pub const IFileOperationProgressSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SIATTRIBFLAGS = extern enum(i32) {
+pub const SIATTRIBFLAGS = enum(i32) {
     AND = 1,
     OR = 2,
     APPCOMPAT = 3,
-    MASK = 3,
+    // MASK = 3, this enum value conflicts with APPCOMPAT
     ALLITEMS = 16384,
 };
 pub const SIATTRIBFLAGS_AND = SIATTRIBFLAGS.AND;
 pub const SIATTRIBFLAGS_OR = SIATTRIBFLAGS.OR;
 pub const SIATTRIBFLAGS_APPCOMPAT = SIATTRIBFLAGS.APPCOMPAT;
-pub const SIATTRIBFLAGS_MASK = SIATTRIBFLAGS.MASK;
+pub const SIATTRIBFLAGS_MASK = SIATTRIBFLAGS.APPCOMPAT;
 pub const SIATTRIBFLAGS_ALLITEMS = SIATTRIBFLAGS.ALLITEMS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -6910,14 +6900,14 @@ pub const IObjectWithBackReferences = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _PROPERTYUI_NAME_FLAGS = extern enum(i32) {
+pub const _PROPERTYUI_NAME_FLAGS = enum(i32) {
     DEFAULT = 0,
     MNEMONIC = 1,
 };
 pub const PUIFNF_DEFAULT = _PROPERTYUI_NAME_FLAGS.DEFAULT;
 pub const PUIFNF_MNEMONIC = _PROPERTYUI_NAME_FLAGS.MNEMONIC;
 
-pub const _PROPERTYUI_FORMAT_FLAGS = extern enum(i32) {
+pub const _PROPERTYUI_FORMAT_FLAGS = enum(i32) {
     DEFAULT = 0,
     RIGHTTOLEFT = 1,
     SHORTFORMAT = 2,
@@ -6998,7 +6988,7 @@ pub const ICategoryProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CATEGORYINFO_FLAGS = extern enum(i32) {
+pub const CATEGORYINFO_FLAGS = enum(i32) {
     NORMAL = 0,
     COLLAPSED = 1,
     HIDDEN = 2,
@@ -7021,7 +7011,7 @@ pub const CATINFO_SUBSETTED = CATEGORYINFO_FLAGS.SUBSETTED;
 pub const CATINFO_SEPARATE_IMAGES = CATEGORYINFO_FLAGS.SEPARATE_IMAGES;
 pub const CATINFO_SHOWEMPTY = CATEGORYINFO_FLAGS.SHOWEMPTY;
 
-pub const CATSORT_FLAGS = extern enum(i32) {
+pub const CATSORT_FLAGS = enum(i32) {
     DEFAULT = 0,
     NAME = 1,
 };
@@ -7184,7 +7174,7 @@ pub const IDragSourceHelper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SLR_FLAGS = extern enum(i32) {
+pub const SLR_FLAGS = enum(i32) {
     NONE = 0,
     NO_UI = 1,
     ANY_MATCH = 2,
@@ -7217,7 +7207,7 @@ pub const SLR_MACHINE_IN_LOCAL_TARGET = SLR_FLAGS.MACHINE_IN_LOCAL_TARGET;
 pub const SLR_UPDATE_MACHINE_AND_SID = SLR_FLAGS.UPDATE_MACHINE_AND_SID;
 pub const SLR_NO_OBJECT_ID = SLR_FLAGS.NO_OBJECT_ID;
 
-pub const SLGP_FLAGS = extern enum(i32) {
+pub const SLGP_FLAGS = enum(i32) {
     SHORTPATH = 1,
     UNCPRIORITY = 2,
     RAWPATH = 4,
@@ -7645,7 +7635,7 @@ pub const IResolveShellLink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _SPINITF = extern enum(i32) {
+pub const _SPINITF = enum(i32) {
     NORMAL = 0,
     MODAL = 1,
     NOMINIMIZE = 8,
@@ -7685,7 +7675,7 @@ pub const IActionProgressDialog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _SPBEGINF = extern enum(i32) {
+pub const _SPBEGINF = enum(i32) {
     NORMAL = 0,
     AUTOTIME = 2,
     NOPROGRESSBAR = 16,
@@ -7698,7 +7688,7 @@ pub const SPBEGINF_NOPROGRESSBAR = _SPBEGINF.NOPROGRESSBAR;
 pub const SPBEGINF_MARQUEEPROGRESS = _SPBEGINF.MARQUEEPROGRESS;
 pub const SPBEGINF_NOCANCELBUTTON = _SPBEGINF.NOCANCELBUTTON;
 
-pub const SPACTION = extern enum(i32) {
+pub const SPACTION = enum(i32) {
     NONE = 0,
     MOVING = 1,
     COPYING = 2,
@@ -7729,7 +7719,7 @@ pub const SPACTION_RENAMING = SPACTION.RENAMING;
 pub const SPACTION_FORMATTING = SPACTION.FORMATTING;
 pub const SPACTION_COPY_MOVING = SPACTION.COPY_MOVING;
 
-pub const SPTEXT = extern enum(i32) {
+pub const SPTEXT = enum(i32) {
     SCRIPTION = 1,
     TAIL = 2,
 };
@@ -7824,7 +7814,7 @@ pub const IShellExtInit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _EXPPS = extern enum(i32) {
+pub const _EXPPS = enum(i32) {
     S = 1,
 };
 pub const EXPPS_FILETYPES = _EXPPS.S;
@@ -8301,7 +8291,7 @@ pub const DESKBANDINFO = extern struct {
     crBkgnd: u32,
 };
 
-pub const DESKBANDCID = extern enum(i32) {
+pub const DESKBANDCID = enum(i32) {
     BANDINFOCHANGED = 0,
     SHOWONLY = 1,
     MAXIMIZEBAND = 2,
@@ -8444,7 +8434,7 @@ pub const ITaskbarList2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const THUMBBUTTONFLAGS = extern enum(i32) {
+pub const THUMBBUTTONFLAGS = enum(i32) {
     ENABLED = 0,
     DISABLED = 1,
     DISMISSONCLICK = 2,
@@ -8459,7 +8449,7 @@ pub const THBF_NOBACKGROUND = THUMBBUTTONFLAGS.NOBACKGROUND;
 pub const THBF_HIDDEN = THUMBBUTTONFLAGS.HIDDEN;
 pub const THBF_NONINTERACTIVE = THUMBBUTTONFLAGS.NONINTERACTIVE;
 
-pub const THUMBBUTTONMASK = extern enum(i32) {
+pub const THUMBBUTTONMASK = enum(i32) {
     BITMAP = 1,
     ICON = 2,
     TOOLTIP = 4,
@@ -8479,7 +8469,7 @@ pub const THUMBBUTTON = extern struct {
     dwFlags: THUMBBUTTONFLAGS,
 };
 
-pub const TBPFLAG = extern enum(i32) {
+pub const TBPFLAG = enum(i32) {
     NOPROGRESS = 0,
     INDETERMINATE = 1,
     NORMAL = 2,
@@ -8618,7 +8608,7 @@ pub const ITaskbarList3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const STPFLAG = extern enum(i32) {
+pub const STPFLAG = enum(i32) {
     NONE = 0,
     USEAPPTHUMBNAILALWAYS = 1,
     USEAPPTHUMBNAILWHENACTIVE = 2,
@@ -8700,7 +8690,7 @@ pub const IExplorerBrowserEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const EXPLORER_BROWSER_OPTIONS = extern enum(i32) {
+pub const EXPLORER_BROWSER_OPTIONS = enum(i32) {
     NONE = 0,
     NAVIGATEONCE = 1,
     SHOWFRAMES = 2,
@@ -8721,7 +8711,7 @@ pub const EBO_HTMLSHAREPOINTVIEW = EXPLORER_BROWSER_OPTIONS.HTMLSHAREPOINTVIEW;
 pub const EBO_NOBORDER = EXPLORER_BROWSER_OPTIONS.NOBORDER;
 pub const EBO_NOPERSISTVIEWSTATE = EXPLORER_BROWSER_OPTIONS.NOPERSISTVIEWSTATE;
 
-pub const EXPLORER_BROWSER_FILL_FLAGS = extern enum(i32) {
+pub const EXPLORER_BROWSER_FILL_FLAGS = enum(i32) {
     NONE = 0,
     SELECTFROMDATAOBJECT = 256,
     NODROPTARGET = 512,
@@ -8918,7 +8908,7 @@ pub const IEnumObjects = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _OPPROGDLGF = extern enum(i32) {
+pub const _OPPROGDLGF = enum(i32) {
     DEFAULT = 0,
     ENABLEPAUSE = 128,
     ALLOWUNDO = 256,
@@ -8935,7 +8925,7 @@ pub const OPPROGDLG_DONTDISPLAYDESTPATH = _OPPROGDLGF.DONTDISPLAYDESTPATH;
 pub const OPPROGDLG_NOMULTIDAYESTIMATES = _OPPROGDLGF.NOMULTIDAYESTIMATES;
 pub const OPPROGDLG_DONTDISPLAYLOCATIONS = _OPPROGDLGF.DONTDISPLAYLOCATIONS;
 
-pub const _PDMODE = extern enum(i32) {
+pub const _PDMODE = enum(i32) {
     DEFAULT = 0,
     RUN = 1,
     PREFLIGHT = 2,
@@ -9279,7 +9269,7 @@ pub const IFileOperation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FILE_OPERATION_FLAGS2 = extern enum(i32) {
+pub const FILE_OPERATION_FLAGS2 = enum(i32) {
     NONE = 0,
     MERGEFOLDERSONCOLLISION = 1,
 };
@@ -9403,7 +9393,7 @@ pub const INamespaceWalkCB2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NAMESPACEWALKFLAG = extern enum(i32) {
+pub const NAMESPACEWALKFLAG = enum(i32) {
     DEFAULT = 0,
     NONE_IMPLIES_ALL = 1,
     ONE_IMPLIES_ALL = 2,
@@ -9480,7 +9470,7 @@ pub const BANDSITEINFO = extern struct {
     dwStyle: u32,
 };
 
-pub const BANDSITECID = extern enum(i32) {
+pub const BANDSITECID = enum(i32) {
     ADDED = 0,
     REMOVED = 1,
 };
@@ -9620,7 +9610,7 @@ pub const IContextMenuSite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MENUBANDHANDLERCID = extern enum(i32) {
+pub const MENUBANDHANDLERCID = enum(i32) {
     T = 0,
 };
 pub const MBHANDCID_PIDLSELECT = MENUBANDHANDLERCID.T;
@@ -9724,7 +9714,7 @@ pub const IDeskBar = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MENUPOPUPSELECT = extern enum(i32) {
+pub const MENUPOPUPSELECT = enum(i32) {
     EXECUTE = 0,
     FULLCANCEL = 1,
     CANCELLEVEL = 2,
@@ -9739,7 +9729,7 @@ pub const MPOS_SELECTLEFT = MENUPOPUPSELECT.SELECTLEFT;
 pub const MPOS_SELECTRIGHT = MENUPOPUPSELECT.SELECTRIGHT;
 pub const MPOS_CHILDTRACKING = MENUPOPUPSELECT.CHILDTRACKING;
 
-pub const MENUPOPUPPOPUPFLAGS = extern enum(i32) {
+pub const MENUPOPUPPOPUPFLAGS = enum(i32) {
     SETFOCUS = 1,
     INITIALSELECT = 2,
     NOANIMATE = 4,
@@ -9811,7 +9801,7 @@ pub const IMenuPopup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FILE_USAGE_TYPE = extern enum(i32) {
+pub const FILE_USAGE_TYPE = enum(i32) {
     PLAYING = 0,
     EDITING = 1,
     GENERIC = 2,
@@ -9873,7 +9863,7 @@ pub const IFileIsInUse = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FDE_OVERWRITE_RESPONSE = extern enum(i32) {
+pub const FDE_OVERWRITE_RESPONSE = enum(i32) {
     DEFAULT = 0,
     ACCEPT = 1,
     REFUSE = 2,
@@ -9882,7 +9872,7 @@ pub const FDEOR_DEFAULT = FDE_OVERWRITE_RESPONSE.DEFAULT;
 pub const FDEOR_ACCEPT = FDE_OVERWRITE_RESPONSE.ACCEPT;
 pub const FDEOR_REFUSE = FDE_OVERWRITE_RESPONSE.REFUSE;
 
-pub const FDE_SHAREVIOLATION_RESPONSE = extern enum(i32) {
+pub const FDE_SHAREVIOLATION_RESPONSE = enum(i32) {
     DEFAULT = 0,
     ACCEPT = 1,
     REFUSE = 2,
@@ -9891,7 +9881,7 @@ pub const FDESVR_DEFAULT = FDE_SHAREVIOLATION_RESPONSE.DEFAULT;
 pub const FDESVR_ACCEPT = FDE_SHAREVIOLATION_RESPONSE.ACCEPT;
 pub const FDESVR_REFUSE = FDE_SHAREVIOLATION_RESPONSE.REFUSE;
 
-pub const FDAP = extern enum(i32) {
+pub const FDAP = enum(i32) {
     BOTTOM = 0,
     TOP = 1,
 };
@@ -9973,7 +9963,7 @@ pub const IFileDialogEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _FILEOPENDIALOGOPTIONS = extern enum(i32) {
+pub const _FILEOPENDIALOGOPTIONS = enum(i32) {
     OVERWRITEPROMPT = 2,
     STRICTFILETYPES = 4,
     NOCHANGEDIR = 8,
@@ -10310,7 +10300,7 @@ pub const IFileOpenDialog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CDCONTROLSTATEF = extern enum(i32) {
+pub const CDCONTROLSTATEF = enum(i32) {
     INACTIVE = 0,
     ENABLED = 1,
     VISIBLE = 2,
@@ -10575,7 +10565,7 @@ pub const IFileDialogCustomize = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ASSOCIATIONLEVEL = extern enum(i32) {
+pub const ASSOCIATIONLEVEL = enum(i32) {
     MACHINE = 0,
     EFFECTIVE = 1,
     USER = 2,
@@ -10584,7 +10574,7 @@ pub const AL_MACHINE = ASSOCIATIONLEVEL.MACHINE;
 pub const AL_EFFECTIVE = ASSOCIATIONLEVEL.EFFECTIVE;
 pub const AL_USER = ASSOCIATIONLEVEL.USER;
 
-pub const ASSOCIATIONTYPE = extern enum(i32) {
+pub const ASSOCIATIONTYPE = enum(i32) {
     FILEEXTENSION = 0,
     URLPROTOCOL = 1,
     STARTMENUCLIENT = 2,
@@ -10696,7 +10686,7 @@ pub const IDelegateFolder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _BROWSERFRAMEOPTIONS = extern enum(i32) {
+pub const _BROWSERFRAMEOPTIONS = enum(i32) {
     FO_NONE = 0,
     FO_BROWSER_PERSIST_SETTINGS = 1,
     FO_RENAME_FOLDER_OPTIONS_TOINTERNET = 2,
@@ -10762,7 +10752,7 @@ pub const IBrowserFrameOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NWMF = extern enum(i32) {
+pub const NWMF = enum(i32) {
     UNLOADING = 1,
     USERINITED = 2,
     FIRST = 4,
@@ -10821,7 +10811,7 @@ pub const INewWindowManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ATTACHMENT_PROMPT = extern enum(i32) {
+pub const ATTACHMENT_PROMPT = enum(i32) {
     NONE = 0,
     SAVE = 1,
     EXEC = 2,
@@ -10832,7 +10822,7 @@ pub const ATTACHMENT_PROMPT_SAVE = ATTACHMENT_PROMPT.SAVE;
 pub const ATTACHMENT_PROMPT_EXEC = ATTACHMENT_PROMPT.EXEC;
 pub const ATTACHMENT_PROMPT_EXEC_OR_SAVE = ATTACHMENT_PROMPT.EXEC_OR_SAVE;
 
-pub const ATTACHMENT_ACTION = extern enum(i32) {
+pub const ATTACHMENT_ACTION = enum(i32) {
     CANCEL = 0,
     SAVE = 1,
     EXEC = 2,
@@ -10980,7 +10970,7 @@ pub const SMCSHCHANGENOTIFYSTRUCT = extern struct {
     pidl2: *ITEMIDLIST,
 };
 
-pub const SMINFOMASK = extern enum(i32) {
+pub const SMINFOMASK = enum(i32) {
     TYPE = 1,
     FLAGS = 2,
     ICON = 4,
@@ -10989,14 +10979,14 @@ pub const SMIM_TYPE = SMINFOMASK.TYPE;
 pub const SMIM_FLAGS = SMINFOMASK.FLAGS;
 pub const SMIM_ICON = SMINFOMASK.ICON;
 
-pub const SMINFOTYPE = extern enum(i32) {
+pub const SMINFOTYPE = enum(i32) {
     EPARATOR = 1,
     TRING = 2,
 };
 pub const SMIT_SEPARATOR = SMINFOTYPE.EPARATOR;
 pub const SMIT_STRING = SMINFOTYPE.TRING;
 
-pub const SMINFOFLAGS = extern enum(i32) {
+pub const SMINFOFLAGS = enum(i32) {
     ICON = 1,
     ACCELERATOR = 2,
     DROPTARGET = 4,
@@ -11154,7 +11144,7 @@ pub const IShellMenu = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const KF_CATEGORY = extern enum(i32) {
+pub const KF_CATEGORY = enum(i32) {
     VIRTUAL = 1,
     FIXED = 2,
     COMMON = 3,
@@ -11165,7 +11155,7 @@ pub const KF_CATEGORY_FIXED = KF_CATEGORY.FIXED;
 pub const KF_CATEGORY_COMMON = KF_CATEGORY.COMMON;
 pub const KF_CATEGORY_PERUSER = KF_CATEGORY.PERUSER;
 
-pub const _KF_DEFINITION_FLAGS = extern enum(i32) {
+pub const _KF_DEFINITION_FLAGS = enum(i32) {
     LOCAL_REDIRECT_ONLY = 2,
     ROAMABLE = 4,
     PRECREATE = 8,
@@ -11180,7 +11170,7 @@ pub const KFDF_STREAM = _KF_DEFINITION_FLAGS.STREAM;
 pub const KFDF_PUBLISHEXPANDEDPATH = _KF_DEFINITION_FLAGS.PUBLISHEXPANDEDPATH;
 pub const KFDF_NO_REDIRECT_UI = _KF_DEFINITION_FLAGS.NO_REDIRECT_UI;
 
-pub const _KF_REDIRECT_FLAGS = extern enum(i32) {
+pub const _KF_REDIRECT_FLAGS = enum(i32) {
     USER_EXCLUSIVE = 1,
     COPY_SOURCE_DACL = 2,
     OWNER_USER = 4,
@@ -11205,7 +11195,7 @@ pub const KF_REDIRECT_COPY_CONTENTS = _KF_REDIRECT_FLAGS.COPY_CONTENTS;
 pub const KF_REDIRECT_DEL_SOURCE_CONTENTS = _KF_REDIRECT_FLAGS.DEL_SOURCE_CONTENTS;
 pub const KF_REDIRECT_EXCLUDE_ALL_KNOWN_SUBFOLDERS = _KF_REDIRECT_FLAGS.EXCLUDE_ALL_KNOWN_SUBFOLDERS;
 
-pub const _KF_REDIRECTION_CAPABILITIES = extern enum(i32) {
+pub const _KF_REDIRECTION_CAPABILITIES = enum(i32) {
     ALLOW_ALL = 255,
     REDIRECTABLE = 1,
     DENY_ALL = 1048320,
@@ -11327,7 +11317,7 @@ pub const IKnownFolder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FFFP_MODE = extern enum(i32) {
+pub const FFFP_MODE = enum(i32) {
     EXACTMATCH = 0,
     NEARESTPARENTMATCH = 1,
 };
@@ -11443,7 +11433,7 @@ pub const IKnownFolderManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SHARE_ROLE = extern enum(i32) {
+pub const SHARE_ROLE = enum(i32) {
     INVALID = -1,
     READER = 0,
     CONTRIBUTOR = 1,
@@ -11460,7 +11450,7 @@ pub const SHARE_ROLE_OWNER = SHARE_ROLE.OWNER;
 pub const SHARE_ROLE_CUSTOM = SHARE_ROLE.CUSTOM;
 pub const SHARE_ROLE_MIXED = SHARE_ROLE.MIXED;
 
-pub const DEF_SHARE_ID = extern enum(i32) {
+pub const DEF_SHARE_ID = enum(i32) {
     USERS = 1,
     PUBLIC = 2,
 };
@@ -11829,7 +11819,7 @@ pub const ILaunchUIContextProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _NMCII_FLAGS = extern enum(i32) {
+pub const _NMCII_FLAGS = enum(i32) {
     NONE = 0,
     ITEMS = 1,
     FOLDERS = 2,
@@ -11838,7 +11828,7 @@ pub const NMCII_NONE = _NMCII_FLAGS.NONE;
 pub const NMCII_ITEMS = _NMCII_FLAGS.ITEMS;
 pub const NMCII_FOLDERS = _NMCII_FLAGS.FOLDERS;
 
-pub const _NMCSAEI_FLAGS = extern enum(i32) {
+pub const _NMCSAEI_FLAGS = enum(i32) {
     SELECT = 0,
     EDIT = 1,
 };
@@ -11929,7 +11919,7 @@ pub const IShellItemFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _NSTCSTYLE = extern enum(i32) {
+pub const _NSTCSTYLE = enum(i32) {
     HASEXPANDOS = 1,
     HASLINES = 2,
     SINGLECLICKEXPAND = 4,
@@ -11992,7 +11982,7 @@ pub const NSTCS_SHOWTABSBUTTON = _NSTCSTYLE.SHOWTABSBUTTON;
 pub const NSTCS_SHOWDELETEBUTTON = _NSTCSTYLE.SHOWDELETEBUTTON;
 pub const NSTCS_SHOWREFRESHBUTTON = _NSTCSTYLE.SHOWREFRESHBUTTON;
 
-pub const _NSTCROOTSTYLE = extern enum(i32) {
+pub const _NSTCROOTSTYLE = enum(i32) {
     VISIBLE = 0,
     HIDDEN = 1,
     EXPANDED = 2,
@@ -12001,7 +11991,7 @@ pub const NSTCRS_VISIBLE = _NSTCROOTSTYLE.VISIBLE;
 pub const NSTCRS_HIDDEN = _NSTCROOTSTYLE.HIDDEN;
 pub const NSTCRS_EXPANDED = _NSTCROOTSTYLE.EXPANDED;
 
-pub const _NSTCITEMSTATE = extern enum(i32) {
+pub const _NSTCITEMSTATE = enum(i32) {
     NONE = 0,
     SELECTED = 1,
     EXPANDED = 2,
@@ -12016,7 +12006,7 @@ pub const NSTCIS_BOLD = _NSTCITEMSTATE.BOLD;
 pub const NSTCIS_DISABLED = _NSTCITEMSTATE.DISABLED;
 pub const NSTCIS_SELECTEDNOEXPAND = _NSTCITEMSTATE.SELECTEDNOEXPAND;
 
-pub const NSTCGNI = extern enum(i32) {
+pub const NSTCGNI = enum(i32) {
     NEXT = 0,
     NEXTVISIBLE = 1,
     PREV = 2,
@@ -12219,7 +12209,7 @@ pub const INameSpaceTreeControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NSTCFOLDERCAPABILITIES = extern enum(i32) {
+pub const NSTCFOLDERCAPABILITIES = enum(i32) {
     NONE = 0,
     PINNEDITEMFILTERING = 1,
     DELAY_REGISTER_NOTIFY = 2,
@@ -12354,7 +12344,7 @@ pub const IPreviewHandlerFrame = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _EXPLORERPANESTATE = extern enum(i32) {
+pub const _EXPLORERPANESTATE = enum(i32) {
     DONTCARE = 0,
     DEFAULT_ON = 1,
     DEFAULT_OFF = 2,
@@ -12485,7 +12475,7 @@ pub const IDefaultExtractIconInit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _EXPCMDSTATE = extern enum(i32) {
+pub const _EXPCMDSTATE = enum(i32) {
     ENABLED = 0,
     DISABLED = 1,
     HIDDEN = 2,
@@ -12500,7 +12490,7 @@ pub const ECS_CHECKBOX = _EXPCMDSTATE.CHECKBOX;
 pub const ECS_CHECKED = _EXPCMDSTATE.CHECKED;
 pub const ECS_RADIOCHECK = _EXPCMDSTATE.RADIOCHECK;
 
-pub const _EXPCMDFLAGS = extern enum(i32) {
+pub const _EXPCMDFLAGS = enum(i32) {
     DEFAULT = 0,
     HASSUBCOMMANDS = 1,
     HASSPLITBUTTON = 2,
@@ -12737,16 +12727,16 @@ pub const IExplorerCommandProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CPVIEW = extern enum(i32) {
+pub const CPVIEW = enum(i32) {
     CLASSIC = 0,
-    ALLITEMS = 0,
+    // ALLITEMS = 0, this enum value conflicts with CLASSIC
     CATEGORY = 1,
-    HOME = 1,
+    // HOME = 1, this enum value conflicts with CATEGORY
 };
 pub const CPVIEW_CLASSIC = CPVIEW.CLASSIC;
-pub const CPVIEW_ALLITEMS = CPVIEW.ALLITEMS;
+pub const CPVIEW_ALLITEMS = CPVIEW.CLASSIC;
 pub const CPVIEW_CATEGORY = CPVIEW.CATEGORY;
-pub const CPVIEW_HOME = CPVIEW.HOME;
+pub const CPVIEW_HOME = CPVIEW.CATEGORY;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IOpenControlPanel_Value = @import("../zig.zig").Guid.initString("d11ad862-66de-4df4-bf6c-1f5621996af1");
@@ -12866,7 +12856,7 @@ pub const IFileSystemBindData2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const KNOWNDESTCATEGORY = extern enum(i32) {
+pub const KNOWNDESTCATEGORY = enum(i32) {
     FREQUENT = 1,
     RECENT = 2,
 };
@@ -12998,7 +12988,7 @@ pub const IApplicationDestinations = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const APPDOCLISTTYPE = extern enum(i32) {
+pub const APPDOCLISTTYPE = enum(i32) {
     RECENT = 0,
     FREQUENT = 1,
 };
@@ -13122,12 +13112,12 @@ pub const IUpdateIDList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DESKTOP_SLIDESHOW_OPTIONS = extern enum(i32) {
+pub const DESKTOP_SLIDESHOW_OPTIONS = enum(i32) {
     S = 1,
 };
 pub const DSO_SHUFFLEIMAGES = DESKTOP_SLIDESHOW_OPTIONS.S;
 
-pub const DESKTOP_SLIDESHOW_STATE = extern enum(i32) {
+pub const DESKTOP_SLIDESHOW_STATE = enum(i32) {
     ENABLED = 1,
     SLIDESHOW = 2,
     DISABLED_BY_REMOTE_SESSION = 4,
@@ -13136,14 +13126,14 @@ pub const DSS_ENABLED = DESKTOP_SLIDESHOW_STATE.ENABLED;
 pub const DSS_SLIDESHOW = DESKTOP_SLIDESHOW_STATE.SLIDESHOW;
 pub const DSS_DISABLED_BY_REMOTE_SESSION = DESKTOP_SLIDESHOW_STATE.DISABLED_BY_REMOTE_SESSION;
 
-pub const DESKTOP_SLIDESHOW_DIRECTION = extern enum(i32) {
+pub const DESKTOP_SLIDESHOW_DIRECTION = enum(i32) {
     FORWARD = 0,
     BACKWARD = 1,
 };
 pub const DSD_FORWARD = DESKTOP_SLIDESHOW_DIRECTION.FORWARD;
 pub const DSD_BACKWARD = DESKTOP_SLIDESHOW_DIRECTION.BACKWARD;
 
-pub const DESKTOP_WALLPAPER_POSITION = extern enum(i32) {
+pub const DESKTOP_WALLPAPER_POSITION = enum(i32) {
     CENTER = 0,
     TILE = 1,
     STRETCH = 2,
@@ -13307,7 +13297,7 @@ pub const IDesktopWallpaper = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const HOMEGROUPSHARINGCHOICES = extern enum(i32) {
+pub const HOMEGROUPSHARINGCHOICES = enum(i32) {
     NONE = 0,
     MUSICLIBRARY = 1,
     PICTURESLIBRARY = 2,
@@ -13402,7 +13392,7 @@ pub const IOpenSearchSource = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const LIBRARYFOLDERFILTER = extern enum(i32) {
+pub const LIBRARYFOLDERFILTER = enum(i32) {
     FORCEFILESYSTEM = 1,
     STORAGEITEMS = 2,
     ALLITEMS = 3,
@@ -13411,16 +13401,16 @@ pub const LFF_FORCEFILESYSTEM = LIBRARYFOLDERFILTER.FORCEFILESYSTEM;
 pub const LFF_STORAGEITEMS = LIBRARYFOLDERFILTER.STORAGEITEMS;
 pub const LFF_ALLITEMS = LIBRARYFOLDERFILTER.ALLITEMS;
 
-pub const LIBRARYOPTIONFLAGS = extern enum(i32) {
+pub const LIBRARYOPTIONFLAGS = enum(i32) {
     DEFAULT = 0,
     PINNEDTONAVPANE = 1,
-    MASK_ALL = 1,
+    // MASK_ALL = 1, this enum value conflicts with PINNEDTONAVPANE
 };
 pub const LOF_DEFAULT = LIBRARYOPTIONFLAGS.DEFAULT;
 pub const LOF_PINNEDTONAVPANE = LIBRARYOPTIONFLAGS.PINNEDTONAVPANE;
-pub const LOF_MASK_ALL = LIBRARYOPTIONFLAGS.MASK_ALL;
+pub const LOF_MASK_ALL = LIBRARYOPTIONFLAGS.PINNEDTONAVPANE;
 
-pub const DEFAULTSAVEFOLDERTYPE = extern enum(i32) {
+pub const DEFAULTSAVEFOLDERTYPE = enum(i32) {
     DETECT = 1,
     PRIVATE = 2,
     PUBLIC = 3,
@@ -13429,7 +13419,7 @@ pub const DSFT_DETECT = DEFAULTSAVEFOLDERTYPE.DETECT;
 pub const DSFT_PRIVATE = DEFAULTSAVEFOLDERTYPE.PRIVATE;
 pub const DSFT_PUBLIC = DEFAULTSAVEFOLDERTYPE.PUBLIC;
 
-pub const LIBRARYSAVEFLAGS = extern enum(i32) {
+pub const LIBRARYSAVEFLAGS = enum(i32) {
     FAILIFTHERE = 0,
     OVERRIDEEXISTING = 1,
     MAKEUNIQUENAME = 2,
@@ -13604,7 +13594,7 @@ pub const IShellLibrary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DEFAULT_FOLDER_MENU_RESTRICTIONS = extern enum(i32) {
+pub const DEFAULT_FOLDER_MENU_RESTRICTIONS = enum(i32) {
     DEFAULT = 0,
     NO_STATIC_VERBS = 8,
     STATIC_VERBS_ONLY = 16,
@@ -13682,7 +13672,7 @@ pub const IDefaultFolderMenuInitialize = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ACTIVATEOPTIONS = extern enum(i32) {
+pub const ACTIVATEOPTIONS = enum(i32) {
     NONE = 0,
     DESIGNMODE = 1,
     NOERRORUI = 2,
@@ -13782,7 +13772,7 @@ pub const IVirtualDesktopManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const LIBRARYMANAGEDIALOGOPTIONS = extern enum(i32) {
+pub const LIBRARYMANAGEDIALOGOPTIONS = enum(i32) {
     DEFAULT = 0,
     ALLOWUNINDEXABLENETWORKLOCATIONS = 1,
 };
@@ -13817,7 +13807,7 @@ pub const IAssocHandlerInvoker = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AHTYPE = extern enum(i32) {
+pub const AHTYPE = enum(i32) {
     UNDEFINED = 0,
     USER_APPLICATION = 8,
     ANY_APPLICATION = 16,
@@ -13931,7 +13921,7 @@ pub const IEnumAssocHandlers = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ASSOC_FILTER = extern enum(i32) {
+pub const ASSOC_FILTER = enum(i32) {
     NONE = 0,
     RECOMMENDED = 1,
 };
@@ -14081,7 +14071,7 @@ pub const IFrameworkInputPane = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MONITOR_APP_VISIBILITY = extern enum(i32) {
+pub const MONITOR_APP_VISIBILITY = enum(i32) {
     UNKNOWN = 0,
     NO_APP_VISIBLE = 1,
     APP_VISIBLE = 2,
@@ -14170,7 +14160,7 @@ pub const IAppVisibility = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PACKAGE_EXECUTION_STATE = extern enum(i32) {
+pub const PACKAGE_EXECUTION_STATE = enum(i32) {
     UNKNOWN = 0,
     RUNNING = 1,
     SUSPENDING = 2,
@@ -14411,7 +14401,7 @@ pub const ISuspensionDependencyManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AHE_TYPE = extern enum(i32) {
+pub const AHE_TYPE = enum(i32) {
     DESKTOP = 0,
     IMMERSIVE = 1,
 };
@@ -14440,7 +14430,7 @@ pub const IExecuteCommandApplicationHostEnvironment = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const EC_HOST_UI_MODE = extern enum(i32) {
+pub const EC_HOST_UI_MODE = enum(i32) {
     DESKTOP = 0,
     IMMERSIVE = 1,
     SYSTEM_LAUNCHER = 2,
@@ -14471,7 +14461,7 @@ pub const IExecuteCommandHost = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const APPLICATION_VIEW_STATE = extern enum(i32) {
+pub const APPLICATION_VIEW_STATE = enum(i32) {
     FULLSCREEN_LANDSCAPE = 0,
     FILLED = 1,
     SNAPPED = 2,
@@ -14482,7 +14472,7 @@ pub const AVS_FILLED = APPLICATION_VIEW_STATE.FILLED;
 pub const AVS_SNAPPED = APPLICATION_VIEW_STATE.SNAPPED;
 pub const AVS_FULLSCREEN_PORTRAIT = APPLICATION_VIEW_STATE.FULLSCREEN_PORTRAIT;
 
-pub const EDGE_GESTURE_KIND = extern enum(i32) {
+pub const EDGE_GESTURE_KIND = enum(i32) {
     TOUCH = 0,
     KEYBOARD = 1,
     MOUSE = 2,
@@ -14556,21 +14546,21 @@ pub const IApplicationDesignModeSettings = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NATIVE_DISPLAY_ORIENTATION = extern enum(i32) {
+pub const NATIVE_DISPLAY_ORIENTATION = enum(i32) {
     LANDSCAPE = 0,
     PORTRAIT = 1,
 };
 pub const NDO_LANDSCAPE = NATIVE_DISPLAY_ORIENTATION.LANDSCAPE;
 pub const NDO_PORTRAIT = NATIVE_DISPLAY_ORIENTATION.PORTRAIT;
 
-pub const APPLICATION_VIEW_ORIENTATION = extern enum(i32) {
+pub const APPLICATION_VIEW_ORIENTATION = enum(i32) {
     LANDSCAPE = 0,
     PORTRAIT = 1,
 };
 pub const AVO_LANDSCAPE = APPLICATION_VIEW_ORIENTATION.LANDSCAPE;
 pub const AVO_PORTRAIT = APPLICATION_VIEW_ORIENTATION.PORTRAIT;
 
-pub const ADJACENT_DISPLAY_EDGES = extern enum(i32) {
+pub const ADJACENT_DISPLAY_EDGES = enum(i32) {
     NONE = 0,
     LEFT = 1,
     RIGHT = 2,
@@ -14579,7 +14569,7 @@ pub const ADE_NONE = ADJACENT_DISPLAY_EDGES.NONE;
 pub const ADE_LEFT = ADJACENT_DISPLAY_EDGES.LEFT;
 pub const ADE_RIGHT = ADJACENT_DISPLAY_EDGES.RIGHT;
 
-pub const APPLICATION_VIEW_MIN_WIDTH = extern enum(i32) {
+pub const APPLICATION_VIEW_MIN_WIDTH = enum(i32) {
     DEFAULT = 0,
     @"320" = 1,
     @"500" = 2,
@@ -14682,7 +14672,7 @@ pub const ILaunchTargetMonitor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const APPLICATION_VIEW_SIZE_PREFERENCE = extern enum(i32) {
+pub const APPLICATION_VIEW_SIZE_PREFERENCE = enum(i32) {
     DEFAULT = 0,
     USE_LESS = 1,
     USE_HALF = 2,
@@ -14941,7 +14931,7 @@ pub const IAppActivationUIInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FLYOUT_PLACEMENT = extern enum(i32) {
+pub const FLYOUT_PLACEMENT = enum(i32) {
     DEFAULT = 0,
     ABOVE = 1,
     BELOW = 2,
@@ -15021,7 +15011,7 @@ pub const IShellIconOverlayIdentifier = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const BANNER_NOTIFICATION_EVENT = extern enum(i32) {
+pub const BANNER_NOTIFICATION_EVENT = enum(i32) {
     Rendered = 0,
     Hovered = 1,
     Closed = 2,
@@ -15063,7 +15053,7 @@ pub const IBannerNotificationHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SORT_ORDER_TYPE = extern enum(i32) {
+pub const SORT_ORDER_TYPE = enum(i32) {
     DEFAULT = 0,
     IGNORE_FOLDERNESS = 1,
 };
@@ -15200,7 +15190,7 @@ pub const IQueryCodePage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FOLDERVIEWOPTIONS = extern enum(i32) {
+pub const FOLDERVIEWOPTIONS = enum(i32) {
     DEFAULT = 0,
     VISTALAYOUT = 1,
     CUSTOMPOSITION = 2,
@@ -15248,7 +15238,7 @@ pub const IFolderViewOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _SV3CVW3_FLAGS = extern enum(i32) {
+pub const _SV3CVW3_FLAGS = enum(i32) {
     DEFAULT = 0,
     NONINTERACTIVE = 1,
     FORCEVIEWMODE = 2,
@@ -15320,14 +15310,14 @@ pub const ISearchBoxInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VPWATERMARKFLAGS = extern enum(i32) {
+pub const VPWATERMARKFLAGS = enum(i32) {
     DEFAULT = 0,
     ALPHABLEND = 1,
 };
 pub const VPWF_DEFAULT = VPWATERMARKFLAGS.DEFAULT;
 pub const VPWF_ALPHABLEND = VPWATERMARKFLAGS.ALPHABLEND;
 
-pub const VPCOLORFLAGS = extern enum(i32) {
+pub const VPCOLORFLAGS = enum(i32) {
     TEXT = 1,
     BACKGROUND = 2,
     SORTCOLUMN = 3,
@@ -15562,7 +15552,7 @@ pub const IStreamUnbufferedInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DSH_FLAGS = extern enum(i32) {
+pub const DSH_FLAGS = enum(i32) {
     T = 1,
 };
 pub const DSH_ALLOWDROPDESCRIPTIONTEXT = DSH_FLAGS.T;
@@ -16176,7 +16166,7 @@ pub const IAutoCompleteDropDown = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CDBURNINGEXTENSIONRET = extern enum(i32) {
+pub const CDBURNINGEXTENSIONRET = enum(i32) {
     DEFAULT = 0,
     DONTRUNOTHEREXTS = 1,
     STOPWIZARD = 2,
@@ -16185,7 +16175,7 @@ pub const CDBE_RET_DEFAULT = CDBURNINGEXTENSIONRET.DEFAULT;
 pub const CDBE_RET_DONTRUNOTHEREXTS = CDBURNINGEXTENSIONRET.DONTRUNOTHEREXTS;
 pub const CDBE_RET_STOPWIZARD = CDBURNINGEXTENSIONRET.STOPWIZARD;
 
-pub const _CDBE_ACTIONS = extern enum(i32) {
+pub const _CDBE_ACTIONS = enum(i32) {
     MUSIC = 1,
     DATA = 2,
     ALL = -1,
@@ -16528,7 +16518,7 @@ pub const IUseToBrowseItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NSTCSTYLE2 = extern enum(i32) {
+pub const NSTCSTYLE2 = enum(i32) {
     STCS2_DEFAULT = 0,
     STCS2_INTERRUPTNOTIFICATIONS = 1,
     STCS2_SHOWNULLSPACEMENU = 2,
@@ -16595,7 +16585,7 @@ pub const INameSpaceTreeControl2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _NSTCEHITTEST = extern enum(i32) {
+pub const _NSTCEHITTEST = enum(i32) {
     NOWHERE = 1,
     ONITEMICON = 2,
     ONITEMLABEL = 4,
@@ -16616,17 +16606,17 @@ pub const NSTCEHT_ONITEMSTATEICON = _NSTCEHITTEST.ONITEMSTATEICON;
 pub const NSTCEHT_ONITEM = _NSTCEHITTEST.ONITEM;
 pub const NSTCEHT_ONITEMTABBUTTON = _NSTCEHITTEST.ONITEMTABBUTTON;
 
-pub const _NSTCECLICKTYPE = extern enum(i32) {
+pub const _NSTCECLICKTYPE = enum(i32) {
     LBUTTON = 1,
     MBUTTON = 2,
     RBUTTON = 3,
-    BUTTON = 3,
+    // BUTTON = 3, this enum value conflicts with RBUTTON
     DBLCLICK = 4,
 };
 pub const NSTCECT_LBUTTON = _NSTCECLICKTYPE.LBUTTON;
 pub const NSTCECT_MBUTTON = _NSTCECLICKTYPE.MBUTTON;
 pub const NSTCECT_RBUTTON = _NSTCECLICKTYPE.RBUTTON;
-pub const NSTCECT_BUTTON = _NSTCECLICKTYPE.BUTTON;
+pub const NSTCECT_BUTTON = _NSTCECLICKTYPE.RBUTTON;
 pub const NSTCECT_DBLCLICK = _NSTCECLICKTYPE.DBLCLICK;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -17123,7 +17113,7 @@ pub const IDesktopGadget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UNDOCK_REASON = extern enum(i32) {
+pub const UNDOCK_REASON = enum(i32) {
     RESOLUTION_CHANGE = 0,
     MONITOR_DISCONNECT = 1,
 };
@@ -17201,7 +17191,7 @@ pub const CLSID_ShellDispatchInproc = &CLSID_ShellDispatchInproc_Value;
 const CLSID_FileSearchBand_Value = @import("../zig.zig").Guid.initString("c4ee31f3-4768-11d2-be5c-00a0c9a83da1");
 pub const CLSID_FileSearchBand = &CLSID_FileSearchBand_Value;
 
-pub const OfflineFolderStatus = extern enum(i32) {
+pub const OfflineFolderStatus = enum(i32) {
     INACTIVE = -1,
     ONLINE = 0,
     OFFLINE = 1,
@@ -17214,7 +17204,7 @@ pub const OFS_OFFLINE = OfflineFolderStatus.OFFLINE;
 pub const OFS_SERVERBACK = OfflineFolderStatus.SERVERBACK;
 pub const OFS_DIRTYCACHE = OfflineFolderStatus.DIRTYCACHE;
 
-pub const ShellFolderViewOptions = extern enum(i32) {
+pub const ShellFolderViewOptions = enum(i32) {
     SHOWALLOBJECTS = 1,
     SHOWEXTENSIONS = 2,
     SHOWCOMPCOLOR = 8,
@@ -17231,7 +17221,7 @@ pub const SFVVO_WIN95CLASSIC = ShellFolderViewOptions.WIN95CLASSIC;
 pub const SFVVO_DOUBLECLICKINWEBVIEW = ShellFolderViewOptions.DOUBLECLICKINWEBVIEW;
 pub const SFVVO_DESKTOPHTML = ShellFolderViewOptions.DESKTOPHTML;
 
-pub const ShellSpecialFolderConstants = extern enum(i32) {
+pub const ShellSpecialFolderConstants = enum(i32) {
     DESKTOP = 0,
     PROGRAMS = 2,
     CONTROLS = 3,
@@ -19003,7 +18993,7 @@ pub const IAutoComplete = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AUTOCOMPLETEOPTIONS = extern enum(i32) {
+pub const AUTOCOMPLETEOPTIONS = enum(i32) {
     NONE = 0,
     AUTOSUGGEST = 1,
     AUTOAPPEND = 2,
@@ -19056,7 +19046,7 @@ pub const IAutoComplete2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ACENUMOPTION = extern enum(i32) {
+pub const ACENUMOPTION = enum(i32) {
     NONE = 0,
     MOSTRECENTFIRST = 1,
     FIRSTUNUSED = 65536,
@@ -19330,7 +19320,7 @@ pub const IShellIconOverlay = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SHELL_LINK_DATA_FLAGS = extern enum(i32) {
+pub const SHELL_LINK_DATA_FLAGS = enum(i32) {
     DEFAULT = 0,
     HAS_ID_LIST = 1,
     HAS_LINK_INFO = 2,
@@ -19538,21 +19528,21 @@ pub const IURLSearchHook2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SHGFP_TYPE = extern enum(i32) {
+pub const SHGFP_TYPE = enum(i32) {
     CURRENT = 0,
     DEFAULT = 1,
 };
 pub const SHGFP_TYPE_CURRENT = SHGFP_TYPE.CURRENT;
 pub const SHGFP_TYPE_DEFAULT = SHGFP_TYPE.DEFAULT;
 
-pub const KNOWN_FOLDER_FLAG = extern enum(i32) {
+pub const KNOWN_FOLDER_FLAG = enum(i32) {
     DEFAULT = 0,
     FORCE_APP_DATA_REDIRECTION = 524288,
     RETURN_FILTER_REDIRECTION_TARGET = 262144,
     FORCE_PACKAGE_REDIRECTION = 131072,
     NO_PACKAGE_REDIRECTION = 65536,
-    FORCE_APPCONTAINER_REDIRECTION = 131072,
-    NO_APPCONTAINER_REDIRECTION = 65536,
+    // FORCE_APPCONTAINER_REDIRECTION = 131072, this enum value conflicts with FORCE_PACKAGE_REDIRECTION
+    // NO_APPCONTAINER_REDIRECTION = 65536, this enum value conflicts with NO_PACKAGE_REDIRECTION
     CREATE = 32768,
     DONT_VERIFY = 16384,
     DONT_UNEXPAND = 8192,
@@ -19568,8 +19558,8 @@ pub const KF_FLAG_FORCE_APP_DATA_REDIRECTION = KNOWN_FOLDER_FLAG.FORCE_APP_DATA_
 pub const KF_FLAG_RETURN_FILTER_REDIRECTION_TARGET = KNOWN_FOLDER_FLAG.RETURN_FILTER_REDIRECTION_TARGET;
 pub const KF_FLAG_FORCE_PACKAGE_REDIRECTION = KNOWN_FOLDER_FLAG.FORCE_PACKAGE_REDIRECTION;
 pub const KF_FLAG_NO_PACKAGE_REDIRECTION = KNOWN_FOLDER_FLAG.NO_PACKAGE_REDIRECTION;
-pub const KF_FLAG_FORCE_APPCONTAINER_REDIRECTION = KNOWN_FOLDER_FLAG.FORCE_APPCONTAINER_REDIRECTION;
-pub const KF_FLAG_NO_APPCONTAINER_REDIRECTION = KNOWN_FOLDER_FLAG.NO_APPCONTAINER_REDIRECTION;
+pub const KF_FLAG_FORCE_APPCONTAINER_REDIRECTION = KNOWN_FOLDER_FLAG.FORCE_PACKAGE_REDIRECTION;
+pub const KF_FLAG_NO_APPCONTAINER_REDIRECTION = KNOWN_FOLDER_FLAG.NO_PACKAGE_REDIRECTION;
 pub const KF_FLAG_CREATE = KNOWN_FOLDER_FLAG.CREATE;
 pub const KF_FLAG_DONT_VERIFY = KNOWN_FOLDER_FLAG.DONT_VERIFY;
 pub const KF_FLAG_DONT_UNEXPAND = KNOWN_FOLDER_FLAG.DONT_UNEXPAND;
@@ -19711,7 +19701,7 @@ pub const IACList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AUTOCOMPLETELISTOPTIONS = extern enum(i32) {
+pub const AUTOCOMPLETELISTOPTIONS = enum(i32) {
     NONE = 0,
     CURRENTDIR = 1,
     MYCOMPUTER = 2,
@@ -19914,7 +19904,7 @@ pub const CIDA = packed struct {
     aoffset: [1]u32,
 };
 
-pub const FD_FLAGS = extern enum(i32) {
+pub const FD_FLAGS = enum(i32) {
     CLSID = 1,
     SIZEPOINT = 2,
     ATTRIBUTES = 4,
@@ -19987,7 +19977,7 @@ pub const FILE_ATTRIBUTES_ARRAY = packed struct {
     rgdwFileAttributes: [1]u32,
 };
 
-pub const DROPIMAGETYPE = extern enum(i32) {
+pub const DROPIMAGETYPE = enum(i32) {
     INVALID = -1,
     NONE = 0,
     COPY = 1,
@@ -20072,7 +20062,7 @@ pub const IQueryInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SHARD = extern enum(i32) {
+pub const SHARD = enum(i32) {
     PIDL = 1,
     PATHA = 2,
     PATHW = 3,
@@ -20123,7 +20113,7 @@ pub const SHChangeUpdateImageIDList = packed struct {
     cbZero: u16,
 };
 
-pub const SCNRT_STATUS = extern enum(i32) {
+pub const SCNRT_STATUS = enum(i32) {
     ENABLE = 0,
     DISABLE = 1,
 };
@@ -20150,7 +20140,7 @@ pub const CABINETSTATE = packed struct {
     fMenuEnumFilter: u32,
 };
 
-pub const RESTRICTIONS = extern enum(i32) {
+pub const RESTRICTIONS = enum(i32) {
     NONE = 0,
     NORUN = 1,
     NOCLOSE = 2,
@@ -20481,7 +20471,7 @@ pub const REST_NOSECURITY = RESTRICTIONS.NOSECURITY;
 pub const REST_NOFILEASSOCIATE = RESTRICTIONS.NOFILEASSOCIATE;
 pub const REST_ALLOWCOMMENTTOGGLE = RESTRICTIONS.ALLOWCOMMENTTOGGLE;
 
-pub const OPEN_AS_INFO_FLAGS = extern enum(u32) {
+pub const OPEN_AS_INFO_FLAGS = enum(u32) {
     ALLOW_REGISTRATION = 1,
     REGISTER_EXT = 2,
     EXEC = 4,
@@ -20963,7 +20953,7 @@ pub const INamedPropertyBag = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IESHORTCUTFLAGS = extern enum(i32) {
+pub const IESHORTCUTFLAGS = enum(i32) {
     NEWBROWSER = 1,
     OPENNEWTAB = 2,
     FORCENAVIGATE = 4,
@@ -21540,14 +21530,14 @@ pub const AASHELLMENUITEM = extern struct {
     psz: PWSTR,
 };
 
-pub const DISPLAY_DEVICE_TYPE = extern enum(i32) {
+pub const DISPLAY_DEVICE_TYPE = enum(i32) {
     PRIMARY = 0,
     IMMERSIVE = 1,
 };
 pub const DEVICE_PRIMARY = DISPLAY_DEVICE_TYPE.PRIMARY;
 pub const DEVICE_IMMERSIVE = DISPLAY_DEVICE_TYPE.IMMERSIVE;
 
-pub const SCALE_CHANGE_FLAGS = extern enum(u32) {
+pub const SCALE_CHANGE_FLAGS = enum(u32) {
     VALUE_NONE = 0,
     SCALE = 1,
     PHYSICAL = 2,
@@ -21568,7 +21558,7 @@ pub const SCF_VALUE_NONE = SCALE_CHANGE_FLAGS.VALUE_NONE;
 pub const SCF_SCALE = SCALE_CHANGE_FLAGS.SCALE;
 pub const SCF_PHYSICAL = SCALE_CHANGE_FLAGS.PHYSICAL;
 
-pub const SHELL_UI_COMPONENT = extern enum(i32) {
+pub const SHELL_UI_COMPONENT = enum(i32) {
     TASKBARS = 0,
     NOTIFICATIONAREA = 1,
     DESKBAND = 2,
@@ -21746,7 +21736,7 @@ pub const SHCREATEPROCESSINFOW = extern struct {
 
 }, else => struct { } };
 
-pub const ASSOCCLASS = extern enum(i32) {
+pub const ASSOCCLASS = enum(i32) {
     SHELL_KEY = 0,
     PROGID_KEY = 1,
     PROGID_STR = 2,
@@ -21795,7 +21785,7 @@ pub const SHQUERYRBINFO = extern struct {
 
 }, else => struct { } };
 
-pub const QUERY_USER_NOTIFICATION_STATE = extern enum(i32) {
+pub const QUERY_USER_NOTIFICATION_STATE = enum(i32) {
     NOT_PRESENT = 1,
     BUSY = 2,
     RUNNING_D3D_FULL_SCREEN = 3,
@@ -21915,7 +21905,7 @@ pub const SHSTOCKICONINFO = extern struct {
 
 }, else => struct { } };
 
-pub const SHSTOCKICONID = extern enum(i32) {
+pub const SHSTOCKICONID = enum(i32) {
     DOCNOASSOC = 0,
     DOCASSOC = 1,
     APPLICATION = 2,
@@ -22150,14 +22140,14 @@ pub const NC_ADDRESS = extern struct {
     PrefixLength: u8,
 };
 
-pub const SFBS_FLAGS = extern enum(i32) {
+pub const SFBS_FLAGS = enum(i32) {
     ROUND_TO_NEAREST_DISPLAYED_DIGIT = 1,
     TRUNCATE_UNDISPLAYED_DECIMAL_DIGITS = 2,
 };
 pub const SFBS_FLAGS_ROUND_TO_NEAREST_DISPLAYED_DIGIT = SFBS_FLAGS.ROUND_TO_NEAREST_DISPLAYED_DIGIT;
 pub const SFBS_FLAGS_TRUNCATE_UNDISPLAYED_DECIMAL_DIGITS = SFBS_FLAGS.TRUNCATE_UNDISPLAYED_DECIMAL_DIGITS;
 
-pub const URL_SCHEME = extern enum(i32) {
+pub const URL_SCHEME = enum(i32) {
     INVALID = -1,
     UNKNOWN = 0,
     FTP = 1,
@@ -22218,7 +22208,7 @@ pub const URL_SCHEME_SEARCH = URL_SCHEME.SEARCH;
 pub const URL_SCHEME_KNOWNFOLDER = URL_SCHEME.KNOWNFOLDER;
 pub const URL_SCHEME_MAXVALUE = URL_SCHEME.MAXVALUE;
 
-pub const URL_PART = extern enum(i32) {
+pub const URL_PART = enum(i32) {
     NONE = 0,
     SCHEME = 1,
     HOSTNAME = 2,
@@ -22235,7 +22225,7 @@ pub const URL_PART_PASSWORD = URL_PART.PASSWORD;
 pub const URL_PART_PORT = URL_PART.PORT;
 pub const URL_PART_QUERY = URL_PART.QUERY;
 
-pub const URLIS = extern enum(i32) {
+pub const URLIS = enum(i32) {
     URL = 0,
     OPAQUE = 1,
     NOHISTORY = 2,
@@ -22270,7 +22260,7 @@ pub const PARSEDURLW = extern struct {
     nScheme: u32,
 };
 
-pub const SHREGDEL_FLAGS = extern enum(i32) {
+pub const SHREGDEL_FLAGS = enum(i32) {
     DEFAULT = 0,
     HKCU = 1,
     HKLM = 16,
@@ -22281,7 +22271,7 @@ pub const SHREGDEL_HKCU = SHREGDEL_FLAGS.HKCU;
 pub const SHREGDEL_HKLM = SHREGDEL_FLAGS.HKLM;
 pub const SHREGDEL_BOTH = SHREGDEL_FLAGS.BOTH;
 
-pub const SHREGENUM_FLAGS = extern enum(i32) {
+pub const SHREGENUM_FLAGS = enum(i32) {
     DEFAULT = 0,
     HKCU = 1,
     HKLM = 16,
@@ -22292,7 +22282,7 @@ pub const SHREGENUM_HKCU = SHREGENUM_FLAGS.HKCU;
 pub const SHREGENUM_HKLM = SHREGENUM_FLAGS.HKLM;
 pub const SHREGENUM_BOTH = SHREGENUM_FLAGS.BOTH;
 
-pub const ASSOCSTR = extern enum(i32) {
+pub const ASSOCSTR = enum(i32) {
     COMMAND = 1,
     EXECUTABLE = 2,
     FRIENDLYDOCNAME = 3,
@@ -22343,7 +22333,7 @@ pub const ASSOCSTR_APPPUBLISHER = ASSOCSTR.APPPUBLISHER;
 pub const ASSOCSTR_APPICONREFERENCE = ASSOCSTR.APPICONREFERENCE;
 pub const ASSOCSTR_MAX = ASSOCSTR.MAX;
 
-pub const ASSOCKEY = extern enum(i32) {
+pub const ASSOCKEY = enum(i32) {
     SHELLEXECCLASS = 1,
     APP = 2,
     CLASS = 3,
@@ -22356,7 +22346,7 @@ pub const ASSOCKEY_CLASS = ASSOCKEY.CLASS;
 pub const ASSOCKEY_BASECLASS = ASSOCKEY.BASECLASS;
 pub const ASSOCKEY_MAX = ASSOCKEY.MAX;
 
-pub const ASSOCDATA = extern enum(i32) {
+pub const ASSOCDATA = enum(i32) {
     MSIDESCRIPTOR = 1,
     NOACTIVATEHANDLER = 2,
     UNUSED1 = 3,
@@ -22373,12 +22363,12 @@ pub const ASSOCDATA_EDITFLAGS = ASSOCDATA.EDITFLAGS;
 pub const ASSOCDATA_VALUE = ASSOCDATA.VALUE;
 pub const ASSOCDATA_MAX = ASSOCDATA.MAX;
 
-pub const ASSOCENUM = extern enum(i32) {
+pub const ASSOCENUM = enum(i32) {
     E = 0,
 };
 pub const ASSOCENUM_NONE = ASSOCENUM.E;
 
-pub const FILETYPEATTRIBUTEFLAGS = extern enum(i32) {
+pub const FILETYPEATTRIBUTEFLAGS = enum(i32) {
     None = 0,
     Exclude = 1,
     Show = 2,
@@ -22496,7 +22486,7 @@ pub const IQueryAssociations = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SHGLOBALCOUNTER = extern enum(i32) {
+pub const SHGLOBALCOUNTER = enum(i32) {
     GLOBALCOUNTER_SEARCHMANAGER = 0,
     GLOBALCOUNTER_SEARCHOPTIONS = 1,
     GLOBALCOUNTER_FOLDERSETTINGSCHANGE = 2,
@@ -22642,7 +22632,7 @@ pub const DLLGETVERSIONPROC = fn(
     param0: *DLLVERSIONINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const APPINFODATAFLAGS = extern enum(i32) {
+pub const APPINFODATAFLAGS = enum(i32) {
     DISPLAYNAME = 1,
     VERSION = 2,
     PUBLISHER = 4,
@@ -22704,7 +22694,7 @@ pub const APPINFODATA = extern struct {
     pszUpdateInfoUrl: PWSTR,
 };
 
-pub const APPACTIONFLAGS = extern enum(i32) {
+pub const APPACTIONFLAGS = enum(i32) {
     INSTALL = 1,
     UNINSTALL = 2,
     MODIFY = 4,
@@ -22785,7 +22775,7 @@ pub const IShellApp = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PUBAPPINFOFLAGS = extern enum(i32) {
+pub const PUBAPPINFOFLAGS = enum(i32) {
     SOURCE = 1,
     ASSIGNEDTIME = 2,
     PUBLISHEDTIME = 4,
@@ -22992,7 +22982,7 @@ pub const CLSID_WinBioCredentialProvider = &CLSID_WinBioCredentialProvider_Value
 const CLSID_V1WinBioCredentialProvider_Value = @import("../zig.zig").Guid.initString("ac3ac249-e820-4343-a65b-377ac634dc09");
 pub const CLSID_V1WinBioCredentialProvider = &CLSID_V1WinBioCredentialProvider_Value;
 
-pub const CREDENTIAL_PROVIDER_USAGE_SCENARIO = extern enum(i32) {
+pub const CREDENTIAL_PROVIDER_USAGE_SCENARIO = enum(i32) {
     INVALID = 0,
     LOGON = 1,
     UNLOCK_WORKSTATION = 2,
@@ -23007,7 +22997,7 @@ pub const CPUS_CHANGE_PASSWORD = CREDENTIAL_PROVIDER_USAGE_SCENARIO.CHANGE_PASSW
 pub const CPUS_CREDUI = CREDENTIAL_PROVIDER_USAGE_SCENARIO.CREDUI;
 pub const CPUS_PLAP = CREDENTIAL_PROVIDER_USAGE_SCENARIO.PLAP;
 
-pub const CREDENTIAL_PROVIDER_FIELD_TYPE = extern enum(i32) {
+pub const CREDENTIAL_PROVIDER_FIELD_TYPE = enum(i32) {
     INVALID = 0,
     LARGE_TEXT = 1,
     SMALL_TEXT = 2,
@@ -23030,7 +23020,7 @@ pub const CPFT_CHECKBOX = CREDENTIAL_PROVIDER_FIELD_TYPE.CHECKBOX;
 pub const CPFT_COMBOBOX = CREDENTIAL_PROVIDER_FIELD_TYPE.COMBOBOX;
 pub const CPFT_SUBMIT_BUTTON = CREDENTIAL_PROVIDER_FIELD_TYPE.SUBMIT_BUTTON;
 
-pub const CREDENTIAL_PROVIDER_FIELD_STATE = extern enum(i32) {
+pub const CREDENTIAL_PROVIDER_FIELD_STATE = enum(i32) {
     HIDDEN = 0,
     DISPLAY_IN_SELECTED_TILE = 1,
     DISPLAY_IN_DESELECTED_TILE = 2,
@@ -23041,7 +23031,7 @@ pub const CPFS_DISPLAY_IN_SELECTED_TILE = CREDENTIAL_PROVIDER_FIELD_STATE.DISPLA
 pub const CPFS_DISPLAY_IN_DESELECTED_TILE = CREDENTIAL_PROVIDER_FIELD_STATE.DISPLAY_IN_DESELECTED_TILE;
 pub const CPFS_DISPLAY_IN_BOTH = CREDENTIAL_PROVIDER_FIELD_STATE.DISPLAY_IN_BOTH;
 
-pub const CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE = extern enum(i32) {
+pub const CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE = enum(i32) {
     NONE = 0,
     READONLY = 1,
     DISABLED = 2,
@@ -23059,7 +23049,7 @@ pub const CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR = extern struct {
     guidFieldType: Guid,
 };
 
-pub const CREDENTIAL_PROVIDER_GET_SERIALIZATION_RESPONSE = extern enum(i32) {
+pub const CREDENTIAL_PROVIDER_GET_SERIALIZATION_RESPONSE = enum(i32) {
     NO_CREDENTIAL_NOT_FINISHED = 0,
     NO_CREDENTIAL_FINISHED = 1,
     RETURN_CREDENTIAL_FINISHED = 2,
@@ -23070,7 +23060,7 @@ pub const CPGSR_NO_CREDENTIAL_FINISHED = CREDENTIAL_PROVIDER_GET_SERIALIZATION_R
 pub const CPGSR_RETURN_CREDENTIAL_FINISHED = CREDENTIAL_PROVIDER_GET_SERIALIZATION_RESPONSE.RETURN_CREDENTIAL_FINISHED;
 pub const CPGSR_RETURN_NO_CREDENTIAL_FINISHED = CREDENTIAL_PROVIDER_GET_SERIALIZATION_RESPONSE.RETURN_NO_CREDENTIAL_FINISHED;
 
-pub const CREDENTIAL_PROVIDER_STATUS_ICON = extern enum(i32) {
+pub const CREDENTIAL_PROVIDER_STATUS_ICON = enum(i32) {
     NONE = 0,
     ERROR = 1,
     WARNING = 2,
@@ -23088,7 +23078,7 @@ pub const CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION = extern struct {
     rgbSerialization: *u8,
 };
 
-pub const CREDENTIAL_PROVIDER_ACCOUNT_OPTIONS = extern enum(i32) {
+pub const CREDENTIAL_PROVIDER_ACCOUNT_OPTIONS = enum(i32) {
     NONE = 0,
     EMPTY_LOCAL = 1,
     EMPTY_CONNECTED = 2,
@@ -23097,7 +23087,7 @@ pub const CPAO_NONE = CREDENTIAL_PROVIDER_ACCOUNT_OPTIONS.NONE;
 pub const CPAO_EMPTY_LOCAL = CREDENTIAL_PROVIDER_ACCOUNT_OPTIONS.EMPTY_LOCAL;
 pub const CPAO_EMPTY_CONNECTED = CREDENTIAL_PROVIDER_ACCOUNT_OPTIONS.EMPTY_CONNECTED;
 
-pub const CREDENTIAL_PROVIDER_CREDENTIAL_FIELD_OPTIONS = extern enum(i32) {
+pub const CREDENTIAL_PROVIDER_CREDENTIAL_FIELD_OPTIONS = enum(i32) {
     NONE = 0,
     ENABLE_PASSWORD_REVEAL = 1,
     IS_EMAIL_ADDRESS = 2,
@@ -23840,7 +23830,7 @@ pub const ISyncMgrHandlerCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYNCMGR_HANDLER_CAPABILITIES = extern enum(i32) {
+pub const SYNCMGR_HANDLER_CAPABILITIES = enum(i32) {
     NONE = 0,
     PROVIDES_ICON = 1,
     EVENT_STORE = 2,
@@ -23867,7 +23857,7 @@ pub const SYNCMGR_HCM_QUERY_BEFORE_ENABLE = SYNCMGR_HANDLER_CAPABILITIES.QUERY_B
 pub const SYNCMGR_HCM_QUERY_BEFORE_DISABLE = SYNCMGR_HANDLER_CAPABILITIES.QUERY_BEFORE_DISABLE;
 pub const SYNCMGR_HCM_VALID_MASK = SYNCMGR_HANDLER_CAPABILITIES.VALID_MASK;
 
-pub const SYNCMGR_HANDLER_POLICIES = extern enum(i32) {
+pub const SYNCMGR_HANDLER_POLICIES = enum(i32) {
     NONE = 0,
     PREVENT_ACTIVATE = 1,
     PREVENT_DEACTIVATE = 2,
@@ -23986,15 +23976,15 @@ pub const ISyncMgrHandler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYNCMGR_HANDLER_TYPE = extern enum(i32) {
+pub const SYNCMGR_HANDLER_TYPE = enum(i32) {
     UNSPECIFIED = 0,
     APPLICATION = 1,
     DEVICE = 2,
     FOLDER = 3,
     SERVICE = 4,
     COMPUTER = 5,
-    MIN = 0,
-    MAX = 5,
+    // MIN = 0, this enum value conflicts with UNSPECIFIED
+    // MAX = 5, this enum value conflicts with COMPUTER
 };
 pub const SYNCMGR_HT_UNSPECIFIED = SYNCMGR_HANDLER_TYPE.UNSPECIFIED;
 pub const SYNCMGR_HT_APPLICATION = SYNCMGR_HANDLER_TYPE.APPLICATION;
@@ -24002,8 +23992,8 @@ pub const SYNCMGR_HT_DEVICE = SYNCMGR_HANDLER_TYPE.DEVICE;
 pub const SYNCMGR_HT_FOLDER = SYNCMGR_HANDLER_TYPE.FOLDER;
 pub const SYNCMGR_HT_SERVICE = SYNCMGR_HANDLER_TYPE.SERVICE;
 pub const SYNCMGR_HT_COMPUTER = SYNCMGR_HANDLER_TYPE.COMPUTER;
-pub const SYNCMGR_HT_MIN = SYNCMGR_HANDLER_TYPE.MIN;
-pub const SYNCMGR_HT_MAX = SYNCMGR_HANDLER_TYPE.MAX;
+pub const SYNCMGR_HT_MIN = SYNCMGR_HANDLER_TYPE.UNSPECIFIED;
+pub const SYNCMGR_HT_MAX = SYNCMGR_HANDLER_TYPE.COMPUTER;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrHandlerInfo_Value = @import("../zig.zig").Guid.initString("4ff1d798-ecf7-4524-aa81-1e362a0aef3a");
@@ -24111,7 +24101,7 @@ pub const ISyncMgrSyncItemContainer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYNCMGR_ITEM_CAPABILITIES = extern enum(i32) {
+pub const SYNCMGR_ITEM_CAPABILITIES = enum(i32) {
     NONE = 0,
     PROVIDES_ICON = 1,
     EVENT_STORE = 2,
@@ -24134,7 +24124,7 @@ pub const SYNCMGR_ICM_QUERY_BEFORE_DISABLE = SYNCMGR_ITEM_CAPABILITIES.QUERY_BEF
 pub const SYNCMGR_ICM_QUERY_BEFORE_DELETE = SYNCMGR_ITEM_CAPABILITIES.QUERY_BEFORE_DELETE;
 pub const SYNCMGR_ICM_VALID_MASK = SYNCMGR_ITEM_CAPABILITIES.VALID_MASK;
 
-pub const SYNCMGR_ITEM_POLICIES = extern enum(i32) {
+pub const SYNCMGR_ITEM_POLICIES = enum(i32) {
     NONE = 0,
     PREVENT_ENABLE = 1,
     PREVENT_DISABLE = 2,
@@ -24341,14 +24331,14 @@ pub const IEnumSyncMgrSyncItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYNCMGR_PROGRESS_STATUS = extern enum(i32) {
+pub const SYNCMGR_PROGRESS_STATUS = enum(i32) {
     UPDATING = 1,
     UPDATING_INDETERMINATE = 2,
     SUCCEEDED = 3,
     FAILED = 4,
     CANCELED = 5,
     DISCONNECTED = 6,
-    MAX = 6,
+    // MAX = 6, this enum value conflicts with DISCONNECTED
 };
 pub const SYNCMGR_PS_UPDATING = SYNCMGR_PROGRESS_STATUS.UPDATING;
 pub const SYNCMGR_PS_UPDATING_INDETERMINATE = SYNCMGR_PROGRESS_STATUS.UPDATING_INDETERMINATE;
@@ -24356,36 +24346,36 @@ pub const SYNCMGR_PS_SUCCEEDED = SYNCMGR_PROGRESS_STATUS.SUCCEEDED;
 pub const SYNCMGR_PS_FAILED = SYNCMGR_PROGRESS_STATUS.FAILED;
 pub const SYNCMGR_PS_CANCELED = SYNCMGR_PROGRESS_STATUS.CANCELED;
 pub const SYNCMGR_PS_DISCONNECTED = SYNCMGR_PROGRESS_STATUS.DISCONNECTED;
-pub const SYNCMGR_PS_MAX = SYNCMGR_PROGRESS_STATUS.MAX;
+pub const SYNCMGR_PS_MAX = SYNCMGR_PROGRESS_STATUS.DISCONNECTED;
 
-pub const SYNCMGR_CANCEL_REQUEST = extern enum(i32) {
+pub const SYNCMGR_CANCEL_REQUEST = enum(i32) {
     NONE = 0,
     CANCEL_ITEM = 1,
     CANCEL_ALL = 2,
-    MAX = 2,
+    // MAX = 2, this enum value conflicts with CANCEL_ALL
 };
 pub const SYNCMGR_CR_NONE = SYNCMGR_CANCEL_REQUEST.NONE;
 pub const SYNCMGR_CR_CANCEL_ITEM = SYNCMGR_CANCEL_REQUEST.CANCEL_ITEM;
 pub const SYNCMGR_CR_CANCEL_ALL = SYNCMGR_CANCEL_REQUEST.CANCEL_ALL;
-pub const SYNCMGR_CR_MAX = SYNCMGR_CANCEL_REQUEST.MAX;
+pub const SYNCMGR_CR_MAX = SYNCMGR_CANCEL_REQUEST.CANCEL_ALL;
 
-pub const SYNCMGR_EVENT_LEVEL = extern enum(i32) {
+pub const SYNCMGR_EVENT_LEVEL = enum(i32) {
     INFORMATION = 1,
     WARNING = 2,
     ERROR = 3,
-    MAX = 3,
+    // MAX = 3, this enum value conflicts with ERROR
 };
 pub const SYNCMGR_EL_INFORMATION = SYNCMGR_EVENT_LEVEL.INFORMATION;
 pub const SYNCMGR_EL_WARNING = SYNCMGR_EVENT_LEVEL.WARNING;
 pub const SYNCMGR_EL_ERROR = SYNCMGR_EVENT_LEVEL.ERROR;
-pub const SYNCMGR_EL_MAX = SYNCMGR_EVENT_LEVEL.MAX;
+pub const SYNCMGR_EL_MAX = SYNCMGR_EVENT_LEVEL.ERROR;
 
-pub const SYNCMGR_EVENT_FLAGS = extern enum(i32) {
+pub const SYNCMGR_EVENT_FLAGS = enum(i32) {
     NONE = 0,
-    VALID = 0,
+    // VALID = 0, this enum value conflicts with NONE
 };
 pub const SYNCMGR_EF_NONE = SYNCMGR_EVENT_FLAGS.NONE;
-pub const SYNCMGR_EF_VALID = SYNCMGR_EVENT_FLAGS.VALID;
+pub const SYNCMGR_EF_VALID = SYNCMGR_EVENT_FLAGS.NONE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrSessionCreator_Value = @import("../zig.zig").Guid.initString("17f48517-f305-4321-a08d-b25a834918fd");
@@ -24611,38 +24601,38 @@ pub const ISyncMgrSyncResult = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYNCMGR_CONTROL_FLAGS = extern enum(i32) {
+pub const SYNCMGR_CONTROL_FLAGS = enum(i32) {
     NONE = 0,
-    NOWAIT = 0,
+    // NOWAIT = 0, this enum value conflicts with NONE
     WAIT = 1,
     NOUI = 2,
     VALID = 3,
 };
 pub const SYNCMGR_CF_NONE = SYNCMGR_CONTROL_FLAGS.NONE;
-pub const SYNCMGR_CF_NOWAIT = SYNCMGR_CONTROL_FLAGS.NOWAIT;
+pub const SYNCMGR_CF_NOWAIT = SYNCMGR_CONTROL_FLAGS.NONE;
 pub const SYNCMGR_CF_WAIT = SYNCMGR_CONTROL_FLAGS.WAIT;
 pub const SYNCMGR_CF_NOUI = SYNCMGR_CONTROL_FLAGS.NOUI;
 pub const SYNCMGR_CF_VALID = SYNCMGR_CONTROL_FLAGS.VALID;
 
-pub const SYNCMGR_SYNC_CONTROL_FLAGS = extern enum(i32) {
+pub const SYNCMGR_SYNC_CONTROL_FLAGS = enum(i32) {
     NONE = 0,
     IGNORE_IF_ALREADY_SYNCING = 1,
-    VALID = 1,
+    // VALID = 1, this enum value conflicts with IGNORE_IF_ALREADY_SYNCING
 };
 pub const SYNCMGR_SCF_NONE = SYNCMGR_SYNC_CONTROL_FLAGS.NONE;
 pub const SYNCMGR_SCF_IGNORE_IF_ALREADY_SYNCING = SYNCMGR_SYNC_CONTROL_FLAGS.IGNORE_IF_ALREADY_SYNCING;
-pub const SYNCMGR_SCF_VALID = SYNCMGR_SYNC_CONTROL_FLAGS.VALID;
+pub const SYNCMGR_SCF_VALID = SYNCMGR_SYNC_CONTROL_FLAGS.IGNORE_IF_ALREADY_SYNCING;
 
-pub const SYNCMGR_UPDATE_REASON = extern enum(i32) {
+pub const SYNCMGR_UPDATE_REASON = enum(i32) {
     ADDED = 0,
     CHANGED = 1,
     REMOVED = 2,
-    MAX = 2,
+    // MAX = 2, this enum value conflicts with REMOVED
 };
 pub const SYNCMGR_UR_ADDED = SYNCMGR_UPDATE_REASON.ADDED;
 pub const SYNCMGR_UR_CHANGED = SYNCMGR_UPDATE_REASON.CHANGED;
 pub const SYNCMGR_UR_REMOVED = SYNCMGR_UPDATE_REASON.REMOVED;
-pub const SYNCMGR_UR_MAX = SYNCMGR_UPDATE_REASON.MAX;
+pub const SYNCMGR_UR_MAX = SYNCMGR_UPDATE_REASON.REMOVED;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISyncMgrControl_Value = @import("../zig.zig").Guid.initString("9b63616c-36b2-46bc-959f-c1593952d19b");
@@ -25112,7 +25102,7 @@ pub const IEnumSyncMgrConflict = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYNCMGR_CONFLICT_ITEM_TYPE = extern enum(i32) {
+pub const SYNCMGR_CONFLICT_ITEM_TYPE = enum(i32) {
     UPDATED = 1,
     DELETED = 2,
 };
@@ -25175,7 +25165,7 @@ pub const ISyncMgrConflict = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYNCMGR_RESOLUTION_ABILITIES = extern enum(i32) {
+pub const SYNCMGR_RESOLUTION_ABILITIES = enum(i32) {
     KEEPOTHER = 1,
     KEEPRECENT = 2,
     REMOVEFROMSYNCSET = 4,
@@ -25190,7 +25180,7 @@ pub const SYNCMGR_RA_KEEP_SINGLE = SYNCMGR_RESOLUTION_ABILITIES.KEEP_SINGLE;
 pub const SYNCMGR_RA_KEEP_MULTIPLE = SYNCMGR_RESOLUTION_ABILITIES.KEEP_MULTIPLE;
 pub const SYNCMGR_RA_VALID = SYNCMGR_RESOLUTION_ABILITIES.VALID;
 
-pub const SYNCMGR_RESOLUTION_FEEDBACK = extern enum(i32) {
+pub const SYNCMGR_RESOLUTION_FEEDBACK = enum(i32) {
     CONTINUE = 0,
     REFRESH = 1,
     CANCEL = 2,
@@ -25278,7 +25268,7 @@ pub const ISyncMgrConflictPresenter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYNCMGR_PRESENTER_NEXT_STEP = extern enum(i32) {
+pub const SYNCMGR_PRESENTER_NEXT_STEP = enum(i32) {
     CONTINUE = 0,
     DEFAULT = 1,
     CANCEL = 2,
@@ -25287,7 +25277,7 @@ pub const SYNCMGR_PNS_CONTINUE = SYNCMGR_PRESENTER_NEXT_STEP.CONTINUE;
 pub const SYNCMGR_PNS_DEFAULT = SYNCMGR_PRESENTER_NEXT_STEP.DEFAULT;
 pub const SYNCMGR_PNS_CANCEL = SYNCMGR_PRESENTER_NEXT_STEP.CANCEL;
 
-pub const SYNCMGR_PRESENTER_CHOICE = extern enum(i32) {
+pub const SYNCMGR_PRESENTER_CHOICE = enum(i32) {
     NO_CHOICE = 0,
     KEEP_ONE = 1,
     KEEP_MULTIPLE = 2,
@@ -25536,9 +25526,9 @@ pub const CLSID_LocalThumbnailCache = &CLSID_LocalThumbnailCache_Value;
 const CLSID_SharedBitmap_Value = @import("../zig.zig").Guid.initString("4db26476-6787-4046-b836-e8412a9e8a27");
 pub const CLSID_SharedBitmap = &CLSID_SharedBitmap_Value;
 
-pub const WTS_FLAGS = extern enum(i32) {
+pub const WTS_FLAGS = enum(i32) {
     NONE = 0,
-    EXTRACT = 0,
+    // EXTRACT = 0, this enum value conflicts with NONE
     INCACHEONLY = 1,
     FASTEXTRACT = 2,
     FORCEEXTRACTION = 4,
@@ -25556,7 +25546,7 @@ pub const WTS_FLAGS = extern enum(i32) {
     SCALEUP = 65536,
 };
 pub const WTS_NONE = WTS_FLAGS.NONE;
-pub const WTS_EXTRACT = WTS_FLAGS.EXTRACT;
+pub const WTS_EXTRACT = WTS_FLAGS.NONE;
 pub const WTS_INCACHEONLY = WTS_FLAGS.INCACHEONLY;
 pub const WTS_FASTEXTRACT = WTS_FLAGS.FASTEXTRACT;
 pub const WTS_FORCEEXTRACTION = WTS_FLAGS.FORCEEXTRACTION;
@@ -25573,7 +25563,7 @@ pub const WTS_WIDETHUMBNAILS = WTS_FLAGS.WIDETHUMBNAILS;
 pub const WTS_IDEALCACHESIZEONLY = WTS_FLAGS.IDEALCACHESIZEONLY;
 pub const WTS_SCALEUP = WTS_FLAGS.SCALEUP;
 
-pub const WTS_CACHEFLAGS = extern enum(i32) {
+pub const WTS_CACHEFLAGS = enum(i32) {
     DEFAULT = 0,
     LOWQUALITY = 1,
     CACHED = 2,
@@ -25582,7 +25572,7 @@ pub const WTS_DEFAULT = WTS_CACHEFLAGS.DEFAULT;
 pub const WTS_LOWQUALITY = WTS_CACHEFLAGS.LOWQUALITY;
 pub const WTS_CACHED = WTS_CACHEFLAGS.CACHED;
 
-pub const WTS_CONTEXTFLAGS = extern enum(i32) {
+pub const WTS_CONTEXTFLAGS = enum(i32) {
     DEFAULT = 0,
     APPSTYLE = 1,
     SQUARE = 2,
@@ -25595,7 +25585,7 @@ pub const WTSCF_SQUARE = WTS_CONTEXTFLAGS.SQUARE;
 pub const WTSCF_WIDE = WTS_CONTEXTFLAGS.WIDE;
 pub const WTSCF_FAST = WTS_CONTEXTFLAGS.FAST;
 
-pub const WTS_ALPHATYPE = extern enum(i32) {
+pub const WTS_ALPHATYPE = enum(i32) {
     UNKNOWN = 0,
     RGB = 1,
     ARGB = 2,
@@ -26172,7 +26162,7 @@ pub const IStorageProviderHandler = extern struct {
 const CLSID_SyncMgr_Value = @import("../zig.zig").Guid.initString("6295df27-35ee-11d1-8707-00c04fd93327");
 pub const CLSID_SyncMgr = &CLSID_SyncMgr_Value;
 
-pub const SYNCMGRSTATUS = extern enum(i32) {
+pub const SYNCMGRSTATUS = enum(i32) {
     STOPPED = 0,
     SKIPPED = 1,
     PENDING = 2,
@@ -26204,18 +26194,18 @@ pub const SYNCMGRPROGRESSITEM = extern struct {
     iMaxValue: i32,
 };
 
-pub const SYNCMGRLOGLEVEL = extern enum(i32) {
+pub const SYNCMGRLOGLEVEL = enum(i32) {
     INFORMATION = 1,
     WARNING = 2,
     ERROR = 3,
-    LOGLEVELMAX = 3,
+    // LOGLEVELMAX = 3, this enum value conflicts with ERROR
 };
 pub const SYNCMGRLOGLEVEL_INFORMATION = SYNCMGRLOGLEVEL.INFORMATION;
 pub const SYNCMGRLOGLEVEL_WARNING = SYNCMGRLOGLEVEL.WARNING;
 pub const SYNCMGRLOGLEVEL_ERROR = SYNCMGRLOGLEVEL.ERROR;
-pub const SYNCMGRLOGLEVEL_LOGLEVELMAX = SYNCMGRLOGLEVEL.LOGLEVELMAX;
+pub const SYNCMGRLOGLEVEL_LOGLEVELMAX = SYNCMGRLOGLEVEL.ERROR;
 
-pub const SYNCMGRERRORFLAGS = extern enum(i32) {
+pub const SYNCMGRERRORFLAGS = enum(i32) {
     T = 1,
 };
 pub const SYNCMGRERRORFLAG_ENABLEJUMPTEXT = SYNCMGRERRORFLAGS.T;
@@ -26321,7 +26311,7 @@ pub const ISyncMgrSynchronizeCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYNCMGRITEMFLAGS = extern enum(i32) {
+pub const SYNCMGRITEMFLAGS = enum(i32) {
     HASPROPERTIES = 1,
     TEMPORARY = 2,
     ROAMINGUSER = 4,
@@ -26393,7 +26383,7 @@ pub const ISyncMgrEnumItems = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYNCMGRFLAG = extern enum(i32) {
+pub const SYNCMGRFLAG = enum(i32) {
     CONNECT = 1,
     PENDINGDISCONNECT = 2,
     MANUAL = 3,
@@ -26414,7 +26404,7 @@ pub const SYNCMGRFLAG_EVENTMASK = SYNCMGRFLAG.EVENTMASK;
 pub const SYNCMGRFLAG_SETTINGS = SYNCMGRFLAG.SETTINGS;
 pub const SYNCMGRFLAG_MAYBOTHERUSER = SYNCMGRFLAG.MAYBOTHERUSER;
 
-pub const SYNCMGRHANDLERFLAGS = extern enum(i32) {
+pub const SYNCMGRHANDLERFLAGS = enum(i32) {
     HASPROPERTIES = 1,
     MAYESTABLISHCONNECTION = 2,
     ALWAYSLISTHANDLER = 4,
@@ -26432,7 +26422,7 @@ pub const SYNCMGRHANDLERINFO = extern struct {
     wszHandlerName: [32]u16,
 };
 
-pub const SYNCMGRITEMSTATE = extern enum(i32) {
+pub const SYNCMGRITEMSTATE = enum(i32) {
     UNCHECKED = 0,
     CHECKED = 1,
 };
@@ -26544,7 +26534,7 @@ pub const ISyncMgrSynchronize = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYNCMGRINVOKEFLAGS = extern enum(i32) {
+pub const SYNCMGRINVOKEFLAGS = enum(i32) {
     STARTSYNC = 2,
     MINIMIZED = 4,
 };
@@ -26583,7 +26573,7 @@ pub const ISyncMgrSynchronizeInvoke = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYNCMGRREGISTERFLAGS = extern enum(i32) {
+pub const SYNCMGRREGISTERFLAGS = enum(i32) {
     CONNECT = 1,
     PENDINGDISCONNECT = 2,
     IDLE = 4,
@@ -26637,7 +26627,7 @@ pub const ISyncMgrRegister = extern struct {
 const CLSID_ThumbnailStreamCache_Value = @import("../zig.zig").Guid.initString("cbe0fed3-4b91-4e90-8354-8a8c84ec6872");
 pub const CLSID_ThumbnailStreamCache = &CLSID_ThumbnailStreamCache_Value;
 
-pub const ThumbnailStreamCacheOptions = extern enum(i32) {
+pub const ThumbnailStreamCacheOptions = enum(i32) {
     ExtractIfNotCached = 0,
     ReturnOnlyIfCached = 1,
     ResizeThumbnail = 2,
@@ -26813,7 +26803,7 @@ pub const IEnumTravelLogEntry = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TLENUMF = extern enum(i32) {
+pub const TLENUMF = enum(i32) {
     RELATIVE_INCLUDE_CURRENT = 1,
     RELATIVE_BACK = 16,
     RELATIVE_FORE = 32,
@@ -26908,7 +26898,7 @@ pub const ITravelLogStg = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _HLSR_NOREDEF10 = extern enum(i32) {
+pub const _HLSR_NOREDEF10 = enum(i32) {
     HOME = 0,
     SEARCHPAGE = 1,
     HISTORYFOLDER = 2,
@@ -26917,7 +26907,7 @@ pub const HLSR_HOME = _HLSR_NOREDEF10.HOME;
 pub const HLSR_SEARCHPAGE = _HLSR_NOREDEF10.SEARCHPAGE;
 pub const HLSR_HISTORYFOLDER = _HLSR_NOREDEF10.HISTORYFOLDER;
 
-pub const _HLSHORTCUTF__NOREDEF10 = extern enum(i32) {
+pub const _HLSHORTCUTF__NOREDEF10 = enum(i32) {
     DEFAULT = 0,
     DONTACTUALLYCREATE = 1,
     USEFILENAMEFROMFRIENDLYNAME = 2,
@@ -26930,14 +26920,14 @@ pub const HLSHORTCUTF_USEFILENAMEFROMFRIENDLYNAME = _HLSHORTCUTF__NOREDEF10.USEF
 pub const HLSHORTCUTF_USEUNIQUEFILENAME = _HLSHORTCUTF__NOREDEF10.USEUNIQUEFILENAME;
 pub const HLSHORTCUTF_MAYUSEEXISTINGSHORTCUT = _HLSHORTCUTF__NOREDEF10.MAYUSEEXISTINGSHORTCUT;
 
-pub const _HLTRANSLATEF_NOREDEF10 = extern enum(i32) {
+pub const _HLTRANSLATEF_NOREDEF10 = enum(i32) {
     EFAULT = 0,
     ONTAPPLYDEFAULTPREFIX = 1,
 };
 pub const HLTRANSLATEF_DEFAULT = _HLTRANSLATEF_NOREDEF10.EFAULT;
 pub const HLTRANSLATEF_DONTAPPLYDEFAULTPREFIX = _HLTRANSLATEF_NOREDEF10.ONTAPPLYDEFAULTPREFIX;
 
-pub const HLNF = extern enum(u32) {
+pub const HLNF = enum(u32) {
     INTERNALJUMP = 1,
     OPENINNEWWINDOW = 2,
     NAVIGATINGBACK = 4,
@@ -26970,7 +26960,7 @@ pub const HLNF_NAVIGATINGFORWARD = HLNF.NAVIGATINGFORWARD;
 pub const HLNF_NAVIGATINGTOSTACKITEM = HLNF.NAVIGATINGTOSTACKITEM;
 pub const HLNF_CREATENOHISTORY = HLNF.CREATENOHISTORY;
 
-pub const HLINKGETREF = extern enum(i32) {
+pub const HLINKGETREF = enum(i32) {
     DEFAULT = 0,
     ABSOLUTE = 1,
     RELATIVE = 2,
@@ -26979,7 +26969,7 @@ pub const HLINKGETREF_DEFAULT = HLINKGETREF.DEFAULT;
 pub const HLINKGETREF_ABSOLUTE = HLINKGETREF.ABSOLUTE;
 pub const HLINKGETREF_RELATIVE = HLINKGETREF.RELATIVE;
 
-pub const HLFNAMEF = extern enum(u32) {
+pub const HLFNAMEF = enum(u32) {
     DEFAULT = 0,
     TRYCACHE = 1,
     TRYPRETTYTARGET = 2,
@@ -27008,12 +26998,12 @@ pub const HLFNAMEF_TRYPRETTYTARGET = HLFNAMEF.TRYPRETTYTARGET;
 pub const HLFNAMEF_TRYFULLTARGET = HLFNAMEF.TRYFULLTARGET;
 pub const HLFNAMEF_TRYWIN95SHORTCUT = HLFNAMEF.TRYWIN95SHORTCUT;
 
-pub const HLINKMISC = extern enum(i32) {
+pub const HLINKMISC = enum(i32) {
     E = 1,
 };
 pub const HLINKMISC_RELATIVE = HLINKMISC.E;
 
-pub const HLINKSETF = extern enum(i32) {
+pub const HLINKSETF = enum(i32) {
     TARGET = 1,
     LOCATION = 2,
 };
@@ -27159,7 +27149,7 @@ pub const IHlink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const HLINKWHICHMK = extern enum(i32) {
+pub const HLINKWHICHMK = enum(i32) {
     CONTAINER = 1,
     BASE = 2,
 };
@@ -27392,7 +27382,7 @@ pub const IEnumHLITEM = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const HLTB_INFO = extern enum(i32) {
+pub const HLTB_INFO = enum(i32) {
     DOCKEDLEFT = 0,
     DOCKEDTOP = 1,
     DOCKEDRIGHT = 2,
@@ -27410,7 +27400,7 @@ pub const HLTBINFO = extern struct {
     rcTbPos: RECT,
 };
 
-pub const HLBWIF_FLAGS = extern enum(u32) {
+pub const HLBWIF_FLAGS = enum(u32) {
     HASFRAMEWNDINFO = 1,
     HASDOCWNDINFO = 2,
     FRAMEWNDMAXIMIZED = 4,
@@ -27451,7 +27441,7 @@ pub const HLBWINFO = extern struct {
     hltbinfo: HLTBINFO,
 };
 
-pub const HLID_INFO = extern enum(u32) {
+pub const HLID_INFO = enum(u32) {
     INVALID = 0,
     PREVIOUS = 4294967295,
     NEXT = 4294967294,
@@ -27466,7 +27456,7 @@ pub const HLID_CURRENT = HLID_INFO.CURRENT;
 pub const HLID_STACKBOTTOM = HLID_INFO.STACKBOTTOM;
 pub const HLID_STACKTOP = HLID_INFO.STACKTOP;
 
-pub const HLQF_INFO = extern enum(i32) {
+pub const HLQF_INFO = enum(i32) {
     VALID = 1,
     CURRENT = 2,
 };
@@ -27929,7 +27919,7 @@ pub const IExpDispSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const BNSTATE = extern enum(i32) {
+pub const BNSTATE = enum(i32) {
     NORMAL = 0,
     BEGIN_NAVIGATE = 1,
     NAVIGATE = 2,
@@ -27938,7 +27928,7 @@ pub const BNS_NORMAL = BNSTATE.NORMAL;
 pub const BNS_BEGIN_NAVIGATE = BNSTATE.BEGIN_NAVIGATE;
 pub const BNS_NAVIGATE = BNSTATE.NAVIGATE;
 
-pub const SHELLBROWSERSHOWCONTROL = extern enum(i32) {
+pub const SHELLBROWSERSHOWCONTROL = enum(i32) {
     HIDE = 0,
     SHOW = 1,
     TOGGLE = 2,
@@ -28242,7 +28232,7 @@ pub const IShellService = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SECURELOCKCODE = extern enum(i32) {
+pub const SECURELOCKCODE = enum(i32) {
     NOCHANGE = -1,
     SET_UNSECURE = 0,
     SET_MIXED = 1,
@@ -28252,7 +28242,7 @@ pub const SECURELOCKCODE = extern enum(i32) {
     SET_FORTEZZA = 5,
     SET_SECURE128BIT = 6,
     FIRSTSUGGEST = 7,
-    SUGGEST_UNSECURE = 7,
+    // SUGGEST_UNSECURE = 7, this enum value conflicts with FIRSTSUGGEST
     SUGGEST_MIXED = 8,
     SUGGEST_SECUREUNKNOWNBIT = 9,
     SUGGEST_SECURE40BIT = 10,
@@ -28269,7 +28259,7 @@ pub const SECURELOCK_SET_SECURE56BIT = SECURELOCKCODE.SET_SECURE56BIT;
 pub const SECURELOCK_SET_FORTEZZA = SECURELOCKCODE.SET_FORTEZZA;
 pub const SECURELOCK_SET_SECURE128BIT = SECURELOCKCODE.SET_SECURE128BIT;
 pub const SECURELOCK_FIRSTSUGGEST = SECURELOCKCODE.FIRSTSUGGEST;
-pub const SECURELOCK_SUGGEST_UNSECURE = SECURELOCKCODE.SUGGEST_UNSECURE;
+pub const SECURELOCK_SUGGEST_UNSECURE = SECURELOCKCODE.FIRSTSUGGEST;
 pub const SECURELOCK_SUGGEST_MIXED = SECURELOCKCODE.SUGGEST_MIXED;
 pub const SECURELOCK_SUGGEST_SECUREUNKNOWNBIT = SECURELOCKCODE.SUGGEST_SECUREUNKNOWNBIT;
 pub const SECURELOCK_SUGGEST_SECURE40BIT = SECURELOCKCODE.SUGGEST_SECURE40BIT;
@@ -28879,7 +28869,7 @@ pub const IBrowserService2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IEPDNFLAGS = extern enum(i32) {
+pub const IEPDNFLAGS = enum(i32) {
     I = 1,
 };
 pub const IEPDN_BINDINGUI = IEPDNFLAGS.I;
@@ -28992,7 +28982,7 @@ pub const ITrackShellMenu = extern struct {
 const CLSID_ImageTranscode_Value = @import("../zig.zig").Guid.initString("17b75166-928f-417d-9685-64aa135565c1");
 pub const CLSID_ImageTranscode = &CLSID_ImageTranscode_Value;
 
-pub const TI_FLAGS = extern enum(i32) {
+pub const TI_FLAGS = enum(i32) {
     BITMAP = 1,
     JPEG = 2,
 };
@@ -29027,7 +29017,7 @@ pub const ITranscodeImage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PATHCCH_OPTIONS = extern enum(i32) {
+pub const PATHCCH_OPTIONS = enum(i32) {
     NONE = 0,
     ALLOW_LONG_PATHS = 1,
     FORCE_ENABLE_LONG_NAME_PROCESS = 2,
@@ -29102,14 +29092,14 @@ pub const PROFILEINFOW = extern struct {
     hProfile: HANDLE,
 };
 
-pub const iurl_seturl_flags = extern enum(i32) {
+pub const iurl_seturl_flags = enum(i32) {
     GUESS_PROTOCOL = 1,
     USE_DEFAULT_PROTOCOL = 2,
 };
 pub const IURL_SETURL_FL_GUESS_PROTOCOL = iurl_seturl_flags.GUESS_PROTOCOL;
 pub const IURL_SETURL_FL_USE_DEFAULT_PROTOCOL = iurl_seturl_flags.USE_DEFAULT_PROTOCOL;
 
-pub const iurl_invokecommand_flags = extern enum(i32) {
+pub const iurl_invokecommand_flags = enum(i32) {
     ALLOW_UI = 1,
     USE_DEFAULT_VERB = 2,
     DDEWAIT = 4,
@@ -29212,21 +29202,21 @@ pub const IUniformResourceLocatorW = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const translateurl_in_flags = extern enum(i32) {
+pub const translateurl_in_flags = enum(i32) {
     GUESS_PROTOCOL = 1,
     USE_DEFAULT_PROTOCOL = 2,
 };
 pub const TRANSLATEURL_FL_GUESS_PROTOCOL = translateurl_in_flags.GUESS_PROTOCOL;
 pub const TRANSLATEURL_FL_USE_DEFAULT_PROTOCOL = translateurl_in_flags.USE_DEFAULT_PROTOCOL;
 
-pub const urlassociationdialog_in_flags = extern enum(i32) {
+pub const urlassociationdialog_in_flags = enum(i32) {
     USE_DEFAULT_NAME = 1,
     REGISTER_ASSOC = 2,
 };
 pub const URLASSOCDLG_FL_USE_DEFAULT_NAME = urlassociationdialog_in_flags.USE_DEFAULT_NAME;
 pub const URLASSOCDLG_FL_REGISTER_ASSOC = urlassociationdialog_in_flags.REGISTER_ASSOC;
 
-pub const mimeassociationdialog_in_flags = extern enum(i32) {
+pub const mimeassociationdialog_in_flags = enum(i32) {
     C = 1,
 };
 pub const MIMEASSOCDLG_FL_REGISTER_ASSOC = mimeassociationdialog_in_flags.C;

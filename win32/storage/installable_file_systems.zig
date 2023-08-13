@@ -28,7 +28,7 @@ pub const FilterInstanceFindHandle = isize;
 // TODO: this type has a FreeFunc 'FilterVolumeInstanceFindClose', what can Zig do with this information?
 pub const FilterVolumeInstanceFindHandle = isize;
 
-pub const FLT_FILESYSTEM_TYPE = extern enum(i32) {
+pub const FLT_FILESYSTEM_TYPE = enum(i32) {
     UNKNOWN = 0,
     RAW = 1,
     NTFS = 2,
@@ -93,7 +93,7 @@ pub const FLT_FSTYPE_REFS = FLT_FILESYSTEM_TYPE.REFS;
 pub const FLT_FSTYPE_OPENAFS = FLT_FILESYSTEM_TYPE.OPENAFS;
 pub const FLT_FSTYPE_CIMFS = FLT_FILESYSTEM_TYPE.CIMFS;
 
-pub const FILTER_INFORMATION_CLASS = extern enum(i32) {
+pub const FILTER_INFORMATION_CLASS = enum(i32) {
     FullInformation = 0,
     AggregateBasicInformation = 1,
     AggregateStandardInformation = 2,
@@ -152,7 +152,7 @@ pub const FILTER_AGGREGATE_STANDARD_INFORMATION = extern struct {
     },
 };
 
-pub const FILTER_VOLUME_INFORMATION_CLASS = extern enum(i32) {
+pub const FILTER_VOLUME_INFORMATION_CLASS = enum(i32) {
     BasicInformation = 0,
     StandardInformation = 1,
 };
@@ -173,7 +173,7 @@ pub const FILTER_VOLUME_STANDARD_INFORMATION = extern struct {
     FilterVolumeName: [1]u16,
 };
 
-pub const INSTANCE_INFORMATION_CLASS = extern enum(i32) {
+pub const INSTANCE_INFORMATION_CLASS = enum(i32) {
     BasicInformation = 0,
     PartialInformation = 1,
     FullInformation = 2,

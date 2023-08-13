@@ -217,7 +217,7 @@ pub const VIDEO_MONITOR_DESCRIPTOR = extern struct {
     Descriptor: [1]u8,
 };
 
-pub const VIDEO_WIN32K_CALLBACKS_PARAMS_TYPE = extern enum(i32) {
+pub const VIDEO_WIN32K_CALLBACKS_PARAMS_TYPE = enum(i32) {
     PowerNotifyCallout = 1,
     EnumChildPdoNotifyCallout = 3,
     FindAdapterCallout = 4,
@@ -244,7 +244,7 @@ pub const VideoDisableMultiPlaneOverlay = VIDEO_WIN32K_CALLBACKS_PARAMS_TYPE.Dis
 pub const VideoDesktopDuplicationChange = VIDEO_WIN32K_CALLBACKS_PARAMS_TYPE.DesktopDuplicationChange;
 pub const VideoBlackScreenDiagnostics = VIDEO_WIN32K_CALLBACKS_PARAMS_TYPE.BlackScreenDiagnostics;
 
-pub const BlackScreenDiagnosticsCalloutParam = extern enum(i32) {
+pub const BlackScreenDiagnosticsCalloutParam = enum(i32) {
     agnosticsData = 1,
     splayRecovery = 2,
 };
@@ -440,7 +440,7 @@ pub const VIDEO_BANK_SELECT = extern struct {
     PlanarHCDisableCodeOffset: u32,
 };
 
-pub const VIDEO_BANK_TYPE = extern enum(i32) {
+pub const VIDEO_BANK_TYPE = enum(i32) {
     VideoNotBanked = 0,
     VideoBanked1RW = 1,
     VideoBanked1R1W = 2,
@@ -504,7 +504,7 @@ pub const VIDEO_COLOR_CAPABILITIES = extern struct {
     BlueGamma: i32,
 };
 
-pub const VIDEO_POWER_STATE = extern enum(i32) {
+pub const VIDEO_POWER_STATE = enum(i32) {
     Unspecified = 0,
     On = 1,
     StandBy = 2,
@@ -646,7 +646,7 @@ pub const VIDEO_QUERY_PERFORMANCE_COUNTER = extern struct {
     Buffer: *VIDEO_PERFORMANCE_COUNTER,
 };
 
-pub const BRIGHTNESS_INTERFACE_VERSION = extern enum(i32) {
+pub const BRIGHTNESS_INTERFACE_VERSION = enum(i32) {
     @"1" = 1,
     @"2" = 2,
     @"3" = 3,
@@ -740,7 +740,7 @@ pub const PANEL_SET_BRIGHTNESS_STATE = extern struct {
     },
 };
 
-pub const BACKLIGHT_OPTIMIZATION_LEVEL = extern enum(i32) {
+pub const BACKLIGHT_OPTIMIZATION_LEVEL = enum(i32) {
     Disable = 0,
     Desktop = 1,
     Dynamic = 2,
@@ -769,7 +769,7 @@ pub const PANEL_GET_BACKLIGHT_REDUCTION = extern struct {
     GammaRamp: BACKLIGHT_REDUCTION_GAMMA_RAMP,
 };
 
-pub const COLORSPACE_TRANSFORM_DATA_TYPE = extern enum(i32) {
+pub const COLORSPACE_TRANSFORM_DATA_TYPE = enum(i32) {
     IXED_POINT = 0,
     LOAT = 1,
 };
@@ -806,14 +806,14 @@ pub const COLORSPACE_TRANSFORM_MATRIX_CAP = extern struct {
     DataCap: COLORSPACE_TRANSFORM_DATA_CAP,
 };
 
-pub const COLORSPACE_TRANSFORM_TARGET_CAPS_VERSION = extern enum(i32) {
+pub const COLORSPACE_TRANSFORM_TARGET_CAPS_VERSION = enum(i32) {
     DEFAULT = 0,
     @"1" = 1,
-    NOT_SUPPORTED = 0,
+    // NOT_SUPPORTED = 0, this enum value conflicts with DEFAULT
 };
 pub const COLORSPACE_TRANSFORM_VERSION_DEFAULT = COLORSPACE_TRANSFORM_TARGET_CAPS_VERSION.DEFAULT;
 pub const COLORSPACE_TRANSFORM_VERSION_1 = COLORSPACE_TRANSFORM_TARGET_CAPS_VERSION.@"1";
-pub const COLORSPACE_TRANSFORM_VERSION_NOT_SUPPORTED = COLORSPACE_TRANSFORM_TARGET_CAPS_VERSION.NOT_SUPPORTED;
+pub const COLORSPACE_TRANSFORM_VERSION_NOT_SUPPORTED = COLORSPACE_TRANSFORM_TARGET_CAPS_VERSION.DEFAULT;
 
 pub const COLORSPACE_TRANSFORM_TARGET_CAPS = extern struct {
     Version: COLORSPACE_TRANSFORM_TARGET_CAPS_VERSION,
@@ -822,7 +822,7 @@ pub const COLORSPACE_TRANSFORM_TARGET_CAPS = extern struct {
     LookupTable1DRegammaCap: COLORSPACE_TRANSFORM_1DLUT_CAP,
 };
 
-pub const COLORSPACE_TRANSFORM_TYPE = extern enum(i32) {
+pub const COLORSPACE_TRANSFORM_TYPE = enum(i32) {
     UNINITIALIZED = 0,
     DEFAULT = 1,
     RGB256x3x16 = 2,
@@ -861,7 +861,7 @@ pub const COLORSPACE_TRANSFORM_3x4 = extern struct {
     LookupTable1D: [4096]GAMMA_RAMP_RGB,
 };
 
-pub const OUTPUT_WIRE_COLOR_SPACE_TYPE = extern enum(i32) {
+pub const OUTPUT_WIRE_COLOR_SPACE_TYPE = enum(i32) {
     G22_P709 = 0,
     RESERVED = 4,
     G2084_P2020 = 12,
@@ -878,7 +878,7 @@ pub const OUTPUT_WIRE_COLOR_SPACE_G22_P2020 = OUTPUT_WIRE_COLOR_SPACE_TYPE.G22_P
 pub const OUTPUT_WIRE_COLOR_SPACE_G2084_P2020_HDR10PLUS = OUTPUT_WIRE_COLOR_SPACE_TYPE.G2084_P2020_HDR10PLUS;
 pub const OUTPUT_WIRE_COLOR_SPACE_G2084_P2020_DVLL = OUTPUT_WIRE_COLOR_SPACE_TYPE.G2084_P2020_DVLL;
 
-pub const OUTPUT_COLOR_ENCODING = extern enum(i32) {
+pub const OUTPUT_COLOR_ENCODING = enum(i32) {
     RGB = 0,
     YCBCR444 = 1,
     YCBCR422 = 2,
@@ -898,7 +898,7 @@ pub const OUTPUT_WIRE_FORMAT = extern struct {
     BitsPerPixel: u32,
 };
 
-pub const COLORSPACE_TRANSFORM_STAGE_CONTROL = extern enum(i32) {
+pub const COLORSPACE_TRANSFORM_STAGE_CONTROL = enum(i32) {
     No_Change = 0,
     Enable = 1,
     Bypass = 2,
@@ -957,7 +957,7 @@ pub const MIPI_DSI_CAPS = extern struct {
     LengthLo: u8,
 };
 
-pub const DSI_CONTROL_TRANSMISSION_MODE = extern enum(i32) {
+pub const DSI_CONTROL_TRANSMISSION_MODE = enum(i32) {
     DEFAULT = 0,
     FORCE_LOW_POWER = 1,
     FORCE_HIGH_PERFORMANCE = 2,
@@ -1091,7 +1091,7 @@ pub const VMEMHEAP = extern struct {
     dwAgpCommitMaskSize: u32,
 };
 
-pub const AR_STATE = extern enum(i32) {
+pub const AR_STATE = enum(i32) {
     ENABLED = 0,
     DISABLED = 1,
     SUPPRESSED = 2,
@@ -1112,7 +1112,7 @@ pub const AR_NOT_SUPPORTED = AR_STATE.NOT_SUPPORTED;
 pub const AR_DOCKED = AR_STATE.DOCKED;
 pub const AR_LAPTOP = AR_STATE.LAPTOP;
 
-pub const ORIENTATION_PREFERENCE = extern enum(i32) {
+pub const ORIENTATION_PREFERENCE = enum(i32) {
     NONE = 0,
     LANDSCAPE = 1,
     PORTRAIT = 2,
@@ -1136,14 +1136,14 @@ pub const MC_TIMING_REPORT = packed struct {
     bTimingStatusByte: u8,
 };
 
-pub const MC_VCP_CODE_TYPE = extern enum(i32) {
+pub const MC_VCP_CODE_TYPE = enum(i32) {
     MOMENTARY = 0,
     SET_PARAMETER = 1,
 };
 pub const MC_MOMENTARY = MC_VCP_CODE_TYPE.MOMENTARY;
 pub const MC_SET_PARAMETER = MC_VCP_CODE_TYPE.SET_PARAMETER;
 
-pub const MC_DISPLAY_TECHNOLOGY_TYPE = extern enum(i32) {
+pub const MC_DISPLAY_TECHNOLOGY_TYPE = enum(i32) {
     SHADOW_MASK_CATHODE_RAY_TUBE = 0,
     APERTURE_GRILL_CATHODE_RAY_TUBE = 1,
     THIN_FILM_TRANSISTOR = 2,
@@ -1164,7 +1164,7 @@ pub const MC_ELECTROLUMINESCENT = MC_DISPLAY_TECHNOLOGY_TYPE.ELECTROLUMINESCENT;
 pub const MC_MICROELECTROMECHANICAL = MC_DISPLAY_TECHNOLOGY_TYPE.MICROELECTROMECHANICAL;
 pub const MC_FIELD_EMISSION_DEVICE = MC_DISPLAY_TECHNOLOGY_TYPE.FIELD_EMISSION_DEVICE;
 
-pub const MC_DRIVE_TYPE = extern enum(i32) {
+pub const MC_DRIVE_TYPE = enum(i32) {
     RED_DRIVE = 0,
     GREEN_DRIVE = 1,
     BLUE_DRIVE = 2,
@@ -1173,7 +1173,7 @@ pub const MC_RED_DRIVE = MC_DRIVE_TYPE.RED_DRIVE;
 pub const MC_GREEN_DRIVE = MC_DRIVE_TYPE.GREEN_DRIVE;
 pub const MC_BLUE_DRIVE = MC_DRIVE_TYPE.BLUE_DRIVE;
 
-pub const MC_GAIN_TYPE = extern enum(i32) {
+pub const MC_GAIN_TYPE = enum(i32) {
     RED_GAIN = 0,
     GREEN_GAIN = 1,
     BLUE_GAIN = 2,
@@ -1182,21 +1182,21 @@ pub const MC_RED_GAIN = MC_GAIN_TYPE.RED_GAIN;
 pub const MC_GREEN_GAIN = MC_GAIN_TYPE.GREEN_GAIN;
 pub const MC_BLUE_GAIN = MC_GAIN_TYPE.BLUE_GAIN;
 
-pub const MC_POSITION_TYPE = extern enum(i32) {
+pub const MC_POSITION_TYPE = enum(i32) {
     HORIZONTAL_POSITION = 0,
     VERTICAL_POSITION = 1,
 };
 pub const MC_HORIZONTAL_POSITION = MC_POSITION_TYPE.HORIZONTAL_POSITION;
 pub const MC_VERTICAL_POSITION = MC_POSITION_TYPE.VERTICAL_POSITION;
 
-pub const MC_SIZE_TYPE = extern enum(i32) {
+pub const MC_SIZE_TYPE = enum(i32) {
     WIDTH = 0,
     HEIGHT = 1,
 };
 pub const MC_WIDTH = MC_SIZE_TYPE.WIDTH;
 pub const MC_HEIGHT = MC_SIZE_TYPE.HEIGHT;
 
-pub const MC_COLOR_TEMPERATURE = extern enum(i32) {
+pub const MC_COLOR_TEMPERATURE = enum(i32) {
     UNKNOWN = 0,
     @"4000K" = 1,
     @"5000K" = 2,

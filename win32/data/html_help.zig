@@ -382,7 +382,7 @@ pub const HHNTRACK = extern struct {
     phhWinType: *HH_WINTYPE,
 };
 
-pub const HH_GPROPID = extern enum(i32) {
+pub const HH_GPROPID = enum(i32) {
     SINGLETHREAD = 1,
     TOOLBAR_MARGIN = 2,
     UI_LANGUAGE = 3,
@@ -966,7 +966,7 @@ pub const IWordBreakerConfig = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PRIORITY = extern enum(i32) {
+pub const PRIORITY = enum(i32) {
     LOW = 0,
     NORMAL = 1,
     HIGH = 2,
@@ -1274,7 +1274,7 @@ pub const IITResultSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WORD_WHEEL_OPEN_FLAGS = extern enum(u32) {
+pub const WORD_WHEEL_OPEN_FLAGS = enum(u32) {
     T = 0,
     _,
     pub fn initFlags(o: struct {

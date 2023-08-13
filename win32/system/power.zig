@@ -117,7 +117,7 @@ pub const THERMAL_EVENT_VERSION = @as(u32, 1);
 // TODO: this type has a FreeFunc 'UnregisterPowerSettingNotification', what can Zig do with this information?
 pub const HPOWERNOTIFY = *opaque{};
 
-pub const SYSTEM_POWER_STATE = extern enum(i32) {
+pub const SYSTEM_POWER_STATE = enum(i32) {
     Unspecified = 0,
     Working = 1,
     Sleeping1 = 2,
@@ -136,7 +136,7 @@ pub const PowerSystemHibernate = SYSTEM_POWER_STATE.Hibernate;
 pub const PowerSystemShutdown = SYSTEM_POWER_STATE.Shutdown;
 pub const PowerSystemMaximum = SYSTEM_POWER_STATE.Maximum;
 
-pub const POWER_ACTION = extern enum(i32) {
+pub const POWER_ACTION = enum(i32) {
     None = 0,
     Reserved = 1,
     Sleep = 2,
@@ -157,14 +157,14 @@ pub const PowerActionShutdownOff = POWER_ACTION.ShutdownOff;
 pub const PowerActionWarmEject = POWER_ACTION.WarmEject;
 pub const PowerActionDisplayOff = POWER_ACTION.DisplayOff;
 
-pub const LATENCY_TIME = extern enum(i32) {
+pub const LATENCY_TIME = enum(i32) {
     DONT_CARE = 0,
     LOWEST_LATENCY = 1,
 };
 pub const LT_DONT_CARE = LATENCY_TIME.DONT_CARE;
 pub const LT_LOWEST_LATENCY = LATENCY_TIME.LOWEST_LATENCY;
 
-pub const SYSTEM_POWER_CONDITION = extern enum(i32) {
+pub const SYSTEM_POWER_CONDITION = enum(i32) {
     Ac = 0,
     Dc = 1,
     Hot = 2,
@@ -175,7 +175,7 @@ pub const PoDc = SYSTEM_POWER_CONDITION.Dc;
 pub const PoHot = SYSTEM_POWER_CONDITION.Hot;
 pub const PoConditionMaximum = SYSTEM_POWER_CONDITION.ConditionMaximum;
 
-pub const POWER_PLATFORM_ROLE = extern enum(i32) {
+pub const POWER_PLATFORM_ROLE = enum(i32) {
     Unspecified = 0,
     Desktop = 1,
     Mobile = 2,
@@ -342,7 +342,7 @@ pub const POWERBROADCAST_SETTING = extern struct {
     Data: [1]u8,
 };
 
-pub const EFFECTIVE_POWER_MODE = extern enum(i32) {
+pub const EFFECTIVE_POWER_MODE = enum(i32) {
     BatterySaver = 0,
     BetterBattery = 1,
     Balanced = 2,
@@ -466,7 +466,7 @@ pub const PWRSCHEMESENUMPROC = fn(
     Context: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
-pub const POWER_DATA_ACCESSOR = extern enum(i32) {
+pub const POWER_DATA_ACCESSOR = enum(i32) {
     AC_POWER_SETTING_INDEX = 0,
     DC_POWER_SETTING_INDEX = 1,
     FRIENDLY_NAME = 2,
@@ -545,7 +545,7 @@ pub const THERMAL_EVENT = extern struct {
     Initiator: PWSTR,
 };
 
-pub const BATTERY_QUERY_INFORMATION_LEVEL = extern enum(i32) {
+pub const BATTERY_QUERY_INFORMATION_LEVEL = enum(i32) {
     Information = 0,
     GranularityInformation = 1,
     Temperature = 2,
@@ -585,7 +585,7 @@ pub const BATTERY_INFORMATION = extern struct {
     CycleCount: u32,
 };
 
-pub const BATTERY_CHARGING_SOURCE_TYPE = extern enum(i32) {
+pub const BATTERY_CHARGING_SOURCE_TYPE = enum(i32) {
     AC = 1,
     USB = 2,
     Wireless = 3,
@@ -606,7 +606,7 @@ pub const BATTERY_CHARGING_SOURCE_INFORMATION = extern struct {
     SourceOnline: u8,
 };
 
-pub const USB_CHARGER_PORT = extern enum(i32) {
+pub const USB_CHARGER_PORT = enum(i32) {
     Legacy = 0,
     TypeC = 1,
     Max = 2,
@@ -615,7 +615,7 @@ pub const UsbChargerPort_Legacy = USB_CHARGER_PORT.Legacy;
 pub const UsbChargerPort_TypeC = USB_CHARGER_PORT.TypeC;
 pub const UsbChargerPort_Max = USB_CHARGER_PORT.Max;
 
-pub const BATTERY_SET_INFORMATION_LEVEL = extern enum(i32) {
+pub const BATTERY_SET_INFORMATION_LEVEL = enum(i32) {
     CriticalBias = 0,
     Charge = 1,
     Discharge = 2,
@@ -737,14 +737,14 @@ pub const ACPI_REAL_TIME = extern struct {
     Reserved1: [3]u8,
 };
 
-pub const POWER_PLATFORM_ROLE_VERSION = extern enum(u32) {
+pub const POWER_PLATFORM_ROLE_VERSION = enum(u32) {
     ERSION = 2,
     @"1" = 1,
-    @"2" = 2,
+    // @"2" = 2, this enum value conflicts with ERSION
 };
 // TODO: enum 'POWER_PLATFORM_ROLE_VERSION' has known issues with its value aliases
 
-pub const POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = extern enum(u32) {
+pub const POWER_SETTING_REGISTER_NOTIFICATION_FLAGS = enum(u32) {
     SERVICE_HANDLE = 1,
     CALLBACK = 2,
     WINDOW_HANDLE = 0,
@@ -753,7 +753,7 @@ pub const DEVICE_NOTIFY_SERVICE_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLA
 pub const DEVICE_NOTIFY_CALLBACK = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.CALLBACK;
 pub const DEVICE_NOTIFY_WINDOW_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.WINDOW_HANDLE;
 
-pub const EXECUTION_STATE = extern enum(u32) {
+pub const EXECUTION_STATE = enum(u32) {
     AWAYMODE_REQUIRED = 64,
     CONTINUOUS = 2147483648,
     DISPLAY_REQUIRED = 2,
@@ -782,7 +782,7 @@ pub const ES_DISPLAY_REQUIRED = EXECUTION_STATE.DISPLAY_REQUIRED;
 pub const ES_SYSTEM_REQUIRED = EXECUTION_STATE.SYSTEM_REQUIRED;
 pub const ES_USER_PRESENT = EXECUTION_STATE.USER_PRESENT;
 
-pub const POWER_ACTION_POLICY_EVENT_CODE = extern enum(u32) {
+pub const POWER_ACTION_POLICY_EVENT_CODE = enum(u32) {
     FORCE_TRIGGER_RESET = 2147483648,
     LEVEL_USER_NOTIFY_EXEC = 4,
     LEVEL_USER_NOTIFY_SOUND = 2,

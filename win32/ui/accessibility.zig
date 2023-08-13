@@ -939,7 +939,7 @@ pub const HUIATEXTRANGE = *opaque{};
 
 pub const HUIAEVENT = *opaque{};
 
-pub const STICKYKEYS_FLAGS = extern enum(u32) {
+pub const STICKYKEYS_FLAGS = enum(u32) {
     STICKYKEYSON = 1,
     AVAILABLE = 2,
     HOTKEYACTIVE = 4,
@@ -1048,7 +1048,7 @@ pub const SKF_RSHIFTLOCKED = STICKYKEYS_FLAGS.RSHIFTLOCKED;
 pub const SKF_LWINLOCKED = STICKYKEYS_FLAGS.LWINLOCKED;
 pub const SKF_RWINLOCKED = STICKYKEYS_FLAGS.RWINLOCKED;
 
-pub const SOUNDSENTRY_FLAGS = extern enum(u32) {
+pub const SOUNDSENTRY_FLAGS = enum(u32) {
     SOUNDSENTRYON = 1,
     AVAILABLE = 2,
     INDICATOR = 4,
@@ -1069,7 +1069,7 @@ pub const SSF_SOUNDSENTRYON = SOUNDSENTRY_FLAGS.SOUNDSENTRYON;
 pub const SSF_AVAILABLE = SOUNDSENTRY_FLAGS.AVAILABLE;
 pub const SSF_INDICATOR = SOUNDSENTRY_FLAGS.INDICATOR;
 
-pub const ACC_UTILITY_STATE_FLAGS = extern enum(u32) {
+pub const ACC_UTILITY_STATE_FLAGS = enum(u32) {
     ON_SCREEN_KEYBOARD_ACTIVE = 1,
     TOUCH_MODIFICATION_ACTIVE = 2,
     PRIORITY_AUDIO_ACTIVE = 4,
@@ -1094,14 +1094,14 @@ pub const ANRUS_TOUCH_MODIFICATION_ACTIVE = ACC_UTILITY_STATE_FLAGS.TOUCH_MODIFI
 pub const ANRUS_PRIORITY_AUDIO_ACTIVE = ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE;
 pub const ANRUS_PRIORITY_AUDIO_ACTIVE_NODUCK = ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE_NODUCK;
 
-pub const SOUND_SENTRY_GRAPHICS_EFFECT = extern enum(u32) {
+pub const SOUND_SENTRY_GRAPHICS_EFFECT = enum(u32) {
     DISPLAY = 3,
     NONE = 0,
 };
 pub const SSGF_DISPLAY = SOUND_SENTRY_GRAPHICS_EFFECT.DISPLAY;
 pub const SSGF_NONE = SOUND_SENTRY_GRAPHICS_EFFECT.NONE;
 
-pub const SERIALKEYS_FLAGS = extern enum(u32) {
+pub const SERIALKEYS_FLAGS = enum(u32) {
     AVAILABLE = 2,
     INDICATOR = 4,
     SERIALKEYSON = 1,
@@ -1122,7 +1122,7 @@ pub const SERKF_AVAILABLE = SERIALKEYS_FLAGS.AVAILABLE;
 pub const SERKF_INDICATOR = SERIALKEYS_FLAGS.INDICATOR;
 pub const SERKF_SERIALKEYSON = SERIALKEYS_FLAGS.SERIALKEYSON;
 
-pub const HIGHCONTRASTW_FLAGS = extern enum(u32) {
+pub const HIGHCONTRASTW_FLAGS = enum(u32) {
     HIGHCONTRASTON = 1,
     AVAILABLE = 2,
     HOTKEYACTIVE = 4,
@@ -1163,7 +1163,7 @@ pub const HCF_INDICATOR = HIGHCONTRASTW_FLAGS.INDICATOR;
 pub const HCF_HOTKEYAVAILABLE = HIGHCONTRASTW_FLAGS.HOTKEYAVAILABLE;
 pub const HCF_OPTION_NOTHEMECHANGE = HIGHCONTRASTW_FLAGS.OPTION_NOTHEMECHANGE;
 
-pub const SOUNDSENTRY_TEXT_EFFECT = extern enum(u32) {
+pub const SOUNDSENTRY_TEXT_EFFECT = enum(u32) {
     BORDER = 2,
     CHARS = 1,
     DISPLAY = 3,
@@ -1174,7 +1174,7 @@ pub const SSTF_CHARS = SOUNDSENTRY_TEXT_EFFECT.CHARS;
 pub const SSTF_DISPLAY = SOUNDSENTRY_TEXT_EFFECT.DISPLAY;
 pub const SSTF_NONE = SOUNDSENTRY_TEXT_EFFECT.NONE;
 
-pub const SOUNDSENTRY_WINDOWS_EFFECT = extern enum(u32) {
+pub const SOUNDSENTRY_WINDOWS_EFFECT = enum(u32) {
     CUSTOM = 4,
     DISPLAY = 3,
     NONE = 0,
@@ -1638,7 +1638,7 @@ pub const IAccessibleWindowlessSite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AnnoScope = extern enum(i32) {
+pub const AnnoScope = enum(i32) {
     THIS = 0,
     CONTAINER = 1,
 };
@@ -1895,7 +1895,7 @@ pub const CLSID_CUIAutomation8 = &CLSID_CUIAutomation8_Value;
 const CLSID_CUIAutomationRegistrar_Value = @import("../zig.zig").Guid.initString("6e29fabf-9977-42d1-8d0e-ca7e61ad87e6");
 pub const CLSID_CUIAutomationRegistrar = &CLSID_CUIAutomationRegistrar_Value;
 
-pub const NavigateDirection = extern enum(i32) {
+pub const NavigateDirection = enum(i32) {
     Parent = 0,
     NextSibling = 1,
     PreviousSibling = 2,
@@ -1908,7 +1908,7 @@ pub const NavigateDirection_PreviousSibling = NavigateDirection.PreviousSibling;
 pub const NavigateDirection_FirstChild = NavigateDirection.FirstChild;
 pub const NavigateDirection_LastChild = NavigateDirection.LastChild;
 
-pub const ProviderOptions = extern enum(i32) {
+pub const ProviderOptions = enum(i32) {
     ClientSideProvider = 1,
     ServerSideProvider = 2,
     NonClientAreaProvider = 4,
@@ -1929,7 +1929,7 @@ pub const ProviderOptions_RefuseNonClientSupport = ProviderOptions.RefuseNonClie
 pub const ProviderOptions_HasNativeIAccessible = ProviderOptions.HasNativeIAccessible;
 pub const ProviderOptions_UseClientCoordinates = ProviderOptions.UseClientCoordinates;
 
-pub const StructureChangeType = extern enum(i32) {
+pub const StructureChangeType = enum(i32) {
     Added = 0,
     Removed = 1,
     renInvalidated = 2,
@@ -1944,7 +1944,7 @@ pub const StructureChangeType_ChildrenBulkAdded = StructureChangeType.renBulkAdd
 pub const StructureChangeType_ChildrenBulkRemoved = StructureChangeType.renBulkRemoved;
 pub const StructureChangeType_ChildrenReordered = StructureChangeType.renReordered;
 
-pub const TextEditChangeType = extern enum(i32) {
+pub const TextEditChangeType = enum(i32) {
     None = 0,
     AutoCorrect = 1,
     Composition = 2,
@@ -1957,7 +1957,7 @@ pub const TextEditChangeType_Composition = TextEditChangeType.Composition;
 pub const TextEditChangeType_CompositionFinalized = TextEditChangeType.CompositionFinalized;
 pub const TextEditChangeType_AutoComplete = TextEditChangeType.AutoComplete;
 
-pub const OrientationType = extern enum(i32) {
+pub const OrientationType = enum(i32) {
     None = 0,
     Horizontal = 1,
     Vertical = 2,
@@ -1966,7 +1966,7 @@ pub const OrientationType_None = OrientationType.None;
 pub const OrientationType_Horizontal = OrientationType.Horizontal;
 pub const OrientationType_Vertical = OrientationType.Vertical;
 
-pub const DockPosition = extern enum(i32) {
+pub const DockPosition = enum(i32) {
     Top = 0,
     Left = 1,
     Bottom = 2,
@@ -1981,7 +1981,7 @@ pub const DockPosition_Right = DockPosition.Right;
 pub const DockPosition_Fill = DockPosition.Fill;
 pub const DockPosition_None = DockPosition.None;
 
-pub const ExpandCollapseState = extern enum(i32) {
+pub const ExpandCollapseState = enum(i32) {
     Collapsed = 0,
     Expanded = 1,
     PartiallyExpanded = 2,
@@ -1992,7 +1992,7 @@ pub const ExpandCollapseState_Expanded = ExpandCollapseState.Expanded;
 pub const ExpandCollapseState_PartiallyExpanded = ExpandCollapseState.PartiallyExpanded;
 pub const ExpandCollapseState_LeafNode = ExpandCollapseState.LeafNode;
 
-pub const ScrollAmount = extern enum(i32) {
+pub const ScrollAmount = enum(i32) {
     LargeDecrement = 0,
     SmallDecrement = 1,
     NoAmount = 2,
@@ -2005,7 +2005,7 @@ pub const ScrollAmount_NoAmount = ScrollAmount.NoAmount;
 pub const ScrollAmount_LargeIncrement = ScrollAmount.LargeIncrement;
 pub const ScrollAmount_SmallIncrement = ScrollAmount.SmallIncrement;
 
-pub const RowOrColumnMajor = extern enum(i32) {
+pub const RowOrColumnMajor = enum(i32) {
     RowMajor = 0,
     ColumnMajor = 1,
     Indeterminate = 2,
@@ -2014,7 +2014,7 @@ pub const RowOrColumnMajor_RowMajor = RowOrColumnMajor.RowMajor;
 pub const RowOrColumnMajor_ColumnMajor = RowOrColumnMajor.ColumnMajor;
 pub const RowOrColumnMajor_Indeterminate = RowOrColumnMajor.Indeterminate;
 
-pub const ToggleState = extern enum(i32) {
+pub const ToggleState = enum(i32) {
     Off = 0,
     On = 1,
     Indeterminate = 2,
@@ -2023,7 +2023,7 @@ pub const ToggleState_Off = ToggleState.Off;
 pub const ToggleState_On = ToggleState.On;
 pub const ToggleState_Indeterminate = ToggleState.Indeterminate;
 
-pub const WindowVisualState = extern enum(i32) {
+pub const WindowVisualState = enum(i32) {
     Normal = 0,
     Maximized = 1,
     Minimized = 2,
@@ -2032,7 +2032,7 @@ pub const WindowVisualState_Normal = WindowVisualState.Normal;
 pub const WindowVisualState_Maximized = WindowVisualState.Maximized;
 pub const WindowVisualState_Minimized = WindowVisualState.Minimized;
 
-pub const SynchronizedInputType = extern enum(i32) {
+pub const SynchronizedInputType = enum(i32) {
     KeyUp = 1,
     KeyDown = 2,
     LeftMouseUp = 4,
@@ -2047,7 +2047,7 @@ pub const SynchronizedInputType_LeftMouseDown = SynchronizedInputType.LeftMouseD
 pub const SynchronizedInputType_RightMouseUp = SynchronizedInputType.RightMouseUp;
 pub const SynchronizedInputType_RightMouseDown = SynchronizedInputType.RightMouseDown;
 
-pub const WindowInteractionState = extern enum(i32) {
+pub const WindowInteractionState = enum(i32) {
     Running = 0,
     Closing = 1,
     ReadyForUserInteraction = 2,
@@ -2060,7 +2060,7 @@ pub const WindowInteractionState_ReadyForUserInteraction = WindowInteractionStat
 pub const WindowInteractionState_BlockedByModalWindow = WindowInteractionState.BlockedByModalWindow;
 pub const WindowInteractionState_NotResponding = WindowInteractionState.NotResponding;
 
-pub const SayAsInterpretAs = extern enum(i32) {
+pub const SayAsInterpretAs = enum(i32) {
     None = 0,
     Spell = 1,
     Cardinal = 2,
@@ -2117,7 +2117,7 @@ pub const SayAsInterpretAs_Time_HoursMinutes12 = SayAsInterpretAs.Time_HoursMinu
 pub const SayAsInterpretAs_Time_HoursMinutesSeconds24 = SayAsInterpretAs.Time_HoursMinutesSeconds24;
 pub const SayAsInterpretAs_Time_HoursMinutes24 = SayAsInterpretAs.Time_HoursMinutes24;
 
-pub const TextUnit = extern enum(i32) {
+pub const TextUnit = enum(i32) {
     Character = 0,
     Format = 1,
     Word = 2,
@@ -2134,14 +2134,14 @@ pub const TextUnit_Paragraph = TextUnit.Paragraph;
 pub const TextUnit_Page = TextUnit.Page;
 pub const TextUnit_Document = TextUnit.Document;
 
-pub const TextPatternRangeEndpoint = extern enum(i32) {
+pub const TextPatternRangeEndpoint = enum(i32) {
     Start = 0,
     End = 1,
 };
 pub const TextPatternRangeEndpoint_Start = TextPatternRangeEndpoint.Start;
 pub const TextPatternRangeEndpoint_End = TextPatternRangeEndpoint.End;
 
-pub const SupportedTextSelection = extern enum(i32) {
+pub const SupportedTextSelection = enum(i32) {
     None = 0,
     Single = 1,
     Multiple = 2,
@@ -2150,7 +2150,7 @@ pub const SupportedTextSelection_None = SupportedTextSelection.None;
 pub const SupportedTextSelection_Single = SupportedTextSelection.Single;
 pub const SupportedTextSelection_Multiple = SupportedTextSelection.Multiple;
 
-pub const LiveSetting = extern enum(i32) {
+pub const LiveSetting = enum(i32) {
     Off = 0,
     Polite = 1,
     Assertive = 2,
@@ -2159,7 +2159,7 @@ pub const Off = LiveSetting.Off;
 pub const Polite = LiveSetting.Polite;
 pub const Assertive = LiveSetting.Assertive;
 
-pub const ActiveEnd = extern enum(i32) {
+pub const ActiveEnd = enum(i32) {
     None = 0,
     Start = 1,
     End = 2,
@@ -2168,7 +2168,7 @@ pub const ActiveEnd_None = ActiveEnd.None;
 pub const ActiveEnd_Start = ActiveEnd.Start;
 pub const ActiveEnd_End = ActiveEnd.End;
 
-pub const CaretPosition = extern enum(i32) {
+pub const CaretPosition = enum(i32) {
     Unknown = 0,
     EndOfLine = 1,
     BeginningOfLine = 2,
@@ -2177,14 +2177,14 @@ pub const CaretPosition_Unknown = CaretPosition.Unknown;
 pub const CaretPosition_EndOfLine = CaretPosition.EndOfLine;
 pub const CaretPosition_BeginningOfLine = CaretPosition.BeginningOfLine;
 
-pub const CaretBidiMode = extern enum(i32) {
+pub const CaretBidiMode = enum(i32) {
     LTR = 0,
     RTL = 1,
 };
 pub const CaretBidiMode_LTR = CaretBidiMode.LTR;
 pub const CaretBidiMode_RTL = CaretBidiMode.RTL;
 
-pub const ZoomUnit = extern enum(i32) {
+pub const ZoomUnit = enum(i32) {
     NoAmount = 0,
     LargeDecrement = 1,
     SmallDecrement = 2,
@@ -2197,7 +2197,7 @@ pub const ZoomUnit_SmallDecrement = ZoomUnit.SmallDecrement;
 pub const ZoomUnit_LargeIncrement = ZoomUnit.LargeIncrement;
 pub const ZoomUnit_SmallIncrement = ZoomUnit.SmallIncrement;
 
-pub const AnimationStyle = extern enum(i32) {
+pub const AnimationStyle = enum(i32) {
     None = 0,
     LasVegasLights = 1,
     BlinkingBackground = 2,
@@ -2216,7 +2216,7 @@ pub const AnimationStyle_MarchingRedAnts = AnimationStyle.MarchingRedAnts;
 pub const AnimationStyle_Shimmer = AnimationStyle.Shimmer;
 pub const AnimationStyle_Other = AnimationStyle.Other;
 
-pub const BulletStyle = extern enum(i32) {
+pub const BulletStyle = enum(i32) {
     None = 0,
     HollowRoundBullet = 1,
     FilledRoundBullet = 2,
@@ -2233,7 +2233,7 @@ pub const BulletStyle_FilledSquareBullet = BulletStyle.FilledSquareBullet;
 pub const BulletStyle_DashBullet = BulletStyle.DashBullet;
 pub const BulletStyle_Other = BulletStyle.Other;
 
-pub const CapStyle = extern enum(i32) {
+pub const CapStyle = enum(i32) {
     None = 0,
     SmallCap = 1,
     AllCap = 2,
@@ -2252,7 +2252,7 @@ pub const CapStyle_Unicase = CapStyle.Unicase;
 pub const CapStyle_Titling = CapStyle.Titling;
 pub const CapStyle_Other = CapStyle.Other;
 
-pub const FillType = extern enum(i32) {
+pub const FillType = enum(i32) {
     None = 0,
     Color = 1,
     Gradient = 2,
@@ -2265,7 +2265,7 @@ pub const FillType_Gradient = FillType.Gradient;
 pub const FillType_Picture = FillType.Picture;
 pub const FillType_Pattern = FillType.Pattern;
 
-pub const FlowDirections = extern enum(i32) {
+pub const FlowDirections = enum(i32) {
     Default = 0,
     RightToLeft = 1,
     BottomToTop = 2,
@@ -2276,7 +2276,7 @@ pub const FlowDirections_RightToLeft = FlowDirections.RightToLeft;
 pub const FlowDirections_BottomToTop = FlowDirections.BottomToTop;
 pub const FlowDirections_Vertical = FlowDirections.Vertical;
 
-pub const HorizontalTextAlignment = extern enum(i32) {
+pub const HorizontalTextAlignment = enum(i32) {
     Left = 0,
     Centered = 1,
     Right = 2,
@@ -2287,7 +2287,7 @@ pub const HorizontalTextAlignment_Centered = HorizontalTextAlignment.Centered;
 pub const HorizontalTextAlignment_Right = HorizontalTextAlignment.Right;
 pub const HorizontalTextAlignment_Justified = HorizontalTextAlignment.Justified;
 
-pub const OutlineStyles = extern enum(i32) {
+pub const OutlineStyles = enum(i32) {
     None = 0,
     Outline = 1,
     Shadow = 2,
@@ -2300,7 +2300,7 @@ pub const OutlineStyles_Shadow = OutlineStyles.Shadow;
 pub const OutlineStyles_Engraved = OutlineStyles.Engraved;
 pub const OutlineStyles_Embossed = OutlineStyles.Embossed;
 
-pub const TextDecorationLineStyle = extern enum(i32) {
+pub const TextDecorationLineStyle = enum(i32) {
     None = 0,
     Single = 1,
     WordsOnly = 2,
@@ -2341,7 +2341,7 @@ pub const TextDecorationLineStyle_ThickDot = TextDecorationLineStyle.ThickDot;
 pub const TextDecorationLineStyle_ThickLongDash = TextDecorationLineStyle.ThickLongDash;
 pub const TextDecorationLineStyle_Other = TextDecorationLineStyle.Other;
 
-pub const VisualEffects = extern enum(i32) {
+pub const VisualEffects = enum(i32) {
     None = 0,
     Shadow = 1,
     Reflection = 2,
@@ -2356,7 +2356,7 @@ pub const VisualEffects_Glow = VisualEffects.Glow;
 pub const VisualEffects_SoftEdges = VisualEffects.SoftEdges;
 pub const VisualEffects_Bevel = VisualEffects.Bevel;
 
-pub const NotificationProcessing = extern enum(i32) {
+pub const NotificationProcessing = enum(i32) {
     ImportantAll = 0,
     ImportantMostRecent = 1,
     All = 2,
@@ -2369,7 +2369,7 @@ pub const NotificationProcessing_All = NotificationProcessing.All;
 pub const NotificationProcessing_MostRecent = NotificationProcessing.MostRecent;
 pub const NotificationProcessing_CurrentThenMostRecent = NotificationProcessing.CurrentThenMostRecent;
 
-pub const NotificationKind = extern enum(i32) {
+pub const NotificationKind = enum(i32) {
     ItemAdded = 0,
     ItemRemoved = 1,
     ActionCompleted = 2,
@@ -2400,7 +2400,7 @@ pub const UiaChangeInfo = extern struct {
     extraInfo: VARIANT,
 };
 
-pub const UIAutomationType = extern enum(i32) {
+pub const UIAutomationType = enum(i32) {
     Int = 1,
     Bool = 2,
     String = 3,
@@ -4880,7 +4880,7 @@ pub const IUIAutomationRegistrar = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TreeScope = extern enum(i32) {
+pub const TreeScope = enum(i32) {
     None = 0,
     Element = 1,
     Children = 2,
@@ -4897,7 +4897,7 @@ pub const TreeScope_Parent = TreeScope.Parent;
 pub const TreeScope_Ancestors = TreeScope.Ancestors;
 pub const TreeScope_Subtree = TreeScope.Subtree;
 
-pub const PropertyConditionFlags = extern enum(i32) {
+pub const PropertyConditionFlags = enum(i32) {
     None = 0,
     IgnoreCase = 1,
     MatchSubstring = 2,
@@ -4906,14 +4906,14 @@ pub const PropertyConditionFlags_None = PropertyConditionFlags.None;
 pub const PropertyConditionFlags_IgnoreCase = PropertyConditionFlags.IgnoreCase;
 pub const PropertyConditionFlags_MatchSubstring = PropertyConditionFlags.MatchSubstring;
 
-pub const AutomationElementMode = extern enum(i32) {
+pub const AutomationElementMode = enum(i32) {
     None = 0,
     Full = 1,
 };
 pub const AutomationElementMode_None = AutomationElementMode.None;
 pub const AutomationElementMode_Full = AutomationElementMode.Full;
 
-pub const TreeTraversalOptions = extern enum(i32) {
+pub const TreeTraversalOptions = enum(i32) {
     Default = 0,
     PostOrder = 1,
     LastToFirstOrder = 2,
@@ -4922,14 +4922,14 @@ pub const TreeTraversalOptions_Default = TreeTraversalOptions.Default;
 pub const TreeTraversalOptions_PostOrder = TreeTraversalOptions.PostOrder;
 pub const TreeTraversalOptions_LastToFirstOrder = TreeTraversalOptions.LastToFirstOrder;
 
-pub const ConnectionRecoveryBehaviorOptions = extern enum(i32) {
+pub const ConnectionRecoveryBehaviorOptions = enum(i32) {
     Disabled = 0,
     Enabled = 1,
 };
 pub const ConnectionRecoveryBehaviorOptions_Disabled = ConnectionRecoveryBehaviorOptions.Disabled;
 pub const ConnectionRecoveryBehaviorOptions_Enabled = ConnectionRecoveryBehaviorOptions.Enabled;
 
-pub const CoalesceEventsOptions = extern enum(i32) {
+pub const CoalesceEventsOptions = enum(i32) {
     Disabled = 0,
     Enabled = 1,
 };
@@ -10561,7 +10561,7 @@ pub const IUIAutomation6 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ConditionType = extern enum(i32) {
+pub const ConditionType = enum(i32) {
     True = 0,
     False = 1,
     Property = 2,
@@ -10608,7 +10608,7 @@ pub const UiaCacheRequest = extern struct {
     automationElementMode: AutomationElementMode,
 };
 
-pub const NormalizeState = extern enum(i32) {
+pub const NormalizeState = enum(i32) {
     None = 0,
     View = 1,
     Custom = 2,
@@ -10624,7 +10624,7 @@ pub const UiaFindParams = extern struct {
     pFindCondition: *UiaCondition,
 };
 
-pub const ProviderType = extern enum(i32) {
+pub const ProviderType = enum(i32) {
     BaseHwnd = 0,
     Proxy = 1,
     NonClientArea = 2,
@@ -10638,7 +10638,7 @@ pub const UiaProviderCallback = fn(
     providerType: ProviderType,
 ) callconv(@import("std").os.windows.WINAPI) *SAFEARRAY;
 
-pub const AutomationIdentifierType = extern enum(i32) {
+pub const AutomationIdentifierType = enum(i32) {
     Property = 0,
     Pattern = 1,
     Event = 2,
@@ -10659,7 +10659,7 @@ pub const AutomationIdentifierType_Annotation = AutomationIdentifierType.Annotat
 pub const AutomationIdentifierType_Changes = AutomationIdentifierType.Changes;
 pub const AutomationIdentifierType_Style = AutomationIdentifierType.Style;
 
-pub const EventArgsType = extern enum(i32) {
+pub const EventArgsType = enum(i32) {
     Simple = 0,
     PropertyChanged = 1,
     StructureChanged = 2,
@@ -10682,7 +10682,7 @@ pub const EventArgsType_Notification = EventArgsType.Notification;
 pub const EventArgsType_ActiveTextPositionChanged = EventArgsType.ActiveTextPositionChanged;
 pub const EventArgsType_StructuredMarkup = EventArgsType.StructuredMarkup;
 
-pub const AsyncContentLoadedState = extern enum(i32) {
+pub const AsyncContentLoadedState = enum(i32) {
     Beginning = 0,
     Progress = 1,
     Completed = 2,

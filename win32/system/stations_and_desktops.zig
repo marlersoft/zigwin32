@@ -18,7 +18,7 @@ pub const USEROBJECTFLAGS = extern struct {
     dwFlags: u32,
 };
 
-pub const USER_OBJECT_INFORMATION_INDEX = extern enum(u32) {
+pub const USER_OBJECT_INFORMATION_INDEX = enum(u32) {
     FLAGS = 1,
     HEAPSIZE = 5,
     IO = 6,

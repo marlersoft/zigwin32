@@ -2383,7 +2383,7 @@ pub const IWABExtInit = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const Gender = extern enum(i32) {
+pub const Gender = enum(i32) {
     Unspecified = 0,
     Female = 1,
     Male = 2,

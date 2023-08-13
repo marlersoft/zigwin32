@@ -9,7 +9,7 @@
 const CLSID_WaaSAssessor_Value = @import("../zig.zig").Guid.initString("098ef871-fa9f-46af-8958-c083515d7c9c");
 pub const CLSID_WaaSAssessor = &CLSID_WaaSAssessor_Value;
 
-pub const UpdateImpactLevel = extern enum(i32) {
+pub const UpdateImpactLevel = enum(i32) {
     None = 0,
     Low = 1,
     Medium = 2,
@@ -20,7 +20,7 @@ pub const UpdateImpactLevel_Low = UpdateImpactLevel.Low;
 pub const UpdateImpactLevel_Medium = UpdateImpactLevel.Medium;
 pub const UpdateImpactLevel_High = UpdateImpactLevel.High;
 
-pub const UpdateAssessmentStatus = extern enum(i32) {
+pub const UpdateAssessmentStatus = enum(i32) {
     Latest = 0,
     NotLatestSoftRestriction = 1,
     NotLatestHardRestriction = 2,

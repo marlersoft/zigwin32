@@ -246,7 +246,7 @@ pub const FindVolumeHandle = isize;
 // TODO: this type has a FreeFunc 'FindVolumeMountPointClose', what can Zig do with this information?
 pub const FindVolumeMointPointHandle = isize;
 
-pub const FIND_FIRST_EX_FLAGS = extern enum(u32) {
+pub const FIND_FIRST_EX_FLAGS = enum(u32) {
     CASE_SENSITIVE = 1,
     LARGE_FETCH = 2,
     ON_DISK_ENTRIES_ONLY = 4,
@@ -267,7 +267,7 @@ pub const FIND_FIRST_EX_CASE_SENSITIVE = FIND_FIRST_EX_FLAGS.CASE_SENSITIVE;
 pub const FIND_FIRST_EX_LARGE_FETCH = FIND_FIRST_EX_FLAGS.LARGE_FETCH;
 pub const FIND_FIRST_EX_ON_DISK_ENTRIES_ONLY = FIND_FIRST_EX_FLAGS.ON_DISK_ENTRIES_ONLY;
 
-pub const DEFINE_DOS_DEVICE_FLAGS = extern enum(u32) {
+pub const DEFINE_DOS_DEVICE_FLAGS = enum(u32) {
     RAW_TARGET_PATH = 1,
     REMOVE_DEFINITION = 2,
     EXACT_MATCH_ON_REMOVE = 4,
@@ -296,7 +296,7 @@ pub const DDD_EXACT_MATCH_ON_REMOVE = DEFINE_DOS_DEVICE_FLAGS.EXACT_MATCH_ON_REM
 pub const DDD_NO_BROADCAST_SYSTEM = DEFINE_DOS_DEVICE_FLAGS.NO_BROADCAST_SYSTEM;
 pub const DDD_LUID_BROADCAST_DRIVE = DEFINE_DOS_DEVICE_FLAGS.LUID_BROADCAST_DRIVE;
 
-pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
+pub const FILE_FLAGS_AND_ATTRIBUTES = enum(u32) {
     FILE_ATTRIBUTE_READONLY = 1,
     FILE_ATTRIBUTE_HIDDEN = 2,
     FILE_ATTRIBUTE_SYSTEM = 4,
@@ -317,7 +317,7 @@ pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
     FILE_ATTRIBUTE_EA = 262144,
     FILE_ATTRIBUTE_PINNED = 524288,
     FILE_ATTRIBUTE_UNPINNED = 1048576,
-    FILE_ATTRIBUTE_RECALL_ON_OPEN = 262144,
+    // FILE_ATTRIBUTE_RECALL_ON_OPEN = 262144, this enum value conflicts with FILE_ATTRIBUTE_EA
     FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = 4194304,
     FILE_FLAG_WRITE_THROUGH = 2147483648,
     FILE_FLAG_OVERLAPPED = 1073741824,
@@ -329,15 +329,15 @@ pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
     FILE_FLAG_POSIX_SEMANTICS = 16777216,
     FILE_FLAG_SESSION_AWARE = 8388608,
     FILE_FLAG_OPEN_REPARSE_POINT = 2097152,
-    FILE_FLAG_OPEN_NO_RECALL = 1048576,
-    FILE_FLAG_FIRST_PIPE_INSTANCE = 524288,
+    // FILE_FLAG_OPEN_NO_RECALL = 1048576, this enum value conflicts with FILE_ATTRIBUTE_UNPINNED
+    // FILE_FLAG_FIRST_PIPE_INSTANCE = 524288, this enum value conflicts with FILE_ATTRIBUTE_PINNED
     SECURITY_ANONYMOUS = 0,
-    SECURITY_IDENTIFICATION = 65536,
-    SECURITY_IMPERSONATION = 131072,
+    // SECURITY_IDENTIFICATION = 65536, this enum value conflicts with FILE_ATTRIBUTE_VIRTUAL
+    // SECURITY_IMPERSONATION = 131072, this enum value conflicts with FILE_ATTRIBUTE_NO_SCRUB_DATA
     SECURITY_DELEGATION = 196608,
-    SECURITY_CONTEXT_TRACKING = 262144,
-    SECURITY_EFFECTIVE_ONLY = 524288,
-    SECURITY_SQOS_PRESENT = 1048576,
+    // SECURITY_CONTEXT_TRACKING = 262144, this enum value conflicts with FILE_ATTRIBUTE_EA
+    // SECURITY_EFFECTIVE_ONLY = 524288, this enum value conflicts with FILE_ATTRIBUTE_PINNED
+    // SECURITY_SQOS_PRESENT = 1048576, this enum value conflicts with FILE_ATTRIBUTE_UNPINNED
     SECURITY_VALID_SQOS_FLAGS = 2031616,
     _,
     pub fn initFlags(o: struct {
@@ -361,7 +361,6 @@ pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
         FILE_ATTRIBUTE_EA: u1 = 0,
         FILE_ATTRIBUTE_PINNED: u1 = 0,
         FILE_ATTRIBUTE_UNPINNED: u1 = 0,
-        FILE_ATTRIBUTE_RECALL_ON_OPEN: u1 = 0,
         FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS: u1 = 0,
         FILE_FLAG_WRITE_THROUGH: u1 = 0,
         FILE_FLAG_OVERLAPPED: u1 = 0,
@@ -373,15 +372,8 @@ pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
         FILE_FLAG_POSIX_SEMANTICS: u1 = 0,
         FILE_FLAG_SESSION_AWARE: u1 = 0,
         FILE_FLAG_OPEN_REPARSE_POINT: u1 = 0,
-        FILE_FLAG_OPEN_NO_RECALL: u1 = 0,
-        FILE_FLAG_FIRST_PIPE_INSTANCE: u1 = 0,
         SECURITY_ANONYMOUS: u1 = 0,
-        SECURITY_IDENTIFICATION: u1 = 0,
-        SECURITY_IMPERSONATION: u1 = 0,
         SECURITY_DELEGATION: u1 = 0,
-        SECURITY_CONTEXT_TRACKING: u1 = 0,
-        SECURITY_EFFECTIVE_ONLY: u1 = 0,
-        SECURITY_SQOS_PRESENT: u1 = 0,
         SECURITY_VALID_SQOS_FLAGS: u1 = 0,
     }) FILE_FLAGS_AND_ATTRIBUTES {
         return @intToEnum(FILE_FLAGS_AND_ATTRIBUTES,
@@ -405,7 +397,6 @@ pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
             | (if (o.FILE_ATTRIBUTE_EA == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA) else 0)
             | (if (o.FILE_ATTRIBUTE_PINNED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED) else 0)
             | (if (o.FILE_ATTRIBUTE_UNPINNED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED) else 0)
-            | (if (o.FILE_ATTRIBUTE_RECALL_ON_OPEN == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_OPEN) else 0)
             | (if (o.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS) else 0)
             | (if (o.FILE_FLAG_WRITE_THROUGH == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_WRITE_THROUGH) else 0)
             | (if (o.FILE_FLAG_OVERLAPPED == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OVERLAPPED) else 0)
@@ -417,15 +408,8 @@ pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
             | (if (o.FILE_FLAG_POSIX_SEMANTICS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_POSIX_SEMANTICS) else 0)
             | (if (o.FILE_FLAG_SESSION_AWARE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SESSION_AWARE) else 0)
             | (if (o.FILE_FLAG_OPEN_REPARSE_POINT == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_REPARSE_POINT) else 0)
-            | (if (o.FILE_FLAG_OPEN_NO_RECALL == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_NO_RECALL) else 0)
-            | (if (o.FILE_FLAG_FIRST_PIPE_INSTANCE == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_FIRST_PIPE_INSTANCE) else 0)
             | (if (o.SECURITY_ANONYMOUS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_ANONYMOUS) else 0)
-            | (if (o.SECURITY_IDENTIFICATION == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IDENTIFICATION) else 0)
-            | (if (o.SECURITY_IMPERSONATION == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IMPERSONATION) else 0)
             | (if (o.SECURITY_DELEGATION == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_DELEGATION) else 0)
-            | (if (o.SECURITY_CONTEXT_TRACKING == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_CONTEXT_TRACKING) else 0)
-            | (if (o.SECURITY_EFFECTIVE_ONLY == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_EFFECTIVE_ONLY) else 0)
-            | (if (o.SECURITY_SQOS_PRESENT == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_SQOS_PRESENT) else 0)
             | (if (o.SECURITY_VALID_SQOS_FLAGS == 1) @enumToInt(FILE_FLAGS_AND_ATTRIBUTES.SECURITY_VALID_SQOS_FLAGS) else 0)
         );
     }
@@ -450,7 +434,7 @@ pub const FILE_ATTRIBUTE_NO_SCRUB_DATA = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUT
 pub const FILE_ATTRIBUTE_EA = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA;
 pub const FILE_ATTRIBUTE_PINNED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED;
 pub const FILE_ATTRIBUTE_UNPINNED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED;
-pub const FILE_ATTRIBUTE_RECALL_ON_OPEN = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_OPEN;
+pub const FILE_ATTRIBUTE_RECALL_ON_OPEN = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA;
 pub const FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS;
 pub const FILE_FLAG_WRITE_THROUGH = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_WRITE_THROUGH;
 pub const FILE_FLAG_OVERLAPPED = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OVERLAPPED;
@@ -462,38 +446,38 @@ pub const FILE_FLAG_BACKUP_SEMANTICS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_BACKU
 pub const FILE_FLAG_POSIX_SEMANTICS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_POSIX_SEMANTICS;
 pub const FILE_FLAG_SESSION_AWARE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SESSION_AWARE;
 pub const FILE_FLAG_OPEN_REPARSE_POINT = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_REPARSE_POINT;
-pub const FILE_FLAG_OPEN_NO_RECALL = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_NO_RECALL;
-pub const FILE_FLAG_FIRST_PIPE_INSTANCE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_FIRST_PIPE_INSTANCE;
+pub const FILE_FLAG_OPEN_NO_RECALL = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED;
+pub const FILE_FLAG_FIRST_PIPE_INSTANCE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED;
 pub const SECURITY_ANONYMOUS = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_ANONYMOUS;
-pub const SECURITY_IDENTIFICATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IDENTIFICATION;
-pub const SECURITY_IMPERSONATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IMPERSONATION;
+pub const SECURITY_IDENTIFICATION = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_VIRTUAL;
+pub const SECURITY_IMPERSONATION = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NO_SCRUB_DATA;
 pub const SECURITY_DELEGATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_DELEGATION;
-pub const SECURITY_CONTEXT_TRACKING = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_CONTEXT_TRACKING;
-pub const SECURITY_EFFECTIVE_ONLY = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_EFFECTIVE_ONLY;
-pub const SECURITY_SQOS_PRESENT = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_SQOS_PRESENT;
+pub const SECURITY_CONTEXT_TRACKING = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA;
+pub const SECURITY_EFFECTIVE_ONLY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED;
+pub const SECURITY_SQOS_PRESENT = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED;
 pub const SECURITY_VALID_SQOS_FLAGS = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_VALID_SQOS_FLAGS;
 
-pub const FILE_ACCESS_FLAGS = extern enum(u32) {
+pub const FILE_ACCESS_FLAGS = enum(u32) {
     FILE_READ_DATA = 1,
-    FILE_LIST_DIRECTORY = 1,
+    // FILE_LIST_DIRECTORY = 1, this enum value conflicts with FILE_READ_DATA
     FILE_WRITE_DATA = 2,
-    FILE_ADD_FILE = 2,
+    // FILE_ADD_FILE = 2, this enum value conflicts with FILE_WRITE_DATA
     FILE_APPEND_DATA = 4,
-    FILE_ADD_SUBDIRECTORY = 4,
-    FILE_CREATE_PIPE_INSTANCE = 4,
+    // FILE_ADD_SUBDIRECTORY = 4, this enum value conflicts with FILE_APPEND_DATA
+    // FILE_CREATE_PIPE_INSTANCE = 4, this enum value conflicts with FILE_APPEND_DATA
     FILE_READ_EA = 8,
     FILE_WRITE_EA = 16,
     FILE_EXECUTE = 32,
-    FILE_TRAVERSE = 32,
+    // FILE_TRAVERSE = 32, this enum value conflicts with FILE_EXECUTE
     FILE_DELETE_CHILD = 64,
     FILE_READ_ATTRIBUTES = 128,
     FILE_WRITE_ATTRIBUTES = 256,
     READ_CONTROL = 131072,
     SYNCHRONIZE = 1048576,
     STANDARD_RIGHTS_REQUIRED = 983040,
-    STANDARD_RIGHTS_READ = 131072,
-    STANDARD_RIGHTS_WRITE = 131072,
-    STANDARD_RIGHTS_EXECUTE = 131072,
+    // STANDARD_RIGHTS_READ = 131072, this enum value conflicts with READ_CONTROL
+    // STANDARD_RIGHTS_WRITE = 131072, this enum value conflicts with READ_CONTROL
+    // STANDARD_RIGHTS_EXECUTE = 131072, this enum value conflicts with READ_CONTROL
     STANDARD_RIGHTS_ALL = 2031616,
     SPECIFIC_RIGHTS_ALL = 65535,
     FILE_ALL_ACCESS = 2032127,
@@ -503,25 +487,17 @@ pub const FILE_ACCESS_FLAGS = extern enum(u32) {
     _,
     pub fn initFlags(o: struct {
         FILE_READ_DATA: u1 = 0,
-        FILE_LIST_DIRECTORY: u1 = 0,
         FILE_WRITE_DATA: u1 = 0,
-        FILE_ADD_FILE: u1 = 0,
         FILE_APPEND_DATA: u1 = 0,
-        FILE_ADD_SUBDIRECTORY: u1 = 0,
-        FILE_CREATE_PIPE_INSTANCE: u1 = 0,
         FILE_READ_EA: u1 = 0,
         FILE_WRITE_EA: u1 = 0,
         FILE_EXECUTE: u1 = 0,
-        FILE_TRAVERSE: u1 = 0,
         FILE_DELETE_CHILD: u1 = 0,
         FILE_READ_ATTRIBUTES: u1 = 0,
         FILE_WRITE_ATTRIBUTES: u1 = 0,
         READ_CONTROL: u1 = 0,
         SYNCHRONIZE: u1 = 0,
         STANDARD_RIGHTS_REQUIRED: u1 = 0,
-        STANDARD_RIGHTS_READ: u1 = 0,
-        STANDARD_RIGHTS_WRITE: u1 = 0,
-        STANDARD_RIGHTS_EXECUTE: u1 = 0,
         STANDARD_RIGHTS_ALL: u1 = 0,
         SPECIFIC_RIGHTS_ALL: u1 = 0,
         FILE_ALL_ACCESS: u1 = 0,
@@ -531,25 +507,17 @@ pub const FILE_ACCESS_FLAGS = extern enum(u32) {
     }) FILE_ACCESS_FLAGS {
         return @intToEnum(FILE_ACCESS_FLAGS,
               (if (o.FILE_READ_DATA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_READ_DATA) else 0)
-            | (if (o.FILE_LIST_DIRECTORY == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_LIST_DIRECTORY) else 0)
             | (if (o.FILE_WRITE_DATA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_WRITE_DATA) else 0)
-            | (if (o.FILE_ADD_FILE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_ADD_FILE) else 0)
             | (if (o.FILE_APPEND_DATA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_APPEND_DATA) else 0)
-            | (if (o.FILE_ADD_SUBDIRECTORY == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_ADD_SUBDIRECTORY) else 0)
-            | (if (o.FILE_CREATE_PIPE_INSTANCE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_CREATE_PIPE_INSTANCE) else 0)
             | (if (o.FILE_READ_EA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_READ_EA) else 0)
             | (if (o.FILE_WRITE_EA == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_WRITE_EA) else 0)
             | (if (o.FILE_EXECUTE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_EXECUTE) else 0)
-            | (if (o.FILE_TRAVERSE == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_TRAVERSE) else 0)
             | (if (o.FILE_DELETE_CHILD == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_DELETE_CHILD) else 0)
             | (if (o.FILE_READ_ATTRIBUTES == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_READ_ATTRIBUTES) else 0)
             | (if (o.FILE_WRITE_ATTRIBUTES == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_WRITE_ATTRIBUTES) else 0)
             | (if (o.READ_CONTROL == 1) @enumToInt(FILE_ACCESS_FLAGS.READ_CONTROL) else 0)
             | (if (o.SYNCHRONIZE == 1) @enumToInt(FILE_ACCESS_FLAGS.SYNCHRONIZE) else 0)
             | (if (o.STANDARD_RIGHTS_REQUIRED == 1) @enumToInt(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_REQUIRED) else 0)
-            | (if (o.STANDARD_RIGHTS_READ == 1) @enumToInt(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_READ) else 0)
-            | (if (o.STANDARD_RIGHTS_WRITE == 1) @enumToInt(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_WRITE) else 0)
-            | (if (o.STANDARD_RIGHTS_EXECUTE == 1) @enumToInt(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_EXECUTE) else 0)
             | (if (o.STANDARD_RIGHTS_ALL == 1) @enumToInt(FILE_ACCESS_FLAGS.STANDARD_RIGHTS_ALL) else 0)
             | (if (o.SPECIFIC_RIGHTS_ALL == 1) @enumToInt(FILE_ACCESS_FLAGS.SPECIFIC_RIGHTS_ALL) else 0)
             | (if (o.FILE_ALL_ACCESS == 1) @enumToInt(FILE_ACCESS_FLAGS.FILE_ALL_ACCESS) else 0)
@@ -560,25 +528,25 @@ pub const FILE_ACCESS_FLAGS = extern enum(u32) {
     }
 };
 pub const FILE_READ_DATA = FILE_ACCESS_FLAGS.FILE_READ_DATA;
-pub const FILE_LIST_DIRECTORY = FILE_ACCESS_FLAGS.FILE_LIST_DIRECTORY;
+pub const FILE_LIST_DIRECTORY = FILE_ACCESS_FLAGS.FILE_READ_DATA;
 pub const FILE_WRITE_DATA = FILE_ACCESS_FLAGS.FILE_WRITE_DATA;
-pub const FILE_ADD_FILE = FILE_ACCESS_FLAGS.FILE_ADD_FILE;
+pub const FILE_ADD_FILE = FILE_ACCESS_FLAGS.FILE_WRITE_DATA;
 pub const FILE_APPEND_DATA = FILE_ACCESS_FLAGS.FILE_APPEND_DATA;
-pub const FILE_ADD_SUBDIRECTORY = FILE_ACCESS_FLAGS.FILE_ADD_SUBDIRECTORY;
-pub const FILE_CREATE_PIPE_INSTANCE = FILE_ACCESS_FLAGS.FILE_CREATE_PIPE_INSTANCE;
+pub const FILE_ADD_SUBDIRECTORY = FILE_ACCESS_FLAGS.FILE_APPEND_DATA;
+pub const FILE_CREATE_PIPE_INSTANCE = FILE_ACCESS_FLAGS.FILE_APPEND_DATA;
 pub const FILE_READ_EA = FILE_ACCESS_FLAGS.FILE_READ_EA;
 pub const FILE_WRITE_EA = FILE_ACCESS_FLAGS.FILE_WRITE_EA;
 pub const FILE_EXECUTE = FILE_ACCESS_FLAGS.FILE_EXECUTE;
-pub const FILE_TRAVERSE = FILE_ACCESS_FLAGS.FILE_TRAVERSE;
+pub const FILE_TRAVERSE = FILE_ACCESS_FLAGS.FILE_EXECUTE;
 pub const FILE_DELETE_CHILD = FILE_ACCESS_FLAGS.FILE_DELETE_CHILD;
 pub const FILE_READ_ATTRIBUTES = FILE_ACCESS_FLAGS.FILE_READ_ATTRIBUTES;
 pub const FILE_WRITE_ATTRIBUTES = FILE_ACCESS_FLAGS.FILE_WRITE_ATTRIBUTES;
 pub const READ_CONTROL = FILE_ACCESS_FLAGS.READ_CONTROL;
 pub const SYNCHRONIZE = FILE_ACCESS_FLAGS.SYNCHRONIZE;
 pub const STANDARD_RIGHTS_REQUIRED = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_REQUIRED;
-pub const STANDARD_RIGHTS_READ = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_READ;
-pub const STANDARD_RIGHTS_WRITE = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_WRITE;
-pub const STANDARD_RIGHTS_EXECUTE = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_EXECUTE;
+pub const STANDARD_RIGHTS_READ = FILE_ACCESS_FLAGS.READ_CONTROL;
+pub const STANDARD_RIGHTS_WRITE = FILE_ACCESS_FLAGS.READ_CONTROL;
+pub const STANDARD_RIGHTS_EXECUTE = FILE_ACCESS_FLAGS.READ_CONTROL;
 pub const STANDARD_RIGHTS_ALL = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_ALL;
 pub const SPECIFIC_RIGHTS_ALL = FILE_ACCESS_FLAGS.SPECIFIC_RIGHTS_ALL;
 pub const FILE_ALL_ACCESS = FILE_ACCESS_FLAGS.FILE_ALL_ACCESS;
@@ -624,7 +592,7 @@ pub const REPARSE_GUID_DATA_BUFFER = extern struct {
     },
 };
 
-pub const TRANSACTION_OUTCOME = extern enum(i32) {
+pub const TRANSACTION_OUTCOME = enum(i32) {
     Undetermined = 1,
     Committed = 2,
     Aborted = 3,
@@ -680,7 +648,7 @@ pub const WIN32_FIND_DATAW = extern struct {
     cAlternateFileName: [14]u16,
 };
 
-pub const FINDEX_INFO_LEVELS = extern enum(i32) {
+pub const FINDEX_INFO_LEVELS = enum(i32) {
     Standard = 0,
     Basic = 1,
     MaxInfoLevel = 2,
@@ -689,7 +657,7 @@ pub const FindExInfoStandard = FINDEX_INFO_LEVELS.Standard;
 pub const FindExInfoBasic = FINDEX_INFO_LEVELS.Basic;
 pub const FindExInfoMaxInfoLevel = FINDEX_INFO_LEVELS.MaxInfoLevel;
 
-pub const FINDEX_SEARCH_OPS = extern enum(i32) {
+pub const FINDEX_SEARCH_OPS = enum(i32) {
     NameMatch = 0,
     LimitToDirectories = 1,
     LimitToDevices = 2,
@@ -700,21 +668,21 @@ pub const FindExSearchLimitToDirectories = FINDEX_SEARCH_OPS.LimitToDirectories;
 pub const FindExSearchLimitToDevices = FINDEX_SEARCH_OPS.LimitToDevices;
 pub const FindExSearchMaxSearchOp = FINDEX_SEARCH_OPS.MaxSearchOp;
 
-pub const READ_DIRECTORY_NOTIFY_INFORMATION_CLASS = extern enum(i32) {
+pub const READ_DIRECTORY_NOTIFY_INFORMATION_CLASS = enum(i32) {
     Information = 1,
     ExtendedInformation = 2,
 };
 pub const ReadDirectoryNotifyInformation = READ_DIRECTORY_NOTIFY_INFORMATION_CLASS.Information;
 pub const ReadDirectoryNotifyExtendedInformation = READ_DIRECTORY_NOTIFY_INFORMATION_CLASS.ExtendedInformation;
 
-pub const GET_FILEEX_INFO_LEVELS = extern enum(i32) {
+pub const GET_FILEEX_INFO_LEVELS = enum(i32) {
     InfoStandard = 0,
     MaxInfoLevel = 1,
 };
 pub const GetFileExInfoStandard = GET_FILEEX_INFO_LEVELS.InfoStandard;
 pub const GetFileExMaxInfoLevel = GET_FILEEX_INFO_LEVELS.MaxInfoLevel;
 
-pub const FILE_INFO_BY_HANDLE_CLASS = extern enum(i32) {
+pub const FILE_INFO_BY_HANDLE_CLASS = enum(i32) {
     FileBasicInfo = 0,
     FileStandardInfo = 1,
     FileNameInfo = 2,
@@ -775,7 +743,7 @@ pub const LPOVERLAPPED_COMPLETION_ROUTINE = fn(
     lpOverlapped: *OVERLAPPED,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const STORAGE_QUERY_TYPE = extern enum(i32) {
+pub const STORAGE_QUERY_TYPE = enum(i32) {
     StandardQuery = 0,
     ExistsQuery = 1,
     MaskQuery = 2,
@@ -786,7 +754,7 @@ pub const PropertyExistsQuery = STORAGE_QUERY_TYPE.ExistsQuery;
 pub const PropertyMaskQuery = STORAGE_QUERY_TYPE.MaskQuery;
 pub const PropertyQueryMaxDefined = STORAGE_QUERY_TYPE.QueryMaxDefined;
 
-pub const STORAGE_PROPERTY_ID = extern enum(i32) {
+pub const STORAGE_PROPERTY_ID = enum(i32) {
     DeviceProperty = 0,
     AdapterProperty = 1,
     DeviceIdProperty = 2,
@@ -915,7 +883,7 @@ pub const STORAGE_MEDIUM_PRODUCT_TYPE_DESCRIPTOR = extern struct {
     MediumProductType: u32,
 };
 
-pub const STORAGE_PORT_CODE_SET = extern enum(i32) {
+pub const STORAGE_PORT_CODE_SET = enum(i32) {
     Reserved = 0,
     Storport = 1,
     SCSIport = 2,
@@ -1020,7 +988,7 @@ pub const STORAGE_DEVICE_RESILIENCY_DESCRIPTOR = extern struct {
     Interleave: u32,
 };
 
-pub const STORAGE_PROTOCOL_TYPE = extern enum(i32) {
+pub const STORAGE_PROTOCOL_TYPE = enum(i32) {
     Unknown = 0,
     Scsi = 1,
     Ata = 2,
@@ -1039,7 +1007,7 @@ pub const ProtocolTypeUfs = STORAGE_PROTOCOL_TYPE.Ufs;
 pub const ProtocolTypeProprietary = STORAGE_PROTOCOL_TYPE.Proprietary;
 pub const ProtocolTypeMaxReserved = STORAGE_PROTOCOL_TYPE.MaxReserved;
 
-pub const STORAGE_PROTOCOL_NVME_DATA_TYPE = extern enum(i32) {
+pub const STORAGE_PROTOCOL_NVME_DATA_TYPE = enum(i32) {
     Unknown = 0,
     Identify = 1,
     LogPage = 2,
@@ -1050,7 +1018,7 @@ pub const NVMeDataTypeIdentify = STORAGE_PROTOCOL_NVME_DATA_TYPE.Identify;
 pub const NVMeDataTypeLogPage = STORAGE_PROTOCOL_NVME_DATA_TYPE.LogPage;
 pub const NVMeDataTypeFeature = STORAGE_PROTOCOL_NVME_DATA_TYPE.Feature;
 
-pub const STORAGE_PROTOCOL_ATA_DATA_TYPE = extern enum(i32) {
+pub const STORAGE_PROTOCOL_ATA_DATA_TYPE = enum(i32) {
     Unknown = 0,
     Identify = 1,
     LogPage = 2,
@@ -1111,7 +1079,7 @@ pub const STORAGE_TEMPERATURE_THRESHOLD = extern struct {
     Reserved: u8,
 };
 
-pub const STORAGE_DEVICE_FORM_FACTOR = extern enum(i32) {
+pub const STORAGE_DEVICE_FORM_FACTOR = enum(i32) {
     Unknown = 0,
     @"3_5" = 1,
     @"2_5" = 2,
@@ -1136,7 +1104,7 @@ pub const FormFactorM_2 = STORAGE_DEVICE_FORM_FACTOR.M_2;
 pub const FormFactorPCIeBoard = STORAGE_DEVICE_FORM_FACTOR.PCIeBoard;
 pub const FormFactorDimm = STORAGE_DEVICE_FORM_FACTOR.Dimm;
 
-pub const STORAGE_COMPONENT_HEALTH_STATUS = extern enum(i32) {
+pub const STORAGE_COMPONENT_HEALTH_STATUS = enum(i32) {
     Unknown = 0,
     Normal = 1,
     Throttled = 2,
@@ -1232,7 +1200,7 @@ pub const STORAGE_ADAPTER_SERIAL_NUMBER = extern struct {
     SerialNumber: [128]u16,
 };
 
-pub const WRITE_CACHE_TYPE = extern enum(i32) {
+pub const WRITE_CACHE_TYPE = enum(i32) {
     Unknown = 0,
     None = 1,
     WriteBack = 2,
@@ -1243,7 +1211,7 @@ pub const WriteCacheTypeNone = WRITE_CACHE_TYPE.None;
 pub const WriteCacheTypeWriteBack = WRITE_CACHE_TYPE.WriteBack;
 pub const WriteCacheTypeWriteThrough = WRITE_CACHE_TYPE.WriteThrough;
 
-pub const WRITE_CACHE_ENABLE = extern enum(i32) {
+pub const WRITE_CACHE_ENABLE = enum(i32) {
     EnableUnknown = 0,
     Disabled = 1,
     Enabled = 2,
@@ -1252,7 +1220,7 @@ pub const WriteCacheEnableUnknown = WRITE_CACHE_ENABLE.EnableUnknown;
 pub const WriteCacheDisabled = WRITE_CACHE_ENABLE.Disabled;
 pub const WriteCacheEnabled = WRITE_CACHE_ENABLE.Enabled;
 
-pub const WRITE_CACHE_CHANGE = extern enum(i32) {
+pub const WRITE_CACHE_CHANGE = enum(i32) {
     ChangeUnknown = 0,
     NotChangeable = 1,
     Changeable = 2,
@@ -1261,7 +1229,7 @@ pub const WriteCacheChangeUnknown = WRITE_CACHE_CHANGE.ChangeUnknown;
 pub const WriteCacheNotChangeable = WRITE_CACHE_CHANGE.NotChangeable;
 pub const WriteCacheChangeable = WRITE_CACHE_CHANGE.Changeable;
 
-pub const WRITE_THROUGH = extern enum(i32) {
+pub const WRITE_THROUGH = enum(i32) {
     Unknown = 0,
     NotSupported = 1,
     Supported = 2,
@@ -1282,7 +1250,7 @@ pub const STORAGE_WRITE_CACHE_PROPERTY = extern struct {
     NVCacheEnabled: u8,
 };
 
-pub const STORAGE_DEVICE_POWER_CAP_UNITS = extern enum(i32) {
+pub const STORAGE_DEVICE_POWER_CAP_UNITS = enum(i32) {
     Percent = 0,
     Milliwatts = 1,
 };
@@ -1337,7 +1305,7 @@ pub const STORAGE_PROTOCOL_COMMAND = extern struct {
     Command: [1]u8,
 };
 
-pub const MEDIA_TYPE = extern enum(i32) {
+pub const MEDIA_TYPE = enum(i32) {
     Unknown = 0,
     F5_1Pt2_512 = 1,
     F3_1Pt44_512 = 2,
@@ -1457,7 +1425,7 @@ pub const REASSIGN_BLOCKS_EX = packed struct {
     BlockNumber: [1]LARGE_INTEGER,
 };
 
-pub const PARTITION_STYLE = extern enum(i32) {
+pub const PARTITION_STYLE = enum(i32) {
     MBR = 0,
     GPT = 1,
     RAW = 2,
@@ -2361,7 +2329,7 @@ pub const CSV_NAMESPACE_INFO = extern struct {
     SectorSize: u32,
 };
 
-pub const CSV_CONTROL_OP = extern enum(i32) {
+pub const CSV_CONTROL_OP = enum(i32) {
     StartRedirectFile = 2,
     StopRedirectFile = 3,
     QueryRedirectState = 4,
@@ -2472,7 +2440,7 @@ pub const REPAIR_COPIES_OUTPUT = extern struct {
     ResumeFileOffset: LARGE_INTEGER,
 };
 
-pub const FILE_STORAGE_TIER_MEDIA_TYPE = extern enum(i32) {
+pub const FILE_STORAGE_TIER_MEDIA_TYPE = enum(i32) {
     Unspecified = 0,
     Disk = 1,
     Ssd = 2,
@@ -2655,7 +2623,7 @@ pub const CREATEFILE2_EXTENDED_PARAMETERS = extern struct {
     hTemplateFile: HANDLE,
 };
 
-pub const STREAM_INFO_LEVELS = extern enum(i32) {
+pub const STREAM_INFO_LEVELS = enum(i32) {
     Standard = 0,
     MaxInfoLevel = 1,
 };
@@ -2683,7 +2651,7 @@ pub const VS_FIXEDFILEINFO = extern struct {
     dwFileDateLS: u32,
 };
 
-pub const NtmsObjectsTypes = extern enum(i32) {
+pub const NtmsObjectsTypes = enum(i32) {
     UNKNOWN = 0,
     OBJECT = 1,
     CHANGER = 2,
@@ -2736,7 +2704,7 @@ pub const NTMS_ASYNC_IO = extern struct {
     bOnStateChange: BOOL,
 };
 
-pub const NtmsAsyncStatus = extern enum(i32) {
+pub const NtmsAsyncStatus = enum(i32) {
     QUEUED = 0,
     WAIT_RESOURCE = 1,
     WAIT_OPERATOR = 2,
@@ -2749,54 +2717,54 @@ pub const NTMS_ASYNCSTATE_WAIT_OPERATOR = NtmsAsyncStatus.WAIT_OPERATOR;
 pub const NTMS_ASYNCSTATE_INPROCESS = NtmsAsyncStatus.INPROCESS;
 pub const NTMS_ASYNCSTATE_COMPLETE = NtmsAsyncStatus.COMPLETE;
 
-pub const NtmsAsyncOperations = extern enum(i32) {
+pub const NtmsAsyncOperations = enum(i32) {
     T = 1,
 };
 pub const NTMS_ASYNCOP_MOUNT = NtmsAsyncOperations.T;
 
-pub const NtmsSessionOptions = extern enum(i32) {
+pub const NtmsSessionOptions = enum(i32) {
     E = 1,
 };
 pub const NTMS_SESSION_QUERYEXPEDITE = NtmsSessionOptions.E;
 
-pub const NtmsMountOptions = extern enum(i32) {
+pub const NtmsMountOptions = enum(i32) {
     READ = 1,
     WRITE = 2,
     ERROR_NOT_AVAILABLE = 4,
-    ERROR_IF_UNAVAILABLE = 4,
+    // ERROR_IF_UNAVAILABLE = 4, this enum value conflicts with ERROR_NOT_AVAILABLE
     ERROR_OFFLINE = 8,
-    ERROR_IF_OFFLINE = 8,
+    // ERROR_IF_OFFLINE = 8, this enum value conflicts with ERROR_OFFLINE
     SPECIFIC_DRIVE = 16,
     NOWAIT = 32,
 };
 pub const NTMS_MOUNT_READ = NtmsMountOptions.READ;
 pub const NTMS_MOUNT_WRITE = NtmsMountOptions.WRITE;
 pub const NTMS_MOUNT_ERROR_NOT_AVAILABLE = NtmsMountOptions.ERROR_NOT_AVAILABLE;
-pub const NTMS_MOUNT_ERROR_IF_UNAVAILABLE = NtmsMountOptions.ERROR_IF_UNAVAILABLE;
+pub const NTMS_MOUNT_ERROR_IF_UNAVAILABLE = NtmsMountOptions.ERROR_NOT_AVAILABLE;
 pub const NTMS_MOUNT_ERROR_OFFLINE = NtmsMountOptions.ERROR_OFFLINE;
-pub const NTMS_MOUNT_ERROR_IF_OFFLINE = NtmsMountOptions.ERROR_IF_OFFLINE;
+pub const NTMS_MOUNT_ERROR_IF_OFFLINE = NtmsMountOptions.ERROR_OFFLINE;
 pub const NTMS_MOUNT_SPECIFIC_DRIVE = NtmsMountOptions.SPECIFIC_DRIVE;
 pub const NTMS_MOUNT_NOWAIT = NtmsMountOptions.NOWAIT;
 
-pub const NtmsDismountOptions = extern enum(i32) {
+pub const NtmsDismountOptions = enum(i32) {
     DEFERRED = 1,
     IMMEDIATE = 2,
 };
 pub const NTMS_DISMOUNT_DEFERRED = NtmsDismountOptions.DEFERRED;
 pub const NTMS_DISMOUNT_IMMEDIATE = NtmsDismountOptions.IMMEDIATE;
 
-pub const NtmsMountPriority = extern enum(i32) {
+pub const NtmsMountPriority = enum(i32) {
     DEFAULT = 0,
     HIGHEST = 15,
     HIGH = 7,
-    NORMAL = 0,
+    // NORMAL = 0, this enum value conflicts with DEFAULT
     LOW = -7,
     LOWEST = -15,
 };
 pub const NTMS_PRIORITY_DEFAULT = NtmsMountPriority.DEFAULT;
 pub const NTMS_PRIORITY_HIGHEST = NtmsMountPriority.HIGHEST;
 pub const NTMS_PRIORITY_HIGH = NtmsMountPriority.HIGH;
-pub const NTMS_PRIORITY_NORMAL = NtmsMountPriority.NORMAL;
+pub const NTMS_PRIORITY_NORMAL = NtmsMountPriority.DEFAULT;
 pub const NTMS_PRIORITY_LOW = NtmsMountPriority.LOW;
 pub const NTMS_PRIORITY_LOWEST = NtmsMountPriority.LOWEST;
 
@@ -2805,7 +2773,7 @@ pub const NTMS_MOUNT_INFORMATION = extern struct {
     lpReserved: *c_void,
 };
 
-pub const NtmsAllocateOptions = extern enum(i32) {
+pub const NtmsAllocateOptions = enum(i32) {
     NEW = 1,
     NEXT = 2,
     ERROR_IF_UNAVAILABLE = 4,
@@ -2820,7 +2788,7 @@ pub const NTMS_ALLOCATION_INFORMATION = extern struct {
     AllocatedFrom: Guid,
 };
 
-pub const NtmsCreateOptions = extern enum(i32) {
+pub const NtmsCreateOptions = enum(i32) {
     OPEN_EXISTING = 1,
     CREATE_NEW = 2,
     OPEN_ALWAYS = 3,
@@ -2829,7 +2797,7 @@ pub const NTMS_OPEN_EXISTING = NtmsCreateOptions.OPEN_EXISTING;
 pub const NTMS_CREATE_NEW = NtmsCreateOptions.CREATE_NEW;
 pub const NTMS_OPEN_ALWAYS = NtmsCreateOptions.OPEN_ALWAYS;
 
-pub const NtmsDriveState = extern enum(i32) {
+pub const NtmsDriveState = enum(i32) {
     DISMOUNTED = 0,
     MOUNTED = 1,
     LOADED = 2,
@@ -2882,7 +2850,7 @@ pub const NTMS_DRIVEINFORMATIONW = extern struct {
     dwDeferDismountDelay: u32,
 };
 
-pub const NtmsLibraryType = extern enum(i32) {
+pub const NtmsLibraryType = enum(i32) {
     UNKNOWN = 0,
     OFFLINE = 1,
     ONLINE = 2,
@@ -2893,7 +2861,7 @@ pub const NTMS_LIBRARYTYPE_OFFLINE = NtmsLibraryType.OFFLINE;
 pub const NTMS_LIBRARYTYPE_ONLINE = NtmsLibraryType.ONLINE;
 pub const NTMS_LIBRARYTYPE_STANDALONE = NtmsLibraryType.STANDALONE;
 
-pub const NtmsLibraryFlags = extern enum(i32) {
+pub const NtmsLibraryFlags = enum(i32) {
     FIXEDOFFLINE = 1,
     CLEANERPRESENT = 2,
     AUTODETECTCHANGE = 4,
@@ -2906,7 +2874,7 @@ pub const NTMS_LIBRARYFLAG_AUTODETECTCHANGE = NtmsLibraryFlags.AUTODETECTCHANGE;
 pub const NTMS_LIBRARYFLAG_IGNORECLEANERUSESREMAINING = NtmsLibraryFlags.IGNORECLEANERUSESREMAINING;
 pub const NTMS_LIBRARYFLAG_RECOGNIZECLEANERBARCODE = NtmsLibraryFlags.RECOGNIZECLEANERBARCODE;
 
-pub const NtmsInventoryMethod = extern enum(i32) {
+pub const NtmsInventoryMethod = enum(i32) {
     NONE = 0,
     FAST = 1,
     OMID = 2,
@@ -2975,7 +2943,7 @@ pub const NTMS_CHANGERINFORMATIONW = extern struct {
     Library: Guid,
 };
 
-pub const NtmsSlotState = extern enum(i32) {
+pub const NtmsSlotState = enum(i32) {
     UNKNOWN = 0,
     FULL = 1,
     EMPTY = 2,
@@ -2994,7 +2962,7 @@ pub const NTMS_STORAGESLOTINFORMATION = extern struct {
     Library: Guid,
 };
 
-pub const NtmsDoorState = extern enum(i32) {
+pub const NtmsDoorState = enum(i32) {
     UNKNOWN = 0,
     CLOSED = 1,
     OPEN = 2,
@@ -3010,7 +2978,7 @@ pub const NTMS_IEDOORINFORMATION = extern struct {
     Library: Guid,
 };
 
-pub const NtmsPortPosition = extern enum(i32) {
+pub const NtmsPortPosition = enum(i32) {
     UNKNOWN = 0,
     EXTENDED = 1,
     RETRACTED = 2,
@@ -3019,7 +2987,7 @@ pub const NTMS_PORTPOSITION_UNKNOWN = NtmsPortPosition.UNKNOWN;
 pub const NTMS_PORTPOSITION_EXTENDED = NtmsPortPosition.EXTENDED;
 pub const NTMS_PORTPOSITION_RETRACTED = NtmsPortPosition.RETRACTED;
 
-pub const NtmsPortContent = extern enum(i32) {
+pub const NtmsPortContent = enum(i32) {
     UNKNOWN = 0,
     FULL = 1,
     EMPTY = 2,
@@ -3036,14 +3004,14 @@ pub const NTMS_IEPORTINFORMATION = extern struct {
     Library: Guid,
 };
 
-pub const NtmsBarCodeState = extern enum(i32) {
+pub const NtmsBarCodeState = enum(i32) {
     OK = 1,
     UNREADABLE = 2,
 };
 pub const NTMS_BARCODESTATE_OK = NtmsBarCodeState.OK;
 pub const NTMS_BARCODESTATE_UNREADABLE = NtmsBarCodeState.UNREADABLE;
 
-pub const NtmsMediaState = extern enum(i32) {
+pub const NtmsMediaState = enum(i32) {
     IDLE = 0,
     INUSE = 1,
     MOUNTED = 2,
@@ -3099,7 +3067,7 @@ pub const NTMS_LMIDINFORMATION = extern struct {
     dwNumberOfPartitions: u32,
 };
 
-pub const NtmsPartitionState = extern enum(i32) {
+pub const NtmsPartitionState = enum(i32) {
     UNKNOWN = 0,
     UNPREPARED = 1,
     INCOMPATIBLE = 2,
@@ -3150,7 +3118,7 @@ pub const NTMS_PARTITIONINFORMATIONW = extern struct {
     Capacity: LARGE_INTEGER,
 };
 
-pub const NtmsPoolType = extern enum(i32) {
+pub const NtmsPoolType = enum(i32) {
     UNKNOWN = 0,
     SCRATCH = 1,
     FOREIGN = 2,
@@ -3163,12 +3131,12 @@ pub const NTMS_POOLTYPE_FOREIGN = NtmsPoolType.FOREIGN;
 pub const NTMS_POOLTYPE_IMPORT = NtmsPoolType.IMPORT;
 pub const NTMS_POOLTYPE_APPLICATION = NtmsPoolType.APPLICATION;
 
-pub const NtmsAllocationPolicy = extern enum(i32) {
+pub const NtmsAllocationPolicy = enum(i32) {
     H = 1,
 };
 pub const NTMS_ALLOCATE_FROMSCRATCH = NtmsAllocationPolicy.H;
 
-pub const NtmsDeallocationPolicy = extern enum(i32) {
+pub const NtmsDeallocationPolicy = enum(i32) {
     H = 1,
 };
 pub const NTMS_DEALLOCATE_TOSCRATCH = NtmsDeallocationPolicy.H;
@@ -3185,7 +3153,7 @@ pub const NTMS_MEDIAPOOLINFORMATION = extern struct {
     dwNumberOfMediaPools: u32,
 };
 
-pub const NtmsReadWriteCharacteristics = extern enum(i32) {
+pub const NtmsReadWriteCharacteristics = enum(i32) {
     UNKNOWN = 0,
     REWRITABLE = 1,
     WRITEONCE = 2,
@@ -3229,12 +3197,12 @@ pub const NTMS_CHANGERTYPEINFORMATIONW = extern struct {
     DeviceType: u32,
 };
 
-pub const NtmsLmOperation = extern enum(i32) {
+pub const NtmsLmOperation = enum(i32) {
     REMOVE = 0,
     DISABLECHANGER = 1,
-    DISABLELIBRARY = 1,
+    // DISABLELIBRARY = 1, this enum value conflicts with DISABLECHANGER
     ENABLECHANGER = 2,
-    ENABLELIBRARY = 2,
+    // ENABLELIBRARY = 2, this enum value conflicts with ENABLECHANGER
     DISABLEDRIVE = 3,
     ENABLEDRIVE = 4,
     DISABLEMEDIA = 5,
@@ -3258,9 +3226,9 @@ pub const NtmsLmOperation = extern enum(i32) {
 };
 pub const NTMS_LM_REMOVE = NtmsLmOperation.REMOVE;
 pub const NTMS_LM_DISABLECHANGER = NtmsLmOperation.DISABLECHANGER;
-pub const NTMS_LM_DISABLELIBRARY = NtmsLmOperation.DISABLELIBRARY;
+pub const NTMS_LM_DISABLELIBRARY = NtmsLmOperation.DISABLECHANGER;
 pub const NTMS_LM_ENABLECHANGER = NtmsLmOperation.ENABLECHANGER;
-pub const NTMS_LM_ENABLELIBRARY = NtmsLmOperation.ENABLELIBRARY;
+pub const NTMS_LM_ENABLELIBRARY = NtmsLmOperation.ENABLECHANGER;
 pub const NTMS_LM_DISABLEDRIVE = NtmsLmOperation.DISABLEDRIVE;
 pub const NTMS_LM_ENABLEDRIVE = NtmsLmOperation.ENABLEDRIVE;
 pub const NTMS_LM_DISABLEMEDIA = NtmsLmOperation.DISABLEMEDIA;
@@ -3282,7 +3250,7 @@ pub const NTMS_LM_RESERVECLEANER = NtmsLmOperation.RESERVECLEANER;
 pub const NTMS_LM_RELEASECLEANER = NtmsLmOperation.RELEASECLEANER;
 pub const NTMS_LM_MAXWORKITEM = NtmsLmOperation.MAXWORKITEM;
 
-pub const NtmsLmState = extern enum(i32) {
+pub const NtmsLmState = enum(i32) {
     QUEUED = 0,
     INPROCESS = 1,
     PASSED = 2,
@@ -3290,7 +3258,7 @@ pub const NtmsLmState = extern enum(i32) {
     INVALID = 4,
     WAITING = 5,
     DEFERRED = 6,
-    DEFFERED = 6,
+    // DEFFERED = 6, this enum value conflicts with DEFERRED
     CANCELLED = 7,
     STOPPED = 8,
 };
@@ -3301,7 +3269,7 @@ pub const NTMS_LM_FAILED = NtmsLmState.FAILED;
 pub const NTMS_LM_INVALID = NtmsLmState.INVALID;
 pub const NTMS_LM_WAITING = NtmsLmState.WAITING;
 pub const NTMS_LM_DEFERRED = NtmsLmState.DEFERRED;
-pub const NTMS_LM_DEFFERED = NtmsLmState.DEFFERED;
+pub const NTMS_LM_DEFFERED = NtmsLmState.DEFERRED;
 pub const NTMS_LM_CANCELLED = NtmsLmState.CANCELLED;
 pub const NTMS_LM_STOPPED = NtmsLmState.STOPPED;
 
@@ -3343,7 +3311,7 @@ pub const NTMS_LIBREQUESTINFORMATIONW = extern struct {
     dwPriority: u32,
 };
 
-pub const NtmsOpreqCommand = extern enum(i32) {
+pub const NtmsOpreqCommand = enum(i32) {
     UNKNOWN = 0,
     NEWMEDIA = 1,
     CLEANER = 2,
@@ -3358,7 +3326,7 @@ pub const NTMS_OPREQ_DEVICESERVICE = NtmsOpreqCommand.DEVICESERVICE;
 pub const NTMS_OPREQ_MOVEMEDIA = NtmsOpreqCommand.MOVEMEDIA;
 pub const NTMS_OPREQ_MESSAGE = NtmsOpreqCommand.MESSAGE;
 
-pub const NtmsOpreqState = extern enum(i32) {
+pub const NtmsOpreqState = enum(i32) {
     UNKNOWN = 0,
     SUBMITTED = 1,
     ACTIVE = 2,
@@ -3409,14 +3377,14 @@ pub const NTMS_COMPUTERINFORMATION = extern struct {
     dwMediaPoolPolicy: u32,
 };
 
-pub const NtmsLibRequestFlags = extern enum(i32) {
+pub const NtmsLibRequestFlags = enum(i32) {
     AUTOPURGE = 1,
     FAILEDPURGE = 2,
 };
 pub const NTMS_LIBREQFLAGS_NOAUTOPURGE = NtmsLibRequestFlags.AUTOPURGE;
 pub const NTMS_LIBREQFLAGS_NOFAILEDPURGE = NtmsLibRequestFlags.FAILEDPURGE;
 
-pub const NtmsOpRequestFlags = extern enum(i32) {
+pub const NtmsOpRequestFlags = enum(i32) {
     AUTOPURGE = 1,
     FAILEDPURGE = 2,
     ALERTS = 16,
@@ -3427,14 +3395,14 @@ pub const NTMS_OPREQFLAGS_NOFAILEDPURGE = NtmsOpRequestFlags.FAILEDPURGE;
 pub const NTMS_OPREQFLAGS_NOALERTS = NtmsOpRequestFlags.ALERTS;
 pub const NTMS_OPREQFLAGS_NOTRAYICON = NtmsOpRequestFlags.TRAYICON;
 
-pub const NtmsMediaPoolPolicy = extern enum(i32) {
+pub const NtmsMediaPoolPolicy = enum(i32) {
     PURGEOFFLINESCRATCH = 1,
     KEEPOFFLINEIMPORT = 2,
 };
 pub const NTMS_POOLPOLICY_PURGEOFFLINESCRATCH = NtmsMediaPoolPolicy.PURGEOFFLINESCRATCH;
 pub const NTMS_POOLPOLICY_KEEPOFFLINEIMPORT = NtmsMediaPoolPolicy.KEEPOFFLINEIMPORT;
 
-pub const NtmsOperationalState = extern enum(i32) {
+pub const NtmsOperationalState = enum(i32) {
     READY = 0,
     INITIALIZING = 10,
     NEEDS_SERVICE = 20,
@@ -3701,19 +3669,19 @@ pub const NTMS_I1_OBJECTINFORMATIONW = extern struct {
     },
 };
 
-pub const NtmsCreateNtmsMediaOptions = extern enum(i32) {
+pub const NtmsCreateNtmsMediaOptions = enum(i32) {
     E = 1,
 };
 pub const NTMS_ERROR_ON_DUPLICATE = NtmsCreateNtmsMediaOptions.E;
 
-pub const NtmsEnumerateOption = extern enum(i32) {
+pub const NtmsEnumerateOption = enum(i32) {
     DEFAULT = 0,
     ROOTPOOL = 1,
 };
 pub const NTMS_ENUM_DEFAULT = NtmsEnumerateOption.DEFAULT;
 pub const NTMS_ENUM_ROOTPOOL = NtmsEnumerateOption.ROOTPOOL;
 
-pub const NtmsEjectOperation = extern enum(i32) {
+pub const NtmsEjectOperation = enum(i32) {
     START = 0,
     STOP = 1,
     QUEUE = 2,
@@ -3728,7 +3696,7 @@ pub const NTMS_EJECT_FORCE = NtmsEjectOperation.FORCE;
 pub const NTMS_EJECT_IMMEDIATE = NtmsEjectOperation.IMMEDIATE;
 pub const NTMS_EJECT_ASK_USER = NtmsEjectOperation.ASK_USER;
 
-pub const NtmsInjectOperation = extern enum(i32) {
+pub const NtmsInjectOperation = enum(i32) {
     START = 0,
     STOP = 1,
     RETRACT = 2,
@@ -3745,12 +3713,12 @@ pub const NTMS_FILESYSTEM_INFO = extern struct {
     SerialNumber: u32,
 };
 
-pub const NtmsDriveType = extern enum(i32) {
+pub const NtmsDriveType = enum(i32) {
     E = 0,
 };
 pub const NTMS_UNKNOWN_DRIVE = NtmsDriveType.E;
 
-pub const NtmsAccessMask = extern enum(i32) {
+pub const NtmsAccessMask = enum(i32) {
     USE_ACCESS = 1,
     MODIFY_ACCESS = 2,
     CONTROL_ACCESS = 4,
@@ -3759,7 +3727,7 @@ pub const NTMS_USE_ACCESS = NtmsAccessMask.USE_ACCESS;
 pub const NTMS_MODIFY_ACCESS = NtmsAccessMask.MODIFY_ACCESS;
 pub const NTMS_CONTROL_ACCESS = NtmsAccessMask.CONTROL_ACCESS;
 
-pub const NtmsUITypes = extern enum(i32) {
+pub const NtmsUITypes = enum(i32) {
     INVALID = 0,
     INFO = 1,
     REQ = 2,
@@ -3772,7 +3740,7 @@ pub const NTMS_UITYPE_REQ = NtmsUITypes.REQ;
 pub const NTMS_UITYPE_ERR = NtmsUITypes.ERR;
 pub const NTMS_UITYPE_MAX = NtmsUITypes.MAX;
 
-pub const NtmsUIOperations = extern enum(i32) {
+pub const NtmsUIOperations = enum(i32) {
     DEST_ADD = 1,
     DEST_DELETE = 2,
     DEST_DELETEALL = 3,
@@ -3783,7 +3751,7 @@ pub const NTMS_UIDEST_DELETE = NtmsUIOperations.DEST_DELETE;
 pub const NTMS_UIDEST_DELETEALL = NtmsUIOperations.DEST_DELETEALL;
 pub const NTMS_UIOPERATION_MAX = NtmsUIOperations.OPERATION_MAX;
 
-pub const NtmsNotificationOperations = extern enum(i32) {
+pub const NtmsNotificationOperations = enum(i32) {
     OBJ_UPDATE = 1,
     OBJ_INSERT = 2,
     OBJ_DELETE = 3,
@@ -3829,7 +3797,7 @@ pub const CLS_LSN = extern struct {
     Internal: u64,
 };
 
-pub const CLS_CONTEXT_MODE = extern enum(i32) {
+pub const CLS_CONTEXT_MODE = enum(i32) {
     None = 0,
     UndoNext = 1,
     Previous = 2,
@@ -3840,7 +3808,7 @@ pub const ClsContextUndoNext = CLS_CONTEXT_MODE.UndoNext;
 pub const ClsContextPrevious = CLS_CONTEXT_MODE.Previous;
 pub const ClsContextForward = CLS_CONTEXT_MODE.Forward;
 
-pub const CLFS_CONTEXT_MODE = extern enum(i32) {
+pub const CLFS_CONTEXT_MODE = enum(i32) {
     None = 0,
     UndoNext = 1,
     Previous = 2,
@@ -3910,7 +3878,7 @@ pub const CLS_CONTAINER_INFORMATION = extern struct {
     LogicalContainerId: u32,
 };
 
-pub const CLS_LOG_INFORMATION_CLASS = extern enum(i32) {
+pub const CLS_LOG_INFORMATION_CLASS = enum(i32) {
     BasicInformation = 0,
     BasicInformationPhysical = 1,
     PhysicalNameInformation = 2,
@@ -3925,14 +3893,14 @@ pub const ClfsLogStreamIdentifierInformation = CLS_LOG_INFORMATION_CLASS.StreamI
 pub const ClfsLogSystemMarkingInformation = CLS_LOG_INFORMATION_CLASS.SystemMarkingInformation;
 pub const ClfsLogPhysicalLsnInformation = CLS_LOG_INFORMATION_CLASS.PhysicalLsnInformation;
 
-pub const CLS_IOSTATS_CLASS = extern enum(i32) {
+pub const CLS_IOSTATS_CLASS = enum(i32) {
     Default = 0,
     Max = 65535,
 };
 pub const ClsIoStatsDefault = CLS_IOSTATS_CLASS.Default;
 pub const ClsIoStatsMax = CLS_IOSTATS_CLASS.Max;
 
-pub const CLFS_IOSTATS_CLASS = extern enum(i32) {
+pub const CLFS_IOSTATS_CLASS = enum(i32) {
     Default = 0,
     Max = 65535,
 };
@@ -3981,7 +3949,7 @@ pub const CLFS_BLOCK_DEALLOCATION = fn(
     pvUserContext: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const CLFS_LOG_ARCHIVE_MODE = extern enum(i32) {
+pub const CLFS_LOG_ARCHIVE_MODE = enum(i32) {
     Enabled = 1,
     Disabled = 2,
 };
@@ -3993,7 +3961,7 @@ pub const PCLFS_COMPLETION_ROUTINE = fn(
     ulReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const CLFS_MGMT_POLICY_TYPE = extern enum(i32) {
+pub const CLFS_MGMT_POLICY_TYPE = enum(i32) {
     MaximumSize = 0,
     MinimumSize = 1,
     NewContainerSize = 2,
@@ -4061,7 +4029,7 @@ pub const CLFS_MGMT_POLICY = extern struct {
     },
 };
 
-pub const CLFS_MGMT_NOTIFICATION_TYPE = extern enum(i32) {
+pub const CLFS_MGMT_NOTIFICATION_TYPE = enum(i32) {
     AdvanceTailNotification = 0,
     LogFullHandlerNotification = 1,
     LogUnpinnedNotification = 2,
@@ -4987,7 +4955,7 @@ pub const FILE_INFO_3 = extern struct {
     fi3_username: PWSTR,
 };
 
-pub const SERVER_CERTIFICATE_TYPE = extern enum(i32) {
+pub const SERVER_CERTIFICATE_TYPE = enum(i32) {
     C = 0,
 };
 pub const QUIC = SERVER_CERTIFICATE_TYPE.C;
@@ -5111,7 +5079,7 @@ pub const LPPROGRESS_ROUTINE = fn(
     lpData: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const COPYFILE2_MESSAGE_TYPE = extern enum(i32) {
+pub const COPYFILE2_MESSAGE_TYPE = enum(i32) {
     NONE = 0,
     CHUNK_STARTED = 1,
     CHUNK_FINISHED = 2,
@@ -5130,7 +5098,7 @@ pub const COPYFILE2_CALLBACK_POLL_CONTINUE = COPYFILE2_MESSAGE_TYPE.POLL_CONTINU
 pub const COPYFILE2_CALLBACK_ERROR = COPYFILE2_MESSAGE_TYPE.ERROR;
 pub const COPYFILE2_CALLBACK_MAX = COPYFILE2_MESSAGE_TYPE.MAX;
 
-pub const COPYFILE2_MESSAGE_ACTION = extern enum(i32) {
+pub const COPYFILE2_MESSAGE_ACTION = enum(i32) {
     CONTINUE = 0,
     CANCEL = 1,
     STOP = 2,
@@ -5143,7 +5111,7 @@ pub const COPYFILE2_PROGRESS_STOP = COPYFILE2_MESSAGE_ACTION.STOP;
 pub const COPYFILE2_PROGRESS_QUIET = COPYFILE2_MESSAGE_ACTION.QUIET;
 pub const COPYFILE2_PROGRESS_PAUSE = COPYFILE2_MESSAGE_ACTION.PAUSE;
 
-pub const COPYFILE2_COPY_PHASE = extern enum(i32) {
+pub const COPYFILE2_COPY_PHASE = enum(i32) {
     NONE = 0,
     PREPARE_SOURCE = 1,
     PREPARE_DEST = 2,
@@ -5334,7 +5302,7 @@ pub const FILE_FULL_DIR_INFO = extern struct {
     FileName: [1]u16,
 };
 
-pub const PRIORITY_HINT = extern enum(i32) {
+pub const PRIORITY_HINT = enum(i32) {
     IoPriorityHintVeryLow = 0,
     IoPriorityHintLow = 1,
     IoPriorityHintNormal = 2,
@@ -5411,7 +5379,7 @@ pub const FILE_REMOTE_PROTOCOL_INFO = extern struct {
     },
 };
 
-pub const FILE_ID_TYPE = extern enum(i32) {
+pub const FILE_ID_TYPE = enum(i32) {
     FileIdType = 0,
     ObjectIdType = 1,
     ExtendedFileIdType = 2,
@@ -5432,7 +5400,7 @@ pub const FILE_ID_DESCRIPTOR = extern struct {
     },
 };
 
-pub const GPT_ATTRIBUTES = extern enum(u64) {
+pub const GPT_ATTRIBUTES = enum(u64) {
     ATTRIBUTE_PLATFORM_REQUIRED = 1,
     BASIC_DATA_ATTRIBUTE_NO_DRIVE_LETTER = 9223372036854775808,
     BASIC_DATA_ATTRIBUTE_HIDDEN = 4611686018427387904,
@@ -5461,7 +5429,7 @@ pub const GPT_BASIC_DATA_ATTRIBUTE_HIDDEN = GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_
 pub const GPT_BASIC_DATA_ATTRIBUTE_SHADOW_COPY = GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_SHADOW_COPY;
 pub const GPT_BASIC_DATA_ATTRIBUTE_READ_ONLY = GPT_ATTRIBUTES.BASIC_DATA_ATTRIBUTE_READ_ONLY;
 
-pub const GET_FILE_VERSION_INFO_FLAGS = extern enum(u32) {
+pub const GET_FILE_VERSION_INFO_FLAGS = enum(u32) {
     LOCALISED = 1,
     NEUTRAL = 2,
     PREFETCHED = 4,
@@ -5482,12 +5450,12 @@ pub const FILE_VER_GET_LOCALISED = GET_FILE_VERSION_INFO_FLAGS.LOCALISED;
 pub const FILE_VER_GET_NEUTRAL = GET_FILE_VERSION_INFO_FLAGS.NEUTRAL;
 pub const FILE_VER_GET_PREFETCHED = GET_FILE_VERSION_INFO_FLAGS.PREFETCHED;
 
-pub const VER_FIND_FILE_FLAGS = extern enum(u32) {
+pub const VER_FIND_FILE_FLAGS = enum(u32) {
     E = 1,
 };
 pub const VFFF_ISSHAREDFILE = VER_FIND_FILE_FLAGS.E;
 
-pub const VER_FIND_FILE_STATUS = extern enum(u32) {
+pub const VER_FIND_FILE_STATUS = enum(u32) {
     CURNEDEST = 1,
     FILEINUSE = 2,
     BUFFTOOSMALL = 4,
@@ -5508,14 +5476,14 @@ pub const VFF_CURNEDEST = VER_FIND_FILE_STATUS.CURNEDEST;
 pub const VFF_FILEINUSE = VER_FIND_FILE_STATUS.FILEINUSE;
 pub const VFF_BUFFTOOSMALL = VER_FIND_FILE_STATUS.BUFFTOOSMALL;
 
-pub const VER_INSTALL_FILE_FLAGS = extern enum(u32) {
+pub const VER_INSTALL_FILE_FLAGS = enum(u32) {
     FORCEINSTALL = 1,
     DONTDELETEOLD = 2,
 };
 pub const VIFF_FORCEINSTALL = VER_INSTALL_FILE_FLAGS.FORCEINSTALL;
 pub const VIFF_DONTDELETEOLD = VER_INSTALL_FILE_FLAGS.DONTDELETEOLD;
 
-pub const VER_INSTALL_FILE_STATUS = extern enum(u32) {
+pub const VER_INSTALL_FILE_STATUS = enum(u32) {
     TEMPFILE = 1,
     MISMATCH = 2,
     SRCOLD = 4,
@@ -5608,7 +5576,7 @@ pub const VIF_BUFFTOOSMALL = VER_INSTALL_FILE_STATUS.BUFFTOOSMALL;
 pub const VIF_CANNOTLOADLZ32 = VER_INSTALL_FILE_STATUS.CANNOTLOADLZ32;
 pub const VIF_CANNOTLOADCABINET = VER_INSTALL_FILE_STATUS.CANNOTLOADCABINET;
 
-pub const VS_FIXEDFILEINFO_FILE_FLAGS = extern enum(u32) {
+pub const VS_FIXEDFILEINFO_FILE_FLAGS = enum(u32) {
     DEBUG = 1,
     PRERELEASE = 2,
     PATCHED = 4,
@@ -5641,14 +5609,14 @@ pub const VS_FF_PRIVATEBUILD = VS_FIXEDFILEINFO_FILE_FLAGS.PRIVATEBUILD;
 pub const VS_FF_INFOINFERRED = VS_FIXEDFILEINFO_FILE_FLAGS.INFOINFERRED;
 pub const VS_FF_SPECIALBUILD = VS_FIXEDFILEINFO_FILE_FLAGS.SPECIALBUILD;
 
-pub const VS_FIXEDFILEINFO_FILE_OS = extern enum(i32) {
+pub const VS_FIXEDFILEINFO_FILE_OS = enum(i32) {
     UNKNOWN = 0,
     DOS = 65536,
     OS216 = 131072,
     OS232 = 196608,
     NT = 262144,
     WINCE = 327680,
-    _BASE = 0,
+    // _BASE = 0, this enum value conflicts with UNKNOWN
     _WINDOWS16 = 1,
     _PM16 = 2,
     _PM32 = 3,
@@ -5665,7 +5633,7 @@ pub const VOS_OS216 = VS_FIXEDFILEINFO_FILE_OS.OS216;
 pub const VOS_OS232 = VS_FIXEDFILEINFO_FILE_OS.OS232;
 pub const VOS_NT = VS_FIXEDFILEINFO_FILE_OS.NT;
 pub const VOS_WINCE = VS_FIXEDFILEINFO_FILE_OS.WINCE;
-pub const VOS__BASE = VS_FIXEDFILEINFO_FILE_OS._BASE;
+pub const VOS__BASE = VS_FIXEDFILEINFO_FILE_OS.UNKNOWN;
 pub const VOS__WINDOWS16 = VS_FIXEDFILEINFO_FILE_OS._WINDOWS16;
 pub const VOS__PM16 = VS_FIXEDFILEINFO_FILE_OS._PM16;
 pub const VOS__PM32 = VS_FIXEDFILEINFO_FILE_OS._PM32;
@@ -5676,7 +5644,7 @@ pub const VOS_OS216_PM16 = VS_FIXEDFILEINFO_FILE_OS.OS216_PM16;
 pub const VOS_OS232_PM32 = VS_FIXEDFILEINFO_FILE_OS.OS232_PM32;
 pub const VOS_NT_WINDOWS32 = VS_FIXEDFILEINFO_FILE_OS.NT_WINDOWS32;
 
-pub const VS_FIXEDFILEINFO_FILE_TYPE = extern enum(i32) {
+pub const VS_FIXEDFILEINFO_FILE_TYPE = enum(i32) {
     UNKNOWN = 0,
     APP = 1,
     DLL = 2,
@@ -5693,7 +5661,7 @@ pub const VFT_FONT = VS_FIXEDFILEINFO_FILE_TYPE.FONT;
 pub const VFT_VXD = VS_FIXEDFILEINFO_FILE_TYPE.VXD;
 pub const VFT_STATIC_LIB = VS_FIXEDFILEINFO_FILE_TYPE.STATIC_LIB;
 
-pub const VS_FIXEDFILEINFO_FILE_SUBTYPE = extern enum(i32) {
+pub const VS_FIXEDFILEINFO_FILE_SUBTYPE = enum(i32) {
     UNKNOWN = 0,
     DRV_PRINTER = 1,
     DRV_KEYBOARD = 2,
@@ -5707,9 +5675,9 @@ pub const VS_FIXEDFILEINFO_FILE_SUBTYPE = extern enum(i32) {
     DRV_COMM = 10,
     DRV_INPUTMETHOD = 11,
     DRV_VERSIONED_PRINTER = 12,
-    FONT_RASTER = 1,
-    FONT_VECTOR = 2,
-    FONT_TRUETYPE = 3,
+    // FONT_RASTER = 1, this enum value conflicts with DRV_PRINTER
+    // FONT_VECTOR = 2, this enum value conflicts with DRV_KEYBOARD
+    // FONT_TRUETYPE = 3, this enum value conflicts with DRV_LANGUAGE
 };
 pub const VFT2_UNKNOWN = VS_FIXEDFILEINFO_FILE_SUBTYPE.UNKNOWN;
 pub const VFT2_DRV_PRINTER = VS_FIXEDFILEINFO_FILE_SUBTYPE.DRV_PRINTER;
@@ -5724,11 +5692,11 @@ pub const VFT2_DRV_SOUND = VS_FIXEDFILEINFO_FILE_SUBTYPE.DRV_SOUND;
 pub const VFT2_DRV_COMM = VS_FIXEDFILEINFO_FILE_SUBTYPE.DRV_COMM;
 pub const VFT2_DRV_INPUTMETHOD = VS_FIXEDFILEINFO_FILE_SUBTYPE.DRV_INPUTMETHOD;
 pub const VFT2_DRV_VERSIONED_PRINTER = VS_FIXEDFILEINFO_FILE_SUBTYPE.DRV_VERSIONED_PRINTER;
-pub const VFT2_FONT_RASTER = VS_FIXEDFILEINFO_FILE_SUBTYPE.FONT_RASTER;
-pub const VFT2_FONT_VECTOR = VS_FIXEDFILEINFO_FILE_SUBTYPE.FONT_VECTOR;
-pub const VFT2_FONT_TRUETYPE = VS_FIXEDFILEINFO_FILE_SUBTYPE.FONT_TRUETYPE;
+pub const VFT2_FONT_RASTER = VS_FIXEDFILEINFO_FILE_SUBTYPE.DRV_PRINTER;
+pub const VFT2_FONT_VECTOR = VS_FIXEDFILEINFO_FILE_SUBTYPE.DRV_KEYBOARD;
+pub const VFT2_FONT_TRUETYPE = VS_FIXEDFILEINFO_FILE_SUBTYPE.DRV_LANGUAGE;
 
-pub const FILE_CREATION_DISPOSITION = extern enum(u32) {
+pub const FILE_CREATION_DISPOSITION = enum(u32) {
     CREATE_NEW = 1,
     CREATE_ALWAYS = 2,
     OPEN_EXISTING = 3,
@@ -5741,7 +5709,7 @@ pub const OPEN_EXISTING = FILE_CREATION_DISPOSITION.OPEN_EXISTING;
 pub const OPEN_ALWAYS = FILE_CREATION_DISPOSITION.OPEN_ALWAYS;
 pub const TRUNCATE_EXISTING = FILE_CREATION_DISPOSITION.TRUNCATE_EXISTING;
 
-pub const FILE_SHARE_MODE = extern enum(u32) {
+pub const FILE_SHARE_MODE = enum(u32) {
     NONE = 0,
     DELETE = 4,
     READ = 1,
@@ -5766,7 +5734,7 @@ pub const FILE_SHARE_DELETE = FILE_SHARE_MODE.DELETE;
 pub const FILE_SHARE_READ = FILE_SHARE_MODE.READ;
 pub const FILE_SHARE_WRITE = FILE_SHARE_MODE.WRITE;
 
-pub const SHARE_TYPE = extern enum(u32) {
+pub const SHARE_TYPE = enum(u32) {
     DISKTREE = 0,
     PRINTQ = 1,
     DEVICE = 2,
@@ -5803,7 +5771,7 @@ pub const STYPE_SPECIAL = SHARE_TYPE.SPECIAL;
 pub const STYPE_TEMPORARY = SHARE_TYPE.TEMPORARY;
 pub const STYPE_MASK = SHARE_TYPE.MASK;
 
-pub const CLFS_FLAG = extern enum(u32) {
+pub const CLFS_FLAG = enum(u32) {
     FORCE_APPEND = 1,
     FORCE_FLUSH = 2,
     NO_FLAGS = 0,
@@ -5828,7 +5796,7 @@ pub const CLFS_FLAG_FORCE_FLUSH = CLFS_FLAG.FORCE_FLUSH;
 pub const CLFS_FLAG_NO_FLAGS = CLFS_FLAG.NO_FLAGS;
 pub const CLFS_FLAG_USE_RESERVATION = CLFS_FLAG.USE_RESERVATION;
 
-pub const SET_FILE_POINTER_MOVE_METHOD = extern enum(u32) {
+pub const SET_FILE_POINTER_MOVE_METHOD = enum(u32) {
     BEGIN = 0,
     CURRENT = 1,
     END = 2,
@@ -5837,7 +5805,7 @@ pub const FILE_BEGIN = SET_FILE_POINTER_MOVE_METHOD.BEGIN;
 pub const FILE_CURRENT = SET_FILE_POINTER_MOVE_METHOD.CURRENT;
 pub const FILE_END = SET_FILE_POINTER_MOVE_METHOD.END;
 
-pub const MOVE_FILE_FLAGS = extern enum(u32) {
+pub const MOVE_FILE_FLAGS = enum(u32) {
     COPY_ALLOWED = 2,
     CREATE_HARDLINK = 16,
     DELAY_UNTIL_REBOOT = 4,
@@ -5870,14 +5838,14 @@ pub const MOVEFILE_REPLACE_EXISTING = MOVE_FILE_FLAGS.REPLACE_EXISTING;
 pub const MOVEFILE_WRITE_THROUGH = MOVE_FILE_FLAGS.WRITE_THROUGH;
 pub const MOVEFILE_FAIL_IF_NOT_TRACKABLE = MOVE_FILE_FLAGS.FAIL_IF_NOT_TRACKABLE;
 
-pub const FILE_NAME = extern enum(u32) {
+pub const FILE_NAME = enum(u32) {
     NORMALIZED = 0,
     OPENED = 8,
 };
 pub const FILE_NAME_NORMALIZED = FILE_NAME.NORMALIZED;
 pub const FILE_NAME_OPENED = FILE_NAME.OPENED;
 
-pub const LZOPENFILE_STYLE = extern enum(u32) {
+pub const LZOPENFILE_STYLE = enum(u32) {
     CANCEL = 2048,
     CREATE = 4096,
     DELETE = 512,
@@ -5892,7 +5860,7 @@ pub const LZOPENFILE_STYLE = extern enum(u32) {
     SHARE_DENY_WRITE = 32,
     SHARE_EXCLUSIVE = 16,
     WRITE = 1,
-    SHARE_COMPAT = 0,
+    // SHARE_COMPAT = 0, this enum value conflicts with READ
     VERIFY = 1024,
     _,
     pub fn initFlags(o: struct {
@@ -5910,7 +5878,6 @@ pub const LZOPENFILE_STYLE = extern enum(u32) {
         SHARE_DENY_WRITE: u1 = 0,
         SHARE_EXCLUSIVE: u1 = 0,
         WRITE: u1 = 0,
-        SHARE_COMPAT: u1 = 0,
         VERIFY: u1 = 0,
     }) LZOPENFILE_STYLE {
         return @intToEnum(LZOPENFILE_STYLE,
@@ -5928,7 +5895,6 @@ pub const LZOPENFILE_STYLE = extern enum(u32) {
             | (if (o.SHARE_DENY_WRITE == 1) @enumToInt(LZOPENFILE_STYLE.SHARE_DENY_WRITE) else 0)
             | (if (o.SHARE_EXCLUSIVE == 1) @enumToInt(LZOPENFILE_STYLE.SHARE_EXCLUSIVE) else 0)
             | (if (o.WRITE == 1) @enumToInt(LZOPENFILE_STYLE.WRITE) else 0)
-            | (if (o.SHARE_COMPAT == 1) @enumToInt(LZOPENFILE_STYLE.SHARE_COMPAT) else 0)
             | (if (o.VERIFY == 1) @enumToInt(LZOPENFILE_STYLE.VERIFY) else 0)
         );
     }
@@ -5947,10 +5913,10 @@ pub const OF_SHARE_DENY_READ = LZOPENFILE_STYLE.SHARE_DENY_READ;
 pub const OF_SHARE_DENY_WRITE = LZOPENFILE_STYLE.SHARE_DENY_WRITE;
 pub const OF_SHARE_EXCLUSIVE = LZOPENFILE_STYLE.SHARE_EXCLUSIVE;
 pub const OF_WRITE = LZOPENFILE_STYLE.WRITE;
-pub const OF_SHARE_COMPAT = LZOPENFILE_STYLE.SHARE_COMPAT;
+pub const OF_SHARE_COMPAT = LZOPENFILE_STYLE.READ;
 pub const OF_VERIFY = LZOPENFILE_STYLE.VERIFY;
 
-pub const FILE_NOTIFY_CHANGE = extern enum(u32) {
+pub const FILE_NOTIFY_CHANGE = enum(u32) {
     FILE_NAME = 1,
     DIR_NAME = 2,
     ATTRIBUTES = 4,
@@ -5991,7 +5957,7 @@ pub const FILE_NOTIFY_CHANGE_LAST_ACCESS = FILE_NOTIFY_CHANGE.LAST_ACCESS;
 pub const FILE_NOTIFY_CHANGE_CREATION = FILE_NOTIFY_CHANGE.CREATION;
 pub const FILE_NOTIFY_CHANGE_SECURITY = FILE_NOTIFY_CHANGE.SECURITY;
 
-pub const TXFS_MINIVERSION = extern enum(u32) {
+pub const TXFS_MINIVERSION = enum(u32) {
     COMMITTED_VIEW = 0,
     DIRTY_VIEW = 65535,
     DEFAULT_VIEW = 65534,
@@ -6000,14 +5966,14 @@ pub const TXFS_MINIVERSION_COMMITTED_VIEW = TXFS_MINIVERSION.COMMITTED_VIEW;
 pub const TXFS_MINIVERSION_DIRTY_VIEW = TXFS_MINIVERSION.DIRTY_VIEW;
 pub const TXFS_MINIVERSION_DEFAULT_VIEW = TXFS_MINIVERSION.DEFAULT_VIEW;
 
-pub const TAPE_POSITION_TYPE = extern enum(i32) {
+pub const TAPE_POSITION_TYPE = enum(i32) {
     ABSOLUTE_POSITION = 0,
     LOGICAL_POSITION = 1,
 };
 pub const TAPE_ABSOLUTE_POSITION = TAPE_POSITION_TYPE.ABSOLUTE_POSITION;
 pub const TAPE_LOGICAL_POSITION = TAPE_POSITION_TYPE.LOGICAL_POSITION;
 
-pub const CREATE_TAPE_PARTITION_METHOD = extern enum(i32) {
+pub const CREATE_TAPE_PARTITION_METHOD = enum(i32) {
     FIXED_PARTITIONS = 0,
     INITIATOR_PARTITIONS = 2,
     SELECT_PARTITIONS = 1,
@@ -6016,7 +5982,7 @@ pub const TAPE_FIXED_PARTITIONS = CREATE_TAPE_PARTITION_METHOD.FIXED_PARTITIONS;
 pub const TAPE_INITIATOR_PARTITIONS = CREATE_TAPE_PARTITION_METHOD.INITIATOR_PARTITIONS;
 pub const TAPE_SELECT_PARTITIONS = CREATE_TAPE_PARTITION_METHOD.SELECT_PARTITIONS;
 
-pub const REPLACE_FILE_FLAGS = extern enum(u32) {
+pub const REPLACE_FILE_FLAGS = enum(u32) {
     WRITE_THROUGH = 1,
     IGNORE_MERGE_ERRORS = 2,
     IGNORE_ACL_ERRORS = 4,
@@ -6037,7 +6003,7 @@ pub const REPLACEFILE_WRITE_THROUGH = REPLACE_FILE_FLAGS.WRITE_THROUGH;
 pub const REPLACEFILE_IGNORE_MERGE_ERRORS = REPLACE_FILE_FLAGS.IGNORE_MERGE_ERRORS;
 pub const REPLACEFILE_IGNORE_ACL_ERRORS = REPLACE_FILE_FLAGS.IGNORE_ACL_ERRORS;
 
-pub const TAPEMARK_TYPE = extern enum(i32) {
+pub const TAPEMARK_TYPE = enum(i32) {
     FILEMARKS = 1,
     LONG_FILEMARKS = 3,
     SETMARKS = 0,
@@ -6048,7 +6014,7 @@ pub const TAPE_LONG_FILEMARKS = TAPEMARK_TYPE.LONG_FILEMARKS;
 pub const TAPE_SETMARKS = TAPEMARK_TYPE.SETMARKS;
 pub const TAPE_SHORT_FILEMARKS = TAPEMARK_TYPE.SHORT_FILEMARKS;
 
-pub const DISKQUOTA_USERNAME_RESOLVE = extern enum(u32) {
+pub const DISKQUOTA_USERNAME_RESOLVE = enum(u32) {
     ASYNC = 2,
     NONE = 0,
     SYNC = 1,
@@ -6057,7 +6023,7 @@ pub const DISKQUOTA_USERNAME_RESOLVE_ASYNC = DISKQUOTA_USERNAME_RESOLVE.ASYNC;
 pub const DISKQUOTA_USERNAME_RESOLVE_NONE = DISKQUOTA_USERNAME_RESOLVE.NONE;
 pub const DISKQUOTA_USERNAME_RESOLVE_SYNC = DISKQUOTA_USERNAME_RESOLVE.SYNC;
 
-pub const TAPE_POSITION_METHOD = extern enum(i32) {
+pub const TAPE_POSITION_METHOD = enum(i32) {
     ABSOLUTE_BLOCK = 1,
     LOGICAL_BLOCK = 2,
     REWIND = 0,
@@ -6078,21 +6044,21 @@ pub const TAPE_SPACE_SEQUENTIAL_FMKS = TAPE_POSITION_METHOD.SPACE_SEQUENTIAL_FMK
 pub const TAPE_SPACE_SEQUENTIAL_SMKS = TAPE_POSITION_METHOD.SPACE_SEQUENTIAL_SMKS;
 pub const TAPE_SPACE_SETMARKS = TAPE_POSITION_METHOD.SPACE_SETMARKS;
 
-pub const TAPE_INFORMATION_TYPE = extern enum(u32) {
+pub const TAPE_INFORMATION_TYPE = enum(u32) {
     DRIVE_INFORMATION = 1,
     MEDIA_INFORMATION = 0,
 };
 pub const SET_TAPE_DRIVE_INFORMATION = TAPE_INFORMATION_TYPE.DRIVE_INFORMATION;
 pub const SET_TAPE_MEDIA_INFORMATION = TAPE_INFORMATION_TYPE.MEDIA_INFORMATION;
 
-pub const NTMS_OMID_TYPE = extern enum(u32) {
+pub const NTMS_OMID_TYPE = enum(u32) {
     FILESYSTEM_INFO = 2,
     RAW_LABEL = 1,
 };
 pub const NTMS_OMID_TYPE_FILESYSTEM_INFO = NTMS_OMID_TYPE.FILESYSTEM_INFO;
 pub const NTMS_OMID_TYPE_RAW_LABEL = NTMS_OMID_TYPE.RAW_LABEL;
 
-pub const LOCK_FILE_FLAGS = extern enum(u32) {
+pub const LOCK_FILE_FLAGS = enum(u32) {
     EXCLUSIVE_LOCK = 2,
     FAIL_IMMEDIATELY = 1,
     _,
@@ -6109,14 +6075,14 @@ pub const LOCK_FILE_FLAGS = extern enum(u32) {
 pub const LOCKFILE_EXCLUSIVE_LOCK = LOCK_FILE_FLAGS.EXCLUSIVE_LOCK;
 pub const LOCKFILE_FAIL_IMMEDIATELY = LOCK_FILE_FLAGS.FAIL_IMMEDIATELY;
 
-pub const LPPROGRESS_ROUTINE_CALLBACK_REASON = extern enum(u32) {
+pub const LPPROGRESS_ROUTINE_CALLBACK_REASON = enum(u32) {
     CHUNK_FINISHED = 0,
     STREAM_SWITCH = 1,
 };
 pub const CALLBACK_CHUNK_FINISHED = LPPROGRESS_ROUTINE_CALLBACK_REASON.CHUNK_FINISHED;
 pub const CALLBACK_STREAM_SWITCH = LPPROGRESS_ROUTINE_CALLBACK_REASON.STREAM_SWITCH;
 
-pub const PREPARE_TAPE_OPERATION = extern enum(i32) {
+pub const PREPARE_TAPE_OPERATION = enum(i32) {
     FORMAT = 5,
     LOAD = 0,
     LOCK = 3,
@@ -6131,21 +6097,21 @@ pub const TAPE_TENSION = PREPARE_TAPE_OPERATION.TENSION;
 pub const TAPE_UNLOAD = PREPARE_TAPE_OPERATION.UNLOAD;
 pub const TAPE_UNLOCK = PREPARE_TAPE_OPERATION.UNLOCK;
 
-pub const GET_TAPE_DRIVE_PARAMETERS_OPERATION = extern enum(u32) {
+pub const GET_TAPE_DRIVE_PARAMETERS_OPERATION = enum(u32) {
     DRIVE_INFORMATION = 1,
     MEDIA_INFORMATION = 0,
 };
 pub const GET_TAPE_DRIVE_INFORMATION = GET_TAPE_DRIVE_PARAMETERS_OPERATION.DRIVE_INFORMATION;
 pub const GET_TAPE_MEDIA_INFORMATION = GET_TAPE_DRIVE_PARAMETERS_OPERATION.MEDIA_INFORMATION;
 
-pub const ERASE_TAPE_TYPE = extern enum(i32) {
+pub const ERASE_TAPE_TYPE = enum(i32) {
     LONG = 1,
     SHORT = 0,
 };
 pub const TAPE_ERASE_LONG = ERASE_TAPE_TYPE.LONG;
 pub const TAPE_ERASE_SHORT = ERASE_TAPE_TYPE.SHORT;
 
-pub const FILE_ACTION = extern enum(u32) {
+pub const FILE_ACTION = enum(u32) {
     ADDED = 1,
     REMOVED = 2,
     MODIFIED = 3,
@@ -6158,7 +6124,7 @@ pub const FILE_ACTION_MODIFIED = FILE_ACTION.MODIFIED;
 pub const FILE_ACTION_RENAMED_OLD_NAME = FILE_ACTION.RENAMED_OLD_NAME;
 pub const FILE_ACTION_RENAMED_NEW_NAME = FILE_ACTION.RENAMED_NEW_NAME;
 
-pub const USN_DELETE_FLAGS = extern enum(u32) {
+pub const USN_DELETE_FLAGS = enum(u32) {
     DELETE = 1,
     NOTIFY = 2,
     _,
@@ -6175,7 +6141,7 @@ pub const USN_DELETE_FLAGS = extern enum(u32) {
 pub const USN_DELETE_FLAG_DELETE = USN_DELETE_FLAGS.DELETE;
 pub const USN_DELETE_FLAG_NOTIFY = USN_DELETE_FLAGS.NOTIFY;
 
-pub const SHARE_INFO_PERMISSIONS = extern enum(u32) {
+pub const SHARE_INFO_PERMISSIONS = enum(u32) {
     READ = 1,
     WRITE = 2,
     CREATE = 4,
@@ -6194,7 +6160,7 @@ pub const ACCESS_ATRIB = SHARE_INFO_PERMISSIONS.ATRIB;
 pub const ACCESS_PERM = SHARE_INFO_PERMISSIONS.PERM;
 pub const ACCESS_ALL = SHARE_INFO_PERMISSIONS.ALL;
 
-pub const FILE_DEVICE_TYPE = extern enum(u32) {
+pub const FILE_DEVICE_TYPE = enum(u32) {
     CD_ROM = 2,
     DISK = 7,
     TAPE = 31,
@@ -6205,7 +6171,7 @@ pub const FILE_DEVICE_DISK = FILE_DEVICE_TYPE.DISK;
 pub const FILE_DEVICE_TAPE = FILE_DEVICE_TYPE.TAPE;
 pub const FILE_DEVICE_DVD = FILE_DEVICE_TYPE.DVD;
 
-pub const TXFS_RMF_LAGS = extern enum(u32) {
+pub const TXFS_RMF_LAGS = enum(u32) {
     LOGGING_MODE = 1,
     RENAME_RM = 2,
     LOG_CONTAINER_COUNT_MAX = 4,
@@ -6282,7 +6248,7 @@ pub const TXFS_RM_FLAG_DO_NOT_RESET_RM_AT_NEXT_START = TXFS_RMF_LAGS.DO_NOT_RESE
 pub const TXFS_RM_FLAG_PREFER_CONSISTENCY = TXFS_RMF_LAGS.PREFER_CONSISTENCY;
 pub const TXFS_RM_FLAG_PREFER_AVAILABILITY = TXFS_RMF_LAGS.PREFER_AVAILABILITY;
 
-pub const FILESYSTEM_STATISTICS_TYPE = extern enum(u32) {
+pub const FILESYSTEM_STATISTICS_TYPE = enum(u32) {
     EXFAT = 3,
     FAT = 2,
     NTFS = 1,
@@ -6291,7 +6257,7 @@ pub const FILESYSTEM_STATISTICS_TYPE_EXFAT = FILESYSTEM_STATISTICS_TYPE.EXFAT;
 pub const FILESYSTEM_STATISTICS_TYPE_FAT = FILESYSTEM_STATISTICS_TYPE.FAT;
 pub const FILESYSTEM_STATISTICS_TYPE_NTFS = FILESYSTEM_STATISTICS_TYPE.NTFS;
 
-pub const USN_SOURCE_INFO_ID = extern enum(u32) {
+pub const USN_SOURCE_INFO_ID = enum(u32) {
     AUXILIARY_DATA = 2,
     DATA_MANAGEMENT = 1,
     REPLICATION_MANAGEMENT = 4,
@@ -6302,7 +6268,7 @@ pub const USN_SOURCE_DATA_MANAGEMENT = USN_SOURCE_INFO_ID.DATA_MANAGEMENT;
 pub const USN_SOURCE_REPLICATION_MANAGEMENT = USN_SOURCE_INFO_ID.REPLICATION_MANAGEMENT;
 pub const USN_SOURCE_CLIENT_REPLICATION_MANAGEMENT = USN_SOURCE_INFO_ID.CLIENT_REPLICATION_MANAGEMENT;
 
-pub const FILE_STORAGE_TIER_FLAGS = extern enum(u32) {
+pub const FILE_STORAGE_TIER_FLAGS = enum(u32) {
     Y = 131072,
     _,
     pub fn initFlags(o: struct {
@@ -6315,14 +6281,14 @@ pub const FILE_STORAGE_TIER_FLAGS = extern enum(u32) {
 };
 pub const FILE_STORAGE_TIER_FLAG_NO_SEEK_PENALTY = FILE_STORAGE_TIER_FLAGS.Y;
 
-pub const SESSION_INFO_USER_FLAGS = extern enum(u32) {
+pub const SESSION_INFO_USER_FLAGS = enum(u32) {
     GUEST = 1,
     NOENCRYPTION = 2,
 };
 pub const SESS_GUEST = SESSION_INFO_USER_FLAGS.GUEST;
 pub const SESS_NOENCRYPTION = SESSION_INFO_USER_FLAGS.NOENCRYPTION;
 
-pub const WIN_STREAM_ID = extern enum(u32) {
+pub const WIN_STREAM_ID = enum(u32) {
     ALTERNATE_DATA = 4,
     DATA = 1,
     EA_DATA = 2,
@@ -6345,7 +6311,7 @@ pub const BACKUP_SECURITY_DATA = WIN_STREAM_ID.SECURITY_DATA;
 pub const BACKUP_SPARSE_BLOCK = WIN_STREAM_ID.SPARSE_BLOCK;
 pub const BACKUP_TXFS_DATA = WIN_STREAM_ID.TXFS_DATA;
 
-pub const TXF_LOG_RECORD_TYPE = extern enum(u32) {
+pub const TXF_LOG_RECORD_TYPE = enum(u32) {
     AFFECTED_FILE = 4,
     TRUNCATE = 2,
     WRITE = 1,
@@ -6354,7 +6320,7 @@ pub const TXF_LOG_RECORD_TYPE_AFFECTED_FILE = TXF_LOG_RECORD_TYPE.AFFECTED_FILE;
 pub const TXF_LOG_RECORD_TYPE_TRUNCATE = TXF_LOG_RECORD_TYPE.TRUNCATE;
 pub const TXF_LOG_RECORD_TYPE_WRITE = TXF_LOG_RECORD_TYPE.WRITE;
 
-pub const FILE_INFO_FLAGS_PERMISSIONS = extern enum(u32) {
+pub const FILE_INFO_FLAGS_PERMISSIONS = enum(u32) {
     READ = 1,
     WRITE = 2,
     CREATE = 4,
@@ -6375,7 +6341,7 @@ pub const PERM_FILE_READ = FILE_INFO_FLAGS_PERMISSIONS.READ;
 pub const PERM_FILE_WRITE = FILE_INFO_FLAGS_PERMISSIONS.WRITE;
 pub const PERM_FILE_CREATE = FILE_INFO_FLAGS_PERMISSIONS.CREATE;
 
-pub const SYMBOLIC_LINK_FLAGS = extern enum(u32) {
+pub const SYMBOLIC_LINK_FLAGS = enum(u32) {
     DIRECTORY = 1,
     ALLOW_UNPRIVILEGED_CREATE = 2,
     _,

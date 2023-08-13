@@ -77,7 +77,7 @@ pub const CLSID_WbemDefPath = &CLSID_WbemDefPath_Value;
 const CLSID_WbemQuery_Value = @import("../zig.zig").Guid.initString("eac8a024-21e2-4523-ad73-a71a0aa2f56a");
 pub const CLSID_WbemQuery = &CLSID_WbemQuery_Value;
 
-pub const WBEM_PATH_STATUS_FLAG = extern enum(i32) {
+pub const WBEM_PATH_STATUS_FLAG = enum(i32) {
     ANON_LOCAL_MACHINE = 1,
     HAS_MACHINE_NAME = 2,
     IS_CLASS_REF = 4,
@@ -116,7 +116,7 @@ pub const WBEMPATH_INFO_NATIVE_PATH = WBEM_PATH_STATUS_FLAG.NATIVE_PATH;
 pub const WBEMPATH_INFO_WMI_PATH = WBEM_PATH_STATUS_FLAG.WMI_PATH;
 pub const WBEMPATH_INFO_PATH_HAD_SERVER = WBEM_PATH_STATUS_FLAG.PATH_HAD_SERVER;
 
-pub const WBEM_PATH_CREATE_FLAG = extern enum(i32) {
+pub const WBEM_PATH_CREATE_FLAG = enum(i32) {
     CREATE_ACCEPT_RELATIVE = 1,
     CREATE_ACCEPT_ABSOLUTE = 2,
     CREATE_ACCEPT_ALL = 4,
@@ -127,7 +127,7 @@ pub const WBEMPATH_CREATE_ACCEPT_ABSOLUTE = WBEM_PATH_CREATE_FLAG.CREATE_ACCEPT_
 pub const WBEMPATH_CREATE_ACCEPT_ALL = WBEM_PATH_CREATE_FLAG.CREATE_ACCEPT_ALL;
 pub const WBEMPATH_TREAT_SINGLE_IDENT_AS_NS = WBEM_PATH_CREATE_FLAG.TREAT_SINGLE_IDENT_AS_NS;
 
-pub const WBEM_GET_TEXT_FLAGS = extern enum(i32) {
+pub const WBEM_GET_TEXT_FLAGS = enum(i32) {
     COMPRESSED = 1,
     GET_RELATIVE_ONLY = 2,
     GET_SERVER_TOO = 4,
@@ -142,7 +142,7 @@ pub const WBEMPATH_GET_SERVER_AND_NAMESPACE_ONLY = WBEM_GET_TEXT_FLAGS.GET_SERVE
 pub const WBEMPATH_GET_NAMESPACE_ONLY = WBEM_GET_TEXT_FLAGS.GET_NAMESPACE_ONLY;
 pub const WBEMPATH_GET_ORIGINAL = WBEM_GET_TEXT_FLAGS.GET_ORIGINAL;
 
-pub const WBEM_GET_KEY_FLAGS = extern enum(i32) {
+pub const WBEM_GET_KEY_FLAGS = enum(i32) {
     TEXT = 1,
     QUOTEDTEXT = 2,
 };
@@ -584,7 +584,7 @@ pub const IWbemQuery = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMIQ_ANALYSIS_TYPE = extern enum(i32) {
+pub const WMIQ_ANALYSIS_TYPE = enum(i32) {
     RPN_SEQUENCE = 1,
     ASSOC_QUERY = 2,
     PROP_ANALYSIS_MATRIX = 3,
@@ -597,16 +597,16 @@ pub const WMIQ_ANALYSIS_PROP_ANALYSIS_MATRIX = WMIQ_ANALYSIS_TYPE.PROP_ANALYSIS_
 pub const WMIQ_ANALYSIS_QUERY_TEXT = WMIQ_ANALYSIS_TYPE.QUERY_TEXT;
 pub const WMIQ_ANALYSIS_RESERVED = WMIQ_ANALYSIS_TYPE.RESERVED;
 
-pub const WMIQ_RPN_TOKEN_FLAGS = extern enum(i32) {
+pub const WMIQ_RPN_TOKEN_FLAGS = enum(i32) {
     TOKEN_EXPRESSION = 1,
     TOKEN_AND = 2,
     TOKEN_OR = 3,
     TOKEN_NOT = 4,
     OP_UNDEFINED = 0,
-    OP_EQ = 1,
-    OP_NE = 2,
-    OP_GE = 3,
-    OP_LE = 4,
+    // OP_EQ = 1, this enum value conflicts with TOKEN_EXPRESSION
+    // OP_NE = 2, this enum value conflicts with TOKEN_AND
+    // OP_GE = 3, this enum value conflicts with TOKEN_OR
+    // OP_LE = 4, this enum value conflicts with TOKEN_NOT
     OP_LT = 5,
     OP_GT = 6,
     OP_LIKE = 7,
@@ -614,33 +614,33 @@ pub const WMIQ_RPN_TOKEN_FLAGS = extern enum(i32) {
     OP_ISNOTA = 9,
     OP_ISNULL = 10,
     OP_ISNOTNULL = 11,
-    LEFT_PROPERTY_NAME = 1,
-    RIGHT_PROPERTY_NAME = 2,
-    CONST2 = 4,
-    CONST = 8,
+    // LEFT_PROPERTY_NAME = 1, this enum value conflicts with TOKEN_EXPRESSION
+    // RIGHT_PROPERTY_NAME = 2, this enum value conflicts with TOKEN_AND
+    // CONST2 = 4, this enum value conflicts with TOKEN_NOT
+    // CONST = 8, this enum value conflicts with OP_ISA
     RELOP = 16,
     LEFT_FUNCTION = 32,
     RIGHT_FUNCTION = 64,
-    GET_TOKEN_TYPE = 1,
-    GET_EXPR_SHAPE = 2,
-    GET_LEFT_FUNCTION = 3,
-    GET_RIGHT_FUNCTION = 4,
-    GET_RELOP = 5,
-    NEXT_TOKEN = 1,
-    FROM_UNARY = 1,
-    FROM_PATH = 2,
-    FROM_CLASS_LIST = 4,
-    FROM_MULTIPLE = 8,
+    // GET_TOKEN_TYPE = 1, this enum value conflicts with TOKEN_EXPRESSION
+    // GET_EXPR_SHAPE = 2, this enum value conflicts with TOKEN_AND
+    // GET_LEFT_FUNCTION = 3, this enum value conflicts with TOKEN_OR
+    // GET_RIGHT_FUNCTION = 4, this enum value conflicts with TOKEN_NOT
+    // GET_RELOP = 5, this enum value conflicts with OP_LT
+    // NEXT_TOKEN = 1, this enum value conflicts with TOKEN_EXPRESSION
+    // FROM_UNARY = 1, this enum value conflicts with TOKEN_EXPRESSION
+    // FROM_PATH = 2, this enum value conflicts with TOKEN_AND
+    // FROM_CLASS_LIST = 4, this enum value conflicts with TOKEN_NOT
+    // FROM_MULTIPLE = 8, this enum value conflicts with OP_ISA
 };
 pub const WMIQ_RPN_TOKEN_EXPRESSION = WMIQ_RPN_TOKEN_FLAGS.TOKEN_EXPRESSION;
 pub const WMIQ_RPN_TOKEN_AND = WMIQ_RPN_TOKEN_FLAGS.TOKEN_AND;
 pub const WMIQ_RPN_TOKEN_OR = WMIQ_RPN_TOKEN_FLAGS.TOKEN_OR;
 pub const WMIQ_RPN_TOKEN_NOT = WMIQ_RPN_TOKEN_FLAGS.TOKEN_NOT;
 pub const WMIQ_RPN_OP_UNDEFINED = WMIQ_RPN_TOKEN_FLAGS.OP_UNDEFINED;
-pub const WMIQ_RPN_OP_EQ = WMIQ_RPN_TOKEN_FLAGS.OP_EQ;
-pub const WMIQ_RPN_OP_NE = WMIQ_RPN_TOKEN_FLAGS.OP_NE;
-pub const WMIQ_RPN_OP_GE = WMIQ_RPN_TOKEN_FLAGS.OP_GE;
-pub const WMIQ_RPN_OP_LE = WMIQ_RPN_TOKEN_FLAGS.OP_LE;
+pub const WMIQ_RPN_OP_EQ = WMIQ_RPN_TOKEN_FLAGS.TOKEN_EXPRESSION;
+pub const WMIQ_RPN_OP_NE = WMIQ_RPN_TOKEN_FLAGS.TOKEN_AND;
+pub const WMIQ_RPN_OP_GE = WMIQ_RPN_TOKEN_FLAGS.TOKEN_OR;
+pub const WMIQ_RPN_OP_LE = WMIQ_RPN_TOKEN_FLAGS.TOKEN_NOT;
 pub const WMIQ_RPN_OP_LT = WMIQ_RPN_TOKEN_FLAGS.OP_LT;
 pub const WMIQ_RPN_OP_GT = WMIQ_RPN_TOKEN_FLAGS.OP_GT;
 pub const WMIQ_RPN_OP_LIKE = WMIQ_RPN_TOKEN_FLAGS.OP_LIKE;
@@ -648,25 +648,25 @@ pub const WMIQ_RPN_OP_ISA = WMIQ_RPN_TOKEN_FLAGS.OP_ISA;
 pub const WMIQ_RPN_OP_ISNOTA = WMIQ_RPN_TOKEN_FLAGS.OP_ISNOTA;
 pub const WMIQ_RPN_OP_ISNULL = WMIQ_RPN_TOKEN_FLAGS.OP_ISNULL;
 pub const WMIQ_RPN_OP_ISNOTNULL = WMIQ_RPN_TOKEN_FLAGS.OP_ISNOTNULL;
-pub const WMIQ_RPN_LEFT_PROPERTY_NAME = WMIQ_RPN_TOKEN_FLAGS.LEFT_PROPERTY_NAME;
-pub const WMIQ_RPN_RIGHT_PROPERTY_NAME = WMIQ_RPN_TOKEN_FLAGS.RIGHT_PROPERTY_NAME;
-pub const WMIQ_RPN_CONST2 = WMIQ_RPN_TOKEN_FLAGS.CONST2;
-pub const WMIQ_RPN_CONST = WMIQ_RPN_TOKEN_FLAGS.CONST;
+pub const WMIQ_RPN_LEFT_PROPERTY_NAME = WMIQ_RPN_TOKEN_FLAGS.TOKEN_EXPRESSION;
+pub const WMIQ_RPN_RIGHT_PROPERTY_NAME = WMIQ_RPN_TOKEN_FLAGS.TOKEN_AND;
+pub const WMIQ_RPN_CONST2 = WMIQ_RPN_TOKEN_FLAGS.TOKEN_NOT;
+pub const WMIQ_RPN_CONST = WMIQ_RPN_TOKEN_FLAGS.OP_ISA;
 pub const WMIQ_RPN_RELOP = WMIQ_RPN_TOKEN_FLAGS.RELOP;
 pub const WMIQ_RPN_LEFT_FUNCTION = WMIQ_RPN_TOKEN_FLAGS.LEFT_FUNCTION;
 pub const WMIQ_RPN_RIGHT_FUNCTION = WMIQ_RPN_TOKEN_FLAGS.RIGHT_FUNCTION;
-pub const WMIQ_RPN_GET_TOKEN_TYPE = WMIQ_RPN_TOKEN_FLAGS.GET_TOKEN_TYPE;
-pub const WMIQ_RPN_GET_EXPR_SHAPE = WMIQ_RPN_TOKEN_FLAGS.GET_EXPR_SHAPE;
-pub const WMIQ_RPN_GET_LEFT_FUNCTION = WMIQ_RPN_TOKEN_FLAGS.GET_LEFT_FUNCTION;
-pub const WMIQ_RPN_GET_RIGHT_FUNCTION = WMIQ_RPN_TOKEN_FLAGS.GET_RIGHT_FUNCTION;
-pub const WMIQ_RPN_GET_RELOP = WMIQ_RPN_TOKEN_FLAGS.GET_RELOP;
-pub const WMIQ_RPN_NEXT_TOKEN = WMIQ_RPN_TOKEN_FLAGS.NEXT_TOKEN;
-pub const WMIQ_RPN_FROM_UNARY = WMIQ_RPN_TOKEN_FLAGS.FROM_UNARY;
-pub const WMIQ_RPN_FROM_PATH = WMIQ_RPN_TOKEN_FLAGS.FROM_PATH;
-pub const WMIQ_RPN_FROM_CLASS_LIST = WMIQ_RPN_TOKEN_FLAGS.FROM_CLASS_LIST;
-pub const WMIQ_RPN_FROM_MULTIPLE = WMIQ_RPN_TOKEN_FLAGS.FROM_MULTIPLE;
+pub const WMIQ_RPN_GET_TOKEN_TYPE = WMIQ_RPN_TOKEN_FLAGS.TOKEN_EXPRESSION;
+pub const WMIQ_RPN_GET_EXPR_SHAPE = WMIQ_RPN_TOKEN_FLAGS.TOKEN_AND;
+pub const WMIQ_RPN_GET_LEFT_FUNCTION = WMIQ_RPN_TOKEN_FLAGS.TOKEN_OR;
+pub const WMIQ_RPN_GET_RIGHT_FUNCTION = WMIQ_RPN_TOKEN_FLAGS.TOKEN_NOT;
+pub const WMIQ_RPN_GET_RELOP = WMIQ_RPN_TOKEN_FLAGS.OP_LT;
+pub const WMIQ_RPN_NEXT_TOKEN = WMIQ_RPN_TOKEN_FLAGS.TOKEN_EXPRESSION;
+pub const WMIQ_RPN_FROM_UNARY = WMIQ_RPN_TOKEN_FLAGS.TOKEN_EXPRESSION;
+pub const WMIQ_RPN_FROM_PATH = WMIQ_RPN_TOKEN_FLAGS.TOKEN_AND;
+pub const WMIQ_RPN_FROM_CLASS_LIST = WMIQ_RPN_TOKEN_FLAGS.TOKEN_NOT;
+pub const WMIQ_RPN_FROM_MULTIPLE = WMIQ_RPN_TOKEN_FLAGS.OP_ISA;
 
-pub const WMIQ_ASSOCQ_FLAGS = extern enum(i32) {
+pub const WMIQ_ASSOCQ_FLAGS = enum(i32) {
     ASSOCIATORS = 1,
     REFERENCES = 2,
     RESULTCLASS = 4,
@@ -734,7 +734,7 @@ pub const SWbemRpnTokenList = extern struct {
     m_uNumTokens: u32,
 };
 
-pub const WMIQ_LANGUAGE_FEATURES = extern enum(i32) {
+pub const WMIQ_LANGUAGE_FEATURES = enum(i32) {
     @"1_BASIC_SELECT" = 1,
     @"2_CLASS_NAME_IN_QUERY" = 2,
     @"3_STRING_CASE_FUNCTIONS" = 3,
@@ -775,7 +775,7 @@ pub const WMIQ_LANGUAGE_FEATURES = extern enum(i32) {
     @"38_BASIC_DATETIME_TESTS" = 38,
     @"39_COUNT_COLUMN" = 39,
     @"40_BETWEEN" = 40,
-    _LAST = 40,
+    // _LAST = 40, this enum value conflicts with @"40_BETWEEN"
 };
 pub const WMIQ_LF1_BASIC_SELECT = WMIQ_LANGUAGE_FEATURES.@"1_BASIC_SELECT";
 pub const WMIQ_LF2_CLASS_NAME_IN_QUERY = WMIQ_LANGUAGE_FEATURES.@"2_CLASS_NAME_IN_QUERY";
@@ -817,9 +817,9 @@ pub const WMIQ_LF37_SELECT_INTO = WMIQ_LANGUAGE_FEATURES.@"37_SELECT_INTO";
 pub const WMIQ_LF38_BASIC_DATETIME_TESTS = WMIQ_LANGUAGE_FEATURES.@"38_BASIC_DATETIME_TESTS";
 pub const WMIQ_LF39_COUNT_COLUMN = WMIQ_LANGUAGE_FEATURES.@"39_COUNT_COLUMN";
 pub const WMIQ_LF40_BETWEEN = WMIQ_LANGUAGE_FEATURES.@"40_BETWEEN";
-pub const WMIQ_LF_LAST = WMIQ_LANGUAGE_FEATURES._LAST;
+pub const WMIQ_LF_LAST = WMIQ_LANGUAGE_FEATURES.@"40_BETWEEN";
 
-pub const WMIQ_RPNQ_FEATURE = extern enum(i32) {
+pub const WMIQ_RPNQ_FEATURE = enum(i32) {
     WHERE_CLAUSE_PRESENT = 1,
     QUERY_IS_CONJUNCTIVE = 2,
     QUERY_IS_DISJUNCTIVE = 4,
@@ -930,18 +930,18 @@ pub const CLSID_WbemRefresher = &CLSID_WbemRefresher_Value;
 const CLSID_WbemObjectTextSrc_Value = @import("../zig.zig").Guid.initString("8d1c559d-84f0-4bb3-a7d5-56a7435a9ba6");
 pub const CLSID_WbemObjectTextSrc = &CLSID_WbemObjectTextSrc_Value;
 
-pub const WBEM_GENUS_TYPE = extern enum(i32) {
+pub const WBEM_GENUS_TYPE = enum(i32) {
     CLASS = 1,
     INSTANCE = 2,
 };
 pub const WBEM_GENUS_CLASS = WBEM_GENUS_TYPE.CLASS;
 pub const WBEM_GENUS_INSTANCE = WBEM_GENUS_TYPE.INSTANCE;
 
-pub const WBEM_CHANGE_FLAG_TYPE = extern enum(i32) {
+pub const WBEM_CHANGE_FLAG_TYPE = enum(i32) {
     FLAG_CREATE_OR_UPDATE = 0,
     FLAG_UPDATE_ONLY = 1,
     FLAG_CREATE_ONLY = 2,
-    FLAG_UPDATE_COMPATIBLE = 0,
+    // FLAG_UPDATE_COMPATIBLE = 0, this enum value conflicts with FLAG_CREATE_OR_UPDATE
     FLAG_UPDATE_SAFE_MODE = 32,
     FLAG_UPDATE_FORCE_MODE = 64,
     MASK_UPDATE_MODE = 96,
@@ -950,48 +950,48 @@ pub const WBEM_CHANGE_FLAG_TYPE = extern enum(i32) {
 pub const WBEM_FLAG_CREATE_OR_UPDATE = WBEM_CHANGE_FLAG_TYPE.FLAG_CREATE_OR_UPDATE;
 pub const WBEM_FLAG_UPDATE_ONLY = WBEM_CHANGE_FLAG_TYPE.FLAG_UPDATE_ONLY;
 pub const WBEM_FLAG_CREATE_ONLY = WBEM_CHANGE_FLAG_TYPE.FLAG_CREATE_ONLY;
-pub const WBEM_FLAG_UPDATE_COMPATIBLE = WBEM_CHANGE_FLAG_TYPE.FLAG_UPDATE_COMPATIBLE;
+pub const WBEM_FLAG_UPDATE_COMPATIBLE = WBEM_CHANGE_FLAG_TYPE.FLAG_CREATE_OR_UPDATE;
 pub const WBEM_FLAG_UPDATE_SAFE_MODE = WBEM_CHANGE_FLAG_TYPE.FLAG_UPDATE_SAFE_MODE;
 pub const WBEM_FLAG_UPDATE_FORCE_MODE = WBEM_CHANGE_FLAG_TYPE.FLAG_UPDATE_FORCE_MODE;
 pub const WBEM_MASK_UPDATE_MODE = WBEM_CHANGE_FLAG_TYPE.MASK_UPDATE_MODE;
 pub const WBEM_FLAG_ADVISORY = WBEM_CHANGE_FLAG_TYPE.FLAG_ADVISORY;
 
-pub const WBEM_GENERIC_FLAG_TYPE = extern enum(i32) {
+pub const WBEM_GENERIC_FLAG_TYPE = enum(i32) {
     FLAG_RETURN_IMMEDIATELY = 16,
     FLAG_RETURN_WBEM_COMPLETE = 0,
-    FLAG_BIDIRECTIONAL = 0,
+    // FLAG_BIDIRECTIONAL = 0, this enum value conflicts with FLAG_RETURN_WBEM_COMPLETE
     FLAG_FORWARD_ONLY = 32,
     FLAG_NO_ERROR_OBJECT = 64,
-    FLAG_RETURN_ERROR_OBJECT = 0,
+    // FLAG_RETURN_ERROR_OBJECT = 0, this enum value conflicts with FLAG_RETURN_WBEM_COMPLETE
     FLAG_SEND_STATUS = 128,
-    FLAG_DONT_SEND_STATUS = 0,
+    // FLAG_DONT_SEND_STATUS = 0, this enum value conflicts with FLAG_RETURN_WBEM_COMPLETE
     FLAG_ENSURE_LOCATABLE = 256,
     FLAG_DIRECT_READ = 512,
-    FLAG_SEND_ONLY_SELECTED = 0,
-    RETURN_WHEN_COMPLETE = 0,
-    RETURN_IMMEDIATELY = 16,
+    // FLAG_SEND_ONLY_SELECTED = 0, this enum value conflicts with FLAG_RETURN_WBEM_COMPLETE
+    // RETURN_WHEN_COMPLETE = 0, this enum value conflicts with FLAG_RETURN_WBEM_COMPLETE
+    // RETURN_IMMEDIATELY = 16, this enum value conflicts with FLAG_RETURN_IMMEDIATELY
     MASK_RESERVED_FLAGS = 126976,
     FLAG_USE_AMENDED_QUALIFIERS = 131072,
     FLAG_STRONG_VALIDATION = 1048576,
 };
 pub const WBEM_FLAG_RETURN_IMMEDIATELY = WBEM_GENERIC_FLAG_TYPE.FLAG_RETURN_IMMEDIATELY;
 pub const WBEM_FLAG_RETURN_WBEM_COMPLETE = WBEM_GENERIC_FLAG_TYPE.FLAG_RETURN_WBEM_COMPLETE;
-pub const WBEM_FLAG_BIDIRECTIONAL = WBEM_GENERIC_FLAG_TYPE.FLAG_BIDIRECTIONAL;
+pub const WBEM_FLAG_BIDIRECTIONAL = WBEM_GENERIC_FLAG_TYPE.FLAG_RETURN_WBEM_COMPLETE;
 pub const WBEM_FLAG_FORWARD_ONLY = WBEM_GENERIC_FLAG_TYPE.FLAG_FORWARD_ONLY;
 pub const WBEM_FLAG_NO_ERROR_OBJECT = WBEM_GENERIC_FLAG_TYPE.FLAG_NO_ERROR_OBJECT;
-pub const WBEM_FLAG_RETURN_ERROR_OBJECT = WBEM_GENERIC_FLAG_TYPE.FLAG_RETURN_ERROR_OBJECT;
+pub const WBEM_FLAG_RETURN_ERROR_OBJECT = WBEM_GENERIC_FLAG_TYPE.FLAG_RETURN_WBEM_COMPLETE;
 pub const WBEM_FLAG_SEND_STATUS = WBEM_GENERIC_FLAG_TYPE.FLAG_SEND_STATUS;
-pub const WBEM_FLAG_DONT_SEND_STATUS = WBEM_GENERIC_FLAG_TYPE.FLAG_DONT_SEND_STATUS;
+pub const WBEM_FLAG_DONT_SEND_STATUS = WBEM_GENERIC_FLAG_TYPE.FLAG_RETURN_WBEM_COMPLETE;
 pub const WBEM_FLAG_ENSURE_LOCATABLE = WBEM_GENERIC_FLAG_TYPE.FLAG_ENSURE_LOCATABLE;
 pub const WBEM_FLAG_DIRECT_READ = WBEM_GENERIC_FLAG_TYPE.FLAG_DIRECT_READ;
-pub const WBEM_FLAG_SEND_ONLY_SELECTED = WBEM_GENERIC_FLAG_TYPE.FLAG_SEND_ONLY_SELECTED;
-pub const WBEM_RETURN_WHEN_COMPLETE = WBEM_GENERIC_FLAG_TYPE.RETURN_WHEN_COMPLETE;
-pub const WBEM_RETURN_IMMEDIATELY = WBEM_GENERIC_FLAG_TYPE.RETURN_IMMEDIATELY;
+pub const WBEM_FLAG_SEND_ONLY_SELECTED = WBEM_GENERIC_FLAG_TYPE.FLAG_RETURN_WBEM_COMPLETE;
+pub const WBEM_RETURN_WHEN_COMPLETE = WBEM_GENERIC_FLAG_TYPE.FLAG_RETURN_WBEM_COMPLETE;
+pub const WBEM_RETURN_IMMEDIATELY = WBEM_GENERIC_FLAG_TYPE.FLAG_RETURN_IMMEDIATELY;
 pub const WBEM_MASK_RESERVED_FLAGS = WBEM_GENERIC_FLAG_TYPE.MASK_RESERVED_FLAGS;
 pub const WBEM_FLAG_USE_AMENDED_QUALIFIERS = WBEM_GENERIC_FLAG_TYPE.FLAG_USE_AMENDED_QUALIFIERS;
 pub const WBEM_FLAG_STRONG_VALIDATION = WBEM_GENERIC_FLAG_TYPE.FLAG_STRONG_VALIDATION;
 
-pub const WBEM_STATUS_TYPE = extern enum(i32) {
+pub const WBEM_STATUS_TYPE = enum(i32) {
     COMPLETE = 0,
     REQUIREMENTS = 1,
     PROGRESS = 2,
@@ -1010,19 +1010,19 @@ pub const WBEM_STATUS_LOGGING_INFORMATION_HOST = WBEM_STATUS_TYPE.LOGGING_INFORM
 pub const WBEM_STATUS_LOGGING_INFORMATION_REPOSITORY = WBEM_STATUS_TYPE.LOGGING_INFORMATION_REPOSITORY;
 pub const WBEM_STATUS_LOGGING_INFORMATION_ESS = WBEM_STATUS_TYPE.LOGGING_INFORMATION_ESS;
 
-pub const WBEM_TIMEOUT_TYPE = extern enum(i32) {
+pub const WBEM_TIMEOUT_TYPE = enum(i32) {
     NO_WAIT = 0,
     INFINITE = -1,
 };
 pub const WBEM_NO_WAIT = WBEM_TIMEOUT_TYPE.NO_WAIT;
 pub const WBEM_INFINITE = WBEM_TIMEOUT_TYPE.INFINITE;
 
-pub const WBEM_CONDITION_FLAG_TYPE = extern enum(i32) {
+pub const WBEM_CONDITION_FLAG_TYPE = enum(i32) {
     FLAG_ALWAYS = 0,
     FLAG_ONLY_IF_TRUE = 1,
     FLAG_ONLY_IF_FALSE = 2,
     FLAG_ONLY_IF_IDENTICAL = 3,
-    MASK_PRIMARY_CONDITION = 3,
+    // MASK_PRIMARY_CONDITION = 3, this enum value conflicts with FLAG_ONLY_IF_IDENTICAL
     FLAG_KEYS_ONLY = 4,
     FLAG_REFS_ONLY = 8,
     FLAG_LOCAL_ONLY = 16,
@@ -1038,7 +1038,7 @@ pub const WBEM_FLAG_ALWAYS = WBEM_CONDITION_FLAG_TYPE.FLAG_ALWAYS;
 pub const WBEM_FLAG_ONLY_IF_TRUE = WBEM_CONDITION_FLAG_TYPE.FLAG_ONLY_IF_TRUE;
 pub const WBEM_FLAG_ONLY_IF_FALSE = WBEM_CONDITION_FLAG_TYPE.FLAG_ONLY_IF_FALSE;
 pub const WBEM_FLAG_ONLY_IF_IDENTICAL = WBEM_CONDITION_FLAG_TYPE.FLAG_ONLY_IF_IDENTICAL;
-pub const WBEM_MASK_PRIMARY_CONDITION = WBEM_CONDITION_FLAG_TYPE.MASK_PRIMARY_CONDITION;
+pub const WBEM_MASK_PRIMARY_CONDITION = WBEM_CONDITION_FLAG_TYPE.FLAG_ONLY_IF_IDENTICAL;
 pub const WBEM_FLAG_KEYS_ONLY = WBEM_CONDITION_FLAG_TYPE.FLAG_KEYS_ONLY;
 pub const WBEM_FLAG_REFS_ONLY = WBEM_CONDITION_FLAG_TYPE.FLAG_REFS_ONLY;
 pub const WBEM_FLAG_LOCAL_ONLY = WBEM_CONDITION_FLAG_TYPE.FLAG_LOCAL_ONLY;
@@ -1050,38 +1050,38 @@ pub const WBEM_FLAG_CLASS_OVERRIDES_ONLY = WBEM_CONDITION_FLAG_TYPE.FLAG_CLASS_O
 pub const WBEM_FLAG_CLASS_LOCAL_AND_OVERRIDES = WBEM_CONDITION_FLAG_TYPE.FLAG_CLASS_LOCAL_AND_OVERRIDES;
 pub const WBEM_MASK_CLASS_CONDITION = WBEM_CONDITION_FLAG_TYPE.MASK_CLASS_CONDITION;
 
-pub const WBEM_FLAVOR_TYPE = extern enum(i32) {
+pub const WBEM_FLAVOR_TYPE = enum(i32) {
     DONT_PROPAGATE = 0,
     FLAG_PROPAGATE_TO_INSTANCE = 1,
     FLAG_PROPAGATE_TO_DERIVED_CLASS = 2,
     MASK_PROPAGATION = 15,
-    OVERRIDABLE = 0,
+    // OVERRIDABLE = 0, this enum value conflicts with DONT_PROPAGATE
     NOT_OVERRIDABLE = 16,
-    MASK_PERMISSIONS = 16,
-    ORIGIN_LOCAL = 0,
+    // MASK_PERMISSIONS = 16, this enum value conflicts with NOT_OVERRIDABLE
+    // ORIGIN_LOCAL = 0, this enum value conflicts with DONT_PROPAGATE
     ORIGIN_PROPAGATED = 32,
     ORIGIN_SYSTEM = 64,
     MASK_ORIGIN = 96,
-    NOT_AMENDED = 0,
+    // NOT_AMENDED = 0, this enum value conflicts with DONT_PROPAGATE
     AMENDED = 128,
-    MASK_AMENDED = 128,
+    // MASK_AMENDED = 128, this enum value conflicts with AMENDED
 };
 pub const WBEM_FLAVOR_DONT_PROPAGATE = WBEM_FLAVOR_TYPE.DONT_PROPAGATE;
 pub const WBEM_FLAVOR_FLAG_PROPAGATE_TO_INSTANCE = WBEM_FLAVOR_TYPE.FLAG_PROPAGATE_TO_INSTANCE;
 pub const WBEM_FLAVOR_FLAG_PROPAGATE_TO_DERIVED_CLASS = WBEM_FLAVOR_TYPE.FLAG_PROPAGATE_TO_DERIVED_CLASS;
 pub const WBEM_FLAVOR_MASK_PROPAGATION = WBEM_FLAVOR_TYPE.MASK_PROPAGATION;
-pub const WBEM_FLAVOR_OVERRIDABLE = WBEM_FLAVOR_TYPE.OVERRIDABLE;
+pub const WBEM_FLAVOR_OVERRIDABLE = WBEM_FLAVOR_TYPE.DONT_PROPAGATE;
 pub const WBEM_FLAVOR_NOT_OVERRIDABLE = WBEM_FLAVOR_TYPE.NOT_OVERRIDABLE;
-pub const WBEM_FLAVOR_MASK_PERMISSIONS = WBEM_FLAVOR_TYPE.MASK_PERMISSIONS;
-pub const WBEM_FLAVOR_ORIGIN_LOCAL = WBEM_FLAVOR_TYPE.ORIGIN_LOCAL;
+pub const WBEM_FLAVOR_MASK_PERMISSIONS = WBEM_FLAVOR_TYPE.NOT_OVERRIDABLE;
+pub const WBEM_FLAVOR_ORIGIN_LOCAL = WBEM_FLAVOR_TYPE.DONT_PROPAGATE;
 pub const WBEM_FLAVOR_ORIGIN_PROPAGATED = WBEM_FLAVOR_TYPE.ORIGIN_PROPAGATED;
 pub const WBEM_FLAVOR_ORIGIN_SYSTEM = WBEM_FLAVOR_TYPE.ORIGIN_SYSTEM;
 pub const WBEM_FLAVOR_MASK_ORIGIN = WBEM_FLAVOR_TYPE.MASK_ORIGIN;
-pub const WBEM_FLAVOR_NOT_AMENDED = WBEM_FLAVOR_TYPE.NOT_AMENDED;
+pub const WBEM_FLAVOR_NOT_AMENDED = WBEM_FLAVOR_TYPE.DONT_PROPAGATE;
 pub const WBEM_FLAVOR_AMENDED = WBEM_FLAVOR_TYPE.AMENDED;
-pub const WBEM_FLAVOR_MASK_AMENDED = WBEM_FLAVOR_TYPE.MASK_AMENDED;
+pub const WBEM_FLAVOR_MASK_AMENDED = WBEM_FLAVOR_TYPE.AMENDED;
 
-pub const WBEM_QUERY_FLAG_TYPE = extern enum(i32) {
+pub const WBEM_QUERY_FLAG_TYPE = enum(i32) {
     DEEP = 0,
     SHALLOW = 1,
     PROTOTYPE = 2,
@@ -1090,7 +1090,7 @@ pub const WBEM_FLAG_DEEP = WBEM_QUERY_FLAG_TYPE.DEEP;
 pub const WBEM_FLAG_SHALLOW = WBEM_QUERY_FLAG_TYPE.SHALLOW;
 pub const WBEM_FLAG_PROTOTYPE = WBEM_QUERY_FLAG_TYPE.PROTOTYPE;
 
-pub const WBEM_SECURITY_FLAGS = extern enum(i32) {
+pub const WBEM_SECURITY_FLAGS = enum(i32) {
     ENABLE = 1,
     METHOD_EXECUTE = 2,
     FULL_WRITE_REP = 4,
@@ -1109,19 +1109,19 @@ pub const WBEM_REMOTE_ACCESS = WBEM_SECURITY_FLAGS.REMOTE_ACCESS;
 pub const WBEM_RIGHT_SUBSCRIBE = WBEM_SECURITY_FLAGS.RIGHT_SUBSCRIBE;
 pub const WBEM_RIGHT_PUBLISH = WBEM_SECURITY_FLAGS.RIGHT_PUBLISH;
 
-pub const WBEM_LIMITATION_FLAG_TYPE = extern enum(i32) {
+pub const WBEM_LIMITATION_FLAG_TYPE = enum(i32) {
     OBJECT_QUALIFIERS = 16,
     PROPERTY_QUALIFIERS = 32,
 };
 pub const WBEM_FLAG_EXCLUDE_OBJECT_QUALIFIERS = WBEM_LIMITATION_FLAG_TYPE.OBJECT_QUALIFIERS;
 pub const WBEM_FLAG_EXCLUDE_PROPERTY_QUALIFIERS = WBEM_LIMITATION_FLAG_TYPE.PROPERTY_QUALIFIERS;
 
-pub const WBEM_TEXT_FLAG_TYPE = extern enum(i32) {
+pub const WBEM_TEXT_FLAG_TYPE = enum(i32) {
     S = 1,
 };
 pub const WBEM_FLAG_NO_FLAVORS = WBEM_TEXT_FLAG_TYPE.S;
 
-pub const WBEM_COMPARISON_FLAG = extern enum(i32) {
+pub const WBEM_COMPARISON_FLAG = enum(i32) {
     COMPARISON_INCLUDE_ALL = 0,
     FLAG_IGNORE_QUALIFIERS = 1,
     FLAG_IGNORE_OBJECT_SOURCE = 2,
@@ -1138,12 +1138,12 @@ pub const WBEM_FLAG_IGNORE_CLASS = WBEM_COMPARISON_FLAG.FLAG_IGNORE_CLASS;
 pub const WBEM_FLAG_IGNORE_CASE = WBEM_COMPARISON_FLAG.FLAG_IGNORE_CASE;
 pub const WBEM_FLAG_IGNORE_FLAVOR = WBEM_COMPARISON_FLAG.FLAG_IGNORE_FLAVOR;
 
-pub const WBEM_LOCKING = extern enum(i32) {
+pub const WBEM_LOCKING = enum(i32) {
     D = 1,
 };
 pub const WBEM_FLAG_ALLOW_READ = WBEM_LOCKING.D;
 
-pub const CIMTYPE_ENUMERATION = extern enum(i32) {
+pub const CIMTYPE_ENUMERATION = enum(i32) {
     ILLEGAL = 4095,
     EMPTY = 0,
     SINT8 = 16,
@@ -1184,21 +1184,21 @@ pub const CIM_CHAR16 = CIMTYPE_ENUMERATION.CHAR16;
 pub const CIM_OBJECT = CIMTYPE_ENUMERATION.OBJECT;
 pub const CIM_FLAG_ARRAY = CIMTYPE_ENUMERATION.FLAG_ARRAY;
 
-pub const WBEM_BACKUP_RESTORE_FLAGS = extern enum(i32) {
+pub const WBEM_BACKUP_RESTORE_FLAGS = enum(i32) {
     DEFAULT = 0,
     FORCE_SHUTDOWN = 1,
 };
 pub const WBEM_FLAG_BACKUP_RESTORE_DEFAULT = WBEM_BACKUP_RESTORE_FLAGS.DEFAULT;
 pub const WBEM_FLAG_BACKUP_RESTORE_FORCE_SHUTDOWN = WBEM_BACKUP_RESTORE_FLAGS.FORCE_SHUTDOWN;
 
-pub const WBEM_REFRESHER_FLAGS = extern enum(i32) {
+pub const WBEM_REFRESHER_FLAGS = enum(i32) {
     AUTO_RECONNECT = 0,
     NO_AUTO_RECONNECT = 1,
 };
 pub const WBEM_FLAG_REFRESH_AUTO_RECONNECT = WBEM_REFRESHER_FLAGS.AUTO_RECONNECT;
 pub const WBEM_FLAG_REFRESH_NO_AUTO_RECONNECT = WBEM_REFRESHER_FLAGS.NO_AUTO_RECONNECT;
 
-pub const WBEM_SHUTDOWN_FLAGS = extern enum(i32) {
+pub const WBEM_SHUTDOWN_FLAGS = enum(i32) {
     UNLOAD_COMPONENT = 1,
     WMI = 2,
     OS = 3,
@@ -1207,14 +1207,14 @@ pub const WBEM_SHUTDOWN_UNLOAD_COMPONENT = WBEM_SHUTDOWN_FLAGS.UNLOAD_COMPONENT;
 pub const WBEM_SHUTDOWN_WMI = WBEM_SHUTDOWN_FLAGS.WMI;
 pub const WBEM_SHUTDOWN_OS = WBEM_SHUTDOWN_FLAGS.OS;
 
-pub const WBEMSTATUS_FORMAT = extern enum(i32) {
+pub const WBEMSTATUS_FORMAT = enum(i32) {
     EWLINE = 0,
     O_NEWLINE = 1,
 };
 pub const WBEMSTATUS_FORMAT_NEWLINE = WBEMSTATUS_FORMAT.EWLINE;
 pub const WBEMSTATUS_FORMAT_NO_NEWLINE = WBEMSTATUS_FORMAT.O_NEWLINE;
 
-pub const WBEM_LIMITS = extern enum(i32) {
+pub const WBEM_LIMITS = enum(i32) {
     IDENTIFIER = 4096,
     QUERY = 16384,
     PATH = 8192,
@@ -1227,10 +1227,10 @@ pub const WBEM_MAX_PATH = WBEM_LIMITS.PATH;
 pub const WBEM_MAX_OBJECT_NESTING = WBEM_LIMITS.OBJECT_NESTING;
 pub const WBEM_MAX_USER_PROPERTIES = WBEM_LIMITS.USER_PROPERTIES;
 
-pub const WBEMSTATUS = extern enum(i32) {
+pub const WBEMSTATUS = enum(i32) {
     _NO_ERROR = 0,
-    _S_NO_ERROR = 0,
-    _S_SAME = 0,
+    // _S_NO_ERROR = 0, this enum value conflicts with _NO_ERROR
+    // _S_SAME = 0, this enum value conflicts with _NO_ERROR
     _S_FALSE = 1,
     _S_ALREADY_EXISTS = 262145,
     _S_RESET_TO_DEFAULT = 262146,
@@ -1423,8 +1423,8 @@ pub const WBEMSTATUS = extern enum(i32) {
     MOF_E_INVALID_DELETECLASS_SYNTAX = -2147205071,
 };
 pub const WBEM_NO_ERROR = WBEMSTATUS._NO_ERROR;
-pub const WBEM_S_NO_ERROR = WBEMSTATUS._S_NO_ERROR;
-pub const WBEM_S_SAME = WBEMSTATUS._S_SAME;
+pub const WBEM_S_NO_ERROR = WBEMSTATUS._NO_ERROR;
+pub const WBEM_S_SAME = WBEMSTATUS._NO_ERROR;
 pub const WBEM_S_FALSE = WBEMSTATUS._S_FALSE;
 pub const WBEM_S_ALREADY_EXISTS = WBEMSTATUS._S_ALREADY_EXISTS;
 pub const WBEM_S_RESET_TO_DEFAULT = WBEMSTATUS._S_RESET_TO_DEFAULT;
@@ -2953,7 +2953,7 @@ pub const IWbemShutdown = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMI_OBJ_TEXT = extern enum(i32) {
+pub const WMI_OBJ_TEXT = enum(i32) {
     CIM_DTD_2_0 = 1,
     WMI_DTD_2_0 = 2,
     WMI_EXT1 = 3,
@@ -3029,7 +3029,7 @@ pub const WBEM_COMPILE_STATUS_INFO = extern struct {
     dwOutFlags: u32,
 };
 
-pub const WBEM_COMPILER_OPTIONS = extern enum(i32) {
+pub const WBEM_COMPILER_OPTIONS = enum(i32) {
     CHECK_ONLY = 1,
     AUTORECOVER = 2,
     WMI_CHECK = 4,
@@ -3046,7 +3046,7 @@ pub const WBEM_FLAG_DONT_ADD_TO_LIST = WBEM_COMPILER_OPTIONS.DONT_ADD_TO_LIST;
 pub const WBEM_FLAG_SPLIT_FILES = WBEM_COMPILER_OPTIONS.SPLIT_FILES;
 pub const WBEM_FLAG_STORE_FILE = WBEM_COMPILER_OPTIONS.STORE_FILE;
 
-pub const WBEM_CONNECT_OPTIONS = extern enum(i32) {
+pub const WBEM_CONNECT_OPTIONS = enum(i32) {
     REPOSITORY_ONLY = 64,
     USE_MAX_WAIT = 128,
     PROVIDERS = 256,
@@ -3117,7 +3117,7 @@ pub const IMofCompiler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WBEM_UNSECAPP_FLAG_TYPE = extern enum(i32) {
+pub const WBEM_UNSECAPP_FLAG_TYPE = enum(i32) {
     DEFAULT_CHECK_ACCESS = 0,
     CHECK_ACCESS = 1,
     DONT_CHECK_ACCESS = 2,
@@ -3126,7 +3126,7 @@ pub const WBEM_FLAG_UNSECAPP_DEFAULT_CHECK_ACCESS = WBEM_UNSECAPP_FLAG_TYPE.DEFA
 pub const WBEM_FLAG_UNSECAPP_CHECK_ACCESS = WBEM_UNSECAPP_FLAG_TYPE.CHECK_ACCESS;
 pub const WBEM_FLAG_UNSECAPP_DONT_CHECK_ACCESS = WBEM_UNSECAPP_FLAG_TYPE.DONT_CHECK_ACCESS;
 
-pub const WBEM_INFORMATION_FLAG_TYPE = extern enum(i32) {
+pub const WBEM_INFORMATION_FLAG_TYPE = enum(i32) {
     SHORT_NAME = 1,
     LONG_NAME = 2,
 };
@@ -3148,7 +3148,7 @@ pub const CLSID_WbemDecoupledRegistrar = &CLSID_WbemDecoupledRegistrar_Value;
 const CLSID_WbemDecoupledBasicEventProvider_Value = @import("../zig.zig").Guid.initString("f5f75737-2843-4f22-933d-c76a97cda62f");
 pub const CLSID_WbemDecoupledBasicEventProvider = &CLSID_WbemDecoupledBasicEventProvider_Value;
 
-pub const WBEM_PROVIDER_REQUIREMENTS_TYPE = extern enum(i32) {
+pub const WBEM_PROVIDER_REQUIREMENTS_TYPE = enum(i32) {
     START_POSTFILTER = 0,
     STOP_POSTFILTER = 1,
     RECHECK_SUBSCRIPTIONS = 2,
@@ -3519,7 +3519,7 @@ pub const IWbemProviderIdentity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WBEM_EXTRA_RETURN_CODES = extern enum(i32) {
+pub const WBEM_EXTRA_RETURN_CODES = enum(i32) {
     S_INITIALIZED = 0,
     S_LIMITED_SERVICE = 274433,
     S_INDIRECTLY_UPDATED = 274434,
@@ -3534,7 +3534,7 @@ pub const WBEM_S_SUBJECT_TO_SDS = WBEM_EXTRA_RETURN_CODES.S_SUBJECT_TO_SDS;
 pub const WBEM_E_RETRY_LATER = WBEM_EXTRA_RETURN_CODES.E_RETRY_LATER;
 pub const WBEM_E_RESOURCE_CONTENTION = WBEM_EXTRA_RETURN_CODES.E_RESOURCE_CONTENTION;
 
-pub const WBEM_PROVIDER_FLAGS = extern enum(i32) {
+pub const WBEM_PROVIDER_FLAGS = enum(i32) {
     E = 65536,
 };
 pub const WBEM_FLAG_OWNER_UPDATE = WBEM_PROVIDER_FLAGS.E;
@@ -3573,7 +3573,7 @@ pub const IWbemDecoupledBasicEventProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WBEM_BATCH_TYPE = extern enum(i32) {
+pub const WBEM_BATCH_TYPE = enum(i32) {
     BATCH_IF_NEEDED = 0,
     MUST_BATCH = 1,
     MUST_NOT_BATCH = 2,
@@ -3705,11 +3705,11 @@ pub const CLSID_SWbemPrivilegeSet = &CLSID_SWbemPrivilegeSet_Value;
 const CLSID_SWbemRefreshableItem_Value = @import("../zig.zig").Guid.initString("8c6854bc-de4b-11d3-b390-00105a1f473a");
 pub const CLSID_SWbemRefreshableItem = &CLSID_SWbemRefreshableItem_Value;
 
-pub const WbemChangeFlagEnum = extern enum(i32) {
+pub const WbemChangeFlagEnum = enum(i32) {
     CreateOrUpdate = 0,
     UpdateOnly = 1,
     CreateOnly = 2,
-    UpdateCompatible = 0,
+    // UpdateCompatible = 0, this enum value conflicts with CreateOrUpdate
     UpdateSafeMode = 32,
     UpdateForceMode = 64,
     StrongValidation = 128,
@@ -3718,46 +3718,46 @@ pub const WbemChangeFlagEnum = extern enum(i32) {
 pub const wbemChangeFlagCreateOrUpdate = WbemChangeFlagEnum.CreateOrUpdate;
 pub const wbemChangeFlagUpdateOnly = WbemChangeFlagEnum.UpdateOnly;
 pub const wbemChangeFlagCreateOnly = WbemChangeFlagEnum.CreateOnly;
-pub const wbemChangeFlagUpdateCompatible = WbemChangeFlagEnum.UpdateCompatible;
+pub const wbemChangeFlagUpdateCompatible = WbemChangeFlagEnum.CreateOrUpdate;
 pub const wbemChangeFlagUpdateSafeMode = WbemChangeFlagEnum.UpdateSafeMode;
 pub const wbemChangeFlagUpdateForceMode = WbemChangeFlagEnum.UpdateForceMode;
 pub const wbemChangeFlagStrongValidation = WbemChangeFlagEnum.StrongValidation;
 pub const wbemChangeFlagAdvisory = WbemChangeFlagEnum.Advisory;
 
-pub const WbemFlagEnum = extern enum(i32) {
+pub const WbemFlagEnum = enum(i32) {
     ReturnImmediately = 16,
     ReturnWhenComplete = 0,
-    Bidirectional = 0,
+    // Bidirectional = 0, this enum value conflicts with ReturnWhenComplete
     ForwardOnly = 32,
     NoErrorObject = 64,
-    ReturnErrorObject = 0,
+    // ReturnErrorObject = 0, this enum value conflicts with ReturnWhenComplete
     SendStatus = 128,
-    DontSendStatus = 0,
+    // DontSendStatus = 0, this enum value conflicts with ReturnWhenComplete
     EnsureLocatable = 256,
     DirectRead = 512,
-    SendOnlySelected = 0,
+    // SendOnlySelected = 0, this enum value conflicts with ReturnWhenComplete
     UseAmendedQualifiers = 131072,
-    GetDefault = 0,
+    // GetDefault = 0, this enum value conflicts with ReturnWhenComplete
     SpawnInstance = 1,
-    UseCurrentTime = 1,
+    // UseCurrentTime = 1, this enum value conflicts with SpawnInstance
 };
 pub const wbemFlagReturnImmediately = WbemFlagEnum.ReturnImmediately;
 pub const wbemFlagReturnWhenComplete = WbemFlagEnum.ReturnWhenComplete;
-pub const wbemFlagBidirectional = WbemFlagEnum.Bidirectional;
+pub const wbemFlagBidirectional = WbemFlagEnum.ReturnWhenComplete;
 pub const wbemFlagForwardOnly = WbemFlagEnum.ForwardOnly;
 pub const wbemFlagNoErrorObject = WbemFlagEnum.NoErrorObject;
-pub const wbemFlagReturnErrorObject = WbemFlagEnum.ReturnErrorObject;
+pub const wbemFlagReturnErrorObject = WbemFlagEnum.ReturnWhenComplete;
 pub const wbemFlagSendStatus = WbemFlagEnum.SendStatus;
-pub const wbemFlagDontSendStatus = WbemFlagEnum.DontSendStatus;
+pub const wbemFlagDontSendStatus = WbemFlagEnum.ReturnWhenComplete;
 pub const wbemFlagEnsureLocatable = WbemFlagEnum.EnsureLocatable;
 pub const wbemFlagDirectRead = WbemFlagEnum.DirectRead;
-pub const wbemFlagSendOnlySelected = WbemFlagEnum.SendOnlySelected;
+pub const wbemFlagSendOnlySelected = WbemFlagEnum.ReturnWhenComplete;
 pub const wbemFlagUseAmendedQualifiers = WbemFlagEnum.UseAmendedQualifiers;
-pub const wbemFlagGetDefault = WbemFlagEnum.GetDefault;
+pub const wbemFlagGetDefault = WbemFlagEnum.ReturnWhenComplete;
 pub const wbemFlagSpawnInstance = WbemFlagEnum.SpawnInstance;
-pub const wbemFlagUseCurrentTime = WbemFlagEnum.UseCurrentTime;
+pub const wbemFlagUseCurrentTime = WbemFlagEnum.SpawnInstance;
 
-pub const WbemQueryFlagEnum = extern enum(i32) {
+pub const WbemQueryFlagEnum = enum(i32) {
     Deep = 0,
     Shallow = 1,
     Prototype = 2,
@@ -3766,17 +3766,17 @@ pub const wbemQueryFlagDeep = WbemQueryFlagEnum.Deep;
 pub const wbemQueryFlagShallow = WbemQueryFlagEnum.Shallow;
 pub const wbemQueryFlagPrototype = WbemQueryFlagEnum.Prototype;
 
-pub const WbemTextFlagEnum = extern enum(i32) {
+pub const WbemTextFlagEnum = enum(i32) {
     s = 1,
 };
 pub const wbemTextFlagNoFlavors = WbemTextFlagEnum.s;
 
-pub const WbemTimeout = extern enum(i32) {
+pub const WbemTimeout = enum(i32) {
     e = -1,
 };
 pub const wbemTimeoutInfinite = WbemTimeout.e;
 
-pub const WbemComparisonFlagEnum = extern enum(i32) {
+pub const WbemComparisonFlagEnum = enum(i32) {
     ncludeAll = 0,
     gnoreQualifiers = 1,
     gnoreObjectSource = 2,
@@ -3793,7 +3793,7 @@ pub const wbemComparisonFlagIgnoreClass = WbemComparisonFlagEnum.gnoreClass;
 pub const wbemComparisonFlagIgnoreCase = WbemComparisonFlagEnum.gnoreCase;
 pub const wbemComparisonFlagIgnoreFlavor = WbemComparisonFlagEnum.gnoreFlavor;
 
-pub const WbemCimtypeEnum = extern enum(i32) {
+pub const WbemCimtypeEnum = enum(i32) {
     Sint8 = 16,
     Uint8 = 17,
     Sint16 = 2,
@@ -3828,7 +3828,7 @@ pub const wbemCimtypeReference = WbemCimtypeEnum.Reference;
 pub const wbemCimtypeChar16 = WbemCimtypeEnum.Char16;
 pub const wbemCimtypeObject = WbemCimtypeEnum.Object;
 
-pub const WbemErrorEnum = extern enum(i32) {
+pub const WbemErrorEnum = enum(i32) {
     NoErr = 0,
     ErrFailed = -2147217407,
     ErrNotFound = -2147217406,
@@ -4087,7 +4087,7 @@ pub const wbemErrRegistrationTooPrecise = WbemErrorEnum.ErrRegistrationTooPrecis
 pub const wbemErrTimedout = WbemErrorEnum.ErrTimedout;
 pub const wbemErrResetToDefault = WbemErrorEnum.ErrResetToDefault;
 
-pub const WbemAuthenticationLevelEnum = extern enum(i32) {
+pub const WbemAuthenticationLevelEnum = enum(i32) {
     Default = 0,
     None = 1,
     Connect = 2,
@@ -4104,7 +4104,7 @@ pub const wbemAuthenticationLevelPkt = WbemAuthenticationLevelEnum.Pkt;
 pub const wbemAuthenticationLevelPktIntegrity = WbemAuthenticationLevelEnum.PktIntegrity;
 pub const wbemAuthenticationLevelPktPrivacy = WbemAuthenticationLevelEnum.PktPrivacy;
 
-pub const WbemImpersonationLevelEnum = extern enum(i32) {
+pub const WbemImpersonationLevelEnum = enum(i32) {
     Anonymous = 1,
     Identify = 2,
     Impersonate = 3,
@@ -4115,7 +4115,7 @@ pub const wbemImpersonationLevelIdentify = WbemImpersonationLevelEnum.Identify;
 pub const wbemImpersonationLevelImpersonate = WbemImpersonationLevelEnum.Impersonate;
 pub const wbemImpersonationLevelDelegate = WbemImpersonationLevelEnum.Delegate;
 
-pub const WbemPrivilegeEnum = extern enum(i32) {
+pub const WbemPrivilegeEnum = enum(i32) {
     CreateToken = 1,
     PrimaryToken = 2,
     LockMemory = 3,
@@ -4172,14 +4172,14 @@ pub const wbemPrivilegeSyncAgent = WbemPrivilegeEnum.SyncAgent;
 pub const wbemPrivilegeEnableDelegation = WbemPrivilegeEnum.EnableDelegation;
 pub const wbemPrivilegeManageVolume = WbemPrivilegeEnum.ManageVolume;
 
-pub const WbemObjectTextFormatEnum = extern enum(i32) {
+pub const WbemObjectTextFormatEnum = enum(i32) {
     CIMDTD20 = 1,
     WMIDTD20 = 2,
 };
 pub const wbemObjectTextFormatCIMDTD20 = WbemObjectTextFormatEnum.CIMDTD20;
 pub const wbemObjectTextFormatWMIDTD20 = WbemObjectTextFormatEnum.WMIDTD20;
 
-pub const WbemConnectOptionsEnum = extern enum(i32) {
+pub const WbemConnectOptionsEnum = enum(i32) {
     t = 128,
 };
 pub const wbemConnectFlagUseMaxWait = WbemConnectOptionsEnum.t;
@@ -6487,7 +6487,7 @@ pub const ISWbemRefreshableItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MI_Result = extern enum(i32) {
+pub const MI_Result = enum(i32) {
     OK = 0,
     FAILED = 1,
     ACCESS_DENIED = 2,
@@ -6544,7 +6544,7 @@ pub const MI_RESULT_CONTINUATION_ON_ERROR_NOT_SUPPORTED = MI_Result.CONTINUATION
 pub const MI_RESULT_SERVER_LIMITS_EXCEEDED = MI_Result.SERVER_LIMITS_EXCEEDED;
 pub const MI_RESULT_SERVER_IS_SHUTTING_DOWN = MI_Result.SERVER_IS_SHUTTING_DOWN;
 
-pub const MI_ErrorCategory = extern enum(i32) {
+pub const MI_ErrorCategory = enum(i32) {
     NOT_SPECIFIED = 0,
     OPEN_ERROR = 1,
     CLOS_EERROR = 2,
@@ -6611,14 +6611,14 @@ pub const MI_ERRORCATEGORY_LIMITS_EXCEEDED = MI_ErrorCategory.LIMITS_EXCEEDED;
 pub const MI_ERRORCATEGORY_QUOTA_EXCEEDED = MI_ErrorCategory.QUOTA_EXCEEDED;
 pub const MI_ERRORCATEGORY_NOT_ENABLED = MI_ErrorCategory.NOT_ENABLED;
 
-pub const MI_PromptType = extern enum(i32) {
+pub const MI_PromptType = enum(i32) {
     NORMAL = 0,
     CRITICAL = 1,
 };
 pub const MI_PROMPTTYPE_NORMAL = MI_PromptType.NORMAL;
 pub const MI_PROMPTTYPE_CRITICAL = MI_PromptType.CRITICAL;
 
-pub const MI_CallbackMode = extern enum(i32) {
+pub const MI_CallbackMode = enum(i32) {
     REPORT = 0,
     INQUIRE = 1,
     IGNORE = 2,
@@ -6627,14 +6627,14 @@ pub const MI_CALLBACKMODE_REPORT = MI_CallbackMode.REPORT;
 pub const MI_CALLBACKMODE_INQUIRE = MI_CallbackMode.INQUIRE;
 pub const MI_CALLBACKMODE_IGNORE = MI_CallbackMode.IGNORE;
 
-pub const MI_ProviderArchitecture = extern enum(i32) {
+pub const MI_ProviderArchitecture = enum(i32) {
     @"32BIT" = 0,
     @"64BIT" = 1,
 };
 pub const MI_PROVIDER_ARCHITECTURE_32BIT = MI_ProviderArchitecture.@"32BIT";
 pub const MI_PROVIDER_ARCHITECTURE_64BIT = MI_ProviderArchitecture.@"64BIT";
 
-pub const MI_Type = extern enum(i32) {
+pub const MI_Type = enum(i32) {
     BOOLEAN = 0,
     UINT8 = 1,
     SINT8 = 2,
@@ -6667,7 +6667,7 @@ pub const MI_Type = extern enum(i32) {
     STRINGA = 29,
     REFERENCEA = 30,
     INSTANCEA = 31,
-    ARRAY = 16,
+    // ARRAY = 16, this enum value conflicts with BOOLEANA
 };
 pub const MI_BOOLEAN = MI_Type.BOOLEAN;
 pub const MI_UINT8 = MI_Type.UINT8;
@@ -6701,7 +6701,7 @@ pub const MI_DATETIMEA = MI_Type.DATETIMEA;
 pub const MI_STRINGA = MI_Type.STRINGA;
 pub const MI_REFERENCEA = MI_Type.REFERENCEA;
 pub const MI_INSTANCEA = MI_Type.INSTANCEA;
-pub const MI_ARRAY = MI_Type.ARRAY;
+pub const MI_ARRAY = MI_Type.BOOLEANA;
 
 pub const MI_Timestamp = extern struct {
     year: u32,
@@ -7673,7 +7673,7 @@ pub const MI_Instance = extern struct {
     reserved: [4]isize,
 };
 
-pub const MI_LocaleType = extern enum(i32) {
+pub const MI_LocaleType = enum(i32) {
     REQUESTED_UI = 0,
     REQUESTED_DATA = 1,
     CLOSEST_UI = 2,
@@ -7684,7 +7684,7 @@ pub const MI_LOCALE_TYPE_REQUESTED_DATA = MI_LocaleType.REQUESTED_DATA;
 pub const MI_LOCALE_TYPE_CLOSEST_UI = MI_LocaleType.CLOSEST_UI;
 pub const MI_LOCALE_TYPE_CLOSEST_DATA = MI_LocaleType.CLOSEST_DATA;
 
-pub const MI_CancellationReason = extern enum(i32) {
+pub const MI_CancellationReason = enum(i32) {
     NONE = 0,
     TIMEOUT = 1,
     SHUTDOWN = 2,
@@ -7792,7 +7792,7 @@ pub const MI_Class = extern struct {
     reserved: [4]isize,
 };
 
-pub const MI_OperationCallback_ResponseType = extern enum(i32) {
+pub const MI_OperationCallback_ResponseType = enum(i32) {
     No = 0,
     Yes = 1,
     NoToAll = 2,
@@ -7911,7 +7911,7 @@ pub const MI_UserCredentials = extern struct {
     },
 };
 
-pub const MI_SubscriptionDeliveryType = extern enum(i32) {
+pub const MI_SubscriptionDeliveryType = enum(i32) {
     ll = 1,
     sh = 2,
 };
@@ -8111,7 +8111,7 @@ pub const MI_ClientFT_V1 = extern struct {
     utilitiesFT: *const MI_UtilitiesFT,
 };
 
-pub const MI_DestinationOptions_ImpersonationType = extern enum(i32) {
+pub const MI_DestinationOptions_ImpersonationType = enum(i32) {
     Default = 0,
     None = 1,
     Identify = 2,

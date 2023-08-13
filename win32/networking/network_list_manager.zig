@@ -11,7 +11,7 @@ pub const NLM_UNKNOWN_DATAPLAN_STATUS = @as(u32, 4294967295);
 const CLSID_NetworkListManager_Value = @import("../zig.zig").Guid.initString("dcb00c01-570f-4a9b-8d69-199fdba5723b");
 pub const CLSID_NetworkListManager = &CLSID_NetworkListManager_Value;
 
-pub const NLM_CONNECTION_COST = extern enum(i32) {
+pub const NLM_CONNECTION_COST = enum(i32) {
     UNKNOWN = 0,
     UNRESTRICTED = 1,
     FIXED = 2,
@@ -50,7 +50,7 @@ pub const NLM_SOCKADDR = extern struct {
     data: [128]u8,
 };
 
-pub const NLM_NETWORK_CLASS = extern enum(i32) {
+pub const NLM_NETWORK_CLASS = enum(i32) {
     IDENTIFYING = 1,
     IDENTIFIED = 2,
     UNIDENTIFIED = 3,
@@ -66,7 +66,7 @@ pub const NLM_SIMULATED_PROFILE_INFO = extern struct {
     DataLimitInMegabytes: u32,
 };
 
-pub const NLM_INTERNET_CONNECTIVITY = extern enum(i32) {
+pub const NLM_INTERNET_CONNECTIVITY = enum(i32) {
     WEBHIJACK = 1,
     PROXIED = 2,
     CORPORATE = 4,
@@ -75,7 +75,7 @@ pub const NLM_INTERNET_CONNECTIVITY_WEBHIJACK = NLM_INTERNET_CONNECTIVITY.WEBHIJ
 pub const NLM_INTERNET_CONNECTIVITY_PROXIED = NLM_INTERNET_CONNECTIVITY.PROXIED;
 pub const NLM_INTERNET_CONNECTIVITY_CORPORATE = NLM_INTERNET_CONNECTIVITY.CORPORATE;
 
-pub const NLM_CONNECTIVITY = extern enum(i32) {
+pub const NLM_CONNECTIVITY = enum(i32) {
     DISCONNECTED = 0,
     IPV4_NOTRAFFIC = 1,
     IPV6_NOTRAFFIC = 2,
@@ -96,7 +96,7 @@ pub const NLM_CONNECTIVITY_IPV6_SUBNET = NLM_CONNECTIVITY.IPV6_SUBNET;
 pub const NLM_CONNECTIVITY_IPV6_LOCALNETWORK = NLM_CONNECTIVITY.IPV6_LOCALNETWORK;
 pub const NLM_CONNECTIVITY_IPV6_INTERNET = NLM_CONNECTIVITY.IPV6_INTERNET;
 
-pub const NLM_DOMAIN_TYPE = extern enum(i32) {
+pub const NLM_DOMAIN_TYPE = enum(i32) {
     NON_DOMAIN_NETWORK = 0,
     DOMAIN_NETWORK = 1,
     DOMAIN_AUTHENTICATED = 2,
@@ -105,7 +105,7 @@ pub const NLM_DOMAIN_TYPE_NON_DOMAIN_NETWORK = NLM_DOMAIN_TYPE.NON_DOMAIN_NETWOR
 pub const NLM_DOMAIN_TYPE_DOMAIN_NETWORK = NLM_DOMAIN_TYPE.DOMAIN_NETWORK;
 pub const NLM_DOMAIN_TYPE_DOMAIN_AUTHENTICATED = NLM_DOMAIN_TYPE.DOMAIN_AUTHENTICATED;
 
-pub const NLM_ENUM_NETWORK = extern enum(i32) {
+pub const NLM_ENUM_NETWORK = enum(i32) {
     CONNECTED = 1,
     DISCONNECTED = 2,
     ALL = 3,
@@ -226,7 +226,7 @@ pub const INetworkListManagerEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NLM_NETWORK_CATEGORY = extern enum(i32) {
+pub const NLM_NETWORK_CATEGORY = enum(i32) {
     PUBLIC = 0,
     PRIVATE = 1,
     DOMAIN_AUTHENTICATED = 2,
@@ -414,7 +414,7 @@ pub const IEnumNetworks = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NLM_NETWORK_PROPERTY_CHANGE = extern enum(i32) {
+pub const NLM_NETWORK_PROPERTY_CHANGE = enum(i32) {
     CONNECTION = 1,
     DESCRIPTION = 2,
     NAME = 4,
@@ -603,7 +603,7 @@ pub const IEnumNetworkConnections = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const NLM_CONNECTION_PROPERTY_CHANGE = extern enum(i32) {
+pub const NLM_CONNECTION_PROPERTY_CHANGE = enum(i32) {
     N = 1,
 };
 pub const NLM_CONNECTION_PROPERTY_CHANGE_AUTHENTICATION = NLM_CONNECTION_PROPERTY_CHANGE.N;

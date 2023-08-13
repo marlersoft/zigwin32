@@ -6,7 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (3)
 //--------------------------------------------------------------------------------
-pub const HARDWARE_COUNTER_TYPE = extern enum(i32) {
+pub const HARDWARE_COUNTER_TYPE = enum(i32) {
     PMCCounter = 0,
     MaxHardwareCounterType = 1,
 };

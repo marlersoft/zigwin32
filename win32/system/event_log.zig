@@ -18,7 +18,7 @@ pub const EventLogHandle = isize;
 // TODO: this type has a FreeFunc 'DeregisterEventSource', what can Zig do with this information?
 pub const EventSourceHandle = isize;
 
-pub const EVT_VARIANT_TYPE = extern enum(i32) {
+pub const EVT_VARIANT_TYPE = enum(i32) {
     Null = 0,
     String = 1,
     AnsiString = 2,
@@ -116,12 +116,12 @@ pub const EVT_VARIANT = extern struct {
     Type: u32,
 };
 
-pub const EVT_LOGIN_CLASS = extern enum(i32) {
+pub const EVT_LOGIN_CLASS = enum(i32) {
     n = 1,
 };
 pub const EvtRpcLogin = EVT_LOGIN_CLASS.n;
 
-pub const EVT_RPC_LOGIN_FLAGS = extern enum(i32) {
+pub const EVT_RPC_LOGIN_FLAGS = enum(i32) {
     Default = 0,
     Negotiate = 1,
     Kerberos = 2,
@@ -140,7 +140,7 @@ pub const EVT_RPC_LOGIN = extern struct {
     Flags: u32,
 };
 
-pub const EVT_QUERY_FLAGS = extern enum(i32) {
+pub const EVT_QUERY_FLAGS = enum(i32) {
     ChannelPath = 1,
     FilePath = 2,
     ForwardDirection = 256,
@@ -153,7 +153,7 @@ pub const EvtQueryForwardDirection = EVT_QUERY_FLAGS.ForwardDirection;
 pub const EvtQueryReverseDirection = EVT_QUERY_FLAGS.ReverseDirection;
 pub const EvtQueryTolerateQueryErrors = EVT_QUERY_FLAGS.TolerateQueryErrors;
 
-pub const EVT_SEEK_FLAGS = extern enum(i32) {
+pub const EVT_SEEK_FLAGS = enum(i32) {
     RelativeToFirst = 1,
     RelativeToLast = 2,
     RelativeToCurrent = 3,
@@ -168,22 +168,22 @@ pub const EvtSeekRelativeToBookmark = EVT_SEEK_FLAGS.RelativeToBookmark;
 pub const EvtSeekOriginMask = EVT_SEEK_FLAGS.OriginMask;
 pub const EvtSeekStrict = EVT_SEEK_FLAGS.Strict;
 
-pub const EVT_SUBSCRIBE_FLAGS = extern enum(i32) {
+pub const EVT_SUBSCRIBE_FLAGS = enum(i32) {
     ToFutureEvents = 1,
     StartAtOldestRecord = 2,
     StartAfterBookmark = 3,
-    OriginMask = 3,
+    // OriginMask = 3, this enum value conflicts with StartAfterBookmark
     TolerateQueryErrors = 4096,
     Strict = 65536,
 };
 pub const EvtSubscribeToFutureEvents = EVT_SUBSCRIBE_FLAGS.ToFutureEvents;
 pub const EvtSubscribeStartAtOldestRecord = EVT_SUBSCRIBE_FLAGS.StartAtOldestRecord;
 pub const EvtSubscribeStartAfterBookmark = EVT_SUBSCRIBE_FLAGS.StartAfterBookmark;
-pub const EvtSubscribeOriginMask = EVT_SUBSCRIBE_FLAGS.OriginMask;
+pub const EvtSubscribeOriginMask = EVT_SUBSCRIBE_FLAGS.StartAfterBookmark;
 pub const EvtSubscribeTolerateQueryErrors = EVT_SUBSCRIBE_FLAGS.TolerateQueryErrors;
 pub const EvtSubscribeStrict = EVT_SUBSCRIBE_FLAGS.Strict;
 
-pub const EVT_SUBSCRIBE_NOTIFY_ACTION = extern enum(i32) {
+pub const EVT_SUBSCRIBE_NOTIFY_ACTION = enum(i32) {
     Error = 0,
     Deliver = 1,
 };
@@ -196,7 +196,7 @@ pub const EVT_SUBSCRIBE_CALLBACK = fn(
     Event: isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const EVT_SYSTEM_PROPERTY_ID = extern enum(i32) {
+pub const EVT_SYSTEM_PROPERTY_ID = enum(i32) {
     ProviderName = 0,
     ProviderGuid = 1,
     EventID = 2,
@@ -237,7 +237,7 @@ pub const EvtSystemUserID = EVT_SYSTEM_PROPERTY_ID.UserID;
 pub const EvtSystemVersion = EVT_SYSTEM_PROPERTY_ID.Version;
 pub const EvtSystemPropertyIdEND = EVT_SYSTEM_PROPERTY_ID.PropertyIdEND;
 
-pub const EVT_RENDER_CONTEXT_FLAGS = extern enum(i32) {
+pub const EVT_RENDER_CONTEXT_FLAGS = enum(i32) {
     Values = 0,
     System = 1,
     User = 2,
@@ -246,7 +246,7 @@ pub const EvtRenderContextValues = EVT_RENDER_CONTEXT_FLAGS.Values;
 pub const EvtRenderContextSystem = EVT_RENDER_CONTEXT_FLAGS.System;
 pub const EvtRenderContextUser = EVT_RENDER_CONTEXT_FLAGS.User;
 
-pub const EVT_RENDER_FLAGS = extern enum(i32) {
+pub const EVT_RENDER_FLAGS = enum(i32) {
     EventValues = 0,
     EventXml = 1,
     Bookmark = 2,
@@ -255,7 +255,7 @@ pub const EvtRenderEventValues = EVT_RENDER_FLAGS.EventValues;
 pub const EvtRenderEventXml = EVT_RENDER_FLAGS.EventXml;
 pub const EvtRenderBookmark = EVT_RENDER_FLAGS.Bookmark;
 
-pub const EVT_FORMAT_MESSAGE_FLAGS = extern enum(i32) {
+pub const EVT_FORMAT_MESSAGE_FLAGS = enum(i32) {
     Event = 1,
     Level = 2,
     Task = 3,
@@ -276,14 +276,14 @@ pub const EvtFormatMessageProvider = EVT_FORMAT_MESSAGE_FLAGS.Provider;
 pub const EvtFormatMessageId = EVT_FORMAT_MESSAGE_FLAGS.Id;
 pub const EvtFormatMessageXml = EVT_FORMAT_MESSAGE_FLAGS.Xml;
 
-pub const EVT_OPEN_LOG_FLAGS = extern enum(i32) {
+pub const EVT_OPEN_LOG_FLAGS = enum(i32) {
     ChannelPath = 1,
     FilePath = 2,
 };
 pub const EvtOpenChannelPath = EVT_OPEN_LOG_FLAGS.ChannelPath;
 pub const EvtOpenFilePath = EVT_OPEN_LOG_FLAGS.FilePath;
 
-pub const EVT_LOG_PROPERTY_ID = extern enum(i32) {
+pub const EVT_LOG_PROPERTY_ID = enum(i32) {
     CreationTime = 0,
     LastAccessTime = 1,
     LastWriteTime = 2,
@@ -302,7 +302,7 @@ pub const EvtLogNumberOfLogRecords = EVT_LOG_PROPERTY_ID.NumberOfLogRecords;
 pub const EvtLogOldestRecordNumber = EVT_LOG_PROPERTY_ID.OldestRecordNumber;
 pub const EvtLogFull = EVT_LOG_PROPERTY_ID.Full;
 
-pub const EVT_EXPORTLOG_FLAGS = extern enum(i32) {
+pub const EVT_EXPORTLOG_FLAGS = enum(i32) {
     ChannelPath = 1,
     FilePath = 2,
     TolerateQueryErrors = 4096,
@@ -313,7 +313,7 @@ pub const EvtExportLogFilePath = EVT_EXPORTLOG_FLAGS.FilePath;
 pub const EvtExportLogTolerateQueryErrors = EVT_EXPORTLOG_FLAGS.TolerateQueryErrors;
 pub const EvtExportLogOverwrite = EVT_EXPORTLOG_FLAGS.Overwrite;
 
-pub const EVT_CHANNEL_CONFIG_PROPERTY_ID = extern enum(i32) {
+pub const EVT_CHANNEL_CONFIG_PROPERTY_ID = enum(i32) {
     ConfigEnabled = 0,
     ConfigIsolation = 1,
     ConfigType = 2,
@@ -360,7 +360,7 @@ pub const EvtChannelPublisherList = EVT_CHANNEL_CONFIG_PROPERTY_ID.PublisherList
 pub const EvtChannelPublishingConfigFileMax = EVT_CHANNEL_CONFIG_PROPERTY_ID.PublishingConfigFileMax;
 pub const EvtChannelConfigPropertyIdEND = EVT_CHANNEL_CONFIG_PROPERTY_ID.ConfigPropertyIdEND;
 
-pub const EVT_CHANNEL_TYPE = extern enum(i32) {
+pub const EVT_CHANNEL_TYPE = enum(i32) {
     Admin = 0,
     Operational = 1,
     Analytic = 2,
@@ -371,7 +371,7 @@ pub const EvtChannelTypeOperational = EVT_CHANNEL_TYPE.Operational;
 pub const EvtChannelTypeAnalytic = EVT_CHANNEL_TYPE.Analytic;
 pub const EvtChannelTypeDebug = EVT_CHANNEL_TYPE.Debug;
 
-pub const EVT_CHANNEL_ISOLATION_TYPE = extern enum(i32) {
+pub const EVT_CHANNEL_ISOLATION_TYPE = enum(i32) {
     Application = 0,
     System = 1,
     Custom = 2,
@@ -380,26 +380,26 @@ pub const EvtChannelIsolationTypeApplication = EVT_CHANNEL_ISOLATION_TYPE.Applic
 pub const EvtChannelIsolationTypeSystem = EVT_CHANNEL_ISOLATION_TYPE.System;
 pub const EvtChannelIsolationTypeCustom = EVT_CHANNEL_ISOLATION_TYPE.Custom;
 
-pub const EVT_CHANNEL_CLOCK_TYPE = extern enum(i32) {
+pub const EVT_CHANNEL_CLOCK_TYPE = enum(i32) {
     SystemTime = 0,
     QPC = 1,
 };
 pub const EvtChannelClockTypeSystemTime = EVT_CHANNEL_CLOCK_TYPE.SystemTime;
 pub const EvtChannelClockTypeQPC = EVT_CHANNEL_CLOCK_TYPE.QPC;
 
-pub const EVT_CHANNEL_SID_TYPE = extern enum(i32) {
+pub const EVT_CHANNEL_SID_TYPE = enum(i32) {
     None = 0,
     Publishing = 1,
 };
 pub const EvtChannelSidTypeNone = EVT_CHANNEL_SID_TYPE.None;
 pub const EvtChannelSidTypePublishing = EVT_CHANNEL_SID_TYPE.Publishing;
 
-pub const EVT_CHANNEL_REFERENCE_FLAGS = extern enum(i32) {
+pub const EVT_CHANNEL_REFERENCE_FLAGS = enum(i32) {
     d = 1,
 };
 pub const EvtChannelReferenceImported = EVT_CHANNEL_REFERENCE_FLAGS.d;
 
-pub const EVT_PUBLISHER_METADATA_PROPERTY_ID = extern enum(i32) {
+pub const EVT_PUBLISHER_METADATA_PROPERTY_ID = enum(i32) {
     PublisherGuid = 0,
     ResourceFilePath = 1,
     ParameterFilePath = 2,
@@ -462,7 +462,7 @@ pub const EvtPublisherMetadataKeywordValue = EVT_PUBLISHER_METADATA_PROPERTY_ID.
 pub const EvtPublisherMetadataKeywordMessageID = EVT_PUBLISHER_METADATA_PROPERTY_ID.KeywordMessageID;
 pub const EvtPublisherMetadataPropertyIdEND = EVT_PUBLISHER_METADATA_PROPERTY_ID.PropertyIdEND;
 
-pub const EVT_EVENT_METADATA_PROPERTY_ID = extern enum(i32) {
+pub const EVT_EVENT_METADATA_PROPERTY_ID = enum(i32) {
     entMetadataEventID = 0,
     entMetadataEventVersion = 1,
     entMetadataEventChannel = 2,
@@ -485,7 +485,7 @@ pub const EventMetadataEventMessageID = EVT_EVENT_METADATA_PROPERTY_ID.entMetada
 pub const EventMetadataEventTemplate = EVT_EVENT_METADATA_PROPERTY_ID.entMetadataEventTemplate;
 pub const EvtEventMetadataPropertyIdEND = EVT_EVENT_METADATA_PROPERTY_ID.tEventMetadataPropertyIdEND;
 
-pub const EVT_QUERY_PROPERTY_ID = extern enum(i32) {
+pub const EVT_QUERY_PROPERTY_ID = enum(i32) {
     Names = 0,
     Statuses = 1,
     PropertyIdEND = 2,
@@ -494,7 +494,7 @@ pub const EvtQueryNames = EVT_QUERY_PROPERTY_ID.Names;
 pub const EvtQueryStatuses = EVT_QUERY_PROPERTY_ID.Statuses;
 pub const EvtQueryPropertyIdEND = EVT_QUERY_PROPERTY_ID.PropertyIdEND;
 
-pub const EVT_EVENT_PROPERTY_ID = extern enum(i32) {
+pub const EVT_EVENT_PROPERTY_ID = enum(i32) {
     QueryIDs = 0,
     Path = 1,
     PropertyIdEND = 2,
@@ -507,7 +507,7 @@ pub const EVENTLOG_FULL_INFORMATION = extern struct {
     dwFull: u32,
 };
 
-pub const REPORT_EVENT_TYPE = extern enum(u32) {
+pub const REPORT_EVENT_TYPE = enum(u32) {
     SUCCESS = 0,
     AUDIT_FAILURE = 16,
     AUDIT_SUCCESS = 8,
@@ -522,7 +522,7 @@ pub const EVENTLOG_ERROR_TYPE = REPORT_EVENT_TYPE.ERROR_TYPE;
 pub const EVENTLOG_INFORMATION_TYPE = REPORT_EVENT_TYPE.INFORMATION_TYPE;
 pub const EVENTLOG_WARNING_TYPE = REPORT_EVENT_TYPE.WARNING_TYPE;
 
-pub const READ_EVENT_LOG_READ_FLAGS = extern enum(u32) {
+pub const READ_EVENT_LOG_READ_FLAGS = enum(u32) {
     EK_READ = 2,
     QUENTIAL_READ = 1,
 };

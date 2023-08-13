@@ -13,14 +13,14 @@ pub const E_PRINTDEVICECAPABILITIES_FORMAT = @as(u32, 2147745798);
 //--------------------------------------------------------------------------------
 // Section: Types (2)
 //--------------------------------------------------------------------------------
-pub const EDefaultDevmodeType = extern enum(i32) {
+pub const EDefaultDevmodeType = enum(i32) {
     UserDefaultDevmode = 0,
     PrinterDefaultDevmode = 1,
 };
 pub const kUserDefaultDevmode = EDefaultDevmodeType.UserDefaultDevmode;
 pub const kPrinterDefaultDevmode = EDefaultDevmodeType.PrinterDefaultDevmode;
 
-pub const EPrintTicketScope = extern enum(i32) {
+pub const EPrintTicketScope = enum(i32) {
     PageScope = 0,
     DocumentScope = 1,
     JobScope = 2,

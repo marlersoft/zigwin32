@@ -140,7 +140,7 @@ pub const ICMENUMPROCW = fn(
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const ICM_COMMAND = extern enum(u32) {
+pub const ICM_COMMAND = enum(u32) {
     ADDPROFILE = 1,
     DELETEPROFILE = 2,
     QUERYPROFILE = 3,
@@ -157,7 +157,7 @@ pub const ICM_REGISTERICMATCHER = ICM_COMMAND.REGISTERICMATCHER;
 pub const ICM_UNREGISTERICMATCHER = ICM_COMMAND.UNREGISTERICMATCHER;
 pub const ICM_QUERYMATCH = ICM_COMMAND.QUERYMATCH;
 
-pub const COLOR_MATCH_TO_TARGET_ACTION = extern enum(i32) {
+pub const COLOR_MATCH_TO_TARGET_ACTION = enum(i32) {
     ENABLE = 1,
     DISABLE = 2,
     DELETE_TRANSFORM = 3,
@@ -461,7 +461,7 @@ pub const COLOR = extern union {
     },
 };
 
-pub const COLORTYPE = extern enum(i32) {
+pub const COLORTYPE = enum(i32) {
     GRAY = 1,
     RGB = 2,
     XYZ = 3,
@@ -488,7 +488,7 @@ pub const COLOR_7_CHANNEL = COLORTYPE.@"7_CHANNEL";
 pub const COLOR_8_CHANNEL = COLORTYPE.@"8_CHANNEL";
 pub const COLOR_NAMED = COLORTYPE.NAMED;
 
-pub const COLORPROFILETYPE = extern enum(i32) {
+pub const COLORPROFILETYPE = enum(i32) {
     ICC = 0,
     DMP = 1,
     CAMP = 2,
@@ -499,7 +499,7 @@ pub const CPT_DMP = COLORPROFILETYPE.DMP;
 pub const CPT_CAMP = COLORPROFILETYPE.CAMP;
 pub const CPT_GMMP = COLORPROFILETYPE.GMMP;
 
-pub const COLORPROFILESUBTYPE = extern enum(i32) {
+pub const COLORPROFILESUBTYPE = enum(i32) {
     PERCEPTUAL = 0,
     RELATIVE_COLORIMETRIC = 1,
     SATURATION = 2,
@@ -520,7 +520,7 @@ pub const CPST_CUSTOM_WORKING_SPACE = COLORPROFILESUBTYPE.CUSTOM_WORKING_SPACE;
 pub const CPST_STANDARD_DISPLAY_COLOR_MODE = COLORPROFILESUBTYPE.STANDARD_DISPLAY_COLOR_MODE;
 pub const CPST_EXTENDED_DISPLAY_COLOR_MODE = COLORPROFILESUBTYPE.EXTENDED_DISPLAY_COLOR_MODE;
 
-pub const COLORDATATYPE = extern enum(i32) {
+pub const COLORDATATYPE = enum(i32) {
     BYTE = 1,
     WORD = 2,
     FLOAT = 3,
@@ -537,7 +537,7 @@ pub const COLOR_10b_R10G10B10A2 = COLORDATATYPE.@"10b_R10G10B10A2";
 pub const COLOR_10b_R10G10B10A2_XR = COLORDATATYPE.@"10b_R10G10B10A2_XR";
 pub const COLOR_FLOAT16 = COLORDATATYPE.FLOAT16;
 
-pub const BMFORMAT = extern enum(i32) {
+pub const BMFORMAT = enum(i32) {
     x555RGB = 0,
     x555XYZ = 257,
     x555Yxy = 258,
@@ -700,7 +700,7 @@ pub const ENUMTYPEW = extern struct {
     dwDeviceClass: u32,
 };
 
-pub const WCS_PROFILE_MANAGEMENT_SCOPE = extern enum(i32) {
+pub const WCS_PROFILE_MANAGEMENT_SCOPE = enum(i32) {
     SYSTEM_WIDE = 0,
     CURRENT_USER = 1,
 };

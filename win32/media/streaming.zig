@@ -234,7 +234,7 @@ pub const IMFDeviceTransformCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MF_TRANSFER_VIDEO_FRAME_FLAGS = extern enum(i32) {
+pub const MF_TRANSFER_VIDEO_FRAME_FLAGS = enum(i32) {
     DEFAULT = 0,
     STRETCH = 1,
     IGNORE_PAR = 2,
@@ -243,7 +243,7 @@ pub const MF_TRANSFER_VIDEO_FRAME_DEFAULT = MF_TRANSFER_VIDEO_FRAME_FLAGS.DEFAUL
 pub const MF_TRANSFER_VIDEO_FRAME_STRETCH = MF_TRANSFER_VIDEO_FRAME_FLAGS.STRETCH;
 pub const MF_TRANSFER_VIDEO_FRAME_IGNORE_PAR = MF_TRANSFER_VIDEO_FRAME_FLAGS.IGNORE_PAR;
 
-pub const MF_MEDIASOURCE_STATUS_INFO = extern enum(i32) {
+pub const MF_MEDIASOURCE_STATUS_INFO = enum(i32) {
     FULLYSUPPORTED = 0,
     UNKNOWN = 1,
 };

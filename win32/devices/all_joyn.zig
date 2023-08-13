@@ -113,14 +113,14 @@ pub const _alljoyn_abouticonproxy_handle = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const alljoyn_about_announceflag = extern enum(i32) {
+pub const alljoyn_about_announceflag = enum(i32) {
     UNANNOUNCED = 0,
     ANNOUNCED = 1,
 };
 pub const UNANNOUNCED = alljoyn_about_announceflag.UNANNOUNCED;
 pub const ANNOUNCED = alljoyn_about_announceflag.ANNOUNCED;
 
-pub const QStatus = extern enum(i32) {
+pub const QStatus = enum(i32) {
     OK = 0,
     FAIL = 1,
     UTF_CONVERSION_FAILED = 2,
@@ -913,7 +913,7 @@ pub const ER_MANAGEMENT_ALREADY_STARTED = QStatus.MANAGEMENT_ALREADY_STARTED;
 pub const ER_MANAGEMENT_NOT_STARTED = QStatus.MANAGEMENT_NOT_STARTED;
 pub const ER_BUS_DESCRIPTION_ALREADY_EXISTS = QStatus.BUS_DESCRIPTION_ALREADY_EXISTS;
 
-pub const alljoyn_typeid = extern enum(i32) {
+pub const alljoyn_typeid = enum(i32) {
     INVALID = 0,
     ARRAY = 97,
     BOOLEAN = 98,
@@ -980,7 +980,7 @@ pub const ALLJOYN_INT64_ARRAY = alljoyn_typeid.INT64_ARRAY;
 pub const ALLJOYN_BYTE_ARRAY = alljoyn_typeid.BYTE_ARRAY;
 pub const ALLJOYN_WILDCARD = alljoyn_typeid.WILDCARD;
 
-pub const alljoyn_applicationstate = extern enum(i32) {
+pub const alljoyn_applicationstate = enum(i32) {
     NOT_CLAIMABLE = 0,
     CLAIMABLE = 1,
     CLAIMED = 2,
@@ -991,7 +991,7 @@ pub const CLAIMABLE = alljoyn_applicationstate.CLAIMABLE;
 pub const CLAIMED = alljoyn_applicationstate.CLAIMED;
 pub const NEED_UPDATE = alljoyn_applicationstate.NEED_UPDATE;
 
-pub const alljoyn_claimcapability_masks = extern enum(i32) {
+pub const alljoyn_claimcapability_masks = enum(i32) {
     NULL = 1,
     ECDSA = 4,
     SPEKE = 8,
@@ -1000,7 +1000,7 @@ pub const CAPABLE_ECDHE_NULL = alljoyn_claimcapability_masks.NULL;
 pub const CAPABLE_ECDHE_ECDSA = alljoyn_claimcapability_masks.ECDSA;
 pub const CAPABLE_ECDHE_SPEKE = alljoyn_claimcapability_masks.SPEKE;
 
-pub const alljoyn_claimcapabilityadditionalinfo_masks = extern enum(i32) {
+pub const alljoyn_claimcapabilityadditionalinfo_masks = enum(i32) {
     SECURITY_MANAGER = 1,
     APPLICATION = 2,
 };
@@ -1070,7 +1070,7 @@ pub const alljoyn_keystorelistener_with_synchronization_callbacks = extern struc
     release_exclusive_lock: alljoyn_keystorelistener_releaseexclusivelock_ptr,
 };
 
-pub const alljoyn_messagetype = extern enum(i32) {
+pub const alljoyn_messagetype = enum(i32) {
     INVALID = 0,
     METHOD_CALL = 1,
     METHOD_RET = 2,
@@ -1202,7 +1202,7 @@ pub const alljoyn_buslistener_callbacks = extern struct {
     property_changed: alljoyn_buslistener_bus_prop_changed_ptr,
 };
 
-pub const alljoyn_interfacedescription_securitypolicy = extern enum(i32) {
+pub const alljoyn_interfacedescription_securitypolicy = enum(i32) {
     INHERIT = 0,
     REQUIRED = 1,
     OFF = 2,
@@ -1338,7 +1338,7 @@ pub const alljoyn_permissionconfigurationlistener_callbacks = extern struct {
     end_management: alljoyn_permissionconfigurationlistener_endmanagement_ptr,
 };
 
-pub const alljoyn_sessionlostreason = extern enum(i32) {
+pub const alljoyn_sessionlostreason = enum(i32) {
     INVALID = 0,
     REMOTE_END_LEFT_SESSION = 1,
     REMOTE_END_CLOSED_ABRUPTLY = 2,

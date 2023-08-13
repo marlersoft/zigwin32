@@ -94,7 +94,7 @@ pub const REDIRECTION_DESCRIPTOR = extern struct {
     Redirections: *REDIRECTION_FUNCTION_DESCRIPTOR,
 };
 
-pub const LOAD_LIBRARY_FLAGS = extern enum(u32) {
+pub const LOAD_LIBRARY_FLAGS = enum(u32) {
     DONT_RESOLVE_DLL_REFERENCES = 1,
     LOAD_LIBRARY_AS_DATAFILE = 2,
     LOAD_WITH_ALTERED_SEARCH_PATH = 8,

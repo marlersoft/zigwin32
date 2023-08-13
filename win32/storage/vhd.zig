@@ -22,7 +22,7 @@ pub const VIRTUAL_STORAGE_TYPE = extern struct {
     VendorId: Guid,
 };
 
-pub const OPEN_VIRTUAL_DISK_VERSION = extern enum(i32) {
+pub const OPEN_VIRTUAL_DISK_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
     @"2" = 2,
@@ -53,7 +53,7 @@ pub const OPEN_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-pub const VIRTUAL_DISK_ACCESS_MASK = extern enum(u32) {
+pub const VIRTUAL_DISK_ACCESS_MASK = enum(u32) {
     NONE = 0,
     ATTACH_RO = 65536,
     ATTACH_RW = 131072,
@@ -102,7 +102,7 @@ pub const VIRTUAL_DISK_ACCESS_READ = VIRTUAL_DISK_ACCESS_MASK.READ;
 pub const VIRTUAL_DISK_ACCESS_ALL = VIRTUAL_DISK_ACCESS_MASK.ALL;
 pub const VIRTUAL_DISK_ACCESS_WRITABLE = VIRTUAL_DISK_ACCESS_MASK.WRITABLE;
 
-pub const OPEN_VIRTUAL_DISK_FLAG = extern enum(u32) {
+pub const OPEN_VIRTUAL_DISK_FLAG = enum(u32) {
     NONE = 0,
     NO_PARENTS = 1,
     BLANK_FILE = 2,
@@ -155,7 +155,7 @@ pub const OPEN_VIRTUAL_DISK_FLAG_IGNORE_RELATIVE_PARENT_LOCATOR = OPEN_VIRTUAL_D
 pub const OPEN_VIRTUAL_DISK_FLAG_NO_WRITE_HARDENING = OPEN_VIRTUAL_DISK_FLAG.NO_WRITE_HARDENING;
 pub const OPEN_VIRTUAL_DISK_FLAG_SUPPORT_COMPRESSED_VOLUMES = OPEN_VIRTUAL_DISK_FLAG.SUPPORT_COMPRESSED_VOLUMES;
 
-pub const CREATE_VIRTUAL_DISK_VERSION = extern enum(i32) {
+pub const CREATE_VIRTUAL_DISK_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
     @"2" = 2,
@@ -227,7 +227,7 @@ pub const CREATE_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-pub const CREATE_VIRTUAL_DISK_FLAG = extern enum(u32) {
+pub const CREATE_VIRTUAL_DISK_FLAG = enum(u32) {
     NONE = 0,
     FULL_PHYSICAL_ALLOCATION = 1,
     PREVENT_WRITES_TO_SOURCE_DISK = 2,
@@ -276,7 +276,7 @@ pub const CREATE_VIRTUAL_DISK_FLAG_VHD_SET_USE_ORIGINAL_BACKING_STORAGE = CREATE
 pub const CREATE_VIRTUAL_DISK_FLAG_SPARSE_FILE = CREATE_VIRTUAL_DISK_FLAG.SPARSE_FILE;
 pub const CREATE_VIRTUAL_DISK_FLAG_PMEM_COMPATIBLE = CREATE_VIRTUAL_DISK_FLAG.PMEM_COMPATIBLE;
 
-pub const ATTACH_VIRTUAL_DISK_VERSION = extern enum(i32) {
+pub const ATTACH_VIRTUAL_DISK_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
     @"2" = 2,
@@ -298,7 +298,7 @@ pub const ATTACH_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-pub const ATTACH_VIRTUAL_DISK_FLAG = extern enum(u32) {
+pub const ATTACH_VIRTUAL_DISK_FLAG = enum(u32) {
     NONE = 0,
     READ_ONLY = 1,
     NO_DRIVE_LETTER = 2,
@@ -351,7 +351,7 @@ pub const ATTACH_VIRTUAL_DISK_FLAG_RESTRICTED_RANGE = ATTACH_VIRTUAL_DISK_FLAG.R
 pub const ATTACH_VIRTUAL_DISK_FLAG_SINGLE_PARTITION = ATTACH_VIRTUAL_DISK_FLAG.SINGLE_PARTITION;
 pub const ATTACH_VIRTUAL_DISK_FLAG_REGISTER_VOLUME = ATTACH_VIRTUAL_DISK_FLAG.REGISTER_VOLUME;
 
-pub const DETACH_VIRTUAL_DISK_FLAG = extern enum(u32) {
+pub const DETACH_VIRTUAL_DISK_FLAG = enum(u32) {
     E = 0,
     _,
     pub fn initFlags(o: struct {
@@ -364,7 +364,7 @@ pub const DETACH_VIRTUAL_DISK_FLAG = extern enum(u32) {
 };
 pub const DETACH_VIRTUAL_DISK_FLAG_NONE = DETACH_VIRTUAL_DISK_FLAG.E;
 
-pub const DEPENDENT_DISK_FLAG = extern enum(u32) {
+pub const DEPENDENT_DISK_FLAG = enum(u32) {
     NONE = 0,
     MULT_BACKING_FILES = 1,
     FULLY_ALLOCATED = 2,
@@ -425,7 +425,7 @@ pub const DEPENDENT_DISK_FLAG_NO_HOST_DISK = DEPENDENT_DISK_FLAG.NO_HOST_DISK;
 pub const DEPENDENT_DISK_FLAG_PERMANENT_LIFETIME = DEPENDENT_DISK_FLAG.PERMANENT_LIFETIME;
 pub const DEPENDENT_DISK_FLAG_SUPPORT_COMPRESSED_VOLUMES = DEPENDENT_DISK_FLAG.SUPPORT_COMPRESSED_VOLUMES;
 
-pub const STORAGE_DEPENDENCY_INFO_VERSION = extern enum(i32) {
+pub const STORAGE_DEPENDENCY_INFO_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
     @"2" = 2,
@@ -460,7 +460,7 @@ pub const STORAGE_DEPENDENCY_INFO = extern struct {
     },
 };
 
-pub const GET_STORAGE_DEPENDENCY_FLAG = extern enum(u32) {
+pub const GET_STORAGE_DEPENDENCY_FLAG = enum(u32) {
     NONE = 0,
     HOST_VOLUMES = 1,
     DISK_HANDLE = 2,
@@ -481,7 +481,7 @@ pub const GET_STORAGE_DEPENDENCY_FLAG_NONE = GET_STORAGE_DEPENDENCY_FLAG.NONE;
 pub const GET_STORAGE_DEPENDENCY_FLAG_HOST_VOLUMES = GET_STORAGE_DEPENDENCY_FLAG.HOST_VOLUMES;
 pub const GET_STORAGE_DEPENDENCY_FLAG_DISK_HANDLE = GET_STORAGE_DEPENDENCY_FLAG.DISK_HANDLE;
 
-pub const GET_VIRTUAL_DISK_INFO_VERSION = extern enum(i32) {
+pub const GET_VIRTUAL_DISK_INFO_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     SIZE = 1,
     IDENTIFIER = 2,
@@ -553,7 +553,7 @@ pub const GET_VIRTUAL_DISK_INFO = extern struct {
     },
 };
 
-pub const SET_VIRTUAL_DISK_INFO_VERSION = extern enum(i32) {
+pub const SET_VIRTUAL_DISK_INFO_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     PARENT_PATH = 1,
     IDENTIFIER = 2,
@@ -597,7 +597,7 @@ pub const VIRTUAL_DISK_PROGRESS = extern struct {
     CompletionValue: u64,
 };
 
-pub const COMPACT_VIRTUAL_DISK_VERSION = extern enum(i32) {
+pub const COMPACT_VIRTUAL_DISK_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
 };
@@ -613,7 +613,7 @@ pub const COMPACT_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-pub const COMPACT_VIRTUAL_DISK_FLAG = extern enum(u32) {
+pub const COMPACT_VIRTUAL_DISK_FLAG = enum(u32) {
     NE = 0,
     _ZERO_SCAN = 1,
     _BLOCK_MOVES = 2,
@@ -634,7 +634,7 @@ pub const COMPACT_VIRTUAL_DISK_FLAG_NONE = COMPACT_VIRTUAL_DISK_FLAG.NE;
 pub const COMPACT_VIRTUAL_DISK_FLAG_NO_ZERO_SCAN = COMPACT_VIRTUAL_DISK_FLAG._ZERO_SCAN;
 pub const COMPACT_VIRTUAL_DISK_FLAG_NO_BLOCK_MOVES = COMPACT_VIRTUAL_DISK_FLAG._BLOCK_MOVES;
 
-pub const MERGE_VIRTUAL_DISK_VERSION = extern enum(i32) {
+pub const MERGE_VIRTUAL_DISK_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
     @"2" = 2,
@@ -656,7 +656,7 @@ pub const MERGE_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-pub const MERGE_VIRTUAL_DISK_FLAG = extern enum(u32) {
+pub const MERGE_VIRTUAL_DISK_FLAG = enum(u32) {
     E = 0,
     _,
     pub fn initFlags(o: struct {
@@ -669,7 +669,7 @@ pub const MERGE_VIRTUAL_DISK_FLAG = extern enum(u32) {
 };
 pub const MERGE_VIRTUAL_DISK_FLAG_NONE = MERGE_VIRTUAL_DISK_FLAG.E;
 
-pub const EXPAND_VIRTUAL_DISK_VERSION = extern enum(i32) {
+pub const EXPAND_VIRTUAL_DISK_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
 };
@@ -685,7 +685,7 @@ pub const EXPAND_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-pub const EXPAND_VIRTUAL_DISK_FLAG = extern enum(u32) {
+pub const EXPAND_VIRTUAL_DISK_FLAG = enum(u32) {
     E = 0,
     _,
     pub fn initFlags(o: struct {
@@ -698,7 +698,7 @@ pub const EXPAND_VIRTUAL_DISK_FLAG = extern enum(u32) {
 };
 pub const EXPAND_VIRTUAL_DISK_FLAG_NONE = EXPAND_VIRTUAL_DISK_FLAG.E;
 
-pub const RESIZE_VIRTUAL_DISK_VERSION = extern enum(i32) {
+pub const RESIZE_VIRTUAL_DISK_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
 };
@@ -714,7 +714,7 @@ pub const RESIZE_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-pub const RESIZE_VIRTUAL_DISK_FLAG = extern enum(u32) {
+pub const RESIZE_VIRTUAL_DISK_FLAG = enum(u32) {
     NONE = 0,
     ALLOW_UNSAFE_VIRTUAL_SIZE = 1,
     RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE = 2,
@@ -735,7 +735,7 @@ pub const RESIZE_VIRTUAL_DISK_FLAG_NONE = RESIZE_VIRTUAL_DISK_FLAG.NONE;
 pub const RESIZE_VIRTUAL_DISK_FLAG_ALLOW_UNSAFE_VIRTUAL_SIZE = RESIZE_VIRTUAL_DISK_FLAG.ALLOW_UNSAFE_VIRTUAL_SIZE;
 pub const RESIZE_VIRTUAL_DISK_FLAG_RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE = RESIZE_VIRTUAL_DISK_FLAG.RESIZE_TO_SMALLEST_SAFE_VIRTUAL_SIZE;
 
-pub const MIRROR_VIRTUAL_DISK_VERSION = extern enum(i32) {
+pub const MIRROR_VIRTUAL_DISK_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
 };
@@ -751,7 +751,7 @@ pub const MIRROR_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-pub const MIRROR_VIRTUAL_DISK_FLAG = extern enum(u32) {
+pub const MIRROR_VIRTUAL_DISK_FLAG = enum(u32) {
     NONE = 0,
     EXISTING_FILE = 1,
     SKIP_MIRROR_ACTIVATION = 2,
@@ -786,7 +786,7 @@ pub const QUERY_CHANGES_VIRTUAL_DISK_RANGE = extern struct {
     Reserved: u64,
 };
 
-pub const QUERY_CHANGES_VIRTUAL_DISK_FLAG = extern enum(u32) {
+pub const QUERY_CHANGES_VIRTUAL_DISK_FLAG = enum(u32) {
     E = 0,
     _,
     pub fn initFlags(o: struct {
@@ -799,7 +799,7 @@ pub const QUERY_CHANGES_VIRTUAL_DISK_FLAG = extern enum(u32) {
 };
 pub const QUERY_CHANGES_VIRTUAL_DISK_FLAG_NONE = QUERY_CHANGES_VIRTUAL_DISK_FLAG.E;
 
-pub const TAKE_SNAPSHOT_VHDSET_FLAG = extern enum(u32) {
+pub const TAKE_SNAPSHOT_VHDSET_FLAG = enum(u32) {
     NONE = 0,
     WRITEABLE = 1,
     _,
@@ -816,7 +816,7 @@ pub const TAKE_SNAPSHOT_VHDSET_FLAG = extern enum(u32) {
 pub const TAKE_SNAPSHOT_VHDSET_FLAG_NONE = TAKE_SNAPSHOT_VHDSET_FLAG.NONE;
 pub const TAKE_SNAPSHOT_VHDSET_FLAG_WRITEABLE = TAKE_SNAPSHOT_VHDSET_FLAG.WRITEABLE;
 
-pub const TAKE_SNAPSHOT_VHDSET_VERSION = extern enum(i32) {
+pub const TAKE_SNAPSHOT_VHDSET_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
 };
@@ -832,7 +832,7 @@ pub const TAKE_SNAPSHOT_VHDSET_PARAMETERS = extern struct {
     },
 };
 
-pub const DELETE_SNAPSHOT_VHDSET_FLAG = extern enum(u32) {
+pub const DELETE_SNAPSHOT_VHDSET_FLAG = enum(u32) {
     NONE = 0,
     PERSIST_RCT = 1,
     _,
@@ -849,7 +849,7 @@ pub const DELETE_SNAPSHOT_VHDSET_FLAG = extern enum(u32) {
 pub const DELETE_SNAPSHOT_VHDSET_FLAG_NONE = DELETE_SNAPSHOT_VHDSET_FLAG.NONE;
 pub const DELETE_SNAPSHOT_VHDSET_FLAG_PERSIST_RCT = DELETE_SNAPSHOT_VHDSET_FLAG.PERSIST_RCT;
 
-pub const DELETE_SNAPSHOT_VHDSET_VERSION = extern enum(i32) {
+pub const DELETE_SNAPSHOT_VHDSET_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
 };
@@ -865,7 +865,7 @@ pub const DELETE_SNAPSHOT_VHDSET_PARAMETERS = extern struct {
     },
 };
 
-pub const MODIFY_VHDSET_VERSION = extern enum(i32) {
+pub const MODIFY_VHDSET_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     SNAPSHOT_PATH = 1,
     REMOVE_SNAPSHOT = 2,
@@ -876,7 +876,7 @@ pub const MODIFY_VHDSET_SNAPSHOT_PATH = MODIFY_VHDSET_VERSION.SNAPSHOT_PATH;
 pub const MODIFY_VHDSET_REMOVE_SNAPSHOT = MODIFY_VHDSET_VERSION.REMOVE_SNAPSHOT;
 pub const MODIFY_VHDSET_DEFAULT_SNAPSHOT_PATH = MODIFY_VHDSET_VERSION.DEFAULT_SNAPSHOT_PATH;
 
-pub const MODIFY_VHDSET_FLAG = extern enum(u32) {
+pub const MODIFY_VHDSET_FLAG = enum(u32) {
     NONE = 0,
     WRITEABLE_SNAPSHOT = 1,
     _,
@@ -905,7 +905,7 @@ pub const MODIFY_VHDSET_PARAMETERS = extern struct {
     },
 };
 
-pub const APPLY_SNAPSHOT_VHDSET_FLAG = extern enum(u32) {
+pub const APPLY_SNAPSHOT_VHDSET_FLAG = enum(u32) {
     NONE = 0,
     WRITEABLE = 1,
     _,
@@ -922,7 +922,7 @@ pub const APPLY_SNAPSHOT_VHDSET_FLAG = extern enum(u32) {
 pub const APPLY_SNAPSHOT_VHDSET_FLAG_NONE = APPLY_SNAPSHOT_VHDSET_FLAG.NONE;
 pub const APPLY_SNAPSHOT_VHDSET_FLAG_WRITEABLE = APPLY_SNAPSHOT_VHDSET_FLAG.WRITEABLE;
 
-pub const APPLY_SNAPSHOT_VHDSET_VERSION = extern enum(i32) {
+pub const APPLY_SNAPSHOT_VHDSET_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
 };
@@ -939,7 +939,7 @@ pub const APPLY_SNAPSHOT_VHDSET_PARAMETERS = extern struct {
     },
 };
 
-pub const RAW_SCSI_VIRTUAL_DISK_FLAG = extern enum(u32) {
+pub const RAW_SCSI_VIRTUAL_DISK_FLAG = enum(u32) {
     E = 0,
     _,
     pub fn initFlags(o: struct {
@@ -952,7 +952,7 @@ pub const RAW_SCSI_VIRTUAL_DISK_FLAG = extern enum(u32) {
 };
 pub const RAW_SCSI_VIRTUAL_DISK_FLAG_NONE = RAW_SCSI_VIRTUAL_DISK_FLAG.E;
 
-pub const RAW_SCSI_VIRTUAL_DISK_VERSION = extern enum(i32) {
+pub const RAW_SCSI_VIRTUAL_DISK_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
 };
@@ -987,7 +987,7 @@ pub const RAW_SCSI_VIRTUAL_DISK_RESPONSE = extern struct {
     },
 };
 
-pub const FORK_VIRTUAL_DISK_VERSION = extern enum(i32) {
+pub const FORK_VIRTUAL_DISK_VERSION = enum(i32) {
     UNSPECIFIED = 0,
     @"1" = 1,
 };
@@ -1003,7 +1003,7 @@ pub const FORK_VIRTUAL_DISK_PARAMETERS = extern struct {
     },
 };
 
-pub const FORK_VIRTUAL_DISK_FLAG = extern enum(u32) {
+pub const FORK_VIRTUAL_DISK_FLAG = enum(u32) {
     NONE = 0,
     EXISTING_FILE = 1,
     _,

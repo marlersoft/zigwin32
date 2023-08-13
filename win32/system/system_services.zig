@@ -5051,7 +5051,7 @@ pub const SECURITY_OBJECT_AI_PARAMS = extern struct {
     ConstraintMask: u32,
 };
 
-pub const ACCESS_REASON_TYPE = extern enum(i32) {
+pub const ACCESS_REASON_TYPE = enum(i32) {
     None = 0,
     AllowedAce = 65536,
     DeniedAce = 131072,
@@ -5147,7 +5147,7 @@ pub const SE_IMPERSONATION_STATE = extern struct {
     Level: SECURITY_IMPERSONATION_LEVEL,
 };
 
-pub const SE_IMAGE_SIGNATURE_TYPE = extern enum(i32) {
+pub const SE_IMAGE_SIGNATURE_TYPE = enum(i32) {
     None = 0,
     Embedded = 1,
     Cache = 2,
@@ -5164,7 +5164,7 @@ pub const SeImageSignatureCatalogNotCached = SE_IMAGE_SIGNATURE_TYPE.CatalogNotC
 pub const SeImageSignatureCatalogHint = SE_IMAGE_SIGNATURE_TYPE.CatalogHint;
 pub const SeImageSignaturePackageCatalog = SE_IMAGE_SIGNATURE_TYPE.PackageCatalog;
 
-pub const SE_LEARNING_MODE_DATA_TYPE = extern enum(i32) {
+pub const SE_LEARNING_MODE_DATA_TYPE = enum(i32) {
     InvalidType = 0,
     Settings = 1,
     Max = 2,
@@ -5272,7 +5272,7 @@ pub const IO_COUNTERS = extern struct {
     OtherTransferCount: u64,
 };
 
-pub const PROCESS_MITIGATION_POLICY = extern enum(i32) {
+pub const PROCESS_MITIGATION_POLICY = enum(i32) {
     ProcessDEPPolicy = 0,
     ProcessASLRPolicy = 1,
     ProcessDynamicCodePolicy = 2,
@@ -5513,7 +5513,7 @@ pub const JOBOBJECT_JOBSET_INFORMATION = extern struct {
     MemberLevel: u32,
 };
 
-pub const JOBOBJECT_RATE_CONTROL_TOLERANCE = extern enum(i32) {
+pub const JOBOBJECT_RATE_CONTROL_TOLERANCE = enum(i32) {
     Low = 1,
     Medium = 2,
     High = 3,
@@ -5522,7 +5522,7 @@ pub const ToleranceLow = JOBOBJECT_RATE_CONTROL_TOLERANCE.Low;
 pub const ToleranceMedium = JOBOBJECT_RATE_CONTROL_TOLERANCE.Medium;
 pub const ToleranceHigh = JOBOBJECT_RATE_CONTROL_TOLERANCE.High;
 
-pub const JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = extern enum(i32) {
+pub const JOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = enum(i32) {
     Short = 1,
     Medium = 2,
     Long = 3,
@@ -5619,7 +5619,7 @@ pub const JOBOBJECT_CPU_RATE_CONTROL_INFORMATION = extern struct {
     },
 };
 
-pub const JOB_OBJECT_NET_RATE_CONTROL_FLAGS = extern enum(i32) {
+pub const JOB_OBJECT_NET_RATE_CONTROL_FLAGS = enum(i32) {
     ENABLE = 1,
     MAX_BANDWIDTH = 2,
     DSCP_TAG = 4,
@@ -5636,7 +5636,7 @@ pub const JOBOBJECT_NET_RATE_CONTROL_INFORMATION = extern struct {
     DscpTag: u8,
 };
 
-pub const JOB_OBJECT_IO_RATE_CONTROL_FLAGS = extern enum(i32) {
+pub const JOB_OBJECT_IO_RATE_CONTROL_FLAGS = enum(i32) {
     ENABLE = 1,
     STANDALONE_VOLUME = 2,
     FORCE_UNIT_ACCESS_ALL = 4,
@@ -5697,7 +5697,7 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION_NATIVE_V3 = extern struct {
     LimitExcessNotifyTimePercent: i64,
 };
 
-pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS = extern enum(i32) {
+pub const JOBOBJECT_IO_ATTRIBUTION_CONTROL_FLAGS = enum(i32) {
     ENABLE = 1,
     DISABLE = 2,
     VALID_FLAGS = 3,
@@ -5719,7 +5719,7 @@ pub const JOBOBJECT_IO_ATTRIBUTION_INFORMATION = extern struct {
     WriteStats: JOBOBJECT_IO_ATTRIBUTION_STATS,
 };
 
-pub const JOBOBJECTINFOCLASS = extern enum(i32) {
+pub const JOBOBJECTINFOCLASS = enum(i32) {
     JobObjectBasicAccountingInformation = 1,
     JobObjectBasicLimitInformation = 2,
     JobObjectBasicProcessIdList = 3,
@@ -5826,7 +5826,7 @@ pub const SILOOBJECT_BASIC_INFORMATION = extern struct {
     Reserved: [3]u8,
 };
 
-pub const SERVERSILO_STATE = extern enum(i32) {
+pub const SERVERSILO_STATE = enum(i32) {
     INITING = 0,
     STARTED = 1,
     SHUTTING_DOWN = 2,
@@ -5848,7 +5848,7 @@ pub const SERVERSILO_BASIC_INFORMATION = extern struct {
     HostApiSetSchema: *c_void,
 };
 
-pub const PROCESSOR_CACHE_TYPE = extern enum(i32) {
+pub const PROCESSOR_CACHE_TYPE = enum(i32) {
     Unified = 0,
     Instruction = 1,
     Data = 2,
@@ -5916,7 +5916,7 @@ pub const SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX = extern struct {
     },
 };
 
-pub const CPU_SET_INFORMATION_TYPE = extern enum(i32) {
+pub const CPU_SET_INFORMATION_TYPE = enum(i32) {
     n = 0,
 };
 pub const CpuSetInformation = CPU_SET_INFORMATION_TYPE.n;
@@ -6020,7 +6020,7 @@ pub const MEM_ADDRESS_REQUIREMENTS = extern struct {
     Alignment: usize,
 };
 
-pub const MEM_EXTENDED_PARAMETER_TYPE = extern enum(i32) {
+pub const MEM_EXTENDED_PARAMETER_TYPE = enum(i32) {
     InvalidType = 0,
     AddressRequirements = 1,
     NumaNode = 2,
@@ -6050,7 +6050,7 @@ pub const MEM_EXTENDED_PARAMETER = extern struct {
     },
 };
 
-pub const MEM_SECTION_EXTENDED_PARAMETER_TYPE = extern enum(i32) {
+pub const MEM_SECTION_EXTENDED_PARAMETER_TYPE = enum(i32) {
     InvalidType = 0,
     UserPhysicalFlags = 1,
     NumaNode = 2,
@@ -6107,7 +6107,7 @@ pub const SCRUB_DATA_OUTPUT = extern struct {
     ResumeContext: [816]u8,
 };
 
-pub const SharedVirtualDiskSupportType = extern enum(i32) {
+pub const SharedVirtualDiskSupportType = enum(i32) {
     sUnsupported = 0,
     sSupported = 1,
     SnapshotsSupported = 3,
@@ -6118,7 +6118,7 @@ pub const SharedVirtualDisksSupported = SharedVirtualDiskSupportType.sSupported;
 pub const SharedVirtualDiskSnapshotsSupported = SharedVirtualDiskSupportType.SnapshotsSupported;
 pub const SharedVirtualDiskCDPSnapshotsSupported = SharedVirtualDiskSupportType.CDPSnapshotsSupported;
 
-pub const SharedVirtualDiskHandleState = extern enum(i32) {
+pub const SharedVirtualDiskHandleState = enum(i32) {
     None = 0,
     FileShared = 1,
     HandleShared = 3,
@@ -6164,7 +6164,7 @@ pub const NETWORK_APP_INSTANCE_EA = extern struct {
     CsvFlags: u32,
 };
 
-pub const DEVICE_POWER_STATE = extern enum(i32) {
+pub const DEVICE_POWER_STATE = enum(i32) {
     Unspecified = 0,
     D0 = 1,
     D1 = 2,
@@ -6179,7 +6179,7 @@ pub const PowerDeviceD2 = DEVICE_POWER_STATE.D2;
 pub const PowerDeviceD3 = DEVICE_POWER_STATE.D3;
 pub const PowerDeviceMaximum = DEVICE_POWER_STATE.Maximum;
 
-pub const MONITOR_DISPLAY_STATE = extern enum(i32) {
+pub const MONITOR_DISPLAY_STATE = enum(i32) {
     Off = 0,
     On = 1,
     Dim = 2,
@@ -6188,20 +6188,20 @@ pub const PowerMonitorOff = MONITOR_DISPLAY_STATE.Off;
 pub const PowerMonitorOn = MONITOR_DISPLAY_STATE.On;
 pub const PowerMonitorDim = MONITOR_DISPLAY_STATE.Dim;
 
-pub const USER_ACTIVITY_PRESENCE = extern enum(i32) {
+pub const USER_ACTIVITY_PRESENCE = enum(i32) {
     Present = 0,
     NotPresent = 1,
     Inactive = 2,
     Maximum = 3,
-    Invalid = 3,
+    // Invalid = 3, this enum value conflicts with Maximum
 };
 pub const PowerUserPresent = USER_ACTIVITY_PRESENCE.Present;
 pub const PowerUserNotPresent = USER_ACTIVITY_PRESENCE.NotPresent;
 pub const PowerUserInactive = USER_ACTIVITY_PRESENCE.Inactive;
 pub const PowerUserMaximum = USER_ACTIVITY_PRESENCE.Maximum;
-pub const PowerUserInvalid = USER_ACTIVITY_PRESENCE.Invalid;
+pub const PowerUserInvalid = USER_ACTIVITY_PRESENCE.Maximum;
 
-pub const POWER_REQUEST_TYPE = extern enum(i32) {
+pub const POWER_REQUEST_TYPE = enum(i32) {
     DisplayRequired = 0,
     SystemRequired = 1,
     AwayModeRequired = 2,
@@ -6223,7 +6223,7 @@ pub const CM_Power_Data_s = extern struct {
     PD_DeepestSystemWake: SYSTEM_POWER_STATE,
 };
 
-pub const POWER_INFORMATION_LEVEL = extern enum(i32) {
+pub const POWER_INFORMATION_LEVEL = enum(i32) {
     SystemPowerPolicyAc = 0,
     SystemPowerPolicyDc = 1,
     VerifySystemPolicyAc = 2,
@@ -6420,7 +6420,7 @@ pub const UpdateBlackBoxRecorder = POWER_INFORMATION_LEVEL.UpdateBlackBoxRecorde
 pub const SessionAllowExternalDmaDevices = POWER_INFORMATION_LEVEL.SessionAllowExternalDmaDevices;
 pub const PowerInformationLevelMaximum = POWER_INFORMATION_LEVEL.PowerInformationLevelMaximum;
 
-pub const POWER_USER_PRESENCE_TYPE = extern enum(i32) {
+pub const POWER_USER_PRESENCE_TYPE = enum(i32) {
     NotPresent = 0,
     Present = 1,
     Unknown = 255,
@@ -6463,7 +6463,7 @@ pub const POWER_IDLE_RESILIENCY = extern struct {
     IdleResiliencyPeriod: u32,
 };
 
-pub const POWER_MONITOR_REQUEST_REASON = extern enum(i32) {
+pub const POWER_MONITOR_REQUEST_REASON = enum(i32) {
     Unknown = 0,
     PowerButton = 1,
     RemoteConnection = 2,
@@ -6570,7 +6570,7 @@ pub const MonitorRequestReasonBatteryCountChangeSuppressed = POWER_MONITOR_REQUE
 pub const MonitorRequestReasonResumeModernStandby = POWER_MONITOR_REQUEST_REASON.ResumeModernStandby;
 pub const MonitorRequestReasonMax = POWER_MONITOR_REQUEST_REASON.Max;
 
-pub const POWER_MONITOR_REQUEST_TYPE = extern enum(i32) {
+pub const POWER_MONITOR_REQUEST_TYPE = enum(i32) {
     Off = 0,
     OnAndPresent = 1,
     ToggleOn = 2,
@@ -6829,7 +6829,7 @@ pub const PROCESSOR_PERFSTATE_POLICY = extern struct {
     DecreasePercent: u32,
 };
 
-pub const HIBERFILE_BUCKET_SIZE = extern enum(i32) {
+pub const HIBERFILE_BUCKET_SIZE = enum(i32) {
     @"1GB" = 0,
     @"2GB" = 1,
     @"4GB" = 2,
@@ -7150,7 +7150,7 @@ pub const IMAGE_AUX_SYMBOL_EX = extern union {
     },
 };
 
-pub const IMAGE_AUX_SYMBOL_TYPE = extern enum(i32) {
+pub const IMAGE_AUX_SYMBOL_TYPE = enum(i32) {
     F = 1,
 };
 pub const IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = IMAGE_AUX_SYMBOL_TYPE.F;
@@ -7445,7 +7445,7 @@ pub const IMAGE_ARM_RUNTIME_FUNCTION_ENTRY = extern struct {
     },
 };
 
-pub const ARM64_FNPDATA_FLAGS = extern enum(i32) {
+pub const ARM64_FNPDATA_FLAGS = enum(i32) {
     RefToFullXdata = 0,
     PackedUnwindFunction = 1,
     PackedUnwindFragment = 2,
@@ -7454,7 +7454,7 @@ pub const PdataRefToFullXdata = ARM64_FNPDATA_FLAGS.RefToFullXdata;
 pub const PdataPackedUnwindFunction = ARM64_FNPDATA_FLAGS.PackedUnwindFunction;
 pub const PdataPackedUnwindFragment = ARM64_FNPDATA_FLAGS.PackedUnwindFragment;
 
-pub const ARM64_FNPDATA_CR = extern enum(i32) {
+pub const ARM64_FNPDATA_CR = enum(i32) {
     Unchained = 0,
     UnchainedSavedLr = 1,
     Chained = 3,
@@ -7567,7 +7567,7 @@ pub const IMPORT_OBJECT_HEADER = extern struct {
     _bitfield: u16,
 };
 
-pub const IMPORT_OBJECT_TYPE = extern enum(i32) {
+pub const IMPORT_OBJECT_TYPE = enum(i32) {
     CODE = 0,
     DATA = 1,
     CONST = 2,
@@ -7576,7 +7576,7 @@ pub const IMPORT_OBJECT_CODE = IMPORT_OBJECT_TYPE.CODE;
 pub const IMPORT_OBJECT_DATA = IMPORT_OBJECT_TYPE.DATA;
 pub const IMPORT_OBJECT_CONST = IMPORT_OBJECT_TYPE.CONST;
 
-pub const IMPORT_OBJECT_NAME_TYPE = extern enum(i32) {
+pub const IMPORT_OBJECT_NAME_TYPE = enum(i32) {
     ORDINAL = 0,
     NAME = 1,
     NAME_NO_PREFIX = 2,
@@ -7589,7 +7589,7 @@ pub const IMPORT_OBJECT_NAME_NO_PREFIX = IMPORT_OBJECT_NAME_TYPE.NAME_NO_PREFIX;
 pub const IMPORT_OBJECT_NAME_UNDECORATE = IMPORT_OBJECT_NAME_TYPE.NAME_UNDECORATE;
 pub const IMPORT_OBJECT_NAME_EXPORTAS = IMPORT_OBJECT_NAME_TYPE.NAME_EXPORTAS;
 
-pub const ReplacesCorHdrNumericDefines = extern enum(i32) {
+pub const ReplacesCorHdrNumericDefines = enum(i32) {
     COMIMAGE_FLAGS_ILONLY = 1,
     COMIMAGE_FLAGS_32BITREQUIRED = 2,
     COMIMAGE_FLAGS_IL_LIBRARY = 4,
@@ -7597,24 +7597,24 @@ pub const ReplacesCorHdrNumericDefines = extern enum(i32) {
     COMIMAGE_FLAGS_NATIVE_ENTRYPOINT = 16,
     COMIMAGE_FLAGS_TRACKDEBUGDATA = 65536,
     COMIMAGE_FLAGS_32BITPREFERRED = 131072,
-    COR_VERSION_MAJOR_V2 = 2,
-    COR_VERSION_MAJOR = 2,
+    // COR_VERSION_MAJOR_V2 = 2, this enum value conflicts with COMIMAGE_FLAGS_32BITREQUIRED
+    // COR_VERSION_MAJOR = 2, this enum value conflicts with COMIMAGE_FLAGS_32BITREQUIRED
     COR_VERSION_MINOR = 5,
-    COR_DELETED_NAME_LENGTH = 8,
-    COR_VTABLEGAP_NAME_LENGTH = 8,
-    NATIVE_TYPE_MAX_CB = 1,
+    // COR_DELETED_NAME_LENGTH = 8, this enum value conflicts with COMIMAGE_FLAGS_STRONGNAMESIGNED
+    // COR_VTABLEGAP_NAME_LENGTH = 8, this enum value conflicts with COMIMAGE_FLAGS_STRONGNAMESIGNED
+    // NATIVE_TYPE_MAX_CB = 1, this enum value conflicts with COMIMAGE_FLAGS_ILONLY
     COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = 255,
-    IMAGE_COR_MIH_METHODRVA = 1,
-    IMAGE_COR_MIH_EHRVA = 2,
-    IMAGE_COR_MIH_BASICBLOCK = 8,
-    COR_VTABLE_32BIT = 1,
-    COR_VTABLE_64BIT = 2,
-    COR_VTABLE_FROM_UNMANAGED = 4,
-    COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN = 8,
-    COR_VTABLE_CALL_MOST_DERIVED = 16,
+    // IMAGE_COR_MIH_METHODRVA = 1, this enum value conflicts with COMIMAGE_FLAGS_ILONLY
+    // IMAGE_COR_MIH_EHRVA = 2, this enum value conflicts with COMIMAGE_FLAGS_32BITREQUIRED
+    // IMAGE_COR_MIH_BASICBLOCK = 8, this enum value conflicts with COMIMAGE_FLAGS_STRONGNAMESIGNED
+    // COR_VTABLE_32BIT = 1, this enum value conflicts with COMIMAGE_FLAGS_ILONLY
+    // COR_VTABLE_64BIT = 2, this enum value conflicts with COMIMAGE_FLAGS_32BITREQUIRED
+    // COR_VTABLE_FROM_UNMANAGED = 4, this enum value conflicts with COMIMAGE_FLAGS_IL_LIBRARY
+    // COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN = 8, this enum value conflicts with COMIMAGE_FLAGS_STRONGNAMESIGNED
+    // COR_VTABLE_CALL_MOST_DERIVED = 16, this enum value conflicts with COMIMAGE_FLAGS_NATIVE_ENTRYPOINT
     IMAGE_COR_EATJ_THUNK_SIZE = 32,
     MAX_CLASS_NAME = 1024,
-    MAX_PACKAGE_NAME = 1024,
+    // MAX_PACKAGE_NAME = 1024, this enum value conflicts with MAX_CLASS_NAME
 };
 pub const COMIMAGE_FLAGS_ILONLY = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_ILONLY;
 pub const COMIMAGE_FLAGS_32BITREQUIRED = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_32BITREQUIRED;
@@ -7623,24 +7623,24 @@ pub const COMIMAGE_FLAGS_STRONGNAMESIGNED = ReplacesCorHdrNumericDefines.COMIMAG
 pub const COMIMAGE_FLAGS_NATIVE_ENTRYPOINT = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_NATIVE_ENTRYPOINT;
 pub const COMIMAGE_FLAGS_TRACKDEBUGDATA = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_TRACKDEBUGDATA;
 pub const COMIMAGE_FLAGS_32BITPREFERRED = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_32BITPREFERRED;
-pub const COR_VERSION_MAJOR_V2 = ReplacesCorHdrNumericDefines.COR_VERSION_MAJOR_V2;
-pub const COR_VERSION_MAJOR = ReplacesCorHdrNumericDefines.COR_VERSION_MAJOR;
+pub const COR_VERSION_MAJOR_V2 = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_32BITREQUIRED;
+pub const COR_VERSION_MAJOR = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_32BITREQUIRED;
 pub const COR_VERSION_MINOR = ReplacesCorHdrNumericDefines.COR_VERSION_MINOR;
-pub const COR_DELETED_NAME_LENGTH = ReplacesCorHdrNumericDefines.COR_DELETED_NAME_LENGTH;
-pub const COR_VTABLEGAP_NAME_LENGTH = ReplacesCorHdrNumericDefines.COR_VTABLEGAP_NAME_LENGTH;
-pub const NATIVE_TYPE_MAX_CB = ReplacesCorHdrNumericDefines.NATIVE_TYPE_MAX_CB;
+pub const COR_DELETED_NAME_LENGTH = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_STRONGNAMESIGNED;
+pub const COR_VTABLEGAP_NAME_LENGTH = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_STRONGNAMESIGNED;
+pub const NATIVE_TYPE_MAX_CB = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_ILONLY;
 pub const COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE = ReplacesCorHdrNumericDefines.COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE;
-pub const IMAGE_COR_MIH_METHODRVA = ReplacesCorHdrNumericDefines.IMAGE_COR_MIH_METHODRVA;
-pub const IMAGE_COR_MIH_EHRVA = ReplacesCorHdrNumericDefines.IMAGE_COR_MIH_EHRVA;
-pub const IMAGE_COR_MIH_BASICBLOCK = ReplacesCorHdrNumericDefines.IMAGE_COR_MIH_BASICBLOCK;
-pub const COR_VTABLE_32BIT = ReplacesCorHdrNumericDefines.COR_VTABLE_32BIT;
-pub const COR_VTABLE_64BIT = ReplacesCorHdrNumericDefines.COR_VTABLE_64BIT;
-pub const COR_VTABLE_FROM_UNMANAGED = ReplacesCorHdrNumericDefines.COR_VTABLE_FROM_UNMANAGED;
-pub const COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN = ReplacesCorHdrNumericDefines.COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN;
-pub const COR_VTABLE_CALL_MOST_DERIVED = ReplacesCorHdrNumericDefines.COR_VTABLE_CALL_MOST_DERIVED;
+pub const IMAGE_COR_MIH_METHODRVA = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_ILONLY;
+pub const IMAGE_COR_MIH_EHRVA = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_32BITREQUIRED;
+pub const IMAGE_COR_MIH_BASICBLOCK = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_STRONGNAMESIGNED;
+pub const COR_VTABLE_32BIT = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_ILONLY;
+pub const COR_VTABLE_64BIT = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_32BITREQUIRED;
+pub const COR_VTABLE_FROM_UNMANAGED = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_IL_LIBRARY;
+pub const COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_STRONGNAMESIGNED;
+pub const COR_VTABLE_CALL_MOST_DERIVED = ReplacesCorHdrNumericDefines.COMIMAGE_FLAGS_NATIVE_ENTRYPOINT;
 pub const IMAGE_COR_EATJ_THUNK_SIZE = ReplacesCorHdrNumericDefines.IMAGE_COR_EATJ_THUNK_SIZE;
 pub const MAX_CLASS_NAME = ReplacesCorHdrNumericDefines.MAX_CLASS_NAME;
-pub const MAX_PACKAGE_NAME = ReplacesCorHdrNumericDefines.MAX_PACKAGE_NAME;
+pub const MAX_PACKAGE_NAME = ReplacesCorHdrNumericDefines.MAX_CLASS_NAME;
 
 pub const IMAGE_COR20_HEADER = extern struct {
     cb: u32,
@@ -7672,7 +7672,7 @@ pub const RTL_BARRIER = extern struct {
     Reserved5: u32,
 };
 
-pub const RTL_UMS_THREAD_INFO_CLASS = extern enum(i32) {
+pub const RTL_UMS_THREAD_INFO_CLASS = enum(i32) {
     InvalidInfoClass = 0,
     UserContext = 1,
     Priority = 2,
@@ -7691,7 +7691,7 @@ pub const UmsThreadIsSuspended = RTL_UMS_THREAD_INFO_CLASS.IsSuspended;
 pub const UmsThreadIsTerminated = RTL_UMS_THREAD_INFO_CLASS.IsTerminated;
 pub const UmsThreadMaxInfoClass = RTL_UMS_THREAD_INFO_CLASS.MaxInfoClass;
 
-pub const RTL_UMS_SCHEDULER_REASON = extern enum(i32) {
+pub const RTL_UMS_SCHEDULER_REASON = enum(i32) {
     Startup = 0,
     ThreadBlocked = 1,
     ThreadYield = 2,
@@ -7706,7 +7706,7 @@ pub const PRTL_UMS_SCHEDULER_ENTRY_POINT = fn(
     SchedulerParam: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const OS_DEPLOYEMENT_STATE_VALUES = extern enum(i32) {
+pub const OS_DEPLOYEMENT_STATE_VALUES = enum(i32) {
     STANDARD = 1,
     COMPACT = 2,
 };
@@ -7728,7 +7728,7 @@ pub const CUSTOM_SYSTEM_EVENT_TRIGGER_CONFIG = extern struct {
     TriggerId: [*:0]const u16,
 };
 
-pub const IMAGE_POLICY_ENTRY_TYPE = extern enum(i32) {
+pub const IMAGE_POLICY_ENTRY_TYPE = enum(i32) {
     None = 0,
     Bool = 1,
     Int8 = 2,
@@ -7759,7 +7759,7 @@ pub const ImagePolicyEntryTypeUnicodeString = IMAGE_POLICY_ENTRY_TYPE.UnicodeStr
 pub const ImagePolicyEntryTypeOverride = IMAGE_POLICY_ENTRY_TYPE.Override;
 pub const ImagePolicyEntryTypeMaximum = IMAGE_POLICY_ENTRY_TYPE.Maximum;
 
-pub const IMAGE_POLICY_ID = extern enum(i32) {
+pub const IMAGE_POLICY_ID = enum(i32) {
     None = 0,
     Etw = 1,
     Debug = 2,
@@ -7847,7 +7847,7 @@ pub const PAPCFUNC = fn(
     Parameter: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const HEAP_INFORMATION_CLASS = extern enum(i32) {
+pub const HEAP_INFORMATION_CLASS = enum(i32) {
     CompatibilityInformation = 0,
     EnableTerminationOnCorruption = 1,
     OptimizeResources = 3,
@@ -7880,7 +7880,7 @@ pub const PFLS_CALLBACK_FUNCTION = fn(
     lpFlsData: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const ACTIVATION_CONTEXT_INFO_CLASS = extern enum(i32) {
+pub const ACTIVATION_CONTEXT_INFO_CLASS = enum(i32) {
     ActivationContextBasicInformation = 1,
     ActivationContextDetailedInformation = 2,
     AssemblyDetailedInformationInActivationContext = 3,
@@ -7889,8 +7889,8 @@ pub const ACTIVATION_CONTEXT_INFO_CLASS = extern enum(i32) {
     CompatibilityInformationInActivationContext = 6,
     ActivationContextManifestResourceName = 7,
     MaxActivationContextInfoClass = 8,
-    AssemblyDetailedInformationInActivationContxt = 3,
-    FileInformationInAssemblyOfAssemblyInActivationContxt = 4,
+    // AssemblyDetailedInformationInActivationContxt = 3, this enum value conflicts with AssemblyDetailedInformationInActivationContext
+    // FileInformationInAssemblyOfAssemblyInActivationContxt = 4, this enum value conflicts with FileInformationInAssemblyOfAssemblyInActivationContext
 };
 pub const ActivationContextBasicInformation = ACTIVATION_CONTEXT_INFO_CLASS.ActivationContextBasicInformation;
 pub const ActivationContextDetailedInformation = ACTIVATION_CONTEXT_INFO_CLASS.ActivationContextDetailedInformation;
@@ -7900,8 +7900,8 @@ pub const RunlevelInformationInActivationContext = ACTIVATION_CONTEXT_INFO_CLASS
 pub const CompatibilityInformationInActivationContext = ACTIVATION_CONTEXT_INFO_CLASS.CompatibilityInformationInActivationContext;
 pub const ActivationContextManifestResourceName = ACTIVATION_CONTEXT_INFO_CLASS.ActivationContextManifestResourceName;
 pub const MaxActivationContextInfoClass = ACTIVATION_CONTEXT_INFO_CLASS.MaxActivationContextInfoClass;
-pub const AssemblyDetailedInformationInActivationContxt = ACTIVATION_CONTEXT_INFO_CLASS.AssemblyDetailedInformationInActivationContxt;
-pub const FileInformationInAssemblyOfAssemblyInActivationContxt = ACTIVATION_CONTEXT_INFO_CLASS.FileInformationInAssemblyOfAssemblyInActivationContxt;
+pub const AssemblyDetailedInformationInActivationContxt = ACTIVATION_CONTEXT_INFO_CLASS.AssemblyDetailedInformationInActivationContext;
+pub const FileInformationInAssemblyOfAssemblyInActivationContxt = ACTIVATION_CONTEXT_INFO_CLASS.FileInformationInAssemblyOfAssemblyInActivationContext;
 
 pub const SUPPORTED_OS_INFO = extern struct {
     MajorVersion: u16,
@@ -7944,7 +7944,7 @@ pub const PACKEDEVENTINFO = extern struct {
     ulOffsets: u32,
 };
 
-pub const CM_SERVICE_NODE_TYPE = extern enum(i32) {
+pub const CM_SERVICE_NODE_TYPE = enum(i32) {
     DriverType = 1,
     FileSystemType = 2,
     Win32ServiceOwnProcess = 16,
@@ -7959,7 +7959,7 @@ pub const Win32ServiceShareProcess = CM_SERVICE_NODE_TYPE.Win32ServiceShareProce
 pub const AdapterType = CM_SERVICE_NODE_TYPE.AdapterType;
 pub const RecognizerType = CM_SERVICE_NODE_TYPE.RecognizerType;
 
-pub const CM_SERVICE_LOAD_TYPE = extern enum(i32) {
+pub const CM_SERVICE_LOAD_TYPE = enum(i32) {
     BootLoad = 0,
     SystemLoad = 1,
     AutoLoad = 2,
@@ -7972,7 +7972,7 @@ pub const AutoLoad = CM_SERVICE_LOAD_TYPE.AutoLoad;
 pub const DemandLoad = CM_SERVICE_LOAD_TYPE.DemandLoad;
 pub const DisableLoad = CM_SERVICE_LOAD_TYPE.DisableLoad;
 
-pub const CM_ERROR_CONTROL_TYPE = extern enum(i32) {
+pub const CM_ERROR_CONTROL_TYPE = enum(i32) {
     IgnoreError = 0,
     NormalError = 1,
     SevereError = 2,
@@ -8058,7 +8058,7 @@ pub const TAPE_WMI_OPERATIONS = extern struct {
     DataBuffer: *c_void,
 };
 
-pub const TAPE_DRIVE_PROBLEM_TYPE = extern enum(i32) {
+pub const TAPE_DRIVE_PROBLEM_TYPE = enum(i32) {
     ProblemNone = 0,
     ReadWriteWarning = 1,
     ReadWriteError = 2,
@@ -8089,7 +8089,7 @@ pub const TapeDriveCleanDriveNow = TAPE_DRIVE_PROBLEM_TYPE.CleanDriveNow;
 pub const TapeDriveMediaLifeExpired = TAPE_DRIVE_PROBLEM_TYPE.MediaLifeExpired;
 pub const TapeDriveSnappedTape = TAPE_DRIVE_PROBLEM_TYPE.SnappedTape;
 
-pub const TRANSACTION_STATE = extern enum(i32) {
+pub const TRANSACTION_STATE = enum(i32) {
     Normal = 1,
     Indoubt = 2,
     CommittedNotify = 3,
@@ -8164,7 +8164,7 @@ pub const RESOURCEMANAGER_COMPLETION_INFORMATION = extern struct {
     CompletionKey: usize,
 };
 
-pub const TRANSACTION_INFORMATION_CLASS = extern enum(i32) {
+pub const TRANSACTION_INFORMATION_CLASS = enum(i32) {
     BasicInformation = 0,
     PropertiesInformation = 1,
     EnlistmentInformation = 2,
@@ -8179,7 +8179,7 @@ pub const TransactionSuperiorEnlistmentInformation = TRANSACTION_INFORMATION_CLA
 pub const TransactionBindInformation = TRANSACTION_INFORMATION_CLASS.BindInformation;
 pub const TransactionDTCPrivateInformation = TRANSACTION_INFORMATION_CLASS.DTCPrivateInformation;
 
-pub const TRANSACTIONMANAGER_INFORMATION_CLASS = extern enum(i32) {
+pub const TRANSACTIONMANAGER_INFORMATION_CLASS = enum(i32) {
     BasicInformation = 0,
     LogInformation = 1,
     LogPathInformation = 2,
@@ -8194,7 +8194,7 @@ pub const TransactionManagerRecoveryInformation = TRANSACTIONMANAGER_INFORMATION
 pub const TransactionManagerOnlineProbeInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.OnlineProbeInformation;
 pub const TransactionManagerOldestTransactionInformation = TRANSACTIONMANAGER_INFORMATION_CLASS.OldestTransactionInformation;
 
-pub const RESOURCEMANAGER_INFORMATION_CLASS = extern enum(i32) {
+pub const RESOURCEMANAGER_INFORMATION_CLASS = enum(i32) {
     BasicInformation = 0,
     CompletionInformation = 1,
 };
@@ -8213,7 +8213,7 @@ pub const ENLISTMENT_CRM_INFORMATION = extern struct {
     CrmEnlistmentId: Guid,
 };
 
-pub const ENLISTMENT_INFORMATION_CLASS = extern enum(i32) {
+pub const ENLISTMENT_INFORMATION_CLASS = enum(i32) {
     BasicInformation = 0,
     RecoveryInformation = 1,
     CrmInformation = 2,
@@ -8231,7 +8231,7 @@ pub const TRANSACTION_LIST_INFORMATION = extern struct {
     TransactionInformation: [1]TRANSACTION_LIST_ENTRY,
 };
 
-pub const KTMOBJECT_TYPE = extern enum(i32) {
+pub const KTMOBJECT_TYPE = enum(i32) {
     TRANSACTION = 0,
     TRANSACTION_MANAGER = 1,
     RESOURCE_MANAGER = 2,
@@ -8263,18 +8263,18 @@ pub const TP_POOL = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const TP_CALLBACK_PRIORITY = extern enum(i32) {
+pub const TP_CALLBACK_PRIORITY = enum(i32) {
     HIGH = 0,
     NORMAL = 1,
     LOW = 2,
     INVALID = 3,
-    COUNT = 3,
+    // COUNT = 3, this enum value conflicts with INVALID
 };
 pub const TP_CALLBACK_PRIORITY_HIGH = TP_CALLBACK_PRIORITY.HIGH;
 pub const TP_CALLBACK_PRIORITY_NORMAL = TP_CALLBACK_PRIORITY.NORMAL;
 pub const TP_CALLBACK_PRIORITY_LOW = TP_CALLBACK_PRIORITY.LOW;
 pub const TP_CALLBACK_PRIORITY_INVALID = TP_CALLBACK_PRIORITY.INVALID;
-pub const TP_CALLBACK_PRIORITY_COUNT = TP_CALLBACK_PRIORITY.COUNT;
+pub const TP_CALLBACK_PRIORITY_COUNT = TP_CALLBACK_PRIORITY.INVALID;
 
 pub const TP_POOL_STACK_INFORMATION = extern struct {
     StackReserve: usize,
@@ -9080,7 +9080,7 @@ pub const D3DLIGHTDATA = extern struct {
     dwOutSize: u32,
 };
 
-pub const D3DOPCODE = extern enum(i32) {
+pub const D3DOPCODE = enum(i32) {
     POINT = 1,
     LINE = 2,
     TRIANGLE = 3,
@@ -9136,7 +9136,7 @@ pub const D3DLINEPATTERN = extern struct {
     wLinePattern: u16,
 };
 
-pub const D3DTEXTUREFILTER = extern enum(i32) {
+pub const D3DTEXTUREFILTER = enum(i32) {
     NEAREST = 1,
     LINEAR = 2,
     MIPNEAREST = 3,
@@ -9153,7 +9153,7 @@ pub const D3DFILTER_LINEARMIPNEAREST = D3DTEXTUREFILTER.LINEARMIPNEAREST;
 pub const D3DFILTER_LINEARMIPLINEAR = D3DTEXTUREFILTER.LINEARMIPLINEAR;
 pub const D3DFILTER_FORCE_DWORD = D3DTEXTUREFILTER.FORCE_DWORD;
 
-pub const D3DTEXTUREBLEND = extern enum(i32) {
+pub const D3DTEXTUREBLEND = enum(i32) {
     DECAL = 1,
     MODULATE = 2,
     DECALALPHA = 3,
@@ -9174,7 +9174,7 @@ pub const D3DTBLEND_COPY = D3DTEXTUREBLEND.COPY;
 pub const D3DTBLEND_ADD = D3DTEXTUREBLEND.ADD;
 pub const D3DTBLEND_FORCE_DWORD = D3DTEXTUREBLEND.FORCE_DWORD;
 
-pub const D3DANTIALIASMODE = extern enum(i32) {
+pub const D3DANTIALIASMODE = enum(i32) {
     NONE = 0,
     SORTDEPENDENT = 1,
     SORTINDEPENDENT = 2,
@@ -9185,7 +9185,7 @@ pub const D3DANTIALIAS_SORTDEPENDENT = D3DANTIALIASMODE.SORTDEPENDENT;
 pub const D3DANTIALIAS_SORTINDEPENDENT = D3DANTIALIASMODE.SORTINDEPENDENT;
 pub const D3DANTIALIAS_FORCE_DWORD = D3DANTIALIASMODE.FORCE_DWORD;
 
-pub const D3DVERTEXTYPE = extern enum(i32) {
+pub const D3DVERTEXTYPE = enum(i32) {
     VERTEX = 1,
     LVERTEX = 2,
     TLVERTEX = 3,
@@ -9196,7 +9196,7 @@ pub const D3DVT_LVERTEX = D3DVERTEXTYPE.LVERTEX;
 pub const D3DVT_TLVERTEX = D3DVERTEXTYPE.TLVERTEX;
 pub const D3DVT_FORCE_DWORD = D3DVERTEXTYPE.FORCE_DWORD;
 
-pub const D3DLIGHTSTATETYPE = extern enum(i32) {
+pub const D3DLIGHTSTATETYPE = enum(i32) {
     MATERIAL = 1,
     AMBIENT = 2,
     COLORMODEL = 3,
@@ -9248,7 +9248,7 @@ pub const D3DPROCESSVERTICES = extern struct {
     dwReserved: u32,
 };
 
-pub const D3DTEXTUREMAGFILTER = extern enum(i32) {
+pub const D3DTEXTUREMAGFILTER = enum(i32) {
     POINT = 1,
     LINEAR = 2,
     FLATCUBIC = 3,
@@ -9263,7 +9263,7 @@ pub const D3DTFG_GAUSSIANCUBIC = D3DTEXTUREMAGFILTER.GAUSSIANCUBIC;
 pub const D3DTFG_ANISOTROPIC = D3DTEXTUREMAGFILTER.ANISOTROPIC;
 pub const D3DTFG_FORCE_DWORD = D3DTEXTUREMAGFILTER.FORCE_DWORD;
 
-pub const D3DTEXTUREMINFILTER = extern enum(i32) {
+pub const D3DTEXTUREMINFILTER = enum(i32) {
     POINT = 1,
     LINEAR = 2,
     ANISOTROPIC = 3,
@@ -9274,7 +9274,7 @@ pub const D3DTFN_LINEAR = D3DTEXTUREMINFILTER.LINEAR;
 pub const D3DTFN_ANISOTROPIC = D3DTEXTUREMINFILTER.ANISOTROPIC;
 pub const D3DTFN_FORCE_DWORD = D3DTEXTUREMINFILTER.FORCE_DWORD;
 
-pub const D3DTEXTUREMIPFILTER = extern enum(i32) {
+pub const D3DTEXTUREMIPFILTER = enum(i32) {
     NONE = 1,
     POINT = 2,
     LINEAR = 3,
@@ -9879,7 +9879,7 @@ pub const D3DNTHAL_DP2COMMAND = extern struct {
     },
 };
 
-pub const D3DNTHAL_DP2OPERATION = extern enum(i32) {
+pub const D3DNTHAL_DP2OPERATION = enum(i32) {
     POINTS = 1,
     INDEXEDLINELIST = 2,
     INDEXEDTRIANGLELIST = 3,
@@ -10240,7 +10240,7 @@ pub const SORTCOMP = fn(
     pv2: *const c_void,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const ENG_SYSTEM_ATTRIBUTE = extern enum(i32) {
+pub const ENG_SYSTEM_ATTRIBUTE = enum(i32) {
     ProcessorFeature = 1,
     NumberOfProcessors = 2,
     OptimumAvailableUserMemory = 3,
@@ -10251,7 +10251,7 @@ pub const EngNumberOfProcessors = ENG_SYSTEM_ATTRIBUTE.NumberOfProcessors;
 pub const EngOptimumAvailableUserMemory = ENG_SYSTEM_ATTRIBUTE.OptimumAvailableUserMemory;
 pub const EngOptimumAvailableSystemMemory = ENG_SYSTEM_ATTRIBUTE.OptimumAvailableSystemMemory;
 
-pub const ENG_DEVICE_ATTRIBUTE = extern enum(i32) {
+pub const ENG_DEVICE_ATTRIBUTE = enum(i32) {
     RESERVED = 0,
     ACCELERATION_LEVEL = 1,
 };
@@ -11018,7 +11018,7 @@ pub const TAPE_GET_STATISTICS = extern struct {
     Operation: u32,
 };
 
-pub const STORAGE_MEDIA_TYPE = extern enum(i32) {
+pub const STORAGE_MEDIA_TYPE = enum(i32) {
     DDS_4mm = 32,
     MiniQic = 33,
     Travan = 34,
@@ -11147,7 +11147,7 @@ pub const STK_9940 = STORAGE_MEDIA_TYPE.STK_9940;
 pub const SAIT = STORAGE_MEDIA_TYPE.SAIT;
 pub const VXATape = STORAGE_MEDIA_TYPE.VXATape;
 
-pub const STORAGE_BUS_TYPE = extern enum(i32) {
+pub const STORAGE_BUS_TYPE = enum(i32) {
     Unknown = 0,
     Scsi = 1,
     Atapi = 2,
@@ -11248,7 +11248,7 @@ pub const STORAGE_FAILURE_PREDICTION_CONFIG = extern struct {
     Reserved: u16,
 };
 
-pub const STORAGE_SET_TYPE = extern enum(i32) {
+pub const STORAGE_SET_TYPE = enum(i32) {
     StandardSet = 0,
     ExistsSet = 1,
     SetMaxDefined = 2,
@@ -11263,7 +11263,7 @@ pub const STORAGE_PROPERTY_SET = extern struct {
     AdditionalParameters: [1]u8,
 };
 
-pub const STORAGE_IDENTIFIER_CODE_SET = extern enum(i32) {
+pub const STORAGE_IDENTIFIER_CODE_SET = enum(i32) {
     Reserved = 0,
     Binary = 1,
     Ascii = 2,
@@ -11274,7 +11274,7 @@ pub const StorageIdCodeSetBinary = STORAGE_IDENTIFIER_CODE_SET.Binary;
 pub const StorageIdCodeSetAscii = STORAGE_IDENTIFIER_CODE_SET.Ascii;
 pub const StorageIdCodeSetUtf8 = STORAGE_IDENTIFIER_CODE_SET.Utf8;
 
-pub const STORAGE_IDENTIFIER_TYPE = extern enum(i32) {
+pub const STORAGE_IDENTIFIER_TYPE = enum(i32) {
     VendorSpecific = 0,
     VendorId = 1,
     EUI64 = 2,
@@ -11295,7 +11295,7 @@ pub const StorageIdTypeLogicalUnitGroup = STORAGE_IDENTIFIER_TYPE.LogicalUnitGro
 pub const StorageIdTypeMD5LogicalUnitIdentifier = STORAGE_IDENTIFIER_TYPE.MD5LogicalUnitIdentifier;
 pub const StorageIdTypeScsiNameString = STORAGE_IDENTIFIER_TYPE.ScsiNameString;
 
-pub const STORAGE_ID_NAA_FORMAT = extern enum(i32) {
+pub const STORAGE_ID_NAA_FORMAT = enum(i32) {
     Extended = 2,
     Registered = 3,
     ERegisteredExtended = 5,
@@ -11304,7 +11304,7 @@ pub const StorageIdNAAFormatIEEEExtended = STORAGE_ID_NAA_FORMAT.Extended;
 pub const StorageIdNAAFormatIEEERegistered = STORAGE_ID_NAA_FORMAT.Registered;
 pub const StorageIdNAAFormatIEEEERegisteredExtended = STORAGE_ID_NAA_FORMAT.ERegisteredExtended;
 
-pub const STORAGE_ASSOCIATION_TYPE = extern enum(i32) {
+pub const STORAGE_ASSOCIATION_TYPE = enum(i32) {
     Device = 0,
     Port = 1,
     Target = 2,
@@ -11333,7 +11333,7 @@ pub const STORAGE_LB_PROVISIONING_MAP_RESOURCES = extern struct {
     UsedMappingResources: u64,
 };
 
-pub const STORAGE_RPMB_FRAME_TYPE = extern enum(i32) {
+pub const STORAGE_RPMB_FRAME_TYPE = enum(i32) {
     Unknown = 0,
     Standard = 1,
     Max = 2,
@@ -11350,7 +11350,7 @@ pub const STORAGE_RPMB_DESCRIPTOR = extern struct {
     FrameFormat: STORAGE_RPMB_FRAME_TYPE,
 };
 
-pub const STORAGE_CRYPTO_ALGORITHM_ID = extern enum(i32) {
+pub const STORAGE_CRYPTO_ALGORITHM_ID = enum(i32) {
     Unknown = 0,
     XTSAES = 1,
     BitlockerAESCBC = 2,
@@ -11365,7 +11365,7 @@ pub const StorageCryptoAlgorithmAESECB = STORAGE_CRYPTO_ALGORITHM_ID.AESECB;
 pub const StorageCryptoAlgorithmESSIVAESCBC = STORAGE_CRYPTO_ALGORITHM_ID.ESSIVAESCBC;
 pub const StorageCryptoAlgorithmMax = STORAGE_CRYPTO_ALGORITHM_ID.Max;
 
-pub const STORAGE_CRYPTO_KEY_SIZE = extern enum(i32) {
+pub const STORAGE_CRYPTO_KEY_SIZE = enum(i32) {
     Unknown = 0,
     @"128Bits" = 1,
     @"192Bits" = 2,
@@ -11395,7 +11395,7 @@ pub const STORAGE_CRYPTO_DESCRIPTOR = extern struct {
     CryptoCapabilities: [1]STORAGE_CRYPTO_CAPABILITY,
 };
 
-pub const STORAGE_TIER_MEDIA_TYPE = extern enum(i32) {
+pub const STORAGE_TIER_MEDIA_TYPE = enum(i32) {
     Unspecified = 0,
     Disk = 1,
     Ssd = 2,
@@ -11408,7 +11408,7 @@ pub const StorageTierMediaTypeSsd = STORAGE_TIER_MEDIA_TYPE.Ssd;
 pub const StorageTierMediaTypeScm = STORAGE_TIER_MEDIA_TYPE.Scm;
 pub const StorageTierMediaTypeMax = STORAGE_TIER_MEDIA_TYPE.Max;
 
-pub const STORAGE_TIER_CLASS = extern enum(i32) {
+pub const STORAGE_TIER_CLASS = enum(i32) {
     Unspecified = 0,
     Capacity = 1,
     Performance = 2,
@@ -11445,7 +11445,7 @@ pub const STORAGE_DEVICE_FAULT_DOMAIN_DESCRIPTOR = extern struct {
     FaultDomainIds: [1]Guid,
 };
 
-pub const STORAGE_PROTOCOL_UFS_DATA_TYPE = extern enum(i32) {
+pub const STORAGE_PROTOCOL_UFS_DATA_TYPE = enum(i32) {
     Unknown = 0,
     QueryDescriptor = 1,
     Max = 2,
@@ -11475,7 +11475,7 @@ pub const STORAGE_PROTOCOL_DATA_DESCRIPTOR_EXT = extern struct {
     ProtocolSpecificData: STORAGE_PROTOCOL_SPECIFIC_DATA_EXT,
 };
 
-pub const STORAGE_DISK_HEALTH_STATUS = extern enum(i32) {
+pub const STORAGE_DISK_HEALTH_STATUS = enum(i32) {
     Unknown = 0,
     Unhealthy = 1,
     Warning = 2,
@@ -11488,7 +11488,7 @@ pub const DiskHealthWarning = STORAGE_DISK_HEALTH_STATUS.Warning;
 pub const DiskHealthHealthy = STORAGE_DISK_HEALTH_STATUS.Healthy;
 pub const DiskHealthMax = STORAGE_DISK_HEALTH_STATUS.Max;
 
-pub const STORAGE_DISK_OPERATIONAL_STATUS = extern enum(i32) {
+pub const STORAGE_DISK_OPERATIONAL_STATUS = enum(i32) {
     None = 0,
     Unknown = 1,
     Ok = 2,
@@ -11509,7 +11509,7 @@ pub const DiskOpStatusNotUsable = STORAGE_DISK_OPERATIONAL_STATUS.NotUsable;
 pub const DiskOpStatusTransientError = STORAGE_DISK_OPERATIONAL_STATUS.TransientError;
 pub const DiskOpStatusMissing = STORAGE_DISK_OPERATIONAL_STATUS.Missing;
 
-pub const STORAGE_OPERATIONAL_STATUS_REASON = extern enum(i32) {
+pub const STORAGE_OPERATIONAL_STATUS_REASON = enum(i32) {
     Unknown = 0,
     ScsiSenseCode = 1,
     Media = 2,
@@ -11584,7 +11584,7 @@ pub const STORAGE_DEVICE_MANAGEMENT_STATUS = extern struct {
     AdditionalReasons: [1]STORAGE_OPERATIONAL_REASON,
 };
 
-pub const STORAGE_ZONED_DEVICE_TYPES = extern enum(i32) {
+pub const STORAGE_ZONED_DEVICE_TYPES = enum(i32) {
     Unknown = 0,
     HostManaged = 1,
     HostAware = 2,
@@ -11595,7 +11595,7 @@ pub const ZonedDeviceTypeHostManaged = STORAGE_ZONED_DEVICE_TYPES.HostManaged;
 pub const ZonedDeviceTypeHostAware = STORAGE_ZONED_DEVICE_TYPES.HostAware;
 pub const ZonedDeviceTypeDeviceManaged = STORAGE_ZONED_DEVICE_TYPES.DeviceManaged;
 
-pub const STORAGE_ZONE_TYPES = extern enum(i32) {
+pub const STORAGE_ZONE_TYPES = enum(i32) {
     Unknown = 0,
     Conventional = 1,
     SequentialWriteRequired = 2,
@@ -11876,7 +11876,7 @@ pub const DEVICE_DSM_REPORT_ZONES_PARAMETERS = extern struct {
     Reserved: [2]u8,
 };
 
-pub const STORAGE_ZONES_ATTRIBUTES = extern enum(i32) {
+pub const STORAGE_ZONES_ATTRIBUTES = enum(i32) {
     AndLengthMayDifferent = 0,
     SameLengthSame = 1,
     SameLastZoneLengthDifferent = 2,
@@ -11887,7 +11887,7 @@ pub const ZonesAttributeTypeSameLengthSame = STORAGE_ZONES_ATTRIBUTES.SameLength
 pub const ZonesAttributeTypeSameLastZoneLengthDifferent = STORAGE_ZONES_ATTRIBUTES.SameLastZoneLengthDifferent;
 pub const ZonesAttributeTypeMayDifferentLengthSame = STORAGE_ZONES_ATTRIBUTES.MayDifferentLengthSame;
 
-pub const STORAGE_ZONE_CONDITION = extern enum(i32) {
+pub const STORAGE_ZONE_CONDITION = enum(i32) {
     Conventional = 0,
     Empty = 1,
     ImplicitlyOpened = 2,
@@ -11995,14 +11995,14 @@ pub const STORAGE_PRIORITY_HINT_SUPPORT = extern struct {
     SupportFlags: u32,
 };
 
-pub const STORAGE_DIAGNOSTIC_LEVEL = extern enum(i32) {
+pub const STORAGE_DIAGNOSTIC_LEVEL = enum(i32) {
     Default = 0,
     Max = 1,
 };
 pub const StorageDiagnosticLevelDefault = STORAGE_DIAGNOSTIC_LEVEL.Default;
 pub const StorageDiagnosticLevelMax = STORAGE_DIAGNOSTIC_LEVEL.Max;
 
-pub const STORAGE_DIAGNOSTIC_TARGET_TYPE = extern enum(i32) {
+pub const STORAGE_DIAGNOSTIC_TARGET_TYPE = enum(i32) {
     Undefined = 0,
     Port = 1,
     Miniport = 2,
@@ -12070,7 +12070,7 @@ pub const REMOVE_ELEMENT_AND_TRUNCATE_REQUEST = extern struct {
     Reserved: u32,
 };
 
-pub const DEVICE_INTERNAL_STATUS_DATA_REQUEST_TYPE = extern enum(i32) {
+pub const DEVICE_INTERNAL_STATUS_DATA_REQUEST_TYPE = enum(i32) {
     InternalStatusDataRequestTypeUndefined = 0,
     CurrentInternalStatusDataHeader = 1,
     CurrentInternalStatusData = 2,
@@ -12079,7 +12079,7 @@ pub const DeviceInternalStatusDataRequestTypeUndefined = DEVICE_INTERNAL_STATUS_
 pub const DeviceCurrentInternalStatusDataHeader = DEVICE_INTERNAL_STATUS_DATA_REQUEST_TYPE.CurrentInternalStatusDataHeader;
 pub const DeviceCurrentInternalStatusData = DEVICE_INTERNAL_STATUS_DATA_REQUEST_TYPE.CurrentInternalStatusData;
 
-pub const DEVICE_INTERNAL_STATUS_DATA_SET = extern enum(i32) {
+pub const DEVICE_INTERNAL_STATUS_DATA_SET = enum(i32) {
     Undefined = 0,
     @"1" = 1,
     @"2" = 2,
@@ -12146,7 +12146,7 @@ pub const PERSISTENT_RESERVE_COMMAND = extern struct {
     },
 };
 
-pub const _DEVICEDUMP_COLLECTION_TYPE = extern enum(i32) {
+pub const _DEVICEDUMP_COLLECTION_TYPE = enum(i32) {
     BugCheck = 1,
     ApplicationRequested = 2,
     DeviceRequested = 3,
@@ -12246,7 +12246,7 @@ pub const STORAGE_IDLE_POWER = extern struct {
     D3IdleTimeout: u32,
 };
 
-pub const STORAGE_POWERUP_REASON_TYPE = extern enum(i32) {
+pub const STORAGE_POWERUP_REASON_TYPE = enum(i32) {
     Unknown = 0,
     IO = 1,
     DeviceAttention = 2,
@@ -12273,7 +12273,7 @@ pub const STORAGE_RPMB_DATA_FRAME = extern struct {
     RequestOrResponseType: [2]u8,
 };
 
-pub const STORAGE_RPMB_COMMAND_TYPE = extern enum(i32) {
+pub const STORAGE_RPMB_COMMAND_TYPE = enum(i32) {
     ProgramAuthKey = 1,
     QueryWriteCounter = 2,
     AuthenticatedWrite = 3,
@@ -12296,7 +12296,7 @@ pub const STORAGE_EVENT_NOTIFICATION = extern struct {
     Events: u64,
 };
 
-pub const STORAGE_COUNTER_TYPE = extern enum(i32) {
+pub const STORAGE_COUNTER_TYPE = enum(i32) {
     Unknown = 0,
     TemperatureCelsius = 1,
     TemperatureCelsiusMax = 2,
@@ -12404,7 +12404,7 @@ pub const STORAGE_HW_FIRMWARE_DOWNLOAD_V2 = extern struct {
     ImageBuffer: [1]u8,
 };
 
-pub const STORAGE_ATTRIBUTE_MGMT_ACTION = extern enum(i32) {
+pub const STORAGE_ATTRIBUTE_MGMT_ACTION = enum(i32) {
     ClearAttribute = 0,
     SetAttribute = 1,
     ResetAttribute = 2,
@@ -12452,7 +12452,7 @@ pub const SCM_PHYSICAL_DEVICES = extern struct {
     Devices: [1]SCM_PHYSICAL_DEVICE_INSTANCE,
 };
 
-pub const SCM_REGION_FLAG = extern enum(i32) {
+pub const SCM_REGION_FLAG = enum(i32) {
     None = 0,
     Label = 1,
 };
@@ -12493,7 +12493,7 @@ pub const SCM_LD_INTERLEAVE_SET_INFO = extern struct {
     InterleaveSet: [1]SCM_INTERLEAVED_PD_INFO,
 };
 
-pub const SCM_PD_QUERY_TYPE = extern enum(i32) {
+pub const SCM_PD_QUERY_TYPE = enum(i32) {
     Descriptor = 0,
     IsSupported = 1,
     Max = 2,
@@ -12502,7 +12502,7 @@ pub const ScmPhysicalDeviceQuery_Descriptor = SCM_PD_QUERY_TYPE.Descriptor;
 pub const ScmPhysicalDeviceQuery_IsSupported = SCM_PD_QUERY_TYPE.IsSupported;
 pub const ScmPhysicalDeviceQuery_Max = SCM_PD_QUERY_TYPE.Max;
 
-pub const SCM_PD_PROPERTY_ID = extern enum(i32) {
+pub const SCM_PD_PROPERTY_ID = enum(i32) {
     DeviceInfo = 0,
     ManagementStatus = 1,
     FirmwareInfo = 2,
@@ -12594,7 +12594,7 @@ pub const SCM_PD_FIRMWARE_INFO = extern struct {
     Slots: [1]SCM_PD_FIRMWARE_SLOT_INFO,
 };
 
-pub const SCM_PD_HEALTH_STATUS = extern enum(i32) {
+pub const SCM_PD_HEALTH_STATUS = enum(i32) {
     Unknown = 0,
     Unhealthy = 1,
     Warning = 2,
@@ -12607,7 +12607,7 @@ pub const ScmPhysicalDeviceHealth_Warning = SCM_PD_HEALTH_STATUS.Warning;
 pub const ScmPhysicalDeviceHealth_Healthy = SCM_PD_HEALTH_STATUS.Healthy;
 pub const ScmPhysicalDeviceHealth_Max = SCM_PD_HEALTH_STATUS.Max;
 
-pub const SCM_PD_OPERATIONAL_STATUS = extern enum(i32) {
+pub const SCM_PD_OPERATIONAL_STATUS = enum(i32) {
     Unknown = 0,
     Ok = 1,
     PredictingFailure = 2,
@@ -12628,7 +12628,7 @@ pub const ScmPhysicalDeviceOpStatus_TransientError = SCM_PD_OPERATIONAL_STATUS.T
 pub const ScmPhysicalDeviceOpStatus_Missing = SCM_PD_OPERATIONAL_STATUS.Missing;
 pub const ScmPhysicalDeviceOpStatus_Max = SCM_PD_OPERATIONAL_STATUS.Max;
 
-pub const SCM_PD_OPERATIONAL_STATUS_REASON = extern enum(i32) {
+pub const SCM_PD_OPERATIONAL_STATUS_REASON = enum(i32) {
     Unknown = 0,
     Media = 1,
     ThresholdExceeded = 2,
@@ -12748,7 +12748,7 @@ pub const SCM_PD_REINITIALIZE_MEDIA_INPUT = extern struct {
     },
 };
 
-pub const SCM_PD_MEDIA_REINITIALIZATION_STATUS = extern enum(i32) {
+pub const SCM_PD_MEDIA_REINITIALIZATION_STATUS = enum(i32) {
     Success = 0,
     RebootNeeded = 1,
     ColdBootNeeded = 2,
@@ -12773,7 +12773,7 @@ pub const SET_PARTITION_INFORMATION_EX = extern struct {
     },
 };
 
-pub const DETECTION_TYPE = extern enum(i32) {
+pub const DETECTION_TYPE = enum(i32) {
     None = 0,
     Int13 = 1,
     ExInt13 = 2,
@@ -12787,7 +12787,7 @@ pub const DISK_CONTROLLER_NUMBER = extern struct {
     DiskNumber: u32,
 };
 
-pub const DISK_CACHE_RETENTION_PRIORITY = extern enum(i32) {
+pub const DISK_CACHE_RETENTION_PRIORITY = enum(i32) {
     EqualPriority = 0,
     KeepPrefetchedData = 1,
     KeepReadData = 2,
@@ -12831,7 +12831,7 @@ pub const DISK_LOGGING = extern struct {
     BufferSize: u32,
 };
 
-pub const BIN_TYPES = extern enum(i32) {
+pub const BIN_TYPES = enum(i32) {
     Size = 0,
     Location = 1,
 };
@@ -12901,7 +12901,7 @@ pub const SENDCMDOUTPARAMS = packed struct {
     bBuffer: [1]u8,
 };
 
-pub const ELEMENT_TYPE = extern enum(i32) {
+pub const ELEMENT_TYPE = enum(i32) {
     AllElements = 0,
     ChangerTransport = 1,
     ChangerSlot = 2,
@@ -13044,7 +13044,7 @@ pub const READ_ELEMENT_ADDRESS_INFO = extern struct {
     ElementStatus: [1]CHANGER_ELEMENT_STATUS,
 };
 
-pub const CHANGER_DEVICE_PROBLEM_TYPE = extern enum(i32) {
+pub const CHANGER_DEVICE_PROBLEM_TYPE = enum(i32) {
     None = 0,
     Hardware = 1,
     CHMError = 2,
@@ -13208,7 +13208,7 @@ pub const FILE_INITIATE_REPAIR_OUTPUT_BUFFER = extern struct {
     Status: u32,
 };
 
-pub const SHRINK_VOLUME_REQUEST_TYPES = extern enum(i32) {
+pub const SHRINK_VOLUME_REQUEST_TYPES = enum(i32) {
     Prepare = 1,
     Commit = 2,
     Abort = 3,
@@ -13370,7 +13370,7 @@ pub const CSV_QUERY_FILE_REVISION_FILE_ID_128 = extern struct {
     FileRevision: [3]i64,
 };
 
-pub const CSVFS_DISK_CONNECTIVITY = extern enum(i32) {
+pub const CSVFS_DISK_CONNECTIVITY = enum(i32) {
     None = 0,
     MdsNodeOnly = 1,
     SubsetOfNodes = 2,
@@ -13403,7 +13403,7 @@ pub const CSV_QUERY_MDS_PATH_V2 = extern struct {
     PathLength: u32,
 };
 
-pub const STORAGE_RESERVE_ID = extern enum(i32) {
+pub const STORAGE_RESERVE_ID = enum(i32) {
     None = 0,
     Hard = 1,
     Soft = 2,
@@ -13416,7 +13416,7 @@ pub const StorageReserveIdSoft = STORAGE_RESERVE_ID.Soft;
 pub const StorageReserveIdUpdateScratch = STORAGE_RESERVE_ID.UpdateScratch;
 pub const StorageReserveIdMax = STORAGE_RESERVE_ID.Max;
 
-pub const QUERY_FILE_LAYOUT_FILTER_TYPE = extern enum(i32) {
+pub const QUERY_FILE_LAYOUT_FILTER_TYPE = enum(i32) {
     FILTER_TYPE_NONE = 0,
     FILTER_TYPE_CLUSTERS = 1,
     FILTER_TYPE_FILEID = 2,
@@ -13587,7 +13587,7 @@ pub const WRITE_USN_REASON_INPUT = extern struct {
     UsnReasonToWrite: u32,
 };
 
-pub const FILE_STORAGE_TIER_CLASS = extern enum(i32) {
+pub const FILE_STORAGE_TIER_CLASS = enum(i32) {
     Unspecified = 0,
     Capacity = 1,
     Performance = 2,
@@ -13646,7 +13646,7 @@ pub const DUPLICATE_EXTENTS_DATA_EX = extern struct {
     Flags: u32,
 };
 
-pub const REFS_SMR_VOLUME_GC_STATE = extern enum(i32) {
+pub const REFS_SMR_VOLUME_GC_STATE = enum(i32) {
     Inactive = 0,
     Paused = 1,
     Active = 2,
@@ -13670,7 +13670,7 @@ pub const REFS_SMR_VOLUME_INFO_OUTPUT = extern struct {
     Unused: [7]u64,
 };
 
-pub const REFS_SMR_VOLUME_GC_ACTION = extern enum(i32) {
+pub const REFS_SMR_VOLUME_GC_ACTION = enum(i32) {
     Start = 1,
     StartFullSpeed = 2,
     Pause = 3,
@@ -13681,7 +13681,7 @@ pub const SmrGcActionStartFullSpeed = REFS_SMR_VOLUME_GC_ACTION.StartFullSpeed;
 pub const SmrGcActionPause = REFS_SMR_VOLUME_GC_ACTION.Pause;
 pub const SmrGcActionStop = REFS_SMR_VOLUME_GC_ACTION.Stop;
 
-pub const REFS_SMR_VOLUME_GC_METHOD = extern enum(i32) {
+pub const REFS_SMR_VOLUME_GC_METHOD = enum(i32) {
     Compaction = 1,
     Compression = 2,
     Rotation = 3,
@@ -13748,7 +13748,7 @@ pub const SET_DAX_ALLOC_ALIGNMENT_HINT_INPUT = extern struct {
     FallbackAlignmentShift: u32,
 };
 
-pub const VIRTUAL_STORAGE_BEHAVIOR_CODE = extern enum(i32) {
+pub const VIRTUAL_STORAGE_BEHAVIOR_CODE = enum(i32) {
     Undefined = 0,
     CacheWriteThrough = 1,
     CacheWriteBack = 2,
@@ -13933,7 +13933,7 @@ pub const DEVPROPKEY = extern struct {
     pid: u32,
 };
 
-pub const DEVPROPSTORE = extern enum(i32) {
+pub const DEVPROPSTORE = enum(i32) {
     SYSTEM = 0,
     USER = 1,
 };
@@ -14143,7 +14143,7 @@ pub const MEMORY_BASIC_INFORMATION = extern struct {
 
 }, else => struct { } };
 
-pub const ALERT_SYSTEM_SEV = extern enum(u32) {
+pub const ALERT_SYSTEM_SEV = enum(u32) {
     INFORMATIONAL = 1,
     WARNING = 2,
     ERROR = 3,
@@ -14156,7 +14156,7 @@ pub const ALERT_SYSTEM_ERROR = ALERT_SYSTEM_SEV.ERROR;
 pub const ALERT_SYSTEM_QUERY = ALERT_SYSTEM_SEV.QUERY;
 pub const ALERT_SYSTEM_CRITICAL = ALERT_SYSTEM_SEV.CRITICAL;
 
-pub const APPCOMMAND_ID = extern enum(u32) {
+pub const APPCOMMAND_ID = enum(u32) {
     BROWSER_BACKWARD = 1,
     BROWSER_FORWARD = 2,
     BROWSER_REFRESH = 3,
@@ -14267,7 +14267,7 @@ pub const APPCOMMAND_MEDIA_CHANNEL_DOWN = APPCOMMAND_ID.MEDIA_CHANNEL_DOWN;
 pub const APPCOMMAND_DELETE = APPCOMMAND_ID.DELETE;
 pub const APPCOMMAND_DWM_FLIP3D = APPCOMMAND_ID.DWM_FLIP3D;
 
-pub const ATF_FLAGS = extern enum(u32) {
+pub const ATF_FLAGS = enum(u32) {
     TIMEOUTON = 1,
     ONOFFFEEDBACK = 2,
     _,
@@ -14284,7 +14284,7 @@ pub const ATF_FLAGS = extern enum(u32) {
 pub const ATF_TIMEOUTON = ATF_FLAGS.TIMEOUTON;
 pub const ATF_ONOFFFEEDBACK = ATF_FLAGS.ONOFFFEEDBACK;
 
-pub const BUTTON_STYLE = extern enum(u32) {
+pub const BUTTON_STYLE = enum(u32) {
     PUSHBUTTON = 0,
     DEFPUSHBUTTON = 1,
     CHECKBOX = 2,
@@ -14299,7 +14299,7 @@ pub const BUTTON_STYLE = extern enum(u32) {
     OWNERDRAW = 11,
     TYPEMASK = 15,
     LEFTTEXT = 32,
-    TEXT = 0,
+    // TEXT = 0, this enum value conflicts with PUSHBUTTON
     ICON = 64,
     BITMAP = 128,
     LEFT = 256,
@@ -14312,7 +14312,7 @@ pub const BUTTON_STYLE = extern enum(u32) {
     MULTILINE = 8192,
     NOTIFY = 16384,
     FLAT = 32768,
-    RIGHTBUTTON = 32,
+    // RIGHTBUTTON = 32, this enum value conflicts with LEFTTEXT
     _,
     pub fn initFlags(o: struct {
         PUSHBUTTON: u1 = 0,
@@ -14329,7 +14329,6 @@ pub const BUTTON_STYLE = extern enum(u32) {
         OWNERDRAW: u1 = 0,
         TYPEMASK: u1 = 0,
         LEFTTEXT: u1 = 0,
-        TEXT: u1 = 0,
         ICON: u1 = 0,
         BITMAP: u1 = 0,
         LEFT: u1 = 0,
@@ -14342,7 +14341,6 @@ pub const BUTTON_STYLE = extern enum(u32) {
         MULTILINE: u1 = 0,
         NOTIFY: u1 = 0,
         FLAT: u1 = 0,
-        RIGHTBUTTON: u1 = 0,
     }) BUTTON_STYLE {
         return @intToEnum(BUTTON_STYLE,
               (if (o.PUSHBUTTON == 1) @enumToInt(BUTTON_STYLE.PUSHBUTTON) else 0)
@@ -14359,7 +14357,6 @@ pub const BUTTON_STYLE = extern enum(u32) {
             | (if (o.OWNERDRAW == 1) @enumToInt(BUTTON_STYLE.OWNERDRAW) else 0)
             | (if (o.TYPEMASK == 1) @enumToInt(BUTTON_STYLE.TYPEMASK) else 0)
             | (if (o.LEFTTEXT == 1) @enumToInt(BUTTON_STYLE.LEFTTEXT) else 0)
-            | (if (o.TEXT == 1) @enumToInt(BUTTON_STYLE.TEXT) else 0)
             | (if (o.ICON == 1) @enumToInt(BUTTON_STYLE.ICON) else 0)
             | (if (o.BITMAP == 1) @enumToInt(BUTTON_STYLE.BITMAP) else 0)
             | (if (o.LEFT == 1) @enumToInt(BUTTON_STYLE.LEFT) else 0)
@@ -14372,7 +14369,6 @@ pub const BUTTON_STYLE = extern enum(u32) {
             | (if (o.MULTILINE == 1) @enumToInt(BUTTON_STYLE.MULTILINE) else 0)
             | (if (o.NOTIFY == 1) @enumToInt(BUTTON_STYLE.NOTIFY) else 0)
             | (if (o.FLAT == 1) @enumToInt(BUTTON_STYLE.FLAT) else 0)
-            | (if (o.RIGHTBUTTON == 1) @enumToInt(BUTTON_STYLE.RIGHTBUTTON) else 0)
         );
     }
 };
@@ -14390,7 +14386,7 @@ pub const BS_PUSHBOX = BUTTON_STYLE.PUSHBOX;
 pub const BS_OWNERDRAW = BUTTON_STYLE.OWNERDRAW;
 pub const BS_TYPEMASK = BUTTON_STYLE.TYPEMASK;
 pub const BS_LEFTTEXT = BUTTON_STYLE.LEFTTEXT;
-pub const BS_TEXT = BUTTON_STYLE.TEXT;
+pub const BS_TEXT = BUTTON_STYLE.PUSHBUTTON;
 pub const BS_ICON = BUTTON_STYLE.ICON;
 pub const BS_BITMAP = BUTTON_STYLE.BITMAP;
 pub const BS_LEFT = BUTTON_STYLE.LEFT;
@@ -14403,9 +14399,9 @@ pub const BS_PUSHLIKE = BUTTON_STYLE.PUSHLIKE;
 pub const BS_MULTILINE = BUTTON_STYLE.MULTILINE;
 pub const BS_NOTIFY = BUTTON_STYLE.NOTIFY;
 pub const BS_FLAT = BUTTON_STYLE.FLAT;
-pub const BS_RIGHTBUTTON = BUTTON_STYLE.RIGHTBUTTON;
+pub const BS_RIGHTBUTTON = BUTTON_STYLE.LEFTTEXT;
 
-pub const COMBOBOX_STYLE = extern enum(u32) {
+pub const COMBOBOX_STYLE = enum(u32) {
     SIMPLE = 1,
     DROPDOWN = 2,
     DROPDOWNLIST = 3,
@@ -14466,7 +14462,7 @@ pub const CBS_DISABLENOSCROLL = COMBOBOX_STYLE.DISABLENOSCROLL;
 pub const CBS_UPPERCASE = COMBOBOX_STYLE.UPPERCASE;
 pub const CBS_LOWERCASE = COMBOBOX_STYLE.LOWERCASE;
 
-pub const CHOOSECOLOR_FLAGS = extern enum(u32) {
+pub const CHOOSECOLOR_FLAGS = enum(u32) {
     RGBINIT = 1,
     FULLOPEN = 2,
     PREVENTFULLOPEN = 4,
@@ -14511,7 +14507,7 @@ pub const CC_ENABLETEMPLATEHANDLE = CHOOSECOLOR_FLAGS.ENABLETEMPLATEHANDLE;
 pub const CC_SOLIDCOLOR = CHOOSECOLOR_FLAGS.SOLIDCOLOR;
 pub const CC_ANYCOLOR = CHOOSECOLOR_FLAGS.ANYCOLOR;
 
-pub const CLIPBOARD_FORMATS = extern enum(u32) {
+pub const CLIPBOARD_FORMATS = enum(u32) {
     TEXT = 1,
     BITMAP = 2,
     METAFILEPICT = 3,
@@ -14568,7 +14564,7 @@ pub const CF_PRIVATELAST = CLIPBOARD_FORMATS.PRIVATELAST;
 pub const CF_GDIOBJFIRST = CLIPBOARD_FORMATS.GDIOBJFIRST;
 pub const CF_GDIOBJLAST = CLIPBOARD_FORMATS.GDIOBJLAST;
 
-pub const DIALOGBOX_STYLE = extern enum(u32) {
+pub const DIALOGBOX_STYLE = enum(u32) {
     ABSALIGN = 1,
     SYSMODAL = 2,
     LOCALEDIT = 32,
@@ -14641,7 +14637,7 @@ pub const DS_CONTEXTHELP = DIALOGBOX_STYLE.CONTEXTHELP;
 pub const DS_SHELLFONT = DIALOGBOX_STYLE.SHELLFONT;
 pub const DS_USEPIXELS = DIALOGBOX_STYLE.USEPIXELS;
 
-pub const EDITCONTROL_STYLE = extern enum(u32) {
+pub const EDITCONTROL_STYLE = enum(u32) {
     LEFT = 0,
     CENTER = 1,
     RIGHT = 2,
@@ -14706,60 +14702,48 @@ pub const ES_READONLY = EDITCONTROL_STYLE.READONLY;
 pub const ES_WANTRETURN = EDITCONTROL_STYLE.WANTRETURN;
 pub const ES_NUMBER = EDITCONTROL_STYLE.NUMBER;
 
-pub const GESTURECONFIG_FLAGS = extern enum(u32) {
+pub const GESTURECONFIG_FLAGS = enum(u32) {
     ALLGESTURES = 1,
-    ZOOM = 1,
-    PAN = 1,
+    // ZOOM = 1, this enum value conflicts with ALLGESTURES
+    // PAN = 1, this enum value conflicts with ALLGESTURES
     PAN_WITH_SINGLE_FINGER_VERTICALLY = 2,
     PAN_WITH_SINGLE_FINGER_HORIZONTALLY = 4,
     PAN_WITH_GUTTER = 8,
     PAN_WITH_INERTIA = 16,
-    ROTATE = 1,
-    TWOFINGERTAP = 1,
-    PRESSANDTAP = 1,
-    ROLLOVER = 1,
+    // ROTATE = 1, this enum value conflicts with ALLGESTURES
+    // TWOFINGERTAP = 1, this enum value conflicts with ALLGESTURES
+    // PRESSANDTAP = 1, this enum value conflicts with ALLGESTURES
+    // ROLLOVER = 1, this enum value conflicts with ALLGESTURES
     _,
     pub fn initFlags(o: struct {
         ALLGESTURES: u1 = 0,
-        ZOOM: u1 = 0,
-        PAN: u1 = 0,
         PAN_WITH_SINGLE_FINGER_VERTICALLY: u1 = 0,
         PAN_WITH_SINGLE_FINGER_HORIZONTALLY: u1 = 0,
         PAN_WITH_GUTTER: u1 = 0,
         PAN_WITH_INERTIA: u1 = 0,
-        ROTATE: u1 = 0,
-        TWOFINGERTAP: u1 = 0,
-        PRESSANDTAP: u1 = 0,
-        ROLLOVER: u1 = 0,
     }) GESTURECONFIG_FLAGS {
         return @intToEnum(GESTURECONFIG_FLAGS,
               (if (o.ALLGESTURES == 1) @enumToInt(GESTURECONFIG_FLAGS.ALLGESTURES) else 0)
-            | (if (o.ZOOM == 1) @enumToInt(GESTURECONFIG_FLAGS.ZOOM) else 0)
-            | (if (o.PAN == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN) else 0)
             | (if (o.PAN_WITH_SINGLE_FINGER_VERTICALLY == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_SINGLE_FINGER_VERTICALLY) else 0)
             | (if (o.PAN_WITH_SINGLE_FINGER_HORIZONTALLY == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_SINGLE_FINGER_HORIZONTALLY) else 0)
             | (if (o.PAN_WITH_GUTTER == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_GUTTER) else 0)
             | (if (o.PAN_WITH_INERTIA == 1) @enumToInt(GESTURECONFIG_FLAGS.PAN_WITH_INERTIA) else 0)
-            | (if (o.ROTATE == 1) @enumToInt(GESTURECONFIG_FLAGS.ROTATE) else 0)
-            | (if (o.TWOFINGERTAP == 1) @enumToInt(GESTURECONFIG_FLAGS.TWOFINGERTAP) else 0)
-            | (if (o.PRESSANDTAP == 1) @enumToInt(GESTURECONFIG_FLAGS.PRESSANDTAP) else 0)
-            | (if (o.ROLLOVER == 1) @enumToInt(GESTURECONFIG_FLAGS.ROLLOVER) else 0)
         );
     }
 };
 pub const GC_ALLGESTURES = GESTURECONFIG_FLAGS.ALLGESTURES;
-pub const GC_ZOOM = GESTURECONFIG_FLAGS.ZOOM;
-pub const GC_PAN = GESTURECONFIG_FLAGS.PAN;
+pub const GC_ZOOM = GESTURECONFIG_FLAGS.ALLGESTURES;
+pub const GC_PAN = GESTURECONFIG_FLAGS.ALLGESTURES;
 pub const GC_PAN_WITH_SINGLE_FINGER_VERTICALLY = GESTURECONFIG_FLAGS.PAN_WITH_SINGLE_FINGER_VERTICALLY;
 pub const GC_PAN_WITH_SINGLE_FINGER_HORIZONTALLY = GESTURECONFIG_FLAGS.PAN_WITH_SINGLE_FINGER_HORIZONTALLY;
 pub const GC_PAN_WITH_GUTTER = GESTURECONFIG_FLAGS.PAN_WITH_GUTTER;
 pub const GC_PAN_WITH_INERTIA = GESTURECONFIG_FLAGS.PAN_WITH_INERTIA;
-pub const GC_ROTATE = GESTURECONFIG_FLAGS.ROTATE;
-pub const GC_TWOFINGERTAP = GESTURECONFIG_FLAGS.TWOFINGERTAP;
-pub const GC_PRESSANDTAP = GESTURECONFIG_FLAGS.PRESSANDTAP;
-pub const GC_ROLLOVER = GESTURECONFIG_FLAGS.ROLLOVER;
+pub const GC_ROTATE = GESTURECONFIG_FLAGS.ALLGESTURES;
+pub const GC_TWOFINGERTAP = GESTURECONFIG_FLAGS.ALLGESTURES;
+pub const GC_PRESSANDTAP = GESTURECONFIG_FLAGS.ALLGESTURES;
+pub const GC_ROLLOVER = GESTURECONFIG_FLAGS.ALLGESTURES;
 
-pub const LISTBOX_STYLE = extern enum(u32) {
+pub const LISTBOX_STYLE = enum(u32) {
     STANDARD = 10485763,
     NOTIFY = 1,
     SORT = 2,
@@ -14836,15 +14820,15 @@ pub const LBS_NODATA = LISTBOX_STYLE.NODATA;
 pub const LBS_NOSEL = LISTBOX_STYLE.NOSEL;
 pub const LBS_COMBOBOX = LISTBOX_STYLE.COMBOBOX;
 
-pub const SCROLLBAR_STYLE = extern enum(u32) {
+pub const SCROLLBAR_STYLE = enum(u32) {
     HORZ = 0,
     VERT = 1,
     TOPALIGN = 2,
-    LEFTALIGN = 2,
+    // LEFTALIGN = 2, this enum value conflicts with TOPALIGN
     BOTTOMALIGN = 4,
-    RIGHTALIGN = 4,
-    SIZEBOXTOPLEFTALIGN = 2,
-    SIZEBOXBOTTOMRIGHTALIGN = 4,
+    // RIGHTALIGN = 4, this enum value conflicts with BOTTOMALIGN
+    // SIZEBOXTOPLEFTALIGN = 2, this enum value conflicts with TOPALIGN
+    // SIZEBOXBOTTOMRIGHTALIGN = 4, this enum value conflicts with BOTTOMALIGN
     SIZEBOX = 8,
     SIZEGRIP = 16,
     _,
@@ -14852,11 +14836,7 @@ pub const SCROLLBAR_STYLE = extern enum(u32) {
         HORZ: u1 = 0,
         VERT: u1 = 0,
         TOPALIGN: u1 = 0,
-        LEFTALIGN: u1 = 0,
         BOTTOMALIGN: u1 = 0,
-        RIGHTALIGN: u1 = 0,
-        SIZEBOXTOPLEFTALIGN: u1 = 0,
-        SIZEBOXBOTTOMRIGHTALIGN: u1 = 0,
         SIZEBOX: u1 = 0,
         SIZEGRIP: u1 = 0,
     }) SCROLLBAR_STYLE {
@@ -14864,11 +14844,7 @@ pub const SCROLLBAR_STYLE = extern enum(u32) {
               (if (o.HORZ == 1) @enumToInt(SCROLLBAR_STYLE.HORZ) else 0)
             | (if (o.VERT == 1) @enumToInt(SCROLLBAR_STYLE.VERT) else 0)
             | (if (o.TOPALIGN == 1) @enumToInt(SCROLLBAR_STYLE.TOPALIGN) else 0)
-            | (if (o.LEFTALIGN == 1) @enumToInt(SCROLLBAR_STYLE.LEFTALIGN) else 0)
             | (if (o.BOTTOMALIGN == 1) @enumToInt(SCROLLBAR_STYLE.BOTTOMALIGN) else 0)
-            | (if (o.RIGHTALIGN == 1) @enumToInt(SCROLLBAR_STYLE.RIGHTALIGN) else 0)
-            | (if (o.SIZEBOXTOPLEFTALIGN == 1) @enumToInt(SCROLLBAR_STYLE.SIZEBOXTOPLEFTALIGN) else 0)
-            | (if (o.SIZEBOXBOTTOMRIGHTALIGN == 1) @enumToInt(SCROLLBAR_STYLE.SIZEBOXBOTTOMRIGHTALIGN) else 0)
             | (if (o.SIZEBOX == 1) @enumToInt(SCROLLBAR_STYLE.SIZEBOX) else 0)
             | (if (o.SIZEGRIP == 1) @enumToInt(SCROLLBAR_STYLE.SIZEGRIP) else 0)
         );
@@ -14877,15 +14853,15 @@ pub const SCROLLBAR_STYLE = extern enum(u32) {
 pub const SBS_HORZ = SCROLLBAR_STYLE.HORZ;
 pub const SBS_VERT = SCROLLBAR_STYLE.VERT;
 pub const SBS_TOPALIGN = SCROLLBAR_STYLE.TOPALIGN;
-pub const SBS_LEFTALIGN = SCROLLBAR_STYLE.LEFTALIGN;
+pub const SBS_LEFTALIGN = SCROLLBAR_STYLE.TOPALIGN;
 pub const SBS_BOTTOMALIGN = SCROLLBAR_STYLE.BOTTOMALIGN;
-pub const SBS_RIGHTALIGN = SCROLLBAR_STYLE.RIGHTALIGN;
-pub const SBS_SIZEBOXTOPLEFTALIGN = SCROLLBAR_STYLE.SIZEBOXTOPLEFTALIGN;
-pub const SBS_SIZEBOXBOTTOMRIGHTALIGN = SCROLLBAR_STYLE.SIZEBOXBOTTOMRIGHTALIGN;
+pub const SBS_RIGHTALIGN = SCROLLBAR_STYLE.BOTTOMALIGN;
+pub const SBS_SIZEBOXTOPLEFTALIGN = SCROLLBAR_STYLE.TOPALIGN;
+pub const SBS_SIZEBOXBOTTOMRIGHTALIGN = SCROLLBAR_STYLE.BOTTOMALIGN;
 pub const SBS_SIZEBOX = SCROLLBAR_STYLE.SIZEBOX;
 pub const SBS_SIZEGRIP = SCROLLBAR_STYLE.SIZEGRIP;
 
-pub const STATIC_CONTROL_STYLE = extern enum(u32) {
+pub const STATIC_CONTROL_STYLE = enum(u32) {
     LEFT = 0,
     CENTER = 1,
     RIGHT = 2,
@@ -14917,7 +14893,7 @@ pub const STATIC_CONTROL_STYLE = extern enum(u32) {
     ENDELLIPSIS = 16384,
     PATHELLIPSIS = 32768,
     WORDELLIPSIS = 49152,
-    ELLIPSISMASK = 49152,
+    // ELLIPSISMASK = 49152, this enum value conflicts with WORDELLIPSIS
     _,
     pub fn initFlags(o: struct {
         LEFT: u1 = 0,
@@ -14951,7 +14927,6 @@ pub const STATIC_CONTROL_STYLE = extern enum(u32) {
         ENDELLIPSIS: u1 = 0,
         PATHELLIPSIS: u1 = 0,
         WORDELLIPSIS: u1 = 0,
-        ELLIPSISMASK: u1 = 0,
     }) STATIC_CONTROL_STYLE {
         return @intToEnum(STATIC_CONTROL_STYLE,
               (if (o.LEFT == 1) @enumToInt(STATIC_CONTROL_STYLE.LEFT) else 0)
@@ -14985,7 +14960,6 @@ pub const STATIC_CONTROL_STYLE = extern enum(u32) {
             | (if (o.ENDELLIPSIS == 1) @enumToInt(STATIC_CONTROL_STYLE.ENDELLIPSIS) else 0)
             | (if (o.PATHELLIPSIS == 1) @enumToInt(STATIC_CONTROL_STYLE.PATHELLIPSIS) else 0)
             | (if (o.WORDELLIPSIS == 1) @enumToInt(STATIC_CONTROL_STYLE.WORDELLIPSIS) else 0)
-            | (if (o.ELLIPSISMASK == 1) @enumToInt(STATIC_CONTROL_STYLE.ELLIPSISMASK) else 0)
         );
     }
 };
@@ -15020,9 +14994,9 @@ pub const SS_EDITCONTROL = STATIC_CONTROL_STYLE.EDITCONTROL;
 pub const SS_ENDELLIPSIS = STATIC_CONTROL_STYLE.ENDELLIPSIS;
 pub const SS_PATHELLIPSIS = STATIC_CONTROL_STYLE.PATHELLIPSIS;
 pub const SS_WORDELLIPSIS = STATIC_CONTROL_STYLE.WORDELLIPSIS;
-pub const SS_ELLIPSISMASK = STATIC_CONTROL_STYLE.ELLIPSISMASK;
+pub const SS_ELLIPSISMASK = STATIC_CONTROL_STYLE.WORDELLIPSIS;
 
-pub const CFE_UNDERLINE = extern enum(u32) {
+pub const CFE_UNDERLINE = enum(u32) {
     CF1UNDERLINE = 255,
     INVERT = 254,
     UNDERLINETHICKLONGDASH = 18,
@@ -15115,7 +15089,7 @@ pub const CFU_UNDERLINEWORD = CFE_UNDERLINE.UNDERLINEWORD;
 pub const CFU_UNDERLINE = CFE_UNDERLINE.UNDERLINE;
 pub const CFU_UNDERLINENONE = CFE_UNDERLINE.UNDERLINENONE;
 
-pub const IGP_ID = extern enum(u32) {
+pub const IGP_ID = enum(u32) {
     GETIMEVERSION = 4294967292,
     PROPERTY = 4,
     CONVERSION = 8,
@@ -15132,7 +15106,7 @@ pub const IGP_UI = IGP_ID.UI;
 pub const IGP_SETCOMPSTR = IGP_ID.SETCOMPSTR;
 pub const IGP_SELECT = IGP_ID.SELECT;
 
-pub const SECTION_FLAGS = extern enum(u32) {
+pub const SECTION_FLAGS = enum(u32) {
     ALL_ACCESS = 983071,
     QUERY = 1,
     MAP_WRITE = 2,
@@ -15169,7 +15143,7 @@ pub const SECTION_MAP_EXECUTE = SECTION_FLAGS.MAP_EXECUTE;
 pub const SECTION_EXTEND_SIZE = SECTION_FLAGS.EXTEND_SIZE;
 pub const SECTION_MAP_EXECUTE_EXPLICIT = SECTION_FLAGS.MAP_EXECUTE_EXPLICIT;
 
-pub const JOB_OBJECT_CPU_RATE_CONTROL = extern enum(u32) {
+pub const JOB_OBJECT_CPU_RATE_CONTROL = enum(u32) {
     CPU_RATE_CONTROL_ENABLE = 1,
     CPU_RATE_CONTROL_WEIGHT_BASED = 2,
     CPU_RATE_CONTROL_HARD_CAP = 4,
@@ -15182,7 +15156,7 @@ pub const JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP = JOB_OBJECT_CPU_RATE_CONTROL.CPU
 pub const JOB_OBJECT_CPU_RATE_CONTROL_NOTIFY = JOB_OBJECT_CPU_RATE_CONTROL.CPU_RATE_CONTROL_NOTIFY;
 pub const JOB_OBJECT__CPU_RATE_CONTROL_MIN_MAX_RATE = JOB_OBJECT_CPU_RATE_CONTROL._CPU_RATE_CONTROL_MIN_MAX_RATE;
 
-pub const CHANGER_FEATURES = extern enum(u32) {
+pub const CHANGER_FEATURES = enum(u32) {
     BAR_CODE_SCANNER_INSTALLED = 1,
     CARTRIDGE_MAGAZINE = 256,
     CLEANER_ACCESS_NOT_VALID = 262144,
@@ -15307,7 +15281,7 @@ pub const CHANGER_VOLUME_REPLACE = CHANGER_FEATURES.VOLUME_REPLACE;
 pub const CHANGER_VOLUME_SEARCH = CHANGER_FEATURES.VOLUME_SEARCH;
 pub const CHANGER_VOLUME_UNDEFINE = CHANGER_FEATURES.VOLUME_UNDEFINE;
 
-pub const TTTOOLINFO_FLAGS = extern enum(u32) {
+pub const TTTOOLINFO_FLAGS = enum(u32) {
     ABSOLUTE = 128,
     CENTERTIP = 2,
     IDISHWND = 1,
@@ -15348,14 +15322,14 @@ pub const TTF_SUBCLASS = TTTOOLINFO_FLAGS.SUBCLASS;
 pub const TTF_TRACK = TTTOOLINFO_FLAGS.TRACK;
 pub const TTF_TRANSPARENT = TTTOOLINFO_FLAGS.TRANSPARENT;
 
-pub const JOB_OBJECT_TERMINATE_AT_END_ACTION = extern enum(u32) {
+pub const JOB_OBJECT_TERMINATE_AT_END_ACTION = enum(u32) {
     TERMINATE_AT_END_OF_JOB = 0,
     POST_AT_END_OF_JOB = 1,
 };
 pub const JOB_OBJECT_TERMINATE_AT_END_OF_JOB = JOB_OBJECT_TERMINATE_AT_END_ACTION.TERMINATE_AT_END_OF_JOB;
 pub const JOB_OBJECT_POST_AT_END_OF_JOB = JOB_OBJECT_TERMINATE_AT_END_ACTION.POST_AT_END_OF_JOB;
 
-pub const CHANGER_ELEMENT_STATUS_FLAGS = extern enum(u32) {
+pub const CHANGER_ELEMENT_STATUS_FLAGS = enum(u32) {
     ACCESS = 8,
     AVOLTAG = 536870912,
     EXCEPT = 4,
@@ -15420,7 +15394,7 @@ pub const ELEMENT_STATUS_PVOLTAG = CHANGER_ELEMENT_STATUS_FLAGS.PVOLTAG;
 pub const ELEMENT_STATUS_SVALID = CHANGER_ELEMENT_STATUS_FLAGS.SVALID;
 pub const ELEMENT_STATUS_PRODUCT_DATA = CHANGER_ELEMENT_STATUS_FLAGS.PRODUCT_DATA;
 
-pub const TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH = extern enum(u32) {
+pub const TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH = enum(u32) {
     ABS_BLK_IMMED = 2147491840,
     ABSOLUTE_BLK = 2147487744,
     END_OF_DATA = 2147549184,
@@ -15545,7 +15519,7 @@ pub const TAPE_DRIVE_WRITE_MARK_IMMED = TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.
 pub const TAPE_DRIVE_WRITE_SETMARKS = TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_SETMARKS;
 pub const TAPE_DRIVE_WRITE_SHORT_FMKS = TAPE_GET_DRIVE_PARAMETERS_FEATURES_HIGH.WRITE_SHORT_FMKS;
 
-pub const DEV_BROADCAST_HDR_DEVICE_TYPE = extern enum(u32) {
+pub const DEV_BROADCAST_HDR_DEVICE_TYPE = enum(u32) {
     DEVICEINTERFACE = 5,
     HANDLE = 6,
     OEM = 0,
@@ -15558,7 +15532,7 @@ pub const DBT_DEVTYP_OEM = DEV_BROADCAST_HDR_DEVICE_TYPE.OEM;
 pub const DBT_DEVTYP_PORT = DEV_BROADCAST_HDR_DEVICE_TYPE.PORT;
 pub const DBT_DEVTYP_VOLUME = DEV_BROADCAST_HDR_DEVICE_TYPE.VOLUME;
 
-pub const GET_CHANGER_PARAMETERS_FEATURES1 = extern enum(u32) {
+pub const GET_CHANGER_PARAMETERS_FEATURES1 = enum(u32) {
     CLEANER_AUTODISMOUNT = 2147483652,
     CLEANER_OPS_NOT_SUPPORTED = 2147483712,
     IEPORT_USER_CONTROL_CLOSE = 2147483904,
@@ -15611,14 +15585,14 @@ pub const CHANGER_RTN_MEDIA_TO_ORIGINAL_ADDR = GET_CHANGER_PARAMETERS_FEATURES1.
 pub const CHANGER_SLOTS_USE_TRAYS = GET_CHANGER_PARAMETERS_FEATURES1.SLOTS_USE_TRAYS;
 pub const CHANGER_TRUE_EXCHANGE_CAPABLE = GET_CHANGER_PARAMETERS_FEATURES1.TRUE_EXCHANGE_CAPABLE;
 
-pub const DEV_BROADCAST_VOLUME_FLAGS = extern enum(u32) {
+pub const DEV_BROADCAST_VOLUME_FLAGS = enum(u32) {
     MEDIA = 1,
     NET = 2,
 };
 pub const DBTF_MEDIA = DEV_BROADCAST_VOLUME_FLAGS.MEDIA;
 pub const DBTF_NET = DEV_BROADCAST_VOLUME_FLAGS.NET;
 
-pub const CERT_VIEWPROPERTIES_STRUCT_FLAGS = extern enum(u32) {
+pub const CERT_VIEWPROPERTIES_STRUCT_FLAGS = enum(u32) {
     ENABLEHOOK = 1,
     SHOW_HELP = 2,
     SHOW_HELPICON = 4,
@@ -15667,7 +15641,7 @@ pub const CM_NO_EDITTRUST = CERT_VIEWPROPERTIES_STRUCT_FLAGS.NO_EDITTRUST;
 pub const CM_HIDE_DETAILPAGE = CERT_VIEWPROPERTIES_STRUCT_FLAGS.HIDE_DETAILPAGE;
 pub const CM_ADD_CERT_STORES = CERT_VIEWPROPERTIES_STRUCT_FLAGS.ADD_CERT_STORES;
 
-pub const POWER_REQUEST_CONTEXT_FLAGS = extern enum(u32) {
+pub const POWER_REQUEST_CONTEXT_FLAGS = enum(u32) {
     DETAILED_STRING = 2,
     SIMPLE_STRING = 1,
 };

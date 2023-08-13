@@ -829,7 +829,7 @@ pub const CO_MTA_USAGE_COOKIE = isize;
 
 pub const CO_DEVICE_CATALOG_COOKIE = isize;
 
-pub const DVASPECT = extern enum(i32) {
+pub const DVASPECT = enum(i32) {
     CONTENT = 1,
     THUMBNAIL = 2,
     ICON = 4,
@@ -855,7 +855,7 @@ pub const QUERYCONTEXT = extern struct {
     dwVersionLo: u32,
 };
 
-pub const TYSPEC = extern enum(i32) {
+pub const TYSPEC = enum(i32) {
     CLSID = 0,
     FILEEXT = 1,
     MIMETYPE = 2,
@@ -880,7 +880,7 @@ pub const IContext = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const REGCLS = extern enum(i32) {
+pub const REGCLS = enum(i32) {
     SINGLEUSE = 0,
     MULTIPLEUSE = 1,
     MULTI_SEPARATE = 2,
@@ -895,7 +895,7 @@ pub const REGCLS_SUSPENDED = REGCLS.SUSPENDED;
 pub const REGCLS_SURROGATE = REGCLS.SURROGATE;
 pub const REGCLS_AGILE = REGCLS.AGILE;
 
-pub const COINITBASE = extern enum(i32) {
+pub const COINITBASE = enum(i32) {
     D = 0,
 };
 pub const COINITBASE_MULTITHREADED = COINITBASE.D;
@@ -920,7 +920,7 @@ pub const COAUTHINFO = extern struct {
     dwCapabilities: u32,
 };
 
-pub const MEMCTX = extern enum(i32) {
+pub const MEMCTX = enum(i32) {
     TASK = 1,
     SHARED = 2,
     MACSYSTEM = 3,
@@ -933,7 +933,7 @@ pub const MEMCTX_MACSYSTEM = MEMCTX.MACSYSTEM;
 pub const MEMCTX_UNKNOWN = MEMCTX.UNKNOWN;
 pub const MEMCTX_SAME = MEMCTX.SAME;
 
-pub const CLSCTX = extern enum(u32) {
+pub const CLSCTX = enum(u32) {
     INPROC_SERVER = 1,
     INPROC_HANDLER = 2,
     LOCAL_SERVER = 4,
@@ -953,7 +953,7 @@ pub const CLSCTX = extern enum(u32) {
     ENABLE_AAA = 65536,
     FROM_DEFAULT_CONTEXT = 131072,
     ACTIVATE_X86_SERVER = 262144,
-    ACTIVATE_32_BIT_SERVER = 262144,
+    // ACTIVATE_32_BIT_SERVER = 262144, this enum value conflicts with ACTIVATE_X86_SERVER
     ACTIVATE_64_BIT_SERVER = 524288,
     ENABLE_CLOAKING = 1048576,
     APPCONTAINER = 4194304,
@@ -984,7 +984,6 @@ pub const CLSCTX = extern enum(u32) {
         ENABLE_AAA: u1 = 0,
         FROM_DEFAULT_CONTEXT: u1 = 0,
         ACTIVATE_X86_SERVER: u1 = 0,
-        ACTIVATE_32_BIT_SERVER: u1 = 0,
         ACTIVATE_64_BIT_SERVER: u1 = 0,
         ENABLE_CLOAKING: u1 = 0,
         APPCONTAINER: u1 = 0,
@@ -1015,7 +1014,6 @@ pub const CLSCTX = extern enum(u32) {
             | (if (o.ENABLE_AAA == 1) @enumToInt(CLSCTX.ENABLE_AAA) else 0)
             | (if (o.FROM_DEFAULT_CONTEXT == 1) @enumToInt(CLSCTX.FROM_DEFAULT_CONTEXT) else 0)
             | (if (o.ACTIVATE_X86_SERVER == 1) @enumToInt(CLSCTX.ACTIVATE_X86_SERVER) else 0)
-            | (if (o.ACTIVATE_32_BIT_SERVER == 1) @enumToInt(CLSCTX.ACTIVATE_32_BIT_SERVER) else 0)
             | (if (o.ACTIVATE_64_BIT_SERVER == 1) @enumToInt(CLSCTX.ACTIVATE_64_BIT_SERVER) else 0)
             | (if (o.ENABLE_CLOAKING == 1) @enumToInt(CLSCTX.ENABLE_CLOAKING) else 0)
             | (if (o.APPCONTAINER == 1) @enumToInt(CLSCTX.APPCONTAINER) else 0)
@@ -1047,7 +1045,7 @@ pub const CLSCTX_DISABLE_AAA = CLSCTX.DISABLE_AAA;
 pub const CLSCTX_ENABLE_AAA = CLSCTX.ENABLE_AAA;
 pub const CLSCTX_FROM_DEFAULT_CONTEXT = CLSCTX.FROM_DEFAULT_CONTEXT;
 pub const CLSCTX_ACTIVATE_X86_SERVER = CLSCTX.ACTIVATE_X86_SERVER;
-pub const CLSCTX_ACTIVATE_32_BIT_SERVER = CLSCTX.ACTIVATE_32_BIT_SERVER;
+pub const CLSCTX_ACTIVATE_32_BIT_SERVER = CLSCTX.ACTIVATE_X86_SERVER;
 pub const CLSCTX_ACTIVATE_64_BIT_SERVER = CLSCTX.ACTIVATE_64_BIT_SERVER;
 pub const CLSCTX_ENABLE_CLOAKING = CLSCTX.ENABLE_CLOAKING;
 pub const CLSCTX_APPCONTAINER = CLSCTX.APPCONTAINER;
@@ -1058,7 +1056,7 @@ pub const CLSCTX_PS_DLL = CLSCTX.PS_DLL;
 pub const CLSCTX_ALL = CLSCTX.ALL;
 pub const CLSCTX_SERVER = CLSCTX.SERVER;
 
-pub const MSHLFLAGS = extern enum(i32) {
+pub const MSHLFLAGS = enum(i32) {
     NORMAL = 0,
     TABLESTRONG = 1,
     TABLEWEAK = 2,
@@ -1077,7 +1075,7 @@ pub const MSHLFLAGS_RESERVED2 = MSHLFLAGS.RESERVED2;
 pub const MSHLFLAGS_RESERVED3 = MSHLFLAGS.RESERVED3;
 pub const MSHLFLAGS_RESERVED4 = MSHLFLAGS.RESERVED4;
 
-pub const MSHCTX = extern enum(i32) {
+pub const MSHCTX = enum(i32) {
     LOCAL = 0,
     NOSHAREDMEM = 1,
     DIFFERENTMACHINE = 2,
@@ -1503,7 +1501,7 @@ pub const IStdMarshalInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const EXTCONN = extern enum(i32) {
+pub const EXTCONN = enum(i32) {
     STRONG = 1,
     WEAK = 2,
     CALLABLE = 4,
@@ -2180,7 +2178,7 @@ pub const SOLE_AUTHENTICATION_SERVICE = extern struct {
     hr: HRESULT,
 };
 
-pub const EOLE_AUTHENTICATION_CAPABILITIES = extern enum(i32) {
+pub const EOLE_AUTHENTICATION_CAPABILITIES = enum(i32) {
     NONE = 0,
     MUTUAL_AUTH = 1,
     STATIC_CLOAKING = 32,
@@ -2328,7 +2326,7 @@ pub const IServerSecurity = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const RPCOPT_PROPERTIES = extern enum(i32) {
+pub const RPCOPT_PROPERTIES = enum(i32) {
     RPCTIMEOUT = 1,
     SERVER_LOCALITY = 2,
     RESERVED1 = 4,
@@ -2343,7 +2341,7 @@ pub const COMBND_RESERVED2 = RPCOPT_PROPERTIES.RESERVED2;
 pub const COMBND_RESERVED3 = RPCOPT_PROPERTIES.RESERVED3;
 pub const COMBND_RESERVED4 = RPCOPT_PROPERTIES.RESERVED4;
 
-pub const RPCOPT_SERVER_LOCALITY_VALUES = extern enum(i32) {
+pub const RPCOPT_SERVER_LOCALITY_VALUES = enum(i32) {
     PROCESS_LOCAL = 0,
     MACHINE_LOCAL = 1,
     REMOTE = 2,
@@ -2386,7 +2384,7 @@ pub const IRpcOptions = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const GLOBALOPT_PROPERTIES = extern enum(i32) {
+pub const GLOBALOPT_PROPERTIES = enum(i32) {
     EXCEPTION_HANDLING = 1,
     APPID = 2,
     RPC_THREADPOOL_SETTING = 3,
@@ -2405,25 +2403,25 @@ pub const COMGLB_PROPERTIES_RESERVED1 = GLOBALOPT_PROPERTIES.PROPERTIES_RESERVED
 pub const COMGLB_PROPERTIES_RESERVED2 = GLOBALOPT_PROPERTIES.PROPERTIES_RESERVED2;
 pub const COMGLB_PROPERTIES_RESERVED3 = GLOBALOPT_PROPERTIES.PROPERTIES_RESERVED3;
 
-pub const GLOBALOPT_EH_VALUES = extern enum(i32) {
+pub const GLOBALOPT_EH_VALUES = enum(i32) {
     HANDLE = 0,
     DONOT_HANDLE_FATAL = 1,
-    DONOT_HANDLE = 1,
+    // DONOT_HANDLE = 1, this enum value conflicts with DONOT_HANDLE_FATAL
     DONOT_HANDLE_ANY = 2,
 };
 pub const COMGLB_EXCEPTION_HANDLE = GLOBALOPT_EH_VALUES.HANDLE;
 pub const COMGLB_EXCEPTION_DONOT_HANDLE_FATAL = GLOBALOPT_EH_VALUES.DONOT_HANDLE_FATAL;
-pub const COMGLB_EXCEPTION_DONOT_HANDLE = GLOBALOPT_EH_VALUES.DONOT_HANDLE;
+pub const COMGLB_EXCEPTION_DONOT_HANDLE = GLOBALOPT_EH_VALUES.DONOT_HANDLE_FATAL;
 pub const COMGLB_EXCEPTION_DONOT_HANDLE_ANY = GLOBALOPT_EH_VALUES.DONOT_HANDLE_ANY;
 
-pub const GLOBALOPT_RPCTP_VALUES = extern enum(i32) {
+pub const GLOBALOPT_RPCTP_VALUES = enum(i32) {
     DEFAULT_POOL = 0,
     PRIVATE_POOL = 1,
 };
 pub const COMGLB_RPC_THREADPOOL_SETTING_DEFAULT_POOL = GLOBALOPT_RPCTP_VALUES.DEFAULT_POOL;
 pub const COMGLB_RPC_THREADPOOL_SETTING_PRIVATE_POOL = GLOBALOPT_RPCTP_VALUES.PRIVATE_POOL;
 
-pub const GLOBALOPT_RO_FLAGS = extern enum(i32) {
+pub const GLOBALOPT_RO_FLAGS = enum(i32) {
     STA_MODALLOOP_REMOVE_TOUCH_MESSAGES = 1,
     STA_MODALLOOP_SHARED_QUEUE_REMOVE_INPUT_MESSAGES = 2,
     STA_MODALLOOP_SHARED_QUEUE_DONOT_REMOVE_INPUT_MESSAGES = 4,
@@ -2448,7 +2446,7 @@ pub const COMGLB_RESERVED4 = GLOBALOPT_RO_FLAGS.RESERVED4;
 pub const COMGLB_RESERVED5 = GLOBALOPT_RO_FLAGS.RESERVED5;
 pub const COMGLB_RESERVED6 = GLOBALOPT_RO_FLAGS.RESERVED6;
 
-pub const GLOBALOPT_UNMARSHALING_POLICY_VALUES = extern enum(i32) {
+pub const GLOBALOPT_UNMARSHALING_POLICY_VALUES = enum(i32) {
     NORMAL = 0,
     STRONG = 1,
     HYBRID = 2,
@@ -2722,7 +2720,7 @@ pub const ICancelMethodCalls = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DCOM_CALL_STATE = extern enum(i32) {
+pub const DCOM_CALL_STATE = enum(i32) {
     NONE = 0,
     CALL_COMPLETE = 1,
     CALL_CANCELED = 2,
@@ -3171,7 +3169,7 @@ pub const AsyncIPipeDouble = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const APTTYPEQUALIFIER = extern enum(i32) {
+pub const APTTYPEQUALIFIER = enum(i32) {
     NONE = 0,
     IMPLICIT_MTA = 1,
     NA_ON_MTA = 2,
@@ -3190,7 +3188,7 @@ pub const APTTYPEQUALIFIER_NA_ON_MAINSTA = APTTYPEQUALIFIER.NA_ON_MAINSTA;
 pub const APTTYPEQUALIFIER_APPLICATION_STA = APTTYPEQUALIFIER.APPLICATION_STA;
 pub const APTTYPEQUALIFIER_RESERVED_1 = APTTYPEQUALIFIER.RESERVED_1;
 
-pub const APTTYPE = extern enum(i32) {
+pub const APTTYPE = enum(i32) {
     CURRENT = -1,
     STA = 0,
     MTA = 1,
@@ -3203,7 +3201,7 @@ pub const APTTYPE_MTA = APTTYPE.MTA;
 pub const APTTYPE_NA = APTTYPE.NA;
 pub const APTTYPE_MAINSTA = APTTYPE.MAINSTA;
 
-pub const THDTYPE = extern enum(i32) {
+pub const THDTYPE = enum(i32) {
     BLOCKMESSAGES = 0,
     PROCESSMESSAGES = 1,
 };
@@ -3292,7 +3290,7 @@ pub const IFastRundown = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CO_MARSHALING_CONTEXT_ATTRIBUTES = extern enum(i32) {
+pub const CO_MARSHALING_CONTEXT_ATTRIBUTES = enum(i32) {
     SOURCE_IS_APP_CONTAINER = 0,
     CONTEXT_ATTRIBUTE_RESERVED_1 = -2147483648,
     CONTEXT_ATTRIBUTE_RESERVED_2 = -2147483647,
@@ -3494,7 +3492,7 @@ pub const BIND_OPTS3 = extern struct {
     hwnd: HWND,
 };
 
-pub const BIND_FLAGS = extern enum(i32) {
+pub const BIND_FLAGS = enum(i32) {
     MAYBOTHERUSER = 1,
     JUSTTESTEXISTENCE = 2,
 };
@@ -3841,7 +3839,7 @@ pub const IPersistStream = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MKSYS = extern enum(i32) {
+pub const MKSYS = enum(i32) {
     NONE = 0,
     GENERICCOMPOSITE = 1,
     FILEMONIKER = 2,
@@ -3864,7 +3862,7 @@ pub const MKSYS_OBJREFMONIKER = MKSYS.OBJREFMONIKER;
 pub const MKSYS_SESSIONMONIKER = MKSYS.SESSIONMONIKER;
 pub const MKSYS_LUAMONIKER = MKSYS.LUAMONIKER;
 
-pub const MKREDUCE = extern enum(i32) {
+pub const MKREDUCE = enum(i32) {
     ONE = 196608,
     TOUSER = 131072,
     THROUGHUSER = 65536,
@@ -4237,7 +4235,7 @@ pub const IEnumFORMATETC = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ADVF = extern enum(i32) {
+pub const ADVF = enum(i32) {
     _NODATA = 1,
     _PRIMEFIRST = 2,
     _ONLYONCE = 4,
@@ -4308,7 +4306,7 @@ pub const IEnumSTATDATA = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TYMED = extern enum(i32) {
+pub const TYMED = enum(i32) {
     HGLOBAL = 1,
     FILE = 2,
     ISTREAM = 4,
@@ -4579,7 +4577,7 @@ pub const AsyncIAdviseSink2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DATADIR = extern enum(i32) {
+pub const DATADIR = enum(i32) {
     GET = 1,
     SET = 2,
 };
@@ -4733,7 +4731,7 @@ pub const IDataAdviseHolder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CALLTYPE = extern enum(i32) {
+pub const CALLTYPE = enum(i32) {
     TOPLEVEL = 1,
     NESTED = 2,
     ASYNC = 3,
@@ -4746,7 +4744,7 @@ pub const CALLTYPE_ASYNC = CALLTYPE.ASYNC;
 pub const CALLTYPE_TOPLEVEL_CALLPENDING = CALLTYPE.TOPLEVEL_CALLPENDING;
 pub const CALLTYPE_ASYNC_CALLPENDING = CALLTYPE.ASYNC_CALLPENDING;
 
-pub const SERVERCALL = extern enum(i32) {
+pub const SERVERCALL = enum(i32) {
     ISHANDLED = 0,
     REJECTED = 1,
     RETRYLATER = 2,
@@ -4755,14 +4753,14 @@ pub const SERVERCALL_ISHANDLED = SERVERCALL.ISHANDLED;
 pub const SERVERCALL_REJECTED = SERVERCALL.REJECTED;
 pub const SERVERCALL_RETRYLATER = SERVERCALL.RETRYLATER;
 
-pub const PENDINGTYPE = extern enum(i32) {
+pub const PENDINGTYPE = enum(i32) {
     TOPLEVEL = 1,
     NESTED = 2,
 };
 pub const PENDINGTYPE_TOPLEVEL = PENDINGTYPE.TOPLEVEL;
 pub const PENDINGTYPE_NESTED = PENDINGTYPE.NESTED;
 
-pub const PENDINGMSG = extern enum(i32) {
+pub const PENDINGMSG = enum(i32) {
     CANCELCALL = 0,
     WAITNOPROCESS = 1,
     WAITDEFPROCESS = 2,
@@ -5071,14 +5069,14 @@ pub const IDummyHICONIncluder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ApplicationType = extern enum(i32) {
+pub const ApplicationType = enum(i32) {
     ServerApplication = 0,
     LibraryApplication = 1,
 };
 pub const ServerApplication = ApplicationType.ServerApplication;
 pub const LibraryApplication = ApplicationType.LibraryApplication;
 
-pub const ShutdownType = extern enum(i32) {
+pub const ShutdownType = enum(i32) {
     IdleShutdown = 0,
     ForcedShutdown = 1,
 };
@@ -5338,7 +5336,7 @@ pub const IOleCache = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DISCARDCACHE = extern enum(i32) {
+pub const DISCARDCACHE = enum(i32) {
     SAVEIFDIRTY = 0,
     NOSAVE = 1,
 };
@@ -5523,7 +5521,7 @@ pub const IOleClientSite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const OLEGETMONIKER = extern enum(i32) {
+pub const OLEGETMONIKER = enum(i32) {
     ONLYIFTHERE = 1,
     FORCEASSIGN = 2,
     UNASSIGN = 3,
@@ -5534,7 +5532,7 @@ pub const OLEGETMONIKER_FORCEASSIGN = OLEGETMONIKER.FORCEASSIGN;
 pub const OLEGETMONIKER_UNASSIGN = OLEGETMONIKER.UNASSIGN;
 pub const OLEGETMONIKER_TEMPFORUSER = OLEGETMONIKER.TEMPFORUSER;
 
-pub const OLEWHICHMK = extern enum(i32) {
+pub const OLEWHICHMK = enum(i32) {
     CONTAINER = 1,
     OBJREL = 2,
     OBJFULL = 3,
@@ -5543,7 +5541,7 @@ pub const OLEWHICHMK_CONTAINER = OLEWHICHMK.CONTAINER;
 pub const OLEWHICHMK_OBJREL = OLEWHICHMK.OBJREL;
 pub const OLEWHICHMK_OBJFULL = OLEWHICHMK.OBJFULL;
 
-pub const USERCLASSTYPE = extern enum(i32) {
+pub const USERCLASSTYPE = enum(i32) {
     FULL = 1,
     SHORT = 2,
     APPNAME = 3,
@@ -5552,7 +5550,7 @@ pub const USERCLASSTYPE_FULL = USERCLASSTYPE.FULL;
 pub const USERCLASSTYPE_SHORT = USERCLASSTYPE.SHORT;
 pub const USERCLASSTYPE_APPNAME = USERCLASSTYPE.APPNAME;
 
-pub const OLEMISC = extern enum(i32) {
+pub const OLEMISC = enum(i32) {
     RECOMPOSEONRESIZE = 1,
     ONLYICONIC = 2,
     INSERTNOTREPLACE = 4,
@@ -5578,7 +5576,7 @@ pub const OLEMISC = extern enum(i32) {
 };
 // TODO: enum 'OLEMISC' has known issues with its value aliases
 
-pub const OLECLOSE = extern enum(i32) {
+pub const OLECLOSE = enum(i32) {
     SAVEIFDIRTY = 0,
     NOSAVE = 1,
     PROMPTSAVE = 2,
@@ -5784,7 +5782,7 @@ pub const IOleObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const OLERENDER = extern enum(i32) {
+pub const OLERENDER = enum(i32) {
     NONE = 0,
     DRAW = 1,
     FORMAT = 2,
@@ -5836,14 +5834,14 @@ pub const IOleWindow = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const OLEUPDATE = extern enum(i32) {
+pub const OLEUPDATE = enum(i32) {
     ALWAYS = 1,
     ONCALL = 3,
 };
 pub const OLEUPDATE_ALWAYS = OLEUPDATE.ALWAYS;
 pub const OLEUPDATE_ONCALL = OLEUPDATE.ONCALL;
 
-pub const OLELINKBIND = extern enum(i32) {
+pub const OLELINKBIND = enum(i32) {
     F = 1,
 };
 pub const OLELINKBIND_EVENIFCLASSDIFF = OLELINKBIND.F;
@@ -5950,7 +5948,7 @@ pub const IOleLink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const BINDSPEED = extern enum(i32) {
+pub const BINDSPEED = enum(i32) {
     INDEFINITE = 1,
     MODERATE = 2,
     IMMEDIATE = 3,
@@ -5959,7 +5957,7 @@ pub const BINDSPEED_INDEFINITE = BINDSPEED.INDEFINITE;
 pub const BINDSPEED_MODERATE = BINDSPEED.MODERATE;
 pub const BINDSPEED_IMMEDIATE = BINDSPEED.IMMEDIATE;
 
-pub const OLECONTF = extern enum(i32) {
+pub const OLECONTF = enum(i32) {
     EMBEDDINGS = 1,
     LINKS = 2,
     OTHERS = 4,
@@ -6612,7 +6610,7 @@ pub const OLEVERB = extern struct {
     grfAttribs: u32,
 };
 
-pub const OLEVERBATTRIB = extern enum(i32) {
+pub const OLEVERBATTRIB = enum(i32) {
     NEVERDIRTIES = 1,
     ONCONTAINERMENU = 2,
 };
@@ -6666,7 +6664,7 @@ pub const IEnumOLEVERB = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IEObjectType = extern enum(i32) {
+pub const IEObjectType = enum(i32) {
     EVENT = 0,
     MUTEX = 1,
     SEMAPHORE = 2,
@@ -6751,7 +6749,7 @@ pub const IPersistMoniker = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MONIKERPROPERTY = extern enum(i32) {
+pub const MONIKERPROPERTY = enum(i32) {
     MIMETYPEPROP = 0,
     USE_SRC_URL = 1,
     CLASSIDPROP = 2,
@@ -6870,7 +6868,7 @@ pub const IBinding = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const BINDVERB = extern enum(i32) {
+pub const BINDVERB = enum(i32) {
     GET = 0,
     POST = 1,
     PUT = 2,
@@ -6883,14 +6881,14 @@ pub const BINDVERB_PUT = BINDVERB.PUT;
 pub const BINDVERB_CUSTOM = BINDVERB.CUSTOM;
 pub const BINDVERB_RESERVED1 = BINDVERB.RESERVED1;
 
-pub const BINDINFOF = extern enum(i32) {
+pub const BINDINFOF = enum(i32) {
     STGMEDDATA = 1,
     DEXTRAINFO = 2,
 };
 pub const BINDINFOF_URLENCODESTGMEDDATA = BINDINFOF.STGMEDDATA;
 pub const BINDINFOF_URLENCODEDEXTRAINFO = BINDINFOF.DEXTRAINFO;
 
-pub const BINDF = extern enum(i32) {
+pub const BINDF = enum(i32) {
     ASYNCHRONOUS = 1,
     ASYNCSTORAGE = 2,
     NOPROGRESSIVERENDERING = 4,
@@ -6955,7 +6953,7 @@ pub const BINDF_RESERVED_6 = BINDF.RESERVED_6;
 pub const BINDF_RESERVED_7 = BINDF.RESERVED_7;
 pub const BINDF_RESERVED_8 = BINDF.RESERVED_8;
 
-pub const URL_ENCODING = extern enum(i32) {
+pub const URL_ENCODING = enum(i32) {
     NONE = 0,
     ENABLE_UTF8 = 268435456,
     DISABLE_UTF8 = 536870912,
@@ -7011,7 +7009,7 @@ pub const RemFORMATETC = extern struct {
     tymed: u32,
 };
 
-pub const BINDINFO_OPTIONS = extern enum(i32) {
+pub const BINDINFO_OPTIONS = enum(i32) {
     OPTIONS_WININETFLAG = 65536,
     OPTIONS_ENABLE_UTF8 = 131072,
     OPTIONS_DISABLE_UTF8 = 262144,
@@ -7044,7 +7042,7 @@ pub const BINDINFO_OPTIONS_ALLOWCONNECTDATA = BINDINFO_OPTIONS.OPTIONS_ALLOWCONN
 pub const BINDINFO_OPTIONS_DISABLEAUTOREDIRECTS = BINDINFO_OPTIONS.OPTIONS_DISABLEAUTOREDIRECTS;
 pub const BINDINFO_OPTIONS_SHDOCVW_NAVIGATE = BINDINFO_OPTIONS.OPTIONS_SHDOCVW_NAVIGATE;
 
-pub const BSCF = extern enum(i32) {
+pub const BSCF = enum(i32) {
     FIRSTDATANOTIFICATION = 1,
     INTERMEDIATEDATANOTIFICATION = 2,
     LASTDATANOTIFICATION = 4,
@@ -7061,7 +7059,7 @@ pub const BSCF_AVAILABLEDATASIZEUNKNOWN = BSCF.AVAILABLEDATASIZEUNKNOWN;
 pub const BSCF_SKIPDRAINDATAFORFILEURLS = BSCF.SKIPDRAINDATAFORFILEURLS;
 pub const BSCF_64BITLENGTHDOWNLOAD = BSCF.@"64BITLENGTHDOWNLOAD";
 
-pub const BINDSTATUS = extern enum(i32) {
+pub const BINDSTATUS = enum(i32) {
     FINDINGRESOURCE = 1,
     CONNECTING = 2,
     REDIRECTING = 3,
@@ -7118,7 +7116,7 @@ pub const BINDSTATUS = extern enum(i32) {
     SERVER_MIMETYPEAVAILABLE = 54,
     SNIFFED_CLASSIDAVAILABLE = 55,
     @"64BIT_PROGRESS" = 56,
-    LAST = 56,
+    // LAST = 56, this enum value conflicts with @"64BIT_PROGRESS"
     RESERVED_0 = 57,
     RESERVED_1 = 58,
     RESERVED_2 = 59,
@@ -7139,7 +7137,7 @@ pub const BINDSTATUS = extern enum(i32) {
     RESERVED_11 = 74,
     RESERVED_12 = 75,
     RESERVED_13 = 76,
-    LAST_PRIVATE = 76,
+    // LAST_PRIVATE = 76, this enum value conflicts with RESERVED_13
 };
 pub const BINDSTATUS_FINDINGRESOURCE = BINDSTATUS.FINDINGRESOURCE;
 pub const BINDSTATUS_CONNECTING = BINDSTATUS.CONNECTING;
@@ -7197,7 +7195,7 @@ pub const BINDSTATUS_SSLUX_NAVBLOCKED = BINDSTATUS.SSLUX_NAVBLOCKED;
 pub const BINDSTATUS_SERVER_MIMETYPEAVAILABLE = BINDSTATUS.SERVER_MIMETYPEAVAILABLE;
 pub const BINDSTATUS_SNIFFED_CLASSIDAVAILABLE = BINDSTATUS.SNIFFED_CLASSIDAVAILABLE;
 pub const BINDSTATUS_64BIT_PROGRESS = BINDSTATUS.@"64BIT_PROGRESS";
-pub const BINDSTATUS_LAST = BINDSTATUS.LAST;
+pub const BINDSTATUS_LAST = BINDSTATUS.@"64BIT_PROGRESS";
 pub const BINDSTATUS_RESERVED_0 = BINDSTATUS.RESERVED_0;
 pub const BINDSTATUS_RESERVED_1 = BINDSTATUS.RESERVED_1;
 pub const BINDSTATUS_RESERVED_2 = BINDSTATUS.RESERVED_2;
@@ -7218,7 +7216,7 @@ pub const BINDSTATUS_RESERVED_10 = BINDSTATUS.RESERVED_10;
 pub const BINDSTATUS_RESERVED_11 = BINDSTATUS.RESERVED_11;
 pub const BINDSTATUS_RESERVED_12 = BINDSTATUS.RESERVED_12;
 pub const BINDSTATUS_RESERVED_13 = BINDSTATUS.RESERVED_13;
-pub const BINDSTATUS_LAST_PRIVATE = BINDSTATUS.LAST_PRIVATE;
+pub const BINDSTATUS_LAST_PRIVATE = BINDSTATUS.RESERVED_13;
 
 const IID_IBindStatusCallback_Value = @import("../zig.zig").Guid.initString("79eac9c1-baf9-11ce-8c82-00aa004ba90b");
 pub const IID_IBindStatusCallback = &IID_IBindStatusCallback_Value;
@@ -7307,7 +7305,7 @@ pub const IBindStatusCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const BINDF2 = extern enum(i32) {
+pub const BINDF2 = enum(i32) {
     DISABLEBASICOVERHTTP = 1,
     DISABLEAUTOCOOKIEHANDLING = 2,
     READ_DATA_GREATER_THAN_4GB = 4,
@@ -7419,7 +7417,7 @@ pub const IAuthenticate = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AUTHENTICATEF = extern enum(i32) {
+pub const AUTHENTICATEF = enum(i32) {
     PROXY = 1,
     BASIC = 2,
     HTTP = 4,
@@ -7589,7 +7587,7 @@ pub const IWindowForBindingUI = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CIP_STATUS = extern enum(i32) {
+pub const CIP_STATUS = enum(i32) {
     DISK_FULL = 0,
     ACCESS_DENIED = 1,
     NEWER_VERSION_EXISTS = 2,
@@ -7636,9 +7634,9 @@ pub const ICodeInstall = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const Uri_PROPERTY = extern enum(i32) {
+pub const Uri_PROPERTY = enum(i32) {
     ABSOLUTE_URI = 0,
-    STRING_START = 0,
+    // STRING_START = 0, this enum value conflicts with ABSOLUTE_URI
     AUTHORITY = 1,
     DISPLAY_URI = 2,
     DOMAIN = 3,
@@ -7653,16 +7651,16 @@ pub const Uri_PROPERTY = extern enum(i32) {
     SCHEME_NAME = 12,
     USER_INFO = 13,
     USER_NAME = 14,
-    STRING_LAST = 14,
+    // STRING_LAST = 14, this enum value conflicts with USER_NAME
     HOST_TYPE = 15,
-    DWORD_START = 15,
+    // DWORD_START = 15, this enum value conflicts with HOST_TYPE
     PORT = 16,
     SCHEME = 17,
     ZONE = 18,
-    DWORD_LAST = 18,
+    // DWORD_LAST = 18, this enum value conflicts with ZONE
 };
 pub const Uri_PROPERTY_ABSOLUTE_URI = Uri_PROPERTY.ABSOLUTE_URI;
-pub const Uri_PROPERTY_STRING_START = Uri_PROPERTY.STRING_START;
+pub const Uri_PROPERTY_STRING_START = Uri_PROPERTY.ABSOLUTE_URI;
 pub const Uri_PROPERTY_AUTHORITY = Uri_PROPERTY.AUTHORITY;
 pub const Uri_PROPERTY_DISPLAY_URI = Uri_PROPERTY.DISPLAY_URI;
 pub const Uri_PROPERTY_DOMAIN = Uri_PROPERTY.DOMAIN;
@@ -7677,15 +7675,15 @@ pub const Uri_PROPERTY_RAW_URI = Uri_PROPERTY.RAW_URI;
 pub const Uri_PROPERTY_SCHEME_NAME = Uri_PROPERTY.SCHEME_NAME;
 pub const Uri_PROPERTY_USER_INFO = Uri_PROPERTY.USER_INFO;
 pub const Uri_PROPERTY_USER_NAME = Uri_PROPERTY.USER_NAME;
-pub const Uri_PROPERTY_STRING_LAST = Uri_PROPERTY.STRING_LAST;
+pub const Uri_PROPERTY_STRING_LAST = Uri_PROPERTY.USER_NAME;
 pub const Uri_PROPERTY_HOST_TYPE = Uri_PROPERTY.HOST_TYPE;
-pub const Uri_PROPERTY_DWORD_START = Uri_PROPERTY.DWORD_START;
+pub const Uri_PROPERTY_DWORD_START = Uri_PROPERTY.HOST_TYPE;
 pub const Uri_PROPERTY_PORT = Uri_PROPERTY.PORT;
 pub const Uri_PROPERTY_SCHEME = Uri_PROPERTY.SCHEME;
 pub const Uri_PROPERTY_ZONE = Uri_PROPERTY.ZONE;
-pub const Uri_PROPERTY_DWORD_LAST = Uri_PROPERTY.DWORD_LAST;
+pub const Uri_PROPERTY_DWORD_LAST = Uri_PROPERTY.ZONE;
 
-pub const Uri_HOST_TYPE = extern enum(i32) {
+pub const Uri_HOST_TYPE = enum(i32) {
     UNKNOWN = 0,
     DNS = 1,
     IPV4 = 2,
@@ -8391,7 +8389,7 @@ pub const IInternet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const BINDSTRING = extern enum(i32) {
+pub const BINDSTRING = enum(i32) {
     HEADERS = 1,
     ACCEPT_MIMES = 2,
     EXTRA_URL = 3,
@@ -8503,7 +8501,7 @@ pub const IInternetBindInfoEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PI_FLAGS = extern enum(i32) {
+pub const PI_FLAGS = enum(i32) {
     I_PARSE_URL = 1,
     I_FILTER_MODE = 2,
     I_FORCE_ASYNC = 4,
@@ -8771,7 +8769,7 @@ pub const IInternetProtocolSinkStackable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const OIBDG_FLAGS = extern enum(i32) {
+pub const OIBDG_FLAGS = enum(i32) {
     APARTMENTTHREADED = 256,
     DATAONLY = 4096,
 };
@@ -8923,7 +8921,7 @@ pub const IInternetPriority = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PARSEACTION = extern enum(i32) {
+pub const PARSEACTION = enum(i32) {
     CANONICALIZE = 1,
     FRIENDLY = 2,
     SECURITY_URL = 3,
@@ -8964,14 +8962,14 @@ pub const PARSE_SECURITY_DOMAIN = PARSEACTION.SECURITY_DOMAIN;
 pub const PARSE_ESCAPE = PARSEACTION.ESCAPE;
 pub const PARSE_UNESCAPE = PARSEACTION.UNESCAPE;
 
-pub const PSUACTION = extern enum(i32) {
+pub const PSUACTION = enum(i32) {
     DEFAULT = 1,
     SECURITY_URL_ONLY = 2,
 };
 pub const PSU_DEFAULT = PSUACTION.DEFAULT;
 pub const PSU_SECURITY_URL_ONLY = PSUACTION.SECURITY_URL_ONLY;
 
-pub const QUERYOPTION = extern enum(i32) {
+pub const QUERYOPTION = enum(i32) {
     EXPIRATION_DATE = 1,
     TIME_OF_LAST_CHANGE = 2,
     CONTENT_ENCODING = 3,
@@ -9071,7 +9069,7 @@ pub const IInternetProtocolInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const INTERNETFEATURELIST = extern enum(i32) {
+pub const INTERNETFEATURELIST = enum(i32) {
     OBJECT_CACHING = 0,
     ZONE_ELEVATION = 1,
     MIME_HANDLING = 2,
@@ -9161,7 +9159,7 @@ pub const IInternetSecurityMgrSite = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PUAF = extern enum(i32) {
+pub const PUAF = enum(i32) {
     DEFAULT = 0,
     NOUI = 1,
     ISFILE = 2,
@@ -9206,14 +9204,14 @@ pub const PUAF_NPL_USE_LOCKED_IF_RESTRICTED = PUAF.NPL_USE_LOCKED_IF_RESTRICTED;
 pub const PUAF_NOUIIFLOCKED = PUAF.NOUIIFLOCKED;
 pub const PUAF_DRAGPROTOCOLCHECK = PUAF.DRAGPROTOCOLCHECK;
 
-pub const PUAFOUT = extern enum(i32) {
+pub const PUAFOUT = enum(i32) {
     DEFAULT = 0,
     ISLOCKZONEPOLICY = 1,
 };
 pub const PUAFOUT_DEFAULT = PUAFOUT.DEFAULT;
 pub const PUAFOUT_ISLOCKZONEPOLICY = PUAFOUT.ISLOCKZONEPOLICY;
 
-pub const SZM_FLAGS = extern enum(i32) {
+pub const SZM_FLAGS = enum(i32) {
     CREATE = 0,
     DELETE = 1,
 };
@@ -9559,10 +9557,10 @@ pub const IInternetHostSecurityManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const URLZONE = extern enum(i32) {
+pub const URLZONE = enum(i32) {
     INVALID = -1,
     PREDEFINED_MIN = 0,
-    LOCAL_MACHINE = 0,
+    // LOCAL_MACHINE = 0, this enum value conflicts with PREDEFINED_MIN
     INTRANET = 1,
     TRUSTED = 2,
     INTERNET = 3,
@@ -9573,7 +9571,7 @@ pub const URLZONE = extern enum(i32) {
 };
 pub const URLZONE_INVALID = URLZONE.INVALID;
 pub const URLZONE_PREDEFINED_MIN = URLZONE.PREDEFINED_MIN;
-pub const URLZONE_LOCAL_MACHINE = URLZONE.LOCAL_MACHINE;
+pub const URLZONE_LOCAL_MACHINE = URLZONE.PREDEFINED_MIN;
 pub const URLZONE_INTRANET = URLZONE.INTRANET;
 pub const URLZONE_TRUSTED = URLZONE.TRUSTED;
 pub const URLZONE_INTERNET = URLZONE.INTERNET;
@@ -9582,10 +9580,10 @@ pub const URLZONE_PREDEFINED_MAX = URLZONE.PREDEFINED_MAX;
 pub const URLZONE_USER_MIN = URLZONE.USER_MIN;
 pub const URLZONE_USER_MAX = URLZONE.USER_MAX;
 
-pub const URLTEMPLATE = extern enum(i32) {
+pub const URLTEMPLATE = enum(i32) {
     CUSTOM = 0,
     PREDEFINED_MIN = 65536,
-    LOW = 65536,
+    // LOW = 65536, this enum value conflicts with PREDEFINED_MIN
     MEDLOW = 66816,
     MEDIUM = 69632,
     MEDHIGH = 70912,
@@ -9594,21 +9592,21 @@ pub const URLTEMPLATE = extern enum(i32) {
 };
 pub const URLTEMPLATE_CUSTOM = URLTEMPLATE.CUSTOM;
 pub const URLTEMPLATE_PREDEFINED_MIN = URLTEMPLATE.PREDEFINED_MIN;
-pub const URLTEMPLATE_LOW = URLTEMPLATE.LOW;
+pub const URLTEMPLATE_LOW = URLTEMPLATE.PREDEFINED_MIN;
 pub const URLTEMPLATE_MEDLOW = URLTEMPLATE.MEDLOW;
 pub const URLTEMPLATE_MEDIUM = URLTEMPLATE.MEDIUM;
 pub const URLTEMPLATE_MEDHIGH = URLTEMPLATE.MEDHIGH;
 pub const URLTEMPLATE_HIGH = URLTEMPLATE.HIGH;
 pub const URLTEMPLATE_PREDEFINED_MAX = URLTEMPLATE.PREDEFINED_MAX;
 
-pub const INET_ZONE_MANAGER_CONSTANTS = extern enum(i32) {
+pub const INET_ZONE_MANAGER_CONSTANTS = enum(i32) {
     PATH = 260,
     DESCRIPTION = 200,
 };
 pub const MAX_ZONE_PATH = INET_ZONE_MANAGER_CONSTANTS.PATH;
 pub const MAX_ZONE_DESCRIPTION = INET_ZONE_MANAGER_CONSTANTS.DESCRIPTION;
 
-pub const ZAFLAGS = extern enum(i32) {
+pub const ZAFLAGS = enum(i32) {
     CUSTOM_EDIT = 1,
     ADD_SITES = 2,
     REQUIRE_VERIFICATION = 4,
@@ -9646,7 +9644,7 @@ pub const ZONEATTRIBUTES = extern struct {
     dwFlags: u32,
 };
 
-pub const URLZONEREG = extern enum(i32) {
+pub const URLZONEREG = enum(i32) {
     DEFAULT = 0,
     HKLM = 1,
     HKCU = 2,
@@ -10114,7 +10112,7 @@ pub const IWrappedProtocol = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const BINDHANDLETYPES = extern enum(i32) {
+pub const BINDHANDLETYPES = enum(i32) {
     APPCACHE = 0,
     DEPENDENCY = 1,
     COUNT = 2,
@@ -10202,14 +10200,14 @@ pub const OLESTREAM = extern struct {
     lpstbl: *OLESTREAMVTBL,
 };
 
-pub const STDMSHLFLAGS = extern enum(i32) {
+pub const STDMSHLFLAGS = enum(i32) {
     SERVER = 1,
     HANDLER = 2,
 };
 pub const SMEXF_SERVER = STDMSHLFLAGS.SERVER;
 pub const SMEXF_HANDLER = STDMSHLFLAGS.HANDLER;
 
-pub const COWAIT_FLAGS = extern enum(i32) {
+pub const COWAIT_FLAGS = enum(i32) {
     DEFAULT = 0,
     WAITALL = 1,
     ALERTABLE = 2,
@@ -10224,7 +10222,7 @@ pub const COWAIT_INPUTAVAILABLE = COWAIT_FLAGS.INPUTAVAILABLE;
 pub const COWAIT_DISPATCH_CALLS = COWAIT_FLAGS.DISPATCH_CALLS;
 pub const COWAIT_DISPATCH_WINDOW_MESSAGES = COWAIT_FLAGS.DISPATCH_WINDOW_MESSAGES;
 
-pub const CWMO_FLAGS = extern enum(i32) {
+pub const CWMO_FLAGS = enum(i32) {
     EFAULT = 0,
     ISPATCH_CALLS = 1,
     ISPATCH_WINDOW_MESSAGES = 2,
@@ -10242,7 +10240,7 @@ pub const LPFNGETCLASSOBJECT = fn(
 pub const LPFNCANUNLOADNOW = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const UASFLAGS = extern enum(i32) {
+pub const UASFLAGS = enum(i32) {
     NORMAL = 0,
     BLOCKED = 1,
     NOPARENTENABLE = 2,
@@ -10253,7 +10251,7 @@ pub const UAS_BLOCKED = UASFLAGS.BLOCKED;
 pub const UAS_NOPARENTENABLE = UASFLAGS.NOPARENTENABLE;
 pub const UAS_MASK = UASFLAGS.MASK;
 
-pub const READYSTATE = extern enum(i32) {
+pub const READYSTATE = enum(i32) {
     UNINITIALIZED = 0,
     LOADING = 1,
     LOADED = 2,
@@ -10522,7 +10520,7 @@ pub const IProvideClassInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const GUIDKIND = extern enum(i32) {
+pub const GUIDKIND = enum(i32) {
     D = 1,
 };
 pub const GUIDKIND_DEFAULT_SOURCE_DISP_IID = GUIDKIND.D;
@@ -10593,7 +10591,7 @@ pub const CONTROLINFO = extern struct {
     dwFlags: u32,
 };
 
-pub const CTRLINFO = extern enum(i32) {
+pub const CTRLINFO = enum(i32) {
     RETURN = 1,
     ESCAPE = 2,
 };
@@ -10651,7 +10649,7 @@ pub const POINTF = extern struct {
     y: f32,
 };
 
-pub const XFORMCOORDS = extern enum(i32) {
+pub const XFORMCOORDS = enum(i32) {
     POSITION = 1,
     SIZE = 2,
     HIMETRICTOCONTAINER = 4,
@@ -10868,7 +10866,7 @@ pub const IPropertyPage2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROPPAGESTATUS = extern enum(i32) {
+pub const PROPPAGESTATUS = enum(i32) {
     DIRTY = 1,
     VALIDATE = 2,
     CLEAN = 4,
@@ -11390,7 +11388,7 @@ pub const IFont = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PictureAttributes = extern enum(i32) {
+pub const PictureAttributes = enum(i32) {
     SCALABLE = 1,
     TRANSPARENT = 2,
 };
@@ -11764,7 +11762,7 @@ pub const IOleInPlaceObjectWindowless = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ACTIVATEFLAGS = extern enum(i32) {
+pub const ACTIVATEFLAGS = enum(i32) {
     S = 1,
 };
 pub const ACTIVATE_WINDOWLESS = ACTIVATEFLAGS.S;
@@ -11807,7 +11805,7 @@ pub const IOleInPlaceSiteEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const OLEDCFLAGS = extern enum(i32) {
+pub const OLEDCFLAGS = enum(i32) {
     NODRAW = 1,
     PAINTBKGND = 2,
     OFFSCREEN = 4,
@@ -11933,7 +11931,7 @@ pub const IOleInPlaceSiteWindowless = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const VIEWSTATUS = extern enum(i32) {
+pub const VIEWSTATUS = enum(i32) {
     OPAQUE = 1,
     SOLIDBKGND = 2,
     DVASPECTOPAQUE = 4,
@@ -11948,7 +11946,7 @@ pub const VIEWSTATUS_DVASPECTTRANSPARENT = VIEWSTATUS.DVASPECTTRANSPARENT;
 pub const VIEWSTATUS_SURFACE = VIEWSTATUS.SURFACE;
 pub const VIEWSTATUS_3DSURFACE = VIEWSTATUS.@"3DSURFACE";
 
-pub const HITRESULT = extern enum(i32) {
+pub const HITRESULT = enum(i32) {
     OUTSIDE = 0,
     TRANSPARENT = 1,
     CLOSE = 2,
@@ -11959,7 +11957,7 @@ pub const HITRESULT_TRANSPARENT = HITRESULT.TRANSPARENT;
 pub const HITRESULT_CLOSE = HITRESULT.CLOSE;
 pub const HITRESULT_HIT = HITRESULT.HIT;
 
-pub const DVASPECT2 = extern enum(i32) {
+pub const DVASPECT2 = enum(i32) {
     OPAQUE = 16,
     TRANSPARENT = 32,
 };
@@ -11972,14 +11970,14 @@ pub const ExtentInfo = extern struct {
     sizelProposed: SIZE,
 };
 
-pub const ExtentMode = extern enum(i32) {
+pub const ExtentMode = enum(i32) {
     CONTENT = 0,
     INTEGRAL = 1,
 };
 pub const DVEXTENT_CONTENT = ExtentMode.CONTENT;
 pub const DVEXTENT_INTEGRAL = ExtentMode.INTEGRAL;
 
-pub const AspectInfoFlag = extern enum(i32) {
+pub const AspectInfoFlag = enum(i32) {
     E = 1,
 };
 pub const DVASPECTINFOFLAG_CANOPTIMIZE = AspectInfoFlag.E;
@@ -12316,7 +12314,7 @@ pub const IOleUndoManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const POINTERINACTIVE = extern enum(i32) {
+pub const POINTERINACTIVE = enum(i32) {
     ACTIVATEONENTRY = 1,
     DEACTIVATEONLEAVE = 2,
     ACTIVATEONDRAG = 4,
@@ -12463,7 +12461,7 @@ pub const IPerPropertyBrowsing = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROPBAG2_TYPE = extern enum(i32) {
+pub const PROPBAG2_TYPE = enum(i32) {
     UNDEFINED = 0,
     DATA = 1,
     URL = 2,
@@ -12622,7 +12620,7 @@ pub const IAdviseSinkEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const QACONTAINERFLAGS = extern enum(i32) {
+pub const QACONTAINERFLAGS = enum(i32) {
     SHOWHATCHING = 1,
     SHOWGRABHANDLES = 2,
     USERMODE = 4,
@@ -12755,7 +12753,7 @@ pub const PICTDESC = extern struct {
     },
 };
 
-pub const OLE_TRISTATE = extern enum(i32) {
+pub const OLE_TRISTATE = enum(i32) {
     Unchecked = 0,
     Checked = 1,
     Gray = 2,
@@ -12860,7 +12858,7 @@ pub const IGetVBAObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DOCMISC = extern enum(i32) {
+pub const DOCMISC = enum(i32) {
     CANCREATEMULTIPLEVIEWS = 1,
     SUPPORTCOMPLEXRECTANGLES = 2,
     CANTOPENEDIT = 4,
@@ -13134,7 +13132,7 @@ pub const IContinueCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PRINTFLAG = extern enum(u32) {
+pub const PRINTFLAG = enum(u32) {
     MAYBOTHERUSER = 1,
     PROMPTUSER = 2,
     USERMAYCHANGEPRINTER = 4,
@@ -13230,7 +13228,7 @@ pub const IPrint = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const OLECMDF = extern enum(i32) {
+pub const OLECMDF = enum(i32) {
     SUPPORTED = 1,
     ENABLED = 2,
     LATCHED = 4,
@@ -13257,7 +13255,7 @@ pub const OLECMDTEXT = extern struct {
     rgwz: [1]u16,
 };
 
-pub const OLECMDTEXTF = extern enum(i32) {
+pub const OLECMDTEXTF = enum(i32) {
     NONE = 0,
     NAME = 1,
     STATUS = 2,
@@ -13266,7 +13264,7 @@ pub const OLECMDTEXTF_NONE = OLECMDTEXTF.NONE;
 pub const OLECMDTEXTF_NAME = OLECMDTEXTF.NAME;
 pub const OLECMDTEXTF_STATUS = OLECMDTEXTF.STATUS;
 
-pub const OLECMDEXECOPT = extern enum(i32) {
+pub const OLECMDEXECOPT = enum(i32) {
     DODEFAULT = 0,
     PROMPTUSER = 1,
     DONTPROMPTUSER = 2,
@@ -13277,7 +13275,7 @@ pub const OLECMDEXECOPT_PROMPTUSER = OLECMDEXECOPT.PROMPTUSER;
 pub const OLECMDEXECOPT_DONTPROMPTUSER = OLECMDEXECOPT.DONTPROMPTUSER;
 pub const OLECMDEXECOPT_SHOWHELP = OLECMDEXECOPT.SHOWHELP;
 
-pub const OLECMDID = extern enum(i32) {
+pub const OLECMDID = enum(i32) {
     OPEN = 1,
     NEW = 2,
     SAVE = 3,
@@ -13446,7 +13444,7 @@ pub const OLECMDID_ONBEFOREUNLOAD = OLECMDID.ONBEFOREUNLOAD;
 pub const OLECMDID_SHOWMESSAGE_BLOCKABLE = OLECMDID.SHOWMESSAGE_BLOCKABLE;
 pub const OLECMDID_SHOWTASKDLG_BLOCKABLE = OLECMDID.SHOWTASKDLG_BLOCKABLE;
 
-pub const MEDIAPLAYBACK_STATE = extern enum(i32) {
+pub const MEDIAPLAYBACK_STATE = enum(i32) {
     RESUME = 0,
     PAUSE = 1,
     PAUSE_AND_SUSPEND = 2,
@@ -13457,14 +13455,14 @@ pub const MEDIAPLAYBACK_PAUSE = MEDIAPLAYBACK_STATE.PAUSE;
 pub const MEDIAPLAYBACK_PAUSE_AND_SUSPEND = MEDIAPLAYBACK_STATE.PAUSE_AND_SUSPEND;
 pub const MEDIAPLAYBACK_RESUME_FROM_SUSPEND = MEDIAPLAYBACK_STATE.RESUME_FROM_SUSPEND;
 
-pub const IGNOREMIME = extern enum(i32) {
+pub const IGNOREMIME = enum(i32) {
     PROMPT = 1,
     TEXT = 2,
 };
 pub const IGNOREMIME_PROMPT = IGNOREMIME.PROMPT;
 pub const IGNOREMIME_TEXT = IGNOREMIME.TEXT;
 
-pub const WPCSETTING = extern enum(i32) {
+pub const WPCSETTING = enum(i32) {
     LOGGING_ENABLED = 1,
     FILEDOWNLOAD_BLOCKED = 2,
 };
@@ -13508,7 +13506,7 @@ pub const IOleCommandTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const OLECMDID_REFRESHFLAG = extern enum(i32) {
+pub const OLECMDID_REFRESHFLAG = enum(i32) {
     NORMAL = 0,
     IFEXPIRED = 1,
     CONTINUE = 2,
@@ -13557,7 +13555,7 @@ pub const OLECMDIDF_REFRESH_PAGEACTION_MIXEDCONTENT = OLECMDID_REFRESHFLAG.PAGEA
 pub const OLECMDIDF_REFRESH_PAGEACTION_INVALID_CERT = OLECMDID_REFRESHFLAG.PAGEACTION_INVALID_CERT;
 pub const OLECMDIDF_REFRESH_PAGEACTION_ALLOW_VERSION = OLECMDID_REFRESHFLAG.PAGEACTION_ALLOW_VERSION;
 
-pub const OLECMDID_PAGEACTIONFLAG = extern enum(i32) {
+pub const OLECMDID_PAGEACTIONFLAG = enum(i32) {
     FILEDOWNLOAD = 1,
     ACTIVEXINSTALL = 2,
     ACTIVEXTRUSTFAIL = 4,
@@ -13568,7 +13566,7 @@ pub const OLECMDID_PAGEACTIONFLAG = extern enum(i32) {
     LOCALMACHINE = 128,
     MIMETEXTPLAIN = 256,
     SCRIPTNAVIGATE = 512,
-    SCRIPTNAVIGATE_ACTIVEXINSTALL = 512,
+    // SCRIPTNAVIGATE_ACTIVEXINSTALL = 512, this enum value conflicts with SCRIPTNAVIGATE
     PROTLOCKDOWNLOCALMACHINE = 1024,
     PROTLOCKDOWNTRUSTED = 2048,
     PROTLOCKDOWNINTRANET = 4096,
@@ -13602,7 +13600,7 @@ pub const OLECMDIDF_PAGEACTION_POPUPWINDOW = OLECMDID_PAGEACTIONFLAG.POPUPWINDOW
 pub const OLECMDIDF_PAGEACTION_LOCALMACHINE = OLECMDID_PAGEACTIONFLAG.LOCALMACHINE;
 pub const OLECMDIDF_PAGEACTION_MIMETEXTPLAIN = OLECMDID_PAGEACTIONFLAG.MIMETEXTPLAIN;
 pub const OLECMDIDF_PAGEACTION_SCRIPTNAVIGATE = OLECMDID_PAGEACTIONFLAG.SCRIPTNAVIGATE;
-pub const OLECMDIDF_PAGEACTION_SCRIPTNAVIGATE_ACTIVEXINSTALL = OLECMDID_PAGEACTIONFLAG.SCRIPTNAVIGATE_ACTIVEXINSTALL;
+pub const OLECMDIDF_PAGEACTION_SCRIPTNAVIGATE_ACTIVEXINSTALL = OLECMDID_PAGEACTIONFLAG.SCRIPTNAVIGATE;
 pub const OLECMDIDF_PAGEACTION_PROTLOCKDOWNLOCALMACHINE = OLECMDID_PAGEACTIONFLAG.PROTLOCKDOWNLOCALMACHINE;
 pub const OLECMDIDF_PAGEACTION_PROTLOCKDOWNTRUSTED = OLECMDID_PAGEACTIONFLAG.PROTLOCKDOWNTRUSTED;
 pub const OLECMDIDF_PAGEACTION_PROTLOCKDOWNINTRANET = OLECMDID_PAGEACTIONFLAG.PROTLOCKDOWNINTRANET;
@@ -13626,7 +13624,7 @@ pub const OLECMDIDF_PAGEACTION_NORESETACTIVEX = OLECMDID_PAGEACTIONFLAG.NORESETA
 pub const OLECMDIDF_PAGEACTION_GENERIC_STATE = OLECMDID_PAGEACTIONFLAG.GENERIC_STATE;
 pub const OLECMDIDF_PAGEACTION_RESET = OLECMDID_PAGEACTIONFLAG.RESET;
 
-pub const OLECMDID_BROWSERSTATEFLAG = extern enum(i32) {
+pub const OLECMDID_BROWSERSTATEFLAG = enum(i32) {
     EXTENSIONSOFF = 1,
     IESECURITY = 2,
     PROTECTEDMODE_OFF = 4,
@@ -13643,7 +13641,7 @@ pub const OLECMDIDF_BROWSERSTATE_REQUIRESACTIVEX = OLECMDID_BROWSERSTATEFLAG.REQ
 pub const OLECMDIDF_BROWSERSTATE_DESKTOPHTMLDIALOG = OLECMDID_BROWSERSTATEFLAG.DESKTOPHTMLDIALOG;
 pub const OLECMDIDF_BROWSERSTATE_BLOCKEDVERSION = OLECMDID_BROWSERSTATEFLAG.BLOCKEDVERSION;
 
-pub const OLECMDID_OPTICAL_ZOOMFLAG = extern enum(i32) {
+pub const OLECMDID_OPTICAL_ZOOMFLAG = enum(i32) {
     NOPERSIST = 1,
     NOLAYOUT = 16,
     NOTRANSIENT = 32,
@@ -13654,7 +13652,7 @@ pub const OLECMDIDF_OPTICAL_ZOOM_NOLAYOUT = OLECMDID_OPTICAL_ZOOMFLAG.NOLAYOUT;
 pub const OLECMDIDF_OPTICAL_ZOOM_NOTRANSIENT = OLECMDID_OPTICAL_ZOOMFLAG.NOTRANSIENT;
 pub const OLECMDIDF_OPTICAL_ZOOM_RELOADFORNEWTAB = OLECMDID_OPTICAL_ZOOMFLAG.RELOADFORNEWTAB;
 
-pub const PAGEACTION_UI = extern enum(i32) {
+pub const PAGEACTION_UI = enum(i32) {
     DEFAULT = 0,
     MODAL = 1,
     MODELESS = 2,
@@ -13665,7 +13663,7 @@ pub const PAGEACTION_UI_MODAL = PAGEACTION_UI.MODAL;
 pub const PAGEACTION_UI_MODELESS = PAGEACTION_UI.MODELESS;
 pub const PAGEACTION_UI_SILENT = PAGEACTION_UI.SILENT;
 
-pub const OLECMDID_WINDOWSTATE_FLAG = extern enum(i32) {
+pub const OLECMDID_WINDOWSTATE_FLAG = enum(i32) {
     USERVISIBLE = 1,
     ENABLED = 2,
     USERVISIBLE_VALID = 65536,
@@ -13676,7 +13674,7 @@ pub const OLECMDIDF_WINDOWSTATE_ENABLED = OLECMDID_WINDOWSTATE_FLAG.ENABLED;
 pub const OLECMDIDF_WINDOWSTATE_USERVISIBLE_VALID = OLECMDID_WINDOWSTATE_FLAG.USERVISIBLE_VALID;
 pub const OLECMDIDF_WINDOWSTATE_ENABLED_VALID = OLECMDID_WINDOWSTATE_FLAG.ENABLED_VALID;
 
-pub const OLECMDID_VIEWPORT_MODE_FLAG = extern enum(i32) {
+pub const OLECMDID_VIEWPORT_MODE_FLAG = enum(i32) {
     FIXED_LAYOUT_WIDTH = 1,
     EXCLUDE_VISUAL_BOTTOM = 2,
     FIXED_LAYOUT_WIDTH_VALID = 65536,
@@ -13827,7 +13825,7 @@ pub const OLEUIINSERTOBJECTA = extern struct {
     hMetaPict: isize,
 };
 
-pub const OLEUIPASTEFLAG = extern enum(i32) {
+pub const OLEUIPASTEFLAG = enum(i32) {
     ENABLEICON = 2048,
     PASTEONLY = 0,
     PASTE = 512,
@@ -14813,14 +14811,14 @@ pub const CALLFRAMEPARAMINFO = extern struct {
     cbParam: u32,
 };
 
-pub const CALLFRAME_COPY = extern enum(i32) {
+pub const CALLFRAME_COPY = enum(i32) {
     NESTED = 1,
     INDEPENDENT = 2,
 };
 pub const CALLFRAME_COPY_NESTED = CALLFRAME_COPY.NESTED;
 pub const CALLFRAME_COPY_INDEPENDENT = CALLFRAME_COPY.INDEPENDENT;
 
-pub const CALLFRAME_FREE = extern enum(i32) {
+pub const CALLFRAME_FREE = enum(i32) {
     NONE = 0,
     IN = 1,
     INOUT = 2,
@@ -14837,7 +14835,7 @@ pub const CALLFRAME_FREE_TOP_INOUT = CALLFRAME_FREE.TOP_INOUT;
 pub const CALLFRAME_FREE_TOP_OUT = CALLFRAME_FREE.TOP_OUT;
 pub const CALLFRAME_FREE_ALL = CALLFRAME_FREE.ALL;
 
-pub const CALLFRAME_NULL = extern enum(i32) {
+pub const CALLFRAME_NULL = enum(i32) {
     NONE = 0,
     INOUT = 2,
     OUT = 4,
@@ -14848,7 +14846,7 @@ pub const CALLFRAME_NULL_INOUT = CALLFRAME_NULL.INOUT;
 pub const CALLFRAME_NULL_OUT = CALLFRAME_NULL.OUT;
 pub const CALLFRAME_NULL_ALL = CALLFRAME_NULL.ALL;
 
-pub const CALLFRAME_WALK = extern enum(i32) {
+pub const CALLFRAME_WALK = enum(i32) {
     IN = 1,
     INOUT = 2,
     OUT = 4,
@@ -15458,7 +15456,7 @@ pub const IEventPublisher = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const EOC_ChangeType = extern enum(i32) {
+pub const EOC_ChangeType = enum(i32) {
     NewObject = 0,
     ModifiedObject = 1,
     DeletedObject = 2,
@@ -15517,7 +15515,7 @@ pub const IEventProperty = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const COINIT = extern enum(u32) {
+pub const COINIT = enum(u32) {
     APARTMENTTHREADED = 2,
     MULTITHREADED = 0,
     DISABLE_OLE1DDE = 4,
@@ -15542,7 +15540,7 @@ pub const COINIT_MULTITHREADED = COINIT.MULTITHREADED;
 pub const COINIT_DISABLE_OLE1DDE = COINIT.DISABLE_OLE1DDE;
 pub const COINIT_SPEED_OVER_MEMORY = COINIT.SPEED_OVER_MEMORY;
 
-pub const COMSD = extern enum(i32) {
+pub const COMSD = enum(i32) {
     LAUNCHPERMISSIONS = 0,
     ACCESSPERMISSIONS = 1,
     LAUNCHRESTRICTIONS = 2,
@@ -15553,7 +15551,7 @@ pub const SD_ACCESSPERMISSIONS = COMSD.ACCESSPERMISSIONS;
 pub const SD_LAUNCHRESTRICTIONS = COMSD.LAUNCHRESTRICTIONS;
 pub const SD_ACCESSRESTRICTIONS = COMSD.ACCESSRESTRICTIONS;
 
-pub const UPDFCACHE_FLAGS = extern enum(u32) {
+pub const UPDFCACHE_FLAGS = enum(u32) {
     ALL = 2147483647,
     ALLBUTNODATACACHE = 2147483646,
     NORMALCACHE = 8,
@@ -15598,7 +15596,7 @@ pub const UPDFCACHE_ONSAVECACHE = UPDFCACHE_FLAGS.ONSAVECACHE;
 pub const UPDFCACHE_ONSTOPCACHE = UPDFCACHE_FLAGS.ONSTOPCACHE;
 pub const UPDFCACHE_IFBLANKORONSAVECACHE = UPDFCACHE_FLAGS.IFBLANKORONSAVECACHE;
 
-pub const URI_CREATE_FLAGS = extern enum(u32) {
+pub const URI_CREATE_FLAGS = enum(u32) {
     ALLOW_RELATIVE = 1,
     ALLOW_IMPLICIT_WILDCARD_SCHEME = 2,
     ALLOW_IMPLICIT_FILE_SCHEME = 4,
@@ -15679,7 +15677,7 @@ pub const Uri_CREATE_NO_ENCODE_FORBIDDEN_CHARACTERS = URI_CREATE_FLAGS.NO_ENCODE
 pub const Uri_CREATE_NORMALIZE_INTL_CHARACTERS = URI_CREATE_FLAGS.NORMALIZE_INTL_CHARACTERS;
 pub const Uri_CREATE_CANONICALIZE_ABSOLUTE = URI_CREATE_FLAGS.CANONICALIZE_ABSOLUTE;
 
-pub const RPC_C_AUTHN_LEVEL = extern enum(u32) {
+pub const RPC_C_AUTHN_LEVEL = enum(u32) {
     DEFAULT = 0,
     NONE = 1,
     CONNECT = 2,
@@ -15696,7 +15694,7 @@ pub const RPC_C_AUTHN_LEVEL_PKT = RPC_C_AUTHN_LEVEL.PKT;
 pub const RPC_C_AUTHN_LEVEL_PKT_INTEGRITY = RPC_C_AUTHN_LEVEL.PKT_INTEGRITY;
 pub const RPC_C_AUTHN_LEVEL_PKT_PRIVACY = RPC_C_AUTHN_LEVEL.PKT_PRIVACY;
 
-pub const RPC_C_IMP_LEVEL = extern enum(u32) {
+pub const RPC_C_IMP_LEVEL = enum(u32) {
     DEFAULT = 0,
     ANONYMOUS = 1,
     IDENTIFY = 2,
@@ -15709,7 +15707,7 @@ pub const RPC_C_IMP_LEVEL_IDENTIFY = RPC_C_IMP_LEVEL.IDENTIFY;
 pub const RPC_C_IMP_LEVEL_IMPERSONATE = RPC_C_IMP_LEVEL.IMPERSONATE;
 pub const RPC_C_IMP_LEVEL_DELEGATE = RPC_C_IMP_LEVEL.DELEGATE;
 
-pub const ENUM_CONTROLS_WHICH_FLAGS = extern enum(u32) {
+pub const ENUM_CONTROLS_WHICH_FLAGS = enum(u32) {
     W_WCH_SIBLING = 1,
     _WCH_CONTAINER = 2,
     _WCH_CONTAINED = 3,
@@ -15728,7 +15726,7 @@ pub const GC_WCH_FONLYAFTER = ENUM_CONTROLS_WHICH_FLAGS._WCH_FONLYAFTER;
 pub const GC_WCH_FONLYBEFORE = ENUM_CONTROLS_WHICH_FLAGS._WCH_FONLYBEFORE;
 pub const GC_WCH_FSELECTED = ENUM_CONTROLS_WHICH_FLAGS._WCH_FSELECTED;
 
-pub const MULTICLASSINFO_FLAGS = extern enum(u32) {
+pub const MULTICLASSINFO_FLAGS = enum(u32) {
     TYPEINFO = 1,
     NUMRESERVEDDISPIDS = 2,
     IIDPRIMARY = 4,

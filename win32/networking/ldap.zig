@@ -139,7 +139,7 @@ pub const LDAP_OPT_REF_DEREF_CONN_PER_MSG = @as(u32, 148);
 //--------------------------------------------------------------------------------
 // Section: Types (26)
 //--------------------------------------------------------------------------------
-pub const LDAP_RETCODE = extern enum(i32) {
+pub const LDAP_RETCODE = enum(i32) {
     SUCCESS = 0,
     OPERATIONS_ERROR = 1,
     PROTOCOL_ERROR = 2,
@@ -150,7 +150,7 @@ pub const LDAP_RETCODE = extern enum(i32) {
     AUTH_METHOD_NOT_SUPPORTED = 7,
     STRONG_AUTH_REQUIRED = 8,
     REFERRAL_V2 = 9,
-    PARTIAL_RESULTS = 9,
+    // PARTIAL_RESULTS = 9, this enum value conflicts with REFERRAL_V2
     REFERRAL = 10,
     ADMIN_LIMIT_EXCEEDED = 11,
     UNAVAILABLE_CRIT_EXTENSION = 12,
@@ -214,7 +214,7 @@ pub const LDAP_COMPARE_TRUE = LDAP_RETCODE.COMPARE_TRUE;
 pub const LDAP_AUTH_METHOD_NOT_SUPPORTED = LDAP_RETCODE.AUTH_METHOD_NOT_SUPPORTED;
 pub const LDAP_STRONG_AUTH_REQUIRED = LDAP_RETCODE.STRONG_AUTH_REQUIRED;
 pub const LDAP_REFERRAL_V2 = LDAP_RETCODE.REFERRAL_V2;
-pub const LDAP_PARTIAL_RESULTS = LDAP_RETCODE.PARTIAL_RESULTS;
+pub const LDAP_PARTIAL_RESULTS = LDAP_RETCODE.REFERRAL_V2;
 pub const LDAP_REFERRAL = LDAP_RETCODE.REFERRAL;
 pub const LDAP_ADMIN_LIMIT_EXCEEDED = LDAP_RETCODE.ADMIN_LIMIT_EXCEEDED;
 pub const LDAP_UNAVAILABLE_CRIT_EXTENSION = LDAP_RETCODE.UNAVAILABLE_CRIT_EXTENSION;

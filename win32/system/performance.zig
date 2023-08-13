@@ -202,7 +202,7 @@ pub const PERF_INSTANCE_HEADER = extern struct {
     InstanceId: u32,
 };
 
-pub const PerfRegInfoType = extern enum(i32) {
+pub const PerfRegInfoType = enum(i32) {
     COUNTERSET_STRUCT = 1,
     COUNTER_STRUCT = 2,
     COUNTERSET_NAME_STRING = 3,
@@ -276,7 +276,7 @@ pub const PERF_DATA_HEADER = extern struct {
     SystemTime: SYSTEMTIME,
 };
 
-pub const PerfCounterDataType = extern enum(i32) {
+pub const PerfCounterDataType = enum(i32) {
     ERROR_RETURN = 0,
     SINGLE_COUNTER = 1,
     MULTIPLE_COUNTERS = 2,
@@ -720,7 +720,7 @@ pub const CLSID_BootTraceSession = &CLSID_BootTraceSession_Value;
 const CLSID_BootTraceSessionCollection_Value = @import("../zig.zig").Guid.initString("03837539-098b-11d8-9414-505054503030");
 pub const CLSID_BootTraceSessionCollection = &CLSID_BootTraceSessionCollection_Value;
 
-pub const DataCollectorType = extern enum(i32) {
+pub const DataCollectorType = enum(i32) {
     PerformanceCounter = 0,
     Trace = 1,
     Configuration = 2,
@@ -733,7 +733,7 @@ pub const plaConfiguration = DataCollectorType.Configuration;
 pub const plaAlert = DataCollectorType.Alert;
 pub const plaApiTrace = DataCollectorType.ApiTrace;
 
-pub const FileFormat = extern enum(i32) {
+pub const FileFormat = enum(i32) {
     CommaSeparated = 0,
     TabSeparated = 1,
     Sql = 2,
@@ -744,7 +744,7 @@ pub const plaTabSeparated = FileFormat.TabSeparated;
 pub const plaSql = FileFormat.Sql;
 pub const plaBinary = FileFormat.Binary;
 
-pub const AutoPathFormat = extern enum(i32) {
+pub const AutoPathFormat = enum(i32) {
     None = 0,
     Pattern = 1,
     Computer = 2,
@@ -767,7 +767,7 @@ pub const plaYearMonthDay = AutoPathFormat.YearMonthDay;
 pub const plaYearMonthDayHour = AutoPathFormat.YearMonthDayHour;
 pub const plaMonthDayHourMinute = AutoPathFormat.MonthDayHourMinute;
 
-pub const DataCollectorSetStatus = extern enum(i32) {
+pub const DataCollectorSetStatus = enum(i32) {
     Stopped = 0,
     Running = 1,
     Compiling = 2,
@@ -780,7 +780,7 @@ pub const plaCompiling = DataCollectorSetStatus.Compiling;
 pub const plaPending = DataCollectorSetStatus.Pending;
 pub const plaUndefined = DataCollectorSetStatus.Undefined;
 
-pub const ClockType = extern enum(i32) {
+pub const ClockType = enum(i32) {
     TimeStamp = 0,
     Performance = 1,
     System = 2,
@@ -791,7 +791,7 @@ pub const plaPerformance = ClockType.Performance;
 pub const plaSystem = ClockType.System;
 pub const plaCycle = ClockType.Cycle;
 
-pub const StreamMode = extern enum(i32) {
+pub const StreamMode = enum(i32) {
     File = 1,
     RealTime = 2,
     Both = 3,
@@ -802,7 +802,7 @@ pub const plaRealTime = StreamMode.RealTime;
 pub const plaBoth = StreamMode.Both;
 pub const plaBuffering = StreamMode.Buffering;
 
-pub const CommitMode = extern enum(i32) {
+pub const CommitMode = enum(i32) {
     CreateNew = 1,
     Modify = 2,
     CreateOrModify = 3,
@@ -817,7 +817,7 @@ pub const plaUpdateRunningInstance = CommitMode.UpdateRunningInstance;
 pub const plaFlushTrace = CommitMode.FlushTrace;
 pub const plaValidateOnly = CommitMode.ValidateOnly;
 
-pub const ValueMapType = extern enum(i32) {
+pub const ValueMapType = enum(i32) {
     Index = 1,
     Flag = 2,
     FlagArray = 3,
@@ -828,7 +828,7 @@ pub const plaFlag = ValueMapType.Flag;
 pub const plaFlagArray = ValueMapType.FlagArray;
 pub const plaValidation = ValueMapType.Validation;
 
-pub const WeekDays = extern enum(i32) {
+pub const WeekDays = enum(i32) {
     RunOnce = 0,
     Sunday = 1,
     Monday = 2,
@@ -849,14 +849,14 @@ pub const plaFriday = WeekDays.Friday;
 pub const plaSaturday = WeekDays.Saturday;
 pub const plaEveryday = WeekDays.Everyday;
 
-pub const ResourcePolicy = extern enum(i32) {
+pub const ResourcePolicy = enum(i32) {
     Largest = 0,
     Oldest = 1,
 };
 pub const plaDeleteLargest = ResourcePolicy.Largest;
 pub const plaDeleteOldest = ResourcePolicy.Oldest;
 
-pub const DataManagerSteps = extern enum(i32) {
+pub const DataManagerSteps = enum(i32) {
     CreateReport = 1,
     RunRules = 2,
     CreateHtml = 4,
@@ -869,7 +869,7 @@ pub const plaCreateHtml = DataManagerSteps.CreateHtml;
 pub const plaFolderActions = DataManagerSteps.FolderActions;
 pub const plaResourceFreeing = DataManagerSteps.ResourceFreeing;
 
-pub const FolderActionSteps = extern enum(i32) {
+pub const FolderActionSteps = enum(i32) {
     CreateCab = 1,
     DeleteData = 2,
     SendCab = 4,
@@ -3897,7 +3897,7 @@ pub const IValueMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PERF_DETAIL = extern enum(u32) {
+pub const PERF_DETAIL = enum(u32) {
     NOVICE = 100,
     ADVANCED = 200,
     EXPERT = 300,
@@ -3908,14 +3908,14 @@ pub const PERF_DETAIL_ADVANCED = PERF_DETAIL.ADVANCED;
 pub const PERF_DETAIL_EXPERT = PERF_DETAIL.EXPERT;
 pub const PERF_DETAIL_WIZARD = PERF_DETAIL.WIZARD;
 
-pub const REAL_TIME_DATA_SOURCE_ID_FLAGS = extern enum(u32) {
+pub const REAL_TIME_DATA_SOURCE_ID_FLAGS = enum(u32) {
     REGISTRY = 1,
     WBEM = 4,
 };
 pub const DATA_SOURCE_REGISTRY = REAL_TIME_DATA_SOURCE_ID_FLAGS.REGISTRY;
 pub const DATA_SOURCE_WBEM = REAL_TIME_DATA_SOURCE_ID_FLAGS.WBEM;
 
-pub const PDH_PATH_FLAGS = extern enum(u32) {
+pub const PDH_PATH_FLAGS = enum(u32) {
     RESULT = 1,
     INPUT = 2,
     NONE = 0,
@@ -3924,7 +3924,7 @@ pub const PDH_PATH_WBEM_RESULT = PDH_PATH_FLAGS.RESULT;
 pub const PDH_PATH_WBEM_INPUT = PDH_PATH_FLAGS.INPUT;
 pub const PDH_PATH_WBEM_NONE = PDH_PATH_FLAGS.NONE;
 
-pub const PDH_FMT = extern enum(u32) {
+pub const PDH_FMT = enum(u32) {
     DOUBLE = 512,
     LARGE = 1024,
     LONG = 256,
@@ -3933,7 +3933,7 @@ pub const PDH_FMT_DOUBLE = PDH_FMT.DOUBLE;
 pub const PDH_FMT_LARGE = PDH_FMT.LARGE;
 pub const PDH_FMT_LONG = PDH_FMT.LONG;
 
-pub const PDH_LOG_TYPE = extern enum(u32) {
+pub const PDH_LOG_TYPE = enum(u32) {
     UNDEFINED = 0,
     CSV = 1,
     SQL = 7,
@@ -3948,7 +3948,7 @@ pub const PDH_LOG_TYPE_TSV = PDH_LOG_TYPE.TSV;
 pub const PDH_LOG_TYPE_BINARY = PDH_LOG_TYPE.BINARY;
 pub const PDH_LOG_TYPE_PERFMON = PDH_LOG_TYPE.PERFMON;
 
-pub const PDH_LOG = extern enum(u32) {
+pub const PDH_LOG = enum(u32) {
     READ_ACCESS = 65536,
     WRITE_ACCESS = 131072,
     UPDATE_ACCESS = 262144,
@@ -3957,20 +3957,20 @@ pub const PDH_LOG_READ_ACCESS = PDH_LOG.READ_ACCESS;
 pub const PDH_LOG_WRITE_ACCESS = PDH_LOG.WRITE_ACCESS;
 pub const PDH_LOG_UPDATE_ACCESS = PDH_LOG.UPDATE_ACCESS;
 
-pub const PDH_SELECT_DATA_SOURCE_FLAGS = extern enum(u32) {
+pub const PDH_SELECT_DATA_SOURCE_FLAGS = enum(u32) {
     FILE_BROWSER_ONLY = 1,
     NONE = 0,
 };
 pub const PDH_FLAGS_FILE_BROWSER_ONLY = PDH_SELECT_DATA_SOURCE_FLAGS.FILE_BROWSER_ONLY;
 pub const PDH_FLAGS_NONE = PDH_SELECT_DATA_SOURCE_FLAGS.NONE;
 
-pub const PDH_VERSION = extern enum(u32) {
+pub const PDH_VERSION = enum(u32) {
     CVERSION_WIN50 = 1280,
     VERSION = 1283,
 };
 // TODO: enum 'PDH_VERSION' has known issues with its value aliases
 
-pub const PERF_COUNTER_AGGREGATE_FUNC = extern enum(u32) {
+pub const PERF_COUNTER_AGGREGATE_FUNC = enum(u32) {
     UNDEFINED = 0,
     TOTAL = 1,
     AVG = 2,

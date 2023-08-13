@@ -11,7 +11,7 @@ pub const WHV_HYPERCALL_CONTEXT_MAX_XMM_REGISTERS = @as(u32, 6);
 // TODO: this type has a FreeFunc 'WHvDeletePartition', what can Zig do with this information?
 pub const WHV_PARTITION_HANDLE = isize;
 
-pub const WHV_CAPABILITY_CODE = extern enum(i32) {
+pub const WHV_CAPABILITY_CODE = enum(i32) {
     HypervisorPresent = 0,
     Features = 1,
     ExtendedVmExits = 2,
@@ -52,7 +52,7 @@ pub const WHV_EXTENDED_VM_EXITS = extern union {
     AsUINT64: u64,
 };
 
-pub const WHV_PROCESSOR_VENDOR = extern enum(i32) {
+pub const WHV_PROCESSOR_VENDOR = enum(i32) {
     Amd = 0,
     Intel = 1,
     Hygon = 2,
@@ -116,7 +116,7 @@ pub const WHV_CAPABILITY = extern union {
     ProcessorFeaturesBanks: WHV_PROCESSOR_FEATURES_BANKS,
 };
 
-pub const WHV_PARTITION_PROPERTY_CODE = extern enum(i32) {
+pub const WHV_PARTITION_PROPERTY_CODE = enum(i32) {
     ExtendedVmExits = 1,
     ExceptionExitBitmap = 2,
     SeparateSecurityDomain = 3,
@@ -162,7 +162,7 @@ pub const WHV_X64_CPUID_RESULT = extern struct {
     Edx: u32,
 };
 
-pub const WHV_EXCEPTION_TYPE = extern enum(i32) {
+pub const WHV_EXCEPTION_TYPE = enum(i32) {
     DivideErrorFault = 0,
     DebugTrapOrFault = 1,
     BreakpointTrap = 3,
@@ -199,7 +199,7 @@ pub const WHvX64ExceptionTypeAlignmentCheckFault = WHV_EXCEPTION_TYPE.AlignmentC
 pub const WHvX64ExceptionTypeMachineCheckAbort = WHV_EXCEPTION_TYPE.MachineCheckAbort;
 pub const WHvX64ExceptionTypeSimdFloatingPointFault = WHV_EXCEPTION_TYPE.SimdFloatingPointFault;
 
-pub const WHV_X64_LOCAL_APIC_EMULATION_MODE = extern enum(i32) {
+pub const WHV_X64_LOCAL_APIC_EMULATION_MODE = enum(i32) {
     None = 0,
     XApic = 1,
     X2Apic = 2,
@@ -228,7 +228,7 @@ pub const WHV_PARTITION_PROPERTY = extern union {
     ReferenceTime: u64,
 };
 
-pub const WHV_MAP_GPA_RANGE_FLAGS = extern enum(u32) {
+pub const WHV_MAP_GPA_RANGE_FLAGS = enum(u32) {
     None = 0,
     Read = 1,
     Write = 2,
@@ -257,7 +257,7 @@ pub const WHvMapGpaRangeFlagWrite = WHV_MAP_GPA_RANGE_FLAGS.Write;
 pub const WHvMapGpaRangeFlagExecute = WHV_MAP_GPA_RANGE_FLAGS.Execute;
 pub const WHvMapGpaRangeFlagTrackDirtyPages = WHV_MAP_GPA_RANGE_FLAGS.TrackDirtyPages;
 
-pub const WHV_TRANSLATE_GVA_FLAGS = extern enum(u32) {
+pub const WHV_TRANSLATE_GVA_FLAGS = enum(u32) {
     None = 0,
     ValidateRead = 1,
     ValidateWrite = 2,
@@ -290,7 +290,7 @@ pub const WHvTranslateGvaFlagValidateExecute = WHV_TRANSLATE_GVA_FLAGS.ValidateE
 pub const WHvTranslateGvaFlagPrivilegeExempt = WHV_TRANSLATE_GVA_FLAGS.PrivilegeExempt;
 pub const WHvTranslateGvaFlagSetPageTableBits = WHV_TRANSLATE_GVA_FLAGS.SetPageTableBits;
 
-pub const WHV_TRANSLATE_GVA_RESULT_CODE = extern enum(i32) {
+pub const WHV_TRANSLATE_GVA_RESULT_CODE = enum(i32) {
     Success = 0,
     PageNotPresent = 1,
     PrivilegeViolation = 2,
@@ -316,7 +316,7 @@ pub const WHV_TRANSLATE_GVA_RESULT = extern struct {
     Reserved: u32,
 };
 
-pub const WHV_REGISTER_NAME = extern enum(i32) {
+pub const WHV_REGISTER_NAME = enum(i32) {
     X64RegisterRax = 0,
     X64RegisterRcx = 1,
     X64RegisterRdx = 2,
@@ -682,7 +682,7 @@ pub const WHV_X64_DELIVERABILITY_NOTIFICATIONS_REGISTER = extern union {
     AsUINT64: u64,
 };
 
-pub const WHV_X64_PENDING_EVENT_TYPE = extern enum(i32) {
+pub const WHV_X64_PENDING_EVENT_TYPE = enum(i32) {
     ception = 0,
     tInt = 5,
 };
@@ -740,7 +740,7 @@ pub const WHV_REGISTER_VALUE = extern union {
     PendingDebugException: WHV_X64_PENDING_DEBUG_EXCEPTION,
 };
 
-pub const WHV_RUN_VP_EXIT_REASON = extern enum(i32) {
+pub const WHV_RUN_VP_EXIT_REASON = enum(i32) {
     None = 0,
     MemoryAccess = 1,
     X64IoPortAccess = 2,
@@ -794,7 +794,7 @@ pub const WHV_VP_EXIT_CONTEXT = extern struct {
     Rflags: u64,
 };
 
-pub const WHV_MEMORY_ACCESS_TYPE = extern enum(i32) {
+pub const WHV_MEMORY_ACCESS_TYPE = enum(i32) {
     Read = 0,
     Write = 1,
     Execute = 2,
@@ -884,7 +884,7 @@ pub const WHV_VP_EXCEPTION_CONTEXT = extern struct {
     ExceptionParameter: u64,
 };
 
-pub const WHV_X64_UNSUPPORTED_FEATURE_CODE = extern enum(i32) {
+pub const WHV_X64_UNSUPPORTED_FEATURE_CODE = enum(i32) {
     Intercept = 1,
     TaskSwitchTss = 2,
 };
@@ -897,7 +897,7 @@ pub const WHV_X64_UNSUPPORTED_FEATURE_CONTEXT = extern struct {
     FeatureParameter: u64,
 };
 
-pub const WHV_RUN_VP_CANCEL_REASON = extern enum(i32) {
+pub const WHV_RUN_VP_CANCEL_REASON = enum(i32) {
     r = 0,
 };
 pub const WHvRunVpCancelReasonUser = WHV_RUN_VP_CANCEL_REASON.r;
@@ -906,7 +906,7 @@ pub const WHV_RUN_VP_CANCELED_CONTEXT = extern struct {
     CancelReason: WHV_RUN_VP_CANCEL_REASON,
 };
 
-pub const WHV_X64_PENDING_INTERRUPTION_TYPE = extern enum(i32) {
+pub const WHV_X64_PENDING_INTERRUPTION_TYPE = enum(i32) {
     Interrupt = 0,
     Nmi = 2,
     Exception = 3,
@@ -980,7 +980,7 @@ pub const WHV_RUN_VP_EXIT_CONTEXT = extern struct {
     },
 };
 
-pub const WHV_INTERRUPT_TYPE = extern enum(i32) {
+pub const WHV_INTERRUPT_TYPE = enum(i32) {
     Fixed = 0,
     LowestPriority = 1,
     Nmi = 4,
@@ -995,14 +995,14 @@ pub const WHvX64InterruptTypeInit = WHV_INTERRUPT_TYPE.Init;
 pub const WHvX64InterruptTypeSipi = WHV_INTERRUPT_TYPE.Sipi;
 pub const WHvX64InterruptTypeLocalInt1 = WHV_INTERRUPT_TYPE.LocalInt1;
 
-pub const WHV_INTERRUPT_DESTINATION_MODE = extern enum(i32) {
+pub const WHV_INTERRUPT_DESTINATION_MODE = enum(i32) {
     Physical = 0,
     Logical = 1,
 };
 pub const WHvX64InterruptDestinationModePhysical = WHV_INTERRUPT_DESTINATION_MODE.Physical;
 pub const WHvX64InterruptDestinationModeLogical = WHV_INTERRUPT_DESTINATION_MODE.Logical;
 
-pub const WHV_INTERRUPT_TRIGGER_MODE = extern enum(i32) {
+pub const WHV_INTERRUPT_TRIGGER_MODE = enum(i32) {
     Edge = 0,
     Level = 1,
 };
@@ -1022,7 +1022,7 @@ pub const WHV_DOORBELL_MATCH_DATA = extern struct {
     _bitfield: u32,
 };
 
-pub const WHV_PARTITION_COUNTER_SET = extern enum(i32) {
+pub const WHV_PARTITION_COUNTER_SET = enum(i32) {
     y = 0,
 };
 pub const WHvPartitionCounterSetMemory = WHV_PARTITION_COUNTER_SET.y;
@@ -1033,7 +1033,7 @@ pub const WHV_PARTITION_MEMORY_COUNTERS = extern struct {
     Mapped1GPageCount: u64,
 };
 
-pub const WHV_PROCESSOR_COUNTER_SET = extern enum(i32) {
+pub const WHV_PROCESSOR_COUNTER_SET = enum(i32) {
     Runtime = 0,
     Intercepts = 1,
     Events = 2,

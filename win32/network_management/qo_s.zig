@@ -334,7 +334,7 @@ pub const POLICY_ELEMENT = extern struct {
     ucPeData: [4]u8,
 };
 
-pub const int_serv_wkp = extern enum(i32) {
+pub const int_serv_wkp = enum(i32) {
     HOP_CNT = 4,
     PATH_BW = 6,
     MIN_LATENCY = 8,
@@ -560,7 +560,7 @@ pub const lpmiptable = extern struct {
     IfNetMask: IN_ADDR,
 };
 
-pub const QOS_TRAFFIC_TYPE = extern enum(i32) {
+pub const QOS_TRAFFIC_TYPE = enum(i32) {
     BestEffort = 0,
     Background = 1,
     ExcellentEffort = 2,
@@ -575,7 +575,7 @@ pub const QOSTrafficTypeAudioVideo = QOS_TRAFFIC_TYPE.AudioVideo;
 pub const QOSTrafficTypeVoice = QOS_TRAFFIC_TYPE.Voice;
 pub const QOSTrafficTypeControl = QOS_TRAFFIC_TYPE.Control;
 
-pub const QOS_SET_FLOW = extern enum(i32) {
+pub const QOS_SET_FLOW = enum(i32) {
     TrafficType = 0,
     OutgoingRate = 1,
     OutgoingDSCPValue = 2,
@@ -600,7 +600,7 @@ pub const QOS_FLOW_FUNDAMENTALS = extern struct {
     RTT: u32,
 };
 
-pub const QOS_FLOWRATE_REASON = extern enum(i32) {
+pub const QOS_FLOWRATE_REASON = enum(i32) {
     NotApplicable = 0,
     ContentChange = 1,
     Congestion = 2,
@@ -613,7 +613,7 @@ pub const QOSFlowRateCongestion = QOS_FLOWRATE_REASON.Congestion;
 pub const QOSFlowRateHigherContentEncoding = QOS_FLOWRATE_REASON.HigherContentEncoding;
 pub const QOSFlowRateUserCaused = QOS_FLOWRATE_REASON.UserCaused;
 
-pub const QOS_SHAPING = extern enum(i32) {
+pub const QOS_SHAPING = enum(i32) {
     ShapeOnly = 0,
     ShapeAndMark = 1,
     UseNonConformantMarkings = 2,
@@ -628,7 +628,7 @@ pub const QOS_FLOWRATE_OUTGOING = extern struct {
     Reason: QOS_FLOWRATE_REASON,
 };
 
-pub const QOS_QUERY_FLOW = extern enum(i32) {
+pub const QOS_QUERY_FLOW = enum(i32) {
     FlowFundamentals = 0,
     PacketPriority = 1,
     OutgoingRate = 2,
@@ -637,7 +637,7 @@ pub const QOSQueryFlowFundamentals = QOS_QUERY_FLOW.FlowFundamentals;
 pub const QOSQueryPacketPriority = QOS_QUERY_FLOW.PacketPriority;
 pub const QOSQueryOutgoingRate = QOS_QUERY_FLOW.OutgoingRate;
 
-pub const QOS_NOTIFY_FLOW = extern enum(i32) {
+pub const QOS_NOTIFY_FLOW = enum(i32) {
     Congested = 0,
     Uncongested = 1,
     Available = 2,

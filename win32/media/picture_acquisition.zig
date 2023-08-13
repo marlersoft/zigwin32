@@ -141,7 +141,7 @@ pub const IPhotoAcquireItem = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const USER_INPUT_STRING_TYPE = extern enum(i32) {
+pub const USER_INPUT_STRING_TYPE = enum(i32) {
     DEFAULT = 0,
     PATH_ELEMENT = 1,
 };
@@ -244,7 +244,7 @@ pub const IUserInputString = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ERROR_ADVISE_MESSAGE_TYPE = extern enum(i32) {
+pub const ERROR_ADVISE_MESSAGE_TYPE = enum(i32) {
     SKIPRETRYCANCEL = 0,
     RETRYCANCEL = 1,
     YESNO = 2,
@@ -255,7 +255,7 @@ pub const PHOTOACQUIRE_ERROR_RETRYCANCEL = ERROR_ADVISE_MESSAGE_TYPE.RETRYCANCEL
 pub const PHOTOACQUIRE_ERROR_YESNO = ERROR_ADVISE_MESSAGE_TYPE.YESNO;
 pub const PHOTOACQUIRE_ERROR_OK = ERROR_ADVISE_MESSAGE_TYPE.OK;
 
-pub const ERROR_ADVISE_RESULT = extern enum(i32) {
+pub const ERROR_ADVISE_RESULT = enum(i32) {
     YES = 0,
     NO = 1,
     OK = 2,
@@ -471,7 +471,7 @@ pub const IPhotoProgressActionCB = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROGRESS_DIALOG_IMAGE_TYPE = extern enum(i32) {
+pub const PROGRESS_DIALOG_IMAGE_TYPE = enum(i32) {
     ICON_SMALL = 0,
     ICON_LARGE = 1,
     ICON_THUMBNAIL = 2,
@@ -482,7 +482,7 @@ pub const PROGRESS_DIALOG_ICON_LARGE = PROGRESS_DIALOG_IMAGE_TYPE.ICON_LARGE;
 pub const PROGRESS_DIALOG_ICON_THUMBNAIL = PROGRESS_DIALOG_IMAGE_TYPE.ICON_THUMBNAIL;
 pub const PROGRESS_DIALOG_BITMAP_THUMBNAIL = PROGRESS_DIALOG_IMAGE_TYPE.BITMAP_THUMBNAIL;
 
-pub const PROGRESS_DIALOG_CHECKBOX_ID = extern enum(i32) {
+pub const PROGRESS_DIALOG_CHECKBOX_ID = enum(i32) {
     T = 0,
 };
 pub const PROGRESS_DIALOG_CHECKBOX_ID_DEFAULT = PROGRESS_DIALOG_CHECKBOX_ID.T;
@@ -948,7 +948,7 @@ pub const IPhotoAcquireOptionsDialog = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DEVICE_SELECTION_DEVICE_TYPE = extern enum(i32) {
+pub const DEVICE_SELECTION_DEVICE_TYPE = enum(i32) {
     T_UNKNOWN_DEVICE = 0,
     T_WPD_DEVICE = 1,
     T_WIA_DEVICE = 2,

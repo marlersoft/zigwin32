@@ -22,7 +22,7 @@ pub const ERF = extern struct {
     fError: BOOL,
 };
 
-pub const FCIERROR = extern enum(i32) {
+pub const FCIERROR = enum(i32) {
     NONE = 0,
     OPEN_SRC = 1,
     READ_SRC = 2,
@@ -149,7 +149,7 @@ pub const PFNFCIGETTEMPFILE = fn(
     pv: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const FDIERROR = extern enum(i32) {
+pub const FDIERROR = enum(i32) {
     NONE = 0,
     CABINET_NOT_FOUND = 1,
     NOT_A_CABINET = 2,
@@ -189,7 +189,7 @@ pub const FDICABINETINFO = extern struct {
     hasnext: BOOL,
 };
 
-pub const FDIDECRYPTTYPE = extern enum(i32) {
+pub const FDIDECRYPTTYPE = enum(i32) {
     NEW_CABINET = 0,
     NEW_FOLDER = 1,
     DECRYPT = 2,
@@ -282,7 +282,7 @@ pub const FDINOTIFICATION = extern struct {
     fdie: FDIERROR,
 };
 
-pub const FDINOTIFICATIONTYPE = extern enum(i32) {
+pub const FDINOTIFICATIONTYPE = enum(i32) {
     CABINET_INFO = 0,
     PARTIAL_FILE = 1,
     COPY_FILE = 2,
@@ -322,7 +322,7 @@ pub const FDISPILLFILE = packed struct {
 
 }, else => struct { } };
 
-pub const FDICREATE_CPU_TYPE = extern enum(u32) {
+pub const FDICREATE_CPU_TYPE = enum(u32) {
     @"286" = 0,
     @"386" = 1,
 };

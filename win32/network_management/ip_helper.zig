@@ -534,22 +534,22 @@ pub const IP_MCAST_COUNTER_INFO = extern struct {
     OutMcastPkts: u64,
 };
 
-pub const IF_ACCESS_TYPE = extern enum(i32) {
+pub const IF_ACCESS_TYPE = enum(i32) {
     LOOPBACK = 1,
     BROADCAST = 2,
     POINT_TO_POINT = 3,
-    POINTTOPOINT = 3,
+    // POINTTOPOINT = 3, this enum value conflicts with POINT_TO_POINT
     POINT_TO_MULTI_POINT = 4,
-    POINTTOMULTIPOINT = 4,
+    // POINTTOMULTIPOINT = 4, this enum value conflicts with POINT_TO_MULTI_POINT
 };
 pub const IF_ACCESS_LOOPBACK = IF_ACCESS_TYPE.LOOPBACK;
 pub const IF_ACCESS_BROADCAST = IF_ACCESS_TYPE.BROADCAST;
 pub const IF_ACCESS_POINT_TO_POINT = IF_ACCESS_TYPE.POINT_TO_POINT;
-pub const IF_ACCESS_POINTTOPOINT = IF_ACCESS_TYPE.POINTTOPOINT;
+pub const IF_ACCESS_POINTTOPOINT = IF_ACCESS_TYPE.POINT_TO_POINT;
 pub const IF_ACCESS_POINT_TO_MULTI_POINT = IF_ACCESS_TYPE.POINT_TO_MULTI_POINT;
-pub const IF_ACCESS_POINTTOMULTIPOINT = IF_ACCESS_TYPE.POINTTOMULTIPOINT;
+pub const IF_ACCESS_POINTTOMULTIPOINT = IF_ACCESS_TYPE.POINT_TO_MULTI_POINT;
 
-pub const INTERNAL_IF_OPER_STATUS = extern enum(i32) {
+pub const INTERNAL_IF_OPER_STATUS = enum(i32) {
     NON_OPERATIONAL = 0,
     UNREACHABLE = 1,
     DISCONNECTED = 2,
@@ -564,7 +564,7 @@ pub const IF_OPER_STATUS_CONNECTING = INTERNAL_IF_OPER_STATUS.CONNECTING;
 pub const IF_OPER_STATUS_CONNECTED = INTERNAL_IF_OPER_STATUS.CONNECTED;
 pub const IF_OPER_STATUS_OPERATIONAL = INTERNAL_IF_OPER_STATUS.OPERATIONAL;
 
-pub const NET_IF_OPER_STATUS = extern enum(i32) {
+pub const NET_IF_OPER_STATUS = enum(i32) {
     UP = 1,
     DOWN = 2,
     TESTING = 3,
@@ -581,7 +581,7 @@ pub const NET_IF_OPER_STATUS_DORMANT = NET_IF_OPER_STATUS.DORMANT;
 pub const NET_IF_OPER_STATUS_NOT_PRESENT = NET_IF_OPER_STATUS.NOT_PRESENT;
 pub const NET_IF_OPER_STATUS_LOWER_LAYER_DOWN = NET_IF_OPER_STATUS.LOWER_LAYER_DOWN;
 
-pub const NET_IF_ADMIN_STATUS = extern enum(i32) {
+pub const NET_IF_ADMIN_STATUS = enum(i32) {
     UP = 1,
     DOWN = 2,
     TESTING = 3,
@@ -590,7 +590,7 @@ pub const NET_IF_ADMIN_STATUS_UP = NET_IF_ADMIN_STATUS.UP;
 pub const NET_IF_ADMIN_STATUS_DOWN = NET_IF_ADMIN_STATUS.DOWN;
 pub const NET_IF_ADMIN_STATUS_TESTING = NET_IF_ADMIN_STATUS.TESTING;
 
-pub const NET_IF_RCV_ADDRESS_TYPE = extern enum(i32) {
+pub const NET_IF_RCV_ADDRESS_TYPE = enum(i32) {
     OTHER = 1,
     VOLATILE = 2,
     NON_VOLATILE = 3,
@@ -617,7 +617,7 @@ pub const NET_LUID_LH = extern union {
     },
 };
 
-pub const NET_IF_CONNECTION_TYPE = extern enum(i32) {
+pub const NET_IF_CONNECTION_TYPE = enum(i32) {
     DEDICATED = 1,
     PASSIVE = 2,
     DEMAND = 3,
@@ -628,7 +628,7 @@ pub const NET_IF_CONNECTION_PASSIVE = NET_IF_CONNECTION_TYPE.PASSIVE;
 pub const NET_IF_CONNECTION_DEMAND = NET_IF_CONNECTION_TYPE.DEMAND;
 pub const NET_IF_CONNECTION_MAXIMUM = NET_IF_CONNECTION_TYPE.MAXIMUM;
 
-pub const TUNNEL_TYPE = extern enum(i32) {
+pub const TUNNEL_TYPE = enum(i32) {
     NONE = 0,
     OTHER = 1,
     DIRECT = 2,
@@ -645,7 +645,7 @@ pub const TUNNEL_TYPE_ISATAP = TUNNEL_TYPE.ISATAP;
 pub const TUNNEL_TYPE_TEREDO = TUNNEL_TYPE.TEREDO;
 pub const TUNNEL_TYPE_IPHTTPS = TUNNEL_TYPE.IPHTTPS;
 
-pub const NET_IF_ACCESS_TYPE = extern enum(i32) {
+pub const NET_IF_ACCESS_TYPE = enum(i32) {
     LOOPBACK = 1,
     BROADCAST = 2,
     POINT_TO_POINT = 3,
@@ -658,7 +658,7 @@ pub const NET_IF_ACCESS_POINT_TO_POINT = NET_IF_ACCESS_TYPE.POINT_TO_POINT;
 pub const NET_IF_ACCESS_POINT_TO_MULTI_POINT = NET_IF_ACCESS_TYPE.POINT_TO_MULTI_POINT;
 pub const NET_IF_ACCESS_MAXIMUM = NET_IF_ACCESS_TYPE.MAXIMUM;
 
-pub const NET_IF_DIRECTION_TYPE = extern enum(i32) {
+pub const NET_IF_DIRECTION_TYPE = enum(i32) {
     SENDRECEIVE = 0,
     SENDONLY = 1,
     RECEIVEONLY = 2,
@@ -669,7 +669,7 @@ pub const NET_IF_DIRECTION_SENDONLY = NET_IF_DIRECTION_TYPE.SENDONLY;
 pub const NET_IF_DIRECTION_RECEIVEONLY = NET_IF_DIRECTION_TYPE.RECEIVEONLY;
 pub const NET_IF_DIRECTION_MAXIMUM = NET_IF_DIRECTION_TYPE.MAXIMUM;
 
-pub const NET_IF_MEDIA_CONNECT_STATE = extern enum(i32) {
+pub const NET_IF_MEDIA_CONNECT_STATE = enum(i32) {
     Unknown = 0,
     Connected = 1,
     Disconnected = 2,
@@ -678,7 +678,7 @@ pub const MediaConnectStateUnknown = NET_IF_MEDIA_CONNECT_STATE.Unknown;
 pub const MediaConnectStateConnected = NET_IF_MEDIA_CONNECT_STATE.Connected;
 pub const MediaConnectStateDisconnected = NET_IF_MEDIA_CONNECT_STATE.Disconnected;
 
-pub const NET_IF_MEDIA_DUPLEX_STATE = extern enum(i32) {
+pub const NET_IF_MEDIA_DUPLEX_STATE = enum(i32) {
     Unknown = 0,
     Half = 1,
     Full = 2,
@@ -703,7 +703,7 @@ pub const IF_PHYSICAL_ADDRESS_LH = extern struct {
     Address: [32]u8,
 };
 
-pub const IF_ADMINISTRATIVE_STATE = extern enum(i32) {
+pub const IF_ADMINISTRATIVE_STATE = enum(i32) {
     DISABLED = 0,
     ENABLED = 1,
     DEMANDDIAL = 2,
@@ -712,7 +712,7 @@ pub const IF_ADMINISTRATIVE_DISABLED = IF_ADMINISTRATIVE_STATE.DISABLED;
 pub const IF_ADMINISTRATIVE_ENABLED = IF_ADMINISTRATIVE_STATE.ENABLED;
 pub const IF_ADMINISTRATIVE_DEMANDDIAL = IF_ADMINISTRATIVE_STATE.DEMANDDIAL;
 
-pub const IF_OPER_STATUS = extern enum(i32) {
+pub const IF_OPER_STATUS = enum(i32) {
     Up = 1,
     Down = 2,
     Testing = 3,
@@ -764,7 +764,7 @@ pub const NDIS_INTERFACE_INFORMATION = extern struct {
     SupportedStatistics: u32,
 };
 
-pub const MIB_NOTIFICATION_TYPE = extern enum(i32) {
+pub const MIB_NOTIFICATION_TYPE = enum(i32) {
     ParameterNotification = 0,
     AddInstance = 1,
     DeleteInstance = 2,
@@ -826,14 +826,14 @@ pub const MIB_IF_TABLE2 = extern struct {
     Table: [1]MIB_IF_ROW2,
 };
 
-pub const MIB_IF_ENTRY_LEVEL = extern enum(i32) {
+pub const MIB_IF_ENTRY_LEVEL = enum(i32) {
     l = 0,
     WithoutStatistics = 2,
 };
 pub const MibIfEntryNormal = MIB_IF_ENTRY_LEVEL.l;
 pub const MibIfEntryNormalWithoutStatistics = MIB_IF_ENTRY_LEVEL.WithoutStatistics;
 
-pub const MIB_IF_TABLE_LEVEL = extern enum(i32) {
+pub const MIB_IF_TABLE_LEVEL = enum(i32) {
     Normal = 0,
     Raw = 1,
     NormalWithoutStatistics = 2,
@@ -1160,7 +1160,7 @@ pub const MIB_IPFORWARDNUMBER = extern struct {
     dwValue: u32,
 };
 
-pub const MIB_IPFORWARD_TYPE = extern enum(i32) {
+pub const MIB_IPFORWARD_TYPE = enum(i32) {
     OTHER = 1,
     INVALID = 2,
     DIRECT = 3,
@@ -1196,7 +1196,7 @@ pub const MIB_IPFORWARDTABLE = extern struct {
     table: [1]MIB_IPFORWARDROW,
 };
 
-pub const MIB_IPNET_TYPE = extern enum(i32) {
+pub const MIB_IPNET_TYPE = enum(i32) {
     OTHER = 1,
     INVALID = 2,
     DYNAMIC = 3,
@@ -1231,7 +1231,7 @@ pub const MIB_IPNETTABLE = extern struct {
     table: [1]MIB_IPNETROW_LH,
 };
 
-pub const MIB_IPSTATS_FORWARDING = extern enum(i32) {
+pub const MIB_IPSTATS_FORWARDING = enum(i32) {
     FORWARDING = 1,
     NOT_FORWARDING = 2,
 };
@@ -1329,7 +1329,7 @@ pub const MIB_ICMP_EX_XPSP1 = extern struct {
     icmpOutStats: MIBICMPSTATS_EX_XPSP1,
 };
 
-pub const ICMP6_TYPE = extern enum(i32) {
+pub const ICMP6_TYPE = enum(i32) {
     ICMP6_DST_UNREACH = 1,
     ICMP6_PACKET_TOO_BIG = 2,
     ICMP6_TIME_EXCEEDED = 3,
@@ -1362,7 +1362,7 @@ pub const ND_NEIGHBOR_ADVERT = ICMP6_TYPE.ND_NEIGHBOR_ADVERT;
 pub const ND_REDIRECT = ICMP6_TYPE.ND_REDIRECT;
 pub const ICMP6_V2_MEMBERSHIP_REPORT = ICMP6_TYPE.ICMP6_V2_MEMBERSHIP_REPORT;
 
-pub const ICMP4_TYPE = extern enum(i32) {
+pub const ICMP4_TYPE = enum(i32) {
     ECHO_REPLY = 0,
     DST_UNREACH = 3,
     SOURCE_QUENCH = 4,
@@ -1522,7 +1522,7 @@ pub const MIB_IPMCAST_IF_TABLE = extern struct {
     table: [1]MIB_IPMCAST_IF_ENTRY,
 };
 
-pub const MIB_TCP_STATE = extern enum(i32) {
+pub const MIB_TCP_STATE = enum(i32) {
     CLOSED = 1,
     LISTEN = 2,
     SYN_SENT = 3,
@@ -1551,7 +1551,7 @@ pub const MIB_TCP_STATE_TIME_WAIT = MIB_TCP_STATE.TIME_WAIT;
 pub const MIB_TCP_STATE_DELETE_TCB = MIB_TCP_STATE.DELETE_TCB;
 pub const MIB_TCP_STATE_RESERVED = MIB_TCP_STATE.RESERVED;
 
-pub const TCP_CONNECTION_OFFLOAD_STATE = extern enum(i32) {
+pub const TCP_CONNECTION_OFFLOAD_STATE = enum(i32) {
     InHost = 0,
     Offloading = 1,
     Offloaded = 2,
@@ -1699,24 +1699,24 @@ pub const MIB_TCP6TABLE_OWNER_MODULE = extern struct {
     table: [1]MIB_TCP6ROW_OWNER_MODULE,
 };
 
-pub const TCP_RTO_ALGORITHM = extern enum(i32) {
+pub const TCP_RTO_ALGORITHM = enum(i32) {
     TcpRtoAlgorithmOther = 1,
     TcpRtoAlgorithmConstant = 2,
     TcpRtoAlgorithmRsre = 3,
     TcpRtoAlgorithmVanj = 4,
-    MIB_TCP_RTO_OTHER = 1,
-    MIB_TCP_RTO_CONSTANT = 2,
-    MIB_TCP_RTO_RSRE = 3,
-    MIB_TCP_RTO_VANJ = 4,
+    // MIB_TCP_RTO_OTHER = 1, this enum value conflicts with TcpRtoAlgorithmOther
+    // MIB_TCP_RTO_CONSTANT = 2, this enum value conflicts with TcpRtoAlgorithmConstant
+    // MIB_TCP_RTO_RSRE = 3, this enum value conflicts with TcpRtoAlgorithmRsre
+    // MIB_TCP_RTO_VANJ = 4, this enum value conflicts with TcpRtoAlgorithmVanj
 };
 pub const TcpRtoAlgorithmOther = TCP_RTO_ALGORITHM.TcpRtoAlgorithmOther;
 pub const TcpRtoAlgorithmConstant = TCP_RTO_ALGORITHM.TcpRtoAlgorithmConstant;
 pub const TcpRtoAlgorithmRsre = TCP_RTO_ALGORITHM.TcpRtoAlgorithmRsre;
 pub const TcpRtoAlgorithmVanj = TCP_RTO_ALGORITHM.TcpRtoAlgorithmVanj;
-pub const MIB_TCP_RTO_OTHER = TCP_RTO_ALGORITHM.MIB_TCP_RTO_OTHER;
-pub const MIB_TCP_RTO_CONSTANT = TCP_RTO_ALGORITHM.MIB_TCP_RTO_CONSTANT;
-pub const MIB_TCP_RTO_RSRE = TCP_RTO_ALGORITHM.MIB_TCP_RTO_RSRE;
-pub const MIB_TCP_RTO_VANJ = TCP_RTO_ALGORITHM.MIB_TCP_RTO_VANJ;
+pub const MIB_TCP_RTO_OTHER = TCP_RTO_ALGORITHM.TcpRtoAlgorithmOther;
+pub const MIB_TCP_RTO_CONSTANT = TCP_RTO_ALGORITHM.TcpRtoAlgorithmConstant;
+pub const MIB_TCP_RTO_RSRE = TCP_RTO_ALGORITHM.TcpRtoAlgorithmRsre;
+pub const MIB_TCP_RTO_VANJ = TCP_RTO_ALGORITHM.TcpRtoAlgorithmVanj;
 
 pub const MIB_TCPSTATS_LH = extern struct {
     Anonymous: extern union {
@@ -1874,7 +1874,7 @@ pub const MIB_UDPSTATS2 = extern struct {
     dwNumAddrs: u32,
 };
 
-pub const TCP_TABLE_CLASS = extern enum(i32) {
+pub const TCP_TABLE_CLASS = enum(i32) {
     BASIC_LISTENER = 0,
     BASIC_CONNECTIONS = 1,
     BASIC_ALL = 2,
@@ -1895,7 +1895,7 @@ pub const TCP_TABLE_OWNER_MODULE_LISTENER = TCP_TABLE_CLASS.OWNER_MODULE_LISTENE
 pub const TCP_TABLE_OWNER_MODULE_CONNECTIONS = TCP_TABLE_CLASS.OWNER_MODULE_CONNECTIONS;
 pub const TCP_TABLE_OWNER_MODULE_ALL = TCP_TABLE_CLASS.OWNER_MODULE_ALL;
 
-pub const UDP_TABLE_CLASS = extern enum(i32) {
+pub const UDP_TABLE_CLASS = enum(i32) {
     BASIC = 0,
     OWNER_PID = 1,
     OWNER_MODULE = 2,
@@ -1904,7 +1904,7 @@ pub const UDP_TABLE_BASIC = UDP_TABLE_CLASS.BASIC;
 pub const UDP_TABLE_OWNER_PID = UDP_TABLE_CLASS.OWNER_PID;
 pub const UDP_TABLE_OWNER_MODULE = UDP_TABLE_CLASS.OWNER_MODULE;
 
-pub const TCPIP_OWNER_MODULE_INFO_CLASS = extern enum(i32) {
+pub const TCPIP_OWNER_MODULE_INFO_CLASS = enum(i32) {
     C = 0,
 };
 pub const TCPIP_OWNER_MODULE_INFO_BASIC = TCPIP_OWNER_MODULE_INFO_CLASS.C;
@@ -2238,7 +2238,7 @@ pub const ip_interface_name_info_w2ksp1 = extern struct {
     InterfaceGuid: Guid,
 };
 
-pub const TCP_ESTATS_TYPE = extern enum(i32) {
+pub const TCP_ESTATS_TYPE = enum(i32) {
     SynOpts = 0,
     Data = 1,
     SndCong = 2,
@@ -2261,7 +2261,7 @@ pub const TcpConnectionEstatsBandwidth = TCP_ESTATS_TYPE.Bandwidth;
 pub const TcpConnectionEstatsFineRtt = TCP_ESTATS_TYPE.FineRtt;
 pub const TcpConnectionEstatsMaximum = TCP_ESTATS_TYPE.Maximum;
 
-pub const TCP_BOOLEAN_OPTIONAL = extern enum(i32) {
+pub const TCP_BOOLEAN_OPTIONAL = enum(i32) {
     Disabled = 0,
     Enabled = 1,
     Unchanged = -1,
@@ -2276,7 +2276,7 @@ pub const TCP_ESTATS_SYN_OPTS_ROS_v0 = extern struct {
     MssSent: u32,
 };
 
-pub const TCP_SOFT_ERROR = extern enum(i32) {
+pub const TCP_SOFT_ERROR = enum(i32) {
     None = 0,
     BelowDataWindow = 1,
     AboveDataWindow = 2,
@@ -2502,7 +2502,7 @@ pub const PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK = fn(
     CallerContext: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const NET_ADDRESS_FORMAT = extern enum(i32) {
+pub const NET_ADDRESS_FORMAT = enum(i32) {
     FORMAT_UNSPECIFIED = 0,
     DNS_NAME = 1,
     IPV4 = 2,
@@ -2513,7 +2513,7 @@ pub const NET_ADDRESS_DNS_NAME = NET_ADDRESS_FORMAT.DNS_NAME;
 pub const NET_ADDRESS_IPV4 = NET_ADDRESS_FORMAT.IPV4;
 pub const NET_ADDRESS_IPV6 = NET_ADDRESS_FORMAT.IPV6;
 
-pub const GLOBAL_FILTER = extern enum(i32) {
+pub const GLOBAL_FILTER = enum(i32) {
     FRAGMENTS = 2,
     STRONGHOST = 8,
     FRAGCACHE = 9,
@@ -2522,14 +2522,14 @@ pub const GF_FRAGMENTS = GLOBAL_FILTER.FRAGMENTS;
 pub const GF_STRONGHOST = GLOBAL_FILTER.STRONGHOST;
 pub const GF_FRAGCACHE = GLOBAL_FILTER.FRAGCACHE;
 
-pub const PFFORWARD_ACTION = extern enum(i32) {
+pub const PFFORWARD_ACTION = enum(i32) {
     FORWARD = 0,
     DROP = 1,
 };
 pub const PF_ACTION_FORWARD = PFFORWARD_ACTION.FORWARD;
 pub const PF_ACTION_DROP = PFFORWARD_ACTION.DROP;
 
-pub const PFADDRESSTYPE = extern enum(i32) {
+pub const PFADDRESSTYPE = enum(i32) {
     @"4" = 0,
     @"6" = 1,
 };
@@ -2582,7 +2582,7 @@ pub const PF_LATEBIND_INFO = extern struct {
     Mask: *u8,
 };
 
-pub const PFFRAMETYPE = extern enum(i32) {
+pub const PFFRAMETYPE = enum(i32) {
     FILTER = 1,
     FRAG = 2,
     SPOOF = 3,
@@ -2603,7 +2603,7 @@ pub const PFLOGFRAME = extern struct {
     bPacketData: [1]u8,
 };
 
-pub const ADDRESS_FAMILY = extern enum(u32) {
+pub const ADDRESS_FAMILY = enum(u32) {
     INET = 2,
     INET6 = 23,
     UNSPEC = 0,
@@ -2612,7 +2612,7 @@ pub const AF_INET = ADDRESS_FAMILY.INET;
 pub const AF_INET6 = ADDRESS_FAMILY.INET6;
 pub const AF_UNSPEC = ADDRESS_FAMILY.UNSPEC;
 
-pub const GET_ADAPTERS_ADDRESSES_FLAGS = extern enum(u32) {
+pub const GET_ADAPTERS_ADDRESSES_FLAGS = enum(u32) {
     SKIP_UNICAST = 1,
     SKIP_ANYCAST = 2,
     SKIP_MULTICAST = 4,

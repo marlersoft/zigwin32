@@ -44,7 +44,7 @@ pub const CLSID_UpdateServiceManager = &CLSID_UpdateServiceManager_Value;
 const CLSID_InstallationAgent_Value = @import("../zig.zig").Guid.initString("317e92fc-1679-46fd-a0b5-f08914dd8623");
 pub const CLSID_InstallationAgent = &CLSID_InstallationAgent_Value;
 
-pub const AutomaticUpdatesNotificationLevel = extern enum(i32) {
+pub const AutomaticUpdatesNotificationLevel = enum(i32) {
     NotConfigured = 0,
     Disabled = 1,
     NotifyBeforeDownload = 2,
@@ -57,7 +57,7 @@ pub const aunlNotifyBeforeDownload = AutomaticUpdatesNotificationLevel.NotifyBef
 pub const aunlNotifyBeforeInstallation = AutomaticUpdatesNotificationLevel.NotifyBeforeInstallation;
 pub const aunlScheduledInstallation = AutomaticUpdatesNotificationLevel.ScheduledInstallation;
 
-pub const AutomaticUpdatesScheduledInstallationDay = extern enum(i32) {
+pub const AutomaticUpdatesScheduledInstallationDay = enum(i32) {
     Day = 0,
     Sunday = 1,
     Monday = 2,
@@ -76,7 +76,7 @@ pub const ausidEveryThursday = AutomaticUpdatesScheduledInstallationDay.Thursday
 pub const ausidEveryFriday = AutomaticUpdatesScheduledInstallationDay.Friday;
 pub const ausidEverySaturday = AutomaticUpdatesScheduledInstallationDay.Saturday;
 
-pub const DownloadPhase = extern enum(i32) {
+pub const DownloadPhase = enum(i32) {
     Initializing = 1,
     Downloading = 2,
     Verifying = 3,
@@ -85,7 +85,7 @@ pub const dphInitializing = DownloadPhase.Initializing;
 pub const dphDownloading = DownloadPhase.Downloading;
 pub const dphVerifying = DownloadPhase.Verifying;
 
-pub const DownloadPriority = extern enum(i32) {
+pub const DownloadPriority = enum(i32) {
     Low = 1,
     Normal = 2,
     High = 3,
@@ -96,7 +96,7 @@ pub const dpNormal = DownloadPriority.Normal;
 pub const dpHigh = DownloadPriority.High;
 pub const dpExtraHigh = DownloadPriority.ExtraHigh;
 
-pub const AutoSelectionMode = extern enum(i32) {
+pub const AutoSelectionMode = enum(i32) {
     LetWindowsUpdateDecide = 0,
     AutoSelectIfDownloaded = 1,
     NeverAutoSelect = 2,
@@ -107,7 +107,7 @@ pub const asAutoSelectIfDownloaded = AutoSelectionMode.AutoSelectIfDownloaded;
 pub const asNeverAutoSelect = AutoSelectionMode.NeverAutoSelect;
 pub const asAlwaysAutoSelect = AutoSelectionMode.AlwaysAutoSelect;
 
-pub const AutoDownloadMode = extern enum(i32) {
+pub const AutoDownloadMode = enum(i32) {
     LetWindowsUpdateDecide = 0,
     NeverAutoDownload = 1,
     AlwaysAutoDownload = 2,
@@ -116,7 +116,7 @@ pub const adLetWindowsUpdateDecide = AutoDownloadMode.LetWindowsUpdateDecide;
 pub const adNeverAutoDownload = AutoDownloadMode.NeverAutoDownload;
 pub const adAlwaysAutoDownload = AutoDownloadMode.AlwaysAutoDownload;
 
-pub const InstallationImpact = extern enum(i32) {
+pub const InstallationImpact = enum(i32) {
     Normal = 0,
     Minor = 1,
     RequiresExclusiveHandling = 2,
@@ -125,7 +125,7 @@ pub const iiNormal = InstallationImpact.Normal;
 pub const iiMinor = InstallationImpact.Minor;
 pub const iiRequiresExclusiveHandling = InstallationImpact.RequiresExclusiveHandling;
 
-pub const InstallationRebootBehavior = extern enum(i32) {
+pub const InstallationRebootBehavior = enum(i32) {
     NeverReboots = 0,
     AlwaysRequiresReboot = 1,
     CanRequestReboot = 2,
@@ -134,7 +134,7 @@ pub const irbNeverReboots = InstallationRebootBehavior.NeverReboots;
 pub const irbAlwaysRequiresReboot = InstallationRebootBehavior.AlwaysRequiresReboot;
 pub const irbCanRequestReboot = InstallationRebootBehavior.CanRequestReboot;
 
-pub const OperationResultCode = extern enum(i32) {
+pub const OperationResultCode = enum(i32) {
     NotStarted = 0,
     InProgress = 1,
     Succeeded = 2,
@@ -149,7 +149,7 @@ pub const orcSucceededWithErrors = OperationResultCode.SucceededWithErrors;
 pub const orcFailed = OperationResultCode.Failed;
 pub const orcAborted = OperationResultCode.Aborted;
 
-pub const ServerSelection = extern enum(i32) {
+pub const ServerSelection = enum(i32) {
     Default = 0,
     ManagedServer = 1,
     WindowsUpdate = 2,
@@ -160,21 +160,21 @@ pub const ssManagedServer = ServerSelection.ManagedServer;
 pub const ssWindowsUpdate = ServerSelection.WindowsUpdate;
 pub const ssOthers = ServerSelection.Others;
 
-pub const UpdateType = extern enum(i32) {
+pub const UpdateType = enum(i32) {
     Software = 1,
     Driver = 2,
 };
 pub const utSoftware = UpdateType.Software;
 pub const utDriver = UpdateType.Driver;
 
-pub const UpdateOperation = extern enum(i32) {
+pub const UpdateOperation = enum(i32) {
     Installation = 1,
     Uninstallation = 2,
 };
 pub const uoInstallation = UpdateOperation.Installation;
 pub const uoUninstallation = UpdateOperation.Uninstallation;
 
-pub const DeploymentAction = extern enum(i32) {
+pub const DeploymentAction = enum(i32) {
     None = 0,
     Installation = 1,
     Uninstallation = 2,
@@ -187,7 +187,7 @@ pub const daUninstallation = DeploymentAction.Uninstallation;
 pub const daDetection = DeploymentAction.Detection;
 pub const daOptionalInstallation = DeploymentAction.OptionalInstallation;
 
-pub const UpdateExceptionContext = extern enum(i32) {
+pub const UpdateExceptionContext = enum(i32) {
     General = 1,
     WindowsDriver = 2,
     WindowsInstaller = 3,
@@ -198,14 +198,14 @@ pub const uecWindowsDriver = UpdateExceptionContext.WindowsDriver;
 pub const uecWindowsInstaller = UpdateExceptionContext.WindowsInstaller;
 pub const uecSearchIncomplete = UpdateExceptionContext.SearchIncomplete;
 
-pub const AutomaticUpdatesUserType = extern enum(i32) {
+pub const AutomaticUpdatesUserType = enum(i32) {
     CurrentUser = 1,
     LocalAdministrator = 2,
 };
 pub const auutCurrentUser = AutomaticUpdatesUserType.CurrentUser;
 pub const auutLocalAdministrator = AutomaticUpdatesUserType.LocalAdministrator;
 
-pub const AutomaticUpdatesPermissionType = extern enum(i32) {
+pub const AutomaticUpdatesPermissionType = enum(i32) {
     SetNotificationLevel = 1,
     DisableAutomaticUpdates = 2,
     SetIncludeRecommendedUpdates = 3,
@@ -218,7 +218,7 @@ pub const auptSetIncludeRecommendedUpdates = AutomaticUpdatesPermissionType.SetI
 pub const auptSetFeaturedUpdatesEnabled = AutomaticUpdatesPermissionType.SetFeaturedUpdatesEnabled;
 pub const auptSetNonAdministratorsElevated = AutomaticUpdatesPermissionType.SetNonAdministratorsElevated;
 
-pub const UpdateServiceRegistrationState = extern enum(i32) {
+pub const UpdateServiceRegistrationState = enum(i32) {
     NotRegistered = 1,
     RegistrationPending = 2,
     Registered = 3,
@@ -227,7 +227,7 @@ pub const usrsNotRegistered = UpdateServiceRegistrationState.NotRegistered;
 pub const usrsRegistrationPending = UpdateServiceRegistrationState.RegistrationPending;
 pub const usrsRegistered = UpdateServiceRegistrationState.Registered;
 
-pub const SearchScope = extern enum(i32) {
+pub const SearchScope = enum(i32) {
     Default = 0,
     MachineOnly = 1,
     CurrentUserOnly = 2,
@@ -4466,12 +4466,12 @@ pub const IInstallationAgent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UpdateLockdownOption = extern enum(i32) {
+pub const UpdateLockdownOption = enum(i32) {
     s = 1,
 };
 pub const uloForWebsiteAccess = UpdateLockdownOption.s;
 
-pub const AddServiceFlag = extern enum(i32) {
+pub const AddServiceFlag = enum(i32) {
     AllowPendingRegistration = 1,
     AllowOnlineRegistration = 2,
     RegisterServiceWithAU = 4,
@@ -4480,7 +4480,7 @@ pub const asfAllowPendingRegistration = AddServiceFlag.AllowPendingRegistration;
 pub const asfAllowOnlineRegistration = AddServiceFlag.AllowOnlineRegistration;
 pub const asfRegisterServiceWithAU = AddServiceFlag.RegisterServiceWithAU;
 
-pub const UpdateServiceOption = extern enum(i32) {
+pub const UpdateServiceOption = enum(i32) {
     e = 1,
 };
 pub const usoNonVolatileService = UpdateServiceOption.e;

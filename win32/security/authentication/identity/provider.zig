@@ -7,14 +7,14 @@ pub const OID_OAssociatedIdentityProviderObject = Guid.initString("98c5a3dd-db68
 //--------------------------------------------------------------------------------
 // Section: Types (20)
 //--------------------------------------------------------------------------------
-pub const IDENTITY_TYPE = extern enum(i32) {
+pub const IDENTITY_TYPE = enum(i32) {
     ALL = 0,
     ME_ONLY = 1,
 };
 pub const IDENTITIES_ALL = IDENTITY_TYPE.ALL;
 pub const IDENTITIES_ME_ONLY = IDENTITY_TYPE.ME_ONLY;
 
-pub const IdentityUpdateEvent = extern enum(u32) {
+pub const IdentityUpdateEvent = enum(u32) {
     ASSOCIATED = 1,
     DISASSOCIATED = 2,
     CREATED = 4,
@@ -438,7 +438,7 @@ pub const AsyncIAssociatedIdentityProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IDENTITY_URL = extern enum(i32) {
+pub const IDENTITY_URL = enum(i32) {
     CREATE_ACCOUNT_WIZARD = 0,
     SIGN_IN_WIZARD = 1,
     CHANGE_PASSWORD_WIZARD = 2,
@@ -455,7 +455,7 @@ pub const IDENTITY_URL_ACCOUNT_SETTINGS = IDENTITY_URL.ACCOUNT_SETTINGS;
 pub const IDENTITY_URL_RESTORE_WIZARD = IDENTITY_URL.RESTORE_WIZARD;
 pub const IDENTITY_URL_CONNECT_WIZARD = IDENTITY_URL.CONNECT_WIZARD;
 
-pub const ACCOUNT_STATE = extern enum(i32) {
+pub const ACCOUNT_STATE = enum(i32) {
     NOT_CONNECTED = 0,
     CONNECTING = 1,
     CONNECT_COMPLETED = 2,

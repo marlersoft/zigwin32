@@ -285,7 +285,7 @@ pub const SEC_THREAD_START = fn(
     lpThreadParameter: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const TOKEN_ACCESS_MASK = extern enum(u32) {
+pub const TOKEN_ACCESS_MASK = enum(u32) {
     DELETE = 65536,
     READ_CONTROL = 131072,
     WRITE_DAC = 262144,
@@ -377,7 +377,7 @@ pub const SID = extern struct {
     SubAuthority: [1]u32,
 };
 
-pub const SID_NAME_USE = extern enum(i32) {
+pub const SID_NAME_USE = enum(i32) {
     User = 1,
     Group = 2,
     Domain = 3,
@@ -413,7 +413,7 @@ pub const SID_AND_ATTRIBUTES_HASH = extern struct {
     Hash: [32]usize,
 };
 
-pub const WELL_KNOWN_SID_TYPE = extern enum(i32) {
+pub const WELL_KNOWN_SID_TYPE = enum(i32) {
     NullSid = 0,
     WorldSid = 1,
     LocalSid = 2,
@@ -808,7 +808,7 @@ pub const SYSTEM_ALARM_CALLBACK_OBJECT_ACE = extern struct {
     SidStart: u32,
 };
 
-pub const ACL_INFORMATION_CLASS = extern enum(i32) {
+pub const ACL_INFORMATION_CLASS = enum(i32) {
     RevisionInformation = 1,
     SizeInformation = 2,
 };
@@ -841,7 +841,7 @@ pub const OBJECT_TYPE_LIST = extern struct {
     ObjectType: *Guid,
 };
 
-pub const AUDIT_EVENT_TYPE = extern enum(i32) {
+pub const AUDIT_EVENT_TYPE = enum(i32) {
     ObjectAccess = 0,
     DirectoryServiceAccess = 1,
 };
@@ -854,7 +854,7 @@ pub const PRIVILEGE_SET = extern struct {
     Privilege: [1]LUID_AND_ATTRIBUTES,
 };
 
-pub const SECURITY_IMPERSONATION_LEVEL = extern enum(i32) {
+pub const SECURITY_IMPERSONATION_LEVEL = enum(i32) {
     Anonymous = 0,
     Identification = 1,
     Impersonation = 2,
@@ -865,14 +865,14 @@ pub const SecurityIdentification = SECURITY_IMPERSONATION_LEVEL.Identification;
 pub const SecurityImpersonation = SECURITY_IMPERSONATION_LEVEL.Impersonation;
 pub const SecurityDelegation = SECURITY_IMPERSONATION_LEVEL.Delegation;
 
-pub const TOKEN_TYPE = extern enum(i32) {
+pub const TOKEN_TYPE = enum(i32) {
     Primary = 1,
     Impersonation = 2,
 };
 pub const TokenPrimary = TOKEN_TYPE.Primary;
 pub const TokenImpersonation = TOKEN_TYPE.Impersonation;
 
-pub const TOKEN_ELEVATION_TYPE = extern enum(i32) {
+pub const TOKEN_ELEVATION_TYPE = enum(i32) {
     Default = 1,
     Full = 2,
     Limited = 3,
@@ -881,7 +881,7 @@ pub const TokenElevationTypeDefault = TOKEN_ELEVATION_TYPE.Default;
 pub const TokenElevationTypeFull = TOKEN_ELEVATION_TYPE.Full;
 pub const TokenElevationTypeLimited = TOKEN_ELEVATION_TYPE.Limited;
 
-pub const TOKEN_INFORMATION_CLASS = extern enum(i32) {
+pub const TOKEN_INFORMATION_CLASS = enum(i32) {
     TokenUser = 1,
     TokenGroups = 2,
     TokenPrivileges = 3,
@@ -1094,7 +1094,7 @@ pub const TOKEN_ORIGIN = extern struct {
     OriginatingLogonSession: LUID,
 };
 
-pub const MANDATORY_LEVEL = extern enum(i32) {
+pub const MANDATORY_LEVEL = enum(i32) {
     Untrusted = 0,
     Low = 1,
     Medium = 2,
@@ -1582,7 +1582,7 @@ pub const CLSID_TpmVirtualSmartCardManager = &CLSID_TpmVirtualSmartCardManager_V
 const CLSID_RemoteTpmVirtualSmartCardManager_Value = @import("zig.zig").Guid.initString("152ea2a8-70dc-4c59-8b2a-32aa3ca0dcac");
 pub const CLSID_RemoteTpmVirtualSmartCardManager = &CLSID_RemoteTpmVirtualSmartCardManager_Value;
 
-pub const TPMVSC_ATTESTATION_TYPE = extern enum(i32) {
+pub const TPMVSC_ATTESTATION_TYPE = enum(i32) {
     NONE = 0,
     AIK_ONLY = 1,
     AIK_AND_CERTIFICATE = 2,
@@ -1591,7 +1591,7 @@ pub const TPMVSC_ATTESTATION_NONE = TPMVSC_ATTESTATION_TYPE.NONE;
 pub const TPMVSC_ATTESTATION_AIK_ONLY = TPMVSC_ATTESTATION_TYPE.AIK_ONLY;
 pub const TPMVSC_ATTESTATION_AIK_AND_CERTIFICATE = TPMVSC_ATTESTATION_TYPE.AIK_AND_CERTIFICATE;
 
-pub const TPMVSCMGR_STATUS = extern enum(i32) {
+pub const TPMVSCMGR_STATUS = enum(i32) {
     VTPMSMARTCARD_INITIALIZING = 0,
     VTPMSMARTCARD_CREATING = 1,
     VTPMSMARTCARD_DESTROYING = 2,
@@ -1622,7 +1622,7 @@ pub const TPMVSCMGR_STATUS_GENERATE_RUNNING = TPMVSCMGR_STATUS.GENERATE_RUNNING;
 pub const TPMVSCMGR_STATUS_CARD_CREATED = TPMVSCMGR_STATUS.CARD_CREATED;
 pub const TPMVSCMGR_STATUS_CARD_DESTROYED = TPMVSCMGR_STATUS.CARD_DESTROYED;
 
-pub const TPMVSCMGR_ERROR = extern enum(i32) {
+pub const TPMVSCMGR_ERROR = enum(i32) {
     IMPERSONATION = 0,
     PIN_COMPLEXITY = 1,
     READER_COUNT_LIMIT = 2,
@@ -2055,7 +2055,7 @@ pub const ICertSrvSetupKeyInformationCollection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CASetupProperty = extern enum(i32) {
+pub const CASetupProperty = enum(i32) {
     INVALID = -1,
     CATYPE = 0,
     CAKEYINFORMATION = 1,
@@ -2284,7 +2284,7 @@ pub const ICertSrvSetup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MSCEPSetupProperty = extern enum(i32) {
+pub const MSCEPSetupProperty = enum(i32) {
     USELOCALSYSTEM = 0,
     USECHALLENGE = 1,
     RANAME_CN = 2,
@@ -2429,7 +2429,7 @@ pub const IMSCEPSetup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CESSetupProperty = extern enum(i32) {
+pub const CESSetupProperty = enum(i32) {
     USE_IISAPPPOOLIDENTITY = 0,
     CACONFIG = 1,
     AUTHENTICATION = 2,
@@ -2519,7 +2519,7 @@ pub const ICertificateEnrollmentServerSetup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CEPSetupProperty = extern enum(i32) {
+pub const CEPSetupProperty = enum(i32) {
     AUTHENTICATION = 0,
     SSLCERTHASH = 1,
     URL = 2,
@@ -2593,7 +2593,7 @@ pub const ICertificateEnrollmentPolicyServerSetup = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ENUM_PERIOD = extern enum(i32) {
+pub const ENUM_PERIOD = enum(i32) {
     INVALID = -1,
     SECONDS = 0,
     MINUTES = 1,
@@ -3304,7 +3304,7 @@ pub const SCESVC_CONFIGURATION_INFO = extern struct {
     Lines: *SCESVC_CONFIGURATION_LINE,
 };
 
-pub const SCESVC_INFO_TYPE = extern enum(i32) {
+pub const SCESVC_INFO_TYPE = enum(i32) {
     ConfigurationInfo = 0,
     MergedPolicyInfo = 1,
     AnalysisInfo = 2,
@@ -3498,7 +3498,7 @@ pub const SAFER_CODE_PROPERTIES_V2 = extern struct {
     PackageIsFramework: BOOL,
 };
 
-pub const SAFER_POLICY_INFO_CLASS = extern enum(i32) {
+pub const SAFER_POLICY_INFO_CLASS = enum(i32) {
     LevelList = 1,
     EnableTransparentEnforcement = 2,
     DefaultLevel = 3,
@@ -3515,7 +3515,7 @@ pub const SaferPolicyScopeFlags = SAFER_POLICY_INFO_CLASS.ScopeFlags;
 pub const SaferPolicyDefaultLevelFlags = SAFER_POLICY_INFO_CLASS.DefaultLevelFlags;
 pub const SaferPolicyAuthenticodeEnabled = SAFER_POLICY_INFO_CLASS.AuthenticodeEnabled;
 
-pub const SAFER_OBJECT_INFO_CLASS = extern enum(i32) {
+pub const SAFER_OBJECT_INFO_CLASS = enum(i32) {
     LevelId = 1,
     ScopeId = 2,
     FriendlyName = 3,
@@ -3550,7 +3550,7 @@ pub const SaferObjectAllIdentificationGuids = SAFER_OBJECT_INFO_CLASS.AllIdentif
 pub const SaferObjectSingleIdentification = SAFER_OBJECT_INFO_CLASS.SingleIdentification;
 pub const SaferObjectExtendedError = SAFER_OBJECT_INFO_CLASS.ExtendedError;
 
-pub const SAFER_IDENTIFICATION_TYPES = extern enum(i32) {
+pub const SAFER_IDENTIFICATION_TYPES = enum(i32) {
     Default = 0,
     TypeImageName = 1,
     TypeImageHash = 2,
@@ -3601,7 +3601,7 @@ pub const SAFER_URLZONE_IDENTIFICATION = extern struct {
     dwSaferFlags: u32,
 };
 
-pub const SLDATATYPE = extern enum(u32) {
+pub const SLDATATYPE = enum(u32) {
     NONE = 0,
     SZ = 1,
     DWORD = 4,
@@ -3616,7 +3616,7 @@ pub const SL_DATA_BINARY = SLDATATYPE.BINARY;
 pub const SL_DATA_MULTI_SZ = SLDATATYPE.MULTI_SZ;
 pub const SL_DATA_SUM = SLDATATYPE.SUM;
 
-pub const SLIDTYPE = extern enum(i32) {
+pub const SLIDTYPE = enum(i32) {
     APPLICATION = 0,
     PRODUCT_SKU = 1,
     LICENSE_FILE = 2,
@@ -3637,7 +3637,7 @@ pub const SL_ID_ALL_LICENSE_FILES = SLIDTYPE.ALL_LICENSE_FILES;
 pub const SL_ID_STORE_TOKEN = SLIDTYPE.STORE_TOKEN;
 pub const SL_ID_LAST = SLIDTYPE.LAST;
 
-pub const SLLICENSINGSTATUS = extern enum(i32) {
+pub const SLLICENSINGSTATUS = enum(i32) {
     UNLICENSED = 0,
     LICENSED = 1,
     IN_GRACE_PERIOD = 2,
@@ -3659,7 +3659,7 @@ pub const SL_LICENSING_STATUS = extern struct {
     qwValidityExpiration: u64,
 };
 
-pub const SL_ACTIVATION_TYPE = extern enum(i32) {
+pub const SL_ACTIVATION_TYPE = enum(i32) {
     DEFAULT = 0,
     ACTIVE_DIRECTORY = 1,
 };
@@ -3677,7 +3677,7 @@ pub const SL_AD_ACTIVATION_INFO = extern struct {
     pwszActivationObjectName: [*:0]const u16,
 };
 
-pub const SLREFERRALTYPE = extern enum(i32) {
+pub const SLREFERRALTYPE = enum(i32) {
     SKUID = 0,
     APPID = 1,
     OVERRIDE_SKUID = 2,
@@ -3690,7 +3690,7 @@ pub const SL_REFERRALTYPE_OVERRIDE_SKUID = SLREFERRALTYPE.OVERRIDE_SKUID;
 pub const SL_REFERRALTYPE_OVERRIDE_APPID = SLREFERRALTYPE.OVERRIDE_APPID;
 pub const SL_REFERRALTYPE_BEST_MATCH = SLREFERRALTYPE.BEST_MATCH;
 
-pub const SL_GENUINE_STATE = extern enum(i32) {
+pub const SL_GENUINE_STATE = enum(i32) {
     IS_GENUINE = 0,
     INVALID_LICENSE = 1,
     TAMPERED = 2,
@@ -3714,7 +3714,7 @@ pub const SL_SYSTEM_POLICY_INFORMATION = extern struct {
     Reserved2: [3]u32,
 };
 
-pub const DdqAccessLevel = extern enum(i32) {
+pub const DdqAccessLevel = enum(i32) {
     NoData = 0,
     CurrentUserData = 1,
     AllUserData = 2,
@@ -3822,7 +3822,7 @@ pub const DIAGNOSTIC_REPORT_DATA = extern struct {
     reportKey: PWSTR,
 };
 
-pub const TOKEN_PRIVILEGES_ATTRIBUTES = extern enum(u32) {
+pub const TOKEN_PRIVILEGES_ATTRIBUTES = enum(u32) {
     ENABLED = 2,
     ENABLED_BY_DEFAULT = 1,
     REMOVED = 4,
@@ -3847,7 +3847,7 @@ pub const SE_PRIVILEGE_ENABLED_BY_DEFAULT = TOKEN_PRIVILEGES_ATTRIBUTES.ENABLED_
 pub const SE_PRIVILEGE_REMOVED = TOKEN_PRIVILEGES_ATTRIBUTES.REMOVED;
 pub const SE_PRIVILEGE_USED_FOR_ACCESS = TOKEN_PRIVILEGES_ATTRIBUTES.USED_FOR_ACCESS;
 
-pub const LOGON32_PROVIDER = extern enum(u32) {
+pub const LOGON32_PROVIDER = enum(u32) {
     DEFAULT = 0,
     WINNT50 = 3,
     WINNT40 = 2,
@@ -3856,7 +3856,7 @@ pub const LOGON32_PROVIDER_DEFAULT = LOGON32_PROVIDER.DEFAULT;
 pub const LOGON32_PROVIDER_WINNT50 = LOGON32_PROVIDER.WINNT50;
 pub const LOGON32_PROVIDER_WINNT40 = LOGON32_PROVIDER.WINNT40;
 
-pub const SCE_LOG_ERR_LEVEL = extern enum(u32) {
+pub const SCE_LOG_ERR_LEVEL = enum(u32) {
     ALWAYS = 0,
     ERROR = 1,
     DETAIL = 2,
@@ -3867,7 +3867,7 @@ pub const SCE_LOG_LEVEL_ERROR = SCE_LOG_ERR_LEVEL.ERROR;
 pub const SCE_LOG_LEVEL_DETAIL = SCE_LOG_ERR_LEVEL.DETAIL;
 pub const SCE_LOG_LEVEL_DEBUG = SCE_LOG_ERR_LEVEL.DEBUG;
 
-pub const CREATE_RESTRICTED_TOKEN_FLAGS = extern enum(u32) {
+pub const CREATE_RESTRICTED_TOKEN_FLAGS = enum(u32) {
     DISABLE_MAX_PRIVILEGE = 1,
     SANDBOX_INERT = 2,
     LUA_TOKEN = 4,
@@ -3892,7 +3892,7 @@ pub const SANDBOX_INERT = CREATE_RESTRICTED_TOKEN_FLAGS.SANDBOX_INERT;
 pub const LUA_TOKEN = CREATE_RESTRICTED_TOKEN_FLAGS.LUA_TOKEN;
 pub const WRITE_RESTRICTED = CREATE_RESTRICTED_TOKEN_FLAGS.WRITE_RESTRICTED;
 
-pub const LOGON32_LOGON = extern enum(u32) {
+pub const LOGON32_LOGON = enum(u32) {
     BATCH = 4,
     INTERACTIVE = 2,
     NETWORK = 3,
@@ -3909,7 +3909,7 @@ pub const LOGON32_LOGON_NEW_CREDENTIALS = LOGON32_LOGON.NEW_CREDENTIALS;
 pub const LOGON32_LOGON_SERVICE = LOGON32_LOGON.SERVICE;
 pub const LOGON32_LOGON_UNLOCK = LOGON32_LOGON.UNLOCK;
 
-pub const ACE_FLAGS = extern enum(u32) {
+pub const ACE_FLAGS = enum(u32) {
     CONTAINER_INHERIT_ACE = 2,
     FAILED_ACCESS_ACE_FLAG = 128,
     INHERIT_ONLY_ACE = 8,
@@ -3918,12 +3918,12 @@ pub const ACE_FLAGS = extern enum(u32) {
     OBJECT_INHERIT_ACE = 1,
     SUCCESSFUL_ACCESS_ACE_FLAG = 64,
     SUB_CONTAINERS_AND_OBJECTS_INHERIT = 3,
-    SUB_CONTAINERS_ONLY_INHERIT = 2,
-    SUB_OBJECTS_ONLY_INHERIT = 1,
-    INHERIT_NO_PROPAGATE = 4,
-    INHERIT_ONLY = 8,
+    // SUB_CONTAINERS_ONLY_INHERIT = 2, this enum value conflicts with CONTAINER_INHERIT_ACE
+    // SUB_OBJECTS_ONLY_INHERIT = 1, this enum value conflicts with OBJECT_INHERIT_ACE
+    // INHERIT_NO_PROPAGATE = 4, this enum value conflicts with NO_PROPAGATE_INHERIT_ACE
+    // INHERIT_ONLY = 8, this enum value conflicts with INHERIT_ONLY_ACE
     NO_INHERITANCE = 0,
-    INHERIT_ONLY_ACE_ = 8,
+    // INHERIT_ONLY_ACE_ = 8, this enum value conflicts with INHERIT_ONLY_ACE
     _,
     pub fn initFlags(o: struct {
         CONTAINER_INHERIT_ACE: u1 = 0,
@@ -3934,12 +3934,7 @@ pub const ACE_FLAGS = extern enum(u32) {
         OBJECT_INHERIT_ACE: u1 = 0,
         SUCCESSFUL_ACCESS_ACE_FLAG: u1 = 0,
         SUB_CONTAINERS_AND_OBJECTS_INHERIT: u1 = 0,
-        SUB_CONTAINERS_ONLY_INHERIT: u1 = 0,
-        SUB_OBJECTS_ONLY_INHERIT: u1 = 0,
-        INHERIT_NO_PROPAGATE: u1 = 0,
-        INHERIT_ONLY: u1 = 0,
         NO_INHERITANCE: u1 = 0,
-        INHERIT_ONLY_ACE_: u1 = 0,
     }) ACE_FLAGS {
         return @intToEnum(ACE_FLAGS,
               (if (o.CONTAINER_INHERIT_ACE == 1) @enumToInt(ACE_FLAGS.CONTAINER_INHERIT_ACE) else 0)
@@ -3950,12 +3945,7 @@ pub const ACE_FLAGS = extern enum(u32) {
             | (if (o.OBJECT_INHERIT_ACE == 1) @enumToInt(ACE_FLAGS.OBJECT_INHERIT_ACE) else 0)
             | (if (o.SUCCESSFUL_ACCESS_ACE_FLAG == 1) @enumToInt(ACE_FLAGS.SUCCESSFUL_ACCESS_ACE_FLAG) else 0)
             | (if (o.SUB_CONTAINERS_AND_OBJECTS_INHERIT == 1) @enumToInt(ACE_FLAGS.SUB_CONTAINERS_AND_OBJECTS_INHERIT) else 0)
-            | (if (o.SUB_CONTAINERS_ONLY_INHERIT == 1) @enumToInt(ACE_FLAGS.SUB_CONTAINERS_ONLY_INHERIT) else 0)
-            | (if (o.SUB_OBJECTS_ONLY_INHERIT == 1) @enumToInt(ACE_FLAGS.SUB_OBJECTS_ONLY_INHERIT) else 0)
-            | (if (o.INHERIT_NO_PROPAGATE == 1) @enumToInt(ACE_FLAGS.INHERIT_NO_PROPAGATE) else 0)
-            | (if (o.INHERIT_ONLY == 1) @enumToInt(ACE_FLAGS.INHERIT_ONLY) else 0)
             | (if (o.NO_INHERITANCE == 1) @enumToInt(ACE_FLAGS.NO_INHERITANCE) else 0)
-            | (if (o.INHERIT_ONLY_ACE_ == 1) @enumToInt(ACE_FLAGS.INHERIT_ONLY_ACE_) else 0)
         );
     }
 };
@@ -3967,14 +3957,14 @@ pub const NO_PROPAGATE_INHERIT_ACE = ACE_FLAGS.NO_PROPAGATE_INHERIT_ACE;
 pub const OBJECT_INHERIT_ACE = ACE_FLAGS.OBJECT_INHERIT_ACE;
 pub const SUCCESSFUL_ACCESS_ACE_FLAG = ACE_FLAGS.SUCCESSFUL_ACCESS_ACE_FLAG;
 pub const SUB_CONTAINERS_AND_OBJECTS_INHERIT = ACE_FLAGS.SUB_CONTAINERS_AND_OBJECTS_INHERIT;
-pub const SUB_CONTAINERS_ONLY_INHERIT = ACE_FLAGS.SUB_CONTAINERS_ONLY_INHERIT;
-pub const SUB_OBJECTS_ONLY_INHERIT = ACE_FLAGS.SUB_OBJECTS_ONLY_INHERIT;
-pub const INHERIT_NO_PROPAGATE = ACE_FLAGS.INHERIT_NO_PROPAGATE;
-pub const INHERIT_ONLY = ACE_FLAGS.INHERIT_ONLY;
+pub const SUB_CONTAINERS_ONLY_INHERIT = ACE_FLAGS.CONTAINER_INHERIT_ACE;
+pub const SUB_OBJECTS_ONLY_INHERIT = ACE_FLAGS.OBJECT_INHERIT_ACE;
+pub const INHERIT_NO_PROPAGATE = ACE_FLAGS.NO_PROPAGATE_INHERIT_ACE;
+pub const INHERIT_ONLY = ACE_FLAGS.INHERIT_ONLY_ACE;
 pub const NO_INHERITANCE = ACE_FLAGS.NO_INHERITANCE;
-pub const INHERIT_ONLY_ACE_ = ACE_FLAGS.INHERIT_ONLY_ACE_;
+pub const INHERIT_ONLY_ACE_ = ACE_FLAGS.INHERIT_ONLY_ACE;
 
-pub const SECURITY_AUTO_INHERIT_FLAGS = extern enum(u32) {
+pub const SECURITY_AUTO_INHERIT_FLAGS = enum(u32) {
     AVOID_OWNER_CHECK = 16,
     AVOID_OWNER_RESTRICTION = 4096,
     AVOID_PRIVILEGE_CHECK = 8,
@@ -4027,7 +4017,7 @@ pub const SEF_MACL_NO_READ_UP = SECURITY_AUTO_INHERIT_FLAGS.MACL_NO_READ_UP;
 pub const SEF_MACL_NO_WRITE_UP = SECURITY_AUTO_INHERIT_FLAGS.MACL_NO_WRITE_UP;
 pub const SEF_SACL_AUTO_INHERIT = SECURITY_AUTO_INHERIT_FLAGS.SACL_AUTO_INHERIT;
 
-pub const SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS = extern enum(u32) {
+pub const SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS = enum(u32) {
     NULL_IF_EQUAL = 1,
     COMPARE_ONLY = 2,
     MAKE_INERT = 4,
@@ -4052,21 +4042,21 @@ pub const SAFER_TOKEN_COMPARE_ONLY = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.COMPAR
 pub const SAFER_TOKEN_MAKE_INERT = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.MAKE_INERT;
 pub const SAFER_TOKEN_WANT_FLAGS = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.WANT_FLAGS;
 
-pub const WINTRUST_GET_DEFAULT_FOR_USAGE_ACTION = extern enum(u32) {
+pub const WINTRUST_GET_DEFAULT_FOR_USAGE_ACTION = enum(u32) {
     ALLOCANDFILL = 1,
     FREE = 2,
 };
 pub const DWACTION_ALLOCANDFILL = WINTRUST_GET_DEFAULT_FOR_USAGE_ACTION.ALLOCANDFILL;
 pub const DWACTION_FREE = WINTRUST_GET_DEFAULT_FOR_USAGE_ACTION.FREE;
 
-pub const ACE_REVISION = extern enum(u32) {
+pub const ACE_REVISION = enum(u32) {
     N = 2,
     _DS = 4,
 };
 pub const ACL_REVISION = ACE_REVISION.N;
 pub const ACL_REVISION_DS = ACE_REVISION._DS;
 
-pub const WINTRUST_POLICY_FLAGS = extern enum(u32) {
+pub const WINTRUST_POLICY_FLAGS = enum(u32) {
     TRUSTTEST = 32,
     TESTCANBEVALID = 128,
     IGNOREEXPIRATION = 256,
@@ -4119,7 +4109,7 @@ pub const WTPF_VERIFY_V1_OFF = WINTRUST_POLICY_FLAGS.VERIFY_V1_OFF;
 pub const WTPF_IGNOREREVOCATIONONTS = WINTRUST_POLICY_FLAGS.IGNOREREVOCATIONONTS;
 pub const WTPF_ALLOWONLYPERTRUST = WINTRUST_POLICY_FLAGS.ALLOWONLYPERTRUST;
 
-pub const WLX_SHUTDOWN_TYPE = extern enum(u32) {
+pub const WLX_SHUTDOWN_TYPE = enum(u32) {
     N = 5,
     _REBOOT = 11,
     _POWER_OFF = 10,
@@ -4128,14 +4118,14 @@ pub const WLX_SAS_ACTION_SHUTDOWN = WLX_SHUTDOWN_TYPE.N;
 pub const WLX_SAS_ACTION_SHUTDOWN_REBOOT = WLX_SHUTDOWN_TYPE._REBOOT;
 pub const WLX_SAS_ACTION_SHUTDOWN_POWER_OFF = WLX_SHUTDOWN_TYPE._POWER_OFF;
 
-pub const CRYPTCAT_VERSION = extern enum(u32) {
+pub const CRYPTCAT_VERSION = enum(u32) {
     @"1" = 256,
     @"2" = 512,
 };
 pub const CRYPTCAT_VERSION_1 = CRYPTCAT_VERSION.@"1";
 pub const CRYPTCAT_VERSION_2 = CRYPTCAT_VERSION.@"2";
 
-pub const CRYPTCAT_OPEN_FLAGS = extern enum(u32) {
+pub const CRYPTCAT_OPEN_FLAGS = enum(u32) {
     ALWAYS = 2,
     CREATENEW = 1,
     EXISTING = 4,
@@ -4180,7 +4170,7 @@ pub const CRYPTCAT_OPEN_NO_CONTENT_HCRYPTMSG = CRYPTCAT_OPEN_FLAGS.NO_CONTENT_HC
 pub const CRYPTCAT_OPEN_SORTED = CRYPTCAT_OPEN_FLAGS.SORTED;
 pub const CRYPTCAT_OPEN_FLAGS_MASK = CRYPTCAT_OPEN_FLAGS.FLAGS_MASK;
 
-pub const TOKEN_MANDATORY_POLICY_ID = extern enum(u32) {
+pub const TOKEN_MANDATORY_POLICY_ID = enum(u32) {
     OFF = 0,
     NO_WRITE_UP = 1,
     NEW_PROCESS_MIN = 2,
@@ -4191,7 +4181,7 @@ pub const TOKEN_MANDATORY_POLICY_NO_WRITE_UP = TOKEN_MANDATORY_POLICY_ID.NO_WRIT
 pub const TOKEN_MANDATORY_POLICY_NEW_PROCESS_MIN = TOKEN_MANDATORY_POLICY_ID.NEW_PROCESS_MIN;
 pub const TOKEN_MANDATORY_POLICY_VALID_MASK = TOKEN_MANDATORY_POLICY_ID.VALID_MASK;
 
-pub const SYSTEM_AUDIT_OBJECT_ACE_FLAGS = extern enum(u32) {
+pub const SYSTEM_AUDIT_OBJECT_ACE_FLAGS = enum(u32) {
     OBJECT_TYPE_PRESENT = 1,
     INHERITED_OBJECT_TYPE_PRESENT = 2,
     _,
@@ -4208,7 +4198,7 @@ pub const SYSTEM_AUDIT_OBJECT_ACE_FLAGS = extern enum(u32) {
 pub const ACE_OBJECT_TYPE_PRESENT = SYSTEM_AUDIT_OBJECT_ACE_FLAGS.OBJECT_TYPE_PRESENT;
 pub const ACE_INHERITED_OBJECT_TYPE_PRESENT = SYSTEM_AUDIT_OBJECT_ACE_FLAGS.INHERITED_OBJECT_TYPE_PRESENT;
 
-pub const CLAIM_SECURITY_ATTRIBUTE_FLAGS = extern enum(u32) {
+pub const CLAIM_SECURITY_ATTRIBUTE_FLAGS = enum(u32) {
     NON_INHERITABLE = 1,
     VALUE_CASE_SENSITIVE = 2,
     USE_FOR_DENY_ONLY = 4,
@@ -4241,7 +4231,7 @@ pub const CLAIM_SECURITY_ATTRIBUTE_DISABLED_BY_DEFAULT = CLAIM_SECURITY_ATTRIBUT
 pub const CLAIM_SECURITY_ATTRIBUTE_DISABLED = CLAIM_SECURITY_ATTRIBUTE_FLAGS.DISABLED;
 pub const CLAIM_SECURITY_ATTRIBUTE_MANDATORY = CLAIM_SECURITY_ATTRIBUTE_FLAGS.MANDATORY;
 
-pub const WINTRUST_DATA_UICHOICE = extern enum(u32) {
+pub const WINTRUST_DATA_UICHOICE = enum(u32) {
     ALL = 1,
     NONE = 2,
     NOBAD = 3,
@@ -4252,14 +4242,14 @@ pub const WTD_UI_NONE = WINTRUST_DATA_UICHOICE.NONE;
 pub const WTD_UI_NOBAD = WINTRUST_DATA_UICHOICE.NOBAD;
 pub const WTD_UI_NOGOOD = WINTRUST_DATA_UICHOICE.NOGOOD;
 
-pub const WINTRUST_SIGNATURE_SETTINGS_FLAGS = extern enum(u32) {
+pub const WINTRUST_SIGNATURE_SETTINGS_FLAGS = enum(u32) {
     VERIFY_SPECIFIC = 1,
     GET_SECONDARY_SIG_COUNT = 2,
 };
 pub const WSS_VERIFY_SPECIFIC = WINTRUST_SIGNATURE_SETTINGS_FLAGS.VERIFY_SPECIFIC;
 pub const WSS_GET_SECONDARY_SIG_COUNT = WINTRUST_SIGNATURE_SETTINGS_FLAGS.GET_SECONDARY_SIG_COUNT;
 
-pub const WINTRUST_DATA_STATE_ACTION = extern enum(u32) {
+pub const WINTRUST_DATA_STATE_ACTION = enum(u32) {
     IGNORE = 0,
     VERIFY = 1,
     CLOSE = 2,
@@ -4272,7 +4262,7 @@ pub const WTD_STATEACTION_CLOSE = WINTRUST_DATA_STATE_ACTION.CLOSE;
 pub const WTD_STATEACTION_AUTO_CACHE = WINTRUST_DATA_STATE_ACTION.AUTO_CACHE;
 pub const WTD_STATEACTION_AUTO_CACHE_FLUSH = WINTRUST_DATA_STATE_ACTION.AUTO_CACHE_FLUSH;
 
-pub const CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE = extern enum(u32) {
+pub const CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE = enum(u32) {
     INT64 = 1,
     UINT64 = 2,
     STRING = 3,
@@ -4289,7 +4279,7 @@ pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_FQBN = CLAIM_SECURITY_ATTRIBUTE_VALUE_TY
 pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_SID = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.SID;
 pub const CLAIM_SECURITY_ATTRIBUTE_TYPE_BOOLEAN = CLAIM_SECURITY_ATTRIBUTE_VALUE_TYPE.BOOLEAN;
 
-pub const WINTRUST_DATA_UNION_CHOICE = extern enum(u32) {
+pub const WINTRUST_DATA_UNION_CHOICE = enum(u32) {
     FILE = 1,
     CATALOG = 2,
     BLOB = 3,
@@ -4302,14 +4292,14 @@ pub const WTD_CHOICE_BLOB = WINTRUST_DATA_UNION_CHOICE.BLOB;
 pub const WTD_CHOICE_SIGNER = WINTRUST_DATA_UNION_CHOICE.SIGNER;
 pub const WTD_CHOICE_CERT = WINTRUST_DATA_UNION_CHOICE.CERT;
 
-pub const WINTRUST_DATA_REVOCATION_CHECKS = extern enum(u32) {
+pub const WINTRUST_DATA_REVOCATION_CHECKS = enum(u32) {
     NONE = 0,
     WHOLECHAIN = 1,
 };
 pub const WTD_REVOKE_NONE = WINTRUST_DATA_REVOCATION_CHECKS.NONE;
 pub const WTD_REVOKE_WHOLECHAIN = WINTRUST_DATA_REVOCATION_CHECKS.WHOLECHAIN;
 
-pub const WINTRUST_DATA_UICONTEXT = extern enum(u32) {
+pub const WINTRUST_DATA_UICONTEXT = enum(u32) {
     EXECUTE = 0,
     INSTALL = 1,
 };

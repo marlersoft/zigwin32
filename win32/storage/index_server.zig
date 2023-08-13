@@ -152,7 +152,7 @@ pub const FULLPROPSPEC = extern struct {
     psProperty: PROPSPEC,
 };
 
-pub const IFILTER_INIT = extern enum(i32) {
+pub const IFILTER_INIT = enum(i32) {
     CANON_PARAGRAPHS = 1,
     HARD_LINE_BREAKS = 2,
     CANON_HYPHENS = 4,
@@ -181,12 +181,12 @@ pub const IFILTER_INIT_FILTER_AGGRESSIVE_BREAK = IFILTER_INIT.FILTER_AGGRESSIVE_
 pub const IFILTER_INIT_DISABLE_EMBEDDED = IFILTER_INIT.DISABLE_EMBEDDED;
 pub const IFILTER_INIT_EMIT_FORMATTING = IFILTER_INIT.EMIT_FORMATTING;
 
-pub const IFILTER_FLAGS = extern enum(i32) {
+pub const IFILTER_FLAGS = enum(i32) {
     S = 1,
 };
 pub const IFILTER_FLAGS_OLE_PROPERTIES = IFILTER_FLAGS.S;
 
-pub const CHUNKSTATE = extern enum(i32) {
+pub const CHUNKSTATE = enum(i32) {
     TEXT = 1,
     VALUE = 2,
     FILTER_OWNED_VALUE = 4,
@@ -195,7 +195,7 @@ pub const CHUNK_TEXT = CHUNKSTATE.TEXT;
 pub const CHUNK_VALUE = CHUNKSTATE.VALUE;
 pub const CHUNK_FILTER_OWNED_VALUE = CHUNKSTATE.FILTER_OWNED_VALUE;
 
-pub const CHUNK_BREAKTYPE = extern enum(i32) {
+pub const CHUNK_BREAKTYPE = enum(i32) {
     NO_BREAK = 0,
     EOW = 1,
     EOS = 2,
@@ -340,7 +340,7 @@ pub const IPhraseSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WORDREP_BREAK_TYPE = extern enum(i32) {
+pub const WORDREP_BREAK_TYPE = enum(i32) {
     W = 0,
     S = 1,
     P = 2,
@@ -351,7 +351,7 @@ pub const WORDREP_BREAK_EOS = WORDREP_BREAK_TYPE.S;
 pub const WORDREP_BREAK_EOP = WORDREP_BREAK_TYPE.P;
 pub const WORDREP_BREAK_EOC = WORDREP_BREAK_TYPE.C;
 
-pub const DBKINDENUM = extern enum(i32) {
+pub const DBKINDENUM = enum(i32) {
     GUID_NAME = 0,
     GUID_PROPID = 1,
     NAME = 2,

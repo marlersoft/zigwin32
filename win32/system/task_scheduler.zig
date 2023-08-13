@@ -49,7 +49,7 @@ pub const CLSID_CTaskScheduler = Guid.initString("148bd52a-a2ab-11ce-b11f-00aa00
 //--------------------------------------------------------------------------------
 // Section: Types (72)
 //--------------------------------------------------------------------------------
-pub const TASK_TRIGGER_TYPE = extern enum(i32) {
+pub const TASK_TRIGGER_TYPE = enum(i32) {
     TIME_TRIGGER_ONCE = 0,
     TIME_TRIGGER_DAILY = 1,
     TIME_TRIGGER_WEEKLY = 2,
@@ -651,7 +651,7 @@ pub const ITaskScheduler = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const TASKPAGE = extern enum(i32) {
+pub const TASKPAGE = enum(i32) {
     TASK = 0,
     SCHEDULE = 1,
     SETTINGS = 2,
@@ -693,7 +693,7 @@ pub const CLSID_TaskHandlerPS = &CLSID_TaskHandlerPS_Value;
 const CLSID_TaskHandlerStatusPS_Value = @import("../zig.zig").Guid.initString("9f15266d-d7ba-48f0-93c1-e6895f6fe5ac");
 pub const CLSID_TaskHandlerStatusPS = &CLSID_TaskHandlerStatusPS_Value;
 
-pub const TASK_RUN_FLAGS = extern enum(i32) {
+pub const TASK_RUN_FLAGS = enum(i32) {
     NO_FLAGS = 0,
     AS_SELF = 1,
     IGNORE_CONSTRAINTS = 2,
@@ -706,12 +706,12 @@ pub const TASK_RUN_IGNORE_CONSTRAINTS = TASK_RUN_FLAGS.IGNORE_CONSTRAINTS;
 pub const TASK_RUN_USE_SESSION_ID = TASK_RUN_FLAGS.USE_SESSION_ID;
 pub const TASK_RUN_USER_SID = TASK_RUN_FLAGS.USER_SID;
 
-pub const TASK_ENUM_FLAGS = extern enum(i32) {
+pub const TASK_ENUM_FLAGS = enum(i32) {
     N = 1,
 };
 pub const TASK_ENUM_HIDDEN = TASK_ENUM_FLAGS.N;
 
-pub const TASK_LOGON_TYPE = extern enum(i32) {
+pub const TASK_LOGON_TYPE = enum(i32) {
     NONE = 0,
     PASSWORD = 1,
     S4U = 2,
@@ -728,14 +728,14 @@ pub const TASK_LOGON_GROUP = TASK_LOGON_TYPE.GROUP;
 pub const TASK_LOGON_SERVICE_ACCOUNT = TASK_LOGON_TYPE.SERVICE_ACCOUNT;
 pub const TASK_LOGON_INTERACTIVE_TOKEN_OR_PASSWORD = TASK_LOGON_TYPE.INTERACTIVE_TOKEN_OR_PASSWORD;
 
-pub const TASK_RUNLEVEL_TYPE = extern enum(i32) {
+pub const TASK_RUNLEVEL_TYPE = enum(i32) {
     LUA = 0,
     HIGHEST = 1,
 };
 pub const TASK_RUNLEVEL_LUA = TASK_RUNLEVEL_TYPE.LUA;
 pub const TASK_RUNLEVEL_HIGHEST = TASK_RUNLEVEL_TYPE.HIGHEST;
 
-pub const TASK_PROCESSTOKENSID_TYPE = extern enum(i32) {
+pub const TASK_PROCESSTOKENSID_TYPE = enum(i32) {
     NONE = 0,
     UNRESTRICTED = 1,
     DEFAULT = 2,
@@ -744,7 +744,7 @@ pub const TASK_PROCESSTOKENSID_NONE = TASK_PROCESSTOKENSID_TYPE.NONE;
 pub const TASK_PROCESSTOKENSID_UNRESTRICTED = TASK_PROCESSTOKENSID_TYPE.UNRESTRICTED;
 pub const TASK_PROCESSTOKENSID_DEFAULT = TASK_PROCESSTOKENSID_TYPE.DEFAULT;
 
-pub const TASK_STATE = extern enum(i32) {
+pub const TASK_STATE = enum(i32) {
     UNKNOWN = 0,
     DISABLED = 1,
     QUEUED = 2,
@@ -757,7 +757,7 @@ pub const TASK_STATE_QUEUED = TASK_STATE.QUEUED;
 pub const TASK_STATE_READY = TASK_STATE.READY;
 pub const TASK_STATE_RUNNING = TASK_STATE.RUNNING;
 
-pub const TASK_CREATION = extern enum(i32) {
+pub const TASK_CREATION = enum(i32) {
     VALIDATE_ONLY = 1,
     CREATE = 2,
     UPDATE = 4,
@@ -774,7 +774,7 @@ pub const TASK_DISABLE = TASK_CREATION.DISABLE;
 pub const TASK_DONT_ADD_PRINCIPAL_ACE = TASK_CREATION.DONT_ADD_PRINCIPAL_ACE;
 pub const TASK_IGNORE_REGISTRATION_TRIGGERS = TASK_CREATION.IGNORE_REGISTRATION_TRIGGERS;
 
-pub const TASK_TRIGGER_TYPE2 = extern enum(i32) {
+pub const TASK_TRIGGER_TYPE2 = enum(i32) {
     EVENT = 0,
     TIME = 1,
     DAILY = 2,
@@ -801,7 +801,7 @@ pub const TASK_TRIGGER_LOGON = TASK_TRIGGER_TYPE2.LOGON;
 pub const TASK_TRIGGER_SESSION_STATE_CHANGE = TASK_TRIGGER_TYPE2.SESSION_STATE_CHANGE;
 pub const TASK_TRIGGER_CUSTOM_TRIGGER_01 = TASK_TRIGGER_TYPE2.CUSTOM_TRIGGER_01;
 
-pub const TASK_SESSION_STATE_CHANGE_TYPE = extern enum(i32) {
+pub const TASK_SESSION_STATE_CHANGE_TYPE = enum(i32) {
     CONSOLE_CONNECT = 1,
     CONSOLE_DISCONNECT = 2,
     REMOTE_CONNECT = 3,
@@ -816,7 +816,7 @@ pub const TASK_REMOTE_DISCONNECT = TASK_SESSION_STATE_CHANGE_TYPE.REMOTE_DISCONN
 pub const TASK_SESSION_LOCK = TASK_SESSION_STATE_CHANGE_TYPE.SESSION_LOCK;
 pub const TASK_SESSION_UNLOCK = TASK_SESSION_STATE_CHANGE_TYPE.SESSION_UNLOCK;
 
-pub const TASK_ACTION_TYPE = extern enum(i32) {
+pub const TASK_ACTION_TYPE = enum(i32) {
     EXEC = 0,
     COM_HANDLER = 5,
     SEND_EMAIL = 6,
@@ -827,7 +827,7 @@ pub const TASK_ACTION_COM_HANDLER = TASK_ACTION_TYPE.COM_HANDLER;
 pub const TASK_ACTION_SEND_EMAIL = TASK_ACTION_TYPE.SEND_EMAIL;
 pub const TASK_ACTION_SHOW_MESSAGE = TASK_ACTION_TYPE.SHOW_MESSAGE;
 
-pub const TASK_INSTANCES_POLICY = extern enum(i32) {
+pub const TASK_INSTANCES_POLICY = enum(i32) {
     PARALLEL = 0,
     QUEUE = 1,
     IGNORE_NEW = 2,
@@ -838,7 +838,7 @@ pub const TASK_INSTANCES_QUEUE = TASK_INSTANCES_POLICY.QUEUE;
 pub const TASK_INSTANCES_IGNORE_NEW = TASK_INSTANCES_POLICY.IGNORE_NEW;
 pub const TASK_INSTANCES_STOP_EXISTING = TASK_INSTANCES_POLICY.STOP_EXISTING;
 
-pub const TASK_COMPATIBILITY = extern enum(i32) {
+pub const TASK_COMPATIBILITY = enum(i32) {
     AT = 0,
     V1 = 1,
     V2 = 2,

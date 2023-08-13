@@ -823,7 +823,7 @@ pub const TRANSPORT_NAME_PARMNUM = @as(u32, 202);
 //--------------------------------------------------------------------------------
 // Section: Types (297)
 //--------------------------------------------------------------------------------
-pub const NET_REQUEST_PROVISION_OPTIONS = extern enum(u32) {
+pub const NET_REQUEST_PROVISION_OPTIONS = enum(u32) {
     R = 1073741824,
     _,
     pub fn initFlags(o: struct {
@@ -836,7 +836,7 @@ pub const NET_REQUEST_PROVISION_OPTIONS = extern enum(u32) {
 };
 pub const NETSETUP_PROVISION_ONLINE_CALLER = NET_REQUEST_PROVISION_OPTIONS.R;
 
-pub const NET_JOIN_DOMAIN_JOIN_OPTIONS = extern enum(u32) {
+pub const NET_JOIN_DOMAIN_JOIN_OPTIONS = enum(u32) {
     JOIN_DOMAIN = 1,
     ACCT_CREATE = 2,
     WIN9X_UPGRADE = 16,
@@ -913,7 +913,7 @@ pub const NETSETUP_FORCE_SPN_SET = NET_JOIN_DOMAIN_JOIN_OPTIONS.FORCE_SPN_SET;
 pub const NETSETUP_NO_ACCT_REUSE = NET_JOIN_DOMAIN_JOIN_OPTIONS.NO_ACCT_REUSE;
 pub const NETSETUP_IGNORE_UNSUPPORTED_FLAGS = NET_JOIN_DOMAIN_JOIN_OPTIONS.IGNORE_UNSUPPORTED_FLAGS;
 
-pub const NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS = extern enum(i32) {
+pub const NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS = enum(i32) {
     REMOTE_ADMIN_PROTOCOL = 2,
     RPC = 4,
     SAM_PROTOCOL = 8,
@@ -926,7 +926,7 @@ pub const SUPPORTS_SAM_PROTOCOL = NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS.SAM_PROTO
 pub const SUPPORTS_UNICODE = NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS.UNICODE;
 pub const SUPPORTS_LOCAL = NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS.LOCAL;
 
-pub const FORCE_LEVEL_FLAGS = extern enum(u32) {
+pub const FORCE_LEVEL_FLAGS = enum(u32) {
     NOFORCE = 0,
     FORCE = 1,
     LOTS_OF_FORCE = 2,
@@ -935,7 +935,7 @@ pub const USE_NOFORCE = FORCE_LEVEL_FLAGS.NOFORCE;
 pub const USE_FORCE = FORCE_LEVEL_FLAGS.FORCE;
 pub const USE_LOTS_OF_FORCE = FORCE_LEVEL_FLAGS.LOTS_OF_FORCE;
 
-pub const NET_SERVER_TYPE = extern enum(u32) {
+pub const NET_SERVER_TYPE = enum(u32) {
     WORKSTATION = 1,
     SERVER = 2,
     SQLSERVER = 4,
@@ -948,7 +948,7 @@ pub const NET_SERVER_TYPE = extern enum(u32) {
     PRINTQ_SERVER = 512,
     DIALIN_SERVER = 1024,
     XENIX_SERVER = 2048,
-    SERVER_UNIX = 2048,
+    // SERVER_UNIX = 2048, this enum value conflicts with XENIX_SERVER
     NT = 4096,
     WFW = 8192,
     SERVER_MFPN = 16384,
@@ -983,7 +983,6 @@ pub const NET_SERVER_TYPE = extern enum(u32) {
         PRINTQ_SERVER: u1 = 0,
         DIALIN_SERVER: u1 = 0,
         XENIX_SERVER: u1 = 0,
-        SERVER_UNIX: u1 = 0,
         NT: u1 = 0,
         WFW: u1 = 0,
         SERVER_MFPN: u1 = 0,
@@ -1018,7 +1017,6 @@ pub const NET_SERVER_TYPE = extern enum(u32) {
             | (if (o.PRINTQ_SERVER == 1) @enumToInt(NET_SERVER_TYPE.PRINTQ_SERVER) else 0)
             | (if (o.DIALIN_SERVER == 1) @enumToInt(NET_SERVER_TYPE.DIALIN_SERVER) else 0)
             | (if (o.XENIX_SERVER == 1) @enumToInt(NET_SERVER_TYPE.XENIX_SERVER) else 0)
-            | (if (o.SERVER_UNIX == 1) @enumToInt(NET_SERVER_TYPE.SERVER_UNIX) else 0)
             | (if (o.NT == 1) @enumToInt(NET_SERVER_TYPE.NT) else 0)
             | (if (o.WFW == 1) @enumToInt(NET_SERVER_TYPE.WFW) else 0)
             | (if (o.SERVER_MFPN == 1) @enumToInt(NET_SERVER_TYPE.SERVER_MFPN) else 0)
@@ -1054,7 +1052,7 @@ pub const SV_TYPE_DOMAIN_MEMBER = NET_SERVER_TYPE.DOMAIN_MEMBER;
 pub const SV_TYPE_PRINTQ_SERVER = NET_SERVER_TYPE.PRINTQ_SERVER;
 pub const SV_TYPE_DIALIN_SERVER = NET_SERVER_TYPE.DIALIN_SERVER;
 pub const SV_TYPE_XENIX_SERVER = NET_SERVER_TYPE.XENIX_SERVER;
-pub const SV_TYPE_SERVER_UNIX = NET_SERVER_TYPE.SERVER_UNIX;
+pub const SV_TYPE_SERVER_UNIX = NET_SERVER_TYPE.XENIX_SERVER;
 pub const SV_TYPE_NT = NET_SERVER_TYPE.NT;
 pub const SV_TYPE_WFW = NET_SERVER_TYPE.WFW;
 pub const SV_TYPE_SERVER_MFPN = NET_SERVER_TYPE.SERVER_MFPN;
@@ -1076,7 +1074,7 @@ pub const SV_TYPE_LOCAL_LIST_ONLY = NET_SERVER_TYPE.LOCAL_LIST_ONLY;
 pub const SV_TYPE_DOMAIN_ENUM = NET_SERVER_TYPE.DOMAIN_ENUM;
 pub const SV_TYPE_ALL = NET_SERVER_TYPE.ALL;
 
-pub const NET_USER_ENUM_FILTER_FLAGS = extern enum(u32) {
+pub const NET_USER_ENUM_FILTER_FLAGS = enum(u32) {
     TEMP_DUPLICATE_ACCOUNT = 1,
     NORMAL_ACCOUNT = 2,
     INTERDOMAIN_TRUST_ACCOUNT = 8,
@@ -1105,7 +1103,7 @@ pub const FILTER_INTERDOMAIN_TRUST_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.INTERDOM
 pub const FILTER_WORKSTATION_TRUST_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.WORKSTATION_TRUST_ACCOUNT;
 pub const FILTER_SERVER_TRUST_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.SERVER_TRUST_ACCOUNT;
 
-pub const NETSETUP_PROVISION = extern enum(u32) {
+pub const NETSETUP_PROVISION = enum(u32) {
     DOWNLEVEL_PRIV_SUPPORT = 1,
     REUSE_ACCOUNT = 2,
     USE_DEFAULT_PASSWORD = 4,
@@ -1134,7 +1132,7 @@ pub const NETSETUP_PROVISION_USE_DEFAULT_PASSWORD = NETSETUP_PROVISION.USE_DEFAU
 pub const NETSETUP_PROVISION_SKIP_ACCOUNT_SEARCH = NETSETUP_PROVISION.SKIP_ACCOUNT_SEARCH;
 pub const NETSETUP_PROVISION_ROOT_CA_CERTS = NETSETUP_PROVISION.ROOT_CA_CERTS;
 
-pub const USER_ACCOUNT_FLAGS = extern enum(u32) {
+pub const USER_ACCOUNT_FLAGS = enum(u32) {
     SCRIPT = 1,
     ACCOUNTDISABLE = 2,
     HOMEDIR_REQUIRED = 8,
@@ -1203,7 +1201,7 @@ pub const UF_TRUSTED_FOR_DELEGATION = USER_ACCOUNT_FLAGS.TRUSTED_FOR_DELEGATION;
 pub const UF_PASSWORD_EXPIRED = USER_ACCOUNT_FLAGS.PASSWORD_EXPIRED;
 pub const UF_TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = USER_ACCOUNT_FLAGS.TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION;
 
-pub const AF_OP = extern enum(u32) {
+pub const AF_OP = enum(u32) {
     PRINT = 1,
     COMM = 2,
     SERVER = 4,
@@ -1228,14 +1226,14 @@ pub const AF_OP_COMM = AF_OP.COMM;
 pub const AF_OP_SERVER = AF_OP.SERVER;
 pub const AF_OP_ACCOUNTS = AF_OP.ACCOUNTS;
 
-pub const SERVER_INFO_SECURITY = extern enum(u32) {
+pub const SERVER_INFO_SECURITY = enum(u32) {
     SHARESECURITY = 0,
     USERSECURITY = 1,
 };
 pub const SV_SHARESECURITY = SERVER_INFO_SECURITY.SHARESECURITY;
 pub const SV_USERSECURITY = SERVER_INFO_SECURITY.USERSECURITY;
 
-pub const USER_PRIV = extern enum(u32) {
+pub const USER_PRIV = enum(u32) {
     GUEST = 0,
     USER = 1,
     ADMIN = 2,
@@ -1244,7 +1242,7 @@ pub const USER_PRIV_GUEST = USER_PRIV.GUEST;
 pub const USER_PRIV_USER = USER_PRIV.USER;
 pub const USER_PRIV_ADMIN = USER_PRIV.ADMIN;
 
-pub const USE_INFO_ASG_TYPE = extern enum(u32) {
+pub const USE_INFO_ASG_TYPE = enum(u32) {
     WILDCARD = 4294967295,
     DISKDEV = 0,
     SPOOLDEV = 1,
@@ -1255,14 +1253,14 @@ pub const USE_DISKDEV = USE_INFO_ASG_TYPE.DISKDEV;
 pub const USE_SPOOLDEV = USE_INFO_ASG_TYPE.SPOOLDEV;
 pub const USE_IPC = USE_INFO_ASG_TYPE.IPC;
 
-pub const SERVER_INFO_HIDDEN = extern enum(u32) {
+pub const SERVER_INFO_HIDDEN = enum(u32) {
     VISIBLE = 0,
     HIDDEN = 1,
 };
 pub const SV_VISIBLE = SERVER_INFO_HIDDEN.VISIBLE;
 pub const SV_HIDDEN = SERVER_INFO_HIDDEN.HIDDEN;
 
-pub const USER_MODALS_ROLES = extern enum(u32) {
+pub const USER_MODALS_ROLES = enum(u32) {
     STANDALONE = 0,
     MEMBER = 1,
     BACKUP = 2,
@@ -1718,7 +1716,7 @@ pub const ACCESS_LIST = extern struct {
     acl_access: u32,
 };
 
-pub const NET_VALIDATE_PASSWORD_TYPE = extern enum(i32) {
+pub const NET_VALIDATE_PASSWORD_TYPE = enum(i32) {
     Authentication = 1,
     PasswordChange = 2,
     PasswordReset = 3,
@@ -1796,14 +1794,14 @@ pub const NETLOGON_INFO_4 = extern struct {
     netlog4_trusted_domain_name: PWSTR,
 };
 
-pub const MSA_INFO_LEVEL = extern enum(i32) {
+pub const MSA_INFO_LEVEL = enum(i32) {
     @"0" = 0,
     Max = 1,
 };
 pub const MsaInfoLevel0 = MSA_INFO_LEVEL.@"0";
 pub const MsaInfoLevelMax = MSA_INFO_LEVEL.Max;
 
-pub const MSA_INFO_STATE = extern enum(i32) {
+pub const MSA_INFO_STATE = enum(i32) {
     NotExist = 1,
     NotService = 2,
     CannotInstall = 3,
@@ -1820,7 +1818,7 @@ pub const MSA_INFO_0 = extern struct {
     State: MSA_INFO_STATE,
 };
 
-pub const NETSETUP_NAME_TYPE = extern enum(i32) {
+pub const NETSETUP_NAME_TYPE = enum(i32) {
     Unknown = 0,
     Machine = 1,
     Workgroup = 2,
@@ -1835,7 +1833,7 @@ pub const NetSetupDomain = NETSETUP_NAME_TYPE.Domain;
 pub const NetSetupNonExistentDomain = NETSETUP_NAME_TYPE.NonExistentDomain;
 pub const NetSetupDnsMachine = NETSETUP_NAME_TYPE.DnsMachine;
 
-pub const DSREG_JOIN_TYPE = extern enum(i32) {
+pub const DSREG_JOIN_TYPE = enum(i32) {
     UNKNOWN_JOIN = 0,
     DEVICE_JOIN = 1,
     WORKPLACE_JOIN = 2,
@@ -1865,7 +1863,7 @@ pub const DSREG_JOIN_INFO = extern struct {
     pUserInfo: *DSREG_USER_INFO,
 };
 
-pub const NET_COMPUTER_NAME_TYPE = extern enum(i32) {
+pub const NET_COMPUTER_NAME_TYPE = enum(i32) {
     PrimaryComputerName = 0,
     AlternateComputerNames = 1,
     AllComputerNames = 2,
@@ -1894,7 +1892,7 @@ pub const NETSETUP_PROVISIONING_PARAMS = extern struct {
     lpPrimaryDNSDomain: PWSTR,
 };
 
-pub const NETSETUP_JOIN_STATUS = extern enum(i32) {
+pub const NETSETUP_JOIN_STATUS = enum(i32) {
     UnknownStatus = 0,
     Unjoined = 1,
     WorkgroupName = 2,
@@ -2863,7 +2861,7 @@ pub const USE_OPTION_DEFERRED_CONNECTION_PARAMETERS = extern struct {
     Reserved: u16,
 };
 
-pub const TRANSPORT_TYPE = extern enum(i32) {
+pub const TRANSPORT_TYPE = enum(i32) {
     None = 0,
     Wsk = 1,
     Quic = 2,

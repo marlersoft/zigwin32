@@ -93,7 +93,7 @@ pub const LPEXCEPFINO_DEFERRED_FILLIN = fn(
     pExcepInfo: *EXCEPINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const VARENUM = extern enum(i32) {
+pub const VARENUM = enum(i32) {
     EMPTY = 0,
     NULL = 1,
     I2 = 2,
@@ -144,8 +144,8 @@ pub const VARENUM = extern enum(i32) {
     BYREF = 16384,
     RESERVED = 32768,
     ILLEGAL = 65535,
-    ILLEGALMASKED = 4095,
-    TYPEMASK = 4095,
+    // ILLEGALMASKED = 4095, this enum value conflicts with BSTR_BLOB
+    // TYPEMASK = 4095, this enum value conflicts with BSTR_BLOB
 };
 pub const VT_EMPTY = VARENUM.EMPTY;
 pub const VT_NULL = VARENUM.NULL;
@@ -197,8 +197,8 @@ pub const VT_ARRAY = VARENUM.ARRAY;
 pub const VT_BYREF = VARENUM.BYREF;
 pub const VT_RESERVED = VARENUM.RESERVED;
 pub const VT_ILLEGAL = VARENUM.ILLEGAL;
-pub const VT_ILLEGALMASKED = VARENUM.ILLEGALMASKED;
-pub const VT_TYPEMASK = VARENUM.TYPEMASK;
+pub const VT_ILLEGALMASKED = VARENUM.BSTR_BLOB;
+pub const VT_TYPEMASK = VARENUM.BSTR_BLOB;
 
 pub const SAFEARRAYBOUND = extern struct {
     cElements: u32,
@@ -236,7 +236,7 @@ pub const _wireSAFEARR_HAVEIID = extern struct {
     iid: Guid,
 };
 
-pub const SF_TYPE = extern enum(i32) {
+pub const SF_TYPE = enum(i32) {
     ERROR = 10,
     I1 = 16,
     I2 = 2,
@@ -420,7 +420,7 @@ pub const _wireVARIANT = extern struct {
     },
 };
 
-pub const TYPEKIND = extern enum(i32) {
+pub const TYPEKIND = enum(i32) {
     ENUM = 0,
     RECORD = 1,
     MODULE = 2,
@@ -519,11 +519,11 @@ pub const EXCEPINFO = extern struct {
     scode: i32,
 };
 
-pub const CALLCONV = extern enum(i32) {
+pub const CALLCONV = enum(i32) {
     FASTCALL = 0,
     CDECL = 1,
     MSCPASCAL = 2,
-    PASCAL = 2,
+    // PASCAL = 2, this enum value conflicts with MSCPASCAL
     MACPASCAL = 3,
     STDCALL = 4,
     FPFASTCALL = 5,
@@ -535,7 +535,7 @@ pub const CALLCONV = extern enum(i32) {
 pub const CC_FASTCALL = CALLCONV.FASTCALL;
 pub const CC_CDECL = CALLCONV.CDECL;
 pub const CC_MSCPASCAL = CALLCONV.MSCPASCAL;
-pub const CC_PASCAL = CALLCONV.PASCAL;
+pub const CC_PASCAL = CALLCONV.MSCPASCAL;
 pub const CC_MACPASCAL = CALLCONV.MACPASCAL;
 pub const CC_STDCALL = CALLCONV.STDCALL;
 pub const CC_FPFASTCALL = CALLCONV.FPFASTCALL;
@@ -544,7 +544,7 @@ pub const CC_MPWCDECL = CALLCONV.MPWCDECL;
 pub const CC_MPWPASCAL = CALLCONV.MPWPASCAL;
 pub const CC_MAX = CALLCONV.MAX;
 
-pub const FUNCKIND = extern enum(i32) {
+pub const FUNCKIND = enum(i32) {
     VIRTUAL = 0,
     PUREVIRTUAL = 1,
     NONVIRTUAL = 2,
@@ -557,7 +557,7 @@ pub const FUNC_NONVIRTUAL = FUNCKIND.NONVIRTUAL;
 pub const FUNC_STATIC = FUNCKIND.STATIC;
 pub const FUNC_DISPATCH = FUNCKIND.DISPATCH;
 
-pub const INVOKEKIND = extern enum(i32) {
+pub const INVOKEKIND = enum(i32) {
     FUNC = 1,
     PROPERTYGET = 2,
     PROPERTYPUT = 4,
@@ -583,7 +583,7 @@ pub const FUNCDESC = extern struct {
     wFuncFlags: u16,
 };
 
-pub const VARKIND = extern enum(i32) {
+pub const VARKIND = enum(i32) {
     PERINSTANCE = 0,
     STATIC = 1,
     CONST = 2,
@@ -606,7 +606,7 @@ pub const VARDESC = extern struct {
     varkind: VARKIND,
 };
 
-pub const TYPEFLAGS = extern enum(i32) {
+pub const TYPEFLAGS = enum(i32) {
     APPOBJECT = 1,
     CANCREATE = 2,
     LICENSED = 4,
@@ -639,7 +639,7 @@ pub const TYPEFLAG_FDISPATCHABLE = TYPEFLAGS.DISPATCHABLE;
 pub const TYPEFLAG_FREVERSEBIND = TYPEFLAGS.REVERSEBIND;
 pub const TYPEFLAG_FPROXY = TYPEFLAGS.PROXY;
 
-pub const FUNCFLAGS = extern enum(i32) {
+pub const FUNCFLAGS = enum(i32) {
     RESTRICTED = 1,
     SOURCE = 2,
     BINDABLE = 4,
@@ -668,7 +668,7 @@ pub const FUNCFLAG_FNONBROWSABLE = FUNCFLAGS.NONBROWSABLE;
 pub const FUNCFLAG_FREPLACEABLE = FUNCFLAGS.REPLACEABLE;
 pub const FUNCFLAG_FIMMEDIATEBIND = FUNCFLAGS.IMMEDIATEBIND;
 
-pub const VARFLAGS = extern enum(i32) {
+pub const VARFLAGS = enum(i32) {
     READONLY = 1,
     SOURCE = 2,
     BINDABLE = 4,
@@ -1315,7 +1315,7 @@ pub const IEnumVARIANT = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DESCKIND = extern enum(i32) {
+pub const DESCKIND = enum(i32) {
     NONE = 0,
     FUNCDESC = 1,
     VARDESC = 2,
@@ -1723,7 +1723,7 @@ pub const ITypeInfo2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SYSKIND = extern enum(i32) {
+pub const SYSKIND = enum(i32) {
     WIN16 = 0,
     WIN32 = 1,
     MAC = 2,
@@ -1734,7 +1734,7 @@ pub const SYS_WIN32 = SYSKIND.WIN32;
 pub const SYS_MAC = SYSKIND.MAC;
 pub const SYS_WIN64 = SYSKIND.WIN64;
 
-pub const LIBFLAGS = extern enum(i32) {
+pub const LIBFLAGS = enum(i32) {
     RESTRICTED = 1,
     CONTROL = 2,
     HIDDEN = 4,
@@ -1910,7 +1910,7 @@ pub const ITypeLib2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CHANGEKIND = extern enum(i32) {
+pub const CHANGEKIND = enum(i32) {
     ADDMEMBER = 0,
     DELETEMEMBER = 1,
     SETNAMES = 2,
@@ -2491,7 +2491,7 @@ pub const UDATE = extern struct {
     wDayOfYear: u16,
 };
 
-pub const REGKIND = extern enum(i32) {
+pub const REGKIND = enum(i32) {
     DEFAULT = 0,
     REGISTER = 1,
     NONE = 2,

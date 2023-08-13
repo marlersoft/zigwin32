@@ -429,7 +429,7 @@ pub const URB_OPEN_STATIC_STREAMS_VERSION_100 = @as(u32, 256);
 //--------------------------------------------------------------------------------
 // Section: Types (124)
 //--------------------------------------------------------------------------------
-pub const USB_DEVICE_SPEED = extern enum(i32) {
+pub const USB_DEVICE_SPEED = enum(i32) {
     LowSpeed = 0,
     FullSpeed = 1,
     HighSpeed = 2,
@@ -440,7 +440,7 @@ pub const UsbFullSpeed = USB_DEVICE_SPEED.FullSpeed;
 pub const UsbHighSpeed = USB_DEVICE_SPEED.HighSpeed;
 pub const UsbSuperSpeed = USB_DEVICE_SPEED.SuperSpeed;
 
-pub const USB_DEVICE_TYPE = extern enum(i32) {
+pub const USB_DEVICE_TYPE = enum(i32) {
     @"11Device" = 0,
     @"20Device" = 1,
 };
@@ -916,7 +916,7 @@ pub const USB_INTERFACE_POWER_DESCRIPTOR = packed struct {
     TransitionTimeFromD3: u16,
 };
 
-pub const USB_CONTROLLER_FLAVOR = extern enum(i32) {
+pub const USB_CONTROLLER_FLAVOR = enum(i32) {
     USB_HcGeneric = 0,
     OHCI_Generic = 100,
     OHCI_Hydra = 101,
@@ -978,7 +978,7 @@ pub const USBD_VERSION_INFORMATION = extern struct {
     Supported_USB_Version: u32,
 };
 
-pub const USBD_PIPE_TYPE = extern enum(i32) {
+pub const USBD_PIPE_TYPE = enum(i32) {
     Control = 0,
     Isochronous = 1,
     Bulk = 2,
@@ -1005,7 +1005,7 @@ pub const USBD_PIPE_INFORMATION = extern struct {
     PipeFlags: u32,
 };
 
-pub const USBD_ENDPOINT_OFFLOAD_MODE = extern enum(i32) {
+pub const USBD_ENDPOINT_OFFLOAD_MODE = enum(i32) {
     ModeNotSupported = 0,
     SoftwareAssisted = 1,
     HardwareAssisted = 2,
@@ -1325,7 +1325,7 @@ pub const USB_IDLE_CALLBACK_INFO = extern struct {
     IdleContext: *c_void,
 };
 
-pub const USB_USER_ERROR_CODE = extern enum(i32) {
+pub const USB_USER_ERROR_CODE = enum(i32) {
     Success = 0,
     NotSupported = 1,
     InvalidRequestCode = 2,
@@ -1443,7 +1443,7 @@ pub const USBUSER_PASS_THRU_REQUEST = extern struct {
     PassThru: USB_PASS_THRU_PARAMETERS,
 };
 
-pub const WDMUSB_POWER_STATE = extern enum(i32) {
+pub const WDMUSB_POWER_STATE = enum(i32) {
     NotMapped = 0,
     SystemUnspecified = 100,
     SystemWorking = 101,

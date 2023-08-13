@@ -964,7 +964,7 @@ pub const IIE80DispatchEx = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const htmlDesignMode = extern enum(i32) {
+pub const htmlDesignMode = enum(i32) {
     Inherit = -2,
     On = -1,
     Off = 0,
@@ -975,7 +975,7 @@ pub const htmlDesignModeOn = htmlDesignMode.On;
 pub const htmlDesignModeOff = htmlDesignMode.Off;
 pub const htmlDesignMode_Max = htmlDesignMode._Max;
 
-pub const htmlZOrder = extern enum(i32) {
+pub const htmlZOrder = enum(i32) {
     Front = 0,
     Back = 1,
     _Max = 2147483647,
@@ -984,7 +984,7 @@ pub const htmlZOrderFront = htmlZOrder.Front;
 pub const htmlZOrderBack = htmlZOrder.Back;
 pub const htmlZOrder_Max = htmlZOrder._Max;
 
-pub const htmlClear = extern enum(i32) {
+pub const htmlClear = enum(i32) {
     NotSet = 0,
     All = 1,
     Left = 2,
@@ -1001,7 +1001,7 @@ pub const htmlClearBoth = htmlClear.Both;
 pub const htmlClearNone = htmlClear.None;
 pub const htmlClear_Max = htmlClear._Max;
 
-pub const htmlControlAlign = extern enum(i32) {
+pub const htmlControlAlign = enum(i32) {
     NotSet = 0,
     Left = 1,
     Center = 2,
@@ -1028,7 +1028,7 @@ pub const htmlControlAlignMiddle = htmlControlAlign.Middle;
 pub const htmlControlAlignTop = htmlControlAlign.Top;
 pub const htmlControlAlign_Max = htmlControlAlign._Max;
 
-pub const htmlBlockAlign = extern enum(i32) {
+pub const htmlBlockAlign = enum(i32) {
     NotSet = 0,
     Left = 1,
     Center = 2,
@@ -1043,7 +1043,7 @@ pub const htmlBlockAlignRight = htmlBlockAlign.Right;
 pub const htmlBlockAlignJustify = htmlBlockAlign.Justify;
 pub const htmlBlockAlign_Max = htmlBlockAlign._Max;
 
-pub const htmlReadyState = extern enum(i32) {
+pub const htmlReadyState = enum(i32) {
     uninitialized = 0,
     loading = 1,
     loaded = 2,
@@ -1058,14 +1058,14 @@ pub const htmlReadyStateinteractive = htmlReadyState.interactive;
 pub const htmlReadyStatecomplete = htmlReadyState.complete;
 pub const htmlReadyState_Max = htmlReadyState._Max;
 
-pub const htmlLoop = extern enum(i32) {
+pub const htmlLoop = enum(i32) {
     LoopInfinite = -1,
     _Max = 2147483647,
 };
 pub const htmlLoopLoopInfinite = htmlLoop.LoopInfinite;
 pub const htmlLoop_Max = htmlLoop._Max;
 
-pub const mediaType = extern enum(i32) {
+pub const mediaType = enum(i32) {
     NotSet = 0,
     All = 511,
     Aural = 1,
@@ -1092,7 +1092,7 @@ pub const mediaTypeTty = mediaType.Tty;
 pub const mediaTypeTv = mediaType.Tv;
 pub const mediaType_Max = mediaType._Max;
 
-pub const DomConstructor = extern enum(i32) {
+pub const DomConstructor = enum(i32) {
     Object = 0,
     Attr = 1,
     BehaviorUrnsCollection = 2,
@@ -1313,7 +1313,7 @@ pub const DomConstructorXMLHttpRequest = DomConstructor.XMLHttpRequest;
 pub const DomConstructorMax = DomConstructor.Max;
 pub const DomConstructor_Max = DomConstructor._Max;
 
-pub const styleTextTransform = extern enum(i32) {
+pub const styleTextTransform = enum(i32) {
     NotSet = 0,
     Capitalize = 1,
     Lowercase = 2,
@@ -1328,7 +1328,7 @@ pub const styleTextTransformUppercase = styleTextTransform.Uppercase;
 pub const styleTextTransformNone = styleTextTransform.None;
 pub const styleTextTransform_Max = styleTextTransform._Max;
 
-pub const styleDataRepeat = extern enum(i32) {
+pub const styleDataRepeat = enum(i32) {
     None = 0,
     Inner = 1,
     _Max = 2147483647,
@@ -1337,7 +1337,7 @@ pub const styleDataRepeatNone = styleDataRepeat.None;
 pub const styleDataRepeatInner = styleDataRepeat.Inner;
 pub const styleDataRepeat_Max = styleDataRepeat._Max;
 
-pub const styleOverflow = extern enum(i32) {
+pub const styleOverflow = enum(i32) {
     NotSet = 0,
     Auto = 1,
     Hidden = 2,
@@ -1352,7 +1352,7 @@ pub const styleOverflowVisible = styleOverflow.Visible;
 pub const styleOverflowScroll = styleOverflow.Scroll;
 pub const styleOverflow_Max = styleOverflow._Max;
 
-pub const styleMsOverflowStyle = extern enum(i32) {
+pub const styleMsOverflowStyle = enum(i32) {
     NotSet = 0,
     Auto = 1,
     None = 2,
@@ -1367,7 +1367,7 @@ pub const styleMsOverflowStyleScrollbar = styleMsOverflowStyle.Scrollbar;
 pub const styleMsOverflowStyleMsAutoHidingScrollbar = styleMsOverflowStyle.MsAutoHidingScrollbar;
 pub const styleMsOverflowStyle_Max = styleMsOverflowStyle._Max;
 
-pub const styleTableLayout = extern enum(i32) {
+pub const styleTableLayout = enum(i32) {
     NotSet = 0,
     Auto = 1,
     Fixed = 2,
@@ -1378,7 +1378,7 @@ pub const styleTableLayoutAuto = styleTableLayout.Auto;
 pub const styleTableLayoutFixed = styleTableLayout.Fixed;
 pub const styleTableLayout_Max = styleTableLayout._Max;
 
-pub const styleBorderCollapse = extern enum(i32) {
+pub const styleBorderCollapse = enum(i32) {
     NotSet = 0,
     Separate = 1,
     Collapse = 2,
@@ -1389,7 +1389,7 @@ pub const styleBorderCollapseSeparate = styleBorderCollapse.Separate;
 pub const styleBorderCollapseCollapse = styleBorderCollapse.Collapse;
 pub const styleBorderCollapse_Max = styleBorderCollapse._Max;
 
-pub const styleCaptionSide = extern enum(i32) {
+pub const styleCaptionSide = enum(i32) {
     NotSet = 0,
     Top = 1,
     Bottom = 2,
@@ -1404,7 +1404,7 @@ pub const styleCaptionSideLeft = styleCaptionSide.Left;
 pub const styleCaptionSideRight = styleCaptionSide.Right;
 pub const styleCaptionSide_Max = styleCaptionSide._Max;
 
-pub const styleEmptyCells = extern enum(i32) {
+pub const styleEmptyCells = enum(i32) {
     NotSet = 0,
     Show = 1,
     Hide = 2,
@@ -1415,7 +1415,7 @@ pub const styleEmptyCellsShow = styleEmptyCells.Show;
 pub const styleEmptyCellsHide = styleEmptyCells.Hide;
 pub const styleEmptyCells_Max = styleEmptyCells._Max;
 
-pub const styleFontStyle = extern enum(i32) {
+pub const styleFontStyle = enum(i32) {
     NotSet = 0,
     Italic = 1,
     Oblique = 2,
@@ -1428,7 +1428,7 @@ pub const styleFontStyleOblique = styleFontStyle.Oblique;
 pub const styleFontStyleNormal = styleFontStyle.Normal;
 pub const styleFontStyle_Max = styleFontStyle._Max;
 
-pub const styleFontVariant = extern enum(i32) {
+pub const styleFontVariant = enum(i32) {
     NotSet = 0,
     SmallCaps = 1,
     Normal = 2,
@@ -1439,7 +1439,7 @@ pub const styleFontVariantSmallCaps = styleFontVariant.SmallCaps;
 pub const styleFontVariantNormal = styleFontVariant.Normal;
 pub const styleFontVariant_Max = styleFontVariant._Max;
 
-pub const styleBackgroundRepeat = extern enum(i32) {
+pub const styleBackgroundRepeat = enum(i32) {
     Repeat = 0,
     RepeatX = 1,
     RepeatY = 2,
@@ -1454,7 +1454,7 @@ pub const styleBackgroundRepeatNoRepeat = styleBackgroundRepeat.NoRepeat;
 pub const styleBackgroundRepeatNotSet = styleBackgroundRepeat.NotSet;
 pub const styleBackgroundRepeat_Max = styleBackgroundRepeat._Max;
 
-pub const styleBackgroundAttachment = extern enum(i32) {
+pub const styleBackgroundAttachment = enum(i32) {
     Fixed = 0,
     Scroll = 1,
     NotSet = 2,
@@ -1465,7 +1465,7 @@ pub const styleBackgroundAttachmentScroll = styleBackgroundAttachment.Scroll;
 pub const styleBackgroundAttachmentNotSet = styleBackgroundAttachment.NotSet;
 pub const styleBackgroundAttachment_Max = styleBackgroundAttachment._Max;
 
-pub const styleBackgroundAttachment3 = extern enum(i32) {
+pub const styleBackgroundAttachment3 = enum(i32) {
     Fixed = 0,
     Scroll = 1,
     Local = 2,
@@ -1478,7 +1478,7 @@ pub const styleBackgroundAttachment3Local = styleBackgroundAttachment3.Local;
 pub const styleBackgroundAttachment3NotSet = styleBackgroundAttachment3.NotSet;
 pub const styleBackgroundAttachment3_Max = styleBackgroundAttachment3._Max;
 
-pub const styleBackgroundClip = extern enum(i32) {
+pub const styleBackgroundClip = enum(i32) {
     BorderBox = 0,
     PaddingBox = 1,
     ContentBox = 2,
@@ -1491,7 +1491,7 @@ pub const styleBackgroundClipContentBox = styleBackgroundClip.ContentBox;
 pub const styleBackgroundClipNotSet = styleBackgroundClip.NotSet;
 pub const styleBackgroundClip_Max = styleBackgroundClip._Max;
 
-pub const styleBackgroundOrigin = extern enum(i32) {
+pub const styleBackgroundOrigin = enum(i32) {
     BorderBox = 0,
     PaddingBox = 1,
     ContentBox = 2,
@@ -1504,7 +1504,7 @@ pub const styleBackgroundOriginContentBox = styleBackgroundOrigin.ContentBox;
 pub const styleBackgroundOriginNotSet = styleBackgroundOrigin.NotSet;
 pub const styleBackgroundOrigin_Max = styleBackgroundOrigin._Max;
 
-pub const styleVerticalAlign = extern enum(i32) {
+pub const styleVerticalAlign = enum(i32) {
     Auto = 0,
     Baseline = 1,
     Sub = 2,
@@ -1531,7 +1531,7 @@ pub const styleVerticalAlignInherit = styleVerticalAlign.Inherit;
 pub const styleVerticalAlignNotSet = styleVerticalAlign.NotSet;
 pub const styleVerticalAlign_Max = styleVerticalAlign._Max;
 
-pub const styleFontWeight = extern enum(i32) {
+pub const styleFontWeight = enum(i32) {
     NotSet = 0,
     @"100" = 1,
     @"200" = 2,
@@ -1564,7 +1564,7 @@ pub const styleFontWeightBolder = styleFontWeight.Bolder;
 pub const styleFontWeightLighter = styleFontWeight.Lighter;
 pub const styleFontWeight_Max = styleFontWeight._Max;
 
-pub const styleFontSize = extern enum(i32) {
+pub const styleFontSize = enum(i32) {
     XXSmall = 0,
     XSmall = 1,
     Small = 2,
@@ -1587,42 +1587,42 @@ pub const styleFontSizeSmaller = styleFontSize.Smaller;
 pub const styleFontSizeLarger = styleFontSize.Larger;
 pub const styleFontSize_Max = styleFontSize._Max;
 
-pub const styleZIndex = extern enum(i32) {
+pub const styleZIndex = enum(i32) {
     Auto = -2147483647,
     _Max = 2147483647,
 };
 pub const styleZIndexAuto = styleZIndex.Auto;
 pub const styleZIndex_Max = styleZIndex._Max;
 
-pub const styleWidowsOrphans = extern enum(i32) {
+pub const styleWidowsOrphans = enum(i32) {
     NotSet = -2147483647,
     _Max = 2147483647,
 };
 pub const styleWidowsOrphansNotSet = styleWidowsOrphans.NotSet;
 pub const styleWidowsOrphans_Max = styleWidowsOrphans._Max;
 
-pub const styleAuto = extern enum(i32) {
+pub const styleAuto = enum(i32) {
     Auto = 0,
     _Max = 2147483647,
 };
 pub const styleAutoAuto = styleAuto.Auto;
 pub const styleAuto_Max = styleAuto._Max;
 
-pub const styleNone = extern enum(i32) {
+pub const styleNone = enum(i32) {
     None = 0,
     _Max = 2147483647,
 };
 pub const styleNoneNone = styleNone.None;
 pub const styleNone_Max = styleNone._Max;
 
-pub const styleNormal = extern enum(i32) {
+pub const styleNormal = enum(i32) {
     Normal = 0,
     _Max = 2147483647,
 };
 pub const styleNormalNormal = styleNormal.Normal;
 pub const styleNormal_Max = styleNormal._Max;
 
-pub const styleBorderWidth = extern enum(i32) {
+pub const styleBorderWidth = enum(i32) {
     Thin = 0,
     Medium = 1,
     Thick = 2,
@@ -1633,7 +1633,7 @@ pub const styleBorderWidthMedium = styleBorderWidth.Medium;
 pub const styleBorderWidthThick = styleBorderWidth.Thick;
 pub const styleBorderWidth_Max = styleBorderWidth._Max;
 
-pub const stylePosition = extern enum(i32) {
+pub const stylePosition = enum(i32) {
     NotSet = 0,
     static = 1,
     relative = 2,
@@ -1652,7 +1652,7 @@ pub const stylePositionMsPage = stylePosition.MsPage;
 pub const stylePositionMsDeviceFixed = stylePosition.MsDeviceFixed;
 pub const stylePosition_Max = stylePosition._Max;
 
-pub const styleBorderStyle = extern enum(i32) {
+pub const styleBorderStyle = enum(i32) {
     NotSet = 0,
     Dotted = 1,
     Dashed = 2,
@@ -1681,7 +1681,7 @@ pub const styleBorderStyleNone = styleBorderStyle.None;
 pub const styleBorderStyleHidden = styleBorderStyle.Hidden;
 pub const styleBorderStyle_Max = styleBorderStyle._Max;
 
-pub const styleOutlineStyle = extern enum(i32) {
+pub const styleOutlineStyle = enum(i32) {
     NotSet = 0,
     Dotted = 1,
     Dashed = 2,
@@ -1708,7 +1708,7 @@ pub const styleOutlineStyleWindowInset = styleOutlineStyle.WindowInset;
 pub const styleOutlineStyleNone = styleOutlineStyle.None;
 pub const styleOutlineStyle_Max = styleOutlineStyle._Max;
 
-pub const styleStyleFloat = extern enum(i32) {
+pub const styleStyleFloat = enum(i32) {
     NotSet = 0,
     Left = 1,
     Right = 2,
@@ -1721,7 +1721,7 @@ pub const styleStyleFloatRight = styleStyleFloat.Right;
 pub const styleStyleFloatNone = styleStyleFloat.None;
 pub const styleStyleFloat_Max = styleStyleFloat._Max;
 
-pub const styleDisplay = extern enum(i32) {
+pub const styleDisplay = enum(i32) {
     NotSet = 0,
     Block = 1,
     Inline = 2,
@@ -1786,7 +1786,7 @@ pub const styleDisplayWebkitBox = styleDisplay.WebkitBox;
 pub const styleDisplayWebkitInlineBox = styleDisplay.WebkitInlineBox;
 pub const styleDisplay_Max = styleDisplay._Max;
 
-pub const styleVisibility = extern enum(i32) {
+pub const styleVisibility = enum(i32) {
     NotSet = 0,
     Inherit = 1,
     Visible = 2,
@@ -1801,7 +1801,7 @@ pub const styleVisibilityHidden = styleVisibility.Hidden;
 pub const styleVisibilityCollapse = styleVisibility.Collapse;
 pub const styleVisibility_Max = styleVisibility._Max;
 
-pub const styleListStyleType = extern enum(i32) {
+pub const styleListStyleType = enum(i32) {
     NotSet = 0,
     Disc = 1,
     Circle = 2,
@@ -1840,7 +1840,7 @@ pub const styleListStyleTypeUpperGreek = styleListStyleType.UpperGreek;
 pub const styleListStyleTypeLowerGreek = styleListStyleType.LowerGreek;
 pub const styleListStyleType_Max = styleListStyleType._Max;
 
-pub const styleListStylePosition = extern enum(i32) {
+pub const styleListStylePosition = enum(i32) {
     NotSet = 0,
     Inside = 1,
     OutSide = 2,
@@ -1851,7 +1851,7 @@ pub const styleListStylePositionInside = styleListStylePosition.Inside;
 pub const styleListStylePositionOutSide = styleListStylePosition.OutSide;
 pub const styleListStylePosition_Max = styleListStylePosition._Max;
 
-pub const styleWhiteSpace = extern enum(i32) {
+pub const styleWhiteSpace = enum(i32) {
     NotSet = 0,
     Normal = 1,
     Pre = 2,
@@ -1868,7 +1868,7 @@ pub const styleWhiteSpacePreline = styleWhiteSpace.Preline;
 pub const styleWhiteSpacePrewrap = styleWhiteSpace.Prewrap;
 pub const styleWhiteSpace_Max = styleWhiteSpace._Max;
 
-pub const stylePageBreak = extern enum(i32) {
+pub const stylePageBreak = enum(i32) {
     NotSet = 0,
     Auto = 1,
     Always = 2,
@@ -1885,7 +1885,7 @@ pub const stylePageBreakRight = stylePageBreak.Right;
 pub const stylePageBreakAvoid = stylePageBreak.Avoid;
 pub const stylePageBreak_Max = stylePageBreak._Max;
 
-pub const stylePageBreakInside = extern enum(i32) {
+pub const stylePageBreakInside = enum(i32) {
     NotSet = 0,
     Auto = 1,
     Avoid = 2,
@@ -1896,7 +1896,7 @@ pub const stylePageBreakInsideAuto = stylePageBreakInside.Auto;
 pub const stylePageBreakInsideAvoid = stylePageBreakInside.Avoid;
 pub const stylePageBreakInside_Max = stylePageBreakInside._Max;
 
-pub const styleCursor = extern enum(i32) {
+pub const styleCursor = enum(i32) {
     Auto = 0,
     Crosshair = 1,
     Default = 2,
@@ -1971,7 +1971,7 @@ pub const styleCursorcustom = styleCursor.custom;
 pub const styleCursorNotSet = styleCursor.NotSet;
 pub const styleCursor_Max = styleCursor._Max;
 
-pub const styleDir = extern enum(i32) {
+pub const styleDir = enum(i32) {
     NotSet = 0,
     LeftToRight = 1,
     RightToLeft = 2,
@@ -1984,7 +1984,7 @@ pub const styleDirRightToLeft = styleDir.RightToLeft;
 pub const styleDirInherit = styleDir.Inherit;
 pub const styleDir_Max = styleDir._Max;
 
-pub const styleBidi = extern enum(i32) {
+pub const styleBidi = enum(i32) {
     NotSet = 0,
     Normal = 1,
     Embed = 2,
@@ -1999,7 +1999,7 @@ pub const styleBidiOverride = styleBidi.Override;
 pub const styleBidiInherit = styleBidi.Inherit;
 pub const styleBidi_Max = styleBidi._Max;
 
-pub const styleImeMode = extern enum(i32) {
+pub const styleImeMode = enum(i32) {
     Auto = 0,
     Active = 1,
     Inactive = 2,
@@ -2014,7 +2014,7 @@ pub const styleImeModeDisabled = styleImeMode.Disabled;
 pub const styleImeModeNotSet = styleImeMode.NotSet;
 pub const styleImeMode_Max = styleImeMode._Max;
 
-pub const styleRubyAlign = extern enum(i32) {
+pub const styleRubyAlign = enum(i32) {
     NotSet = 0,
     Auto = 1,
     Left = 2,
@@ -2035,7 +2035,7 @@ pub const styleRubyAlignDistributeSpace = styleRubyAlign.DistributeSpace;
 pub const styleRubyAlignLineEdge = styleRubyAlign.LineEdge;
 pub const styleRubyAlign_Max = styleRubyAlign._Max;
 
-pub const styleRubyPosition = extern enum(i32) {
+pub const styleRubyPosition = enum(i32) {
     NotSet = 0,
     Above = 1,
     Inline = 2,
@@ -2046,7 +2046,7 @@ pub const styleRubyPositionAbove = styleRubyPosition.Above;
 pub const styleRubyPositionInline = styleRubyPosition.Inline;
 pub const styleRubyPosition_Max = styleRubyPosition._Max;
 
-pub const styleRubyOverhang = extern enum(i32) {
+pub const styleRubyOverhang = enum(i32) {
     NotSet = 0,
     Auto = 1,
     Whitespace = 2,
@@ -2059,7 +2059,7 @@ pub const styleRubyOverhangWhitespace = styleRubyOverhang.Whitespace;
 pub const styleRubyOverhangNone = styleRubyOverhang.None;
 pub const styleRubyOverhang_Max = styleRubyOverhang._Max;
 
-pub const styleLayoutGridChar = extern enum(i32) {
+pub const styleLayoutGridChar = enum(i32) {
     NotSet = 0,
     Auto = 1,
     None = 2,
@@ -2070,7 +2070,7 @@ pub const styleLayoutGridCharAuto = styleLayoutGridChar.Auto;
 pub const styleLayoutGridCharNone = styleLayoutGridChar.None;
 pub const styleLayoutGridChar_Max = styleLayoutGridChar._Max;
 
-pub const styleLayoutGridLine = extern enum(i32) {
+pub const styleLayoutGridLine = enum(i32) {
     NotSet = 0,
     Auto = 1,
     None = 2,
@@ -2081,7 +2081,7 @@ pub const styleLayoutGridLineAuto = styleLayoutGridLine.Auto;
 pub const styleLayoutGridLineNone = styleLayoutGridLine.None;
 pub const styleLayoutGridLine_Max = styleLayoutGridLine._Max;
 
-pub const styleLayoutGridMode = extern enum(i32) {
+pub const styleLayoutGridMode = enum(i32) {
     NotSet = 0,
     Char = 1,
     Line = 2,
@@ -2096,7 +2096,7 @@ pub const styleLayoutGridModeBoth = styleLayoutGridMode.Both;
 pub const styleLayoutGridModeNone = styleLayoutGridMode.None;
 pub const styleLayoutGridMode_Max = styleLayoutGridMode._Max;
 
-pub const styleLayoutGridType = extern enum(i32) {
+pub const styleLayoutGridType = enum(i32) {
     NotSet = 0,
     Loose = 1,
     Strict = 2,
@@ -2109,7 +2109,7 @@ pub const styleLayoutGridTypeStrict = styleLayoutGridType.Strict;
 pub const styleLayoutGridTypeFixed = styleLayoutGridType.Fixed;
 pub const styleLayoutGridType_Max = styleLayoutGridType._Max;
 
-pub const styleLineBreak = extern enum(i32) {
+pub const styleLineBreak = enum(i32) {
     NotSet = 0,
     Normal = 1,
     Strict = 2,
@@ -2120,7 +2120,7 @@ pub const styleLineBreakNormal = styleLineBreak.Normal;
 pub const styleLineBreakStrict = styleLineBreak.Strict;
 pub const styleLineBreak_Max = styleLineBreak._Max;
 
-pub const styleWordBreak = extern enum(i32) {
+pub const styleWordBreak = enum(i32) {
     NotSet = 0,
     Normal = 1,
     BreakAll = 2,
@@ -2133,7 +2133,7 @@ pub const styleWordBreakBreakAll = styleWordBreak.BreakAll;
 pub const styleWordBreakKeepAll = styleWordBreak.KeepAll;
 pub const styleWordBreak_Max = styleWordBreak._Max;
 
-pub const styleWordWrap = extern enum(i32) {
+pub const styleWordWrap = enum(i32) {
     NotSet = 0,
     Off = 1,
     On = 2,
@@ -2144,7 +2144,7 @@ pub const styleWordWrapOff = styleWordWrap.Off;
 pub const styleWordWrapOn = styleWordWrap.On;
 pub const styleWordWrap_Max = styleWordWrap._Max;
 
-pub const styleTextJustify = extern enum(i32) {
+pub const styleTextJustify = enum(i32) {
     NotSet = 0,
     InterWord = 1,
     Newspaper = 2,
@@ -2167,7 +2167,7 @@ pub const styleTextJustifyKashida = styleTextJustify.Kashida;
 pub const styleTextJustifyAuto = styleTextJustify.Auto;
 pub const styleTextJustify_Max = styleTextJustify._Max;
 
-pub const styleTextAlignLast = extern enum(i32) {
+pub const styleTextAlignLast = enum(i32) {
     NotSet = 0,
     Left = 1,
     Center = 2,
@@ -2184,7 +2184,7 @@ pub const styleTextAlignLastJustify = styleTextAlignLast.Justify;
 pub const styleTextAlignLastAuto = styleTextAlignLast.Auto;
 pub const styleTextAlignLast_Max = styleTextAlignLast._Max;
 
-pub const styleTextJustifyTrim = extern enum(i32) {
+pub const styleTextJustifyTrim = enum(i32) {
     NotSet = 0,
     None = 1,
     Punctuation = 2,
@@ -2197,7 +2197,7 @@ pub const styleTextJustifyTrimPunctuation = styleTextJustifyTrim.Punctuation;
 pub const styleTextJustifyTrimPunctAndKana = styleTextJustifyTrim.PunctAndKana;
 pub const styleTextJustifyTrim_Max = styleTextJustifyTrim._Max;
 
-pub const styleAccelerator = extern enum(i32) {
+pub const styleAccelerator = enum(i32) {
     False = 0,
     True = 1,
     _Max = 2147483647,
@@ -2206,7 +2206,7 @@ pub const styleAcceleratorFalse = styleAccelerator.False;
 pub const styleAcceleratorTrue = styleAccelerator.True;
 pub const styleAccelerator_Max = styleAccelerator._Max;
 
-pub const styleLayoutFlow = extern enum(i32) {
+pub const styleLayoutFlow = enum(i32) {
     Horizontal = 0,
     VerticalIdeographic = 1,
     NotSet = 2,
@@ -2217,7 +2217,7 @@ pub const styleLayoutFlowVerticalIdeographic = styleLayoutFlow.VerticalIdeograph
 pub const styleLayoutFlowNotSet = styleLayoutFlow.NotSet;
 pub const styleLayoutFlow_Max = styleLayoutFlow._Max;
 
-pub const styleBlockProgression = extern enum(i32) {
+pub const styleBlockProgression = enum(i32) {
     Tb = 0,
     Rl = 1,
     Bt = 2,
@@ -2232,7 +2232,7 @@ pub const styleBlockProgressionLr = styleBlockProgression.Lr;
 pub const styleBlockProgressionNotSet = styleBlockProgression.NotSet;
 pub const styleBlockProgression_Max = styleBlockProgression._Max;
 
-pub const styleWritingMode = extern enum(i32) {
+pub const styleWritingMode = enum(i32) {
     Lrtb = 0,
     Tbrl = 1,
     Rltb = 2,
@@ -2261,7 +2261,7 @@ pub const styleWritingModeRl = styleWritingMode.Rl;
 pub const styleWritingModeTb = styleWritingMode.Tb;
 pub const styleWritingMode_Max = styleWritingMode._Max;
 
-pub const styleBool = extern enum(i32) {
+pub const styleBool = enum(i32) {
     False = 0,
     True = 1,
     _Max = 2147483647,
@@ -2270,7 +2270,7 @@ pub const styleBoolFalse = styleBool.False;
 pub const styleBoolTrue = styleBool.True;
 pub const styleBool_Max = styleBool._Max;
 
-pub const styleTextUnderlinePosition = extern enum(i32) {
+pub const styleTextUnderlinePosition = enum(i32) {
     Below = 0,
     Above = 1,
     Auto = 2,
@@ -2283,7 +2283,7 @@ pub const styleTextUnderlinePositionAuto = styleTextUnderlinePosition.Auto;
 pub const styleTextUnderlinePositionNotSet = styleTextUnderlinePosition.NotSet;
 pub const styleTextUnderlinePosition_Max = styleTextUnderlinePosition._Max;
 
-pub const styleTextOverflow = extern enum(i32) {
+pub const styleTextOverflow = enum(i32) {
     Clip = 0,
     Ellipsis = 1,
     NotSet = 2,
@@ -2294,7 +2294,7 @@ pub const styleTextOverflowEllipsis = styleTextOverflow.Ellipsis;
 pub const styleTextOverflowNotSet = styleTextOverflow.NotSet;
 pub const styleTextOverflow_Max = styleTextOverflow._Max;
 
-pub const styleInterpolation = extern enum(i32) {
+pub const styleInterpolation = enum(i32) {
     NotSet = 0,
     NN = 1,
     BCH = 2,
@@ -2305,7 +2305,7 @@ pub const styleInterpolationNN = styleInterpolation.NN;
 pub const styleInterpolationBCH = styleInterpolation.BCH;
 pub const styleInterpolation_Max = styleInterpolation._Max;
 
-pub const styleBoxSizing = extern enum(i32) {
+pub const styleBoxSizing = enum(i32) {
     NotSet = 0,
     ContentBox = 1,
     BorderBox = 2,
@@ -2316,7 +2316,7 @@ pub const styleBoxSizingContentBox = styleBoxSizing.ContentBox;
 pub const styleBoxSizingBorderBox = styleBoxSizing.BorderBox;
 pub const styleBoxSizing_Max = styleBoxSizing._Max;
 
-pub const styleFlex = extern enum(i32) {
+pub const styleFlex = enum(i32) {
     None = 0,
     NotSet = 1,
     _Max = 2147483647,
@@ -2325,7 +2325,7 @@ pub const styleFlexNone = styleFlex.None;
 pub const styleFlexNotSet = styleFlex.NotSet;
 pub const styleFlex_Max = styleFlex._Max;
 
-pub const styleFlexBasis = extern enum(i32) {
+pub const styleFlexBasis = enum(i32) {
     Auto = 0,
     NotSet = 1,
     _Max = 2147483647,
@@ -2334,7 +2334,7 @@ pub const styleFlexBasisAuto = styleFlexBasis.Auto;
 pub const styleFlexBasisNotSet = styleFlexBasis.NotSet;
 pub const styleFlexBasis_Max = styleFlexBasis._Max;
 
-pub const styleFlexDirection = extern enum(i32) {
+pub const styleFlexDirection = enum(i32) {
     Row = 0,
     RowReverse = 1,
     Column = 2,
@@ -2349,7 +2349,7 @@ pub const styleFlexDirectionColumnReverse = styleFlexDirection.ColumnReverse;
 pub const styleFlexDirectionNotSet = styleFlexDirection.NotSet;
 pub const styleFlexDirection_Max = styleFlexDirection._Max;
 
-pub const styleWebkitBoxOrient = extern enum(i32) {
+pub const styleWebkitBoxOrient = enum(i32) {
     Horizontal = 0,
     InlineAxis = 1,
     Vertical = 2,
@@ -2364,7 +2364,7 @@ pub const styleWebkitBoxOrientBlockAxis = styleWebkitBoxOrient.BlockAxis;
 pub const styleWebkitBoxOrientNotSet = styleWebkitBoxOrient.NotSet;
 pub const styleWebkitBoxOrient_Max = styleWebkitBoxOrient._Max;
 
-pub const styleWebkitBoxDirection = extern enum(i32) {
+pub const styleWebkitBoxDirection = enum(i32) {
     Normal = 0,
     Reverse = 1,
     NotSet = 2,
@@ -2375,7 +2375,7 @@ pub const styleWebkitBoxDirectionReverse = styleWebkitBoxDirection.Reverse;
 pub const styleWebkitBoxDirectionNotSet = styleWebkitBoxDirection.NotSet;
 pub const styleWebkitBoxDirection_Max = styleWebkitBoxDirection._Max;
 
-pub const styleFlexWrap = extern enum(i32) {
+pub const styleFlexWrap = enum(i32) {
     Nowrap = 0,
     Wrap = 1,
     WrapReverse = 2,
@@ -2388,7 +2388,7 @@ pub const styleFlexWrapWrapReverse = styleFlexWrap.WrapReverse;
 pub const styleFlexWrapNotSet = styleFlexWrap.NotSet;
 pub const styleFlexWrap_Max = styleFlexWrap._Max;
 
-pub const styleAlignItems = extern enum(i32) {
+pub const styleAlignItems = enum(i32) {
     FlexStart = 0,
     FlexEnd = 1,
     Center = 2,
@@ -2405,7 +2405,7 @@ pub const styleAlignItemsStretch = styleAlignItems.Stretch;
 pub const styleAlignItemsNotSet = styleAlignItems.NotSet;
 pub const styleAlignItems_Max = styleAlignItems._Max;
 
-pub const styleMsFlexAlign = extern enum(i32) {
+pub const styleMsFlexAlign = enum(i32) {
     Start = 0,
     End = 1,
     Center = 2,
@@ -2422,7 +2422,7 @@ pub const styleMsFlexAlignStretch = styleMsFlexAlign.Stretch;
 pub const styleMsFlexAlignNotSet = styleMsFlexAlign.NotSet;
 pub const styleMsFlexAlign_Max = styleMsFlexAlign._Max;
 
-pub const styleMsFlexItemAlign = extern enum(i32) {
+pub const styleMsFlexItemAlign = enum(i32) {
     Start = 0,
     End = 1,
     Center = 2,
@@ -2441,7 +2441,7 @@ pub const styleMsFlexItemAlignAuto = styleMsFlexItemAlign.Auto;
 pub const styleMsFlexItemAlignNotSet = styleMsFlexItemAlign.NotSet;
 pub const styleMsFlexItemAlign_Max = styleMsFlexItemAlign._Max;
 
-pub const styleAlignSelf = extern enum(i32) {
+pub const styleAlignSelf = enum(i32) {
     FlexStart = 0,
     FlexEnd = 1,
     Center = 2,
@@ -2460,7 +2460,7 @@ pub const styleAlignSelfAuto = styleAlignSelf.Auto;
 pub const styleAlignSelfNotSet = styleAlignSelf.NotSet;
 pub const styleAlignSelf_Max = styleAlignSelf._Max;
 
-pub const styleJustifyContent = extern enum(i32) {
+pub const styleJustifyContent = enum(i32) {
     FlexStart = 0,
     FlexEnd = 1,
     Center = 2,
@@ -2477,7 +2477,7 @@ pub const styleJustifyContentSpaceAround = styleJustifyContent.SpaceAround;
 pub const styleJustifyContentNotSet = styleJustifyContent.NotSet;
 pub const styleJustifyContent_Max = styleJustifyContent._Max;
 
-pub const styleMsFlexPack = extern enum(i32) {
+pub const styleMsFlexPack = enum(i32) {
     Start = 0,
     End = 1,
     Center = 2,
@@ -2494,7 +2494,7 @@ pub const styleMsFlexPackDistribute = styleMsFlexPack.Distribute;
 pub const styleMsFlexPackNotSet = styleMsFlexPack.NotSet;
 pub const styleMsFlexPack_Max = styleMsFlexPack._Max;
 
-pub const styleWebkitBoxPack = extern enum(i32) {
+pub const styleWebkitBoxPack = enum(i32) {
     Start = 0,
     End = 1,
     Center = 2,
@@ -2509,7 +2509,7 @@ pub const styleWebkitBoxPackJustify = styleWebkitBoxPack.Justify;
 pub const styleWebkitBoxPackNotSet = styleWebkitBoxPack.NotSet;
 pub const styleWebkitBoxPack_Max = styleWebkitBoxPack._Max;
 
-pub const styleMsFlexLinePack = extern enum(i32) {
+pub const styleMsFlexLinePack = enum(i32) {
     Start = 0,
     End = 1,
     Center = 2,
@@ -2528,7 +2528,7 @@ pub const styleMsFlexLinePackStretch = styleMsFlexLinePack.Stretch;
 pub const styleMsFlexLinePackNotSet = styleMsFlexLinePack.NotSet;
 pub const styleMsFlexLinePack_Max = styleMsFlexLinePack._Max;
 
-pub const styleAlignContent = extern enum(i32) {
+pub const styleAlignContent = enum(i32) {
     FlexStart = 0,
     FlexEnd = 1,
     Center = 2,
@@ -2547,7 +2547,7 @@ pub const styleAlignContentStretch = styleAlignContent.Stretch;
 pub const styleAlignContentNotSet = styleAlignContent.NotSet;
 pub const styleAlignContent_Max = styleAlignContent._Max;
 
-pub const styleColumnFill = extern enum(i32) {
+pub const styleColumnFill = enum(i32) {
     Auto = 0,
     Balance = 1,
     NotSet = 2,
@@ -2558,7 +2558,7 @@ pub const styleColumnFillBalance = styleColumnFill.Balance;
 pub const styleColumnFillNotSet = styleColumnFill.NotSet;
 pub const styleColumnFill_Max = styleColumnFill._Max;
 
-pub const styleColumnSpan = extern enum(i32) {
+pub const styleColumnSpan = enum(i32) {
     None = 0,
     All = 1,
     One = 2,
@@ -2571,7 +2571,7 @@ pub const styleColumnSpanOne = styleColumnSpan.One;
 pub const styleColumnSpanNotSet = styleColumnSpan.NotSet;
 pub const styleColumnSpan_Max = styleColumnSpan._Max;
 
-pub const styleBreak = extern enum(i32) {
+pub const styleBreak = enum(i32) {
     NotSet = 0,
     Auto = 1,
     Always = 2,
@@ -2596,7 +2596,7 @@ pub const styleBreakAvoidPage = styleBreak.AvoidPage;
 pub const styleBreakAvoidColumn = styleBreak.AvoidColumn;
 pub const styleBreak_Max = styleBreak._Max;
 
-pub const styleBreakInside = extern enum(i32) {
+pub const styleBreakInside = enum(i32) {
     NotSet = 0,
     Auto = 1,
     Avoid = 2,
@@ -2611,7 +2611,7 @@ pub const styleBreakInsideAvoidPage = styleBreakInside.AvoidPage;
 pub const styleBreakInsideAvoidColumn = styleBreakInside.AvoidColumn;
 pub const styleBreakInside_Max = styleBreakInside._Max;
 
-pub const styleMsScrollChaining = extern enum(i32) {
+pub const styleMsScrollChaining = enum(i32) {
     NotSet = 0,
     None = 1,
     Chained = 2,
@@ -2622,7 +2622,7 @@ pub const styleMsScrollChainingNone = styleMsScrollChaining.None;
 pub const styleMsScrollChainingChained = styleMsScrollChaining.Chained;
 pub const styleMsScrollChaining_Max = styleMsScrollChaining._Max;
 
-pub const styleMsContentZooming = extern enum(i32) {
+pub const styleMsContentZooming = enum(i32) {
     NotSet = 0,
     None = 1,
     Zoom = 2,
@@ -2633,7 +2633,7 @@ pub const styleMsContentZoomingNone = styleMsContentZooming.None;
 pub const styleMsContentZoomingZoom = styleMsContentZooming.Zoom;
 pub const styleMsContentZooming_Max = styleMsContentZooming._Max;
 
-pub const styleMsContentZoomSnapType = extern enum(i32) {
+pub const styleMsContentZoomSnapType = enum(i32) {
     NotSet = 0,
     None = 1,
     Mandatory = 2,
@@ -2646,7 +2646,7 @@ pub const styleMsContentZoomSnapTypeMandatory = styleMsContentZoomSnapType.Manda
 pub const styleMsContentZoomSnapTypeProximity = styleMsContentZoomSnapType.Proximity;
 pub const styleMsContentZoomSnapType_Max = styleMsContentZoomSnapType._Max;
 
-pub const styleMsScrollRails = extern enum(i32) {
+pub const styleMsScrollRails = enum(i32) {
     NotSet = 0,
     None = 1,
     Railed = 2,
@@ -2657,7 +2657,7 @@ pub const styleMsScrollRailsNone = styleMsScrollRails.None;
 pub const styleMsScrollRailsRailed = styleMsScrollRails.Railed;
 pub const styleMsScrollRails_Max = styleMsScrollRails._Max;
 
-pub const styleMsContentZoomChaining = extern enum(i32) {
+pub const styleMsContentZoomChaining = enum(i32) {
     NotSet = 0,
     None = 1,
     Chained = 2,
@@ -2668,7 +2668,7 @@ pub const styleMsContentZoomChainingNone = styleMsContentZoomChaining.None;
 pub const styleMsContentZoomChainingChained = styleMsContentZoomChaining.Chained;
 pub const styleMsContentZoomChaining_Max = styleMsContentZoomChaining._Max;
 
-pub const styleMsScrollSnapType = extern enum(i32) {
+pub const styleMsScrollSnapType = enum(i32) {
     NotSet = 0,
     None = 1,
     Mandatory = 2,
@@ -2681,14 +2681,14 @@ pub const styleMsScrollSnapTypeMandatory = styleMsScrollSnapType.Mandatory;
 pub const styleMsScrollSnapTypeProximity = styleMsScrollSnapType.Proximity;
 pub const styleMsScrollSnapType_Max = styleMsScrollSnapType._Max;
 
-pub const styleGridColumn = extern enum(i32) {
+pub const styleGridColumn = enum(i32) {
     NotSet = 0,
     _Max = 2147483647,
 };
 pub const styleGridColumnNotSet = styleGridColumn.NotSet;
 pub const styleGridColumn_Max = styleGridColumn._Max;
 
-pub const styleGridColumnAlign = extern enum(i32) {
+pub const styleGridColumnAlign = enum(i32) {
     Center = 0,
     End = 1,
     Start = 2,
@@ -2703,21 +2703,21 @@ pub const styleGridColumnAlignStretch = styleGridColumnAlign.Stretch;
 pub const styleGridColumnAlignNotSet = styleGridColumnAlign.NotSet;
 pub const styleGridColumnAlign_Max = styleGridColumnAlign._Max;
 
-pub const styleGridColumnSpan = extern enum(i32) {
+pub const styleGridColumnSpan = enum(i32) {
     NotSet = 0,
     _Max = 2147483647,
 };
 pub const styleGridColumnSpanNotSet = styleGridColumnSpan.NotSet;
 pub const styleGridColumnSpan_Max = styleGridColumnSpan._Max;
 
-pub const styleGridRow = extern enum(i32) {
+pub const styleGridRow = enum(i32) {
     NotSet = 0,
     _Max = 2147483647,
 };
 pub const styleGridRowNotSet = styleGridRow.NotSet;
 pub const styleGridRow_Max = styleGridRow._Max;
 
-pub const styleGridRowAlign = extern enum(i32) {
+pub const styleGridRowAlign = enum(i32) {
     Center = 0,
     End = 1,
     Start = 2,
@@ -2732,14 +2732,14 @@ pub const styleGridRowAlignStretch = styleGridRowAlign.Stretch;
 pub const styleGridRowAlignNotSet = styleGridRowAlign.NotSet;
 pub const styleGridRowAlign_Max = styleGridRowAlign._Max;
 
-pub const styleGridRowSpan = extern enum(i32) {
+pub const styleGridRowSpan = enum(i32) {
     NotSet = 0,
     _Max = 2147483647,
 };
 pub const styleGridRowSpanNotSet = styleGridRowSpan.NotSet;
 pub const styleGridRowSpan_Max = styleGridRowSpan._Max;
 
-pub const styleWrapThrough = extern enum(i32) {
+pub const styleWrapThrough = enum(i32) {
     NotSet = 0,
     Wrap = 1,
     None = 2,
@@ -2750,7 +2750,7 @@ pub const styleWrapThroughWrap = styleWrapThrough.Wrap;
 pub const styleWrapThroughNone = styleWrapThrough.None;
 pub const styleWrapThrough_Max = styleWrapThrough._Max;
 
-pub const styleWrapFlow = extern enum(i32) {
+pub const styleWrapFlow = enum(i32) {
     NotSet = 0,
     Auto = 1,
     Both = 2,
@@ -2771,7 +2771,7 @@ pub const styleWrapFlowMinimum = styleWrapFlow.Minimum;
 pub const styleWrapFlowMaximum = styleWrapFlow.Maximum;
 pub const styleWrapFlow_Max = styleWrapFlow._Max;
 
-pub const styleAlignmentBaseline = extern enum(i32) {
+pub const styleAlignmentBaseline = enum(i32) {
     NotSet = 0,
     AfterEdge = 1,
     Alphabetic = 2,
@@ -2802,7 +2802,7 @@ pub const styleAlignmentBaselineTextBeforeEdge = styleAlignmentBaseline.TextBefo
 pub const styleAlignmentBaselineIdeographic = styleAlignmentBaseline.Ideographic;
 pub const styleAlignmentBaseline_Max = styleAlignmentBaseline._Max;
 
-pub const styleBaselineShift = extern enum(i32) {
+pub const styleBaselineShift = enum(i32) {
     Baseline = 0,
     Sub = 1,
     Super = 2,
@@ -2813,7 +2813,7 @@ pub const styleBaselineShiftSub = styleBaselineShift.Sub;
 pub const styleBaselineShiftSuper = styleBaselineShift.Super;
 pub const styleBaselineShift_Max = styleBaselineShift._Max;
 
-pub const styleClipRule = extern enum(i32) {
+pub const styleClipRule = enum(i32) {
     NotSet = 0,
     NonZero = 1,
     EvenOdd = 2,
@@ -2824,7 +2824,7 @@ pub const styleClipRuleNonZero = styleClipRule.NonZero;
 pub const styleClipRuleEvenOdd = styleClipRule.EvenOdd;
 pub const styleClipRule_Max = styleClipRule._Max;
 
-pub const styleDominantBaseline = extern enum(i32) {
+pub const styleDominantBaseline = enum(i32) {
     NotSet = 0,
     Alphabetic = 1,
     Auto = 2,
@@ -2855,7 +2855,7 @@ pub const styleDominantBaselineTextBeforeEdge = styleDominantBaseline.TextBefore
 pub const styleDominantBaselineUseScript = styleDominantBaseline.UseScript;
 pub const styleDominantBaseline_Max = styleDominantBaseline._Max;
 
-pub const styleFillRule = extern enum(i32) {
+pub const styleFillRule = enum(i32) {
     NotSet = 0,
     NonZero = 1,
     EvenOdd = 2,
@@ -2866,7 +2866,7 @@ pub const styleFillRuleNonZero = styleFillRule.NonZero;
 pub const styleFillRuleEvenOdd = styleFillRule.EvenOdd;
 pub const styleFillRule_Max = styleFillRule._Max;
 
-pub const styleFontStretch = extern enum(i32) {
+pub const styleFontStretch = enum(i32) {
     NotSet = 0,
     Wider = 1,
     Narrower = 2,
@@ -2895,7 +2895,7 @@ pub const styleFontStretchExtraExpanded = styleFontStretch.ExtraExpanded;
 pub const styleFontStretchUltraExpanded = styleFontStretch.UltraExpanded;
 pub const styleFontStretch_Max = styleFontStretch._Max;
 
-pub const stylePointerEvents = extern enum(i32) {
+pub const stylePointerEvents = enum(i32) {
     NotSet = 0,
     VisiblePainted = 1,
     VisibleFill = 2,
@@ -2924,7 +2924,7 @@ pub const stylePointerEventsInitial = stylePointerEvents.Initial;
 pub const stylePointerEventsAuto = stylePointerEvents.Auto;
 pub const stylePointerEvents_Max = stylePointerEvents._Max;
 
-pub const styleEnableBackground = extern enum(i32) {
+pub const styleEnableBackground = enum(i32) {
     NotSet = 0,
     Accumulate = 1,
     New = 2,
@@ -2937,7 +2937,7 @@ pub const styleEnableBackgroundNew = styleEnableBackground.New;
 pub const styleEnableBackgroundInherit = styleEnableBackground.Inherit;
 pub const styleEnableBackground_Max = styleEnableBackground._Max;
 
-pub const styleStrokeLinecap = extern enum(i32) {
+pub const styleStrokeLinecap = enum(i32) {
     NotSet = 0,
     Butt = 1,
     Round = 2,
@@ -2950,7 +2950,7 @@ pub const styleStrokeLinecapRound = styleStrokeLinecap.Round;
 pub const styleStrokeLinecapSquare = styleStrokeLinecap.Square;
 pub const styleStrokeLinecap_Max = styleStrokeLinecap._Max;
 
-pub const styleStrokeLinejoin = extern enum(i32) {
+pub const styleStrokeLinejoin = enum(i32) {
     NotSet = 0,
     Miter = 1,
     Round = 2,
@@ -2963,7 +2963,7 @@ pub const styleStrokeLinejoinRound = styleStrokeLinejoin.Round;
 pub const styleStrokeLinejoinBevel = styleStrokeLinejoin.Bevel;
 pub const styleStrokeLinejoin_Max = styleStrokeLinejoin._Max;
 
-pub const styleTextAnchor = extern enum(i32) {
+pub const styleTextAnchor = enum(i32) {
     NotSet = 0,
     Start = 1,
     Middle = 2,
@@ -2976,7 +2976,7 @@ pub const styleTextAnchorMiddle = styleTextAnchor.Middle;
 pub const styleTextAnchorEnd = styleTextAnchor.End;
 pub const styleTextAnchor_Max = styleTextAnchor._Max;
 
-pub const styleAttrType = extern enum(i32) {
+pub const styleAttrType = enum(i32) {
     String = 0,
     Color = 1,
     Url = 2,
@@ -3035,7 +3035,7 @@ pub const styleAttrTypeS = styleAttrType.S;
 pub const styleAttrTypeMs = styleAttrType.Ms;
 pub const styleAttrType_Max = styleAttrType._Max;
 
-pub const styleInitialColor = extern enum(i32) {
+pub const styleInitialColor = enum(i32) {
     NoInitial = 0,
     ColorProperty = 1,
     Transparent = 2,
@@ -3048,7 +3048,7 @@ pub const styleInitialColorTransparent = styleInitialColor.Transparent;
 pub const styleInitialColorInvert = styleInitialColor.Invert;
 pub const styleInitialColor_Max = styleInitialColor._Max;
 
-pub const styleInitialString = extern enum(i32) {
+pub const styleInitialString = enum(i32) {
     NoInitial = 0,
     None = 1,
     Auto = 2,
@@ -3061,7 +3061,7 @@ pub const styleInitialStringAuto = styleInitialString.Auto;
 pub const styleInitialStringNormal = styleInitialString.Normal;
 pub const styleInitialString_Max = styleInitialString._Max;
 
-pub const styleTransformOriginX = extern enum(i32) {
+pub const styleTransformOriginX = enum(i32) {
     NotSet = 0,
     Left = 1,
     Center = 2,
@@ -3074,7 +3074,7 @@ pub const styleTransformOriginXCenter = styleTransformOriginX.Center;
 pub const styleTransformOriginXRight = styleTransformOriginX.Right;
 pub const styleTransformOriginX_Max = styleTransformOriginX._Max;
 
-pub const styleTransformOriginY = extern enum(i32) {
+pub const styleTransformOriginY = enum(i32) {
     NotSet = 0,
     Top = 1,
     Center = 2,
@@ -3087,7 +3087,7 @@ pub const styleTransformOriginYCenter = styleTransformOriginY.Center;
 pub const styleTransformOriginYBottom = styleTransformOriginY.Bottom;
 pub const styleTransformOriginY_Max = styleTransformOriginY._Max;
 
-pub const stylePerspectiveOriginX = extern enum(i32) {
+pub const stylePerspectiveOriginX = enum(i32) {
     NotSet = 0,
     Left = 1,
     Center = 2,
@@ -3100,7 +3100,7 @@ pub const stylePerspectiveOriginXCenter = stylePerspectiveOriginX.Center;
 pub const stylePerspectiveOriginXRight = stylePerspectiveOriginX.Right;
 pub const stylePerspectiveOriginX_Max = stylePerspectiveOriginX._Max;
 
-pub const stylePerspectiveOriginY = extern enum(i32) {
+pub const stylePerspectiveOriginY = enum(i32) {
     NotSet = 0,
     Top = 1,
     Center = 2,
@@ -3113,7 +3113,7 @@ pub const stylePerspectiveOriginYCenter = stylePerspectiveOriginY.Center;
 pub const stylePerspectiveOriginYBottom = stylePerspectiveOriginY.Bottom;
 pub const stylePerspectiveOriginY_Max = stylePerspectiveOriginY._Max;
 
-pub const styleTransformStyle = extern enum(i32) {
+pub const styleTransformStyle = enum(i32) {
     Flat = 0,
     Preserve3D = 1,
     NotSet = 2,
@@ -3124,7 +3124,7 @@ pub const styleTransformStylePreserve3D = styleTransformStyle.Preserve3D;
 pub const styleTransformStyleNotSet = styleTransformStyle.NotSet;
 pub const styleTransformStyle_Max = styleTransformStyle._Max;
 
-pub const styleBackfaceVisibility = extern enum(i32) {
+pub const styleBackfaceVisibility = enum(i32) {
     Visible = 0,
     Hidden = 1,
     NotSet = 2,
@@ -3135,7 +3135,7 @@ pub const styleBackfaceVisibilityHidden = styleBackfaceVisibility.Hidden;
 pub const styleBackfaceVisibilityNotSet = styleBackfaceVisibility.NotSet;
 pub const styleBackfaceVisibility_Max = styleBackfaceVisibility._Max;
 
-pub const styleTextSizeAdjust = extern enum(i32) {
+pub const styleTextSizeAdjust = enum(i32) {
     None = 0,
     Auto = 1,
     _Max = 2147483647,
@@ -3144,7 +3144,7 @@ pub const styleTextSizeAdjustNone = styleTextSizeAdjust.None;
 pub const styleTextSizeAdjustAuto = styleTextSizeAdjust.Auto;
 pub const styleTextSizeAdjust_Max = styleTextSizeAdjust._Max;
 
-pub const styleColorInterpolationFilters = extern enum(i32) {
+pub const styleColorInterpolationFilters = enum(i32) {
     Auto = 0,
     SRgb = 1,
     LinearRgb = 2,
@@ -3157,7 +3157,7 @@ pub const styleColorInterpolationFiltersLinearRgb = styleColorInterpolationFilte
 pub const styleColorInterpolationFiltersNotSet = styleColorInterpolationFilters.NotSet;
 pub const styleColorInterpolationFilters_Max = styleColorInterpolationFilters._Max;
 
-pub const styleHyphens = extern enum(i32) {
+pub const styleHyphens = enum(i32) {
     None = 0,
     Manual = 1,
     Auto = 2,
@@ -3170,14 +3170,14 @@ pub const styleHyphensAuto = styleHyphens.Auto;
 pub const styleHyphensNotSet = styleHyphens.NotSet;
 pub const styleHyphens_Max = styleHyphens._Max;
 
-pub const styleHyphenateLimitLines = extern enum(i32) {
+pub const styleHyphenateLimitLines = enum(i32) {
     NoLimit = 0,
     _Max = 2147483647,
 };
 pub const styleHyphenateLimitLinesNoLimit = styleHyphenateLimitLines.NoLimit;
 pub const styleHyphenateLimitLines_Max = styleHyphenateLimitLines._Max;
 
-pub const styleMsAnimationPlayState = extern enum(i32) {
+pub const styleMsAnimationPlayState = enum(i32) {
     Running = 0,
     Paused = 1,
     NotSet = 2,
@@ -3188,7 +3188,7 @@ pub const styleMsAnimationPlayStatePaused = styleMsAnimationPlayState.Paused;
 pub const styleMsAnimationPlayStateNotSet = styleMsAnimationPlayState.NotSet;
 pub const styleMsAnimationPlayState_Max = styleMsAnimationPlayState._Max;
 
-pub const styleMsAnimationDirection = extern enum(i32) {
+pub const styleMsAnimationDirection = enum(i32) {
     Normal = 0,
     Alternate = 1,
     Reverse = 2,
@@ -3203,7 +3203,7 @@ pub const styleMsAnimationDirectionAlternateReverse = styleMsAnimationDirection.
 pub const styleMsAnimationDirectionNotSet = styleMsAnimationDirection.NotSet;
 pub const styleMsAnimationDirection_Max = styleMsAnimationDirection._Max;
 
-pub const styleMsAnimationFillMode = extern enum(i32) {
+pub const styleMsAnimationFillMode = enum(i32) {
     None = 0,
     Forwards = 1,
     Backwards = 2,
@@ -3218,7 +3218,7 @@ pub const styleMsAnimationFillModeBoth = styleMsAnimationFillMode.Both;
 pub const styleMsAnimationFillModeNotSet = styleMsAnimationFillMode.NotSet;
 pub const styleMsAnimationFillMode_Max = styleMsAnimationFillMode._Max;
 
-pub const styleMsHighContrastAdjust = extern enum(i32) {
+pub const styleMsHighContrastAdjust = enum(i32) {
     NotSet = 0,
     Auto = 1,
     None = 2,
@@ -3229,7 +3229,7 @@ pub const styleMsHighContrastAdjustAuto = styleMsHighContrastAdjust.Auto;
 pub const styleMsHighContrastAdjustNone = styleMsHighContrastAdjust.None;
 pub const styleMsHighContrastAdjust_Max = styleMsHighContrastAdjust._Max;
 
-pub const styleMsUserSelect = extern enum(i32) {
+pub const styleMsUserSelect = enum(i32) {
     Auto = 0,
     Text = 1,
     Element = 2,
@@ -3244,7 +3244,7 @@ pub const styleMsUserSelectNone = styleMsUserSelect.None;
 pub const styleMsUserSelectNotSet = styleMsUserSelect.NotSet;
 pub const styleMsUserSelect_Max = styleMsUserSelect._Max;
 
-pub const styleMsTouchAction = extern enum(i32) {
+pub const styleMsTouchAction = enum(i32) {
     NotSet = -1,
     None = 0,
     Auto = 1,
@@ -3269,7 +3269,7 @@ pub const styleMsTouchActionCrossSlideX = styleMsTouchAction.CrossSlideX;
 pub const styleMsTouchActionCrossSlideY = styleMsTouchAction.CrossSlideY;
 pub const styleMsTouchAction_Max = styleMsTouchAction._Max;
 
-pub const styleMsTouchSelect = extern enum(i32) {
+pub const styleMsTouchSelect = enum(i32) {
     Grippers = 0,
     None = 1,
     NotSet = 2,
@@ -3280,7 +3280,7 @@ pub const styleMsTouchSelectNone = styleMsTouchSelect.None;
 pub const styleMsTouchSelectNotSet = styleMsTouchSelect.NotSet;
 pub const styleMsTouchSelect_Max = styleMsTouchSelect._Max;
 
-pub const styleMsScrollTranslation = extern enum(i32) {
+pub const styleMsScrollTranslation = enum(i32) {
     NotSet = 0,
     None = 1,
     VtoH = 2,
@@ -3291,7 +3291,7 @@ pub const styleMsScrollTranslationNone = styleMsScrollTranslation.None;
 pub const styleMsScrollTranslationVtoH = styleMsScrollTranslation.VtoH;
 pub const styleMsScrollTranslation_Max = styleMsScrollTranslation._Max;
 
-pub const styleBorderImageRepeat = extern enum(i32) {
+pub const styleBorderImageRepeat = enum(i32) {
     Stretch = 0,
     Repeat = 1,
     Round = 2,
@@ -3306,7 +3306,7 @@ pub const styleBorderImageRepeatSpace = styleBorderImageRepeat.Space;
 pub const styleBorderImageRepeatNotSet = styleBorderImageRepeat.NotSet;
 pub const styleBorderImageRepeat_Max = styleBorderImageRepeat._Max;
 
-pub const styleBorderImageSliceFill = extern enum(i32) {
+pub const styleBorderImageSliceFill = enum(i32) {
     NotSet = 0,
     Fill = 1,
     _Max = 2147483647,
@@ -3315,7 +3315,7 @@ pub const styleBorderImageSliceFillNotSet = styleBorderImageSliceFill.NotSet;
 pub const styleBorderImageSliceFillFill = styleBorderImageSliceFill.Fill;
 pub const styleBorderImageSliceFill_Max = styleBorderImageSliceFill._Max;
 
-pub const styleMsImeAlign = extern enum(i32) {
+pub const styleMsImeAlign = enum(i32) {
     Auto = 0,
     After = 1,
     NotSet = 2,
@@ -3326,7 +3326,7 @@ pub const styleMsImeAlignAfter = styleMsImeAlign.After;
 pub const styleMsImeAlignNotSet = styleMsImeAlign.NotSet;
 pub const styleMsImeAlign_Max = styleMsImeAlign._Max;
 
-pub const styleMsTextCombineHorizontal = extern enum(i32) {
+pub const styleMsTextCombineHorizontal = enum(i32) {
     None = 0,
     All = 1,
     Digits = 2,
@@ -3339,7 +3339,7 @@ pub const styleMsTextCombineHorizontalDigits = styleMsTextCombineHorizontal.Digi
 pub const styleMsTextCombineHorizontalNotSet = styleMsTextCombineHorizontal.NotSet;
 pub const styleMsTextCombineHorizontal_Max = styleMsTextCombineHorizontal._Max;
 
-pub const styleWebkitAppearance = extern enum(i32) {
+pub const styleWebkitAppearance = enum(i32) {
     None = 0,
     CapsLockIndicator = 1,
     Button = 2,
@@ -3414,7 +3414,7 @@ pub const styleWebkitAppearanceTextfield = styleWebkitAppearance.Textfield;
 pub const styleWebkitAppearanceNotSet = styleWebkitAppearance.NotSet;
 pub const styleWebkitAppearance_Max = styleWebkitAppearance._Max;
 
-pub const styleViewportSize = extern enum(i32) {
+pub const styleViewportSize = enum(i32) {
     Auto = 0,
     DeviceWidth = 1,
     DeviceHeight = 2,
@@ -3425,7 +3425,7 @@ pub const styleViewportSizeDeviceWidth = styleViewportSize.DeviceWidth;
 pub const styleViewportSizeDeviceHeight = styleViewportSize.DeviceHeight;
 pub const styleViewportSize_Max = styleViewportSize._Max;
 
-pub const styleUserZoom = extern enum(i32) {
+pub const styleUserZoom = enum(i32) {
     NotSet = 0,
     Zoom = 1,
     Fixed = 2,
@@ -3436,7 +3436,7 @@ pub const styleUserZoomZoom = styleUserZoom.Zoom;
 pub const styleUserZoomFixed = styleUserZoom.Fixed;
 pub const styleUserZoom_Max = styleUserZoom._Max;
 
-pub const styleTextLineThroughStyle = extern enum(i32) {
+pub const styleTextLineThroughStyle = enum(i32) {
     Undefined = 0,
     Single = 1,
     Double = 2,
@@ -3447,7 +3447,7 @@ pub const styleTextLineThroughStyleSingle = styleTextLineThroughStyle.Single;
 pub const styleTextLineThroughStyleDouble = styleTextLineThroughStyle.Double;
 pub const styleTextLineThroughStyle_Max = styleTextLineThroughStyle._Max;
 
-pub const styleTextUnderlineStyle = extern enum(i32) {
+pub const styleTextUnderlineStyle = enum(i32) {
     Undefined = 0,
     Single = 1,
     Double = 2,
@@ -3478,7 +3478,7 @@ pub const styleTextUnderlineStyleDoubleAccounting = styleTextUnderlineStyle.Doub
 pub const styleTextUnderlineStyleThickDash = styleTextUnderlineStyle.ThickDash;
 pub const styleTextUnderlineStyle_Max = styleTextUnderlineStyle._Max;
 
-pub const styleTextEffect = extern enum(i32) {
+pub const styleTextEffect = enum(i32) {
     None = 0,
     Emboss = 1,
     Engrave = 2,
@@ -3491,7 +3491,7 @@ pub const styleTextEffectEngrave = styleTextEffect.Engrave;
 pub const styleTextEffectOutline = styleTextEffect.Outline;
 pub const styleTextEffect_Max = styleTextEffect._Max;
 
-pub const styleDefaultTextSelection = extern enum(i32) {
+pub const styleDefaultTextSelection = enum(i32) {
     False = 0,
     True = 1,
     _Max = 2147483647,
@@ -3500,7 +3500,7 @@ pub const styleDefaultTextSelectionFalse = styleDefaultTextSelection.False;
 pub const styleDefaultTextSelectionTrue = styleDefaultTextSelection.True;
 pub const styleDefaultTextSelection_Max = styleDefaultTextSelection._Max;
 
-pub const styleTextDecoration = extern enum(i32) {
+pub const styleTextDecoration = enum(i32) {
     None = 0,
     Underline = 1,
     Overline = 2,
@@ -3515,7 +3515,7 @@ pub const styleTextDecorationLineThrough = styleTextDecoration.LineThrough;
 pub const styleTextDecorationBlink = styleTextDecoration.Blink;
 pub const styleTextDecoration_Max = styleTextDecoration._Max;
 
-pub const textDecoration = extern enum(i32) {
+pub const textDecoration = enum(i32) {
     None = 0,
     Underline = 1,
     Overline = 2,
@@ -3530,7 +3530,7 @@ pub const textDecorationLineThrough = textDecoration.LineThrough;
 pub const textDecorationBlink = textDecoration.Blink;
 pub const textDecoration_Max = textDecoration._Max;
 
-pub const htmlListType = extern enum(i32) {
+pub const htmlListType = enum(i32) {
     NotSet = 0,
     LargeAlpha = 1,
     SmallAlpha = 2,
@@ -3553,7 +3553,7 @@ pub const htmlListTypeCircle = htmlListType.Circle;
 pub const htmlListTypeSquare = htmlListType.Square;
 pub const htmlListType_Max = htmlListType._Max;
 
-pub const htmlMethod = extern enum(i32) {
+pub const htmlMethod = enum(i32) {
     NotSet = 0,
     Get = 1,
     Post = 2,
@@ -3564,7 +3564,7 @@ pub const htmlMethodGet = htmlMethod.Get;
 pub const htmlMethodPost = htmlMethod.Post;
 pub const htmlMethod_Max = htmlMethod._Max;
 
-pub const htmlWrap = extern enum(i32) {
+pub const htmlWrap = enum(i32) {
     Off = 1,
     Soft = 2,
     Hard = 3,
@@ -3575,7 +3575,7 @@ pub const htmlWrapSoft = htmlWrap.Soft;
 pub const htmlWrapHard = htmlWrap.Hard;
 pub const htmlWrap_Max = htmlWrap._Max;
 
-pub const htmlDir = extern enum(i32) {
+pub const htmlDir = enum(i32) {
     NotSet = 0,
     LeftToRight = 1,
     RightToLeft = 2,
@@ -3586,7 +3586,7 @@ pub const htmlDirLeftToRight = htmlDir.LeftToRight;
 pub const htmlDirRightToLeft = htmlDir.RightToLeft;
 pub const htmlDir_Max = htmlDir._Max;
 
-pub const htmlEditable = extern enum(i32) {
+pub const htmlEditable = enum(i32) {
     Inherit = 0,
     True = 1,
     False = 2,
@@ -3597,7 +3597,7 @@ pub const htmlEditableTrue = htmlEditable.True;
 pub const htmlEditableFalse = htmlEditable.False;
 pub const htmlEditable_Max = htmlEditable._Max;
 
-pub const htmlInput = extern enum(i32) {
+pub const htmlInput = enum(i32) {
     NotSet = 0,
     Button = 1,
     Checkbox = 2,
@@ -3644,7 +3644,7 @@ pub const htmlInputTel = htmlInput.Tel;
 pub const htmlInputSearch = htmlInput.Search;
 pub const htmlInput_Max = htmlInput._Max;
 
-pub const htmlSpellCheck = extern enum(i32) {
+pub const htmlSpellCheck = enum(i32) {
     NotSet = 0,
     True = 1,
     False = 2,
@@ -3657,7 +3657,7 @@ pub const htmlSpellCheckFalse = htmlSpellCheck.False;
 pub const htmlSpellCheckDefault = htmlSpellCheck.Default;
 pub const htmlSpellCheck_Max = htmlSpellCheck._Max;
 
-pub const htmlEncoding = extern enum(i32) {
+pub const htmlEncoding = enum(i32) {
     URL = 0,
     Multipart = 1,
     Text = 2,
@@ -3668,7 +3668,7 @@ pub const htmlEncodingMultipart = htmlEncoding.Multipart;
 pub const htmlEncodingText = htmlEncoding.Text;
 pub const htmlEncoding_Max = htmlEncoding._Max;
 
-pub const htmlAdjacency = extern enum(i32) {
+pub const htmlAdjacency = enum(i32) {
     BeforeBegin = 1,
     AfterBegin = 2,
     BeforeEnd = 3,
@@ -3681,14 +3681,14 @@ pub const htmlAdjacencyBeforeEnd = htmlAdjacency.BeforeEnd;
 pub const htmlAdjacencyAfterEnd = htmlAdjacency.AfterEnd;
 pub const htmlAdjacency_Max = htmlAdjacency._Max;
 
-pub const htmlTabIndex = extern enum(i32) {
+pub const htmlTabIndex = enum(i32) {
     NotSet = -32768,
     _Max = 2147483647,
 };
 pub const htmlTabIndexNotSet = htmlTabIndex.NotSet;
 pub const htmlTabIndex_Max = htmlTabIndex._Max;
 
-pub const htmlComponent = extern enum(i32) {
+pub const htmlComponent = enum(i32) {
     Client = 0,
     SbLeft = 1,
     SbPageLeft = 2,
@@ -3753,7 +3753,7 @@ pub const htmlComponentGHRight = htmlComponent.GHRight;
 pub const htmlComponentGHBottomRight = htmlComponent.GHBottomRight;
 pub const htmlComponent_Max = htmlComponent._Max;
 
-pub const htmlApplyLocation = extern enum(i32) {
+pub const htmlApplyLocation = enum(i32) {
     Inside = 0,
     Outside = 1,
     _Max = 2147483647,
@@ -3762,7 +3762,7 @@ pub const htmlApplyLocationInside = htmlApplyLocation.Inside;
 pub const htmlApplyLocationOutside = htmlApplyLocation.Outside;
 pub const htmlApplyLocation_Max = htmlApplyLocation._Max;
 
-pub const htmlGlyphMode = extern enum(i32) {
+pub const htmlGlyphMode = enum(i32) {
     None = 0,
     Begin = 1,
     End = 2,
@@ -3775,7 +3775,7 @@ pub const htmlGlyphModeEnd = htmlGlyphMode.End;
 pub const htmlGlyphModeBoth = htmlGlyphMode.Both;
 pub const htmlGlyphMode_Max = htmlGlyphMode._Max;
 
-pub const htmlDraggable = extern enum(i32) {
+pub const htmlDraggable = enum(i32) {
     Auto = 0,
     True = 1,
     False = 2,
@@ -3786,7 +3786,7 @@ pub const htmlDraggableTrue = htmlDraggable.True;
 pub const htmlDraggableFalse = htmlDraggable.False;
 pub const htmlDraggable_Max = htmlDraggable._Max;
 
-pub const htmlUnit = extern enum(i32) {
+pub const htmlUnit = enum(i32) {
     Character = 1,
     Word = 2,
     Sentence = 3,
@@ -3799,7 +3799,7 @@ pub const htmlUnitSentence = htmlUnit.Sentence;
 pub const htmlUnitTextEdit = htmlUnit.TextEdit;
 pub const htmlUnit_Max = htmlUnit._Max;
 
-pub const htmlEndPoints = extern enum(i32) {
+pub const htmlEndPoints = enum(i32) {
     StartToStart = 1,
     StartToEnd = 2,
     EndToStart = 3,
@@ -3812,7 +3812,7 @@ pub const htmlEndPointsEndToStart = htmlEndPoints.EndToStart;
 pub const htmlEndPointsEndToEnd = htmlEndPoints.EndToEnd;
 pub const htmlEndPoints_Max = htmlEndPoints._Max;
 
-pub const htmlDirection = extern enum(i32) {
+pub const htmlDirection = enum(i32) {
     Forward = 99999,
     Backward = -99999,
     _Max = 2147483647,
@@ -3821,7 +3821,7 @@ pub const htmlDirectionForward = htmlDirection.Forward;
 pub const htmlDirectionBackward = htmlDirection.Backward;
 pub const htmlDirection_Max = htmlDirection._Max;
 
-pub const htmlStart = extern enum(i32) {
+pub const htmlStart = enum(i32) {
     fileopen = 0,
     mouseover = 1,
     _Max = 2147483647,
@@ -3830,7 +3830,7 @@ pub const htmlStartfileopen = htmlStart.fileopen;
 pub const htmlStartmouseover = htmlStart.mouseover;
 pub const htmlStart_Max = htmlStart._Max;
 
-pub const bodyScroll = extern enum(i32) {
+pub const bodyScroll = enum(i32) {
     yes = 1,
     no = 2,
     auto = 4,
@@ -3843,7 +3843,7 @@ pub const bodyScrollauto = bodyScroll.auto;
 pub const bodyScrolldefault = bodyScroll.default;
 pub const bodyScroll_Max = bodyScroll._Max;
 
-pub const htmlSelectType = extern enum(i32) {
+pub const htmlSelectType = enum(i32) {
     SelectOne = 1,
     SelectMultiple = 2,
     _Max = 2147483647,
@@ -3852,7 +3852,7 @@ pub const htmlSelectTypeSelectOne = htmlSelectType.SelectOne;
 pub const htmlSelectTypeSelectMultiple = htmlSelectType.SelectMultiple;
 pub const htmlSelectType_Max = htmlSelectType._Max;
 
-pub const htmlSelectExFlag = extern enum(i32) {
+pub const htmlSelectExFlag = enum(i32) {
     None = 0,
     HideSelectionInDesign = 1,
     _Max = 2147483647,
@@ -3861,7 +3861,7 @@ pub const htmlSelectExFlagNone = htmlSelectExFlag.None;
 pub const htmlSelectExFlagHideSelectionInDesign = htmlSelectExFlag.HideSelectionInDesign;
 pub const htmlSelectExFlag_Max = htmlSelectExFlag._Max;
 
-pub const htmlSelection = extern enum(i32) {
+pub const htmlSelection = enum(i32) {
     None = 0,
     Text = 1,
     Control = 2,
@@ -3874,7 +3874,7 @@ pub const htmlSelectionControl = htmlSelection.Control;
 pub const htmlSelectionTable = htmlSelection.Table;
 pub const htmlSelection_Max = htmlSelection._Max;
 
-pub const htmlMarqueeBehavior = extern enum(i32) {
+pub const htmlMarqueeBehavior = enum(i32) {
     scroll = 1,
     slide = 2,
     alternate = 3,
@@ -3885,7 +3885,7 @@ pub const htmlMarqueeBehaviorslide = htmlMarqueeBehavior.slide;
 pub const htmlMarqueeBehavioralternate = htmlMarqueeBehavior.alternate;
 pub const htmlMarqueeBehavior_Max = htmlMarqueeBehavior._Max;
 
-pub const htmlMarqueeDirection = extern enum(i32) {
+pub const htmlMarqueeDirection = enum(i32) {
     left = 1,
     right = 3,
     up = 5,
@@ -3898,7 +3898,7 @@ pub const htmlMarqueeDirectionup = htmlMarqueeDirection.up;
 pub const htmlMarqueeDirectiondown = htmlMarqueeDirection.down;
 pub const htmlMarqueeDirection_Max = htmlMarqueeDirection._Max;
 
-pub const htmlPersistState = extern enum(i32) {
+pub const htmlPersistState = enum(i32) {
     Normal = 0,
     Favorite = 1,
     History = 2,
@@ -3913,7 +3913,7 @@ pub const htmlPersistStateSnapshot = htmlPersistState.Snapshot;
 pub const htmlPersistStateUserData = htmlPersistState.UserData;
 pub const htmlPersistState_Max = htmlPersistState._Max;
 
-pub const htmlDropEffect = extern enum(i32) {
+pub const htmlDropEffect = enum(i32) {
     Copy = 0,
     Link = 1,
     Move = 2,
@@ -3926,7 +3926,7 @@ pub const htmlDropEffectMove = htmlDropEffect.Move;
 pub const htmlDropEffectNone = htmlDropEffect.None;
 pub const htmlDropEffect_Max = htmlDropEffect._Max;
 
-pub const htmlEffectAllowed = extern enum(i32) {
+pub const htmlEffectAllowed = enum(i32) {
     Copy = 0,
     Link = 1,
     Move = 2,
@@ -3949,7 +3949,7 @@ pub const htmlEffectAllowedNone = htmlEffectAllowed.None;
 pub const htmlEffectAllowedUninitialized = htmlEffectAllowed.Uninitialized;
 pub const htmlEffectAllowed_Max = htmlEffectAllowed._Max;
 
-pub const htmlCompatMode = extern enum(i32) {
+pub const htmlCompatMode = enum(i32) {
     BackCompat = 0,
     CSS1Compat = 1,
     _Max = 2147483647,
@@ -3958,7 +3958,7 @@ pub const htmlCompatModeBackCompat = htmlCompatMode.BackCompat;
 pub const htmlCompatModeCSS1Compat = htmlCompatMode.CSS1Compat;
 pub const htmlCompatMode_Max = htmlCompatMode._Max;
 
-pub const BoolValue = extern enum(i32) {
+pub const BoolValue = enum(i32) {
     True = 1,
     False = 0,
     BoolValue_Max = 2147483647,
@@ -3967,7 +3967,7 @@ pub const True = BoolValue.True;
 pub const False = BoolValue.False;
 pub const BoolValue_Max = BoolValue.BoolValue_Max;
 
-pub const htmlCaptionAlign = extern enum(i32) {
+pub const htmlCaptionAlign = enum(i32) {
     NotSet = 0,
     Left = 1,
     Center = 2,
@@ -3986,7 +3986,7 @@ pub const htmlCaptionAlignTop = htmlCaptionAlign.Top;
 pub const htmlCaptionAlignBottom = htmlCaptionAlign.Bottom;
 pub const htmlCaptionAlign_Max = htmlCaptionAlign._Max;
 
-pub const htmlCaptionVAlign = extern enum(i32) {
+pub const htmlCaptionVAlign = enum(i32) {
     NotSet = 0,
     Top = 1,
     Bottom = 2,
@@ -3997,7 +3997,7 @@ pub const htmlCaptionVAlignTop = htmlCaptionVAlign.Top;
 pub const htmlCaptionVAlignBottom = htmlCaptionVAlign.Bottom;
 pub const htmlCaptionVAlign_Max = htmlCaptionVAlign._Max;
 
-pub const htmlFrame = extern enum(i32) {
+pub const htmlFrame = enum(i32) {
     NotSet = 0,
     void = 1,
     above = 2,
@@ -4022,7 +4022,7 @@ pub const htmlFramebox = htmlFrame.box;
 pub const htmlFrameborder = htmlFrame.border;
 pub const htmlFrame_Max = htmlFrame._Max;
 
-pub const htmlRules = extern enum(i32) {
+pub const htmlRules = enum(i32) {
     NotSet = 0,
     none = 1,
     groups = 2,
@@ -4039,28 +4039,28 @@ pub const htmlRulescols = htmlRules.cols;
 pub const htmlRulesall = htmlRules.all;
 pub const htmlRules_Max = htmlRules._Max;
 
-pub const htmlCellAlign = extern enum(i32) {
+pub const htmlCellAlign = enum(i32) {
     NotSet = 0,
     Left = 1,
     Center = 2,
     Right = 3,
-    Middle = 2,
+    // Middle = 2, this enum value conflicts with Center
     _Max = 2147483647,
 };
 pub const htmlCellAlignNotSet = htmlCellAlign.NotSet;
 pub const htmlCellAlignLeft = htmlCellAlign.Left;
 pub const htmlCellAlignCenter = htmlCellAlign.Center;
 pub const htmlCellAlignRight = htmlCellAlign.Right;
-pub const htmlCellAlignMiddle = htmlCellAlign.Middle;
+pub const htmlCellAlignMiddle = htmlCellAlign.Center;
 pub const htmlCellAlign_Max = htmlCellAlign._Max;
 
-pub const htmlCellVAlign = extern enum(i32) {
+pub const htmlCellVAlign = enum(i32) {
     NotSet = 0,
     Top = 1,
     Middle = 2,
     Bottom = 3,
     Baseline = 4,
-    Center = 2,
+    // Center = 2, this enum value conflicts with Middle
     _Max = 2147483647,
 };
 pub const htmlCellVAlignNotSet = htmlCellVAlign.NotSet;
@@ -4068,10 +4068,10 @@ pub const htmlCellVAlignTop = htmlCellVAlign.Top;
 pub const htmlCellVAlignMiddle = htmlCellVAlign.Middle;
 pub const htmlCellVAlignBottom = htmlCellVAlign.Bottom;
 pub const htmlCellVAlignBaseline = htmlCellVAlign.Baseline;
-pub const htmlCellVAlignCenter = htmlCellVAlign.Center;
+pub const htmlCellVAlignCenter = htmlCellVAlign.Middle;
 pub const htmlCellVAlign_Max = htmlCellVAlign._Max;
 
-pub const frameScrolling = extern enum(i32) {
+pub const frameScrolling = enum(i32) {
     yes = 1,
     no = 2,
     auto = 4,
@@ -4082,7 +4082,7 @@ pub const frameScrollingno = frameScrolling.no;
 pub const frameScrollingauto = frameScrolling.auto;
 pub const frameScrolling_Max = frameScrolling._Max;
 
-pub const sandboxAllow = extern enum(i32) {
+pub const sandboxAllow = enum(i32) {
     Scripts = 0,
     SameOrigin = 1,
     TopNavigation = 2,
@@ -4097,7 +4097,7 @@ pub const sandboxAllowForms = sandboxAllow.Forms;
 pub const sandboxAllowPopups = sandboxAllow.Popups;
 pub const sandboxAllow_Max = sandboxAllow._Max;
 
-pub const svgAngleType = extern enum(i32) {
+pub const svgAngleType = enum(i32) {
     SVG_ANGLETYPE_UNKNOWN = 0,
     SVG_ANGLETYPE_UNSPECIFIED = 1,
     SVG_ANGLETYPE_DEG = 2,
@@ -4112,7 +4112,7 @@ pub const SVG_ANGLETYPE_RAD = svgAngleType.SVG_ANGLETYPE_RAD;
 pub const SVG_ANGLETYPE_GRAD = svgAngleType.SVG_ANGLETYPE_GRAD;
 pub const svgAngleType_Max = svgAngleType.svgAngleType_Max;
 
-pub const svgExternalResourcesRequired = extern enum(i32) {
+pub const svgExternalResourcesRequired = enum(i32) {
     False = 0,
     True = 1,
     _Max = 2147483647,
@@ -4121,7 +4121,7 @@ pub const svgExternalResourcesRequiredFalse = svgExternalResourcesRequired.False
 pub const svgExternalResourcesRequiredTrue = svgExternalResourcesRequired.True;
 pub const svgExternalResourcesRequired_Max = svgExternalResourcesRequired._Max;
 
-pub const svgFocusable = extern enum(i32) {
+pub const svgFocusable = enum(i32) {
     NotSet = 0,
     Auto = 1,
     True = 2,
@@ -4134,7 +4134,7 @@ pub const svgFocusableTrue = svgFocusable.True;
 pub const svgFocusableFalse = svgFocusable.False;
 pub const svgFocusable_Max = svgFocusable._Max;
 
-pub const svgLengthType = extern enum(i32) {
+pub const svgLengthType = enum(i32) {
     SVG_LENGTHTYPE_UNKNOWN = 0,
     SVG_LENGTHTYPE_NUMBER = 1,
     SVG_LENGTHTYPE_PERCENTAGE = 2,
@@ -4161,7 +4161,7 @@ pub const SVG_LENGTHTYPE_PT = svgLengthType.SVG_LENGTHTYPE_PT;
 pub const SVG_LENGTHTYPE_PC = svgLengthType.SVG_LENGTHTYPE_PC;
 pub const svgLengthType_Max = svgLengthType.svgLengthType_Max;
 
-pub const svgPathSegType = extern enum(i32) {
+pub const svgPathSegType = enum(i32) {
     PATHSEG_UNKNOWN = 0,
     PATHSEG_CLOSEPATH = 1,
     PATHSEG_MOVETO_ABS = 2,
@@ -4206,7 +4206,7 @@ pub const PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS = svgPathSegType.PATHSEG_CURVETO_
 pub const PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL = svgPathSegType.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL;
 pub const svgPathSegType_Max = svgPathSegType.svgPathSegType_Max;
 
-pub const svgTransformType = extern enum(i32) {
+pub const svgTransformType = enum(i32) {
     SVG_TRANSFORM_UNKNOWN = 0,
     SVG_TRANSFORM_MATRIX = 1,
     SVG_TRANSFORM_TRANSLATE = 2,
@@ -4225,7 +4225,7 @@ pub const SVG_TRANSFORM_SKEWX = svgTransformType.SVG_TRANSFORM_SKEWX;
 pub const SVG_TRANSFORM_SKEWY = svgTransformType.SVG_TRANSFORM_SKEWY;
 pub const svgTransformType_Max = svgTransformType.svgTransformType_Max;
 
-pub const svgPreserveAspectRatioAlignType = extern enum(i32) {
+pub const svgPreserveAspectRatioAlignType = enum(i32) {
     SVG_PRESERVEASPECTRATIO_UNKNOWN = 0,
     SVG_PRESERVEASPECTRATIO_NONE = 1,
     SVG_PRESERVEASPECTRATIO_XMINYMIN = 2,
@@ -4252,7 +4252,7 @@ pub const SVG_PRESERVEASPECTRATIO_XMIDYMAX = svgPreserveAspectRatioAlignType.SVG
 pub const SVG_PRESERVEASPECTRATIO_XMAXYMAX = svgPreserveAspectRatioAlignType.SVG_PRESERVEASPECTRATIO_XMAXYMAX;
 pub const svgPreserveAspectRatioAlignType_Max = svgPreserveAspectRatioAlignType.svgPreserveAspectRatioAlignType_Max;
 
-pub const svgPreserveAspectMeetOrSliceType = extern enum(i32) {
+pub const svgPreserveAspectMeetOrSliceType = enum(i32) {
     SVG_MEETORSLICE_UNKNOWN = 0,
     SVG_MEETORSLICE_MEET = 1,
     SVG_MEETORSLICE_SLICE = 2,
@@ -4263,7 +4263,7 @@ pub const SVG_MEETORSLICE_MEET = svgPreserveAspectMeetOrSliceType.SVG_MEETORSLIC
 pub const SVG_MEETORSLICE_SLICE = svgPreserveAspectMeetOrSliceType.SVG_MEETORSLICE_SLICE;
 pub const svgPreserveAspectMeetOrSliceType_Max = svgPreserveAspectMeetOrSliceType.svgPreserveAspectMeetOrSliceType_Max;
 
-pub const svgUnitTypes = extern enum(i32) {
+pub const svgUnitTypes = enum(i32) {
     SVG_UNITTYPE_UNKNOWN = 0,
     SVG_UNITTYPE_USERSPACEONUSE = 1,
     SVG_UNITTYPE_OBJECTBOUNDINGBOX = 2,
@@ -4274,7 +4274,7 @@ pub const SVG_UNITTYPE_USERSPACEONUSE = svgUnitTypes.SVG_UNITTYPE_USERSPACEONUSE
 pub const SVG_UNITTYPE_OBJECTBOUNDINGBOX = svgUnitTypes.SVG_UNITTYPE_OBJECTBOUNDINGBOX;
 pub const svgUnitTypes_Max = svgUnitTypes.svgUnitTypes_Max;
 
-pub const svgSpreadMethod = extern enum(i32) {
+pub const svgSpreadMethod = enum(i32) {
     SVG_SPREADMETHOD_UNKNOWN = 0,
     SVG_SPREADMETHOD_PAD = 1,
     SVG_SPREADMETHOD_REFLECT = 2,
@@ -4287,7 +4287,7 @@ pub const SVG_SPREADMETHOD_REFLECT = svgSpreadMethod.SVG_SPREADMETHOD_REFLECT;
 pub const SVG_SPREADMETHOD_REPEAT = svgSpreadMethod.SVG_SPREADMETHOD_REPEAT;
 pub const svgSpreadMethod_Max = svgSpreadMethod.svgSpreadMethod_Max;
 
-pub const svgFeblendMode = extern enum(i32) {
+pub const svgFeblendMode = enum(i32) {
     SVG_FEBLEND_MODE_UNKNOWN = 0,
     SVG_FEBLEND_MODE_NORMAL = 1,
     SVG_FEBLEND_MODE_MULTIPLY = 2,
@@ -4304,7 +4304,7 @@ pub const SVG_FEBLEND_MODE_DARKEN = svgFeblendMode.SVG_FEBLEND_MODE_DARKEN;
 pub const SVG_FEBLEND_MODE_LIGHTEN = svgFeblendMode.SVG_FEBLEND_MODE_LIGHTEN;
 pub const svgFeblendMode_Max = svgFeblendMode.svgFeblendMode_Max;
 
-pub const svgFecolormatrixType = extern enum(i32) {
+pub const svgFecolormatrixType = enum(i32) {
     SVG_FECOLORMATRIX_TYPE_UNKNOWN = 0,
     SVG_FECOLORMATRIX_TYPE_MATRIX = 1,
     SVG_FECOLORMATRIX_TYPE_SATURATE = 2,
@@ -4319,7 +4319,7 @@ pub const SVG_FECOLORMATRIX_TYPE_HUEROTATE = svgFecolormatrixType.SVG_FECOLORMAT
 pub const SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA = svgFecolormatrixType.SVG_FECOLORMATRIX_TYPE_LUMINANCETOALPHA;
 pub const svgFecolormatrixType_Max = svgFecolormatrixType.svgFecolormatrixType_Max;
 
-pub const svgFecomponenttransferType = extern enum(i32) {
+pub const svgFecomponenttransferType = enum(i32) {
     SVG_FECOMPONENTTRANSFER_TYPE_UNKNOWN = 0,
     SVG_FECOMPONENTTRANSFER_TYPE_IDENTITY = 1,
     SVG_FECOMPONENTTRANSFER_TYPE_TABLE = 2,
@@ -4336,7 +4336,7 @@ pub const SVG_FECOMPONENTTRANSFER_TYPE_LINEAR = svgFecomponenttransferType.SVG_F
 pub const SVG_FECOMPONENTTRANSFER_TYPE_GAMMA = svgFecomponenttransferType.SVG_FECOMPONENTTRANSFER_TYPE_GAMMA;
 pub const svgFecomponenttransferType_Max = svgFecomponenttransferType.svgFecomponenttransferType_Max;
 
-pub const svgFecompositeOperator = extern enum(i32) {
+pub const svgFecompositeOperator = enum(i32) {
     SVG_FECOMPOSITE_OPERATOR_UNKNOWN = 0,
     SVG_FECOMPOSITE_OPERATOR_OVER = 1,
     SVG_FECOMPOSITE_OPERATOR_IN = 2,
@@ -4355,7 +4355,7 @@ pub const SVG_FECOMPOSITE_OPERATOR_XOR = svgFecompositeOperator.SVG_FECOMPOSITE_
 pub const SVG_FECOMPOSITE_OPERATOR_ARITHMETIC = svgFecompositeOperator.SVG_FECOMPOSITE_OPERATOR_ARITHMETIC;
 pub const svgFecompositeOperator_Max = svgFecompositeOperator.svgFecompositeOperator_Max;
 
-pub const svgEdgemode = extern enum(i32) {
+pub const svgEdgemode = enum(i32) {
     SVG_EDGEMODE_UNKNOWN = 0,
     SVG_EDGEMODE_DUPLICATE = 1,
     SVG_EDGEMODE_WRAP = 2,
@@ -4368,7 +4368,7 @@ pub const SVG_EDGEMODE_WRAP = svgEdgemode.SVG_EDGEMODE_WRAP;
 pub const SVG_EDGEMODE_NONE = svgEdgemode.SVG_EDGEMODE_NONE;
 pub const svgEdgemode_Max = svgEdgemode.svgEdgemode_Max;
 
-pub const svgPreserveAlpha = extern enum(i32) {
+pub const svgPreserveAlpha = enum(i32) {
     SVG_PRESERVEALPHA_FALSE = 0,
     SVG_PRESERVEALPHA_TRUE = 1,
     svgPreserveAlpha_Max = 2147483647,
@@ -4377,7 +4377,7 @@ pub const SVG_PRESERVEALPHA_FALSE = svgPreserveAlpha.SVG_PRESERVEALPHA_FALSE;
 pub const SVG_PRESERVEALPHA_TRUE = svgPreserveAlpha.SVG_PRESERVEALPHA_TRUE;
 pub const svgPreserveAlpha_Max = svgPreserveAlpha.svgPreserveAlpha_Max;
 
-pub const svgChannel = extern enum(i32) {
+pub const svgChannel = enum(i32) {
     SVG_CHANNEL_UNKNOWN = 0,
     SVG_CHANNEL_R = 1,
     SVG_CHANNEL_G = 2,
@@ -4392,7 +4392,7 @@ pub const SVG_CHANNEL_B = svgChannel.SVG_CHANNEL_B;
 pub const SVG_CHANNEL_A = svgChannel.SVG_CHANNEL_A;
 pub const svgChannel_Max = svgChannel.svgChannel_Max;
 
-pub const svgMorphologyOperator = extern enum(i32) {
+pub const svgMorphologyOperator = enum(i32) {
     SVG_MORPHOLOGY_OPERATOR_UNKNOWN = 0,
     SVG_MORPHOLOGY_OPERATOR_ERODE = 1,
     SVG_MORPHOLOGY_OPERATOR_DILATE = 2,
@@ -4403,7 +4403,7 @@ pub const SVG_MORPHOLOGY_OPERATOR_ERODE = svgMorphologyOperator.SVG_MORPHOLOGY_O
 pub const SVG_MORPHOLOGY_OPERATOR_DILATE = svgMorphologyOperator.SVG_MORPHOLOGY_OPERATOR_DILATE;
 pub const svgMorphologyOperator_Max = svgMorphologyOperator.svgMorphologyOperator_Max;
 
-pub const svgTurbulenceType = extern enum(i32) {
+pub const svgTurbulenceType = enum(i32) {
     SVG_TURBULENCE_TYPE_UNKNOWN = 0,
     SVG_TURBULENCE_TYPE_FACTALNOISE = 1,
     SVG_TURBULENCE_TYPE_TURBULENCE = 2,
@@ -4414,7 +4414,7 @@ pub const SVG_TURBULENCE_TYPE_FACTALNOISE = svgTurbulenceType.SVG_TURBULENCE_TYP
 pub const SVG_TURBULENCE_TYPE_TURBULENCE = svgTurbulenceType.SVG_TURBULENCE_TYPE_TURBULENCE;
 pub const svgTurbulenceType_Max = svgTurbulenceType.svgTurbulenceType_Max;
 
-pub const svgStitchtype = extern enum(i32) {
+pub const svgStitchtype = enum(i32) {
     SVG_STITCHTYPE_UNKNOWN = 0,
     SVG_STITCHTYPE_STITCH = 1,
     SVG_STITCHTYPE_NOSTITCH = 2,
@@ -4425,7 +4425,7 @@ pub const SVG_STITCHTYPE_STITCH = svgStitchtype.SVG_STITCHTYPE_STITCH;
 pub const SVG_STITCHTYPE_NOSTITCH = svgStitchtype.SVG_STITCHTYPE_NOSTITCH;
 pub const svgStitchtype_Max = svgStitchtype.svgStitchtype_Max;
 
-pub const svgMarkerUnits = extern enum(i32) {
+pub const svgMarkerUnits = enum(i32) {
     SVG_MARKERUNITS_UNKNOWN = 0,
     SVG_MARKERUNITS_USERSPACEONUSE = 1,
     SVG_MARKERUNITS_STROKEWIDTH = 2,
@@ -4436,7 +4436,7 @@ pub const SVG_MARKERUNITS_USERSPACEONUSE = svgMarkerUnits.SVG_MARKERUNITS_USERSP
 pub const SVG_MARKERUNITS_STROKEWIDTH = svgMarkerUnits.SVG_MARKERUNITS_STROKEWIDTH;
 pub const svgMarkerUnits_Max = svgMarkerUnits.svgMarkerUnits_Max;
 
-pub const svgMarkerOrient = extern enum(i32) {
+pub const svgMarkerOrient = enum(i32) {
     SVG_MARKER_ORIENT_UNKNOWN = 0,
     SVG_MARKER_ORIENT_AUTO = 1,
     SVG_MARKER_ORIENT_ANGLE = 2,
@@ -4447,14 +4447,14 @@ pub const SVG_MARKER_ORIENT_AUTO = svgMarkerOrient.SVG_MARKER_ORIENT_AUTO;
 pub const SVG_MARKER_ORIENT_ANGLE = svgMarkerOrient.SVG_MARKER_ORIENT_ANGLE;
 pub const svgMarkerOrient_Max = svgMarkerOrient.svgMarkerOrient_Max;
 
-pub const svgMarkerOrientAttribute = extern enum(i32) {
+pub const svgMarkerOrientAttribute = enum(i32) {
     Auto = 0,
     _Max = 2147483647,
 };
 pub const svgMarkerOrientAttributeAuto = svgMarkerOrientAttribute.Auto;
 pub const svgMarkerOrientAttribute_Max = svgMarkerOrientAttribute._Max;
 
-pub const htmlMediaNetworkState = extern enum(i32) {
+pub const htmlMediaNetworkState = enum(i32) {
     Empty = 0,
     Idle = 1,
     Loading = 2,
@@ -4467,7 +4467,7 @@ pub const htmlMediaNetworkStateLoading = htmlMediaNetworkState.Loading;
 pub const htmlMediaNetworkStateNoSource = htmlMediaNetworkState.NoSource;
 pub const htmlMediaNetworkState_Max = htmlMediaNetworkState._Max;
 
-pub const htmlMediaReadyState = extern enum(i32) {
+pub const htmlMediaReadyState = enum(i32) {
     HaveNothing = 0,
     HaveMetadata = 1,
     HaveCurrentData = 2,
@@ -4482,7 +4482,7 @@ pub const htmlMediaReadyStateHaveFutureData = htmlMediaReadyState.HaveFutureData
 pub const htmlMediaReadyStateHaveEnoughData = htmlMediaReadyState.HaveEnoughData;
 pub const htmlMediaReadyState_Max = htmlMediaReadyState._Max;
 
-pub const htmlMediaErr = extern enum(i32) {
+pub const htmlMediaErr = enum(i32) {
     Aborted = 0,
     Network = 1,
     Decode = 2,
@@ -4495,7 +4495,7 @@ pub const htmlMediaErrDecode = htmlMediaErr.Decode;
 pub const htmlMediaErrSrcNotSupported = htmlMediaErr.SrcNotSupported;
 pub const htmlMediaErr_Max = htmlMediaErr._Max;
 
-pub const lengthAdjust = extern enum(i32) {
+pub const lengthAdjust = enum(i32) {
     LENGTHADJUST_UNKNOWN = 0,
     LENGTHADJUST_SPACING = 1,
     LENGTHADJUST_SPACINGANDGLYPHS = 2,
@@ -4506,7 +4506,7 @@ pub const LENGTHADJUST_SPACING = lengthAdjust.LENGTHADJUST_SPACING;
 pub const LENGTHADJUST_SPACINGANDGLYPHS = lengthAdjust.LENGTHADJUST_SPACINGANDGLYPHS;
 pub const lengthAdjust_Max = lengthAdjust.lengthAdjust_Max;
 
-pub const textpathMethodtype = extern enum(i32) {
+pub const textpathMethodtype = enum(i32) {
     TEXTPATH_METHODTYPE_UNKNOWN = 0,
     TEXTPATH_METHODTYPE_ALIGN = 1,
     TEXTPATH_METHODTYPE_STRETCH = 2,
@@ -4517,7 +4517,7 @@ pub const TEXTPATH_METHODTYPE_ALIGN = textpathMethodtype.TEXTPATH_METHODTYPE_ALI
 pub const TEXTPATH_METHODTYPE_STRETCH = textpathMethodtype.TEXTPATH_METHODTYPE_STRETCH;
 pub const textpathMethodtype_Max = textpathMethodtype.textpathMethodtype_Max;
 
-pub const textpathSpacingtype = extern enum(i32) {
+pub const textpathSpacingtype = enum(i32) {
     TEXTPATH_SPACINGTYPE_UNKNOWN = 0,
     TEXTPATH_SPACINGTYPE_AUTO = 1,
     TEXTPATH_SPACINGTYPE_EXACT = 2,
@@ -4528,7 +4528,7 @@ pub const TEXTPATH_SPACINGTYPE_AUTO = textpathSpacingtype.TEXTPATH_SPACINGTYPE_A
 pub const TEXTPATH_SPACINGTYPE_EXACT = textpathSpacingtype.TEXTPATH_SPACINGTYPE_EXACT;
 pub const textpathSpacingtype_Max = textpathSpacingtype.textpathSpacingtype_Max;
 
-pub const ELEMENT_CORNER = extern enum(i32) {
+pub const ELEMENT_CORNER = enum(i32) {
     NONE = 0,
     TOP = 1,
     LEFT = 2,
@@ -4551,7 +4551,7 @@ pub const ELEMENT_CORNER_BOTTOMLEFT = ELEMENT_CORNER.BOTTOMLEFT;
 pub const ELEMENT_CORNER_BOTTOMRIGHT = ELEMENT_CORNER.BOTTOMRIGHT;
 pub const ELEMENT_CORNER_Max = ELEMENT_CORNER.Max;
 
-pub const SECUREURLHOSTVALIDATE_FLAGS = extern enum(i32) {
+pub const SECUREURLHOSTVALIDATE_FLAGS = enum(i32) {
     UHV_PROMPTBEFORENO = 1,
     UHV_SILENTYES = 2,
     UHV_UNSECURESOURCE = 4,
@@ -4562,7 +4562,7 @@ pub const SUHV_SILENTYES = SECUREURLHOSTVALIDATE_FLAGS.UHV_SILENTYES;
 pub const SUHV_UNSECURESOURCE = SECUREURLHOSTVALIDATE_FLAGS.UHV_UNSECURESOURCE;
 pub const SECUREURLHOSTVALIDATE_FLAGS_Max = SECUREURLHOSTVALIDATE_FLAGS.ECUREURLHOSTVALIDATE_FLAGS_Max;
 
-pub const POINTER_GRAVITY = extern enum(i32) {
+pub const POINTER_GRAVITY = enum(i32) {
     Left = 0,
     Right = 1,
     Max = 2147483647,
@@ -4571,7 +4571,7 @@ pub const POINTER_GRAVITY_Left = POINTER_GRAVITY.Left;
 pub const POINTER_GRAVITY_Right = POINTER_GRAVITY.Right;
 pub const POINTER_GRAVITY_Max = POINTER_GRAVITY.Max;
 
-pub const ELEMENT_ADJACENCY = extern enum(i32) {
+pub const ELEMENT_ADJACENCY = enum(i32) {
     _ADJ_BeforeBegin = 0,
     _ADJ_AfterBegin = 1,
     _ADJ_BeforeEnd = 2,
@@ -4584,7 +4584,7 @@ pub const ELEM_ADJ_BeforeEnd = ELEMENT_ADJACENCY._ADJ_BeforeEnd;
 pub const ELEM_ADJ_AfterEnd = ELEMENT_ADJACENCY._ADJ_AfterEnd;
 pub const ELEMENT_ADJACENCY_Max = ELEMENT_ADJACENCY.ENT_ADJACENCY_Max;
 
-pub const MARKUP_CONTEXT_TYPE = extern enum(i32) {
+pub const MARKUP_CONTEXT_TYPE = enum(i32) {
     CONTEXT_TYPE_None = 0,
     CONTEXT_TYPE_Text = 1,
     CONTEXT_TYPE_EnterScope = 2,
@@ -4599,7 +4599,7 @@ pub const CONTEXT_TYPE_ExitScope = MARKUP_CONTEXT_TYPE.CONTEXT_TYPE_ExitScope;
 pub const CONTEXT_TYPE_NoScope = MARKUP_CONTEXT_TYPE.CONTEXT_TYPE_NoScope;
 pub const MARKUP_CONTEXT_TYPE_Max = MARKUP_CONTEXT_TYPE.MARKUP_CONTEXT_TYPE_Max;
 
-pub const FINDTEXT_FLAGS = extern enum(i32) {
+pub const FINDTEXT_FLAGS = enum(i32) {
     BACKWARDS = 1,
     WHOLEWORD = 2,
     MATCHCASE = 4,
@@ -4620,7 +4620,7 @@ pub const FINDTEXT_MATCHKASHIDA = FINDTEXT_FLAGS.MATCHKASHIDA;
 pub const FINDTEXT_MATCHALEFHAMZA = FINDTEXT_FLAGS.MATCHALEFHAMZA;
 pub const FINDTEXT_FLAGS_Max = FINDTEXT_FLAGS.FLAGS_Max;
 
-pub const MOVEUNIT_ACTION = extern enum(i32) {
+pub const MOVEUNIT_ACTION = enum(i32) {
     PREVCHAR = 0,
     NEXTCHAR = 1,
     PREVCLUSTERBEGIN = 2,
@@ -4665,7 +4665,7 @@ pub const MOVEUNIT_PREVBLOCK = MOVEUNIT_ACTION.PREVBLOCK;
 pub const MOVEUNIT_NEXTBLOCK = MOVEUNIT_ACTION.NEXTBLOCK;
 pub const MOVEUNIT_ACTION_Max = MOVEUNIT_ACTION.ACTION_Max;
 
-pub const PARSE_FLAGS = extern enum(i32) {
+pub const PARSE_FLAGS = enum(i32) {
     ABSOLUTIFYIE40URLS = 1,
     DISABLEVML = 2,
     FLAGS_Max = 2147483647,
@@ -4674,7 +4674,7 @@ pub const PARSE_ABSOLUTIFYIE40URLS = PARSE_FLAGS.ABSOLUTIFYIE40URLS;
 pub const PARSE_DISABLEVML = PARSE_FLAGS.DISABLEVML;
 pub const PARSE_FLAGS_Max = PARSE_FLAGS.FLAGS_Max;
 
-pub const ELEMENT_TAG_ID = extern enum(i32) {
+pub const ELEMENT_TAG_ID = enum(i32) {
     TAGID_NULL = 0,
     TAGID_UNKNOWN = 1,
     TAGID_A = 2,
@@ -5131,7 +5131,7 @@ pub const TAGID_COUNT = ELEMENT_TAG_ID.TAGID_COUNT;
 pub const TAGID_LAST_PREDEFINED = ELEMENT_TAG_ID.TAGID_LAST_PREDEFINED;
 pub const ELEMENT_TAG_ID_Max = ELEMENT_TAG_ID.ELEMENT_TAG_ID_Max;
 
-pub const SELECTION_TYPE = extern enum(i32) {
+pub const SELECTION_TYPE = enum(i32) {
     None = 0,
     Caret = 1,
     Text = 2,
@@ -5144,14 +5144,14 @@ pub const SELECTION_TYPE_Text = SELECTION_TYPE.Text;
 pub const SELECTION_TYPE_Control = SELECTION_TYPE.Control;
 pub const SELECTION_TYPE_Max = SELECTION_TYPE.Max;
 
-pub const SAVE_SEGMENTS_FLAGS = extern enum(i32) {
+pub const SAVE_SEGMENTS_FLAGS = enum(i32) {
     NoIE4SelectionCompat = 1,
     FLAGS_Max = 2147483647,
 };
 pub const SAVE_SEGMENTS_NoIE4SelectionCompat = SAVE_SEGMENTS_FLAGS.NoIE4SelectionCompat;
 pub const SAVE_SEGMENTS_FLAGS_Max = SAVE_SEGMENTS_FLAGS.FLAGS_Max;
 
-pub const CARET_DIRECTION = extern enum(i32) {
+pub const CARET_DIRECTION = enum(i32) {
     INDETERMINATE = 0,
     SAME = 1,
     BACKWARD = 2,
@@ -5164,7 +5164,7 @@ pub const CARET_DIRECTION_BACKWARD = CARET_DIRECTION.BACKWARD;
 pub const CARET_DIRECTION_FORWARD = CARET_DIRECTION.FORWARD;
 pub const CARET_DIRECTION_Max = CARET_DIRECTION.Max;
 
-pub const LINE_DIRECTION = extern enum(i32) {
+pub const LINE_DIRECTION = enum(i32) {
     RightToLeft = 1,
     LeftToRight = 2,
     Max = 2147483647,
@@ -5173,21 +5173,21 @@ pub const LINE_DIRECTION_RightToLeft = LINE_DIRECTION.RightToLeft;
 pub const LINE_DIRECTION_LeftToRight = LINE_DIRECTION.LeftToRight;
 pub const LINE_DIRECTION_Max = LINE_DIRECTION.Max;
 
-pub const HT_OPTIONS = extern enum(i32) {
+pub const HT_OPTIONS = enum(i32) {
     _AllowAfterEOL = 1,
     IONS_Max = 2147483647,
 };
 pub const HT_OPT_AllowAfterEOL = HT_OPTIONS._AllowAfterEOL;
 pub const HT_OPTIONS_Max = HT_OPTIONS.IONS_Max;
 
-pub const HT_RESULTS = extern enum(i32) {
+pub const HT_RESULTS = enum(i32) {
     Glyph = 1,
     Max = 2147483647,
 };
 pub const HT_RESULTS_Glyph = HT_RESULTS.Glyph;
 pub const HT_RESULTS_Max = HT_RESULTS.Max;
 
-pub const DISPLAY_MOVEUNIT = extern enum(i32) {
+pub const DISPLAY_MOVEUNIT = enum(i32) {
     PreviousLine = 1,
     NextLine = 2,
     CurrentLineStart = 3,
@@ -5204,7 +5204,7 @@ pub const DISPLAY_MOVEUNIT_TopOfWindow = DISPLAY_MOVEUNIT.TopOfWindow;
 pub const DISPLAY_MOVEUNIT_BottomOfWindow = DISPLAY_MOVEUNIT.BottomOfWindow;
 pub const DISPLAY_MOVEUNIT_Max = DISPLAY_MOVEUNIT.Max;
 
-pub const DISPLAY_GRAVITY = extern enum(i32) {
+pub const DISPLAY_GRAVITY = enum(i32) {
     PreviousLine = 1,
     NextLine = 2,
     Max = 2147483647,
@@ -5213,7 +5213,7 @@ pub const DISPLAY_GRAVITY_PreviousLine = DISPLAY_GRAVITY.PreviousLine;
 pub const DISPLAY_GRAVITY_NextLine = DISPLAY_GRAVITY.NextLine;
 pub const DISPLAY_GRAVITY_Max = DISPLAY_GRAVITY.Max;
 
-pub const DISPLAY_BREAK = extern enum(i32) {
+pub const DISPLAY_BREAK = enum(i32) {
     None = 0,
     Block = 1,
     Break = 2,
@@ -5224,7 +5224,7 @@ pub const DISPLAY_BREAK_Block = DISPLAY_BREAK.Block;
 pub const DISPLAY_BREAK_Break = DISPLAY_BREAK.Break;
 pub const DISPLAY_BREAK_Max = DISPLAY_BREAK.Max;
 
-pub const COORD_SYSTEM = extern enum(i32) {
+pub const COORD_SYSTEM = enum(i32) {
     GLOBAL = 0,
     PARENT = 1,
     CONTAINER = 2,
@@ -5241,7 +5241,7 @@ pub const COORD_SYSTEM_FRAME = COORD_SYSTEM.FRAME;
 pub const COORD_SYSTEM_CLIENT = COORD_SYSTEM.CLIENT;
 pub const COORD_SYSTEM_Max = COORD_SYSTEM.Max;
 
-pub const DEV_CONSOLE_MESSAGE_LEVEL = extern enum(i32) {
+pub const DEV_CONSOLE_MESSAGE_LEVEL = enum(i32) {
     CML_INFORMATIONAL = 0,
     CML_WARNING = 1,
     CML_ERROR = 2,
@@ -5252,7 +5252,7 @@ pub const DCML_WARNING = DEV_CONSOLE_MESSAGE_LEVEL.CML_WARNING;
 pub const DCML_ERROR = DEV_CONSOLE_MESSAGE_LEVEL.CML_ERROR;
 pub const DEV_CONSOLE_MESSAGE_LEVEL_Max = DEV_CONSOLE_MESSAGE_LEVEL.EV_CONSOLE_MESSAGE_LEVEL_Max;
 
-pub const DOM_EVENT_PHASE = extern enum(i32) {
+pub const DOM_EVENT_PHASE = enum(i32) {
     EP_CAPTURING_PHASE = 1,
     EP_AT_TARGET = 2,
     EP_BUBBLING_PHASE = 3,
@@ -5263,7 +5263,7 @@ pub const DEP_AT_TARGET = DOM_EVENT_PHASE.EP_AT_TARGET;
 pub const DEP_BUBBLING_PHASE = DOM_EVENT_PHASE.EP_BUBBLING_PHASE;
 pub const DOM_EVENT_PHASE_Max = DOM_EVENT_PHASE.OM_EVENT_PHASE_Max;
 
-pub const SCRIPT_TIMER_TYPE = extern enum(i32) {
+pub const SCRIPT_TIMER_TYPE = enum(i32) {
     TT_TIMEOUT = 0,
     TT_INTERVAL = 1,
     TT_IMMEDIATE = 2,
@@ -5276,7 +5276,7 @@ pub const STT_IMMEDIATE = SCRIPT_TIMER_TYPE.TT_IMMEDIATE;
 pub const STT_ANIMATION_FRAME = SCRIPT_TIMER_TYPE.TT_ANIMATION_FRAME;
 pub const SCRIPT_TIMER_TYPE_Max = SCRIPT_TIMER_TYPE.CRIPT_TIMER_TYPE_Max;
 
-pub const HTML_PAINTER = extern enum(i32) {
+pub const HTML_PAINTER = enum(i32) {
     PAINTER_OPAQUE = 1,
     PAINTER_TRANSPARENT = 2,
     PAINTER_ALPHA = 4,
@@ -5311,7 +5311,7 @@ pub const HTMLPAINTER_EXPAND = HTML_PAINTER.PAINTER_EXPAND;
 pub const HTMLPAINTER_NOSCROLLBITS = HTML_PAINTER.PAINTER_NOSCROLLBITS;
 pub const HTML_PAINTER_Max = HTML_PAINTER._PAINTER_Max;
 
-pub const HTML_PAINT_ZORDER = extern enum(i32) {
+pub const HTML_PAINT_ZORDER = enum(i32) {
     PAINT_ZORDER_NONE = 0,
     PAINT_ZORDER_REPLACE_ALL = 1,
     PAINT_ZORDER_REPLACE_CONTENT = 2,
@@ -5334,7 +5334,7 @@ pub const HTMLPAINT_ZORDER_ABOVE_CONTENT = HTML_PAINT_ZORDER.PAINT_ZORDER_ABOVE_
 pub const HTMLPAINT_ZORDER_WINDOW_TOP = HTML_PAINT_ZORDER.PAINT_ZORDER_WINDOW_TOP;
 pub const HTML_PAINT_ZORDER_Max = HTML_PAINT_ZORDER._PAINT_ZORDER_Max;
 
-pub const HTML_PAINT_DRAW_FLAGS = extern enum(i32) {
+pub const HTML_PAINT_DRAW_FLAGS = enum(i32) {
     PAINT_DRAW_UPDATEREGION = 1,
     PAINT_DRAW_USE_XFORM = 2,
     _PAINT_DRAW_FLAGS_Max = 2147483647,
@@ -5343,7 +5343,7 @@ pub const HTMLPAINT_DRAW_UPDATEREGION = HTML_PAINT_DRAW_FLAGS.PAINT_DRAW_UPDATER
 pub const HTMLPAINT_DRAW_USE_XFORM = HTML_PAINT_DRAW_FLAGS.PAINT_DRAW_USE_XFORM;
 pub const HTML_PAINT_DRAW_FLAGS_Max = HTML_PAINT_DRAW_FLAGS._PAINT_DRAW_FLAGS_Max;
 
-pub const HTML_PAINT_EVENT_FLAGS = extern enum(i32) {
+pub const HTML_PAINT_EVENT_FLAGS = enum(i32) {
     PAINT_EVENT_TARGET = 1,
     PAINT_EVENT_SETCURSOR = 2,
     _PAINT_EVENT_FLAGS_Max = 2147483647,
@@ -5352,7 +5352,7 @@ pub const HTMLPAINT_EVENT_TARGET = HTML_PAINT_EVENT_FLAGS.PAINT_EVENT_TARGET;
 pub const HTMLPAINT_EVENT_SETCURSOR = HTML_PAINT_EVENT_FLAGS.PAINT_EVENT_SETCURSOR;
 pub const HTML_PAINT_EVENT_FLAGS_Max = HTML_PAINT_EVENT_FLAGS._PAINT_EVENT_FLAGS_Max;
 
-pub const HTML_PAINT_DRAW_INFO_FLAGS = extern enum(i32) {
+pub const HTML_PAINT_DRAW_INFO_FLAGS = enum(i32) {
     PAINT_DRAWINFO_VIEWPORT = 1,
     PAINT_DRAWINFO_UPDATEREGION = 2,
     PAINT_DRAWINFO_XFORM = 4,
@@ -5385,26 +5385,26 @@ pub const HTML_PAINT_DRAW_INFO = extern struct {
     xform: HTML_PAINT_XFORM,
 };
 
-pub const HTMLDlgFlag = extern enum(i32) {
+pub const HTMLDlgFlag = enum(i32) {
     No = 0,
-    Off = 0,
-    @"0" = 0,
+    // Off = 0, this enum value conflicts with No
+    // @"0" = 0, this enum value conflicts with No
     Yes = 1,
-    On = 1,
-    @"1" = 1,
+    // On = 1, this enum value conflicts with Yes
+    // @"1" = 1, this enum value conflicts with Yes
     NotSet = -1,
     _Max = 2147483647,
 };
 pub const HTMLDlgFlagNo = HTMLDlgFlag.No;
-pub const HTMLDlgFlagOff = HTMLDlgFlag.Off;
-pub const HTMLDlgFlag0 = HTMLDlgFlag.@"0";
+pub const HTMLDlgFlagOff = HTMLDlgFlag.No;
+pub const HTMLDlgFlag0 = HTMLDlgFlag.No;
 pub const HTMLDlgFlagYes = HTMLDlgFlag.Yes;
-pub const HTMLDlgFlagOn = HTMLDlgFlag.On;
-pub const HTMLDlgFlag1 = HTMLDlgFlag.@"1";
+pub const HTMLDlgFlagOn = HTMLDlgFlag.Yes;
+pub const HTMLDlgFlag1 = HTMLDlgFlag.Yes;
 pub const HTMLDlgFlagNotSet = HTMLDlgFlag.NotSet;
 pub const HTMLDlgFlag_Max = HTMLDlgFlag._Max;
 
-pub const HTMLDlgBorder = extern enum(i32) {
+pub const HTMLDlgBorder = enum(i32) {
     Thin = 0,
     Thick = 262144,
     _Max = 2147483647,
@@ -5413,7 +5413,7 @@ pub const HTMLDlgBorderThin = HTMLDlgBorder.Thin;
 pub const HTMLDlgBorderThick = HTMLDlgBorder.Thick;
 pub const HTMLDlgBorder_Max = HTMLDlgBorder._Max;
 
-pub const HTMLDlgEdge = extern enum(i32) {
+pub const HTMLDlgEdge = enum(i32) {
     Sunken = 0,
     Raised = 16,
     _Max = 2147483647,
@@ -5422,45 +5422,45 @@ pub const HTMLDlgEdgeSunken = HTMLDlgEdge.Sunken;
 pub const HTMLDlgEdgeRaised = HTMLDlgEdge.Raised;
 pub const HTMLDlgEdge_Max = HTMLDlgEdge._Max;
 
-pub const HTMLDlgCenter = extern enum(i32) {
+pub const HTMLDlgCenter = enum(i32) {
     No = 0,
-    Off = 0,
-    @"0" = 0,
+    // Off = 0, this enum value conflicts with No
+    // @"0" = 0, this enum value conflicts with No
     Yes = 1,
-    On = 1,
-    @"1" = 1,
-    Parent = 1,
+    // On = 1, this enum value conflicts with Yes
+    // @"1" = 1, this enum value conflicts with Yes
+    // Parent = 1, this enum value conflicts with Yes
     Desktop = 2,
     _Max = 2147483647,
 };
 pub const HTMLDlgCenterNo = HTMLDlgCenter.No;
-pub const HTMLDlgCenterOff = HTMLDlgCenter.Off;
-pub const HTMLDlgCenter0 = HTMLDlgCenter.@"0";
+pub const HTMLDlgCenterOff = HTMLDlgCenter.No;
+pub const HTMLDlgCenter0 = HTMLDlgCenter.No;
 pub const HTMLDlgCenterYes = HTMLDlgCenter.Yes;
-pub const HTMLDlgCenterOn = HTMLDlgCenter.On;
-pub const HTMLDlgCenter1 = HTMLDlgCenter.@"1";
-pub const HTMLDlgCenterParent = HTMLDlgCenter.Parent;
+pub const HTMLDlgCenterOn = HTMLDlgCenter.Yes;
+pub const HTMLDlgCenter1 = HTMLDlgCenter.Yes;
+pub const HTMLDlgCenterParent = HTMLDlgCenter.Yes;
 pub const HTMLDlgCenterDesktop = HTMLDlgCenter.Desktop;
 pub const HTMLDlgCenter_Max = HTMLDlgCenter._Max;
 
-pub const HTMLAppFlag = extern enum(i32) {
+pub const HTMLAppFlag = enum(i32) {
     No = 0,
-    Off = 0,
-    @"0" = 0,
+    // Off = 0, this enum value conflicts with No
+    // @"0" = 0, this enum value conflicts with No
     Yes = 1,
-    On = 1,
-    @"1" = 1,
+    // On = 1, this enum value conflicts with Yes
+    // @"1" = 1, this enum value conflicts with Yes
     _Max = 2147483647,
 };
 pub const HTMLAppFlagNo = HTMLAppFlag.No;
-pub const HTMLAppFlagOff = HTMLAppFlag.Off;
-pub const HTMLAppFlag0 = HTMLAppFlag.@"0";
+pub const HTMLAppFlagOff = HTMLAppFlag.No;
+pub const HTMLAppFlag0 = HTMLAppFlag.No;
 pub const HTMLAppFlagYes = HTMLAppFlag.Yes;
-pub const HTMLAppFlagOn = HTMLAppFlag.On;
-pub const HTMLAppFlag1 = HTMLAppFlag.@"1";
+pub const HTMLAppFlagOn = HTMLAppFlag.Yes;
+pub const HTMLAppFlag1 = HTMLAppFlag.Yes;
 pub const HTMLAppFlag_Max = HTMLAppFlag._Max;
 
-pub const HTMLMinimizeFlag = extern enum(i32) {
+pub const HTMLMinimizeFlag = enum(i32) {
     No = 0,
     Yes = 131072,
     _Max = 2147483647,
@@ -5469,7 +5469,7 @@ pub const HTMLMinimizeFlagNo = HTMLMinimizeFlag.No;
 pub const HTMLMinimizeFlagYes = HTMLMinimizeFlag.Yes;
 pub const HTMLMinimizeFlag_Max = HTMLMinimizeFlag._Max;
 
-pub const HTMLMaximizeFlag = extern enum(i32) {
+pub const HTMLMaximizeFlag = enum(i32) {
     No = 0,
     Yes = 65536,
     _Max = 2147483647,
@@ -5478,7 +5478,7 @@ pub const HTMLMaximizeFlagNo = HTMLMaximizeFlag.No;
 pub const HTMLMaximizeFlagYes = HTMLMaximizeFlag.Yes;
 pub const HTMLMaximizeFlag_Max = HTMLMaximizeFlag._Max;
 
-pub const HTMLCaptionFlag = extern enum(i32) {
+pub const HTMLCaptionFlag = enum(i32) {
     No = 0,
     Yes = 12582912,
     _Max = 2147483647,
@@ -5487,7 +5487,7 @@ pub const HTMLCaptionFlagNo = HTMLCaptionFlag.No;
 pub const HTMLCaptionFlagYes = HTMLCaptionFlag.Yes;
 pub const HTMLCaptionFlag_Max = HTMLCaptionFlag._Max;
 
-pub const HTMLSysMenuFlag = extern enum(i32) {
+pub const HTMLSysMenuFlag = enum(i32) {
     No = 0,
     Yes = 524288,
     _Max = 2147483647,
@@ -5496,7 +5496,7 @@ pub const HTMLSysMenuFlagNo = HTMLSysMenuFlag.No;
 pub const HTMLSysMenuFlagYes = HTMLSysMenuFlag.Yes;
 pub const HTMLSysMenuFlag_Max = HTMLSysMenuFlag._Max;
 
-pub const HTMLBorder = extern enum(i32) {
+pub const HTMLBorder = enum(i32) {
     None = 0,
     Thick = 262144,
     Dialog = 4194304,
@@ -5509,7 +5509,7 @@ pub const HTMLBorderDialog = HTMLBorder.Dialog;
 pub const HTMLBorderThin = HTMLBorder.Thin;
 pub const HTMLBorder_Max = HTMLBorder._Max;
 
-pub const HTMLBorderStyle = extern enum(i32) {
+pub const HTMLBorderStyle = enum(i32) {
     Normal = 0,
     Raised = 256,
     Sunken = 512,
@@ -5524,7 +5524,7 @@ pub const HTMLBorderStylecombined = HTMLBorderStyle.combined;
 pub const HTMLBorderStyleStatic = HTMLBorderStyle.Static;
 pub const HTMLBorderStyle_Max = HTMLBorderStyle._Max;
 
-pub const HTMLWindowState = extern enum(i32) {
+pub const HTMLWindowState = enum(i32) {
     Normal = 1,
     Maximize = 3,
     Minimize = 6,
@@ -5535,26 +5535,26 @@ pub const HTMLWindowStateMaximize = HTMLWindowState.Maximize;
 pub const HTMLWindowStateMinimize = HTMLWindowState.Minimize;
 pub const HTMLWindowState_Max = HTMLWindowState._Max;
 
-pub const BEHAVIOR_EVENT = extern enum(i32) {
+pub const BEHAVIOR_EVENT = enum(i32) {
     EVENT_FIRST = 0,
-    EVENT_CONTENTREADY = 0,
+    // EVENT_CONTENTREADY = 0, this enum value conflicts with EVENT_FIRST
     EVENT_DOCUMENTREADY = 1,
     EVENT_APPLYSTYLE = 2,
     EVENT_DOCUMENTCONTEXTCHANGE = 3,
     EVENT_CONTENTSAVE = 4,
-    EVENT_LAST = 4,
+    // EVENT_LAST = 4, this enum value conflicts with EVENT_CONTENTSAVE
     _EVENT_Max = 2147483647,
 };
 pub const BEHAVIOREVENT_FIRST = BEHAVIOR_EVENT.EVENT_FIRST;
-pub const BEHAVIOREVENT_CONTENTREADY = BEHAVIOR_EVENT.EVENT_CONTENTREADY;
+pub const BEHAVIOREVENT_CONTENTREADY = BEHAVIOR_EVENT.EVENT_FIRST;
 pub const BEHAVIOREVENT_DOCUMENTREADY = BEHAVIOR_EVENT.EVENT_DOCUMENTREADY;
 pub const BEHAVIOREVENT_APPLYSTYLE = BEHAVIOR_EVENT.EVENT_APPLYSTYLE;
 pub const BEHAVIOREVENT_DOCUMENTCONTEXTCHANGE = BEHAVIOR_EVENT.EVENT_DOCUMENTCONTEXTCHANGE;
 pub const BEHAVIOREVENT_CONTENTSAVE = BEHAVIOR_EVENT.EVENT_CONTENTSAVE;
-pub const BEHAVIOREVENT_LAST = BEHAVIOR_EVENT.EVENT_LAST;
+pub const BEHAVIOREVENT_LAST = BEHAVIOR_EVENT.EVENT_CONTENTSAVE;
 pub const BEHAVIOR_EVENT_Max = BEHAVIOR_EVENT._EVENT_Max;
 
-pub const BEHAVIOR_EVENT_FLAGS = extern enum(i32) {
+pub const BEHAVIOR_EVENT_FLAGS = enum(i32) {
     EVENTFLAGS_BUBBLE = 1,
     EVENTFLAGS_STANDARDADDITIVE = 2,
     _EVENT_FLAGS_Max = 2147483647,
@@ -5563,7 +5563,7 @@ pub const BEHAVIOREVENTFLAGS_BUBBLE = BEHAVIOR_EVENT_FLAGS.EVENTFLAGS_BUBBLE;
 pub const BEHAVIOREVENTFLAGS_STANDARDADDITIVE = BEHAVIOR_EVENT_FLAGS.EVENTFLAGS_STANDARDADDITIVE;
 pub const BEHAVIOR_EVENT_FLAGS_Max = BEHAVIOR_EVENT_FLAGS._EVENT_FLAGS_Max;
 
-pub const BEHAVIOR_RENDER_INFO = extern enum(i32) {
+pub const BEHAVIOR_RENDER_INFO = enum(i32) {
     RENDERINFO_BEFOREBACKGROUND = 1,
     RENDERINFO_AFTERBACKGROUND = 2,
     RENDERINFO_BEFORECONTENT = 4,
@@ -5598,24 +5598,24 @@ pub const BEHAVIORRENDERINFO_SURFACE = BEHAVIOR_RENDER_INFO.RENDERINFO_SURFACE;
 pub const BEHAVIORRENDERINFO_3DSURFACE = BEHAVIOR_RENDER_INFO.RENDERINFO_3DSURFACE;
 pub const BEHAVIOR_RENDER_INFO_Max = BEHAVIOR_RENDER_INFO._RENDER_INFO_Max;
 
-pub const BEHAVIOR_RELATION = extern enum(i32) {
+pub const BEHAVIOR_RELATION = enum(i32) {
     FIRSTRELATION = 0,
-    SAMEELEMENT = 0,
+    // SAMEELEMENT = 0, this enum value conflicts with FIRSTRELATION
     PARENT = 1,
     CHILD = 2,
     SIBLING = 3,
-    LASTRELATION = 3,
+    // LASTRELATION = 3, this enum value conflicts with SIBLING
     RELATION_Max = 2147483647,
 };
 pub const BEHAVIOR_FIRSTRELATION = BEHAVIOR_RELATION.FIRSTRELATION;
-pub const BEHAVIOR_SAMEELEMENT = BEHAVIOR_RELATION.SAMEELEMENT;
+pub const BEHAVIOR_SAMEELEMENT = BEHAVIOR_RELATION.FIRSTRELATION;
 pub const BEHAVIOR_PARENT = BEHAVIOR_RELATION.PARENT;
 pub const BEHAVIOR_CHILD = BEHAVIOR_RELATION.CHILD;
 pub const BEHAVIOR_SIBLING = BEHAVIOR_RELATION.SIBLING;
-pub const BEHAVIOR_LASTRELATION = BEHAVIOR_RELATION.LASTRELATION;
+pub const BEHAVIOR_LASTRELATION = BEHAVIOR_RELATION.SIBLING;
 pub const BEHAVIOR_RELATION_Max = BEHAVIOR_RELATION.RELATION_Max;
 
-pub const BEHAVIOR_LAYOUT_INFO = extern enum(i32) {
+pub const BEHAVIOR_LAYOUT_INFO = enum(i32) {
     LAYOUTINFO_FULLDELEGATION = 1,
     LAYOUTINFO_MODIFYNATURAL = 2,
     LAYOUTINFO_MAPSIZE = 4,
@@ -5626,7 +5626,7 @@ pub const BEHAVIORLAYOUTINFO_MODIFYNATURAL = BEHAVIOR_LAYOUT_INFO.LAYOUTINFO_MOD
 pub const BEHAVIORLAYOUTINFO_MAPSIZE = BEHAVIOR_LAYOUT_INFO.LAYOUTINFO_MAPSIZE;
 pub const BEHAVIOR_LAYOUT_INFO_Max = BEHAVIOR_LAYOUT_INFO._LAYOUT_INFO_Max;
 
-pub const BEHAVIOR_LAYOUT_MODE = extern enum(i32) {
+pub const BEHAVIOR_LAYOUT_MODE = enum(i32) {
     LAYOUTMODE_NATURAL = 1,
     LAYOUTMODE_MINWIDTH = 2,
     LAYOUTMODE_MAXWIDTH = 4,
@@ -5641,7 +5641,7 @@ pub const BEHAVIORLAYOUTMODE_MEDIA_RESOLUTION = BEHAVIOR_LAYOUT_MODE.LAYOUTMODE_
 pub const BEHAVIORLAYOUTMODE_FINAL_PERCENT = BEHAVIOR_LAYOUT_MODE.LAYOUTMODE_FINAL_PERCENT;
 pub const BEHAVIOR_LAYOUT_MODE_Max = BEHAVIOR_LAYOUT_MODE._LAYOUT_MODE_Max;
 
-pub const ELEMENTDESCRIPTOR_FLAGS = extern enum(i32) {
+pub const ELEMENTDESCRIPTOR_FLAGS = enum(i32) {
     FLAGS_LITERAL = 1,
     FLAGS_NESTED_LITERAL = 2,
     _FLAGS_Max = 2147483647,
@@ -5650,7 +5650,7 @@ pub const ELEMENTDESCRIPTORFLAGS_LITERAL = ELEMENTDESCRIPTOR_FLAGS.FLAGS_LITERAL
 pub const ELEMENTDESCRIPTORFLAGS_NESTED_LITERAL = ELEMENTDESCRIPTOR_FLAGS.FLAGS_NESTED_LITERAL;
 pub const ELEMENTDESCRIPTOR_FLAGS_Max = ELEMENTDESCRIPTOR_FLAGS._FLAGS_Max;
 
-pub const ELEMENTNAMESPACE_FLAGS = extern enum(i32) {
+pub const ELEMENTNAMESPACE_FLAGS = enum(i32) {
     FLAGS_ALLOWANYTAG = 1,
     FLAGS_QUERYFORUNKNOWNTAGS = 2,
     _FLAGS_Max = 2147483647,
@@ -5659,7 +5659,7 @@ pub const ELEMENTNAMESPACEFLAGS_ALLOWANYTAG = ELEMENTNAMESPACE_FLAGS.FLAGS_ALLOW
 pub const ELEMENTNAMESPACEFLAGS_QUERYFORUNKNOWNTAGS = ELEMENTNAMESPACE_FLAGS.FLAGS_QUERYFORUNKNOWNTAGS;
 pub const ELEMENTNAMESPACE_FLAGS_Max = ELEMENTNAMESPACE_FLAGS._FLAGS_Max;
 
-pub const VIEW_OBJECT_ALPHA_MODE = extern enum(i32) {
+pub const VIEW_OBJECT_ALPHA_MODE = enum(i32) {
     IGNORE = 0,
     PREMULTIPLIED = 1,
     Max = 2147483647,
@@ -5668,7 +5668,7 @@ pub const VIEW_OBJECT_ALPHA_MODE_IGNORE = VIEW_OBJECT_ALPHA_MODE.IGNORE;
 pub const VIEW_OBJECT_ALPHA_MODE_PREMULTIPLIED = VIEW_OBJECT_ALPHA_MODE.PREMULTIPLIED;
 pub const VIEW_OBJECT_ALPHA_MODE_Max = VIEW_OBJECT_ALPHA_MODE.Max;
 
-pub const VIEW_OBJECT_COMPOSITION_MODE = extern enum(i32) {
+pub const VIEW_OBJECT_COMPOSITION_MODE = enum(i32) {
     LEGACY = 0,
     SURFACEPRESENTER = 1,
     Max = 2147483647,

@@ -12,7 +12,7 @@ pub const CLSID_FhConfigMgr = &CLSID_FhConfigMgr_Value;
 const CLSID_FhReassociation_Value = @import("../zig.zig").Guid.initString("4d728e35-16fa-4320-9e8b-bfd7100a8846");
 pub const CLSID_FhReassociation = &CLSID_FhReassociation_Value;
 
-pub const FH_TARGET_PROPERTY_TYPE = extern enum(i32) {
+pub const FH_TARGET_PROPERTY_TYPE = enum(i32) {
     FH_TARGET_NAME = 0,
     FH_TARGET_URL = 1,
     FH_TARGET_DRIVE_TYPE = 2,
@@ -23,7 +23,7 @@ pub const FH_TARGET_URL = FH_TARGET_PROPERTY_TYPE.FH_TARGET_URL;
 pub const FH_TARGET_DRIVE_TYPE = FH_TARGET_PROPERTY_TYPE.FH_TARGET_DRIVE_TYPE;
 pub const MAX_TARGET_PROPERTY = FH_TARGET_PROPERTY_TYPE.MAX_TARGET_PROPERTY;
 
-pub const FH_TARGET_DRIVE_TYPES = extern enum(i32) {
+pub const FH_TARGET_DRIVE_TYPES = enum(i32) {
     UNKNOWN = 0,
     REMOVABLE = 2,
     FIXED = 3,
@@ -95,7 +95,7 @@ pub const IFhScopeIterator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FH_PROTECTED_ITEM_CATEGORY = extern enum(i32) {
+pub const FH_PROTECTED_ITEM_CATEGORY = enum(i32) {
     FH_FOLDER = 0,
     FH_LIBRARY = 1,
     MAX_PROTECTED_ITEM_CATEGORY = 2,
@@ -104,7 +104,7 @@ pub const FH_FOLDER = FH_PROTECTED_ITEM_CATEGORY.FH_FOLDER;
 pub const FH_LIBRARY = FH_PROTECTED_ITEM_CATEGORY.FH_LIBRARY;
 pub const MAX_PROTECTED_ITEM_CATEGORY = FH_PROTECTED_ITEM_CATEGORY.MAX_PROTECTED_ITEM_CATEGORY;
 
-pub const FH_LOCAL_POLICY_TYPE = extern enum(i32) {
+pub const FH_LOCAL_POLICY_TYPE = enum(i32) {
     FH_FREQUENCY = 0,
     FH_RETENTION_TYPE = 1,
     FH_RETENTION_AGE = 2,
@@ -115,7 +115,7 @@ pub const FH_RETENTION_TYPE = FH_LOCAL_POLICY_TYPE.FH_RETENTION_TYPE;
 pub const FH_RETENTION_AGE = FH_LOCAL_POLICY_TYPE.FH_RETENTION_AGE;
 pub const MAX_LOCAL_POLICY = FH_LOCAL_POLICY_TYPE.MAX_LOCAL_POLICY;
 
-pub const FH_RETENTION_TYPES = extern enum(i32) {
+pub const FH_RETENTION_TYPES = enum(i32) {
     FH_RETENTION_DISABLED = 0,
     FH_RETENTION_UNLIMITED = 1,
     FH_RETENTION_AGE_BASED = 2,
@@ -126,7 +126,7 @@ pub const FH_RETENTION_UNLIMITED = FH_RETENTION_TYPES.FH_RETENTION_UNLIMITED;
 pub const FH_RETENTION_AGE_BASED = FH_RETENTION_TYPES.FH_RETENTION_AGE_BASED;
 pub const MAX_RETENTION_TYPE = FH_RETENTION_TYPES.MAX_RETENTION_TYPE;
 
-pub const FH_BACKUP_STATUS = extern enum(i32) {
+pub const FH_BACKUP_STATUS = enum(i32) {
     FH_STATUS_DISABLED = 0,
     FH_STATUS_DISABLED_BY_GP = 1,
     FH_STATUS_ENABLED = 2,
@@ -139,7 +139,7 @@ pub const FH_STATUS_ENABLED = FH_BACKUP_STATUS.FH_STATUS_ENABLED;
 pub const FH_STATUS_REHYDRATING = FH_BACKUP_STATUS.FH_STATUS_REHYDRATING;
 pub const MAX_BACKUP_STATUS = FH_BACKUP_STATUS.MAX_BACKUP_STATUS;
 
-pub const FH_DEVICE_VALIDATION_RESULT = extern enum(i32) {
+pub const FH_DEVICE_VALIDATION_RESULT = enum(i32) {
     FH_ACCESS_DENIED = 0,
     FH_INVALID_DRIVE_TYPE = 1,
     FH_READ_ONLY_PERMISSION = 2,
@@ -349,7 +349,7 @@ pub const IFhReassociation = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FhBackupStopReason = extern enum(i32) {
+pub const FhBackupStopReason = enum(i32) {
     InvalidStopReason = 0,
     LimitUserBusyMachineOnAC = 1,
     LimitUserIdleMachineOnDC = 2,

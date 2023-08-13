@@ -36,7 +36,7 @@ pub const NDF_APPLY_INCLUSION_LIST_FILTER = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (25)
 //--------------------------------------------------------------------------------
-pub const ATTRIBUTE_TYPE = extern enum(i32) {
+pub const ATTRIBUTE_TYPE = enum(i32) {
     INVALID = 0,
     BOOLEAN = 1,
     INT8 = 2,
@@ -105,7 +105,7 @@ pub const HELPER_ATTRIBUTE = extern struct {
     },
 };
 
-pub const REPAIR_SCOPE = extern enum(i32) {
+pub const REPAIR_SCOPE = enum(i32) {
     SYSTEM = 0,
     USER = 1,
     APPLICATION = 2,
@@ -116,7 +116,7 @@ pub const RS_USER = REPAIR_SCOPE.USER;
 pub const RS_APPLICATION = REPAIR_SCOPE.APPLICATION;
 pub const RS_PROCESS = REPAIR_SCOPE.PROCESS;
 
-pub const REPAIR_RISK = extern enum(i32) {
+pub const REPAIR_RISK = enum(i32) {
     NOROLLBACK = 0,
     ROLLBACK = 1,
     NORISK = 2,
@@ -125,7 +125,7 @@ pub const RR_NOROLLBACK = REPAIR_RISK.NOROLLBACK;
 pub const RR_ROLLBACK = REPAIR_RISK.ROLLBACK;
 pub const RR_NORISK = REPAIR_RISK.NORISK;
 
-pub const UI_INFO_TYPE = extern enum(i32) {
+pub const UI_INFO_TYPE = enum(i32) {
     INVALID = 0,
     NONE = 1,
     SHELL_COMMAND = 2,
@@ -183,7 +183,7 @@ pub const RootCauseInfo = extern struct {
     repairCount: u16,
 };
 
-pub const DIAGNOSIS_STATUS = extern enum(i32) {
+pub const DIAGNOSIS_STATUS = enum(i32) {
     NOT_IMPLEMENTED = 0,
     CONFIRMED = 1,
     REJECTED = 2,
@@ -198,7 +198,7 @@ pub const DS_INDETERMINATE = DIAGNOSIS_STATUS.INDETERMINATE;
 pub const DS_DEFERRED = DIAGNOSIS_STATUS.DEFERRED;
 pub const DS_PASSTHROUGH = DIAGNOSIS_STATUS.PASSTHROUGH;
 
-pub const REPAIR_STATUS = extern enum(i32) {
+pub const REPAIR_STATUS = enum(i32) {
     NOT_IMPLEMENTED = 0,
     REPAIRED = 1,
     UNREPAIRED = 2,
@@ -211,7 +211,7 @@ pub const RS_UNREPAIRED = REPAIR_STATUS.UNREPAIRED;
 pub const RS_DEFERRED = REPAIR_STATUS.DEFERRED;
 pub const RS_USER_ACTION = REPAIR_STATUS.USER_ACTION;
 
-pub const PROBLEM_TYPE = extern enum(i32) {
+pub const PROBLEM_TYPE = enum(i32) {
     INVALID = 0,
     LOW_HEALTH = 1,
     LOWER_HEALTH = 2,

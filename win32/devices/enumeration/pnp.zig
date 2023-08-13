@@ -1249,7 +1249,7 @@ pub const IUPnPRemoteEndpointInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SW_DEVICE_CAPABILITIES = extern enum(i32) {
+pub const SW_DEVICE_CAPABILITIES = enum(i32) {
     None = 0,
     Removable = 1,
     SilentInstall = 2,
@@ -1274,7 +1274,7 @@ pub const SW_DEVICE_CREATE_INFO = extern struct {
     pSecurityDescriptor: *const SECURITY_DESCRIPTOR,
 };
 
-pub const SW_DEVICE_LIFETIME = extern enum(i32) {
+pub const SW_DEVICE_LIFETIME = enum(i32) {
     Handle = 0,
     ParentPresent = 1,
     Max = 2,

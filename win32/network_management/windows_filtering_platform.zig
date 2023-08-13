@@ -665,7 +665,7 @@ pub const FWPS_L2_METADATA_FIELD_RESERVED = @as(u32, 2147483648);
 //--------------------------------------------------------------------------------
 // Section: Types (345)
 //--------------------------------------------------------------------------------
-pub const FWP_DIRECTION = extern enum(i32) {
+pub const FWP_DIRECTION = enum(i32) {
     OUTBOUND = 0,
     INBOUND = 1,
     MAX = 2,
@@ -674,7 +674,7 @@ pub const FWP_DIRECTION_OUTBOUND = FWP_DIRECTION.OUTBOUND;
 pub const FWP_DIRECTION_INBOUND = FWP_DIRECTION.INBOUND;
 pub const FWP_DIRECTION_MAX = FWP_DIRECTION.MAX;
 
-pub const FWP_IP_VERSION = extern enum(i32) {
+pub const FWP_IP_VERSION = enum(i32) {
     V4 = 0,
     V6 = 1,
     NONE = 2,
@@ -685,7 +685,7 @@ pub const FWP_IP_VERSION_V6 = FWP_IP_VERSION.V6;
 pub const FWP_IP_VERSION_NONE = FWP_IP_VERSION.NONE;
 pub const FWP_IP_VERSION_MAX = FWP_IP_VERSION.MAX;
 
-pub const FWP_AF = extern enum(i32) {
+pub const FWP_AF = enum(i32) {
     INET = 0,
     INET6 = 1,
     ETHER = 2,
@@ -696,7 +696,7 @@ pub const FWP_AF_INET6 = FWP_AF.INET6;
 pub const FWP_AF_ETHER = FWP_AF.ETHER;
 pub const FWP_AF_NONE = FWP_AF.NONE;
 
-pub const FWP_ETHER_ENCAP_METHOD = extern enum(i32) {
+pub const FWP_ETHER_ENCAP_METHOD = enum(i32) {
     ETHER_V2 = 0,
     SNAP = 1,
     SNAP_W_OUI_ZERO = 3,
@@ -705,7 +705,7 @@ pub const FWP_ETHER_ENCAP_METHOD_ETHER_V2 = FWP_ETHER_ENCAP_METHOD.ETHER_V2;
 pub const FWP_ETHER_ENCAP_METHOD_SNAP = FWP_ETHER_ENCAP_METHOD.SNAP;
 pub const FWP_ETHER_ENCAP_METHOD_SNAP_W_OUI_ZERO = FWP_ETHER_ENCAP_METHOD.SNAP_W_OUI_ZERO;
 
-pub const FWP_DATA_TYPE = extern enum(i32) {
+pub const FWP_DATA_TYPE = enum(i32) {
     EMPTY = 0,
     UINT8 = 1,
     UINT16 = 2,
@@ -809,7 +809,7 @@ pub const FWP_VALUE0 = extern struct {
     },
 };
 
-pub const FWP_MATCH_TYPE = extern enum(i32) {
+pub const FWP_MATCH_TYPE = enum(i32) {
     EQUAL = 0,
     GREATER = 1,
     LESS = 2,
@@ -883,7 +883,7 @@ pub const FWP_CONDITION_VALUE0 = extern struct {
     },
 };
 
-pub const FWP_CLASSIFY_OPTION_TYPE = extern enum(i32) {
+pub const FWP_CLASSIFY_OPTION_TYPE = enum(i32) {
     MULTICAST_STATE = 0,
     LOOSE_SOURCE_MAPPING = 1,
     UNICAST_LIFETIME = 2,
@@ -904,7 +904,7 @@ pub const FWP_CLASSIFY_OPTION_SECURE_SOCKET_AUTHIP_QM_POLICY_KEY = FWP_CLASSIFY_
 pub const FWP_CLASSIFY_OPTION_LOCAL_ONLY_MAPPING = FWP_CLASSIFY_OPTION_TYPE.LOCAL_ONLY_MAPPING;
 pub const FWP_CLASSIFY_OPTION_MAX = FWP_CLASSIFY_OPTION_TYPE.MAX;
 
-pub const FWP_VSWITCH_NETWORK_TYPE = extern enum(i32) {
+pub const FWP_VSWITCH_NETWORK_TYPE = enum(i32) {
     UNKNOWN = 0,
     PRIVATE = 1,
     INTERNAL = 2,
@@ -915,7 +915,7 @@ pub const FWP_VSWITCH_NETWORK_TYPE_PRIVATE = FWP_VSWITCH_NETWORK_TYPE.PRIVATE;
 pub const FWP_VSWITCH_NETWORK_TYPE_INTERNAL = FWP_VSWITCH_NETWORK_TYPE.INTERNAL;
 pub const FWP_VSWITCH_NETWORK_TYPE_EXTERNAL = FWP_VSWITCH_NETWORK_TYPE.EXTERNAL;
 
-pub const FWP_FILTER_ENUM_TYPE = extern enum(i32) {
+pub const FWP_FILTER_ENUM_TYPE = enum(i32) {
     FULLY_CONTAINED = 0,
     OVERLAPPING = 1,
     TYPE_MAX = 2,
@@ -934,7 +934,7 @@ pub const IPSEC_VIRTUAL_IF_TUNNEL_INFO0 = extern struct {
     trafficSelectorId: u64,
 };
 
-pub const IKEEXT_KEY_MODULE_TYPE = extern enum(i32) {
+pub const IKEEXT_KEY_MODULE_TYPE = enum(i32) {
     IKE = 0,
     AUTHIP = 1,
     IKEV2 = 2,
@@ -945,7 +945,7 @@ pub const IKEEXT_KEY_MODULE_AUTHIP = IKEEXT_KEY_MODULE_TYPE.AUTHIP;
 pub const IKEEXT_KEY_MODULE_IKEV2 = IKEEXT_KEY_MODULE_TYPE.IKEV2;
 pub const IKEEXT_KEY_MODULE_MAX = IKEEXT_KEY_MODULE_TYPE.MAX;
 
-pub const IKEEXT_AUTHENTICATION_METHOD_TYPE = extern enum(i32) {
+pub const IKEEXT_AUTHENTICATION_METHOD_TYPE = enum(i32) {
     PRESHARED_KEY = 0,
     CERTIFICATE = 1,
     KERBEROS = 2,
@@ -976,7 +976,7 @@ pub const IKEEXT_EAP = IKEEXT_AUTHENTICATION_METHOD_TYPE.EAP;
 pub const IKEEXT_RESERVED = IKEEXT_AUTHENTICATION_METHOD_TYPE.RESERVED;
 pub const IKEEXT_AUTHENTICATION_METHOD_TYPE_MAX = IKEEXT_AUTHENTICATION_METHOD_TYPE.AUTHENTICATION_METHOD_TYPE_MAX;
 
-pub const IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE = extern enum(i32) {
+pub const IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE = enum(i32) {
     NONE = 0,
     SOCKET_PRINCIPAL = 1,
     MAX = 2,
@@ -999,7 +999,7 @@ pub const IKEEXT_CERT_ROOT_CONFIG0 = extern struct {
     flags: IKEEXT_CERT_FLAGS,
 };
 
-pub const IKEEXT_CERT_CONFIG_TYPE = extern enum(i32) {
+pub const IKEEXT_CERT_CONFIG_TYPE = enum(i32) {
     EXPLICIT_TRUST_LIST = 0,
     ENTERPRISE_STORE = 1,
     TRUSTED_ROOT_STORE = 2,
@@ -1057,7 +1057,7 @@ pub const IKEEXT_CERTIFICATE_AUTHENTICATION1 = extern struct {
     localCertLocationUrl: FWP_BYTE_BLOB,
 };
 
-pub const IKEEXT_CERT_CRITERIA_NAME_TYPE = extern enum(i32) {
+pub const IKEEXT_CERT_CRITERIA_NAME_TYPE = enum(i32) {
     DNS = 0,
     UPN = 1,
     RFC822 = 2,
@@ -1197,7 +1197,7 @@ pub const IKEEXT_AUTHENTICATION_METHOD2 = extern struct {
     },
 };
 
-pub const IKEEXT_CIPHER_TYPE = extern enum(i32) {
+pub const IKEEXT_CIPHER_TYPE = enum(i32) {
     DES = 0,
     @"3DES" = 1,
     AES_128 = 2,
@@ -1222,7 +1222,7 @@ pub const IKEEXT_CIPHER_ALGORITHM0 = extern struct {
     rounds: u32,
 };
 
-pub const IKEEXT_INTEGRITY_TYPE = extern enum(i32) {
+pub const IKEEXT_INTEGRITY_TYPE = enum(i32) {
     MD5 = 0,
     SHA1 = 1,
     SHA_256 = 2,
@@ -1239,12 +1239,12 @@ pub const IKEEXT_INTEGRITY_ALGORITHM0 = extern struct {
     algoIdentifier: IKEEXT_INTEGRITY_TYPE,
 };
 
-pub const IKEEXT_DH_GROUP = extern enum(i32) {
+pub const IKEEXT_DH_GROUP = enum(i32) {
     GROUP_NONE = 0,
     GROUP_1 = 1,
     GROUP_2 = 2,
     GROUP_14 = 3,
-    GROUP_2048 = 3,
+    // GROUP_2048 = 3, this enum value conflicts with GROUP_14
     ECP_256 = 4,
     ECP_384 = 5,
     GROUP_24 = 6,
@@ -1254,7 +1254,7 @@ pub const IKEEXT_DH_GROUP_NONE = IKEEXT_DH_GROUP.GROUP_NONE;
 pub const IKEEXT_DH_GROUP_1 = IKEEXT_DH_GROUP.GROUP_1;
 pub const IKEEXT_DH_GROUP_2 = IKEEXT_DH_GROUP.GROUP_2;
 pub const IKEEXT_DH_GROUP_14 = IKEEXT_DH_GROUP.GROUP_14;
-pub const IKEEXT_DH_GROUP_2048 = IKEEXT_DH_GROUP.GROUP_2048;
+pub const IKEEXT_DH_GROUP_2048 = IKEEXT_DH_GROUP.GROUP_14;
 pub const IKEEXT_DH_ECP_256 = IKEEXT_DH_GROUP.ECP_256;
 pub const IKEEXT_DH_ECP_384 = IKEEXT_DH_GROUP.ECP_384;
 pub const IKEEXT_DH_GROUP_24 = IKEEXT_DH_GROUP.GROUP_24;
@@ -1568,7 +1568,7 @@ pub const IKEEXT_SA_ENUM_TEMPLATE0 = extern struct {
     localMainModeCertHash: FWP_BYTE_BLOB,
 };
 
-pub const IKEEXT_MM_SA_STATE = extern enum(i32) {
+pub const IKEEXT_MM_SA_STATE = enum(i32) {
     NONE = 0,
     SA_SENT = 1,
     SSPI_SENT = 2,
@@ -1585,7 +1585,7 @@ pub const IKEEXT_MM_SA_STATE_FINAL_SENT = IKEEXT_MM_SA_STATE.FINAL_SENT;
 pub const IKEEXT_MM_SA_STATE_COMPLETE = IKEEXT_MM_SA_STATE.COMPLETE;
 pub const IKEEXT_MM_SA_STATE_MAX = IKEEXT_MM_SA_STATE.MAX;
 
-pub const IKEEXT_QM_SA_STATE = extern enum(i32) {
+pub const IKEEXT_QM_SA_STATE = enum(i32) {
     NONE = 0,
     INITIAL = 1,
     FINAL = 2,
@@ -1598,7 +1598,7 @@ pub const IKEEXT_QM_SA_STATE_FINAL = IKEEXT_QM_SA_STATE.FINAL;
 pub const IKEEXT_QM_SA_STATE_COMPLETE = IKEEXT_QM_SA_STATE.COMPLETE;
 pub const IKEEXT_QM_SA_STATE_MAX = IKEEXT_QM_SA_STATE.MAX;
 
-pub const IKEEXT_EM_SA_STATE = extern enum(i32) {
+pub const IKEEXT_EM_SA_STATE = enum(i32) {
     NONE = 0,
     SENT_ATTS = 1,
     SSPI_SENT = 2,
@@ -1615,7 +1615,7 @@ pub const IKEEXT_EM_SA_STATE_FINAL = IKEEXT_EM_SA_STATE.FINAL;
 pub const IKEEXT_EM_SA_STATE_COMPLETE = IKEEXT_EM_SA_STATE.COMPLETE;
 pub const IKEEXT_EM_SA_STATE_MAX = IKEEXT_EM_SA_STATE.MAX;
 
-pub const IKEEXT_SA_ROLE = extern enum(i32) {
+pub const IKEEXT_SA_ROLE = enum(i32) {
     INITIATOR = 0,
     RESPONDER = 1,
     MAX = 2,
@@ -1630,7 +1630,7 @@ pub const IPSEC_SA_LIFETIME0 = extern struct {
     lifetimePackets: u32,
 };
 
-pub const IPSEC_TRANSFORM_TYPE = extern enum(i32) {
+pub const IPSEC_TRANSFORM_TYPE = enum(i32) {
     AH = 1,
     ESP_AUTH = 2,
     ESP_CIPHER = 3,
@@ -1645,7 +1645,7 @@ pub const IPSEC_TRANSFORM_ESP_AUTH_AND_CIPHER = IPSEC_TRANSFORM_TYPE.ESP_AUTH_AN
 pub const IPSEC_TRANSFORM_ESP_AUTH_FW = IPSEC_TRANSFORM_TYPE.ESP_AUTH_FW;
 pub const IPSEC_TRANSFORM_TYPE_MAX = IPSEC_TRANSFORM_TYPE.TYPE_MAX;
 
-pub const IPSEC_AUTH_TYPE = extern enum(i32) {
+pub const IPSEC_AUTH_TYPE = enum(i32) {
     MD5 = 0,
     SHA_1 = 1,
     SHA_256 = 2,
@@ -1672,7 +1672,7 @@ pub const IPSEC_AUTH_TRANSFORM0 = extern struct {
     cryptoModuleId: *Guid,
 };
 
-pub const IPSEC_CIPHER_TYPE = extern enum(i32) {
+pub const IPSEC_CIPHER_TYPE = enum(i32) {
     DES = 1,
     @"3DES" = 2,
     AES_128 = 3,
@@ -1713,12 +1713,12 @@ pub const IPSEC_SA_TRANSFORM0 = extern struct {
     },
 };
 
-pub const IPSEC_PFS_GROUP = extern enum(i32) {
+pub const IPSEC_PFS_GROUP = enum(i32) {
     NONE = 0,
     @"1" = 1,
     @"2" = 2,
     @"2048" = 3,
-    @"14" = 3,
+    // @"14" = 3, this enum value conflicts with @"2048"
     ECP_256 = 4,
     ECP_384 = 5,
     MM = 6,
@@ -1729,7 +1729,7 @@ pub const IPSEC_PFS_NONE = IPSEC_PFS_GROUP.NONE;
 pub const IPSEC_PFS_1 = IPSEC_PFS_GROUP.@"1";
 pub const IPSEC_PFS_2 = IPSEC_PFS_GROUP.@"2";
 pub const IPSEC_PFS_2048 = IPSEC_PFS_GROUP.@"2048";
-pub const IPSEC_PFS_14 = IPSEC_PFS_GROUP.@"14";
+pub const IPSEC_PFS_14 = IPSEC_PFS_GROUP.@"2048";
 pub const IPSEC_PFS_ECP_256 = IPSEC_PFS_GROUP.ECP_256;
 pub const IPSEC_PFS_ECP_384 = IPSEC_PFS_GROUP.ECP_384;
 pub const IPSEC_PFS_MM = IPSEC_PFS_GROUP.MM;
@@ -2018,7 +2018,7 @@ pub const IPSEC_KEYMODULE_STATE0 = extern struct {
     stateBlob: FWP_BYTE_BLOB,
 };
 
-pub const IPSEC_TOKEN_TYPE = extern enum(i32) {
+pub const IPSEC_TOKEN_TYPE = enum(i32) {
     MACHINE = 0,
     IMPERSONATION = 1,
     MAX = 2,
@@ -2027,7 +2027,7 @@ pub const IPSEC_TOKEN_TYPE_MACHINE = IPSEC_TOKEN_TYPE.MACHINE;
 pub const IPSEC_TOKEN_TYPE_IMPERSONATION = IPSEC_TOKEN_TYPE.IMPERSONATION;
 pub const IPSEC_TOKEN_TYPE_MAX = IPSEC_TOKEN_TYPE.MAX;
 
-pub const IPSEC_TOKEN_PRINCIPAL = extern enum(i32) {
+pub const IPSEC_TOKEN_PRINCIPAL = enum(i32) {
     LOCAL = 0,
     PEER = 1,
     MAX = 2,
@@ -2036,7 +2036,7 @@ pub const IPSEC_TOKEN_PRINCIPAL_LOCAL = IPSEC_TOKEN_PRINCIPAL.LOCAL;
 pub const IPSEC_TOKEN_PRINCIPAL_PEER = IPSEC_TOKEN_PRINCIPAL.PEER;
 pub const IPSEC_TOKEN_PRINCIPAL_MAX = IPSEC_TOKEN_PRINCIPAL.MAX;
 
-pub const IPSEC_TOKEN_MODE = extern enum(i32) {
+pub const IPSEC_TOKEN_MODE = enum(i32) {
     MAIN = 0,
     EXTENDED = 1,
     MAX = 2,
@@ -2101,7 +2101,7 @@ pub const IPSEC_SA_BUNDLE1 = extern struct {
     qmFilterId: u64,
 };
 
-pub const IPSEC_TRAFFIC_TYPE = extern enum(i32) {
+pub const IPSEC_TRAFFIC_TYPE = enum(i32) {
     TRANSPORT = 0,
     TUNNEL = 1,
     MAX = 2,
@@ -2223,7 +2223,7 @@ pub const IPSEC_SA_CONTEXT_SUBSCRIPTION0 = extern struct {
     sessionKey: Guid,
 };
 
-pub const IPSEC_SA_CONTEXT_EVENT_TYPE0 = extern enum(i32) {
+pub const IPSEC_SA_CONTEXT_EVENT_TYPE0 = enum(i32) {
     ADD = 1,
     DELETE = 2,
     MAX = 3,
@@ -2237,7 +2237,7 @@ pub const IPSEC_SA_CONTEXT_CHANGE0 = extern struct {
     saContextId: u64,
 };
 
-pub const IPSEC_FAILURE_POINT = extern enum(i32) {
+pub const IPSEC_FAILURE_POINT = enum(i32) {
     NONE = 0,
     ME = 1,
     PEER = 2,
@@ -2321,7 +2321,7 @@ pub const IPSEC_KEY_MANAGER0 = extern struct {
     keyDictationTimeoutHint: u8,
 };
 
-pub const DL_ADDRESS_TYPE = extern enum(i32) {
+pub const DL_ADDRESS_TYPE = enum(i32) {
     Unicast = 0,
     Multicast = 1,
     Broadcast = 2,
@@ -2330,7 +2330,7 @@ pub const DlUnicast = DL_ADDRESS_TYPE.Unicast;
 pub const DlMulticast = DL_ADDRESS_TYPE.Multicast;
 pub const DlBroadcast = DL_ADDRESS_TYPE.Broadcast;
 
-pub const FWPM_CHANGE_TYPE = extern enum(i32) {
+pub const FWPM_CHANGE_TYPE = enum(i32) {
     ADD = 1,
     DELETE = 2,
     TYPE_MAX = 3,
@@ -2339,7 +2339,7 @@ pub const FWPM_CHANGE_ADD = FWPM_CHANGE_TYPE.ADD;
 pub const FWPM_CHANGE_DELETE = FWPM_CHANGE_TYPE.DELETE;
 pub const FWPM_CHANGE_TYPE_MAX = FWPM_CHANGE_TYPE.TYPE_MAX;
 
-pub const FWPM_SERVICE_STATE = extern enum(i32) {
+pub const FWPM_SERVICE_STATE = enum(i32) {
     STOPPED = 0,
     START_PENDING = 1,
     STOP_PENDING = 2,
@@ -2352,7 +2352,7 @@ pub const FWPM_SERVICE_STOP_PENDING = FWPM_SERVICE_STATE.STOP_PENDING;
 pub const FWPM_SERVICE_RUNNING = FWPM_SERVICE_STATE.RUNNING;
 pub const FWPM_SERVICE_STATE_MAX = FWPM_SERVICE_STATE.STATE_MAX;
 
-pub const FWPM_ENGINE_OPTION = extern enum(i32) {
+pub const FWPM_ENGINE_OPTION = enum(i32) {
     COLLECT_NET_EVENTS = 0,
     NET_EVENT_MATCH_ANY_KEYWORDS = 1,
     NAME_CACHE = 2,
@@ -2417,7 +2417,7 @@ pub const FWPM_CLASSIFY_OPTIONS0 = extern struct {
     options: *FWPM_CLASSIFY_OPTION0,
 };
 
-pub const FWPM_PROVIDER_CONTEXT_TYPE = extern enum(i32) {
+pub const FWPM_PROVIDER_CONTEXT_TYPE = enum(i32) {
     IPSEC_KEYING_CONTEXT = 0,
     IPSEC_IKE_QM_TRANSPORT_CONTEXT = 1,
     IPSEC_IKE_QM_TUNNEL_CONTEXT = 2,
@@ -2584,7 +2584,7 @@ pub const FWPM_SUBLAYER_SUBSCRIPTION0 = extern struct {
     sessionKey: Guid,
 };
 
-pub const FWPM_FIELD_TYPE = extern enum(i32) {
+pub const FWPM_FIELD_TYPE = enum(i32) {
     RAW_DATA = 0,
     IP_ADDRESS = 1,
     FLAGS = 2,
@@ -2858,7 +2858,7 @@ pub const FWPM_NET_EVENT_HEADER3 = extern struct {
     effectiveName: FWP_BYTE_BLOB,
 };
 
-pub const FWPM_NET_EVENT_TYPE = extern enum(i32) {
+pub const FWPM_NET_EVENT_TYPE = enum(i32) {
     IKEEXT_MM_FAILURE = 0,
     IKEEXT_QM_FAILURE = 1,
     IKEEXT_EM_FAILURE = 2,
@@ -3084,7 +3084,7 @@ pub const FWPM_NET_EVENT_IPSEC_DOSP_DROP0 = extern struct {
     direction: FWP_DIRECTION,
 };
 
-pub const FWPM_APPC_NETWORK_CAPABILITY_TYPE = extern enum(i32) {
+pub const FWPM_APPC_NETWORK_CAPABILITY_TYPE = enum(i32) {
     CLIENT = 0,
     CLIENT_SERVER = 1,
     PRIVATE_NETWORK = 2,
@@ -3217,7 +3217,7 @@ pub const FWPM_NET_EVENT_SUBSCRIPTION0 = extern struct {
     sessionKey: Guid,
 };
 
-pub const FWPM_SYSTEM_PORT_TYPE = extern enum(i32) {
+pub const FWPM_SYSTEM_PORT_TYPE = enum(i32) {
     RPC_EPMAP = 0,
     TEREDO = 1,
     IPHTTPS_IN = 2,
@@ -3275,7 +3275,7 @@ pub const FWPM_CONNECTION_SUBSCRIPTION0 = extern struct {
     sessionKey: Guid,
 };
 
-pub const FWPM_CONNECTION_EVENT_TYPE = extern enum(i32) {
+pub const FWPM_CONNECTION_EVENT_TYPE = enum(i32) {
     ADD = 0,
     DELETE = 1,
     MAX = 2,
@@ -3284,7 +3284,7 @@ pub const FWPM_CONNECTION_EVENT_ADD = FWPM_CONNECTION_EVENT_TYPE.ADD;
 pub const FWPM_CONNECTION_EVENT_DELETE = FWPM_CONNECTION_EVENT_TYPE.DELETE;
 pub const FWPM_CONNECTION_EVENT_MAX = FWPM_CONNECTION_EVENT_TYPE.MAX;
 
-pub const FWPM_VSWITCH_EVENT_TYPE = extern enum(i32) {
+pub const FWPM_VSWITCH_EVENT_TYPE = enum(i32) {
     FILTER_ADD_TO_INCOMPLETE_LAYER = 0,
     FILTER_ENGINE_NOT_IN_REQUIRED_POSITION = 1,
     ENABLED_FOR_INSPECTION = 2,
@@ -3535,7 +3535,7 @@ pub const IPV4_OPTION_HEADER = extern struct {
     OptionLength: u8,
 };
 
-pub const IPV4_OPTION_TYPE = extern enum(i32) {
+pub const IPV4_OPTION_TYPE = enum(i32) {
     EOL = 0,
     NOP = 1,
     SECURITY = 130,
@@ -3569,7 +3569,7 @@ pub const IPV4_TIMESTAMP_OPTION = extern struct {
     },
 };
 
-pub const IP_OPTION_TIMESTAMP_FLAGS = extern enum(i32) {
+pub const IP_OPTION_TIMESTAMP_FLAGS = enum(i32) {
     ONLY = 0,
     ADDRESS = 1,
     SPECIFIC_ADDRESS = 3,
@@ -3583,7 +3583,7 @@ pub const IPV4_ROUTING_HEADER = extern struct {
     Pointer: u8,
 };
 
-pub const ICMP4_UNREACH_CODE = extern enum(i32) {
+pub const ICMP4_UNREACH_CODE = enum(i32) {
     NET = 0,
     HOST = 1,
     PROTOCOL = 2,
@@ -3614,7 +3614,7 @@ pub const ICMP4_UNREACH_NET_TOS = ICMP4_UNREACH_CODE.NET_TOS;
 pub const ICMP4_UNREACH_HOST_TOS = ICMP4_UNREACH_CODE.HOST_TOS;
 pub const ICMP4_UNREACH_ADMIN = ICMP4_UNREACH_CODE.ADMIN;
 
-pub const ICMP4_TIME_EXCEED_CODE = extern enum(i32) {
+pub const ICMP4_TIME_EXCEED_CODE = enum(i32) {
     TRANSIT = 0,
     REASSEMBLY = 1,
 };
@@ -3655,14 +3655,14 @@ pub const ARP_HEADER = extern struct {
     SenderHardwareAddress: [1]u8,
 };
 
-pub const ARP_OPCODE = extern enum(i32) {
+pub const ARP_OPCODE = enum(i32) {
     QUEST = 1,
     SPONSE = 2,
 };
 pub const ARP_REQUEST = ARP_OPCODE.QUEST;
 pub const ARP_RESPONSE = ARP_OPCODE.SPONSE;
 
-pub const ARP_HARDWARE_TYPE = extern enum(i32) {
+pub const ARP_HARDWARE_TYPE = enum(i32) {
     ENET = 1,
     @"802" = 6,
 };
@@ -3685,7 +3685,7 @@ pub const IGMP_HEADER = extern struct {
     MulticastAddress: IN_ADDR,
 };
 
-pub const IGMP_MAX_RESP_CODE_TYPE = extern enum(i32) {
+pub const IGMP_MAX_RESP_CODE_TYPE = enum(i32) {
     NORMAL = 0,
     FLOAT = 1,
 };
@@ -3763,7 +3763,7 @@ pub const IPV6_OPTION_HEADER = extern struct {
     DataLength: u8,
 };
 
-pub const IPV6_OPTION_TYPE = extern enum(i32) {
+pub const IPV6_OPTION_TYPE = enum(i32) {
     PAD1 = 0,
     PADN = 1,
     TUNNEL_LIMIT = 4,
@@ -3842,7 +3842,7 @@ pub const nd_opt_hdr = extern struct {
     nd_opt_len: u8,
 };
 
-pub const ND_OPTION_TYPE = extern enum(i32) {
+pub const ND_OPTION_TYPE = enum(i32) {
     SOURCE_LINKADDR = 1,
     TARGET_LINKADDR = 2,
     PREFIX_INFORMATION = 3,
@@ -3942,7 +3942,7 @@ pub const MLD_HEADER = extern struct {
     MulticastAddress: IN6_ADDR,
 };
 
-pub const MLD_MAX_RESP_CODE_TYPE = extern enum(i32) {
+pub const MLD_MAX_RESP_CODE_TYPE = enum(i32) {
     NORMAL = 0,
     FLOAT = 1,
 };
@@ -4045,7 +4045,7 @@ pub const DL_TUNNEL_ADDRESS = extern struct {
     IpAddress: [1]u8,
 };
 
-pub const TUNNEL_SUB_TYPE = extern enum(i32) {
+pub const TUNNEL_SUB_TYPE = enum(i32) {
     NONE = 0,
     CP = 1,
     IPTLS = 2,
@@ -4088,7 +4088,7 @@ pub const IPTLS_METADATA = packed struct {
     SequenceNumber: u64,
 };
 
-pub const NPI_MODULEID_TYPE = extern enum(i32) {
+pub const NPI_MODULEID_TYPE = enum(i32) {
     GUID = 1,
     IF_LUID = 2,
 };
@@ -4104,14 +4104,14 @@ pub const NPI_MODULEID = extern struct {
     },
 };
 
-pub const FALLBACK_INDEX = extern enum(i32) {
+pub const FALLBACK_INDEX = enum(i32) {
     TcpFastopen = 0,
     Max = 1,
 };
 pub const FallbackIndexTcpFastopen = FALLBACK_INDEX.TcpFastopen;
 pub const FallbackIndexMax = FALLBACK_INDEX.Max;
 
-pub const IPSEC_SA_BUNDLE_FLAGS = extern enum(u32) {
+pub const IPSEC_SA_BUNDLE_FLAGS = enum(u32) {
     ND_SECURE = 1,
     ND_BOUNDARY = 2,
     ND_PEER_NAT_BOUNDARY = 4,
@@ -4160,7 +4160,7 @@ pub const IPSEC_SA_BUNDLE_FLAG_ND_PEER_BOUNDARY = IPSEC_SA_BUNDLE_FLAGS.ND_PEER_
 pub const IPSEC_SA_BUNDLE_FLAG_SUPPRESS_DUPLICATE_DELETION = IPSEC_SA_BUNDLE_FLAGS.SUPPRESS_DUPLICATE_DELETION;
 pub const IPSEC_SA_BUNDLE_FLAG_PEER_SUPPORTS_GUARANTEE_ENCRYPTION = IPSEC_SA_BUNDLE_FLAGS.PEER_SUPPORTS_GUARANTEE_ENCRYPTION;
 
-pub const IPSEC_POLICY_FLAG = extern enum(u32) {
+pub const IPSEC_POLICY_FLAG = enum(u32) {
     ND_SECURE = 2,
     ND_BOUNDARY = 4,
     NAT_ENCAP_ALLOW_PEER_BEHIND_NAT = 16,
@@ -4221,7 +4221,7 @@ pub const IPSEC_POLICY_FLAG_TUNNEL_BYPASS_ALREADY_SECURE_CONNECTION = IPSEC_POLI
 pub const IPSEC_POLICY_FLAG_TUNNEL_BYPASS_ICMPV6 = IPSEC_POLICY_FLAG.TUNNEL_BYPASS_ICMPV6;
 pub const IPSEC_POLICY_FLAG_KEY_MANAGER_ALLOW_DICTATE_KEY = IPSEC_POLICY_FLAG.KEY_MANAGER_ALLOW_DICTATE_KEY;
 
-pub const IKEEXT_CERT_AUTH = extern enum(u32) {
+pub const IKEEXT_CERT_AUTH = enum(u32) {
     FLAG_SSL_ONE_WAY = 1,
     ENABLE_CRL_CHECK_STRONG = 4,
     DISABLE_SSL_CERT_VALIDATION = 8,
@@ -4250,7 +4250,7 @@ pub const IKEEXT_CERT_AUTH_DISABLE_SSL_CERT_VALIDATION = IKEEXT_CERT_AUTH.DISABL
 pub const IKEEXT_CERT_AUTH_ALLOW_HTTP_CERT_LOOKUP = IKEEXT_CERT_AUTH.ALLOW_HTTP_CERT_LOOKUP;
 pub const IKEEXT_CERT_AUTH_URL_CONTAINS_BUNDLE = IKEEXT_CERT_AUTH.URL_CONTAINS_BUNDLE;
 
-pub const IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS = extern enum(u32) {
+pub const IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS = enum(u32) {
     LOCAL_AUTH_ONLY = 1,
     REMOTE_AUTH_ONLY = 2,
     _,
@@ -4267,7 +4267,7 @@ pub const IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS = extern enum(u32) {
 pub const IKEEXT_PSK_FLAG_LOCAL_AUTH_ONLY = IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS.LOCAL_AUTH_ONLY;
 pub const IKEEXT_PSK_FLAG_REMOTE_AUTH_ONLY = IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS.REMOTE_AUTH_ONLY;
 
-pub const IKEEXT_POLICY_FLAG = extern enum(u32) {
+pub const IKEEXT_POLICY_FLAG = enum(u32) {
     DISABLE_DIAGNOSTICS = 1,
     NO_MACHINE_LUID_VERIFY = 2,
     NO_IMPERSONATION_LUID_VERIFY = 4,
@@ -4292,14 +4292,14 @@ pub const IKEEXT_POLICY_FLAG_NO_MACHINE_LUID_VERIFY = IKEEXT_POLICY_FLAG.NO_MACH
 pub const IKEEXT_POLICY_FLAG_NO_IMPERSONATION_LUID_VERIFY = IKEEXT_POLICY_FLAG.NO_IMPERSONATION_LUID_VERIFY;
 pub const IKEEXT_POLICY_FLAG_ENABLE_OPTIONAL_DH = IKEEXT_POLICY_FLAG.ENABLE_OPTIONAL_DH;
 
-pub const FWPM_SUBSCRIPTION_FLAGS = extern enum(u32) {
+pub const FWPM_SUBSCRIPTION_FLAGS = enum(u32) {
     ADD = 1,
     DELETE = 2,
 };
 pub const FWPM_SUBSCRIPTION_FLAG_NOTIFY_ON_ADD = FWPM_SUBSCRIPTION_FLAGS.ADD;
 pub const FWPM_SUBSCRIPTION_FLAG_NOTIFY_ON_DELETE = FWPM_SUBSCRIPTION_FLAGS.DELETE;
 
-pub const IKEEXT_CERT_FLAGS = extern enum(u32) {
+pub const IKEEXT_CERT_FLAGS = enum(u32) {
     ENABLE_ACCOUNT_MAPPING = 1,
     DISABLE_REQUEST_PAYLOAD = 2,
     USE_NAP_CERTIFICATE = 4,
@@ -4344,7 +4344,7 @@ pub const IKEEXT_CERT_FLAG_SELECT_NAP_CERTIFICATE = IKEEXT_CERT_FLAGS.SELECT_NAP
 pub const IKEEXT_CERT_FLAG_VERIFY_NAP_CERTIFICATE = IKEEXT_CERT_FLAGS.VERIFY_NAP_CERTIFICATE;
 pub const IKEEXT_CERT_FLAG_FOLLOW_RENEWAL_CERTIFICATE = IKEEXT_CERT_FLAGS.FOLLOW_RENEWAL_CERTIFICATE;
 
-pub const IPSEC_DOSP_FLAGS = extern enum(u32) {
+pub const IPSEC_DOSP_FLAGS = enum(u32) {
     ENABLE_IKEV1 = 1,
     ENABLE_IKEV2 = 2,
     DISABLE_AUTHIP = 4,
@@ -4377,7 +4377,7 @@ pub const IPSEC_DOSP_FLAG_DISABLE_DEFAULT_BLOCK = IPSEC_DOSP_FLAGS.DISABLE_DEFAU
 pub const IPSEC_DOSP_FLAG_FILTER_BLOCK = IPSEC_DOSP_FLAGS.FILTER_BLOCK;
 pub const IPSEC_DOSP_FLAG_FILTER_EXEMPT = IPSEC_DOSP_FLAGS.FILTER_EXEMPT;
 
-pub const IKEEXT_KERBEROS_AUTHENTICATION_FLAGS = extern enum(u32) {
+pub const IKEEXT_KERBEROS_AUTHENTICATION_FLAGS = enum(u32) {
     ISABLE_INITIATOR_TOKEN_GENERATION = 1,
     ONT_ACCEPT_EXPLICIT_CREDENTIALS = 2,
     _,
@@ -4394,7 +4394,7 @@ pub const IKEEXT_KERBEROS_AUTHENTICATION_FLAGS = extern enum(u32) {
 pub const IKEEXT_KERB_AUTH_DISABLE_INITIATOR_TOKEN_GENERATION = IKEEXT_KERBEROS_AUTHENTICATION_FLAGS.ISABLE_INITIATOR_TOKEN_GENERATION;
 pub const IKEEXT_KERB_AUTH_DONT_ACCEPT_EXPLICIT_CREDENTIALS = IKEEXT_KERBEROS_AUTHENTICATION_FLAGS.ONT_ACCEPT_EXPLICIT_CREDENTIALS;
 
-pub const IKEEXT_RESERVED_AUTHENTICATION_FLAGS = extern enum(u32) {
+pub const IKEEXT_RESERVED_AUTHENTICATION_FLAGS = enum(u32) {
     N = 1,
     _,
     pub fn initFlags(o: struct {
@@ -4407,7 +4407,7 @@ pub const IKEEXT_RESERVED_AUTHENTICATION_FLAGS = extern enum(u32) {
 };
 pub const IKEEXT_RESERVED_AUTH_DISABLE_INITIATOR_TOKEN_GENERATION = IKEEXT_RESERVED_AUTHENTICATION_FLAGS.N;
 
-pub const IKEEXT_EAP_AUTHENTICATION_FLAGS = extern enum(u32) {
+pub const IKEEXT_EAP_AUTHENTICATION_FLAGS = enum(u32) {
     LOCAL_AUTH_ONLY = 1,
     REMOTE_AUTH_ONLY = 2,
     _,
@@ -4424,7 +4424,7 @@ pub const IKEEXT_EAP_AUTHENTICATION_FLAGS = extern enum(u32) {
 pub const IKEEXT_EAP_FLAG_LOCAL_AUTH_ONLY = IKEEXT_EAP_AUTHENTICATION_FLAGS.LOCAL_AUTH_ONLY;
 pub const IKEEXT_EAP_FLAG_REMOTE_AUTH_ONLY = IKEEXT_EAP_AUTHENTICATION_FLAGS.REMOTE_AUTH_ONLY;
 
-pub const FWPM_FILTER_FLAGS = extern enum(u32) {
+pub const FWPM_FILTER_FLAGS = enum(u32) {
     NONE = 0,
     PERSISTENT = 1,
     BOOTTIME = 2,

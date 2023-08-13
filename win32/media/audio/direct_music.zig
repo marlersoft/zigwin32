@@ -569,7 +569,7 @@ pub const IAudioMediaType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const APO_CONNECTION_BUFFER_TYPE = extern enum(i32) {
+pub const APO_CONNECTION_BUFFER_TYPE = enum(i32) {
     ALLOCATED = 0,
     EXTERNAL = 1,
     DEPENDANT = 2,
@@ -586,7 +586,7 @@ pub const APO_CONNECTION_DESCRIPTOR = extern struct {
     u32Signature: u32,
 };
 
-pub const APO_FLAG = extern enum(i32) {
+pub const APO_FLAG = enum(i32) {
     NONE = 0,
     INPLACE = 1,
     SAMPLESPERFRAME_MUST_MATCH = 2,
@@ -624,14 +624,14 @@ pub const APOInitBaseStruct = extern struct {
     clsid: Guid,
 };
 
-pub const AUDIO_FLOW_TYPE = extern enum(i32) {
+pub const AUDIO_FLOW_TYPE = enum(i32) {
     LL = 0,
     SH = 1,
 };
 pub const AUDIO_FLOW_PULL = AUDIO_FLOW_TYPE.LL;
 pub const AUDIO_FLOW_PUSH = AUDIO_FLOW_TYPE.SH;
 
-pub const EAudioConstriction = extern enum(i32) {
+pub const EAudioConstriction = enum(i32) {
     Off = 0,
     @"48_16" = 1,
     @"44_16" = 2,
@@ -2703,7 +2703,7 @@ pub const DMUS_WAVES_REVERB_PARAMS = extern struct {
     fHighFreqRTRatio: f32,
 };
 
-pub const DMUS_CLOCKTYPE = extern enum(i32) {
+pub const DMUS_CLOCKTYPE = enum(i32) {
     SYSTEM = 0,
     WAVE = 1,
 };
@@ -3631,7 +3631,7 @@ pub const IDirectMusicSynthSink = extern struct {
 const CLSID_KSPROPSETID_AudioEffectsDiscovery_Value = @import("../../zig.zig").Guid.initString("0b217a72-16b8-4a4d-bded-f9d6bbedcd8f");
 pub const CLSID_KSPROPSETID_AudioEffectsDiscovery = &CLSID_KSPROPSETID_AudioEffectsDiscovery_Value;
 
-pub const KSPROPERTY_AUDIOEFFECTSDISCOVERY = extern enum(i32) {
+pub const KSPROPERTY_AUDIOEFFECTSDISCOVERY = enum(i32) {
     T = 1,
 };
 pub const KSPROPERTY_AUDIOEFFECTSDISCOVERY_EFFECTSLIST = KSPROPERTY_AUDIOEFFECTSDISCOVERY.T;

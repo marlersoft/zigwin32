@@ -9,7 +9,7 @@ pub const ID_DOCUMENTPACKAGETARGET_OPENXPS_WITH_3D = Guid.initString("63dbd720-8
 //--------------------------------------------------------------------------------
 // Section: Types (11)
 //--------------------------------------------------------------------------------
-pub const XPS_JOB_COMPLETION = extern enum(i32) {
+pub const XPS_JOB_COMPLETION = enum(i32) {
     IN_PROGRESS = 0,
     COMPLETED = 1,
     CANCELLED = 2,
@@ -125,7 +125,7 @@ pub const IPrintDocumentPackageTarget = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PrintDocumentPackageCompletion = extern enum(i32) {
+pub const PrintDocumentPackageCompletion = enum(i32) {
     InProgress = 0,
     Completed = 1,
     Canceled = 2,

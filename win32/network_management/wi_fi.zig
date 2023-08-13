@@ -649,19 +649,19 @@ pub const DEVPKEY_WiFi_InterfaceGuid = PROPERTYKEY { .fmtid = @import("../zig.zi
 //--------------------------------------------------------------------------------
 // Section: Types (330)
 //--------------------------------------------------------------------------------
-pub const WLAN_SET_EAPHOST_FLAGS = extern enum(u32) {
+pub const WLAN_SET_EAPHOST_FLAGS = enum(u32) {
     S = 1,
 };
 pub const WLAN_SET_EAPHOST_DATA_ALL_USERS = WLAN_SET_EAPHOST_FLAGS.S;
 
-pub const WLAN_CONNECTION_NOTIFICATION_FLAGS = extern enum(u32) {
+pub const WLAN_CONNECTION_NOTIFICATION_FLAGS = enum(u32) {
     ADHOC_NETWORK_FORMED = 1,
     CONSOLE_USER_PROFILE = 4,
 };
 pub const WLAN_CONNECTION_NOTIFICATION_ADHOC_NETWORK_FORMED = WLAN_CONNECTION_NOTIFICATION_FLAGS.ADHOC_NETWORK_FORMED;
 pub const WLAN_CONNECTION_NOTIFICATION_CONSOLE_USER_PROFILE = WLAN_CONNECTION_NOTIFICATION_FLAGS.CONSOLE_USER_PROFILE;
 
-pub const DOT11_BSS_TYPE = extern enum(i32) {
+pub const DOT11_BSS_TYPE = enum(i32) {
     infrastructure = 1,
     independent = 2,
     any = 3,
@@ -675,7 +675,7 @@ pub const DOT11_SSID = extern struct {
     ucSSID: [32]u8,
 };
 
-pub const DOT11_AUTH_ALGORITHM = extern enum(i32) {
+pub const DOT11_AUTH_ALGORITHM = enum(i32) {
     @"80211_OPEN" = 1,
     @"80211_SHARED_KEY" = 2,
     WPA = 3,
@@ -702,7 +702,7 @@ pub const DOT11_AUTH_ALGO_OWE = DOT11_AUTH_ALGORITHM.OWE;
 pub const DOT11_AUTH_ALGO_IHV_START = DOT11_AUTH_ALGORITHM.IHV_START;
 pub const DOT11_AUTH_ALGO_IHV_END = DOT11_AUTH_ALGORITHM.IHV_END;
 
-pub const DOT11_CIPHER_ALGORITHM = extern enum(i32) {
+pub const DOT11_CIPHER_ALGORITHM = enum(i32) {
     NONE = 0,
     WEP40 = 1,
     TKIP = 2,
@@ -716,7 +716,7 @@ pub const DOT11_CIPHER_ALGORITHM = extern enum(i32) {
     BIP_GMAC_256 = 12,
     BIP_CMAC_256 = 13,
     WPA_USE_GROUP = 256,
-    RSN_USE_GROUP = 256,
+    // RSN_USE_GROUP = 256, this enum value conflicts with WPA_USE_GROUP
     WEP = 257,
     IHV_START = -2147483648,
     IHV_END = -1,
@@ -734,7 +734,7 @@ pub const DOT11_CIPHER_ALGO_BIP_GMAC_128 = DOT11_CIPHER_ALGORITHM.BIP_GMAC_128;
 pub const DOT11_CIPHER_ALGO_BIP_GMAC_256 = DOT11_CIPHER_ALGORITHM.BIP_GMAC_256;
 pub const DOT11_CIPHER_ALGO_BIP_CMAC_256 = DOT11_CIPHER_ALGORITHM.BIP_CMAC_256;
 pub const DOT11_CIPHER_ALGO_WPA_USE_GROUP = DOT11_CIPHER_ALGORITHM.WPA_USE_GROUP;
-pub const DOT11_CIPHER_ALGO_RSN_USE_GROUP = DOT11_CIPHER_ALGORITHM.RSN_USE_GROUP;
+pub const DOT11_CIPHER_ALGO_RSN_USE_GROUP = DOT11_CIPHER_ALGORITHM.WPA_USE_GROUP;
 pub const DOT11_CIPHER_ALGO_WEP = DOT11_CIPHER_ALGORITHM.WEP;
 pub const DOT11_CIPHER_ALGO_IHV_START = DOT11_CIPHER_ALGORITHM.IHV_START;
 pub const DOT11_CIPHER_ALGO_IHV_END = DOT11_CIPHER_ALGORITHM.IHV_END;
@@ -769,9 +769,9 @@ pub const DOT11_BSSID_LIST = extern struct {
     BSSIDs: [6]u8,
 };
 
-pub const DOT11_PHY_TYPE = extern enum(i32) {
+pub const DOT11_PHY_TYPE = enum(i32) {
     unknown = 0,
-    any = 0,
+    // any = 0, this enum value conflicts with unknown
     fhss = 1,
     dsss = 2,
     irbaseband = 3,
@@ -786,7 +786,7 @@ pub const DOT11_PHY_TYPE = extern enum(i32) {
     IHV_end = -1,
 };
 pub const dot11_phy_type_unknown = DOT11_PHY_TYPE.unknown;
-pub const dot11_phy_type_any = DOT11_PHY_TYPE.any;
+pub const dot11_phy_type_any = DOT11_PHY_TYPE.unknown;
 pub const dot11_phy_type_fhss = DOT11_PHY_TYPE.fhss;
 pub const dot11_phy_type_dsss = DOT11_PHY_TYPE.dsss;
 pub const dot11_phy_type_irbaseband = DOT11_PHY_TYPE.irbaseband;
@@ -825,7 +825,7 @@ pub const DOT11_CURRENT_OFFLOAD_CAPABILITY = extern struct {
     uFlags: u32,
 };
 
-pub const DOT11_OFFLOAD_TYPE = extern enum(i32) {
+pub const DOT11_OFFLOAD_TYPE = enum(i32) {
     wep = 1,
     auth = 2,
 };
@@ -864,7 +864,7 @@ pub const DOT11_WEP_UPLOAD = extern struct {
     usDot11RWBitMaps: [16]u16,
 };
 
-pub const DOT11_KEY_DIRECTION = extern enum(i32) {
+pub const DOT11_KEY_DIRECTION = enum(i32) {
     both = 1,
     inbound = 2,
     outbound = 3,
@@ -913,7 +913,7 @@ pub const DOT11_CURRENT_OPERATION_MODE = extern struct {
     uCurrentOpMode: u32,
 };
 
-pub const DOT11_SCAN_TYPE = extern enum(i32) {
+pub const DOT11_SCAN_TYPE = enum(i32) {
     active = 1,
     passive = 2,
     auto = 3,
@@ -940,7 +940,7 @@ pub const DOT11_SCAN_REQUEST = extern struct {
     ucBuffer: [1]u8,
 };
 
-pub const CH_DESCRIPTION_TYPE = extern enum(i32) {
+pub const CH_DESCRIPTION_TYPE = enum(i32) {
     logical = 1,
     center_frequency = 2,
     phy_specific = 3,
@@ -1009,7 +1009,7 @@ pub const DOT11_START_REQUEST = extern struct {
     dot11BSSDescription: DOT11_BSS_DESCRIPTION,
 };
 
-pub const DOT11_UPDATE_IE_OP = extern enum(i32) {
+pub const DOT11_UPDATE_IE_OP = enum(i32) {
     create_replace = 1,
     delete = 2,
 };
@@ -1022,7 +1022,7 @@ pub const DOT11_UPDATE_IE = extern struct {
     ucBuffer: [1]u8,
 };
 
-pub const DOT11_RESET_TYPE = extern enum(i32) {
+pub const DOT11_RESET_TYPE = enum(i32) {
     phy = 1,
     mac = 2,
     phy_and_mac = 3,
@@ -1052,7 +1052,7 @@ pub const DOT11_CURRENT_OPTIONAL_CAPABILITY = extern struct {
     bStrictlyOrderedServiceClass: u8,
 };
 
-pub const DOT11_POWER_MODE = extern enum(i32) {
+pub const DOT11_POWER_MODE = enum(i32) {
     unknown = 0,
     active = 1,
     powersave = 2,
@@ -1091,7 +1091,7 @@ pub const DOT11_SUPPORTED_PHY_TYPES = extern struct {
     dot11PHYType: [1]DOT11_PHY_TYPE,
 };
 
-pub const DOT11_TEMP_TYPE = extern enum(i32) {
+pub const DOT11_TEMP_TYPE = enum(i32) {
     unknown = 0,
     @"1" = 1,
     @"2" = 2,
@@ -1100,7 +1100,7 @@ pub const dot11_temp_type_unknown = DOT11_TEMP_TYPE.unknown;
 pub const dot11_temp_type_1 = DOT11_TEMP_TYPE.@"1";
 pub const dot11_temp_type_2 = DOT11_TEMP_TYPE.@"2";
 
-pub const DOT11_DIVERSITY_SUPPORT = extern enum(i32) {
+pub const DOT11_DIVERSITY_SUPPORT = enum(i32) {
     unknown = 0,
     fixedlist = 1,
     notsupported = 2,
@@ -1172,7 +1172,7 @@ pub const DOT11_MD_CAPABILITY_ENTRY_LIST = extern struct {
     dot11MDCapabilityEntry: [1]DOT11_MULTI_DOMAIN_CAPABILITY_ENTRY,
 };
 
-pub const DOT11_HOP_ALGO_ADOPTED = extern enum(i32) {
+pub const DOT11_HOP_ALGO_ADOPTED = enum(i32) {
     current = 0,
     hop_index = 1,
     hcc = 2,
@@ -1234,7 +1234,7 @@ pub const DOT11_RECV_SENSITIVITY_LIST = extern struct {
     dot11RecvSensitivity: [1]DOT11_RECV_SENSITIVITY,
 };
 
-pub const DOT11_AC_PARAM = extern enum(i32) {
+pub const DOT11_AC_PARAM = enum(i32) {
     BE = 0,
     BK = 1,
     VI = 2,
@@ -1491,7 +1491,7 @@ pub const DOT11_KEY_ALGO_BIP_GMAC_256 = extern struct {
     ucBIPGmac256Key: [1]u8,
 };
 
-pub const DOT11_DIRECTION = extern enum(i32) {
+pub const DOT11_DIRECTION = enum(i32) {
     INBOUND = 1,
     OUTBOUND = 2,
     BOTH = 3,
@@ -1510,7 +1510,7 @@ pub const DOT11_CIPHER_KEY_MAPPING_KEY_VALUE = extern struct {
     ucKey: [1]u8,
 };
 
-pub const DOT11_ASSOCIATION_STATE = extern enum(i32) {
+pub const DOT11_ASSOCIATION_STATE = enum(i32) {
     zero = 0,
     unauth_unassoc = 1,
     auth_unassoc = 2,
@@ -1772,7 +1772,7 @@ pub const DOT11_ENCAP_ENTRY = extern struct {
     usEncapType: u16,
 };
 
-pub const DOT11_DS_INFO = extern enum(i32) {
+pub const DOT11_DS_INFO = enum(i32) {
     CHANGED = 0,
     UNCHANGED = 1,
     UNKNOWN = 2,
@@ -2138,7 +2138,7 @@ pub const DOT11_WFD_CHANNEL = extern struct {
     ChannelNumber: u8,
 };
 
-pub const DOT11_WPS_CONFIG_METHOD = extern enum(i32) {
+pub const DOT11_WPS_CONFIG_METHOD = enum(i32) {
     NULL = 0,
     DISPLAY = 8,
     NFC_TAG = 32,
@@ -2155,7 +2155,7 @@ pub const DOT11_WPS_CONFIG_METHOD_PUSHBUTTON = DOT11_WPS_CONFIG_METHOD.PUSHBUTTO
 pub const DOT11_WPS_CONFIG_METHOD_KEYPAD = DOT11_WPS_CONFIG_METHOD.KEYPAD;
 pub const DOT11_WPS_CONFIG_METHOD_WFDS_DEFAULT = DOT11_WPS_CONFIG_METHOD.WFDS_DEFAULT;
 
-pub const DOT11_WPS_DEVICE_PASSWORD_ID = extern enum(i32) {
+pub const DOT11_WPS_DEVICE_PASSWORD_ID = enum(i32) {
     DEFAULT = 0,
     USER_SPECIFIED = 1,
     MACHINE_SPECIFIED = 2,
@@ -2349,7 +2349,7 @@ pub const DOT11_RECEIVED_PROVISION_DISCOVERY_RESPONSE_PARAMETERS = extern struct
     uIEsLength: u32,
 };
 
-pub const DOT11_ANQP_QUERY_RESULT = extern enum(i32) {
+pub const DOT11_ANQP_QUERY_RESULT = enum(i32) {
     success = 0,
     failure = 1,
     timed_out = 2,
@@ -2422,7 +2422,7 @@ pub const DOT11_WFD_SECONDARY_DEVICE_TYPE_LIST = extern struct {
     SecondaryDeviceTypes: [1]DOT11_WFD_DEVICE_TYPE,
 };
 
-pub const DOT11_WFD_DISCOVER_TYPE = extern enum(i32) {
+pub const DOT11_WFD_DISCOVER_TYPE = enum(i32) {
     scan_only = 1,
     find_only = 2,
     auto = 3,
@@ -2435,7 +2435,7 @@ pub const dot11_wfd_discover_type_auto = DOT11_WFD_DISCOVER_TYPE.auto;
 pub const dot11_wfd_discover_type_scan_social_channels = DOT11_WFD_DISCOVER_TYPE.scan_social_channels;
 pub const dot11_wfd_discover_type_forced = DOT11_WFD_DISCOVER_TYPE.forced;
 
-pub const DOT11_WFD_SCAN_TYPE = extern enum(i32) {
+pub const DOT11_WFD_SCAN_TYPE = enum(i32) {
     active = 1,
     passive = 2,
     auto = 3,
@@ -2617,7 +2617,7 @@ pub const DOT11_POWER_MGMT_AUTO_MODE_ENABLED_INFO = extern struct {
     bEnabled: u8,
 };
 
-pub const DOT11_POWER_MODE_REASON = extern enum(i32) {
+pub const DOT11_POWER_MODE_REASON = enum(i32) {
     no_change = 0,
     noncompliant_AP = 1,
     legacy_WFD_device = 2,
@@ -2666,7 +2666,7 @@ pub const DOT11_OFFLOAD_NETWORK_STATUS_PARAMETERS = extern struct {
     Status: i32,
 };
 
-pub const DOT11_MANUFACTURING_TEST_TYPE = extern enum(i32) {
+pub const DOT11_MANUFACTURING_TEST_TYPE = enum(i32) {
     unknown = 0,
     self_start = 1,
     self_query_result = 2,
@@ -2699,7 +2699,7 @@ pub const DOT11_MANUFACTURING_TEST = extern struct {
     ucBuffer: [1]u8,
 };
 
-pub const DOT11_MANUFACTURING_SELF_TEST_TYPE = extern enum(i32) {
+pub const DOT11_MANUFACTURING_SELF_TEST_TYPE = enum(i32) {
     INTERFACE = 1,
     RF_INTERFACE = 2,
     BT_COEXISTENCE = 3,
@@ -2727,7 +2727,7 @@ pub const DOT11_MANUFACTURING_SELF_TEST_QUERY_RESULTS = extern struct {
     ucBufferOut: [1]u8,
 };
 
-pub const DOT11_BAND = extern enum(i32) {
+pub const DOT11_BAND = enum(i32) {
     @"2p4g" = 1,
     @"4p9g" = 2,
     @"5g" = 3,
@@ -2778,7 +2778,7 @@ pub const DOT11_MANUFACTURING_TEST_SLEEP = extern struct {
     pvContext: *c_void,
 };
 
-pub const DOT11_MANUFACTURING_CALLBACK_TYPE = extern enum(i32) {
+pub const DOT11_MANUFACTURING_CALLBACK_TYPE = enum(i32) {
     unknown = 0,
     self_test_complete = 1,
     sleep_complete = 2,
@@ -2830,7 +2830,7 @@ pub const WLAN_RAW_DATA_LIST = extern struct {
     },
 };
 
-pub const WLAN_CONNECTION_MODE = extern enum(i32) {
+pub const WLAN_CONNECTION_MODE = enum(i32) {
     profile = 0,
     temporary_profile = 1,
     discovery_secure = 2,
@@ -2914,7 +2914,7 @@ pub const WLAN_BSS_LIST = extern struct {
     wlanBssEntries: [1]WLAN_BSS_ENTRY,
 };
 
-pub const WLAN_INTERFACE_STATE = extern enum(i32) {
+pub const WLAN_INTERFACE_STATE = enum(i32) {
     not_ready = 0,
     connected = 1,
     ad_hoc_network_formed = 2,
@@ -2933,7 +2933,7 @@ pub const wlan_interface_state_associating = WLAN_INTERFACE_STATE.associating;
 pub const wlan_interface_state_discovering = WLAN_INTERFACE_STATE.discovering;
 pub const wlan_interface_state_authenticating = WLAN_INTERFACE_STATE.authenticating;
 
-pub const WLAN_ADHOC_NETWORK_STATE = extern enum(i32) {
+pub const WLAN_ADHOC_NETWORK_STATE = enum(i32) {
     formed = 0,
     connected = 1,
 };
@@ -2972,7 +2972,7 @@ pub const WLAN_CONNECTION_ATTRIBUTES = extern struct {
     wlanSecurityAttributes: WLAN_SECURITY_ATTRIBUTES,
 };
 
-pub const DOT11_RADIO_STATE = extern enum(i32) {
+pub const DOT11_RADIO_STATE = enum(i32) {
     unknown = 0,
     on = 1,
     off = 2,
@@ -2992,7 +2992,7 @@ pub const WLAN_RADIO_STATE = extern struct {
     PhyRadioState: [64]WLAN_PHY_RADIO_STATE,
 };
 
-pub const WLAN_OPERATIONAL_STATE = extern enum(i32) {
+pub const WLAN_OPERATIONAL_STATE = enum(i32) {
     unknown = 0,
     off = 1,
     on = 2,
@@ -3005,7 +3005,7 @@ pub const wlan_operational_state_on = WLAN_OPERATIONAL_STATE.on;
 pub const wlan_operational_state_going_off = WLAN_OPERATIONAL_STATE.going_off;
 pub const wlan_operational_state_going_on = WLAN_OPERATIONAL_STATE.going_on;
 
-pub const WLAN_INTERFACE_TYPE = extern enum(i32) {
+pub const WLAN_INTERFACE_TYPE = enum(i32) {
     emulated_802_11 = 0,
     native_802_11 = 1,
     invalid = 2,
@@ -3063,7 +3063,7 @@ pub const DOT11_NETWORK_LIST = extern struct {
     Network: [1]DOT11_NETWORK,
 };
 
-pub const WLAN_POWER_SETTING = extern enum(i32) {
+pub const WLAN_POWER_SETTING = enum(i32) {
     no_saving = 0,
     low_saving = 1,
     medium_saving = 2,
@@ -3126,7 +3126,7 @@ pub const WLAN_DEVICE_SERVICE_NOTIFICATION_DATA = extern struct {
     DataBlob: [1]u8,
 };
 
-pub const WLAN_NOTIFICATION_ACM = extern enum(i32) {
+pub const WLAN_NOTIFICATION_ACM = enum(i32) {
     start = 0,
     autoconf_enabled = 1,
     autoconf_disabled = 2,
@@ -3187,7 +3187,7 @@ pub const wlan_notification_acm_scan_list_refresh = WLAN_NOTIFICATION_ACM.scan_l
 pub const wlan_notification_acm_operational_state_change = WLAN_NOTIFICATION_ACM.operational_state_change;
 pub const wlan_notification_acm_end = WLAN_NOTIFICATION_ACM.end;
 
-pub const WLAN_NOTIFICATION_MSM = extern enum(i32) {
+pub const WLAN_NOTIFICATION_MSM = enum(i32) {
     start = 0,
     associating = 1,
     associated = 2,
@@ -3226,7 +3226,7 @@ pub const wlan_notification_msm_link_degraded = WLAN_NOTIFICATION_MSM.link_degra
 pub const wlan_notification_msm_link_improved = WLAN_NOTIFICATION_MSM.link_improved;
 pub const wlan_notification_msm_end = WLAN_NOTIFICATION_MSM.end;
 
-pub const WLAN_NOTIFICATION_SECURITY = extern enum(i32) {
+pub const WLAN_NOTIFICATION_SECURITY = enum(i32) {
     start = 0,
     end = 1,
 };
@@ -3238,7 +3238,7 @@ pub const WLAN_NOTIFICATION_CALLBACK = fn(
     param1: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WLAN_OPCODE_VALUE_TYPE = extern enum(i32) {
+pub const WLAN_OPCODE_VALUE_TYPE = enum(i32) {
     query_only = 0,
     set_by_group_policy = 1,
     set_by_user = 2,
@@ -3249,7 +3249,7 @@ pub const wlan_opcode_value_type_set_by_group_policy = WLAN_OPCODE_VALUE_TYPE.se
 pub const wlan_opcode_value_type_set_by_user = WLAN_OPCODE_VALUE_TYPE.set_by_user;
 pub const wlan_opcode_value_type_invalid = WLAN_OPCODE_VALUE_TYPE.invalid;
 
-pub const WLAN_INTF_OPCODE = extern enum(i32) {
+pub const WLAN_INTF_OPCODE = enum(i32) {
     autoconf_start = 0,
     autoconf_enabled = 1,
     background_scan_enabled = 2,
@@ -3304,7 +3304,7 @@ pub const wlan_intf_opcode_security_end = WLAN_INTF_OPCODE.security_end;
 pub const wlan_intf_opcode_ihv_start = WLAN_INTF_OPCODE.ihv_start;
 pub const wlan_intf_opcode_ihv_end = WLAN_INTF_OPCODE.ihv_end;
 
-pub const WLAN_AUTOCONF_OPCODE = extern enum(i32) {
+pub const WLAN_AUTOCONF_OPCODE = enum(i32) {
     start = 0,
     show_denied_networks = 1,
     power_setting = 2,
@@ -3323,14 +3323,14 @@ pub const wlan_autoconf_opcode_block_period = WLAN_AUTOCONF_OPCODE.block_period;
 pub const wlan_autoconf_opcode_allow_virtual_station_extensibility = WLAN_AUTOCONF_OPCODE.allow_virtual_station_extensibility;
 pub const wlan_autoconf_opcode_end = WLAN_AUTOCONF_OPCODE.end;
 
-pub const WLAN_IHV_CONTROL_TYPE = extern enum(i32) {
+pub const WLAN_IHV_CONTROL_TYPE = enum(i32) {
     service = 0,
     driver = 1,
 };
 pub const wlan_ihv_control_type_service = WLAN_IHV_CONTROL_TYPE.service;
 pub const wlan_ihv_control_type_driver = WLAN_IHV_CONTROL_TYPE.driver;
 
-pub const WLAN_FILTER_LIST_TYPE = extern enum(i32) {
+pub const WLAN_FILTER_LIST_TYPE = enum(i32) {
     gp_permit = 0,
     gp_deny = 1,
     user_permit = 2,
@@ -3387,7 +3387,7 @@ pub const WLAN_STATISTICS = extern struct {
     PhyCounters: [1]WLAN_PHY_FRAME_STATISTICS,
 };
 
-pub const WLAN_SECURABLE_OBJECT = extern enum(i32) {
+pub const WLAN_SECURABLE_OBJECT = enum(i32) {
     wlan_secure_permit_list = 0,
     wlan_secure_deny_list = 1,
     wlan_secure_ac_enabled = 2,
@@ -3432,7 +3432,7 @@ pub const WLAN_DEVICE_SERVICE_GUID_LIST = extern struct {
     DeviceService: [1]Guid,
 };
 
-pub const WFD_ROLE_TYPE = extern enum(i32) {
+pub const WFD_ROLE_TYPE = enum(i32) {
     NONE = 0,
     DEVICE = 1,
     GROUP_OWNER = 2,
@@ -3450,7 +3450,7 @@ pub const WFD_GROUP_ID = extern struct {
     GroupSSID: DOT11_SSID,
 };
 
-pub const WL_DISPLAY_PAGES = extern enum(i32) {
+pub const WL_DISPLAY_PAGES = enum(i32) {
     ConnectionPage = 0,
     SecurityPage = 1,
     AdvPage = 2,
@@ -3459,7 +3459,7 @@ pub const WLConnectionPage = WL_DISPLAY_PAGES.ConnectionPage;
 pub const WLSecurityPage = WL_DISPLAY_PAGES.SecurityPage;
 pub const WLAdvPage = WL_DISPLAY_PAGES.AdvPage;
 
-pub const WLAN_HOSTED_NETWORK_STATE = extern enum(i32) {
+pub const WLAN_HOSTED_NETWORK_STATE = enum(i32) {
     unavailable = 0,
     idle = 1,
     active = 2,
@@ -3468,7 +3468,7 @@ pub const wlan_hosted_network_unavailable = WLAN_HOSTED_NETWORK_STATE.unavailabl
 pub const wlan_hosted_network_idle = WLAN_HOSTED_NETWORK_STATE.idle;
 pub const wlan_hosted_network_active = WLAN_HOSTED_NETWORK_STATE.active;
 
-pub const WLAN_HOSTED_NETWORK_REASON = extern enum(i32) {
+pub const WLAN_HOSTED_NETWORK_REASON = enum(i32) {
     success = 0,
     unspecified = 1,
     bad_parameters = 2,
@@ -3529,7 +3529,7 @@ pub const wlan_hosted_network_reason_properties_change = WLAN_HOSTED_NETWORK_REA
 pub const wlan_hosted_network_reason_virtual_station_blocking_use = WLAN_HOSTED_NETWORK_REASON.virtual_station_blocking_use;
 pub const wlan_hosted_network_reason_service_available_on_virtual_station = WLAN_HOSTED_NETWORK_REASON.service_available_on_virtual_station;
 
-pub const WLAN_HOSTED_NETWORK_PEER_AUTH_STATE = extern enum(i32) {
+pub const WLAN_HOSTED_NETWORK_PEER_AUTH_STATE = enum(i32) {
     invalid = 0,
     authenticated = 1,
 };
@@ -3546,7 +3546,7 @@ pub const WLAN_HOSTED_NETWORK_RADIO_STATE = extern struct {
     dot11HardwareRadioState: DOT11_RADIO_STATE,
 };
 
-pub const WLAN_HOSTED_NETWORK_NOTIFICATION_CODE = extern enum(i32) {
+pub const WLAN_HOSTED_NETWORK_NOTIFICATION_CODE = enum(i32) {
     state_change = 4096,
     peer_state_change = 4097,
     radio_state_change = 4098,
@@ -3567,7 +3567,7 @@ pub const WLAN_HOSTED_NETWORK_DATA_PEER_STATE_CHANGE = extern struct {
     PeerStateChangeReason: WLAN_HOSTED_NETWORK_REASON,
 };
 
-pub const WLAN_HOSTED_NETWORK_OPCODE = extern enum(i32) {
+pub const WLAN_HOSTED_NETWORK_OPCODE = enum(i32) {
     connection_settings = 0,
     security_settings = 1,
     station_profile = 2,
@@ -3606,7 +3606,7 @@ pub const WFD_OPEN_SESSION_COMPLETE_CALLBACK = fn(
     dwReasonCode: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const ONEX_AUTH_IDENTITY = extern enum(i32) {
+pub const ONEX_AUTH_IDENTITY = enum(i32) {
     None = 0,
     Machine = 1,
     User = 2,
@@ -3621,7 +3621,7 @@ pub const OneXAuthIdentityExplicitUser = ONEX_AUTH_IDENTITY.ExplicitUser;
 pub const OneXAuthIdentityGuest = ONEX_AUTH_IDENTITY.Guest;
 pub const OneXAuthIdentityInvalid = ONEX_AUTH_IDENTITY.Invalid;
 
-pub const ONEX_AUTH_STATUS = extern enum(i32) {
+pub const ONEX_AUTH_STATUS = enum(i32) {
     NotStarted = 0,
     InProgress = 1,
     NoAuthenticatorFound = 2,
@@ -3636,7 +3636,7 @@ pub const OneXAuthSuccess = ONEX_AUTH_STATUS.Success;
 pub const OneXAuthFailure = ONEX_AUTH_STATUS.Failure;
 pub const OneXAuthInvalid = ONEX_AUTH_STATUS.Invalid;
 
-pub const ONEX_REASON_CODE = extern enum(i32) {
+pub const ONEX_REASON_CODE = enum(i32) {
     REASON_CODE_SUCCESS = 0,
     REASON_START = 327680,
     UNABLE_TO_IDENTIFY_USER = 327681,
@@ -3683,20 +3683,20 @@ pub const ONEX_PROFILE_INVALID_EXPLICIT_CREDENTIALS = ONEX_REASON_CODE.PROFILE_I
 pub const ONEX_PROFILE_EXPIRED_EXPLICIT_CREDENTIALS = ONEX_REASON_CODE.PROFILE_EXPIRED_EXPLICIT_CREDENTIALS;
 pub const ONEX_UI_NOT_PERMITTED = ONEX_REASON_CODE.UI_NOT_PERMITTED;
 
-pub const ONEX_NOTIFICATION_TYPE = extern enum(i32) {
+pub const ONEX_NOTIFICATION_TYPE = enum(i32) {
     PublicNotificationBase = 0,
     NotificationTypeResultUpdate = 1,
     NotificationTypeAuthRestarted = 2,
     NotificationTypeEventInvalid = 3,
-    NumNotifications = 3,
+    // NumNotifications = 3, this enum value conflicts with NotificationTypeEventInvalid
 };
 pub const OneXPublicNotificationBase = ONEX_NOTIFICATION_TYPE.PublicNotificationBase;
 pub const OneXNotificationTypeResultUpdate = ONEX_NOTIFICATION_TYPE.NotificationTypeResultUpdate;
 pub const OneXNotificationTypeAuthRestarted = ONEX_NOTIFICATION_TYPE.NotificationTypeAuthRestarted;
 pub const OneXNotificationTypeEventInvalid = ONEX_NOTIFICATION_TYPE.NotificationTypeEventInvalid;
-pub const OneXNumNotifications = ONEX_NOTIFICATION_TYPE.NumNotifications;
+pub const OneXNumNotifications = ONEX_NOTIFICATION_TYPE.NotificationTypeEventInvalid;
 
-pub const ONEX_AUTH_RESTART_REASON = extern enum(i32) {
+pub const ONEX_AUTH_RESTART_REASON = enum(i32) {
     PeerInitiated = 0,
     MsmInitiated = 1,
     OneXHeldStateTimeout = 2,
@@ -3754,7 +3754,7 @@ pub const ONEX_STATUS = extern struct {
     dwError: u32,
 };
 
-pub const ONEX_EAP_METHOD_BACKEND_SUPPORT = extern enum(i32) {
+pub const ONEX_EAP_METHOD_BACKEND_SUPPORT = enum(i32) {
     SupportUnknown = 0,
     Supported = 1,
     Unsupported = 2,
@@ -3782,7 +3782,7 @@ pub const ONEX_USER_INFO = extern struct {
 const CLSID_Dot11AdHocManager_Value = @import("../zig.zig").Guid.initString("dd06a84f-83bd-4d01-8ab9-2389fea0869e");
 pub const CLSID_Dot11AdHocManager = &CLSID_Dot11AdHocManager_Value;
 
-pub const DOT11_ADHOC_CIPHER_ALGORITHM = extern enum(i32) {
+pub const DOT11_ADHOC_CIPHER_ALGORITHM = enum(i32) {
     INVALID = -1,
     NONE = 0,
     CCMP = 4,
@@ -3793,7 +3793,7 @@ pub const DOT11_ADHOC_CIPHER_ALGO_NONE = DOT11_ADHOC_CIPHER_ALGORITHM.NONE;
 pub const DOT11_ADHOC_CIPHER_ALGO_CCMP = DOT11_ADHOC_CIPHER_ALGORITHM.CCMP;
 pub const DOT11_ADHOC_CIPHER_ALGO_WEP = DOT11_ADHOC_CIPHER_ALGORITHM.WEP;
 
-pub const DOT11_ADHOC_AUTH_ALGORITHM = extern enum(i32) {
+pub const DOT11_ADHOC_AUTH_ALGORITHM = enum(i32) {
     INVALID = -1,
     @"80211_OPEN" = 1,
     RSNA_PSK = 7,
@@ -3802,7 +3802,7 @@ pub const DOT11_ADHOC_AUTH_ALGO_INVALID = DOT11_ADHOC_AUTH_ALGORITHM.INVALID;
 pub const DOT11_ADHOC_AUTH_ALGO_80211_OPEN = DOT11_ADHOC_AUTH_ALGORITHM.@"80211_OPEN";
 pub const DOT11_ADHOC_AUTH_ALGO_RSNA_PSK = DOT11_ADHOC_AUTH_ALGORITHM.RSNA_PSK;
 
-pub const DOT11_ADHOC_NETWORK_CONNECTION_STATUS = extern enum(i32) {
+pub const DOT11_ADHOC_NETWORK_CONNECTION_STATUS = enum(i32) {
     INVALID = 0,
     DISCONNECTED = 11,
     CONNECTING = 12,
@@ -3815,7 +3815,7 @@ pub const DOT11_ADHOC_NETWORK_CONNECTION_STATUS_CONNECTING = DOT11_ADHOC_NETWORK
 pub const DOT11_ADHOC_NETWORK_CONNECTION_STATUS_CONNECTED = DOT11_ADHOC_NETWORK_CONNECTION_STATUS.CONNECTED;
 pub const DOT11_ADHOC_NETWORK_CONNECTION_STATUS_FORMED = DOT11_ADHOC_NETWORK_CONNECTION_STATUS.FORMED;
 
-pub const DOT11_ADHOC_CONNECT_FAIL_REASON = extern enum(i32) {
+pub const DOT11_ADHOC_CONNECT_FAIL_REASON = enum(i32) {
     DOMAIN_MISMATCH = 0,
     PASSPHRASE_MISMATCH = 1,
     OTHER = 2,

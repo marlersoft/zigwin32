@@ -96,7 +96,7 @@ pub const MAXVENDORINFO = @as(u32, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (32)
 //--------------------------------------------------------------------------------
-pub const SNMP_PDU_TYPE = extern enum(u32) {
+pub const SNMP_PDU_TYPE = enum(u32) {
     GET = 160,
     GETNEXT = 161,
     RESPONSE = 162,
@@ -111,7 +111,7 @@ pub const SNMP_PDU_SET = SNMP_PDU_TYPE.SET;
 pub const SNMP_PDU_GETBULK = SNMP_PDU_TYPE.GETBULK;
 pub const SNMP_PDU_TRAP = SNMP_PDU_TYPE.TRAP;
 
-pub const SNMP_EXTENSION_REQUEST_TYPE = extern enum(u32) {
+pub const SNMP_EXTENSION_REQUEST_TYPE = enum(u32) {
     GET = 160,
     GET_NEXT = 161,
     SET_TEST = 224,
@@ -126,7 +126,7 @@ pub const SNMP_EXTENSION_SET_COMMIT = SNMP_EXTENSION_REQUEST_TYPE.SET_COMMIT;
 pub const SNMP_EXTENSION_SET_UNDO = SNMP_EXTENSION_REQUEST_TYPE.SET_UNDO;
 pub const SNMP_EXTENSION_SET_CLEANUP = SNMP_EXTENSION_REQUEST_TYPE.SET_CLEANUP;
 
-pub const SNMP_API_TRANSLATE_MODE = extern enum(u32) {
+pub const SNMP_API_TRANSLATE_MODE = enum(u32) {
     TRANSLATED = 0,
     UNTRANSLATED_V1 = 1,
     UNTRANSLATED_V2 = 2,
@@ -135,7 +135,7 @@ pub const SNMPAPI_TRANSLATED = SNMP_API_TRANSLATE_MODE.TRANSLATED;
 pub const SNMPAPI_UNTRANSLATED_V1 = SNMP_API_TRANSLATE_MODE.UNTRANSLATED_V1;
 pub const SNMPAPI_UNTRANSLATED_V2 = SNMP_API_TRANSLATE_MODE.UNTRANSLATED_V2;
 
-pub const SNMP_GENERICTRAP = extern enum(u32) {
+pub const SNMP_GENERICTRAP = enum(u32) {
     COLDSTART = 0,
     WARMSTART = 1,
     LINKDOWN = 2,
@@ -152,7 +152,7 @@ pub const SNMP_GENERICTRAP_AUTHFAILURE = SNMP_GENERICTRAP.AUTHFAILURE;
 pub const SNMP_GENERICTRAP_EGPNEIGHLOSS = SNMP_GENERICTRAP.EGPNEIGHLOSS;
 pub const SNMP_GENERICTRAP_ENTERSPECIFIC = SNMP_GENERICTRAP.ENTERSPECIFIC;
 
-pub const SNMP_ERROR_STATUS = extern enum(u32) {
+pub const SNMP_ERROR_STATUS = enum(u32) {
     NOERROR = 0,
     TOOBIG = 1,
     NOSUCHNAME = 2,
@@ -193,14 +193,14 @@ pub const SNMP_ERRORSTATUS_AUTHORIZATIONERROR = SNMP_ERROR_STATUS.AUTHORIZATIONE
 pub const SNMP_ERRORSTATUS_NOTWRITABLE = SNMP_ERROR_STATUS.NOTWRITABLE;
 pub const SNMP_ERRORSTATUS_INCONSISTENTNAME = SNMP_ERROR_STATUS.INCONSISTENTNAME;
 
-pub const SNMP_STATUS = extern enum(u32) {
+pub const SNMP_STATUS = enum(u32) {
     N = 1,
     FF = 0,
 };
 pub const SNMPAPI_ON = SNMP_STATUS.N;
 pub const SNMPAPI_OFF = SNMP_STATUS.FF;
 
-pub const SNMP_OUTPUT_LOG_TYPE = extern enum(u32) {
+pub const SNMP_OUTPUT_LOG_TYPE = enum(u32) {
     CONSOLE = 1,
     LOGFILE = 2,
     DEBUGGER = 8,
@@ -209,7 +209,7 @@ pub const SNMP_OUTPUT_TO_CONSOLE = SNMP_OUTPUT_LOG_TYPE.CONSOLE;
 pub const SNMP_OUTPUT_TO_LOGFILE = SNMP_OUTPUT_LOG_TYPE.LOGFILE;
 pub const SNMP_OUTPUT_TO_DEBUGGER = SNMP_OUTPUT_LOG_TYPE.DEBUGGER;
 
-pub const SNMP_LOG = extern enum(u32) {
+pub const SNMP_LOG = enum(u32) {
     SILENT = 0,
     FATAL = 1,
     ERROR = 2,
@@ -224,7 +224,7 @@ pub const SNMP_LOG_WARNING = SNMP_LOG.WARNING;
 pub const SNMP_LOG_TRACE = SNMP_LOG.TRACE;
 pub const SNMP_LOG_VERBOSE = SNMP_LOG.VERBOSE;
 
-pub const SNMP_ERROR = extern enum(u32) {
+pub const SNMP_ERROR = enum(u32) {
     NOERROR = 0,
     TOOBIG = 1,
     NOSUCHNAME = 2,

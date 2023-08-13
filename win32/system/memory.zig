@@ -28,7 +28,7 @@ pub const HEAP_SUMMARY = extern struct {
     cbMaxReserve: usize,
 };
 
-pub const MEMORY_RESOURCE_NOTIFICATION_TYPE = extern enum(i32) {
+pub const MEMORY_RESOURCE_NOTIFICATION_TYPE = enum(i32) {
     LowMemoryResourceNotification = 0,
     HighMemoryResourceNotification = 1,
 };
@@ -43,7 +43,7 @@ pub const WIN32_MEMORY_RANGE_ENTRY = extern struct {
 pub const PBAD_MEMORY_CALLBACK_ROUTINE = fn(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const OFFER_PRIORITY = extern enum(i32) {
+pub const OFFER_PRIORITY = enum(i32) {
     VeryLow = 1,
     Low = 2,
     BelowNormal = 3,
@@ -54,7 +54,7 @@ pub const VmOfferPriorityLow = OFFER_PRIORITY.Low;
 pub const VmOfferPriorityBelowNormal = OFFER_PRIORITY.BelowNormal;
 pub const VmOfferPriorityNormal = OFFER_PRIORITY.Normal;
 
-pub const WIN32_MEMORY_INFORMATION_CLASS = extern enum(i32) {
+pub const WIN32_MEMORY_INFORMATION_CLASS = enum(i32) {
     o = 0,
 };
 pub const MemoryRegionInfo = WIN32_MEMORY_INFORMATION_CLASS.o;
@@ -72,7 +72,7 @@ pub const WIN32_MEMORY_REGION_INFORMATION = extern struct {
     CommitSize: usize,
 };
 
-pub const FILE_MAP = extern enum(u32) {
+pub const FILE_MAP = enum(u32) {
     WRITE = 2,
     READ = 4,
     ALL_ACCESS = 983071,
@@ -113,7 +113,7 @@ pub const FILE_MAP_RESERVE = FILE_MAP.RESERVE;
 pub const FILE_MAP_TARGETS_INVALID = FILE_MAP.TARGETS_INVALID;
 pub const FILE_MAP_LARGE_PAGES = FILE_MAP.LARGE_PAGES;
 
-pub const HEAP_FLAGS = extern enum(u32) {
+pub const HEAP_FLAGS = enum(u32) {
     NONE = 0,
     NO_SERIALIZE = 1,
     GROWABLE = 2,
@@ -190,7 +190,7 @@ pub const HEAP_TAG_SHIFT = HEAP_FLAGS.TAG_SHIFT;
 pub const HEAP_CREATE_SEGMENT_HEAP = HEAP_FLAGS.CREATE_SEGMENT_HEAP;
 pub const HEAP_CREATE_HARDENED = HEAP_FLAGS.CREATE_HARDENED;
 
-pub const PAGE_TYPE = extern enum(u32) {
+pub const PAGE_TYPE = enum(u32) {
     PAGE_NOACCESS = 1,
     PAGE_READONLY = 2,
     PAGE_READWRITE = 4,
@@ -211,24 +211,24 @@ pub const PAGE_TYPE = extern enum(u32) {
     PAGE_GRAPHICS_COHERENT = 131072,
     PAGE_GRAPHICS_NOCACHE = 262144,
     PAGE_ENCLAVE_THREAD_CONTROL = 2147483648,
-    PAGE_REVERT_TO_FILE_MAP = 2147483648,
+    // PAGE_REVERT_TO_FILE_MAP = 2147483648, this enum value conflicts with PAGE_ENCLAVE_THREAD_CONTROL
     PAGE_TARGETS_NO_UPDATE = 1073741824,
-    PAGE_TARGETS_INVALID = 1073741824,
+    // PAGE_TARGETS_INVALID = 1073741824, this enum value conflicts with PAGE_TARGETS_NO_UPDATE
     PAGE_ENCLAVE_UNVALIDATED = 536870912,
     PAGE_ENCLAVE_MASK = 268435456,
-    PAGE_ENCLAVE_DECOMMIT = 268435456,
+    // PAGE_ENCLAVE_DECOMMIT = 268435456, this enum value conflicts with PAGE_ENCLAVE_MASK
     PAGE_ENCLAVE_SS_FIRST = 268435457,
     PAGE_ENCLAVE_SS_REST = 268435458,
-    SEC_PARTITION_OWNER_HANDLE = 262144,
+    // SEC_PARTITION_OWNER_HANDLE = 262144, this enum value conflicts with PAGE_GRAPHICS_NOCACHE
     SEC_64K_PAGES = 524288,
     SEC_FILE = 8388608,
     SEC_IMAGE = 16777216,
     SEC_PROTECTED_IMAGE = 33554432,
     SEC_RESERVE = 67108864,
     SEC_COMMIT = 134217728,
-    SEC_NOCACHE = 268435456,
-    SEC_WRITECOMBINE = 1073741824,
-    SEC_LARGE_PAGES = 2147483648,
+    // SEC_NOCACHE = 268435456, this enum value conflicts with PAGE_ENCLAVE_MASK
+    // SEC_WRITECOMBINE = 1073741824, this enum value conflicts with PAGE_TARGETS_NO_UPDATE
+    // SEC_LARGE_PAGES = 2147483648, this enum value conflicts with PAGE_ENCLAVE_THREAD_CONTROL
     SEC_IMAGE_NO_EXECUTE = 285212672,
     _,
     pub fn initFlags(o: struct {
@@ -252,24 +252,17 @@ pub const PAGE_TYPE = extern enum(u32) {
         PAGE_GRAPHICS_COHERENT: u1 = 0,
         PAGE_GRAPHICS_NOCACHE: u1 = 0,
         PAGE_ENCLAVE_THREAD_CONTROL: u1 = 0,
-        PAGE_REVERT_TO_FILE_MAP: u1 = 0,
         PAGE_TARGETS_NO_UPDATE: u1 = 0,
-        PAGE_TARGETS_INVALID: u1 = 0,
         PAGE_ENCLAVE_UNVALIDATED: u1 = 0,
         PAGE_ENCLAVE_MASK: u1 = 0,
-        PAGE_ENCLAVE_DECOMMIT: u1 = 0,
         PAGE_ENCLAVE_SS_FIRST: u1 = 0,
         PAGE_ENCLAVE_SS_REST: u1 = 0,
-        SEC_PARTITION_OWNER_HANDLE: u1 = 0,
         SEC_64K_PAGES: u1 = 0,
         SEC_FILE: u1 = 0,
         SEC_IMAGE: u1 = 0,
         SEC_PROTECTED_IMAGE: u1 = 0,
         SEC_RESERVE: u1 = 0,
         SEC_COMMIT: u1 = 0,
-        SEC_NOCACHE: u1 = 0,
-        SEC_WRITECOMBINE: u1 = 0,
-        SEC_LARGE_PAGES: u1 = 0,
         SEC_IMAGE_NO_EXECUTE: u1 = 0,
     }) PAGE_TYPE {
         return @intToEnum(PAGE_TYPE,
@@ -293,24 +286,17 @@ pub const PAGE_TYPE = extern enum(u32) {
             | (if (o.PAGE_GRAPHICS_COHERENT == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_COHERENT) else 0)
             | (if (o.PAGE_GRAPHICS_NOCACHE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_NOCACHE) else 0)
             | (if (o.PAGE_ENCLAVE_THREAD_CONTROL == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_THREAD_CONTROL) else 0)
-            | (if (o.PAGE_REVERT_TO_FILE_MAP == 1) @enumToInt(PAGE_TYPE.PAGE_REVERT_TO_FILE_MAP) else 0)
             | (if (o.PAGE_TARGETS_NO_UPDATE == 1) @enumToInt(PAGE_TYPE.PAGE_TARGETS_NO_UPDATE) else 0)
-            | (if (o.PAGE_TARGETS_INVALID == 1) @enumToInt(PAGE_TYPE.PAGE_TARGETS_INVALID) else 0)
             | (if (o.PAGE_ENCLAVE_UNVALIDATED == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_UNVALIDATED) else 0)
             | (if (o.PAGE_ENCLAVE_MASK == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_MASK) else 0)
-            | (if (o.PAGE_ENCLAVE_DECOMMIT == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_DECOMMIT) else 0)
             | (if (o.PAGE_ENCLAVE_SS_FIRST == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_SS_FIRST) else 0)
             | (if (o.PAGE_ENCLAVE_SS_REST == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_SS_REST) else 0)
-            | (if (o.SEC_PARTITION_OWNER_HANDLE == 1) @enumToInt(PAGE_TYPE.SEC_PARTITION_OWNER_HANDLE) else 0)
             | (if (o.SEC_64K_PAGES == 1) @enumToInt(PAGE_TYPE.SEC_64K_PAGES) else 0)
             | (if (o.SEC_FILE == 1) @enumToInt(PAGE_TYPE.SEC_FILE) else 0)
             | (if (o.SEC_IMAGE == 1) @enumToInt(PAGE_TYPE.SEC_IMAGE) else 0)
             | (if (o.SEC_PROTECTED_IMAGE == 1) @enumToInt(PAGE_TYPE.SEC_PROTECTED_IMAGE) else 0)
             | (if (o.SEC_RESERVE == 1) @enumToInt(PAGE_TYPE.SEC_RESERVE) else 0)
             | (if (o.SEC_COMMIT == 1) @enumToInt(PAGE_TYPE.SEC_COMMIT) else 0)
-            | (if (o.SEC_NOCACHE == 1) @enumToInt(PAGE_TYPE.SEC_NOCACHE) else 0)
-            | (if (o.SEC_WRITECOMBINE == 1) @enumToInt(PAGE_TYPE.SEC_WRITECOMBINE) else 0)
-            | (if (o.SEC_LARGE_PAGES == 1) @enumToInt(PAGE_TYPE.SEC_LARGE_PAGES) else 0)
             | (if (o.SEC_IMAGE_NO_EXECUTE == 1) @enumToInt(PAGE_TYPE.SEC_IMAGE_NO_EXECUTE) else 0)
         );
     }
@@ -335,27 +321,27 @@ pub const PAGE_GRAPHICS_EXECUTE_READWRITE = PAGE_TYPE.PAGE_GRAPHICS_EXECUTE_READ
 pub const PAGE_GRAPHICS_COHERENT = PAGE_TYPE.PAGE_GRAPHICS_COHERENT;
 pub const PAGE_GRAPHICS_NOCACHE = PAGE_TYPE.PAGE_GRAPHICS_NOCACHE;
 pub const PAGE_ENCLAVE_THREAD_CONTROL = PAGE_TYPE.PAGE_ENCLAVE_THREAD_CONTROL;
-pub const PAGE_REVERT_TO_FILE_MAP = PAGE_TYPE.PAGE_REVERT_TO_FILE_MAP;
+pub const PAGE_REVERT_TO_FILE_MAP = PAGE_TYPE.PAGE_ENCLAVE_THREAD_CONTROL;
 pub const PAGE_TARGETS_NO_UPDATE = PAGE_TYPE.PAGE_TARGETS_NO_UPDATE;
-pub const PAGE_TARGETS_INVALID = PAGE_TYPE.PAGE_TARGETS_INVALID;
+pub const PAGE_TARGETS_INVALID = PAGE_TYPE.PAGE_TARGETS_NO_UPDATE;
 pub const PAGE_ENCLAVE_UNVALIDATED = PAGE_TYPE.PAGE_ENCLAVE_UNVALIDATED;
 pub const PAGE_ENCLAVE_MASK = PAGE_TYPE.PAGE_ENCLAVE_MASK;
-pub const PAGE_ENCLAVE_DECOMMIT = PAGE_TYPE.PAGE_ENCLAVE_DECOMMIT;
+pub const PAGE_ENCLAVE_DECOMMIT = PAGE_TYPE.PAGE_ENCLAVE_MASK;
 pub const PAGE_ENCLAVE_SS_FIRST = PAGE_TYPE.PAGE_ENCLAVE_SS_FIRST;
 pub const PAGE_ENCLAVE_SS_REST = PAGE_TYPE.PAGE_ENCLAVE_SS_REST;
-pub const SEC_PARTITION_OWNER_HANDLE = PAGE_TYPE.SEC_PARTITION_OWNER_HANDLE;
+pub const SEC_PARTITION_OWNER_HANDLE = PAGE_TYPE.PAGE_GRAPHICS_NOCACHE;
 pub const SEC_64K_PAGES = PAGE_TYPE.SEC_64K_PAGES;
 pub const SEC_FILE = PAGE_TYPE.SEC_FILE;
 pub const SEC_IMAGE = PAGE_TYPE.SEC_IMAGE;
 pub const SEC_PROTECTED_IMAGE = PAGE_TYPE.SEC_PROTECTED_IMAGE;
 pub const SEC_RESERVE = PAGE_TYPE.SEC_RESERVE;
 pub const SEC_COMMIT = PAGE_TYPE.SEC_COMMIT;
-pub const SEC_NOCACHE = PAGE_TYPE.SEC_NOCACHE;
-pub const SEC_WRITECOMBINE = PAGE_TYPE.SEC_WRITECOMBINE;
-pub const SEC_LARGE_PAGES = PAGE_TYPE.SEC_LARGE_PAGES;
+pub const SEC_NOCACHE = PAGE_TYPE.PAGE_ENCLAVE_MASK;
+pub const SEC_WRITECOMBINE = PAGE_TYPE.PAGE_TARGETS_NO_UPDATE;
+pub const SEC_LARGE_PAGES = PAGE_TYPE.PAGE_ENCLAVE_THREAD_CONTROL;
 pub const SEC_IMAGE_NO_EXECUTE = PAGE_TYPE.SEC_IMAGE_NO_EXECUTE;
 
-pub const UNMAP_VIEW_OF_FILE_FLAGS = extern enum(u32) {
+pub const UNMAP_VIEW_OF_FILE_FLAGS = enum(u32) {
     UNMAP_NONE = 0,
     UNMAP_WITH_TRANSIENT_BOOST = 1,
     PRESERVE_PLACEHOLDER = 2,
@@ -364,14 +350,14 @@ pub const MEM_UNMAP_NONE = UNMAP_VIEW_OF_FILE_FLAGS.UNMAP_NONE;
 pub const MEM_UNMAP_WITH_TRANSIENT_BOOST = UNMAP_VIEW_OF_FILE_FLAGS.UNMAP_WITH_TRANSIENT_BOOST;
 pub const MEM_PRESERVE_PLACEHOLDER = UNMAP_VIEW_OF_FILE_FLAGS.PRESERVE_PLACEHOLDER;
 
-pub const VIRTUAL_FREE_TYPE = extern enum(u32) {
+pub const VIRTUAL_FREE_TYPE = enum(u32) {
     DECOMMIT = 16384,
     RELEASE = 32768,
 };
 pub const MEM_DECOMMIT = VIRTUAL_FREE_TYPE.DECOMMIT;
 pub const MEM_RELEASE = VIRTUAL_FREE_TYPE.RELEASE;
 
-pub const VIRTUAL_ALLOCATION_TYPE = extern enum(u32) {
+pub const VIRTUAL_ALLOCATION_TYPE = enum(u32) {
     COMMIT = 4096,
     RESERVE = 8192,
     RESET = 524288,
@@ -412,32 +398,26 @@ pub const MEM_LARGE_PAGES = VIRTUAL_ALLOCATION_TYPE.LARGE_PAGES;
 pub const MEM_RESERVE_PLACEHOLDER = VIRTUAL_ALLOCATION_TYPE.RESERVE_PLACEHOLDER;
 pub const MEM_FREE = VIRTUAL_ALLOCATION_TYPE.FREE;
 
-pub const LOCAL_ALLOC_FLAGS = extern enum(u32) {
+pub const LOCAL_ALLOC_FLAGS = enum(u32) {
     LHND = 66,
     LMEM_FIXED = 0,
     LMEM_MOVEABLE = 2,
     LMEM_ZEROINIT = 64,
-    LPTR = 64,
-    NONZEROLHND = 2,
-    NONZEROLPTR = 0,
+    // LPTR = 64, this enum value conflicts with LMEM_ZEROINIT
+    // NONZEROLHND = 2, this enum value conflicts with LMEM_MOVEABLE
+    // NONZEROLPTR = 0, this enum value conflicts with LMEM_FIXED
     _,
     pub fn initFlags(o: struct {
         LHND: u1 = 0,
         LMEM_FIXED: u1 = 0,
         LMEM_MOVEABLE: u1 = 0,
         LMEM_ZEROINIT: u1 = 0,
-        LPTR: u1 = 0,
-        NONZEROLHND: u1 = 0,
-        NONZEROLPTR: u1 = 0,
     }) LOCAL_ALLOC_FLAGS {
         return @intToEnum(LOCAL_ALLOC_FLAGS,
               (if (o.LHND == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LHND) else 0)
             | (if (o.LMEM_FIXED == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LMEM_FIXED) else 0)
             | (if (o.LMEM_MOVEABLE == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LMEM_MOVEABLE) else 0)
             | (if (o.LMEM_ZEROINIT == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LMEM_ZEROINIT) else 0)
-            | (if (o.LPTR == 1) @enumToInt(LOCAL_ALLOC_FLAGS.LPTR) else 0)
-            | (if (o.NONZEROLHND == 1) @enumToInt(LOCAL_ALLOC_FLAGS.NONZEROLHND) else 0)
-            | (if (o.NONZEROLPTR == 1) @enumToInt(LOCAL_ALLOC_FLAGS.NONZEROLPTR) else 0)
         );
     }
 };
@@ -445,30 +425,28 @@ pub const LHND = LOCAL_ALLOC_FLAGS.LHND;
 pub const LMEM_FIXED = LOCAL_ALLOC_FLAGS.LMEM_FIXED;
 pub const LMEM_MOVEABLE = LOCAL_ALLOC_FLAGS.LMEM_MOVEABLE;
 pub const LMEM_ZEROINIT = LOCAL_ALLOC_FLAGS.LMEM_ZEROINIT;
-pub const LPTR = LOCAL_ALLOC_FLAGS.LPTR;
-pub const NONZEROLHND = LOCAL_ALLOC_FLAGS.NONZEROLHND;
-pub const NONZEROLPTR = LOCAL_ALLOC_FLAGS.NONZEROLPTR;
+pub const LPTR = LOCAL_ALLOC_FLAGS.LMEM_ZEROINIT;
+pub const NONZEROLHND = LOCAL_ALLOC_FLAGS.LMEM_MOVEABLE;
+pub const NONZEROLPTR = LOCAL_ALLOC_FLAGS.LMEM_FIXED;
 
-pub const GLOBAL_ALLOC_FLAGS = extern enum(u32) {
+pub const GLOBAL_ALLOC_FLAGS = enum(u32) {
     HND = 66,
     MEM_FIXED = 0,
     MEM_MOVEABLE = 2,
     MEM_ZEROINIT = 64,
-    PTR = 64,
+    // PTR = 64, this enum value conflicts with MEM_ZEROINIT
     _,
     pub fn initFlags(o: struct {
         HND: u1 = 0,
         MEM_FIXED: u1 = 0,
         MEM_MOVEABLE: u1 = 0,
         MEM_ZEROINIT: u1 = 0,
-        PTR: u1 = 0,
     }) GLOBAL_ALLOC_FLAGS {
         return @intToEnum(GLOBAL_ALLOC_FLAGS,
               (if (o.HND == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.HND) else 0)
             | (if (o.MEM_FIXED == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.MEM_FIXED) else 0)
             | (if (o.MEM_MOVEABLE == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.MEM_MOVEABLE) else 0)
             | (if (o.MEM_ZEROINIT == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.MEM_ZEROINIT) else 0)
-            | (if (o.PTR == 1) @enumToInt(GLOBAL_ALLOC_FLAGS.PTR) else 0)
         );
     }
 };
@@ -476,7 +454,7 @@ pub const GHND = GLOBAL_ALLOC_FLAGS.HND;
 pub const GMEM_FIXED = GLOBAL_ALLOC_FLAGS.MEM_FIXED;
 pub const GMEM_MOVEABLE = GLOBAL_ALLOC_FLAGS.MEM_MOVEABLE;
 pub const GMEM_ZEROINIT = GLOBAL_ALLOC_FLAGS.MEM_ZEROINIT;
-pub const GPTR = GLOBAL_ALLOC_FLAGS.PTR;
+pub const GPTR = GLOBAL_ALLOC_FLAGS.MEM_ZEROINIT;
 
 
 //--------------------------------------------------------------------------------

@@ -54,7 +54,7 @@ pub const PWM_PIN_SET_ACTIVE_DUTY_CYCLE_PERCENTAGE_INPUT = extern struct {
     Percentage: u64,
 };
 
-pub const PWM_POLARITY = extern enum(i32) {
+pub const PWM_POLARITY = enum(i32) {
     HIGH = 0,
     LOW = 1,
 };

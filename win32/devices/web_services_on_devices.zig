@@ -46,7 +46,7 @@ pub const WSD_DURATION = extern struct {
     millisecond: u32,
 };
 
-pub const WSDXML_OP = extern enum(i32) {
+pub const WSDXML_OP = enum(i32) {
     None = 0,
     EndOfTable = 1,
     BeginElement_ = 2,
@@ -197,7 +197,7 @@ pub const IWSDXMLContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WSD_CONFIG_PARAM_TYPE = extern enum(i32) {
+pub const WSD_CONFIG_PARAM_TYPE = enum(i32) {
     CONFIG_MAX_INBOUND_MESSAGE_SIZE = 1,
     CONFIG_MAX_OUTBOUND_MESSAGE_SIZE = 2,
     SECURITY_SSL_CERT_FOR_CLIENT_AUTH = 3,
@@ -442,7 +442,7 @@ pub const IWSDUdpMessageParameters = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WSDUdpMessageType = extern enum(i32) {
+pub const WSDUdpMessageType = enum(i32) {
     ONE_WAY = 0,
     TWO_WAY = 1,
 };
@@ -798,7 +798,7 @@ pub const WSD_STUB_FUNCTION = fn(
     event: *WSD_EVENT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const DeviceDiscoveryMechanism = extern enum(i32) {
+pub const DeviceDiscoveryMechanism = enum(i32) {
     MulticastDiscovery = 0,
     DirectedDiscovery = 1,
     SecureDirectedDiscovery = 2,
@@ -807,7 +807,7 @@ pub const MulticastDiscovery = DeviceDiscoveryMechanism.MulticastDiscovery;
 pub const DirectedDiscovery = DeviceDiscoveryMechanism.DirectedDiscovery;
 pub const SecureDirectedDiscovery = DeviceDiscoveryMechanism.SecureDirectedDiscovery;
 
-pub const WSD_PROTOCOL_TYPE = extern enum(i32) {
+pub const WSD_PROTOCOL_TYPE = enum(i32) {
     NONE = 0,
     UDP = 1,
     HTTP = 2,
@@ -837,7 +837,7 @@ pub const WSD_HANDLER_CONTEXT = extern struct {
     Unknown: *IUnknown,
 };
 
-pub const WSDEventType = extern enum(i32) {
+pub const WSDEventType = enum(i32) {
     NONE = 0,
     INCOMING_MESSAGE = 1,
     INCOMING_FAULT = 2,

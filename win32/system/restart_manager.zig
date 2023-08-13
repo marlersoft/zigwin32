@@ -10,7 +10,7 @@ pub const RM_INVALID_PROCESS = @as(i32, -1);
 //--------------------------------------------------------------------------------
 // Section: Types (10)
 //--------------------------------------------------------------------------------
-pub const RM_APP_TYPE = extern enum(i32) {
+pub const RM_APP_TYPE = enum(i32) {
     UnknownApp = 0,
     MainWindow = 1,
     OtherWindow = 2,
@@ -27,14 +27,14 @@ pub const RmExplorer = RM_APP_TYPE.Explorer;
 pub const RmConsole = RM_APP_TYPE.Console;
 pub const RmCritical = RM_APP_TYPE.Critical;
 
-pub const RM_SHUTDOWN_TYPE = extern enum(i32) {
+pub const RM_SHUTDOWN_TYPE = enum(i32) {
     ForceShutdown = 1,
     ShutdownOnlyRegistered = 16,
 };
 pub const RmForceShutdown = RM_SHUTDOWN_TYPE.ForceShutdown;
 pub const RmShutdownOnlyRegistered = RM_SHUTDOWN_TYPE.ShutdownOnlyRegistered;
 
-pub const RM_APP_STATUS = extern enum(i32) {
+pub const RM_APP_STATUS = enum(i32) {
     Unknown = 0,
     Running = 1,
     Stopped = 2,
@@ -55,7 +55,7 @@ pub const RmStatusErrorOnRestart = RM_APP_STATUS.ErrorOnRestart;
 pub const RmStatusShutdownMasked = RM_APP_STATUS.ShutdownMasked;
 pub const RmStatusRestartMasked = RM_APP_STATUS.RestartMasked;
 
-pub const RM_REBOOT_REASON = extern enum(i32) {
+pub const RM_REBOOT_REASON = enum(i32) {
     None = 0,
     PermissionDenied = 1,
     SessionMismatch = 2,
@@ -85,7 +85,7 @@ pub const RM_PROCESS_INFO = extern struct {
     bRestartable: BOOL,
 };
 
-pub const RM_FILTER_TRIGGER = extern enum(i32) {
+pub const RM_FILTER_TRIGGER = enum(i32) {
     Invalid = 0,
     File = 1,
     Process = 2,
@@ -96,7 +96,7 @@ pub const RmFilterTriggerFile = RM_FILTER_TRIGGER.File;
 pub const RmFilterTriggerProcess = RM_FILTER_TRIGGER.Process;
 pub const RmFilterTriggerService = RM_FILTER_TRIGGER.Service;
 
-pub const RM_FILTER_ACTION = extern enum(i32) {
+pub const RM_FILTER_ACTION = enum(i32) {
     InvalidFilterAction = 0,
     NoRestart = 1,
     NoShutdown = 2,

@@ -121,7 +121,7 @@ pub const IWsbApplicationAsync = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WSB_OB_STATUS_ENTRY_PAIR_TYPE = extern enum(i32) {
+pub const WSB_OB_STATUS_ENTRY_PAIR_TYPE = enum(i32) {
     UNDEFINED = 0,
     STRING = 1,
     NUMBER = 2,
