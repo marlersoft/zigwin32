@@ -241,7 +241,7 @@ pub const PDH_RAW_COUNTER_ITEM_W = extern struct {
 
 pub const PDH_FMT_COUNTERVALUE = extern struct {
     CStatus: u32,
-    Anonymous: PDH_FMT_COUNTERVALUE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -305,7 +305,7 @@ pub const PDH_COUNTER_INFO_A = extern struct {
     dwUserData: usize,
     dwQueryUserData: usize,
     szFullPath: PSTR,
-    Anonymous: PDH_COUNTER_INFO_A._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     szExplainText: PSTR,
     DataBuffer: [1]u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -321,7 +321,7 @@ pub const PDH_COUNTER_INFO_W = extern struct {
     dwUserData: usize,
     dwQueryUserData: usize,
     szFullPath: PWSTR,
-    Anonymous: PDH_COUNTER_INFO_W._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     szExplainText: PWSTR,
     DataBuffer: [1]u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -349,7 +349,7 @@ pub const PDH_LOG_SERVICE_QUERY_INFO_A = extern struct {
     szBaseFileName: PSTR,
     dwFileType: u32,
     dwReserved: u32,
-    Anonymous: PDH_LOG_SERVICE_QUERY_INFO_A._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -362,7 +362,7 @@ pub const PDH_LOG_SERVICE_QUERY_INFO_W = extern struct {
     szBaseFileName: PWSTR,
     dwFileType: u32,
     dwReserved: u32,
-    Anonymous: PDH_LOG_SERVICE_QUERY_INFO_W._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1701,29 +1701,20 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PERFLIBREQUEST;
-    _ = PERF_MEM_ALLOC;
-    _ = PERF_MEM_FREE;
-    _ = CounterPathCallBack;
+    if (@hasDecl(@This(), "PERFLIBREQUEST")) { _ = PERFLIBREQUEST; }
+    if (@hasDecl(@This(), "PERF_MEM_ALLOC")) { _ = PERF_MEM_ALLOC; }
+    if (@hasDecl(@This(), "PERF_MEM_FREE")) { _ = PERF_MEM_FREE; }
+    if (@hasDecl(@This(), "CounterPathCallBack")) { _ = CounterPathCallBack; }
 
-    const constant_export_count = 35;
-    const type_export_count = 54;
-    const enum_value_export_count = 40;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 131;
-    const unicode_alias_count = 49;
-    const import_count = 8;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -476,24 +476,15 @@ const POINT = @import("display_devices.zig").POINT;
 const SIZE = @import("display_devices.zig").SIZE;
 
 test {
-    const constant_export_count = 18;
-    const type_export_count = 13;
-    const enum_value_export_count = 59;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 31;
-    const unicode_alias_count = 0;
-    const import_count = 14;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

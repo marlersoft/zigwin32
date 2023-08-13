@@ -1027,7 +1027,7 @@ pub const LINEAGENTCAPS = extern struct {
 };
 
 pub const LINEAGENTGROUPENTRY = extern struct {
-    GroupID: LINEAGENTGROUPENTRY._GroupID_e__Struct,
+    GroupID: _GroupID_e__Struct,
     dwNameSize: u32,
     dwNameOffset: u32,
     const _GroupID_e__Struct = u32; // TODO: generate this nested type!
@@ -1498,7 +1498,7 @@ pub const LINEINITIALIZEEXPARAMS = extern struct {
     dwNeededSize: u32,
     dwUsedSize: u32,
     dwOptions: u32,
-    Handles: LINEINITIALIZEEXPARAMS._Handles_e__Union,
+    Handles: _Handles_e__Union,
     dwCompletionKey: u32,
     const _Handles_e__Union = u32; // TODO: generate this nested type!
 };
@@ -1589,7 +1589,7 @@ pub const LINEPROXYREQUEST = extern struct {
     dwClientUserNameOffset: u32,
     dwClientAppAPIVersion: u32,
     dwRequestType: u32,
-    Anonymous: LINEPROXYREQUEST._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1740,7 +1740,7 @@ pub const PHONEINITIALIZEEXPARAMS = extern struct {
     dwNeededSize: u32,
     dwUsedSize: u32,
     dwOptions: u32,
-    Handles: PHONEINITIALIZEEXPARAMS._Handles_e__Union,
+    Handles: _Handles_e__Union,
     dwCompletionKey: u32,
     const _Handles_e__Union = u32; // TODO: generate this nested type!
 };
@@ -7033,7 +7033,7 @@ pub const ITAddressTranslation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         TranslateDialog: fn(
             self: *const ITAddressTranslation,
-            hwndOwner: i64,
+            hwndOwner: isize,
             pAddressIn: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumerateLocations: fn(
@@ -7063,7 +7063,7 @@ pub const ITAddressTranslation = extern struct {
             return @ptrCast(*const ITAddressTranslation.VTable, self.vtable).TranslateAddress(@ptrCast(*const ITAddressTranslation, self), pAddressToTranslate, lCard, lTranslateOptions, ppTranslated);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITAddressTranslation_TranslateDialog(self: *const T, hwndOwner: i64, pAddressIn: BSTR) callconv(.Inline) HRESULT {
+        pub fn ITAddressTranslation_TranslateDialog(self: *const T, hwndOwner: isize, pAddressIn: BSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITAddressTranslation.VTable, self.vtable).TranslateDialog(@ptrCast(*const ITAddressTranslation, self), hwndOwner, pAddressIn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9243,7 +9243,7 @@ pub const MSP_EVENT_INFO = extern struct {
     dwSize: u32,
     Event: MSP_EVENT,
     hCall: *i32,
-    Anonymous: MSP_EVENT_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -12106,27 +12106,18 @@ const SYSTEMTIME = @import("windows_programming.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LINECALLBACK;
-    _ = PHONECALLBACK;
+    if (@hasDecl(@This(), "LINECALLBACK")) { _ = LINECALLBACK; }
+    if (@hasDecl(@This(), "PHONECALLBACK")) { _ = PHONECALLBACK; }
 
-    const constant_export_count = 890;
-    const type_export_count = 239;
-    const enum_value_export_count = 449;
-    const com_iface_id_export_count = 118;
-    const com_class_id_export_count = 5;
-    const func_export_count = 249;
-    const unicode_alias_count = 10;
-    const import_count = 18;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

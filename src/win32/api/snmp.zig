@@ -94,33 +94,79 @@ pub const SNMPAPI_TL_OTHER = @as(u32, 199);
 pub const MAXVENDORINFO = @as(u32, 32);
 
 //--------------------------------------------------------------------------------
-// Section: Types (29)
+// Section: Types (32)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const AsnOctetString = extern struct {
     stream: *u8,
     length: u32,
     dynamic: BOOL,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const AsnObjectIdentifier = extern struct {
     idLength: u32,
     ids: *u32,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SnmpVarBindList = extern struct {
+    list: *SnmpVarBind,
+    len: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const AsnOctetString = extern struct {
+    stream: *u8,
+    length: u32,
+    dynamic: BOOL,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const AsnObjectIdentifier = extern struct {
+    idLength: u32,
+    ids: *u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SnmpVarBindList = extern struct {
+    list: *SnmpVarBind,
+    len: u32,
+};
+
+}, else => struct { } };
+
 pub const AsnAny = extern struct {
     asnType: u8,
-    asnValue: AsnAny._asnValue_e__Union,
+    asnValue: _asnValue_e__Union,
     const _asnValue_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const SnmpVarBind = extern struct {
     name: AsnObjectIdentifier,
     value: AsnAny,
-};
-
-pub const SnmpVarBindList = extern struct {
-    list: *SnmpVarBind,
-    len: u32,
 };
 
 pub const PFNSNMPEXTENSIONINIT = fn(
@@ -181,7 +227,7 @@ pub const smiCNTR64 = extern struct {
 
 pub const smiVALUE = extern struct {
     syntax: u32,
-    value: smiVALUE._value_e__Union,
+    value: _value_e__Union,
     const _value_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -955,35 +1001,26 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PFNSNMPEXTENSIONINIT;
-    _ = PFNSNMPEXTENSIONINITEX;
-    _ = PFNSNMPEXTENSIONMONITOR;
-    _ = PFNSNMPEXTENSIONQUERY;
-    _ = PFNSNMPEXTENSIONQUERYEX;
-    _ = PFNSNMPEXTENSIONTRAP;
-    _ = PFNSNMPEXTENSIONCLOSE;
-    _ = SNMPAPI_CALLBACK;
-    _ = PFNSNMPSTARTUPEX;
-    _ = PFNSNMPCLEANUPEX;
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONINIT")) { _ = PFNSNMPEXTENSIONINIT; }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONINITEX")) { _ = PFNSNMPEXTENSIONINITEX; }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONMONITOR")) { _ = PFNSNMPEXTENSIONMONITOR; }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONQUERY")) { _ = PFNSNMPEXTENSIONQUERY; }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONQUERYEX")) { _ = PFNSNMPEXTENSIONQUERYEX; }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONTRAP")) { _ = PFNSNMPEXTENSIONTRAP; }
+    if (@hasDecl(@This(), "PFNSNMPEXTENSIONCLOSE")) { _ = PFNSNMPEXTENSIONCLOSE; }
+    if (@hasDecl(@This(), "SNMPAPI_CALLBACK")) { _ = SNMPAPI_CALLBACK; }
+    if (@hasDecl(@This(), "PFNSNMPSTARTUPEX")) { _ = PFNSNMPSTARTUPEX; }
+    if (@hasDecl(@This(), "PFNSNMPCLEANUPEX")) { _ = PFNSNMPCLEANUPEX; }
 
-    const constant_export_count = 90;
-    const type_export_count = 29;
-    const enum_value_export_count = 71;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 84;
-    const unicode_alias_count = 0;
-    const import_count = 7;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

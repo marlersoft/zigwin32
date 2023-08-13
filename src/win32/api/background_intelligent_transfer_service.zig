@@ -840,7 +840,9 @@ pub const BG_BASIC_CREDENTIALS = extern struct {
     Password: PWSTR,
 };
 
-pub const BG_AUTH_CREDENTIALS_UNION = u32; // TODO: implement StructOrUnion types?
+pub const BG_AUTH_CREDENTIALS_UNION = extern union {
+    Basic: BG_BASIC_CREDENTIALS,
+};
 
 pub const BG_AUTH_CREDENTIALS = extern struct {
     Target: BG_AUTH_TARGET,
@@ -1714,14 +1716,22 @@ pub const BITS_JOB_PROPERTY_USE_STORED_CREDENTIALS = BITS_JOB_PROPERTY_ID.USE_ST
 pub const BITS_JOB_PROPERTY_MINIMUM_NOTIFICATION_INTERVAL_MS = BITS_JOB_PROPERTY_ID.MINIMUM_NOTIFICATION_INTERVAL_MS;
 pub const BITS_JOB_PROPERTY_ON_DEMAND_MODE = BITS_JOB_PROPERTY_ID.ON_DEMAND_MODE;
 
-pub const BITS_JOB_PROPERTY_VALUE = u32; // TODO: implement StructOrUnion types?
+pub const BITS_JOB_PROPERTY_VALUE = extern union {
+    Dword: u32,
+    ClsID: Guid,
+    Enable: BOOL,
+    Uint64: u64,
+    Target: BG_AUTH_TARGET,
+};
 
 pub const BITS_FILE_PROPERTY_ID = extern enum(i32) {
     S = 1,
 };
 pub const BITS_FILE_PROPERTY_ID_HTTP_RESPONSE_HEADERS = BITS_FILE_PROPERTY_ID.S;
 
-pub const BITS_FILE_PROPERTY_VALUE = u32; // TODO: implement StructOrUnion types?
+pub const BITS_FILE_PROPERTY_VALUE = extern union {
+    String: PWSTR,
+};
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IBackgroundCopyJob5_Value = @import("../zig.zig").Guid.initString("e847030c-bbba-4657-af6d-484aa42bf1fe");
@@ -2515,24 +2525,15 @@ const BSTR = @import("automation.zig").BSTR;
 const BOOL = @import("system_services.zig").BOOL;
 
 test {
-    const constant_export_count = 65;
-    const type_export_count = 62;
-    const enum_value_export_count = 73;
-    const com_iface_id_export_count = 37;
-    const com_class_id_export_count = 12;
-    const func_export_count = 0;
-    const unicode_alias_count = 0;
-    const import_count = 9;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -1037,8 +1037,8 @@ pub const ID3D10View = extern struct {
 };
 
 pub const D3D10_BUFFER_SRV = extern struct {
-    Anonymous1: D3D10_BUFFER_SRV._Anonymous1_e__Union,
-    Anonymous2: D3D10_BUFFER_SRV._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
@@ -1089,7 +1089,7 @@ pub const D3D10_TEX2DMS_ARRAY_SRV = extern struct {
 pub const D3D10_SHADER_RESOURCE_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D_SRV_DIMENSION,
-    Anonymous: D3D10_SHADER_RESOURCE_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1115,8 +1115,8 @@ pub const ID3D10ShaderResourceView = extern struct {
 };
 
 pub const D3D10_BUFFER_RTV = extern struct {
-    Anonymous1: D3D10_BUFFER_RTV._Anonymous1_e__Union,
-    Anonymous2: D3D10_BUFFER_RTV._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
@@ -1159,7 +1159,7 @@ pub const D3D10_TEX3D_RTV = extern struct {
 pub const D3D10_RENDER_TARGET_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D10_RTV_DIMENSION,
-    Anonymous: D3D10_RENDER_TARGET_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1216,7 +1216,7 @@ pub const D3D10_TEX2DMS_ARRAY_DSV = extern struct {
 pub const D3D10_DEPTH_STENCIL_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D10_DSV_DIMENSION,
-    Anonymous: D3D10_DEPTH_STENCIL_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -5899,7 +5899,7 @@ pub const D3D10_TEXCUBE_ARRAY_SRV1 = extern struct {
 pub const D3D10_SHADER_RESOURCE_VIEW_DESC1 = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D_SRV_DIMENSION,
-    Anonymous: D3D10_SHADER_RESOURCE_VIEW_DESC1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -6570,27 +6570,18 @@ const DXGI_SWAP_CHAIN_DESC = @import("dxgi.zig").DXGI_SWAP_CHAIN_DESC;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PFN_D3D10_CREATE_DEVICE1;
-    _ = PFN_D3D10_CREATE_DEVICE_AND_SWAP_CHAIN1;
+    if (@hasDecl(@This(), "PFN_D3D10_CREATE_DEVICE1")) { _ = PFN_D3D10_CREATE_DEVICE1; }
+    if (@hasDecl(@This(), "PFN_D3D10_CREATE_DEVICE_AND_SWAP_CHAIN1")) { _ = PFN_D3D10_CREATE_DEVICE_AND_SWAP_CHAIN1; }
 
-    const constant_export_count = 285;
-    const type_export_count = 177;
-    const enum_value_export_count = 784;
-    const com_iface_id_export_count = 55;
-    const com_class_id_export_count = 0;
-    const func_export_count = 29;
-    const unicode_alias_count = 0;
-    const import_count = 25;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

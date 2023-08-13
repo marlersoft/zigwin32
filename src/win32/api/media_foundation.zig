@@ -1286,7 +1286,7 @@ pub const GUID_NativeDeviceService = Guid.initString("ef71e53c-52f4-43c5-b86a-ad
 pub const MF_CONTENTDECRYPTIONMODULE_SERVICE = Guid.initString("15320c45-ff80-484a-9dcb-0df894e69a01");
 
 //--------------------------------------------------------------------------------
-// Section: Types (1102)
+// Section: Types (1104)
 //--------------------------------------------------------------------------------
 pub const MF_Plugin_Type = extern enum(i32) {
     MFT = 0,
@@ -1298,6 +1298,70 @@ pub const MF_Plugin_Type_MFT = MF_Plugin_Type.MFT;
 pub const MF_Plugin_Type_MediaSource = MF_Plugin_Type.MediaSource;
 pub const MF_Plugin_Type_MFT_MatchOutputType = MF_Plugin_Type.MFT_MatchOutputType;
 pub const MF_Plugin_Type_Other = MF_Plugin_Type.Other;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const D3DCONTENTPROTECTIONCAPS = extern struct {
+    Caps: u32,
+    KeyExchangeType: Guid,
+    BufferAlignmentStart: u32,
+    BlockAlignmentSize: u32,
+    ProtectedMemorySize: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DXVA_VideoSample2 = extern struct {
+    Size: u32,
+    Reserved: u32,
+    rtStart: i64,
+    rtEnd: i64,
+    SampleFormat: u32,
+    SampleFlags: u32,
+    lpDDSSrcSurface: *c_void,
+    rcSrc: RECT,
+    rcDst: RECT,
+    Palette: [16]DXVA_AYUVsample2,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DXVA_VideoSample32 = extern struct {
+    rtStart: i64,
+    rtEnd: i64,
+    SampleFormat: u32,
+    SampleFlags: u32,
+    lpDDSSrcSurface: u32,
+    rcSrc: RECT,
+    rcDst: RECT,
+    Palette: [16]DXVA_AYUVsample2,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DXVA_DeinterlaceBltEx32 = extern struct {
+    Size: u32,
+    BackgroundColor: DXVA_AYUVsample2,
+    rcTarget: RECT,
+    rtTarget: i64,
+    NumSourceSurfaces: u32,
+    Alpha: f32,
+    Source: [32]DXVA_VideoSample32,
+    DestinationFormat: u32,
+    DestinationFlags: u32,
+};
+
+}, else => struct { } };
 
 pub const D3D11_VIDEO_DECODER_DESC = extern struct {
     Guid: Guid,
@@ -1769,7 +1833,7 @@ pub const D3D11_VIDEO_COLOR_YCbCrA = extern struct {
 };
 
 pub const D3D11_VIDEO_COLOR = extern struct {
-    Anonymous: D3D11_VIDEO_COLOR._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2210,7 +2274,7 @@ pub const D3D11_TEX2D_VDOV = extern struct {
 pub const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC = extern struct {
     DecodeProfile: Guid,
     ViewDimension: D3D11_VDOV_DIMENSION,
-    Anonymous: D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2251,7 +2315,7 @@ pub const D3D11_TEX2D_VPIV = extern struct {
 pub const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC = extern struct {
     FourCC: u32,
     ViewDimension: D3D11_VPIV_DIMENSION,
-    Anonymous: D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2298,7 +2362,7 @@ pub const D3D11_TEX2D_ARRAY_VPOV = extern struct {
 
 pub const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC = extern struct {
     ViewDimension: D3D11_VPOV_DIMENSION,
-    Anonymous: D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3576,14 +3640,6 @@ pub const D3DOVERLAYCAPS = extern struct {
     MaxOverlayDisplayHeight: u32,
 };
 
-pub const D3DCONTENTPROTECTIONCAPS = extern struct {
-    Caps: u32,
-    KeyExchangeType: Guid,
-    BufferAlignmentStart: u32,
-    BlockAlignmentSize: u32,
-    ProtectedMemorySize: u64,
-};
-
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDirect3D9ExOverlayExtension_Value = @import("../zig.zig").Guid.initString("187aeb13-aaf5-4c59-876d-e059088c0df8");
 pub const IID_IDirect3D9ExOverlayExtension = &IID_IDirect3D9ExOverlayExtension_Value;
@@ -3817,159 +3873,34 @@ pub const IDirect3DCryptoSession9 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CodecAPIEventData = extern struct {
-    guid: Guid,
-    dataLength: u32,
-    reserved: [3]u32,
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DXVA_VideoSample2 = extern struct {
+    rtStart: i64,
+    rtEnd: i64,
+    SampleFormat: u32,
+    SampleFlags: u32,
+    lpDDSSrcSurface: *c_void,
+    rcSrc: RECT,
+    rcDst: RECT,
+    Palette: [16]DXVA_AYUVsample2,
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_ICodecAPI_Value = @import("../zig.zig").Guid.initString("901db4c7-31ce-41a2-85dc-8fa0bf41b8da");
-pub const IID_ICodecAPI = &IID_ICodecAPI_Value;
-pub const ICodecAPI = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        IsSupported: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        IsModifiable: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParameterRange: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            ValueMin: *VARIANT,
-            ValueMax: *VARIANT,
-            SteppingDelta: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetParameterValues: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Values: [*]*VARIANT,
-            ValuesCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultValue: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetValue: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValue: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterForEvent: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            userData: isize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UnregisterForEvent: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllDefaults: fn(
-            self: *const ICodecAPI,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetValueWithNotify: fn(
-            self: *const ICodecAPI,
-            Api: *const Guid,
-            Value: *VARIANT,
-            ChangedParam: [*]*Guid,
-            ChangedParamCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllDefaultsWithNotify: fn(
-            self: *const ICodecAPI,
-            ChangedParam: [*]*Guid,
-            ChangedParamCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetAllSettings: fn(
-            self: *const ICodecAPI,
-            __MIDL__ICodecAPI0000: *IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllSettings: fn(
-            self: *const ICodecAPI,
-            __MIDL__ICodecAPI0001: *IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetAllSettingsWithNotify: fn(
-            self: *const ICodecAPI,
-            __MIDL__ICodecAPI0002: *IStream,
-            ChangedParam: [*]*Guid,
-            ChangedParamCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_IsSupported(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsSupported(@ptrCast(*const ICodecAPI, self), Api);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_IsModifiable(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsModifiable(@ptrCast(*const ICodecAPI, self), Api);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetParameterRange(self: *const T, Api: *const Guid, ValueMin: *VARIANT, ValueMax: *VARIANT, SteppingDelta: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterRange(@ptrCast(*const ICodecAPI, self), Api, ValueMin, ValueMax, SteppingDelta);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetParameterValues(self: *const T, Api: *const Guid, Values: [*]*VARIANT, ValuesCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterValues(@ptrCast(*const ICodecAPI, self), Api, Values, ValuesCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetDefaultValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetDefaultValue(@ptrCast(*const ICodecAPI, self), Api, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_RegisterForEvent(self: *const T, Api: *const Guid, userData: isize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).RegisterForEvent(@ptrCast(*const ICodecAPI, self), Api, userData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_UnregisterForEvent(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).UnregisterForEvent(@ptrCast(*const ICodecAPI, self), Api);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllDefaults(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaults(@ptrCast(*const ICodecAPI, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetValueWithNotify(self: *const T, Api: *const Guid, Value: *VARIANT, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValueWithNotify(@ptrCast(*const ICodecAPI, self), Api, Value, ChangedParam, ChangedParamCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllDefaultsWithNotify(self: *const T, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaultsWithNotify(@ptrCast(*const ICodecAPI, self), ChangedParam, ChangedParamCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_GetAllSettings(self: *const T, __MIDL__ICodecAPI0000: *IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0000);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllSettings(self: *const T, __MIDL__ICodecAPI0001: *IStream) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0001);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICodecAPI_SetAllSettingsWithNotify(self: *const T, __MIDL__ICodecAPI0002: *IStream, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettingsWithNotify(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0002, ChangedParam, ChangedParamCount);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const D3DCONTENTPROTECTIONCAPS = extern struct {
+    Caps: u32,
+    KeyExchangeType: Guid,
+    BufferAlignmentStart: u32,
+    BlockAlignmentSize: u32,
+    ProtectedMemorySize: u64,
 };
+
+}, else => struct { } };
 
 pub const MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS = extern enum(u32) {
     None = 0,
@@ -7967,19 +7898,6 @@ pub const DXVA_DestinationFlag_TargetRect_Changed = DXVA_DestinationFlags._Targe
 pub const DXVA_DestinationFlag_ColorData_Changed = DXVA_DestinationFlags._ColorData_Changed;
 pub const DXVA_DestinationFlag_Alpha_Changed = DXVA_DestinationFlags._Alpha_Changed;
 
-pub const DXVA_VideoSample2 = extern struct {
-    Size: u32,
-    Reserved: u32,
-    rtStart: i64,
-    rtEnd: i64,
-    SampleFormat: u32,
-    SampleFlags: u32,
-    lpDDSSrcSurface: *c_void,
-    rcSrc: RECT,
-    rcDst: RECT,
-    Palette: [16]DXVA_AYUVsample2,
-};
-
 pub const DXVA_DeinterlaceCaps = extern struct {
     Size: u32,
     NumPreviousOutputFrames: u32,
@@ -7989,29 +7907,6 @@ pub const DXVA_DeinterlaceCaps = extern struct {
     d3dOutputFormat: D3DFORMAT,
     VideoProcessingCaps: DXVA_VideoProcessCaps,
     DeinterlaceTechnology: DXVA_DeinterlaceTech,
-};
-
-pub const DXVA_VideoSample32 = extern struct {
-    rtStart: i64,
-    rtEnd: i64,
-    SampleFormat: u32,
-    SampleFlags: u32,
-    lpDDSSrcSurface: u32,
-    rcSrc: RECT,
-    rcDst: RECT,
-    Palette: [16]DXVA_AYUVsample2,
-};
-
-pub const DXVA_DeinterlaceBltEx32 = extern struct {
-    Size: u32,
-    BackgroundColor: DXVA_AYUVsample2,
-    rcTarget: RECT,
-    rtTarget: i64,
-    NumSourceSurfaces: u32,
-    Alpha: f32,
-    Source: [32]DXVA_VideoSample32,
-    DestinationFormat: u32,
-    DestinationFlags: u32,
 };
 
 pub const DXVA_DeinterlaceBlt = extern struct {
@@ -8356,7 +8251,10 @@ pub const DXVAHD_COLOR_YCbCrA = extern struct {
     A: f32,
 };
 
-pub const DXVAHD_COLOR = u32; // TODO: implement StructOrUnion types?
+pub const DXVAHD_COLOR = extern union {
+    RGB: DXVAHD_COLOR_RGBA,
+    YCbCr: DXVAHD_COLOR_YCbCrA,
+};
 
 pub const DXVAHD_CONTENT_DESC = extern struct {
     InputFrameFormat: DXVAHD_FRAME_FORMAT,
@@ -8416,7 +8314,7 @@ pub const DXVAHD_BLT_STATE_BACKGROUND_COLOR_DATA = extern struct {
 };
 
 pub const DXVAHD_BLT_STATE_OUTPUT_COLOR_SPACE_DATA = extern struct {
-    Anonymous: DXVAHD_BLT_STATE_OUTPUT_COLOR_SPACE_DATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -8445,7 +8343,7 @@ pub const DXVAHD_STREAM_STATE_FRAME_FORMAT_DATA = extern struct {
 };
 
 pub const DXVAHD_STREAM_STATE_INPUT_COLOR_SPACE_DATA = extern struct {
-    Anonymous: DXVAHD_STREAM_STATE_INPUT_COLOR_SPACE_DATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -8869,7 +8767,7 @@ pub const PDXVAHD_CreateDevice = fn(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const DXVA2_ExtendedFormat = extern struct {
-    Anonymous: DXVA2_ExtendedFormat._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -9205,7 +9103,7 @@ pub const DXVA2_VideoProcessorCaps = extern struct {
 };
 
 pub const DXVA2_Fixed32 = extern struct {
-    Anonymous: DXVA2_Fixed32._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -11311,7 +11209,10 @@ pub const MFARGB = extern struct {
     rgbAlpha: u8,
 };
 
-pub const MFPaletteEntry = u32; // TODO: implement StructOrUnion types?
+pub const MFPaletteEntry = extern union {
+    ARGB: MFARGB,
+    AYCbCr: MFAYUVSample,
+};
 
 pub const MFVideoSurfaceInfo = extern struct {
     Format: u32,
@@ -16082,7 +15983,7 @@ pub const MFTOPONODE_ATTRIBUTE_UPDATE = extern struct {
     NodeId: u64,
     guidAttributeKey: Guid,
     attrType: MF_ATTRIBUTE_TYPE,
-    Anonymous: MFTOPONODE_ATTRIBUTE_UPDATE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -27371,7 +27272,7 @@ pub const MFVideoAlphaBitmapParams = extern struct {
 
 pub const MFVideoAlphaBitmap = extern struct {
     GetBitmapFromDC: BOOL,
-    bitmap: MFVideoAlphaBitmap._bitmap_e__Union,
+    bitmap: _bitmap_e__Union,
     params: MFVideoAlphaBitmapParams,
     const _bitmap_e__Union = u32; // TODO: generate this nested type!
 };
@@ -27855,6 +27756,160 @@ pub const IMFContentDecryptionModuleFactory = extern struct {
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IMFContentDecryptionModuleFactory_CreateContentDecryptionModuleAccess(self: *const T, keySystem: [*:0]const u16, configurations: [*]*IPropertyStore, numConfigurations: u32, contentDecryptionModuleAccess: **IMFContentDecryptionModuleAccess) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMFContentDecryptionModuleFactory.VTable, self.vtable).CreateContentDecryptionModuleAccess(@ptrCast(*const IMFContentDecryptionModuleFactory, self), keySystem, configurations, numConfigurations, contentDecryptionModuleAccess);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const CodecAPIEventData = extern struct {
+    guid: Guid,
+    dataLength: u32,
+    reserved: [3]u32,
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_ICodecAPI_Value = @import("../zig.zig").Guid.initString("901db4c7-31ce-41a2-85dc-8fa0bf41b8da");
+pub const IID_ICodecAPI = &IID_ICodecAPI_Value;
+pub const ICodecAPI = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        IsSupported: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsModifiable: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParameterRange: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            ValueMin: *VARIANT,
+            ValueMax: *VARIANT,
+            SteppingDelta: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParameterValues: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Values: [*]*VARIANT,
+            ValuesCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultValue: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetValue: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetValue: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterForEvent: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            userData: isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterForEvent: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllDefaults: fn(
+            self: *const ICodecAPI,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetValueWithNotify: fn(
+            self: *const ICodecAPI,
+            Api: *const Guid,
+            Value: *VARIANT,
+            ChangedParam: [*]*Guid,
+            ChangedParamCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllDefaultsWithNotify: fn(
+            self: *const ICodecAPI,
+            ChangedParam: [*]*Guid,
+            ChangedParamCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAllSettings: fn(
+            self: *const ICodecAPI,
+            __MIDL__ICodecAPI0000: *IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllSettings: fn(
+            self: *const ICodecAPI,
+            __MIDL__ICodecAPI0001: *IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllSettingsWithNotify: fn(
+            self: *const ICodecAPI,
+            __MIDL__ICodecAPI0002: *IStream,
+            ChangedParam: [*]*Guid,
+            ChangedParamCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_IsSupported(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsSupported(@ptrCast(*const ICodecAPI, self), Api);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_IsModifiable(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).IsModifiable(@ptrCast(*const ICodecAPI, self), Api);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetParameterRange(self: *const T, Api: *const Guid, ValueMin: *VARIANT, ValueMax: *VARIANT, SteppingDelta: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterRange(@ptrCast(*const ICodecAPI, self), Api, ValueMin, ValueMax, SteppingDelta);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetParameterValues(self: *const T, Api: *const Guid, Values: [*]*VARIANT, ValuesCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetParameterValues(@ptrCast(*const ICodecAPI, self), Api, Values, ValuesCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetDefaultValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetDefaultValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetValue(self: *const T, Api: *const Guid, Value: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValue(@ptrCast(*const ICodecAPI, self), Api, Value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_RegisterForEvent(self: *const T, Api: *const Guid, userData: isize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).RegisterForEvent(@ptrCast(*const ICodecAPI, self), Api, userData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_UnregisterForEvent(self: *const T, Api: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).UnregisterForEvent(@ptrCast(*const ICodecAPI, self), Api);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllDefaults(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaults(@ptrCast(*const ICodecAPI, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetValueWithNotify(self: *const T, Api: *const Guid, Value: *VARIANT, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetValueWithNotify(@ptrCast(*const ICodecAPI, self), Api, Value, ChangedParam, ChangedParamCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllDefaultsWithNotify(self: *const T, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllDefaultsWithNotify(@ptrCast(*const ICodecAPI, self), ChangedParam, ChangedParamCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_GetAllSettings(self: *const T, __MIDL__ICodecAPI0000: *IStream) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).GetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0000);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllSettings(self: *const T, __MIDL__ICodecAPI0001: *IStream) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettings(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0001);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICodecAPI_SetAllSettingsWithNotify(self: *const T, __MIDL__ICodecAPI0002: *IStream, ChangedParam: [*]*Guid, ChangedParamCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICodecAPI.VTable, self.vtable).SetAllSettingsWithNotify(@ptrCast(*const ICodecAPI, self), __MIDL__ICodecAPI0002, ChangedParam, ChangedParamCount);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -29491,8 +29546,8 @@ const INamedPropertyStore = @import("shell.zig").INamedPropertyStore;
 const IPropertyStore = @import("audio.zig").IPropertyStore;
 const IDirect3DSurface9 = @import("direct3d9.zig").IDirect3DSurface9;
 const D3DENCRYPTED_BLOCK_INFO = @import("direct3d9.zig").D3DENCRYPTED_BLOCK_INFO;
-const IStream = @import("structured_storage.zig").IStream;
 const D3D12_QUERY_TYPE = @import("direct3d12.zig").D3D12_QUERY_TYPE;
+const IStream = @import("structured_storage.zig").IStream;
 const PWSTR = @import("system_services.zig").PWSTR;
 const D3DDEVTYPE = @import("direct3d9.zig").D3DDEVTYPE;
 const HMONITOR = @import("gdi.zig").HMONITOR;
@@ -29541,44 +29596,35 @@ const MPEG1VIDEOINFO = @import("direct_show.zig").MPEG1VIDEOINFO;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PDXVAHDSW_CreateDevice;
-    _ = PDXVAHDSW_ProposeVideoPrivateFormat;
-    _ = PDXVAHDSW_GetVideoProcessorDeviceCaps;
-    _ = PDXVAHDSW_GetVideoProcessorOutputFormats;
-    _ = PDXVAHDSW_GetVideoProcessorInputFormats;
-    _ = PDXVAHDSW_GetVideoProcessorCaps;
-    _ = PDXVAHDSW_GetVideoProcessorCustomRates;
-    _ = PDXVAHDSW_GetVideoProcessorFilterRange;
-    _ = PDXVAHDSW_DestroyDevice;
-    _ = PDXVAHDSW_CreateVideoProcessor;
-    _ = PDXVAHDSW_SetVideoProcessBltState;
-    _ = PDXVAHDSW_GetVideoProcessBltStatePrivate;
-    _ = PDXVAHDSW_SetVideoProcessStreamState;
-    _ = PDXVAHDSW_GetVideoProcessStreamStatePrivate;
-    _ = PDXVAHDSW_VideoProcessBltHD;
-    _ = PDXVAHDSW_DestroyVideoProcessor;
-    _ = PDXVAHDSW_Plugin;
-    _ = PDXVAHD_CreateDevice;
-    _ = MFPERIODICCALLBACK;
+    if (@hasDecl(@This(), "PDXVAHDSW_CreateDevice")) { _ = PDXVAHDSW_CreateDevice; }
+    if (@hasDecl(@This(), "PDXVAHDSW_ProposeVideoPrivateFormat")) { _ = PDXVAHDSW_ProposeVideoPrivateFormat; }
+    if (@hasDecl(@This(), "PDXVAHDSW_GetVideoProcessorDeviceCaps")) { _ = PDXVAHDSW_GetVideoProcessorDeviceCaps; }
+    if (@hasDecl(@This(), "PDXVAHDSW_GetVideoProcessorOutputFormats")) { _ = PDXVAHDSW_GetVideoProcessorOutputFormats; }
+    if (@hasDecl(@This(), "PDXVAHDSW_GetVideoProcessorInputFormats")) { _ = PDXVAHDSW_GetVideoProcessorInputFormats; }
+    if (@hasDecl(@This(), "PDXVAHDSW_GetVideoProcessorCaps")) { _ = PDXVAHDSW_GetVideoProcessorCaps; }
+    if (@hasDecl(@This(), "PDXVAHDSW_GetVideoProcessorCustomRates")) { _ = PDXVAHDSW_GetVideoProcessorCustomRates; }
+    if (@hasDecl(@This(), "PDXVAHDSW_GetVideoProcessorFilterRange")) { _ = PDXVAHDSW_GetVideoProcessorFilterRange; }
+    if (@hasDecl(@This(), "PDXVAHDSW_DestroyDevice")) { _ = PDXVAHDSW_DestroyDevice; }
+    if (@hasDecl(@This(), "PDXVAHDSW_CreateVideoProcessor")) { _ = PDXVAHDSW_CreateVideoProcessor; }
+    if (@hasDecl(@This(), "PDXVAHDSW_SetVideoProcessBltState")) { _ = PDXVAHDSW_SetVideoProcessBltState; }
+    if (@hasDecl(@This(), "PDXVAHDSW_GetVideoProcessBltStatePrivate")) { _ = PDXVAHDSW_GetVideoProcessBltStatePrivate; }
+    if (@hasDecl(@This(), "PDXVAHDSW_SetVideoProcessStreamState")) { _ = PDXVAHDSW_SetVideoProcessStreamState; }
+    if (@hasDecl(@This(), "PDXVAHDSW_GetVideoProcessStreamStatePrivate")) { _ = PDXVAHDSW_GetVideoProcessStreamStatePrivate; }
+    if (@hasDecl(@This(), "PDXVAHDSW_VideoProcessBltHD")) { _ = PDXVAHDSW_VideoProcessBltHD; }
+    if (@hasDecl(@This(), "PDXVAHDSW_DestroyVideoProcessor")) { _ = PDXVAHDSW_DestroyVideoProcessor; }
+    if (@hasDecl(@This(), "PDXVAHDSW_Plugin")) { _ = PDXVAHDSW_Plugin; }
+    if (@hasDecl(@This(), "PDXVAHD_CreateDevice")) { _ = PDXVAHD_CreateDevice; }
+    if (@hasDecl(@This(), "MFPERIODICCALLBACK")) { _ = MFPERIODICCALLBACK; }
 
-    const constant_export_count = 1282;
-    const type_export_count = 1007;
-    const enum_value_export_count = 1758;
-    const com_iface_id_export_count = 354;
-    const com_class_id_export_count = 95;
-    const func_export_count = 235;
-    const unicode_alias_count = 0;
-    const import_count = 67;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

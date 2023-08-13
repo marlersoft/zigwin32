@@ -7,219 +7,13 @@ pub const PKEY_PIDSTR_MAX = @as(u32, 10);
 //--------------------------------------------------------------------------------
 // Section: Types (50)
 //--------------------------------------------------------------------------------
+pub const SERIALIZEDPROPSTORAGE = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
 pub const PROPERTYKEY = extern struct {
     fmtid: Guid,
     pid: u32,
-};
-
-pub const SYNC_TRANSFER_STATUS = extern enum(i32) {
-    NONE = 0,
-    NEEDSUPLOAD = 1,
-    NEEDSDOWNLOAD = 2,
-    TRANSFERRING = 4,
-    PAUSED = 8,
-    HASERROR = 16,
-    FETCHING_METADATA = 32,
-    USER_REQUESTED_REFRESH = 64,
-    HASWARNING = 128,
-    EXCLUDED = 256,
-    INCOMPLETE = 512,
-    PLACEHOLDER_IFEMPTY = 1024,
-};
-pub const STS_NONE = SYNC_TRANSFER_STATUS.NONE;
-pub const STS_NEEDSUPLOAD = SYNC_TRANSFER_STATUS.NEEDSUPLOAD;
-pub const STS_NEEDSDOWNLOAD = SYNC_TRANSFER_STATUS.NEEDSDOWNLOAD;
-pub const STS_TRANSFERRING = SYNC_TRANSFER_STATUS.TRANSFERRING;
-pub const STS_PAUSED = SYNC_TRANSFER_STATUS.PAUSED;
-pub const STS_HASERROR = SYNC_TRANSFER_STATUS.HASERROR;
-pub const STS_FETCHING_METADATA = SYNC_TRANSFER_STATUS.FETCHING_METADATA;
-pub const STS_USER_REQUESTED_REFRESH = SYNC_TRANSFER_STATUS.USER_REQUESTED_REFRESH;
-pub const STS_HASWARNING = SYNC_TRANSFER_STATUS.HASWARNING;
-pub const STS_EXCLUDED = SYNC_TRANSFER_STATUS.EXCLUDED;
-pub const STS_INCOMPLETE = SYNC_TRANSFER_STATUS.INCOMPLETE;
-pub const STS_PLACEHOLDER_IFEMPTY = SYNC_TRANSFER_STATUS.PLACEHOLDER_IFEMPTY;
-
-pub const PLACEHOLDER_STATES = extern enum(i32) {
-    NONE = 0,
-    MARKED_FOR_OFFLINE_AVAILABILITY = 1,
-    FULL_PRIMARY_STREAM_AVAILABLE = 2,
-    CREATE_FILE_ACCESSIBLE = 4,
-    CLOUDFILE_PLACEHOLDER = 8,
-    DEFAULT = 7,
-    ALL = 15,
-};
-pub const PS_NONE = PLACEHOLDER_STATES.NONE;
-pub const PS_MARKED_FOR_OFFLINE_AVAILABILITY = PLACEHOLDER_STATES.MARKED_FOR_OFFLINE_AVAILABILITY;
-pub const PS_FULL_PRIMARY_STREAM_AVAILABLE = PLACEHOLDER_STATES.FULL_PRIMARY_STREAM_AVAILABLE;
-pub const PS_CREATE_FILE_ACCESSIBLE = PLACEHOLDER_STATES.CREATE_FILE_ACCESSIBLE;
-pub const PS_CLOUDFILE_PLACEHOLDER = PLACEHOLDER_STATES.CLOUDFILE_PLACEHOLDER;
-pub const PS_DEFAULT = PLACEHOLDER_STATES.DEFAULT;
-pub const PS_ALL = PLACEHOLDER_STATES.ALL;
-
-pub const _PROPERTYUI_FLAGS = extern enum(i32) {
-    DEFAULT = 0,
-    RIGHTALIGN = 1,
-    NOLABELININFOTIP = 2,
-};
-pub const PUIF_DEFAULT = _PROPERTYUI_FLAGS.DEFAULT;
-pub const PUIF_RIGHTALIGN = _PROPERTYUI_FLAGS.RIGHTALIGN;
-pub const PUIF_NOLABELININFOTIP = _PROPERTYUI_FLAGS.NOLABELININFOTIP;
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IPropertyUI_Value = @import("../zig.zig").Guid.initString("757a7d9f-919a-4118-99d7-dbb208c8cc66");
-pub const IID_IPropertyUI = &IID_IPropertyUI_Value;
-pub const IPropertyUI = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ParsePropertyName: fn(
-            self: *const IPropertyUI,
-            pszName: [*:0]const u16,
-            pfmtid: *Guid,
-            ppid: *u32,
-            pchEaten: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCannonicalName: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            pwszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDisplayName: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            flags: u32,
-            pwszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyDescription: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            pwszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetDefaultWidth: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            pcxChars: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFlags: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            pflags: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FormatForDisplay: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            ppropvar: *const PROPVARIANT,
-            puiff: u32,
-            pwszText: [*:0]u16,
-            cchText: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetHelpInfo: fn(
-            self: *const IPropertyUI,
-            fmtid: *const Guid,
-            pid: u32,
-            pwszHelpFile: [*:0]u16,
-            cch: u32,
-            puHelpID: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_ParsePropertyName(self: *const T, pszName: [*:0]const u16, pfmtid: *Guid, ppid: *u32, pchEaten: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).ParsePropertyName(@ptrCast(*const IPropertyUI, self), pszName, pfmtid, ppid, pchEaten);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_GetCannonicalName(self: *const T, fmtid: *const Guid, pid: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetCannonicalName(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_GetDisplayName(self: *const T, fmtid: *const Guid, pid: u32, flags: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetDisplayName(@ptrCast(*const IPropertyUI, self), fmtid, pid, flags, pwszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_GetPropertyDescription(self: *const T, fmtid: *const Guid, pid: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetPropertyDescription(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_GetDefaultWidth(self: *const T, fmtid: *const Guid, pid: u32, pcxChars: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetDefaultWidth(@ptrCast(*const IPropertyUI, self), fmtid, pid, pcxChars);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_GetFlags(self: *const T, fmtid: *const Guid, pid: u32, pflags: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetFlags(@ptrCast(*const IPropertyUI, self), fmtid, pid, pflags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_FormatForDisplay(self: *const T, fmtid: *const Guid, pid: u32, ppropvar: *const PROPVARIANT, puiff: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).FormatForDisplay(@ptrCast(*const IPropertyUI, self), fmtid, pid, ppropvar, puiff, pwszText, cchText);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyUI_GetHelpInfo(self: *const T, fmtid: *const Guid, pid: u32, pwszHelpFile: [*:0]u16, cch: u32, puHelpID: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetHelpInfo(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszHelpFile, cch, puHelpID);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const PDOPSTATUS = extern enum(i32) {
-    RUNNING = 1,
-    PAUSED = 2,
-    CANCELLED = 3,
-    STOPPED = 4,
-    ERRORS = 5,
-};
-pub const PDOPS_RUNNING = PDOPSTATUS.RUNNING;
-pub const PDOPS_PAUSED = PDOPSTATUS.PAUSED;
-pub const PDOPS_CANCELLED = PDOPSTATUS.CANCELLED;
-pub const PDOPS_STOPPED = PDOPSTATUS.STOPPED;
-pub const PDOPS_ERRORS = PDOPSTATUS.ERRORS;
-
-pub const SYNC_ENGINE_STATE_FLAGS = extern enum(i32) {
-    NONE = 0,
-    SERVICE_QUOTA_NEARING_LIMIT = 1,
-    SERVICE_QUOTA_EXCEEDED_LIMIT = 2,
-    AUTHENTICATION_ERROR = 4,
-    PAUSED_DUE_TO_METERED_NETWORK = 8,
-    PAUSED_DUE_TO_DISK_SPACE_FULL = 16,
-    PAUSED_DUE_TO_CLIENT_POLICY = 32,
-    PAUSED_DUE_TO_SERVICE_POLICY = 64,
-    SERVICE_UNAVAILABLE = 128,
-    PAUSED_DUE_TO_USER_REQUEST = 256,
-    ALL_FLAGS = 511,
-};
-pub const SESF_NONE = SYNC_ENGINE_STATE_FLAGS.NONE;
-pub const SESF_SERVICE_QUOTA_NEARING_LIMIT = SYNC_ENGINE_STATE_FLAGS.SERVICE_QUOTA_NEARING_LIMIT;
-pub const SESF_SERVICE_QUOTA_EXCEEDED_LIMIT = SYNC_ENGINE_STATE_FLAGS.SERVICE_QUOTA_EXCEEDED_LIMIT;
-pub const SESF_AUTHENTICATION_ERROR = SYNC_ENGINE_STATE_FLAGS.AUTHENTICATION_ERROR;
-pub const SESF_PAUSED_DUE_TO_METERED_NETWORK = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_METERED_NETWORK;
-pub const SESF_PAUSED_DUE_TO_DISK_SPACE_FULL = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_DISK_SPACE_FULL;
-pub const SESF_PAUSED_DUE_TO_CLIENT_POLICY = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_CLIENT_POLICY;
-pub const SESF_PAUSED_DUE_TO_SERVICE_POLICY = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_SERVICE_POLICY;
-pub const SESF_SERVICE_UNAVAILABLE = SYNC_ENGINE_STATE_FLAGS.SERVICE_UNAVAILABLE;
-pub const SESF_PAUSED_DUE_TO_USER_REQUEST = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_USER_REQUEST;
-pub const SESF_ALL_FLAGS = SYNC_ENGINE_STATE_FLAGS.ALL_FLAGS;
-
-pub const PROPPRG = extern struct {
-    flPrg: u16,
-    flPrgInit: u16,
-    achTitle: [30]CHAR,
-    achCmdLine: [128]CHAR,
-    achWorkDir: [64]CHAR,
-    wHotKey: u16,
-    achIconFile: [80]CHAR,
-    wIconIndex: u16,
-    dwEnhModeFlags: u32,
-    dwRealModeFlags: u32,
-    achOtherFile: [80]CHAR,
-    achPIFFile: [260]CHAR,
 };
 
 const CLSID_InMemoryPropertyStore_Value = @import("../zig.zig").Guid.initString("9a02e012-6303-4e1e-b9a1-630f802592c5");
@@ -1334,10 +1128,6 @@ pub const FPSPS_DEFAULT = _PERSIST_SPROPSTORE_FLAGS.DEFAULT;
 pub const FPSPS_READONLY = _PERSIST_SPROPSTORE_FLAGS.READONLY;
 pub const FPSPS_TREAT_NEW_VALUES_AS_DIRTY = _PERSIST_SPROPSTORE_FLAGS.TREAT_NEW_VALUES_AS_DIRTY;
 
-pub const SERIALIZEDPROPSTORAGE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 const IID_IPropertySystemChangeNotify_Value = @import("../zig.zig").Guid.initString("fa955fd9-38be-4879-a6ce-824cf52d609f");
 pub const IID_IPropertySystemChangeNotify = &IID_IPropertySystemChangeNotify_Value;
 pub const IPropertySystemChangeNotify = extern struct {
@@ -1429,105 +1219,220 @@ pub const DPF_ERROR = DRAWPROGRESSFLAGS.ERROR;
 pub const DPF_WARNING = DRAWPROGRESSFLAGS.WARNING;
 pub const DPF_STOPPED = DRAWPROGRESSFLAGS.STOPPED;
 
+pub const SYNC_TRANSFER_STATUS = extern enum(i32) {
+    NONE = 0,
+    NEEDSUPLOAD = 1,
+    NEEDSDOWNLOAD = 2,
+    TRANSFERRING = 4,
+    PAUSED = 8,
+    HASERROR = 16,
+    FETCHING_METADATA = 32,
+    USER_REQUESTED_REFRESH = 64,
+    HASWARNING = 128,
+    EXCLUDED = 256,
+    INCOMPLETE = 512,
+    PLACEHOLDER_IFEMPTY = 1024,
+};
+pub const STS_NONE = SYNC_TRANSFER_STATUS.NONE;
+pub const STS_NEEDSUPLOAD = SYNC_TRANSFER_STATUS.NEEDSUPLOAD;
+pub const STS_NEEDSDOWNLOAD = SYNC_TRANSFER_STATUS.NEEDSDOWNLOAD;
+pub const STS_TRANSFERRING = SYNC_TRANSFER_STATUS.TRANSFERRING;
+pub const STS_PAUSED = SYNC_TRANSFER_STATUS.PAUSED;
+pub const STS_HASERROR = SYNC_TRANSFER_STATUS.HASERROR;
+pub const STS_FETCHING_METADATA = SYNC_TRANSFER_STATUS.FETCHING_METADATA;
+pub const STS_USER_REQUESTED_REFRESH = SYNC_TRANSFER_STATUS.USER_REQUESTED_REFRESH;
+pub const STS_HASWARNING = SYNC_TRANSFER_STATUS.HASWARNING;
+pub const STS_EXCLUDED = SYNC_TRANSFER_STATUS.EXCLUDED;
+pub const STS_INCOMPLETE = SYNC_TRANSFER_STATUS.INCOMPLETE;
+pub const STS_PLACEHOLDER_IFEMPTY = SYNC_TRANSFER_STATUS.PLACEHOLDER_IFEMPTY;
+
+pub const PLACEHOLDER_STATES = extern enum(i32) {
+    NONE = 0,
+    MARKED_FOR_OFFLINE_AVAILABILITY = 1,
+    FULL_PRIMARY_STREAM_AVAILABLE = 2,
+    CREATE_FILE_ACCESSIBLE = 4,
+    CLOUDFILE_PLACEHOLDER = 8,
+    DEFAULT = 7,
+    ALL = 15,
+};
+pub const PS_NONE = PLACEHOLDER_STATES.NONE;
+pub const PS_MARKED_FOR_OFFLINE_AVAILABILITY = PLACEHOLDER_STATES.MARKED_FOR_OFFLINE_AVAILABILITY;
+pub const PS_FULL_PRIMARY_STREAM_AVAILABLE = PLACEHOLDER_STATES.FULL_PRIMARY_STREAM_AVAILABLE;
+pub const PS_CREATE_FILE_ACCESSIBLE = PLACEHOLDER_STATES.CREATE_FILE_ACCESSIBLE;
+pub const PS_CLOUDFILE_PLACEHOLDER = PLACEHOLDER_STATES.CLOUDFILE_PLACEHOLDER;
+pub const PS_DEFAULT = PLACEHOLDER_STATES.DEFAULT;
+pub const PS_ALL = PLACEHOLDER_STATES.ALL;
+
+pub const _PROPERTYUI_FLAGS = extern enum(i32) {
+    DEFAULT = 0,
+    RIGHTALIGN = 1,
+    NOLABELININFOTIP = 2,
+};
+pub const PUIF_DEFAULT = _PROPERTYUI_FLAGS.DEFAULT;
+pub const PUIF_RIGHTALIGN = _PROPERTYUI_FLAGS.RIGHTALIGN;
+pub const PUIF_NOLABELININFOTIP = _PROPERTYUI_FLAGS.NOLABELININFOTIP;
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IPropertyUI_Value = @import("../zig.zig").Guid.initString("757a7d9f-919a-4118-99d7-dbb208c8cc66");
+pub const IID_IPropertyUI = &IID_IPropertyUI_Value;
+pub const IPropertyUI = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ParsePropertyName: fn(
+            self: *const IPropertyUI,
+            pszName: [*:0]const u16,
+            pfmtid: *Guid,
+            ppid: *u32,
+            pchEaten: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCannonicalName: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            pwszText: [*:0]u16,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDisplayName: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            flags: u32,
+            pwszText: [*:0]u16,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyDescription: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            pwszText: [*:0]u16,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultWidth: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            pcxChars: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFlags: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            pflags: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FormatForDisplay: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            ppropvar: *const PROPVARIANT,
+            puiff: u32,
+            pwszText: [*:0]u16,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHelpInfo: fn(
+            self: *const IPropertyUI,
+            fmtid: *const Guid,
+            pid: u32,
+            pwszHelpFile: [*:0]u16,
+            cch: u32,
+            puHelpID: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_ParsePropertyName(self: *const T, pszName: [*:0]const u16, pfmtid: *Guid, ppid: *u32, pchEaten: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).ParsePropertyName(@ptrCast(*const IPropertyUI, self), pszName, pfmtid, ppid, pchEaten);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_GetCannonicalName(self: *const T, fmtid: *const Guid, pid: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetCannonicalName(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszText, cchText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_GetDisplayName(self: *const T, fmtid: *const Guid, pid: u32, flags: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetDisplayName(@ptrCast(*const IPropertyUI, self), fmtid, pid, flags, pwszText, cchText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_GetPropertyDescription(self: *const T, fmtid: *const Guid, pid: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetPropertyDescription(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszText, cchText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_GetDefaultWidth(self: *const T, fmtid: *const Guid, pid: u32, pcxChars: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetDefaultWidth(@ptrCast(*const IPropertyUI, self), fmtid, pid, pcxChars);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_GetFlags(self: *const T, fmtid: *const Guid, pid: u32, pflags: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetFlags(@ptrCast(*const IPropertyUI, self), fmtid, pid, pflags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_FormatForDisplay(self: *const T, fmtid: *const Guid, pid: u32, ppropvar: *const PROPVARIANT, puiff: u32, pwszText: [*:0]u16, cchText: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).FormatForDisplay(@ptrCast(*const IPropertyUI, self), fmtid, pid, ppropvar, puiff, pwszText, cchText);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyUI_GetHelpInfo(self: *const T, fmtid: *const Guid, pid: u32, pwszHelpFile: [*:0]u16, cch: u32, puHelpID: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyUI.VTable, self.vtable).GetHelpInfo(@ptrCast(*const IPropertyUI, self), fmtid, pid, pwszHelpFile, cch, puHelpID);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const PDOPSTATUS = extern enum(i32) {
+    RUNNING = 1,
+    PAUSED = 2,
+    CANCELLED = 3,
+    STOPPED = 4,
+    ERRORS = 5,
+};
+pub const PDOPS_RUNNING = PDOPSTATUS.RUNNING;
+pub const PDOPS_PAUSED = PDOPSTATUS.PAUSED;
+pub const PDOPS_CANCELLED = PDOPSTATUS.CANCELLED;
+pub const PDOPS_STOPPED = PDOPSTATUS.STOPPED;
+pub const PDOPS_ERRORS = PDOPSTATUS.ERRORS;
+
+pub const SYNC_ENGINE_STATE_FLAGS = extern enum(i32) {
+    NONE = 0,
+    SERVICE_QUOTA_NEARING_LIMIT = 1,
+    SERVICE_QUOTA_EXCEEDED_LIMIT = 2,
+    AUTHENTICATION_ERROR = 4,
+    PAUSED_DUE_TO_METERED_NETWORK = 8,
+    PAUSED_DUE_TO_DISK_SPACE_FULL = 16,
+    PAUSED_DUE_TO_CLIENT_POLICY = 32,
+    PAUSED_DUE_TO_SERVICE_POLICY = 64,
+    SERVICE_UNAVAILABLE = 128,
+    PAUSED_DUE_TO_USER_REQUEST = 256,
+    ALL_FLAGS = 511,
+};
+pub const SESF_NONE = SYNC_ENGINE_STATE_FLAGS.NONE;
+pub const SESF_SERVICE_QUOTA_NEARING_LIMIT = SYNC_ENGINE_STATE_FLAGS.SERVICE_QUOTA_NEARING_LIMIT;
+pub const SESF_SERVICE_QUOTA_EXCEEDED_LIMIT = SYNC_ENGINE_STATE_FLAGS.SERVICE_QUOTA_EXCEEDED_LIMIT;
+pub const SESF_AUTHENTICATION_ERROR = SYNC_ENGINE_STATE_FLAGS.AUTHENTICATION_ERROR;
+pub const SESF_PAUSED_DUE_TO_METERED_NETWORK = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_METERED_NETWORK;
+pub const SESF_PAUSED_DUE_TO_DISK_SPACE_FULL = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_DISK_SPACE_FULL;
+pub const SESF_PAUSED_DUE_TO_CLIENT_POLICY = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_CLIENT_POLICY;
+pub const SESF_PAUSED_DUE_TO_SERVICE_POLICY = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_SERVICE_POLICY;
+pub const SESF_SERVICE_UNAVAILABLE = SYNC_ENGINE_STATE_FLAGS.SERVICE_UNAVAILABLE;
+pub const SESF_PAUSED_DUE_TO_USER_REQUEST = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_USER_REQUEST;
+pub const SESF_ALL_FLAGS = SYNC_ENGINE_STATE_FLAGS.ALL_FLAGS;
+
+pub const PROPPRG = extern struct {
+    flPrg: u16,
+    flPrgInit: u16,
+    achTitle: [30]CHAR,
+    achCmdLine: [128]CHAR,
+    achWorkDir: [64]CHAR,
+    wHotKey: u16,
+    achIconFile: [80]CHAR,
+    wIconIndex: u16,
+    dwEnhModeFlags: u32,
+    dwRealModeFlags: u32,
+    achOtherFile: [80]CHAR,
+    achPIFFile: [260]CHAR,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (227)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHGetPropertyStoreFromIDList(
-    pidl: *ITEMIDLIST,
-    flags: GETPROPERTYSTOREFLAGS,
-    riid: *const Guid,
-    ppv: **c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHGetPropertyStoreFromParsingName(
-    pszPath: [*:0]const u16,
-    pbc: ?*IBindCtx,
-    flags: GETPROPERTYSTOREFLAGS,
-    riid: *const Guid,
-    ppv: **c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "SHELL32" fn SHAddDefaultPropertiesByExt(
-    pszExt: [*:0]const u16,
-    pPropStore: *IPropertyStore,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn PifMgr_OpenProperties(
-    pszApp: [*:0]const u16,
-    pszPIF: ?[*:0]const u16,
-    hInf: u32,
-    flOpt: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn PifMgr_GetProperties(
-    hProps: HANDLE,
-    pszGroup: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
-    lpProps: ?*c_void,
-    cbProps: i32,
-    flOpt: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn PifMgr_SetProperties(
-    hProps: HANDLE,
-    pszGroup: ?[*:0]const u8,
-    // TODO: what to do with BytesParamIndex 3?
-    lpProps: *const c_void,
-    cbProps: i32,
-    flOpt: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn PifMgr_CloseProperties(
-    hProps: HANDLE,
-    flOpt: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "SHELL32" fn SHPropStgCreate(
-    psstg: *IPropertySetStorage,
-    fmtid: *const Guid,
-    pclsid: ?*const Guid,
-    grfFlags: u32,
-    grfMode: u32,
-    dwDisposition: u32,
-    ppstg: **IPropertyStorage,
-    puCodePage: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHPropStgReadMultiple(
-    pps: *IPropertyStorage,
-    uCodePage: u32,
-    cpspec: u32,
-    rgpspec: [*]const PROPSPEC,
-    rgvar: *PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHELL32" fn SHPropStgWriteMultiple(
-    pps: *IPropertyStorage,
-    puCodePage: ?*u32,
-    cpspec: u32,
-    rgpspec: [*]const PROPSPEC,
-    rgvar: [*]PROPVARIANT,
-    propidNameFirst: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "SHELL32" fn SHGetPropertyStoreForWindow(
-    hwnd: HWND,
-    riid: *const Guid,
-    ppv: **c_void,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "PROPSYS" fn PropVariantToWinRTPropertyValue(
     propvar: *const PROPVARIANT,
@@ -3017,6 +2922,101 @@ pub extern "PROPSYS" fn VariantCompare(
     var2: *const VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "SHELL32" fn SHGetPropertyStoreFromIDList(
+    pidl: *ITEMIDLIST,
+    flags: GETPROPERTYSTOREFLAGS,
+    riid: *const Guid,
+    ppv: **c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "SHELL32" fn SHGetPropertyStoreFromParsingName(
+    pszPath: [*:0]const u16,
+    pbc: ?*IBindCtx,
+    flags: GETPROPERTYSTOREFLAGS,
+    riid: *const Guid,
+    ppv: **c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "SHELL32" fn SHAddDefaultPropertiesByExt(
+    pszExt: [*:0]const u16,
+    pPropStore: *IPropertyStore,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "SHELL32" fn PifMgr_OpenProperties(
+    pszApp: [*:0]const u16,
+    pszPIF: ?[*:0]const u16,
+    hInf: u32,
+    flOpt: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "SHELL32" fn PifMgr_GetProperties(
+    hProps: HANDLE,
+    pszGroup: ?[*:0]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpProps: ?*c_void,
+    cbProps: i32,
+    flOpt: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "SHELL32" fn PifMgr_SetProperties(
+    hProps: HANDLE,
+    pszGroup: ?[*:0]const u8,
+    // TODO: what to do with BytesParamIndex 3?
+    lpProps: *const c_void,
+    cbProps: i32,
+    flOpt: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "SHELL32" fn PifMgr_CloseProperties(
+    hProps: HANDLE,
+    flOpt: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "SHELL32" fn SHPropStgCreate(
+    psstg: *IPropertySetStorage,
+    fmtid: *const Guid,
+    pclsid: ?*const Guid,
+    grfFlags: u32,
+    grfMode: u32,
+    dwDisposition: u32,
+    ppstg: **IPropertyStorage,
+    puCodePage: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "SHELL32" fn SHPropStgReadMultiple(
+    pps: *IPropertyStorage,
+    uCodePage: u32,
+    cpspec: u32,
+    rgpspec: [*]const PROPSPEC,
+    rgvar: *PROPVARIANT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "SHELL32" fn SHPropStgWriteMultiple(
+    pps: *IPropertyStorage,
+    puCodePage: ?*u32,
+    cpspec: u32,
+    rgpspec: [*]const PROPSPEC,
+    rgvar: [*]PROPVARIANT,
+    propidNameFirst: u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "SHELL32" fn SHGetPropertyStoreForWindow(
+    hwnd: HWND,
+    riid: *const Guid,
+    ppv: **c_void,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -3044,15 +3044,15 @@ const POINTS = @import("display_devices.zig").POINTS;
 const PROPSPEC = @import("structured_storage.zig").PROPSPEC;
 const IPropertyStore = @import("audio.zig").IPropertyStore;
 const IObjectWithPropertyKey = @import("shell.zig").IObjectWithPropertyKey;
-const IPropertyStorage = @import("structured_storage.zig").IPropertyStorage;
 const IStream = @import("structured_storage.zig").IStream;
+const IPropertyStorage = @import("structured_storage.zig").IPropertyStorage;
 const PWSTR = @import("system_services.zig").PWSTR;
 const IBindCtx = @import("com.zig").IBindCtx;
 const IUnknown = @import("com.zig").IUnknown;
 const PROPVARIANT = @import("structured_storage.zig").PROPVARIANT;
+const BSTR = @import("automation.zig").BSTR;
 const ITEMIDLIST = @import("shell.zig").ITEMIDLIST;
 const PSTR = @import("system_services.zig").PSTR;
-const BSTR = @import("automation.zig").BSTR;
 const HWND = @import("windows_and_messaging.zig").HWND;
 const IPropertyBag = @import("automation.zig").IPropertyBag;
 const IPropertySetStorage = @import("structured_storage.zig").IPropertySetStorage;
@@ -3064,24 +3064,15 @@ const IDelayedPropertyStoreFactory = @import("shell.zig").IDelayedPropertyStoreF
 const CONDITION_OPERATION = @import("search.zig").CONDITION_OPERATION;
 
 test {
-    const constant_export_count = 1;
-    const type_export_count = 47;
-    const enum_value_export_count = 201;
-    const com_iface_id_export_count = 17;
-    const com_class_id_export_count = 3;
-    const func_export_count = 227;
-    const unicode_alias_count = 0;
-    const import_count = 29;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -1104,7 +1104,11 @@ pub const EAP_CRED_EXPIRY_REQ = extern struct {
     newCreds: EAP_CONFIG_INPUT_FIELD_ARRAY,
 };
 
-pub const EAP_UI_DATA_FORMAT = u32; // TODO: implement StructOrUnion types?
+pub const EAP_UI_DATA_FORMAT = extern union {
+    credData: *EAP_CONFIG_INPUT_FIELD_ARRAY,
+    credExpiryData: *EAP_CRED_EXPIRY_REQ,
+    credLogonData: *EAP_CONFIG_INPUT_FIELD_ARRAY,
+};
 
 pub const EAP_INTERACTIVE_UI_DATA = extern struct {
     dwVersion: u32,
@@ -1203,7 +1207,11 @@ pub const EAP_METHOD_PROPERTY_VALUE_STRING = extern struct {
     value: *u8,
 };
 
-pub const EAP_METHOD_PROPERTY_VALUE = u32; // TODO: implement StructOrUnion types?
+pub const EAP_METHOD_PROPERTY_VALUE = extern union {
+    empvBool: EAP_METHOD_PROPERTY_VALUE_BOOL,
+    empvDword: EAP_METHOD_PROPERTY_VALUE_DWORD,
+    empvString: EAP_METHOD_PROPERTY_VALUE_STRING,
+};
 
 pub const EAP_METHOD_PROPERTY = extern struct {
     eapMethodPropertyType: EAP_METHOD_PROPERTY_TYPE,
@@ -1266,7 +1274,11 @@ pub const EapSimCredential = extern struct {
     iccID: PWSTR,
 };
 
-pub const EapCredentialTypeData = u32; // TODO: implement StructOrUnion types?
+pub const EapCredentialTypeData = extern union {
+    username_password: EapUsernamePasswordCredential,
+    certificate: EapCertificateCredential,
+    sim: EapSimCredential,
+};
 
 pub const EapCredential = extern struct {
     credType: EapCredentialType,
@@ -1495,8 +1507,36 @@ pub const EAP_AUTHENTICATOR_METHOD_ROUTINES = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (32)
+// Section: Functions (33)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "eappprxy" fn EapHostPeerGetDataToUnplumbCredentials(
+    pConnectionIdThatLastSavedCreds: *Guid,
+    phCredentialImpersonationToken: *isize,
+    sessionHandle: u32,
+    ppEapError: **EAP_ERROR,
+    fSaveToCredMan: *BOOL,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "eappprxy" fn EapHostPeerGetDataToUnplumbCredentials(
+    pConnectionIdThatLastSavedCreds: *Guid,
+    phCredentialImpersonationToken: *i32,
+    sessionHandle: u32,
+    ppEapError: **EAP_ERROR,
+    fSaveToCredMan: *BOOL,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+}, else => struct { } };
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerGetMethods(
     pEapMethodInfoArray: *EAP_METHOD_INFO_ARRAY,
@@ -1744,15 +1784,6 @@ pub extern "eappprxy" fn EapHostPeerEndSession(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "eappprxy" fn EapHostPeerGetDataToUnplumbCredentials(
-    pConnectionIdThatLastSavedCreds: *Guid,
-    phCredentialImpersonationToken: *i64,
-    sessionHandle: u32,
-    ppEapError: **EAP_ERROR,
-    fSaveToCredMan: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerClearConnection(
     pConnectionId: *Guid,
@@ -1822,26 +1853,17 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = NotificationHandler;
+    if (@hasDecl(@This(), "NotificationHandler")) { _ = NotificationHandler; }
 
-    const constant_export_count = 168;
-    const type_export_count = 68;
-    const enum_value_export_count = 306;
-    const com_iface_id_export_count = 6;
-    const com_class_id_export_count = 0;
-    const func_export_count = 32;
-    const unicode_alias_count = 0;
-    const import_count = 9;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

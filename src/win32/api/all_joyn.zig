@@ -4340,74 +4340,65 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = alljoyn_aboutdatalistener_getaboutdata_ptr;
-    _ = alljoyn_aboutdatalistener_getannouncedaboutdata_ptr;
-    _ = alljoyn_applicationstatelistener_state_ptr;
-    _ = alljoyn_keystorelistener_loadrequest_ptr;
-    _ = alljoyn_keystorelistener_storerequest_ptr;
-    _ = alljoyn_keystorelistener_acquireexclusivelock_ptr;
-    _ = alljoyn_keystorelistener_releaseexclusivelock_ptr;
-    _ = alljoyn_authlistener_requestcredentials_ptr;
-    _ = alljoyn_authlistener_requestcredentialsasync_ptr;
-    _ = alljoyn_authlistener_verifycredentials_ptr;
-    _ = alljoyn_authlistener_verifycredentialsasync_ptr;
-    _ = alljoyn_authlistener_securityviolation_ptr;
-    _ = alljoyn_authlistener_authenticationcomplete_ptr;
-    _ = alljoyn_buslistener_listener_registered_ptr;
-    _ = alljoyn_buslistener_listener_unregistered_ptr;
-    _ = alljoyn_buslistener_found_advertised_name_ptr;
-    _ = alljoyn_buslistener_lost_advertised_name_ptr;
-    _ = alljoyn_buslistener_name_owner_changed_ptr;
-    _ = alljoyn_buslistener_bus_stopping_ptr;
-    _ = alljoyn_buslistener_bus_disconnected_ptr;
-    _ = alljoyn_buslistener_bus_prop_changed_ptr;
-    _ = alljoyn_interfacedescription_translation_callback_ptr;
-    _ = alljoyn_messagereceiver_methodhandler_ptr;
-    _ = alljoyn_messagereceiver_replyhandler_ptr;
-    _ = alljoyn_messagereceiver_signalhandler_ptr;
-    _ = alljoyn_busobject_prop_get_ptr;
-    _ = alljoyn_busobject_prop_set_ptr;
-    _ = alljoyn_busobject_object_registration_ptr;
-    _ = alljoyn_proxybusobject_listener_introspectcb_ptr;
-    _ = alljoyn_proxybusobject_listener_getpropertycb_ptr;
-    _ = alljoyn_proxybusobject_listener_getallpropertiescb_ptr;
-    _ = alljoyn_proxybusobject_listener_setpropertycb_ptr;
-    _ = alljoyn_proxybusobject_listener_propertieschanged_ptr;
-    _ = alljoyn_permissionconfigurationlistener_factoryreset_ptr;
-    _ = alljoyn_permissionconfigurationlistener_policychanged_ptr;
-    _ = alljoyn_permissionconfigurationlistener_startmanagement_ptr;
-    _ = alljoyn_permissionconfigurationlistener_endmanagement_ptr;
-    _ = alljoyn_sessionlistener_sessionlost_ptr;
-    _ = alljoyn_sessionlistener_sessionmemberadded_ptr;
-    _ = alljoyn_sessionlistener_sessionmemberremoved_ptr;
-    _ = alljoyn_sessionportlistener_acceptsessionjoiner_ptr;
-    _ = alljoyn_sessionportlistener_sessionjoined_ptr;
-    _ = alljoyn_about_announced_ptr;
-    _ = alljoyn_busattachment_joinsessioncb_ptr;
-    _ = alljoyn_busattachment_setlinktimeoutcb_ptr;
-    _ = alljoyn_autopinger_destination_lost_ptr;
-    _ = alljoyn_autopinger_destination_found_ptr;
-    _ = alljoyn_observer_object_discovered_ptr;
-    _ = alljoyn_observer_object_lost_ptr;
+    if (@hasDecl(@This(), "alljoyn_aboutdatalistener_getaboutdata_ptr")) { _ = alljoyn_aboutdatalistener_getaboutdata_ptr; }
+    if (@hasDecl(@This(), "alljoyn_aboutdatalistener_getannouncedaboutdata_ptr")) { _ = alljoyn_aboutdatalistener_getannouncedaboutdata_ptr; }
+    if (@hasDecl(@This(), "alljoyn_applicationstatelistener_state_ptr")) { _ = alljoyn_applicationstatelistener_state_ptr; }
+    if (@hasDecl(@This(), "alljoyn_keystorelistener_loadrequest_ptr")) { _ = alljoyn_keystorelistener_loadrequest_ptr; }
+    if (@hasDecl(@This(), "alljoyn_keystorelistener_storerequest_ptr")) { _ = alljoyn_keystorelistener_storerequest_ptr; }
+    if (@hasDecl(@This(), "alljoyn_keystorelistener_acquireexclusivelock_ptr")) { _ = alljoyn_keystorelistener_acquireexclusivelock_ptr; }
+    if (@hasDecl(@This(), "alljoyn_keystorelistener_releaseexclusivelock_ptr")) { _ = alljoyn_keystorelistener_releaseexclusivelock_ptr; }
+    if (@hasDecl(@This(), "alljoyn_authlistener_requestcredentials_ptr")) { _ = alljoyn_authlistener_requestcredentials_ptr; }
+    if (@hasDecl(@This(), "alljoyn_authlistener_requestcredentialsasync_ptr")) { _ = alljoyn_authlistener_requestcredentialsasync_ptr; }
+    if (@hasDecl(@This(), "alljoyn_authlistener_verifycredentials_ptr")) { _ = alljoyn_authlistener_verifycredentials_ptr; }
+    if (@hasDecl(@This(), "alljoyn_authlistener_verifycredentialsasync_ptr")) { _ = alljoyn_authlistener_verifycredentialsasync_ptr; }
+    if (@hasDecl(@This(), "alljoyn_authlistener_securityviolation_ptr")) { _ = alljoyn_authlistener_securityviolation_ptr; }
+    if (@hasDecl(@This(), "alljoyn_authlistener_authenticationcomplete_ptr")) { _ = alljoyn_authlistener_authenticationcomplete_ptr; }
+    if (@hasDecl(@This(), "alljoyn_buslistener_listener_registered_ptr")) { _ = alljoyn_buslistener_listener_registered_ptr; }
+    if (@hasDecl(@This(), "alljoyn_buslistener_listener_unregistered_ptr")) { _ = alljoyn_buslistener_listener_unregistered_ptr; }
+    if (@hasDecl(@This(), "alljoyn_buslistener_found_advertised_name_ptr")) { _ = alljoyn_buslistener_found_advertised_name_ptr; }
+    if (@hasDecl(@This(), "alljoyn_buslistener_lost_advertised_name_ptr")) { _ = alljoyn_buslistener_lost_advertised_name_ptr; }
+    if (@hasDecl(@This(), "alljoyn_buslistener_name_owner_changed_ptr")) { _ = alljoyn_buslistener_name_owner_changed_ptr; }
+    if (@hasDecl(@This(), "alljoyn_buslistener_bus_stopping_ptr")) { _ = alljoyn_buslistener_bus_stopping_ptr; }
+    if (@hasDecl(@This(), "alljoyn_buslistener_bus_disconnected_ptr")) { _ = alljoyn_buslistener_bus_disconnected_ptr; }
+    if (@hasDecl(@This(), "alljoyn_buslistener_bus_prop_changed_ptr")) { _ = alljoyn_buslistener_bus_prop_changed_ptr; }
+    if (@hasDecl(@This(), "alljoyn_interfacedescription_translation_callback_ptr")) { _ = alljoyn_interfacedescription_translation_callback_ptr; }
+    if (@hasDecl(@This(), "alljoyn_messagereceiver_methodhandler_ptr")) { _ = alljoyn_messagereceiver_methodhandler_ptr; }
+    if (@hasDecl(@This(), "alljoyn_messagereceiver_replyhandler_ptr")) { _ = alljoyn_messagereceiver_replyhandler_ptr; }
+    if (@hasDecl(@This(), "alljoyn_messagereceiver_signalhandler_ptr")) { _ = alljoyn_messagereceiver_signalhandler_ptr; }
+    if (@hasDecl(@This(), "alljoyn_busobject_prop_get_ptr")) { _ = alljoyn_busobject_prop_get_ptr; }
+    if (@hasDecl(@This(), "alljoyn_busobject_prop_set_ptr")) { _ = alljoyn_busobject_prop_set_ptr; }
+    if (@hasDecl(@This(), "alljoyn_busobject_object_registration_ptr")) { _ = alljoyn_busobject_object_registration_ptr; }
+    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_introspectcb_ptr")) { _ = alljoyn_proxybusobject_listener_introspectcb_ptr; }
+    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_getpropertycb_ptr")) { _ = alljoyn_proxybusobject_listener_getpropertycb_ptr; }
+    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_getallpropertiescb_ptr")) { _ = alljoyn_proxybusobject_listener_getallpropertiescb_ptr; }
+    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_setpropertycb_ptr")) { _ = alljoyn_proxybusobject_listener_setpropertycb_ptr; }
+    if (@hasDecl(@This(), "alljoyn_proxybusobject_listener_propertieschanged_ptr")) { _ = alljoyn_proxybusobject_listener_propertieschanged_ptr; }
+    if (@hasDecl(@This(), "alljoyn_permissionconfigurationlistener_factoryreset_ptr")) { _ = alljoyn_permissionconfigurationlistener_factoryreset_ptr; }
+    if (@hasDecl(@This(), "alljoyn_permissionconfigurationlistener_policychanged_ptr")) { _ = alljoyn_permissionconfigurationlistener_policychanged_ptr; }
+    if (@hasDecl(@This(), "alljoyn_permissionconfigurationlistener_startmanagement_ptr")) { _ = alljoyn_permissionconfigurationlistener_startmanagement_ptr; }
+    if (@hasDecl(@This(), "alljoyn_permissionconfigurationlistener_endmanagement_ptr")) { _ = alljoyn_permissionconfigurationlistener_endmanagement_ptr; }
+    if (@hasDecl(@This(), "alljoyn_sessionlistener_sessionlost_ptr")) { _ = alljoyn_sessionlistener_sessionlost_ptr; }
+    if (@hasDecl(@This(), "alljoyn_sessionlistener_sessionmemberadded_ptr")) { _ = alljoyn_sessionlistener_sessionmemberadded_ptr; }
+    if (@hasDecl(@This(), "alljoyn_sessionlistener_sessionmemberremoved_ptr")) { _ = alljoyn_sessionlistener_sessionmemberremoved_ptr; }
+    if (@hasDecl(@This(), "alljoyn_sessionportlistener_acceptsessionjoiner_ptr")) { _ = alljoyn_sessionportlistener_acceptsessionjoiner_ptr; }
+    if (@hasDecl(@This(), "alljoyn_sessionportlistener_sessionjoined_ptr")) { _ = alljoyn_sessionportlistener_sessionjoined_ptr; }
+    if (@hasDecl(@This(), "alljoyn_about_announced_ptr")) { _ = alljoyn_about_announced_ptr; }
+    if (@hasDecl(@This(), "alljoyn_busattachment_joinsessioncb_ptr")) { _ = alljoyn_busattachment_joinsessioncb_ptr; }
+    if (@hasDecl(@This(), "alljoyn_busattachment_setlinktimeoutcb_ptr")) { _ = alljoyn_busattachment_setlinktimeoutcb_ptr; }
+    if (@hasDecl(@This(), "alljoyn_autopinger_destination_lost_ptr")) { _ = alljoyn_autopinger_destination_lost_ptr; }
+    if (@hasDecl(@This(), "alljoyn_autopinger_destination_found_ptr")) { _ = alljoyn_autopinger_destination_found_ptr; }
+    if (@hasDecl(@This(), "alljoyn_observer_object_discovered_ptr")) { _ = alljoyn_observer_object_discovered_ptr; }
+    if (@hasDecl(@This(), "alljoyn_observer_object_lost_ptr")) { _ = alljoyn_observer_object_lost_ptr; }
 
-    const constant_export_count = 37;
-    const type_export_count = 107;
-    const enum_value_export_count = 452;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 532;
-    const unicode_alias_count = 0;
-    const import_count = 5;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

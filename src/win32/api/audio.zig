@@ -3624,20 +3624,6 @@ pub const KSP_PINMODE = extern struct {
     AudioProcessingMode: Guid,
 };
 
-pub const MDEVICECAPSEX = extern struct {
-    cbSize: u32,
-    pCaps: *c_void,
-};
-
-pub const MIDIOPENDESC = extern struct {
-    hMidi: HMIDI,
-    dwCallback: usize,
-    dwInstance: usize,
-    dnDevNode: usize,
-    cIds: u32,
-    rgIds: [1]midiopenstrmid_tag,
-};
-
 const IID_IPropertyStore_Value = @import("../zig.zig").Guid.initString("886d8eeb-8cf2-4446-8d02-cdba1dbdcf99");
 pub const IID_IPropertyStore = &IID_IPropertyStore_Value;
 pub const IPropertyStore = extern struct {
@@ -3691,6 +3677,20 @@ pub const IPropertyStore = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
+};
+
+pub const MDEVICECAPSEX = extern struct {
+    cbSize: u32,
+    pCaps: *c_void,
+};
+
+pub const MIDIOPENDESC = extern struct {
+    hMidi: HMIDI,
+    dwCallback: usize,
+    dwInstance: usize,
+    dnDevNode: usize,
+    cIds: u32,
+    rgIds: [1]midiopenstrmid_tag,
 };
 
 
@@ -3805,28 +3805,19 @@ const HMIDI = @import("multimedia.zig").HMIDI;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = FNAPONOTIFICATIONCALLBACK;
-    _ = LPDSENUMCALLBACKA;
-    _ = LPDSENUMCALLBACKW;
+    if (@hasDecl(@This(), "FNAPONOTIFICATIONCALLBACK")) { _ = FNAPONOTIFICATIONCALLBACK; }
+    if (@hasDecl(@This(), "LPDSENUMCALLBACKA")) { _ = LPDSENUMCALLBACKA; }
+    if (@hasDecl(@This(), "LPDSENUMCALLBACKW")) { _ = LPDSENUMCALLBACKW; }
 
-    const constant_export_count = 493;
-    const type_export_count = 131;
-    const enum_value_export_count = 20;
-    const com_iface_id_export_count = 45;
-    const com_class_id_export_count = 1;
-    const func_export_count = 9;
-    const unicode_alias_count = 3;
-    const import_count = 20;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

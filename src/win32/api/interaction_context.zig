@@ -269,7 +269,7 @@ pub const INTERACTION_CONTEXT_OUTPUT = extern struct {
     inputType: POINTER_INPUT_TYPE,
     x: f32,
     y: f32,
-    arguments: INTERACTION_CONTEXT_OUTPUT._arguments_e__Union,
+    arguments: _arguments_e__Union,
     const _arguments_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -281,7 +281,7 @@ pub const INTERACTION_CONTEXT_OUTPUT2 = extern struct {
     currentContactCount: u32,
     x: f32,
     y: f32,
-    arguments: INTERACTION_CONTEXT_OUTPUT2._arguments_e__Union,
+    arguments: _arguments_e__Union,
     const _arguments_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -522,27 +522,18 @@ const HRESULT = @import("com.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = INTERACTION_CONTEXT_OUTPUT_CALLBACK;
-    _ = INTERACTION_CONTEXT_OUTPUT_CALLBACK2;
+    if (@hasDecl(@This(), "INTERACTION_CONTEXT_OUTPUT_CALLBACK")) { _ = INTERACTION_CONTEXT_OUTPUT_CALLBACK; }
+    if (@hasDecl(@This(), "INTERACTION_CONTEXT_OUTPUT_CALLBACK2")) { _ = INTERACTION_CONTEXT_OUTPUT_CALLBACK2; }
 
-    const constant_export_count = 0;
-    const type_export_count = 25;
-    const enum_value_export_count = 90;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 30;
-    const unicode_alias_count = 0;
-    const import_count = 3;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

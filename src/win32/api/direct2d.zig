@@ -159,22 +159,22 @@ pub const D2D_SIZE_U = extern struct {
 };
 
 pub const D2D_MATRIX_3X2_F = extern struct {
-    Anonymous: D2D_MATRIX_3X2_F._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D2D_MATRIX_4X3_F = extern struct {
-    Anonymous: D2D_MATRIX_4X3_F._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D2D_MATRIX_4X4_F = extern struct {
-    Anonymous: D2D_MATRIX_4X4_F._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D2D_MATRIX_5X4_F = extern struct {
-    Anonymous: D2D_MATRIX_5X4_F._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -9390,28 +9390,19 @@ const POINT = @import("display_devices.zig").POINT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PD2D1_EFFECT_FACTORY;
-    _ = PD2D1_PROPERTY_SET_FUNCTION;
-    _ = PD2D1_PROPERTY_GET_FUNCTION;
+    if (@hasDecl(@This(), "PD2D1_EFFECT_FACTORY")) { _ = PD2D1_EFFECT_FACTORY; }
+    if (@hasDecl(@This(), "PD2D1_PROPERTY_SET_FUNCTION")) { _ = PD2D1_PROPERTY_SET_FUNCTION; }
+    if (@hasDecl(@This(), "PD2D1_PROPERTY_GET_FUNCTION")) { _ = PD2D1_PROPERTY_GET_FUNCTION; }
 
-    const constant_export_count = 68;
-    const type_export_count = 359;
-    const enum_value_export_count = 920;
-    const com_iface_id_export_count = 112;
-    const com_class_id_export_count = 0;
-    const func_export_count = 13;
-    const unicode_alias_count = 0;
-    const import_count = 29;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

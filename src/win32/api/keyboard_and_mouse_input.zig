@@ -206,7 +206,7 @@ pub const HARDWAREINPUT = extern struct {
 
 pub const INPUT = extern struct {
     type: INPUT_TYPE,
-    Anonymous: INPUT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -224,7 +224,7 @@ pub const RAWINPUTHEADER = extern struct {
 
 pub const RAWMOUSE = extern struct {
     usFlags: u16,
-    Anonymous: RAWMOUSE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     ulRawButtons: u32,
     lLastX: i32,
     lLastY: i32,
@@ -249,7 +249,7 @@ pub const RAWHID = extern struct {
 
 pub const RAWINPUT = extern struct {
     header: RAWINPUTHEADER,
-    data: RAWINPUT._data_e__Union,
+    data: _data_e__Union,
     const _data_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -280,7 +280,7 @@ pub const RID_DEVICE_INFO_HID = extern struct {
 pub const RID_DEVICE_INFO = extern struct {
     cbSize: u32,
     dwType: RID_DEVICE_INFO_TYPE,
-    Anonymous: RID_DEVICE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -733,24 +733,15 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 const POINT = @import("display_devices.zig").POINT;
 
 test {
-    const constant_export_count = 0;
-    const type_export_count = 30;
-    const enum_value_export_count = 59;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 60;
-    const unicode_alias_count = 8;
-    const import_count = 10;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

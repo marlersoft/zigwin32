@@ -3652,7 +3652,18 @@ pub const DWRITE_CARET_METRICS = extern struct {
     offset: i16,
 };
 
-pub const DWRITE_PANOSE = u32; // TODO: implement StructOrUnion types?
+pub const DWRITE_PANOSE = extern union {
+    values: [10]u8,
+    familyKind: u8,
+    text: _text_e__Struct,
+    script: _script_e__Struct,
+    decorative: _decorative_e__Struct,
+    symbol: _symbol_e__Struct,
+    const _decorative_e__Struct = u32; // TODO: generate this nested type!
+    const _text_e__Struct = u32; // TODO: generate this nested type!
+    const _script_e__Struct = u32; // TODO: generate this nested type!
+    const _symbol_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const DWRITE_UNICODE_RANGE = extern struct {
     first: u32,
@@ -7203,24 +7214,15 @@ const LOGFONTA = @import("gdi.zig").LOGFONTA;
 const HANDLE = @import("system_services.zig").HANDLE;
 
 test {
-    const constant_export_count = 3;
-    const type_export_count = 193;
-    const enum_value_export_count = 587;
-    const com_iface_id_export_count = 88;
-    const com_class_id_export_count = 0;
-    const func_export_count = 1;
-    const unicode_alias_count = 0;
-    const import_count = 18;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

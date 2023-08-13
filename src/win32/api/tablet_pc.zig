@@ -2,6 +2,10 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (122)
 //--------------------------------------------------------------------------------
+pub const MICROSOFT_URL_EXPERIENCE_PROPERTY = "Microsoft TIP URL Experience";
+pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY = "Microsoft TIP No Insert Option";
+pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY = "Microsoft TIP ComboBox List Window Identifier";
+pub const MICROSOFT_TIP_OPENING_MSG = "TabletInputPanelOpening";
 pub const SAFE_PARTIAL = @as(u32, 1);
 pub const BEST_COMPLETE = @as(u32, 2);
 pub const MAX_VENDORNAME = @as(u32, 32);
@@ -93,10 +97,6 @@ pub const IECN__BASE = @as(u32, 2048);
 pub const IECN_STROKE = @as(u32, 2049);
 pub const IECN_GESTURE = @as(u32, 2050);
 pub const IECN_RECOGNITIONRESULT = @as(u32, 2051);
-pub const MICROSOFT_URL_EXPERIENCE_PROPERTY = "Microsoft TIP URL Experience";
-pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY = "Microsoft TIP No Insert Option";
-pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY = "Microsoft TIP ComboBox List Window Identifier";
-pub const MICROSOFT_TIP_OPENING_MSG = "TabletInputPanelOpening";
 pub const GUID_PACKETPROPERTY_GUID_X = Guid.initString("598a6a8f-52c0-4ba0-93af-af357411a561");
 pub const GUID_PACKETPROPERTY_GUID_Y = Guid.initString("b53f9f75-04e0-4498-a7ee-c30dbb5a9011");
 pub const GUID_PACKETPROPERTY_GUID_Z = Guid.initString("735adb30-0ebb-4788-a0e4-0f316490055d");
@@ -128,6 +128,12 @@ pub const GUID_DYNAMIC_RENDERER_CACHED_DATA = Guid.initString("bf531b92-25bf-4a9
 //--------------------------------------------------------------------------------
 // Section: Types (240)
 //--------------------------------------------------------------------------------
+pub const PfnRecoCallback = fn(
+    param0: u32,
+    param1: *u8,
+    param2: HRECOCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 pub const HRECOALT = ?*opaque{};
 
 pub const HRECOCONTEXT = ?*opaque{};
@@ -137,12 +143,6 @@ pub const HRECOGNIZER = ?*opaque{};
 pub const HRECOLATTICE = ?*opaque{};
 
 pub const HRECOWORDLIST = ?*opaque{};
-
-pub const PfnRecoCallback = fn(
-    param0: u32,
-    param1: *u8,
-    param2: HRECOCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 const CLSID_InkDisp_Value = @import("../zig.zig").Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
 pub const CLSID_InkDisp = &CLSID_InkDisp_Value;
@@ -8553,12 +8553,12 @@ pub const IRealTimeStylus = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HWND: fn(
             self: *const IRealTimeStylus,
-            phwnd: *u64,
+            phwnd: *HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HWND: fn(
             self: *const IRealTimeStylus,
-            hwnd: u64,
+            hwnd: HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowInputRectangle: fn(
@@ -8700,11 +8700,11 @@ pub const IRealTimeStylus = extern struct {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).put_Enabled(@ptrCast(*const IRealTimeStylus, self), fEnable);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_get_HWND(self: *const T, phwnd: *u64) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_get_HWND(self: *const T, phwnd: *HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).get_HWND(@ptrCast(*const IRealTimeStylus, self), phwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_put_HWND(self: *const T, hwnd: u64) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_put_HWND(self: *const T, hwnd: HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRealTimeStylus.VTable, self.vtable).put_HWND(@ptrCast(*const IRealTimeStylus, self), hwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9239,12 +9239,12 @@ pub const IDynamicRenderer = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HWND: fn(
             self: *const IDynamicRenderer,
-            hwnd: *u64,
+            hwnd: *HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HWND: fn(
             self: *const IDynamicRenderer,
-            hwnd: u64,
+            hwnd: HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClipRectangle: fn(
@@ -9259,12 +9259,12 @@ pub const IDynamicRenderer = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClipRegion: fn(
             self: *const IDynamicRenderer,
-            phClipRgn: *u64,
+            phClipRgn: *HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClipRegion: fn(
             self: *const IDynamicRenderer,
-            hClipRgn: u64,
+            hClipRgn: HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DrawingAttributes: fn(
@@ -9294,7 +9294,7 @@ pub const IDynamicRenderer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Draw: fn(
             self: *const IDynamicRenderer,
-            hDC: u64,
+            hDC: HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -9309,11 +9309,11 @@ pub const IDynamicRenderer = extern struct {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_Enabled(@ptrCast(*const IDynamicRenderer, self), bEnabled);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_get_HWND(self: *const T, hwnd: *u64) callconv(.Inline) HRESULT {
+        pub fn IDynamicRenderer_get_HWND(self: *const T, hwnd: *HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_HWND(@ptrCast(*const IDynamicRenderer, self), hwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_put_HWND(self: *const T, hwnd: u64) callconv(.Inline) HRESULT {
+        pub fn IDynamicRenderer_put_HWND(self: *const T, hwnd: HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_HWND(@ptrCast(*const IDynamicRenderer, self), hwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9325,11 +9325,11 @@ pub const IDynamicRenderer = extern struct {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_ClipRectangle(@ptrCast(*const IDynamicRenderer, self), prcClipRect);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_get_ClipRegion(self: *const T, phClipRgn: *u64) callconv(.Inline) HRESULT {
+        pub fn IDynamicRenderer_get_ClipRegion(self: *const T, phClipRgn: *HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).get_ClipRegion(@ptrCast(*const IDynamicRenderer, self), phClipRgn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_put_ClipRegion(self: *const T, hClipRgn: u64) callconv(.Inline) HRESULT {
+        pub fn IDynamicRenderer_put_ClipRegion(self: *const T, hClipRgn: HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).put_ClipRegion(@ptrCast(*const IDynamicRenderer, self), hClipRgn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9357,7 +9357,7 @@ pub const IDynamicRenderer = extern struct {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).Refresh(@ptrCast(*const IDynamicRenderer, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDynamicRenderer_Draw(self: *const T, hDC: u64) callconv(.Inline) HRESULT {
+        pub fn IDynamicRenderer_Draw(self: *const T, hDC: HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDynamicRenderer.VTable, self.vtable).Draw(@ptrCast(*const IDynamicRenderer, self), hDC);
         }
     };}
@@ -9826,12 +9826,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (17)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("automation.zig").IDispatch;
 const SAFEARRAY = @import("automation.zig").SAFEARRAY;
 const PWSTR = @import("system_services.zig").PWSTR;
+const HANDLE_PTR = @import("system_services.zig").HANDLE_PTR;
 const IUnknown = @import("com.zig").IUnknown;
 const HRESULT = @import("com.zig").HRESULT;
 const BSTR = @import("automation.zig").BSTR;
@@ -9848,26 +9849,17 @@ const IPictureDisp = @import("com.zig").IPictureDisp;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PfnRecoCallback;
+    if (@hasDecl(@This(), "PfnRecoCallback")) { _ = PfnRecoCallback; }
 
-    const constant_export_count = 122;
-    const type_export_count = 212;
-    const enum_value_export_count = 831;
-    const com_iface_id_export_count = 69;
-    const com_class_id_export_count = 28;
-    const func_export_count = 27;
-    const unicode_alias_count = 0;
-    const import_count = 17;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -433,17 +433,12 @@ pub const IOCTL_IP_UNIDIRECTIONAL_ADAPTER_ADDRESS = @as(u32, 106);
 //--------------------------------------------------------------------------------
 // Section: Types (104)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'IcmpCloseHandle', what can Zig do with this information?
-pub const IcmpHandle = isize;
-
-pub const HIFTIMESTAMPCHANGE = ?*opaque{};
-
 pub const NET_ADDRESS_INFO = extern struct {
     comment: [*]const u8 = "TODO: why is this struct empty?"
 };
 
 pub const IN_ADDR = extern struct {
-    S_un: IN_ADDR._S_un_e__Union,
+    S_un: _S_un_e__Union,
     const _S_un_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -466,7 +461,11 @@ pub const ScopeLevelOrganization = SCOPE_LEVEL.Organization;
 pub const ScopeLevelGlobal = SCOPE_LEVEL.Global;
 pub const ScopeLevelCount = SCOPE_LEVEL.Count;
 
-pub const SOCKADDR_INET = u32; // TODO: implement StructOrUnion types?
+pub const SOCKADDR_INET = extern union {
+    Ipv4: SOCKADDR_IN,
+    Ipv6: SOCKADDR_IN6,
+    si_family: u16,
+};
 
 pub const SOCKADDR_IN6_PAIR = extern struct {
     SourceAddress: *SOCKADDR_IN6,
@@ -580,6 +579,39 @@ pub const NL_BANDWIDTH_INFORMATION = extern struct {
     BandwidthPeaked: u8,
 };
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const ip_option_information32 = extern struct {
+    Ttl: u8,
+    Tos: u8,
+    Flags: u8,
+    OptionsSize: u8,
+    OptionsData: *u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const icmp_echo_reply32 = extern struct {
+    Address: u32,
+    Status: u32,
+    RoundTripTime: u32,
+    DataSize: u16,
+    Reserved: u16,
+    Data: *c_void,
+    Options: ip_option_information32,
+};
+
+}, else => struct { } };
+
+// TODO: this type has a FreeFunc 'IcmpCloseHandle', what can Zig do with this information?
+pub const IcmpHandle = isize;
+
+pub const HIFTIMESTAMPCHANGE = ?*opaque{};
+
 pub const ADDRESS_FAMILY = extern enum(u32) {
     INET = 2,
     INET6 = 23,
@@ -624,14 +656,6 @@ pub const ip_option_information = extern struct {
     OptionsData: *u8,
 };
 
-pub const ip_option_information32 = extern struct {
-    Ttl: u8,
-    Tos: u8,
-    Flags: u8,
-    OptionsSize: u8,
-    OptionsData: *u8,
-};
-
 pub const icmp_echo_reply = extern struct {
     Address: u32,
     Status: u32,
@@ -640,16 +664,6 @@ pub const icmp_echo_reply = extern struct {
     Reserved: u16,
     Data: *c_void,
     Options: ip_option_information,
-};
-
-pub const icmp_echo_reply32 = extern struct {
-    Address: u32,
-    Status: u32,
-    RoundTripTime: u32,
-    DataSize: u16,
-    Reserved: u16,
-    Data: *c_void,
-    Options: ip_option_information32,
 };
 
 pub const IPV6_ADDRESS_EX = extern struct {
@@ -752,7 +766,11 @@ pub const NET_IF_ALIAS_LH = extern struct {
     ifAliasOffset: u16,
 };
 
-pub const NET_LUID_LH = u32; // TODO: implement StructOrUnion types?
+pub const NET_LUID_LH = extern union {
+    Value: u64,
+    Info: _Info_e__Struct,
+    const _Info_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const IF_PHYSICAL_ADDRESS_LH = extern struct {
     Length: u16,
@@ -1020,7 +1038,7 @@ pub const IP_ADAPTER_INFO = extern struct {
 };
 
 pub const IP_ADAPTER_UNICAST_ADDRESS_LH = extern struct {
-    Anonymous: IP_ADAPTER_UNICAST_ADDRESS_LH._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Next: *IP_ADAPTER_UNICAST_ADDRESS_LH,
     Address: SOCKET_ADDRESS,
     PrefixOrigin: NL_PREFIX_ORIGIN,
@@ -1034,7 +1052,7 @@ pub const IP_ADAPTER_UNICAST_ADDRESS_LH = extern struct {
 };
 
 pub const IP_ADAPTER_UNICAST_ADDRESS_XP = extern struct {
-    Anonymous: IP_ADAPTER_UNICAST_ADDRESS_XP._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Next: *IP_ADAPTER_UNICAST_ADDRESS_XP,
     Address: SOCKET_ADDRESS,
     PrefixOrigin: NL_PREFIX_ORIGIN,
@@ -1047,42 +1065,42 @@ pub const IP_ADAPTER_UNICAST_ADDRESS_XP = extern struct {
 };
 
 pub const IP_ADAPTER_ANYCAST_ADDRESS_XP = extern struct {
-    Anonymous: IP_ADAPTER_ANYCAST_ADDRESS_XP._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Next: *IP_ADAPTER_ANYCAST_ADDRESS_XP,
     Address: SOCKET_ADDRESS,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_MULTICAST_ADDRESS_XP = extern struct {
-    Anonymous: IP_ADAPTER_MULTICAST_ADDRESS_XP._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Next: *IP_ADAPTER_MULTICAST_ADDRESS_XP,
     Address: SOCKET_ADDRESS,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_DNS_SERVER_ADDRESS_XP = extern struct {
-    Anonymous: IP_ADAPTER_DNS_SERVER_ADDRESS_XP._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Next: *IP_ADAPTER_DNS_SERVER_ADDRESS_XP,
     Address: SOCKET_ADDRESS,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_WINS_SERVER_ADDRESS_LH = extern struct {
-    Anonymous: IP_ADAPTER_WINS_SERVER_ADDRESS_LH._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Next: *IP_ADAPTER_WINS_SERVER_ADDRESS_LH,
     Address: SOCKET_ADDRESS,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_GATEWAY_ADDRESS_LH = extern struct {
-    Anonymous: IP_ADAPTER_GATEWAY_ADDRESS_LH._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Next: *IP_ADAPTER_GATEWAY_ADDRESS_LH,
     Address: SOCKET_ADDRESS,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IP_ADAPTER_PREFIX_XP = extern struct {
-    Anonymous: IP_ADAPTER_PREFIX_XP._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Next: *IP_ADAPTER_PREFIX_XP,
     Address: SOCKET_ADDRESS,
     PrefixLength: u32,
@@ -1095,7 +1113,7 @@ pub const IP_ADAPTER_DNS_SUFFIX = extern struct {
 };
 
 pub const IP_ADAPTER_ADDRESSES_LH = extern struct {
-    Anonymous1: IP_ADAPTER_ADDRESSES_LH._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     Next: *IP_ADAPTER_ADDRESSES_LH,
     AdapterName: [*]u8,
     FirstUnicastAddress: *IP_ADAPTER_UNICAST_ADDRESS_LH,
@@ -1107,7 +1125,7 @@ pub const IP_ADAPTER_ADDRESSES_LH = extern struct {
     FriendlyName: [*]u16,
     PhysicalAddress: [8]u8,
     PhysicalAddressLength: u32,
-    Anonymous2: IP_ADAPTER_ADDRESSES_LH._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     Mtu: u32,
     IfType: u32,
     OperStatus: IF_OPER_STATUS,
@@ -1136,7 +1154,7 @@ pub const IP_ADAPTER_ADDRESSES_LH = extern struct {
 };
 
 pub const IP_ADAPTER_ADDRESSES_XP = extern struct {
-    Anonymous: IP_ADAPTER_ADDRESSES_XP._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Next: *IP_ADAPTER_ADDRESSES_XP,
     AdapterName: [*]u8,
     FirstUnicastAddress: *IP_ADAPTER_UNICAST_ADDRESS_XP,
@@ -2766,7 +2784,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (63)
+// Section: Imports (64)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const MIB_IFSTACK_TABLE = @import("mib.zig").MIB_IFSTACK_TABLE;
@@ -2798,6 +2816,7 @@ const MIB_IPFORWARDROW = @import("mib.zig").MIB_IPFORWARDROW;
 const HANDLE = @import("system_services.zig").HANDLE;
 const TUNNEL_TYPE = @import("network_drivers.zig").TUNNEL_TYPE;
 const SOCKADDR_IN6 = @import("win_sock.zig").SOCKADDR_IN6;
+const SOCKADDR_IN = @import("win_sock.zig").SOCKADDR_IN;
 const MIB_UDPSTATS2 = @import("mib.zig").MIB_UDPSTATS2;
 const MIB_IPINTERFACE_ROW = @import("mib.zig").MIB_IPINTERFACE_ROW;
 const MIB_IPFORWARD_TABLE2 = @import("mib.zig").MIB_IPFORWARD_TABLE2;
@@ -2834,32 +2853,23 @@ const NTSTATUS = @import("system_services.zig").NTSTATUS;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PIPINTERFACE_CHANGE_CALLBACK;
-    _ = PUNICAST_IPADDRESS_CHANGE_CALLBACK;
-    _ = PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK;
-    _ = PIPFORWARD_CHANGE_CALLBACK;
-    _ = PTEREDO_PORT_CHANGE_CALLBACK;
-    _ = PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK;
-    _ = PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK;
+    if (@hasDecl(@This(), "PIPINTERFACE_CHANGE_CALLBACK")) { _ = PIPINTERFACE_CHANGE_CALLBACK; }
+    if (@hasDecl(@This(), "PUNICAST_IPADDRESS_CHANGE_CALLBACK")) { _ = PUNICAST_IPADDRESS_CHANGE_CALLBACK; }
+    if (@hasDecl(@This(), "PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK")) { _ = PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK; }
+    if (@hasDecl(@This(), "PIPFORWARD_CHANGE_CALLBACK")) { _ = PIPFORWARD_CHANGE_CALLBACK; }
+    if (@hasDecl(@This(), "PTEREDO_PORT_CHANGE_CALLBACK")) { _ = PTEREDO_PORT_CHANGE_CALLBACK; }
+    if (@hasDecl(@This(), "PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK")) { _ = PNETWORK_CONNECTIVITY_HINT_CHANGE_CALLBACK; }
+    if (@hasDecl(@This(), "PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK")) { _ = PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK; }
 
-    const constant_export_count = 427;
-    const type_export_count = 104;
-    const enum_value_export_count = 155;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 190;
-    const unicode_alias_count = 8;
-    const import_count = 63;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

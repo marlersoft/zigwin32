@@ -953,8 +953,46 @@ pub const ENDPOINT_HARDWARE_SUPPORT_METER = @as(u32, 4);
 pub const SPATIAL_AUDIO_STANDARD_COMMANDS_START = @as(u32, 200);
 
 //--------------------------------------------------------------------------------
-// Section: Types (1171)
+// Section: Types (1174)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const KSSTREAM_HEADER = extern struct {
+    Size: u32,
+    TypeSpecificFlags: u32,
+    PresentationTime: KSTIME,
+    Duration: i64,
+    FrameExtent: u32,
+    DataUsed: u32,
+    Data: *c_void,
+    OptionsFlags: u32,
+    Reserved: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = extern struct {
+    NodeProperty: KSNODEPROPERTY,
+    ListenerId: *c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const KSNODEPROPERTY_AUDIO_PROPERTY = extern struct {
+    NodeProperty: KSNODEPROPERTY,
+    AppContext: *c_void,
+    Length: u32,
+};
+
+}, else => struct { } };
+
 pub const HTASK = ?*opaque{};
 
 pub const YIELDPROC = fn(
@@ -1335,7 +1373,7 @@ pub const KSPRIORITY = extern struct {
 };
 
 pub const KSIDENTIFIER = extern struct {
-    Anonymous: KSIDENTIFIER._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1380,9 +1418,19 @@ pub const KSPROPERTY_MEMBERSHEADER = extern struct {
     Flags: u32,
 };
 
-pub const KSPROPERTY_BOUNDS_LONG = u32; // TODO: implement StructOrUnion types?
+pub const KSPROPERTY_BOUNDS_LONG = extern union {
+    Anonymous1: _Anonymous1_e__Struct,
+    Anonymous2: _Anonymous2_e__Struct,
+    const _Anonymous1_e__Struct = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const KSPROPERTY_BOUNDS_LONGLONG = u32; // TODO: implement StructOrUnion types?
+pub const KSPROPERTY_BOUNDS_LONGLONG = extern union {
+    Anonymous1: _Anonymous1_e__Struct,
+    Anonymous2: _Anonymous2_e__Struct,
+    const _Anonymous1_e__Struct = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const KSPROPERTY_STEPPING_LONG = extern struct {
     SteppingDelta: u32,
@@ -1397,7 +1445,7 @@ pub const KSPROPERTY_STEPPING_LONGLONG = extern struct {
 
 pub const KSEVENTDATA = extern struct {
     NotificationType: u32,
-    Anonymous: KSEVENTDATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1410,7 +1458,7 @@ pub const KSQUERYBUFFER = extern struct {
 pub const KSRELATIVEEVENT = extern struct {
     Size: u32,
     Flags: u32,
-    Anonymous: KSRELATIVEEVENT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Reserved: *c_void,
     Event: KSIDENTIFIER,
     EventData: KSEVENTDATA,
@@ -1737,7 +1785,7 @@ pub const KSPROPERTY_PIN_MODEDATAFORMATS = KSPROPERTY_PIN.MODEDATAFORMATS;
 pub const KSP_PIN = extern struct {
     Property: KSIDENTIFIER,
     PinId: u32,
-    Anonymous: KSP_PIN._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1759,7 +1807,11 @@ pub const KSPIN_DATAFLOW = extern enum(i32) {
 pub const KSPIN_DATAFLOW_IN = KSPIN_DATAFLOW.IN;
 pub const KSPIN_DATAFLOW_OUT = KSPIN_DATAFLOW.OUT;
 
-pub const KSDATAFORMAT = u32; // TODO: implement StructOrUnion types?
+pub const KSDATAFORMAT = extern union {
+    Anonymous: _Anonymous_e__Struct,
+    Alignment: i64,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const KSATTRIBUTE = extern struct {
     Size: u32,
@@ -1878,11 +1930,11 @@ const CLSID_KSPROPSETID_MemoryTransport_Value = @import("../zig.zig").Guid.initS
 pub const CLSID_KSPROPSETID_MemoryTransport = &CLSID_KSPROPSETID_MemoryTransport_Value;
 
 pub const KSALLOCATOR_FRAMING = extern struct {
-    Anonymous1: KSALLOCATOR_FRAMING._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     PoolType: u32,
     Frames: u32,
     FrameSize: u32,
-    Anonymous2: KSALLOCATOR_FRAMING._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     Reserved: u32,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -1913,7 +1965,7 @@ pub const KS_FRAMING_ITEM = extern struct {
     BusFlags: u32,
     Flags: u32,
     Frames: u32,
-    Anonymous: KS_FRAMING_ITEM._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     MemoryTypeWeight: u32,
     PhysicalRange: KS_FRAMING_RANGE,
     FramingRange: KS_FRAMING_RANGE_WEIGHTED,
@@ -1984,18 +2036,6 @@ pub const KSTIME = extern struct {
     Denominator: u32,
 };
 
-pub const KSSTREAM_HEADER = extern struct {
-    Size: u32,
-    TypeSpecificFlags: u32,
-    PresentationTime: KSTIME,
-    Duration: i64,
-    FrameExtent: u32,
-    DataUsed: u32,
-    Data: *c_void,
-    OptionsFlags: u32,
-    Reserved: u32,
-};
-
 pub const KSSTREAM_METADATA_INFO = extern struct {
     BufferSize: u32,
     UsedSize: u32,
@@ -2008,7 +2048,7 @@ pub const KSSTREAM_METADATA_INFO = extern struct {
 pub const KSSTREAM_UVC_METADATATYPE_TIMESTAMP = extern struct {
     PresentationTimeStamp: u32,
     SourceClockReference: u32,
-    Anonymous: KSSTREAM_UVC_METADATATYPE_TIMESTAMP._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Reserved0: u16,
     Reserved1: u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -2223,7 +2263,11 @@ pub const KSPROPERTY_SERIAL = extern struct {
     PropertyLength: u32,
 };
 
-pub const MF_MDL_SHARED_PAYLOAD_KEY = u32; // TODO: implement StructOrUnion types?
+pub const MF_MDL_SHARED_PAYLOAD_KEY = extern union {
+    combined: _combined_e__Struct,
+    GMDLHandle: Guid,
+    const _combined_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const KSMULTIPLE_DATA_PROP = extern struct {
     Property: KSIDENTIFIER,
@@ -2640,9 +2684,9 @@ pub const KSAUDIO_MIC_ARRAY_GEOMETRY = extern struct {
 };
 
 pub const DS3DVECTOR = extern struct {
-    Anonymous1: DS3DVECTOR._Anonymous1_e__Union,
-    Anonymous2: DS3DVECTOR._Anonymous2_e__Union,
-    Anonymous3: DS3DVECTOR._Anonymous3_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
+    Anonymous3: _Anonymous3_e__Union,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -3291,7 +3335,7 @@ pub const KSAUDIO_MIX_CAPS = extern struct {
     Mute: BOOL,
     Minimum: i32,
     Maximum: i32,
-    Anonymous: KSAUDIO_MIX_CAPS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3827,17 +3871,6 @@ pub const KSNODEPROPERTY_AUDIO_DEV_SPECIFIC = extern struct {
     NodeProperty: KSNODEPROPERTY,
     DevSpecificId: u32,
     DeviceInfo: u32,
-    Length: u32,
-};
-
-pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = extern struct {
-    NodeProperty: KSNODEPROPERTY,
-    ListenerId: *c_void,
-};
-
-pub const KSNODEPROPERTY_AUDIO_PROPERTY = extern struct {
-    NodeProperty: KSNODEPROPERTY,
-    AppContext: *c_void,
     Length: u32,
 };
 
@@ -4377,7 +4410,7 @@ pub const KS_VIDEOINFO = extern struct {
     dwBitErrorRate: u32,
     AvgTimePerFrame: i64,
     bmiHeader: KS_BITMAPINFOHEADER,
-    Anonymous: KS_VIDEOINFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -4444,7 +4477,7 @@ pub const KS_VIDEOINFOHEADER2 = extern struct {
     dwCopyProtectFlags: u32,
     dwPictAspectRatioX: u32,
     dwPictAspectRatioY: u32,
-    Anonymous: KS_VIDEOINFOHEADER2._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwReserved2: u32,
     bmiHeader: KS_BITMAPINFOHEADER,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -4971,9 +5004,9 @@ pub const KS_FRAME_INFO = extern struct {
     hDirectDraw: HANDLE,
     hSurfaceHandle: HANDLE,
     DirectDrawRect: RECT,
-    Anonymous1: KS_FRAME_INFO._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     Reserved2: u32,
-    Anonymous2: KS_FRAME_INFO._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
@@ -5595,7 +5628,7 @@ pub const KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST_S = extern struct {
     AutoFocusLock: BOOL,
     AutoExposureLock: BOOL,
     AutoWhitebalanceLock: BOOL,
-    Anonymous: KSPROPERTY_CAMERACONTROL_REGION_OF_INTEREST_S._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -5752,7 +5785,7 @@ pub const KSCAMERA_EXTENDEDPROP_HEADER = extern struct {
 };
 
 pub const KSCAMERA_EXTENDEDPROP_VALUE = extern struct {
-    Value: KSCAMERA_EXTENDEDPROP_VALUE._Value_e__Union,
+    Value: _Value_e__Union,
     const _Value_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -6066,8 +6099,8 @@ const CLSID_KSCAMERAPROFILE_VideoHDR8_Value = @import("../zig.zig").Guid.initStr
 pub const CLSID_KSCAMERAPROFILE_VideoHDR8 = &CLSID_KSCAMERAPROFILE_VideoHDR8_Value;
 
 pub const KSCAMERA_PROFILE_MEDIAINFO = extern struct {
-    Resolution: KSCAMERA_PROFILE_MEDIAINFO._Resolution_e__Struct,
-    MaxFrameRate: KSCAMERA_PROFILE_MEDIAINFO._MaxFrameRate_e__Struct,
+    Resolution: _Resolution_e__Struct,
+    MaxFrameRate: _MaxFrameRate_e__Struct,
     Flags: u64,
     Data0: u32,
     Data1: u32,
@@ -6079,7 +6112,7 @@ pub const KSCAMERA_PROFILE_MEDIAINFO = extern struct {
 
 pub const KSCAMERA_PROFILE_PININFO = extern struct {
     PinCategory: Guid,
-    Anonymous: KSCAMERA_PROFILE_PININFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     MediaInfoCount: u32,
     MediaInfos: *KSCAMERA_PROFILE_MEDIAINFO,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -6102,7 +6135,7 @@ pub const KSCAMERA_PROFILE_CONCURRENCYINFO = extern struct {
 pub const KSDEVICE_PROFILE_INFO = extern struct {
     Type: u32,
     Size: u32,
-    Anonymous: KSDEVICE_PROFILE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -6181,7 +6214,7 @@ pub const DEVCAPS = extern struct {
 
 pub const KSPROPERTY_EXTDEVICE_S = extern struct {
     Property: KSIDENTIFIER,
-    u: KSPROPERTY_EXTDEVICE_S._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -6288,13 +6321,13 @@ pub const TRANSPORT_STATE = extern struct {
 
 pub const KSPROPERTY_EXTXPORT_S = extern struct {
     Property: KSIDENTIFIER,
-    u: KSPROPERTY_EXTXPORT_S._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const KSPROPERTY_EXTXPORT_NODE_S = extern struct {
     NodeProperty: KSP_NODE,
-    u: KSPROPERTY_EXTXPORT_NODE_S._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -7267,7 +7300,7 @@ const CLSID_KSNOTIFICATIONID_AudioModule_Value = @import("../zig.zig").Guid.init
 pub const CLSID_KSNOTIFICATIONID_AudioModule = &CLSID_KSNOTIFICATIONID_AudioModule_Value;
 
 pub const KSAUDIOMODULE_NOTIFICATION = extern struct {
-    Anonymous: KSAUDIOMODULE_NOTIFICATION._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -8325,7 +8358,11 @@ pub const SpatialAudioHrtfDirectivityCone = extern struct {
     OuterAngle: f32,
 };
 
-pub const SpatialAudioHrtfDirectivityUnion = u32; // TODO: implement StructOrUnion types?
+pub const SpatialAudioHrtfDirectivityUnion = extern union {
+    Cone: SpatialAudioHrtfDirectivityCone,
+    Cardiod: SpatialAudioHrtfDirectivityCardioid,
+    Omni: SpatialAudioHrtfDirectivity,
+};
 
 pub const SpatialAudioHrtfDistanceDecay = extern struct {
     Type: SpatialAudioHrtfDistanceDecayType,
@@ -11084,6 +11121,45 @@ pub const ISpatialAudioObjectRenderStreamForMetadata = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const KSSTREAM_HEADER = extern struct {
+    Size: u32,
+    TypeSpecificFlags: u32,
+    PresentationTime: KSTIME,
+    Duration: i64,
+    FrameExtent: u32,
+    DataUsed: u32,
+    Data: *c_void,
+    OptionsFlags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = extern struct {
+    NodeProperty: KSNODEPROPERTY,
+    ListenerId: *c_void,
+    Reserved: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const KSNODEPROPERTY_AUDIO_PROPERTY = extern struct {
+    NodeProperty: KSNODEPROPERTY,
+    AppContext: *c_void,
+    Length: u32,
+    Reserved: u32,
+};
+
+}, else => struct { } };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (28)
@@ -11365,26 +11441,17 @@ const IPropertyStore = @import("audio.zig").IPropertyStore;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = YIELDPROC;
+    if (@hasDecl(@This(), "YIELDPROC")) { _ = YIELDPROC; }
 
-    const constant_export_count = 949;
-    const type_export_count = 652;
-    const enum_value_export_count = 912;
-    const com_iface_id_export_count = 82;
-    const com_class_id_export_count = 519;
-    const func_export_count = 28;
-    const unicode_alias_count = 18;
-    const import_count = 23;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

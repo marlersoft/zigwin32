@@ -37,7 +37,7 @@ pub const MIB_IF_ROW2 = extern struct {
     PhysicalMediumType: NDIS_PHYSICAL_MEDIUM,
     AccessType: NET_IF_ACCESS_TYPE,
     DirectionType: NET_IF_DIRECTION_TYPE,
-    InterfaceAndOperStatusFlags: MIB_IF_ROW2._InterfaceAndOperStatusFlags_e__Struct,
+    InterfaceAndOperStatusFlags: _InterfaceAndOperStatusFlags_e__Struct,
     OperStatus: IF_OPER_STATUS,
     AdminStatus: NET_IF_ADMIN_STATUS,
     MediaConnectState: NET_IF_MEDIA_CONNECT_STATE,
@@ -215,7 +215,7 @@ pub const MIB_IPPATH_ROW = extern struct {
     PathMtu: u32,
     RttMean: u32,
     RttDeviation: u32,
-    Anonymous: MIB_IPPATH_ROW._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     IsReachable: u8,
     LinkTransmitSpeed: u64,
     LinkReceiveSpeed: u64,
@@ -234,8 +234,8 @@ pub const MIB_IPNET_ROW2 = extern struct {
     PhysicalAddress: [32]u8,
     PhysicalAddressLength: u32,
     State: NL_NEIGHBOR_STATE,
-    Anonymous: MIB_IPNET_ROW2._Anonymous_e__Union,
-    ReachabilityTime: MIB_IPNET_ROW2._ReachabilityTime_e__Union,
+    Anonymous: _Anonymous_e__Union,
+    ReachabilityTime: _ReachabilityTime_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
     const _ReachabilityTime_e__Union = u32; // TODO: generate this nested type!
 };
@@ -321,8 +321,8 @@ pub const MIB_IPFORWARDROW = extern struct {
     dwForwardPolicy: u32,
     dwForwardNextHop: u32,
     dwForwardIfIndex: u32,
-    Anonymous1: MIB_IPFORWARDROW._Anonymous1_e__Union,
-    Anonymous2: MIB_IPFORWARDROW._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     dwForwardAge: u32,
     dwForwardNextHopAS: u32,
     dwForwardMetric1: u32,
@@ -344,7 +344,7 @@ pub const MIB_IPNETROW_LH = extern struct {
     dwPhysAddrLen: u32,
     bPhysAddr: [8]u8,
     dwAddr: u32,
-    Anonymous: MIB_IPNETROW_LH._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -362,7 +362,7 @@ pub const MIB_IPNETTABLE = extern struct {
 };
 
 pub const MIB_IPSTATS_LH = extern struct {
-    Anonymous: MIB_IPSTATS_LH._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwDefaultTTL: u32,
     dwInReceives: u32,
     dwInHdrErrors: u32,
@@ -657,7 +657,7 @@ pub const TcpConnectionOffloadStateUploading = TCP_CONNECTION_OFFLOAD_STATE.Uplo
 pub const TcpConnectionOffloadStateMax = TCP_CONNECTION_OFFLOAD_STATE.Max;
 
 pub const MIB_TCPROW_LH = extern struct {
-    Anonymous: MIB_TCPROW_LH._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwLocalAddr: u32,
     dwLocalPort: u32,
     dwRemoteAddr: u32,
@@ -790,7 +790,7 @@ pub const MIB_TCP6TABLE_OWNER_MODULE = extern struct {
 };
 
 pub const MIB_TCPSTATS_LH = extern struct {
-    Anonymous: MIB_TCPSTATS_LH._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwRtoMin: u32,
     dwRtoMax: u32,
     dwMaxConn: u32,
@@ -870,7 +870,7 @@ pub const MIB_UDPROW_OWNER_MODULE = extern struct {
     dwLocalPort: u32,
     dwOwningPid: u32,
     liCreateTimestamp: LARGE_INTEGER,
-    Anonymous: MIB_UDPROW_OWNER_MODULE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     OwningModuleInfo: [16]u64,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -909,7 +909,7 @@ pub const MIB_UDP6ROW_OWNER_MODULE = extern struct {
     dwLocalPort: u32,
     dwOwningPid: u32,
     liCreateTimestamp: LARGE_INTEGER,
-    Anonymous: MIB_UDP6ROW_OWNER_MODULE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     OwningModuleInfo: [16]u64,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -985,7 +985,7 @@ pub const MIB_IFSTATUS = extern struct {
 
 pub const MIB_OPAQUE_INFO = extern struct {
     dwId: u32,
-    Anonymous: MIB_OPAQUE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1040,24 +1040,15 @@ const TUNNEL_TYPE = @import("network_drivers.zig").TUNNEL_TYPE;
 const NL_ROUTE_ORIGIN = @import("network_drivers.zig").NL_ROUTE_ORIGIN;
 
 test {
-    const constant_export_count = 0;
-    const type_export_count = 102;
-    const enum_value_export_count = 37;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 0;
-    const unicode_alias_count = 0;
-    const import_count = 29;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

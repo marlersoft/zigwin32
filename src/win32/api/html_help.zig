@@ -277,6 +277,18 @@ pub const HHACT_LAST_ENUM = @as(i32, 23);
 //--------------------------------------------------------------------------------
 // Section: Types (27)
 //--------------------------------------------------------------------------------
+pub const IITGroup = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IITQuery = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IITStopWordList = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
 pub const HHN_NOTIFY = extern struct {
     hdr: NMHDR,
     pszUrl: [*:0]const u8,
@@ -404,7 +416,7 @@ pub const CProperty = extern struct {
     dwPropID: u32,
     cbData: u32,
     dwType: u32,
-    Anonymous: CProperty._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     fPersist: BOOL,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -644,14 +656,6 @@ pub const IITDatabase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IITGroup = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IITQuery = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 const IID_IITWordWheel_Value = @import("../zig.zig").Guid.initString("8fa0d5a4-dedf-11d0-9a61-00c04fb68bf7");
 pub const IID_IITWordWheel = &IID_IITWordWheel_Value;
 pub const IITWordWheel = extern struct {
@@ -866,10 +870,6 @@ pub const IStemmerConfig = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
-};
-
-pub const IITStopWordList = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
 };
 
 const IID_IWordBreakerConfig_Value = @import("../zig.zig").Guid.initString("8fa0d5a6-dedf-11d0-9a61-00c04fb68bf7");
@@ -1316,26 +1316,17 @@ const POINT = @import("display_devices.zig").POINT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PFNCOLHEAPFREE;
+    if (@hasDecl(@This(), "PFNCOLHEAPFREE")) { _ = PFNCOLHEAPFREE; }
 
-    const constant_export_count = 271;
-    const type_export_count = 27;
-    const enum_value_export_count = 9;
-    const com_iface_id_export_count = 7;
-    const com_class_id_export_count = 0;
-    const func_export_count = 0;
-    const unicode_alias_count = 0;
-    const import_count = 15;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

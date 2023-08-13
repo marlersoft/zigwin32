@@ -13,6 +13,17 @@ pub const COMPRESS_RAW = @as(u32, 536870912);
 // TODO: this type has a FreeFunc 'CloseDecompressor', what can Zig do with this information?
 pub const COMPRESSOR_HANDLE = isize;
 
+pub const COMPRESS_ALGORITHM = extern enum(u32) {
+    MSZIP = 2,
+    XPRESS = 3,
+    XPRESS_HUFF = 4,
+    LZMS = 5,
+};
+pub const COMPRESS_ALGORITHM_MSZIP = COMPRESS_ALGORITHM.MSZIP;
+pub const COMPRESS_ALGORITHM_XPRESS = COMPRESS_ALGORITHM.XPRESS;
+pub const COMPRESS_ALGORITHM_XPRESS_HUFF = COMPRESS_ALGORITHM.XPRESS_HUFF;
+pub const COMPRESS_ALGORITHM_LZMS = COMPRESS_ALGORITHM.LZMS;
+
 pub const PFN_COMPRESS_ALLOCATE = fn(
     UserContext: *c_void,
     Size: usize,
@@ -37,17 +48,6 @@ pub const COMPRESS_INFORMATION_CLASS = extern enum(i32) {
 pub const COMPRESS_INFORMATION_CLASS_INVALID = COMPRESS_INFORMATION_CLASS.INVALID;
 pub const COMPRESS_INFORMATION_CLASS_BLOCK_SIZE = COMPRESS_INFORMATION_CLASS.BLOCK_SIZE;
 pub const COMPRESS_INFORMATION_CLASS_LEVEL = COMPRESS_INFORMATION_CLASS.LEVEL;
-
-pub const COMPRESS_ALGORITHM = extern enum(u32) {
-    MSZIP = 2,
-    XPRESS = 3,
-    XPRESS_HUFF = 4,
-    LZMS = 5,
-};
-pub const COMPRESS_ALGORITHM_MSZIP = COMPRESS_ALGORITHM.MSZIP;
-pub const COMPRESS_ALGORITHM_XPRESS = COMPRESS_ALGORITHM.XPRESS;
-pub const COMPRESS_ALGORITHM_XPRESS_HUFF = COMPRESS_ALGORITHM.XPRESS_HUFF;
-pub const COMPRESS_ALGORITHM_LZMS = COMPRESS_ALGORITHM.LZMS;
 
 
 //--------------------------------------------------------------------------------
@@ -167,27 +167,18 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PFN_COMPRESS_ALLOCATE;
-    _ = PFN_COMPRESS_FREE;
+    if (@hasDecl(@This(), "PFN_COMPRESS_ALLOCATE")) { _ = PFN_COMPRESS_ALLOCATE; }
+    if (@hasDecl(@This(), "PFN_COMPRESS_FREE")) { _ = PFN_COMPRESS_FREE; }
 
-    const constant_export_count = 4;
-    const type_export_count = 6;
-    const enum_value_export_count = 7;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 12;
-    const unicode_alias_count = 0;
-    const import_count = 1;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

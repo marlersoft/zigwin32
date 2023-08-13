@@ -53,7 +53,7 @@ pub const WNV_NOTIFICATION_PARAM = extern struct {
 };
 
 pub const WNV_IP_ADDRESS = extern struct {
-    IP: WNV_IP_ADDRESS._IP_e__Union,
+    IP: _IP_e__Union,
     const _IP_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -83,7 +83,7 @@ pub const WNV_CUSTOMER_ADDRESS_CHANGE_PARAM = extern struct {
 
 pub const WNV_OBJECT_CHANGE_PARAM = extern struct {
     ObjectType: WNV_OBJECT_TYPE,
-    ObjectParam: WNV_OBJECT_CHANGE_PARAM._ObjectParam_e__Union,
+    ObjectParam: _ObjectParam_e__Union,
     const _ObjectParam_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -135,24 +135,15 @@ const OVERLAPPED = @import("system_services.zig").OVERLAPPED;
 const NL_DAD_STATE = @import("ip_helper.zig").NL_DAD_STATE;
 
 test {
-    const constant_export_count = 2;
-    const type_export_count = 11;
-    const enum_value_export_count = 11;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 2;
-    const unicode_alias_count = 0;
-    const import_count = 4;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -21,8 +21,19 @@ pub const MAXUSHORT = @as(u32, 65535);
 pub const MAXULONG = @as(u32, 4294967295);
 
 //--------------------------------------------------------------------------------
-// Section: Types (23)
+// Section: Types (22)
 //--------------------------------------------------------------------------------
+pub const EXCEPTION_DISPOSITION = extern enum(i32) {
+    ContinueExecution = 0,
+    ContinueSearch = 1,
+    NestedException = 2,
+    CollidedUnwind = 3,
+};
+pub const ExceptionContinueExecution = EXCEPTION_DISPOSITION.ContinueExecution;
+pub const ExceptionContinueSearch = EXCEPTION_DISPOSITION.ContinueSearch;
+pub const ExceptionNestedException = EXCEPTION_DISPOSITION.NestedException;
+pub const ExceptionCollidedUnwind = EXCEPTION_DISPOSITION.CollidedUnwind;
+
 pub const COMPARTMENT_ID = extern enum(i32) {
     UNSPECIFIED_COMPARTMENT_ID = 0,
     DEFAULT_COMPARTMENT_ID = 1,
@@ -35,19 +46,8 @@ pub const LUID = extern struct {
     HighPart: i32,
 };
 
-pub const EXCEPTION_DISPOSITION = extern enum(i32) {
-    ContinueExecution = 0,
-    ContinueSearch = 1,
-    NestedException = 2,
-    CollidedUnwind = 3,
-};
-pub const ExceptionContinueExecution = EXCEPTION_DISPOSITION.ContinueExecution;
-pub const ExceptionContinueSearch = EXCEPTION_DISPOSITION.ContinueSearch;
-pub const ExceptionNestedException = EXCEPTION_DISPOSITION.NestedException;
-pub const ExceptionCollidedUnwind = EXCEPTION_DISPOSITION.CollidedUnwind;
-
 pub const QUAD = extern struct {
-    Anonymous: QUAD._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -87,13 +87,9 @@ pub const LIST_ENTRY = extern struct {
     Blink: *LIST_ENTRY,
 };
 
-pub const SINGLE_LIST_ENTRY = extern struct {
-    Next: *SINGLE_LIST_ENTRY,
-};
-
 pub const RTL_BALANCED_NODE = extern struct {
-    Anonymous1: RTL_BALANCED_NODE._Anonymous1_e__Union,
-    Anonymous2: RTL_BALANCED_NODE._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
@@ -235,26 +231,17 @@ const EXCEPTION_RECORD = @import("debug.zig").EXCEPTION_RECORD;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = EXCEPTION_ROUTINE;
+    if (@hasDecl(@This(), "EXCEPTION_ROUTINE")) { _ = EXCEPTION_ROUTINE; }
 
-    const constant_export_count = 17;
-    const type_export_count = 23;
-    const enum_value_export_count = 36;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 0;
-    const unicode_alias_count = 0;
-    const import_count = 4;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

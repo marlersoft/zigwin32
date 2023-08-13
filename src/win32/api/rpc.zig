@@ -229,6 +229,26 @@ pub const NDR_SCONTEXT_1 = extern struct {
     userContext: *c_void,
 };
 
+pub const _NDR_ASYNC_MESSAGE = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const _NDR_CORRELATION_INFO = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const NDR_ALLOC_ALL_NODES_CONTEXT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const NDR_POINTER_QUEUE_STATE = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const _NDR_PROC_CONTEXT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
 pub const RPC_BINDING_VECTOR = extern struct {
     Count: u32,
     BindingH: [1]*c_void,
@@ -365,7 +385,7 @@ pub const RPC_SECURITY_QOS_V2_W = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: RPC_SECURITY_QOS_V2_W._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -375,7 +395,7 @@ pub const RPC_SECURITY_QOS_V2_A = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: RPC_SECURITY_QOS_V2_A._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -385,7 +405,7 @@ pub const RPC_SECURITY_QOS_V3_W = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: RPC_SECURITY_QOS_V3_W._u_e__Union,
+    u: _u_e__Union,
     Sid: *c_void,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
@@ -396,7 +416,7 @@ pub const RPC_SECURITY_QOS_V3_A = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: RPC_SECURITY_QOS_V3_A._u_e__Union,
+    u: _u_e__Union,
     Sid: *c_void,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
@@ -407,7 +427,7 @@ pub const RPC_SECURITY_QOS_V4_W = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: RPC_SECURITY_QOS_V4_W._u_e__Union,
+    u: _u_e__Union,
     Sid: *c_void,
     EffectiveOnly: u32,
     const _u_e__Union = u32; // TODO: generate this nested type!
@@ -419,7 +439,7 @@ pub const RPC_SECURITY_QOS_V4_A = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: RPC_SECURITY_QOS_V4_A._u_e__Union,
+    u: _u_e__Union,
     Sid: *c_void,
     EffectiveOnly: u32,
     const _u_e__Union = u32; // TODO: generate this nested type!
@@ -431,7 +451,7 @@ pub const RPC_SECURITY_QOS_V5_W = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: RPC_SECURITY_QOS_V5_W._u_e__Union,
+    u: _u_e__Union,
     Sid: *c_void,
     EffectiveOnly: u32,
     ServerSecurityDescriptor: *c_void,
@@ -444,7 +464,7 @@ pub const RPC_SECURITY_QOS_V5_A = extern struct {
     IdentityTracking: RPC_C_QOS_IDENTITY,
     ImpersonationType: RPC_C_IMP_LEVEL,
     AdditionalSecurityInfoType: RPC_C_AUTHN_INFO_TYPE,
-    u: RPC_SECURITY_QOS_V5_A._u_e__Union,
+    u: _u_e__Union,
     Sid: *c_void,
     EffectiveOnly: u32,
     ServerSecurityDescriptor: *c_void,
@@ -457,7 +477,7 @@ pub const RPC_BINDING_HANDLE_TEMPLATE_V1_W = extern struct {
     ProtocolSequence: u32,
     NetworkAddress: *u16,
     StringEndpoint: *u16,
-    u1: RPC_BINDING_HANDLE_TEMPLATE_V1_W._u1_e__Union,
+    u1: _u1_e__Union,
     ObjectUuid: Guid,
     const _u1_e__Union = u32; // TODO: generate this nested type!
 };
@@ -468,7 +488,7 @@ pub const RPC_BINDING_HANDLE_TEMPLATE_V1_A = extern struct {
     ProtocolSequence: u32,
     NetworkAddress: *u8,
     StringEndpoint: *u8,
-    u1: RPC_BINDING_HANDLE_TEMPLATE_V1_A._u1_e__Union,
+    u1: _u1_e__Union,
     ObjectUuid: Guid,
     const _u1_e__Union = u32; // TODO: generate this nested type!
 };
@@ -871,7 +891,16 @@ pub const PFN_RPCNOTIFICATION_ROUTINE = fn(
     Event: RPC_ASYNC_EVENT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const RPC_ASYNC_NOTIFICATION_INFO = u32; // TODO: implement StructOrUnion types?
+pub const RPC_ASYNC_NOTIFICATION_INFO = extern union {
+    APC: _APC_e__Struct,
+    IOC: _IOC_e__Struct,
+    IntPtr: _IntPtr_e__Struct,
+    hEvent: HANDLE,
+    NotificationRoutine: PFN_RPCNOTIFICATION_ROUTINE,
+    const _IOC_e__Struct = u32; // TODO: generate this nested type!
+    const _APC_e__Struct = u32; // TODO: generate this nested type!
+    const _IntPtr_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const RPC_ASYNC_STATE = extern struct {
     Size: u32,
@@ -911,7 +940,7 @@ pub const BinaryParam = extern struct {
 
 pub const RPC_EE_INFO_PARAM = extern struct {
     ParameterType: ExtendedErrorParamTypes,
-    u: RPC_EE_INFO_PARAM._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -919,7 +948,7 @@ pub const RPC_EXTENDED_ERROR_INFO = extern struct {
     Version: u32,
     ComputerName: PWSTR,
     ProcessID: u32,
-    u: RPC_EXTENDED_ERROR_INFO._u_e__Union,
+    u: _u_e__Union,
     GeneratingComponent: u32,
     Status: u32,
     DetectionLocation: u16,
@@ -1126,26 +1155,6 @@ pub const ARRAY_INFO = extern struct {
     MaxCountArray: *u32,
     OffsetArray: *u32,
     ActualCountArray: *u32,
-};
-
-pub const _NDR_ASYNC_MESSAGE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const _NDR_CORRELATION_INFO = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const NDR_ALLOC_ALL_NODES_CONTEXT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const NDR_POINTER_QUEUE_STATE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const _NDR_PROC_CONTEXT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
 };
 
 pub const MIDL_STUB_MESSAGE = extern struct {
@@ -1381,7 +1390,7 @@ pub const MIDL_STUB_DESC = extern struct {
     RpcInterfaceInformation: *c_void,
     pfnAllocate: isize,
     pfnFree: isize,
-    IMPLICIT_HANDLE_INFO: MIDL_STUB_DESC._IMPLICIT_HANDLE_INFO_e__Union,
+    IMPLICIT_HANDLE_INFO: _IMPLICIT_HANDLE_INFO_e__Union,
     apfnNdrRundownRoutines: *const NDR_RUNDOWN,
     aGenericBindingRoutinePairs: *const GENERIC_BINDING_ROUTINE_PAIR,
     apfnExprEval: *const EXPR_EVAL,
@@ -1459,7 +1468,10 @@ pub const MIDL_SYNTAX_INFO = extern struct {
     pReserved2: usize,
 };
 
-pub const CLIENT_CALL_RETURN = u32; // TODO: implement StructOrUnion types?
+pub const CLIENT_CALL_RETURN = extern union {
+    Pointer: *c_void,
+    Simple: isize,
+};
 
 pub const XLAT_SIDE = extern enum(i32) {
     SERVER = 1,
@@ -1567,7 +1579,7 @@ pub const NDR_USER_MARSHAL_INFO_LEVEL1 = extern struct {
 
 pub const NDR_USER_MARSHAL_INFO = extern struct {
     InformationLevel: u32,
-    Anonymous: NDR_USER_MARSHAL_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -5329,73 +5341,64 @@ const HANDLE = @import("system_services.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = RPC_OBJECT_INQ_FN;
-    _ = RPC_IF_CALLBACK_FN;
-    _ = RPC_SECURITY_CALLBACK_FN;
-    _ = RPC_NEW_HTTP_PROXY_CHANNEL;
-    _ = RPC_HTTP_PROXY_FREE_STRING;
-    _ = RPC_AUTH_KEY_RETRIEVAL_FN;
-    _ = RPC_MGMT_AUTHORIZATION_FN;
-    _ = RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN;
-    _ = RPC_FORWARD_FUNCTION;
-    _ = RPC_ADDRESS_CHANGE_FN;
-    _ = RPC_DISPATCH_FUNCTION;
-    _ = PRPC_RUNDOWN;
-    _ = RPCLT_PDU_FILTER_FUNC;
-    _ = RPC_SETFILTER_FUNC;
-    _ = RPC_BLOCKING_FN;
-    _ = I_RpcProxyIsValidMachineFn;
-    _ = I_RpcProxyGetClientAddressFn;
-    _ = I_RpcProxyGetConnectionTimeoutFn;
-    _ = I_RpcPerformCalloutFn;
-    _ = I_RpcFreeCalloutStateFn;
-    _ = I_RpcProxyGetClientSessionAndResourceUUID;
-    _ = I_RpcProxyFilterIfFn;
-    _ = I_RpcProxyUpdatePerfCounterFn;
-    _ = I_RpcProxyUpdatePerfCounterBackendServerFn;
-    _ = PFN_RPCNOTIFICATION_ROUTINE;
-    _ = NDR_RUNDOWN;
-    _ = NDR_NOTIFY_ROUTINE;
-    _ = NDR_NOTIFY2_ROUTINE;
-    _ = EXPR_EVAL;
-    _ = GENERIC_BINDING_ROUTINE;
-    _ = GENERIC_UNBIND_ROUTINE;
-    _ = XMIT_HELPER_ROUTINE;
-    _ = USER_MARSHAL_SIZING_ROUTINE;
-    _ = USER_MARSHAL_MARSHALLING_ROUTINE;
-    _ = USER_MARSHAL_UNMARSHALLING_ROUTINE;
-    _ = USER_MARSHAL_FREEING_ROUTINE;
-    _ = CS_TYPE_NET_SIZE_ROUTINE;
-    _ = CS_TYPE_LOCAL_SIZE_ROUTINE;
-    _ = CS_TYPE_TO_NETCS_ROUTINE;
-    _ = CS_TYPE_FROM_NETCS_ROUTINE;
-    _ = CS_TAG_GETTING_ROUTINE;
-    _ = STUB_THUNK;
-    _ = SERVER_ROUTINE;
-    _ = RPC_CLIENT_ALLOC;
-    _ = RPC_CLIENT_FREE;
-    _ = MIDL_ES_ALLOC;
-    _ = MIDL_ES_WRITE;
-    _ = MIDL_ES_READ;
+    if (@hasDecl(@This(), "RPC_OBJECT_INQ_FN")) { _ = RPC_OBJECT_INQ_FN; }
+    if (@hasDecl(@This(), "RPC_IF_CALLBACK_FN")) { _ = RPC_IF_CALLBACK_FN; }
+    if (@hasDecl(@This(), "RPC_SECURITY_CALLBACK_FN")) { _ = RPC_SECURITY_CALLBACK_FN; }
+    if (@hasDecl(@This(), "RPC_NEW_HTTP_PROXY_CHANNEL")) { _ = RPC_NEW_HTTP_PROXY_CHANNEL; }
+    if (@hasDecl(@This(), "RPC_HTTP_PROXY_FREE_STRING")) { _ = RPC_HTTP_PROXY_FREE_STRING; }
+    if (@hasDecl(@This(), "RPC_AUTH_KEY_RETRIEVAL_FN")) { _ = RPC_AUTH_KEY_RETRIEVAL_FN; }
+    if (@hasDecl(@This(), "RPC_MGMT_AUTHORIZATION_FN")) { _ = RPC_MGMT_AUTHORIZATION_FN; }
+    if (@hasDecl(@This(), "RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN")) { _ = RPC_INTERFACE_GROUP_IDLE_CALLBACK_FN; }
+    if (@hasDecl(@This(), "RPC_FORWARD_FUNCTION")) { _ = RPC_FORWARD_FUNCTION; }
+    if (@hasDecl(@This(), "RPC_ADDRESS_CHANGE_FN")) { _ = RPC_ADDRESS_CHANGE_FN; }
+    if (@hasDecl(@This(), "RPC_DISPATCH_FUNCTION")) { _ = RPC_DISPATCH_FUNCTION; }
+    if (@hasDecl(@This(), "PRPC_RUNDOWN")) { _ = PRPC_RUNDOWN; }
+    if (@hasDecl(@This(), "RPCLT_PDU_FILTER_FUNC")) { _ = RPCLT_PDU_FILTER_FUNC; }
+    if (@hasDecl(@This(), "RPC_SETFILTER_FUNC")) { _ = RPC_SETFILTER_FUNC; }
+    if (@hasDecl(@This(), "RPC_BLOCKING_FN")) { _ = RPC_BLOCKING_FN; }
+    if (@hasDecl(@This(), "I_RpcProxyIsValidMachineFn")) { _ = I_RpcProxyIsValidMachineFn; }
+    if (@hasDecl(@This(), "I_RpcProxyGetClientAddressFn")) { _ = I_RpcProxyGetClientAddressFn; }
+    if (@hasDecl(@This(), "I_RpcProxyGetConnectionTimeoutFn")) { _ = I_RpcProxyGetConnectionTimeoutFn; }
+    if (@hasDecl(@This(), "I_RpcPerformCalloutFn")) { _ = I_RpcPerformCalloutFn; }
+    if (@hasDecl(@This(), "I_RpcFreeCalloutStateFn")) { _ = I_RpcFreeCalloutStateFn; }
+    if (@hasDecl(@This(), "I_RpcProxyGetClientSessionAndResourceUUID")) { _ = I_RpcProxyGetClientSessionAndResourceUUID; }
+    if (@hasDecl(@This(), "I_RpcProxyFilterIfFn")) { _ = I_RpcProxyFilterIfFn; }
+    if (@hasDecl(@This(), "I_RpcProxyUpdatePerfCounterFn")) { _ = I_RpcProxyUpdatePerfCounterFn; }
+    if (@hasDecl(@This(), "I_RpcProxyUpdatePerfCounterBackendServerFn")) { _ = I_RpcProxyUpdatePerfCounterBackendServerFn; }
+    if (@hasDecl(@This(), "PFN_RPCNOTIFICATION_ROUTINE")) { _ = PFN_RPCNOTIFICATION_ROUTINE; }
+    if (@hasDecl(@This(), "NDR_RUNDOWN")) { _ = NDR_RUNDOWN; }
+    if (@hasDecl(@This(), "NDR_NOTIFY_ROUTINE")) { _ = NDR_NOTIFY_ROUTINE; }
+    if (@hasDecl(@This(), "NDR_NOTIFY2_ROUTINE")) { _ = NDR_NOTIFY2_ROUTINE; }
+    if (@hasDecl(@This(), "EXPR_EVAL")) { _ = EXPR_EVAL; }
+    if (@hasDecl(@This(), "GENERIC_BINDING_ROUTINE")) { _ = GENERIC_BINDING_ROUTINE; }
+    if (@hasDecl(@This(), "GENERIC_UNBIND_ROUTINE")) { _ = GENERIC_UNBIND_ROUTINE; }
+    if (@hasDecl(@This(), "XMIT_HELPER_ROUTINE")) { _ = XMIT_HELPER_ROUTINE; }
+    if (@hasDecl(@This(), "USER_MARSHAL_SIZING_ROUTINE")) { _ = USER_MARSHAL_SIZING_ROUTINE; }
+    if (@hasDecl(@This(), "USER_MARSHAL_MARSHALLING_ROUTINE")) { _ = USER_MARSHAL_MARSHALLING_ROUTINE; }
+    if (@hasDecl(@This(), "USER_MARSHAL_UNMARSHALLING_ROUTINE")) { _ = USER_MARSHAL_UNMARSHALLING_ROUTINE; }
+    if (@hasDecl(@This(), "USER_MARSHAL_FREEING_ROUTINE")) { _ = USER_MARSHAL_FREEING_ROUTINE; }
+    if (@hasDecl(@This(), "CS_TYPE_NET_SIZE_ROUTINE")) { _ = CS_TYPE_NET_SIZE_ROUTINE; }
+    if (@hasDecl(@This(), "CS_TYPE_LOCAL_SIZE_ROUTINE")) { _ = CS_TYPE_LOCAL_SIZE_ROUTINE; }
+    if (@hasDecl(@This(), "CS_TYPE_TO_NETCS_ROUTINE")) { _ = CS_TYPE_TO_NETCS_ROUTINE; }
+    if (@hasDecl(@This(), "CS_TYPE_FROM_NETCS_ROUTINE")) { _ = CS_TYPE_FROM_NETCS_ROUTINE; }
+    if (@hasDecl(@This(), "CS_TAG_GETTING_ROUTINE")) { _ = CS_TAG_GETTING_ROUTINE; }
+    if (@hasDecl(@This(), "STUB_THUNK")) { _ = STUB_THUNK; }
+    if (@hasDecl(@This(), "SERVER_ROUTINE")) { _ = SERVER_ROUTINE; }
+    if (@hasDecl(@This(), "RPC_CLIENT_ALLOC")) { _ = RPC_CLIENT_ALLOC; }
+    if (@hasDecl(@This(), "RPC_CLIENT_FREE")) { _ = RPC_CLIENT_FREE; }
+    if (@hasDecl(@This(), "MIDL_ES_ALLOC")) { _ = MIDL_ES_ALLOC; }
+    if (@hasDecl(@This(), "MIDL_ES_WRITE")) { _ = MIDL_ES_WRITE; }
+    if (@hasDecl(@This(), "MIDL_ES_READ")) { _ = MIDL_ES_READ; }
 
-    const constant_export_count = 218;
-    const type_export_count = 168;
-    const enum_value_export_count = 214;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 491;
-    const unicode_alias_count = 75;
-    const import_count = 15;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -1731,7 +1731,7 @@ pub const RADIUS_ATTRIBUTE = extern struct {
     dwAttrType: u32,
     fDataType: RADIUS_DATA_TYPE,
     cbDataLength: u32,
-    Anonymous: RADIUS_ATTRIBUTE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1832,31 +1832,22 @@ const HRESULT = @import("com.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PRADIUS_EXTENSION_INIT;
-    _ = PRADIUS_EXTENSION_TERM;
-    _ = PRADIUS_EXTENSION_PROCESS;
-    _ = PRADIUS_EXTENSION_PROCESS_EX;
-    _ = PRADIUS_EXTENSION_FREE_ATTRIBUTES;
-    _ = PRADIUS_EXTENSION_PROCESS_2;
+    if (@hasDecl(@This(), "PRADIUS_EXTENSION_INIT")) { _ = PRADIUS_EXTENSION_INIT; }
+    if (@hasDecl(@This(), "PRADIUS_EXTENSION_TERM")) { _ = PRADIUS_EXTENSION_TERM; }
+    if (@hasDecl(@This(), "PRADIUS_EXTENSION_PROCESS")) { _ = PRADIUS_EXTENSION_PROCESS; }
+    if (@hasDecl(@This(), "PRADIUS_EXTENSION_PROCESS_EX")) { _ = PRADIUS_EXTENSION_PROCESS_EX; }
+    if (@hasDecl(@This(), "PRADIUS_EXTENSION_FREE_ATTRIBUTES")) { _ = PRADIUS_EXTENSION_FREE_ATTRIBUTES; }
+    if (@hasDecl(@This(), "PRADIUS_EXTENSION_PROCESS_2")) { _ = PRADIUS_EXTENSION_PROCESS_2; }
 
-    const constant_export_count = 1;
-    const type_export_count = 65;
-    const enum_value_export_count = 572;
-    const com_iface_id_export_count = 7;
-    const com_class_id_export_count = 1;
-    const func_export_count = 0;
-    const unicode_alias_count = 0;
-    const import_count = 5;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

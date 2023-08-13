@@ -373,9 +373,499 @@ pub const RTM_CHANGE_TYPE_FORWARDING = @as(u32, 4);
 pub const RTM_NOTIFY_ONLY_MARKED_DESTS = @as(u32, 65536);
 
 //--------------------------------------------------------------------------------
-// Section: Types (224)
+// Section: Types (239)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASCONNW = extern struct {
+    dwSize: u32,
+    hrasconn: HRASCONN,
+    szEntryName: [257]u16,
+    szDeviceType: [17]u16,
+    szDeviceName: [129]u16,
+    szPhonebook: [260]u16,
+    dwSubEntry: u32,
+    guidEntry: Guid,
+    dwFlags: u32,
+    luid: LUID,
+    guidCorrelationId: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASCONNA = extern struct {
+    dwSize: u32,
+    hrasconn: HRASCONN,
+    szEntryName: [257]CHAR,
+    szDeviceType: [17]CHAR,
+    szDeviceName: [129]CHAR,
+    szPhonebook: [260]CHAR,
+    dwSubEntry: u32,
+    guidEntry: Guid,
+    dwFlags: u32,
+    luid: LUID,
+    guidCorrelationId: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASDIALPARAMSW = extern struct {
+    dwSize: u32,
+    szEntryName: [257]u16,
+    szPhoneNumber: [129]u16,
+    szCallbackNumber: [129]u16,
+    szUserName: [257]u16,
+    szPassword: [257]u16,
+    szDomain: [16]u16,
+    dwSubEntry: u32,
+    dwCallbackId: usize,
+    dwIfIndex: u32,
+    szEncPassword: PWSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASDIALPARAMSA = extern struct {
+    dwSize: u32,
+    szEntryName: [257]CHAR,
+    szPhoneNumber: [129]CHAR,
+    szCallbackNumber: [129]CHAR,
+    szUserName: [257]CHAR,
+    szPassword: [257]CHAR,
+    szDomain: [16]CHAR,
+    dwSubEntry: u32,
+    dwCallbackId: usize,
+    dwIfIndex: u32,
+    szEncPassword: PSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASEAPINFO = extern struct {
+    dwSizeofEapInfo: u32,
+    pbEapInfo: *u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASDEVSPECIFICINFO = extern struct {
+    dwSize: u32,
+    pbDevSpecificInfo: *u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASDIALEXTENSIONS = extern struct {
+    dwSize: u32,
+    dwfOptions: u32,
+    hwndParent: HWND,
+    reserved: usize,
+    reserved1: usize,
+    RasEapInfo: RASEAPINFO,
+    fSkipPppAuth: BOOL,
+    RasDevSpecificInfo: RASDEVSPECIFICINFO,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASIKEV2_PROJECTION_INFO = extern struct {
+    dwIPv4NegotiationError: u32,
+    ipv4Address: IN_ADDR,
+    ipv4ServerAddress: IN_ADDR,
+    dwIPv6NegotiationError: u32,
+    ipv6Address: IN6_ADDR,
+    ipv6ServerAddress: IN6_ADDR,
+    dwPrefixLength: u32,
+    dwAuthenticationProtocol: u32,
+    dwEapTypeId: u32,
+    dwFlags: RASIKEV_PROJECTION_INFO_FLAGS,
+    dwEncryptionMethod: u32,
+    numIPv4ServerAddresses: u32,
+    ipv4ServerAddresses: *IN_ADDR,
+    numIPv6ServerAddresses: u32,
+    ipv6ServerAddresses: *IN6_ADDR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASADPARAMS = extern struct {
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
+    dwSize: u32,
+    pfnRasSetCommSettings: PFNRASSETCOMMSETTINGS,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASPBDLGW = extern struct {
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    dwCallbackId: usize,
+    pCallback: RASPBDLGFUNCW,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASPBDLGA = extern struct {
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    dwCallbackId: usize,
+    pCallback: RASPBDLGFUNCA,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASENTRYDLGW = extern struct {
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    szEntry: [257]u16,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASENTRYDLGA = extern struct {
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    szEntry: [257]CHAR,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASDIALDLG = extern struct {
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    dwSubEntry: u32,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
 pub const HRASCONN = ?*opaque{};
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASCONNW = extern struct {
+    dwSize: u32,
+    hrasconn: HRASCONN,
+    szEntryName: [257]u16,
+    szDeviceType: [17]u16,
+    szDeviceName: [129]u16,
+    szPhonebook: [260]u16,
+    dwSubEntry: u32,
+    guidEntry: Guid,
+    dwFlags: u32,
+    luid: LUID,
+    guidCorrelationId: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASCONNA = extern struct {
+    dwSize: u32,
+    hrasconn: HRASCONN,
+    szEntryName: [257]CHAR,
+    szDeviceType: [17]CHAR,
+    szDeviceName: [129]CHAR,
+    szPhonebook: [260]CHAR,
+    dwSubEntry: u32,
+    guidEntry: Guid,
+    dwFlags: u32,
+    luid: LUID,
+    guidCorrelationId: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASDIALPARAMSW = extern struct {
+    dwSize: u32,
+    szEntryName: [257]u16,
+    szPhoneNumber: [129]u16,
+    szCallbackNumber: [129]u16,
+    szUserName: [257]u16,
+    szPassword: [257]u16,
+    szDomain: [16]u16,
+    dwSubEntry: u32,
+    dwCallbackId: usize,
+    dwIfIndex: u32,
+    szEncPassword: PWSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASDIALPARAMSA = extern struct {
+    dwSize: u32,
+    szEntryName: [257]CHAR,
+    szPhoneNumber: [129]CHAR,
+    szCallbackNumber: [129]CHAR,
+    szUserName: [257]CHAR,
+    szPassword: [257]CHAR,
+    szDomain: [16]CHAR,
+    dwSubEntry: u32,
+    dwCallbackId: usize,
+    dwIfIndex: u32,
+    szEncPassword: PSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASEAPINFO = extern struct {
+    dwSizeofEapInfo: u32,
+    pbEapInfo: *u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASDEVSPECIFICINFO = extern struct {
+    dwSize: u32,
+    pbDevSpecificInfo: *u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASDIALEXTENSIONS = extern struct {
+    dwSize: u32,
+    dwfOptions: u32,
+    hwndParent: HWND,
+    reserved: usize,
+    reserved1: usize,
+    RasEapInfo: RASEAPINFO,
+    fSkipPppAuth: BOOL,
+    RasDevSpecificInfo: RASDEVSPECIFICINFO,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASIKEV2_PROJECTION_INFO = extern struct {
+    dwIPv4NegotiationError: u32,
+    ipv4Address: IN_ADDR,
+    ipv4ServerAddress: IN_ADDR,
+    dwIPv6NegotiationError: u32,
+    ipv6Address: IN6_ADDR,
+    ipv6ServerAddress: IN6_ADDR,
+    dwPrefixLength: u32,
+    dwAuthenticationProtocol: u32,
+    dwEapTypeId: u32,
+    dwFlags: u32,
+    dwEncryptionMethod: u32,
+    numIPv4ServerAddresses: u32,
+    ipv4ServerAddresses: *IN_ADDR,
+    numIPv6ServerAddresses: u32,
+    ipv6ServerAddresses: *IN6_ADDR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASADPARAMS = extern struct {
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
+    dwSize: u32,
+    pfnRasSetCommSettings: PFNRASSETCOMMSETTINGS,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASPBDLGW = extern struct {
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    dwCallbackId: usize,
+    pCallback: RASPBDLGFUNCW,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASPBDLGA = extern struct {
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    dwCallbackId: usize,
+    pCallback: RASPBDLGFUNCA,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASENTRYDLGW = extern struct {
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    szEntry: [257]u16,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASENTRYDLGA = extern struct {
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    szEntry: [257]CHAR,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const RASDIALDLG = extern struct {
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    dwSubEntry: u32,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
 
 pub const MPR_INTERFACE_DIAL_MODE = extern enum(u32) {
     First = 0,
@@ -512,36 +1002,8 @@ pub const RASIPADDR = extern struct {
 
 pub const RASTUNNELENDPOINT = extern struct {
     dwType: u32,
-    Anonymous: RASTUNNELENDPOINT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const RASCONNW = extern struct {
-    dwSize: u32,
-    hrasconn: HRASCONN,
-    szEntryName: [257]u16,
-    szDeviceType: [17]u16,
-    szDeviceName: [129]u16,
-    szPhonebook: [260]u16,
-    dwSubEntry: u32,
-    guidEntry: Guid,
-    dwFlags: u32,
-    luid: LUID,
-    guidCorrelationId: Guid,
-};
-
-pub const RASCONNA = extern struct {
-    dwSize: u32,
-    hrasconn: HRASCONN,
-    szEntryName: [257]CHAR,
-    szDeviceType: [17]CHAR,
-    szDeviceName: [129]CHAR,
-    szPhonebook: [260]CHAR,
-    dwSubEntry: u32,
-    guidEntry: Guid,
-    dwFlags: u32,
-    luid: LUID,
-    guidCorrelationId: Guid,
 };
 
 pub const RASCONNSTATE = extern enum(i32) {
@@ -644,55 +1106,6 @@ pub const RASCONNSTATUSA = extern struct {
     localEndPoint: RASTUNNELENDPOINT,
     remoteEndPoint: RASTUNNELENDPOINT,
     rasconnsubstate: RASCONNSUBSTATE,
-};
-
-pub const RASDIALPARAMSW = extern struct {
-    dwSize: u32,
-    szEntryName: [257]u16,
-    szPhoneNumber: [129]u16,
-    szCallbackNumber: [129]u16,
-    szUserName: [257]u16,
-    szPassword: [257]u16,
-    szDomain: [16]u16,
-    dwSubEntry: u32,
-    dwCallbackId: usize,
-    dwIfIndex: u32,
-    szEncPassword: PWSTR,
-};
-
-pub const RASDIALPARAMSA = extern struct {
-    dwSize: u32,
-    szEntryName: [257]CHAR,
-    szPhoneNumber: [129]CHAR,
-    szCallbackNumber: [129]CHAR,
-    szUserName: [257]CHAR,
-    szPassword: [257]CHAR,
-    szDomain: [16]CHAR,
-    dwSubEntry: u32,
-    dwCallbackId: usize,
-    dwIfIndex: u32,
-    szEncPassword: PSTR,
-};
-
-pub const RASEAPINFO = extern struct {
-    dwSizeofEapInfo: u32,
-    pbEapInfo: *u8,
-};
-
-pub const RASDEVSPECIFICINFO = extern struct {
-    dwSize: u32,
-    pbDevSpecificInfo: *u8,
-};
-
-pub const RASDIALEXTENSIONS = extern struct {
-    dwSize: u32,
-    dwfOptions: u32,
-    hwndParent: HWND,
-    reserved: usize,
-    reserved1: usize,
-    RasEapInfo: RASEAPINFO,
-    fSkipPppAuth: BOOL,
-    RasDevSpecificInfo: RASDEVSPECIFICINFO,
 };
 
 pub const RASENTRYNAMEW = extern struct {
@@ -868,24 +1281,6 @@ pub const RASPPP_PROJECTION_INFO = extern struct {
     dwCcpServerOptions: u32,
 };
 
-pub const RASIKEV2_PROJECTION_INFO = extern struct {
-    dwIPv4NegotiationError: u32,
-    ipv4Address: IN_ADDR,
-    ipv4ServerAddress: IN_ADDR,
-    dwIPv6NegotiationError: u32,
-    ipv6Address: IN6_ADDR,
-    ipv6ServerAddress: IN6_ADDR,
-    dwPrefixLength: u32,
-    dwAuthenticationProtocol: u32,
-    dwEapTypeId: u32,
-    dwFlags: RASIKEV_PROJECTION_INFO_FLAGS,
-    dwEncryptionMethod: u32,
-    numIPv4ServerAddresses: u32,
-    ipv4ServerAddresses: *IN_ADDR,
-    numIPv6ServerAddresses: u32,
-    ipv6ServerAddresses: *IN6_ADDR,
-};
-
 pub const RASPROJECTION_INFO_TYPE = extern enum(i32) {
     PPP = 1,
     IKEv2 = 2,
@@ -925,7 +1320,7 @@ pub const IKEV2_ID_PAYLOAD_TYPE_MAX = IKEV2_ID_PAYLOAD_TYPE.MAX;
 pub const RAS_PROJECTION_INFO = extern struct {
     version: RASAPIVERSION,
     type: RASPROJECTION_INFO_TYPE,
-    Anonymous: RAS_PROJECTION_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1108,14 +1503,6 @@ pub const ORASADFUNC = fn(
     param3: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const RASADPARAMS = extern struct {
-    dwSize: u32,
-    hwndOwner: HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-};
-
 pub const RASADFUNCA = fn(
     param0: PSTR,
     param1: PSTR,
@@ -1247,11 +1634,6 @@ pub const PFNRASSETCOMMSETTINGS = fn(
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
-    dwSize: u32,
-    pfnRasSetCommSettings: PFNRASSETCOMMSETTINGS,
-};
-
 pub const RAS_STATS = extern struct {
     dwSize: u32,
     dwBytesXmited: u32,
@@ -1330,68 +1712,6 @@ pub const RASNOUSERA = extern struct {
     szUserName: [257]CHAR,
     szPassword: [257]CHAR,
     szDomain: [16]CHAR,
-};
-
-pub const RASPBDLGW = extern struct {
-    dwSize: u32,
-    hwndOwner: HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwCallbackId: usize,
-    pCallback: RASPBDLGFUNCW,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-pub const RASPBDLGA = extern struct {
-    dwSize: u32,
-    hwndOwner: HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwCallbackId: usize,
-    pCallback: RASPBDLGFUNCA,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-pub const RASENTRYDLGW = extern struct {
-    dwSize: u32,
-    hwndOwner: HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    szEntry: [257]u16,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-pub const RASENTRYDLGA = extern struct {
-    dwSize: u32,
-    hwndOwner: HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    szEntry: [257]CHAR,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-pub const RASDIALDLG = extern struct {
-    dwSize: u32,
-    hwndOwner: HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwSubEntry: u32,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
 };
 
 pub const RasCustomDialDlgFn = fn(
@@ -1982,13 +2302,13 @@ pub const IKEV2_PROJECTION_INFO2 = extern struct {
 
 pub const PROJECTION_INFO = extern struct {
     projectionInfoType: u8,
-    Anonymous: PROJECTION_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROJECTION_INFO2 = extern struct {
     projectionInfoType: u8,
-    Anonymous: PROJECTION_INFO2._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2087,7 +2407,7 @@ pub const MPR_CERT_EKU = extern struct {
 
 pub const VPN_TS_IP_ADDRESS = extern struct {
     Type: u16,
-    Anonymous: VPN_TS_IP_ADDRESS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2591,7 +2911,7 @@ pub const RTM_DEST_INFO = extern struct {
     LastChanged: FILETIME,
     BelongsToViews: u32,
     NumberOfViews: u32,
-    ViewInfo: [1]RTM_DEST_INFO._Anonymous_e__Struct,
+    ViewInfo: [1]_Anonymous_e__Struct,
     const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -2619,7 +2939,7 @@ pub const RTM_NEXTHOP_INFO = extern struct {
 };
 
 pub const RTM_ENTITY_ID = extern struct {
-    Anonymous: RTM_ENTITY_ID._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -4819,8 +5139,10 @@ pub extern "rtm" fn RtmReferenceHandles(
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
         pub const RASCONN = RASCONNA;
-        pub const RASCONNSTATUS = RASCONNSTATUSA;
         pub const RASDIALPARAMS = RASDIALPARAMSA;
+        pub const RASPBDLG = RASPBDLGA;
+        pub const RASENTRYDLG = RASENTRYDLGA;
+        pub const RASCONNSTATUS = RASCONNSTATUSA;
         pub const RASENTRYNAME = RASENTRYNAMEA;
         pub const RASAMB = RASAMBA;
         pub const RASPPPNBF = RASPPPNBFA;
@@ -4835,8 +5157,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const RASEAPUSERIDENTITY = RASEAPUSERIDENTITYA;
         pub const RASPBDLGFUNC = RASPBDLGFUNCA;
         pub const RASNOUSER = RASNOUSERA;
-        pub const RASPBDLG = RASPBDLGA;
-        pub const RASENTRYDLG = RASENTRYDLGA;
         pub const RasDial = RasDialA;
         pub const RasEnumConnections = RasEnumConnectionsA;
         pub const RasEnumEntries = RasEnumEntriesA;
@@ -4881,8 +5201,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
     .wide => struct {
         pub const RASCONN = RASCONNW;
-        pub const RASCONNSTATUS = RASCONNSTATUSW;
         pub const RASDIALPARAMS = RASDIALPARAMSW;
+        pub const RASPBDLG = RASPBDLGW;
+        pub const RASENTRYDLG = RASENTRYDLGW;
+        pub const RASCONNSTATUS = RASCONNSTATUSW;
         pub const RASENTRYNAME = RASENTRYNAMEW;
         pub const RASAMB = RASAMBW;
         pub const RASPPPNBF = RASPPPNBFW;
@@ -4897,8 +5219,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const RASEAPUSERIDENTITY = RASEAPUSERIDENTITYW;
         pub const RASPBDLGFUNC = RASPBDLGFUNCW;
         pub const RASNOUSER = RASNOUSERW;
-        pub const RASPBDLG = RASPBDLGW;
-        pub const RASENTRYDLG = RASENTRYDLGW;
         pub const RasDial = RasDialW;
         pub const RasEnumConnections = RasEnumConnectionsW;
         pub const RasEnumEntries = RasEnumEntriesW;
@@ -4943,8 +5263,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const RASCONN = *opaque{};
-        pub const RASCONNSTATUS = *opaque{};
         pub const RASDIALPARAMS = *opaque{};
+        pub const RASPBDLG = *opaque{};
+        pub const RASENTRYDLG = *opaque{};
+        pub const RASCONNSTATUS = *opaque{};
         pub const RASENTRYNAME = *opaque{};
         pub const RASAMB = *opaque{};
         pub const RASPPPNBF = *opaque{};
@@ -4959,8 +5281,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const RASEAPUSERIDENTITY = *opaque{};
         pub const RASPBDLGFUNC = *opaque{};
         pub const RASNOUSER = *opaque{};
-        pub const RASPBDLG = *opaque{};
-        pub const RASENTRYDLG = *opaque{};
         pub const RasDial = *opaque{};
         pub const RasEnumConnections = *opaque{};
         pub const RasEnumEntries = *opaque{};
@@ -5004,8 +5324,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const RasDialDlg = *opaque{};
     } else struct {
         pub const RASCONN = @compileError("'RASCONN' requires that UNICODE be set to true or false in the root module");
-        pub const RASCONNSTATUS = @compileError("'RASCONNSTATUS' requires that UNICODE be set to true or false in the root module");
         pub const RASDIALPARAMS = @compileError("'RASDIALPARAMS' requires that UNICODE be set to true or false in the root module");
+        pub const RASPBDLG = @compileError("'RASPBDLG' requires that UNICODE be set to true or false in the root module");
+        pub const RASENTRYDLG = @compileError("'RASENTRYDLG' requires that UNICODE be set to true or false in the root module");
+        pub const RASCONNSTATUS = @compileError("'RASCONNSTATUS' requires that UNICODE be set to true or false in the root module");
         pub const RASENTRYNAME = @compileError("'RASENTRYNAME' requires that UNICODE be set to true or false in the root module");
         pub const RASAMB = @compileError("'RASAMB' requires that UNICODE be set to true or false in the root module");
         pub const RASPPPNBF = @compileError("'RASPPPNBF' requires that UNICODE be set to true or false in the root module");
@@ -5020,8 +5342,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const RASEAPUSERIDENTITY = @compileError("'RASEAPUSERIDENTITY' requires that UNICODE be set to true or false in the root module");
         pub const RASPBDLGFUNC = @compileError("'RASPBDLGFUNC' requires that UNICODE be set to true or false in the root module");
         pub const RASNOUSER = @compileError("'RASNOUSER' requires that UNICODE be set to true or false in the root module");
-        pub const RASPBDLG = @compileError("'RASPBDLG' requires that UNICODE be set to true or false in the root module");
-        pub const RASENTRYDLG = @compileError("'RASENTRYDLG' requires that UNICODE be set to true or false in the root module");
         pub const RasDial = @compileError("'RasDial' requires that UNICODE be set to true or false in the root module");
         pub const RasEnumConnections = @compileError("'RasEnumConnections' requires that UNICODE be set to true or false in the root module");
         pub const RasEnumEntries = @compileError("'RasEnumEntries' requires that UNICODE be set to true or false in the root module");
@@ -5085,76 +5405,67 @@ const CRYPTOAPI_BLOB = @import("security.zig").CRYPTOAPI_BLOB;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = RASDIALFUNC;
-    _ = RASDIALFUNC1;
-    _ = RASDIALFUNC2;
-    _ = ORASADFUNC;
-    _ = RASADFUNCA;
-    _ = RASADFUNCW;
-    _ = PFNRASGETBUFFER;
-    _ = PFNRASFREEBUFFER;
-    _ = PFNRASSENDBUFFER;
-    _ = PFNRASRECEIVEBUFFER;
-    _ = PFNRASRETRIEVEBUFFER;
-    _ = RasCustomScriptExecuteFn;
-    _ = PFNRASSETCOMMSETTINGS;
-    _ = RasCustomHangUpFn;
-    _ = RasCustomDialFn;
-    _ = RasCustomDeleteEntryNotifyFn;
-    _ = RASPBDLGFUNCW;
-    _ = RASPBDLGFUNCA;
-    _ = RasCustomDialDlgFn;
-    _ = RasCustomEntryDlgFn;
-    _ = PMPRADMINGETIPADDRESSFORUSER;
-    _ = PMPRADMINRELEASEIPADRESS;
-    _ = PMPRADMINGETIPV6ADDRESSFORUSER;
-    _ = PMPRADMINRELEASEIPV6ADDRESSFORUSER;
-    _ = PMPRADMINACCEPTNEWCONNECTION;
-    _ = PMPRADMINACCEPTNEWCONNECTION2;
-    _ = PMPRADMINACCEPTNEWCONNECTION3;
-    _ = PMPRADMINACCEPTNEWLINK;
-    _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION;
-    _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION2;
-    _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION3;
-    _ = PMPRADMINLINKHANGUPNOTIFICATION;
-    _ = PMPRADMINTERMINATEDLL;
-    _ = PMPRADMINACCEPTREAUTHENTICATION;
-    _ = PMPRADMINACCEPTNEWCONNECTIONEX;
-    _ = PMPRADMINACCEPTREAUTHENTICATIONEX;
-    _ = PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX;
-    _ = PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX;
-    _ = PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX;
-    _ = RASSECURITYPROC;
-    _ = PMGM_RPF_CALLBACK;
-    _ = PMGM_CREATION_ALERT_CALLBACK;
-    _ = PMGM_PRUNE_ALERT_CALLBACK;
-    _ = PMGM_JOIN_ALERT_CALLBACK;
-    _ = PMGM_WRONG_IF_CALLBACK;
-    _ = PMGM_LOCAL_JOIN_CALLBACK;
-    _ = PMGM_LOCAL_LEAVE_CALLBACK;
-    _ = PMGM_DISABLE_IGMP_CALLBACK;
-    _ = PMGM_ENABLE_IGMP_CALLBACK;
-    _ = RTM_EVENT_CALLBACK;
-    _ = RTM_ENTITY_EXPORT_METHOD;
+    if (@hasDecl(@This(), "RASDIALFUNC")) { _ = RASDIALFUNC; }
+    if (@hasDecl(@This(), "RASDIALFUNC1")) { _ = RASDIALFUNC1; }
+    if (@hasDecl(@This(), "RASDIALFUNC2")) { _ = RASDIALFUNC2; }
+    if (@hasDecl(@This(), "ORASADFUNC")) { _ = ORASADFUNC; }
+    if (@hasDecl(@This(), "RASADFUNCA")) { _ = RASADFUNCA; }
+    if (@hasDecl(@This(), "RASADFUNCW")) { _ = RASADFUNCW; }
+    if (@hasDecl(@This(), "PFNRASGETBUFFER")) { _ = PFNRASGETBUFFER; }
+    if (@hasDecl(@This(), "PFNRASFREEBUFFER")) { _ = PFNRASFREEBUFFER; }
+    if (@hasDecl(@This(), "PFNRASSENDBUFFER")) { _ = PFNRASSENDBUFFER; }
+    if (@hasDecl(@This(), "PFNRASRECEIVEBUFFER")) { _ = PFNRASRECEIVEBUFFER; }
+    if (@hasDecl(@This(), "PFNRASRETRIEVEBUFFER")) { _ = PFNRASRETRIEVEBUFFER; }
+    if (@hasDecl(@This(), "RasCustomScriptExecuteFn")) { _ = RasCustomScriptExecuteFn; }
+    if (@hasDecl(@This(), "PFNRASSETCOMMSETTINGS")) { _ = PFNRASSETCOMMSETTINGS; }
+    if (@hasDecl(@This(), "RasCustomHangUpFn")) { _ = RasCustomHangUpFn; }
+    if (@hasDecl(@This(), "RasCustomDialFn")) { _ = RasCustomDialFn; }
+    if (@hasDecl(@This(), "RasCustomDeleteEntryNotifyFn")) { _ = RasCustomDeleteEntryNotifyFn; }
+    if (@hasDecl(@This(), "RASPBDLGFUNCW")) { _ = RASPBDLGFUNCW; }
+    if (@hasDecl(@This(), "RASPBDLGFUNCA")) { _ = RASPBDLGFUNCA; }
+    if (@hasDecl(@This(), "RasCustomDialDlgFn")) { _ = RasCustomDialDlgFn; }
+    if (@hasDecl(@This(), "RasCustomEntryDlgFn")) { _ = RasCustomEntryDlgFn; }
+    if (@hasDecl(@This(), "PMPRADMINGETIPADDRESSFORUSER")) { _ = PMPRADMINGETIPADDRESSFORUSER; }
+    if (@hasDecl(@This(), "PMPRADMINRELEASEIPADRESS")) { _ = PMPRADMINRELEASEIPADRESS; }
+    if (@hasDecl(@This(), "PMPRADMINGETIPV6ADDRESSFORUSER")) { _ = PMPRADMINGETIPV6ADDRESSFORUSER; }
+    if (@hasDecl(@This(), "PMPRADMINRELEASEIPV6ADDRESSFORUSER")) { _ = PMPRADMINRELEASEIPV6ADDRESSFORUSER; }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTION")) { _ = PMPRADMINACCEPTNEWCONNECTION; }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTION2")) { _ = PMPRADMINACCEPTNEWCONNECTION2; }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTION3")) { _ = PMPRADMINACCEPTNEWCONNECTION3; }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWLINK")) { _ = PMPRADMINACCEPTNEWLINK; }
+    if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATION")) { _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION; }
+    if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATION2")) { _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION2; }
+    if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATION3")) { _ = PMPRADMINCONNECTIONHANGUPNOTIFICATION3; }
+    if (@hasDecl(@This(), "PMPRADMINLINKHANGUPNOTIFICATION")) { _ = PMPRADMINLINKHANGUPNOTIFICATION; }
+    if (@hasDecl(@This(), "PMPRADMINTERMINATEDLL")) { _ = PMPRADMINTERMINATEDLL; }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTREAUTHENTICATION")) { _ = PMPRADMINACCEPTREAUTHENTICATION; }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTNEWCONNECTIONEX")) { _ = PMPRADMINACCEPTNEWCONNECTIONEX; }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTREAUTHENTICATIONEX")) { _ = PMPRADMINACCEPTREAUTHENTICATIONEX; }
+    if (@hasDecl(@This(), "PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX")) { _ = PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX; }
+    if (@hasDecl(@This(), "PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX")) { _ = PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX; }
+    if (@hasDecl(@This(), "PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX")) { _ = PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX; }
+    if (@hasDecl(@This(), "RASSECURITYPROC")) { _ = RASSECURITYPROC; }
+    if (@hasDecl(@This(), "PMGM_RPF_CALLBACK")) { _ = PMGM_RPF_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_CREATION_ALERT_CALLBACK")) { _ = PMGM_CREATION_ALERT_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_PRUNE_ALERT_CALLBACK")) { _ = PMGM_PRUNE_ALERT_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_JOIN_ALERT_CALLBACK")) { _ = PMGM_JOIN_ALERT_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_WRONG_IF_CALLBACK")) { _ = PMGM_WRONG_IF_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_LOCAL_JOIN_CALLBACK")) { _ = PMGM_LOCAL_JOIN_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_LOCAL_LEAVE_CALLBACK")) { _ = PMGM_LOCAL_LEAVE_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_DISABLE_IGMP_CALLBACK")) { _ = PMGM_DISABLE_IGMP_CALLBACK; }
+    if (@hasDecl(@This(), "PMGM_ENABLE_IGMP_CALLBACK")) { _ = PMGM_ENABLE_IGMP_CALLBACK; }
+    if (@hasDecl(@This(), "RTM_EVENT_CALLBACK")) { _ = RTM_EVENT_CALLBACK; }
+    if (@hasDecl(@This(), "RTM_ENTITY_EXPORT_METHOD")) { _ = RTM_ENTITY_EXPORT_METHOD; }
 
-    const constant_export_count = 369;
-    const type_export_count = 224;
-    const enum_value_export_count = 142;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 277;
-    const unicode_alias_count = 60;
-    const import_count = 14;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

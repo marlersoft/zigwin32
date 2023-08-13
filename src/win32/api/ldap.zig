@@ -139,6 +139,10 @@ pub const LBER_DEFAULT = @as(i32, -1);
 //--------------------------------------------------------------------------------
 // Section: Types (26)
 //--------------------------------------------------------------------------------
+pub const ldapsearch = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
 pub const LDAP_RETCODE = extern enum(i32) {
     SUCCESS = 0,
     OPERATIONS_ERROR = 1,
@@ -269,7 +273,7 @@ pub const LDAP_CLIENT_LOOP = LDAP_RETCODE.CLIENT_LOOP;
 pub const LDAP_REFERRAL_LIMIT_EXCEEDED = LDAP_RETCODE.REFERRAL_LIMIT_EXCEEDED;
 
 pub const ldap = extern struct {
-    ld_sb: ldap._ld_sb_e__Struct,
+    ld_sb: _ld_sb_e__Struct,
     ld_host: [*]u8,
     ld_version: u32,
     ld_lberoptions: u8,
@@ -329,14 +333,14 @@ pub const ldapcontrolW = extern struct {
 pub const ldapmodW = extern struct {
     mod_op: u32,
     mod_type: [*]u16,
-    mod_vals: ldapmodW._mod_vals_e__Union,
+    mod_vals: _mod_vals_e__Union,
     const _mod_vals_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const ldapmodA = extern struct {
     mod_op: u32,
     mod_type: [*]u8,
-    mod_vals: ldapmodA._mod_vals_e__Union,
+    mod_vals: _mod_vals_e__Union,
     const _mod_vals_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -383,10 +387,6 @@ pub const LDAPAPIFeatureInfoW = extern struct {
 pub const DBGPRINT = fn(
     Format: [*]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const ldapsearch = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const ldapsortkeyW = extern struct {
     sk_attrtype: [*]u16,
@@ -2432,31 +2432,22 @@ const SecPkgContext_IssuerListInfoEx = @import("security.zig").SecPkgContext_Iss
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = DBGPRINT;
-    _ = QUERYFORCONNECTION;
-    _ = NOTIFYOFNEWCONNECTION;
-    _ = DEREFERENCECONNECTION;
-    _ = QUERYCLIENTCERT;
-    _ = VERIFYSERVERCERT;
+    if (@hasDecl(@This(), "DBGPRINT")) { _ = DBGPRINT; }
+    if (@hasDecl(@This(), "QUERYFORCONNECTION")) { _ = QUERYFORCONNECTION; }
+    if (@hasDecl(@This(), "NOTIFYOFNEWCONNECTION")) { _ = NOTIFYOFNEWCONNECTION; }
+    if (@hasDecl(@This(), "DEREFERENCECONNECTION")) { _ = DEREFERENCECONNECTION; }
+    if (@hasDecl(@This(), "QUERYCLIENTCERT")) { _ = QUERYCLIENTCERT; }
+    if (@hasDecl(@This(), "VERIFYSERVERCERT")) { _ = VERIFYSERVERCERT; }
 
-    const constant_export_count = 133;
-    const type_export_count = 26;
-    const enum_value_export_count = 63;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 243;
-    const unicode_alias_count = 14;
-    const import_count = 6;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

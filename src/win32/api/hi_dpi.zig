@@ -26,26 +26,6 @@ pub const DPI_HOSTING_BEHAVIOR_INVALID = DPI_HOSTING_BEHAVIOR.INVALID;
 pub const DPI_HOSTING_BEHAVIOR_DEFAULT = DPI_HOSTING_BEHAVIOR.DEFAULT;
 pub const DPI_HOSTING_BEHAVIOR_MIXED = DPI_HOSTING_BEHAVIOR.MIXED;
 
-pub const PROCESS_DPI_AWARENESS = extern enum(i32) {
-    DPI_UNAWARE = 0,
-    SYSTEM_DPI_AWARE = 1,
-    PER_MONITOR_DPI_AWARE = 2,
-};
-pub const PROCESS_DPI_UNAWARE = PROCESS_DPI_AWARENESS.DPI_UNAWARE;
-pub const PROCESS_SYSTEM_DPI_AWARE = PROCESS_DPI_AWARENESS.SYSTEM_DPI_AWARE;
-pub const PROCESS_PER_MONITOR_DPI_AWARE = PROCESS_DPI_AWARENESS.PER_MONITOR_DPI_AWARE;
-
-pub const MONITOR_DPI_TYPE = extern enum(i32) {
-    EFFECTIVE_DPI = 0,
-    ANGULAR_DPI = 1,
-    RAW_DPI = 2,
-    DEFAULT = 0,
-};
-pub const MDT_EFFECTIVE_DPI = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
-pub const MDT_ANGULAR_DPI = MONITOR_DPI_TYPE.ANGULAR_DPI;
-pub const MDT_RAW_DPI = MONITOR_DPI_TYPE.RAW_DPI;
-pub const MDT_DEFAULT = MONITOR_DPI_TYPE.DEFAULT;
-
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS = extern enum(u32) {
     EFAULT = 0,
@@ -70,29 +50,30 @@ pub const DDC_DISABLE_ALL = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL;
 pub const DDC_DISABLE_RESIZE = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_RESIZE;
 pub const DDC_DISABLE_CONTROL_RELAYOUT = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONTROL_RELAYOUT;
 
+pub const PROCESS_DPI_AWARENESS = extern enum(i32) {
+    DPI_UNAWARE = 0,
+    SYSTEM_DPI_AWARE = 1,
+    PER_MONITOR_DPI_AWARE = 2,
+};
+pub const PROCESS_DPI_UNAWARE = PROCESS_DPI_AWARENESS.DPI_UNAWARE;
+pub const PROCESS_SYSTEM_DPI_AWARE = PROCESS_DPI_AWARENESS.SYSTEM_DPI_AWARE;
+pub const PROCESS_PER_MONITOR_DPI_AWARE = PROCESS_DPI_AWARENESS.PER_MONITOR_DPI_AWARE;
+
+pub const MONITOR_DPI_TYPE = extern enum(i32) {
+    EFFECTIVE_DPI = 0,
+    ANGULAR_DPI = 1,
+    RAW_DPI = 2,
+    DEFAULT = 0,
+};
+pub const MDT_EFFECTIVE_DPI = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
+pub const MDT_ANGULAR_DPI = MONITOR_DPI_TYPE.ANGULAR_DPI;
+pub const MDT_RAW_DPI = MONITOR_DPI_TYPE.RAW_DPI;
+pub const MDT_DEFAULT = MONITOR_DPI_TYPE.DEFAULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (28)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-shcore-scaling-l1-1-1" fn SetProcessDpiAwareness(
-    value: PROCESS_DPI_AWARENESS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetProcessDpiAwareness(
-    hprocess: HANDLE,
-    value: *PROCESS_DPI_AWARENESS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetDpiForMonitor(
-    hmonitor: HMONITOR,
-    dpiType: MONITOR_DPI_TYPE,
-    dpiX: *u32,
-    dpiY: *u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "UxTheme" fn OpenThemeDataForDpi(
     hwnd: HWND,
@@ -233,6 +214,25 @@ pub extern "USER32" fn GetWindowDpiHostingBehavior(
     hwnd: HWND,
 ) callconv(@import("std").os.windows.WINAPI) DPI_HOSTING_BEHAVIOR;
 
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "api-ms-win-shcore-scaling-l1-1-1" fn SetProcessDpiAwareness(
+    value: PROCESS_DPI_AWARENESS,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetProcessDpiAwareness(
+    hprocess: HANDLE,
+    value: *PROCESS_DPI_AWARENESS,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetDpiForMonitor(
+    hmonitor: HMONITOR,
+    dpiType: MONITOR_DPI_TYPE,
+    dpiX: *u32,
+    dpiY: *u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -252,32 +252,23 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const HMONITOR = @import("gdi.zig").HMONITOR;
 const PWSTR = @import("system_services.zig").PWSTR;
 const HRESULT = @import("com.zig").HRESULT;
-const HANDLE = @import("system_services.zig").HANDLE;
-const RECT = @import("display_devices.zig").RECT;
 const POINT = @import("display_devices.zig").POINT;
+const RECT = @import("display_devices.zig").RECT;
+const DPI_AWARENESS_CONTEXT = @import("system_services.zig").DPI_AWARENESS_CONTEXT;
 const BOOL = @import("system_services.zig").BOOL;
 const HWND = @import("windows_and_messaging.zig").HWND;
-const DPI_AWARENESS_CONTEXT = @import("system_services.zig").DPI_AWARENESS_CONTEXT;
+const HANDLE = @import("system_services.zig").HANDLE;
 
 test {
-    const constant_export_count = 0;
-    const type_export_count = 6;
-    const enum_value_export_count = 21;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 28;
-    const unicode_alias_count = 0;
-    const import_count = 9;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

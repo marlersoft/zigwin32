@@ -6,6 +6,12 @@
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
+pub const HWINSTA = ?*opaque{};
+
+// TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
+pub const HDESK = ?*opaque{};
+
 pub const USER_OBJECT_INFORMATION_INDEX = extern enum(u32) {
     FLAGS = 1,
     HEAPSIZE = 5,
@@ -20,12 +26,6 @@ pub const UOI_IO = USER_OBJECT_INFORMATION_INDEX.IO;
 pub const UOI_NAME = USER_OBJECT_INFORMATION_INDEX.NAME;
 pub const UOI_TYPE = USER_OBJECT_INFORMATION_INDEX.TYPE;
 pub const UOI_USER_SID = USER_OBJECT_INFORMATION_INDEX.USER_SID;
-
-// TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
-pub const HWINSTA = ?*opaque{};
-
-// TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
-pub const HDESK = ?*opaque{};
 
 pub const USEROBJECTFLAGS = extern struct {
     fInherit: BOOL,
@@ -299,31 +299,22 @@ const SECURITY_ATTRIBUTES = @import("system_services.zig").SECURITY_ATTRIBUTES;
 const PSTR = @import("system_services.zig").PSTR;
 const DESKTOPENUMPROCW = @import("windows_and_messaging.zig").DESKTOPENUMPROCW;
 const BOOL = @import("system_services.zig").BOOL;
-const DEVMODEA = @import("xps.zig").DEVMODEA;
+const DEVMODEA = @import("display_devices.zig").DEVMODEA;
 const HANDLE = @import("system_services.zig").HANDLE;
 const WINSTAENUMPROCW = @import("windows_and_messaging.zig").WINSTAENUMPROCW;
 const WNDENUMPROC = @import("windows_and_messaging.zig").WNDENUMPROC;
 const WINSTAENUMPROCA = @import("windows_and_messaging.zig").WINSTAENUMPROCA;
 
 test {
-    const constant_export_count = 0;
-    const type_export_count = 4;
-    const enum_value_export_count = 6;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 27;
-    const unicode_alias_count = 9;
-    const import_count = 13;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

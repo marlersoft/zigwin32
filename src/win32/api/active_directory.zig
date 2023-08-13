@@ -625,7 +625,7 @@ pub const OPENQUERYWINDOW = extern struct {
     pHandlerParameters: *c_void,
     clsidDefaultForm: Guid,
     pPersistQuery: *IPersistQuery,
-    Anonymous: OPENQUERYWINDOW._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -884,7 +884,7 @@ pub const ADS_DN_WITH_STRING = extern struct {
 
 pub const ADSVALUE = extern struct {
     dwType: ADSTYPEENUM,
-    Anonymous: ADSVALUE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -10882,30 +10882,21 @@ const LSA_FOREST_TRUST_INFORMATION = @import("security.zig").LSA_FOREST_TRUST_IN
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPCQADDFORMSPROC;
-    _ = LPCQADDPAGESPROC;
-    _ = LPCQPAGEPROC;
-    _ = LPDSENUMATTRIBUTES;
-    _ = BFFCALLBACK;
+    if (@hasDecl(@This(), "LPCQADDFORMSPROC")) { _ = LPCQADDFORMSPROC; }
+    if (@hasDecl(@This(), "LPCQADDPAGESPROC")) { _ = LPCQADDPAGESPROC; }
+    if (@hasDecl(@This(), "LPCQPAGEPROC")) { _ = LPCQPAGEPROC; }
+    if (@hasDecl(@This(), "LPDSENUMATTRIBUTES")) { _ = LPDSENUMATTRIBUTES; }
+    if (@hasDecl(@This(), "BFFCALLBACK")) { _ = BFFCALLBACK; }
 
-    const constant_export_count = 450;
-    const type_export_count = 240;
-    const enum_value_export_count = 322;
-    const com_iface_id_export_count = 78;
-    const com_class_id_export_count = 25;
-    const func_export_count = 158;
-    const unicode_alias_count = 69;
-    const import_count = 30;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

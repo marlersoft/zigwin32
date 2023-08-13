@@ -2,6 +2,106 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (277)
 //--------------------------------------------------------------------------------
+pub const g_wszWMDMFileName = "WMDM/FileName";
+pub const g_wszWMDMFormatCode = "WMDM/FormatCode";
+pub const g_wszWMDMLastModifiedDate = "WMDM/LastModifiedDate";
+pub const g_wszWMDMFileCreationDate = "WMDM/FileCreationDate";
+pub const g_wszWMDMFileSize = "WMDM/FileSize";
+pub const g_wszWMDMFileAttributes = "WMDM/FileAttributes";
+pub const g_wszAudioWAVECodec = "WMDM/AudioWAVECodec";
+pub const g_wszVideoFourCCCodec = "WMDM/VideoFourCCCodec";
+pub const g_wszWMDMTitle = "WMDM/Title";
+pub const g_wszWMDMAuthor = "WMDM/Author";
+pub const g_wszWMDMDescription = "WMDM/Description";
+pub const g_wszWMDMIsProtected = "WMDM/IsProtected";
+pub const g_wszWMDMAlbumTitle = "WMDM/AlbumTitle";
+pub const g_wszWMDMAlbumArtist = "WMDM/AlbumArtist";
+pub const g_wszWMDMTrack = "WMDM/Track";
+pub const g_wszWMDMGenre = "WMDM/Genre";
+pub const g_wszWMDMTrackMood = "WMDM/TrackMood";
+pub const g_wszWMDMAlbumCoverFormat = "WMDM/AlbumCoverFormat";
+pub const g_wszWMDMAlbumCoverSize = "WMDM/AlbumCoverSize";
+pub const g_wszWMDMAlbumCoverHeight = "WMDM/AlbumCoverHeight";
+pub const g_wszWMDMAlbumCoverWidth = "WMDM/AlbumCoverWidth";
+pub const g_wszWMDMAlbumCoverDuration = "WMDM/AlbumCoverDuration";
+pub const g_wszWMDMAlbumCoverData = "WMDM/AlbumCoverData";
+pub const g_wszWMDMYear = "WMDM/Year";
+pub const g_wszWMDMComposer = "WMDM/Composer";
+pub const g_wszWMDMCodec = "WMDM/Codec";
+pub const g_wszWMDMDRMId = "WMDM/DRMId";
+pub const g_wszWMDMBitrate = "WMDM/Bitrate";
+pub const g_wszWMDMBitRateType = "WMDM/BitRateType";
+pub const g_wszWMDMSampleRate = "WMDM/SampleRate";
+pub const g_wszWMDMNumChannels = "WMDM/NumChannels";
+pub const g_wszWMDMBlockAlignment = "WMDM/BlockAlignment";
+pub const g_wszWMDMAudioBitDepth = "WMDM/AudioBitDepth";
+pub const g_wszWMDMTotalBitrate = "WMDM/TotalBitrate";
+pub const g_wszWMDMVideoBitrate = "WMDM/VideoBitrate";
+pub const g_wszWMDMFrameRate = "WMDM/FrameRate";
+pub const g_wszWMDMScanType = "WMDM/ScanType";
+pub const g_wszWMDMKeyFrameDistance = "WMDM/KeyFrameDistance";
+pub const g_wszWMDMBufferSize = "WMDM/BufferSize";
+pub const g_wszWMDMQualitySetting = "WMDM/QualitySetting";
+pub const g_wszWMDMEncodingProfile = "WMDM/EncodingProfile";
+pub const g_wszWMDMDuration = "WMDM/Duration";
+pub const g_wszWMDMAlbumArt = "WMDM/AlbumArt";
+pub const g_wszWMDMBuyNow = "WMDM/BuyNow";
+pub const g_wszWMDMNonConsumable = "WMDM/NonConsumable";
+pub const g_wszWMDMediaClassPrimaryID = "WMDM/MediaClassPrimaryID";
+pub const g_wszWMDMMediaClassSecondaryID = "WMDM/MediaClassSecondaryID";
+pub const g_wszWMDMUserEffectiveRating = "WMDM/UserEffectiveRating";
+pub const g_wszWMDMUserRating = "WMDM/UserRating";
+pub const g_wszWMDMUserRatingOnDevice = "WMDM/UserRatingOnDevice";
+pub const g_wszWMDMPlayCount = "WMDM/PlayCount";
+pub const g_wszWMDMDevicePlayCount = "WMDM/DevicePlayCount";
+pub const g_wszWMDMAuthorDate = "WMDM/AuthorDate";
+pub const g_wszWMDMUserLastPlayTime = "WMDM/UserLastPlayTime";
+pub const g_wszWMDMSubTitle = "WMDM/SubTitle";
+pub const g_wszWMDMSubTitleDescription = "WMDM/SubTitleDescription";
+pub const g_wszWMDMMediaCredits = "WMDM/MediaCredits";
+pub const g_wszWMDMMediaStationName = "WMDM/MediaStationName";
+pub const g_wszWMDMMediaOriginalChannel = "WMDM/MediaOriginalChannel";
+pub const g_wszWMDMMediaOriginalBroadcastDateTime = "WMDM/MediaOriginalBroadcastDateTime";
+pub const g_wszWMDMProviderCopyright = "WMDM/ProviderCopyright";
+pub const g_wszWMDMSyncID = "WMDM/SyncID";
+pub const g_wszWMDMPersistentUniqueID = "WMDM/PersistentUniqueID";
+pub const g_wszWMDMWidth = "WMDM/Width";
+pub const g_wszWMDMHeight = "WMDM/Height";
+pub const g_wszWMDMSyncTime = "WMDM/SyncTime";
+pub const g_wszWMDMParentalRating = "WMDM/ParentalRating";
+pub const g_wszWMDMMetaGenre = "WMDM/MetaGenre";
+pub const g_wszWMDMIsRepeat = "WMDM/IsRepeat";
+pub const g_wszWMDMSupportedDeviceProperties = "WMDM/SupportedDeviceProperties";
+pub const g_wszWMDMDeviceFriendlyName = "WMDM/DeviceFriendlyName";
+pub const g_wszWMDMFormatsSupported = "WMDM/FormatsSupported";
+pub const g_wszWMDMFormatsSupportedAreOrdered = "WMDM/FormatsSupportedAreOrdered";
+pub const g_wszWMDMSyncRelationshipID = "WMDM/SyncRelationshipID";
+pub const g_wszWMDMDeviceModelName = "WMDM/DeviceModelName";
+pub const g_wszWMDMDeviceFirmwareVersion = "WMDM/DeviceFirmwareVersion";
+pub const g_wszWMDMDeviceVendorExtension = "WMDM/DeviceVendorExtension";
+pub const g_wszWMDMDeviceProtocol = "WMDM/DeviceProtocol";
+pub const g_wszWMDMDeviceServiceProviderVendor = "WMDM/DeviceServiceProviderVendor";
+pub const g_wszWMDMDeviceRevocationInfo = "WMDM/DeviceRevocationInfo";
+pub const g_wszWMDMCollectionID = "WMDM/CollectionID";
+pub const g_wszWMDMOwner = "WMDM/Owner";
+pub const g_wszWMDMEditor = "WMDM/Editor";
+pub const g_wszWMDMWebmaster = "WMDM/Webmaster";
+pub const g_wszWMDMSourceURL = "WMDM/SourceURL";
+pub const g_wszWMDMDestinationURL = "WMDM/DestinationURL";
+pub const g_wszWMDMCategory = "WMDM/Category";
+pub const g_wszWMDMTimeBookmark = "WMDM/TimeBookmark";
+pub const g_wszWMDMObjectBookmark = "WMDM/ObjectBookmark";
+pub const g_wszWMDMByteBookmark = "WMDM/ByteBookmark";
+pub const g_wszWMDMDataOffset = "WMDM/DataOffset";
+pub const g_wszWMDMDataLength = "WMDM/DataLength";
+pub const g_wszWMDMDataUnits = "WMDM/DataUnits";
+pub const g_wszWMDMTimeToLive = "WMDM/TimeToLive";
+pub const g_wszWMDMMediaGuid = "WMDM/MediaGuid";
+pub const g_wszWPDPassthroughPropertyValues = "WPD/PassthroughPropertyValues";
+pub const EVENT_WMDM_CONTENT_TRANSFER = Guid.initString("339c9bf4-bcfe-4ed8-94df-eaf8c26ab61b");
+pub const MTP_COMMAND_MAX_PARAMS = @as(u32, 5);
+pub const MTP_RESPONSE_MAX_PARAMS = @as(u32, 5);
+pub const MTP_RESPONSE_OK = @as(u16, 8193);
 pub const IOCTL_MTP_CUSTOM_COMMAND = @as(u32, 827348045);
 pub const MTP_NEXTPHASE_READ_DATA = @as(u32, 1);
 pub const MTP_NEXTPHASE_WRITE_DATA = @as(u32, 2);
@@ -179,106 +279,6 @@ pub const WMDM_LOG_SEV_INFO = @as(u32, 1);
 pub const WMDM_LOG_SEV_WARN = @as(u32, 2);
 pub const WMDM_LOG_SEV_ERROR = @as(u32, 4);
 pub const WMDM_LOG_NOTIMESTAMP = @as(u32, 16);
-pub const g_wszWMDMFileName = "WMDM/FileName";
-pub const g_wszWMDMFormatCode = "WMDM/FormatCode";
-pub const g_wszWMDMLastModifiedDate = "WMDM/LastModifiedDate";
-pub const g_wszWMDMFileCreationDate = "WMDM/FileCreationDate";
-pub const g_wszWMDMFileSize = "WMDM/FileSize";
-pub const g_wszWMDMFileAttributes = "WMDM/FileAttributes";
-pub const g_wszAudioWAVECodec = "WMDM/AudioWAVECodec";
-pub const g_wszVideoFourCCCodec = "WMDM/VideoFourCCCodec";
-pub const g_wszWMDMTitle = "WMDM/Title";
-pub const g_wszWMDMAuthor = "WMDM/Author";
-pub const g_wszWMDMDescription = "WMDM/Description";
-pub const g_wszWMDMIsProtected = "WMDM/IsProtected";
-pub const g_wszWMDMAlbumTitle = "WMDM/AlbumTitle";
-pub const g_wszWMDMAlbumArtist = "WMDM/AlbumArtist";
-pub const g_wszWMDMTrack = "WMDM/Track";
-pub const g_wszWMDMGenre = "WMDM/Genre";
-pub const g_wszWMDMTrackMood = "WMDM/TrackMood";
-pub const g_wszWMDMAlbumCoverFormat = "WMDM/AlbumCoverFormat";
-pub const g_wszWMDMAlbumCoverSize = "WMDM/AlbumCoverSize";
-pub const g_wszWMDMAlbumCoverHeight = "WMDM/AlbumCoverHeight";
-pub const g_wszWMDMAlbumCoverWidth = "WMDM/AlbumCoverWidth";
-pub const g_wszWMDMAlbumCoverDuration = "WMDM/AlbumCoverDuration";
-pub const g_wszWMDMAlbumCoverData = "WMDM/AlbumCoverData";
-pub const g_wszWMDMYear = "WMDM/Year";
-pub const g_wszWMDMComposer = "WMDM/Composer";
-pub const g_wszWMDMCodec = "WMDM/Codec";
-pub const g_wszWMDMDRMId = "WMDM/DRMId";
-pub const g_wszWMDMBitrate = "WMDM/Bitrate";
-pub const g_wszWMDMBitRateType = "WMDM/BitRateType";
-pub const g_wszWMDMSampleRate = "WMDM/SampleRate";
-pub const g_wszWMDMNumChannels = "WMDM/NumChannels";
-pub const g_wszWMDMBlockAlignment = "WMDM/BlockAlignment";
-pub const g_wszWMDMAudioBitDepth = "WMDM/AudioBitDepth";
-pub const g_wszWMDMTotalBitrate = "WMDM/TotalBitrate";
-pub const g_wszWMDMVideoBitrate = "WMDM/VideoBitrate";
-pub const g_wszWMDMFrameRate = "WMDM/FrameRate";
-pub const g_wszWMDMScanType = "WMDM/ScanType";
-pub const g_wszWMDMKeyFrameDistance = "WMDM/KeyFrameDistance";
-pub const g_wszWMDMBufferSize = "WMDM/BufferSize";
-pub const g_wszWMDMQualitySetting = "WMDM/QualitySetting";
-pub const g_wszWMDMEncodingProfile = "WMDM/EncodingProfile";
-pub const g_wszWMDMDuration = "WMDM/Duration";
-pub const g_wszWMDMAlbumArt = "WMDM/AlbumArt";
-pub const g_wszWMDMBuyNow = "WMDM/BuyNow";
-pub const g_wszWMDMNonConsumable = "WMDM/NonConsumable";
-pub const g_wszWMDMediaClassPrimaryID = "WMDM/MediaClassPrimaryID";
-pub const g_wszWMDMMediaClassSecondaryID = "WMDM/MediaClassSecondaryID";
-pub const g_wszWMDMUserEffectiveRating = "WMDM/UserEffectiveRating";
-pub const g_wszWMDMUserRating = "WMDM/UserRating";
-pub const g_wszWMDMUserRatingOnDevice = "WMDM/UserRatingOnDevice";
-pub const g_wszWMDMPlayCount = "WMDM/PlayCount";
-pub const g_wszWMDMDevicePlayCount = "WMDM/DevicePlayCount";
-pub const g_wszWMDMAuthorDate = "WMDM/AuthorDate";
-pub const g_wszWMDMUserLastPlayTime = "WMDM/UserLastPlayTime";
-pub const g_wszWMDMSubTitle = "WMDM/SubTitle";
-pub const g_wszWMDMSubTitleDescription = "WMDM/SubTitleDescription";
-pub const g_wszWMDMMediaCredits = "WMDM/MediaCredits";
-pub const g_wszWMDMMediaStationName = "WMDM/MediaStationName";
-pub const g_wszWMDMMediaOriginalChannel = "WMDM/MediaOriginalChannel";
-pub const g_wszWMDMMediaOriginalBroadcastDateTime = "WMDM/MediaOriginalBroadcastDateTime";
-pub const g_wszWMDMProviderCopyright = "WMDM/ProviderCopyright";
-pub const g_wszWMDMSyncID = "WMDM/SyncID";
-pub const g_wszWMDMPersistentUniqueID = "WMDM/PersistentUniqueID";
-pub const g_wszWMDMWidth = "WMDM/Width";
-pub const g_wszWMDMHeight = "WMDM/Height";
-pub const g_wszWMDMSyncTime = "WMDM/SyncTime";
-pub const g_wszWMDMParentalRating = "WMDM/ParentalRating";
-pub const g_wszWMDMMetaGenre = "WMDM/MetaGenre";
-pub const g_wszWMDMIsRepeat = "WMDM/IsRepeat";
-pub const g_wszWMDMSupportedDeviceProperties = "WMDM/SupportedDeviceProperties";
-pub const g_wszWMDMDeviceFriendlyName = "WMDM/DeviceFriendlyName";
-pub const g_wszWMDMFormatsSupported = "WMDM/FormatsSupported";
-pub const g_wszWMDMFormatsSupportedAreOrdered = "WMDM/FormatsSupportedAreOrdered";
-pub const g_wszWMDMSyncRelationshipID = "WMDM/SyncRelationshipID";
-pub const g_wszWMDMDeviceModelName = "WMDM/DeviceModelName";
-pub const g_wszWMDMDeviceFirmwareVersion = "WMDM/DeviceFirmwareVersion";
-pub const g_wszWMDMDeviceVendorExtension = "WMDM/DeviceVendorExtension";
-pub const g_wszWMDMDeviceProtocol = "WMDM/DeviceProtocol";
-pub const g_wszWMDMDeviceServiceProviderVendor = "WMDM/DeviceServiceProviderVendor";
-pub const g_wszWMDMDeviceRevocationInfo = "WMDM/DeviceRevocationInfo";
-pub const g_wszWMDMCollectionID = "WMDM/CollectionID";
-pub const g_wszWMDMOwner = "WMDM/Owner";
-pub const g_wszWMDMEditor = "WMDM/Editor";
-pub const g_wszWMDMWebmaster = "WMDM/Webmaster";
-pub const g_wszWMDMSourceURL = "WMDM/SourceURL";
-pub const g_wszWMDMDestinationURL = "WMDM/DestinationURL";
-pub const g_wszWMDMCategory = "WMDM/Category";
-pub const g_wszWMDMTimeBookmark = "WMDM/TimeBookmark";
-pub const g_wszWMDMObjectBookmark = "WMDM/ObjectBookmark";
-pub const g_wszWMDMByteBookmark = "WMDM/ByteBookmark";
-pub const g_wszWMDMDataOffset = "WMDM/DataOffset";
-pub const g_wszWMDMDataLength = "WMDM/DataLength";
-pub const g_wszWMDMDataUnits = "WMDM/DataUnits";
-pub const g_wszWMDMTimeToLive = "WMDM/TimeToLive";
-pub const g_wszWMDMMediaGuid = "WMDM/MediaGuid";
-pub const g_wszWPDPassthroughPropertyValues = "WPD/PassthroughPropertyValues";
-pub const EVENT_WMDM_CONTENT_TRANSFER = Guid.initString("339c9bf4-bcfe-4ed8-94df-eaf8c26ab61b");
-pub const MTP_COMMAND_MAX_PARAMS = @as(u32, 5);
-pub const MTP_RESPONSE_MAX_PARAMS = @as(u32, 5);
-pub const MTP_RESPONSE_OK = @as(u16, 8193);
 
 //--------------------------------------------------------------------------------
 // Section: Types (91)
@@ -643,7 +643,7 @@ pub const WMDM_PROP_VALUES_ENUM = extern struct {
 pub const WMDM_PROP_DESC = extern struct {
     pwszPropName: PWSTR,
     ValidValuesForm: WMDM_ENUM_PROP_VALID_VALUES_FORM,
-    ValidValues: WMDM_PROP_DESC._ValidValues_e__Union,
+    ValidValues: _ValidValues_e__Union,
     const _ValidValues_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2069,7 +2069,90 @@ pub const IWMDMNotification = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMDMDetermineMaxPropStringLen = u32; // TODO: implement StructOrUnion types?
+pub const WMDMDetermineMaxPropStringLen = extern union {
+    sz001: [27]u16,
+    sz002: [31]u16,
+    sz003: [14]u16,
+    sz004: [16]u16,
+    sz005: [22]u16,
+    sz006: [14]u16,
+    sz007: [20]u16,
+    sz008: [20]u16,
+    sz009: [22]u16,
+    sz010: [11]u16,
+    sz011: [12]u16,
+    sz012: [17]u16,
+    sz013: [17]u16,
+    sz014: [16]u16,
+    sz015: [17]u16,
+    sz016: [11]u16,
+    sz017: [11]u16,
+    sz018: [15]u16,
+    sz019: [22]u16,
+    sz020: [20]u16,
+    sz021: [22]u16,
+    sz022: [21]u16,
+    sz023: [24]u16,
+    sz024: [20]u16,
+    sz025: [10]u16,
+    sz026: [14]u16,
+    sz027: [11]u16,
+    sz028: [11]u16,
+    sz029: [13]u16,
+    sz030: [17]u16,
+    sz031: [16]u16,
+    sz032: [17]u16,
+    sz033: [20]u16,
+    sz034: [19]u16,
+    sz035: [18]u16,
+    sz036: [18]u16,
+    sz037: [15]u16,
+    sz041: [14]u16,
+    sz043: [22]u16,
+    sz044: [16]u16,
+    sz045: [20]u16,
+    sz046: [14]u16,
+    sz047: [14]u16,
+    sz048: [12]u16,
+    sz049: [25]u16,
+    sz050: [26]u16,
+    sz051: [25]u16,
+    sz052: [16]u16,
+    sz053: [24]u16,
+    sz054: [15]u16,
+    sz055: [21]u16,
+    sz056: [16]u16,
+    sz057: [22]u16,
+    sz058: [14]u16,
+    sz059: [25]u16,
+    sz060: [18]u16,
+    sz061: [22]u16,
+    sz062: [26]u16,
+    sz063: [36]u16,
+    sz064: [23]u16,
+    sz065: [12]u16,
+    sz066: [24]u16,
+    sz067: [11]u16,
+    sz068: [12]u16,
+    sz069: [14]u16,
+    sz070: [20]u16,
+    sz071: [15]u16,
+    sz072: [14]u16,
+    sz073: [31]u16,
+    sz074: [24]u16,
+    sz075: [22]u16,
+    sz076: [24]u16,
+    sz077: [21]u16,
+    sz078: [27]u16,
+    sz079: [27]u16,
+    sz080: [20]u16,
+    sz081: [33]u16,
+    sz082: [21]u16,
+    sz083: [32]u16,
+    sz084: [26]u16,
+    sz085: [18]u16,
+    sz086: [30]u16,
+};
 
 const IID_IMDServiceProvider_Value = @import("../zig.zig").Guid.initString("1dcb3a10-33ed-11d3-8470-00c04f79dbc0");
 pub const IID_IMDServiceProvider = &IID_IMDServiceProvider_Value;
@@ -3649,24 +3732,15 @@ const PSTR = @import("system_services.zig").PSTR;
 const BOOL = @import("system_services.zig").BOOL;
 
 test {
-    const constant_export_count = 277;
-    const type_export_count = 83;
-    const enum_value_export_count = 120;
-    const com_iface_id_export_count = 58;
-    const com_class_id_export_count = 8;
-    const func_export_count = 0;
-    const unicode_alias_count = 0;
-    const import_count = 9;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

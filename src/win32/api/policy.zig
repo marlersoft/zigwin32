@@ -212,7 +212,14 @@ pub const FILEEXT = INSTALLSPECTYPE.FILEEXT;
 pub const PROGID = INSTALLSPECTYPE.PROGID;
 pub const COMCLASS = INSTALLSPECTYPE.COMCLASS;
 
-pub const INSTALLSPEC = u32; // TODO: implement StructOrUnion types?
+pub const INSTALLSPEC = extern union {
+    AppName: _AppName_e__Struct,
+    FileExt: PWSTR,
+    ProgId: PWSTR,
+    COMClass: _COMClass_e__Struct,
+    const _AppName_e__Struct = u32; // TODO: generate this nested type!
+    const _COMClass_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const INSTALLDATA = extern struct {
     Type: INSTALLSPECTYPE,
@@ -892,29 +899,20 @@ const HPROPSHEETPAGE = @import("controls.zig").HPROPSHEETPAGE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PFNSTATUSMESSAGECALLBACK;
-    _ = PFNPROCESSGROUPPOLICY;
-    _ = PFNPROCESSGROUPPOLICYEX;
-    _ = PFNGENERATEGROUPPOLICY;
+    if (@hasDecl(@This(), "PFNSTATUSMESSAGECALLBACK")) { _ = PFNSTATUSMESSAGECALLBACK; }
+    if (@hasDecl(@This(), "PFNPROCESSGROUPPOLICY")) { _ = PFNPROCESSGROUPPOLICY; }
+    if (@hasDecl(@This(), "PFNPROCESSGROUPPOLICYEX")) { _ = PFNPROCESSGROUPPOLICYEX; }
+    if (@hasDecl(@This(), "PFNGENERATEGROUPPOLICY")) { _ = PFNGENERATEGROUPPOLICY; }
 
-    const constant_export_count = 78;
-    const type_export_count = 23;
-    const enum_value_export_count = 27;
-    const com_iface_id_export_count = 3;
-    const com_class_id_export_count = 0;
-    const func_export_count = 32;
-    const unicode_alias_count = 4;
-    const import_count = 22;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -8424,116 +8424,107 @@ const HPROPSHEETPAGE = @import("controls.zig").HPROPSHEETPAGE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PFAXCONNECTFAXSERVERA;
-    _ = PFAXCONNECTFAXSERVERW;
-    _ = PFAXCLOSE;
-    _ = PFAXOPENPORT;
-    _ = PFAXCOMPLETEJOBPARAMSA;
-    _ = PFAXCOMPLETEJOBPARAMSW;
-    _ = PFAXSENDDOCUMENTA;
-    _ = PFAXSENDDOCUMENTW;
-    _ = PFAX_RECIPIENT_CALLBACKA;
-    _ = PFAX_RECIPIENT_CALLBACKW;
-    _ = PFAXSENDDOCUMENTFORBROADCASTA;
-    _ = PFAXSENDDOCUMENTFORBROADCASTW;
-    _ = PFAXENUMJOBSA;
-    _ = PFAXENUMJOBSW;
-    _ = PFAXGETJOBA;
-    _ = PFAXGETJOBW;
-    _ = PFAXSETJOBA;
-    _ = PFAXSETJOBW;
-    _ = PFAXGETPAGEDATA;
-    _ = PFAXGETDEVICESTATUSA;
-    _ = PFAXGETDEVICESTATUSW;
-    _ = PFAXABORT;
-    _ = PFAXGETCONFIGURATIONA;
-    _ = PFAXGETCONFIGURATIONW;
-    _ = PFAXSETCONFIGURATIONA;
-    _ = PFAXSETCONFIGURATIONW;
-    _ = PFAXGETLOGGINGCATEGORIESA;
-    _ = PFAXGETLOGGINGCATEGORIESW;
-    _ = PFAXSETLOGGINGCATEGORIESA;
-    _ = PFAXSETLOGGINGCATEGORIESW;
-    _ = PFAXENUMPORTSA;
-    _ = PFAXENUMPORTSW;
-    _ = PFAXGETPORTA;
-    _ = PFAXGETPORTW;
-    _ = PFAXSETPORTA;
-    _ = PFAXSETPORTW;
-    _ = PFAXENUMROUTINGMETHODSA;
-    _ = PFAXENUMROUTINGMETHODSW;
-    _ = PFAXENABLEROUTINGMETHODA;
-    _ = PFAXENABLEROUTINGMETHODW;
-    _ = PFAXENUMGLOBALROUTINGINFOA;
-    _ = PFAXENUMGLOBALROUTINGINFOW;
-    _ = PFAXSETGLOBALROUTINGINFOA;
-    _ = PFAXSETGLOBALROUTINGINFOW;
-    _ = PFAXGETROUTINGINFOA;
-    _ = PFAXGETROUTINGINFOW;
-    _ = PFAXSETROUTINGINFOA;
-    _ = PFAXSETROUTINGINFOW;
-    _ = PFAXINITIALIZEEVENTQUEUE;
-    _ = PFAXFREEBUFFER;
-    _ = PFAXSTARTPRINTJOBA;
-    _ = PFAXSTARTPRINTJOBW;
-    _ = PFAXPRINTCOVERPAGEA;
-    _ = PFAXPRINTCOVERPAGEW;
-    _ = PFAXREGISTERSERVICEPROVIDERW;
-    _ = PFAXUNREGISTERSERVICEPROVIDERW;
-    _ = PFAX_ROUTING_INSTALLATION_CALLBACKW;
-    _ = PFAXREGISTERROUTINGEXTENSIONW;
-    _ = PFAXACCESSCHECK;
-    _ = PFAX_SERVICE_CALLBACK;
-    _ = PFAX_LINECALLBACK;
-    _ = PFAX_SEND_CALLBACK;
-    _ = PFAXDEVINITIALIZE;
-    _ = PFAXDEVVIRTUALDEVICECREATION;
-    _ = PFAXDEVSTARTJOB;
-    _ = PFAXDEVENDJOB;
-    _ = PFAXDEVSEND;
-    _ = PFAXDEVRECEIVE;
-    _ = PFAXDEVREPORTSTATUS;
-    _ = PFAXDEVABORTOPERATION;
-    _ = PFAXDEVCONFIGURE;
-    _ = PFAXDEVSHUTDOWN;
-    _ = PFAXROUTEADDFILE;
-    _ = PFAXROUTEDELETEFILE;
-    _ = PFAXROUTEGETFILE;
-    _ = PFAXROUTEENUMFILE;
-    _ = PFAXROUTEENUMFILES;
-    _ = PFAXROUTEMODIFYROUTINGDATA;
-    _ = PFAXROUTEINITIALIZE;
-    _ = PFAXROUTEMETHOD;
-    _ = PFAXROUTEDEVICEENABLE;
-    _ = PFAXROUTEDEVICECHANGENOTIFICATION;
-    _ = PFAXROUTEGETROUTINGINFO;
-    _ = PFAXROUTESETROUTINGINFO;
-    _ = PFAX_EXT_GET_DATA;
-    _ = PFAX_EXT_SET_DATA;
-    _ = PFAX_EXT_CONFIG_CHANGE;
-    _ = PFAX_EXT_REGISTER_FOR_EVENTS;
-    _ = PFAX_EXT_UNREGISTER_FOR_EVENTS;
-    _ = PFAX_EXT_FREE_BUFFER;
-    _ = PFAX_EXT_INITIALIZE_CONFIG;
+    if (@hasDecl(@This(), "PFAXCONNECTFAXSERVERA")) { _ = PFAXCONNECTFAXSERVERA; }
+    if (@hasDecl(@This(), "PFAXCONNECTFAXSERVERW")) { _ = PFAXCONNECTFAXSERVERW; }
+    if (@hasDecl(@This(), "PFAXCLOSE")) { _ = PFAXCLOSE; }
+    if (@hasDecl(@This(), "PFAXOPENPORT")) { _ = PFAXOPENPORT; }
+    if (@hasDecl(@This(), "PFAXCOMPLETEJOBPARAMSA")) { _ = PFAXCOMPLETEJOBPARAMSA; }
+    if (@hasDecl(@This(), "PFAXCOMPLETEJOBPARAMSW")) { _ = PFAXCOMPLETEJOBPARAMSW; }
+    if (@hasDecl(@This(), "PFAXSENDDOCUMENTA")) { _ = PFAXSENDDOCUMENTA; }
+    if (@hasDecl(@This(), "PFAXSENDDOCUMENTW")) { _ = PFAXSENDDOCUMENTW; }
+    if (@hasDecl(@This(), "PFAX_RECIPIENT_CALLBACKA")) { _ = PFAX_RECIPIENT_CALLBACKA; }
+    if (@hasDecl(@This(), "PFAX_RECIPIENT_CALLBACKW")) { _ = PFAX_RECIPIENT_CALLBACKW; }
+    if (@hasDecl(@This(), "PFAXSENDDOCUMENTFORBROADCASTA")) { _ = PFAXSENDDOCUMENTFORBROADCASTA; }
+    if (@hasDecl(@This(), "PFAXSENDDOCUMENTFORBROADCASTW")) { _ = PFAXSENDDOCUMENTFORBROADCASTW; }
+    if (@hasDecl(@This(), "PFAXENUMJOBSA")) { _ = PFAXENUMJOBSA; }
+    if (@hasDecl(@This(), "PFAXENUMJOBSW")) { _ = PFAXENUMJOBSW; }
+    if (@hasDecl(@This(), "PFAXGETJOBA")) { _ = PFAXGETJOBA; }
+    if (@hasDecl(@This(), "PFAXGETJOBW")) { _ = PFAXGETJOBW; }
+    if (@hasDecl(@This(), "PFAXSETJOBA")) { _ = PFAXSETJOBA; }
+    if (@hasDecl(@This(), "PFAXSETJOBW")) { _ = PFAXSETJOBW; }
+    if (@hasDecl(@This(), "PFAXGETPAGEDATA")) { _ = PFAXGETPAGEDATA; }
+    if (@hasDecl(@This(), "PFAXGETDEVICESTATUSA")) { _ = PFAXGETDEVICESTATUSA; }
+    if (@hasDecl(@This(), "PFAXGETDEVICESTATUSW")) { _ = PFAXGETDEVICESTATUSW; }
+    if (@hasDecl(@This(), "PFAXABORT")) { _ = PFAXABORT; }
+    if (@hasDecl(@This(), "PFAXGETCONFIGURATIONA")) { _ = PFAXGETCONFIGURATIONA; }
+    if (@hasDecl(@This(), "PFAXGETCONFIGURATIONW")) { _ = PFAXGETCONFIGURATIONW; }
+    if (@hasDecl(@This(), "PFAXSETCONFIGURATIONA")) { _ = PFAXSETCONFIGURATIONA; }
+    if (@hasDecl(@This(), "PFAXSETCONFIGURATIONW")) { _ = PFAXSETCONFIGURATIONW; }
+    if (@hasDecl(@This(), "PFAXGETLOGGINGCATEGORIESA")) { _ = PFAXGETLOGGINGCATEGORIESA; }
+    if (@hasDecl(@This(), "PFAXGETLOGGINGCATEGORIESW")) { _ = PFAXGETLOGGINGCATEGORIESW; }
+    if (@hasDecl(@This(), "PFAXSETLOGGINGCATEGORIESA")) { _ = PFAXSETLOGGINGCATEGORIESA; }
+    if (@hasDecl(@This(), "PFAXSETLOGGINGCATEGORIESW")) { _ = PFAXSETLOGGINGCATEGORIESW; }
+    if (@hasDecl(@This(), "PFAXENUMPORTSA")) { _ = PFAXENUMPORTSA; }
+    if (@hasDecl(@This(), "PFAXENUMPORTSW")) { _ = PFAXENUMPORTSW; }
+    if (@hasDecl(@This(), "PFAXGETPORTA")) { _ = PFAXGETPORTA; }
+    if (@hasDecl(@This(), "PFAXGETPORTW")) { _ = PFAXGETPORTW; }
+    if (@hasDecl(@This(), "PFAXSETPORTA")) { _ = PFAXSETPORTA; }
+    if (@hasDecl(@This(), "PFAXSETPORTW")) { _ = PFAXSETPORTW; }
+    if (@hasDecl(@This(), "PFAXENUMROUTINGMETHODSA")) { _ = PFAXENUMROUTINGMETHODSA; }
+    if (@hasDecl(@This(), "PFAXENUMROUTINGMETHODSW")) { _ = PFAXENUMROUTINGMETHODSW; }
+    if (@hasDecl(@This(), "PFAXENABLEROUTINGMETHODA")) { _ = PFAXENABLEROUTINGMETHODA; }
+    if (@hasDecl(@This(), "PFAXENABLEROUTINGMETHODW")) { _ = PFAXENABLEROUTINGMETHODW; }
+    if (@hasDecl(@This(), "PFAXENUMGLOBALROUTINGINFOA")) { _ = PFAXENUMGLOBALROUTINGINFOA; }
+    if (@hasDecl(@This(), "PFAXENUMGLOBALROUTINGINFOW")) { _ = PFAXENUMGLOBALROUTINGINFOW; }
+    if (@hasDecl(@This(), "PFAXSETGLOBALROUTINGINFOA")) { _ = PFAXSETGLOBALROUTINGINFOA; }
+    if (@hasDecl(@This(), "PFAXSETGLOBALROUTINGINFOW")) { _ = PFAXSETGLOBALROUTINGINFOW; }
+    if (@hasDecl(@This(), "PFAXGETROUTINGINFOA")) { _ = PFAXGETROUTINGINFOA; }
+    if (@hasDecl(@This(), "PFAXGETROUTINGINFOW")) { _ = PFAXGETROUTINGINFOW; }
+    if (@hasDecl(@This(), "PFAXSETROUTINGINFOA")) { _ = PFAXSETROUTINGINFOA; }
+    if (@hasDecl(@This(), "PFAXSETROUTINGINFOW")) { _ = PFAXSETROUTINGINFOW; }
+    if (@hasDecl(@This(), "PFAXINITIALIZEEVENTQUEUE")) { _ = PFAXINITIALIZEEVENTQUEUE; }
+    if (@hasDecl(@This(), "PFAXFREEBUFFER")) { _ = PFAXFREEBUFFER; }
+    if (@hasDecl(@This(), "PFAXSTARTPRINTJOBA")) { _ = PFAXSTARTPRINTJOBA; }
+    if (@hasDecl(@This(), "PFAXSTARTPRINTJOBW")) { _ = PFAXSTARTPRINTJOBW; }
+    if (@hasDecl(@This(), "PFAXPRINTCOVERPAGEA")) { _ = PFAXPRINTCOVERPAGEA; }
+    if (@hasDecl(@This(), "PFAXPRINTCOVERPAGEW")) { _ = PFAXPRINTCOVERPAGEW; }
+    if (@hasDecl(@This(), "PFAXREGISTERSERVICEPROVIDERW")) { _ = PFAXREGISTERSERVICEPROVIDERW; }
+    if (@hasDecl(@This(), "PFAXUNREGISTERSERVICEPROVIDERW")) { _ = PFAXUNREGISTERSERVICEPROVIDERW; }
+    if (@hasDecl(@This(), "PFAX_ROUTING_INSTALLATION_CALLBACKW")) { _ = PFAX_ROUTING_INSTALLATION_CALLBACKW; }
+    if (@hasDecl(@This(), "PFAXREGISTERROUTINGEXTENSIONW")) { _ = PFAXREGISTERROUTINGEXTENSIONW; }
+    if (@hasDecl(@This(), "PFAXACCESSCHECK")) { _ = PFAXACCESSCHECK; }
+    if (@hasDecl(@This(), "PFAX_SERVICE_CALLBACK")) { _ = PFAX_SERVICE_CALLBACK; }
+    if (@hasDecl(@This(), "PFAX_LINECALLBACK")) { _ = PFAX_LINECALLBACK; }
+    if (@hasDecl(@This(), "PFAX_SEND_CALLBACK")) { _ = PFAX_SEND_CALLBACK; }
+    if (@hasDecl(@This(), "PFAXDEVINITIALIZE")) { _ = PFAXDEVINITIALIZE; }
+    if (@hasDecl(@This(), "PFAXDEVVIRTUALDEVICECREATION")) { _ = PFAXDEVVIRTUALDEVICECREATION; }
+    if (@hasDecl(@This(), "PFAXDEVSTARTJOB")) { _ = PFAXDEVSTARTJOB; }
+    if (@hasDecl(@This(), "PFAXDEVENDJOB")) { _ = PFAXDEVENDJOB; }
+    if (@hasDecl(@This(), "PFAXDEVSEND")) { _ = PFAXDEVSEND; }
+    if (@hasDecl(@This(), "PFAXDEVRECEIVE")) { _ = PFAXDEVRECEIVE; }
+    if (@hasDecl(@This(), "PFAXDEVREPORTSTATUS")) { _ = PFAXDEVREPORTSTATUS; }
+    if (@hasDecl(@This(), "PFAXDEVABORTOPERATION")) { _ = PFAXDEVABORTOPERATION; }
+    if (@hasDecl(@This(), "PFAXDEVCONFIGURE")) { _ = PFAXDEVCONFIGURE; }
+    if (@hasDecl(@This(), "PFAXDEVSHUTDOWN")) { _ = PFAXDEVSHUTDOWN; }
+    if (@hasDecl(@This(), "PFAXROUTEADDFILE")) { _ = PFAXROUTEADDFILE; }
+    if (@hasDecl(@This(), "PFAXROUTEDELETEFILE")) { _ = PFAXROUTEDELETEFILE; }
+    if (@hasDecl(@This(), "PFAXROUTEGETFILE")) { _ = PFAXROUTEGETFILE; }
+    if (@hasDecl(@This(), "PFAXROUTEENUMFILE")) { _ = PFAXROUTEENUMFILE; }
+    if (@hasDecl(@This(), "PFAXROUTEENUMFILES")) { _ = PFAXROUTEENUMFILES; }
+    if (@hasDecl(@This(), "PFAXROUTEMODIFYROUTINGDATA")) { _ = PFAXROUTEMODIFYROUTINGDATA; }
+    if (@hasDecl(@This(), "PFAXROUTEINITIALIZE")) { _ = PFAXROUTEINITIALIZE; }
+    if (@hasDecl(@This(), "PFAXROUTEMETHOD")) { _ = PFAXROUTEMETHOD; }
+    if (@hasDecl(@This(), "PFAXROUTEDEVICEENABLE")) { _ = PFAXROUTEDEVICEENABLE; }
+    if (@hasDecl(@This(), "PFAXROUTEDEVICECHANGENOTIFICATION")) { _ = PFAXROUTEDEVICECHANGENOTIFICATION; }
+    if (@hasDecl(@This(), "PFAXROUTEGETROUTINGINFO")) { _ = PFAXROUTEGETROUTINGINFO; }
+    if (@hasDecl(@This(), "PFAXROUTESETROUTINGINFO")) { _ = PFAXROUTESETROUTINGINFO; }
+    if (@hasDecl(@This(), "PFAX_EXT_GET_DATA")) { _ = PFAX_EXT_GET_DATA; }
+    if (@hasDecl(@This(), "PFAX_EXT_SET_DATA")) { _ = PFAX_EXT_SET_DATA; }
+    if (@hasDecl(@This(), "PFAX_EXT_CONFIG_CHANGE")) { _ = PFAX_EXT_CONFIG_CHANGE; }
+    if (@hasDecl(@This(), "PFAX_EXT_REGISTER_FOR_EVENTS")) { _ = PFAX_EXT_REGISTER_FOR_EVENTS; }
+    if (@hasDecl(@This(), "PFAX_EXT_UNREGISTER_FOR_EVENTS")) { _ = PFAX_EXT_UNREGISTER_FOR_EVENTS; }
+    if (@hasDecl(@This(), "PFAX_EXT_FREE_BUFFER")) { _ = PFAX_EXT_FREE_BUFFER; }
+    if (@hasDecl(@This(), "PFAX_EXT_INITIALIZE_CONFIG")) { _ = PFAX_EXT_INITIALIZE_CONFIG; }
 
-    const constant_export_count = 109;
-    const type_export_count = 210;
-    const enum_value_export_count = 149;
-    const com_iface_id_export_count = 60;
-    const com_class_id_export_count = 50;
-    const func_export_count = 58;
-    const unicode_alias_count = 59;
-    const import_count = 17;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

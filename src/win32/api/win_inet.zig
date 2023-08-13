@@ -851,6 +851,13 @@ pub const HTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE = @as(u32, 10000);
 //--------------------------------------------------------------------------------
 // Section: Types (117)
 //--------------------------------------------------------------------------------
+pub const HTTP_PUSH_WAIT_HANDLE = isize;
+
+pub const HTTP_VERSION_INFO = extern struct {
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+};
+
 pub const INTERNET_SCHEME = extern enum(i32) {
     PARTIAL = -2,
     UNKNOWN = -1,
@@ -906,13 +913,13 @@ pub const INTERNET_PROXY_INFO = extern struct {
 
 pub const INTERNET_PER_CONN_OPTIONA = extern struct {
     dwOption: INTERNET_PER_CONN,
-    Value: INTERNET_PER_CONN_OPTIONA._Value_e__Union,
+    Value: _Value_e__Union,
     const _Value_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const INTERNET_PER_CONN_OPTIONW = extern struct {
     dwOption: INTERNET_PER_CONN,
-    Value: INTERNET_PER_CONN_OPTIONW._Value_e__Union,
+    Value: _Value_e__Union,
     const _Value_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1168,7 +1175,7 @@ pub const GOPHER_UNKNOWN_ATTRIBUTE_TYPE = extern struct {
 pub const GOPHER_ATTRIBUTE_TYPE = extern struct {
     CategoryId: u32,
     AttributeId: u32,
-    AttributeType: GOPHER_ATTRIBUTE_TYPE._AttributeType_e__Union,
+    AttributeType: _AttributeType_e__Union,
     const _AttributeType_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1216,7 +1223,7 @@ pub const INTERNET_CACHE_ENTRY_INFOA = extern struct {
     lpHeaderInfo: PSTR,
     dwHeaderInfoSize: u32,
     lpszFileExtension: PSTR,
-    Anonymous: INTERNET_CACHE_ENTRY_INFOA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1236,7 +1243,7 @@ pub const INTERNET_CACHE_ENTRY_INFOW = extern struct {
     lpHeaderInfo: PWSTR,
     dwHeaderInfoSize: u32,
     lpszFileExtension: PWSTR,
-    Anonymous: INTERNET_CACHE_ENTRY_INFOW._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1543,7 +1550,7 @@ pub const INTERNET_CREDENTIALS = extern struct {
     lpcwszUrl: [*:0]const u16,
     lpcwszRealm: [*:0]const u16,
     fAuthIdentity: BOOL,
-    Anonymous: INTERNET_CREDENTIALS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1606,7 +1613,7 @@ pub const INTERNET_CACHE_CONFIG_INFOA = extern struct {
     fPerUser: BOOL,
     dwSyncMode: u32,
     dwNumCachePaths: u32,
-    Anonymous: INTERNET_CACHE_CONFIG_INFOA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwNormalUsage: u32,
     dwExemptUsage: u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -1620,7 +1627,7 @@ pub const INTERNET_CACHE_CONFIG_INFOW = extern struct {
     fPerUser: BOOL,
     dwSyncMode: u32,
     dwNumCachePaths: u32,
-    Anonymous: INTERNET_CACHE_CONFIG_INFOW._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwNormalUsage: u32,
     dwExemptUsage: u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -2059,13 +2066,6 @@ pub const INTERNET_STATE_DISCONNECTED = INTERNET_STATE.DISCONNECTED;
 pub const INTERNET_STATE_DISCONNECTED_BY_USER = INTERNET_STATE.DISCONNECTED_BY_USER;
 pub const INTERNET_STATE_IDLE = INTERNET_STATE.IDLE;
 pub const INTERNET_STATE_BUSY = INTERNET_STATE.BUSY;
-
-pub const HTTP_PUSH_WAIT_HANDLE = isize;
-
-pub const HTTP_VERSION_INFO = extern struct {
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-};
 
 
 //--------------------------------------------------------------------------------
@@ -4619,33 +4619,24 @@ const WIN32_FIND_DATAA = @import("file_system.zig").WIN32_FIND_DATAA;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPINTERNET_STATUS_CALLBACK;
-    _ = GOPHER_ATTRIBUTE_ENUMERATOR;
-    _ = PFN_AUTH_NOTIFY;
-    _ = pfnInternetInitializeAutoProxyDll;
-    _ = pfnInternetDeInitializeAutoProxyDll;
-    _ = pfnInternetGetProxyInfo;
-    _ = PFN_DIAL_HANDLER;
-    _ = CACHE_OPERATOR;
+    if (@hasDecl(@This(), "LPINTERNET_STATUS_CALLBACK")) { _ = LPINTERNET_STATUS_CALLBACK; }
+    if (@hasDecl(@This(), "GOPHER_ATTRIBUTE_ENUMERATOR")) { _ = GOPHER_ATTRIBUTE_ENUMERATOR; }
+    if (@hasDecl(@This(), "PFN_AUTH_NOTIFY")) { _ = PFN_AUTH_NOTIFY; }
+    if (@hasDecl(@This(), "pfnInternetInitializeAutoProxyDll")) { _ = pfnInternetInitializeAutoProxyDll; }
+    if (@hasDecl(@This(), "pfnInternetDeInitializeAutoProxyDll")) { _ = pfnInternetDeInitializeAutoProxyDll; }
+    if (@hasDecl(@This(), "pfnInternetGetProxyInfo")) { _ = pfnInternetGetProxyInfo; }
+    if (@hasDecl(@This(), "PFN_DIAL_HANDLER")) { _ = PFN_DIAL_HANDLER; }
+    if (@hasDecl(@This(), "CACHE_OPERATOR")) { _ = CACHE_OPERATOR; }
 
-    const constant_export_count = 845;
-    const type_export_count = 116;
-    const enum_value_export_count = 158;
-    const com_iface_id_export_count = 5;
-    const com_class_id_export_count = 1;
-    const func_export_count = 296;
-    const unicode_alias_count = 81;
-    const import_count = 23;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

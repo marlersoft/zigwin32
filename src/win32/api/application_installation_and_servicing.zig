@@ -86,8 +86,336 @@ pub const SFC_SCAN_IMMEDIATE = @as(u32, 3);
 pub const SFC_QUOTA_DEFAULT = @as(u32, 50);
 
 //--------------------------------------------------------------------------------
-// Section: Types (113)
+// Section: Types (137)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const INFCONTEXT = extern struct {
+    Inf: *c_void,
+    CurrentInf: *c_void,
+    Section: u32,
+    Line: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_INF_INFORMATION = extern struct {
+    InfStyle: SP_INF_STYLE,
+    InfCount: u32,
+    VersionData: [1]u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_ALTPLATFORM_INFO_V2 = extern struct {
+    cbSize: u32,
+    Platform: VER_PLATFORM,
+    MajorVersion: u32,
+    MinorVersion: u32,
+    ProcessorArchitecture: u16,
+    Anonymous: _Anonymous_e__Union,
+    FirstValidatedMajorVersion: u32,
+    FirstValidatedMinorVersion: u32,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_ALTPLATFORM_INFO_V1 = extern struct {
+    cbSize: u32,
+    Platform: VER_PLATFORM,
+    MajorVersion: u32,
+    MinorVersion: u32,
+    ProcessorArchitecture: u16,
+    Reserved: u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_ORIGINAL_FILE_INFO_A = extern struct {
+    cbSize: u32,
+    OriginalInfName: [260]CHAR,
+    OriginalCatalogName: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_ORIGINAL_FILE_INFO_W = extern struct {
+    cbSize: u32,
+    OriginalInfName: [260]u16,
+    OriginalCatalogName: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const FILEPATHS_A = extern struct {
+    Target: [*:0]const u8,
+    Source: [*:0]const u8,
+    Win32Error: u32,
+    Flags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const FILEPATHS_W = extern struct {
+    Target: [*:0]const u16,
+    Source: [*:0]const u16,
+    Win32Error: u32,
+    Flags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const FILEPATHS_SIGNERINFO_A = extern struct {
+    Target: [*:0]const u8,
+    Source: [*:0]const u8,
+    Win32Error: u32,
+    Flags: u32,
+    DigitalSigner: [*:0]const u8,
+    Version: [*:0]const u8,
+    CatalogFile: [*:0]const u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const FILEPATHS_SIGNERINFO_W = extern struct {
+    Target: [*:0]const u16,
+    Source: [*:0]const u16,
+    Win32Error: u32,
+    Flags: u32,
+    DigitalSigner: [*:0]const u16,
+    Version: [*:0]const u16,
+    CatalogFile: [*:0]const u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SOURCE_MEDIA_A = extern struct {
+    Reserved: [*:0]const u8,
+    Tagfile: [*:0]const u8,
+    Description: [*:0]const u8,
+    SourcePath: [*:0]const u8,
+    SourceFile: [*:0]const u8,
+    Flags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SOURCE_MEDIA_W = extern struct {
+    Reserved: [*:0]const u16,
+    Tagfile: [*:0]const u16,
+    Description: [*:0]const u16,
+    SourcePath: [*:0]const u16,
+    SourceFile: [*:0]const u16,
+    Flags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const CABINET_INFO_A = extern struct {
+    CabinetPath: [*:0]const u8,
+    CabinetFile: [*:0]const u8,
+    DiskName: [*:0]const u8,
+    SetId: u16,
+    CabinetNumber: u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const CABINET_INFO_W = extern struct {
+    CabinetPath: [*:0]const u16,
+    CabinetFile: [*:0]const u16,
+    DiskName: [*:0]const u16,
+    SetId: u16,
+    CabinetNumber: u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const FILE_IN_CABINET_INFO_A = extern struct {
+    NameInCabinet: [*:0]const u8,
+    FileSize: u32,
+    Win32Error: u32,
+    DosDate: u16,
+    DosTime: u16,
+    DosAttribs: u16,
+    FullTargetName: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const FILE_IN_CABINET_INFO_W = extern struct {
+    NameInCabinet: [*:0]const u16,
+    FileSize: u32,
+    Win32Error: u32,
+    DosDate: u16,
+    DosTime: u16,
+    DosAttribs: u16,
+    FullTargetName: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_REGISTER_CONTROL_STATUSA = extern struct {
+    cbSize: u32,
+    FileName: [*:0]const u8,
+    Win32Error: u32,
+    FailureCode: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_REGISTER_CONTROL_STATUSW = extern struct {
+    cbSize: u32,
+    FileName: [*:0]const u16,
+    Win32Error: u32,
+    FailureCode: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_FILE_COPY_PARAMS_A = extern struct {
+    cbSize: u32,
+    QueueHandle: *c_void,
+    SourceRootPath: [*:0]const u8,
+    SourcePath: [*:0]const u8,
+    SourceFilename: [*:0]const u8,
+    SourceDescription: [*:0]const u8,
+    SourceTagfile: [*:0]const u8,
+    TargetDirectory: [*:0]const u8,
+    TargetFilename: [*:0]const u8,
+    CopyStyle: u32,
+    LayoutInf: *c_void,
+    SecurityDescriptor: [*:0]const u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_FILE_COPY_PARAMS_W = extern struct {
+    cbSize: u32,
+    QueueHandle: *c_void,
+    SourceRootPath: [*:0]const u16,
+    SourcePath: [*:0]const u16,
+    SourceFilename: [*:0]const u16,
+    SourceDescription: [*:0]const u16,
+    SourceTagfile: [*:0]const u16,
+    TargetDirectory: [*:0]const u16,
+    TargetFilename: [*:0]const u16,
+    CopyStyle: u32,
+    LayoutInf: *c_void,
+    SecurityDescriptor: [*:0]const u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_INF_SIGNER_INFO_V1_A = extern struct {
+    cbSize: u32,
+    CatalogFile: [260]CHAR,
+    DigitalSigner: [260]CHAR,
+    DigitalSignerVersion: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_INF_SIGNER_INFO_V1_W = extern struct {
+    cbSize: u32,
+    CatalogFile: [260]u16,
+    DigitalSigner: [260]u16,
+    DigitalSignerVersion: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_INF_SIGNER_INFO_V2_A = extern struct {
+    cbSize: u32,
+    CatalogFile: [260]CHAR,
+    DigitalSigner: [260]CHAR,
+    DigitalSignerVersion: [260]CHAR,
+    SignerScore: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SP_INF_SIGNER_INFO_V2_W = extern struct {
+    cbSize: u32,
+    CatalogFile: [260]u16,
+    DigitalSigner: [260]u16,
+    DigitalSignerVersion: [260]u16,
+    SignerScore: u32,
+};
+
+}, else => struct { } };
+
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SP_COPY_STYLE = extern enum(u32) {
     DELETESOURCE = 1,
@@ -199,9 +527,6 @@ pub const INF_STYLE_NONE = SP_INF_STYLE.NONE;
 pub const INF_STYLE_OLDNT = SP_INF_STYLE.OLDNT;
 pub const INF_STYLE_WIN4 = SP_INF_STYLE.WIN4;
 
-// TODO: this type has a FreeFunc 'MsiCloseHandle', what can Zig do with this information?
-pub const MSIHANDLE = u32;
-
 pub const ACTIVATION_CONTEXT_QUERY_INDEX = extern struct {
     ulAssemblyIndex: u32,
     ulFileIndexInAssembly: u32,
@@ -293,6 +618,351 @@ pub const ACTIVATION_CONTEXT_DETAILED_INFORMATION = extern struct {
     lpAppDirPath: [*:0]const u16,
 };
 
+// TODO: this type has a FreeFunc 'MsiCloseHandle', what can Zig do with this information?
+pub const MSIHANDLE = u32;
+
+pub const PSP_FILE_CALLBACK_A = fn(
+    Context: *c_void,
+    Notification: u32,
+    Param1: usize,
+    Param2: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PSP_FILE_CALLBACK_W = fn(
+    Context: *c_void,
+    Notification: u32,
+    Param1: usize,
+    Param2: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const INFCONTEXT = extern struct {
+    Inf: *c_void,
+    CurrentInf: *c_void,
+    Section: u32,
+    Line: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_INF_INFORMATION = extern struct {
+    InfStyle: u32,
+    InfCount: u32,
+    VersionData: [1]u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_ALTPLATFORM_INFO_V2 = extern struct {
+    cbSize: u32,
+    Platform: u32,
+    MajorVersion: u32,
+    MinorVersion: u32,
+    ProcessorArchitecture: u16,
+    Anonymous: _Anonymous_e__Union,
+    FirstValidatedMajorVersion: u32,
+    FirstValidatedMinorVersion: u32,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_ALTPLATFORM_INFO_V1 = extern struct {
+    cbSize: u32,
+    Platform: u32,
+    MajorVersion: u32,
+    MinorVersion: u32,
+    ProcessorArchitecture: u16,
+    Reserved: u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_ORIGINAL_FILE_INFO_A = extern struct {
+    cbSize: u32,
+    OriginalInfName: [260]CHAR,
+    OriginalCatalogName: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_ORIGINAL_FILE_INFO_W = extern struct {
+    cbSize: u32,
+    OriginalInfName: [260]u16,
+    OriginalCatalogName: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FILEPATHS_A = extern struct {
+    Target: [*:0]const u8,
+    Source: [*:0]const u8,
+    Win32Error: u32,
+    Flags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FILEPATHS_W = extern struct {
+    Target: [*:0]const u16,
+    Source: [*:0]const u16,
+    Win32Error: u32,
+    Flags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FILEPATHS_SIGNERINFO_A = extern struct {
+    Target: [*:0]const u8,
+    Source: [*:0]const u8,
+    Win32Error: u32,
+    Flags: u32,
+    DigitalSigner: [*:0]const u8,
+    Version: [*:0]const u8,
+    CatalogFile: [*:0]const u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FILEPATHS_SIGNERINFO_W = extern struct {
+    Target: [*:0]const u16,
+    Source: [*:0]const u16,
+    Win32Error: u32,
+    Flags: u32,
+    DigitalSigner: [*:0]const u16,
+    Version: [*:0]const u16,
+    CatalogFile: [*:0]const u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SOURCE_MEDIA_A = extern struct {
+    Reserved: [*:0]const u8,
+    Tagfile: [*:0]const u8,
+    Description: [*:0]const u8,
+    SourcePath: [*:0]const u8,
+    SourceFile: [*:0]const u8,
+    Flags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SOURCE_MEDIA_W = extern struct {
+    Reserved: [*:0]const u16,
+    Tagfile: [*:0]const u16,
+    Description: [*:0]const u16,
+    SourcePath: [*:0]const u16,
+    SourceFile: [*:0]const u16,
+    Flags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const CABINET_INFO_A = extern struct {
+    CabinetPath: [*:0]const u8,
+    CabinetFile: [*:0]const u8,
+    DiskName: [*:0]const u8,
+    SetId: u16,
+    CabinetNumber: u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const CABINET_INFO_W = extern struct {
+    CabinetPath: [*:0]const u16,
+    CabinetFile: [*:0]const u16,
+    DiskName: [*:0]const u16,
+    SetId: u16,
+    CabinetNumber: u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FILE_IN_CABINET_INFO_A = extern struct {
+    NameInCabinet: [*:0]const u8,
+    FileSize: u32,
+    Win32Error: u32,
+    DosDate: u16,
+    DosTime: u16,
+    DosAttribs: u16,
+    FullTargetName: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FILE_IN_CABINET_INFO_W = extern struct {
+    NameInCabinet: [*:0]const u16,
+    FileSize: u32,
+    Win32Error: u32,
+    DosDate: u16,
+    DosTime: u16,
+    DosAttribs: u16,
+    FullTargetName: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_REGISTER_CONTROL_STATUSA = extern struct {
+    cbSize: u32,
+    FileName: [*:0]const u8,
+    Win32Error: u32,
+    FailureCode: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_REGISTER_CONTROL_STATUSW = extern struct {
+    cbSize: u32,
+    FileName: [*:0]const u16,
+    Win32Error: u32,
+    FailureCode: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_FILE_COPY_PARAMS_A = extern struct {
+    cbSize: u32,
+    QueueHandle: *c_void,
+    SourceRootPath: [*:0]const u8,
+    SourcePath: [*:0]const u8,
+    SourceFilename: [*:0]const u8,
+    SourceDescription: [*:0]const u8,
+    SourceTagfile: [*:0]const u8,
+    TargetDirectory: [*:0]const u8,
+    TargetFilename: [*:0]const u8,
+    CopyStyle: u32,
+    LayoutInf: *c_void,
+    SecurityDescriptor: [*:0]const u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_FILE_COPY_PARAMS_W = extern struct {
+    cbSize: u32,
+    QueueHandle: *c_void,
+    SourceRootPath: [*:0]const u16,
+    SourcePath: [*:0]const u16,
+    SourceFilename: [*:0]const u16,
+    SourceDescription: [*:0]const u16,
+    SourceTagfile: [*:0]const u16,
+    TargetDirectory: [*:0]const u16,
+    TargetFilename: [*:0]const u16,
+    CopyStyle: u32,
+    LayoutInf: *c_void,
+    SecurityDescriptor: [*:0]const u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_INF_SIGNER_INFO_V1_A = extern struct {
+    cbSize: u32,
+    CatalogFile: [260]CHAR,
+    DigitalSigner: [260]CHAR,
+    DigitalSignerVersion: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_INF_SIGNER_INFO_V1_W = extern struct {
+    cbSize: u32,
+    CatalogFile: [260]u16,
+    DigitalSigner: [260]u16,
+    DigitalSignerVersion: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_INF_SIGNER_INFO_V2_A = extern struct {
+    cbSize: u32,
+    CatalogFile: [260]CHAR,
+    DigitalSigner: [260]CHAR,
+    DigitalSignerVersion: [260]CHAR,
+    SignerScore: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_INF_SIGNER_INFO_V2_W = extern struct {
+    cbSize: u32,
+    CatalogFile: [260]u16,
+    DigitalSigner: [260]u16,
+    DigitalSignerVersion: [260]u16,
+    SignerScore: u32,
+};
+
+}, else => struct { } };
+
 pub const ACTCTXA = extern struct {
     cbSize: u32,
     dwFlags: u32,
@@ -330,228 +1000,6 @@ pub const ACTCTX_SECTION_KEYED_DATA = extern struct {
     ulAssemblyRosterIndex: u32,
     ulFlags: u32,
     AssemblyMetadata: ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA,
-};
-
-pub const INFCONTEXT = extern struct {
-    Inf: *c_void,
-    CurrentInf: *c_void,
-    Section: u32,
-    Line: u32,
-};
-
-pub const SP_INF_INFORMATION = extern struct {
-    InfStyle: SP_INF_STYLE,
-    InfCount: u32,
-    VersionData: [1]u8,
-};
-
-pub const SP_ALTPLATFORM_INFO_V2 = extern struct {
-    cbSize: u32,
-    Platform: VER_PLATFORM,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Anonymous: SP_ALTPLATFORM_INFO_V2._Anonymous_e__Union,
-    FirstValidatedMajorVersion: u32,
-    FirstValidatedMinorVersion: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const SP_ALTPLATFORM_INFO_V1 = extern struct {
-    cbSize: u32,
-    Platform: VER_PLATFORM,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Reserved: u16,
-};
-
-pub const SP_ORIGINAL_FILE_INFO_A = extern struct {
-    cbSize: u32,
-    OriginalInfName: [260]CHAR,
-    OriginalCatalogName: [260]CHAR,
-};
-
-pub const SP_ORIGINAL_FILE_INFO_W = extern struct {
-    cbSize: u32,
-    OriginalInfName: [260]u16,
-    OriginalCatalogName: [260]u16,
-};
-
-pub const PSP_FILE_CALLBACK_A = fn(
-    Context: *c_void,
-    Notification: u32,
-    Param1: usize,
-    Param2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PSP_FILE_CALLBACK_W = fn(
-    Context: *c_void,
-    Notification: u32,
-    Param1: usize,
-    Param2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const FILEPATHS_A = extern struct {
-    Target: [*:0]const u8,
-    Source: [*:0]const u8,
-    Win32Error: u32,
-    Flags: u32,
-};
-
-pub const FILEPATHS_W = extern struct {
-    Target: [*:0]const u16,
-    Source: [*:0]const u16,
-    Win32Error: u32,
-    Flags: u32,
-};
-
-pub const FILEPATHS_SIGNERINFO_A = extern struct {
-    Target: [*:0]const u8,
-    Source: [*:0]const u8,
-    Win32Error: u32,
-    Flags: u32,
-    DigitalSigner: [*:0]const u8,
-    Version: [*:0]const u8,
-    CatalogFile: [*:0]const u8,
-};
-
-pub const FILEPATHS_SIGNERINFO_W = extern struct {
-    Target: [*:0]const u16,
-    Source: [*:0]const u16,
-    Win32Error: u32,
-    Flags: u32,
-    DigitalSigner: [*:0]const u16,
-    Version: [*:0]const u16,
-    CatalogFile: [*:0]const u16,
-};
-
-pub const SOURCE_MEDIA_A = extern struct {
-    Reserved: [*:0]const u8,
-    Tagfile: [*:0]const u8,
-    Description: [*:0]const u8,
-    SourcePath: [*:0]const u8,
-    SourceFile: [*:0]const u8,
-    Flags: u32,
-};
-
-pub const SOURCE_MEDIA_W = extern struct {
-    Reserved: [*:0]const u16,
-    Tagfile: [*:0]const u16,
-    Description: [*:0]const u16,
-    SourcePath: [*:0]const u16,
-    SourceFile: [*:0]const u16,
-    Flags: u32,
-};
-
-pub const CABINET_INFO_A = extern struct {
-    CabinetPath: [*:0]const u8,
-    CabinetFile: [*:0]const u8,
-    DiskName: [*:0]const u8,
-    SetId: u16,
-    CabinetNumber: u16,
-};
-
-pub const CABINET_INFO_W = extern struct {
-    CabinetPath: [*:0]const u16,
-    CabinetFile: [*:0]const u16,
-    DiskName: [*:0]const u16,
-    SetId: u16,
-    CabinetNumber: u16,
-};
-
-pub const FILE_IN_CABINET_INFO_A = extern struct {
-    NameInCabinet: [*:0]const u8,
-    FileSize: u32,
-    Win32Error: u32,
-    DosDate: u16,
-    DosTime: u16,
-    DosAttribs: u16,
-    FullTargetName: [260]CHAR,
-};
-
-pub const FILE_IN_CABINET_INFO_W = extern struct {
-    NameInCabinet: [*:0]const u16,
-    FileSize: u32,
-    Win32Error: u32,
-    DosDate: u16,
-    DosTime: u16,
-    DosAttribs: u16,
-    FullTargetName: [260]u16,
-};
-
-pub const SP_REGISTER_CONTROL_STATUSA = extern struct {
-    cbSize: u32,
-    FileName: [*:0]const u8,
-    Win32Error: u32,
-    FailureCode: u32,
-};
-
-pub const SP_REGISTER_CONTROL_STATUSW = extern struct {
-    cbSize: u32,
-    FileName: [*:0]const u16,
-    Win32Error: u32,
-    FailureCode: u32,
-};
-
-pub const SP_FILE_COPY_PARAMS_A = extern struct {
-    cbSize: u32,
-    QueueHandle: *c_void,
-    SourceRootPath: [*:0]const u8,
-    SourcePath: [*:0]const u8,
-    SourceFilename: [*:0]const u8,
-    SourceDescription: [*:0]const u8,
-    SourceTagfile: [*:0]const u8,
-    TargetDirectory: [*:0]const u8,
-    TargetFilename: [*:0]const u8,
-    CopyStyle: u32,
-    LayoutInf: *c_void,
-    SecurityDescriptor: [*:0]const u8,
-};
-
-pub const SP_FILE_COPY_PARAMS_W = extern struct {
-    cbSize: u32,
-    QueueHandle: *c_void,
-    SourceRootPath: [*:0]const u16,
-    SourcePath: [*:0]const u16,
-    SourceFilename: [*:0]const u16,
-    SourceDescription: [*:0]const u16,
-    SourceTagfile: [*:0]const u16,
-    TargetDirectory: [*:0]const u16,
-    TargetFilename: [*:0]const u16,
-    CopyStyle: u32,
-    LayoutInf: *c_void,
-    SecurityDescriptor: [*:0]const u16,
-};
-
-pub const SP_INF_SIGNER_INFO_V1_A = extern struct {
-    cbSize: u32,
-    CatalogFile: [260]CHAR,
-    DigitalSigner: [260]CHAR,
-    DigitalSignerVersion: [260]CHAR,
-};
-
-pub const SP_INF_SIGNER_INFO_V1_W = extern struct {
-    cbSize: u32,
-    CatalogFile: [260]u16,
-    DigitalSigner: [260]u16,
-    DigitalSignerVersion: [260]u16,
-};
-
-pub const SP_INF_SIGNER_INFO_V2_A = extern struct {
-    cbSize: u32,
-    CatalogFile: [260]CHAR,
-    DigitalSigner: [260]CHAR,
-    DigitalSignerVersion: [260]CHAR,
-    SignerScore: u32,
-};
-
-pub const SP_INF_SIGNER_INFO_V2_W = extern struct {
-    cbSize: u32,
-    CatalogFile: [260]u16,
-    DigitalSigner: [260]u16,
-    DigitalSignerVersion: [260]u16,
-    SignerScore: u32,
 };
 
 pub const RESULTTYPES = extern enum(i32) {
@@ -2179,99 +2627,6 @@ pub const PROTECTED_FILE_DATA = extern struct {
 // Section: Functions (453)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateActCtxA(
-    pActCtx: *ACTCTXA,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateActCtxW(
-    pActCtx: *ACTCTXW,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn AddRefActCtx(
-    hActCtx: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ReleaseActCtx(
-    hActCtx: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ZombifyActCtx(
-    hActCtx: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ActivateActCtx(
-    hActCtx: HANDLE,
-    lpCookie: *usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DeactivateActCtx(
-    dwFlags: u32,
-    ulCookie: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetCurrentActCtx(
-    lphActCtx: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FindActCtxSectionStringA(
-    dwFlags: u32,
-    lpExtensionGuid: *const Guid,
-    ulSectionId: u32,
-    lpStringToFind: [*:0]const u8,
-    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FindActCtxSectionStringW(
-    dwFlags: u32,
-    lpExtensionGuid: *const Guid,
-    ulSectionId: u32,
-    lpStringToFind: [*:0]const u16,
-    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn FindActCtxSectionGuid(
-    dwFlags: u32,
-    lpExtensionGuid: *const Guid,
-    ulSectionId: u32,
-    lpGuidToFind: ?*const Guid,
-    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn QueryActCtxW(
-    dwFlags: u32,
-    hActCtx: HANDLE,
-    pvSubInstance: ?*c_void,
-    ulInfoClass: u32,
-    // TODO: what to do with BytesParamIndex 5?
-    pvBuffer: ?*c_void,
-    cbBuffer: usize,
-    pcbWrittenOrRequired: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn QueryActCtxSettingsW(
-    dwFlags: u32,
-    hActCtx: HANDLE,
-    settingsNameSpace: ?[*:0]const u16,
-    settingName: [*:0]const u16,
-    // TODO: what to do with BytesParamIndex 5?
-    pvBuffer: ?PWSTR,
-    dwBuffer: usize,
-    pdwWrittenOrRequired: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SETUPAPI" fn SetupGetInfInformationA(
     InfSpec: *const c_void,
     SearchControl: u32,
@@ -3745,6 +4100,99 @@ pub extern "SETUPAPI" fn SetupConfigureWmiFromInfSectionW(
     InfHandle: *c_void,
     SectionName: [*:0]const u16,
     Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateActCtxA(
+    pActCtx: *ACTCTXA,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateActCtxW(
+    pActCtx: *ACTCTXW,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn AddRefActCtx(
+    hActCtx: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn ReleaseActCtx(
+    hActCtx: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn ZombifyActCtx(
+    hActCtx: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn ActivateActCtx(
+    hActCtx: HANDLE,
+    lpCookie: *usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn DeactivateActCtx(
+    dwFlags: u32,
+    ulCookie: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetCurrentActCtx(
+    lphActCtx: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FindActCtxSectionStringA(
+    dwFlags: u32,
+    lpExtensionGuid: *const Guid,
+    ulSectionId: u32,
+    lpStringToFind: [*:0]const u8,
+    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FindActCtxSectionStringW(
+    dwFlags: u32,
+    lpExtensionGuid: *const Guid,
+    ulSectionId: u32,
+    lpStringToFind: [*:0]const u16,
+    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn FindActCtxSectionGuid(
+    dwFlags: u32,
+    lpExtensionGuid: *const Guid,
+    ulSectionId: u32,
+    lpGuidToFind: ?*const Guid,
+    ReturnedData: *ACTCTX_SECTION_KEYED_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn QueryActCtxW(
+    dwFlags: u32,
+    hActCtx: HANDLE,
+    pvSubInstance: ?*c_void,
+    ulInfoClass: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    pvBuffer: ?*c_void,
+    cbBuffer: usize,
+    pcbWrittenOrRequired: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn QueryActCtxSettingsW(
+    dwFlags: u32,
+    hActCtx: HANDLE,
+    settingsNameSpace: ?[*:0]const u16,
+    settingName: [*:0]const u16,
+    // TODO: what to do with BytesParamIndex 5?
+    pvBuffer: ?PWSTR,
+    dwBuffer: usize,
+    pdwWrittenOrRequired: ?*usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -5853,9 +6301,7 @@ pub extern "sfc" fn SfpVerifyFile(
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const ACTCTX = ACTCTXA;
         pub const SP_ORIGINAL_FILE_INFO_ = SP_ORIGINAL_FILE_INFO_A;
-        pub const PSP_FILE_CALLBACK_ = PSP_FILE_CALLBACK_A;
         pub const FILEPATHS_ = FILEPATHS_A;
         pub const FILEPATHS_SIGNERINFO_ = FILEPATHS_SIGNERINFO_A;
         pub const SOURCE_MEDIA_ = SOURCE_MEDIA_A;
@@ -5865,10 +6311,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SP_FILE_COPY_PARAMS_ = SP_FILE_COPY_PARAMS_A;
         pub const SP_INF_SIGNER_INFO_V1_ = SP_INF_SIGNER_INFO_V1_A;
         pub const SP_INF_SIGNER_INFO_V2_ = SP_INF_SIGNER_INFO_V2_A;
+        pub const PSP_FILE_CALLBACK_ = PSP_FILE_CALLBACK_A;
+        pub const ACTCTX = ACTCTXA;
         pub const INSTALLUI_HANDLER = INSTALLUI_HANDLERA;
         pub const MSIPATCHSEQUENCEINFO = MSIPATCHSEQUENCEINFOA;
-        pub const CreateActCtx = CreateActCtxA;
-        pub const FindActCtxSectionString = FindActCtxSectionStringA;
         pub const SetupGetInfInformation = SetupGetInfInformationA;
         pub const SetupQueryInfFileInformation = SetupQueryInfFileInformationA;
         pub const SetupQueryInfOriginalFileInformation = SetupQueryInfOriginalFileInformationA;
@@ -5944,6 +6390,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetupEnumInfSections = SetupEnumInfSectionsA;
         pub const SetupVerifyInfFile = SetupVerifyInfFileA;
         pub const SetupConfigureWmiFromInfSection = SetupConfigureWmiFromInfSectionA;
+        pub const CreateActCtx = CreateActCtxA;
+        pub const FindActCtxSectionString = FindActCtxSectionStringA;
         pub const MsiSetExternalUI = MsiSetExternalUIA;
         pub const MsiEnableLog = MsiEnableLogA;
         pub const MsiQueryProductState = MsiQueryProductStateA;
@@ -6062,9 +6510,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiPreviewBillboard = MsiPreviewBillboardA;
     },
     .wide => struct {
-        pub const ACTCTX = ACTCTXW;
         pub const SP_ORIGINAL_FILE_INFO_ = SP_ORIGINAL_FILE_INFO_W;
-        pub const PSP_FILE_CALLBACK_ = PSP_FILE_CALLBACK_W;
         pub const FILEPATHS_ = FILEPATHS_W;
         pub const FILEPATHS_SIGNERINFO_ = FILEPATHS_SIGNERINFO_W;
         pub const SOURCE_MEDIA_ = SOURCE_MEDIA_W;
@@ -6074,10 +6520,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SP_FILE_COPY_PARAMS_ = SP_FILE_COPY_PARAMS_W;
         pub const SP_INF_SIGNER_INFO_V1_ = SP_INF_SIGNER_INFO_V1_W;
         pub const SP_INF_SIGNER_INFO_V2_ = SP_INF_SIGNER_INFO_V2_W;
+        pub const PSP_FILE_CALLBACK_ = PSP_FILE_CALLBACK_W;
+        pub const ACTCTX = ACTCTXW;
         pub const INSTALLUI_HANDLER = INSTALLUI_HANDLERW;
         pub const MSIPATCHSEQUENCEINFO = MSIPATCHSEQUENCEINFOW;
-        pub const CreateActCtx = CreateActCtxW;
-        pub const FindActCtxSectionString = FindActCtxSectionStringW;
         pub const SetupGetInfInformation = SetupGetInfInformationW;
         pub const SetupQueryInfFileInformation = SetupQueryInfFileInformationW;
         pub const SetupQueryInfOriginalFileInformation = SetupQueryInfOriginalFileInformationW;
@@ -6153,6 +6599,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetupEnumInfSections = SetupEnumInfSectionsW;
         pub const SetupVerifyInfFile = SetupVerifyInfFileW;
         pub const SetupConfigureWmiFromInfSection = SetupConfigureWmiFromInfSectionW;
+        pub const CreateActCtx = CreateActCtxW;
+        pub const FindActCtxSectionString = FindActCtxSectionStringW;
         pub const MsiSetExternalUI = MsiSetExternalUIW;
         pub const MsiEnableLog = MsiEnableLogW;
         pub const MsiQueryProductState = MsiQueryProductStateW;
@@ -6271,9 +6719,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiPreviewBillboard = MsiPreviewBillboardW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const ACTCTX = *opaque{};
         pub const SP_ORIGINAL_FILE_INFO_ = *opaque{};
-        pub const PSP_FILE_CALLBACK_ = *opaque{};
         pub const FILEPATHS_ = *opaque{};
         pub const FILEPATHS_SIGNERINFO_ = *opaque{};
         pub const SOURCE_MEDIA_ = *opaque{};
@@ -6283,10 +6729,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SP_FILE_COPY_PARAMS_ = *opaque{};
         pub const SP_INF_SIGNER_INFO_V1_ = *opaque{};
         pub const SP_INF_SIGNER_INFO_V2_ = *opaque{};
+        pub const PSP_FILE_CALLBACK_ = *opaque{};
+        pub const ACTCTX = *opaque{};
         pub const INSTALLUI_HANDLER = *opaque{};
         pub const MSIPATCHSEQUENCEINFO = *opaque{};
-        pub const CreateActCtx = *opaque{};
-        pub const FindActCtxSectionString = *opaque{};
         pub const SetupGetInfInformation = *opaque{};
         pub const SetupQueryInfFileInformation = *opaque{};
         pub const SetupQueryInfOriginalFileInformation = *opaque{};
@@ -6362,6 +6808,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetupEnumInfSections = *opaque{};
         pub const SetupVerifyInfFile = *opaque{};
         pub const SetupConfigureWmiFromInfSection = *opaque{};
+        pub const CreateActCtx = *opaque{};
+        pub const FindActCtxSectionString = *opaque{};
         pub const MsiSetExternalUI = *opaque{};
         pub const MsiEnableLog = *opaque{};
         pub const MsiQueryProductState = *opaque{};
@@ -6479,9 +6927,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MsiPreviewDialog = *opaque{};
         pub const MsiPreviewBillboard = *opaque{};
     } else struct {
-        pub const ACTCTX = @compileError("'ACTCTX' requires that UNICODE be set to true or false in the root module");
         pub const SP_ORIGINAL_FILE_INFO_ = @compileError("'SP_ORIGINAL_FILE_INFO_' requires that UNICODE be set to true or false in the root module");
-        pub const PSP_FILE_CALLBACK_ = @compileError("'PSP_FILE_CALLBACK_' requires that UNICODE be set to true or false in the root module");
         pub const FILEPATHS_ = @compileError("'FILEPATHS_' requires that UNICODE be set to true or false in the root module");
         pub const FILEPATHS_SIGNERINFO_ = @compileError("'FILEPATHS_SIGNERINFO_' requires that UNICODE be set to true or false in the root module");
         pub const SOURCE_MEDIA_ = @compileError("'SOURCE_MEDIA_' requires that UNICODE be set to true or false in the root module");
@@ -6491,10 +6937,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SP_FILE_COPY_PARAMS_ = @compileError("'SP_FILE_COPY_PARAMS_' requires that UNICODE be set to true or false in the root module");
         pub const SP_INF_SIGNER_INFO_V1_ = @compileError("'SP_INF_SIGNER_INFO_V1_' requires that UNICODE be set to true or false in the root module");
         pub const SP_INF_SIGNER_INFO_V2_ = @compileError("'SP_INF_SIGNER_INFO_V2_' requires that UNICODE be set to true or false in the root module");
+        pub const PSP_FILE_CALLBACK_ = @compileError("'PSP_FILE_CALLBACK_' requires that UNICODE be set to true or false in the root module");
+        pub const ACTCTX = @compileError("'ACTCTX' requires that UNICODE be set to true or false in the root module");
         pub const INSTALLUI_HANDLER = @compileError("'INSTALLUI_HANDLER' requires that UNICODE be set to true or false in the root module");
         pub const MSIPATCHSEQUENCEINFO = @compileError("'MSIPATCHSEQUENCEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const CreateActCtx = @compileError("'CreateActCtx' requires that UNICODE be set to true or false in the root module");
-        pub const FindActCtxSectionString = @compileError("'FindActCtxSectionString' requires that UNICODE be set to true or false in the root module");
         pub const SetupGetInfInformation = @compileError("'SetupGetInfInformation' requires that UNICODE be set to true or false in the root module");
         pub const SetupQueryInfFileInformation = @compileError("'SetupQueryInfFileInformation' requires that UNICODE be set to true or false in the root module");
         pub const SetupQueryInfOriginalFileInformation = @compileError("'SetupQueryInfOriginalFileInformation' requires that UNICODE be set to true or false in the root module");
@@ -6570,6 +7016,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetupEnumInfSections = @compileError("'SetupEnumInfSections' requires that UNICODE be set to true or false in the root module");
         pub const SetupVerifyInfFile = @compileError("'SetupVerifyInfFile' requires that UNICODE be set to true or false in the root module");
         pub const SetupConfigureWmiFromInfSection = @compileError("'SetupConfigureWmiFromInfSection' requires that UNICODE be set to true or false in the root module");
+        pub const CreateActCtx = @compileError("'CreateActCtx' requires that UNICODE be set to true or false in the root module");
+        pub const FindActCtxSectionString = @compileError("'FindActCtxSectionString' requires that UNICODE be set to true or false in the root module");
         pub const MsiSetExternalUI = @compileError("'MsiSetExternalUI' requires that UNICODE be set to true or false in the root module");
         pub const MsiEnableLog = @compileError("'MsiEnableLog' requires that UNICODE be set to true or false in the root module");
         pub const MsiQueryProductState = @compileError("'MsiQueryProductState' requires that UNICODE be set to true or false in the root module");
@@ -6694,8 +7142,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("automation.zig").IDispatch;
 const ULARGE_INTEGER = @import("system_services.zig").ULARGE_INTEGER;
-const PWSTR = @import("system_services.zig").PWSTR;
 const VER_PLATFORM = @import("debug.zig").VER_PLATFORM;
+const PWSTR = @import("system_services.zig").PWSTR;
 const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
 const IStream = @import("structured_storage.zig").IStream;
@@ -6716,32 +7164,23 @@ const ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = @import("windows_programming
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PSP_FILE_CALLBACK_A;
-    _ = PSP_FILE_CALLBACK_W;
-    _ = LPDISPLAYVAL;
-    _ = LPEVALCOMCALLBACK;
-    _ = INSTALLUI_HANDLERA;
-    _ = INSTALLUI_HANDLERW;
-    _ = PINSTALLUI_HANDLER_RECORD;
+    if (@hasDecl(@This(), "PSP_FILE_CALLBACK_A")) { _ = PSP_FILE_CALLBACK_A; }
+    if (@hasDecl(@This(), "PSP_FILE_CALLBACK_W")) { _ = PSP_FILE_CALLBACK_W; }
+    if (@hasDecl(@This(), "LPDISPLAYVAL")) { _ = LPDISPLAYVAL; }
+    if (@hasDecl(@This(), "LPEVALCOMCALLBACK")) { _ = LPEVALCOMCALLBACK; }
+    if (@hasDecl(@This(), "INSTALLUI_HANDLERA")) { _ = INSTALLUI_HANDLERA; }
+    if (@hasDecl(@This(), "INSTALLUI_HANDLERW")) { _ = INSTALLUI_HANDLERW; }
+    if (@hasDecl(@This(), "PINSTALLUI_HANDLER_RECORD")) { _ = PINSTALLUI_HANDLER_RECORD; }
 
-    const constant_export_count = 82;
-    const type_export_count = 112;
-    const enum_value_export_count = 364;
-    const com_iface_id_export_count = 14;
-    const com_class_id_export_count = 1;
-    const func_export_count = 453;
-    const unicode_alias_count = 207;
-    const import_count = 22;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

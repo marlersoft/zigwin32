@@ -644,7 +644,15 @@ pub const SWbemQueryQualifiedName = extern struct {
     m_puArrayIndex: *u32,
 };
 
-pub const SWbemRpnConst = u32; // TODO: implement StructOrUnion types?
+pub const SWbemRpnConst = extern union {
+    m_pszStrVal: [*:0]const u16,
+    m_bBoolVal: BOOL,
+    m_lLongVal: i32,
+    m_uLongVal: u32,
+    m_dblVal: f64,
+    m_lVal64: i64,
+    m_uVal64: i64,
+};
 
 pub const SWbemRpnQueryToken = extern struct {
     m_uVersion: u32,
@@ -6450,24 +6458,15 @@ const BSTR = @import("automation.zig").BSTR;
 const BOOL = @import("system_services.zig").BOOL;
 
 test {
-    const constant_export_count = 6;
-    const type_export_count = 122;
-    const enum_value_export_count = 709;
-    const com_iface_id_export_count = 62;
-    const com_class_id_export_count = 40;
-    const func_export_count = 0;
-    const unicode_alias_count = 0;
-    const import_count = 8;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

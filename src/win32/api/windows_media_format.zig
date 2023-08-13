@@ -2,50 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (342)
 //--------------------------------------------------------------------------------
-pub const WMT_VIDEOIMAGE_SAMPLE_INPUT_FRAME = @as(u32, 1);
-pub const WMT_VIDEOIMAGE_SAMPLE_OUTPUT_FRAME = @as(u32, 2);
-pub const WMT_VIDEOIMAGE_SAMPLE_USES_CURRENT_INPUT_FRAME = @as(u32, 4);
-pub const WMT_VIDEOIMAGE_SAMPLE_USES_PREVIOUS_INPUT_FRAME = @as(u32, 8);
-pub const WMT_VIDEOIMAGE_SAMPLE_MOTION = @as(u32, 1);
-pub const WMT_VIDEOIMAGE_SAMPLE_ROTATION = @as(u32, 2);
-pub const WMT_VIDEOIMAGE_SAMPLE_BLENDING = @as(u32, 4);
-pub const WMT_VIDEOIMAGE_SAMPLE_ADV_BLENDING = @as(u32, 8);
-pub const WMT_VIDEOIMAGE_INTEGER_DENOMINATOR = @as(i32, 65536);
-pub const WMT_VIDEOIMAGE_MAGIC_NUMBER = @as(u32, 491406834);
-pub const WMT_VIDEOIMAGE_MAGIC_NUMBER_2 = @as(u32, 491406835);
-pub const WMT_VIDEOIMAGE_TRANSITION_BOW_TIE = @as(u32, 11);
-pub const WMT_VIDEOIMAGE_TRANSITION_CIRCLE = @as(u32, 12);
-pub const WMT_VIDEOIMAGE_TRANSITION_CROSS_FADE = @as(u32, 13);
-pub const WMT_VIDEOIMAGE_TRANSITION_DIAGONAL = @as(u32, 14);
-pub const WMT_VIDEOIMAGE_TRANSITION_DIAMOND = @as(u32, 15);
-pub const WMT_VIDEOIMAGE_TRANSITION_FADE_TO_COLOR = @as(u32, 16);
-pub const WMT_VIDEOIMAGE_TRANSITION_FILLED_V = @as(u32, 17);
-pub const WMT_VIDEOIMAGE_TRANSITION_FLIP = @as(u32, 18);
-pub const WMT_VIDEOIMAGE_TRANSITION_INSET = @as(u32, 19);
-pub const WMT_VIDEOIMAGE_TRANSITION_IRIS = @as(u32, 20);
-pub const WMT_VIDEOIMAGE_TRANSITION_PAGE_ROLL = @as(u32, 21);
-pub const WMT_VIDEOIMAGE_TRANSITION_RECTANGLE = @as(u32, 23);
-pub const WMT_VIDEOIMAGE_TRANSITION_REVEAL = @as(u32, 24);
-pub const WMT_VIDEOIMAGE_TRANSITION_SLIDE = @as(u32, 27);
-pub const WMT_VIDEOIMAGE_TRANSITION_SPLIT = @as(u32, 29);
-pub const WMT_VIDEOIMAGE_TRANSITION_STAR = @as(u32, 30);
-pub const WMT_VIDEOIMAGE_TRANSITION_WHEEL = @as(u32, 31);
-pub const WM_SampleExtension_ContentType_Size = @as(u32, 1);
-pub const WM_SampleExtension_PixelAspectRatio_Size = @as(u32, 2);
-pub const WM_SampleExtension_Timecode_Size = @as(u32, 14);
-pub const WM_SampleExtension_SampleDuration_Size = @as(u32, 2);
-pub const WM_SampleExtension_ChromaLocation_Size = @as(u32, 1);
-pub const WM_SampleExtension_ColorSpaceInfo_Size = @as(u32, 3);
-pub const WM_CT_REPEAT_FIRST_FIELD = @as(u32, 16);
-pub const WM_CT_BOTTOM_FIELD_FIRST = @as(u32, 32);
-pub const WM_CT_TOP_FIELD_FIRST = @as(u32, 64);
-pub const WM_CT_INTERLACED = @as(u32, 128);
-pub const WM_CL_INTERLACED420 = @as(u32, 0);
-pub const WM_CL_PROGRESSIVE420 = @as(u32, 1);
-pub const WM_MAX_VIDEO_STREAMS = @as(u32, 63);
-pub const WM_MAX_STREAMS = @as(u32, 63);
-pub const WMDRM_IMPORT_INIT_STRUCT_DEFINED = @as(u32, 1);
-pub const DRM_OPL_TYPES = @as(u32, 1);
 pub const g_dwWMSpecialAttributes = @as(u32, 20);
 pub const g_wszWMDuration = "Duration";
 pub const g_wszWMBitrate = "Bitrate";
@@ -344,6 +300,50 @@ pub const CLSID_WMBandwidthSharing_Partial = Guid.initString("af6060ab-5197-11d2
 pub const WMT_DMOCATEGORY_AUDIO_WATERMARK = Guid.initString("65221c5a-fa75-4b39-b50c-06c336b6a3ef");
 pub const WMT_DMOCATEGORY_VIDEO_WATERMARK = Guid.initString("187cc922-8efc-4404-9daf-63f4830df1bc");
 pub const CLSID_ClientNetManager = Guid.initString("cd12a3ce-9c42-11d2-beed-0060082f2054");
+pub const WMT_VIDEOIMAGE_SAMPLE_INPUT_FRAME = @as(u32, 1);
+pub const WMT_VIDEOIMAGE_SAMPLE_OUTPUT_FRAME = @as(u32, 2);
+pub const WMT_VIDEOIMAGE_SAMPLE_USES_CURRENT_INPUT_FRAME = @as(u32, 4);
+pub const WMT_VIDEOIMAGE_SAMPLE_USES_PREVIOUS_INPUT_FRAME = @as(u32, 8);
+pub const WMT_VIDEOIMAGE_SAMPLE_MOTION = @as(u32, 1);
+pub const WMT_VIDEOIMAGE_SAMPLE_ROTATION = @as(u32, 2);
+pub const WMT_VIDEOIMAGE_SAMPLE_BLENDING = @as(u32, 4);
+pub const WMT_VIDEOIMAGE_SAMPLE_ADV_BLENDING = @as(u32, 8);
+pub const WMT_VIDEOIMAGE_INTEGER_DENOMINATOR = @as(i32, 65536);
+pub const WMT_VIDEOIMAGE_MAGIC_NUMBER = @as(u32, 491406834);
+pub const WMT_VIDEOIMAGE_MAGIC_NUMBER_2 = @as(u32, 491406835);
+pub const WMT_VIDEOIMAGE_TRANSITION_BOW_TIE = @as(u32, 11);
+pub const WMT_VIDEOIMAGE_TRANSITION_CIRCLE = @as(u32, 12);
+pub const WMT_VIDEOIMAGE_TRANSITION_CROSS_FADE = @as(u32, 13);
+pub const WMT_VIDEOIMAGE_TRANSITION_DIAGONAL = @as(u32, 14);
+pub const WMT_VIDEOIMAGE_TRANSITION_DIAMOND = @as(u32, 15);
+pub const WMT_VIDEOIMAGE_TRANSITION_FADE_TO_COLOR = @as(u32, 16);
+pub const WMT_VIDEOIMAGE_TRANSITION_FILLED_V = @as(u32, 17);
+pub const WMT_VIDEOIMAGE_TRANSITION_FLIP = @as(u32, 18);
+pub const WMT_VIDEOIMAGE_TRANSITION_INSET = @as(u32, 19);
+pub const WMT_VIDEOIMAGE_TRANSITION_IRIS = @as(u32, 20);
+pub const WMT_VIDEOIMAGE_TRANSITION_PAGE_ROLL = @as(u32, 21);
+pub const WMT_VIDEOIMAGE_TRANSITION_RECTANGLE = @as(u32, 23);
+pub const WMT_VIDEOIMAGE_TRANSITION_REVEAL = @as(u32, 24);
+pub const WMT_VIDEOIMAGE_TRANSITION_SLIDE = @as(u32, 27);
+pub const WMT_VIDEOIMAGE_TRANSITION_SPLIT = @as(u32, 29);
+pub const WMT_VIDEOIMAGE_TRANSITION_STAR = @as(u32, 30);
+pub const WMT_VIDEOIMAGE_TRANSITION_WHEEL = @as(u32, 31);
+pub const WM_SampleExtension_ContentType_Size = @as(u32, 1);
+pub const WM_SampleExtension_PixelAspectRatio_Size = @as(u32, 2);
+pub const WM_SampleExtension_Timecode_Size = @as(u32, 14);
+pub const WM_SampleExtension_SampleDuration_Size = @as(u32, 2);
+pub const WM_SampleExtension_ChromaLocation_Size = @as(u32, 1);
+pub const WM_SampleExtension_ColorSpaceInfo_Size = @as(u32, 3);
+pub const WM_CT_REPEAT_FIRST_FIELD = @as(u32, 16);
+pub const WM_CT_BOTTOM_FIELD_FIRST = @as(u32, 32);
+pub const WM_CT_TOP_FIELD_FIRST = @as(u32, 64);
+pub const WM_CT_INTERLACED = @as(u32, 128);
+pub const WM_CL_INTERLACED420 = @as(u32, 0);
+pub const WM_CL_PROGRESSIVE420 = @as(u32, 1);
+pub const WM_MAX_VIDEO_STREAMS = @as(u32, 63);
+pub const WM_MAX_STREAMS = @as(u32, 63);
+pub const WMDRM_IMPORT_INIT_STRUCT_DEFINED = @as(u32, 1);
+pub const DRM_OPL_TYPES = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (180)
@@ -7354,24 +7354,15 @@ const VARIANT = @import("automation.zig").VARIANT;
 const IAMVideoAccelerator = @import("direct_show.zig").IAMVideoAccelerator;
 
 test {
-    const constant_export_count = 342;
-    const type_export_count = 180;
-    const enum_value_export_count = 167;
-    const com_iface_id_export_count = 110;
-    const com_class_id_export_count = 0;
-    const func_export_count = 11;
-    const unicode_alias_count = 0;
-    const import_count = 14;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

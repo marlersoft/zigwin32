@@ -945,6 +945,10 @@ pub const DISPID_THIS = @as(i32, -613);
 //--------------------------------------------------------------------------------
 // Section: Types (88)
 //--------------------------------------------------------------------------------
+pub const LPEXCEPFINO_DEFERRED_FILLIN = fn(
+    pExcepInfo: *EXCEPINFO,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 pub const SAFEARRAYBOUND = extern struct {
     cElements: u32,
     lLbound: i32,
@@ -1008,7 +1012,7 @@ pub const SF_HAVEIID = SF_TYPE.HAVEIID;
 
 pub const _wireSAFEARRAY_UNION = extern struct {
     sfType: u32,
-    u: _wireSAFEARRAY_UNION._u_e__Struct,
+    u: _u_e__Struct,
     const _u_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -1031,7 +1035,7 @@ pub const SAFEARRAY = extern struct {
 };
 
 pub const VARIANT = extern struct {
-    Anonymous: VARIANT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1049,7 +1053,7 @@ pub const _wireVARIANT = extern struct {
     wReserved1: u16,
     wReserved2: u16,
     wReserved3: u16,
-    Anonymous: _wireVARIANT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1075,7 +1079,7 @@ pub const TKIND_UNION = TYPEKIND.UNION;
 pub const TKIND_MAX = TYPEKIND.MAX;
 
 pub const TYPEDESC = extern struct {
-    Anonymous: TYPEDESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     vt: u16,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -1103,7 +1107,7 @@ pub const IDLDESC = extern struct {
 
 pub const ELEMDESC = extern struct {
     tdesc: TYPEDESC,
-    Anonymous: ELEMDESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1225,7 +1229,7 @@ pub const VAR_DISPATCH = VARKIND.DISPATCH;
 pub const VARDESC = extern struct {
     memid: i32,
     lpstrSchema: PWSTR,
-    Anonymous: VARDESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     elemdescVar: ELEMDESC,
     wVarFlags: u16,
     varkind: VARKIND,
@@ -1956,7 +1960,11 @@ pub const DESCKIND_TYPECOMP = DESCKIND.TYPECOMP;
 pub const DESCKIND_IMPLICITAPPOBJ = DESCKIND.IMPLICITAPPOBJ;
 pub const DESCKIND_MAX = DESCKIND.MAX;
 
-pub const BINDPTR = u32; // TODO: implement StructOrUnion types?
+pub const BINDPTR = extern union {
+    lpfuncdesc: *FUNCDESC,
+    lpvardesc: *VARDESC,
+    lptcomp: *ITypeComp,
+};
 
 const IID_ITypeComp_Value = @import("../zig.zig").Guid.initString("00020403-0000-0000-c000-000000000046");
 pub const IID_ITypeComp = &IID_ITypeComp_Value;
@@ -3573,14 +3581,56 @@ pub const VT_ILLEGAL = VARENUM.ILLEGAL;
 pub const VT_ILLEGALMASKED = VARENUM.ILLEGALMASKED;
 pub const VT_TYPEMASK = VARENUM.TYPEMASK;
 
-pub const LPEXCEPFINO_DEFERRED_FILLIN = fn(
-    pExcepInfo: *EXCEPINFO,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (412)
 //--------------------------------------------------------------------------------
+pub extern "OLE32" fn HWND_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HWND_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HWND_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HWND_UserFree(
+    param0: *u32,
+    param1: *HWND,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HWND_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HWND_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HWND_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HWND_UserFree64(
+    param0: *u32,
+    param1: *HWND,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub extern "OLEAUT32" fn BSTR_UserSize(
     param0: *u32,
     param1: u32,
@@ -3679,6 +3729,56 @@ pub extern "OLEAUT32" fn VARIANT_UserUnmarshal64(
 pub extern "OLEAUT32" fn VARIANT_UserFree64(
     param0: *u32,
     param1: *VARIANT,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree(
+    param0: *u32,
+    param1: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree64(
+    param0: *u32,
+    param1: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn SysAllocString(
@@ -5720,52 +5820,6 @@ pub extern "OLEAUT32" fn ClearCustData(
 pub extern "OLEAUT32" fn OaEnablePerUserTLibRegistration(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLE32" fn HWND_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HWND_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HWND_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HWND_UserFree(
-    param0: *u32,
-    param1: *HWND,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree(
-    param0: *u32,
-    param1: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 pub extern "OLE32" fn STGMEDIUM_UserSize(
     param0: *u32,
     param1: u32,
@@ -5787,56 +5841,6 @@ pub extern "OLE32" fn STGMEDIUM_UserUnmarshal(
 pub extern "OLE32" fn STGMEDIUM_UserFree(
     param0: *u32,
     param1: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HWND_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HWND_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HWND_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HWND_UserFree64(
-    param0: *u32,
-    param1: *HWND,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree64(
-    param0: *u32,
-    param1: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn STGMEDIUM_UserSize64(
@@ -5914,26 +5918,17 @@ const IServiceProvider = @import("system_services.zig").IServiceProvider;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPEXCEPFINO_DEFERRED_FILLIN;
+    if (@hasDecl(@This(), "LPEXCEPFINO_DEFERRED_FILLIN")) { _ = LPEXCEPFINO_DEFERRED_FILLIN; }
 
-    const constant_export_count = 939;
-    const type_export_count = 86;
-    const enum_value_export_count = 162;
-    const com_iface_id_export_count = 28;
-    const com_class_id_export_count = 2;
-    const func_export_count = 412;
-    const unicode_alias_count = 0;
-    const import_count = 15;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

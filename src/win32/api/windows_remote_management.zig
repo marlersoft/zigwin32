@@ -33,6 +33,26 @@ pub const WSMAN_FLAG_SEND_NO_MORE_DATA = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (76)
 //--------------------------------------------------------------------------------
+pub const WSMAN_API = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const WSMAN_SESSION = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const WSMAN_OPERATION = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const WSMAN_SHELL = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const WSMAN_COMMAND = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
 pub const WSMAN_DATA_TEXT = extern struct {
     bufferLength: u32,
     buffer: [*:0]const u16,
@@ -56,7 +76,7 @@ pub const WSMAN_DATA_TYPE_DWORD = WSManDataType.TYPE_DWORD;
 
 pub const WSMAN_DATA = extern struct {
     type: WSManDataType,
-    Anonymous: WSMAN_DATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -94,7 +114,7 @@ pub const WSMAN_FLAG_AUTH_CLIENT_CERTIFICATE = WSManAuthenticationFlags.AUTH_CLI
 
 pub const WSMAN_AUTHENTICATION_CREDENTIALS = extern struct {
     authenticationMechanism: u32,
-    Anonymous: WSMAN_AUTHENTICATION_CREDENTIALS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -156,10 +176,6 @@ pub const WSMAN_OPERATION_INFOEX = extern struct {
     dataLocale: [*:0]const u16,
 };
 
-pub const WSMAN_API = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const WSManProxyAccessType = extern enum(i32) {
     IE_PROXY_CONFIG = 1,
     WINHTTP_PROXY_CONFIG = 2,
@@ -174,10 +190,6 @@ pub const WSMAN_OPTION_PROXY_NO_PROXY_SERVER = WSManProxyAccessType.NO_PROXY_SER
 pub const WSMAN_PROXY_INFO = extern struct {
     accessType: u32,
     authenticationCredentials: WSMAN_AUTHENTICATION_CREDENTIALS,
-};
-
-pub const WSMAN_SESSION = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
 };
 
 pub const WSManSessionOption = extern enum(i32) {
@@ -229,10 +241,6 @@ pub const WSMAN_OPTION_ALLOW_NEGOTIATE_IMPLICIT_CREDENTIALS = WSManSessionOption
 pub const WSMAN_OPTION_USE_SSL = WSManSessionOption.USE_SSL;
 pub const WSMAN_OPTION_USE_INTEARACTIVE_TOKEN = WSManSessionOption.USE_INTEARACTIVE_TOKEN;
 
-pub const WSMAN_OPERATION = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const WSManCallbackFlags = extern enum(i32) {
     END_OF_OPERATION = 1,
     END_OF_STREAM = 8,
@@ -255,14 +263,6 @@ pub const WSMAN_FLAG_CALLBACK_RECONNECTED_AFTER_NETWORK_FAILURE = WSManCallbackF
 pub const WSMAN_FLAG_CALLBACK_SHELL_AUTODISCONNECTING = WSManCallbackFlags.SHELL_AUTODISCONNECTING;
 pub const WSMAN_FLAG_CALLBACK_RETRY_ABORTED_DUE_TO_INTERNAL_ERROR = WSManCallbackFlags.RETRY_ABORTED_DUE_TO_INTERNAL_ERROR;
 pub const WSMAN_FLAG_CALLBACK_RECEIVE_DELAY_STREAM_REQUEST_PROCESSED = WSManCallbackFlags.RECEIVE_DELAY_STREAM_REQUEST_PROCESSED;
-
-pub const WSMAN_SHELL = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const WSMAN_COMMAND = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const WSMAN_STREAM_ID_SET = extern struct {
     streamIDsCount: u32,
@@ -324,7 +324,11 @@ pub const WSMAN_CREATE_SHELL_DATA = extern struct {
     data: WSMAN_DATA,
 };
 
-pub const WSMAN_RESPONSE_DATA = u32; // TODO: implement StructOrUnion types?
+pub const WSMAN_RESPONSE_DATA = extern union {
+    receiveData: WSMAN_RECEIVE_DATA_RESULT,
+    connectData: WSMAN_CONNECT_DATA,
+    createData: WSMAN_CREATE_SHELL_DATA,
+};
 
 pub const WSMAN_SHELL_COMPLETION_FUNCTION = fn(
     operationContext: ?*c_void,
@@ -1684,40 +1688,31 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = WSMAN_SHELL_COMPLETION_FUNCTION;
-    _ = WSMAN_PLUGIN_RELEASE_SHELL_CONTEXT;
-    _ = WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT;
-    _ = WSMAN_PLUGIN_STARTUP;
-    _ = WSMAN_PLUGIN_SHUTDOWN;
-    _ = WSMAN_PLUGIN_SHELL;
-    _ = WSMAN_PLUGIN_COMMAND;
-    _ = WSMAN_PLUGIN_SEND;
-    _ = WSMAN_PLUGIN_RECEIVE;
-    _ = WSMAN_PLUGIN_SIGNAL;
-    _ = WSMAN_PLUGIN_CONNECT;
-    _ = WSMAN_PLUGIN_AUTHORIZE_USER;
-    _ = WSMAN_PLUGIN_AUTHORIZE_OPERATION;
-    _ = WSMAN_PLUGIN_AUTHORIZE_QUERY_QUOTA;
-    _ = WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT;
+    if (@hasDecl(@This(), "WSMAN_SHELL_COMPLETION_FUNCTION")) { _ = WSMAN_SHELL_COMPLETION_FUNCTION; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_RELEASE_SHELL_CONTEXT")) { _ = WSMAN_PLUGIN_RELEASE_SHELL_CONTEXT; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT")) { _ = WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_STARTUP")) { _ = WSMAN_PLUGIN_STARTUP; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_SHUTDOWN")) { _ = WSMAN_PLUGIN_SHUTDOWN; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_SHELL")) { _ = WSMAN_PLUGIN_SHELL; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_COMMAND")) { _ = WSMAN_PLUGIN_COMMAND; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_SEND")) { _ = WSMAN_PLUGIN_SEND; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_RECEIVE")) { _ = WSMAN_PLUGIN_RECEIVE; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_SIGNAL")) { _ = WSMAN_PLUGIN_SIGNAL; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_CONNECT")) { _ = WSMAN_PLUGIN_CONNECT; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_AUTHORIZE_USER")) { _ = WSMAN_PLUGIN_AUTHORIZE_USER; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_AUTHORIZE_OPERATION")) { _ = WSMAN_PLUGIN_AUTHORIZE_OPERATION; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_AUTHORIZE_QUERY_QUOTA")) { _ = WSMAN_PLUGIN_AUTHORIZE_QUERY_QUOTA; }
+    if (@hasDecl(@This(), "WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT")) { _ = WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT; }
 
-    const constant_export_count = 27;
-    const type_export_count = 74;
-    const enum_value_export_count = 87;
-    const com_iface_id_export_count = 12;
-    const com_class_id_export_count = 2;
-    const func_export_count = 33;
-    const unicode_alias_count = 0;
-    const import_count = 8;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

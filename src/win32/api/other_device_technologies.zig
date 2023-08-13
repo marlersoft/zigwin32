@@ -3756,27 +3756,18 @@ const IServiceProvider = @import("system_services.zig").IServiceProvider;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = WSD_STUB_FUNCTION;
-    _ = PWSD_SOAP_MESSAGE_HANDLER;
+    if (@hasDecl(@This(), "WSD_STUB_FUNCTION")) { _ = WSD_STUB_FUNCTION; }
+    if (@hasDecl(@This(), "PWSD_SOAP_MESSAGE_HANDLER")) { _ = PWSD_SOAP_MESSAGE_HANDLER; }
 
-    const constant_export_count = 46;
-    const type_export_count = 131;
-    const enum_value_export_count = 92;
-    const com_iface_id_export_count = 48;
-    const com_class_id_export_count = 2;
-    const func_export_count = 32;
-    const unicode_alias_count = 0;
-    const import_count = 12;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -986,7 +986,7 @@ pub const ITSGPolicyEngine = extern struct {
             numSOHBytes: u32,
             cookieData: [*:0]u8,
             numCookieBytes: u32,
-            userToken: u64,
+            userToken: HANDLE_PTR,
             pSink: *ITSGAuthorizeConnectionSink,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AuthorizeResource: fn(
@@ -1016,7 +1016,7 @@ pub const ITSGPolicyEngine = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITSGPolicyEngine_AuthorizeConnection(self: *const T, mainSessionId: Guid, username: BSTR, authType: AAAuthSchemes, clientMachineIP: BSTR, clientMachineName: BSTR, sohData: [*:0]u8, numSOHBytes: u32, cookieData: [*:0]u8, numCookieBytes: u32, userToken: u64, pSink: *ITSGAuthorizeConnectionSink) callconv(.Inline) HRESULT {
+        pub fn ITSGPolicyEngine_AuthorizeConnection(self: *const T, mainSessionId: Guid, username: BSTR, authType: AAAuthSchemes, clientMachineIP: BSTR, clientMachineName: BSTR, sohData: [*:0]u8, numSOHBytes: u32, cookieData: [*:0]u8, numCookieBytes: u32, userToken: HANDLE_PTR, pSink: *ITSGAuthorizeConnectionSink) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITSGPolicyEngine.VTable, self.vtable).AuthorizeConnection(@ptrCast(*const ITSGPolicyEngine, self), mainSessionId, username, authType, clientMachineIP, clientMachineName, sohData, numSOHBytes, cookieData, numCookieBytes, userToken, pSink);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1069,7 +1069,7 @@ pub const ITSGAuthenticateUserSink = extern struct {
             userName: BSTR,
             userDomain: BSTR,
             context: usize,
-            userToken: u64,
+            userToken: HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnUserAuthenticationFailed: fn(
             self: *const ITSGAuthenticateUserSink,
@@ -1090,7 +1090,7 @@ pub const ITSGAuthenticateUserSink = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITSGAuthenticateUserSink_OnUserAuthenticated(self: *const T, userName: BSTR, userDomain: BSTR, context: usize, userToken: u64) callconv(.Inline) HRESULT {
+        pub fn ITSGAuthenticateUserSink_OnUserAuthenticated(self: *const T, userName: BSTR, userDomain: BSTR, context: usize, userToken: HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITSGAuthenticateUserSink.VTable, self.vtable).OnUserAuthenticated(@ptrCast(*const ITSGAuthenticateUserSink, self), userName, userDomain, context, userToken);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1392,9 +1392,13 @@ pub const WTSINFOEX_LEVEL1_A = extern struct {
     OutgoingCompressedBytes: u32,
 };
 
-pub const WTSINFOEX_LEVEL_W = u32; // TODO: implement StructOrUnion types?
+pub const WTSINFOEX_LEVEL_W = extern union {
+    WTSInfoExLevel1: WTSINFOEX_LEVEL1_W,
+};
 
-pub const WTSINFOEX_LEVEL_A = u32; // TODO: implement StructOrUnion types?
+pub const WTSINFOEX_LEVEL_A = extern union {
+    WTSInfoExLevel1: WTSINFOEX_LEVEL1_A,
+};
 
 pub const WTSINFOEXW = extern struct {
     Level: u32,
@@ -5226,7 +5230,7 @@ pub const RFX_GFX_MSG_RDP_DATA = extern struct {
 
 pub const WTS_SOCKADDR = extern struct {
     sin_family: u16,
-    u: WTS_SOCKADDR._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -5386,7 +5390,11 @@ pub const WTS_PROTOCOL_CACHE = extern struct {
     CacheHits: u32,
 };
 
-pub const WTS_CACHE_STATS_UN = u32; // TODO: implement StructOrUnion types?
+pub const WTS_CACHE_STATS_UN = extern union {
+    ProtocolCache: [4]WTS_PROTOCOL_CACHE,
+    TShareCacheStats: u32,
+    Reserved: [20]u32,
+};
 
 pub const WTS_CACHE_STATS = extern struct {
     Specific: u32,
@@ -5445,7 +5453,7 @@ pub const WTS_LOGON_ERR_HANDLED_DONT_SHOW_START_OVER = WTS_LOGON_ERROR_REDIRECTO
 
 pub const WTS_PROPERTY_VALUE = extern struct {
     Type: u16,
-    u: WTS_PROPERTY_VALUE._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -5516,7 +5524,9 @@ pub const WRDS_LISTENER_SETTINGS_1 = extern struct {
     pSecurityDescriptor: *u8,
 };
 
-pub const WRDS_LISTENER_SETTING = u32; // TODO: implement StructOrUnion types?
+pub const WRDS_LISTENER_SETTING = extern union {
+    WRdsListenerSettings1: WRDS_LISTENER_SETTINGS_1,
+};
 
 pub const WRDS_LISTENER_SETTINGS = extern struct {
     WRdsListenerSettingLevel: WRDS_LISTENER_SETTING_LEVEL,
@@ -5625,14 +5635,18 @@ pub const WRDS_SETTINGS_1 = extern struct {
     WRdsKeepAliveIntervalValue: u32,
 };
 
-pub const WRDS_CONNECTION_SETTING = u32; // TODO: implement StructOrUnion types?
+pub const WRDS_CONNECTION_SETTING = extern union {
+    WRdsConnectionSettings1: WRDS_CONNECTION_SETTINGS_1,
+};
 
 pub const WRDS_CONNECTION_SETTINGS = extern struct {
     WRdsConnectionSettingLevel: WRDS_CONNECTION_SETTING_LEVEL,
     WRdsConnectionSetting: WRDS_CONNECTION_SETTING,
 };
 
-pub const WRDS_SETTING = u32; // TODO: implement StructOrUnion types?
+pub const WRDS_SETTING = extern union {
+    WRdsSettings1: WRDS_SETTINGS_1,
+};
 
 pub const WRDS_SETTINGS = extern struct {
     WRdsSettingType: WRDS_SETTING_TYPE,
@@ -5787,10 +5801,10 @@ pub const IWTSProtocolConnection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetProtocolHandles: fn(
             self: *const IWTSProtocolConnection,
-            pKeyboardHandle: *u64,
-            pMouseHandle: *u64,
-            pBeepHandle: *u64,
-            pVideoHandle: *u64,
+            pKeyboardHandle: *HANDLE_PTR,
+            pMouseHandle: *HANDLE_PTR,
+            pBeepHandle: *HANDLE_PTR,
+            pVideoHandle: *HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectNotify: fn(
             self: *const IWTSProtocolConnection,
@@ -5799,20 +5813,20 @@ pub const IWTSProtocolConnection = extern struct {
         IsUserAllowedToLogon: fn(
             self: *const IWTSProtocolConnection,
             SessionId: u32,
-            UserToken: u64,
+            UserToken: HANDLE_PTR,
             pDomainName: PWSTR,
             pUserName: PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionArbitrationEnumeration: fn(
             self: *const IWTSProtocolConnection,
-            hUserToken: u64,
+            hUserToken: HANDLE_PTR,
             bSingleSessionPerUserEnabled: BOOL,
             pSessionIdArray: [*]u32,
             pdwSessionIdentifierCount: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LogonNotify: fn(
             self: *const IWTSProtocolConnection,
-            hClientToken: u64,
+            hClientToken: HANDLE_PTR,
             wszUserName: PWSTR,
             wszDomainName: PWSTR,
             SessionId: *WTS_SESSION_ID,
@@ -5901,7 +5915,7 @@ pub const IWTSProtocolConnection = extern struct {
             return @ptrCast(*const IWTSProtocolConnection.VTable, self.vtable).NotifySessionId(@ptrCast(*const IWTSProtocolConnection, self), SessionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWTSProtocolConnection_GetProtocolHandles(self: *const T, pKeyboardHandle: *u64, pMouseHandle: *u64, pBeepHandle: *u64, pVideoHandle: *u64) callconv(.Inline) HRESULT {
+        pub fn IWTSProtocolConnection_GetProtocolHandles(self: *const T, pKeyboardHandle: *HANDLE_PTR, pMouseHandle: *HANDLE_PTR, pBeepHandle: *HANDLE_PTR, pVideoHandle: *HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWTSProtocolConnection.VTable, self.vtable).GetProtocolHandles(@ptrCast(*const IWTSProtocolConnection, self), pKeyboardHandle, pMouseHandle, pBeepHandle, pVideoHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5909,15 +5923,15 @@ pub const IWTSProtocolConnection = extern struct {
             return @ptrCast(*const IWTSProtocolConnection.VTable, self.vtable).ConnectNotify(@ptrCast(*const IWTSProtocolConnection, self), SessionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWTSProtocolConnection_IsUserAllowedToLogon(self: *const T, SessionId: u32, UserToken: u64, pDomainName: PWSTR, pUserName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn IWTSProtocolConnection_IsUserAllowedToLogon(self: *const T, SessionId: u32, UserToken: HANDLE_PTR, pDomainName: PWSTR, pUserName: PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWTSProtocolConnection.VTable, self.vtable).IsUserAllowedToLogon(@ptrCast(*const IWTSProtocolConnection, self), SessionId, UserToken, pDomainName, pUserName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWTSProtocolConnection_SessionArbitrationEnumeration(self: *const T, hUserToken: u64, bSingleSessionPerUserEnabled: BOOL, pSessionIdArray: [*]u32, pdwSessionIdentifierCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IWTSProtocolConnection_SessionArbitrationEnumeration(self: *const T, hUserToken: HANDLE_PTR, bSingleSessionPerUserEnabled: BOOL, pSessionIdArray: [*]u32, pdwSessionIdentifierCount: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWTSProtocolConnection.VTable, self.vtable).SessionArbitrationEnumeration(@ptrCast(*const IWTSProtocolConnection, self), hUserToken, bSingleSessionPerUserEnabled, pSessionIdArray, pdwSessionIdentifierCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWTSProtocolConnection_LogonNotify(self: *const T, hClientToken: u64, wszUserName: PWSTR, wszDomainName: PWSTR, SessionId: *WTS_SESSION_ID) callconv(.Inline) HRESULT {
+        pub fn IWTSProtocolConnection_LogonNotify(self: *const T, hClientToken: HANDLE_PTR, wszUserName: PWSTR, wszDomainName: PWSTR, SessionId: *WTS_SESSION_ID) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWTSProtocolConnection.VTable, self.vtable).LogonNotify(@ptrCast(*const IWTSProtocolConnection, self), hClientToken, wszUserName, wszDomainName, SessionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6453,17 +6467,17 @@ pub const IWRdsProtocolConnection = extern struct {
         NotifySessionId: fn(
             self: *const IWRdsProtocolConnection,
             SessionId: *WTS_SESSION_ID,
-            SessionHandle: u64,
+            SessionHandle: HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetInputHandles: fn(
             self: *const IWRdsProtocolConnection,
-            pKeyboardHandle: *u64,
-            pMouseHandle: *u64,
-            pBeepHandle: *u64,
+            pKeyboardHandle: *HANDLE_PTR,
+            pMouseHandle: *HANDLE_PTR,
+            pBeepHandle: *HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVideoHandle: fn(
             self: *const IWRdsProtocolConnection,
-            pVideoHandle: *u64,
+            pVideoHandle: *HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ConnectNotify: fn(
             self: *const IWRdsProtocolConnection,
@@ -6472,20 +6486,20 @@ pub const IWRdsProtocolConnection = extern struct {
         IsUserAllowedToLogon: fn(
             self: *const IWRdsProtocolConnection,
             SessionId: u32,
-            UserToken: u64,
+            UserToken: HANDLE_PTR,
             pDomainName: PWSTR,
             pUserName: PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SessionArbitrationEnumeration: fn(
             self: *const IWRdsProtocolConnection,
-            hUserToken: u64,
+            hUserToken: HANDLE_PTR,
             bSingleSessionPerUserEnabled: BOOL,
             pSessionIdArray: [*]u32,
             pdwSessionIdentifierCount: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LogonNotify: fn(
             self: *const IWRdsProtocolConnection,
-            hClientToken: u64,
+            hClientToken: HANDLE_PTR,
             wszUserName: PWSTR,
             wszDomainName: PWSTR,
             SessionId: *WTS_SESSION_ID,
@@ -6569,15 +6583,15 @@ pub const IWRdsProtocolConnection = extern struct {
             return @ptrCast(*const IWRdsProtocolConnection.VTable, self.vtable).AuthenticateClientToSession(@ptrCast(*const IWRdsProtocolConnection, self), SessionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWRdsProtocolConnection_NotifySessionId(self: *const T, SessionId: *WTS_SESSION_ID, SessionHandle: u64) callconv(.Inline) HRESULT {
+        pub fn IWRdsProtocolConnection_NotifySessionId(self: *const T, SessionId: *WTS_SESSION_ID, SessionHandle: HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWRdsProtocolConnection.VTable, self.vtable).NotifySessionId(@ptrCast(*const IWRdsProtocolConnection, self), SessionId, SessionHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWRdsProtocolConnection_GetInputHandles(self: *const T, pKeyboardHandle: *u64, pMouseHandle: *u64, pBeepHandle: *u64) callconv(.Inline) HRESULT {
+        pub fn IWRdsProtocolConnection_GetInputHandles(self: *const T, pKeyboardHandle: *HANDLE_PTR, pMouseHandle: *HANDLE_PTR, pBeepHandle: *HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWRdsProtocolConnection.VTable, self.vtable).GetInputHandles(@ptrCast(*const IWRdsProtocolConnection, self), pKeyboardHandle, pMouseHandle, pBeepHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWRdsProtocolConnection_GetVideoHandle(self: *const T, pVideoHandle: *u64) callconv(.Inline) HRESULT {
+        pub fn IWRdsProtocolConnection_GetVideoHandle(self: *const T, pVideoHandle: *HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWRdsProtocolConnection.VTable, self.vtable).GetVideoHandle(@ptrCast(*const IWRdsProtocolConnection, self), pVideoHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6585,15 +6599,15 @@ pub const IWRdsProtocolConnection = extern struct {
             return @ptrCast(*const IWRdsProtocolConnection.VTable, self.vtable).ConnectNotify(@ptrCast(*const IWRdsProtocolConnection, self), SessionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWRdsProtocolConnection_IsUserAllowedToLogon(self: *const T, SessionId: u32, UserToken: u64, pDomainName: PWSTR, pUserName: PWSTR) callconv(.Inline) HRESULT {
+        pub fn IWRdsProtocolConnection_IsUserAllowedToLogon(self: *const T, SessionId: u32, UserToken: HANDLE_PTR, pDomainName: PWSTR, pUserName: PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWRdsProtocolConnection.VTable, self.vtable).IsUserAllowedToLogon(@ptrCast(*const IWRdsProtocolConnection, self), SessionId, UserToken, pDomainName, pUserName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWRdsProtocolConnection_SessionArbitrationEnumeration(self: *const T, hUserToken: u64, bSingleSessionPerUserEnabled: BOOL, pSessionIdArray: [*]u32, pdwSessionIdentifierCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IWRdsProtocolConnection_SessionArbitrationEnumeration(self: *const T, hUserToken: HANDLE_PTR, bSingleSessionPerUserEnabled: BOOL, pSessionIdArray: [*]u32, pdwSessionIdentifierCount: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWRdsProtocolConnection.VTable, self.vtable).SessionArbitrationEnumeration(@ptrCast(*const IWRdsProtocolConnection, self), hUserToken, bSingleSessionPerUserEnabled, pSessionIdArray, pdwSessionIdentifierCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWRdsProtocolConnection_LogonNotify(self: *const T, hClientToken: u64, wszUserName: PWSTR, wszDomainName: PWSTR, SessionId: *WTS_SESSION_ID, pWRdsConnectionSettings: *WRDS_CONNECTION_SETTINGS) callconv(.Inline) HRESULT {
+        pub fn IWRdsProtocolConnection_LogonNotify(self: *const T, hClientToken: HANDLE_PTR, wszUserName: PWSTR, wszDomainName: PWSTR, SessionId: *WTS_SESSION_ID, pWRdsConnectionSettings: *WRDS_CONNECTION_SETTINGS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWRdsProtocolConnection.VTable, self.vtable).LogonNotify(@ptrCast(*const IWRdsProtocolConnection, self), hClientToken, wszUserName, wszDomainName, SessionId, pWRdsConnectionSettings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6899,7 +6913,7 @@ pub const IWRdsWddmIddProps = extern struct {
         OnDriverLoad: fn(
             self: *const IWRdsWddmIddProps,
             SessionId: u32,
-            DriverHandle: u64,
+            DriverHandle: HANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnDriverUnload: fn(
             self: *const IWRdsWddmIddProps,
@@ -6918,7 +6932,7 @@ pub const IWRdsWddmIddProps = extern struct {
             return @ptrCast(*const IWRdsWddmIddProps.VTable, self.vtable).GetHardwareId(@ptrCast(*const IWRdsWddmIddProps, self), pDisplayDriverHardwareId, Count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWRdsWddmIddProps_OnDriverLoad(self: *const T, SessionId: u32, DriverHandle: u64) callconv(.Inline) HRESULT {
+        pub fn IWRdsWddmIddProps_OnDriverLoad(self: *const T, SessionId: u32, DriverHandle: HANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWRdsWddmIddProps.VTable, self.vtable).OnDriverLoad(@ptrCast(*const IWRdsWddmIddProps, self), SessionId, DriverHandle);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7946,17 +7960,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (22)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("automation.zig").IDispatch;
 const SAFEARRAY = @import("automation.zig").SAFEARRAY;
 const PWSTR = @import("system_services.zig").PWSTR;
-const FILETIME = @import("windows_programming.zig").FILETIME;
+const HANDLE_PTR = @import("system_services.zig").HANDLE_PTR;
 const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
-const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
+const FILETIME = @import("windows_programming.zig").FILETIME;
 const HRESULT = @import("com.zig").HRESULT;
+const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
 const MESSAGEBOX_STYLE = @import("windows_and_messaging.zig").MESSAGEBOX_STYLE;
 const BSTR = @import("automation.zig").BSTR;
 const PSTR = @import("system_services.zig").PSTR;
@@ -7973,32 +7988,23 @@ const WAVEFORMATEX = @import("multimedia.zig").WAVEFORMATEX;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PCHANNEL_INIT_EVENT_FN;
-    _ = PCHANNEL_OPEN_EVENT_FN;
-    _ = PVIRTUALCHANNELINIT;
-    _ = PVIRTUALCHANNELOPEN;
-    _ = PVIRTUALCHANNELCLOSE;
-    _ = PVIRTUALCHANNELWRITE;
-    _ = PVIRTUALCHANNELENTRY;
+    if (@hasDecl(@This(), "PCHANNEL_INIT_EVENT_FN")) { _ = PCHANNEL_INIT_EVENT_FN; }
+    if (@hasDecl(@This(), "PCHANNEL_OPEN_EVENT_FN")) { _ = PCHANNEL_OPEN_EVENT_FN; }
+    if (@hasDecl(@This(), "PVIRTUALCHANNELINIT")) { _ = PVIRTUALCHANNELINIT; }
+    if (@hasDecl(@This(), "PVIRTUALCHANNELOPEN")) { _ = PVIRTUALCHANNELOPEN; }
+    if (@hasDecl(@This(), "PVIRTUALCHANNELCLOSE")) { _ = PVIRTUALCHANNELCLOSE; }
+    if (@hasDecl(@This(), "PVIRTUALCHANNELWRITE")) { _ = PVIRTUALCHANNELWRITE; }
+    if (@hasDecl(@This(), "PVIRTUALCHANNELENTRY")) { _ = PVIRTUALCHANNELENTRY; }
 
-    const constant_export_count = 220;
-    const type_export_count = 252;
-    const enum_value_export_count = 276;
-    const com_iface_id_export_count = 100;
-    const com_class_id_export_count = 3;
-    const func_export_count = 65;
-    const unicode_alias_count = 34;
-    const import_count = 22;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

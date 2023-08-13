@@ -154,8 +154,48 @@ pub const JsNativeFunction = fn(
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (85)
+// Section: Functions (87)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "chakra" fn JsCreateContext(
+    runtime: *c_void,
+    debugApplication: *IDebugApplication64,
+    newContext: **c_void,
+) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "chakra" fn JsStartDebugging(
+    debugApplication: *IDebugApplication64,
+) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "chakra" fn JsCreateContext(
+    runtime: *c_void,
+    debugApplication: *IDebugApplication32,
+    newContext: **c_void,
+) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "chakra" fn JsStartDebugging(
+    debugApplication: *IDebugApplication32,
+) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+
+}, else => struct { } };
+
 pub extern "chakra" fn JsCreateRuntime(
     attributes: JsRuntimeAttributes,
     runtimeVersion: JsRuntimeVersion,
@@ -208,12 +248,6 @@ pub extern "chakra" fn JsRelease(
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
-pub extern "chakra" fn JsCreateContext(
-    runtime: *c_void,
-    debugApplication: *IDebugApplication64,
-    newContext: **c_void,
-) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
-
 pub extern "chakra" fn JsGetCurrentContext(
     currentContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
@@ -225,10 +259,6 @@ pub extern "chakra" fn JsSetCurrentContext(
 pub extern "chakra" fn JsGetRuntime(
     context: *c_void,
     runtime: **c_void,
-) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
-
-pub extern "chakra" fn JsStartDebugging(
-    debugApplication: *IDebugApplication64,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
 pub extern "chakra" fn JsIdle(
@@ -613,7 +643,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const IDebugApplication64 = @import("debug.zig").IDebugApplication64;
 const PWSTR = @import("system_services.zig").PWSTR;
@@ -622,34 +652,26 @@ const HRESULT = @import("com.zig").HRESULT;
 const IActiveScriptProfilerCallback = @import("debug.zig").IActiveScriptProfilerCallback;
 const IActiveScriptProfilerHeapEnum = @import("debug.zig").IActiveScriptProfilerHeapEnum;
 const PROFILER_EVENT_MASK = @import("debug.zig").PROFILER_EVENT_MASK;
+const IDebugApplication32 = @import("debug.zig").IDebugApplication32;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = JsMemoryAllocationCallback;
-    _ = JsBeforeCollectCallback;
-    _ = JsBackgroundWorkItemCallback;
-    _ = JsThreadServiceCallback;
-    _ = JsFinalizeCallback;
-    _ = JsNativeFunction;
+    if (@hasDecl(@This(), "JsMemoryAllocationCallback")) { _ = JsMemoryAllocationCallback; }
+    if (@hasDecl(@This(), "JsBeforeCollectCallback")) { _ = JsBeforeCollectCallback; }
+    if (@hasDecl(@This(), "JsBackgroundWorkItemCallback")) { _ = JsBackgroundWorkItemCallback; }
+    if (@hasDecl(@This(), "JsThreadServiceCallback")) { _ = JsThreadServiceCallback; }
+    if (@hasDecl(@This(), "JsFinalizeCallback")) { _ = JsFinalizeCallback; }
+    if (@hasDecl(@This(), "JsNativeFunction")) { _ = JsNativeFunction; }
 
-    const constant_export_count = 2;
-    const type_export_count = 11;
-    const enum_value_export_count = 47;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 85;
-    const unicode_alias_count = 0;
-    const import_count = 7;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

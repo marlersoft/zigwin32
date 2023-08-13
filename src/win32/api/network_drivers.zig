@@ -6,14 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
-pub const L2_NOTIFICATION_DATA = extern struct {
-    NotificationSource: u32,
-    NotificationCode: u32,
-    InterfaceGuid: Guid,
-    dwDataSize: u32,
-    pData: *c_void,
-};
-
 pub const SOCKET_ADDRESS_LIST = extern struct {
     iAddressCount: i32,
     Address: [1]SOCKET_ADDRESS,
@@ -27,7 +19,7 @@ pub const SOCKADDR_STORAGE_XP = extern struct {
 };
 
 pub const IN6_ADDR = extern struct {
-    u: IN6_ADDR._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -388,6 +380,14 @@ pub const MibIfTableNormal = MIB_IF_TABLE_LEVEL.Normal;
 pub const MibIfTableRaw = MIB_IF_TABLE_LEVEL.Raw;
 pub const MibIfTableNormalWithoutStatistics = MIB_IF_TABLE_LEVEL.NormalWithoutStatistics;
 
+pub const L2_NOTIFICATION_DATA = extern struct {
+    NotificationSource: u32,
+    NotificationCode: u32,
+    InterfaceGuid: Guid,
+    dwDataSize: u32,
+    pData: *c_void,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (6)
@@ -445,24 +445,15 @@ const SOCKET_ADDRESS = @import("win_sock.zig").SOCKET_ADDRESS;
 const NTSTATUS = @import("system_services.zig").NTSTATUS;
 
 test {
-    const constant_export_count = 0;
-    const type_export_count = 23;
-    const enum_value_export_count = 129;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 6;
-    const unicode_alias_count = 0;
-    const import_count = 5;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -17,6 +17,18 @@ pub const WINBIO_BIR_ALIGN_SIZE = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (178)
 //--------------------------------------------------------------------------------
+pub const _WINIBIO_SENSOR_CONTEXT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const _WINIBIO_ENGINE_CONTEXT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const _WINIBIO_STORAGE_CONTEXT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
 pub const WINBIO_SETTING_SOURCE = extern enum(u32) {
     INVALID = 0,
     DEFAULT = 1,
@@ -51,7 +63,7 @@ pub const WINBIO_VERSION = extern struct {
 
 pub const WINBIO_IDENTITY = extern struct {
     Type: u32,
-    Value: WINBIO_IDENTITY._Value_e__Union,
+    Value: _Value_e__Union,
     const _Value_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -97,7 +109,7 @@ pub const WINBIO_BIR_HEADER = extern struct {
     Purpose: u8,
     DataQuality: i8,
     CreationDate: LARGE_INTEGER,
-    ValidityPeriod: WINBIO_BIR_HEADER._ValidityPeriod_e__Struct,
+    ValidityPeriod: _ValidityPeriod_e__Struct,
     BiometricDataFormat: WINBIO_REGISTERED_FORMAT,
     ProductId: WINBIO_REGISTERED_FORMAT,
     const _ValidityPeriod_e__Struct = u32; // TODO: generate this nested type!
@@ -142,11 +154,16 @@ pub const WINBIO_SECURE_BUFFER_HEADER_V1 = extern struct {
 
 pub const WINBIO_EVENT = extern struct {
     Type: u32,
-    Parameters: WINBIO_EVENT._Parameters_e__Union,
+    Parameters: _Parameters_e__Union,
     const _Parameters_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const WINBIO_PRESENCE_PROPERTIES = u32; // TODO: implement StructOrUnion types?
+pub const WINBIO_PRESENCE_PROPERTIES = extern union {
+    FacialFeatures: _FacialFeatures_e__Struct,
+    Iris: _Iris_e__Struct,
+    const _Iris_e__Struct = u32; // TODO: generate this nested type!
+    const _FacialFeatures_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const WINBIO_PRESENCE = extern struct {
     Factor: u32,
@@ -157,7 +174,7 @@ pub const WINBIO_PRESENCE = extern struct {
     TrackingId: u64,
     Ticket: u64,
     Properties: WINBIO_PRESENCE_PROPERTIES,
-    Authorization: WINBIO_PRESENCE._Authorization_e__Struct,
+    Authorization: _Authorization_e__Struct,
     const _Authorization_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -195,21 +212,21 @@ pub const WINBIO_STORAGE_SCHEMA = extern struct {
 pub const WINBIO_EXTENDED_SENSOR_INFO = extern struct {
     GenericSensorCapabilities: u32,
     Factor: u32,
-    Specific: WINBIO_EXTENDED_SENSOR_INFO._Specific_e__Union,
+    Specific: _Specific_e__Union,
     const _Specific_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const WINBIO_EXTENDED_ENGINE_INFO = extern struct {
     GenericEngineCapabilities: u32,
     Factor: u32,
-    Specific: WINBIO_EXTENDED_ENGINE_INFO._Specific_e__Union,
+    Specific: _Specific_e__Union,
     const _Specific_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const WINBIO_EXTENDED_STORAGE_INFO = extern struct {
     GenericStorageCapabilities: u32,
     Factor: u32,
-    Specific: WINBIO_EXTENDED_STORAGE_INFO._Specific_e__Union,
+    Specific: _Specific_e__Union,
     const _Specific_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -219,7 +236,7 @@ pub const WINBIO_EXTENDED_ENROLLMENT_STATUS = extern struct {
     PercentComplete: u32,
     Factor: u32,
     SubFactor: u8,
-    Specific: WINBIO_EXTENDED_ENROLLMENT_STATUS._Specific_e__Union,
+    Specific: _Specific_e__Union,
     const _Specific_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -326,7 +343,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
     ApiStatus: HRESULT,
     UnitId: u32,
     UserData: *c_void,
-    Parameters: WINBIO_ASYNC_RESULT._Parameters_e__Union,
+    Parameters: _Parameters_e__Union,
     const _Parameters_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -378,18 +395,6 @@ pub const PWINBIO_CAPTURE_CALLBACK = fn(
     SampleSize: usize,
     RejectDetail: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const _WINIBIO_SENSOR_CONTEXT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const _WINIBIO_ENGINE_CONTEXT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const _WINIBIO_STORAGE_CONTEXT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const WINBIO_STORAGE_RECORD = extern struct {
     Identity: *WINBIO_IDENTITY,
@@ -1790,155 +1795,146 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PWINBIO_ASYNC_COMPLETION_CALLBACK;
-    _ = PWINBIO_VERIFY_CALLBACK;
-    _ = PWINBIO_IDENTIFY_CALLBACK;
-    _ = PWINBIO_LOCATE_SENSOR_CALLBACK;
-    _ = PWINBIO_ENROLL_CAPTURE_CALLBACK;
-    _ = PWINBIO_EVENT_CALLBACK;
-    _ = PWINBIO_CAPTURE_CALLBACK;
-    _ = PIBIO_SENSOR_ATTACH_FN;
-    _ = PIBIO_SENSOR_DETACH_FN;
-    _ = PIBIO_SENSOR_CLEAR_CONTEXT_FN;
-    _ = PIBIO_SENSOR_QUERY_STATUS_FN;
-    _ = PIBIO_SENSOR_RESET_FN;
-    _ = PIBIO_SENSOR_SET_MODE_FN;
-    _ = PIBIO_SENSOR_SET_INDICATOR_STATUS_FN;
-    _ = PIBIO_SENSOR_GET_INDICATOR_STATUS_FN;
-    _ = PIBIO_SENSOR_START_CAPTURE_FN;
-    _ = PIBIO_SENSOR_FINISH_CAPTURE_FN;
-    _ = PIBIO_SENSOR_EXPORT_SENSOR_DATA_FN;
-    _ = PIBIO_SENSOR_CANCEL_FN;
-    _ = PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN;
-    _ = PIBIO_SENSOR_CONTROL_UNIT_FN;
-    _ = PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN;
-    _ = PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN;
-    _ = PIBIO_SENSOR_PIPELINE_INIT_FN;
-    _ = PIBIO_SENSOR_PIPELINE_CLEANUP_FN;
-    _ = PIBIO_SENSOR_ACTIVATE_FN;
-    _ = PIBIO_SENSOR_DEACTIVATE_FN;
-    _ = PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN;
-    _ = PIBIO_SENSOR_QUERY_CALIBRATION_FORMATS_FN;
-    _ = PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN;
-    _ = PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN;
-    _ = PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN;
-    _ = PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN;
-    _ = PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN;
-    _ = PIBIO_SENSOR_CONNECT_SECURE_FN;
-    _ = PIBIO_SENSOR_START_CAPTURE_EX_FN;
-    _ = PIBIO_SENSOR_START_NOTIFY_WAKE_FN;
-    _ = PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN;
-    _ = PWINBIO_QUERY_SENSOR_INTERFACE_FN;
-    _ = PIBIO_ENGINE_ATTACH_FN;
-    _ = PIBIO_ENGINE_DETACH_FN;
-    _ = PIBIO_ENGINE_CLEAR_CONTEXT_FN;
-    _ = PIBIO_ENGINE_QUERY_PREFERRED_FORMAT_FN;
-    _ = PIBIO_ENGINE_QUERY_INDEX_VECTOR_SIZE_FN;
-    _ = PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN;
-    _ = PIBIO_ENGINE_SET_HASH_ALGORITHM_FN;
-    _ = PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN;
-    _ = PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN;
-    _ = PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN;
-    _ = PIBIO_ENGINE_VERIFY_FEATURE_SET_FN;
-    _ = PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN;
-    _ = PIBIO_ENGINE_CREATE_ENROLLMENT_FN;
-    _ = PIBIO_ENGINE_UPDATE_ENROLLMENT_FN;
-    _ = PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN;
-    _ = PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN;
-    _ = PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN;
-    _ = PIBIO_ENGINE_COMMIT_ENROLLMENT_FN;
-    _ = PIBIO_ENGINE_DISCARD_ENROLLMENT_FN;
-    _ = PIBIO_ENGINE_CONTROL_UNIT_FN;
-    _ = PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN;
-    _ = PIBIO_ENGINE_NOTIFY_POWER_CHANGE_FN;
-    _ = PIBIO_ENGINE_RESERVED_1_FN;
-    _ = PIBIO_ENGINE_PIPELINE_INIT_FN;
-    _ = PIBIO_ENGINE_PIPELINE_CLEANUP_FN;
-    _ = PIBIO_ENGINE_ACTIVATE_FN;
-    _ = PIBIO_ENGINE_DEACTIVATE_FN;
-    _ = PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN;
-    _ = PIBIO_ENGINE_IDENTIFY_ALL_FN;
-    _ = PIBIO_ENGINE_SET_ENROLLMENT_SELECTOR_FN;
-    _ = PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN;
-    _ = PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN;
-    _ = PIBIO_ENGINE_REFRESH_CACHE_FN;
-    _ = PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN;
-    _ = PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN;
-    _ = PIBIO_ENGINE_SET_ACCOUNT_POLICY_FN;
-    _ = PIBIO_ENGINE_CREATE_KEY_FN;
-    _ = PIBIO_ENGINE_IDENTIFY_FEATURE_SET_SECURE_FN;
-    _ = PIBIO_ENGINE_ACCEPT_PRIVATE_SENSOR_TYPE_INFO_FN;
-    _ = PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN;
-    _ = PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN;
-    _ = PWINBIO_QUERY_ENGINE_INTERFACE_FN;
-    _ = PIBIO_STORAGE_ATTACH_FN;
-    _ = PIBIO_STORAGE_DETACH_FN;
-    _ = PIBIO_STORAGE_CLEAR_CONTEXT_FN;
-    _ = PIBIO_STORAGE_CREATE_DATABASE_FN;
-    _ = PIBIO_STORAGE_ERASE_DATABASE_FN;
-    _ = PIBIO_STORAGE_OPEN_DATABASE_FN;
-    _ = PIBIO_STORAGE_CLOSE_DATABASE_FN;
-    _ = PIBIO_STORAGE_GET_DATA_FORMAT_FN;
-    _ = PIBIO_STORAGE_GET_DATABASE_SIZE_FN;
-    _ = PIBIO_STORAGE_ADD_RECORD_FN;
-    _ = PIBIO_STORAGE_DELETE_RECORD_FN;
-    _ = PIBIO_STORAGE_QUERY_BY_SUBJECT_FN;
-    _ = PIBIO_STORAGE_QUERY_BY_CONTENT_FN;
-    _ = PIBIO_STORAGE_GET_RECORD_COUNT_FN;
-    _ = PIBIO_STORAGE_FIRST_RECORD_FN;
-    _ = PIBIO_STORAGE_NEXT_RECORD_FN;
-    _ = PIBIO_STORAGE_GET_CURRENT_RECORD_FN;
-    _ = PIBIO_STORAGE_CONTROL_UNIT_FN;
-    _ = PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN;
-    _ = PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN;
-    _ = PIBIO_STORAGE_PIPELINE_INIT_FN;
-    _ = PIBIO_STORAGE_PIPELINE_CLEANUP_FN;
-    _ = PIBIO_STORAGE_ACTIVATE_FN;
-    _ = PIBIO_STORAGE_DEACTIVATE_FN;
-    _ = PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN;
-    _ = PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN;
-    _ = PIBIO_STORAGE_RESERVED_1_FN;
-    _ = PIBIO_STORAGE_RESERVED_2_FN;
-    _ = PIBIO_STORAGE_UPDATE_RECORD_BEGIN_FN;
-    _ = PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN;
-    _ = PWINBIO_QUERY_STORAGE_INTERFACE_FN;
-    _ = PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN;
-    _ = PIBIO_FRAMEWORK_VSM_CACHE_CLEAR_FN;
-    _ = PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN;
-    _ = PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN;
-    _ = PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_END_FN;
-    _ = PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN;
-    _ = PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN;
-    _ = PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_END_FN;
-    _ = PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_1_FN;
-    _ = PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_2_FN;
-    _ = PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN;
-    _ = PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN;
-    _ = PIBIO_FRAMEWORK_FREE_MEMORY_FN;
-    _ = PIBIO_FRAMEWORK_GET_PROPERTY_FN;
-    _ = PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN;
-    _ = PIBIO_FRAMEWORK_RELEASE_SECURE_BUFFER_FN;
-    _ = PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN;
-    _ = PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN;
+    if (@hasDecl(@This(), "PWINBIO_ASYNC_COMPLETION_CALLBACK")) { _ = PWINBIO_ASYNC_COMPLETION_CALLBACK; }
+    if (@hasDecl(@This(), "PWINBIO_VERIFY_CALLBACK")) { _ = PWINBIO_VERIFY_CALLBACK; }
+    if (@hasDecl(@This(), "PWINBIO_IDENTIFY_CALLBACK")) { _ = PWINBIO_IDENTIFY_CALLBACK; }
+    if (@hasDecl(@This(), "PWINBIO_LOCATE_SENSOR_CALLBACK")) { _ = PWINBIO_LOCATE_SENSOR_CALLBACK; }
+    if (@hasDecl(@This(), "PWINBIO_ENROLL_CAPTURE_CALLBACK")) { _ = PWINBIO_ENROLL_CAPTURE_CALLBACK; }
+    if (@hasDecl(@This(), "PWINBIO_EVENT_CALLBACK")) { _ = PWINBIO_EVENT_CALLBACK; }
+    if (@hasDecl(@This(), "PWINBIO_CAPTURE_CALLBACK")) { _ = PWINBIO_CAPTURE_CALLBACK; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_ATTACH_FN")) { _ = PIBIO_SENSOR_ATTACH_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_DETACH_FN")) { _ = PIBIO_SENSOR_DETACH_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_CLEAR_CONTEXT_FN")) { _ = PIBIO_SENSOR_CLEAR_CONTEXT_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_QUERY_STATUS_FN")) { _ = PIBIO_SENSOR_QUERY_STATUS_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_RESET_FN")) { _ = PIBIO_SENSOR_RESET_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_SET_MODE_FN")) { _ = PIBIO_SENSOR_SET_MODE_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_SET_INDICATOR_STATUS_FN")) { _ = PIBIO_SENSOR_SET_INDICATOR_STATUS_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_GET_INDICATOR_STATUS_FN")) { _ = PIBIO_SENSOR_GET_INDICATOR_STATUS_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_START_CAPTURE_FN")) { _ = PIBIO_SENSOR_START_CAPTURE_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_FINISH_CAPTURE_FN")) { _ = PIBIO_SENSOR_FINISH_CAPTURE_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_EXPORT_SENSOR_DATA_FN")) { _ = PIBIO_SENSOR_EXPORT_SENSOR_DATA_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_CANCEL_FN")) { _ = PIBIO_SENSOR_CANCEL_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN")) { _ = PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_CONTROL_UNIT_FN")) { _ = PIBIO_SENSOR_CONTROL_UNIT_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN")) { _ = PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN")) { _ = PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_PIPELINE_INIT_FN")) { _ = PIBIO_SENSOR_PIPELINE_INIT_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_PIPELINE_CLEANUP_FN")) { _ = PIBIO_SENSOR_PIPELINE_CLEANUP_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_ACTIVATE_FN")) { _ = PIBIO_SENSOR_ACTIVATE_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_DEACTIVATE_FN")) { _ = PIBIO_SENSOR_DEACTIVATE_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN")) { _ = PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_QUERY_CALIBRATION_FORMATS_FN")) { _ = PIBIO_SENSOR_QUERY_CALIBRATION_FORMATS_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN")) { _ = PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN")) { _ = PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN")) { _ = PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN")) { _ = PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN")) { _ = PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_CONNECT_SECURE_FN")) { _ = PIBIO_SENSOR_CONNECT_SECURE_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_START_CAPTURE_EX_FN")) { _ = PIBIO_SENSOR_START_CAPTURE_EX_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_START_NOTIFY_WAKE_FN")) { _ = PIBIO_SENSOR_START_NOTIFY_WAKE_FN; }
+    if (@hasDecl(@This(), "PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN")) { _ = PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN; }
+    if (@hasDecl(@This(), "PWINBIO_QUERY_SENSOR_INTERFACE_FN")) { _ = PWINBIO_QUERY_SENSOR_INTERFACE_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_ATTACH_FN")) { _ = PIBIO_ENGINE_ATTACH_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_DETACH_FN")) { _ = PIBIO_ENGINE_DETACH_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_CLEAR_CONTEXT_FN")) { _ = PIBIO_ENGINE_CLEAR_CONTEXT_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_QUERY_PREFERRED_FORMAT_FN")) { _ = PIBIO_ENGINE_QUERY_PREFERRED_FORMAT_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_QUERY_INDEX_VECTOR_SIZE_FN")) { _ = PIBIO_ENGINE_QUERY_INDEX_VECTOR_SIZE_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN")) { _ = PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_SET_HASH_ALGORITHM_FN")) { _ = PIBIO_ENGINE_SET_HASH_ALGORITHM_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN")) { _ = PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN")) { _ = PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN")) { _ = PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_VERIFY_FEATURE_SET_FN")) { _ = PIBIO_ENGINE_VERIFY_FEATURE_SET_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN")) { _ = PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_CREATE_ENROLLMENT_FN")) { _ = PIBIO_ENGINE_CREATE_ENROLLMENT_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_UPDATE_ENROLLMENT_FN")) { _ = PIBIO_ENGINE_UPDATE_ENROLLMENT_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN")) { _ = PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN")) { _ = PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN")) { _ = PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_COMMIT_ENROLLMENT_FN")) { _ = PIBIO_ENGINE_COMMIT_ENROLLMENT_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_DISCARD_ENROLLMENT_FN")) { _ = PIBIO_ENGINE_DISCARD_ENROLLMENT_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_CONTROL_UNIT_FN")) { _ = PIBIO_ENGINE_CONTROL_UNIT_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN")) { _ = PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_NOTIFY_POWER_CHANGE_FN")) { _ = PIBIO_ENGINE_NOTIFY_POWER_CHANGE_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_RESERVED_1_FN")) { _ = PIBIO_ENGINE_RESERVED_1_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_PIPELINE_INIT_FN")) { _ = PIBIO_ENGINE_PIPELINE_INIT_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_PIPELINE_CLEANUP_FN")) { _ = PIBIO_ENGINE_PIPELINE_CLEANUP_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_ACTIVATE_FN")) { _ = PIBIO_ENGINE_ACTIVATE_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_DEACTIVATE_FN")) { _ = PIBIO_ENGINE_DEACTIVATE_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN")) { _ = PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_IDENTIFY_ALL_FN")) { _ = PIBIO_ENGINE_IDENTIFY_ALL_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_SET_ENROLLMENT_SELECTOR_FN")) { _ = PIBIO_ENGINE_SET_ENROLLMENT_SELECTOR_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN")) { _ = PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN")) { _ = PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_REFRESH_CACHE_FN")) { _ = PIBIO_ENGINE_REFRESH_CACHE_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN")) { _ = PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN")) { _ = PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_SET_ACCOUNT_POLICY_FN")) { _ = PIBIO_ENGINE_SET_ACCOUNT_POLICY_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_CREATE_KEY_FN")) { _ = PIBIO_ENGINE_CREATE_KEY_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_IDENTIFY_FEATURE_SET_SECURE_FN")) { _ = PIBIO_ENGINE_IDENTIFY_FEATURE_SET_SECURE_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_ACCEPT_PRIVATE_SENSOR_TYPE_INFO_FN")) { _ = PIBIO_ENGINE_ACCEPT_PRIVATE_SENSOR_TYPE_INFO_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN")) { _ = PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN; }
+    if (@hasDecl(@This(), "PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN")) { _ = PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN; }
+    if (@hasDecl(@This(), "PWINBIO_QUERY_ENGINE_INTERFACE_FN")) { _ = PWINBIO_QUERY_ENGINE_INTERFACE_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_ATTACH_FN")) { _ = PIBIO_STORAGE_ATTACH_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_DETACH_FN")) { _ = PIBIO_STORAGE_DETACH_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_CLEAR_CONTEXT_FN")) { _ = PIBIO_STORAGE_CLEAR_CONTEXT_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_CREATE_DATABASE_FN")) { _ = PIBIO_STORAGE_CREATE_DATABASE_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_ERASE_DATABASE_FN")) { _ = PIBIO_STORAGE_ERASE_DATABASE_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_OPEN_DATABASE_FN")) { _ = PIBIO_STORAGE_OPEN_DATABASE_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_CLOSE_DATABASE_FN")) { _ = PIBIO_STORAGE_CLOSE_DATABASE_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_GET_DATA_FORMAT_FN")) { _ = PIBIO_STORAGE_GET_DATA_FORMAT_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_GET_DATABASE_SIZE_FN")) { _ = PIBIO_STORAGE_GET_DATABASE_SIZE_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_ADD_RECORD_FN")) { _ = PIBIO_STORAGE_ADD_RECORD_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_DELETE_RECORD_FN")) { _ = PIBIO_STORAGE_DELETE_RECORD_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_QUERY_BY_SUBJECT_FN")) { _ = PIBIO_STORAGE_QUERY_BY_SUBJECT_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_QUERY_BY_CONTENT_FN")) { _ = PIBIO_STORAGE_QUERY_BY_CONTENT_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_GET_RECORD_COUNT_FN")) { _ = PIBIO_STORAGE_GET_RECORD_COUNT_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_FIRST_RECORD_FN")) { _ = PIBIO_STORAGE_FIRST_RECORD_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_NEXT_RECORD_FN")) { _ = PIBIO_STORAGE_NEXT_RECORD_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_GET_CURRENT_RECORD_FN")) { _ = PIBIO_STORAGE_GET_CURRENT_RECORD_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_CONTROL_UNIT_FN")) { _ = PIBIO_STORAGE_CONTROL_UNIT_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN")) { _ = PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN")) { _ = PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_PIPELINE_INIT_FN")) { _ = PIBIO_STORAGE_PIPELINE_INIT_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_PIPELINE_CLEANUP_FN")) { _ = PIBIO_STORAGE_PIPELINE_CLEANUP_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_ACTIVATE_FN")) { _ = PIBIO_STORAGE_ACTIVATE_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_DEACTIVATE_FN")) { _ = PIBIO_STORAGE_DEACTIVATE_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN")) { _ = PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN")) { _ = PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_RESERVED_1_FN")) { _ = PIBIO_STORAGE_RESERVED_1_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_RESERVED_2_FN")) { _ = PIBIO_STORAGE_RESERVED_2_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_UPDATE_RECORD_BEGIN_FN")) { _ = PIBIO_STORAGE_UPDATE_RECORD_BEGIN_FN; }
+    if (@hasDecl(@This(), "PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN")) { _ = PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN; }
+    if (@hasDecl(@This(), "PWINBIO_QUERY_STORAGE_INTERFACE_FN")) { _ = PWINBIO_QUERY_STORAGE_INTERFACE_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN")) { _ = PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_VSM_CACHE_CLEAR_FN")) { _ = PIBIO_FRAMEWORK_VSM_CACHE_CLEAR_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN")) { _ = PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN")) { _ = PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_END_FN")) { _ = PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_END_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN")) { _ = PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN")) { _ = PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_END_FN")) { _ = PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_END_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_1_FN")) { _ = PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_1_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_2_FN")) { _ = PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_2_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN")) { _ = PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN")) { _ = PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_FREE_MEMORY_FN")) { _ = PIBIO_FRAMEWORK_FREE_MEMORY_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_GET_PROPERTY_FN")) { _ = PIBIO_FRAMEWORK_GET_PROPERTY_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN")) { _ = PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_RELEASE_SECURE_BUFFER_FN")) { _ = PIBIO_FRAMEWORK_RELEASE_SECURE_BUFFER_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN")) { _ = PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN; }
+    if (@hasDecl(@This(), "PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN")) { _ = PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN; }
 
-    const constant_export_count = 11;
-    const type_export_count = 178;
-    const enum_value_export_count = 27;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 52;
-    const unicode_alias_count = 0;
-    const import_count = 8;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

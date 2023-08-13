@@ -2,6 +2,11 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (444)
 //--------------------------------------------------------------------------------
+pub const D3D12_SHADER_COMPONENT_MAPPING_ALWAYS_SET_BIT_AVOIDING_ZEROMEM_MISTAKES = @as(u32, 4096);
+pub const D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING = @as(u32, 5768);
+pub const D3D12ExperimentalShaderModels = Guid.initString("76f5573e-f13a-40f5-b297-81ce9e18933f");
+pub const D3D12TiledResourceTier4 = Guid.initString("c9c4725f-a81a-4f56-8c5b-c51039d694fb");
+pub const D3D12MetaCommand = Guid.initString("c734c97e-8077-48c8-9fdc-d9d1dd31dd77");
 pub const D3D12_16BIT_INDEX_STRIP_CUT_VALUE = @as(u32, 65535);
 pub const D3D12_32BIT_INDEX_STRIP_CUT_VALUE = @as(u32, 4294967295);
 pub const D3D12_8BIT_INDEX_STRIP_CUT_VALUE = @as(u32, 255);
@@ -441,11 +446,6 @@ pub const D3D_SHADER_REQUIRES_INNER_COVERAGE = @as(u32, 1024);
 pub const D3D_SHADER_REQUIRES_TYPED_UAV_LOAD_ADDITIONAL_FORMATS = @as(u32, 2048);
 pub const D3D_SHADER_REQUIRES_ROVS = @as(u32, 4096);
 pub const D3D_SHADER_REQUIRES_VIEWPORT_AND_RT_ARRAY_INDEX_FROM_ANY_SHADER_FEEDING_RASTERIZER = @as(u32, 8192);
-pub const D3D12_SHADER_COMPONENT_MAPPING_ALWAYS_SET_BIT_AVOIDING_ZEROMEM_MISTAKES = @as(u32, 4096);
-pub const D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING = @as(u32, 5768);
-pub const D3D12ExperimentalShaderModels = Guid.initString("76f5573e-f13a-40f5-b297-81ce9e18933f");
-pub const D3D12TiledResourceTier4 = Guid.initString("c9c4725f-a81a-4f56-8c5b-c51039d694fb");
-pub const D3D12MetaCommand = Guid.initString("c734c97e-8077-48c8-9fdc-d9d1dd31dd77");
 
 //--------------------------------------------------------------------------------
 // Section: Types (444)
@@ -1699,7 +1699,7 @@ pub const D3D12_DEPTH_STENCIL_VALUE = extern struct {
 
 pub const D3D12_CLEAR_VALUE = extern struct {
     Format: DXGI_FORMAT,
-    Anonymous: D3D12_CLEAR_VALUE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1888,7 +1888,7 @@ pub const D3D12_RESOURCE_BARRIER_FLAG_END_ONLY = D3D12_RESOURCE_BARRIER_FLAGS.EN
 pub const D3D12_RESOURCE_BARRIER = extern struct {
     Type: D3D12_RESOURCE_BARRIER_TYPE,
     Flags: D3D12_RESOURCE_BARRIER_FLAGS,
-    Anonymous: D3D12_RESOURCE_BARRIER._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1915,7 +1915,7 @@ pub const D3D12_TEXTURE_COPY_TYPE_PLACED_FOOTPRINT = D3D12_TEXTURE_COPY_TYPE.PLA
 pub const D3D12_TEXTURE_COPY_LOCATION = extern struct {
     pResource: *ID3D12Resource,
     Type: D3D12_TEXTURE_COPY_TYPE,
-    Anonymous: D3D12_TEXTURE_COPY_LOCATION._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2084,7 +2084,7 @@ pub const D3D12_SHADER_RESOURCE_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D12_SRV_DIMENSION,
     Shader4ComponentMapping: u32,
-    Anonymous: D3D12_SHADER_RESOURCE_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2277,7 +2277,7 @@ pub const D3D12_UAV_DIMENSION_TEXTURE3D = D3D12_UAV_DIMENSION.TEXTURE3D;
 pub const D3D12_UNORDERED_ACCESS_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D12_UAV_DIMENSION,
-    Anonymous: D3D12_UNORDERED_ACCESS_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2347,7 +2347,7 @@ pub const D3D12_RTV_DIMENSION_TEXTURE3D = D3D12_RTV_DIMENSION.TEXTURE3D;
 pub const D3D12_RENDER_TARGET_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D12_RTV_DIMENSION,
-    Anonymous: D3D12_RENDER_TARGET_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2412,7 +2412,7 @@ pub const D3D12_DEPTH_STENCIL_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D12_DSV_DIMENSION,
     Flags: D3D12_DSV_FLAGS,
-    Anonymous: D3D12_DEPTH_STENCIL_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2536,7 +2536,7 @@ pub const D3D12_ROOT_PARAMETER_TYPE_UAV = D3D12_ROOT_PARAMETER_TYPE.UAV;
 
 pub const D3D12_ROOT_PARAMETER = extern struct {
     ParameterType: D3D12_ROOT_PARAMETER_TYPE,
-    Anonymous: D3D12_ROOT_PARAMETER._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     ShaderVisibility: D3D12_SHADER_VISIBILITY,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -2653,7 +2653,7 @@ pub const D3D12_ROOT_DESCRIPTOR1 = extern struct {
 
 pub const D3D12_ROOT_PARAMETER1 = extern struct {
     ParameterType: D3D12_ROOT_PARAMETER_TYPE,
-    Anonymous: D3D12_ROOT_PARAMETER1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     ShaderVisibility: D3D12_SHADER_VISIBILITY,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -2668,7 +2668,7 @@ pub const D3D12_ROOT_SIGNATURE_DESC1 = extern struct {
 
 pub const D3D12_VERSIONED_ROOT_SIGNATURE_DESC = extern struct {
     Version: D3D_ROOT_SIGNATURE_VERSION,
-    Anonymous: D3D12_VERSIONED_ROOT_SIGNATURE_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2899,7 +2899,7 @@ pub const D3D12_INDIRECT_ARGUMENT_TYPE_DISPATCH_MESH = D3D12_INDIRECT_ARGUMENT_T
 
 pub const D3D12_INDIRECT_ARGUMENT_DESC = extern struct {
     Type: D3D12_INDIRECT_ARGUMENT_TYPE,
-    Anonymous: D3D12_INDIRECT_ARGUMENT_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -5371,7 +5371,7 @@ pub const D3D12_RAYTRACING_INSTANCE_DESC = extern struct {
 pub const D3D12_RAYTRACING_GEOMETRY_DESC = extern struct {
     Type: D3D12_RAYTRACING_GEOMETRY_TYPE,
     Flags: D3D12_RAYTRACING_GEOMETRY_FLAGS,
-    Anonymous: D3D12_RAYTRACING_GEOMETRY_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -5380,7 +5380,7 @@ pub const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS = extern struct {
     Flags: D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS,
     NumDescs: u32,
     DescsLayout: D3D12_ELEMENTS_LAYOUT,
-    Anonymous: D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -5787,7 +5787,7 @@ pub const D3D12_DEVICE_REMOVED_EXTENDED_DATA2 = extern struct {
 
 pub const D3D12_VERSIONED_DEVICE_REMOVED_EXTENDED_DATA = extern struct {
     Version: D3D12_DRED_VERSION,
-    Anonymous: D3D12_VERSIONED_DEVICE_REMOVED_EXTENDED_DATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -6204,7 +6204,7 @@ pub const D3D12_RENDER_PASS_BEGINNING_ACCESS_CLEAR_PARAMETERS = extern struct {
 
 pub const D3D12_RENDER_PASS_BEGINNING_ACCESS = extern struct {
     Type: D3D12_RENDER_PASS_BEGINNING_ACCESS_TYPE,
-    Anonymous: D3D12_RENDER_PASS_BEGINNING_ACCESS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -6239,7 +6239,7 @@ pub const D3D12_RENDER_PASS_ENDING_ACCESS_RESOLVE_PARAMETERS = extern struct {
 
 pub const D3D12_RENDER_PASS_ENDING_ACCESS = extern struct {
     Type: D3D12_RENDER_PASS_ENDING_ACCESS_TYPE,
-    Anonymous: D3D12_RENDER_PASS_ENDING_ACCESS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -10140,32 +10140,23 @@ const ID3D11Device = @import("direct3d11.zig").ID3D11Device;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PFN_D3D12_SERIALIZE_ROOT_SIGNATURE;
-    _ = PFN_D3D12_CREATE_ROOT_SIGNATURE_DESERIALIZER;
-    _ = PFN_D3D12_SERIALIZE_VERSIONED_ROOT_SIGNATURE;
-    _ = PFN_D3D12_CREATE_VERSIONED_ROOT_SIGNATURE_DESERIALIZER;
-    _ = PFN_D3D12_CREATE_DEVICE;
-    _ = PFN_D3D12_GET_DEBUG_INTERFACE;
-    _ = PFN_D3D11ON12_CREATE_DEVICE;
+    if (@hasDecl(@This(), "PFN_D3D12_SERIALIZE_ROOT_SIGNATURE")) { _ = PFN_D3D12_SERIALIZE_ROOT_SIGNATURE; }
+    if (@hasDecl(@This(), "PFN_D3D12_CREATE_ROOT_SIGNATURE_DESERIALIZER")) { _ = PFN_D3D12_CREATE_ROOT_SIGNATURE_DESERIALIZER; }
+    if (@hasDecl(@This(), "PFN_D3D12_SERIALIZE_VERSIONED_ROOT_SIGNATURE")) { _ = PFN_D3D12_SERIALIZE_VERSIONED_ROOT_SIGNATURE; }
+    if (@hasDecl(@This(), "PFN_D3D12_CREATE_VERSIONED_ROOT_SIGNATURE_DESERIALIZER")) { _ = PFN_D3D12_CREATE_VERSIONED_ROOT_SIGNATURE_DESERIALIZER; }
+    if (@hasDecl(@This(), "PFN_D3D12_CREATE_DEVICE")) { _ = PFN_D3D12_CREATE_DEVICE; }
+    if (@hasDecl(@This(), "PFN_D3D12_GET_DEBUG_INTERFACE")) { _ = PFN_D3D12_GET_DEBUG_INTERFACE; }
+    if (@hasDecl(@This(), "PFN_D3D11ON12_CREATE_DEVICE")) { _ = PFN_D3D11ON12_CREATE_DEVICE; }
 
-    const constant_export_count = 444;
-    const type_export_count = 444;
-    const enum_value_export_count = 1665;
-    const com_iface_id_export_count = 79;
-    const com_class_id_export_count = 0;
-    const func_export_count = 8;
-    const unicode_alias_count = 0;
-    const import_count = 35;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

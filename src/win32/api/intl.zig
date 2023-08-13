@@ -1320,28 +1320,143 @@ pub const UIDNA_ERROR_CONTEXTO_DIGITS = @as(i32, 16384);
 //--------------------------------------------------------------------------------
 // Section: Types (358)
 //--------------------------------------------------------------------------------
+pub const UEnumeration = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UResourceBundle = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const ULocaleDisplayNames = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UConverter = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const USet = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UBiDi = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UBiDiTransform = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UNormalizer2 = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UConverterSelector = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UBreakIterator = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UCaseMap = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UStringPrepProfile = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UIDNA = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UCollator = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UCollationElements = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UCharsetDetector = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UCharsetMatch = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UFieldPositionIterator = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UDateIntervalFormat = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UGenderInfo = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UListFormatter = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const ULocaleData = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UDateFormatSymbols = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UNumberFormatter = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UFormattedNumber = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UNumberingSystem = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UPluralRules = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const URegularExpression = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const URegion = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const URelativeDateTimeFormatter = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const UStringSearch = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const USpoofChecker = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const USpoofCheckResult = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
 pub const HIMC = ?*opaque{};
 
 pub const HIMCC = ?*opaque{};
 
 pub const HSAVEDUILANGUAGES = ?*opaque{};
-
-pub const FONTSIGNATURE = extern struct {
-    fsUsb: [4]u32,
-    fsCsb: [2]u32,
-};
-
-pub const CHARSETINFO = extern struct {
-    ciCharset: u32,
-    ciACP: u32,
-    fs: FONTSIGNATURE,
-};
-
-pub const LOCALESIGNATURE = extern struct {
-    lsUsb: [4]u32,
-    lsCsbDefault: [2]u32,
-    lsCsbSupported: [2]u32,
-};
 
 pub const CPINFO = extern struct {
     MaxCharSize: u32,
@@ -2469,9 +2584,9 @@ pub const IFECommon = extern struct {
 
 pub const WDD = extern struct {
     wDispPos: u16,
-    Anonymous1: WDD._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     cchDisp: u16,
-    Anonymous2: WDD._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     WDD_nReserve1: u32,
     nPos: u16,
     _bitfield: u16,
@@ -2484,11 +2599,11 @@ pub const MORRSLT = extern struct {
     dwSize: u32,
     pwchOutput: PWSTR,
     cchOutput: u16,
-    Anonymous1: MORRSLT._Anonymous1_e__Union,
-    Anonymous2: MORRSLT._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     pchInputPos: *u16,
     pchOutputIdxWDD: *u16,
-    Anonymous3: MORRSLT._Anonymous3_e__Union,
+    Anonymous3: _Anonymous3_e__Union,
     paMonoRubyPos: *u16,
     pWDD: *WDD,
     cWDD: i32,
@@ -2651,7 +2766,7 @@ pub const IFED_UCT_MAX = IMEUCT.MAX;
 pub const IMEWRD = extern struct {
     pwchReading: PWSTR,
     pwchDisplay: PWSTR,
-    Anonymous: IMEWRD._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     rgulAttrs: [2]u32,
     cbComment: i32,
     uct: IMEUCT,
@@ -2924,8 +3039,8 @@ pub const IMEKMSKEY = extern struct {
     dwStatus: u32,
     dwCompStatus: u32,
     dwVKEY: u32,
-    Anonymous1: IMEKMSKEY._Anonymous1_e__Union,
-    Anonymous2: IMEKMSKEY._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
@@ -3043,7 +3158,7 @@ pub const INPUTCONTEXT = extern struct {
     ptSoftKbdPos: POINT,
     fdwConversion: u32,
     fdwSentence: u32,
-    lfFont: INPUTCONTEXT._lfFont_e__Union,
+    lfFont: _lfFont_e__Union,
     cfCompForm: COMPOSITIONFORM,
     cfCandForm: [4]CANDIDATEFORM,
     hCompStr: HIMCC,
@@ -4306,10 +4421,6 @@ pub const UCharIterator = extern struct {
     setState: UCharIteratorSetState,
 };
 
-pub const UEnumeration = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const ULocDataLocaleType = extern enum(i32) {
     ACTUAL_LOCALE = 0,
     VALID_LOCALE = 1,
@@ -4338,10 +4449,6 @@ pub const UAcceptResult = extern enum(i32) {
 pub const ULOC_ACCEPT_FAILED = UAcceptResult.FAILED;
 pub const ULOC_ACCEPT_VALID = UAcceptResult.VALID;
 pub const ULOC_ACCEPT_FALLBACK = UAcceptResult.FALLBACK;
-
-pub const UResourceBundle = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const UResType = extern enum(i32) {
     NONE = -1,
@@ -4405,10 +4512,6 @@ pub const UDialectHandling = extern enum(i32) {
 pub const ULDN_STANDARD_NAMES = UDialectHandling.STANDARD_NAMES;
 pub const ULDN_DIALECT_NAMES = UDialectHandling.DIALECT_NAMES;
 
-pub const ULocaleDisplayNames = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const UCurrencyUsage = extern enum(i32) {
     STANDARD = 0,
     CASH = 1,
@@ -4437,10 +4540,6 @@ pub const UCURR_COMMON = UCurrCurrencyType.COMMON;
 pub const UCURR_UNCOMMON = UCurrCurrencyType.UNCOMMON;
 pub const UCURR_DEPRECATED = UCurrCurrencyType.DEPRECATED;
 pub const UCURR_NON_DEPRECATED = UCurrCurrencyType.NON_DEPRECATED;
-
-pub const UConverter = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const UConverterCallbackReason = extern enum(i32) {
     UNASSIGNED = 0,
@@ -4477,10 +4576,6 @@ pub const UConverterToUnicodeArgs = extern struct {
     target: *u16,
     targetLimit: *const u16,
     offsets: *i32,
-};
-
-pub const USet = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
 };
 
 pub const UConverterType = extern enum(i32) {
@@ -6249,10 +6344,6 @@ pub const UBIDI_RTL = UBiDiDirection.RTL;
 pub const UBIDI_MIXED = UBiDiDirection.MIXED;
 pub const UBIDI_NEUTRAL = UBiDiDirection.NEUTRAL;
 
-pub const UBiDi = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const UBiDiReorderingMode = extern enum(i32) {
     DEFAULT = 0,
     NUMBERS_SPECIAL = 1,
@@ -6299,10 +6390,6 @@ pub const UBiDiMirroring = extern enum(i32) {
 };
 pub const UBIDI_MIRRORING_OFF = UBiDiMirroring.FF;
 pub const UBIDI_MIRRORING_ON = UBiDiMirroring.N;
-
-pub const UBiDiTransform = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const UTextClone = fn(
     dest: *UText,
@@ -6443,10 +6530,6 @@ pub const UNORM_NO = UNormalizationCheckResult.NO;
 pub const UNORM_YES = UNormalizationCheckResult.YES;
 pub const UNORM_MAYBE = UNormalizationCheckResult.MAYBE;
 
-pub const UNormalizer2 = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const UNormalizationMode = extern enum(i32) {
     NONE = 1,
     NFD = 2,
@@ -6466,32 +6549,16 @@ pub const UNORM_NFKC = UNormalizationMode.NFKC;
 pub const UNORM_FCD = UNormalizationMode.FCD;
 pub const UNORM_MODE_COUNT = UNormalizationMode.MODE_COUNT;
 
-pub const UConverterSelector = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const UBreakIterator = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const UNESCAPE_CHAR_AT = fn(
     offset: i32,
     context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u16;
-
-pub const UCaseMap = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const UParseError = extern struct {
     line: i32,
     offset: i32,
     preContext: [16]u16,
     postContext: [16]u16,
-};
-
-pub const UStringPrepProfile = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
 };
 
 pub const UStringPrepProfileType = extern enum(i32) {
@@ -6524,10 +6591,6 @@ pub const USPREP_RFC4013_SASLPREP = UStringPrepProfileType.@"4013_SASLPREP";
 pub const USPREP_RFC4505_TRACE = UStringPrepProfileType.@"4505_TRACE";
 pub const USPREP_RFC4518_LDAP = UStringPrepProfileType.@"4518_LDAP";
 pub const USPREP_RFC4518_LDAP_CI = UStringPrepProfileType.@"4518_LDAP_CI";
-
-pub const UIDNA = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const UIDNAInfo = extern struct {
     size: i16,
@@ -6788,10 +6851,6 @@ pub const UCAL_TZ_TRANSITION_NEXT_INCLUSIVE = UTimeZoneTransitionType.NEXT_INCLU
 pub const UCAL_TZ_TRANSITION_PREVIOUS = UTimeZoneTransitionType.PREVIOUS;
 pub const UCAL_TZ_TRANSITION_PREVIOUS_INCLUSIVE = UTimeZoneTransitionType.PREVIOUS_INCLUSIVE;
 
-pub const UCollator = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const UCollationResult = extern enum(i32) {
     EQUAL = 0,
     GREATER = 1,
@@ -6892,18 +6951,6 @@ pub const UCOL_BOUND_LOWER = UColBoundMode.LOWER;
 pub const UCOL_BOUND_UPPER = UColBoundMode.UPPER;
 pub const UCOL_BOUND_UPPER_LONG = UColBoundMode.UPPER_LONG;
 
-pub const UCollationElements = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const UCharsetDetector = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const UCharsetMatch = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const UDateTimePatternField = extern enum(i32) {
     ERA_FIELD = 0,
     YEAR_FIELD = 1,
@@ -6968,10 +7015,6 @@ pub const UDATPG_NO_CONFLICT = UDateTimePatternConflict.NO_CONFLICT;
 pub const UDATPG_BASE_CONFLICT = UDateTimePatternConflict.BASE_CONFLICT;
 pub const UDATPG_CONFLICT = UDateTimePatternConflict.CONFLICT;
 
-pub const UFieldPositionIterator = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const UFormattableType = extern enum(i32) {
     DATE = 0,
     DOUBLE = 1,
@@ -6989,10 +7032,6 @@ pub const UFMT_ARRAY = UFormattableType.ARRAY;
 pub const UFMT_INT64 = UFormattableType.INT64;
 pub const UFMT_OBJECT = UFormattableType.OBJECT;
 
-pub const UDateIntervalFormat = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const UGender = extern enum(i32) {
     MALE = 0,
     FEMALE = 1,
@@ -7001,18 +7040,6 @@ pub const UGender = extern enum(i32) {
 pub const UGENDER_MALE = UGender.MALE;
 pub const UGENDER_FEMALE = UGender.FEMALE;
 pub const UGENDER_OTHER = UGender.OTHER;
-
-pub const UGenderInfo = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const UListFormatter = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const ULocaleData = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const ULocaleDataExemplarSetType = extern enum(i32) {
     STANDARD = 0,
@@ -7471,36 +7498,12 @@ pub const UDAT_ZODIAC_NAMES_WIDE = UDateFormatSymbolType.ZODIAC_NAMES_WIDE;
 pub const UDAT_ZODIAC_NAMES_ABBREVIATED = UDateFormatSymbolType.ZODIAC_NAMES_ABBREVIATED;
 pub const UDAT_ZODIAC_NAMES_NARROW = UDateFormatSymbolType.ZODIAC_NAMES_NARROW;
 
-pub const UDateFormatSymbols = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const UNumberFormatter = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const UFormattedNumber = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const UNumberingSystem = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const UPluralType = extern enum(i32) {
     CARDINAL = 0,
     ORDINAL = 1,
 };
 pub const UPLURAL_TYPE_CARDINAL = UPluralType.CARDINAL;
 pub const UPLURAL_TYPE_ORDINAL = UPluralType.ORDINAL;
-
-pub const UPluralRules = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const URegularExpression = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const URegexpFlag = extern enum(i32) {
     CASE_INSENSITIVE = 2,
@@ -7548,10 +7551,6 @@ pub const URGN_SUBCONTINENT = URegionType.SUBCONTINENT;
 pub const URGN_GROUPING = URegionType.GROUPING;
 pub const URGN_DEPRECATED = URegionType.DEPRECATED;
 
-pub const URegion = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const UDateRelativeDateTimeFormatterStyle = extern enum(i32) {
     LONG = 0,
     SHORT = 1,
@@ -7594,14 +7593,6 @@ pub const UDAT_REL_UNIT_THURSDAY = URelativeDateTimeUnit.THURSDAY;
 pub const UDAT_REL_UNIT_FRIDAY = URelativeDateTimeUnit.FRIDAY;
 pub const UDAT_REL_UNIT_SATURDAY = URelativeDateTimeUnit.SATURDAY;
 
-pub const URelativeDateTimeFormatter = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const UStringSearch = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const USearchAttribute = extern enum(i32) {
     OVERLAP = 0,
     ELEMENT_COMPARISON = 2,
@@ -7623,14 +7614,6 @@ pub const USEARCH_ON = USearchAttributeValue.ON;
 pub const USEARCH_STANDARD_ELEMENT_COMPARISON = USearchAttributeValue.STANDARD_ELEMENT_COMPARISON;
 pub const USEARCH_PATTERN_BASE_WEIGHT_IS_WILDCARD = USearchAttributeValue.PATTERN_BASE_WEIGHT_IS_WILDCARD;
 pub const USEARCH_ANY_BASE_WEIGHT_IS_WILDCARD = USearchAttributeValue.ANY_BASE_WEIGHT_IS_WILDCARD;
-
-pub const USpoofChecker = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const USpoofCheckResult = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const USpoofChecks = extern enum(i32) {
     SINGLE_SCRIPT_CONFUSABLE = 1,
@@ -10063,6 +10046,23 @@ pub const IS_TEXT_UNICODE_REVERSE_MASK = IS_TEXT_UNICODE_RESULT.REVERSE_MASK;
 pub const IS_TEXT_UNICODE_NOT_UNICODE_MASK = IS_TEXT_UNICODE_RESULT.NOT_UNICODE_MASK;
 pub const IS_TEXT_UNICODE_NOT_ASCII_MASK = IS_TEXT_UNICODE_RESULT.NOT_ASCII_MASK;
 
+pub const FONTSIGNATURE = extern struct {
+    fsUsb: [4]u32,
+    fsCsb: [2]u32,
+};
+
+pub const CHARSETINFO = extern struct {
+    ciCharset: u32,
+    ciACP: u32,
+    fs: FONTSIGNATURE,
+};
+
+pub const LOCALESIGNATURE = extern struct {
+    lsUsb: [4]u32,
+    lsCsbDefault: [2]u32,
+    lsCsbSupported: [2]u32,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1225)
@@ -10076,33 +10076,6 @@ pub extern "KERNEL32" fn FindStringOrdinal(
     cchValue: i32,
     bIgnoreCase: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ADVAPI32" fn IsTextUnicode(
-    // TODO: what to do with BytesParamIndex 1?
-    lpv: *const c_void,
-    iSize: i32,
-    lpiResult: ?*IS_TEXT_UNICODE_RESULT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetTextCharset(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetTextCharsetInfo(
-    hdc: HDC,
-    lpSig: ?*FONTSIGNATURE,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn TranslateCharsetInfo(
-    lpSrc: *u32,
-    lpCs: *CHARSETINFO,
-    dwFlags: TRANSLATE_CHARSET_INFO_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetDateFormatA(
@@ -17983,6 +17956,33 @@ pub extern "icu" fn utrans_getSourceSet(
     status: *UErrorCode,
 ) callconv(@import("std").os.windows.WINAPI) *USet;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn GetTextCharset(
+    hdc: HDC,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn GetTextCharsetInfo(
+    hdc: HDC,
+    lpSig: ?*FONTSIGNATURE,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn TranslateCharsetInfo(
+    lpSrc: *u32,
+    lpCs: *CHARSETINFO,
+    dwFlags: TRANSLATE_CHARSET_INFO_FLAGS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn IsTextUnicode(
+    // TODO: what to do with BytesParamIndex 1?
+    lpv: *const c_void,
+    iSize: i32,
+    lpiResult: ?*IS_TEXT_UNICODE_RESULT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (63)
@@ -18282,92 +18282,83 @@ const LOGFONTA = @import("gdi.zig").LOGFONTA;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LOCALE_ENUMPROCA;
-    _ = LOCALE_ENUMPROCW;
-    _ = LANGUAGEGROUP_ENUMPROCA;
-    _ = LANGGROUPLOCALE_ENUMPROCA;
-    _ = UILANGUAGE_ENUMPROCA;
-    _ = CODEPAGE_ENUMPROCA;
-    _ = DATEFMT_ENUMPROCA;
-    _ = DATEFMT_ENUMPROCEXA;
-    _ = TIMEFMT_ENUMPROCA;
-    _ = CALINFO_ENUMPROCA;
-    _ = CALINFO_ENUMPROCEXA;
-    _ = LANGUAGEGROUP_ENUMPROCW;
-    _ = LANGGROUPLOCALE_ENUMPROCW;
-    _ = UILANGUAGE_ENUMPROCW;
-    _ = CODEPAGE_ENUMPROCW;
-    _ = DATEFMT_ENUMPROCW;
-    _ = DATEFMT_ENUMPROCEXW;
-    _ = TIMEFMT_ENUMPROCW;
-    _ = CALINFO_ENUMPROCW;
-    _ = CALINFO_ENUMPROCEXW;
-    _ = GEO_ENUMPROC;
-    _ = GEO_ENUMNAMEPROC;
-    _ = CALINFO_ENUMPROCEXEX;
-    _ = DATEFMT_ENUMPROCEXEX;
-    _ = TIMEFMT_ENUMPROCEX;
-    _ = LOCALE_ENUMPROCEX;
-    _ = IMCENUMPROC;
-    _ = REGISTERWORDENUMPROCA;
-    _ = REGISTERWORDENUMPROCW;
-    _ = PFN_MAPPINGCALLBACKPROC;
-    _ = PFNLOG;
-    _ = fpCreateIFECommonInstanceType;
-    _ = fpCreateIFELanguageInstanceType;
-    _ = fpCreateIFEDictionaryInstanceType;
-    _ = UTraceEntry;
-    _ = UTraceExit;
-    _ = UTraceData;
-    _ = UCharIteratorGetIndex;
-    _ = UCharIteratorMove;
-    _ = UCharIteratorHasNext;
-    _ = UCharIteratorHasPrevious;
-    _ = UCharIteratorCurrent;
-    _ = UCharIteratorNext;
-    _ = UCharIteratorPrevious;
-    _ = UCharIteratorReserved;
-    _ = UCharIteratorGetState;
-    _ = UCharIteratorSetState;
-    _ = UConverterToUCallback;
-    _ = UConverterFromUCallback;
-    _ = UMemAllocFn;
-    _ = UMemReallocFn;
-    _ = UMemFreeFn;
-    _ = UCharEnumTypeRange;
-    _ = UEnumCharNamesFn;
-    _ = UBiDiClassCallback;
-    _ = UTextClone;
-    _ = UTextNativeLength;
-    _ = UTextAccess;
-    _ = UTextExtract;
-    _ = UTextReplace;
-    _ = UTextCopy;
-    _ = UTextMapOffsetToNative;
-    _ = UTextMapNativeIndexToUTF16;
-    _ = UTextClose;
-    _ = UNESCAPE_CHAR_AT;
-    _ = URegexMatchCallback;
-    _ = URegexFindProgressCallback;
+    if (@hasDecl(@This(), "LOCALE_ENUMPROCA")) { _ = LOCALE_ENUMPROCA; }
+    if (@hasDecl(@This(), "LOCALE_ENUMPROCW")) { _ = LOCALE_ENUMPROCW; }
+    if (@hasDecl(@This(), "LANGUAGEGROUP_ENUMPROCA")) { _ = LANGUAGEGROUP_ENUMPROCA; }
+    if (@hasDecl(@This(), "LANGGROUPLOCALE_ENUMPROCA")) { _ = LANGGROUPLOCALE_ENUMPROCA; }
+    if (@hasDecl(@This(), "UILANGUAGE_ENUMPROCA")) { _ = UILANGUAGE_ENUMPROCA; }
+    if (@hasDecl(@This(), "CODEPAGE_ENUMPROCA")) { _ = CODEPAGE_ENUMPROCA; }
+    if (@hasDecl(@This(), "DATEFMT_ENUMPROCA")) { _ = DATEFMT_ENUMPROCA; }
+    if (@hasDecl(@This(), "DATEFMT_ENUMPROCEXA")) { _ = DATEFMT_ENUMPROCEXA; }
+    if (@hasDecl(@This(), "TIMEFMT_ENUMPROCA")) { _ = TIMEFMT_ENUMPROCA; }
+    if (@hasDecl(@This(), "CALINFO_ENUMPROCA")) { _ = CALINFO_ENUMPROCA; }
+    if (@hasDecl(@This(), "CALINFO_ENUMPROCEXA")) { _ = CALINFO_ENUMPROCEXA; }
+    if (@hasDecl(@This(), "LANGUAGEGROUP_ENUMPROCW")) { _ = LANGUAGEGROUP_ENUMPROCW; }
+    if (@hasDecl(@This(), "LANGGROUPLOCALE_ENUMPROCW")) { _ = LANGGROUPLOCALE_ENUMPROCW; }
+    if (@hasDecl(@This(), "UILANGUAGE_ENUMPROCW")) { _ = UILANGUAGE_ENUMPROCW; }
+    if (@hasDecl(@This(), "CODEPAGE_ENUMPROCW")) { _ = CODEPAGE_ENUMPROCW; }
+    if (@hasDecl(@This(), "DATEFMT_ENUMPROCW")) { _ = DATEFMT_ENUMPROCW; }
+    if (@hasDecl(@This(), "DATEFMT_ENUMPROCEXW")) { _ = DATEFMT_ENUMPROCEXW; }
+    if (@hasDecl(@This(), "TIMEFMT_ENUMPROCW")) { _ = TIMEFMT_ENUMPROCW; }
+    if (@hasDecl(@This(), "CALINFO_ENUMPROCW")) { _ = CALINFO_ENUMPROCW; }
+    if (@hasDecl(@This(), "CALINFO_ENUMPROCEXW")) { _ = CALINFO_ENUMPROCEXW; }
+    if (@hasDecl(@This(), "GEO_ENUMPROC")) { _ = GEO_ENUMPROC; }
+    if (@hasDecl(@This(), "GEO_ENUMNAMEPROC")) { _ = GEO_ENUMNAMEPROC; }
+    if (@hasDecl(@This(), "CALINFO_ENUMPROCEXEX")) { _ = CALINFO_ENUMPROCEXEX; }
+    if (@hasDecl(@This(), "DATEFMT_ENUMPROCEXEX")) { _ = DATEFMT_ENUMPROCEXEX; }
+    if (@hasDecl(@This(), "TIMEFMT_ENUMPROCEX")) { _ = TIMEFMT_ENUMPROCEX; }
+    if (@hasDecl(@This(), "LOCALE_ENUMPROCEX")) { _ = LOCALE_ENUMPROCEX; }
+    if (@hasDecl(@This(), "IMCENUMPROC")) { _ = IMCENUMPROC; }
+    if (@hasDecl(@This(), "REGISTERWORDENUMPROCA")) { _ = REGISTERWORDENUMPROCA; }
+    if (@hasDecl(@This(), "REGISTERWORDENUMPROCW")) { _ = REGISTERWORDENUMPROCW; }
+    if (@hasDecl(@This(), "PFN_MAPPINGCALLBACKPROC")) { _ = PFN_MAPPINGCALLBACKPROC; }
+    if (@hasDecl(@This(), "PFNLOG")) { _ = PFNLOG; }
+    if (@hasDecl(@This(), "fpCreateIFECommonInstanceType")) { _ = fpCreateIFECommonInstanceType; }
+    if (@hasDecl(@This(), "fpCreateIFELanguageInstanceType")) { _ = fpCreateIFELanguageInstanceType; }
+    if (@hasDecl(@This(), "fpCreateIFEDictionaryInstanceType")) { _ = fpCreateIFEDictionaryInstanceType; }
+    if (@hasDecl(@This(), "UTraceEntry")) { _ = UTraceEntry; }
+    if (@hasDecl(@This(), "UTraceExit")) { _ = UTraceExit; }
+    if (@hasDecl(@This(), "UTraceData")) { _ = UTraceData; }
+    if (@hasDecl(@This(), "UCharIteratorGetIndex")) { _ = UCharIteratorGetIndex; }
+    if (@hasDecl(@This(), "UCharIteratorMove")) { _ = UCharIteratorMove; }
+    if (@hasDecl(@This(), "UCharIteratorHasNext")) { _ = UCharIteratorHasNext; }
+    if (@hasDecl(@This(), "UCharIteratorHasPrevious")) { _ = UCharIteratorHasPrevious; }
+    if (@hasDecl(@This(), "UCharIteratorCurrent")) { _ = UCharIteratorCurrent; }
+    if (@hasDecl(@This(), "UCharIteratorNext")) { _ = UCharIteratorNext; }
+    if (@hasDecl(@This(), "UCharIteratorPrevious")) { _ = UCharIteratorPrevious; }
+    if (@hasDecl(@This(), "UCharIteratorReserved")) { _ = UCharIteratorReserved; }
+    if (@hasDecl(@This(), "UCharIteratorGetState")) { _ = UCharIteratorGetState; }
+    if (@hasDecl(@This(), "UCharIteratorSetState")) { _ = UCharIteratorSetState; }
+    if (@hasDecl(@This(), "UConverterToUCallback")) { _ = UConverterToUCallback; }
+    if (@hasDecl(@This(), "UConverterFromUCallback")) { _ = UConverterFromUCallback; }
+    if (@hasDecl(@This(), "UMemAllocFn")) { _ = UMemAllocFn; }
+    if (@hasDecl(@This(), "UMemReallocFn")) { _ = UMemReallocFn; }
+    if (@hasDecl(@This(), "UMemFreeFn")) { _ = UMemFreeFn; }
+    if (@hasDecl(@This(), "UCharEnumTypeRange")) { _ = UCharEnumTypeRange; }
+    if (@hasDecl(@This(), "UEnumCharNamesFn")) { _ = UEnumCharNamesFn; }
+    if (@hasDecl(@This(), "UBiDiClassCallback")) { _ = UBiDiClassCallback; }
+    if (@hasDecl(@This(), "UTextClone")) { _ = UTextClone; }
+    if (@hasDecl(@This(), "UTextNativeLength")) { _ = UTextNativeLength; }
+    if (@hasDecl(@This(), "UTextAccess")) { _ = UTextAccess; }
+    if (@hasDecl(@This(), "UTextExtract")) { _ = UTextExtract; }
+    if (@hasDecl(@This(), "UTextReplace")) { _ = UTextReplace; }
+    if (@hasDecl(@This(), "UTextCopy")) { _ = UTextCopy; }
+    if (@hasDecl(@This(), "UTextMapOffsetToNative")) { _ = UTextMapOffsetToNative; }
+    if (@hasDecl(@This(), "UTextMapNativeIndexToUTF16")) { _ = UTextMapNativeIndexToUTF16; }
+    if (@hasDecl(@This(), "UTextClose")) { _ = UTextClose; }
+    if (@hasDecl(@This(), "UNESCAPE_CHAR_AT")) { _ = UNESCAPE_CHAR_AT; }
+    if (@hasDecl(@This(), "URegexMatchCallback")) { _ = URegexMatchCallback; }
+    if (@hasDecl(@This(), "URegexFindProgressCallback")) { _ = URegexFindProgressCallback; }
 
-    const constant_export_count = 1314;
-    const type_export_count = 356;
-    const enum_value_export_count = 1982;
-    const com_iface_id_export_count = 27;
-    const com_class_id_export_count = 2;
-    const func_export_count = 1225;
-    const unicode_alias_count = 63;
-    const import_count = 28;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

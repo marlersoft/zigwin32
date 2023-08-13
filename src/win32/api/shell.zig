@@ -2,6 +2,8 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1425)
 //--------------------------------------------------------------------------------
+pub const HLINK_E_FIRST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147221248));
+pub const HLINK_S_FIRST = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262400));
 pub const WM_CPL_LAUNCH = @as(u32, 2024);
 pub const WM_CPL_LAUNCHED = @as(u32, 2025);
 pub const CPL_DYNAMIC_RES = @as(u32, 0);
@@ -1425,18 +1427,1745 @@ pub const CTF_KEYBOARD_LOCALE = @as(i32, 1024);
 pub const CTF_OLEINITIALIZE = @as(i32, 2048);
 pub const CTF_COINIT_MTA = @as(i32, 4096);
 pub const CTF_NOADDREFLIB = @as(i32, 8192);
-pub const HLINK_E_FIRST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147221248));
-pub const HLINK_S_FIRST = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262400));
 
 //--------------------------------------------------------------------------------
-// Section: Types (924)
+// Section: Types (944)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DRAGINFOA = extern struct {
+    uSize: u32,
+    pt: POINT,
+    fNC: BOOL,
+    lpFileList: [*]u8,
+    grfKeyState: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DRAGINFOW = extern struct {
+    uSize: u32,
+    pt: POINT,
+    fNC: BOOL,
+    lpFileList: [*]u16,
+    grfKeyState: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const APPBARDATA = extern struct {
+    cbSize: u32,
+    hWnd: HWND,
+    uCallbackMessage: u32,
+    uEdge: u32,
+    rc: RECT,
+    lParam: LPARAM,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SHFILEOPSTRUCTA = extern struct {
+    hwnd: HWND,
+    wFunc: u32,
+    pFrom: *i8,
+    pTo: *i8,
+    fFlags: u16,
+    fAnyOperationsAborted: BOOL,
+    hNameMappings: *c_void,
+    lpszProgressTitle: [*:0]const u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SHFILEOPSTRUCTW = extern struct {
+    hwnd: HWND,
+    wFunc: u32,
+    pFrom: [*]const u16,
+    pTo: [*]const u16,
+    fFlags: u16,
+    fAnyOperationsAborted: BOOL,
+    hNameMappings: *c_void,
+    lpszProgressTitle: [*:0]const u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SHNAMEMAPPINGA = extern struct {
+    pszOldPath: PSTR,
+    pszNewPath: PSTR,
+    cchOldPath: i32,
+    cchNewPath: i32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SHNAMEMAPPINGW = extern struct {
+    pszOldPath: PWSTR,
+    pszNewPath: PWSTR,
+    cchOldPath: i32,
+    cchNewPath: i32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SHELLEXECUTEINFOA = extern struct {
+    cbSize: u32,
+    fMask: u32,
+    hwnd: HWND,
+    lpVerb: [*:0]const u8,
+    lpFile: [*:0]const u8,
+    lpParameters: [*:0]const u8,
+    lpDirectory: [*:0]const u8,
+    nShow: i32,
+    hInstApp: HINSTANCE,
+    lpIDList: *c_void,
+    lpClass: [*:0]const u8,
+    hkeyClass: HKEY,
+    dwHotKey: u32,
+    Anonymous: _Anonymous_e__Union,
+    hProcess: HANDLE,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SHELLEXECUTEINFOW = extern struct {
+    cbSize: u32,
+    fMask: u32,
+    hwnd: HWND,
+    lpVerb: [*:0]const u16,
+    lpFile: [*:0]const u16,
+    lpParameters: [*:0]const u16,
+    lpDirectory: [*:0]const u16,
+    nShow: i32,
+    hInstApp: HINSTANCE,
+    lpIDList: *c_void,
+    lpClass: [*:0]const u16,
+    hkeyClass: HKEY,
+    dwHotKey: u32,
+    Anonymous: _Anonymous_e__Union,
+    hProcess: HANDLE,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SHCREATEPROCESSINFOW = extern struct {
+    cbSize: u32,
+    fMask: u32,
+    hwnd: HWND,
+    pszFile: [*:0]const u16,
+    pszParameters: [*:0]const u16,
+    pszCurrentDirectory: [*:0]const u16,
+    hUserToken: HANDLE,
+    lpProcessAttributes: *SECURITY_ATTRIBUTES,
+    lpThreadAttributes: *SECURITY_ATTRIBUTES,
+    bInheritHandles: BOOL,
+    dwCreationFlags: u32,
+    lpStartupInfo: *STARTUPINFOW,
+    lpProcessInformation: *PROCESS_INFORMATION,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const ASSOCIATIONELEMENT = extern struct {
+    ac: ASSOCCLASS,
+    hkClass: HKEY,
+    pszClass: [*:0]const u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SHQUERYRBINFO = extern struct {
+    cbSize: u32,
+    i64Size: i64,
+    i64NumItems: i64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const NOTIFYICONDATAA = extern struct {
+    cbSize: u32,
+    hWnd: HWND,
+    uID: u32,
+    uFlags: u32,
+    uCallbackMessage: u32,
+    hIcon: HICON,
+    szTip: [128]CHAR,
+    dwState: u32,
+    dwStateMask: u32,
+    szInfo: [256]CHAR,
+    Anonymous: _Anonymous_e__Union,
+    szInfoTitle: [64]CHAR,
+    dwInfoFlags: u32,
+    guidItem: Guid,
+    hBalloonIcon: HICON,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const NOTIFYICONDATAW = extern struct {
+    cbSize: u32,
+    hWnd: HWND,
+    uID: u32,
+    uFlags: u32,
+    uCallbackMessage: u32,
+    hIcon: HICON,
+    szTip: [128]u16,
+    dwState: u32,
+    dwStateMask: u32,
+    szInfo: [256]u16,
+    Anonymous: _Anonymous_e__Union,
+    szInfoTitle: [64]u16,
+    dwInfoFlags: u32,
+    guidItem: Guid,
+    hBalloonIcon: HICON,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const NOTIFYICONIDENTIFIER = extern struct {
+    cbSize: u32,
+    hWnd: HWND,
+    uID: u32,
+    guidItem: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SHFILEINFOA = extern struct {
+    hIcon: HICON,
+    iIcon: i32,
+    dwAttributes: u32,
+    szDisplayName: [260]CHAR,
+    szTypeName: [80]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SHFILEINFOW = extern struct {
+    hIcon: HICON,
+    iIcon: i32,
+    dwAttributes: u32,
+    szDisplayName: [260]u16,
+    szTypeName: [80]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SHSTOCKICONINFO = extern struct {
+    cbSize: u32,
+    hIcon: HICON,
+    iSysImageIndex: i32,
+    iIcon: i32,
+    szPath: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const OPEN_PRINTER_PROPS_INFOA = extern struct {
+    dwSize: u32,
+    pszSheetName: PSTR,
+    uSheetIndex: u32,
+    dwFlags: u32,
+    bModal: BOOL,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const OPEN_PRINTER_PROPS_INFOW = extern struct {
+    dwSize: u32,
+    pszSheetName: PWSTR,
+    uSheetIndex: u32,
+    dwFlags: u32,
+    bModal: BOOL,
+};
+
+}, else => struct { } };
+
+pub const _APPSTATE_REGISTRATION = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const _APPCONSTRAIN_REGISTRATION = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHGFI_FLAGS = extern enum(i32) {
+    ADDOVERLAYS = 32,
+    ATTR_SPECIFIED = 131072,
+    ATTRIBUTES = 2048,
+    DISPLAYNAME = 512,
+    EXETYPE = 8192,
+    ICON = 256,
+    ICONLOCATION = 4096,
+    LARGEICON = 0,
+    LINKOVERLAY = 32768,
+    OPENICON = 2,
+    OVERLAYINDEX = 64,
+    PIDL = 8,
+    SELECTED = 65536,
+    SHELLICONSIZE = 4,
+    SMALLICON = 1,
+    SYSICONINDEX = 16384,
+    TYPENAME = 1024,
+    USEFILEATTRIBUTES = 16,
+    _,
+};
+pub const SHGFI_ADDOVERLAYS = SHGFI_FLAGS.ADDOVERLAYS;
+pub const SHGFI_ATTR_SPECIFIED = SHGFI_FLAGS.ATTR_SPECIFIED;
+pub const SHGFI_ATTRIBUTES = SHGFI_FLAGS.ATTRIBUTES;
+pub const SHGFI_DISPLAYNAME = SHGFI_FLAGS.DISPLAYNAME;
+pub const SHGFI_EXETYPE = SHGFI_FLAGS.EXETYPE;
+pub const SHGFI_ICON = SHGFI_FLAGS.ICON;
+pub const SHGFI_ICONLOCATION = SHGFI_FLAGS.ICONLOCATION;
+pub const SHGFI_LARGEICON = SHGFI_FLAGS.LARGEICON;
+pub const SHGFI_LINKOVERLAY = SHGFI_FLAGS.LINKOVERLAY;
+pub const SHGFI_OPENICON = SHGFI_FLAGS.OPENICON;
+pub const SHGFI_OVERLAYINDEX = SHGFI_FLAGS.OVERLAYINDEX;
+pub const SHGFI_PIDL = SHGFI_FLAGS.PIDL;
+pub const SHGFI_SELECTED = SHGFI_FLAGS.SELECTED;
+pub const SHGFI_SHELLICONSIZE = SHGFI_FLAGS.SHELLICONSIZE;
+pub const SHGFI_SMALLICON = SHGFI_FLAGS.SMALLICON;
+pub const SHGFI_SYSICONINDEX = SHGFI_FLAGS.SYSICONINDEX;
+pub const SHGFI_TYPENAME = SHGFI_FLAGS.TYPENAME;
+pub const SHGFI_USEFILEATTRIBUTES = SHGFI_FLAGS.USEFILEATTRIBUTES;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHCNE_ID = extern enum(u32) {
+    RENAMEITEM = 1,
+    CREATE = 2,
+    DELETE = 4,
+    MKDIR = 8,
+    RMDIR = 16,
+    MEDIAINSERTED = 32,
+    MEDIAREMOVED = 64,
+    DRIVEREMOVED = 128,
+    DRIVEADD = 256,
+    NETSHARE = 512,
+    NETUNSHARE = 1024,
+    ATTRIBUTES = 2048,
+    UPDATEDIR = 4096,
+    UPDATEITEM = 8192,
+    SERVERDISCONNECT = 16384,
+    UPDATEIMAGE = 32768,
+    DRIVEADDGUI = 65536,
+    RENAMEFOLDER = 131072,
+    FREESPACE = 262144,
+    EXTENDED_EVENT = 67108864,
+    ASSOCCHANGED = 134217728,
+    DISKEVENTS = 145439,
+    GLOBALEVENTS = 201687520,
+    ALLEVENTS = 2147483647,
+    INTERRUPT = 2147483648,
+    _,
+};
+pub const SHCNE_RENAMEITEM = SHCNE_ID.RENAMEITEM;
+pub const SHCNE_CREATE = SHCNE_ID.CREATE;
+pub const SHCNE_DELETE = SHCNE_ID.DELETE;
+pub const SHCNE_MKDIR = SHCNE_ID.MKDIR;
+pub const SHCNE_RMDIR = SHCNE_ID.RMDIR;
+pub const SHCNE_MEDIAINSERTED = SHCNE_ID.MEDIAINSERTED;
+pub const SHCNE_MEDIAREMOVED = SHCNE_ID.MEDIAREMOVED;
+pub const SHCNE_DRIVEREMOVED = SHCNE_ID.DRIVEREMOVED;
+pub const SHCNE_DRIVEADD = SHCNE_ID.DRIVEADD;
+pub const SHCNE_NETSHARE = SHCNE_ID.NETSHARE;
+pub const SHCNE_NETUNSHARE = SHCNE_ID.NETUNSHARE;
+pub const SHCNE_ATTRIBUTES = SHCNE_ID.ATTRIBUTES;
+pub const SHCNE_UPDATEDIR = SHCNE_ID.UPDATEDIR;
+pub const SHCNE_UPDATEITEM = SHCNE_ID.UPDATEITEM;
+pub const SHCNE_SERVERDISCONNECT = SHCNE_ID.SERVERDISCONNECT;
+pub const SHCNE_UPDATEIMAGE = SHCNE_ID.UPDATEIMAGE;
+pub const SHCNE_DRIVEADDGUI = SHCNE_ID.DRIVEADDGUI;
+pub const SHCNE_RENAMEFOLDER = SHCNE_ID.RENAMEFOLDER;
+pub const SHCNE_FREESPACE = SHCNE_ID.FREESPACE;
+pub const SHCNE_EXTENDED_EVENT = SHCNE_ID.EXTENDED_EVENT;
+pub const SHCNE_ASSOCCHANGED = SHCNE_ID.ASSOCCHANGED;
+pub const SHCNE_DISKEVENTS = SHCNE_ID.DISKEVENTS;
+pub const SHCNE_GLOBALEVENTS = SHCNE_ID.GLOBALEVENTS;
+pub const SHCNE_ALLEVENTS = SHCNE_ID.ALLEVENTS;
+pub const SHCNE_INTERRUPT = SHCNE_ID.INTERRUPT;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHCNRF_SOURCE = extern enum(i32) {
+    InterruptLevel = 1,
+    ShellLevel = 2,
+    RecursiveInterrupt = 4096,
+    NewDelivery = 32768,
+    _,
+};
+pub const SHCNRF_InterruptLevel = SHCNRF_SOURCE.InterruptLevel;
+pub const SHCNRF_ShellLevel = SHCNRF_SOURCE.ShellLevel;
+pub const SHCNRF_RecursiveInterrupt = SHCNRF_SOURCE.RecursiveInterrupt;
+pub const SHCNRF_NewDelivery = SHCNRF_SOURCE.NewDelivery;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHCNF_FLAGS = extern enum(u32) {
+    IDLIST = 0,
+    PATHA = 1,
+    PRINTERA = 2,
+    DWORD = 3,
+    PATHW = 5,
+    PRINTERW = 6,
+    TYPE = 255,
+    FLUSH = 4096,
+    FLUSHNOWAIT = 12288,
+    NOTIFYRECURSIVE = 65536,
+    PATH = 5,
+    PRINTER = 6,
+    _,
+};
+pub const SHCNF_IDLIST = SHCNF_FLAGS.IDLIST;
+pub const SHCNF_PATHA = SHCNF_FLAGS.PATHA;
+pub const SHCNF_PRINTERA = SHCNF_FLAGS.PRINTERA;
+pub const SHCNF_DWORD = SHCNF_FLAGS.DWORD;
+pub const SHCNF_PATHW = SHCNF_FLAGS.PATHW;
+pub const SHCNF_PRINTERW = SHCNF_FLAGS.PRINTERW;
+pub const SHCNF_TYPE = SHCNF_FLAGS.TYPE;
+pub const SHCNF_FLUSH = SHCNF_FLAGS.FLUSH;
+pub const SHCNF_FLUSHNOWAIT = SHCNF_FLAGS.FLUSHNOWAIT;
+pub const SHCNF_NOTIFYRECURSIVE = SHCNF_FLAGS.NOTIFYRECURSIVE;
+pub const SHCNF_PATH = SHCNF_FLAGS.PATH;
+pub const SHCNF_PRINTER = SHCNF_FLAGS.PRINTER;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const QITIPF_FLAGS = extern enum(i32) {
+    TIPF_DEFAULT = 0,
+    TIPF_USENAME = 1,
+    TIPF_LINKNOTARGET = 2,
+    TIPF_LINKUSETARGET = 4,
+    TIPF_USESLOWTIP = 8,
+    TIPF_SINGLELINE = 16,
+    F_CACHED = 1,
+    F_DONTEXPANDFOLDER = 2,
+    _,
+};
+pub const QITIPF_DEFAULT = QITIPF_FLAGS.TIPF_DEFAULT;
+pub const QITIPF_USENAME = QITIPF_FLAGS.TIPF_USENAME;
+pub const QITIPF_LINKNOTARGET = QITIPF_FLAGS.TIPF_LINKNOTARGET;
+pub const QITIPF_LINKUSETARGET = QITIPF_FLAGS.TIPF_LINKUSETARGET;
+pub const QITIPF_USESLOWTIP = QITIPF_FLAGS.TIPF_USESLOWTIP;
+pub const QITIPF_SINGLELINE = QITIPF_FLAGS.TIPF_SINGLELINE;
+pub const QIF_CACHED = QITIPF_FLAGS.F_CACHED;
+pub const QIF_DONTEXPANDFOLDER = QITIPF_FLAGS.F_DONTEXPANDFOLDER;
+
+pub const SHDID_ID = extern enum(i32) {
+    ROOT_REGITEM = 1,
+    FS_FILE = 2,
+    FS_DIRECTORY = 3,
+    FS_OTHER = 4,
+    COMPUTER_DRIVE35 = 5,
+    COMPUTER_DRIVE525 = 6,
+    COMPUTER_REMOVABLE = 7,
+    COMPUTER_FIXED = 8,
+    COMPUTER_NETDRIVE = 9,
+    COMPUTER_CDROM = 10,
+    COMPUTER_RAMDISK = 11,
+    COMPUTER_OTHER = 12,
+    NET_DOMAIN = 13,
+    NET_SERVER = 14,
+    NET_SHARE = 15,
+    NET_RESTOFNET = 16,
+    NET_OTHER = 17,
+    COMPUTER_IMAGING = 18,
+    COMPUTER_AUDIO = 19,
+    COMPUTER_SHAREDDOCS = 20,
+    MOBILE_DEVICE = 21,
+    REMOTE_DESKTOP_DRIVE = 22,
+};
+pub const SHDID_ROOT_REGITEM = SHDID_ID.ROOT_REGITEM;
+pub const SHDID_FS_FILE = SHDID_ID.FS_FILE;
+pub const SHDID_FS_DIRECTORY = SHDID_ID.FS_DIRECTORY;
+pub const SHDID_FS_OTHER = SHDID_ID.FS_OTHER;
+pub const SHDID_COMPUTER_DRIVE35 = SHDID_ID.COMPUTER_DRIVE35;
+pub const SHDID_COMPUTER_DRIVE525 = SHDID_ID.COMPUTER_DRIVE525;
+pub const SHDID_COMPUTER_REMOVABLE = SHDID_ID.COMPUTER_REMOVABLE;
+pub const SHDID_COMPUTER_FIXED = SHDID_ID.COMPUTER_FIXED;
+pub const SHDID_COMPUTER_NETDRIVE = SHDID_ID.COMPUTER_NETDRIVE;
+pub const SHDID_COMPUTER_CDROM = SHDID_ID.COMPUTER_CDROM;
+pub const SHDID_COMPUTER_RAMDISK = SHDID_ID.COMPUTER_RAMDISK;
+pub const SHDID_COMPUTER_OTHER = SHDID_ID.COMPUTER_OTHER;
+pub const SHDID_NET_DOMAIN = SHDID_ID.NET_DOMAIN;
+pub const SHDID_NET_SERVER = SHDID_ID.NET_SERVER;
+pub const SHDID_NET_SHARE = SHDID_ID.NET_SHARE;
+pub const SHDID_NET_RESTOFNET = SHDID_ID.NET_RESTOFNET;
+pub const SHDID_NET_OTHER = SHDID_ID.NET_OTHER;
+pub const SHDID_COMPUTER_IMAGING = SHDID_ID.COMPUTER_IMAGING;
+pub const SHDID_COMPUTER_AUDIO = SHDID_ID.COMPUTER_AUDIO;
+pub const SHDID_COMPUTER_SHAREDDOCS = SHDID_ID.COMPUTER_SHAREDDOCS;
+pub const SHDID_MOBILE_DEVICE = SHDID_ID.MOBILE_DEVICE;
+pub const SHDID_REMOTE_DESKTOP_DRIVE = SHDID_ID.REMOTE_DESKTOP_DRIVE;
+
+pub const SHGDFIL_FORMAT = extern enum(i32) {
+    FINDDATA = 1,
+    NETRESOURCE = 2,
+    DESCRIPTIONID = 3,
+};
+pub const SHGDFIL_FINDDATA = SHGDFIL_FORMAT.FINDDATA;
+pub const SHGDFIL_NETRESOURCE = SHGDFIL_FORMAT.NETRESOURCE;
+pub const SHGDFIL_DESCRIPTIONID = SHGDFIL_FORMAT.DESCRIPTIONID;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PRF_FLAGS = extern enum(i32) {
+    VERIFYEXISTS = 1,
+    TRYPROGRAMEXTENSIONS = 3,
+    FIRSTDIRDEF = 4,
+    DONTFINDLNK = 8,
+    REQUIREABSOLUTE = 16,
+    _,
+};
+pub const PRF_VERIFYEXISTS = PRF_FLAGS.VERIFYEXISTS;
+pub const PRF_TRYPROGRAMEXTENSIONS = PRF_FLAGS.TRYPROGRAMEXTENSIONS;
+pub const PRF_FIRSTDIRDEF = PRF_FLAGS.FIRSTDIRDEF;
+pub const PRF_DONTFINDLNK = PRF_FLAGS.DONTFINDLNK;
+pub const PRF_REQUIREABSOLUTE = PRF_FLAGS.REQUIREABSOLUTE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PCS_RET = extern enum(u32) {
+    FATAL = 2147483648,
+    REPLACEDCHAR = 1,
+    REMOVEDCHAR = 2,
+    TRUNCATED = 4,
+    PATHTOOLONG = 8,
+    _,
+};
+pub const PCS_FATAL = PCS_RET.FATAL;
+pub const PCS_REPLACEDCHAR = PCS_RET.REPLACEDCHAR;
+pub const PCS_REMOVEDCHAR = PCS_RET.REMOVEDCHAR;
+pub const PCS_TRUNCATED = PCS_RET.TRUNCATED;
+pub const PCS_PATHTOOLONG = PCS_RET.PATHTOOLONG;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const MM_FLAGS = extern enum(u32) {
+    ADDSEPARATOR = 1,
+    SUBMENUSHAVEIDS = 2,
+    DONTREMOVESEPS = 4,
+    _,
+};
+pub const MM_ADDSEPARATOR = MM_FLAGS.ADDSEPARATOR;
+pub const MM_SUBMENUSHAVEIDS = MM_FLAGS.SUBMENUSHAVEIDS;
+pub const MM_DONTREMOVESEPS = MM_FLAGS.DONTREMOVESEPS;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHOP_TYPE = extern enum(i32) {
+    PRINTERNAME = 1,
+    FILEPATH = 2,
+    VOLUMEGUID = 4,
+    _,
+};
+pub const SHOP_PRINTERNAME = SHOP_TYPE.PRINTERNAME;
+pub const SHOP_FILEPATH = SHOP_TYPE.FILEPATH;
+pub const SHOP_VOLUMEGUID = SHOP_TYPE.VOLUMEGUID;
+
+pub const SHFMT_ID = extern enum(u32) {
+    T = 65535,
+};
+pub const SHFMT_ID_DEFAULT = SHFMT_ID.T;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHFMT_OPT = extern enum(i32) {
+    NONE = 0,
+    FULL = 1,
+    SYSONLY = 2,
+    _,
+};
+pub const SHFMT_OPT_NONE = SHFMT_OPT.NONE;
+pub const SHFMT_OPT_FULL = SHFMT_OPT.FULL;
+pub const SHFMT_OPT_SYSONLY = SHFMT_OPT.SYSONLY;
+
+pub const SHFMT_RET = extern enum(u32) {
+    ERROR = 4294967295,
+    CANCEL = 4294967294,
+    NOFORMAT = 4294967293,
+};
+pub const SHFMT_ERROR = SHFMT_RET.ERROR;
+pub const SHFMT_CANCEL = SHFMT_RET.CANCEL;
+pub const SHFMT_NOFORMAT = SHFMT_RET.NOFORMAT;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const VALIDATEUNC_OPTION = extern enum(i32) {
+    CONNECT = 1,
+    NOUI = 2,
+    PRINT = 4,
+    PERSIST = 8,
+    VALID = 15,
+    _,
+};
+pub const VALIDATEUNC_CONNECT = VALIDATEUNC_OPTION.CONNECT;
+pub const VALIDATEUNC_NOUI = VALIDATEUNC_OPTION.NOUI;
+pub const VALIDATEUNC_PRINT = VALIDATEUNC_OPTION.PRINT;
+pub const VALIDATEUNC_PERSIST = VALIDATEUNC_OPTION.PERSIST;
+pub const VALIDATEUNC_VALID = VALIDATEUNC_OPTION.VALID;
+
+pub const SFVM_MESSAGE_ID = extern enum(i32) {
+    MERGEMENU = 1,
+    INVOKECOMMAND = 2,
+    GETHELPTEXT = 3,
+    GETTOOLTIPTEXT = 4,
+    GETBUTTONINFO = 5,
+    GETBUTTONS = 6,
+    INITMENUPOPUP = 7,
+    FSNOTIFY = 14,
+    WINDOWCREATED = 15,
+    GETDETAILSOF = 23,
+    COLUMNCLICK = 24,
+    QUERYFSNOTIFY = 25,
+    DEFITEMCOUNT = 26,
+    DEFVIEWMODE = 27,
+    UNMERGEMENU = 28,
+    UPDATESTATUSBAR = 31,
+    BACKGROUNDENUM = 32,
+    DIDDRAGDROP = 36,
+    SETISFV = 39,
+    THISIDLIST = 41,
+    ADDPROPERTYPAGES = 47,
+    BACKGROUNDENUMDONE = 48,
+    GETNOTIFY = 49,
+    GETSORTDEFAULTS = 53,
+    SIZE = 57,
+    GETZONE = 58,
+    GETPANE = 59,
+    GETHELPTOPIC = 63,
+    GETANIMATION = 68,
+};
+pub const SFVM_MERGEMENU = SFVM_MESSAGE_ID.MERGEMENU;
+pub const SFVM_INVOKECOMMAND = SFVM_MESSAGE_ID.INVOKECOMMAND;
+pub const SFVM_GETHELPTEXT = SFVM_MESSAGE_ID.GETHELPTEXT;
+pub const SFVM_GETTOOLTIPTEXT = SFVM_MESSAGE_ID.GETTOOLTIPTEXT;
+pub const SFVM_GETBUTTONINFO = SFVM_MESSAGE_ID.GETBUTTONINFO;
+pub const SFVM_GETBUTTONS = SFVM_MESSAGE_ID.GETBUTTONS;
+pub const SFVM_INITMENUPOPUP = SFVM_MESSAGE_ID.INITMENUPOPUP;
+pub const SFVM_FSNOTIFY = SFVM_MESSAGE_ID.FSNOTIFY;
+pub const SFVM_WINDOWCREATED = SFVM_MESSAGE_ID.WINDOWCREATED;
+pub const SFVM_GETDETAILSOF = SFVM_MESSAGE_ID.GETDETAILSOF;
+pub const SFVM_COLUMNCLICK = SFVM_MESSAGE_ID.COLUMNCLICK;
+pub const SFVM_QUERYFSNOTIFY = SFVM_MESSAGE_ID.QUERYFSNOTIFY;
+pub const SFVM_DEFITEMCOUNT = SFVM_MESSAGE_ID.DEFITEMCOUNT;
+pub const SFVM_DEFVIEWMODE = SFVM_MESSAGE_ID.DEFVIEWMODE;
+pub const SFVM_UNMERGEMENU = SFVM_MESSAGE_ID.UNMERGEMENU;
+pub const SFVM_UPDATESTATUSBAR = SFVM_MESSAGE_ID.UPDATESTATUSBAR;
+pub const SFVM_BACKGROUNDENUM = SFVM_MESSAGE_ID.BACKGROUNDENUM;
+pub const SFVM_DIDDRAGDROP = SFVM_MESSAGE_ID.DIDDRAGDROP;
+pub const SFVM_SETISFV = SFVM_MESSAGE_ID.SETISFV;
+pub const SFVM_THISIDLIST = SFVM_MESSAGE_ID.THISIDLIST;
+pub const SFVM_ADDPROPERTYPAGES = SFVM_MESSAGE_ID.ADDPROPERTYPAGES;
+pub const SFVM_BACKGROUNDENUMDONE = SFVM_MESSAGE_ID.BACKGROUNDENUMDONE;
+pub const SFVM_GETNOTIFY = SFVM_MESSAGE_ID.GETNOTIFY;
+pub const SFVM_GETSORTDEFAULTS = SFVM_MESSAGE_ID.GETSORTDEFAULTS;
+pub const SFVM_SIZE = SFVM_MESSAGE_ID.SIZE;
+pub const SFVM_GETZONE = SFVM_MESSAGE_ID.GETZONE;
+pub const SFVM_GETPANE = SFVM_MESSAGE_ID.GETPANE;
+pub const SFVM_GETHELPTOPIC = SFVM_MESSAGE_ID.GETHELPTOPIC;
+pub const SFVM_GETANIMATION = SFVM_MESSAGE_ID.GETANIMATION;
+
+pub const SFVS_SELECT = extern enum(i32) {
+    NONE = 0,
+    ALLITEMS = 1,
+    INVERT = 2,
+};
+pub const SFVS_SELECT_NONE = SFVS_SELECT.NONE;
+pub const SFVS_SELECT_ALLITEMS = SFVS_SELECT.ALLITEMS;
+pub const SFVS_SELECT_INVERT = SFVS_SELECT.INVERT;
+
+pub const DFM_MESSAGE_ID = extern enum(i32) {
+    MERGECONTEXTMENU = 1,
+    INVOKECOMMAND = 2,
+    GETHELPTEXT = 5,
+    WM_MEASUREITEM = 6,
+    WM_DRAWITEM = 7,
+    WM_INITMENUPOPUP = 8,
+    VALIDATECMD = 9,
+    MERGECONTEXTMENU_TOP = 10,
+    GETHELPTEXTW = 11,
+    INVOKECOMMANDEX = 12,
+    MAPCOMMANDNAME = 13,
+    GETDEFSTATICID = 14,
+    GETVERBW = 15,
+    GETVERBA = 16,
+    MERGECONTEXTMENU_BOTTOM = 17,
+    MODIFYQCMFLAGS = 18,
+};
+pub const DFM_MERGECONTEXTMENU = DFM_MESSAGE_ID.MERGECONTEXTMENU;
+pub const DFM_INVOKECOMMAND = DFM_MESSAGE_ID.INVOKECOMMAND;
+pub const DFM_GETHELPTEXT = DFM_MESSAGE_ID.GETHELPTEXT;
+pub const DFM_WM_MEASUREITEM = DFM_MESSAGE_ID.WM_MEASUREITEM;
+pub const DFM_WM_DRAWITEM = DFM_MESSAGE_ID.WM_DRAWITEM;
+pub const DFM_WM_INITMENUPOPUP = DFM_MESSAGE_ID.WM_INITMENUPOPUP;
+pub const DFM_VALIDATECMD = DFM_MESSAGE_ID.VALIDATECMD;
+pub const DFM_MERGECONTEXTMENU_TOP = DFM_MESSAGE_ID.MERGECONTEXTMENU_TOP;
+pub const DFM_GETHELPTEXTW = DFM_MESSAGE_ID.GETHELPTEXTW;
+pub const DFM_INVOKECOMMANDEX = DFM_MESSAGE_ID.INVOKECOMMANDEX;
+pub const DFM_MAPCOMMANDNAME = DFM_MESSAGE_ID.MAPCOMMANDNAME;
+pub const DFM_GETDEFSTATICID = DFM_MESSAGE_ID.GETDEFSTATICID;
+pub const DFM_GETVERBW = DFM_MESSAGE_ID.GETVERBW;
+pub const DFM_GETVERBA = DFM_MESSAGE_ID.GETVERBA;
+pub const DFM_MERGECONTEXTMENU_BOTTOM = DFM_MESSAGE_ID.MERGECONTEXTMENU_BOTTOM;
+pub const DFM_MODIFYQCMFLAGS = DFM_MESSAGE_ID.MODIFYQCMFLAGS;
+
+pub const DFM_CMD = extern enum(i32) {
+    DELETE = -1,
+    MOVE = -2,
+    COPY = -3,
+    LINK = -4,
+    PROPERTIES = -5,
+    NEWFOLDER = -6,
+    PASTE = -7,
+    VIEWLIST = -8,
+    VIEWDETAILS = -9,
+    PASTELINK = -10,
+    PASTESPECIAL = -11,
+    MODALPROP = -12,
+    RENAME = -13,
+};
+pub const DFM_CMD_DELETE = DFM_CMD.DELETE;
+pub const DFM_CMD_MOVE = DFM_CMD.MOVE;
+pub const DFM_CMD_COPY = DFM_CMD.COPY;
+pub const DFM_CMD_LINK = DFM_CMD.LINK;
+pub const DFM_CMD_PROPERTIES = DFM_CMD.PROPERTIES;
+pub const DFM_CMD_NEWFOLDER = DFM_CMD.NEWFOLDER;
+pub const DFM_CMD_PASTE = DFM_CMD.PASTE;
+pub const DFM_CMD_VIEWLIST = DFM_CMD.VIEWLIST;
+pub const DFM_CMD_VIEWDETAILS = DFM_CMD.VIEWDETAILS;
+pub const DFM_CMD_PASTELINK = DFM_CMD.PASTELINK;
+pub const DFM_CMD_PASTESPECIAL = DFM_CMD.PASTESPECIAL;
+pub const DFM_CMD_MODALPROP = DFM_CMD.MODALPROP;
+pub const DFM_CMD_RENAME = DFM_CMD.RENAME;
+
+pub const PID_IS = extern enum(i32) {
+    URL = 2,
+    NAME = 4,
+    WORKINGDIR = 5,
+    HOTKEY = 6,
+    SHOWCMD = 7,
+    ICONINDEX = 8,
+    ICONFILE = 9,
+    WHATSNEW = 10,
+    AUTHOR = 11,
+    DESCRIPTION = 12,
+    COMMENT = 13,
+    ROAMED = 15,
+};
+pub const PID_IS_URL = PID_IS.URL;
+pub const PID_IS_NAME = PID_IS.NAME;
+pub const PID_IS_WORKINGDIR = PID_IS.WORKINGDIR;
+pub const PID_IS_HOTKEY = PID_IS.HOTKEY;
+pub const PID_IS_SHOWCMD = PID_IS.SHOWCMD;
+pub const PID_IS_ICONINDEX = PID_IS.ICONINDEX;
+pub const PID_IS_ICONFILE = PID_IS.ICONFILE;
+pub const PID_IS_WHATSNEW = PID_IS.WHATSNEW;
+pub const PID_IS_AUTHOR = PID_IS.AUTHOR;
+pub const PID_IS_DESCRIPTION = PID_IS.DESCRIPTION;
+pub const PID_IS_COMMENT = PID_IS.COMMENT;
+pub const PID_IS_ROAMED = PID_IS.ROAMED;
+
+pub const PID_INTSITE = extern enum(i32) {
+    WHATSNEW = 2,
+    AUTHOR = 3,
+    LASTVISIT = 4,
+    LASTMOD = 5,
+    VISITCOUNT = 6,
+    DESCRIPTION = 7,
+    COMMENT = 8,
+    FLAGS = 9,
+    CONTENTLEN = 10,
+    CONTENTCODE = 11,
+    RECURSE = 12,
+    WATCH = 13,
+    SUBSCRIPTION = 14,
+    URL = 15,
+    TITLE = 16,
+    CODEPAGE = 18,
+    TRACKING = 19,
+    ICONINDEX = 20,
+    ICONFILE = 21,
+    ROAMED = 34,
+};
+pub const PID_INTSITE_WHATSNEW = PID_INTSITE.WHATSNEW;
+pub const PID_INTSITE_AUTHOR = PID_INTSITE.AUTHOR;
+pub const PID_INTSITE_LASTVISIT = PID_INTSITE.LASTVISIT;
+pub const PID_INTSITE_LASTMOD = PID_INTSITE.LASTMOD;
+pub const PID_INTSITE_VISITCOUNT = PID_INTSITE.VISITCOUNT;
+pub const PID_INTSITE_DESCRIPTION = PID_INTSITE.DESCRIPTION;
+pub const PID_INTSITE_COMMENT = PID_INTSITE.COMMENT;
+pub const PID_INTSITE_FLAGS = PID_INTSITE.FLAGS;
+pub const PID_INTSITE_CONTENTLEN = PID_INTSITE.CONTENTLEN;
+pub const PID_INTSITE_CONTENTCODE = PID_INTSITE.CONTENTCODE;
+pub const PID_INTSITE_RECURSE = PID_INTSITE.RECURSE;
+pub const PID_INTSITE_WATCH = PID_INTSITE.WATCH;
+pub const PID_INTSITE_SUBSCRIPTION = PID_INTSITE.SUBSCRIPTION;
+pub const PID_INTSITE_URL = PID_INTSITE.URL;
+pub const PID_INTSITE_TITLE = PID_INTSITE.TITLE;
+pub const PID_INTSITE_CODEPAGE = PID_INTSITE.CODEPAGE;
+pub const PID_INTSITE_TRACKING = PID_INTSITE.TRACKING;
+pub const PID_INTSITE_ICONINDEX = PID_INTSITE.ICONINDEX;
+pub const PID_INTSITE_ICONFILE = PID_INTSITE.ICONFILE;
+pub const PID_INTSITE_ROAMED = PID_INTSITE.ROAMED;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PIDISF_FLAGS = extern enum(i32) {
+    RECENTLYCHANGED = 1,
+    CACHEDSTICKY = 2,
+    CACHEIMAGES = 16,
+    FOLLOWALLLINKS = 32,
+    _,
+};
+pub const PIDISF_RECENTLYCHANGED = PIDISF_FLAGS.RECENTLYCHANGED;
+pub const PIDISF_CACHEDSTICKY = PIDISF_FLAGS.CACHEDSTICKY;
+pub const PIDISF_CACHEIMAGES = PIDISF_FLAGS.CACHEIMAGES;
+pub const PIDISF_FOLLOWALLLINKS = PIDISF_FLAGS.FOLLOWALLLINKS;
+
+pub const PIDISM_OPTIONS = extern enum(i32) {
+    GLOBAL = 0,
+    WATCH = 1,
+    DONTWATCH = 2,
+};
+pub const PIDISM_GLOBAL = PIDISM_OPTIONS.GLOBAL;
+pub const PIDISM_WATCH = PIDISM_OPTIONS.WATCH;
+pub const PIDISM_DONTWATCH = PIDISM_OPTIONS.DONTWATCH;
+
+pub const PIDISR_INFO = extern enum(i32) {
+    UP_TO_DATE = 0,
+    NEEDS_ADD = 1,
+    NEEDS_UPDATE = 2,
+    NEEDS_DELETE = 3,
+};
+pub const PIDISR_UP_TO_DATE = PIDISR_INFO.UP_TO_DATE;
+pub const PIDISR_NEEDS_ADD = PIDISR_INFO.NEEDS_ADD;
+pub const PIDISR_NEEDS_UPDATE = PIDISR_INFO.NEEDS_UPDATE;
+pub const PIDISR_NEEDS_DELETE = PIDISR_INFO.NEEDS_DELETE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SSF_MASK = extern enum(u32) {
+    SHOWALLOBJECTS = 1,
+    SHOWEXTENSIONS = 2,
+    HIDDENFILEEXTS = 4,
+    SERVERADMINUI = 4,
+    SHOWCOMPCOLOR = 8,
+    SORTCOLUMNS = 16,
+    SHOWSYSFILES = 32,
+    DOUBLECLICKINWEBVIEW = 128,
+    SHOWATTRIBCOL = 256,
+    DESKTOPHTML = 512,
+    WIN95CLASSIC = 1024,
+    DONTPRETTYPATH = 2048,
+    SHOWINFOTIP = 8192,
+    MAPNETDRVBUTTON = 4096,
+    NOCONFIRMRECYCLE = 32768,
+    HIDEICONS = 16384,
+    FILTER = 65536,
+    WEBVIEW = 131072,
+    SHOWSUPERHIDDEN = 262144,
+    SEPPROCESS = 524288,
+    NONETCRAWLING = 1048576,
+    STARTPANELON = 2097152,
+    SHOWSTARTPAGE = 4194304,
+    AUTOCHECKSELECT = 8388608,
+    ICONSONLY = 16777216,
+    SHOWTYPEOVERLAY = 33554432,
+    SHOWSTATUSBAR = 67108864,
+    _,
+};
+pub const SSF_SHOWALLOBJECTS = SSF_MASK.SHOWALLOBJECTS;
+pub const SSF_SHOWEXTENSIONS = SSF_MASK.SHOWEXTENSIONS;
+pub const SSF_HIDDENFILEEXTS = SSF_MASK.HIDDENFILEEXTS;
+pub const SSF_SERVERADMINUI = SSF_MASK.SERVERADMINUI;
+pub const SSF_SHOWCOMPCOLOR = SSF_MASK.SHOWCOMPCOLOR;
+pub const SSF_SORTCOLUMNS = SSF_MASK.SORTCOLUMNS;
+pub const SSF_SHOWSYSFILES = SSF_MASK.SHOWSYSFILES;
+pub const SSF_DOUBLECLICKINWEBVIEW = SSF_MASK.DOUBLECLICKINWEBVIEW;
+pub const SSF_SHOWATTRIBCOL = SSF_MASK.SHOWATTRIBCOL;
+pub const SSF_DESKTOPHTML = SSF_MASK.DESKTOPHTML;
+pub const SSF_WIN95CLASSIC = SSF_MASK.WIN95CLASSIC;
+pub const SSF_DONTPRETTYPATH = SSF_MASK.DONTPRETTYPATH;
+pub const SSF_SHOWINFOTIP = SSF_MASK.SHOWINFOTIP;
+pub const SSF_MAPNETDRVBUTTON = SSF_MASK.MAPNETDRVBUTTON;
+pub const SSF_NOCONFIRMRECYCLE = SSF_MASK.NOCONFIRMRECYCLE;
+pub const SSF_HIDEICONS = SSF_MASK.HIDEICONS;
+pub const SSF_FILTER = SSF_MASK.FILTER;
+pub const SSF_WEBVIEW = SSF_MASK.WEBVIEW;
+pub const SSF_SHOWSUPERHIDDEN = SSF_MASK.SHOWSUPERHIDDEN;
+pub const SSF_SEPPROCESS = SSF_MASK.SEPPROCESS;
+pub const SSF_NONETCRAWLING = SSF_MASK.NONETCRAWLING;
+pub const SSF_STARTPANELON = SSF_MASK.STARTPANELON;
+pub const SSF_SHOWSTARTPAGE = SSF_MASK.SHOWSTARTPAGE;
+pub const SSF_AUTOCHECKSELECT = SSF_MASK.AUTOCHECKSELECT;
+pub const SSF_ICONSONLY = SSF_MASK.ICONSONLY;
+pub const SSF_SHOWTYPEOVERLAY = SSF_MASK.SHOWTYPEOVERLAY;
+pub const SSF_SHOWSTATUSBAR = SSF_MASK.SHOWSTATUSBAR;
+
 // TODO: this type has a FreeFunc 'SHChangeNotification_Unlock', what can Zig do with this information?
 pub const ShFindChangeNotificationHandle = isize;
 
 pub const HDROP = ?*opaque{};
 
 pub const HPSXA = ?*opaque{};
+
+pub const SOFTDISTINFO = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    dwAdState: u32,
+    szTitle: PWSTR,
+    szAbstract: PWSTR,
+    szHREF: PWSTR,
+    dwInstalledVersionMS: u32,
+    dwInstalledVersionLS: u32,
+    dwUpdateVersionMS: u32,
+    dwUpdateVersionLS: u32,
+    dwAdvertisedVersionMS: u32,
+    dwAdvertisedVersionLS: u32,
+    dwReserved: u32,
+};
+
+pub const SUBCLASSPROC = fn(
+    hWnd: HWND,
+    uMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    uIdSubclass: usize,
+    dwRefData: usize,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DRAGINFOA = extern struct {
+    uSize: u32,
+    pt: POINT,
+    fNC: BOOL,
+    lpFileList: [*]u8,
+    grfKeyState: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DRAGINFOW = extern struct {
+    uSize: u32,
+    pt: POINT,
+    fNC: BOOL,
+    lpFileList: [*]u16,
+    grfKeyState: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const APPBARDATA = extern struct {
+    cbSize: u32,
+    hWnd: HWND,
+    uCallbackMessage: u32,
+    uEdge: u32,
+    rc: RECT,
+    lParam: LPARAM,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHFILEOPSTRUCTA = extern struct {
+    hwnd: HWND,
+    wFunc: u32,
+    pFrom: *i8,
+    pTo: *i8,
+    fFlags: u16,
+    fAnyOperationsAborted: BOOL,
+    hNameMappings: *c_void,
+    lpszProgressTitle: [*:0]const u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHFILEOPSTRUCTW = extern struct {
+    hwnd: HWND,
+    wFunc: u32,
+    pFrom: [*]const u16,
+    pTo: [*]const u16,
+    fFlags: u16,
+    fAnyOperationsAborted: BOOL,
+    hNameMappings: *c_void,
+    lpszProgressTitle: [*:0]const u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHNAMEMAPPINGA = extern struct {
+    pszOldPath: PSTR,
+    pszNewPath: PSTR,
+    cchOldPath: i32,
+    cchNewPath: i32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHNAMEMAPPINGW = extern struct {
+    pszOldPath: PWSTR,
+    pszNewPath: PWSTR,
+    cchOldPath: i32,
+    cchNewPath: i32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHELLEXECUTEINFOA = extern struct {
+    cbSize: u32,
+    fMask: u32,
+    hwnd: HWND,
+    lpVerb: [*:0]const u8,
+    lpFile: [*:0]const u8,
+    lpParameters: [*:0]const u8,
+    lpDirectory: [*:0]const u8,
+    nShow: i32,
+    hInstApp: HINSTANCE,
+    lpIDList: *c_void,
+    lpClass: [*:0]const u8,
+    hkeyClass: HKEY,
+    dwHotKey: u32,
+    Anonymous: _Anonymous_e__Union,
+    hProcess: HANDLE,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHELLEXECUTEINFOW = extern struct {
+    cbSize: u32,
+    fMask: u32,
+    hwnd: HWND,
+    lpVerb: [*:0]const u16,
+    lpFile: [*:0]const u16,
+    lpParameters: [*:0]const u16,
+    lpDirectory: [*:0]const u16,
+    nShow: i32,
+    hInstApp: HINSTANCE,
+    lpIDList: *c_void,
+    lpClass: [*:0]const u16,
+    hkeyClass: HKEY,
+    dwHotKey: u32,
+    Anonymous: _Anonymous_e__Union,
+    hProcess: HANDLE,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHCREATEPROCESSINFOW = extern struct {
+    cbSize: u32,
+    fMask: u32,
+    hwnd: HWND,
+    pszFile: [*:0]const u16,
+    pszParameters: [*:0]const u16,
+    pszCurrentDirectory: [*:0]const u16,
+    hUserToken: HANDLE,
+    lpProcessAttributes: *SECURITY_ATTRIBUTES,
+    lpThreadAttributes: *SECURITY_ATTRIBUTES,
+    bInheritHandles: BOOL,
+    dwCreationFlags: u32,
+    lpStartupInfo: *STARTUPINFOW,
+    lpProcessInformation: *PROCESS_INFORMATION,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const ASSOCIATIONELEMENT = extern struct {
+    ac: ASSOCCLASS,
+    hkClass: HKEY,
+    pszClass: [*:0]const u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHQUERYRBINFO = extern struct {
+    cbSize: u32,
+    i64Size: i64,
+    i64NumItems: i64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const NOTIFYICONDATAA = extern struct {
+    cbSize: u32,
+    hWnd: HWND,
+    uID: u32,
+    uFlags: u32,
+    uCallbackMessage: u32,
+    hIcon: HICON,
+    szTip: [128]CHAR,
+    dwState: u32,
+    dwStateMask: u32,
+    szInfo: [256]CHAR,
+    Anonymous: _Anonymous_e__Union,
+    szInfoTitle: [64]CHAR,
+    dwInfoFlags: u32,
+    guidItem: Guid,
+    hBalloonIcon: HICON,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const NOTIFYICONDATAW = extern struct {
+    cbSize: u32,
+    hWnd: HWND,
+    uID: u32,
+    uFlags: u32,
+    uCallbackMessage: u32,
+    hIcon: HICON,
+    szTip: [128]u16,
+    dwState: u32,
+    dwStateMask: u32,
+    szInfo: [256]u16,
+    Anonymous: _Anonymous_e__Union,
+    szInfoTitle: [64]u16,
+    dwInfoFlags: u32,
+    guidItem: Guid,
+    hBalloonIcon: HICON,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const NOTIFYICONIDENTIFIER = extern struct {
+    cbSize: u32,
+    hWnd: HWND,
+    uID: u32,
+    guidItem: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHFILEINFOA = extern struct {
+    hIcon: HICON,
+    iIcon: i32,
+    dwAttributes: u32,
+    szDisplayName: [260]CHAR,
+    szTypeName: [80]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHFILEINFOW = extern struct {
+    hIcon: HICON,
+    iIcon: i32,
+    dwAttributes: u32,
+    szDisplayName: [260]u16,
+    szTypeName: [80]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHSTOCKICONINFO = extern struct {
+    cbSize: u32,
+    hIcon: HICON,
+    iSysImageIndex: i32,
+    iIcon: i32,
+    szPath: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const OPEN_PRINTER_PROPS_INFOA = extern struct {
+    dwSize: u32,
+    pszSheetName: PSTR,
+    uSheetIndex: u32,
+    dwFlags: u32,
+    bModal: BOOL,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const OPEN_PRINTER_PROPS_INFOW = extern struct {
+    dwSize: u32,
+    pszSheetName: PWSTR,
+    uSheetIndex: u32,
+    dwFlags: u32,
+    bModal: BOOL,
+};
+
+}, else => struct { } };
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INotifyReplica_Value = @import("../zig.zig").Guid.initString("99180163-da16-101a-935c-444553540000");
+pub const IID_INotifyReplica = &IID_INotifyReplica_Value;
+pub const INotifyReplica = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        YouAreAReplica: fn(
+            self: *const INotifyReplica,
+            ulcOtherReplicas: u32,
+            rgpmkOtherReplicas: [*]*IMoniker,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INotifyReplica_YouAreAReplica(self: *const T, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]*IMoniker) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INotifyReplica.VTable, self.vtable).YouAreAReplica(@ptrCast(*const INotifyReplica, self), ulcOtherReplicas, rgpmkOtherReplicas);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const APPCATEGORYINFO = extern struct {
+    Locale: u32,
+    pszDescription: PWSTR,
+    AppCategoryId: Guid,
+};
+
+pub const APPCATEGORYINFOLIST = extern struct {
+    cCategory: u32,
+    pCategoryInfo: *APPCATEGORYINFO,
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IInitializeWithFile_Value = @import("../zig.zig").Guid.initString("b7d14566-0509-4cce-a71f-0a554233bd9b");
+pub const IID_IInitializeWithFile = &IID_IInitializeWithFile_Value;
+pub const IInitializeWithFile = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: fn(
+            self: *const IInitializeWithFile,
+            pszFilePath: [*:0]const u16,
+            grfMode: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IInitializeWithFile_Initialize(self: *const T, pszFilePath: [*:0]const u16, grfMode: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IInitializeWithFile.VTable, self.vtable).Initialize(@ptrCast(*const IInitializeWithFile, self), pszFilePath, grfMode);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IInitializeWithStream_Value = @import("../zig.zig").Guid.initString("b824b49d-22ac-4161-ac8a-9916e8fa3f7f");
+pub const IID_IInitializeWithStream = &IID_IInitializeWithStream_Value;
+pub const IInitializeWithStream = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: fn(
+            self: *const IInitializeWithStream,
+            pstream: *IStream,
+            grfMode: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IInitializeWithStream_Initialize(self: *const T, pstream: *IStream, grfMode: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IInitializeWithStream.VTable, self.vtable).Initialize(@ptrCast(*const IInitializeWithStream, self), pstream, grfMode);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_INamedPropertyStore_Value = @import("../zig.zig").Guid.initString("71604b0f-97b0-4764-8577-2f13e98a1422");
+pub const IID_INamedPropertyStore = &IID_INamedPropertyStore_Value;
+pub const INamedPropertyStore = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetNamedValue: fn(
+            self: *const INamedPropertyStore,
+            pszName: [*:0]const u16,
+            ppropvar: *PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNamedValue: fn(
+            self: *const INamedPropertyStore,
+            pszName: [*:0]const u16,
+            propvar: *const PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNameCount: fn(
+            self: *const INamedPropertyStore,
+            pdwCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNameAt: fn(
+            self: *const INamedPropertyStore,
+            iProp: u32,
+            pbstrName: *BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INamedPropertyStore_GetNamedValue(self: *const T, pszName: [*:0]const u16, ppropvar: *PROPVARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNamedValue(@ptrCast(*const INamedPropertyStore, self), pszName, ppropvar);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INamedPropertyStore_SetNamedValue(self: *const T, pszName: [*:0]const u16, propvar: *const PROPVARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).SetNamedValue(@ptrCast(*const INamedPropertyStore, self), pszName, propvar);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INamedPropertyStore_GetNameCount(self: *const T, pdwCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNameCount(@ptrCast(*const INamedPropertyStore, self), pdwCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INamedPropertyStore_GetNameAt(self: *const T, iProp: u32, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNameAt(@ptrCast(*const INamedPropertyStore, self), iProp, pbstrName);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IObjectWithPropertyKey_Value = @import("../zig.zig").Guid.initString("fc0ca0a7-c316-4fd2-9031-3e628e6d4f23");
+pub const IID_IObjectWithPropertyKey = &IID_IObjectWithPropertyKey_Value;
+pub const IObjectWithPropertyKey = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetPropertyKey: fn(
+            self: *const IObjectWithPropertyKey,
+            key: *const PROPERTYKEY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyKey: fn(
+            self: *const IObjectWithPropertyKey,
+            pkey: *PROPERTYKEY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IObjectWithPropertyKey_SetPropertyKey(self: *const T, key: *const PROPERTYKEY) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IObjectWithPropertyKey.VTable, self.vtable).SetPropertyKey(@ptrCast(*const IObjectWithPropertyKey, self), key);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IObjectWithPropertyKey_GetPropertyKey(self: *const T, pkey: *PROPERTYKEY) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IObjectWithPropertyKey.VTable, self.vtable).GetPropertyKey(@ptrCast(*const IObjectWithPropertyKey, self), pkey);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IDelayedPropertyStoreFactory_Value = @import("../zig.zig").Guid.initString("40d4577f-e237-4bdb-bd69-58f089431b6a");
+pub const IID_IDelayedPropertyStoreFactory = &IID_IDelayedPropertyStoreFactory_Value;
+pub const IDelayedPropertyStoreFactory = extern struct {
+    pub const VTable = extern struct {
+        base: IPropertyStoreFactory.VTable,
+        GetDelayedPropertyStore: fn(
+            self: *const IDelayedPropertyStoreFactory,
+            flags: GETPROPERTYSTOREFLAGS,
+            dwStoreId: u32,
+            riid: *const Guid,
+            ppv: **c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IPropertyStoreFactory.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDelayedPropertyStoreFactory_GetDelayedPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, dwStoreId: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDelayedPropertyStoreFactory.VTable, self.vtable).GetDelayedPropertyStore(@ptrCast(*const IDelayedPropertyStoreFactory, self), flags, dwStoreId, riid, ppv);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IPersistSerializedPropStorage_Value = @import("../zig.zig").Guid.initString("e318ad57-0aa0-450f-aca5-6fab7103d917");
+pub const IID_IPersistSerializedPropStorage = &IID_IPersistSerializedPropStorage_Value;
+pub const IPersistSerializedPropStorage = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetFlags: fn(
+            self: *const IPersistSerializedPropStorage,
+            flags: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPropertyStorage: fn(
+            self: *const IPersistSerializedPropStorage,
+            // TODO: what to do with BytesParamIndex 1?
+            psps: *SERIALIZEDPROPSTORAGE,
+            cb: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyStorage: fn(
+            self: *const IPersistSerializedPropStorage,
+            ppsps: **SERIALIZEDPROPSTORAGE,
+            pcb: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPersistSerializedPropStorage_SetFlags(self: *const T, flags: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).SetFlags(@ptrCast(*const IPersistSerializedPropStorage, self), flags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPersistSerializedPropStorage_SetPropertyStorage(self: *const T, psps: *SERIALIZEDPROPSTORAGE, cb: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).SetPropertyStorage(@ptrCast(*const IPersistSerializedPropStorage, self), psps, cb);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPersistSerializedPropStorage_GetPropertyStorage(self: *const T, ppsps: **SERIALIZEDPROPSTORAGE, pcb: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).GetPropertyStorage(@ptrCast(*const IPersistSerializedPropStorage, self), ppsps, pcb);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IPersistSerializedPropStorage2_Value = @import("../zig.zig").Guid.initString("77effa68-4f98-4366-ba72-573b3d880571");
+pub const IID_IPersistSerializedPropStorage2 = &IID_IPersistSerializedPropStorage2_Value;
+pub const IPersistSerializedPropStorage2 = extern struct {
+    pub const VTable = extern struct {
+        base: IPersistSerializedPropStorage.VTable,
+        GetPropertyStorageSize: fn(
+            self: *const IPersistSerializedPropStorage2,
+            pcb: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyStorageBuffer: fn(
+            self: *const IPersistSerializedPropStorage2,
+            // TODO: what to do with BytesParamIndex 1?
+            psps: *SERIALIZEDPROPSTORAGE,
+            cb: u32,
+            pcbWritten: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IPersistSerializedPropStorage.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPersistSerializedPropStorage2_GetPropertyStorageSize(self: *const T, pcb: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPersistSerializedPropStorage2.VTable, self.vtable).GetPropertyStorageSize(@ptrCast(*const IPersistSerializedPropStorage2, self), pcb);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPersistSerializedPropStorage2_GetPropertyStorageBuffer(self: *const T, psps: *SERIALIZEDPROPSTORAGE, cb: u32, pcbWritten: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPersistSerializedPropStorage2.VTable, self.vtable).GetPropertyStorageBuffer(@ptrCast(*const IPersistSerializedPropStorage2, self), psps, cb, pcbWritten);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ICreateObject_Value = @import("../zig.zig").Guid.initString("75121952-e0d0-43e5-9380-1d80483acf72");
+pub const IID_ICreateObject = &IID_ICreateObject_Value;
+pub const ICreateObject = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateObject: fn(
+            self: *const ICreateObject,
+            clsid: *const Guid,
+            pUnkOuter: *IUnknown,
+            riid: *const Guid,
+            ppv: **c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICreateObject_CreateObject(self: *const T, clsid: *const Guid, pUnkOuter: *IUnknown, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICreateObject.VTable, self.vtable).CreateObject(@ptrCast(*const ICreateObject, self), clsid, pUnkOuter, riid, ppv);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const HELPINFO = extern struct {
+    cbSize: u32,
+    iContextType: i32,
+    iCtrlId: i32,
+    hItemHandle: HANDLE,
+    dwContextId: usize,
+    MousePos: POINT,
+};
+
+pub const MULTIKEYHELPA = extern struct {
+    mkSize: u32,
+    mkKeylist: CHAR,
+    szKeyphrase: [1]CHAR,
+};
+
+pub const MULTIKEYHELPW = extern struct {
+    mkSize: u32,
+    mkKeylist: u16,
+    szKeyphrase: [1]u16,
+};
+
+pub const HELPWININFOA = extern struct {
+    wStructSize: i32,
+    x: i32,
+    y: i32,
+    dx: i32,
+    dy: i32,
+    wMax: i32,
+    rgchMember: [2]CHAR,
+};
+
+pub const HELPWININFOW = extern struct {
+    wStructSize: i32,
+    x: i32,
+    y: i32,
+    dx: i32,
+    dy: i32,
+    wMax: i32,
+    rgchMember: [2]u16,
+};
+
+pub const ShellWindowTypeConstants = extern enum(i32) {
+    EXPLORER = 0,
+    BROWSER = 1,
+    @"3RDPARTY" = 2,
+    CALLBACK = 4,
+    DESKTOP = 8,
+};
+pub const SWC_EXPLORER = ShellWindowTypeConstants.EXPLORER;
+pub const SWC_BROWSER = ShellWindowTypeConstants.BROWSER;
+pub const SWC_3RDPARTY = ShellWindowTypeConstants.@"3RDPARTY";
+pub const SWC_CALLBACK = ShellWindowTypeConstants.CALLBACK;
+pub const SWC_DESKTOP = ShellWindowTypeConstants.DESKTOP;
+
+pub const ShellWindowFindWindowOptions = extern enum(i32) {
+    NEEDDISPATCH = 1,
+    INCLUDEPENDING = 2,
+    COOKIEPASSED = 4,
+};
+pub const SWFO_NEEDDISPATCH = ShellWindowFindWindowOptions.NEEDDISPATCH;
+pub const SWFO_INCLUDEPENDING = ShellWindowFindWindowOptions.INCLUDEPENDING;
+pub const SWFO_COOKIEPASSED = ShellWindowFindWindowOptions.COOKIEPASSED;
+
+const IID_IShellWindows_Value = @import("../zig.zig").Guid.initString("85cb6900-4d95-11cf-960c-0080c7f4ee85");
+pub const IID_IShellWindows = &IID_IShellWindows_Value;
+pub const IShellWindows = extern struct {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: fn(
+            self: *const IShellWindows,
+            Count: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Item: fn(
+            self: *const IShellWindows,
+            index: VARIANT,
+            Folder: **IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        _NewEnum: fn(
+            self: *const IShellWindows,
+            ppunk: **IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Register: fn(
+            self: *const IShellWindows,
+            pid: *IDispatch,
+            hwnd: i32,
+            swClass: i32,
+            plCookie: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterPending: fn(
+            self: *const IShellWindows,
+            lThreadId: i32,
+            pvarloc: *VARIANT,
+            pvarlocRoot: *VARIANT,
+            swClass: i32,
+            plCookie: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Revoke: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnNavigate: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+            pvarLoc: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnActivated: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+            fActive: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindWindowSW: fn(
+            self: *const IShellWindows,
+            pvarLoc: *VARIANT,
+            pvarLocRoot: *VARIANT,
+            swClass: i32,
+            phwnd: *i32,
+            swfwOptions: i32,
+            ppdispOut: **IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnCreated: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+            punk: *IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessAttachDetach: fn(
+            self: *const IShellWindows,
+            fAttach: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDispatch.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).get_Count(@ptrCast(*const IShellWindows, self), Count);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_Item(self: *const T, index: VARIANT, Folder: **IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).Item(@ptrCast(*const IShellWindows, self), index, Folder);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows__NewEnum(self: *const T, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable)._NewEnum(@ptrCast(*const IShellWindows, self), ppunk);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_Register(self: *const T, pid: *IDispatch, hwnd: i32, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).Register(@ptrCast(*const IShellWindows, self), pid, hwnd, swClass, plCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_RegisterPending(self: *const T, lThreadId: i32, pvarloc: *VARIANT, pvarlocRoot: *VARIANT, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).RegisterPending(@ptrCast(*const IShellWindows, self), lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_Revoke(self: *const T, lCookie: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).Revoke(@ptrCast(*const IShellWindows, self), lCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_OnNavigate(self: *const T, lCookie: i32, pvarLoc: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnNavigate(@ptrCast(*const IShellWindows, self), lCookie, pvarLoc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_OnActivated(self: *const T, lCookie: i32, fActive: i16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnActivated(@ptrCast(*const IShellWindows, self), lCookie, fActive);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_FindWindowSW(self: *const T, pvarLoc: *VARIANT, pvarLocRoot: *VARIANT, swClass: i32, phwnd: *i32, swfwOptions: i32, ppdispOut: **IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).FindWindowSW(@ptrCast(*const IShellWindows, self), pvarLoc, pvarLocRoot, swClass, phwnd, swfwOptions, ppdispOut);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_OnCreated(self: *const T, lCookie: i32, punk: *IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnCreated(@ptrCast(*const IShellWindows, self), lCookie, punk);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_ProcessAttachDetach(self: *const T, fAttach: i16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).ProcessAttachDetach(@ptrCast(*const IShellWindows, self), fAttach);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const SERIALIZEDPROPERTYVALUE = extern struct {
+    dwType: u32,
+    rgb: [1]u8,
+};
 
 const CLSID_QueryCancelAutoPlay_Value = @import("../zig.zig").Guid.initString("331f1768-05a9-4ddd-b86e-dae34ddc998a");
 pub const CLSID_QueryCancelAutoPlay = &CLSID_QueryCancelAutoPlay_Value;
@@ -1542,7 +3271,7 @@ pub const STRRET_CSTR = STRRET_TYPE.CSTR;
 
 pub const STRRET = extern struct {
     uType: u32,
-    Anonymous: STRRET._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -20015,121 +21744,6 @@ pub const SHELL_UI_COMPONENT_TASKBARS = SHELL_UI_COMPONENT.TASKBARS;
 pub const SHELL_UI_COMPONENT_NOTIFICATIONAREA = SHELL_UI_COMPONENT.NOTIFICATIONAREA;
 pub const SHELL_UI_COMPONENT_DESKBAND = SHELL_UI_COMPONENT.DESKBAND;
 
-pub const DRAGINFOA = extern struct {
-    uSize: u32,
-    pt: POINT,
-    fNC: BOOL,
-    lpFileList: [*]u8,
-    grfKeyState: u32,
-};
-
-pub const DRAGINFOW = extern struct {
-    uSize: u32,
-    pt: POINT,
-    fNC: BOOL,
-    lpFileList: [*]u16,
-    grfKeyState: u32,
-};
-
-pub const APPBARDATA = extern struct {
-    cbSize: u32,
-    hWnd: HWND,
-    uCallbackMessage: u32,
-    uEdge: u32,
-    rc: RECT,
-    lParam: LPARAM,
-};
-
-pub const SHFILEOPSTRUCTA = extern struct {
-    hwnd: HWND,
-    wFunc: u32,
-    pFrom: *i8,
-    pTo: *i8,
-    fFlags: u16,
-    fAnyOperationsAborted: BOOL,
-    hNameMappings: *c_void,
-    lpszProgressTitle: [*:0]const u8,
-};
-
-pub const SHFILEOPSTRUCTW = extern struct {
-    hwnd: HWND,
-    wFunc: u32,
-    pFrom: [*]const u16,
-    pTo: [*]const u16,
-    fFlags: u16,
-    fAnyOperationsAborted: BOOL,
-    hNameMappings: *c_void,
-    lpszProgressTitle: [*:0]const u16,
-};
-
-pub const SHNAMEMAPPINGA = extern struct {
-    pszOldPath: PSTR,
-    pszNewPath: PSTR,
-    cchOldPath: i32,
-    cchNewPath: i32,
-};
-
-pub const SHNAMEMAPPINGW = extern struct {
-    pszOldPath: PWSTR,
-    pszNewPath: PWSTR,
-    cchOldPath: i32,
-    cchNewPath: i32,
-};
-
-pub const SHELLEXECUTEINFOA = extern struct {
-    cbSize: u32,
-    fMask: u32,
-    hwnd: HWND,
-    lpVerb: [*:0]const u8,
-    lpFile: [*:0]const u8,
-    lpParameters: [*:0]const u8,
-    lpDirectory: [*:0]const u8,
-    nShow: i32,
-    hInstApp: HINSTANCE,
-    lpIDList: *c_void,
-    lpClass: [*:0]const u8,
-    hkeyClass: HKEY,
-    dwHotKey: u32,
-    Anonymous: SHELLEXECUTEINFOA._Anonymous_e__Union,
-    hProcess: HANDLE,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const SHELLEXECUTEINFOW = extern struct {
-    cbSize: u32,
-    fMask: u32,
-    hwnd: HWND,
-    lpVerb: [*:0]const u16,
-    lpFile: [*:0]const u16,
-    lpParameters: [*:0]const u16,
-    lpDirectory: [*:0]const u16,
-    nShow: i32,
-    hInstApp: HINSTANCE,
-    lpIDList: *c_void,
-    lpClass: [*:0]const u16,
-    hkeyClass: HKEY,
-    dwHotKey: u32,
-    Anonymous: SHELLEXECUTEINFOW._Anonymous_e__Union,
-    hProcess: HANDLE,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const SHCREATEPROCESSINFOW = extern struct {
-    cbSize: u32,
-    fMask: u32,
-    hwnd: HWND,
-    pszFile: [*:0]const u16,
-    pszParameters: [*:0]const u16,
-    pszCurrentDirectory: [*:0]const u16,
-    hUserToken: HANDLE,
-    lpProcessAttributes: *SECURITY_ATTRIBUTES,
-    lpThreadAttributes: *SECURITY_ATTRIBUTES,
-    bInheritHandles: BOOL,
-    dwCreationFlags: u32,
-    lpStartupInfo: *STARTUPINFOW,
-    lpProcessInformation: *PROCESS_INFORMATION,
-};
-
 pub const ASSOCCLASS = extern enum(i32) {
     SHELL_KEY = 0,
     PROGID_KEY = 1,
@@ -20157,18 +21771,6 @@ pub const ASSOCCLASS_STAR = ASSOCCLASS.STAR;
 pub const ASSOCCLASS_FIXED_PROGID_STR = ASSOCCLASS.FIXED_PROGID_STR;
 pub const ASSOCCLASS_PROTOCOL_STR = ASSOCCLASS.PROTOCOL_STR;
 
-pub const ASSOCIATIONELEMENT = extern struct {
-    ac: ASSOCCLASS,
-    hkClass: HKEY,
-    pszClass: [*:0]const u16,
-};
-
-pub const SHQUERYRBINFO = extern struct {
-    cbSize: u32,
-    i64Size: i64,
-    i64NumItems: i64,
-};
-
 pub const QUERY_USER_NOTIFICATION_STATE = extern enum(i32) {
     NOT_PRESENT = 1,
     BUSY = 2,
@@ -20185,75 +21787,6 @@ pub const QUNS_PRESENTATION_MODE = QUERY_USER_NOTIFICATION_STATE.PRESENTATION_MO
 pub const QUNS_ACCEPTS_NOTIFICATIONS = QUERY_USER_NOTIFICATION_STATE.ACCEPTS_NOTIFICATIONS;
 pub const QUNS_QUIET_TIME = QUERY_USER_NOTIFICATION_STATE.QUIET_TIME;
 pub const QUNS_APP = QUERY_USER_NOTIFICATION_STATE.APP;
-
-pub const NOTIFYICONDATAA = extern struct {
-    cbSize: u32,
-    hWnd: HWND,
-    uID: u32,
-    uFlags: u32,
-    uCallbackMessage: u32,
-    hIcon: HICON,
-    szTip: [128]CHAR,
-    dwState: u32,
-    dwStateMask: u32,
-    szInfo: [256]CHAR,
-    Anonymous: NOTIFYICONDATAA._Anonymous_e__Union,
-    szInfoTitle: [64]CHAR,
-    dwInfoFlags: u32,
-    guidItem: Guid,
-    hBalloonIcon: HICON,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const NOTIFYICONDATAW = extern struct {
-    cbSize: u32,
-    hWnd: HWND,
-    uID: u32,
-    uFlags: u32,
-    uCallbackMessage: u32,
-    hIcon: HICON,
-    szTip: [128]u16,
-    dwState: u32,
-    dwStateMask: u32,
-    szInfo: [256]u16,
-    Anonymous: NOTIFYICONDATAW._Anonymous_e__Union,
-    szInfoTitle: [64]u16,
-    dwInfoFlags: u32,
-    guidItem: Guid,
-    hBalloonIcon: HICON,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const NOTIFYICONIDENTIFIER = extern struct {
-    cbSize: u32,
-    hWnd: HWND,
-    uID: u32,
-    guidItem: Guid,
-};
-
-pub const SHFILEINFOA = extern struct {
-    hIcon: HICON,
-    iIcon: i32,
-    dwAttributes: u32,
-    szDisplayName: [260]CHAR,
-    szTypeName: [80]CHAR,
-};
-
-pub const SHFILEINFOW = extern struct {
-    hIcon: HICON,
-    iIcon: i32,
-    dwAttributes: u32,
-    szDisplayName: [260]u16,
-    szTypeName: [80]u16,
-};
-
-pub const SHSTOCKICONINFO = extern struct {
-    cbSize: u32,
-    hIcon: HICON,
-    iSysImageIndex: i32,
-    iIcon: i32,
-    szPath: [260]u16,
-};
 
 pub const SHSTOCKICONID = extern enum(i32) {
     DOCNOASSOC = 0,
@@ -20445,22 +21978,6 @@ pub const SIID_MEDIABDR = SHSTOCKICONID.MEDIABDR;
 pub const SIID_MEDIABDRE = SHSTOCKICONID.MEDIABDRE;
 pub const SIID_CLUSTEREDDRIVE = SHSTOCKICONID.CLUSTEREDDRIVE;
 pub const SIID_MAX_ICONS = SHSTOCKICONID.MAX_ICONS;
-
-pub const OPEN_PRINTER_PROPS_INFOA = extern struct {
-    dwSize: u32,
-    pszSheetName: PSTR,
-    uSheetIndex: u32,
-    dwFlags: u32,
-    bModal: BOOL,
-};
-
-pub const OPEN_PRINTER_PROPS_INFOW = extern struct {
-    dwSize: u32,
-    pszSheetName: PWSTR,
-    uSheetIndex: u32,
-    dwFlags: u32,
-    bModal: BOOL,
-};
 
 pub const PFNCANSHAREFOLDERW = fn(
     pszPath: [*:0]const u16,
@@ -27511,18 +29028,10 @@ pub const PAPPSTATE_CHANGE_ROUTINE = fn(
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const _APPSTATE_REGISTRATION = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const PAPPCONSTRAIN_CHANGE_ROUTINE = fn(
     Constrained: u8,
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const _APPCONSTRAIN_REGISTRATION = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const NC_ADDRESS = extern struct {
     pAddrInfo: *NET_ADDRESS_INFO,
@@ -27530,1107 +29039,294 @@ pub const NC_ADDRESS = extern struct {
     PrefixLength: u8,
 };
 
-pub const SOFTDISTINFO = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    dwAdState: u32,
-    szTitle: PWSTR,
-    szAbstract: PWSTR,
-    szHREF: PWSTR,
-    dwInstalledVersionMS: u32,
-    dwInstalledVersionLS: u32,
-    dwUpdateVersionMS: u32,
-    dwUpdateVersionLS: u32,
-    dwAdvertisedVersionMS: u32,
-    dwAdvertisedVersionLS: u32,
-    dwReserved: u32,
-};
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHGFI_FLAGS = extern enum(i32) {
-    ADDOVERLAYS = 32,
-    ATTR_SPECIFIED = 131072,
-    ATTRIBUTES = 2048,
-    DISPLAYNAME = 512,
-    EXETYPE = 8192,
-    ICON = 256,
-    ICONLOCATION = 4096,
-    LARGEICON = 0,
-    LINKOVERLAY = 32768,
-    OPENICON = 2,
-    OVERLAYINDEX = 64,
-    PIDL = 8,
-    SELECTED = 65536,
-    SHELLICONSIZE = 4,
-    SMALLICON = 1,
-    SYSICONINDEX = 16384,
-    TYPENAME = 1024,
-    USEFILEATTRIBUTES = 16,
-    _,
-};
-pub const SHGFI_ADDOVERLAYS = SHGFI_FLAGS.ADDOVERLAYS;
-pub const SHGFI_ATTR_SPECIFIED = SHGFI_FLAGS.ATTR_SPECIFIED;
-pub const SHGFI_ATTRIBUTES = SHGFI_FLAGS.ATTRIBUTES;
-pub const SHGFI_DISPLAYNAME = SHGFI_FLAGS.DISPLAYNAME;
-pub const SHGFI_EXETYPE = SHGFI_FLAGS.EXETYPE;
-pub const SHGFI_ICON = SHGFI_FLAGS.ICON;
-pub const SHGFI_ICONLOCATION = SHGFI_FLAGS.ICONLOCATION;
-pub const SHGFI_LARGEICON = SHGFI_FLAGS.LARGEICON;
-pub const SHGFI_LINKOVERLAY = SHGFI_FLAGS.LINKOVERLAY;
-pub const SHGFI_OPENICON = SHGFI_FLAGS.OPENICON;
-pub const SHGFI_OVERLAYINDEX = SHGFI_FLAGS.OVERLAYINDEX;
-pub const SHGFI_PIDL = SHGFI_FLAGS.PIDL;
-pub const SHGFI_SELECTED = SHGFI_FLAGS.SELECTED;
-pub const SHGFI_SHELLICONSIZE = SHGFI_FLAGS.SHELLICONSIZE;
-pub const SHGFI_SMALLICON = SHGFI_FLAGS.SMALLICON;
-pub const SHGFI_SYSICONINDEX = SHGFI_FLAGS.SYSICONINDEX;
-pub const SHGFI_TYPENAME = SHGFI_FLAGS.TYPENAME;
-pub const SHGFI_USEFILEATTRIBUTES = SHGFI_FLAGS.USEFILEATTRIBUTES;
+//--------------------------------------------------------------------------------
+// Section: Functions (701)
+//--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHCNE_ID = extern enum(u32) {
-    RENAMEITEM = 1,
-    CREATE = 2,
-    DELETE = 4,
-    MKDIR = 8,
-    RMDIR = 16,
-    MEDIAINSERTED = 32,
-    MEDIAREMOVED = 64,
-    DRIVEREMOVED = 128,
-    DRIVEADD = 256,
-    NETSHARE = 512,
-    NETUNSHARE = 1024,
-    ATTRIBUTES = 2048,
-    UPDATEDIR = 4096,
-    UPDATEITEM = 8192,
-    SERVERDISCONNECT = 16384,
-    UPDATEIMAGE = 32768,
-    DRIVEADDGUI = 65536,
-    RENAMEFOLDER = 131072,
-    FREESPACE = 262144,
-    EXTENDED_EVENT = 67108864,
-    ASSOCCHANGED = 134217728,
-    DISKEVENTS = 145439,
-    GLOBALEVENTS = 201687520,
-    ALLEVENTS = 2147483647,
-    INTERRUPT = 2147483648,
-    _,
-};
-pub const SHCNE_RENAMEITEM = SHCNE_ID.RENAMEITEM;
-pub const SHCNE_CREATE = SHCNE_ID.CREATE;
-pub const SHCNE_DELETE = SHCNE_ID.DELETE;
-pub const SHCNE_MKDIR = SHCNE_ID.MKDIR;
-pub const SHCNE_RMDIR = SHCNE_ID.RMDIR;
-pub const SHCNE_MEDIAINSERTED = SHCNE_ID.MEDIAINSERTED;
-pub const SHCNE_MEDIAREMOVED = SHCNE_ID.MEDIAREMOVED;
-pub const SHCNE_DRIVEREMOVED = SHCNE_ID.DRIVEREMOVED;
-pub const SHCNE_DRIVEADD = SHCNE_ID.DRIVEADD;
-pub const SHCNE_NETSHARE = SHCNE_ID.NETSHARE;
-pub const SHCNE_NETUNSHARE = SHCNE_ID.NETUNSHARE;
-pub const SHCNE_ATTRIBUTES = SHCNE_ID.ATTRIBUTES;
-pub const SHCNE_UPDATEDIR = SHCNE_ID.UPDATEDIR;
-pub const SHCNE_UPDATEITEM = SHCNE_ID.UPDATEITEM;
-pub const SHCNE_SERVERDISCONNECT = SHCNE_ID.SERVERDISCONNECT;
-pub const SHCNE_UPDATEIMAGE = SHCNE_ID.UPDATEIMAGE;
-pub const SHCNE_DRIVEADDGUI = SHCNE_ID.DRIVEADDGUI;
-pub const SHCNE_RENAMEFOLDER = SHCNE_ID.RENAMEFOLDER;
-pub const SHCNE_FREESPACE = SHCNE_ID.FREESPACE;
-pub const SHCNE_EXTENDED_EVENT = SHCNE_ID.EXTENDED_EVENT;
-pub const SHCNE_ASSOCCHANGED = SHCNE_ID.ASSOCCHANGED;
-pub const SHCNE_DISKEVENTS = SHCNE_ID.DISKEVENTS;
-pub const SHCNE_GLOBALEVENTS = SHCNE_ID.GLOBALEVENTS;
-pub const SHCNE_ALLEVENTS = SHCNE_ID.ALLEVENTS;
-pub const SHCNE_INTERRUPT = SHCNE_ID.INTERRUPT;
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "SHLWAPI" fn SHFormatDateTimeA(
+    pft: *const FILETIME,
+    pdwFlags: ?*u32,
+    pszBuf: [*:0]u8,
+    cchBuf: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHCNRF_SOURCE = extern enum(i32) {
-    InterruptLevel = 1,
-    ShellLevel = 2,
-    RecursiveInterrupt = 4096,
-    NewDelivery = 32768,
-    _,
-};
-pub const SHCNRF_InterruptLevel = SHCNRF_SOURCE.InterruptLevel;
-pub const SHCNRF_ShellLevel = SHCNRF_SOURCE.ShellLevel;
-pub const SHCNRF_RecursiveInterrupt = SHCNRF_SOURCE.RecursiveInterrupt;
-pub const SHCNRF_NewDelivery = SHCNRF_SOURCE.NewDelivery;
+}, else => struct { } };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHCNF_FLAGS = extern enum(u32) {
-    IDLIST = 0,
-    PATHA = 1,
-    PRINTERA = 2,
-    DWORD = 3,
-    PATHW = 5,
-    PRINTERW = 6,
-    TYPE = 255,
-    FLUSH = 4096,
-    FLUSHNOWAIT = 12288,
-    NOTIFYRECURSIVE = 65536,
-    PATH = 5,
-    PRINTER = 6,
-    _,
-};
-pub const SHCNF_IDLIST = SHCNF_FLAGS.IDLIST;
-pub const SHCNF_PATHA = SHCNF_FLAGS.PATHA;
-pub const SHCNF_PRINTERA = SHCNF_FLAGS.PRINTERA;
-pub const SHCNF_DWORD = SHCNF_FLAGS.DWORD;
-pub const SHCNF_PATHW = SHCNF_FLAGS.PATHW;
-pub const SHCNF_PRINTERW = SHCNF_FLAGS.PRINTERW;
-pub const SHCNF_TYPE = SHCNF_FLAGS.TYPE;
-pub const SHCNF_FLUSH = SHCNF_FLAGS.FLUSH;
-pub const SHCNF_FLUSHNOWAIT = SHCNF_FLAGS.FLUSHNOWAIT;
-pub const SHCNF_NOTIFYRECURSIVE = SHCNF_FLAGS.NOTIFYRECURSIVE;
-pub const SHCNF_PATH = SHCNF_FLAGS.PATH;
-pub const SHCNF_PRINTER = SHCNF_FLAGS.PRINTER;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const QITIPF_FLAGS = extern enum(i32) {
-    TIPF_DEFAULT = 0,
-    TIPF_USENAME = 1,
-    TIPF_LINKNOTARGET = 2,
-    TIPF_LINKUSETARGET = 4,
-    TIPF_USESLOWTIP = 8,
-    TIPF_SINGLELINE = 16,
-    F_CACHED = 1,
-    F_DONTEXPANDFOLDER = 2,
-    _,
-};
-pub const QITIPF_DEFAULT = QITIPF_FLAGS.TIPF_DEFAULT;
-pub const QITIPF_USENAME = QITIPF_FLAGS.TIPF_USENAME;
-pub const QITIPF_LINKNOTARGET = QITIPF_FLAGS.TIPF_LINKNOTARGET;
-pub const QITIPF_LINKUSETARGET = QITIPF_FLAGS.TIPF_LINKUSETARGET;
-pub const QITIPF_USESLOWTIP = QITIPF_FLAGS.TIPF_USESLOWTIP;
-pub const QITIPF_SINGLELINE = QITIPF_FLAGS.TIPF_SINGLELINE;
-pub const QIF_CACHED = QITIPF_FLAGS.F_CACHED;
-pub const QIF_DONTEXPANDFOLDER = QITIPF_FLAGS.F_DONTEXPANDFOLDER;
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "SHLWAPI" fn SHFormatDateTimeW(
+    pft: *const FILETIME,
+    pdwFlags: ?*u32,
+    pszBuf: [*:0]u16,
+    cchBuf: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const SHDID_ID = extern enum(i32) {
-    ROOT_REGITEM = 1,
-    FS_FILE = 2,
-    FS_DIRECTORY = 3,
-    FS_OTHER = 4,
-    COMPUTER_DRIVE35 = 5,
-    COMPUTER_DRIVE525 = 6,
-    COMPUTER_REMOVABLE = 7,
-    COMPUTER_FIXED = 8,
-    COMPUTER_NETDRIVE = 9,
-    COMPUTER_CDROM = 10,
-    COMPUTER_RAMDISK = 11,
-    COMPUTER_OTHER = 12,
-    NET_DOMAIN = 13,
-    NET_SERVER = 14,
-    NET_SHARE = 15,
-    NET_RESTOFNET = 16,
-    NET_OTHER = 17,
-    COMPUTER_IMAGING = 18,
-    COMPUTER_AUDIO = 19,
-    COMPUTER_SHAREDDOCS = 20,
-    MOBILE_DEVICE = 21,
-    REMOTE_DESKTOP_DRIVE = 22,
-};
-pub const SHDID_ROOT_REGITEM = SHDID_ID.ROOT_REGITEM;
-pub const SHDID_FS_FILE = SHDID_ID.FS_FILE;
-pub const SHDID_FS_DIRECTORY = SHDID_ID.FS_DIRECTORY;
-pub const SHDID_FS_OTHER = SHDID_ID.FS_OTHER;
-pub const SHDID_COMPUTER_DRIVE35 = SHDID_ID.COMPUTER_DRIVE35;
-pub const SHDID_COMPUTER_DRIVE525 = SHDID_ID.COMPUTER_DRIVE525;
-pub const SHDID_COMPUTER_REMOVABLE = SHDID_ID.COMPUTER_REMOVABLE;
-pub const SHDID_COMPUTER_FIXED = SHDID_ID.COMPUTER_FIXED;
-pub const SHDID_COMPUTER_NETDRIVE = SHDID_ID.COMPUTER_NETDRIVE;
-pub const SHDID_COMPUTER_CDROM = SHDID_ID.COMPUTER_CDROM;
-pub const SHDID_COMPUTER_RAMDISK = SHDID_ID.COMPUTER_RAMDISK;
-pub const SHDID_COMPUTER_OTHER = SHDID_ID.COMPUTER_OTHER;
-pub const SHDID_NET_DOMAIN = SHDID_ID.NET_DOMAIN;
-pub const SHDID_NET_SERVER = SHDID_ID.NET_SERVER;
-pub const SHDID_NET_SHARE = SHDID_ID.NET_SHARE;
-pub const SHDID_NET_RESTOFNET = SHDID_ID.NET_RESTOFNET;
-pub const SHDID_NET_OTHER = SHDID_ID.NET_OTHER;
-pub const SHDID_COMPUTER_IMAGING = SHDID_ID.COMPUTER_IMAGING;
-pub const SHDID_COMPUTER_AUDIO = SHDID_ID.COMPUTER_AUDIO;
-pub const SHDID_COMPUTER_SHAREDDOCS = SHDID_ID.COMPUTER_SHAREDDOCS;
-pub const SHDID_MOBILE_DEVICE = SHDID_ID.MOBILE_DEVICE;
-pub const SHDID_REMOTE_DESKTOP_DRIVE = SHDID_ID.REMOTE_DESKTOP_DRIVE;
+}, else => struct { } };
 
-pub const SHGDFIL_FORMAT = extern enum(i32) {
-    FINDDATA = 1,
-    NETRESOURCE = 2,
-    DESCRIPTIONID = 3,
-};
-pub const SHGDFIL_FINDDATA = SHGDFIL_FORMAT.FINDDATA;
-pub const SHGDFIL_NETRESOURCE = SHGDFIL_FORMAT.NETRESOURCE;
-pub const SHGDFIL_DESCRIPTIONID = SHGDFIL_FORMAT.DESCRIPTIONID;
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn SetWindowSubclass(
+    hWnd: HWND,
+    pfnSubclass: SUBCLASSPROC,
+    uIdSubclass: usize,
+    dwRefData: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PRF_FLAGS = extern enum(i32) {
-    VERIFYEXISTS = 1,
-    TRYPROGRAMEXTENSIONS = 3,
-    FIRSTDIRDEF = 4,
-    DONTFINDLNK = 8,
-    REQUIREABSOLUTE = 16,
-    _,
-};
-pub const PRF_VERIFYEXISTS = PRF_FLAGS.VERIFYEXISTS;
-pub const PRF_TRYPROGRAMEXTENSIONS = PRF_FLAGS.TRYPROGRAMEXTENSIONS;
-pub const PRF_FIRSTDIRDEF = PRF_FLAGS.FIRSTDIRDEF;
-pub const PRF_DONTFINDLNK = PRF_FLAGS.DONTFINDLNK;
-pub const PRF_REQUIREABSOLUTE = PRF_FLAGS.REQUIREABSOLUTE;
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn GetWindowSubclass(
+    hWnd: HWND,
+    pfnSubclass: SUBCLASSPROC,
+    uIdSubclass: usize,
+    pdwRefData: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PCS_RET = extern enum(u32) {
-    FATAL = 2147483648,
-    REPLACEDCHAR = 1,
-    REMOVEDCHAR = 2,
-    TRUNCATED = 4,
-    PATHTOOLONG = 8,
-    _,
-};
-pub const PCS_FATAL = PCS_RET.FATAL;
-pub const PCS_REPLACEDCHAR = PCS_RET.REPLACEDCHAR;
-pub const PCS_REMOVEDCHAR = PCS_RET.REMOVEDCHAR;
-pub const PCS_TRUNCATED = PCS_RET.TRUNCATED;
-pub const PCS_PATHTOOLONG = PCS_RET.PATHTOOLONG;
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn RemoveWindowSubclass(
+    hWnd: HWND,
+    pfnSubclass: SUBCLASSPROC,
+    uIdSubclass: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MM_FLAGS = extern enum(u32) {
-    ADDSEPARATOR = 1,
-    SUBMENUSHAVEIDS = 2,
-    DONTREMOVESEPS = 4,
-    _,
-};
-pub const MM_ADDSEPARATOR = MM_FLAGS.ADDSEPARATOR;
-pub const MM_SUBMENUSHAVEIDS = MM_FLAGS.SUBMENUSHAVEIDS;
-pub const MM_DONTREMOVESEPS = MM_FLAGS.DONTREMOVESEPS;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHOP_TYPE = extern enum(i32) {
-    PRINTERNAME = 1,
-    FILEPATH = 2,
-    VOLUMEGUID = 4,
-    _,
-};
-pub const SHOP_PRINTERNAME = SHOP_TYPE.PRINTERNAME;
-pub const SHOP_FILEPATH = SHOP_TYPE.FILEPATH;
-pub const SHOP_VOLUMEGUID = SHOP_TYPE.VOLUMEGUID;
-
-pub const SHFMT_ID = extern enum(u32) {
-    T = 65535,
-};
-pub const SHFMT_ID_DEFAULT = SHFMT_ID.T;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHFMT_OPT = extern enum(i32) {
-    NONE = 0,
-    FULL = 1,
-    SYSONLY = 2,
-    _,
-};
-pub const SHFMT_OPT_NONE = SHFMT_OPT.NONE;
-pub const SHFMT_OPT_FULL = SHFMT_OPT.FULL;
-pub const SHFMT_OPT_SYSONLY = SHFMT_OPT.SYSONLY;
-
-pub const SHFMT_RET = extern enum(u32) {
-    ERROR = 4294967295,
-    CANCEL = 4294967294,
-    NOFORMAT = 4294967293,
-};
-pub const SHFMT_ERROR = SHFMT_RET.ERROR;
-pub const SHFMT_CANCEL = SHFMT_RET.CANCEL;
-pub const SHFMT_NOFORMAT = SHFMT_RET.NOFORMAT;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const VALIDATEUNC_OPTION = extern enum(i32) {
-    CONNECT = 1,
-    NOUI = 2,
-    PRINT = 4,
-    PERSIST = 8,
-    VALID = 15,
-    _,
-};
-pub const VALIDATEUNC_CONNECT = VALIDATEUNC_OPTION.CONNECT;
-pub const VALIDATEUNC_NOUI = VALIDATEUNC_OPTION.NOUI;
-pub const VALIDATEUNC_PRINT = VALIDATEUNC_OPTION.PRINT;
-pub const VALIDATEUNC_PERSIST = VALIDATEUNC_OPTION.PERSIST;
-pub const VALIDATEUNC_VALID = VALIDATEUNC_OPTION.VALID;
-
-pub const SFVM_MESSAGE_ID = extern enum(i32) {
-    MERGEMENU = 1,
-    INVOKECOMMAND = 2,
-    GETHELPTEXT = 3,
-    GETTOOLTIPTEXT = 4,
-    GETBUTTONINFO = 5,
-    GETBUTTONS = 6,
-    INITMENUPOPUP = 7,
-    FSNOTIFY = 14,
-    WINDOWCREATED = 15,
-    GETDETAILSOF = 23,
-    COLUMNCLICK = 24,
-    QUERYFSNOTIFY = 25,
-    DEFITEMCOUNT = 26,
-    DEFVIEWMODE = 27,
-    UNMERGEMENU = 28,
-    UPDATESTATUSBAR = 31,
-    BACKGROUNDENUM = 32,
-    DIDDRAGDROP = 36,
-    SETISFV = 39,
-    THISIDLIST = 41,
-    ADDPROPERTYPAGES = 47,
-    BACKGROUNDENUMDONE = 48,
-    GETNOTIFY = 49,
-    GETSORTDEFAULTS = 53,
-    SIZE = 57,
-    GETZONE = 58,
-    GETPANE = 59,
-    GETHELPTOPIC = 63,
-    GETANIMATION = 68,
-};
-pub const SFVM_MERGEMENU = SFVM_MESSAGE_ID.MERGEMENU;
-pub const SFVM_INVOKECOMMAND = SFVM_MESSAGE_ID.INVOKECOMMAND;
-pub const SFVM_GETHELPTEXT = SFVM_MESSAGE_ID.GETHELPTEXT;
-pub const SFVM_GETTOOLTIPTEXT = SFVM_MESSAGE_ID.GETTOOLTIPTEXT;
-pub const SFVM_GETBUTTONINFO = SFVM_MESSAGE_ID.GETBUTTONINFO;
-pub const SFVM_GETBUTTONS = SFVM_MESSAGE_ID.GETBUTTONS;
-pub const SFVM_INITMENUPOPUP = SFVM_MESSAGE_ID.INITMENUPOPUP;
-pub const SFVM_FSNOTIFY = SFVM_MESSAGE_ID.FSNOTIFY;
-pub const SFVM_WINDOWCREATED = SFVM_MESSAGE_ID.WINDOWCREATED;
-pub const SFVM_GETDETAILSOF = SFVM_MESSAGE_ID.GETDETAILSOF;
-pub const SFVM_COLUMNCLICK = SFVM_MESSAGE_ID.COLUMNCLICK;
-pub const SFVM_QUERYFSNOTIFY = SFVM_MESSAGE_ID.QUERYFSNOTIFY;
-pub const SFVM_DEFITEMCOUNT = SFVM_MESSAGE_ID.DEFITEMCOUNT;
-pub const SFVM_DEFVIEWMODE = SFVM_MESSAGE_ID.DEFVIEWMODE;
-pub const SFVM_UNMERGEMENU = SFVM_MESSAGE_ID.UNMERGEMENU;
-pub const SFVM_UPDATESTATUSBAR = SFVM_MESSAGE_ID.UPDATESTATUSBAR;
-pub const SFVM_BACKGROUNDENUM = SFVM_MESSAGE_ID.BACKGROUNDENUM;
-pub const SFVM_DIDDRAGDROP = SFVM_MESSAGE_ID.DIDDRAGDROP;
-pub const SFVM_SETISFV = SFVM_MESSAGE_ID.SETISFV;
-pub const SFVM_THISIDLIST = SFVM_MESSAGE_ID.THISIDLIST;
-pub const SFVM_ADDPROPERTYPAGES = SFVM_MESSAGE_ID.ADDPROPERTYPAGES;
-pub const SFVM_BACKGROUNDENUMDONE = SFVM_MESSAGE_ID.BACKGROUNDENUMDONE;
-pub const SFVM_GETNOTIFY = SFVM_MESSAGE_ID.GETNOTIFY;
-pub const SFVM_GETSORTDEFAULTS = SFVM_MESSAGE_ID.GETSORTDEFAULTS;
-pub const SFVM_SIZE = SFVM_MESSAGE_ID.SIZE;
-pub const SFVM_GETZONE = SFVM_MESSAGE_ID.GETZONE;
-pub const SFVM_GETPANE = SFVM_MESSAGE_ID.GETPANE;
-pub const SFVM_GETHELPTOPIC = SFVM_MESSAGE_ID.GETHELPTOPIC;
-pub const SFVM_GETANIMATION = SFVM_MESSAGE_ID.GETANIMATION;
-
-pub const SFVS_SELECT = extern enum(i32) {
-    NONE = 0,
-    ALLITEMS = 1,
-    INVERT = 2,
-};
-pub const SFVS_SELECT_NONE = SFVS_SELECT.NONE;
-pub const SFVS_SELECT_ALLITEMS = SFVS_SELECT.ALLITEMS;
-pub const SFVS_SELECT_INVERT = SFVS_SELECT.INVERT;
-
-pub const DFM_MESSAGE_ID = extern enum(i32) {
-    MERGECONTEXTMENU = 1,
-    INVOKECOMMAND = 2,
-    GETHELPTEXT = 5,
-    WM_MEASUREITEM = 6,
-    WM_DRAWITEM = 7,
-    WM_INITMENUPOPUP = 8,
-    VALIDATECMD = 9,
-    MERGECONTEXTMENU_TOP = 10,
-    GETHELPTEXTW = 11,
-    INVOKECOMMANDEX = 12,
-    MAPCOMMANDNAME = 13,
-    GETDEFSTATICID = 14,
-    GETVERBW = 15,
-    GETVERBA = 16,
-    MERGECONTEXTMENU_BOTTOM = 17,
-    MODIFYQCMFLAGS = 18,
-};
-pub const DFM_MERGECONTEXTMENU = DFM_MESSAGE_ID.MERGECONTEXTMENU;
-pub const DFM_INVOKECOMMAND = DFM_MESSAGE_ID.INVOKECOMMAND;
-pub const DFM_GETHELPTEXT = DFM_MESSAGE_ID.GETHELPTEXT;
-pub const DFM_WM_MEASUREITEM = DFM_MESSAGE_ID.WM_MEASUREITEM;
-pub const DFM_WM_DRAWITEM = DFM_MESSAGE_ID.WM_DRAWITEM;
-pub const DFM_WM_INITMENUPOPUP = DFM_MESSAGE_ID.WM_INITMENUPOPUP;
-pub const DFM_VALIDATECMD = DFM_MESSAGE_ID.VALIDATECMD;
-pub const DFM_MERGECONTEXTMENU_TOP = DFM_MESSAGE_ID.MERGECONTEXTMENU_TOP;
-pub const DFM_GETHELPTEXTW = DFM_MESSAGE_ID.GETHELPTEXTW;
-pub const DFM_INVOKECOMMANDEX = DFM_MESSAGE_ID.INVOKECOMMANDEX;
-pub const DFM_MAPCOMMANDNAME = DFM_MESSAGE_ID.MAPCOMMANDNAME;
-pub const DFM_GETDEFSTATICID = DFM_MESSAGE_ID.GETDEFSTATICID;
-pub const DFM_GETVERBW = DFM_MESSAGE_ID.GETVERBW;
-pub const DFM_GETVERBA = DFM_MESSAGE_ID.GETVERBA;
-pub const DFM_MERGECONTEXTMENU_BOTTOM = DFM_MESSAGE_ID.MERGECONTEXTMENU_BOTTOM;
-pub const DFM_MODIFYQCMFLAGS = DFM_MESSAGE_ID.MODIFYQCMFLAGS;
-
-pub const DFM_CMD = extern enum(i32) {
-    DELETE = -1,
-    MOVE = -2,
-    COPY = -3,
-    LINK = -4,
-    PROPERTIES = -5,
-    NEWFOLDER = -6,
-    PASTE = -7,
-    VIEWLIST = -8,
-    VIEWDETAILS = -9,
-    PASTELINK = -10,
-    PASTESPECIAL = -11,
-    MODALPROP = -12,
-    RENAME = -13,
-};
-pub const DFM_CMD_DELETE = DFM_CMD.DELETE;
-pub const DFM_CMD_MOVE = DFM_CMD.MOVE;
-pub const DFM_CMD_COPY = DFM_CMD.COPY;
-pub const DFM_CMD_LINK = DFM_CMD.LINK;
-pub const DFM_CMD_PROPERTIES = DFM_CMD.PROPERTIES;
-pub const DFM_CMD_NEWFOLDER = DFM_CMD.NEWFOLDER;
-pub const DFM_CMD_PASTE = DFM_CMD.PASTE;
-pub const DFM_CMD_VIEWLIST = DFM_CMD.VIEWLIST;
-pub const DFM_CMD_VIEWDETAILS = DFM_CMD.VIEWDETAILS;
-pub const DFM_CMD_PASTELINK = DFM_CMD.PASTELINK;
-pub const DFM_CMD_PASTESPECIAL = DFM_CMD.PASTESPECIAL;
-pub const DFM_CMD_MODALPROP = DFM_CMD.MODALPROP;
-pub const DFM_CMD_RENAME = DFM_CMD.RENAME;
-
-pub const PID_IS = extern enum(i32) {
-    URL = 2,
-    NAME = 4,
-    WORKINGDIR = 5,
-    HOTKEY = 6,
-    SHOWCMD = 7,
-    ICONINDEX = 8,
-    ICONFILE = 9,
-    WHATSNEW = 10,
-    AUTHOR = 11,
-    DESCRIPTION = 12,
-    COMMENT = 13,
-    ROAMED = 15,
-};
-pub const PID_IS_URL = PID_IS.URL;
-pub const PID_IS_NAME = PID_IS.NAME;
-pub const PID_IS_WORKINGDIR = PID_IS.WORKINGDIR;
-pub const PID_IS_HOTKEY = PID_IS.HOTKEY;
-pub const PID_IS_SHOWCMD = PID_IS.SHOWCMD;
-pub const PID_IS_ICONINDEX = PID_IS.ICONINDEX;
-pub const PID_IS_ICONFILE = PID_IS.ICONFILE;
-pub const PID_IS_WHATSNEW = PID_IS.WHATSNEW;
-pub const PID_IS_AUTHOR = PID_IS.AUTHOR;
-pub const PID_IS_DESCRIPTION = PID_IS.DESCRIPTION;
-pub const PID_IS_COMMENT = PID_IS.COMMENT;
-pub const PID_IS_ROAMED = PID_IS.ROAMED;
-
-pub const PID_INTSITE = extern enum(i32) {
-    WHATSNEW = 2,
-    AUTHOR = 3,
-    LASTVISIT = 4,
-    LASTMOD = 5,
-    VISITCOUNT = 6,
-    DESCRIPTION = 7,
-    COMMENT = 8,
-    FLAGS = 9,
-    CONTENTLEN = 10,
-    CONTENTCODE = 11,
-    RECURSE = 12,
-    WATCH = 13,
-    SUBSCRIPTION = 14,
-    URL = 15,
-    TITLE = 16,
-    CODEPAGE = 18,
-    TRACKING = 19,
-    ICONINDEX = 20,
-    ICONFILE = 21,
-    ROAMED = 34,
-};
-pub const PID_INTSITE_WHATSNEW = PID_INTSITE.WHATSNEW;
-pub const PID_INTSITE_AUTHOR = PID_INTSITE.AUTHOR;
-pub const PID_INTSITE_LASTVISIT = PID_INTSITE.LASTVISIT;
-pub const PID_INTSITE_LASTMOD = PID_INTSITE.LASTMOD;
-pub const PID_INTSITE_VISITCOUNT = PID_INTSITE.VISITCOUNT;
-pub const PID_INTSITE_DESCRIPTION = PID_INTSITE.DESCRIPTION;
-pub const PID_INTSITE_COMMENT = PID_INTSITE.COMMENT;
-pub const PID_INTSITE_FLAGS = PID_INTSITE.FLAGS;
-pub const PID_INTSITE_CONTENTLEN = PID_INTSITE.CONTENTLEN;
-pub const PID_INTSITE_CONTENTCODE = PID_INTSITE.CONTENTCODE;
-pub const PID_INTSITE_RECURSE = PID_INTSITE.RECURSE;
-pub const PID_INTSITE_WATCH = PID_INTSITE.WATCH;
-pub const PID_INTSITE_SUBSCRIPTION = PID_INTSITE.SUBSCRIPTION;
-pub const PID_INTSITE_URL = PID_INTSITE.URL;
-pub const PID_INTSITE_TITLE = PID_INTSITE.TITLE;
-pub const PID_INTSITE_CODEPAGE = PID_INTSITE.CODEPAGE;
-pub const PID_INTSITE_TRACKING = PID_INTSITE.TRACKING;
-pub const PID_INTSITE_ICONINDEX = PID_INTSITE.ICONINDEX;
-pub const PID_INTSITE_ICONFILE = PID_INTSITE.ICONFILE;
-pub const PID_INTSITE_ROAMED = PID_INTSITE.ROAMED;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PIDISF_FLAGS = extern enum(i32) {
-    RECENTLYCHANGED = 1,
-    CACHEDSTICKY = 2,
-    CACHEIMAGES = 16,
-    FOLLOWALLLINKS = 32,
-    _,
-};
-pub const PIDISF_RECENTLYCHANGED = PIDISF_FLAGS.RECENTLYCHANGED;
-pub const PIDISF_CACHEDSTICKY = PIDISF_FLAGS.CACHEDSTICKY;
-pub const PIDISF_CACHEIMAGES = PIDISF_FLAGS.CACHEIMAGES;
-pub const PIDISF_FOLLOWALLLINKS = PIDISF_FLAGS.FOLLOWALLLINKS;
-
-pub const PIDISM_OPTIONS = extern enum(i32) {
-    GLOBAL = 0,
-    WATCH = 1,
-    DONTWATCH = 2,
-};
-pub const PIDISM_GLOBAL = PIDISM_OPTIONS.GLOBAL;
-pub const PIDISM_WATCH = PIDISM_OPTIONS.WATCH;
-pub const PIDISM_DONTWATCH = PIDISM_OPTIONS.DONTWATCH;
-
-pub const PIDISR_INFO = extern enum(i32) {
-    UP_TO_DATE = 0,
-    NEEDS_ADD = 1,
-    NEEDS_UPDATE = 2,
-    NEEDS_DELETE = 3,
-};
-pub const PIDISR_UP_TO_DATE = PIDISR_INFO.UP_TO_DATE;
-pub const PIDISR_NEEDS_ADD = PIDISR_INFO.NEEDS_ADD;
-pub const PIDISR_NEEDS_UPDATE = PIDISR_INFO.NEEDS_UPDATE;
-pub const PIDISR_NEEDS_DELETE = PIDISR_INFO.NEEDS_DELETE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SSF_MASK = extern enum(u32) {
-    SHOWALLOBJECTS = 1,
-    SHOWEXTENSIONS = 2,
-    HIDDENFILEEXTS = 4,
-    SERVERADMINUI = 4,
-    SHOWCOMPCOLOR = 8,
-    SORTCOLUMNS = 16,
-    SHOWSYSFILES = 32,
-    DOUBLECLICKINWEBVIEW = 128,
-    SHOWATTRIBCOL = 256,
-    DESKTOPHTML = 512,
-    WIN95CLASSIC = 1024,
-    DONTPRETTYPATH = 2048,
-    SHOWINFOTIP = 8192,
-    MAPNETDRVBUTTON = 4096,
-    NOCONFIRMRECYCLE = 32768,
-    HIDEICONS = 16384,
-    FILTER = 65536,
-    WEBVIEW = 131072,
-    SHOWSUPERHIDDEN = 262144,
-    SEPPROCESS = 524288,
-    NONETCRAWLING = 1048576,
-    STARTPANELON = 2097152,
-    SHOWSTARTPAGE = 4194304,
-    AUTOCHECKSELECT = 8388608,
-    ICONSONLY = 16777216,
-    SHOWTYPEOVERLAY = 33554432,
-    SHOWSTATUSBAR = 67108864,
-    _,
-};
-pub const SSF_SHOWALLOBJECTS = SSF_MASK.SHOWALLOBJECTS;
-pub const SSF_SHOWEXTENSIONS = SSF_MASK.SHOWEXTENSIONS;
-pub const SSF_HIDDENFILEEXTS = SSF_MASK.HIDDENFILEEXTS;
-pub const SSF_SERVERADMINUI = SSF_MASK.SERVERADMINUI;
-pub const SSF_SHOWCOMPCOLOR = SSF_MASK.SHOWCOMPCOLOR;
-pub const SSF_SORTCOLUMNS = SSF_MASK.SORTCOLUMNS;
-pub const SSF_SHOWSYSFILES = SSF_MASK.SHOWSYSFILES;
-pub const SSF_DOUBLECLICKINWEBVIEW = SSF_MASK.DOUBLECLICKINWEBVIEW;
-pub const SSF_SHOWATTRIBCOL = SSF_MASK.SHOWATTRIBCOL;
-pub const SSF_DESKTOPHTML = SSF_MASK.DESKTOPHTML;
-pub const SSF_WIN95CLASSIC = SSF_MASK.WIN95CLASSIC;
-pub const SSF_DONTPRETTYPATH = SSF_MASK.DONTPRETTYPATH;
-pub const SSF_SHOWINFOTIP = SSF_MASK.SHOWINFOTIP;
-pub const SSF_MAPNETDRVBUTTON = SSF_MASK.MAPNETDRVBUTTON;
-pub const SSF_NOCONFIRMRECYCLE = SSF_MASK.NOCONFIRMRECYCLE;
-pub const SSF_HIDEICONS = SSF_MASK.HIDEICONS;
-pub const SSF_FILTER = SSF_MASK.FILTER;
-pub const SSF_WEBVIEW = SSF_MASK.WEBVIEW;
-pub const SSF_SHOWSUPERHIDDEN = SSF_MASK.SHOWSUPERHIDDEN;
-pub const SSF_SEPPROCESS = SSF_MASK.SEPPROCESS;
-pub const SSF_NONETCRAWLING = SSF_MASK.NONETCRAWLING;
-pub const SSF_STARTPANELON = SSF_MASK.STARTPANELON;
-pub const SSF_SHOWSTARTPAGE = SSF_MASK.SHOWSTARTPAGE;
-pub const SSF_AUTOCHECKSELECT = SSF_MASK.AUTOCHECKSELECT;
-pub const SSF_ICONSONLY = SSF_MASK.ICONSONLY;
-pub const SSF_SHOWTYPEOVERLAY = SSF_MASK.SHOWTYPEOVERLAY;
-pub const SSF_SHOWSTATUSBAR = SSF_MASK.SHOWSTATUSBAR;
-
-pub const SUBCLASSPROC = fn(
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn DefSubclassProc(
     hWnd: HWND,
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-    uIdSubclass: usize,
-    dwRefData: usize,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const ShellWindowTypeConstants = extern enum(i32) {
-    EXPLORER = 0,
-    BROWSER = 1,
-    @"3RDPARTY" = 2,
-    CALLBACK = 4,
-    DESKTOP = 8,
-};
-pub const SWC_EXPLORER = ShellWindowTypeConstants.EXPLORER;
-pub const SWC_BROWSER = ShellWindowTypeConstants.BROWSER;
-pub const SWC_3RDPARTY = ShellWindowTypeConstants.@"3RDPARTY";
-pub const SWC_CALLBACK = ShellWindowTypeConstants.CALLBACK;
-pub const SWC_DESKTOP = ShellWindowTypeConstants.DESKTOP;
-
-pub const ShellWindowFindWindowOptions = extern enum(i32) {
-    NEEDDISPATCH = 1,
-    INCLUDEPENDING = 2,
-    COOKIEPASSED = 4,
-};
-pub const SWFO_NEEDDISPATCH = ShellWindowFindWindowOptions.NEEDDISPATCH;
-pub const SWFO_INCLUDEPENDING = ShellWindowFindWindowOptions.INCLUDEPENDING;
-pub const SWFO_COOKIEPASSED = ShellWindowFindWindowOptions.COOKIEPASSED;
-
-const IID_IShellWindows_Value = @import("../zig.zig").Guid.initString("85cb6900-4d95-11cf-960c-0080c7f4ee85");
-pub const IID_IShellWindows = &IID_IShellWindows_Value;
-pub const IShellWindows = extern struct {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const IShellWindows,
-            Count: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
-            self: *const IShellWindows,
-            index: VARIANT,
-            Folder: **IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        _NewEnum: fn(
-            self: *const IShellWindows,
-            ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Register: fn(
-            self: *const IShellWindows,
-            pid: *IDispatch,
-            hwnd: i32,
-            swClass: i32,
-            plCookie: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterPending: fn(
-            self: *const IShellWindows,
-            lThreadId: i32,
-            pvarloc: *VARIANT,
-            pvarlocRoot: *VARIANT,
-            swClass: i32,
-            plCookie: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Revoke: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnNavigate: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-            pvarLoc: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnActivated: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-            fActive: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindWindowSW: fn(
-            self: *const IShellWindows,
-            pvarLoc: *VARIANT,
-            pvarLocRoot: *VARIANT,
-            swClass: i32,
-            phwnd: *i32,
-            swfwOptions: i32,
-            ppdispOut: **IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnCreated: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-            punk: *IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessAttachDetach: fn(
-            self: *const IShellWindows,
-            fAttach: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).get_Count(@ptrCast(*const IShellWindows, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_Item(self: *const T, index: VARIANT, Folder: **IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).Item(@ptrCast(*const IShellWindows, self), index, Folder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows__NewEnum(self: *const T, ppunk: **IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable)._NewEnum(@ptrCast(*const IShellWindows, self), ppunk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_Register(self: *const T, pid: *IDispatch, hwnd: i32, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).Register(@ptrCast(*const IShellWindows, self), pid, hwnd, swClass, plCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_RegisterPending(self: *const T, lThreadId: i32, pvarloc: *VARIANT, pvarlocRoot: *VARIANT, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).RegisterPending(@ptrCast(*const IShellWindows, self), lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_Revoke(self: *const T, lCookie: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).Revoke(@ptrCast(*const IShellWindows, self), lCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_OnNavigate(self: *const T, lCookie: i32, pvarLoc: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnNavigate(@ptrCast(*const IShellWindows, self), lCookie, pvarLoc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_OnActivated(self: *const T, lCookie: i32, fActive: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnActivated(@ptrCast(*const IShellWindows, self), lCookie, fActive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_FindWindowSW(self: *const T, pvarLoc: *VARIANT, pvarLocRoot: *VARIANT, swClass: i32, phwnd: *i32, swfwOptions: i32, ppdispOut: **IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).FindWindowSW(@ptrCast(*const IShellWindows, self), pvarLoc, pvarLocRoot, swClass, phwnd, swfwOptions, ppdispOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_OnCreated(self: *const T, lCookie: i32, punk: *IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnCreated(@ptrCast(*const IShellWindows, self), lCookie, punk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_ProcessAttachDetach(self: *const T, fAttach: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).ProcessAttachDetach(@ptrCast(*const IShellWindows, self), fAttach);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const APPCATEGORYINFO = extern struct {
-    Locale: u32,
-    pszDescription: PWSTR,
-    AppCategoryId: Guid,
-};
-
-pub const APPCATEGORYINFOLIST = extern struct {
-    cCategory: u32,
-    pCategoryInfo: *APPCATEGORYINFO,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IInitializeWithFile_Value = @import("../zig.zig").Guid.initString("b7d14566-0509-4cce-a71f-0a554233bd9b");
-pub const IID_IInitializeWithFile = &IID_IInitializeWithFile_Value;
-pub const IInitializeWithFile = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IInitializeWithFile,
-            pszFilePath: [*:0]const u16,
-            grfMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInitializeWithFile_Initialize(self: *const T, pszFilePath: [*:0]const u16, grfMode: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInitializeWithFile.VTable, self.vtable).Initialize(@ptrCast(*const IInitializeWithFile, self), pszFilePath, grfMode);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IInitializeWithStream_Value = @import("../zig.zig").Guid.initString("b824b49d-22ac-4161-ac8a-9916e8fa3f7f");
-pub const IID_IInitializeWithStream = &IID_IInitializeWithStream_Value;
-pub const IInitializeWithStream = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IInitializeWithStream,
-            pstream: *IStream,
-            grfMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInitializeWithStream_Initialize(self: *const T, pstream: *IStream, grfMode: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInitializeWithStream.VTable, self.vtable).Initialize(@ptrCast(*const IInitializeWithStream, self), pstream, grfMode);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INamedPropertyStore_Value = @import("../zig.zig").Guid.initString("71604b0f-97b0-4764-8577-2f13e98a1422");
-pub const IID_INamedPropertyStore = &IID_INamedPropertyStore_Value;
-pub const INamedPropertyStore = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetNamedValue: fn(
-            self: *const INamedPropertyStore,
-            pszName: [*:0]const u16,
-            ppropvar: *PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNamedValue: fn(
-            self: *const INamedPropertyStore,
-            pszName: [*:0]const u16,
-            propvar: *const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNameCount: fn(
-            self: *const INamedPropertyStore,
-            pdwCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNameAt: fn(
-            self: *const INamedPropertyStore,
-            iProp: u32,
-            pbstrName: *BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INamedPropertyStore_GetNamedValue(self: *const T, pszName: [*:0]const u16, ppropvar: *PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNamedValue(@ptrCast(*const INamedPropertyStore, self), pszName, ppropvar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INamedPropertyStore_SetNamedValue(self: *const T, pszName: [*:0]const u16, propvar: *const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).SetNamedValue(@ptrCast(*const INamedPropertyStore, self), pszName, propvar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INamedPropertyStore_GetNameCount(self: *const T, pdwCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNameCount(@ptrCast(*const INamedPropertyStore, self), pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INamedPropertyStore_GetNameAt(self: *const T, iProp: u32, pbstrName: *BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNameAt(@ptrCast(*const INamedPropertyStore, self), iProp, pbstrName);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IObjectWithPropertyKey_Value = @import("../zig.zig").Guid.initString("fc0ca0a7-c316-4fd2-9031-3e628e6d4f23");
-pub const IID_IObjectWithPropertyKey = &IID_IObjectWithPropertyKey_Value;
-pub const IObjectWithPropertyKey = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetPropertyKey: fn(
-            self: *const IObjectWithPropertyKey,
-            key: *const PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyKey: fn(
-            self: *const IObjectWithPropertyKey,
-            pkey: *PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectWithPropertyKey_SetPropertyKey(self: *const T, key: *const PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IObjectWithPropertyKey.VTable, self.vtable).SetPropertyKey(@ptrCast(*const IObjectWithPropertyKey, self), key);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectWithPropertyKey_GetPropertyKey(self: *const T, pkey: *PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IObjectWithPropertyKey.VTable, self.vtable).GetPropertyKey(@ptrCast(*const IObjectWithPropertyKey, self), pkey);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDelayedPropertyStoreFactory_Value = @import("../zig.zig").Guid.initString("40d4577f-e237-4bdb-bd69-58f089431b6a");
-pub const IID_IDelayedPropertyStoreFactory = &IID_IDelayedPropertyStoreFactory_Value;
-pub const IDelayedPropertyStoreFactory = extern struct {
-    pub const VTable = extern struct {
-        base: IPropertyStoreFactory.VTable,
-        GetDelayedPropertyStore: fn(
-            self: *const IDelayedPropertyStoreFactory,
-            flags: GETPROPERTYSTOREFLAGS,
-            dwStoreId: u32,
-            riid: *const Guid,
-            ppv: **c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPropertyStoreFactory.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDelayedPropertyStoreFactory_GetDelayedPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, dwStoreId: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDelayedPropertyStoreFactory.VTable, self.vtable).GetDelayedPropertyStore(@ptrCast(*const IDelayedPropertyStoreFactory, self), flags, dwStoreId, riid, ppv);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPersistSerializedPropStorage_Value = @import("../zig.zig").Guid.initString("e318ad57-0aa0-450f-aca5-6fab7103d917");
-pub const IID_IPersistSerializedPropStorage = &IID_IPersistSerializedPropStorage_Value;
-pub const IPersistSerializedPropStorage = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetFlags: fn(
-            self: *const IPersistSerializedPropStorage,
-            flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPropertyStorage: fn(
-            self: *const IPersistSerializedPropStorage,
-            // TODO: what to do with BytesParamIndex 1?
-            psps: *SERIALIZEDPROPSTORAGE,
-            cb: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyStorage: fn(
-            self: *const IPersistSerializedPropStorage,
-            ppsps: **SERIALIZEDPROPSTORAGE,
-            pcb: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistSerializedPropStorage_SetFlags(self: *const T, flags: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).SetFlags(@ptrCast(*const IPersistSerializedPropStorage, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistSerializedPropStorage_SetPropertyStorage(self: *const T, psps: *SERIALIZEDPROPSTORAGE, cb: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).SetPropertyStorage(@ptrCast(*const IPersistSerializedPropStorage, self), psps, cb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistSerializedPropStorage_GetPropertyStorage(self: *const T, ppsps: **SERIALIZEDPROPSTORAGE, pcb: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).GetPropertyStorage(@ptrCast(*const IPersistSerializedPropStorage, self), ppsps, pcb);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IPersistSerializedPropStorage2_Value = @import("../zig.zig").Guid.initString("77effa68-4f98-4366-ba72-573b3d880571");
-pub const IID_IPersistSerializedPropStorage2 = &IID_IPersistSerializedPropStorage2_Value;
-pub const IPersistSerializedPropStorage2 = extern struct {
-    pub const VTable = extern struct {
-        base: IPersistSerializedPropStorage.VTable,
-        GetPropertyStorageSize: fn(
-            self: *const IPersistSerializedPropStorage2,
-            pcb: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyStorageBuffer: fn(
-            self: *const IPersistSerializedPropStorage2,
-            // TODO: what to do with BytesParamIndex 1?
-            psps: *SERIALIZEDPROPSTORAGE,
-            cb: u32,
-            pcbWritten: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPersistSerializedPropStorage.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistSerializedPropStorage2_GetPropertyStorageSize(self: *const T, pcb: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistSerializedPropStorage2.VTable, self.vtable).GetPropertyStorageSize(@ptrCast(*const IPersistSerializedPropStorage2, self), pcb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistSerializedPropStorage2_GetPropertyStorageBuffer(self: *const T, psps: *SERIALIZEDPROPSTORAGE, cb: u32, pcbWritten: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistSerializedPropStorage2.VTable, self.vtable).GetPropertyStorageBuffer(@ptrCast(*const IPersistSerializedPropStorage2, self), psps, cb, pcbWritten);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICreateObject_Value = @import("../zig.zig").Guid.initString("75121952-e0d0-43e5-9380-1d80483acf72");
-pub const IID_ICreateObject = &IID_ICreateObject_Value;
-pub const ICreateObject = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateObject: fn(
-            self: *const ICreateObject,
-            clsid: *const Guid,
-            pUnkOuter: *IUnknown,
-            riid: *const Guid,
-            ppv: **c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateObject_CreateObject(self: *const T, clsid: *const Guid, pUnkOuter: *IUnknown, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICreateObject.VTable, self.vtable).CreateObject(@ptrCast(*const ICreateObject, self), clsid, pUnkOuter, riid, ppv);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const SERIALIZEDPROPERTYVALUE = extern struct {
-    dwType: u32,
-    rgb: [1]u8,
-};
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INotifyReplica_Value = @import("../zig.zig").Guid.initString("99180163-da16-101a-935c-444553540000");
-pub const IID_INotifyReplica = &IID_INotifyReplica_Value;
-pub const INotifyReplica = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        YouAreAReplica: fn(
-            self: *const INotifyReplica,
-            ulcOtherReplicas: u32,
-            rgpmkOtherReplicas: [*]*IMoniker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INotifyReplica_YouAreAReplica(self: *const T, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]*IMoniker) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INotifyReplica.VTable, self.vtable).YouAreAReplica(@ptrCast(*const INotifyReplica, self), ulcOtherReplicas, rgpmkOtherReplicas);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
+pub extern "SHLWAPI" fn SHFormatDateTimeA(
+    pft: *const FILETIME,
+    pdwFlags: ?*u32,
+    pszBuf: [*:0]u8,
+    cchBuf: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const HELPINFO = extern struct {
-    cbSize: u32,
-    iContextType: i32,
-    iCtrlId: i32,
-    hItemHandle: HANDLE,
-    dwContextId: usize,
-    MousePos: POINT,
-};
+}, else => struct { } };
 
-pub const MULTIKEYHELPA = extern struct {
-    mkSize: u32,
-    mkKeylist: CHAR,
-    szKeyphrase: [1]CHAR,
-};
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-pub const MULTIKEYHELPW = extern struct {
-    mkSize: u32,
-    mkKeylist: u16,
-    szKeyphrase: [1]u16,
-};
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "SHLWAPI" fn SHFormatDateTimeW(
+    pft: *const FILETIME,
+    pdwFlags: ?*u32,
+    pszBuf: [*:0]u16,
+    cchBuf: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const HELPWININFOA = extern struct {
-    wStructSize: i32,
-    x: i32,
-    y: i32,
-    dx: i32,
-    dy: i32,
-    wMax: i32,
-    rgchMember: [2]CHAR,
-};
+}, else => struct { } };
 
-pub const HELPWININFOW = extern struct {
-    wStructSize: i32,
-    x: i32,
-    y: i32,
-    dx: i32,
-    dy: i32,
-    wMax: i32,
-    rgchMember: [2]u16,
-};
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn LoadUserProfileA(
+    hToken: HANDLE,
+    lpProfileInfo: *PROFILEINFOA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn LoadUserProfileW(
+    hToken: HANDLE,
+    lpProfileInfo: *PROFILEINFOW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-//--------------------------------------------------------------------------------
-// Section: Functions (699)
-//--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn UnloadUserProfile(
+    hToken: HANDLE,
+    hProfile: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetProfilesDirectoryA(
+    lpProfileDir: ?[*:0]u8,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetProfilesDirectoryW(
+    lpProfileDir: ?[*:0]u16,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetProfileType(
+    dwFlags: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn DeleteProfileA(
+    lpSidString: [*:0]const u8,
+    lpProfilePath: ?[*:0]const u8,
+    lpComputerName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn DeleteProfileW(
+    lpSidString: [*:0]const u16,
+    lpProfilePath: ?[*:0]const u16,
+    lpComputerName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "USERENV" fn CreateProfile(
+    pszUserSid: [*:0]const u16,
+    pszUserName: [*:0]const u16,
+    pszProfilePath: [*:0]u16,
+    cchProfilePath: u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetDefaultUserProfileDirectoryA(
+    lpProfileDir: ?[*:0]u8,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetDefaultUserProfileDirectoryW(
+    lpProfileDir: ?[*:0]u16,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetAllUsersProfileDirectoryA(
+    lpProfileDir: ?[*:0]u8,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetAllUsersProfileDirectoryW(
+    lpProfileDir: ?[*:0]u16,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetUserProfileDirectoryA(
+    hToken: HANDLE,
+    lpProfileDir: ?[*:0]u8,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetUserProfileDirectoryW(
+    hToken: HANDLE,
+    lpProfileDir: ?[*:0]u16,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn CreateEnvironmentBlock(
+    lpEnvironment: **c_void,
+    hToken: HANDLE,
+    bInherit: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn DestroyEnvironmentBlock(
+    lpEnvironment: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn ExpandEnvironmentStringsForUserA(
+    hToken: HANDLE,
+    lpSrc: [*:0]const u8,
+    lpDest: [*:0]u8,
+    dwSize: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn ExpandEnvironmentStringsForUserW(
+    hToken: HANDLE,
+    lpSrc: [*:0]const u16,
+    lpDest: [*:0]u16,
+    dwSize: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn CreateAppContainerProfile(
+    pszAppContainerName: [*:0]const u16,
+    pszDisplayName: [*:0]const u16,
+    pszDescription: [*:0]const u16,
+    pCapabilities: ?[*]SID_AND_ATTRIBUTES,
+    dwCapabilityCount: u32,
+    ppSidAppContainerSid: *PSID,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn DeleteAppContainerProfile(
+    pszAppContainerName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn GetAppContainerRegistryLocation(
+    desiredAccess: u32,
+    phAppContainerKey: *HKEY,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn GetAppContainerFolderPath(
+    pszAppContainerSid: [*:0]const u16,
+    ppszPath: *PWSTR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn DeriveAppContainerSidFromAppContainerName(
+    pszAppContainerName: [*:0]const u16,
+    ppsidAppContainerSid: *PSID,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "USERENV" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(
+    psidAppContainerSid: PSID,
+    pszRestrictedAppContainerName: [*:0]const u16,
+    ppsidRestrictedAppContainerSid: *PSID,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn SetWindowContextHelpId(
+    param0: HWND,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn GetWindowContextHelpId(
+    param0: HWND,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn SetMenuContextHelpId(
+    param0: HMENU,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn GetMenuContextHelpId(
+    param0: HMENU,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn WinHelpA(
+    hWndMain: HWND,
+    lpszHelp: ?[*:0]const u8,
+    uCommand: u32,
+    dwData: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn WinHelpW(
+    hWndMain: HWND,
+    lpszHelp: ?[*:0]const u16,
+    uCommand: u32,
+    dwData: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHSimpleIDListFromPath(
     pszPath: [*:0]const u16,
@@ -32580,22 +33276,6 @@ pub extern "SHLWAPI" fn SHGetViewStatePropertyBag(
     ppv: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHFormatDateTimeA(
-    pft: *const FILETIME,
-    pdwFlags: ?*u32,
-    pszBuf: [*:0]u8,
-    cchBuf: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "SHLWAPI" fn SHFormatDateTimeW(
-    pft: *const FILETIME,
-    pdwFlags: ?*u32,
-    pszBuf: [*:0]u16,
-    cchBuf: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHAnsiToUnicode(
     pszSrc: [*:0]const u8,
@@ -33217,244 +33897,21 @@ pub extern "api-ms-win-core-psm-appnotify-l1-1-1" fn UnregisterAppConstrainedCha
     Registration: *_APPCONSTRAIN_REGISTRATION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn SetWindowSubclass(
-    hWnd: HWND,
-    pfnSubclass: SUBCLASSPROC,
-    uIdSubclass: usize,
-    dwRefData: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn GetWindowSubclass(
-    hWnd: HWND,
-    pfnSubclass: SUBCLASSPROC,
-    uIdSubclass: usize,
-    pdwRefData: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn RemoveWindowSubclass(
-    hWnd: HWND,
-    pfnSubclass: SUBCLASSPROC,
-    uIdSubclass: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn DefSubclassProc(
-    hWnd: HWND,
-    uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn LoadUserProfileA(
-    hToken: HANDLE,
-    lpProfileInfo: *PROFILEINFOA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn LoadUserProfileW(
-    hToken: HANDLE,
-    lpProfileInfo: *PROFILEINFOW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn UnloadUserProfile(
-    hToken: HANDLE,
-    hProfile: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetProfilesDirectoryA(
-    lpProfileDir: ?[*:0]u8,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetProfilesDirectoryW(
-    lpProfileDir: ?[*:0]u16,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetProfileType(
-    dwFlags: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn DeleteProfileA(
-    lpSidString: [*:0]const u8,
-    lpProfilePath: ?[*:0]const u8,
-    lpComputerName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn DeleteProfileW(
-    lpSidString: [*:0]const u16,
-    lpProfilePath: ?[*:0]const u16,
-    lpComputerName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn CreateProfile(
-    pszUserSid: [*:0]const u16,
-    pszUserName: [*:0]const u16,
-    pszProfilePath: [*:0]u16,
-    cchProfilePath: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetDefaultUserProfileDirectoryA(
-    lpProfileDir: ?[*:0]u8,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetDefaultUserProfileDirectoryW(
-    lpProfileDir: ?[*:0]u16,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetAllUsersProfileDirectoryA(
-    lpProfileDir: ?[*:0]u8,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetAllUsersProfileDirectoryW(
-    lpProfileDir: ?[*:0]u16,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetUserProfileDirectoryA(
-    hToken: HANDLE,
-    lpProfileDir: ?[*:0]u8,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetUserProfileDirectoryW(
-    hToken: HANDLE,
-    lpProfileDir: ?[*:0]u16,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn CreateEnvironmentBlock(
-    lpEnvironment: **c_void,
-    hToken: HANDLE,
-    bInherit: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn DestroyEnvironmentBlock(
-    lpEnvironment: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn ExpandEnvironmentStringsForUserA(
-    hToken: HANDLE,
-    lpSrc: [*:0]const u8,
-    lpDest: [*:0]u8,
-    dwSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn ExpandEnvironmentStringsForUserW(
-    hToken: HANDLE,
-    lpSrc: [*:0]const u16,
-    lpDest: [*:0]u16,
-    dwSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn CreateAppContainerProfile(
-    pszAppContainerName: [*:0]const u16,
-    pszDisplayName: [*:0]const u16,
-    pszDescription: [*:0]const u16,
-    pCapabilities: ?[*]SID_AND_ATTRIBUTES,
-    dwCapabilityCount: u32,
-    ppSidAppContainerSid: *PSID,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn DeleteAppContainerProfile(
-    pszAppContainerName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn GetAppContainerRegistryLocation(
-    desiredAccess: u32,
-    phAppContainerKey: *HKEY,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn GetAppContainerFolderPath(
-    pszAppContainerSid: [*:0]const u16,
-    ppszPath: *PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn DeriveAppContainerSidFromAppContainerName(
-    pszAppContainerName: [*:0]const u16,
-    ppsidAppContainerSid: *PSID,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "USERENV" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(
-    psidAppContainerSid: PSID,
-    pszRestrictedAppContainerName: [*:0]const u16,
-    ppsidRestrictedAppContainerSid: *PSID,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn SetWindowContextHelpId(
-    param0: HWND,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetWindowContextHelpId(
-    param0: HWND,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn SetMenuContextHelpId(
-    param0: HMENU,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetMenuContextHelpId(
-    param0: HMENU,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn WinHelpA(
-    hWndMain: HWND,
-    lpszHelp: ?[*:0]const u8,
-    uCommand: u32,
-    dwData: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn WinHelpW(
-    hWndMain: HWND,
-    lpszHelp: ?[*:0]const u16,
-    uCommand: u32,
-    dwData: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (206)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const DRAGINFO = DRAGINFOA;
+        pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTA;
+        pub const SHNAMEMAPPING = SHNAMEMAPPINGA;
+        pub const SHELLEXECUTEINFO = SHELLEXECUTEINFOA;
+        pub const NOTIFYICONDATA = NOTIFYICONDATAA;
+        pub const SHFILEINFO = SHFILEINFOA;
+        pub const OPEN_PRINTER_PROPS_INFO = OPEN_PRINTER_PROPS_INFOA;
+        pub const MULTIKEYHELP = MULTIKEYHELPA;
+        pub const HELPWININFO = HELPWININFOA;
         pub const IShellLink = IShellLinkA;
         pub const IExtractIcon = IExtractIconA;
         pub const BROWSEINFO = BROWSEINFOA;
@@ -33463,20 +33920,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHELLSTATE = SHELLSTATEA;
         pub const INewShortcutHook = INewShortcutHookA;
         pub const ICopyHook = ICopyHookA;
-        pub const DRAGINFO = DRAGINFOA;
-        pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTA;
-        pub const SHNAMEMAPPING = SHNAMEMAPPINGA;
-        pub const SHELLEXECUTEINFO = SHELLEXECUTEINFOA;
-        pub const NOTIFYICONDATA = NOTIFYICONDATAA;
-        pub const SHFILEINFO = SHFILEINFOA;
-        pub const OPEN_PRINTER_PROPS_INFO = OPEN_PRINTER_PROPS_INFOA;
         pub const PARSEDURL = PARSEDURLA;
         pub const NEWCPLINFO = NEWCPLINFOA;
         pub const PROFILEINFO = PROFILEINFOA;
         pub const urlinvokecommandinfo = urlinvokecommandinfoA;
         pub const IUniformResourceLocator = IUniformResourceLocatorA;
-        pub const MULTIKEYHELP = MULTIKEYHELPA;
-        pub const HELPWININFO = HELPWININFOA;
+        pub const SHFormatDateTime = SHFormatDateTimeA;
+        pub const LoadUserProfile = LoadUserProfileA;
+        pub const GetProfilesDirectory = GetProfilesDirectoryA;
+        pub const DeleteProfile = DeleteProfileA;
+        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryA;
+        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryA;
+        pub const GetUserProfileDirectory = GetUserProfileDirectoryA;
+        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserA;
+        pub const WinHelp = WinHelpA;
         pub const SHGetIconOverlayIndex = SHGetIconOverlayIndexA;
         pub const ILCreateFromPath = ILCreateFromPathA;
         pub const SHGetPathFromIDList = SHGetPathFromIDListA;
@@ -33649,20 +34106,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHOpenRegStream2 = SHOpenRegStream2A;
         pub const SHCreateStreamOnFile = SHCreateStreamOnFileA;
         pub const GetAcceptLanguages = GetAcceptLanguagesA;
-        pub const SHFormatDateTime = SHFormatDateTimeA;
         pub const SHMessageBoxCheck = SHMessageBoxCheckA;
         pub const SHSendMessageBroadcast = SHSendMessageBroadcastA;
         pub const SHStripMneumonic = SHStripMneumonicA;
-        pub const LoadUserProfile = LoadUserProfileA;
-        pub const GetProfilesDirectory = GetProfilesDirectoryA;
-        pub const DeleteProfile = DeleteProfileA;
-        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryA;
-        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryA;
-        pub const GetUserProfileDirectory = GetUserProfileDirectoryA;
-        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserA;
-        pub const WinHelp = WinHelpA;
     },
     .wide => struct {
+        pub const DRAGINFO = DRAGINFOW;
+        pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTW;
+        pub const SHNAMEMAPPING = SHNAMEMAPPINGW;
+        pub const SHELLEXECUTEINFO = SHELLEXECUTEINFOW;
+        pub const NOTIFYICONDATA = NOTIFYICONDATAW;
+        pub const SHFILEINFO = SHFILEINFOW;
+        pub const OPEN_PRINTER_PROPS_INFO = OPEN_PRINTER_PROPS_INFOW;
+        pub const MULTIKEYHELP = MULTIKEYHELPW;
+        pub const HELPWININFO = HELPWININFOW;
         pub const IShellLink = IShellLinkW;
         pub const IExtractIcon = IExtractIconW;
         pub const BROWSEINFO = BROWSEINFOW;
@@ -33671,20 +34128,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHELLSTATE = SHELLSTATEW;
         pub const INewShortcutHook = INewShortcutHookW;
         pub const ICopyHook = ICopyHookW;
-        pub const DRAGINFO = DRAGINFOW;
-        pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTW;
-        pub const SHNAMEMAPPING = SHNAMEMAPPINGW;
-        pub const SHELLEXECUTEINFO = SHELLEXECUTEINFOW;
-        pub const NOTIFYICONDATA = NOTIFYICONDATAW;
-        pub const SHFILEINFO = SHFILEINFOW;
-        pub const OPEN_PRINTER_PROPS_INFO = OPEN_PRINTER_PROPS_INFOW;
         pub const PARSEDURL = PARSEDURLW;
         pub const NEWCPLINFO = NEWCPLINFOW;
         pub const PROFILEINFO = PROFILEINFOW;
         pub const urlinvokecommandinfo = urlinvokecommandinfoW;
         pub const IUniformResourceLocator = IUniformResourceLocatorW;
-        pub const MULTIKEYHELP = MULTIKEYHELPW;
-        pub const HELPWININFO = HELPWININFOW;
+        pub const SHFormatDateTime = SHFormatDateTimeW;
+        pub const LoadUserProfile = LoadUserProfileW;
+        pub const GetProfilesDirectory = GetProfilesDirectoryW;
+        pub const DeleteProfile = DeleteProfileW;
+        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryW;
+        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryW;
+        pub const GetUserProfileDirectory = GetUserProfileDirectoryW;
+        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserW;
+        pub const WinHelp = WinHelpW;
         pub const SHGetIconOverlayIndex = SHGetIconOverlayIndexW;
         pub const ILCreateFromPath = ILCreateFromPathW;
         pub const SHGetPathFromIDList = SHGetPathFromIDListW;
@@ -33857,20 +34314,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHOpenRegStream2 = SHOpenRegStream2W;
         pub const SHCreateStreamOnFile = SHCreateStreamOnFileW;
         pub const GetAcceptLanguages = GetAcceptLanguagesW;
-        pub const SHFormatDateTime = SHFormatDateTimeW;
         pub const SHMessageBoxCheck = SHMessageBoxCheckW;
         pub const SHSendMessageBroadcast = SHSendMessageBroadcastW;
         pub const SHStripMneumonic = SHStripMneumonicW;
-        pub const LoadUserProfile = LoadUserProfileW;
-        pub const GetProfilesDirectory = GetProfilesDirectoryW;
-        pub const DeleteProfile = DeleteProfileW;
-        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryW;
-        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryW;
-        pub const GetUserProfileDirectory = GetUserProfileDirectoryW;
-        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserW;
-        pub const WinHelp = WinHelpW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const DRAGINFO = *opaque{};
+        pub const SHFILEOPSTRUCT = *opaque{};
+        pub const SHNAMEMAPPING = *opaque{};
+        pub const SHELLEXECUTEINFO = *opaque{};
+        pub const NOTIFYICONDATA = *opaque{};
+        pub const SHFILEINFO = *opaque{};
+        pub const OPEN_PRINTER_PROPS_INFO = *opaque{};
+        pub const MULTIKEYHELP = *opaque{};
+        pub const HELPWININFO = *opaque{};
         pub const IShellLink = *opaque{};
         pub const IExtractIcon = *opaque{};
         pub const BROWSEINFO = *opaque{};
@@ -33879,20 +34336,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHELLSTATE = *opaque{};
         pub const INewShortcutHook = *opaque{};
         pub const ICopyHook = *opaque{};
-        pub const DRAGINFO = *opaque{};
-        pub const SHFILEOPSTRUCT = *opaque{};
-        pub const SHNAMEMAPPING = *opaque{};
-        pub const SHELLEXECUTEINFO = *opaque{};
-        pub const NOTIFYICONDATA = *opaque{};
-        pub const SHFILEINFO = *opaque{};
-        pub const OPEN_PRINTER_PROPS_INFO = *opaque{};
         pub const PARSEDURL = *opaque{};
         pub const NEWCPLINFO = *opaque{};
         pub const PROFILEINFO = *opaque{};
         pub const urlinvokecommandinfo = *opaque{};
         pub const IUniformResourceLocator = *opaque{};
-        pub const MULTIKEYHELP = *opaque{};
-        pub const HELPWININFO = *opaque{};
+        pub const SHFormatDateTime = *opaque{};
+        pub const LoadUserProfile = *opaque{};
+        pub const GetProfilesDirectory = *opaque{};
+        pub const DeleteProfile = *opaque{};
+        pub const GetDefaultUserProfileDirectory = *opaque{};
+        pub const GetAllUsersProfileDirectory = *opaque{};
+        pub const GetUserProfileDirectory = *opaque{};
+        pub const ExpandEnvironmentStringsForUser = *opaque{};
+        pub const WinHelp = *opaque{};
         pub const SHGetIconOverlayIndex = *opaque{};
         pub const ILCreateFromPath = *opaque{};
         pub const SHGetPathFromIDList = *opaque{};
@@ -34065,19 +34522,19 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHOpenRegStream2 = *opaque{};
         pub const SHCreateStreamOnFile = *opaque{};
         pub const GetAcceptLanguages = *opaque{};
-        pub const SHFormatDateTime = *opaque{};
         pub const SHMessageBoxCheck = *opaque{};
         pub const SHSendMessageBroadcast = *opaque{};
         pub const SHStripMneumonic = *opaque{};
-        pub const LoadUserProfile = *opaque{};
-        pub const GetProfilesDirectory = *opaque{};
-        pub const DeleteProfile = *opaque{};
-        pub const GetDefaultUserProfileDirectory = *opaque{};
-        pub const GetAllUsersProfileDirectory = *opaque{};
-        pub const GetUserProfileDirectory = *opaque{};
-        pub const ExpandEnvironmentStringsForUser = *opaque{};
-        pub const WinHelp = *opaque{};
     } else struct {
+        pub const DRAGINFO = @compileError("'DRAGINFO' requires that UNICODE be set to true or false in the root module");
+        pub const SHFILEOPSTRUCT = @compileError("'SHFILEOPSTRUCT' requires that UNICODE be set to true or false in the root module");
+        pub const SHNAMEMAPPING = @compileError("'SHNAMEMAPPING' requires that UNICODE be set to true or false in the root module");
+        pub const SHELLEXECUTEINFO = @compileError("'SHELLEXECUTEINFO' requires that UNICODE be set to true or false in the root module");
+        pub const NOTIFYICONDATA = @compileError("'NOTIFYICONDATA' requires that UNICODE be set to true or false in the root module");
+        pub const SHFILEINFO = @compileError("'SHFILEINFO' requires that UNICODE be set to true or false in the root module");
+        pub const OPEN_PRINTER_PROPS_INFO = @compileError("'OPEN_PRINTER_PROPS_INFO' requires that UNICODE be set to true or false in the root module");
+        pub const MULTIKEYHELP = @compileError("'MULTIKEYHELP' requires that UNICODE be set to true or false in the root module");
+        pub const HELPWININFO = @compileError("'HELPWININFO' requires that UNICODE be set to true or false in the root module");
         pub const IShellLink = @compileError("'IShellLink' requires that UNICODE be set to true or false in the root module");
         pub const IExtractIcon = @compileError("'IExtractIcon' requires that UNICODE be set to true or false in the root module");
         pub const BROWSEINFO = @compileError("'BROWSEINFO' requires that UNICODE be set to true or false in the root module");
@@ -34086,20 +34543,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHELLSTATE = @compileError("'SHELLSTATE' requires that UNICODE be set to true or false in the root module");
         pub const INewShortcutHook = @compileError("'INewShortcutHook' requires that UNICODE be set to true or false in the root module");
         pub const ICopyHook = @compileError("'ICopyHook' requires that UNICODE be set to true or false in the root module");
-        pub const DRAGINFO = @compileError("'DRAGINFO' requires that UNICODE be set to true or false in the root module");
-        pub const SHFILEOPSTRUCT = @compileError("'SHFILEOPSTRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const SHNAMEMAPPING = @compileError("'SHNAMEMAPPING' requires that UNICODE be set to true or false in the root module");
-        pub const SHELLEXECUTEINFO = @compileError("'SHELLEXECUTEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const NOTIFYICONDATA = @compileError("'NOTIFYICONDATA' requires that UNICODE be set to true or false in the root module");
-        pub const SHFILEINFO = @compileError("'SHFILEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const OPEN_PRINTER_PROPS_INFO = @compileError("'OPEN_PRINTER_PROPS_INFO' requires that UNICODE be set to true or false in the root module");
         pub const PARSEDURL = @compileError("'PARSEDURL' requires that UNICODE be set to true or false in the root module");
         pub const NEWCPLINFO = @compileError("'NEWCPLINFO' requires that UNICODE be set to true or false in the root module");
         pub const PROFILEINFO = @compileError("'PROFILEINFO' requires that UNICODE be set to true or false in the root module");
         pub const urlinvokecommandinfo = @compileError("'urlinvokecommandinfo' requires that UNICODE be set to true or false in the root module");
         pub const IUniformResourceLocator = @compileError("'IUniformResourceLocator' requires that UNICODE be set to true or false in the root module");
-        pub const MULTIKEYHELP = @compileError("'MULTIKEYHELP' requires that UNICODE be set to true or false in the root module");
-        pub const HELPWININFO = @compileError("'HELPWININFO' requires that UNICODE be set to true or false in the root module");
+        pub const SHFormatDateTime = @compileError("'SHFormatDateTime' requires that UNICODE be set to true or false in the root module");
+        pub const LoadUserProfile = @compileError("'LoadUserProfile' requires that UNICODE be set to true or false in the root module");
+        pub const GetProfilesDirectory = @compileError("'GetProfilesDirectory' requires that UNICODE be set to true or false in the root module");
+        pub const DeleteProfile = @compileError("'DeleteProfile' requires that UNICODE be set to true or false in the root module");
+        pub const GetDefaultUserProfileDirectory = @compileError("'GetDefaultUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
+        pub const GetAllUsersProfileDirectory = @compileError("'GetAllUsersProfileDirectory' requires that UNICODE be set to true or false in the root module");
+        pub const GetUserProfileDirectory = @compileError("'GetUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
+        pub const ExpandEnvironmentStringsForUser = @compileError("'ExpandEnvironmentStringsForUser' requires that UNICODE be set to true or false in the root module");
+        pub const WinHelp = @compileError("'WinHelp' requires that UNICODE be set to true or false in the root module");
         pub const SHGetIconOverlayIndex = @compileError("'SHGetIconOverlayIndex' requires that UNICODE be set to true or false in the root module");
         pub const ILCreateFromPath = @compileError("'ILCreateFromPath' requires that UNICODE be set to true or false in the root module");
         pub const SHGetPathFromIDList = @compileError("'SHGetPathFromIDList' requires that UNICODE be set to true or false in the root module");
@@ -34272,18 +34729,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHOpenRegStream2 = @compileError("'SHOpenRegStream2' requires that UNICODE be set to true or false in the root module");
         pub const SHCreateStreamOnFile = @compileError("'SHCreateStreamOnFile' requires that UNICODE be set to true or false in the root module");
         pub const GetAcceptLanguages = @compileError("'GetAcceptLanguages' requires that UNICODE be set to true or false in the root module");
-        pub const SHFormatDateTime = @compileError("'SHFormatDateTime' requires that UNICODE be set to true or false in the root module");
         pub const SHMessageBoxCheck = @compileError("'SHMessageBoxCheck' requires that UNICODE be set to true or false in the root module");
         pub const SHSendMessageBroadcast = @compileError("'SHSendMessageBroadcast' requires that UNICODE be set to true or false in the root module");
         pub const SHStripMneumonic = @compileError("'SHStripMneumonic' requires that UNICODE be set to true or false in the root module");
-        pub const LoadUserProfile = @compileError("'LoadUserProfile' requires that UNICODE be set to true or false in the root module");
-        pub const GetProfilesDirectory = @compileError("'GetProfilesDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const DeleteProfile = @compileError("'DeleteProfile' requires that UNICODE be set to true or false in the root module");
-        pub const GetDefaultUserProfileDirectory = @compileError("'GetDefaultUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetAllUsersProfileDirectory = @compileError("'GetAllUsersProfileDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetUserProfileDirectory = @compileError("'GetUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const ExpandEnvironmentStringsForUser = @compileError("'ExpandEnvironmentStringsForUser' requires that UNICODE be set to true or false in the root module");
-        pub const WinHelp = @compileError("'WinHelp' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
@@ -34294,8 +34742,8 @@ const IDispatch = @import("automation.zig").IDispatch;
 const NTSTATUS = @import("system_services.zig").NTSTATUS;
 const FILETIME = @import("windows_programming.zig").FILETIME;
 const IXMLDOMDocument = @import("windows_programming.zig").IXMLDOMDocument;
-const ULARGE_INTEGER = @import("system_services.zig").ULARGE_INTEGER;
 const SID_AND_ATTRIBUTES = @import("security.zig").SID_AND_ATTRIBUTES;
+const ULARGE_INTEGER = @import("system_services.zig").ULARGE_INTEGER;
 const IOleCommandTarget = @import("com.zig").IOleCommandTarget;
 const LOGFONTW = @import("gdi.zig").LOGFONTW;
 const IEnumUnknown = @import("com.zig").IEnumUnknown;
@@ -34322,12 +34770,12 @@ const IEnumFORMATETC = @import("com.zig").IEnumFORMATETC;
 const IOleInPlaceSite = @import("com.zig").IOleInPlaceSite;
 const IEnumPrivacyRecords = @import("internet_explorer.zig").IEnumPrivacyRecords;
 const COORD = @import("system_services.zig").COORD;
+const SECURITY_ATTRIBUTES = @import("system_services.zig").SECURITY_ATTRIBUTES;
 const PROPVARIANT = @import("structured_storage.zig").PROPVARIANT;
-const BSTR = @import("automation.zig").BSTR;
 const PSTR = @import("system_services.zig").PSTR;
 const RECT = @import("display_devices.zig").RECT;
+const BSTR = @import("automation.zig").BSTR;
 const IStorage = @import("structured_storage.zig").IStorage;
-const SECURITY_ATTRIBUTES = @import("system_services.zig").SECURITY_ATTRIBUTES;
 const IPropertyBag = @import("automation.zig").IPropertyBag;
 const LSTATUS = @import("system_services.zig").LSTATUS;
 const LPTHREAD_START_ROUTINE = @import("system_services.zig").LPTHREAD_START_ROUTINE;
@@ -34340,15 +34788,15 @@ const HPROPSHEETPAGE = @import("controls.zig").HPROPSHEETPAGE;
 const IPropertyChangeArray = @import("windows_properties_system.zig").IPropertyChangeArray;
 const HIMAGELIST = @import("controls.zig").HIMAGELIST;
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
-const MSG = @import("windows_and_messaging.zig").MSG;
 const HKEY = @import("windows_programming.zig").HKEY;
-const POINTL = @import("display_devices.zig").POINTL;
-const HDC = @import("gdi.zig").HDC;
-const CHAR = @import("system_services.zig").CHAR;
-const IEnumString = @import("com.zig").IEnumString;
-const HRESULT = @import("com.zig").HRESULT;
 const HINSTANCE = @import("system_services.zig").HINSTANCE;
 const STARTUPINFOW = @import("system_services.zig").STARTUPINFOW;
+const CHAR = @import("system_services.zig").CHAR;
+const MSG = @import("windows_and_messaging.zig").MSG;
+const POINTL = @import("display_devices.zig").POINTL;
+const HRESULT = @import("com.zig").HRESULT;
+const HDC = @import("gdi.zig").HDC;
+const IEnumString = @import("com.zig").IEnumString;
 const IEnumGUID = @import("com.zig").IEnumGUID;
 const BYTE_BLOB = @import("com.zig").BYTE_BLOB;
 const IOleObject = @import("com.zig").IOleObject;
@@ -34366,8 +34814,8 @@ const IMalloc = @import("com.zig").IMalloc;
 const WIN32_FIND_DATAA = @import("file_system.zig").WIN32_FIND_DATAA;
 const HICON = @import("menus_and_resources.zig").HICON;
 const SERIALIZEDPROPSTORAGE = @import("windows_properties_system.zig").SERIALIZEDPROPSTORAGE;
-const TBBUTTON = @import("controls.zig").TBBUTTON;
 const PROCESS_INFORMATION = @import("system_services.zig").PROCESS_INFORMATION;
+const TBBUTTON = @import("controls.zig").TBBUTTON;
 const IUnknown = @import("com.zig").IUnknown;
 const IPropertyDescriptionList = @import("windows_properties_system.zig").IPropertyDescriptionList;
 const IDropTarget = @import("com.zig").IDropTarget;
@@ -34389,34 +34837,25 @@ const IServiceProvider = @import("system_services.zig").IServiceProvider;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPFNDFMCALLBACK;
-    _ = LPFNVIEWCALLBACK;
-    _ = PFNCANSHAREFOLDERW;
-    _ = PFNSHOWSHAREFOLDERUIW;
-    _ = DLLGETVERSIONPROC;
-    _ = APPLET_PROC;
-    _ = PAPPSTATE_CHANGE_ROUTINE;
-    _ = PAPPCONSTRAIN_CHANGE_ROUTINE;
-    _ = SUBCLASSPROC;
+    if (@hasDecl(@This(), "SUBCLASSPROC")) { _ = SUBCLASSPROC; }
+    if (@hasDecl(@This(), "LPFNDFMCALLBACK")) { _ = LPFNDFMCALLBACK; }
+    if (@hasDecl(@This(), "LPFNVIEWCALLBACK")) { _ = LPFNVIEWCALLBACK; }
+    if (@hasDecl(@This(), "PFNCANSHAREFOLDERW")) { _ = PFNCANSHAREFOLDERW; }
+    if (@hasDecl(@This(), "PFNSHOWSHAREFOLDERUIW")) { _ = PFNSHOWSHAREFOLDERUIW; }
+    if (@hasDecl(@This(), "DLLGETVERSIONPROC")) { _ = DLLGETVERSIONPROC; }
+    if (@hasDecl(@This(), "APPLET_PROC")) { _ = APPLET_PROC; }
+    if (@hasDecl(@This(), "PAPPSTATE_CHANGE_ROUTINE")) { _ = PAPPSTATE_CHANGE_ROUTINE; }
+    if (@hasDecl(@This(), "PAPPCONSTRAIN_CHANGE_ROUTINE")) { _ = PAPPCONSTRAIN_CHANGE_ROUTINE; }
 
-    const constant_export_count = 1425;
-    const type_export_count = 815;
-    const enum_value_export_count = 2001;
-    const com_iface_id_export_count = 401;
-    const com_class_id_export_count = 109;
-    const func_export_count = 699;
-    const unicode_alias_count = 206;
-    const import_count = 97;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

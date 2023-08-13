@@ -17,10 +17,8 @@ pub const E_DELTA_PRINTTICKET_FORMAT = @as(u32, 2147745797);
 pub const E_PRINTDEVICECAPABILITIES_FORMAT = @as(u32, 2147745798);
 
 //--------------------------------------------------------------------------------
-// Section: Types (119)
+// Section: Types (118)
 //--------------------------------------------------------------------------------
-pub const HPTPROVIDER = ?*opaque{};
-
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const PSINJECT_POINT = extern enum(u16) {
     BEGINSTREAM = 1,
@@ -87,6 +85,55 @@ pub const PSINJECT_PAGEBBOX = PSINJECT_POINT.PAGEBBOX;
 pub const PSINJECT_ENDPAGECOMMENTS = PSINJECT_POINT.ENDPAGECOMMENTS;
 pub const PSINJECT_VMSAVE = PSINJECT_POINT.VMSAVE;
 pub const PSINJECT_VMRESTORE = PSINJECT_POINT.VMRESTORE;
+
+pub const HPTPROVIDER = ?*opaque{};
+
+pub const DRAWPATRECT = extern struct {
+    ptPosition: POINT,
+    ptSize: POINT,
+    wStyle: u16,
+    wPattern: u16,
+};
+
+pub const PSINJECTDATA = extern struct {
+    DataBytes: u32,
+    InjectionPoint: PSINJECT_POINT,
+    PageNumber: u16,
+};
+
+pub const PSFEATURE_OUTPUT = extern struct {
+    bPageIndependent: BOOL,
+    bSetPageDevice: BOOL,
+};
+
+pub const PSFEATURE_CUSTPAPER = extern struct {
+    lOrientation: i32,
+    lWidth: i32,
+    lHeight: i32,
+    lWidthOffset: i32,
+    lHeightOffset: i32,
+};
+
+pub const ABORTPROC = fn(
+    param0: HDC,
+    param1: i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const DOCINFOA = extern struct {
+    cbSize: i32,
+    lpszDocName: [*:0]const u8,
+    lpszOutput: [*:0]const u8,
+    lpszDatatype: [*:0]const u8,
+    fwType: u32,
+};
+
+pub const DOCINFOW = extern struct {
+    cbSize: i32,
+    lpszDocName: [*:0]const u16,
+    lpszOutput: [*:0]const u16,
+    lpszDatatype: [*:0]const u16,
+    fwType: u32,
+};
 
 const CLSID_XpsOMObjectFactory_Value = @import("../zig.zig").Guid.initString("e974d26d-3d9b-4d47-88cc-3872f2dc3585");
 pub const CLSID_XpsOMObjectFactory = &CLSID_XpsOMObjectFactory_Value;
@@ -312,7 +359,7 @@ pub const XPS_MATRIX = extern struct {
 
 pub const XPS_COLOR = extern struct {
     colorType: XPS_COLOR_TYPE,
-    value: XPS_COLOR.XPS_COLOR_VALUE,
+    value: XPS_COLOR_VALUE,
     const XPS_COLOR_VALUE = u32; // TODO: generate this nested type!
 };
 
@@ -6172,89 +6219,88 @@ pub const DC_STAPLE = DEVICE_CAPABILITIES.STAPLE;
 pub const DC_TRUETYPE = DEVICE_CAPABILITIES.TRUETYPE;
 pub const DC_VERSION = DEVICE_CAPABILITIES.VERSION;
 
-pub const DRAWPATRECT = extern struct {
-    ptPosition: POINT,
-    ptSize: POINT,
-    wStyle: u16,
-    wPattern: u16,
-};
-
-pub const PSINJECTDATA = extern struct {
-    DataBytes: u32,
-    InjectionPoint: PSINJECT_POINT,
-    PageNumber: u16,
-};
-
-pub const PSFEATURE_OUTPUT = extern struct {
-    bPageIndependent: BOOL,
-    bSetPageDevice: BOOL,
-};
-
-pub const PSFEATURE_CUSTPAPER = extern struct {
-    lOrientation: i32,
-    lWidth: i32,
-    lHeight: i32,
-    lWidthOffset: i32,
-    lHeightOffset: i32,
-};
-
-pub const DEVMODEA = extern struct {
-    dmDeviceName: [32]u8,
-    dmSpecVersion: u16,
-    dmDriverVersion: u16,
-    dmSize: u16,
-    dmDriverExtra: u16,
-    dmFields: u32,
-    Anonymous1: DEVMODEA._Anonymous1_e__Union,
-    dmColor: i16,
-    dmDuplex: i16,
-    dmYResolution: i16,
-    dmTTOption: i16,
-    dmCollate: i16,
-    dmFormName: [32]u8,
-    dmLogPixels: u16,
-    dmBitsPerPel: u32,
-    dmPelsWidth: u32,
-    dmPelsHeight: u32,
-    Anonymous2: DEVMODEA._Anonymous2_e__Union,
-    dmDisplayFrequency: u32,
-    dmICMMethod: u32,
-    dmICMIntent: u32,
-    dmMediaType: u32,
-    dmDitherType: u32,
-    dmReserved1: u32,
-    dmReserved2: u32,
-    dmPanningWidth: u32,
-    dmPanningHeight: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const ABORTPROC = fn(
-    param0: HDC,
-    param1: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const DOCINFOA = extern struct {
-    cbSize: i32,
-    lpszDocName: [*:0]const u8,
-    lpszOutput: [*:0]const u8,
-    lpszDatatype: [*:0]const u8,
-    fwType: u32,
-};
-
-pub const DOCINFOW = extern struct {
-    cbSize: i32,
-    lpszDocName: [*:0]const u16,
-    lpszOutput: [*:0]const u16,
-    lpszDatatype: [*:0]const u16,
-    fwType: u32,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (23)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "WINSPOOL" fn DeviceCapabilitiesA(
+    pDevice: [*:0]const u8,
+    pPort: ?[*:0]const u8,
+    fwCapability: DEVICE_CAPABILITIES,
+    pOutput: ?PSTR,
+    pDevMode: ?*const DEVMODEA,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "WINSPOOL" fn DeviceCapabilitiesW(
+    pDevice: [*:0]const u16,
+    pPort: ?[*:0]const u16,
+    fwCapability: DEVICE_CAPABILITIES,
+    pOutput: ?PWSTR,
+    pDevMode: ?*const DEVMODEW,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn Escape(
+    hdc: HDC,
+    iEscape: i32,
+    cjIn: i32,
+    // TODO: what to do with BytesParamIndex 2?
+    pvIn: ?[*:0]const u8,
+    pvOut: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn ExtEscape(
+    hdc: HDC,
+    iEscape: i32,
+    cjInput: i32,
+    // TODO: what to do with BytesParamIndex 2?
+    lpInData: ?[*:0]const u8,
+    cjOutput: i32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpOutData: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn StartDocA(
+    hdc: HDC,
+    lpdi: *const DOCINFOA,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn StartDocW(
+    hdc: HDC,
+    lpdi: *const DOCINFOW,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn EndDoc(
+    hdc: HDC,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn StartPage(
+    hdc: HDC,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn EndPage(
+    hdc: HDC,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn AbortDoc(
+    hdc: HDC,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn SetAbortProc(
+    hdc: HDC,
+    proc: ABORTPROC,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "prntvpt" fn PTQuerySchemaVersionSupport(
     pszPrinterName: [*:0]const u16,
@@ -6342,84 +6388,6 @@ pub extern "prntvpt" fn PTConvertDevModeToPrintTicket(
     pPrintTicket: *IStream,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "WINSPOOL" fn DeviceCapabilitiesA(
-    pDevice: [*:0]const u8,
-    pPort: ?[*:0]const u8,
-    fwCapability: DEVICE_CAPABILITIES,
-    pOutput: ?PSTR,
-    pDevMode: ?*const DEVMODEA,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "WINSPOOL" fn DeviceCapabilitiesW(
-    pDevice: [*:0]const u16,
-    pPort: ?[*:0]const u16,
-    fwCapability: DEVICE_CAPABILITIES,
-    pOutput: ?PWSTR,
-    pDevMode: ?*const DEVMODEW,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn Escape(
-    hdc: HDC,
-    iEscape: i32,
-    cjIn: i32,
-    // TODO: what to do with BytesParamIndex 2?
-    pvIn: ?[*:0]const u8,
-    pvOut: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn ExtEscape(
-    hdc: HDC,
-    iEscape: i32,
-    cjInput: i32,
-    // TODO: what to do with BytesParamIndex 2?
-    lpInData: ?[*:0]const u8,
-    cjOutput: i32,
-    // TODO: what to do with BytesParamIndex 4?
-    lpOutData: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn StartDocA(
-    hdc: HDC,
-    lpdi: *const DOCINFOA,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn StartDocW(
-    hdc: HDC,
-    lpdi: *const DOCINFOW,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn EndDoc(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn StartPage(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn EndPage(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn AbortDoc(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn SetAbortProc(
-    hdc: HDC,
-    proc: ABORTPROC,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn PrintWindow(
     hwnd: HWND,
@@ -6453,17 +6421,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (27)
+// Section: Imports (28)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const IDispatch = @import("automation.zig").IDispatch;
 const HDC = @import("gdi.zig").HDC;
+const IDispatch = @import("automation.zig").IDispatch;
 const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
 const IOpcPartUri = @import("packaging.zig").IOpcPartUri;
 const IUri = @import("com.zig").IUri;
 const HRESULT = @import("com.zig").HRESULT;
 const IOpcCertificateEnumerator = @import("packaging.zig").IOpcCertificateEnumerator;
 const BOOL = @import("system_services.zig").BOOL;
+const DEVMODEA = @import("display_devices.zig").DEVMODEA;
 const IStream = @import("structured_storage.zig").IStream;
 const PWSTR = @import("system_services.zig").PWSTR;
 const IOpcCertificateSet = @import("packaging.zig").IOpcCertificateSet;
@@ -6485,26 +6454,17 @@ const IOpcSignatureReferenceEnumerator = @import("packaging.zig").IOpcSignatureR
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = ABORTPROC;
+    if (@hasDecl(@This(), "ABORTPROC")) { _ = ABORTPROC; }
 
-    const constant_export_count = 13;
-    const type_export_count = 114;
-    const enum_value_export_count = 152;
-    const com_iface_id_export_count = 71;
-    const com_class_id_export_count = 5;
-    const func_export_count = 23;
-    const unicode_alias_count = 3;
-    const import_count = 27;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

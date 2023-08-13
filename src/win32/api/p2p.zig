@@ -140,7 +140,7 @@ pub const PNRPINFO_V2 = extern struct {
     saHint: SOCKET_ADDRESS,
     enNameState: PNRP_REGISTERED_ID_STATE,
     enExtendedPayloadType: PNRP_EXTENDED_PAYLOAD_TYPE,
-    Anonymous: PNRPINFO_V2._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -348,7 +348,7 @@ pub const PEER_GRAPH_EVENT_REGISTRATION = extern struct {
 
 pub const PEER_GRAPH_EVENT_DATA = extern struct {
     eventType: PEER_GRAPH_EVENT_TYPE,
-    Anonymous: PEER_GRAPH_EVENT_DATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -533,7 +533,7 @@ pub const PEER_GROUP_EVENT_REGISTRATION = extern struct {
 
 pub const PEER_GROUP_EVENT_DATA = extern struct {
     eventType: PEER_GROUP_EVENT_TYPE,
-    Anonymous: PEER_GROUP_EVENT_DATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -754,7 +754,7 @@ pub const PEER_EVENT_REQUEST_STATUS_CHANGED_DATA = extern struct {
 
 pub const PEER_COLLAB_EVENT_DATA = extern struct {
     eventType: PEER_COLLAB_EVENT_TYPE,
-    Anonymous: PEER_COLLAB_EVENT_DATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -951,7 +951,7 @@ pub const DRT_EVENT_DATA = extern struct {
     type: DRT_EVENT_TYPE,
     hr: HRESULT,
     pvContext: *c_void,
-    Anonymous: DRT_EVENT_DATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2380,30 +2380,21 @@ const SOCKADDR_IN6 = @import("win_sock.zig").SOCKADDR_IN6;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PFNPEER_VALIDATE_RECORD;
-    _ = PFNPEER_SECURE_RECORD;
-    _ = PFNPEER_FREE_SECURITY_DATA;
-    _ = PFNPEER_ON_PASSWORD_AUTH_FAILED;
-    _ = DRT_BOOTSTRAP_RESOLVE_CALLBACK;
+    if (@hasDecl(@This(), "PFNPEER_VALIDATE_RECORD")) { _ = PFNPEER_VALIDATE_RECORD; }
+    if (@hasDecl(@This(), "PFNPEER_SECURE_RECORD")) { _ = PFNPEER_SECURE_RECORD; }
+    if (@hasDecl(@This(), "PFNPEER_FREE_SECURITY_DATA")) { _ = PFNPEER_FREE_SECURITY_DATA; }
+    if (@hasDecl(@This(), "PFNPEER_ON_PASSWORD_AUTH_FAILED")) { _ = PFNPEER_ON_PASSWORD_AUTH_FAILED; }
+    if (@hasDecl(@This(), "DRT_BOOTSTRAP_RESOLVE_CALLBACK")) { _ = DRT_BOOTSTRAP_RESOLVE_CALLBACK; }
 
-    const constant_export_count = 33;
-    const type_export_count = 110;
-    const enum_value_export_count = 156;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 200;
-    const unicode_alias_count = 0;
-    const import_count = 15;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

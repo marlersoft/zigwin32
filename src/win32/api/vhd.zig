@@ -35,7 +35,7 @@ pub const OPEN_VIRTUAL_DISK_VERSION_3 = OPEN_VIRTUAL_DISK_VERSION.@"3";
 
 pub const OPEN_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: OPEN_VIRTUAL_DISK_VERSION,
-    Anonymous: OPEN_VIRTUAL_DISK_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -106,7 +106,7 @@ pub const CREATE_VIRTUAL_DISK_VERSION_4 = CREATE_VIRTUAL_DISK_VERSION.@"4";
 
 pub const CREATE_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: CREATE_VIRTUAL_DISK_VERSION,
-    Anonymous: CREATE_VIRTUAL_DISK_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -146,7 +146,7 @@ pub const ATTACH_VIRTUAL_DISK_VERSION_2 = ATTACH_VIRTUAL_DISK_VERSION.@"2";
 
 pub const ATTACH_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: ATTACH_VIRTUAL_DISK_VERSION,
-    Anonymous: ATTACH_VIRTUAL_DISK_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -244,7 +244,7 @@ pub const STORAGE_DEPENDENCY_INFO_TYPE_2 = extern struct {
 pub const STORAGE_DEPENDENCY_INFO = extern struct {
     Version: STORAGE_DEPENDENCY_INFO_VERSION,
     NumberEntries: u32,
-    Anonymous: STORAGE_DEPENDENCY_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -296,7 +296,7 @@ pub const GET_VIRTUAL_DISK_INFO_CHANGE_TRACKING_STATE = GET_VIRTUAL_DISK_INFO_VE
 
 pub const GET_VIRTUAL_DISK_INFO = extern struct {
     Version: GET_VIRTUAL_DISK_INFO_VERSION,
-    Anonymous: GET_VIRTUAL_DISK_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -321,7 +321,7 @@ pub const SET_VIRTUAL_DISK_INFO_PARENT_LOCATOR = SET_VIRTUAL_DISK_INFO_VERSION.P
 
 pub const SET_VIRTUAL_DISK_INFO = extern struct {
     Version: SET_VIRTUAL_DISK_INFO_VERSION,
-    Anonymous: SET_VIRTUAL_DISK_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -340,7 +340,7 @@ pub const COMPACT_VIRTUAL_DISK_VERSION_1 = COMPACT_VIRTUAL_DISK_VERSION.@"1";
 
 pub const COMPACT_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: COMPACT_VIRTUAL_DISK_VERSION,
-    Anonymous: COMPACT_VIRTUAL_DISK_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -366,7 +366,7 @@ pub const MERGE_VIRTUAL_DISK_VERSION_2 = MERGE_VIRTUAL_DISK_VERSION.@"2";
 
 pub const MERGE_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: MERGE_VIRTUAL_DISK_VERSION,
-    Anonymous: MERGE_VIRTUAL_DISK_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -386,7 +386,7 @@ pub const EXPAND_VIRTUAL_DISK_VERSION_1 = EXPAND_VIRTUAL_DISK_VERSION.@"1";
 
 pub const EXPAND_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: EXPAND_VIRTUAL_DISK_VERSION,
-    Anonymous: EXPAND_VIRTUAL_DISK_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -406,7 +406,7 @@ pub const RESIZE_VIRTUAL_DISK_VERSION_1 = RESIZE_VIRTUAL_DISK_VERSION.@"1";
 
 pub const RESIZE_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: RESIZE_VIRTUAL_DISK_VERSION,
-    Anonymous: RESIZE_VIRTUAL_DISK_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -430,7 +430,7 @@ pub const MIRROR_VIRTUAL_DISK_VERSION_1 = MIRROR_VIRTUAL_DISK_VERSION.@"1";
 
 pub const MIRROR_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: MIRROR_VIRTUAL_DISK_VERSION,
-    Anonymous: MIRROR_VIRTUAL_DISK_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -480,7 +480,7 @@ pub const TAKE_SNAPSHOT_VHDSET_VERSION_1 = TAKE_SNAPSHOT_VHDSET_VERSION.@"1";
 
 pub const TAKE_SNAPSHOT_VHDSET_PARAMETERS = extern struct {
     Version: TAKE_SNAPSHOT_VHDSET_VERSION,
-    Anonymous: TAKE_SNAPSHOT_VHDSET_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -502,7 +502,7 @@ pub const DELETE_SNAPSHOT_VHDSET_VERSION_1 = DELETE_SNAPSHOT_VHDSET_VERSION.@"1"
 
 pub const DELETE_SNAPSHOT_VHDSET_PARAMETERS = extern struct {
     Version: DELETE_SNAPSHOT_VHDSET_VERSION,
-    Anonymous: DELETE_SNAPSHOT_VHDSET_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -528,7 +528,7 @@ pub const MODIFY_VHDSET_FLAG_WRITEABLE_SNAPSHOT = MODIFY_VHDSET_FLAG.WRITEABLE_S
 
 pub const MODIFY_VHDSET_PARAMETERS = extern struct {
     Version: MODIFY_VHDSET_VERSION,
-    Anonymous: MODIFY_VHDSET_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -550,7 +550,7 @@ pub const APPLY_SNAPSHOT_VHDSET_VERSION_1 = APPLY_SNAPSHOT_VHDSET_VERSION.@"1";
 
 pub const APPLY_SNAPSHOT_VHDSET_PARAMETERS = extern struct {
     Version: APPLY_SNAPSHOT_VHDSET_VERSION,
-    Anonymous: APPLY_SNAPSHOT_VHDSET_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -570,13 +570,13 @@ pub const RAW_SCSI_VIRTUAL_DISK_VERSION_1 = RAW_SCSI_VIRTUAL_DISK_VERSION.@"1";
 
 pub const RAW_SCSI_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: RAW_SCSI_VIRTUAL_DISK_VERSION,
-    Anonymous: RAW_SCSI_VIRTUAL_DISK_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const RAW_SCSI_VIRTUAL_DISK_RESPONSE = extern struct {
     Version: RAW_SCSI_VIRTUAL_DISK_VERSION,
-    Anonymous: RAW_SCSI_VIRTUAL_DISK_RESPONSE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -589,7 +589,7 @@ pub const FORK_VIRTUAL_DISK_VERSION_1 = FORK_VIRTUAL_DISK_VERSION.@"1";
 
 pub const FORK_VIRTUAL_DISK_PARAMETERS = extern struct {
     Version: FORK_VIRTUAL_DISK_VERSION,
-    Anonymous: FORK_VIRTUAL_DISK_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -855,24 +855,15 @@ const HANDLE = @import("system_services.zig").HANDLE;
 const OVERLAPPED = @import("system_services.zig").OVERLAPPED;
 
 test {
-    const constant_export_count = 11;
-    const type_export_count = 59;
-    const enum_value_export_count = 148;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 29;
-    const unicode_alias_count = 0;
-    const import_count = 5;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

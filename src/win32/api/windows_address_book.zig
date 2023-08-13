@@ -52,6 +52,10 @@ pub const WAB_DISPLAY_ISNTDS = @as(u32, 4);
 //--------------------------------------------------------------------------------
 // Section: Types (115)
 //--------------------------------------------------------------------------------
+pub const _WABACTIONITEM = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
 pub const ENTRYID = extern struct {
     abFlags: [4]u8,
     ab: [1]u8,
@@ -131,7 +135,36 @@ pub const SLPSTRArray = extern struct {
     lppszA: *PSTR,
 };
 
-pub const _PV = u32; // TODO: implement StructOrUnion types?
+pub const _PV = extern union {
+    i: i16,
+    l: i32,
+    ul: u32,
+    flt: f32,
+    dbl: f64,
+    b: u16,
+    cur: CY,
+    at: f64,
+    ft: FILETIME,
+    lpszA: PSTR,
+    bin: SBinary,
+    lpszW: PWSTR,
+    lpguid: *Guid,
+    li: LARGE_INTEGER,
+    MVi: SShortArray,
+    MVl: SLongArray,
+    MVflt: SRealArray,
+    MVdbl: SDoubleArray,
+    MVcur: SCurrencyArray,
+    MVat: SAppTimeArray,
+    MVft: SDateTimeArray,
+    MVbin: SBinaryArray,
+    MVszA: SLPSTRArray,
+    MVszW: SWStringArray,
+    MVguid: SGuidArray,
+    MVli: SLargeIntegerArray,
+    err: i32,
+    x: i32,
+};
 
 pub const SPropValue = extern struct {
     ulPropTag: u32,
@@ -273,7 +306,7 @@ pub const STATUS_OBJECT_NOTIFICATION = extern struct {
 pub const NOTIFICATION = extern struct {
     ulEventType: u32,
     ulAlignPad: u32,
-    info: NOTIFICATION._info_e__Union,
+    info: _info_e__Union,
     const _info_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -361,7 +394,7 @@ pub const IMAPIProgress = extern struct {
 pub const MAPINAMEID = extern struct {
     lpguid: *Guid,
     ulKind: u32,
-    Kind: MAPINAMEID._Kind_e__Union,
+    Kind: _Kind_e__Union,
     const _Kind_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -574,7 +607,7 @@ pub const SCommentRestriction = extern struct {
 
 pub const SRestriction = extern struct {
     rt: u32,
-    res: SRestriction._res_e__Union,
+    res: _res_e__Union,
     const _res_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1874,10 +1907,6 @@ pub const IAddrBook = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _WABACTIONITEM = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 // TODO: this type is limited to platform 'windows5.0'
 pub const IWABObject = extern struct {
     pub const VTable = extern struct {
@@ -2377,50 +2406,41 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPALLOCATEBUFFER;
-    _ = LPALLOCATEMORE;
-    _ = LPFREEBUFFER;
-    _ = LPNOTIFCALLBACK;
-    _ = LPFNABSDI;
-    _ = LPFNDISMISS;
-    _ = LPFNBUTTON;
-    _ = IWABOBJECT_QueryInterface_METHOD;
-    _ = IWABOBJECT_AddRef_METHOD;
-    _ = IWABOBJECT_Release_METHOD;
-    _ = IWABOBJECT_GetLastError_METHOD;
-    _ = IWABOBJECT_AllocateBuffer_METHOD;
-    _ = IWABOBJECT_AllocateMore_METHOD;
-    _ = IWABOBJECT_FreeBuffer_METHOD;
-    _ = IWABOBJECT_Backup_METHOD;
-    _ = IWABOBJECT_Import_METHOD;
-    _ = IWABOBJECT_Find_METHOD;
-    _ = IWABOBJECT_VCardDisplay_METHOD;
-    _ = IWABOBJECT_LDAPUrl_METHOD;
-    _ = IWABOBJECT_VCardCreate_METHOD;
-    _ = IWABOBJECT_VCardRetrieve_METHOD;
-    _ = IWABOBJECT_GetMe_METHOD;
-    _ = IWABOBJECT_SetMe_METHOD;
-    _ = LPWABOPEN;
-    _ = LPWABOPENEX;
+    if (@hasDecl(@This(), "LPALLOCATEBUFFER")) { _ = LPALLOCATEBUFFER; }
+    if (@hasDecl(@This(), "LPALLOCATEMORE")) { _ = LPALLOCATEMORE; }
+    if (@hasDecl(@This(), "LPFREEBUFFER")) { _ = LPFREEBUFFER; }
+    if (@hasDecl(@This(), "LPNOTIFCALLBACK")) { _ = LPNOTIFCALLBACK; }
+    if (@hasDecl(@This(), "LPFNABSDI")) { _ = LPFNABSDI; }
+    if (@hasDecl(@This(), "LPFNDISMISS")) { _ = LPFNDISMISS; }
+    if (@hasDecl(@This(), "LPFNBUTTON")) { _ = LPFNBUTTON; }
+    if (@hasDecl(@This(), "IWABOBJECT_QueryInterface_METHOD")) { _ = IWABOBJECT_QueryInterface_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_AddRef_METHOD")) { _ = IWABOBJECT_AddRef_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_Release_METHOD")) { _ = IWABOBJECT_Release_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_GetLastError_METHOD")) { _ = IWABOBJECT_GetLastError_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_AllocateBuffer_METHOD")) { _ = IWABOBJECT_AllocateBuffer_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_AllocateMore_METHOD")) { _ = IWABOBJECT_AllocateMore_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_FreeBuffer_METHOD")) { _ = IWABOBJECT_FreeBuffer_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_Backup_METHOD")) { _ = IWABOBJECT_Backup_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_Import_METHOD")) { _ = IWABOBJECT_Import_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_Find_METHOD")) { _ = IWABOBJECT_Find_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_VCardDisplay_METHOD")) { _ = IWABOBJECT_VCardDisplay_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_LDAPUrl_METHOD")) { _ = IWABOBJECT_LDAPUrl_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_VCardCreate_METHOD")) { _ = IWABOBJECT_VCardCreate_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_VCardRetrieve_METHOD")) { _ = IWABOBJECT_VCardRetrieve_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_GetMe_METHOD")) { _ = IWABOBJECT_GetMe_METHOD; }
+    if (@hasDecl(@This(), "IWABOBJECT_SetMe_METHOD")) { _ = IWABOBJECT_SetMe_METHOD; }
+    if (@hasDecl(@This(), "LPWABOPEN")) { _ = LPWABOPEN; }
+    if (@hasDecl(@This(), "LPWABOPENEX")) { _ = LPWABOPENEX; }
 
-    const constant_export_count = 46;
-    const type_export_count = 115;
-    const enum_value_export_count = 3;
-    const com_iface_id_export_count = 1;
-    const com_class_id_export_count = 0;
-    const func_export_count = 0;
-    const unicode_alias_count = 0;
-    const import_count = 10;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -81,18 +81,18 @@ pub const WINML_TENSOR_BINDING_DESC = extern struct {
 pub const WINML_SEQUENCE_BINDING_DESC = extern struct {
     ElementCount: u32,
     ElementType: WINML_TENSOR_DATA_TYPE,
-    Anonymous: WINML_SEQUENCE_BINDING_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const WINML_MAP_BINDING_DESC = extern struct {
     ElementCount: u32,
     KeyType: WINML_TENSOR_DATA_TYPE,
-    Anonymous1: WINML_MAP_BINDING_DESC._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     Fields: WINML_TENSOR_DATA_TYPE,
-    Anonymous2: WINML_MAP_BINDING_DESC._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const WINML_IMAGE_BINDING_DESC = extern struct {
@@ -113,7 +113,7 @@ pub const WINML_RESOURCE_BINDING_DESC = extern struct {
 pub const WINML_BINDING_DESC = extern struct {
     Name: [*:0]const u16,
     BindType: WINML_BINDING_TYPE,
-    Anonymous: WINML_BINDING_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -143,7 +143,7 @@ pub const WINML_VARIABLE_DESC = extern struct {
     Description: PWSTR,
     FeatureType: WINML_FEATURE_TYPE,
     Required: BOOL,
-    Anonymous: WINML_VARIABLE_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -356,7 +356,7 @@ pub const MLOperatorEdgeType = extern enum(u32) {
 
 pub const MLOperatorEdgeDescription = extern struct {
     edgeType: MLOperatorEdgeType,
-    Anonymous: MLOperatorEdgeDescription._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -724,7 +724,7 @@ pub const Label = MLOperatorSchemaEdgeTypeFormat.Label;
 pub const MLOperatorSchemaEdgeDescription = extern struct {
     options: MLOperatorParameterOptions,
     typeFormat: MLOperatorSchemaEdgeTypeFormat,
-    Anonymous: MLOperatorSchemaEdgeDescription._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -928,7 +928,7 @@ pub const MLOperatorAttributeNameValue = extern struct {
     name: [*:0]const u8,
     type: MLOperatorAttributeType,
     valueCount: u32,
-    Anonymous: MLOperatorAttributeNameValue._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1075,24 +1075,15 @@ const BOOL = @import("system_services.zig").BOOL;
 const ID3D12Resource = @import("direct3d12.zig").ID3D12Resource;
 
 test {
-    const constant_export_count = 1;
-    const type_export_count = 47;
-    const enum_value_export_count = 41;
-    const com_iface_id_export_count = 16;
-    const com_class_id_export_count = 0;
-    const func_export_count = 2;
-    const unicode_alias_count = 0;
-    const import_count = 7;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

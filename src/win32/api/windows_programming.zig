@@ -2,6 +2,16 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (927)
 //--------------------------------------------------------------------------------
+pub const HKEY_CLASSES_ROOT = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483648));
+pub const HKEY_CURRENT_USER = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483647));
+pub const HKEY_LOCAL_MACHINE = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483646));
+pub const HKEY_USERS = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483645));
+pub const HKEY_PERFORMANCE_DATA = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483644));
+pub const HKEY_PERFORMANCE_TEXT = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483568));
+pub const HKEY_PERFORMANCE_NLSTEXT = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483552));
+pub const HKEY_CURRENT_CONFIG = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483643));
+pub const HKEY_DYN_DATA = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483642));
+pub const HKEY_CURRENT_USER_LOCAL_SETTINGS = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483641));
 pub const WLDP_LOCKDOWN_UNDEFINED = @as(u32, 0);
 pub const WLDP_LOCKDOWN_DEFINED_FLAG = @as(u32, 2147483648);
 pub const WLDP_LOCKDOWN_CONFIG_CI_FLAG = @as(u32, 1);
@@ -916,23 +926,722 @@ pub const SNAPSHOT_POLICY_NEVER = @as(u32, 0);
 pub const SNAPSHOT_POLICY_ALWAYS = @as(u32, 1);
 pub const SNAPSHOT_POLICY_UNPLANNED = @as(u32, 2);
 pub const MAX_NUM_REASONS = @as(u32, 256);
-pub const HKEY_CLASSES_ROOT = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483648));
-pub const HKEY_CURRENT_USER = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483647));
-pub const HKEY_LOCAL_MACHINE = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483646));
-pub const HKEY_USERS = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483645));
-pub const HKEY_PERFORMANCE_DATA = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483644));
-pub const HKEY_PERFORMANCE_TEXT = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483568));
-pub const HKEY_PERFORMANCE_NLSTEXT = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483552));
-pub const HKEY_CURRENT_CONFIG = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483643));
-pub const HKEY_DYN_DATA = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483642));
-pub const HKEY_CURRENT_USER_LOCAL_SETTINGS = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483641));
 pub const _IID_IXmlReader = Guid.initString("7279fc81-709d-4095-b63d-69fe4b0d9030");
 pub const _IID_IXmlWriter = Guid.initString("7279fc88-709d-4095-b63d-69fe4b0d9030");
 pub const _IID_IXmlResolver = Guid.initString("7279fc82-709d-4095-b63d-69fe4b0d9030");
 
 //--------------------------------------------------------------------------------
-// Section: Types (594)
+// Section: Types (602)
 //--------------------------------------------------------------------------------
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PROCESS_CREATION_FLAGS = extern enum(u32) {
+    DEBUG_PROCESS = 1,
+    DEBUG_ONLY_THIS_PROCESS = 2,
+    CREATE_SUSPENDED = 4,
+    DETACHED_PROCESS = 8,
+    CREATE_NEW_CONSOLE = 16,
+    NORMAL_PRIORITY_CLASS = 32,
+    IDLE_PRIORITY_CLASS = 64,
+    HIGH_PRIORITY_CLASS = 128,
+    REALTIME_PRIORITY_CLASS = 256,
+    CREATE_NEW_PROCESS_GROUP = 512,
+    CREATE_UNICODE_ENVIRONMENT = 1024,
+    CREATE_SEPARATE_WOW_VDM = 2048,
+    CREATE_SHARED_WOW_VDM = 4096,
+    CREATE_FORCEDOS = 8192,
+    BELOW_NORMAL_PRIORITY_CLASS = 16384,
+    ABOVE_NORMAL_PRIORITY_CLASS = 32768,
+    INHERIT_PARENT_AFFINITY = 65536,
+    INHERIT_CALLER_PRIORITY = 131072,
+    CREATE_PROTECTED_PROCESS = 262144,
+    EXTENDED_STARTUPINFO_PRESENT = 524288,
+    PROCESS_MODE_BACKGROUND_BEGIN = 1048576,
+    PROCESS_MODE_BACKGROUND_END = 2097152,
+    CREATE_SECURE_PROCESS = 4194304,
+    CREATE_BREAKAWAY_FROM_JOB = 16777216,
+    CREATE_PRESERVE_CODE_AUTHZ_LEVEL = 33554432,
+    CREATE_DEFAULT_ERROR_MODE = 67108864,
+    CREATE_NO_WINDOW = 134217728,
+    PROFILE_USER = 268435456,
+    PROFILE_KERNEL = 536870912,
+    PROFILE_SERVER = 1073741824,
+    CREATE_IGNORE_SYSTEM_DEFAULT = 2147483648,
+    _,
+};
+pub const DEBUG_PROCESS = PROCESS_CREATION_FLAGS.DEBUG_PROCESS;
+pub const DEBUG_ONLY_THIS_PROCESS = PROCESS_CREATION_FLAGS.DEBUG_ONLY_THIS_PROCESS;
+pub const CREATE_SUSPENDED = PROCESS_CREATION_FLAGS.CREATE_SUSPENDED;
+pub const DETACHED_PROCESS = PROCESS_CREATION_FLAGS.DETACHED_PROCESS;
+pub const CREATE_NEW_CONSOLE = PROCESS_CREATION_FLAGS.CREATE_NEW_CONSOLE;
+pub const NORMAL_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.NORMAL_PRIORITY_CLASS;
+pub const IDLE_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.IDLE_PRIORITY_CLASS;
+pub const HIGH_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.HIGH_PRIORITY_CLASS;
+pub const REALTIME_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.REALTIME_PRIORITY_CLASS;
+pub const CREATE_NEW_PROCESS_GROUP = PROCESS_CREATION_FLAGS.CREATE_NEW_PROCESS_GROUP;
+pub const CREATE_UNICODE_ENVIRONMENT = PROCESS_CREATION_FLAGS.CREATE_UNICODE_ENVIRONMENT;
+pub const CREATE_SEPARATE_WOW_VDM = PROCESS_CREATION_FLAGS.CREATE_SEPARATE_WOW_VDM;
+pub const CREATE_SHARED_WOW_VDM = PROCESS_CREATION_FLAGS.CREATE_SHARED_WOW_VDM;
+pub const CREATE_FORCEDOS = PROCESS_CREATION_FLAGS.CREATE_FORCEDOS;
+pub const BELOW_NORMAL_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.BELOW_NORMAL_PRIORITY_CLASS;
+pub const ABOVE_NORMAL_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.ABOVE_NORMAL_PRIORITY_CLASS;
+pub const INHERIT_PARENT_AFFINITY = PROCESS_CREATION_FLAGS.INHERIT_PARENT_AFFINITY;
+pub const INHERIT_CALLER_PRIORITY = PROCESS_CREATION_FLAGS.INHERIT_CALLER_PRIORITY;
+pub const CREATE_PROTECTED_PROCESS = PROCESS_CREATION_FLAGS.CREATE_PROTECTED_PROCESS;
+pub const EXTENDED_STARTUPINFO_PRESENT = PROCESS_CREATION_FLAGS.EXTENDED_STARTUPINFO_PRESENT;
+pub const PROCESS_MODE_BACKGROUND_BEGIN = PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_BEGIN;
+pub const PROCESS_MODE_BACKGROUND_END = PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_END;
+pub const CREATE_SECURE_PROCESS = PROCESS_CREATION_FLAGS.CREATE_SECURE_PROCESS;
+pub const CREATE_BREAKAWAY_FROM_JOB = PROCESS_CREATION_FLAGS.CREATE_BREAKAWAY_FROM_JOB;
+pub const CREATE_PRESERVE_CODE_AUTHZ_LEVEL = PROCESS_CREATION_FLAGS.CREATE_PRESERVE_CODE_AUTHZ_LEVEL;
+pub const CREATE_DEFAULT_ERROR_MODE = PROCESS_CREATION_FLAGS.CREATE_DEFAULT_ERROR_MODE;
+pub const CREATE_NO_WINDOW = PROCESS_CREATION_FLAGS.CREATE_NO_WINDOW;
+pub const PROFILE_USER = PROCESS_CREATION_FLAGS.PROFILE_USER;
+pub const PROFILE_KERNEL = PROCESS_CREATION_FLAGS.PROFILE_KERNEL;
+pub const PROFILE_SERVER = PROCESS_CREATION_FLAGS.PROFILE_SERVER;
+pub const CREATE_IGNORE_SYSTEM_DEFAULT = PROCESS_CREATION_FLAGS.CREATE_IGNORE_SYSTEM_DEFAULT;
+
+pub const HANDLE_FLAG_OPTIONS = extern enum(i32) {
+    INHERIT = 1,
+    PROTECT_FROM_CLOSE = 2,
+};
+pub const HANDLE_FLAG_INHERIT = HANDLE_FLAG_OPTIONS.INHERIT;
+pub const HANDLE_FLAG_PROTECT_FROM_CLOSE = HANDLE_FLAG_OPTIONS.PROTECT_FROM_CLOSE;
+
+pub const DUPLICATE_HANDLE_OPTIONS = extern enum(i32) {
+    CLOSE_SOURCE = 1,
+    SAME_ACCESS = 2,
+};
+pub const DUPLICATE_CLOSE_SOURCE = DUPLICATE_HANDLE_OPTIONS.CLOSE_SOURCE;
+pub const DUPLICATE_SAME_ACCESS = DUPLICATE_HANDLE_OPTIONS.SAME_ACCESS;
+
+pub const STD_HANDLE_TYPE = extern enum(u32) {
+    INPUT_HANDLE = 4294967286,
+    OUTPUT_HANDLE = 4294967285,
+    ERROR_HANDLE = 4294967284,
+};
+pub const STD_INPUT_HANDLE = STD_HANDLE_TYPE.INPUT_HANDLE;
+pub const STD_OUTPUT_HANDLE = STD_HANDLE_TYPE.OUTPUT_HANDLE;
+pub const STD_ERROR_HANDLE = STD_HANDLE_TYPE.ERROR_HANDLE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const VER_FLAGS = extern enum(u32) {
+    MINORVERSION = 1,
+    MAJORVERSION = 2,
+    BUILDNUMBER = 4,
+    PLATFORMID = 8,
+    SERVICEPACKMINOR = 16,
+    SERVICEPACKMAJOR = 32,
+    SUITENAME = 64,
+    PRODUCT_TYPE = 128,
+    _,
+};
+pub const VER_MINORVERSION = VER_FLAGS.MINORVERSION;
+pub const VER_MAJORVERSION = VER_FLAGS.MAJORVERSION;
+pub const VER_BUILDNUMBER = VER_FLAGS.BUILDNUMBER;
+pub const VER_PLATFORMID = VER_FLAGS.PLATFORMID;
+pub const VER_SERVICEPACKMINOR = VER_FLAGS.SERVICEPACKMINOR;
+pub const VER_SERVICEPACKMAJOR = VER_FLAGS.SERVICEPACKMAJOR;
+pub const VER_SUITENAME = VER_FLAGS.SUITENAME;
+pub const VER_PRODUCT_TYPE = VER_FLAGS.PRODUCT_TYPE;
+
+pub const REG_VALUE_TYPE = extern enum(u32) {
+    NONE = 0,
+    SZ = 1,
+    EXPAND_SZ = 2,
+    BINARY = 3,
+    DWORD = 4,
+    DWORD_LITTLE_ENDIAN = 4,
+    DWORD_BIG_ENDIAN = 5,
+    LINK = 6,
+    MULTI_SZ = 7,
+    RESOURCE_LIST = 8,
+    FULL_RESOURCE_DESCRIPTOR = 9,
+    RESOURCE_REQUIREMENTS_LIST = 10,
+    QWORD = 11,
+    QWORD_LITTLE_ENDIAN = 11,
+};
+pub const REG_NONE = REG_VALUE_TYPE.NONE;
+pub const REG_SZ = REG_VALUE_TYPE.SZ;
+pub const REG_EXPAND_SZ = REG_VALUE_TYPE.EXPAND_SZ;
+pub const REG_BINARY = REG_VALUE_TYPE.BINARY;
+pub const REG_DWORD = REG_VALUE_TYPE.DWORD;
+pub const REG_DWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.DWORD_LITTLE_ENDIAN;
+pub const REG_DWORD_BIG_ENDIAN = REG_VALUE_TYPE.DWORD_BIG_ENDIAN;
+pub const REG_LINK = REG_VALUE_TYPE.LINK;
+pub const REG_MULTI_SZ = REG_VALUE_TYPE.MULTI_SZ;
+pub const REG_RESOURCE_LIST = REG_VALUE_TYPE.RESOURCE_LIST;
+pub const REG_FULL_RESOURCE_DESCRIPTOR = REG_VALUE_TYPE.FULL_RESOURCE_DESCRIPTOR;
+pub const REG_RESOURCE_REQUIREMENTS_LIST = REG_VALUE_TYPE.RESOURCE_REQUIREMENTS_LIST;
+pub const REG_QWORD = REG_VALUE_TYPE.QWORD;
+pub const REG_QWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.QWORD_LITTLE_ENDIAN;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const REG_SAM_FLAGS = extern enum(u32) {
+    QUERY_VALUE = 1,
+    SET_VALUE = 2,
+    CREATE_SUB_KEY = 4,
+    ENUMERATE_SUB_KEYS = 8,
+    NOTIFY = 16,
+    CREATE_LINK = 32,
+    WOW64_32KEY = 512,
+    WOW64_64KEY = 256,
+    WOW64_RES = 768,
+    READ = 131097,
+    WRITE = 131078,
+    EXECUTE = 131097,
+    ALL_ACCESS = 983103,
+    _,
+};
+pub const KEY_QUERY_VALUE = REG_SAM_FLAGS.QUERY_VALUE;
+pub const KEY_SET_VALUE = REG_SAM_FLAGS.SET_VALUE;
+pub const KEY_CREATE_SUB_KEY = REG_SAM_FLAGS.CREATE_SUB_KEY;
+pub const KEY_ENUMERATE_SUB_KEYS = REG_SAM_FLAGS.ENUMERATE_SUB_KEYS;
+pub const KEY_NOTIFY = REG_SAM_FLAGS.NOTIFY;
+pub const KEY_CREATE_LINK = REG_SAM_FLAGS.CREATE_LINK;
+pub const KEY_WOW64_32KEY = REG_SAM_FLAGS.WOW64_32KEY;
+pub const KEY_WOW64_64KEY = REG_SAM_FLAGS.WOW64_64KEY;
+pub const KEY_WOW64_RES = REG_SAM_FLAGS.WOW64_RES;
+pub const KEY_READ = REG_SAM_FLAGS.READ;
+pub const KEY_WRITE = REG_SAM_FLAGS.WRITE;
+pub const KEY_EXECUTE = REG_SAM_FLAGS.EXECUTE;
+pub const KEY_ALL_ACCESS = REG_SAM_FLAGS.ALL_ACCESS;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const REG_OPEN_CREATE_OPTIONS = extern enum(u32) {
+    RESERVED = 0,
+    NON_VOLATILE = 0,
+    VOLATILE = 1,
+    CREATE_LINK = 2,
+    BACKUP_RESTORE = 4,
+    OPEN_LINK = 8,
+    DONT_VIRTUALIZE = 16,
+    _,
+};
+// TODO: enum 'REG_OPEN_CREATE_OPTIONS' has known issues with its value aliases
+
+pub const REG_CREATE_KEY_DISPOSITION = extern enum(u32) {
+    CREATED_NEW_KEY = 1,
+    OPENED_EXISTING_KEY = 2,
+};
+pub const REG_CREATED_NEW_KEY = REG_CREATE_KEY_DISPOSITION.CREATED_NEW_KEY;
+pub const REG_OPENED_EXISTING_KEY = REG_CREATE_KEY_DISPOSITION.OPENED_EXISTING_KEY;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const FDISPILLFILE = extern struct {
+    ach: [2]CHAR,
+    cbFile: i32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const FLOATING_SAVE_AREA = extern struct {
+    ControlWord: u32,
+    StatusWord: u32,
+    TagWord: u32,
+    ErrorOffset: u32,
+    ErrorSelector: u32,
+    DataOffset: u32,
+    DataSelector: u32,
+    RegisterArea: [80]u8,
+    Cr0NpxState: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const VDMCONTEXT = extern struct {
+    ContextFlags: u32,
+    Dr0: u32,
+    Dr1: u32,
+    Dr2: u32,
+    Dr3: u32,
+    Dr6: u32,
+    Dr7: u32,
+    FloatSave: FLOATING_SAVE_AREA,
+    SegGs: u32,
+    SegFs: u32,
+    SegEs: u32,
+    SegDs: u32,
+    Edi: u32,
+    Esi: u32,
+    Ebx: u32,
+    Edx: u32,
+    Ecx: u32,
+    Eax: u32,
+    Ebp: u32,
+    Eip: u32,
+    SegCs: u32,
+    EFlags: u32,
+    Esp: u32,
+    SegSs: u32,
+    ExtendedRegisters: [512]u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const VDMLDT_ENTRY = extern struct {
+    LimitLow: u16,
+    BaseLow: u16,
+    HighWord: _HighWord_e__Union,
+    const _HighWord_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const MODULEENTRY = extern struct {
+    dwSize: u32,
+    szModule: [10]CHAR,
+    hModule: HANDLE,
+    wcUsage: u16,
+    szExePath: [256]CHAR,
+    wNext: u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const GLOBALENTRY = extern struct {
+    dwSize: u32,
+    dwAddress: u32,
+    dwBlockSize: u32,
+    hBlock: HANDLE,
+    wcLock: u16,
+    wcPageLock: u16,
+    wFlags: u16,
+    wHeapPresent: BOOL,
+    hOwner: HANDLE,
+    wType: u16,
+    wData: u16,
+    dwNext: u32,
+    dwNextAlt: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const VDMGETTHREADSELECTORENTRYPROC = fn(
+    param0: HANDLE,
+    param1: HANDLE,
+    param2: u32,
+    param3: *VDMLDT_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const VDMGETCONTEXTPROC = fn(
+    param0: HANDLE,
+    param1: HANDLE,
+    param2: *VDMCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const VDMSETCONTEXTPROC = fn(
+    param0: HANDLE,
+    param1: HANDLE,
+    param2: *VDMCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub const IDirectDrawClipperVtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDrawPaletteVtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDrawSurfaceVtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDrawSurface2Vtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDrawSurface3Vtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDrawSurface4Vtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDrawSurface7Vtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDrawColorControlVtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDrawVtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDraw2Vtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDraw4Vtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDraw7Vtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDrawKernelVtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDrawSurfaceKernelVtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IDirectDrawGammaControlVtbl = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const _D3DHAL_CALLBACKS = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const _D3DHAL_GLOBALDRIVERDATA = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const tcp_request_query_information_ex_xp = extern struct {
+    ID: TDIObjectID,
+    Context: [2]usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const tcp_request_query_information_ex32_xp = extern struct {
+    ID: TDIObjectID,
+    Context: [4]u32,
+};
+
+}, else => struct { } };
+
+pub const FIRMWARE_TYPE = extern enum(i32) {
+    Unknown = 0,
+    Bios = 1,
+    Uefi = 2,
+    Max = 3,
+};
+pub const FirmwareTypeUnknown = FIRMWARE_TYPE.Unknown;
+pub const FirmwareTypeBios = FIRMWARE_TYPE.Bios;
+pub const FirmwareTypeUefi = FIRMWARE_TYPE.Uefi;
+pub const FirmwareTypeMax = FIRMWARE_TYPE.Max;
+
+pub const OSVERSIONINFOA = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]CHAR,
+};
+
+pub const OSVERSIONINFOW = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]u16,
+};
+
+pub const OSVERSIONINFOEXA = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]CHAR,
+    wServicePackMajor: u16,
+    wServicePackMinor: u16,
+    wSuiteMask: u16,
+    wProductType: u8,
+    wReserved: u8,
+};
+
+pub const OSVERSIONINFOEXW = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]u16,
+    wServicePackMajor: u16,
+    wServicePackMinor: u16,
+    wSuiteMask: u16,
+    wProductType: u8,
+    wReserved: u8,
+};
+
+pub const FILETIME = extern struct {
+    dwLowDateTime: u32,
+    dwHighDateTime: u32,
+};
+
+// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
+pub const HKEY = ?*opaque{};
+
+pub const HWINWATCH = ?*opaque{};
+
+pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = isize;
+
+pub const FH_SERVICE_PIPE_HANDLE = isize;
+
+pub const SYSTEMTIME = extern struct {
+    wYear: u16,
+    wMonth: u16,
+    wDayOfWeek: u16,
+    wDay: u16,
+    wHour: u16,
+    wMinute: u16,
+    wSecond: u16,
+    wMilliseconds: u16,
+};
+
+pub const UpdateImpactLevel = extern enum(i32) {
+    None = 0,
+    Low = 1,
+    Medium = 2,
+    High = 3,
+};
+pub const UpdateImpactLevel_None = UpdateImpactLevel.None;
+pub const UpdateImpactLevel_Low = UpdateImpactLevel.Low;
+pub const UpdateImpactLevel_Medium = UpdateImpactLevel.Medium;
+pub const UpdateImpactLevel_High = UpdateImpactLevel.High;
+
+pub const UpdateAssessmentStatus = extern enum(i32) {
+    Latest = 0,
+    NotLatestSoftRestriction = 1,
+    NotLatestHardRestriction = 2,
+    NotLatestEndOfSupport = 3,
+    NotLatestServicingTrain = 4,
+    NotLatestDeferredFeature = 5,
+    NotLatestDeferredQuality = 6,
+    NotLatestPausedFeature = 7,
+    NotLatestPausedQuality = 8,
+    NotLatestManaged = 9,
+    NotLatestUnknown = 10,
+    NotLatestTargetedVersion = 11,
+};
+pub const UpdateAssessmentStatus_Latest = UpdateAssessmentStatus.Latest;
+pub const UpdateAssessmentStatus_NotLatestSoftRestriction = UpdateAssessmentStatus.NotLatestSoftRestriction;
+pub const UpdateAssessmentStatus_NotLatestHardRestriction = UpdateAssessmentStatus.NotLatestHardRestriction;
+pub const UpdateAssessmentStatus_NotLatestEndOfSupport = UpdateAssessmentStatus.NotLatestEndOfSupport;
+pub const UpdateAssessmentStatus_NotLatestServicingTrain = UpdateAssessmentStatus.NotLatestServicingTrain;
+pub const UpdateAssessmentStatus_NotLatestDeferredFeature = UpdateAssessmentStatus.NotLatestDeferredFeature;
+pub const UpdateAssessmentStatus_NotLatestDeferredQuality = UpdateAssessmentStatus.NotLatestDeferredQuality;
+pub const UpdateAssessmentStatus_NotLatestPausedFeature = UpdateAssessmentStatus.NotLatestPausedFeature;
+pub const UpdateAssessmentStatus_NotLatestPausedQuality = UpdateAssessmentStatus.NotLatestPausedQuality;
+pub const UpdateAssessmentStatus_NotLatestManaged = UpdateAssessmentStatus.NotLatestManaged;
+pub const UpdateAssessmentStatus_NotLatestUnknown = UpdateAssessmentStatus.NotLatestUnknown;
+pub const UpdateAssessmentStatus_NotLatestTargetedVersion = UpdateAssessmentStatus.NotLatestTargetedVersion;
+
+pub const UpdateAssessment = extern struct {
+    status: UpdateAssessmentStatus,
+    impact: UpdateImpactLevel,
+    daysOutOfDate: u32,
+};
+
+pub const OSUpdateAssessment = extern struct {
+    isEndOfSupport: BOOL,
+    assessmentForCurrent: UpdateAssessment,
+    assessmentForUpToDate: UpdateAssessment,
+    securityStatus: UpdateAssessmentStatus,
+    assessmentTime: FILETIME,
+    releaseInfoTime: FILETIME,
+    currentOSBuild: PWSTR,
+    currentOSReleaseTime: FILETIME,
+    upToDateOSBuild: PWSTR,
+    upToDateOSReleaseTime: FILETIME,
+};
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FLOATING_SAVE_AREA = extern struct {
+    ControlWord: u32,
+    StatusWord: u32,
+    TagWord: u32,
+    ErrorOffset: u32,
+    ErrorSelector: u32,
+    DataOffset: u32,
+    DataSelector: u32,
+    RegisterArea: [80]u8,
+    Spare0: u32,
+};
+
+}, else => struct { } };
+
+pub const PSYMBOLSERVERCALLBACKPROC = fn(
+    action: usize,
+    data: u64,
+    context: u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const STRING = extern struct {
+    Length: u16,
+    MaximumLength: u16,
+    Buffer: [*]u8,
+};
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FDISPILLFILE = extern struct {
+    ach: [2]CHAR,
+    cbFile: i32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const MODULEENTRY = extern struct {
+    dwSize: u32,
+    szModule: [10]CHAR,
+    hModule: HANDLE,
+    wcUsage: u16,
+    szExePath: [256]CHAR,
+    wNext: u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const GLOBALENTRY = extern struct {
+    dwSize: u32,
+    dwAddress: u32,
+    dwBlockSize: u32,
+    hBlock: HANDLE,
+    wcLock: u16,
+    wcPageLock: u16,
+    wFlags: u16,
+    wHeapPresent: BOOL,
+    hOwner: HANDLE,
+    wType: u16,
+    wData: u16,
+    dwNext: u32,
+    dwNextAlt: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const VDMGETTHREADSELECTORENTRYPROC = fn(
+    param0: HANDLE,
+    param1: HANDLE,
+    param2: u32,
+    param3: *LDT_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const VDMGETCONTEXTPROC = fn(
+    param0: HANDLE,
+    param1: HANDLE,
+    param2: *CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const VDMSETCONTEXTPROC = fn(
+    param0: HANDLE,
+    param1: HANDLE,
+    param2: *CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const tcp_request_query_information_ex_xp = extern struct {
+    ID: TDIObjectID,
+    Context: [4]usize,
+};
+
+}, else => struct { } };
+
 pub const REG_SAVE_FORMAT = extern enum(u32) {
     STANDARD_FORMAT = 1,
     LATEST_FORMAT = 2,
@@ -1302,371 +2011,6 @@ pub const CO_TL_ENTITY = TDIENTITY_ENTITY_TYPE.CO_TL_ENTITY;
 pub const ER_ENTITY = TDIENTITY_ENTITY_TYPE.ER_ENTITY;
 pub const IF_ENTITY = TDIENTITY_ENTITY_TYPE.IF_ENTITY;
 
-// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
-pub const HKEY = ?*opaque{};
-
-pub const HWINWATCH = ?*opaque{};
-
-pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = isize;
-
-pub const FH_SERVICE_PIPE_HANDLE = isize;
-
-pub const FIRMWARE_TYPE = extern enum(i32) {
-    Unknown = 0,
-    Bios = 1,
-    Uefi = 2,
-    Max = 3,
-};
-pub const FirmwareTypeUnknown = FIRMWARE_TYPE.Unknown;
-pub const FirmwareTypeBios = FIRMWARE_TYPE.Bios;
-pub const FirmwareTypeUefi = FIRMWARE_TYPE.Uefi;
-pub const FirmwareTypeMax = FIRMWARE_TYPE.Max;
-
-pub const OSVERSIONINFOA = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]CHAR,
-};
-
-pub const OSVERSIONINFOW = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]u16,
-};
-
-pub const OSVERSIONINFOEXA = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]CHAR,
-    wServicePackMajor: u16,
-    wServicePackMinor: u16,
-    wSuiteMask: u16,
-    wProductType: u8,
-    wReserved: u8,
-};
-
-pub const OSVERSIONINFOEXW = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]u16,
-    wServicePackMajor: u16,
-    wServicePackMinor: u16,
-    wSuiteMask: u16,
-    wProductType: u8,
-    wReserved: u8,
-};
-
-pub const FILETIME = extern struct {
-    dwLowDateTime: u32,
-    dwHighDateTime: u32,
-};
-
-pub const SYSTEMTIME = extern struct {
-    wYear: u16,
-    wMonth: u16,
-    wDayOfWeek: u16,
-    wDay: u16,
-    wHour: u16,
-    wMinute: u16,
-    wSecond: u16,
-    wMilliseconds: u16,
-};
-
-pub const UpdateImpactLevel = extern enum(i32) {
-    None = 0,
-    Low = 1,
-    Medium = 2,
-    High = 3,
-};
-pub const UpdateImpactLevel_None = UpdateImpactLevel.None;
-pub const UpdateImpactLevel_Low = UpdateImpactLevel.Low;
-pub const UpdateImpactLevel_Medium = UpdateImpactLevel.Medium;
-pub const UpdateImpactLevel_High = UpdateImpactLevel.High;
-
-pub const UpdateAssessmentStatus = extern enum(i32) {
-    Latest = 0,
-    NotLatestSoftRestriction = 1,
-    NotLatestHardRestriction = 2,
-    NotLatestEndOfSupport = 3,
-    NotLatestServicingTrain = 4,
-    NotLatestDeferredFeature = 5,
-    NotLatestDeferredQuality = 6,
-    NotLatestPausedFeature = 7,
-    NotLatestPausedQuality = 8,
-    NotLatestManaged = 9,
-    NotLatestUnknown = 10,
-    NotLatestTargetedVersion = 11,
-};
-pub const UpdateAssessmentStatus_Latest = UpdateAssessmentStatus.Latest;
-pub const UpdateAssessmentStatus_NotLatestSoftRestriction = UpdateAssessmentStatus.NotLatestSoftRestriction;
-pub const UpdateAssessmentStatus_NotLatestHardRestriction = UpdateAssessmentStatus.NotLatestHardRestriction;
-pub const UpdateAssessmentStatus_NotLatestEndOfSupport = UpdateAssessmentStatus.NotLatestEndOfSupport;
-pub const UpdateAssessmentStatus_NotLatestServicingTrain = UpdateAssessmentStatus.NotLatestServicingTrain;
-pub const UpdateAssessmentStatus_NotLatestDeferredFeature = UpdateAssessmentStatus.NotLatestDeferredFeature;
-pub const UpdateAssessmentStatus_NotLatestDeferredQuality = UpdateAssessmentStatus.NotLatestDeferredQuality;
-pub const UpdateAssessmentStatus_NotLatestPausedFeature = UpdateAssessmentStatus.NotLatestPausedFeature;
-pub const UpdateAssessmentStatus_NotLatestPausedQuality = UpdateAssessmentStatus.NotLatestPausedQuality;
-pub const UpdateAssessmentStatus_NotLatestManaged = UpdateAssessmentStatus.NotLatestManaged;
-pub const UpdateAssessmentStatus_NotLatestUnknown = UpdateAssessmentStatus.NotLatestUnknown;
-pub const UpdateAssessmentStatus_NotLatestTargetedVersion = UpdateAssessmentStatus.NotLatestTargetedVersion;
-
-pub const UpdateAssessment = extern struct {
-    status: UpdateAssessmentStatus,
-    impact: UpdateImpactLevel,
-    daysOutOfDate: u32,
-};
-
-pub const OSUpdateAssessment = extern struct {
-    isEndOfSupport: BOOL,
-    assessmentForCurrent: UpdateAssessment,
-    assessmentForUpToDate: UpdateAssessment,
-    securityStatus: UpdateAssessmentStatus,
-    assessmentTime: FILETIME,
-    releaseInfoTime: FILETIME,
-    currentOSBuild: PWSTR,
-    currentOSReleaseTime: FILETIME,
-    upToDateOSBuild: PWSTR,
-    upToDateOSReleaseTime: FILETIME,
-};
-
-pub const NETLOGON_INFO_1 = extern struct {
-    netlog1_flags: u32,
-    netlog1_pdc_connection_status: u32,
-};
-
-pub const NETLOGON_INFO_2 = extern struct {
-    netlog2_flags: u32,
-    netlog2_pdc_connection_status: u32,
-    netlog2_trusted_dc_name: PWSTR,
-    netlog2_tc_connection_status: u32,
-};
-
-pub const NETLOGON_INFO_3 = extern struct {
-    netlog3_flags: u32,
-    netlog3_logon_attempts: u32,
-    netlog3_reserved1: u32,
-    netlog3_reserved2: u32,
-    netlog3_reserved3: u32,
-    netlog3_reserved4: u32,
-    netlog3_reserved5: u32,
-};
-
-pub const NETLOGON_INFO_4 = extern struct {
-    netlog4_trusted_dc_name: PWSTR,
-    netlog4_trusted_domain_name: PWSTR,
-};
-
-pub const PSYMBOLSERVERCALLBACKPROC = fn(
-    action: usize,
-    data: u64,
-    context: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PROCESS_CREATION_FLAGS = extern enum(u32) {
-    DEBUG_PROCESS = 1,
-    DEBUG_ONLY_THIS_PROCESS = 2,
-    CREATE_SUSPENDED = 4,
-    DETACHED_PROCESS = 8,
-    CREATE_NEW_CONSOLE = 16,
-    NORMAL_PRIORITY_CLASS = 32,
-    IDLE_PRIORITY_CLASS = 64,
-    HIGH_PRIORITY_CLASS = 128,
-    REALTIME_PRIORITY_CLASS = 256,
-    CREATE_NEW_PROCESS_GROUP = 512,
-    CREATE_UNICODE_ENVIRONMENT = 1024,
-    CREATE_SEPARATE_WOW_VDM = 2048,
-    CREATE_SHARED_WOW_VDM = 4096,
-    CREATE_FORCEDOS = 8192,
-    BELOW_NORMAL_PRIORITY_CLASS = 16384,
-    ABOVE_NORMAL_PRIORITY_CLASS = 32768,
-    INHERIT_PARENT_AFFINITY = 65536,
-    INHERIT_CALLER_PRIORITY = 131072,
-    CREATE_PROTECTED_PROCESS = 262144,
-    EXTENDED_STARTUPINFO_PRESENT = 524288,
-    PROCESS_MODE_BACKGROUND_BEGIN = 1048576,
-    PROCESS_MODE_BACKGROUND_END = 2097152,
-    CREATE_SECURE_PROCESS = 4194304,
-    CREATE_BREAKAWAY_FROM_JOB = 16777216,
-    CREATE_PRESERVE_CODE_AUTHZ_LEVEL = 33554432,
-    CREATE_DEFAULT_ERROR_MODE = 67108864,
-    CREATE_NO_WINDOW = 134217728,
-    PROFILE_USER = 268435456,
-    PROFILE_KERNEL = 536870912,
-    PROFILE_SERVER = 1073741824,
-    CREATE_IGNORE_SYSTEM_DEFAULT = 2147483648,
-    _,
-};
-pub const DEBUG_PROCESS = PROCESS_CREATION_FLAGS.DEBUG_PROCESS;
-pub const DEBUG_ONLY_THIS_PROCESS = PROCESS_CREATION_FLAGS.DEBUG_ONLY_THIS_PROCESS;
-pub const CREATE_SUSPENDED = PROCESS_CREATION_FLAGS.CREATE_SUSPENDED;
-pub const DETACHED_PROCESS = PROCESS_CREATION_FLAGS.DETACHED_PROCESS;
-pub const CREATE_NEW_CONSOLE = PROCESS_CREATION_FLAGS.CREATE_NEW_CONSOLE;
-pub const NORMAL_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.NORMAL_PRIORITY_CLASS;
-pub const IDLE_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.IDLE_PRIORITY_CLASS;
-pub const HIGH_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.HIGH_PRIORITY_CLASS;
-pub const REALTIME_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.REALTIME_PRIORITY_CLASS;
-pub const CREATE_NEW_PROCESS_GROUP = PROCESS_CREATION_FLAGS.CREATE_NEW_PROCESS_GROUP;
-pub const CREATE_UNICODE_ENVIRONMENT = PROCESS_CREATION_FLAGS.CREATE_UNICODE_ENVIRONMENT;
-pub const CREATE_SEPARATE_WOW_VDM = PROCESS_CREATION_FLAGS.CREATE_SEPARATE_WOW_VDM;
-pub const CREATE_SHARED_WOW_VDM = PROCESS_CREATION_FLAGS.CREATE_SHARED_WOW_VDM;
-pub const CREATE_FORCEDOS = PROCESS_CREATION_FLAGS.CREATE_FORCEDOS;
-pub const BELOW_NORMAL_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.BELOW_NORMAL_PRIORITY_CLASS;
-pub const ABOVE_NORMAL_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.ABOVE_NORMAL_PRIORITY_CLASS;
-pub const INHERIT_PARENT_AFFINITY = PROCESS_CREATION_FLAGS.INHERIT_PARENT_AFFINITY;
-pub const INHERIT_CALLER_PRIORITY = PROCESS_CREATION_FLAGS.INHERIT_CALLER_PRIORITY;
-pub const CREATE_PROTECTED_PROCESS = PROCESS_CREATION_FLAGS.CREATE_PROTECTED_PROCESS;
-pub const EXTENDED_STARTUPINFO_PRESENT = PROCESS_CREATION_FLAGS.EXTENDED_STARTUPINFO_PRESENT;
-pub const PROCESS_MODE_BACKGROUND_BEGIN = PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_BEGIN;
-pub const PROCESS_MODE_BACKGROUND_END = PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_END;
-pub const CREATE_SECURE_PROCESS = PROCESS_CREATION_FLAGS.CREATE_SECURE_PROCESS;
-pub const CREATE_BREAKAWAY_FROM_JOB = PROCESS_CREATION_FLAGS.CREATE_BREAKAWAY_FROM_JOB;
-pub const CREATE_PRESERVE_CODE_AUTHZ_LEVEL = PROCESS_CREATION_FLAGS.CREATE_PRESERVE_CODE_AUTHZ_LEVEL;
-pub const CREATE_DEFAULT_ERROR_MODE = PROCESS_CREATION_FLAGS.CREATE_DEFAULT_ERROR_MODE;
-pub const CREATE_NO_WINDOW = PROCESS_CREATION_FLAGS.CREATE_NO_WINDOW;
-pub const PROFILE_USER = PROCESS_CREATION_FLAGS.PROFILE_USER;
-pub const PROFILE_KERNEL = PROCESS_CREATION_FLAGS.PROFILE_KERNEL;
-pub const PROFILE_SERVER = PROCESS_CREATION_FLAGS.PROFILE_SERVER;
-pub const CREATE_IGNORE_SYSTEM_DEFAULT = PROCESS_CREATION_FLAGS.CREATE_IGNORE_SYSTEM_DEFAULT;
-
-pub const HANDLE_FLAG_OPTIONS = extern enum(i32) {
-    INHERIT = 1,
-    PROTECT_FROM_CLOSE = 2,
-};
-pub const HANDLE_FLAG_INHERIT = HANDLE_FLAG_OPTIONS.INHERIT;
-pub const HANDLE_FLAG_PROTECT_FROM_CLOSE = HANDLE_FLAG_OPTIONS.PROTECT_FROM_CLOSE;
-
-pub const DUPLICATE_HANDLE_OPTIONS = extern enum(i32) {
-    CLOSE_SOURCE = 1,
-    SAME_ACCESS = 2,
-};
-pub const DUPLICATE_CLOSE_SOURCE = DUPLICATE_HANDLE_OPTIONS.CLOSE_SOURCE;
-pub const DUPLICATE_SAME_ACCESS = DUPLICATE_HANDLE_OPTIONS.SAME_ACCESS;
-
-pub const STD_HANDLE_TYPE = extern enum(u32) {
-    INPUT_HANDLE = 4294967286,
-    OUTPUT_HANDLE = 4294967285,
-    ERROR_HANDLE = 4294967284,
-};
-pub const STD_INPUT_HANDLE = STD_HANDLE_TYPE.INPUT_HANDLE;
-pub const STD_OUTPUT_HANDLE = STD_HANDLE_TYPE.OUTPUT_HANDLE;
-pub const STD_ERROR_HANDLE = STD_HANDLE_TYPE.ERROR_HANDLE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const VER_FLAGS = extern enum(u32) {
-    MINORVERSION = 1,
-    MAJORVERSION = 2,
-    BUILDNUMBER = 4,
-    PLATFORMID = 8,
-    SERVICEPACKMINOR = 16,
-    SERVICEPACKMAJOR = 32,
-    SUITENAME = 64,
-    PRODUCT_TYPE = 128,
-    _,
-};
-pub const VER_MINORVERSION = VER_FLAGS.MINORVERSION;
-pub const VER_MAJORVERSION = VER_FLAGS.MAJORVERSION;
-pub const VER_BUILDNUMBER = VER_FLAGS.BUILDNUMBER;
-pub const VER_PLATFORMID = VER_FLAGS.PLATFORMID;
-pub const VER_SERVICEPACKMINOR = VER_FLAGS.SERVICEPACKMINOR;
-pub const VER_SERVICEPACKMAJOR = VER_FLAGS.SERVICEPACKMAJOR;
-pub const VER_SUITENAME = VER_FLAGS.SUITENAME;
-pub const VER_PRODUCT_TYPE = VER_FLAGS.PRODUCT_TYPE;
-
-pub const REG_VALUE_TYPE = extern enum(u32) {
-    NONE = 0,
-    SZ = 1,
-    EXPAND_SZ = 2,
-    BINARY = 3,
-    DWORD = 4,
-    DWORD_LITTLE_ENDIAN = 4,
-    DWORD_BIG_ENDIAN = 5,
-    LINK = 6,
-    MULTI_SZ = 7,
-    RESOURCE_LIST = 8,
-    FULL_RESOURCE_DESCRIPTOR = 9,
-    RESOURCE_REQUIREMENTS_LIST = 10,
-    QWORD = 11,
-    QWORD_LITTLE_ENDIAN = 11,
-};
-pub const REG_NONE = REG_VALUE_TYPE.NONE;
-pub const REG_SZ = REG_VALUE_TYPE.SZ;
-pub const REG_EXPAND_SZ = REG_VALUE_TYPE.EXPAND_SZ;
-pub const REG_BINARY = REG_VALUE_TYPE.BINARY;
-pub const REG_DWORD = REG_VALUE_TYPE.DWORD;
-pub const REG_DWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.DWORD_LITTLE_ENDIAN;
-pub const REG_DWORD_BIG_ENDIAN = REG_VALUE_TYPE.DWORD_BIG_ENDIAN;
-pub const REG_LINK = REG_VALUE_TYPE.LINK;
-pub const REG_MULTI_SZ = REG_VALUE_TYPE.MULTI_SZ;
-pub const REG_RESOURCE_LIST = REG_VALUE_TYPE.RESOURCE_LIST;
-pub const REG_FULL_RESOURCE_DESCRIPTOR = REG_VALUE_TYPE.FULL_RESOURCE_DESCRIPTOR;
-pub const REG_RESOURCE_REQUIREMENTS_LIST = REG_VALUE_TYPE.RESOURCE_REQUIREMENTS_LIST;
-pub const REG_QWORD = REG_VALUE_TYPE.QWORD;
-pub const REG_QWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.QWORD_LITTLE_ENDIAN;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const REG_SAM_FLAGS = extern enum(u32) {
-    QUERY_VALUE = 1,
-    SET_VALUE = 2,
-    CREATE_SUB_KEY = 4,
-    ENUMERATE_SUB_KEYS = 8,
-    NOTIFY = 16,
-    CREATE_LINK = 32,
-    WOW64_32KEY = 512,
-    WOW64_64KEY = 256,
-    WOW64_RES = 768,
-    READ = 131097,
-    WRITE = 131078,
-    EXECUTE = 131097,
-    ALL_ACCESS = 983103,
-    _,
-};
-pub const KEY_QUERY_VALUE = REG_SAM_FLAGS.QUERY_VALUE;
-pub const KEY_SET_VALUE = REG_SAM_FLAGS.SET_VALUE;
-pub const KEY_CREATE_SUB_KEY = REG_SAM_FLAGS.CREATE_SUB_KEY;
-pub const KEY_ENUMERATE_SUB_KEYS = REG_SAM_FLAGS.ENUMERATE_SUB_KEYS;
-pub const KEY_NOTIFY = REG_SAM_FLAGS.NOTIFY;
-pub const KEY_CREATE_LINK = REG_SAM_FLAGS.CREATE_LINK;
-pub const KEY_WOW64_32KEY = REG_SAM_FLAGS.WOW64_32KEY;
-pub const KEY_WOW64_64KEY = REG_SAM_FLAGS.WOW64_64KEY;
-pub const KEY_WOW64_RES = REG_SAM_FLAGS.WOW64_RES;
-pub const KEY_READ = REG_SAM_FLAGS.READ;
-pub const KEY_WRITE = REG_SAM_FLAGS.WRITE;
-pub const KEY_EXECUTE = REG_SAM_FLAGS.EXECUTE;
-pub const KEY_ALL_ACCESS = REG_SAM_FLAGS.ALL_ACCESS;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const REG_OPEN_CREATE_OPTIONS = extern enum(u32) {
-    RESERVED = 0,
-    NON_VOLATILE = 0,
-    VOLATILE = 1,
-    CREATE_LINK = 2,
-    BACKUP_RESTORE = 4,
-    OPEN_LINK = 8,
-    DONT_VIRTUALIZE = 16,
-    _,
-};
-// TODO: enum 'REG_OPEN_CREATE_OPTIONS' has known issues with its value aliases
-
-pub const REG_CREATE_KEY_DISPOSITION = extern enum(u32) {
-    CREATED_NEW_KEY = 1,
-    OPENED_EXISTING_KEY = 2,
-};
-pub const REG_CREATED_NEW_KEY = REG_CREATE_KEY_DISPOSITION.CREATED_NEW_KEY;
-pub const REG_OPENED_EXISTING_KEY = REG_CREATE_KEY_DISPOSITION.OPENED_EXISTING_KEY;
-
 pub const THREAD_INFORMATION_CLASS = extern enum(i32) {
     MemoryPriority = 0,
     AbsoluteCpuPriority = 1,
@@ -1681,7 +2025,7 @@ pub const ThreadPowerThrottling = THREAD_INFORMATION_CLASS.PowerThrottling;
 pub const ThreadInformationClassMax = THREAD_INFORMATION_CLASS.InformationClassMax;
 
 pub const SYSTEM_INFO = extern struct {
-    Anonymous: SYSTEM_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwPageSize: u32,
     lpMinimumApplicationAddress: *c_void,
     lpMaximumApplicationAddress: *c_void,
@@ -4317,7 +4661,7 @@ pub const LDR_DATA_TABLE_ENTRY = extern struct {
     FullDllName: UNICODE_STRING,
     Reserved4: [8]u8,
     Reserved5: [3]*c_void,
-    Anonymous: LDR_DATA_TABLE_ENTRY._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     TimeDateStamp: u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -4335,7 +4679,7 @@ pub const OBJECT_ATTRIBUTES = extern struct {
 };
 
 pub const IO_STATUS_BLOCK = extern struct {
-    Anonymous: IO_STATUS_BLOCK._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Information: usize,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -5012,7 +5356,7 @@ pub const fdidtDECRYPT = FDIDECRYPTTYPE.DECRYPT;
 pub const FDIDECRYPT = extern struct {
     fdidt: FDIDECRYPTTYPE,
     pvUser: *c_void,
-    Anonymous: FDIDECRYPT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -5094,58 +5438,6 @@ pub const PFNFDINOTIFY = fn(
     pfdin: *FDINOTIFICATION,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-pub const FDISPILLFILE = extern struct {
-    ach: [2]CHAR,
-    cbFile: i32,
-};
-
-pub const FLOATING_SAVE_AREA = extern struct {
-    ControlWord: u32,
-    StatusWord: u32,
-    TagWord: u32,
-    ErrorOffset: u32,
-    ErrorSelector: u32,
-    DataOffset: u32,
-    DataSelector: u32,
-    RegisterArea: [80]u8,
-    Cr0NpxState: u32,
-};
-
-pub const VDMCONTEXT = extern struct {
-    ContextFlags: u32,
-    Dr0: u32,
-    Dr1: u32,
-    Dr2: u32,
-    Dr3: u32,
-    Dr6: u32,
-    Dr7: u32,
-    FloatSave: FLOATING_SAVE_AREA,
-    SegGs: u32,
-    SegFs: u32,
-    SegEs: u32,
-    SegDs: u32,
-    Edi: u32,
-    Esi: u32,
-    Ebx: u32,
-    Edx: u32,
-    Ecx: u32,
-    Eax: u32,
-    Ebp: u32,
-    Eip: u32,
-    SegCs: u32,
-    EFlags: u32,
-    Esp: u32,
-    SegSs: u32,
-    ExtendedRegisters: [512]u8,
-};
-
-pub const VDMLDT_ENTRY = extern struct {
-    LimitLow: u16,
-    BaseLow: u16,
-    HighWord: VDMLDT_ENTRY._HighWord_e__Union,
-    const _HighWord_e__Union = u32; // TODO: generate this nested type!
-};
-
 pub const VDMCONTEXT_WITHOUT_XSAVE = extern struct {
     ContextFlags: u32,
     Dr0: u32,
@@ -5190,15 +5482,6 @@ pub const IMAGE_NOTE = extern struct {
     hTask: u16,
 };
 
-pub const MODULEENTRY = extern struct {
-    dwSize: u32,
-    szModule: [10]CHAR,
-    hModule: HANDLE,
-    wcUsage: u16,
-    szExePath: [256]CHAR,
-    wNext: u16,
-};
-
 pub const TEMP_BP_NOTE = extern struct {
     Seg: u16,
     Offset: u32,
@@ -5212,22 +5495,6 @@ pub const VDM_SEGINFO = extern struct {
     Type: u16,
     ModuleName: [9]CHAR,
     FileName: [255]CHAR,
-};
-
-pub const GLOBALENTRY = extern struct {
-    dwSize: u32,
-    dwAddress: u32,
-    dwBlockSize: u32,
-    hBlock: HANDLE,
-    wcLock: u16,
-    wcPageLock: u16,
-    wFlags: u16,
-    wHeapPresent: BOOL,
-    hOwner: HANDLE,
-    wType: u16,
-    wData: u16,
-    dwNext: u32,
-    dwNextAlt: u32,
 };
 
 pub const DEBUGEVENTPROC = fn(
@@ -5261,13 +5528,6 @@ pub const VDMPROCESSEXCEPTIONPROC = fn(
     param0: *DEBUG_EVENT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const VDMGETTHREADSELECTORENTRYPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
-    param2: u32,
-    param3: *VDMLDT_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub const VDMGETPOINTERPROC = fn(
     param0: HANDLE,
     param1: HANDLE,
@@ -5275,18 +5535,6 @@ pub const VDMGETPOINTERPROC = fn(
     param3: u32,
     param4: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const VDMGETCONTEXTPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
-    param2: *VDMCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const VDMSETCONTEXTPROC = fn(
-    param0: HANDLE,
-    param1: HANDLE,
-    param2: *VDMCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const VDMKILLWOWPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -6128,66 +6376,6 @@ pub const DDMONITORINFO = extern struct {
     ModeReserved3: i32,
 };
 
-pub const IDirectDrawClipperVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDrawPaletteVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDrawSurfaceVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDrawSurface2Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDrawSurface3Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDrawSurface4Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDrawSurface7Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDrawColorControlVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDrawVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDraw2Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDraw4Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDraw7Vtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDrawKernelVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDrawSurfaceKernelVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IDirectDrawGammaControlVtbl = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const DD32BITDRIVERDATA = extern struct {
     szName: [260]CHAR,
     szEntryPoint: [64]CHAR,
@@ -6207,10 +6395,10 @@ pub const LPDD32BITDRIVERINIT = fn(
 pub const VIDMEM = extern struct {
     dwFlags: u32,
     fpStart: usize,
-    Anonymous1: VIDMEM._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     ddsCaps: DDSCAPS,
     ddsCapsAlt: DDSCAPS,
-    Anonymous2: VIDMEM._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
@@ -6649,7 +6837,7 @@ pub const DDNONLOCALVIDMEMCAPS = extern struct {
 pub const DDMORESURFACECAPS = extern struct {
     dwSize: u32,
     ddsCapsMore: DDSCAPSEX,
-    ddsExtendedHeapRestrictions: [1]DDMORESURFACECAPS.ExtendedHeapRestrictions,
+    ddsExtendedHeapRestrictions: [1]ExtendedHeapRestrictions,
     const ExtendedHeapRestrictions = u32; // TODO: generate this nested type!
 };
 
@@ -6675,7 +6863,7 @@ pub const DDRAWI_DDRAWPALETTE_GBL = extern struct {
     lpDD_lcl: *DDRAWI_DIRECTDRAW_LCL,
     dwProcessId: u32,
     lpColorTable: *PALETTEENTRY,
-    Anonymous: DDRAWI_DDRAWPALETTE_GBL._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwDriverReserved: u32,
     dwContentsStamp: u32,
     dwSaveStamp: u32,
@@ -6757,11 +6945,11 @@ pub const DDRAWI_DDRAWSURFACE_INT = extern struct {
 pub const DDRAWI_DDRAWSURFACE_GBL = extern struct {
     dwRefCnt: u32,
     dwGlobalFlags: u32,
-    Anonymous1: DDRAWI_DDRAWSURFACE_GBL._Anonymous1_e__Union,
-    Anonymous2: DDRAWI_DDRAWSURFACE_GBL._Anonymous2_e__Union,
-    Anonymous3: DDRAWI_DDRAWSURFACE_GBL._Anonymous3_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
+    Anonymous3: _Anonymous3_e__Union,
     fpVidMem: usize,
-    Anonymous4: DDRAWI_DDRAWSURFACE_GBL._Anonymous4_e__Union,
+    Anonymous4: _Anonymous4_e__Union,
     wHeight: u16,
     wWidth: u16,
     dwUsageCount: u32,
@@ -6775,7 +6963,7 @@ pub const DDRAWI_DDRAWSURFACE_GBL = extern struct {
 
 pub const DDRAWI_DDRAWSURFACE_GBL_MORE = extern struct {
     dwSize: u32,
-    Anonymous: DDRAWI_DDRAWSURFACE_GBL_MORE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     pPageTable: *u32,
     cPages: u32,
     dwSavedDCContext: usize,
@@ -6840,8 +7028,8 @@ pub const DDRAWI_DDRAWSURFACE_LCL = extern struct {
     dwProcessId: u32,
     dwFlags: u32,
     ddsCaps: DDSCAPS,
-    Anonymous1: DDRAWI_DDRAWSURFACE_LCL._Anonymous1_e__Union,
-    Anonymous2: DDRAWI_DDRAWSURFACE_LCL._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     dwModeCreatedIn: u32,
     dwBackBufferCount: u32,
     ddckCKDestBlt: DDCOLORKEY,
@@ -7520,7 +7708,7 @@ pub const DDHAL_CREATESURFACEEXDATA = extern struct {
 
 pub const DDHAL_GETDRIVERSTATEDATA = extern struct {
     dwFlags: u32,
-    Anonymous: DDHAL_GETDRIVERSTATEDATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     lpdwStates: *u32,
     dwLength: u32,
     ddRVal: HRESULT,
@@ -7688,14 +7876,6 @@ pub const PFNCHECKCONNECTIONWIZARD = fn(
 pub const PFNSETSHELLNEXT = fn(
     param0: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const _D3DHAL_CALLBACKS = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const _D3DHAL_GLOBALDRIVERDATA = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const STRENTRYA = extern struct {
     pszName: PSTR,
@@ -8230,7 +8410,7 @@ pub const IWebBrowserApp = extern struct {
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HWND: fn(
             self: *const IWebBrowserApp,
-            pHWND: *isize,
+            pHWND: *SHANDLE_PTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FullName: fn(
@@ -8327,7 +8507,7 @@ pub const IWebBrowserApp = extern struct {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).get_Name(@ptrCast(*const IWebBrowserApp, self), Name);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWebBrowserApp_get_HWND(self: *const T, pHWND: *isize) callconv(.Inline) HRESULT {
+        pub fn IWebBrowserApp_get_HWND(self: *const T, pHWND: *SHANDLE_PTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWebBrowserApp.VTable, self.vtable).get_HWND(@ptrCast(*const IWebBrowserApp, self), pHWND);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10424,16 +10604,6 @@ pub const TDIObjectID = extern struct {
     toi_id: u32,
 };
 
-pub const tcp_request_query_information_ex_xp = extern struct {
-    ID: TDIObjectID,
-    Context: [2]usize,
-};
-
-pub const tcp_request_query_information_ex32_xp = extern struct {
-    ID: TDIObjectID,
-    Context: [4]u32,
-};
-
 pub const tcp_request_query_information_ex_w2k = extern struct {
     ID: TDIObjectID,
     Context: [16]u8,
@@ -10459,7 +10629,7 @@ pub const SocketIoControlType = TDI_TL_IO_CONTROL_TYPE.SocketIoControlType;
 pub const TDI_TL_IO_CONTROL_ENDPOINT = extern struct {
     Type: TDI_TL_IO_CONTROL_TYPE,
     Level: u32,
-    Anonymous: TDI_TL_IO_CONTROL_ENDPOINT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     InputBuffer: *c_void,
     InputBufferLength: u32,
     OutputBuffer: *c_void,
@@ -11789,7 +11959,7 @@ pub const DEV_OBJECT = extern struct {
 
 pub const DEV_QUERY_RESULT_ACTION_DATA = extern struct {
     Action: DEV_QUERY_RESULT_ACTION,
-    Data: DEV_QUERY_RESULT_ACTION_DATA._DEV_QUERY_RESULT_UPDATE_PAYLOAD,
+    Data: _DEV_QUERY_RESULT_UPDATE_PAYLOAD,
     const _DEV_QUERY_RESULT_UPDATE_PAYLOAD = u32; // TODO: generate this nested type!
 };
 
@@ -11900,10 +12070,31 @@ pub const PFLOGFRAME = extern struct {
     bPacketData: [1]u8,
 };
 
-pub const STRING = extern struct {
-    Length: u16,
-    MaximumLength: u16,
-    Buffer: [*]u8,
+pub const NETLOGON_INFO_1 = extern struct {
+    netlog1_flags: u32,
+    netlog1_pdc_connection_status: u32,
+};
+
+pub const NETLOGON_INFO_2 = extern struct {
+    netlog2_flags: u32,
+    netlog2_pdc_connection_status: u32,
+    netlog2_trusted_dc_name: PWSTR,
+    netlog2_tc_connection_status: u32,
+};
+
+pub const NETLOGON_INFO_3 = extern struct {
+    netlog3_flags: u32,
+    netlog3_logon_attempts: u32,
+    netlog3_reserved1: u32,
+    netlog3_reserved2: u32,
+    netlog3_reserved3: u32,
+    netlog3_reserved4: u32,
+    netlog3_reserved5: u32,
+};
+
+pub const NETLOGON_INFO_4 = extern struct {
+    netlog4_trusted_dc_name: PWSTR,
+    netlog4_trusted_domain_name: PWSTR,
 };
 
 pub const EXTENDED_NAME_FORMAT = extern enum(i32) {
@@ -11937,17 +12128,177 @@ pub const NameSurname = EXTENDED_NAME_FORMAT.Surname;
 //--------------------------------------------------------------------------------
 // Section: Functions (483)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "KERNEL32" fn uaw_lstrcmpW(
+    String1: *u16,
+    String2: *u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "KERNEL32" fn uaw_lstrcmpiW(
+    String1: *u16,
+    String2: *u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "KERNEL32" fn uaw_lstrlenW(
+    String: *u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "KERNEL32" fn uaw_wcschr(
+    String: *u16,
+    Character: u16,
+) callconv(@import("std").os.windows.WINAPI) *u16;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "KERNEL32" fn uaw_wcscpy(
+    Destination: *u16,
+    Source: *u16,
+) callconv(@import("std").os.windows.WINAPI) *u16;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "KERNEL32" fn uaw_wcsicmp(
+    String1: *u16,
+    String2: *u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "KERNEL32" fn uaw_wcslen(
+    String: *u16,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "KERNEL32" fn uaw_wcsrchr(
+    String: *u16,
+    Character: u16,
+) callconv(@import("std").os.windows.WINAPI) *u16;
+
+}, else => struct { } };
+
 pub extern "KERNEL32" fn RtlRaiseException(
     ExceptionRecord: *EXCEPTION_RECORD,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "NETAPI32" fn I_NetLogonControl2(
-    ServerName: ?[*:0]const u16,
-    FunctionCode: u32,
-    QueryLevel: u32,
-    Data: *u8,
-    Buffer: **u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn DisableProcessWindowsGhosting(
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrSimpleStructMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexStructMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "RPCRT4" fn NdrConformantArrayMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexArrayMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrSimpleStructUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexStructUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexArrayUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrUserMarshalUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrSimpleStructBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexStructBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "RPCRT4" fn NdrConformantArrayBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexArrayBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "api-ms-win-core-apiquery-l2-1-0" fn IsApiSetImplemented(
     Contract: [*:0]const u8,
@@ -13729,44 +14080,6 @@ pub extern "ADVAPI32" fn RegSaveKeyExW(
     Flags: REG_SAVE_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
-pub extern "KERNEL32" fn uaw_lstrcmpW(
-    String1: *u16,
-    String2: *u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "KERNEL32" fn uaw_lstrcmpiW(
-    String1: *u16,
-    String2: *u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "KERNEL32" fn uaw_lstrlenW(
-    String: *u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "KERNEL32" fn uaw_wcschr(
-    String: *u16,
-    Character: u16,
-) callconv(@import("std").os.windows.WINAPI) *u16;
-
-pub extern "KERNEL32" fn uaw_wcscpy(
-    Destination: *u16,
-    Source: *u16,
-) callconv(@import("std").os.windows.WINAPI) *u16;
-
-pub extern "KERNEL32" fn uaw_wcsicmp(
-    String1: *u16,
-    String2: *u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "KERNEL32" fn uaw_wcslen(
-    String: *u16,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-pub extern "KERNEL32" fn uaw_wcsrchr(
-    String: *u16,
-    Character: u16,
-) callconv(@import("std").os.windows.WINAPI) *u16;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ntdll" fn NtClose(
     Handle: HANDLE,
@@ -15075,103 +15388,13 @@ pub extern "api-ms-win-core-state-helpers-l1-1-0" fn GetRegistryValueWithFallbac
     pcbDataOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
-pub extern "loadperf" fn InstallPerfDllW(
-    szComputerName: ?[*:0]const u16,
-    lpIniFile: [*:0]const u16,
-    dwFlags: usize,
+pub extern "NETAPI32" fn I_NetLogonControl2(
+    ServerName: ?[*:0]const u16,
+    FunctionCode: u32,
+    QueryLevel: u32,
+    Data: *u8,
+    Buffer: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "loadperf" fn InstallPerfDllA(
-    szComputerName: ?[*:0]const u8,
-    lpIniFile: [*:0]const u8,
-    dwFlags: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrSimpleStructMarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrComplexStructMarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "RPCRT4" fn NdrConformantArrayMarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrComplexArrayMarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrSimpleStructUnmarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    ppMemory: **u8,
-    pFormat: *u8,
-    fMustAlloc: u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrComplexStructUnmarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    ppMemory: **u8,
-    pFormat: *u8,
-    fMustAlloc: u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrComplexArrayUnmarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    ppMemory: **u8,
-    pFormat: *u8,
-    fMustAlloc: u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrUserMarshalUnmarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    ppMemory: **u8,
-    pFormat: *u8,
-    fMustAlloc: u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrSimpleStructBufferSize(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrComplexStructBufferSize(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "RPCRT4" fn NdrConformantArrayBufferSize(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrComplexArrayBufferSize(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "ole32" fn CoInstall(
     pbc: *IBindCtx,
@@ -15247,9 +15470,17 @@ pub extern "KERNEL32" fn IsWow64GuestMachineSupported(
     MachineIsSupported: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn DisableProcessWindowsGhosting(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "loadperf" fn InstallPerfDllW(
+    szComputerName: ?[*:0]const u16,
+    lpIniFile: [*:0]const u16,
+    dwFlags: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "loadperf" fn InstallPerfDllA(
+    szComputerName: ?[*:0]const u8,
+    lpIniFile: [*:0]const u8,
+    dwFlags: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SspiCli" fn GetUserNameExA(
@@ -15406,9 +15637,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = IMPGetIMEA;
         pub const IMPQueryIME = IMPQueryIMEA;
         pub const IMPSetIME = IMPSetIMEA;
-        pub const InstallPerfDll = InstallPerfDllA;
         pub const GetSystemWow64Directory = GetSystemWow64DirectoryA;
         pub const GetSystemWow64Directory2 = GetSystemWow64Directory2A;
+        pub const InstallPerfDll = InstallPerfDllA;
         pub const GetUserNameEx = GetUserNameExA;
         pub const GetComputerObjectName = GetComputerObjectNameA;
         pub const TranslateName = TranslateNameA;
@@ -15517,9 +15748,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = IMPGetIMEW;
         pub const IMPQueryIME = IMPQueryIMEW;
         pub const IMPSetIME = IMPSetIMEW;
-        pub const InstallPerfDll = InstallPerfDllW;
         pub const GetSystemWow64Directory = GetSystemWow64DirectoryW;
         pub const GetSystemWow64Directory2 = GetSystemWow64Directory2W;
+        pub const InstallPerfDll = InstallPerfDllW;
         pub const GetUserNameEx = GetUserNameExW;
         pub const GetComputerObjectName = GetComputerObjectNameW;
         pub const TranslateName = TranslateNameW;
@@ -15628,9 +15859,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = *opaque{};
         pub const IMPQueryIME = *opaque{};
         pub const IMPSetIME = *opaque{};
-        pub const InstallPerfDll = *opaque{};
         pub const GetSystemWow64Directory = *opaque{};
         pub const GetSystemWow64Directory2 = *opaque{};
+        pub const InstallPerfDll = *opaque{};
         pub const GetUserNameEx = *opaque{};
         pub const GetComputerObjectName = *opaque{};
         pub const TranslateName = *opaque{};
@@ -15738,16 +15969,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = @compileError("'IMPGetIME' requires that UNICODE be set to true or false in the root module");
         pub const IMPQueryIME = @compileError("'IMPQueryIME' requires that UNICODE be set to true or false in the root module");
         pub const IMPSetIME = @compileError("'IMPSetIME' requires that UNICODE be set to true or false in the root module");
-        pub const InstallPerfDll = @compileError("'InstallPerfDll' requires that UNICODE be set to true or false in the root module");
         pub const GetSystemWow64Directory = @compileError("'GetSystemWow64Directory' requires that UNICODE be set to true or false in the root module");
         pub const GetSystemWow64Directory2 = @compileError("'GetSystemWow64Directory2' requires that UNICODE be set to true or false in the root module");
+        pub const InstallPerfDll = @compileError("'InstallPerfDll' requires that UNICODE be set to true or false in the root module");
         pub const GetUserNameEx = @compileError("'GetUserNameEx' requires that UNICODE be set to true or false in the root module");
         pub const GetComputerObjectName = @compileError("'GetComputerObjectName' requires that UNICODE be set to true or false in the root module");
         pub const TranslateName = @compileError("'TranslateName' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (77)
+// Section: Imports (79)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("automation.zig").IDispatch;
@@ -15756,8 +15987,8 @@ const DDSCAPSEX = @import("direct_draw.zig").DDSCAPSEX;
 const OLECMDF = @import("com.zig").OLECMDF;
 const OLECMDEXECOPT = @import("com.zig").OLECMDEXECOPT;
 const DEVPROPERTY = @import("system_services.zig").DEVPROPERTY;
-const NTSTATUS = @import("system_services.zig").NTSTATUS;
 const MIDL_STUB_MESSAGE = @import("rpc.zig").MIDL_STUB_MESSAGE;
+const NTSTATUS = @import("system_services.zig").NTSTATUS;
 const CONTEXT = @import("debug.zig").CONTEXT;
 const WPARAM = @import("windows_and_messaging.zig").WPARAM;
 const LRESULT = @import("system_services.zig").LRESULT;
@@ -15799,12 +16030,14 @@ const DEVPROPKEY = @import("system_services.zig").DEVPROPKEY;
 const HRESULT = @import("com.zig").HRESULT;
 const HDC = @import("gdi.zig").HDC;
 const STARTUPINFOA = @import("system_services.zig").STARTUPINFOA;
+const LDT_ENTRY = @import("debug.zig").LDT_ENTRY;
 const BOOL = @import("system_services.zig").BOOL;
 const PRIVILEGE_SET = @import("security.zig").PRIVILEGE_SET;
 const DDSURFACEDESC = @import("direct_draw.zig").DDSURFACEDESC;
 const FILE_SHARE_MODE = @import("file_system.zig").FILE_SHARE_MODE;
 const JOB_SET_ARRAY = @import("system_services.zig").JOB_SET_ARRAY;
 const IMalloc = @import("com.zig").IMalloc;
+const SHANDLE_PTR = @import("system_services.zig").SHANDLE_PTR;
 const QUERYCONTEXT = @import("com.zig").QUERYCONTEXT;
 const SAFEARRAY = @import("automation.zig").SAFEARRAY;
 const DDSURFACEDESC2 = @import("direct_draw.zig").DDSURFACEDESC2;
@@ -15829,182 +16062,176 @@ const DDKERNELCAPS = @import("display_devices.zig").DDKERNELCAPS;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PSYMBOLSERVERCALLBACKPROC;
-    _ = LPFIBER_START_ROUTINE;
-    _ = PFIBER_CALLOUT_ROUTINE;
-    _ = PGET_SYSTEM_WOW64_DIRECTORY_A;
-    _ = PGET_SYSTEM_WOW64_DIRECTORY_W;
-    _ = PQUERYACTCTXW_FUNC;
-    _ = APPLICATION_RECOVERY_CALLBACK;
-    _ = PQUERYHANDLER;
-    _ = PPS_POST_PROCESS_INIT_ROUTINE;
-    _ = PIO_APC_ROUTINE;
-    _ = PWINSTATIONQUERYINFORMATIONW;
-    _ = AVRF_RESOURCE_ENUMERATE_CALLBACK;
-    _ = AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK;
-    _ = AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK;
-    _ = PFNFCIALLOC;
-    _ = PFNFCIFREE;
-    _ = PFNFCIOPEN;
-    _ = PFNFCIREAD;
-    _ = PFNFCIWRITE;
-    _ = PFNFCICLOSE;
-    _ = PFNFCISEEK;
-    _ = PFNFCIDELETE;
-    _ = PFNFCIGETNEXTCABINET;
-    _ = PFNFCIFILEPLACED;
-    _ = PFNFCIGETOPENINFO;
-    _ = PFNFCISTATUS;
-    _ = PFNFCIGETTEMPFILE;
-    _ = PFNALLOC;
-    _ = PFNFREE;
-    _ = PFNOPEN;
-    _ = PFNREAD;
-    _ = PFNWRITE;
-    _ = PFNCLOSE;
-    _ = PFNSEEK;
-    _ = PFNFDIDECRYPT;
-    _ = PFNFDINOTIFY;
-    _ = DEBUGEVENTPROC;
-    _ = PROCESSENUMPROC;
-    _ = TASKENUMPROC;
-    _ = TASKENUMPROCEX;
-    _ = VDMPROCESSEXCEPTIONPROC;
-    _ = VDMGETTHREADSELECTORENTRYPROC;
-    _ = VDMGETPOINTERPROC;
-    _ = VDMGETCONTEXTPROC;
-    _ = VDMSETCONTEXTPROC;
-    _ = VDMKILLWOWPROC;
-    _ = VDMDETECTWOWPROC;
-    _ = VDMBREAKTHREADPROC;
-    _ = VDMGETSELECTORMODULEPROC;
-    _ = VDMGETMODULESELECTORPROC;
-    _ = VDMMODULEFIRSTPROC;
-    _ = VDMMODULENEXTPROC;
-    _ = VDMGLOBALFIRSTPROC;
-    _ = VDMGLOBALNEXTPROC;
-    _ = VDMENUMPROCESSWOWPROC;
-    _ = VDMENUMTASKWOWPROC;
-    _ = VDMENUMTASKWOWEXPROC;
-    _ = VDMTERMINATETASKINWOWPROC;
-    _ = VDMSTARTTASKINWOWPROC;
-    _ = VDMGETDBGFLAGSPROC;
-    _ = VDMSETDBGFLAGSPROC;
-    _ = VDMISMODULELOADEDPROC;
-    _ = VDMGETSEGMENTINFOPROC;
-    _ = VDMGETSYMBOLPROC;
-    _ = VDMGETADDREXPRESSIONPROC;
-    _ = PFEATURE_STATE_CHANGE_CALLBACK;
-    _ = ENUM_CALLBACK;
-    _ = WINWATCHNOTIFYPROC;
-    _ = LPDD32BITDRIVERINIT;
-    _ = LPDDHEL_INIT;
-    _ = LPDDHAL_SETCOLORKEY;
-    _ = LPDDHAL_CANCREATESURFACE;
-    _ = LPDDHAL_CREATESURFACE;
-    _ = LPDDHAL_DESTROYDRIVER;
-    _ = LPDDHAL_SETMODE;
-    _ = LPDDHAL_CREATEPALETTE;
-    _ = LPDDHAL_GETSCANLINE;
-    _ = LPDDHAL_SETEXCLUSIVEMODE;
-    _ = LPDDHAL_FLIPTOGDISURFACE;
-    _ = LPDDHAL_GETDRIVERINFO;
-    _ = LPDDHALPALCB_DESTROYPALETTE;
-    _ = LPDDHALPALCB_SETENTRIES;
-    _ = LPDDHALSURFCB_LOCK;
-    _ = LPDDHALSURFCB_UNLOCK;
-    _ = LPDDHALSURFCB_BLT;
-    _ = LPDDHALSURFCB_UPDATEOVERLAY;
-    _ = LPDDHALSURFCB_SETOVERLAYPOSITION;
-    _ = LPDDHALSURFCB_SETPALETTE;
-    _ = LPDDHALSURFCB_FLIP;
-    _ = LPDDHALSURFCB_DESTROYSURFACE;
-    _ = LPDDHALSURFCB_SETCLIPLIST;
-    _ = LPDDHALSURFCB_ADDATTACHEDSURFACE;
-    _ = LPDDHALSURFCB_SETCOLORKEY;
-    _ = LPDDHALSURFCB_GETBLTSTATUS;
-    _ = LPDDHALSURFCB_GETFLIPSTATUS;
-    _ = LPDDHAL_GETAVAILDRIVERMEMORY;
-    _ = LPDDHAL_UPDATENONLOCALHEAP;
-    _ = LPDDHAL_GETHEAPALIGNMENT;
-    _ = LPDDHAL_CREATESURFACEEX;
-    _ = LPDDHAL_GETDRIVERSTATE;
-    _ = LPDDHAL_DESTROYDDLOCAL;
-    _ = LPDDHALEXEBUFCB_CANCREATEEXEBUF;
-    _ = LPDDHALEXEBUFCB_CREATEEXEBUF;
-    _ = LPDDHALEXEBUFCB_DESTROYEXEBUF;
-    _ = LPDDHALEXEBUFCB_LOCKEXEBUF;
-    _ = LPDDHALEXEBUFCB_UNLOCKEXEBUF;
-    _ = LPDDHALVPORTCB_CANCREATEVIDEOPORT;
-    _ = LPDDHALVPORTCB_CREATEVIDEOPORT;
-    _ = LPDDHALVPORTCB_FLIP;
-    _ = LPDDHALVPORTCB_GETBANDWIDTH;
-    _ = LPDDHALVPORTCB_GETINPUTFORMATS;
-    _ = LPDDHALVPORTCB_GETOUTPUTFORMATS;
-    _ = LPDDHALVPORTCB_GETFIELD;
-    _ = LPDDHALVPORTCB_GETLINE;
-    _ = LPDDHALVPORTCB_GETVPORTCONNECT;
-    _ = LPDDHALVPORTCB_DESTROYVPORT;
-    _ = LPDDHALVPORTCB_GETFLIPSTATUS;
-    _ = LPDDHALVPORTCB_UPDATE;
-    _ = LPDDHALVPORTCB_WAITFORSYNC;
-    _ = LPDDHALVPORTCB_GETSIGNALSTATUS;
-    _ = LPDDHALVPORTCB_COLORCONTROL;
-    _ = LPDDHALCOLORCB_COLORCONTROL;
-    _ = LPDDHALKERNELCB_SYNCSURFACE;
-    _ = LPDDHALKERNELCB_SYNCVIDEOPORT;
-    _ = LPDDGAMMACALIBRATORPROC;
-    _ = LPDDHALMOCOMPCB_GETGUIDS;
-    _ = LPDDHALMOCOMPCB_GETFORMATS;
-    _ = LPDDHALMOCOMPCB_CREATE;
-    _ = LPDDHALMOCOMPCB_GETCOMPBUFFINFO;
-    _ = LPDDHALMOCOMPCB_GETINTERNALINFO;
-    _ = LPDDHALMOCOMPCB_BEGINFRAME;
-    _ = LPDDHALMOCOMPCB_ENDFRAME;
-    _ = LPDDHALMOCOMPCB_RENDER;
-    _ = LPDDHALMOCOMPCB_QUERYSTATUS;
-    _ = LPDDHALMOCOMPCB_DESTROY;
-    _ = LPDDHAL_SETINFO;
-    _ = LPDDHAL_VIDMEMALLOC;
-    _ = LPDDHAL_VIDMEMFREE;
-    _ = PFNCHECKCONNECTIONWIZARD;
-    _ = PFNSETSHELLNEXT;
-    _ = REGINSTALLA;
-    _ = PFN_IO_COMPLETION;
-    _ = FCACHE_CREATE_CALLBACK;
-    _ = FCACHE_RICHCREATE_CALLBACK;
-    _ = CACHE_KEY_COMPARE;
-    _ = CACHE_KEY_HASH;
-    _ = CACHE_READ_CALLBACK;
-    _ = CACHE_DESTROY_CALLBACK;
-    _ = CACHE_ACCESS_CHECK;
-    _ = PWLDP_SETDYNAMICCODETRUST_API;
-    _ = PWLDP_ISDYNAMICCODEPOLICYENABLED_API;
-    _ = PWLDP_QUERYDYNAMICODETRUST_API;
-    _ = PWLDP_QUERYWINDOWSLOCKDOWNMODE_API;
-    _ = PWLDP_QUERYWINDOWSLOCKDOWNRESTRICTION_API;
-    _ = PWLDP_SETWINDOWSLOCKDOWNRESTRICTION_API;
-    _ = PWLDP_WLDPISAPPAPPROVEDBYPOLICY_API;
-    _ = PDEV_QUERY_RESULT_CALLBACK;
+    if (@hasDecl(@This(), "VDMGETTHREADSELECTORENTRYPROC")) { _ = VDMGETTHREADSELECTORENTRYPROC; }
+    if (@hasDecl(@This(), "VDMGETCONTEXTPROC")) { _ = VDMGETCONTEXTPROC; }
+    if (@hasDecl(@This(), "VDMSETCONTEXTPROC")) { _ = VDMSETCONTEXTPROC; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERCALLBACKPROC")) { _ = PSYMBOLSERVERCALLBACKPROC; }
+    if (@hasDecl(@This(), "VDMGETTHREADSELECTORENTRYPROC")) { _ = VDMGETTHREADSELECTORENTRYPROC; }
+    if (@hasDecl(@This(), "VDMGETCONTEXTPROC")) { _ = VDMGETCONTEXTPROC; }
+    if (@hasDecl(@This(), "VDMSETCONTEXTPROC")) { _ = VDMSETCONTEXTPROC; }
+    if (@hasDecl(@This(), "LPFIBER_START_ROUTINE")) { _ = LPFIBER_START_ROUTINE; }
+    if (@hasDecl(@This(), "PFIBER_CALLOUT_ROUTINE")) { _ = PFIBER_CALLOUT_ROUTINE; }
+    if (@hasDecl(@This(), "PGET_SYSTEM_WOW64_DIRECTORY_A")) { _ = PGET_SYSTEM_WOW64_DIRECTORY_A; }
+    if (@hasDecl(@This(), "PGET_SYSTEM_WOW64_DIRECTORY_W")) { _ = PGET_SYSTEM_WOW64_DIRECTORY_W; }
+    if (@hasDecl(@This(), "PQUERYACTCTXW_FUNC")) { _ = PQUERYACTCTXW_FUNC; }
+    if (@hasDecl(@This(), "APPLICATION_RECOVERY_CALLBACK")) { _ = APPLICATION_RECOVERY_CALLBACK; }
+    if (@hasDecl(@This(), "PQUERYHANDLER")) { _ = PQUERYHANDLER; }
+    if (@hasDecl(@This(), "PPS_POST_PROCESS_INIT_ROUTINE")) { _ = PPS_POST_PROCESS_INIT_ROUTINE; }
+    if (@hasDecl(@This(), "PIO_APC_ROUTINE")) { _ = PIO_APC_ROUTINE; }
+    if (@hasDecl(@This(), "PWINSTATIONQUERYINFORMATIONW")) { _ = PWINSTATIONQUERYINFORMATIONW; }
+    if (@hasDecl(@This(), "AVRF_RESOURCE_ENUMERATE_CALLBACK")) { _ = AVRF_RESOURCE_ENUMERATE_CALLBACK; }
+    if (@hasDecl(@This(), "AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK")) { _ = AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK; }
+    if (@hasDecl(@This(), "AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK")) { _ = AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK; }
+    if (@hasDecl(@This(), "PFNFCIALLOC")) { _ = PFNFCIALLOC; }
+    if (@hasDecl(@This(), "PFNFCIFREE")) { _ = PFNFCIFREE; }
+    if (@hasDecl(@This(), "PFNFCIOPEN")) { _ = PFNFCIOPEN; }
+    if (@hasDecl(@This(), "PFNFCIREAD")) { _ = PFNFCIREAD; }
+    if (@hasDecl(@This(), "PFNFCIWRITE")) { _ = PFNFCIWRITE; }
+    if (@hasDecl(@This(), "PFNFCICLOSE")) { _ = PFNFCICLOSE; }
+    if (@hasDecl(@This(), "PFNFCISEEK")) { _ = PFNFCISEEK; }
+    if (@hasDecl(@This(), "PFNFCIDELETE")) { _ = PFNFCIDELETE; }
+    if (@hasDecl(@This(), "PFNFCIGETNEXTCABINET")) { _ = PFNFCIGETNEXTCABINET; }
+    if (@hasDecl(@This(), "PFNFCIFILEPLACED")) { _ = PFNFCIFILEPLACED; }
+    if (@hasDecl(@This(), "PFNFCIGETOPENINFO")) { _ = PFNFCIGETOPENINFO; }
+    if (@hasDecl(@This(), "PFNFCISTATUS")) { _ = PFNFCISTATUS; }
+    if (@hasDecl(@This(), "PFNFCIGETTEMPFILE")) { _ = PFNFCIGETTEMPFILE; }
+    if (@hasDecl(@This(), "PFNALLOC")) { _ = PFNALLOC; }
+    if (@hasDecl(@This(), "PFNFREE")) { _ = PFNFREE; }
+    if (@hasDecl(@This(), "PFNOPEN")) { _ = PFNOPEN; }
+    if (@hasDecl(@This(), "PFNREAD")) { _ = PFNREAD; }
+    if (@hasDecl(@This(), "PFNWRITE")) { _ = PFNWRITE; }
+    if (@hasDecl(@This(), "PFNCLOSE")) { _ = PFNCLOSE; }
+    if (@hasDecl(@This(), "PFNSEEK")) { _ = PFNSEEK; }
+    if (@hasDecl(@This(), "PFNFDIDECRYPT")) { _ = PFNFDIDECRYPT; }
+    if (@hasDecl(@This(), "PFNFDINOTIFY")) { _ = PFNFDINOTIFY; }
+    if (@hasDecl(@This(), "DEBUGEVENTPROC")) { _ = DEBUGEVENTPROC; }
+    if (@hasDecl(@This(), "PROCESSENUMPROC")) { _ = PROCESSENUMPROC; }
+    if (@hasDecl(@This(), "TASKENUMPROC")) { _ = TASKENUMPROC; }
+    if (@hasDecl(@This(), "TASKENUMPROCEX")) { _ = TASKENUMPROCEX; }
+    if (@hasDecl(@This(), "VDMPROCESSEXCEPTIONPROC")) { _ = VDMPROCESSEXCEPTIONPROC; }
+    if (@hasDecl(@This(), "VDMGETPOINTERPROC")) { _ = VDMGETPOINTERPROC; }
+    if (@hasDecl(@This(), "VDMKILLWOWPROC")) { _ = VDMKILLWOWPROC; }
+    if (@hasDecl(@This(), "VDMDETECTWOWPROC")) { _ = VDMDETECTWOWPROC; }
+    if (@hasDecl(@This(), "VDMBREAKTHREADPROC")) { _ = VDMBREAKTHREADPROC; }
+    if (@hasDecl(@This(), "VDMGETSELECTORMODULEPROC")) { _ = VDMGETSELECTORMODULEPROC; }
+    if (@hasDecl(@This(), "VDMGETMODULESELECTORPROC")) { _ = VDMGETMODULESELECTORPROC; }
+    if (@hasDecl(@This(), "VDMMODULEFIRSTPROC")) { _ = VDMMODULEFIRSTPROC; }
+    if (@hasDecl(@This(), "VDMMODULENEXTPROC")) { _ = VDMMODULENEXTPROC; }
+    if (@hasDecl(@This(), "VDMGLOBALFIRSTPROC")) { _ = VDMGLOBALFIRSTPROC; }
+    if (@hasDecl(@This(), "VDMGLOBALNEXTPROC")) { _ = VDMGLOBALNEXTPROC; }
+    if (@hasDecl(@This(), "VDMENUMPROCESSWOWPROC")) { _ = VDMENUMPROCESSWOWPROC; }
+    if (@hasDecl(@This(), "VDMENUMTASKWOWPROC")) { _ = VDMENUMTASKWOWPROC; }
+    if (@hasDecl(@This(), "VDMENUMTASKWOWEXPROC")) { _ = VDMENUMTASKWOWEXPROC; }
+    if (@hasDecl(@This(), "VDMTERMINATETASKINWOWPROC")) { _ = VDMTERMINATETASKINWOWPROC; }
+    if (@hasDecl(@This(), "VDMSTARTTASKINWOWPROC")) { _ = VDMSTARTTASKINWOWPROC; }
+    if (@hasDecl(@This(), "VDMGETDBGFLAGSPROC")) { _ = VDMGETDBGFLAGSPROC; }
+    if (@hasDecl(@This(), "VDMSETDBGFLAGSPROC")) { _ = VDMSETDBGFLAGSPROC; }
+    if (@hasDecl(@This(), "VDMISMODULELOADEDPROC")) { _ = VDMISMODULELOADEDPROC; }
+    if (@hasDecl(@This(), "VDMGETSEGMENTINFOPROC")) { _ = VDMGETSEGMENTINFOPROC; }
+    if (@hasDecl(@This(), "VDMGETSYMBOLPROC")) { _ = VDMGETSYMBOLPROC; }
+    if (@hasDecl(@This(), "VDMGETADDREXPRESSIONPROC")) { _ = VDMGETADDREXPRESSIONPROC; }
+    if (@hasDecl(@This(), "PFEATURE_STATE_CHANGE_CALLBACK")) { _ = PFEATURE_STATE_CHANGE_CALLBACK; }
+    if (@hasDecl(@This(), "ENUM_CALLBACK")) { _ = ENUM_CALLBACK; }
+    if (@hasDecl(@This(), "WINWATCHNOTIFYPROC")) { _ = WINWATCHNOTIFYPROC; }
+    if (@hasDecl(@This(), "LPDD32BITDRIVERINIT")) { _ = LPDD32BITDRIVERINIT; }
+    if (@hasDecl(@This(), "LPDDHEL_INIT")) { _ = LPDDHEL_INIT; }
+    if (@hasDecl(@This(), "LPDDHAL_SETCOLORKEY")) { _ = LPDDHAL_SETCOLORKEY; }
+    if (@hasDecl(@This(), "LPDDHAL_CANCREATESURFACE")) { _ = LPDDHAL_CANCREATESURFACE; }
+    if (@hasDecl(@This(), "LPDDHAL_CREATESURFACE")) { _ = LPDDHAL_CREATESURFACE; }
+    if (@hasDecl(@This(), "LPDDHAL_DESTROYDRIVER")) { _ = LPDDHAL_DESTROYDRIVER; }
+    if (@hasDecl(@This(), "LPDDHAL_SETMODE")) { _ = LPDDHAL_SETMODE; }
+    if (@hasDecl(@This(), "LPDDHAL_CREATEPALETTE")) { _ = LPDDHAL_CREATEPALETTE; }
+    if (@hasDecl(@This(), "LPDDHAL_GETSCANLINE")) { _ = LPDDHAL_GETSCANLINE; }
+    if (@hasDecl(@This(), "LPDDHAL_SETEXCLUSIVEMODE")) { _ = LPDDHAL_SETEXCLUSIVEMODE; }
+    if (@hasDecl(@This(), "LPDDHAL_FLIPTOGDISURFACE")) { _ = LPDDHAL_FLIPTOGDISURFACE; }
+    if (@hasDecl(@This(), "LPDDHAL_GETDRIVERINFO")) { _ = LPDDHAL_GETDRIVERINFO; }
+    if (@hasDecl(@This(), "LPDDHALPALCB_DESTROYPALETTE")) { _ = LPDDHALPALCB_DESTROYPALETTE; }
+    if (@hasDecl(@This(), "LPDDHALPALCB_SETENTRIES")) { _ = LPDDHALPALCB_SETENTRIES; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_LOCK")) { _ = LPDDHALSURFCB_LOCK; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_UNLOCK")) { _ = LPDDHALSURFCB_UNLOCK; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_BLT")) { _ = LPDDHALSURFCB_BLT; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_UPDATEOVERLAY")) { _ = LPDDHALSURFCB_UPDATEOVERLAY; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_SETOVERLAYPOSITION")) { _ = LPDDHALSURFCB_SETOVERLAYPOSITION; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_SETPALETTE")) { _ = LPDDHALSURFCB_SETPALETTE; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_FLIP")) { _ = LPDDHALSURFCB_FLIP; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_DESTROYSURFACE")) { _ = LPDDHALSURFCB_DESTROYSURFACE; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_SETCLIPLIST")) { _ = LPDDHALSURFCB_SETCLIPLIST; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_ADDATTACHEDSURFACE")) { _ = LPDDHALSURFCB_ADDATTACHEDSURFACE; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_SETCOLORKEY")) { _ = LPDDHALSURFCB_SETCOLORKEY; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_GETBLTSTATUS")) { _ = LPDDHALSURFCB_GETBLTSTATUS; }
+    if (@hasDecl(@This(), "LPDDHALSURFCB_GETFLIPSTATUS")) { _ = LPDDHALSURFCB_GETFLIPSTATUS; }
+    if (@hasDecl(@This(), "LPDDHAL_GETAVAILDRIVERMEMORY")) { _ = LPDDHAL_GETAVAILDRIVERMEMORY; }
+    if (@hasDecl(@This(), "LPDDHAL_UPDATENONLOCALHEAP")) { _ = LPDDHAL_UPDATENONLOCALHEAP; }
+    if (@hasDecl(@This(), "LPDDHAL_GETHEAPALIGNMENT")) { _ = LPDDHAL_GETHEAPALIGNMENT; }
+    if (@hasDecl(@This(), "LPDDHAL_CREATESURFACEEX")) { _ = LPDDHAL_CREATESURFACEEX; }
+    if (@hasDecl(@This(), "LPDDHAL_GETDRIVERSTATE")) { _ = LPDDHAL_GETDRIVERSTATE; }
+    if (@hasDecl(@This(), "LPDDHAL_DESTROYDDLOCAL")) { _ = LPDDHAL_DESTROYDDLOCAL; }
+    if (@hasDecl(@This(), "LPDDHALEXEBUFCB_CANCREATEEXEBUF")) { _ = LPDDHALEXEBUFCB_CANCREATEEXEBUF; }
+    if (@hasDecl(@This(), "LPDDHALEXEBUFCB_CREATEEXEBUF")) { _ = LPDDHALEXEBUFCB_CREATEEXEBUF; }
+    if (@hasDecl(@This(), "LPDDHALEXEBUFCB_DESTROYEXEBUF")) { _ = LPDDHALEXEBUFCB_DESTROYEXEBUF; }
+    if (@hasDecl(@This(), "LPDDHALEXEBUFCB_LOCKEXEBUF")) { _ = LPDDHALEXEBUFCB_LOCKEXEBUF; }
+    if (@hasDecl(@This(), "LPDDHALEXEBUFCB_UNLOCKEXEBUF")) { _ = LPDDHALEXEBUFCB_UNLOCKEXEBUF; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_CANCREATEVIDEOPORT")) { _ = LPDDHALVPORTCB_CANCREATEVIDEOPORT; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_CREATEVIDEOPORT")) { _ = LPDDHALVPORTCB_CREATEVIDEOPORT; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_FLIP")) { _ = LPDDHALVPORTCB_FLIP; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETBANDWIDTH")) { _ = LPDDHALVPORTCB_GETBANDWIDTH; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETINPUTFORMATS")) { _ = LPDDHALVPORTCB_GETINPUTFORMATS; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETOUTPUTFORMATS")) { _ = LPDDHALVPORTCB_GETOUTPUTFORMATS; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETFIELD")) { _ = LPDDHALVPORTCB_GETFIELD; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETLINE")) { _ = LPDDHALVPORTCB_GETLINE; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETVPORTCONNECT")) { _ = LPDDHALVPORTCB_GETVPORTCONNECT; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_DESTROYVPORT")) { _ = LPDDHALVPORTCB_DESTROYVPORT; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETFLIPSTATUS")) { _ = LPDDHALVPORTCB_GETFLIPSTATUS; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_UPDATE")) { _ = LPDDHALVPORTCB_UPDATE; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_WAITFORSYNC")) { _ = LPDDHALVPORTCB_WAITFORSYNC; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_GETSIGNALSTATUS")) { _ = LPDDHALVPORTCB_GETSIGNALSTATUS; }
+    if (@hasDecl(@This(), "LPDDHALVPORTCB_COLORCONTROL")) { _ = LPDDHALVPORTCB_COLORCONTROL; }
+    if (@hasDecl(@This(), "LPDDHALCOLORCB_COLORCONTROL")) { _ = LPDDHALCOLORCB_COLORCONTROL; }
+    if (@hasDecl(@This(), "LPDDHALKERNELCB_SYNCSURFACE")) { _ = LPDDHALKERNELCB_SYNCSURFACE; }
+    if (@hasDecl(@This(), "LPDDHALKERNELCB_SYNCVIDEOPORT")) { _ = LPDDHALKERNELCB_SYNCVIDEOPORT; }
+    if (@hasDecl(@This(), "LPDDGAMMACALIBRATORPROC")) { _ = LPDDGAMMACALIBRATORPROC; }
+    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_GETGUIDS")) { _ = LPDDHALMOCOMPCB_GETGUIDS; }
+    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_GETFORMATS")) { _ = LPDDHALMOCOMPCB_GETFORMATS; }
+    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_CREATE")) { _ = LPDDHALMOCOMPCB_CREATE; }
+    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_GETCOMPBUFFINFO")) { _ = LPDDHALMOCOMPCB_GETCOMPBUFFINFO; }
+    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_GETINTERNALINFO")) { _ = LPDDHALMOCOMPCB_GETINTERNALINFO; }
+    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_BEGINFRAME")) { _ = LPDDHALMOCOMPCB_BEGINFRAME; }
+    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_ENDFRAME")) { _ = LPDDHALMOCOMPCB_ENDFRAME; }
+    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_RENDER")) { _ = LPDDHALMOCOMPCB_RENDER; }
+    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_QUERYSTATUS")) { _ = LPDDHALMOCOMPCB_QUERYSTATUS; }
+    if (@hasDecl(@This(), "LPDDHALMOCOMPCB_DESTROY")) { _ = LPDDHALMOCOMPCB_DESTROY; }
+    if (@hasDecl(@This(), "LPDDHAL_SETINFO")) { _ = LPDDHAL_SETINFO; }
+    if (@hasDecl(@This(), "LPDDHAL_VIDMEMALLOC")) { _ = LPDDHAL_VIDMEMALLOC; }
+    if (@hasDecl(@This(), "LPDDHAL_VIDMEMFREE")) { _ = LPDDHAL_VIDMEMFREE; }
+    if (@hasDecl(@This(), "PFNCHECKCONNECTIONWIZARD")) { _ = PFNCHECKCONNECTIONWIZARD; }
+    if (@hasDecl(@This(), "PFNSETSHELLNEXT")) { _ = PFNSETSHELLNEXT; }
+    if (@hasDecl(@This(), "REGINSTALLA")) { _ = REGINSTALLA; }
+    if (@hasDecl(@This(), "PFN_IO_COMPLETION")) { _ = PFN_IO_COMPLETION; }
+    if (@hasDecl(@This(), "FCACHE_CREATE_CALLBACK")) { _ = FCACHE_CREATE_CALLBACK; }
+    if (@hasDecl(@This(), "FCACHE_RICHCREATE_CALLBACK")) { _ = FCACHE_RICHCREATE_CALLBACK; }
+    if (@hasDecl(@This(), "CACHE_KEY_COMPARE")) { _ = CACHE_KEY_COMPARE; }
+    if (@hasDecl(@This(), "CACHE_KEY_HASH")) { _ = CACHE_KEY_HASH; }
+    if (@hasDecl(@This(), "CACHE_READ_CALLBACK")) { _ = CACHE_READ_CALLBACK; }
+    if (@hasDecl(@This(), "CACHE_DESTROY_CALLBACK")) { _ = CACHE_DESTROY_CALLBACK; }
+    if (@hasDecl(@This(), "CACHE_ACCESS_CHECK")) { _ = CACHE_ACCESS_CHECK; }
+    if (@hasDecl(@This(), "PWLDP_SETDYNAMICCODETRUST_API")) { _ = PWLDP_SETDYNAMICCODETRUST_API; }
+    if (@hasDecl(@This(), "PWLDP_ISDYNAMICCODEPOLICYENABLED_API")) { _ = PWLDP_ISDYNAMICCODEPOLICYENABLED_API; }
+    if (@hasDecl(@This(), "PWLDP_QUERYDYNAMICODETRUST_API")) { _ = PWLDP_QUERYDYNAMICODETRUST_API; }
+    if (@hasDecl(@This(), "PWLDP_QUERYWINDOWSLOCKDOWNMODE_API")) { _ = PWLDP_QUERYWINDOWSLOCKDOWNMODE_API; }
+    if (@hasDecl(@This(), "PWLDP_QUERYWINDOWSLOCKDOWNRESTRICTION_API")) { _ = PWLDP_QUERYWINDOWSLOCKDOWNRESTRICTION_API; }
+    if (@hasDecl(@This(), "PWLDP_SETWINDOWSLOCKDOWNRESTRICTION_API")) { _ = PWLDP_SETWINDOWSLOCKDOWNRESTRICTION_API; }
+    if (@hasDecl(@This(), "PWLDP_WLDPISAPPAPPROVEDBYPOLICY_API")) { _ = PWLDP_WLDPISAPPAPPROVEDBYPOLICY_API; }
+    if (@hasDecl(@This(), "PDEV_QUERY_RESULT_CALLBACK")) { _ = PDEV_QUERY_RESULT_CALLBACK; }
 
-    const constant_export_count = 927;
-    const type_export_count = 571;
-    const enum_value_export_count = 778;
-    const com_iface_id_export_count = 70;
-    const com_class_id_export_count = 23;
-    const func_export_count = 483;
-    const unicode_alias_count = 109;
-    const import_count = 77;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -723,6 +723,782 @@ pub const g_wszExcludeScriptStreamDeliverySynchronization = "ExcludeScriptStream
 //--------------------------------------------------------------------------------
 // Section: Types (1477)
 //--------------------------------------------------------------------------------
+pub const IKsPin = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IKsAllocator = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IKsAllocatorEx = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const READYSTATE = extern enum(i32) {
+    UNINITIALIZED = 0,
+    LOADING = 1,
+    LOADED = 2,
+    INTERACTIVE = 3,
+    COMPLETE = 4,
+};
+pub const READYSTATE_UNINITIALIZED = READYSTATE.UNINITIALIZED;
+pub const READYSTATE_LOADING = READYSTATE.LOADING;
+pub const READYSTATE_LOADED = READYSTATE.LOADED;
+pub const READYSTATE_INTERACTIVE = READYSTATE.INTERACTIVE;
+pub const READYSTATE_COMPLETE = READYSTATE.COMPLETE;
+
+pub const KSTOPOLOGY_CONNECTION = extern struct {
+    FromNode: u32,
+    FromNodePin: u32,
+    ToNode: u32,
+    ToNodePin: u32,
+};
+
+pub const TIMECODE = extern union {
+    Anonymous: _Anonymous_e__Struct,
+    qw: u64,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
+
+pub const TIMECODE_SAMPLE = extern struct {
+    qwTick: i64,
+    timecode: TIMECODE,
+    dwUser: u32,
+    dwFlags: u32,
+};
+
+pub const VIDEOENCODER_BITRATE_MODE = extern enum(i32) {
+    ConstantBitRate = 0,
+    VariableBitRateAverage = 1,
+    VariableBitRatePeak = 2,
+};
+pub const ConstantBitRate = VIDEOENCODER_BITRATE_MODE.ConstantBitRate;
+pub const VariableBitRateAverage = VIDEOENCODER_BITRATE_MODE.VariableBitRateAverage;
+pub const VariableBitRatePeak = VIDEOENCODER_BITRATE_MODE.VariableBitRatePeak;
+
+pub const OA_BOOL = extern enum(i32) {
+    TRUE = -1,
+    FALSE = 0,
+};
+pub const OATRUE = OA_BOOL.TRUE;
+pub const OAFALSE = OA_BOOL.FALSE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const MPEG2VIDEOINFO_FLAGS = extern enum(u32) {
+    DoPanScan = 1,
+    DVDLine21Field1 = 2,
+    DVDLine21Field2 = 4,
+    SourceIsLetterboxed = 8,
+    FilmCameraMode = 16,
+    LetterboxAnalogOut = 32,
+    DSS_UserData = 64,
+    DVB_UserData = 128,
+    @"27MhzTimebase" = 256,
+    WidescreenAnalogOut = 512,
+    _,
+};
+pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_FLAGS.DoPanScan;
+pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field1;
+pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field2;
+pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed;
+pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_FLAGS.FilmCameraMode;
+pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut;
+pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_FLAGS.DSS_UserData;
+pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_FLAGS.DVB_UserData;
+pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase";
+pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut;
+
+pub const MPEGLAYER3WAVEFORMAT_FLAGS = extern enum(u32) {
+    ISO = 0,
+    ON = 1,
+    OFF = 2,
+};
+pub const MPEGLAYER3_FLAG_PADDING_ISO = MPEGLAYER3WAVEFORMAT_FLAGS.ISO;
+pub const MPEGLAYER3_FLAG_PADDING_ON = MPEGLAYER3WAVEFORMAT_FLAGS.ON;
+pub const MPEGLAYER3_FLAG_PADDING_OFF = MPEGLAYER3WAVEFORMAT_FLAGS.OFF;
+
+pub const DDCOLORKEY = extern struct {
+    dwColorSpaceLowValue: u32,
+    dwColorSpaceHighValue: u32,
+};
+
+pub const DMO_MEDIA_TYPE = extern struct {
+    majortype: Guid,
+    subtype: Guid,
+    bFixedSizeSamples: BOOL,
+    bTemporalCompression: BOOL,
+    lSampleSize: u32,
+    formattype: Guid,
+    pUnk: *IUnknown,
+    cbFormat: u32,
+    pbFormat: *u8,
+};
+
+const IID_IMediaBuffer_Value = @import("../zig.zig").Guid.initString("59eff8b9-938c-4a26-82f2-95cb84cdc837");
+pub const IID_IMediaBuffer = &IID_IMediaBuffer_Value;
+pub const IMediaBuffer = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetLength: fn(
+            self: *const IMediaBuffer,
+            cbLength: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxLength: fn(
+            self: *const IMediaBuffer,
+            pcbMaxLength: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBufferAndLength: fn(
+            self: *const IMediaBuffer,
+            ppBuffer: ?*?*u8,
+            pcbLength: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaBuffer_SetLength(self: *const T, cbLength: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaBuffer.VTable, self.vtable).SetLength(@ptrCast(*const IMediaBuffer, self), cbLength);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaBuffer_GetMaxLength(self: *const T, pcbMaxLength: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaBuffer.VTable, self.vtable).GetMaxLength(@ptrCast(*const IMediaBuffer, self), pcbMaxLength);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaBuffer_GetBufferAndLength(self: *const T, ppBuffer: ?*?*u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaBuffer.VTable, self.vtable).GetBufferAndLength(@ptrCast(*const IMediaBuffer, self), ppBuffer, pcbLength);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const DMO_OUTPUT_DATA_BUFFER = extern struct {
+    pBuffer: *IMediaBuffer,
+    dwStatus: u32,
+    rtTimestamp: i64,
+    rtTimelength: i64,
+};
+
+const IID_IMediaObject_Value = @import("../zig.zig").Guid.initString("d8ad0f58-5494-4102-97c5-ec798e59bcf4");
+pub const IID_IMediaObject = &IID_IMediaObject_Value;
+pub const IMediaObject = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetStreamCount: fn(
+            self: *const IMediaObject,
+            pcInputStreams: *u32,
+            pcOutputStreams: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputStreamInfo: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            pdwFlags: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputStreamInfo: fn(
+            self: *const IMediaObject,
+            dwOutputStreamIndex: u32,
+            pdwFlags: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputType: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            dwTypeIndex: u32,
+            pmt: ?*DMO_MEDIA_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputType: fn(
+            self: *const IMediaObject,
+            dwOutputStreamIndex: u32,
+            dwTypeIndex: u32,
+            pmt: ?*DMO_MEDIA_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetInputType: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            pmt: ?*const DMO_MEDIA_TYPE,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOutputType: fn(
+            self: *const IMediaObject,
+            dwOutputStreamIndex: u32,
+            pmt: ?*const DMO_MEDIA_TYPE,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputCurrentType: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            pmt: *DMO_MEDIA_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputCurrentType: fn(
+            self: *const IMediaObject,
+            dwOutputStreamIndex: u32,
+            pmt: *DMO_MEDIA_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputSizeInfo: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            pcbSize: *u32,
+            pcbMaxLookahead: *u32,
+            pcbAlignment: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputSizeInfo: fn(
+            self: *const IMediaObject,
+            dwOutputStreamIndex: u32,
+            pcbSize: *u32,
+            pcbAlignment: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputMaxLatency: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            prtMaxLatency: *i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetInputMaxLatency: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            rtMaxLatency: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Flush: fn(
+            self: *const IMediaObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Discontinuity: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AllocateStreamingResources: fn(
+            self: *const IMediaObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FreeStreamingResources: fn(
+            self: *const IMediaObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputStatus: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            dwFlags: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessInput: fn(
+            self: *const IMediaObject,
+            dwInputStreamIndex: u32,
+            pBuffer: *IMediaBuffer,
+            dwFlags: u32,
+            rtTimestamp: i64,
+            rtTimelength: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessOutput: fn(
+            self: *const IMediaObject,
+            dwFlags: u32,
+            cOutputBufferCount: u32,
+            pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER,
+            pdwStatus: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Lock: fn(
+            self: *const IMediaObject,
+            bLock: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetStreamCount(self: *const T, pcInputStreams: *u32, pcOutputStreams: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetStreamCount(@ptrCast(*const IMediaObject, self), pcInputStreams, pcOutputStreams);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetInputStreamInfo(self: *const T, dwInputStreamIndex: u32, pdwFlags: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputStreamInfo(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pdwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetOutputStreamInfo(self: *const T, dwOutputStreamIndex: u32, pdwFlags: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputStreamInfo(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pdwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetInputType(self: *const T, dwInputStreamIndex: u32, dwTypeIndex: u32, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, dwTypeIndex, pmt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetOutputType(self: *const T, dwOutputStreamIndex: u32, dwTypeIndex: u32, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, dwTypeIndex, pmt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_SetInputType(self: *const T, dwInputStreamIndex: u32, pmt: ?*const DMO_MEDIA_TYPE, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).SetInputType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pmt, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_SetOutputType(self: *const T, dwOutputStreamIndex: u32, pmt: ?*const DMO_MEDIA_TYPE, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).SetOutputType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pmt, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetInputCurrentType(self: *const T, dwInputStreamIndex: u32, pmt: *DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputCurrentType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pmt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetOutputCurrentType(self: *const T, dwOutputStreamIndex: u32, pmt: *DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputCurrentType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pmt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetInputSizeInfo(self: *const T, dwInputStreamIndex: u32, pcbSize: *u32, pcbMaxLookahead: *u32, pcbAlignment: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputSizeInfo(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pcbSize, pcbMaxLookahead, pcbAlignment);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetOutputSizeInfo(self: *const T, dwOutputStreamIndex: u32, pcbSize: *u32, pcbAlignment: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputSizeInfo(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pcbSize, pcbAlignment);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetInputMaxLatency(self: *const T, dwInputStreamIndex: u32, prtMaxLatency: *i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputMaxLatency(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, prtMaxLatency);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_SetInputMaxLatency(self: *const T, dwInputStreamIndex: u32, rtMaxLatency: i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).SetInputMaxLatency(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, rtMaxLatency);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_Flush(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).Flush(@ptrCast(*const IMediaObject, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_Discontinuity(self: *const T, dwInputStreamIndex: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).Discontinuity(@ptrCast(*const IMediaObject, self), dwInputStreamIndex);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_AllocateStreamingResources(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).AllocateStreamingResources(@ptrCast(*const IMediaObject, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_FreeStreamingResources(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).FreeStreamingResources(@ptrCast(*const IMediaObject, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_GetInputStatus(self: *const T, dwInputStreamIndex: u32, dwFlags: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputStatus(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_ProcessInput(self: *const T, dwInputStreamIndex: u32, pBuffer: *IMediaBuffer, dwFlags: u32, rtTimestamp: i64, rtTimelength: i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).ProcessInput(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pBuffer, dwFlags, rtTimestamp, rtTimelength);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_ProcessOutput(self: *const T, dwFlags: u32, cOutputBufferCount: u32, pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER, pdwStatus: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).ProcessOutput(@ptrCast(*const IMediaObject, self), dwFlags, cOutputBufferCount, pOutputBuffers, pdwStatus);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObject_Lock(self: *const T, bLock: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObject.VTable, self.vtable).Lock(@ptrCast(*const IMediaObject, self), bLock);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IEnumDMO_Value = @import("../zig.zig").Guid.initString("2c3cd98a-2bfa-4a53-9c27-5249ba64ba0f");
+pub const IID_IEnumDMO = &IID_IEnumDMO_Value;
+pub const IEnumDMO = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IEnumDMO,
+            cItemsToFetch: u32,
+            pCLSID: [*]Guid,
+            Names: [*]PWSTR,
+            pcItemsFetched: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: fn(
+            self: *const IEnumDMO,
+            cItemsToSkip: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IEnumDMO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IEnumDMO,
+            ppEnum: **IEnumDMO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDMO_Next(self: *const T, cItemsToFetch: u32, pCLSID: [*]Guid, Names: [*]PWSTR, pcItemsFetched: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Next(@ptrCast(*const IEnumDMO, self), cItemsToFetch, pCLSID, Names, pcItemsFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDMO_Skip(self: *const T, cItemsToSkip: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Skip(@ptrCast(*const IEnumDMO, self), cItemsToSkip);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDMO_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Reset(@ptrCast(*const IEnumDMO, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumDMO_Clone(self: *const T, ppEnum: **IEnumDMO) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Clone(@ptrCast(*const IEnumDMO, self), ppEnum);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IMediaObjectInPlace_Value = @import("../zig.zig").Guid.initString("651b9ad0-0fc7-4aa9-9538-d89931010741");
+pub const IID_IMediaObjectInPlace = &IID_IMediaObjectInPlace_Value;
+pub const IMediaObjectInPlace = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Process: fn(
+            self: *const IMediaObjectInPlace,
+            ulSize: u32,
+            // TODO: what to do with BytesParamIndex 0?
+            pData: *u8,
+            refTimeStart: i64,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IMediaObjectInPlace,
+            ppMediaObject: **IMediaObjectInPlace,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLatency: fn(
+            self: *const IMediaObjectInPlace,
+            pLatencyTime: *i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObjectInPlace_Process(self: *const T, ulSize: u32, pData: *u8, refTimeStart: i64, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).Process(@ptrCast(*const IMediaObjectInPlace, self), ulSize, pData, refTimeStart, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObjectInPlace_Clone(self: *const T, ppMediaObject: **IMediaObjectInPlace) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).Clone(@ptrCast(*const IMediaObjectInPlace, self), ppMediaObject);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMediaObjectInPlace_GetLatency(self: *const T, pLatencyTime: *i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).GetLatency(@ptrCast(*const IMediaObjectInPlace, self), pLatencyTime);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDMOQualityControl_Value = @import("../zig.zig").Guid.initString("65abea96-cf36-453f-af8a-705e98f16260");
+pub const IID_IDMOQualityControl = &IID_IDMOQualityControl_Value;
+pub const IDMOQualityControl = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetNow: fn(
+            self: *const IDMOQualityControl,
+            rtNow: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStatus: fn(
+            self: *const IDMOQualityControl,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatus: fn(
+            self: *const IDMOQualityControl,
+            pdwFlags: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOQualityControl_SetNow(self: *const T, rtNow: i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).SetNow(@ptrCast(*const IDMOQualityControl, self), rtNow);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOQualityControl_SetStatus(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).SetStatus(@ptrCast(*const IDMOQualityControl, self), dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOQualityControl_GetStatus(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).GetStatus(@ptrCast(*const IDMOQualityControl, self), pdwFlags);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDMOVideoOutputOptimizations_Value = @import("../zig.zig").Guid.initString("be8f4f4e-5b16-4d29-b350-7f6b5d9298ac");
+pub const IID_IDMOVideoOutputOptimizations = &IID_IDMOVideoOutputOptimizations_Value;
+pub const IDMOVideoOutputOptimizations = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        QueryOperationModePreferences: fn(
+            self: *const IDMOVideoOutputOptimizations,
+            ulOutputStreamIndex: u32,
+            pdwRequestedCapabilities: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOperationMode: fn(
+            self: *const IDMOVideoOutputOptimizations,
+            ulOutputStreamIndex: u32,
+            dwEnabledFeatures: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentOperationMode: fn(
+            self: *const IDMOVideoOutputOptimizations,
+            ulOutputStreamIndex: u32,
+            pdwEnabledFeatures: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentSampleRequirements: fn(
+            self: *const IDMOVideoOutputOptimizations,
+            ulOutputStreamIndex: u32,
+            pdwRequestedFeatures: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOVideoOutputOptimizations_QueryOperationModePreferences(self: *const T, ulOutputStreamIndex: u32, pdwRequestedCapabilities: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).QueryOperationModePreferences(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwRequestedCapabilities);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOVideoOutputOptimizations_SetOperationMode(self: *const T, ulOutputStreamIndex: u32, dwEnabledFeatures: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).SetOperationMode(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, dwEnabledFeatures);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOVideoOutputOptimizations_GetCurrentOperationMode(self: *const T, ulOutputStreamIndex: u32, pdwEnabledFeatures: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).GetCurrentOperationMode(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwEnabledFeatures);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDMOVideoOutputOptimizations_GetCurrentSampleRequirements(self: *const T, ulOutputStreamIndex: u32, pdwRequestedFeatures: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).GetCurrentSampleRequirements(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwRequestedFeatures);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const DXVA_COPPSetProtectionLevelCmdData = extern struct {
+    ProtType: u32,
+    ProtLevel: u32,
+    ExtendedInfoChangeMask: u32,
+    ExtendedInfoData: u32,
+};
+
+pub const COPP_HDCP_Protection_Level = extern enum(i32) {
+    Level0 = 0,
+    LevelMin = 0,
+    Level1 = 1,
+    LevelMax = 1,
+    ForceDWORD = 2147483647,
+};
+pub const COPP_HDCP_Level0 = COPP_HDCP_Protection_Level.Level0;
+pub const COPP_HDCP_LevelMin = COPP_HDCP_Protection_Level.LevelMin;
+pub const COPP_HDCP_Level1 = COPP_HDCP_Protection_Level.Level1;
+pub const COPP_HDCP_LevelMax = COPP_HDCP_Protection_Level.LevelMax;
+pub const COPP_HDCP_ForceDWORD = COPP_HDCP_Protection_Level.ForceDWORD;
+
+pub const COPP_CGMSA_Protection_Level = extern enum(i32) {
+    Disabled = 0,
+    LevelMin = 0,
+    CopyFreely = 1,
+    CopyNoMore = 2,
+    CopyOneGeneration = 3,
+    CopyNever = 4,
+    RedistributionControlRequired = 8,
+    LevelMax = 12,
+    ForceDWORD = 2147483647,
+};
+pub const COPP_CGMSA_Disabled = COPP_CGMSA_Protection_Level.Disabled;
+pub const COPP_CGMSA_LevelMin = COPP_CGMSA_Protection_Level.LevelMin;
+pub const COPP_CGMSA_CopyFreely = COPP_CGMSA_Protection_Level.CopyFreely;
+pub const COPP_CGMSA_CopyNoMore = COPP_CGMSA_Protection_Level.CopyNoMore;
+pub const COPP_CGMSA_CopyOneGeneration = COPP_CGMSA_Protection_Level.CopyOneGeneration;
+pub const COPP_CGMSA_CopyNever = COPP_CGMSA_Protection_Level.CopyNever;
+pub const COPP_CGMSA_RedistributionControlRequired = COPP_CGMSA_Protection_Level.RedistributionControlRequired;
+pub const COPP_CGMSA_LevelMax = COPP_CGMSA_Protection_Level.LevelMax;
+pub const COPP_CGMSA_ForceDWORD = COPP_CGMSA_Protection_Level.ForceDWORD;
+
+pub const COPP_ACP_Protection_Level = extern enum(i32) {
+    Level0 = 0,
+    LevelMin = 0,
+    Level1 = 1,
+    Level2 = 2,
+    Level3 = 3,
+    LevelMax = 3,
+    ForceDWORD = 2147483647,
+};
+pub const COPP_ACP_Level0 = COPP_ACP_Protection_Level.Level0;
+pub const COPP_ACP_LevelMin = COPP_ACP_Protection_Level.LevelMin;
+pub const COPP_ACP_Level1 = COPP_ACP_Protection_Level.Level1;
+pub const COPP_ACP_Level2 = COPP_ACP_Protection_Level.Level2;
+pub const COPP_ACP_Level3 = COPP_ACP_Protection_Level.Level3;
+pub const COPP_ACP_LevelMax = COPP_ACP_Protection_Level.LevelMax;
+pub const COPP_ACP_ForceDWORD = COPP_ACP_Protection_Level.ForceDWORD;
+
+pub const DXVA_COPPSetSignalingCmdData = extern struct {
+    ActiveTVProtectionStandard: u32,
+    AspectRatioChangeMask1: u32,
+    AspectRatioData1: u32,
+    AspectRatioChangeMask2: u32,
+    AspectRatioData2: u32,
+    AspectRatioChangeMask3: u32,
+    AspectRatioData3: u32,
+    ExtendedInfoChangeMask: [4]u32,
+    ExtendedInfoData: [4]u32,
+    Reserved: u32,
+};
+
+pub const COPP_TVProtectionStandard = extern enum(i32) {
+    Unknown = -2147483648,
+    None = 0,
+    IEC61880_525i = 1,
+    IEC61880_2_525i = 2,
+    IEC62375_625p = 4,
+    EIA608B_525 = 8,
+    EN300294_625i = 16,
+    CEA805A_TypeA_525p = 32,
+    CEA805A_TypeA_750p = 64,
+    CEA805A_TypeA_1125i = 128,
+    CEA805A_TypeB_525p = 256,
+    CEA805A_TypeB_750p = 512,
+    CEA805A_TypeB_1125i = 1024,
+    ARIBTRB15_525i = 2048,
+    ARIBTRB15_525p = 4096,
+    ARIBTRB15_750p = 8192,
+    ARIBTRB15_1125i = 16384,
+    Mask = -2147450881,
+    Reserved = 2147450880,
+};
+pub const COPP_ProtectionStandard_Unknown = COPP_TVProtectionStandard.Unknown;
+pub const COPP_ProtectionStandard_None = COPP_TVProtectionStandard.None;
+pub const COPP_ProtectionStandard_IEC61880_525i = COPP_TVProtectionStandard.IEC61880_525i;
+pub const COPP_ProtectionStandard_IEC61880_2_525i = COPP_TVProtectionStandard.IEC61880_2_525i;
+pub const COPP_ProtectionStandard_IEC62375_625p = COPP_TVProtectionStandard.IEC62375_625p;
+pub const COPP_ProtectionStandard_EIA608B_525 = COPP_TVProtectionStandard.EIA608B_525;
+pub const COPP_ProtectionStandard_EN300294_625i = COPP_TVProtectionStandard.EN300294_625i;
+pub const COPP_ProtectionStandard_CEA805A_TypeA_525p = COPP_TVProtectionStandard.CEA805A_TypeA_525p;
+pub const COPP_ProtectionStandard_CEA805A_TypeA_750p = COPP_TVProtectionStandard.CEA805A_TypeA_750p;
+pub const COPP_ProtectionStandard_CEA805A_TypeA_1125i = COPP_TVProtectionStandard.CEA805A_TypeA_1125i;
+pub const COPP_ProtectionStandard_CEA805A_TypeB_525p = COPP_TVProtectionStandard.CEA805A_TypeB_525p;
+pub const COPP_ProtectionStandard_CEA805A_TypeB_750p = COPP_TVProtectionStandard.CEA805A_TypeB_750p;
+pub const COPP_ProtectionStandard_CEA805A_TypeB_1125i = COPP_TVProtectionStandard.CEA805A_TypeB_1125i;
+pub const COPP_ProtectionStandard_ARIBTRB15_525i = COPP_TVProtectionStandard.ARIBTRB15_525i;
+pub const COPP_ProtectionStandard_ARIBTRB15_525p = COPP_TVProtectionStandard.ARIBTRB15_525p;
+pub const COPP_ProtectionStandard_ARIBTRB15_750p = COPP_TVProtectionStandard.ARIBTRB15_750p;
+pub const COPP_ProtectionStandard_ARIBTRB15_1125i = COPP_TVProtectionStandard.ARIBTRB15_1125i;
+pub const COPP_ProtectionStandard_Mask = COPP_TVProtectionStandard.Mask;
+pub const COPP_ProtectionStandard_Reserved = COPP_TVProtectionStandard.Reserved;
+
+pub const COPP_ImageAspectRatio_EN300294 = extern enum(i32) {
+    EN300294_FullFormat4by3 = 0,
+    EN300294_Box14by9Center = 1,
+    EN300294_Box14by9Top = 2,
+    EN300294_Box16by9Center = 3,
+    EN300294_Box16by9Top = 4,
+    EN300294_BoxGT16by9Center = 5,
+    EN300294_FullFormat4by3ProtectedCenter = 6,
+    EN300294_FullFormat16by9Anamorphic = 7,
+    ForceDWORD = 2147483647,
+};
+pub const COPP_AspectRatio_EN300294_FullFormat4by3 = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat4by3;
+pub const COPP_AspectRatio_EN300294_Box14by9Center = COPP_ImageAspectRatio_EN300294.EN300294_Box14by9Center;
+pub const COPP_AspectRatio_EN300294_Box14by9Top = COPP_ImageAspectRatio_EN300294.EN300294_Box14by9Top;
+pub const COPP_AspectRatio_EN300294_Box16by9Center = COPP_ImageAspectRatio_EN300294.EN300294_Box16by9Center;
+pub const COPP_AspectRatio_EN300294_Box16by9Top = COPP_ImageAspectRatio_EN300294.EN300294_Box16by9Top;
+pub const COPP_AspectRatio_EN300294_BoxGT16by9Center = COPP_ImageAspectRatio_EN300294.EN300294_BoxGT16by9Center;
+pub const COPP_AspectRatio_EN300294_FullFormat4by3ProtectedCenter = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat4by3ProtectedCenter;
+pub const COPP_AspectRatio_EN300294_FullFormat16by9Anamorphic = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat16by9Anamorphic;
+pub const COPP_AspectRatio_ForceDWORD = COPP_ImageAspectRatio_EN300294.ForceDWORD;
+
+pub const COPP_StatusFlags = extern enum(i32) {
+    StatusNormal = 0,
+    LinkLost = 1,
+    RenegotiationRequired = 2,
+    StatusFlagsReserved = -4,
+};
+pub const COPP_StatusNormal = COPP_StatusFlags.StatusNormal;
+pub const COPP_LinkLost = COPP_StatusFlags.LinkLost;
+pub const COPP_RenegotiationRequired = COPP_StatusFlags.RenegotiationRequired;
+pub const COPP_StatusFlagsReserved = COPP_StatusFlags.StatusFlagsReserved;
+
+pub const DXVA_COPPStatusData = extern struct {
+    rApp: Guid,
+    dwFlags: u32,
+    dwData: u32,
+    ExtendedInfoValidMask: u32,
+    ExtendedInfoData: u32,
+};
+
+pub const DXVA_COPPStatusDisplayData = extern struct {
+    rApp: Guid,
+    dwFlags: u32,
+    DisplayWidth: u32,
+    DisplayHeight: u32,
+    Format: u32,
+    d3dFormat: u32,
+    FreqNumerator: u32,
+    FreqDenominator: u32,
+};
+
+pub const COPP_StatusHDCPFlags = extern enum(i32) {
+    Repeater = 1,
+    FlagsReserved = -2,
+};
+pub const COPP_HDCPRepeater = COPP_StatusHDCPFlags.Repeater;
+pub const COPP_HDCPFlagsReserved = COPP_StatusHDCPFlags.FlagsReserved;
+
+pub const DXVA_COPPStatusHDCPKeyData = extern struct {
+    rApp: Guid,
+    dwFlags: u32,
+    dwHDCPFlags: u32,
+    BKey: Guid,
+    Reserved1: Guid,
+    Reserved2: Guid,
+};
+
+pub const COPP_ConnectorType = extern enum(i32) {
+    Unknown = -1,
+    VGA = 0,
+    SVideo = 1,
+    CompositeVideo = 2,
+    ComponentVideo = 3,
+    DVI = 4,
+    HDMI = 5,
+    LVDS = 6,
+    TMDS = 7,
+    D_JPN = 8,
+    Internal = -2147483648,
+    ForceDWORD = 2147483647,
+};
+pub const COPP_ConnectorType_Unknown = COPP_ConnectorType.Unknown;
+pub const COPP_ConnectorType_VGA = COPP_ConnectorType.VGA;
+pub const COPP_ConnectorType_SVideo = COPP_ConnectorType.SVideo;
+pub const COPP_ConnectorType_CompositeVideo = COPP_ConnectorType.CompositeVideo;
+pub const COPP_ConnectorType_ComponentVideo = COPP_ConnectorType.ComponentVideo;
+pub const COPP_ConnectorType_DVI = COPP_ConnectorType.DVI;
+pub const COPP_ConnectorType_HDMI = COPP_ConnectorType.HDMI;
+pub const COPP_ConnectorType_LVDS = COPP_ConnectorType.LVDS;
+pub const COPP_ConnectorType_TMDS = COPP_ConnectorType.TMDS;
+pub const COPP_ConnectorType_D_JPN = COPP_ConnectorType.D_JPN;
+pub const COPP_ConnectorType_Internal = COPP_ConnectorType.Internal;
+pub const COPP_ConnectorType_ForceDWORD = COPP_ConnectorType.ForceDWORD;
+
+pub const COPP_BusType = extern enum(i32) {
+    Unknown = 0,
+    PCI = 1,
+    PCIX = 2,
+    PCIExpress = 3,
+    AGP = 4,
+    Integrated = -2147483648,
+    ForceDWORD = 2147483647,
+};
+pub const COPP_BusType_Unknown = COPP_BusType.Unknown;
+pub const COPP_BusType_PCI = COPP_BusType.PCI;
+pub const COPP_BusType_PCIX = COPP_BusType.PCIX;
+pub const COPP_BusType_PCIExpress = COPP_BusType.PCIExpress;
+pub const COPP_BusType_AGP = COPP_BusType.AGP;
+pub const COPP_BusType_Integrated = COPP_BusType.Integrated;
+pub const COPP_BusType_ForceDWORD = COPP_BusType.ForceDWORD;
+
+pub const DXVA_COPPStatusSignalingCmdData = extern struct {
+    rApp: Guid,
+    dwFlags: u32,
+    AvailableTVProtectionStandards: u32,
+    ActiveTVProtectionStandard: u32,
+    TVType: u32,
+    AspectRatioValidMask1: u32,
+    AspectRatioData1: u32,
+    AspectRatioValidMask2: u32,
+    AspectRatioData2: u32,
+    AspectRatioValidMask3: u32,
+    AspectRatioData3: u32,
+    ExtendedInfoValidMask: [4]u32,
+    ExtendedInfoData: [4]u32,
+};
+
 const CLSID_SystemTuningSpaces_Value = @import("../zig.zig").Guid.initString("d02aac50-027e-11d3-9d8e-00c04f72d980");
 pub const CLSID_SystemTuningSpaces = &CLSID_SystemTuningSpaces_Value;
 
@@ -13064,16 +13840,16 @@ pub const TID_EXTENSION = extern struct {
 
 pub const SECTION = extern struct {
     TableId: u8,
-    Header: SECTION._Header_e__Union,
+    Header: _Header_e__Union,
     SectionData: [1]u8,
     const _Header_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const LONG_SECTION = extern struct {
     TableId: u8,
-    Header: LONG_SECTION._Header_e__Union,
+    Header: _Header_e__Union,
     TableIdExtension: u16,
-    Version: LONG_SECTION._Version_e__Union,
+    Version: _Version_e__Union,
     SectionNumber: u8,
     LastSectionNumber: u8,
     RemainingData: [1]u8,
@@ -13083,9 +13859,9 @@ pub const LONG_SECTION = extern struct {
 
 pub const DSMCC_SECTION = extern struct {
     TableId: u8,
-    Header: DSMCC_SECTION._Header_e__Union,
+    Header: _Header_e__Union,
     TableIdExtension: u16,
-    Version: DSMCC_SECTION._Version_e__Union,
+    Version: _Version_e__Union,
     SectionNumber: u8,
     LastSectionNumber: u8,
     ProtocolDiscriminator: u8,
@@ -13159,7 +13935,7 @@ pub const MPEG2_FILTER = extern struct {
 };
 
 pub const MPEG2_FILTER2 = extern struct {
-    Anonymous: MPEG2_FILTER2._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     fSpecifyDvbEitOptions: BOOL,
     DvbEit: DVB_EIT_FILTER_OPTIONS,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -13206,7 +13982,7 @@ pub const MPEG_WINSOCK = extern struct {
 
 pub const MPEG_CONTEXT = extern struct {
     Type: MPEG_CONTEXT_TYPE,
-    U: MPEG_CONTEXT._U_e__Union,
+    U: _U_e__Union,
     const _U_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -15461,7 +16237,7 @@ pub const VA_OPTIONAL_VIDEO_PROPERTIES = extern struct {
 pub const TRANSPORT_PROPERTIES = extern struct {
     PID: u32,
     PCR: i64,
-    Fields: TRANSPORT_PROPERTIES._Fields_e__Union,
+    Fields: _Fields_e__Union,
     const _Fields_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -21650,15 +22426,15 @@ pub const KSP_BDA_NODE_PIN = extern struct {
 
 pub const KSM_BDA_PIN = extern struct {
     Method: KSIDENTIFIER,
-    Anonymous: KSM_BDA_PIN._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Reserved: u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const KSM_BDA_PIN_PAIR = extern struct {
     Method: KSIDENTIFIER,
-    Anonymous1: KSM_BDA_PIN_PAIR._Anonymous1_e__Union,
-    Anonymous2: KSM_BDA_PIN_PAIR._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
@@ -21965,7 +22741,7 @@ pub const ChannelTypeInfo = extern struct {
 
 pub const ChannelInfo = extern struct {
     lFrequency: i32,
-    Anonymous: ChannelInfo._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -23010,125 +23786,6 @@ pub const MPEG_HEADER_BITS = extern struct {
 pub const MPEG_HEADER_VERSION_BITS = extern struct {
     _bitfield: u8,
 };
-
-pub const KSTOPOLOGY_CONNECTION = extern struct {
-    FromNode: u32,
-    FromNodePin: u32,
-    ToNode: u32,
-    ToNodePin: u32,
-};
-
-pub const TIMECODE = u32; // TODO: implement StructOrUnion types?
-
-pub const TIMECODE_SAMPLE = extern struct {
-    qwTick: i64,
-    timecode: TIMECODE,
-    dwUser: u32,
-    dwFlags: u32,
-};
-
-pub const VIDEOENCODER_BITRATE_MODE = extern enum(i32) {
-    ConstantBitRate = 0,
-    VariableBitRateAverage = 1,
-    VariableBitRatePeak = 2,
-};
-pub const ConstantBitRate = VIDEOENCODER_BITRATE_MODE.ConstantBitRate;
-pub const VariableBitRateAverage = VIDEOENCODER_BITRATE_MODE.VariableBitRateAverage;
-pub const VariableBitRatePeak = VIDEOENCODER_BITRATE_MODE.VariableBitRatePeak;
-
-pub const MPEG1WAVEFORMAT = extern struct {
-    wfx: WAVEFORMATEX,
-    fwHeadLayer: u16,
-    dwHeadBitrate: u32,
-    fwHeadMode: u16,
-    fwHeadModeExt: u16,
-    wHeadEmphasis: u16,
-    fwHeadFlags: u16,
-    dwPTSLow: u32,
-    dwPTSHigh: u32,
-};
-
-pub const MPEGLAYER3WAVEFORMAT = extern struct {
-    wfx: WAVEFORMATEX,
-    wID: u16,
-    fdwFlags: MPEGLAYER3WAVEFORMAT_FLAGS,
-    nBlockSize: u16,
-    nFramesPerBlock: u16,
-    nCodecDelay: u16,
-};
-
-pub const HEAACWAVEINFO = extern struct {
-    wfx: WAVEFORMATEX,
-    wPayloadType: u16,
-    wAudioProfileLevelIndication: u16,
-    wStructType: u16,
-    wReserved1: u16,
-    dwReserved2: u32,
-};
-
-pub const HEAACWAVEFORMAT = extern struct {
-    wfInfo: HEAACWAVEINFO,
-    pbAudioSpecificConfig: [1]u8,
-};
-
-pub const READYSTATE = extern enum(i32) {
-    UNINITIALIZED = 0,
-    LOADING = 1,
-    LOADED = 2,
-    INTERACTIVE = 3,
-    COMPLETE = 4,
-};
-pub const READYSTATE_UNINITIALIZED = READYSTATE.UNINITIALIZED;
-pub const READYSTATE_LOADING = READYSTATE.LOADING;
-pub const READYSTATE_LOADED = READYSTATE.LOADED;
-pub const READYSTATE_INTERACTIVE = READYSTATE.INTERACTIVE;
-pub const READYSTATE_COMPLETE = READYSTATE.COMPLETE;
-
-pub const DDCOLORKEY = extern struct {
-    dwColorSpaceLowValue: u32,
-    dwColorSpaceHighValue: u32,
-};
-
-pub const OA_BOOL = extern enum(i32) {
-    TRUE = -1,
-    FALSE = 0,
-};
-pub const OATRUE = OA_BOOL.TRUE;
-pub const OAFALSE = OA_BOOL.FALSE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MPEG2VIDEOINFO_FLAGS = extern enum(u32) {
-    DoPanScan = 1,
-    DVDLine21Field1 = 2,
-    DVDLine21Field2 = 4,
-    SourceIsLetterboxed = 8,
-    FilmCameraMode = 16,
-    LetterboxAnalogOut = 32,
-    DSS_UserData = 64,
-    DVB_UserData = 128,
-    @"27MhzTimebase" = 256,
-    WidescreenAnalogOut = 512,
-    _,
-};
-pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_FLAGS.DoPanScan;
-pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field1;
-pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field2;
-pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed;
-pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_FLAGS.FilmCameraMode;
-pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut;
-pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_FLAGS.DSS_UserData;
-pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_FLAGS.DVB_UserData;
-pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase";
-pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut;
-
-pub const MPEGLAYER3WAVEFORMAT_FLAGS = extern enum(u32) {
-    ISO = 0,
-    ON = 1,
-    OFF = 2,
-};
-pub const MPEGLAYER3_FLAG_PADDING_ISO = MPEGLAYER3WAVEFORMAT_FLAGS.ISO;
-pub const MPEGLAYER3_FLAG_PADDING_ON = MPEGLAYER3WAVEFORMAT_FLAGS.ON;
-pub const MPEGLAYER3_FLAG_PADDING_OFF = MPEGLAYER3WAVEFORMAT_FLAGS.OFF;
 
 pub const AMVP_SELECT_FORMAT_BY = extern enum(i32) {
     DO_NOT_CARE = 0,
@@ -24681,7 +25338,7 @@ pub const REGFILTERPINS2 = extern struct {
 pub const REGFILTER2 = extern struct {
     dwVersion: u32,
     dwMerit: u32,
-    Anonymous: REGFILTER2._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -31650,7 +32307,7 @@ pub const DVD_AppMode_Karaoke = DVD_TITLE_APPMODE.Karaoke;
 pub const DVD_AppMode_Other = DVD_TITLE_APPMODE.Other;
 
 pub const DVD_TitleAttributes = extern struct {
-    Anonymous: DVD_TitleAttributes._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     VideoAttributes: DVD_VideoAttributes,
     ulNumberOfAudioStreams: u32,
     AudioAttributes: [8]DVD_AudioAttributes,
@@ -42917,7 +43574,7 @@ pub const VIDEOINFO = extern struct {
     dwBitErrorRate: u32,
     AvgTimePerFrame: i64,
     bmiHeader: BITMAPINFOHEADER,
-    Anonymous: VIDEOINFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -43007,18 +43664,6 @@ pub const OPTIMAL_WEIGHT_TOTALS = extern struct {
     MinTotalNominator: i64,
     MaxTotalNominator: i64,
     TotalDenominator: i64,
-};
-
-pub const IKsPin = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IKsAllocator = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const IKsAllocatorEx = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
 };
 
 pub const PIPE_STATE = extern enum(i32) {
@@ -45109,14 +45754,14 @@ pub const AVISTREAMHEADER = extern struct {
     dwSuggestedBufferSize: u32,
     dwQuality: u32,
     dwSampleSize: u32,
-    rcFrame: AVISTREAMHEADER._rcFrame_e__Struct,
+    rcFrame: _rcFrame_e__Struct,
     const _rcFrame_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const AVIOLDINDEX = extern struct {
     fcc: u32,
     cb: u32,
-    aIndex: AVIOLDINDEX._avioldindex_entry,
+    aIndex: _avioldindex_entry,
     const _avioldindex_entry = u32; // TODO: generate this nested type!
 };
 
@@ -45147,7 +45792,7 @@ pub const AVISUPERINDEX = extern struct {
     nEntriesInUse: u32,
     dwChunkId: u32,
     dwReserved: [3]u32,
-    aIndex: [1022]AVISUPERINDEX._avisuperindex_entry,
+    aIndex: [1022]_avisuperindex_entry,
     const _avisuperindex_entry = u32; // TODO: generate this nested type!
 };
 
@@ -45232,7 +45877,7 @@ pub const AVIFIELDINDEX = extern struct {
     dwChunkId: u32,
     qwBaseOffset: u64,
     dwReserved3: u32,
-    aIndex: AVIFIELDINDEX._avifieldindex_entry,
+    aIndex: _avifieldindex_entry,
     const _avifieldindex_entry = u32; // TODO: generate this nested type!
 };
 
@@ -45494,7 +46139,7 @@ pub const VIDEOINFOHEADER2 = extern struct {
     dwCopyProtectFlags: u32,
     dwPictAspectRatioX: u32,
     dwPictAspectRatioY: u32,
-    Anonymous: VIDEOINFOHEADER2._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwReserved2: u32,
     bmiHeader: BITMAPINFOHEADER,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -45889,680 +46534,39 @@ pub const DMO_ENUM_FLAGS = extern enum(i32) {
 };
 pub const DMO_ENUMF_INCLUDE_KEYED = DMO_ENUM_FLAGS.D;
 
-pub const DMO_MEDIA_TYPE = extern struct {
-    majortype: Guid,
-    subtype: Guid,
-    bFixedSizeSamples: BOOL,
-    bTemporalCompression: BOOL,
-    lSampleSize: u32,
-    formattype: Guid,
-    pUnk: *IUnknown,
-    cbFormat: u32,
-    pbFormat: *u8,
+pub const MPEG1WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX,
+    fwHeadLayer: u16,
+    dwHeadBitrate: u32,
+    fwHeadMode: u16,
+    fwHeadModeExt: u16,
+    wHeadEmphasis: u16,
+    fwHeadFlags: u16,
+    dwPTSLow: u32,
+    dwPTSHigh: u32,
 };
 
-const IID_IMediaBuffer_Value = @import("../zig.zig").Guid.initString("59eff8b9-938c-4a26-82f2-95cb84cdc837");
-pub const IID_IMediaBuffer = &IID_IMediaBuffer_Value;
-pub const IMediaBuffer = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetLength: fn(
-            self: *const IMediaBuffer,
-            cbLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetMaxLength: fn(
-            self: *const IMediaBuffer,
-            pcbMaxLength: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetBufferAndLength: fn(
-            self: *const IMediaBuffer,
-            ppBuffer: ?*?*u8,
-            pcbLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaBuffer_SetLength(self: *const T, cbLength: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaBuffer.VTable, self.vtable).SetLength(@ptrCast(*const IMediaBuffer, self), cbLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaBuffer_GetMaxLength(self: *const T, pcbMaxLength: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaBuffer.VTable, self.vtable).GetMaxLength(@ptrCast(*const IMediaBuffer, self), pcbMaxLength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaBuffer_GetBufferAndLength(self: *const T, ppBuffer: ?*?*u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaBuffer.VTable, self.vtable).GetBufferAndLength(@ptrCast(*const IMediaBuffer, self), ppBuffer, pcbLength);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
+pub const MPEGLAYER3WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX,
+    wID: u16,
+    fdwFlags: MPEGLAYER3WAVEFORMAT_FLAGS,
+    nBlockSize: u16,
+    nFramesPerBlock: u16,
+    nCodecDelay: u16,
 };
 
-pub const DMO_OUTPUT_DATA_BUFFER = extern struct {
-    pBuffer: *IMediaBuffer,
-    dwStatus: u32,
-    rtTimestamp: i64,
-    rtTimelength: i64,
+pub const HEAACWAVEINFO = extern struct {
+    wfx: WAVEFORMATEX,
+    wPayloadType: u16,
+    wAudioProfileLevelIndication: u16,
+    wStructType: u16,
+    wReserved1: u16,
+    dwReserved2: u32,
 };
 
-const IID_IMediaObject_Value = @import("../zig.zig").Guid.initString("d8ad0f58-5494-4102-97c5-ec798e59bcf4");
-pub const IID_IMediaObject = &IID_IMediaObject_Value;
-pub const IMediaObject = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetStreamCount: fn(
-            self: *const IMediaObject,
-            pcInputStreams: *u32,
-            pcOutputStreams: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputStreamInfo: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pdwFlags: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputStreamInfo: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            pdwFlags: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputType: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            dwTypeIndex: u32,
-            pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputType: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            dwTypeIndex: u32,
-            pmt: ?*DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInputType: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pmt: ?*const DMO_MEDIA_TYPE,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOutputType: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            pmt: ?*const DMO_MEDIA_TYPE,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputCurrentType: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pmt: *DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputCurrentType: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            pmt: *DMO_MEDIA_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputSizeInfo: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pcbSize: *u32,
-            pcbMaxLookahead: *u32,
-            pcbAlignment: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetOutputSizeInfo: fn(
-            self: *const IMediaObject,
-            dwOutputStreamIndex: u32,
-            pcbSize: *u32,
-            pcbAlignment: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputMaxLatency: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            prtMaxLatency: *i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetInputMaxLatency: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            rtMaxLatency: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Flush: fn(
-            self: *const IMediaObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Discontinuity: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        AllocateStreamingResources: fn(
-            self: *const IMediaObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FreeStreamingResources: fn(
-            self: *const IMediaObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetInputStatus: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            dwFlags: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessInput: fn(
-            self: *const IMediaObject,
-            dwInputStreamIndex: u32,
-            pBuffer: *IMediaBuffer,
-            dwFlags: u32,
-            rtTimestamp: i64,
-            rtTimelength: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessOutput: fn(
-            self: *const IMediaObject,
-            dwFlags: u32,
-            cOutputBufferCount: u32,
-            pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER,
-            pdwStatus: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Lock: fn(
-            self: *const IMediaObject,
-            bLock: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetStreamCount(self: *const T, pcInputStreams: *u32, pcOutputStreams: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetStreamCount(@ptrCast(*const IMediaObject, self), pcInputStreams, pcOutputStreams);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetInputStreamInfo(self: *const T, dwInputStreamIndex: u32, pdwFlags: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputStreamInfo(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pdwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetOutputStreamInfo(self: *const T, dwOutputStreamIndex: u32, pdwFlags: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputStreamInfo(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pdwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetInputType(self: *const T, dwInputStreamIndex: u32, dwTypeIndex: u32, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, dwTypeIndex, pmt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetOutputType(self: *const T, dwOutputStreamIndex: u32, dwTypeIndex: u32, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, dwTypeIndex, pmt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_SetInputType(self: *const T, dwInputStreamIndex: u32, pmt: ?*const DMO_MEDIA_TYPE, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).SetInputType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pmt, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_SetOutputType(self: *const T, dwOutputStreamIndex: u32, pmt: ?*const DMO_MEDIA_TYPE, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).SetOutputType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pmt, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetInputCurrentType(self: *const T, dwInputStreamIndex: u32, pmt: *DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputCurrentType(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pmt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetOutputCurrentType(self: *const T, dwOutputStreamIndex: u32, pmt: *DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputCurrentType(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pmt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetInputSizeInfo(self: *const T, dwInputStreamIndex: u32, pcbSize: *u32, pcbMaxLookahead: *u32, pcbAlignment: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputSizeInfo(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pcbSize, pcbMaxLookahead, pcbAlignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetOutputSizeInfo(self: *const T, dwOutputStreamIndex: u32, pcbSize: *u32, pcbAlignment: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetOutputSizeInfo(@ptrCast(*const IMediaObject, self), dwOutputStreamIndex, pcbSize, pcbAlignment);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetInputMaxLatency(self: *const T, dwInputStreamIndex: u32, prtMaxLatency: *i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputMaxLatency(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, prtMaxLatency);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_SetInputMaxLatency(self: *const T, dwInputStreamIndex: u32, rtMaxLatency: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).SetInputMaxLatency(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, rtMaxLatency);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_Flush(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).Flush(@ptrCast(*const IMediaObject, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_Discontinuity(self: *const T, dwInputStreamIndex: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).Discontinuity(@ptrCast(*const IMediaObject, self), dwInputStreamIndex);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_AllocateStreamingResources(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).AllocateStreamingResources(@ptrCast(*const IMediaObject, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_FreeStreamingResources(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).FreeStreamingResources(@ptrCast(*const IMediaObject, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_GetInputStatus(self: *const T, dwInputStreamIndex: u32, dwFlags: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).GetInputStatus(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_ProcessInput(self: *const T, dwInputStreamIndex: u32, pBuffer: *IMediaBuffer, dwFlags: u32, rtTimestamp: i64, rtTimelength: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).ProcessInput(@ptrCast(*const IMediaObject, self), dwInputStreamIndex, pBuffer, dwFlags, rtTimestamp, rtTimelength);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_ProcessOutput(self: *const T, dwFlags: u32, cOutputBufferCount: u32, pOutputBuffers: [*]DMO_OUTPUT_DATA_BUFFER, pdwStatus: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).ProcessOutput(@ptrCast(*const IMediaObject, self), dwFlags, cOutputBufferCount, pOutputBuffers, pdwStatus);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObject_Lock(self: *const T, bLock: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObject.VTable, self.vtable).Lock(@ptrCast(*const IMediaObject, self), bLock);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IEnumDMO_Value = @import("../zig.zig").Guid.initString("2c3cd98a-2bfa-4a53-9c27-5249ba64ba0f");
-pub const IID_IEnumDMO = &IID_IEnumDMO_Value;
-pub const IEnumDMO = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumDMO,
-            cItemsToFetch: u32,
-            pCLSID: [*]Guid,
-            Names: [*]PWSTR,
-            pcItemsFetched: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumDMO,
-            cItemsToSkip: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumDMO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumDMO,
-            ppEnum: **IEnumDMO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDMO_Next(self: *const T, cItemsToFetch: u32, pCLSID: [*]Guid, Names: [*]PWSTR, pcItemsFetched: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Next(@ptrCast(*const IEnumDMO, self), cItemsToFetch, pCLSID, Names, pcItemsFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDMO_Skip(self: *const T, cItemsToSkip: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Skip(@ptrCast(*const IEnumDMO, self), cItemsToSkip);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDMO_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Reset(@ptrCast(*const IEnumDMO, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumDMO_Clone(self: *const T, ppEnum: **IEnumDMO) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumDMO.VTable, self.vtable).Clone(@ptrCast(*const IEnumDMO, self), ppEnum);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IMediaObjectInPlace_Value = @import("../zig.zig").Guid.initString("651b9ad0-0fc7-4aa9-9538-d89931010741");
-pub const IID_IMediaObjectInPlace = &IID_IMediaObjectInPlace_Value;
-pub const IMediaObjectInPlace = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Process: fn(
-            self: *const IMediaObjectInPlace,
-            ulSize: u32,
-            // TODO: what to do with BytesParamIndex 0?
-            pData: *u8,
-            refTimeStart: i64,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IMediaObjectInPlace,
-            ppMediaObject: **IMediaObjectInPlace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLatency: fn(
-            self: *const IMediaObjectInPlace,
-            pLatencyTime: *i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObjectInPlace_Process(self: *const T, ulSize: u32, pData: *u8, refTimeStart: i64, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).Process(@ptrCast(*const IMediaObjectInPlace, self), ulSize, pData, refTimeStart, dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObjectInPlace_Clone(self: *const T, ppMediaObject: **IMediaObjectInPlace) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).Clone(@ptrCast(*const IMediaObjectInPlace, self), ppMediaObject);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMediaObjectInPlace_GetLatency(self: *const T, pLatencyTime: *i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IMediaObjectInPlace.VTable, self.vtable).GetLatency(@ptrCast(*const IMediaObjectInPlace, self), pLatencyTime);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDMOQualityControl_Value = @import("../zig.zig").Guid.initString("65abea96-cf36-453f-af8a-705e98f16260");
-pub const IID_IDMOQualityControl = &IID_IDMOQualityControl_Value;
-pub const IDMOQualityControl = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetNow: fn(
-            self: *const IDMOQualityControl,
-            rtNow: i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStatus: fn(
-            self: *const IDMOQualityControl,
-            dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetStatus: fn(
-            self: *const IDMOQualityControl,
-            pdwFlags: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOQualityControl_SetNow(self: *const T, rtNow: i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).SetNow(@ptrCast(*const IDMOQualityControl, self), rtNow);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOQualityControl_SetStatus(self: *const T, dwFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).SetStatus(@ptrCast(*const IDMOQualityControl, self), dwFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOQualityControl_GetStatus(self: *const T, pdwFlags: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOQualityControl.VTable, self.vtable).GetStatus(@ptrCast(*const IDMOQualityControl, self), pdwFlags);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IDMOVideoOutputOptimizations_Value = @import("../zig.zig").Guid.initString("be8f4f4e-5b16-4d29-b350-7f6b5d9298ac");
-pub const IID_IDMOVideoOutputOptimizations = &IID_IDMOVideoOutputOptimizations_Value;
-pub const IDMOVideoOutputOptimizations = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        QueryOperationModePreferences: fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            pdwRequestedCapabilities: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetOperationMode: fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            dwEnabledFeatures: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentOperationMode: fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            pdwEnabledFeatures: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentSampleRequirements: fn(
-            self: *const IDMOVideoOutputOptimizations,
-            ulOutputStreamIndex: u32,
-            pdwRequestedFeatures: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOVideoOutputOptimizations_QueryOperationModePreferences(self: *const T, ulOutputStreamIndex: u32, pdwRequestedCapabilities: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).QueryOperationModePreferences(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwRequestedCapabilities);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOVideoOutputOptimizations_SetOperationMode(self: *const T, ulOutputStreamIndex: u32, dwEnabledFeatures: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).SetOperationMode(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, dwEnabledFeatures);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOVideoOutputOptimizations_GetCurrentOperationMode(self: *const T, ulOutputStreamIndex: u32, pdwEnabledFeatures: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).GetCurrentOperationMode(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwEnabledFeatures);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDMOVideoOutputOptimizations_GetCurrentSampleRequirements(self: *const T, ulOutputStreamIndex: u32, pdwRequestedFeatures: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDMOVideoOutputOptimizations.VTable, self.vtable).GetCurrentSampleRequirements(@ptrCast(*const IDMOVideoOutputOptimizations, self), ulOutputStreamIndex, pdwRequestedFeatures);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const DXVA_COPPSetProtectionLevelCmdData = extern struct {
-    ProtType: u32,
-    ProtLevel: u32,
-    ExtendedInfoChangeMask: u32,
-    ExtendedInfoData: u32,
-};
-
-pub const COPP_HDCP_Protection_Level = extern enum(i32) {
-    Level0 = 0,
-    LevelMin = 0,
-    Level1 = 1,
-    LevelMax = 1,
-    ForceDWORD = 2147483647,
-};
-pub const COPP_HDCP_Level0 = COPP_HDCP_Protection_Level.Level0;
-pub const COPP_HDCP_LevelMin = COPP_HDCP_Protection_Level.LevelMin;
-pub const COPP_HDCP_Level1 = COPP_HDCP_Protection_Level.Level1;
-pub const COPP_HDCP_LevelMax = COPP_HDCP_Protection_Level.LevelMax;
-pub const COPP_HDCP_ForceDWORD = COPP_HDCP_Protection_Level.ForceDWORD;
-
-pub const COPP_CGMSA_Protection_Level = extern enum(i32) {
-    Disabled = 0,
-    LevelMin = 0,
-    CopyFreely = 1,
-    CopyNoMore = 2,
-    CopyOneGeneration = 3,
-    CopyNever = 4,
-    RedistributionControlRequired = 8,
-    LevelMax = 12,
-    ForceDWORD = 2147483647,
-};
-pub const COPP_CGMSA_Disabled = COPP_CGMSA_Protection_Level.Disabled;
-pub const COPP_CGMSA_LevelMin = COPP_CGMSA_Protection_Level.LevelMin;
-pub const COPP_CGMSA_CopyFreely = COPP_CGMSA_Protection_Level.CopyFreely;
-pub const COPP_CGMSA_CopyNoMore = COPP_CGMSA_Protection_Level.CopyNoMore;
-pub const COPP_CGMSA_CopyOneGeneration = COPP_CGMSA_Protection_Level.CopyOneGeneration;
-pub const COPP_CGMSA_CopyNever = COPP_CGMSA_Protection_Level.CopyNever;
-pub const COPP_CGMSA_RedistributionControlRequired = COPP_CGMSA_Protection_Level.RedistributionControlRequired;
-pub const COPP_CGMSA_LevelMax = COPP_CGMSA_Protection_Level.LevelMax;
-pub const COPP_CGMSA_ForceDWORD = COPP_CGMSA_Protection_Level.ForceDWORD;
-
-pub const COPP_ACP_Protection_Level = extern enum(i32) {
-    Level0 = 0,
-    LevelMin = 0,
-    Level1 = 1,
-    Level2 = 2,
-    Level3 = 3,
-    LevelMax = 3,
-    ForceDWORD = 2147483647,
-};
-pub const COPP_ACP_Level0 = COPP_ACP_Protection_Level.Level0;
-pub const COPP_ACP_LevelMin = COPP_ACP_Protection_Level.LevelMin;
-pub const COPP_ACP_Level1 = COPP_ACP_Protection_Level.Level1;
-pub const COPP_ACP_Level2 = COPP_ACP_Protection_Level.Level2;
-pub const COPP_ACP_Level3 = COPP_ACP_Protection_Level.Level3;
-pub const COPP_ACP_LevelMax = COPP_ACP_Protection_Level.LevelMax;
-pub const COPP_ACP_ForceDWORD = COPP_ACP_Protection_Level.ForceDWORD;
-
-pub const DXVA_COPPSetSignalingCmdData = extern struct {
-    ActiveTVProtectionStandard: u32,
-    AspectRatioChangeMask1: u32,
-    AspectRatioData1: u32,
-    AspectRatioChangeMask2: u32,
-    AspectRatioData2: u32,
-    AspectRatioChangeMask3: u32,
-    AspectRatioData3: u32,
-    ExtendedInfoChangeMask: [4]u32,
-    ExtendedInfoData: [4]u32,
-    Reserved: u32,
-};
-
-pub const COPP_TVProtectionStandard = extern enum(i32) {
-    Unknown = -2147483648,
-    None = 0,
-    IEC61880_525i = 1,
-    IEC61880_2_525i = 2,
-    IEC62375_625p = 4,
-    EIA608B_525 = 8,
-    EN300294_625i = 16,
-    CEA805A_TypeA_525p = 32,
-    CEA805A_TypeA_750p = 64,
-    CEA805A_TypeA_1125i = 128,
-    CEA805A_TypeB_525p = 256,
-    CEA805A_TypeB_750p = 512,
-    CEA805A_TypeB_1125i = 1024,
-    ARIBTRB15_525i = 2048,
-    ARIBTRB15_525p = 4096,
-    ARIBTRB15_750p = 8192,
-    ARIBTRB15_1125i = 16384,
-    Mask = -2147450881,
-    Reserved = 2147450880,
-};
-pub const COPP_ProtectionStandard_Unknown = COPP_TVProtectionStandard.Unknown;
-pub const COPP_ProtectionStandard_None = COPP_TVProtectionStandard.None;
-pub const COPP_ProtectionStandard_IEC61880_525i = COPP_TVProtectionStandard.IEC61880_525i;
-pub const COPP_ProtectionStandard_IEC61880_2_525i = COPP_TVProtectionStandard.IEC61880_2_525i;
-pub const COPP_ProtectionStandard_IEC62375_625p = COPP_TVProtectionStandard.IEC62375_625p;
-pub const COPP_ProtectionStandard_EIA608B_525 = COPP_TVProtectionStandard.EIA608B_525;
-pub const COPP_ProtectionStandard_EN300294_625i = COPP_TVProtectionStandard.EN300294_625i;
-pub const COPP_ProtectionStandard_CEA805A_TypeA_525p = COPP_TVProtectionStandard.CEA805A_TypeA_525p;
-pub const COPP_ProtectionStandard_CEA805A_TypeA_750p = COPP_TVProtectionStandard.CEA805A_TypeA_750p;
-pub const COPP_ProtectionStandard_CEA805A_TypeA_1125i = COPP_TVProtectionStandard.CEA805A_TypeA_1125i;
-pub const COPP_ProtectionStandard_CEA805A_TypeB_525p = COPP_TVProtectionStandard.CEA805A_TypeB_525p;
-pub const COPP_ProtectionStandard_CEA805A_TypeB_750p = COPP_TVProtectionStandard.CEA805A_TypeB_750p;
-pub const COPP_ProtectionStandard_CEA805A_TypeB_1125i = COPP_TVProtectionStandard.CEA805A_TypeB_1125i;
-pub const COPP_ProtectionStandard_ARIBTRB15_525i = COPP_TVProtectionStandard.ARIBTRB15_525i;
-pub const COPP_ProtectionStandard_ARIBTRB15_525p = COPP_TVProtectionStandard.ARIBTRB15_525p;
-pub const COPP_ProtectionStandard_ARIBTRB15_750p = COPP_TVProtectionStandard.ARIBTRB15_750p;
-pub const COPP_ProtectionStandard_ARIBTRB15_1125i = COPP_TVProtectionStandard.ARIBTRB15_1125i;
-pub const COPP_ProtectionStandard_Mask = COPP_TVProtectionStandard.Mask;
-pub const COPP_ProtectionStandard_Reserved = COPP_TVProtectionStandard.Reserved;
-
-pub const COPP_ImageAspectRatio_EN300294 = extern enum(i32) {
-    EN300294_FullFormat4by3 = 0,
-    EN300294_Box14by9Center = 1,
-    EN300294_Box14by9Top = 2,
-    EN300294_Box16by9Center = 3,
-    EN300294_Box16by9Top = 4,
-    EN300294_BoxGT16by9Center = 5,
-    EN300294_FullFormat4by3ProtectedCenter = 6,
-    EN300294_FullFormat16by9Anamorphic = 7,
-    ForceDWORD = 2147483647,
-};
-pub const COPP_AspectRatio_EN300294_FullFormat4by3 = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat4by3;
-pub const COPP_AspectRatio_EN300294_Box14by9Center = COPP_ImageAspectRatio_EN300294.EN300294_Box14by9Center;
-pub const COPP_AspectRatio_EN300294_Box14by9Top = COPP_ImageAspectRatio_EN300294.EN300294_Box14by9Top;
-pub const COPP_AspectRatio_EN300294_Box16by9Center = COPP_ImageAspectRatio_EN300294.EN300294_Box16by9Center;
-pub const COPP_AspectRatio_EN300294_Box16by9Top = COPP_ImageAspectRatio_EN300294.EN300294_Box16by9Top;
-pub const COPP_AspectRatio_EN300294_BoxGT16by9Center = COPP_ImageAspectRatio_EN300294.EN300294_BoxGT16by9Center;
-pub const COPP_AspectRatio_EN300294_FullFormat4by3ProtectedCenter = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat4by3ProtectedCenter;
-pub const COPP_AspectRatio_EN300294_FullFormat16by9Anamorphic = COPP_ImageAspectRatio_EN300294.EN300294_FullFormat16by9Anamorphic;
-pub const COPP_AspectRatio_ForceDWORD = COPP_ImageAspectRatio_EN300294.ForceDWORD;
-
-pub const COPP_StatusFlags = extern enum(i32) {
-    StatusNormal = 0,
-    LinkLost = 1,
-    RenegotiationRequired = 2,
-    StatusFlagsReserved = -4,
-};
-pub const COPP_StatusNormal = COPP_StatusFlags.StatusNormal;
-pub const COPP_LinkLost = COPP_StatusFlags.LinkLost;
-pub const COPP_RenegotiationRequired = COPP_StatusFlags.RenegotiationRequired;
-pub const COPP_StatusFlagsReserved = COPP_StatusFlags.StatusFlagsReserved;
-
-pub const DXVA_COPPStatusData = extern struct {
-    rApp: Guid,
-    dwFlags: u32,
-    dwData: u32,
-    ExtendedInfoValidMask: u32,
-    ExtendedInfoData: u32,
-};
-
-pub const DXVA_COPPStatusDisplayData = extern struct {
-    rApp: Guid,
-    dwFlags: u32,
-    DisplayWidth: u32,
-    DisplayHeight: u32,
-    Format: u32,
-    d3dFormat: u32,
-    FreqNumerator: u32,
-    FreqDenominator: u32,
-};
-
-pub const COPP_StatusHDCPFlags = extern enum(i32) {
-    Repeater = 1,
-    FlagsReserved = -2,
-};
-pub const COPP_HDCPRepeater = COPP_StatusHDCPFlags.Repeater;
-pub const COPP_HDCPFlagsReserved = COPP_StatusHDCPFlags.FlagsReserved;
-
-pub const DXVA_COPPStatusHDCPKeyData = extern struct {
-    rApp: Guid,
-    dwFlags: u32,
-    dwHDCPFlags: u32,
-    BKey: Guid,
-    Reserved1: Guid,
-    Reserved2: Guid,
-};
-
-pub const COPP_ConnectorType = extern enum(i32) {
-    Unknown = -1,
-    VGA = 0,
-    SVideo = 1,
-    CompositeVideo = 2,
-    ComponentVideo = 3,
-    DVI = 4,
-    HDMI = 5,
-    LVDS = 6,
-    TMDS = 7,
-    D_JPN = 8,
-    Internal = -2147483648,
-    ForceDWORD = 2147483647,
-};
-pub const COPP_ConnectorType_Unknown = COPP_ConnectorType.Unknown;
-pub const COPP_ConnectorType_VGA = COPP_ConnectorType.VGA;
-pub const COPP_ConnectorType_SVideo = COPP_ConnectorType.SVideo;
-pub const COPP_ConnectorType_CompositeVideo = COPP_ConnectorType.CompositeVideo;
-pub const COPP_ConnectorType_ComponentVideo = COPP_ConnectorType.ComponentVideo;
-pub const COPP_ConnectorType_DVI = COPP_ConnectorType.DVI;
-pub const COPP_ConnectorType_HDMI = COPP_ConnectorType.HDMI;
-pub const COPP_ConnectorType_LVDS = COPP_ConnectorType.LVDS;
-pub const COPP_ConnectorType_TMDS = COPP_ConnectorType.TMDS;
-pub const COPP_ConnectorType_D_JPN = COPP_ConnectorType.D_JPN;
-pub const COPP_ConnectorType_Internal = COPP_ConnectorType.Internal;
-pub const COPP_ConnectorType_ForceDWORD = COPP_ConnectorType.ForceDWORD;
-
-pub const COPP_BusType = extern enum(i32) {
-    Unknown = 0,
-    PCI = 1,
-    PCIX = 2,
-    PCIExpress = 3,
-    AGP = 4,
-    Integrated = -2147483648,
-    ForceDWORD = 2147483647,
-};
-pub const COPP_BusType_Unknown = COPP_BusType.Unknown;
-pub const COPP_BusType_PCI = COPP_BusType.PCI;
-pub const COPP_BusType_PCIX = COPP_BusType.PCIX;
-pub const COPP_BusType_PCIExpress = COPP_BusType.PCIExpress;
-pub const COPP_BusType_AGP = COPP_BusType.AGP;
-pub const COPP_BusType_Integrated = COPP_BusType.Integrated;
-pub const COPP_BusType_ForceDWORD = COPP_BusType.ForceDWORD;
-
-pub const DXVA_COPPStatusSignalingCmdData = extern struct {
-    rApp: Guid,
-    dwFlags: u32,
-    AvailableTVProtectionStandards: u32,
-    ActiveTVProtectionStandard: u32,
-    TVType: u32,
-    AspectRatioValidMask1: u32,
-    AspectRatioData1: u32,
-    AspectRatioValidMask2: u32,
-    AspectRatioData2: u32,
-    AspectRatioValidMask3: u32,
-    AspectRatioData3: u32,
-    ExtendedInfoValidMask: [4]u32,
-    ExtendedInfoData: [4]u32,
+pub const HEAACWAVEFORMAT = extern struct {
+    wfInfo: HEAACWAVEINFO,
+    pbAudioSpecificConfig: [1]u8,
 };
 
 
@@ -46701,9 +46705,9 @@ const IErrorLog = @import("automation.zig").IErrorLog;
 const BITMAPINFO = @import("gdi.zig").BITMAPINFO;
 const KS_FRAMING_RANGE = @import("core_audio.zig").KS_FRAMING_RANGE;
 const IEnumMoniker = @import("com.zig").IEnumMoniker;
-const RGNDATA = @import("gdi.zig").RGNDATA;
 const HANDLE = @import("system_services.zig").HANDLE;
 const PALETTEENTRY = @import("gdi.zig").PALETTEENTRY;
+const RGNDATA = @import("gdi.zig").RGNDATA;
 const RGBQUAD = @import("gdi.zig").RGBQUAD;
 const HKEY = @import("windows_programming.zig").HKEY;
 const IEnumVARIANT = @import("automation.zig").IEnumVARIANT;
@@ -46737,34 +46741,25 @@ const DDPIXELFORMAT = @import("direct_draw.zig").DDPIXELFORMAT;
 const IMFVideoPresenter = @import("media_foundation.zig").IMFVideoPresenter;
 const POINT = @import("display_devices.zig").POINT;
 const SIZE = @import("display_devices.zig").SIZE;
-const WAVEFORMATEX = @import("multimedia.zig").WAVEFORMATEX;
 const IMoniker = @import("com.zig").IMoniker;
+const WAVEFORMATEX = @import("multimedia.zig").WAVEFORMATEX;
 const IPictureDisp = @import("com.zig").IPictureDisp;
 const D3DFORMAT = @import("direct3d9.zig").D3DFORMAT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = AMGETERRORTEXTPROCA;
-    _ = AMGETERRORTEXTPROCW;
+    if (@hasDecl(@This(), "AMGETERRORTEXTPROCA")) { _ = AMGETERRORTEXTPROCA; }
+    if (@hasDecl(@This(), "AMGETERRORTEXTPROCW")) { _ = AMGETERRORTEXTPROCW; }
 
-    const constant_export_count = 717;
-    const type_export_count = 1183;
-    const enum_value_export_count = 2136;
-    const com_iface_id_export_count = 560;
-    const com_class_id_export_count = 294;
-    const func_export_count = 13;
-    const unicode_alias_count = 2;
-    const import_count = 67;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

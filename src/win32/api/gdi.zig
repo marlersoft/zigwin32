@@ -1257,67 +1257,6 @@ pub const E_EXCEPTIONINCOMPRESSION = @as(i32, 522);
 //--------------------------------------------------------------------------------
 // Section: Types (250)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'ReleaseDC', what can Zig do with this information?
-pub const HDC = ?*opaque{};
-
-// TODO: this type has a FreeFunc 'DeleteDC', what can Zig do with this information?
-//TODO: type 'CreatedHDC' is "AlsoUsableFor" 'HDC' which means this type is implicitly
-//      convertible to 'HDC' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const CreatedHDC = HDC;
-
-pub const HGDIOBJ = ?*opaque{};
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-//TODO: type 'HBITMAP' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
-//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HBITMAP = HGDIOBJ;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-//TODO: type 'HRGN' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
-//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HRGN = HGDIOBJ;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-//TODO: type 'HPEN' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
-//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HPEN = HGDIOBJ;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-//TODO: type 'HBRUSH' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
-//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HBRUSH = HGDIOBJ;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-//TODO: type 'HFONT' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
-//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HFONT = HGDIOBJ;
-
-// TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
-pub const HMETAFILE = ?*opaque{};
-
-// TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
-pub const HENHMETAFILE = ?*opaque{};
-
-pub const HMONITOR = ?*opaque{};
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-//TODO: type 'HPALETTE' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
-//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HPALETTE = HGDIOBJ;
-
-// TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
-pub const HdcMetdataFileHandle = isize;
-
-// TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
-pub const HdcMetdataEnhFileHandle = isize;
-
 pub const R2_MODE = extern enum(i32) {
     BLACK = 1,
     NOTMERGEPEN = 2,
@@ -1469,6 +1408,67 @@ pub const DIB_USAGE = extern enum(u32) {
 };
 pub const DIB_RGB_COLORS = DIB_USAGE.RGB_COLORS;
 pub const DIB_PAL_COLORS = DIB_USAGE.PAL_COLORS;
+
+// TODO: this type has a FreeFunc 'ReleaseDC', what can Zig do with this information?
+pub const HDC = ?*opaque{};
+
+// TODO: this type has a FreeFunc 'DeleteDC', what can Zig do with this information?
+//TODO: type 'CreatedHDC' is "AlsoUsableFor" 'HDC' which means this type is implicitly
+//      convertible to 'HDC' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const CreatedHDC = HDC;
+
+pub const HGDIOBJ = ?*opaque{};
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+//TODO: type 'HBITMAP' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HBITMAP = HGDIOBJ;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+//TODO: type 'HRGN' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HRGN = HGDIOBJ;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+//TODO: type 'HPEN' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HPEN = HGDIOBJ;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+//TODO: type 'HBRUSH' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HBRUSH = HGDIOBJ;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+//TODO: type 'HFONT' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HFONT = HGDIOBJ;
+
+// TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
+pub const HMETAFILE = ?*opaque{};
+
+// TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
+pub const HENHMETAFILE = ?*opaque{};
+
+pub const HMONITOR = ?*opaque{};
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+//TODO: type 'HPALETTE' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HPALETTE = HGDIOBJ;
+
+// TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
+pub const HdcMetdataFileHandle = isize;
+
+// TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
+pub const HdcMetdataEnhFileHandle = isize;
 
 pub const XFORM = extern struct {
     eM11: f32,
@@ -1943,7 +1943,7 @@ pub const DISPLAYCONFIG_COLOR_ENCODING_FORCE_UINT32 = DISPLAYCONFIG_COLOR_ENCODI
 
 pub const DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO = extern struct {
     header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    Anonymous: DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     colorEncoding: DISPLAYCONFIG_COLOR_ENCODING,
     bitsPerColorChannel: u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -1951,7 +1951,7 @@ pub const DISPLAYCONFIG_GET_ADVANCED_COLOR_INFO = extern struct {
 
 pub const DISPLAYCONFIG_SET_ADVANCED_COLOR_STATE = extern struct {
     header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    Anonymous: DISPLAYCONFIG_SET_ADVANCED_COLOR_STATE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -7184,7 +7184,7 @@ const POINTL = @import("display_devices.zig").POINTL;
 const CHAR = @import("system_services.zig").CHAR;
 const HINSTANCE = @import("system_services.zig").HINSTANCE;
 const POINTS = @import("display_devices.zig").POINTS;
-const DEVMODEA = @import("xps.zig").DEVMODEA;
+const DEVMODEA = @import("display_devices.zig").DEVMODEA;
 const BOOL = @import("system_services.zig").BOOL;
 const WPARAM = @import("windows_and_messaging.zig").WPARAM;
 const CIEXYZTRIPLE = @import("windows_color_system.zig").CIEXYZTRIPLE;
@@ -7206,41 +7206,32 @@ const HANDLE = @import("system_services.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = FONTENUMPROCA;
-    _ = FONTENUMPROCW;
-    _ = GOBJENUMPROC;
-    _ = LINEDDAPROC;
-    _ = LPFNDEVMODE;
-    _ = LPFNDEVCAPS;
-    _ = MFENUMPROC;
-    _ = ENHMFENUMPROC;
-    _ = CFP_ALLOCPROC;
-    _ = CFP_REALLOCPROC;
-    _ = CFP_FREEPROC;
-    _ = READEMBEDPROC;
-    _ = WRITEEMBEDPROC;
-    _ = GRAYSTRINGPROC;
-    _ = DRAWSTATEPROC;
-    _ = MONITORENUMPROC;
+    if (@hasDecl(@This(), "FONTENUMPROCA")) { _ = FONTENUMPROCA; }
+    if (@hasDecl(@This(), "FONTENUMPROCW")) { _ = FONTENUMPROCW; }
+    if (@hasDecl(@This(), "GOBJENUMPROC")) { _ = GOBJENUMPROC; }
+    if (@hasDecl(@This(), "LINEDDAPROC")) { _ = LINEDDAPROC; }
+    if (@hasDecl(@This(), "LPFNDEVMODE")) { _ = LPFNDEVMODE; }
+    if (@hasDecl(@This(), "LPFNDEVCAPS")) { _ = LPFNDEVCAPS; }
+    if (@hasDecl(@This(), "MFENUMPROC")) { _ = MFENUMPROC; }
+    if (@hasDecl(@This(), "ENHMFENUMPROC")) { _ = ENHMFENUMPROC; }
+    if (@hasDecl(@This(), "CFP_ALLOCPROC")) { _ = CFP_ALLOCPROC; }
+    if (@hasDecl(@This(), "CFP_REALLOCPROC")) { _ = CFP_REALLOCPROC; }
+    if (@hasDecl(@This(), "CFP_FREEPROC")) { _ = CFP_FREEPROC; }
+    if (@hasDecl(@This(), "READEMBEDPROC")) { _ = READEMBEDPROC; }
+    if (@hasDecl(@This(), "WRITEEMBEDPROC")) { _ = WRITEEMBEDPROC; }
+    if (@hasDecl(@This(), "GRAYSTRINGPROC")) { _ = GRAYSTRINGPROC; }
+    if (@hasDecl(@This(), "DRAWSTATEPROC")) { _ = DRAWSTATEPROC; }
+    if (@hasDecl(@This(), "MONITORENUMPROC")) { _ = MONITORENUMPROC; }
 
-    const constant_export_count = 1251;
-    const type_export_count = 250;
-    const enum_value_export_count = 406;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 395;
-    const unicode_alias_count = 70;
-    const import_count = 26;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

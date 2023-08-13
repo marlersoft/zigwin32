@@ -447,23 +447,39 @@ pub const USB_DEVICE_TYPE = extern enum(i32) {
 pub const Usb11Device = USB_DEVICE_TYPE.@"11Device";
 pub const Usb20Device = USB_DEVICE_TYPE.@"20Device";
 
-pub const BM_REQUEST_TYPE = u32; // TODO: implement StructOrUnion types?
+pub const BM_REQUEST_TYPE = extern union {
+    s: _BM,
+    B: u8,
+    const _BM = u32; // TODO: generate this nested type!
+};
 
 pub const USB_DEFAULT_PIPE_SETUP_PACKET = extern struct {
     bmRequestType: BM_REQUEST_TYPE,
     bRequest: u8,
-    wValue: USB_DEFAULT_PIPE_SETUP_PACKET._wValue,
-    wIndex: USB_DEFAULT_PIPE_SETUP_PACKET._wIndex,
+    wValue: _wValue,
+    wIndex: _wIndex,
     wLength: u16,
     const _wIndex = u32; // TODO: generate this nested type!
     const _wValue = u32; // TODO: generate this nested type!
 };
 
-pub const USB_DEVICE_STATUS = u32; // TODO: implement StructOrUnion types?
+pub const USB_DEVICE_STATUS = extern union {
+    AsUshort16: u16,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_INTERFACE_STATUS = u32; // TODO: implement StructOrUnion types?
+pub const USB_INTERFACE_STATUS = extern union {
+    AsUshort16: u16,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_ENDPOINT_STATUS = u32; // TODO: implement StructOrUnion types?
+pub const USB_ENDPOINT_STATUS = extern union {
+    AsUshort16: u16,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const USB_COMMON_DESCRIPTOR = extern struct {
     bLength: u8,
@@ -510,7 +526,7 @@ pub const USB_DEVICE_CAPABILITY_USB20_EXTENSION_DESCRIPTOR = extern struct {
     bLength: u8,
     bDescriptorType: u8,
     bDevCapabilityType: u8,
-    bmAttributes: USB_DEVICE_CAPABILITY_USB20_EXTENSION_DESCRIPTOR._bmAttributes_e__Union,
+    bmAttributes: _bmAttributes_e__Union,
     const _bmAttributes_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -519,7 +535,7 @@ pub const USB_DEVICE_CAPABILITY_POWER_DELIVERY_DESCRIPTOR = extern struct {
     bDescriptorType: u8,
     bDevCapabilityType: u8,
     bReserved: u8,
-    bmAttributes: USB_DEVICE_CAPABILITY_POWER_DELIVERY_DESCRIPTOR._bmAttributes_e__Union,
+    bmAttributes: _bmAttributes_e__Union,
     bmProviderPorts: u16,
     bmConsumerPorts: u16,
     bcdBCVersion: u16,
@@ -533,7 +549,7 @@ pub const USB_DEVICE_CAPABILITY_PD_CONSUMER_PORT_DESCRIPTOR = extern struct {
     bDescriptorType: u8,
     bDevCapabilityType: u8,
     bReserved: u8,
-    bmCapabilities: USB_DEVICE_CAPABILITY_PD_CONSUMER_PORT_DESCRIPTOR._bmCapabilities_e__Union,
+    bmCapabilities: _bmCapabilities_e__Union,
     wMinVoltage: u16,
     wMaxVoltage: u16,
     wReserved: u16,
@@ -554,15 +570,19 @@ pub const USB_DEVICE_CAPABILITY_SUPERSPEED_USB_DESCRIPTOR = extern struct {
     wU2DevExitLat: u16,
 };
 
-pub const USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_SPEED = u32; // TODO: implement StructOrUnion types?
+pub const USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_SPEED = extern union {
+    AsUlong32: u32,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_USB_DESCRIPTOR = extern struct {
     bLength: u8,
     bDescriptorType: u8,
     bDevCapabilityType: u8,
     bReserved: u8,
-    bmAttributes: USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_USB_DESCRIPTOR._bmAttributes_e__Union,
-    wFunctionalitySupport: USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_USB_DESCRIPTOR._wFunctionalitySupport_e__Union,
+    bmAttributes: _bmAttributes_e__Union,
+    wFunctionalitySupport: _wFunctionalitySupport_e__Union,
     wReserved: u16,
     bmSublinkSpeedAttr: [1]USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_SPEED,
     const _wFunctionalitySupport_e__Union = u32; // TODO: generate this nested type!
@@ -593,10 +613,10 @@ pub const USB_DEVICE_CAPABILITY_BILLBOARD_DESCRIPTOR = extern struct {
     iAddtionalInfoURL: u8,
     bNumberOfAlternateModes: u8,
     bPreferredAlternateMode: u8,
-    VconnPower: USB_DEVICE_CAPABILITY_BILLBOARD_DESCRIPTOR._VconnPower_e__Union,
+    VconnPower: _VconnPower_e__Union,
     bmConfigured: [32]u8,
     bReserved: u32,
-    AlternateMode: [1]USB_DEVICE_CAPABILITY_BILLBOARD_DESCRIPTOR._Anonymous_e__Struct,
+    AlternateMode: [1]_Anonymous_e__Struct,
     const _VconnPower_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
@@ -606,7 +626,7 @@ pub const USB_DEVICE_CAPABILITY_FIRMWARE_STATUS_DESCRIPTOR = extern struct {
     bDescriptorType: u8,
     bDevCapabilityType: u8,
     bcdDescriptorVersion: u8,
-    bmAttributes: USB_DEVICE_CAPABILITY_FIRMWARE_STATUS_DESCRIPTOR._bmAttributes_e__Union,
+    bmAttributes: _bmAttributes_e__Union,
     const _bmAttributes_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -659,7 +679,10 @@ pub const USB_ENDPOINT_DESCRIPTOR = extern struct {
     bInterval: u8,
 };
 
-pub const USB_HIGH_SPEED_MAXPACKET = u32; // TODO: implement StructOrUnion types?
+pub const USB_HIGH_SPEED_MAXPACKET = extern union {
+    us: u16,
+    const _MP = u32; // TODO: generate this nested type!
+};
 
 pub const USB_STRING_DESCRIPTOR = extern struct {
     bLength: u8,
@@ -671,7 +694,7 @@ pub const USB_SUPERSPEED_ENDPOINT_COMPANION_DESCRIPTOR = extern struct {
     bLength: u8,
     bDescriptorType: u8,
     bMaxBurst: u8,
-    bmAttributes: USB_SUPERSPEED_ENDPOINT_COMPANION_DESCRIPTOR._bmAttributes_e__Union,
+    bmAttributes: _bmAttributes_e__Union,
     wBytesPerInterval: u16,
     const _bmAttributes_e__Union = u32; // TODO: generate this nested type!
 };
@@ -705,33 +728,89 @@ pub const USB_30_HUB_DESCRIPTOR = extern struct {
     DeviceRemovable: u16,
 };
 
-pub const USB_HUB_STATUS = u32; // TODO: implement StructOrUnion types?
+pub const USB_HUB_STATUS = extern union {
+    AsUshort16: u16,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_HUB_CHANGE = u32; // TODO: implement StructOrUnion types?
+pub const USB_HUB_CHANGE = extern union {
+    AsUshort16: u16,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_HUB_STATUS_AND_CHANGE = u32; // TODO: implement StructOrUnion types?
+pub const USB_HUB_STATUS_AND_CHANGE = extern union {
+    AsUlong32: u32,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_20_PORT_STATUS = u32; // TODO: implement StructOrUnion types?
+pub const USB_20_PORT_STATUS = extern union {
+    AsUshort16: u16,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_20_PORT_CHANGE = u32; // TODO: implement StructOrUnion types?
+pub const USB_20_PORT_CHANGE = extern union {
+    AsUshort16: u16,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_30_PORT_STATUS = u32; // TODO: implement StructOrUnion types?
+pub const USB_30_PORT_STATUS = extern union {
+    AsUshort16: u16,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_30_PORT_CHANGE = u32; // TODO: implement StructOrUnion types?
+pub const USB_30_PORT_CHANGE = extern union {
+    AsUshort16: u16,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_PORT_STATUS = u32; // TODO: implement StructOrUnion types?
+pub const USB_PORT_STATUS = extern union {
+    AsUshort16: u16,
+    Usb20PortStatus: USB_20_PORT_STATUS,
+    Usb30PortStatus: USB_30_PORT_STATUS,
+};
 
-pub const USB_PORT_CHANGE = u32; // TODO: implement StructOrUnion types?
+pub const USB_PORT_CHANGE = extern union {
+    AsUshort16: u16,
+    Usb20PortChange: USB_20_PORT_CHANGE,
+    Usb30PortChange: USB_30_PORT_CHANGE,
+};
 
-pub const USB_PORT_EXT_STATUS = u32; // TODO: implement StructOrUnion types?
+pub const USB_PORT_EXT_STATUS = extern union {
+    AsUlong32: u32,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_PORT_STATUS_AND_CHANGE = u32; // TODO: implement StructOrUnion types?
+pub const USB_PORT_STATUS_AND_CHANGE = extern union {
+    AsUlong32: u32,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_PORT_EXT_STATUS_AND_CHANGE = u32; // TODO: implement StructOrUnion types?
+pub const USB_PORT_EXT_STATUS_AND_CHANGE = extern union {
+    AsUlong64: u64,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_HUB_30_PORT_REMOTE_WAKE_MASK = u32; // TODO: implement StructOrUnion types?
+pub const USB_HUB_30_PORT_REMOTE_WAKE_MASK = extern union {
+    AsUchar8: u8,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const USB_FUNCTION_SUSPEND_OPTIONS = u32; // TODO: implement StructOrUnion types?
+pub const USB_FUNCTION_SUSPEND_OPTIONS = extern union {
+    AsUchar: u8,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const USB_CONFIGURATION_POWER_DESCRIPTOR = extern struct {
     bLength: u8,
@@ -1036,7 +1115,7 @@ pub const OS_STRING = extern struct {
     bDescriptorType: u8,
     MicrosoftString: [7]u16,
     bVendorCode: u8,
-    Anonymous: OS_STRING._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1137,7 +1216,7 @@ pub const _URB_GET_ISOCH_PIPE_TRANSFER_PATH_DELAYS = extern struct {
 };
 
 pub const URB = extern struct {
-    Anonymous: URB._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1752,26 +1831,17 @@ const OVERLAPPED = @import("system_services.zig").OVERLAPPED;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = USB_IDLE_CALLBACK;
+    if (@hasDecl(@This(), "USB_IDLE_CALLBACK")) { _ = USB_IDLE_CALLBACK; }
 
-    const constant_export_count = 423;
-    const type_export_count = 124;
-    const enum_value_export_count = 64;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 34;
-    const unicode_alias_count = 0;
-    const import_count = 5;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

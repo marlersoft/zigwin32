@@ -201,23 +201,189 @@ pub const CLFS_SCAN_BUFFERED = @as(u8, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (456)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
-pub const FindFileHandle = isize;
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const FIND_FIRST_EX_FLAGS = extern enum(u32) {
+    CASE_SENSITIVE = 1,
+    LARGE_FETCH = 2,
+    ON_DISK_ENTRIES_ONLY = 4,
+    _,
+};
+pub const FIND_FIRST_EX_CASE_SENSITIVE = FIND_FIRST_EX_FLAGS.CASE_SENSITIVE;
+pub const FIND_FIRST_EX_LARGE_FETCH = FIND_FIRST_EX_FLAGS.LARGE_FETCH;
+pub const FIND_FIRST_EX_ON_DISK_ENTRIES_ONLY = FIND_FIRST_EX_FLAGS.ON_DISK_ENTRIES_ONLY;
 
-// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
-pub const FindFileNameHandle = isize;
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const DEFINE_DOS_DEVICE_FLAGS = extern enum(u32) {
+    RAW_TARGET_PATH = 1,
+    REMOVE_DEFINITION = 2,
+    EXACT_MATCH_ON_REMOVE = 4,
+    NO_BROADCAST_SYSTEM = 8,
+    LUID_BROADCAST_DRIVE = 16,
+    _,
+};
+pub const DDD_RAW_TARGET_PATH = DEFINE_DOS_DEVICE_FLAGS.RAW_TARGET_PATH;
+pub const DDD_REMOVE_DEFINITION = DEFINE_DOS_DEVICE_FLAGS.REMOVE_DEFINITION;
+pub const DDD_EXACT_MATCH_ON_REMOVE = DEFINE_DOS_DEVICE_FLAGS.EXACT_MATCH_ON_REMOVE;
+pub const DDD_NO_BROADCAST_SYSTEM = DEFINE_DOS_DEVICE_FLAGS.NO_BROADCAST_SYSTEM;
+pub const DDD_LUID_BROADCAST_DRIVE = DEFINE_DOS_DEVICE_FLAGS.LUID_BROADCAST_DRIVE;
 
-// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
-pub const FindStreamHandle = isize;
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
+    FILE_ATTRIBUTE_READONLY = 1,
+    FILE_ATTRIBUTE_HIDDEN = 2,
+    FILE_ATTRIBUTE_SYSTEM = 4,
+    FILE_ATTRIBUTE_DIRECTORY = 16,
+    FILE_ATTRIBUTE_ARCHIVE = 32,
+    FILE_ATTRIBUTE_DEVICE = 64,
+    FILE_ATTRIBUTE_NORMAL = 128,
+    FILE_ATTRIBUTE_TEMPORARY = 256,
+    FILE_ATTRIBUTE_SPARSE_FILE = 512,
+    FILE_ATTRIBUTE_REPARSE_POINT = 1024,
+    FILE_ATTRIBUTE_COMPRESSED = 2048,
+    FILE_ATTRIBUTE_OFFLINE = 4096,
+    FILE_ATTRIBUTE_NOT_CONTENT_INDEXED = 8192,
+    FILE_ATTRIBUTE_ENCRYPTED = 16384,
+    FILE_ATTRIBUTE_INTEGRITY_STREAM = 32768,
+    FILE_ATTRIBUTE_VIRTUAL = 65536,
+    FILE_ATTRIBUTE_NO_SCRUB_DATA = 131072,
+    FILE_ATTRIBUTE_EA = 262144,
+    FILE_ATTRIBUTE_PINNED = 524288,
+    FILE_ATTRIBUTE_UNPINNED = 1048576,
+    FILE_ATTRIBUTE_RECALL_ON_OPEN = 262144,
+    FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = 4194304,
+    FILE_FLAG_WRITE_THROUGH = 2147483648,
+    FILE_FLAG_OVERLAPPED = 1073741824,
+    FILE_FLAG_NO_BUFFERING = 536870912,
+    FILE_FLAG_RANDOM_ACCESS = 268435456,
+    FILE_FLAG_SEQUENTIAL_SCAN = 134217728,
+    FILE_FLAG_DELETE_ON_CLOSE = 67108864,
+    FILE_FLAG_BACKUP_SEMANTICS = 33554432,
+    FILE_FLAG_POSIX_SEMANTICS = 16777216,
+    FILE_FLAG_SESSION_AWARE = 8388608,
+    FILE_FLAG_OPEN_REPARSE_POINT = 2097152,
+    FILE_FLAG_OPEN_NO_RECALL = 1048576,
+    FILE_FLAG_FIRST_PIPE_INSTANCE = 524288,
+    SECURITY_ANONYMOUS = 0,
+    SECURITY_IDENTIFICATION = 65536,
+    SECURITY_IMPERSONATION = 131072,
+    SECURITY_DELEGATION = 196608,
+    SECURITY_CONTEXT_TRACKING = 262144,
+    SECURITY_EFFECTIVE_ONLY = 524288,
+    SECURITY_SQOS_PRESENT = 1048576,
+    SECURITY_VALID_SQOS_FLAGS = 2031616,
+    _,
+};
+pub const FILE_ATTRIBUTE_READONLY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_READONLY;
+pub const FILE_ATTRIBUTE_HIDDEN = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_HIDDEN;
+pub const FILE_ATTRIBUTE_SYSTEM = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SYSTEM;
+pub const FILE_ATTRIBUTE_DIRECTORY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DIRECTORY;
+pub const FILE_ATTRIBUTE_ARCHIVE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ARCHIVE;
+pub const FILE_ATTRIBUTE_DEVICE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DEVICE;
+pub const FILE_ATTRIBUTE_NORMAL = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NORMAL;
+pub const FILE_ATTRIBUTE_TEMPORARY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_TEMPORARY;
+pub const FILE_ATTRIBUTE_SPARSE_FILE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SPARSE_FILE;
+pub const FILE_ATTRIBUTE_REPARSE_POINT = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_REPARSE_POINT;
+pub const FILE_ATTRIBUTE_COMPRESSED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_COMPRESSED;
+pub const FILE_ATTRIBUTE_OFFLINE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_OFFLINE;
+pub const FILE_ATTRIBUTE_NOT_CONTENT_INDEXED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED;
+pub const FILE_ATTRIBUTE_ENCRYPTED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ENCRYPTED;
+pub const FILE_ATTRIBUTE_INTEGRITY_STREAM = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_INTEGRITY_STREAM;
+pub const FILE_ATTRIBUTE_VIRTUAL = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_VIRTUAL;
+pub const FILE_ATTRIBUTE_NO_SCRUB_DATA = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NO_SCRUB_DATA;
+pub const FILE_ATTRIBUTE_EA = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA;
+pub const FILE_ATTRIBUTE_PINNED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED;
+pub const FILE_ATTRIBUTE_UNPINNED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED;
+pub const FILE_ATTRIBUTE_RECALL_ON_OPEN = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_OPEN;
+pub const FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS;
+pub const FILE_FLAG_WRITE_THROUGH = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_WRITE_THROUGH;
+pub const FILE_FLAG_OVERLAPPED = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OVERLAPPED;
+pub const FILE_FLAG_NO_BUFFERING = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_NO_BUFFERING;
+pub const FILE_FLAG_RANDOM_ACCESS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_RANDOM_ACCESS;
+pub const FILE_FLAG_SEQUENTIAL_SCAN = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SEQUENTIAL_SCAN;
+pub const FILE_FLAG_DELETE_ON_CLOSE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_DELETE_ON_CLOSE;
+pub const FILE_FLAG_BACKUP_SEMANTICS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_BACKUP_SEMANTICS;
+pub const FILE_FLAG_POSIX_SEMANTICS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_POSIX_SEMANTICS;
+pub const FILE_FLAG_SESSION_AWARE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SESSION_AWARE;
+pub const FILE_FLAG_OPEN_REPARSE_POINT = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_REPARSE_POINT;
+pub const FILE_FLAG_OPEN_NO_RECALL = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_NO_RECALL;
+pub const FILE_FLAG_FIRST_PIPE_INSTANCE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_FIRST_PIPE_INSTANCE;
+pub const SECURITY_ANONYMOUS = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_ANONYMOUS;
+pub const SECURITY_IDENTIFICATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IDENTIFICATION;
+pub const SECURITY_IMPERSONATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IMPERSONATION;
+pub const SECURITY_DELEGATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_DELEGATION;
+pub const SECURITY_CONTEXT_TRACKING = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_CONTEXT_TRACKING;
+pub const SECURITY_EFFECTIVE_ONLY = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_EFFECTIVE_ONLY;
+pub const SECURITY_SQOS_PRESENT = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_SQOS_PRESENT;
+pub const SECURITY_VALID_SQOS_FLAGS = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_VALID_SQOS_FLAGS;
 
-// TODO: this type has a FreeFunc 'FindCloseChangeNotification', what can Zig do with this information?
-pub const FindChangeNotificationHandle = isize;
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const FILE_ACCESS_FLAGS = extern enum(u32) {
+    FILE_READ_DATA = 1,
+    FILE_LIST_DIRECTORY = 1,
+    FILE_WRITE_DATA = 2,
+    FILE_ADD_FILE = 2,
+    FILE_APPEND_DATA = 4,
+    FILE_ADD_SUBDIRECTORY = 4,
+    FILE_CREATE_PIPE_INSTANCE = 4,
+    FILE_READ_EA = 8,
+    FILE_WRITE_EA = 16,
+    FILE_EXECUTE = 32,
+    FILE_TRAVERSE = 32,
+    FILE_DELETE_CHILD = 64,
+    FILE_READ_ATTRIBUTES = 128,
+    FILE_WRITE_ATTRIBUTES = 256,
+    READ_CONTROL = 131072,
+    SYNCHRONIZE = 1048576,
+    STANDARD_RIGHTS_REQUIRED = 983040,
+    STANDARD_RIGHTS_READ = 131072,
+    STANDARD_RIGHTS_WRITE = 131072,
+    STANDARD_RIGHTS_EXECUTE = 131072,
+    STANDARD_RIGHTS_ALL = 2031616,
+    SPECIFIC_RIGHTS_ALL = 65535,
+    FILE_ALL_ACCESS = 2032127,
+    FILE_GENERIC_READ = 1179785,
+    FILE_GENERIC_WRITE = 1179926,
+    FILE_GENERIC_EXECUTE = 1179808,
+    _,
+};
+pub const FILE_READ_DATA = FILE_ACCESS_FLAGS.FILE_READ_DATA;
+pub const FILE_LIST_DIRECTORY = FILE_ACCESS_FLAGS.FILE_LIST_DIRECTORY;
+pub const FILE_WRITE_DATA = FILE_ACCESS_FLAGS.FILE_WRITE_DATA;
+pub const FILE_ADD_FILE = FILE_ACCESS_FLAGS.FILE_ADD_FILE;
+pub const FILE_APPEND_DATA = FILE_ACCESS_FLAGS.FILE_APPEND_DATA;
+pub const FILE_ADD_SUBDIRECTORY = FILE_ACCESS_FLAGS.FILE_ADD_SUBDIRECTORY;
+pub const FILE_CREATE_PIPE_INSTANCE = FILE_ACCESS_FLAGS.FILE_CREATE_PIPE_INSTANCE;
+pub const FILE_READ_EA = FILE_ACCESS_FLAGS.FILE_READ_EA;
+pub const FILE_WRITE_EA = FILE_ACCESS_FLAGS.FILE_WRITE_EA;
+pub const FILE_EXECUTE = FILE_ACCESS_FLAGS.FILE_EXECUTE;
+pub const FILE_TRAVERSE = FILE_ACCESS_FLAGS.FILE_TRAVERSE;
+pub const FILE_DELETE_CHILD = FILE_ACCESS_FLAGS.FILE_DELETE_CHILD;
+pub const FILE_READ_ATTRIBUTES = FILE_ACCESS_FLAGS.FILE_READ_ATTRIBUTES;
+pub const FILE_WRITE_ATTRIBUTES = FILE_ACCESS_FLAGS.FILE_WRITE_ATTRIBUTES;
+pub const READ_CONTROL = FILE_ACCESS_FLAGS.READ_CONTROL;
+pub const SYNCHRONIZE = FILE_ACCESS_FLAGS.SYNCHRONIZE;
+pub const STANDARD_RIGHTS_REQUIRED = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_REQUIRED;
+pub const STANDARD_RIGHTS_READ = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_READ;
+pub const STANDARD_RIGHTS_WRITE = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_WRITE;
+pub const STANDARD_RIGHTS_EXECUTE = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_EXECUTE;
+pub const STANDARD_RIGHTS_ALL = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_ALL;
+pub const SPECIFIC_RIGHTS_ALL = FILE_ACCESS_FLAGS.SPECIFIC_RIGHTS_ALL;
+pub const FILE_ALL_ACCESS = FILE_ACCESS_FLAGS.FILE_ALL_ACCESS;
+pub const FILE_GENERIC_READ = FILE_ACCESS_FLAGS.FILE_GENERIC_READ;
+pub const FILE_GENERIC_WRITE = FILE_ACCESS_FLAGS.FILE_GENERIC_WRITE;
+pub const FILE_GENERIC_EXECUTE = FILE_ACCESS_FLAGS.FILE_GENERIC_EXECUTE;
 
-// TODO: this type has a FreeFunc 'FindVolumeClose', what can Zig do with this information?
-pub const FindVolumeHandle = isize;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
-// TODO: this type has a FreeFunc 'FindVolumeMountPointClose', what can Zig do with this information?
-pub const FindVolumeMointPointHandle = isize;
+pub const MARK_HANDLE_INFO32 = extern struct {
+    Anonymous: _Anonymous_e__Union,
+    VolumeHandle: u32,
+    HandleInfo: u32,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
 
 pub const FILE_ID_128 = extern struct {
     Identifier: [16]u8,
@@ -252,7 +418,7 @@ pub const REPARSE_GUID_DATA_BUFFER = extern struct {
     ReparseDataLength: u16,
     Reserved: u16,
     ReparseGuid: Guid,
-    GenericReparseBuffer: REPARSE_GUID_DATA_BUFFER._GenericReparseBuffer_e__Struct,
+    GenericReparseBuffer: _GenericReparseBuffer_e__Struct,
     const _GenericReparseBuffer_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -264,6 +430,24 @@ pub const TRANSACTION_OUTCOME = extern enum(i32) {
 pub const TransactionOutcomeUndetermined = TRANSACTION_OUTCOME.Undetermined;
 pub const TransactionOutcomeCommitted = TRANSACTION_OUTCOME.Committed;
 pub const TransactionOutcomeAborted = TRANSACTION_OUTCOME.Aborted;
+
+// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+pub const FindFileHandle = isize;
+
+// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+pub const FindFileNameHandle = isize;
+
+// TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+pub const FindStreamHandle = isize;
+
+// TODO: this type has a FreeFunc 'FindCloseChangeNotification', what can Zig do with this information?
+pub const FindChangeNotificationHandle = isize;
+
+// TODO: this type has a FreeFunc 'FindVolumeClose', what can Zig do with this information?
+pub const FindVolumeHandle = isize;
+
+// TODO: this type has a FreeFunc 'FindVolumeMountPointClose', what can Zig do with this information?
+pub const FindVolumeMointPointHandle = isize;
 
 pub const OVERLAPPED_ENTRY = extern struct {
     lpCompletionKey: usize,
@@ -769,7 +953,11 @@ pub const HealthStatusWarning = STORAGE_COMPONENT_HEALTH_STATUS.Warning;
 pub const HealthStatusDisabled = STORAGE_COMPONENT_HEALTH_STATUS.Disabled;
 pub const HealthStatusFailed = STORAGE_COMPONENT_HEALTH_STATUS.Failed;
 
-pub const STORAGE_SPEC_VERSION = u32; // TODO: implement StructOrUnion types?
+pub const STORAGE_SPEC_VERSION = extern union {
+    Anonymous: _Anonymous_e__Struct,
+    AsUlong: u32,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const STORAGE_PHYSICAL_DEVICE_DATA = extern struct {
     DeviceId: u32,
@@ -1098,7 +1286,7 @@ pub const CREATE_DISK_MBR = extern struct {
 
 pub const CREATE_DISK = extern struct {
     PartitionStyle: PARTITION_STYLE,
-    Anonymous: CREATE_DISK._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1113,7 +1301,7 @@ pub const PARTITION_INFORMATION_EX = extern struct {
     PartitionNumber: u32,
     RewritePartition: u8,
     IsServicePartition: u8,
-    Anonymous: PARTITION_INFORMATION_EX._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1132,7 +1320,7 @@ pub const DRIVE_LAYOUT_INFORMATION_MBR = extern struct {
 pub const DRIVE_LAYOUT_INFORMATION_EX = extern struct {
     PartitionStyle: u32,
     PartitionCount: u32,
-    Anonymous: DRIVE_LAYOUT_INFORMATION_EX._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     PartitionEntry: [1]PARTITION_INFORMATION_EX,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -1159,14 +1347,14 @@ pub const DISK_EX_INT13_INFO = extern struct {
 pub const DISK_DETECTION_INFO = extern struct {
     SizeOfDetectInfo: u32,
     DetectionType: DETECTION_TYPE,
-    Anonymous: DISK_DETECTION_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DISK_PARTITION_INFO = extern struct {
     SizeOfPartitionInfo: u32,
     PartitionStyle: PARTITION_STYLE,
-    Anonymous: DISK_PARTITION_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1184,7 +1372,7 @@ pub const DISK_CACHE_INFORMATION = extern struct {
     WriteRetentionPriority: DISK_CACHE_RETENTION_PRIORITY,
     DisablePrefetchTransferLength: u16,
     PrefetchScalar: u8,
-    Anonymous: DISK_CACHE_INFORMATION._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1270,7 +1458,7 @@ pub const STARTING_VCN_INPUT_BUFFER = extern struct {
 pub const RETRIEVAL_POINTERS_BUFFER = extern struct {
     ExtentCount: u32,
     StartingVcn: LARGE_INTEGER,
-    Extents: [1]RETRIEVAL_POINTERS_BUFFER._Anonymous_e__Struct,
+    Extents: [1]_Anonymous_e__Struct,
     const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -1459,15 +1647,8 @@ pub const DELETE_USN_JOURNAL_DATA = extern struct {
 };
 
 pub const MARK_HANDLE_INFO = extern struct {
-    Anonymous: MARK_HANDLE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     VolumeHandle: HANDLE,
-    HandleInfo: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const MARK_HANDLE_INFO32 = extern struct {
-    Anonymous: MARK_HANDLE_INFO32._Anonymous_e__Union,
-    VolumeHandle: u32,
     HandleInfo: u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -1521,13 +1702,13 @@ pub const NTFS_STATISTICS = extern struct {
     MftReadBytes: u32,
     MftWrites: u32,
     MftWriteBytes: u32,
-    MftWritesUserLevel: NTFS_STATISTICS._MftWritesUserLevel_e__Struct,
+    MftWritesUserLevel: _MftWritesUserLevel_e__Struct,
     MftWritesFlushForLogFileFull: u16,
     MftWritesLazyWriter: u16,
     MftWritesUserRequest: u16,
     Mft2Writes: u32,
     Mft2WriteBytes: u32,
-    Mft2WritesUserLevel: NTFS_STATISTICS._Mft2WritesUserLevel_e__Struct,
+    Mft2WritesUserLevel: _Mft2WritesUserLevel_e__Struct,
     Mft2WritesFlushForLogFileFull: u16,
     Mft2WritesLazyWriter: u16,
     Mft2WritesUserRequest: u16,
@@ -1542,7 +1723,7 @@ pub const NTFS_STATISTICS = extern struct {
     BitmapWritesFlushForLogFileFull: u16,
     BitmapWritesLazyWriter: u16,
     BitmapWritesUserRequest: u16,
-    BitmapWritesUserLevel: NTFS_STATISTICS._BitmapWritesUserLevel_e__Struct,
+    BitmapWritesUserLevel: _BitmapWritesUserLevel_e__Struct,
     MftBitmapReads: u32,
     MftBitmapReadBytes: u32,
     MftBitmapWrites: u32,
@@ -1550,7 +1731,7 @@ pub const NTFS_STATISTICS = extern struct {
     MftBitmapWritesFlushForLogFileFull: u16,
     MftBitmapWritesLazyWriter: u16,
     MftBitmapWritesUserRequest: u16,
-    MftBitmapWritesUserLevel: NTFS_STATISTICS._MftBitmapWritesUserLevel_e__Struct,
+    MftBitmapWritesUserLevel: _MftBitmapWritesUserLevel_e__Struct,
     UserIndexReads: u32,
     UserIndexReadBytes: u32,
     UserIndexWrites: u32,
@@ -1559,13 +1740,13 @@ pub const NTFS_STATISTICS = extern struct {
     LogFileReadBytes: u32,
     LogFileWrites: u32,
     LogFileWriteBytes: u32,
-    Allocate: NTFS_STATISTICS._Allocate_e__Struct,
+    Allocate: _Allocate_e__Struct,
     DiskResourcesExhausted: u32,
     const _Allocate_e__Struct = u32; // TODO: generate this nested type!
     const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const FILESYSTEM_STATISTICS_EX = extern struct {
@@ -1593,13 +1774,13 @@ pub const NTFS_STATISTICS_EX = extern struct {
     MftReadBytes: u64,
     MftWrites: u64,
     MftWriteBytes: u64,
-    MftWritesUserLevel: NTFS_STATISTICS_EX._MftWritesUserLevel_e__Struct,
+    MftWritesUserLevel: _MftWritesUserLevel_e__Struct,
     MftWritesFlushForLogFileFull: u32,
     MftWritesLazyWriter: u32,
     MftWritesUserRequest: u32,
     Mft2Writes: u64,
     Mft2WriteBytes: u64,
-    Mft2WritesUserLevel: NTFS_STATISTICS_EX._Mft2WritesUserLevel_e__Struct,
+    Mft2WritesUserLevel: _Mft2WritesUserLevel_e__Struct,
     Mft2WritesFlushForLogFileFull: u32,
     Mft2WritesLazyWriter: u32,
     Mft2WritesUserRequest: u32,
@@ -1614,7 +1795,7 @@ pub const NTFS_STATISTICS_EX = extern struct {
     BitmapWritesFlushForLogFileFull: u32,
     BitmapWritesLazyWriter: u32,
     BitmapWritesUserRequest: u32,
-    BitmapWritesUserLevel: NTFS_STATISTICS_EX._BitmapWritesUserLevel_e__Struct,
+    BitmapWritesUserLevel: _BitmapWritesUserLevel_e__Struct,
     MftBitmapReads: u64,
     MftBitmapReadBytes: u64,
     MftBitmapWrites: u64,
@@ -1622,7 +1803,7 @@ pub const NTFS_STATISTICS_EX = extern struct {
     MftBitmapWritesFlushForLogFileFull: u32,
     MftBitmapWritesLazyWriter: u32,
     MftBitmapWritesUserRequest: u32,
-    MftBitmapWritesUserLevel: NTFS_STATISTICS_EX._MftBitmapWritesUserLevel_e__Struct,
+    MftBitmapWritesUserLevel: _MftBitmapWritesUserLevel_e__Struct,
     UserIndexReads: u64,
     UserIndexReadBytes: u64,
     UserIndexWrites: u64,
@@ -1631,7 +1812,7 @@ pub const NTFS_STATISTICS_EX = extern struct {
     LogFileReadBytes: u64,
     LogFileWrites: u64,
     LogFileWriteBytes: u64,
-    Allocate: NTFS_STATISTICS_EX._Allocate_e__Struct,
+    Allocate: _Allocate_e__Struct,
     DiskResourcesExhausted: u32,
     VolumeTrimCount: u64,
     VolumeTrimTime: u64,
@@ -1646,14 +1827,14 @@ pub const NTFS_STATISTICS_EX = extern struct {
     NtfsFillStatInfoFromMftRecordBailedBecauseOfNonResReparsePointCount: u64,
     const _MftBitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _Mft2WritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
-    const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
     const _Allocate_e__Struct = u32; // TODO: generate this nested type!
+    const _MftWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
+    const _BitmapWritesUserLevel_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const FILE_OBJECTID_BUFFER = extern struct {
     ObjectId: [16]u8,
-    Anonymous: FILE_OBJECTID_BUFFER._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1753,7 +1934,7 @@ pub const TXFS_QUERY_RM_INFORMATION = extern struct {
 };
 
 pub const TXFS_GET_METADATA_INFO_OUT = extern struct {
-    TxfFileId: TXFS_GET_METADATA_INFO_OUT._TxfFileId_e__Struct,
+    TxfFileId: _TxfFileId_e__Struct,
     LockingTransaction: Guid,
     LastLsn: u64,
     TransactionState: u32,
@@ -1791,7 +1972,7 @@ pub const TXFS_LIST_TRANSACTIONS = extern struct {
 };
 
 pub const TXFS_READ_BACKUP_INFORMATION_OUT = extern struct {
-    Anonymous: TXFS_READ_BACKUP_INFORMATION_OUT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1826,7 +2007,7 @@ pub const TXFS_TRANSACTION_ACTIVE_INFO = extern struct {
 
 pub const BOOT_AREA_INFO = extern struct {
     BootSectorCount: u32,
-    BootSectors: [2]BOOT_AREA_INFO._Anonymous_e__Struct,
+    BootSectors: [2]_Anonymous_e__Struct,
     const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -2072,178 +2253,6 @@ pub const VOLUME_GET_GPT_ATTRIBUTES_INFORMATION = extern struct {
     GptAttributes: u64,
 };
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const FIND_FIRST_EX_FLAGS = extern enum(u32) {
-    CASE_SENSITIVE = 1,
-    LARGE_FETCH = 2,
-    ON_DISK_ENTRIES_ONLY = 4,
-    _,
-};
-pub const FIND_FIRST_EX_CASE_SENSITIVE = FIND_FIRST_EX_FLAGS.CASE_SENSITIVE;
-pub const FIND_FIRST_EX_LARGE_FETCH = FIND_FIRST_EX_FLAGS.LARGE_FETCH;
-pub const FIND_FIRST_EX_ON_DISK_ENTRIES_ONLY = FIND_FIRST_EX_FLAGS.ON_DISK_ENTRIES_ONLY;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const DEFINE_DOS_DEVICE_FLAGS = extern enum(u32) {
-    RAW_TARGET_PATH = 1,
-    REMOVE_DEFINITION = 2,
-    EXACT_MATCH_ON_REMOVE = 4,
-    NO_BROADCAST_SYSTEM = 8,
-    LUID_BROADCAST_DRIVE = 16,
-    _,
-};
-pub const DDD_RAW_TARGET_PATH = DEFINE_DOS_DEVICE_FLAGS.RAW_TARGET_PATH;
-pub const DDD_REMOVE_DEFINITION = DEFINE_DOS_DEVICE_FLAGS.REMOVE_DEFINITION;
-pub const DDD_EXACT_MATCH_ON_REMOVE = DEFINE_DOS_DEVICE_FLAGS.EXACT_MATCH_ON_REMOVE;
-pub const DDD_NO_BROADCAST_SYSTEM = DEFINE_DOS_DEVICE_FLAGS.NO_BROADCAST_SYSTEM;
-pub const DDD_LUID_BROADCAST_DRIVE = DEFINE_DOS_DEVICE_FLAGS.LUID_BROADCAST_DRIVE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const FILE_FLAGS_AND_ATTRIBUTES = extern enum(u32) {
-    FILE_ATTRIBUTE_READONLY = 1,
-    FILE_ATTRIBUTE_HIDDEN = 2,
-    FILE_ATTRIBUTE_SYSTEM = 4,
-    FILE_ATTRIBUTE_DIRECTORY = 16,
-    FILE_ATTRIBUTE_ARCHIVE = 32,
-    FILE_ATTRIBUTE_DEVICE = 64,
-    FILE_ATTRIBUTE_NORMAL = 128,
-    FILE_ATTRIBUTE_TEMPORARY = 256,
-    FILE_ATTRIBUTE_SPARSE_FILE = 512,
-    FILE_ATTRIBUTE_REPARSE_POINT = 1024,
-    FILE_ATTRIBUTE_COMPRESSED = 2048,
-    FILE_ATTRIBUTE_OFFLINE = 4096,
-    FILE_ATTRIBUTE_NOT_CONTENT_INDEXED = 8192,
-    FILE_ATTRIBUTE_ENCRYPTED = 16384,
-    FILE_ATTRIBUTE_INTEGRITY_STREAM = 32768,
-    FILE_ATTRIBUTE_VIRTUAL = 65536,
-    FILE_ATTRIBUTE_NO_SCRUB_DATA = 131072,
-    FILE_ATTRIBUTE_EA = 262144,
-    FILE_ATTRIBUTE_PINNED = 524288,
-    FILE_ATTRIBUTE_UNPINNED = 1048576,
-    FILE_ATTRIBUTE_RECALL_ON_OPEN = 262144,
-    FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = 4194304,
-    FILE_FLAG_WRITE_THROUGH = 2147483648,
-    FILE_FLAG_OVERLAPPED = 1073741824,
-    FILE_FLAG_NO_BUFFERING = 536870912,
-    FILE_FLAG_RANDOM_ACCESS = 268435456,
-    FILE_FLAG_SEQUENTIAL_SCAN = 134217728,
-    FILE_FLAG_DELETE_ON_CLOSE = 67108864,
-    FILE_FLAG_BACKUP_SEMANTICS = 33554432,
-    FILE_FLAG_POSIX_SEMANTICS = 16777216,
-    FILE_FLAG_SESSION_AWARE = 8388608,
-    FILE_FLAG_OPEN_REPARSE_POINT = 2097152,
-    FILE_FLAG_OPEN_NO_RECALL = 1048576,
-    FILE_FLAG_FIRST_PIPE_INSTANCE = 524288,
-    SECURITY_ANONYMOUS = 0,
-    SECURITY_IDENTIFICATION = 65536,
-    SECURITY_IMPERSONATION = 131072,
-    SECURITY_DELEGATION = 196608,
-    SECURITY_CONTEXT_TRACKING = 262144,
-    SECURITY_EFFECTIVE_ONLY = 524288,
-    SECURITY_SQOS_PRESENT = 1048576,
-    SECURITY_VALID_SQOS_FLAGS = 2031616,
-    _,
-};
-pub const FILE_ATTRIBUTE_READONLY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_READONLY;
-pub const FILE_ATTRIBUTE_HIDDEN = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_HIDDEN;
-pub const FILE_ATTRIBUTE_SYSTEM = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SYSTEM;
-pub const FILE_ATTRIBUTE_DIRECTORY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DIRECTORY;
-pub const FILE_ATTRIBUTE_ARCHIVE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ARCHIVE;
-pub const FILE_ATTRIBUTE_DEVICE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_DEVICE;
-pub const FILE_ATTRIBUTE_NORMAL = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NORMAL;
-pub const FILE_ATTRIBUTE_TEMPORARY = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_TEMPORARY;
-pub const FILE_ATTRIBUTE_SPARSE_FILE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_SPARSE_FILE;
-pub const FILE_ATTRIBUTE_REPARSE_POINT = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_REPARSE_POINT;
-pub const FILE_ATTRIBUTE_COMPRESSED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_COMPRESSED;
-pub const FILE_ATTRIBUTE_OFFLINE = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_OFFLINE;
-pub const FILE_ATTRIBUTE_NOT_CONTENT_INDEXED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NOT_CONTENT_INDEXED;
-pub const FILE_ATTRIBUTE_ENCRYPTED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_ENCRYPTED;
-pub const FILE_ATTRIBUTE_INTEGRITY_STREAM = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_INTEGRITY_STREAM;
-pub const FILE_ATTRIBUTE_VIRTUAL = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_VIRTUAL;
-pub const FILE_ATTRIBUTE_NO_SCRUB_DATA = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_NO_SCRUB_DATA;
-pub const FILE_ATTRIBUTE_EA = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_EA;
-pub const FILE_ATTRIBUTE_PINNED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_PINNED;
-pub const FILE_ATTRIBUTE_UNPINNED = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_UNPINNED;
-pub const FILE_ATTRIBUTE_RECALL_ON_OPEN = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_OPEN;
-pub const FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS = FILE_FLAGS_AND_ATTRIBUTES.FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS;
-pub const FILE_FLAG_WRITE_THROUGH = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_WRITE_THROUGH;
-pub const FILE_FLAG_OVERLAPPED = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OVERLAPPED;
-pub const FILE_FLAG_NO_BUFFERING = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_NO_BUFFERING;
-pub const FILE_FLAG_RANDOM_ACCESS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_RANDOM_ACCESS;
-pub const FILE_FLAG_SEQUENTIAL_SCAN = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SEQUENTIAL_SCAN;
-pub const FILE_FLAG_DELETE_ON_CLOSE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_DELETE_ON_CLOSE;
-pub const FILE_FLAG_BACKUP_SEMANTICS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_BACKUP_SEMANTICS;
-pub const FILE_FLAG_POSIX_SEMANTICS = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_POSIX_SEMANTICS;
-pub const FILE_FLAG_SESSION_AWARE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_SESSION_AWARE;
-pub const FILE_FLAG_OPEN_REPARSE_POINT = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_REPARSE_POINT;
-pub const FILE_FLAG_OPEN_NO_RECALL = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_OPEN_NO_RECALL;
-pub const FILE_FLAG_FIRST_PIPE_INSTANCE = FILE_FLAGS_AND_ATTRIBUTES.FILE_FLAG_FIRST_PIPE_INSTANCE;
-pub const SECURITY_ANONYMOUS = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_ANONYMOUS;
-pub const SECURITY_IDENTIFICATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IDENTIFICATION;
-pub const SECURITY_IMPERSONATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_IMPERSONATION;
-pub const SECURITY_DELEGATION = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_DELEGATION;
-pub const SECURITY_CONTEXT_TRACKING = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_CONTEXT_TRACKING;
-pub const SECURITY_EFFECTIVE_ONLY = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_EFFECTIVE_ONLY;
-pub const SECURITY_SQOS_PRESENT = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_SQOS_PRESENT;
-pub const SECURITY_VALID_SQOS_FLAGS = FILE_FLAGS_AND_ATTRIBUTES.SECURITY_VALID_SQOS_FLAGS;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const FILE_ACCESS_FLAGS = extern enum(u32) {
-    FILE_READ_DATA = 1,
-    FILE_LIST_DIRECTORY = 1,
-    FILE_WRITE_DATA = 2,
-    FILE_ADD_FILE = 2,
-    FILE_APPEND_DATA = 4,
-    FILE_ADD_SUBDIRECTORY = 4,
-    FILE_CREATE_PIPE_INSTANCE = 4,
-    FILE_READ_EA = 8,
-    FILE_WRITE_EA = 16,
-    FILE_EXECUTE = 32,
-    FILE_TRAVERSE = 32,
-    FILE_DELETE_CHILD = 64,
-    FILE_READ_ATTRIBUTES = 128,
-    FILE_WRITE_ATTRIBUTES = 256,
-    READ_CONTROL = 131072,
-    SYNCHRONIZE = 1048576,
-    STANDARD_RIGHTS_REQUIRED = 983040,
-    STANDARD_RIGHTS_READ = 131072,
-    STANDARD_RIGHTS_WRITE = 131072,
-    STANDARD_RIGHTS_EXECUTE = 131072,
-    STANDARD_RIGHTS_ALL = 2031616,
-    SPECIFIC_RIGHTS_ALL = 65535,
-    FILE_ALL_ACCESS = 2032127,
-    FILE_GENERIC_READ = 1179785,
-    FILE_GENERIC_WRITE = 1179926,
-    FILE_GENERIC_EXECUTE = 1179808,
-    _,
-};
-pub const FILE_READ_DATA = FILE_ACCESS_FLAGS.FILE_READ_DATA;
-pub const FILE_LIST_DIRECTORY = FILE_ACCESS_FLAGS.FILE_LIST_DIRECTORY;
-pub const FILE_WRITE_DATA = FILE_ACCESS_FLAGS.FILE_WRITE_DATA;
-pub const FILE_ADD_FILE = FILE_ACCESS_FLAGS.FILE_ADD_FILE;
-pub const FILE_APPEND_DATA = FILE_ACCESS_FLAGS.FILE_APPEND_DATA;
-pub const FILE_ADD_SUBDIRECTORY = FILE_ACCESS_FLAGS.FILE_ADD_SUBDIRECTORY;
-pub const FILE_CREATE_PIPE_INSTANCE = FILE_ACCESS_FLAGS.FILE_CREATE_PIPE_INSTANCE;
-pub const FILE_READ_EA = FILE_ACCESS_FLAGS.FILE_READ_EA;
-pub const FILE_WRITE_EA = FILE_ACCESS_FLAGS.FILE_WRITE_EA;
-pub const FILE_EXECUTE = FILE_ACCESS_FLAGS.FILE_EXECUTE;
-pub const FILE_TRAVERSE = FILE_ACCESS_FLAGS.FILE_TRAVERSE;
-pub const FILE_DELETE_CHILD = FILE_ACCESS_FLAGS.FILE_DELETE_CHILD;
-pub const FILE_READ_ATTRIBUTES = FILE_ACCESS_FLAGS.FILE_READ_ATTRIBUTES;
-pub const FILE_WRITE_ATTRIBUTES = FILE_ACCESS_FLAGS.FILE_WRITE_ATTRIBUTES;
-pub const READ_CONTROL = FILE_ACCESS_FLAGS.READ_CONTROL;
-pub const SYNCHRONIZE = FILE_ACCESS_FLAGS.SYNCHRONIZE;
-pub const STANDARD_RIGHTS_REQUIRED = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_REQUIRED;
-pub const STANDARD_RIGHTS_READ = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_READ;
-pub const STANDARD_RIGHTS_WRITE = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_WRITE;
-pub const STANDARD_RIGHTS_EXECUTE = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_EXECUTE;
-pub const STANDARD_RIGHTS_ALL = FILE_ACCESS_FLAGS.STANDARD_RIGHTS_ALL;
-pub const SPECIFIC_RIGHTS_ALL = FILE_ACCESS_FLAGS.SPECIFIC_RIGHTS_ALL;
-pub const FILE_ALL_ACCESS = FILE_ACCESS_FLAGS.FILE_ALL_ACCESS;
-pub const FILE_GENERIC_READ = FILE_ACCESS_FLAGS.FILE_GENERIC_READ;
-pub const FILE_GENERIC_WRITE = FILE_ACCESS_FLAGS.FILE_GENERIC_WRITE;
-pub const FILE_GENERIC_EXECUTE = FILE_ACCESS_FLAGS.FILE_GENERIC_EXECUTE;
-
 pub const OFSTRUCT = extern struct {
     cBytes: u8,
     fFixedDisk: u8,
@@ -2333,7 +2342,7 @@ pub const COPYFILE2_PHASE_MAX = COPYFILE2_COPY_PHASE.MAX;
 pub const COPYFILE2_MESSAGE = extern struct {
     Type: COPYFILE2_MESSAGE_TYPE,
     dwPadding: u32,
-    Info: COPYFILE2_MESSAGE._Info_e__Union,
+    Info: _Info_e__Union,
     const _Info_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2372,7 +2381,7 @@ pub const FILE_NAME_INFO = extern struct {
 };
 
 pub const FILE_RENAME_INFO = extern struct {
-    Anonymous: FILE_RENAME_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     RootDirectory: HANDLE,
     FileNameLength: u32,
     FileName: [1]u16,
@@ -2506,8 +2515,8 @@ pub const FILE_REMOTE_PROTOCOL_INFO = extern struct {
     ProtocolRevision: u16,
     Reserved: u16,
     Flags: u32,
-    GenericReserved: FILE_REMOTE_PROTOCOL_INFO._GenericReserved_e__Struct,
-    ProtocolSpecific: FILE_REMOTE_PROTOCOL_INFO._ProtocolSpecific_e__Union,
+    GenericReserved: _GenericReserved_e__Struct,
+    ProtocolSpecific: _ProtocolSpecific_e__Union,
     const _ProtocolSpecific_e__Union = u32; // TODO: generate this nested type!
     const _GenericReserved_e__Struct = u32; // TODO: generate this nested type!
 };
@@ -2526,7 +2535,7 @@ pub const MaximumFileIdType = FILE_ID_TYPE.MaximumFileIdType;
 pub const FILE_ID_DESCRIPTOR = extern struct {
     dwSize: u32,
     Type: FILE_ID_TYPE,
-    Anonymous: FILE_ID_DESCRIPTOR._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3779,7 +3788,7 @@ pub const NTMS_OBJECTINFORMATIONA = extern struct {
     dwOperationalState: NtmsOperationalState,
     szName: [64]CHAR,
     szDescription: [127]CHAR,
-    Info: NTMS_OBJECTINFORMATIONA._Info_e__Union,
+    Info: _Info_e__Union,
     const _Info_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3793,7 +3802,7 @@ pub const NTMS_OBJECTINFORMATIONW = extern struct {
     dwOperationalState: NtmsOperationalState,
     szName: [64]u16,
     szDescription: [127]u16,
-    Info: NTMS_OBJECTINFORMATIONW._Info_e__Union,
+    Info: _Info_e__Union,
     const _Info_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3945,7 +3954,7 @@ pub const NTMS_I1_OBJECTINFORMATIONA = extern struct {
     dwOperationalState: u32,
     szName: [64]CHAR,
     szDescription: [127]CHAR,
-    Info: NTMS_I1_OBJECTINFORMATIONA._Info_e__Union,
+    Info: _Info_e__Union,
     const _Info_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3959,7 +3968,7 @@ pub const NTMS_I1_OBJECTINFORMATIONW = extern struct {
     dwOperationalState: u32,
     szName: [64]u16,
     szDescription: [127]u16,
-    Info: NTMS_I1_OBJECTINFORMATIONW._Info_e__Union,
+    Info: _Info_e__Union,
     const _Info_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -4285,7 +4294,7 @@ pub const CLFS_MGMT_POLICY = extern struct {
     LengthInBytes: u32,
     PolicyFlags: u32,
     PolicyType: CLFS_MGMT_POLICY_TYPE,
-    PolicyParameters: CLFS_MGMT_POLICY._PolicyParameters_e__Union,
+    PolicyParameters: _PolicyParameters_e__Union,
     const _PolicyParameters_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -4915,7 +4924,7 @@ pub const WOF_FILE_COMPRESSION_INFO_V1 = extern struct {
 };
 
 pub const TXF_ID = extern struct {
-    Anonymous: TXF_ID._Anonymous_e__Struct,
+    Anonymous: _Anonymous_e__Struct,
     const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -6766,7 +6775,7 @@ pub extern "KERNEL32" fn CreateIoCompletionPort(
 pub extern "KERNEL32" fn GetQueuedCompletionStatus(
     CompletionPort: HANDLE,
     lpNumberOfBytesTransferred: *u32,
-    lpCompletionKey: *u64,
+    lpCompletionKey: *usize,
     lpOverlapped: **OVERLAPPED,
     dwMilliseconds: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -8367,41 +8376,32 @@ const FILE_STORAGE_TIER_CLASS = @import("system_services.zig").FILE_STORAGE_TIER
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPOVERLAPPED_COMPLETION_ROUTINE;
-    _ = PFE_EXPORT_FUNC;
-    _ = PFE_IMPORT_FUNC;
-    _ = LPPROGRESS_ROUTINE;
-    _ = PCOPYFILE2_PROGRESS_ROUTINE;
-    _ = MAXMEDIALABEL;
-    _ = CLAIMMEDIALABEL;
-    _ = CLAIMMEDIALABELEX;
-    _ = CLFS_BLOCK_ALLOCATION;
-    _ = CLFS_BLOCK_DEALLOCATION;
-    _ = PCLFS_COMPLETION_ROUTINE;
-    _ = PLOG_TAIL_ADVANCE_CALLBACK;
-    _ = PLOG_FULL_HANDLER_CALLBACK;
-    _ = PLOG_UNPINNED_CALLBACK;
-    _ = WofEnumEntryProc;
-    _ = WofEnumFilesProc;
+    if (@hasDecl(@This(), "LPOVERLAPPED_COMPLETION_ROUTINE")) { _ = LPOVERLAPPED_COMPLETION_ROUTINE; }
+    if (@hasDecl(@This(), "PFE_EXPORT_FUNC")) { _ = PFE_EXPORT_FUNC; }
+    if (@hasDecl(@This(), "PFE_IMPORT_FUNC")) { _ = PFE_IMPORT_FUNC; }
+    if (@hasDecl(@This(), "LPPROGRESS_ROUTINE")) { _ = LPPROGRESS_ROUTINE; }
+    if (@hasDecl(@This(), "PCOPYFILE2_PROGRESS_ROUTINE")) { _ = PCOPYFILE2_PROGRESS_ROUTINE; }
+    if (@hasDecl(@This(), "MAXMEDIALABEL")) { _ = MAXMEDIALABEL; }
+    if (@hasDecl(@This(), "CLAIMMEDIALABEL")) { _ = CLAIMMEDIALABEL; }
+    if (@hasDecl(@This(), "CLAIMMEDIALABELEX")) { _ = CLAIMMEDIALABELEX; }
+    if (@hasDecl(@This(), "CLFS_BLOCK_ALLOCATION")) { _ = CLFS_BLOCK_ALLOCATION; }
+    if (@hasDecl(@This(), "CLFS_BLOCK_DEALLOCATION")) { _ = CLFS_BLOCK_DEALLOCATION; }
+    if (@hasDecl(@This(), "PCLFS_COMPLETION_ROUTINE")) { _ = PCLFS_COMPLETION_ROUTINE; }
+    if (@hasDecl(@This(), "PLOG_TAIL_ADVANCE_CALLBACK")) { _ = PLOG_TAIL_ADVANCE_CALLBACK; }
+    if (@hasDecl(@This(), "PLOG_FULL_HANDLER_CALLBACK")) { _ = PLOG_FULL_HANDLER_CALLBACK; }
+    if (@hasDecl(@This(), "PLOG_UNPINNED_CALLBACK")) { _ = PLOG_UNPINNED_CALLBACK; }
+    if (@hasDecl(@This(), "WofEnumEntryProc")) { _ = WofEnumEntryProc; }
+    if (@hasDecl(@This(), "WofEnumFilesProc")) { _ = WofEnumFilesProc; }
 
-    const constant_export_count = 195;
-    const type_export_count = 456;
-    const enum_value_export_count = 656;
-    const com_iface_id_export_count = 5;
-    const com_class_id_export_count = 0;
-    const func_export_count = 371;
-    const unicode_alias_count = 84;
-    const import_count = 24;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

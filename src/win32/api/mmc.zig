@@ -3591,7 +3591,7 @@ pub const MMC_TASK_DISPLAY_BITMAP = extern struct {
 
 pub const MMC_TASK_DISPLAY_OBJECT = extern struct {
     eDisplayType: MMC_TASK_DISPLAY_TYPE,
-    Anonymous: MMC_TASK_DISPLAY_OBJECT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3611,7 +3611,7 @@ pub const MMC_TASK = extern struct {
     szText: PWSTR,
     szHelpString: PWSTR,
     eActionType: MMC_ACTION_TYPE,
-    Anonymous: MMC_TASK._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -4098,7 +4098,7 @@ pub const RESULT_VIEW_TYPE_INFO = extern struct {
     pstrPersistableViewDescription: PWSTR,
     eViewType: MMC_VIEW_TYPE,
     dwMiscOptions: u32,
-    Anonymous: RESULT_VIEW_TYPE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -4439,24 +4439,15 @@ const HPROPSHEETPAGE = @import("controls.zig").HPROPSHEETPAGE;
 const HICON = @import("menus_and_resources.zig").HICON;
 
 test {
-    const constant_export_count = 88;
-    const type_export_count = 122;
-    const enum_value_export_count = 139;
-    const com_iface_id_export_count = 69;
-    const com_class_id_export_count = 4;
-    const func_export_count = 0;
-    const unicode_alias_count = 0;
-    const import_count = 18;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

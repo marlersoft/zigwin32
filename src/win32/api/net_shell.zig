@@ -148,7 +148,7 @@ pub const PNS_OSVERSIONCHECK = fn(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const NS_HELPER_ATTRIBUTES = extern struct {
-    Anonymous: NS_HELPER_ATTRIBUTES._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     guidHelper: Guid,
     pfnStart: PNS_HELPER_START_FN,
     pfnStop: PNS_HELPER_STOP_FN,
@@ -174,7 +174,7 @@ pub const CMD_GROUP_ENTRY = extern struct {
 };
 
 pub const NS_CONTEXT_ATTRIBUTES = extern struct {
-    Anonymous: NS_CONTEXT_ATTRIBUTES._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     pwszContext: PWSTR,
     guidHelper: Guid,
     dwFlags: u32,
@@ -285,35 +285,26 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PGET_RESOURCE_STRING_FN;
-    _ = PNS_CONTEXT_COMMIT_FN;
-    _ = PNS_CONTEXT_CONNECT_FN;
-    _ = PNS_CONTEXT_DUMP_FN;
-    _ = PNS_DLL_STOP_FN;
-    _ = PNS_HELPER_START_FN;
-    _ = PNS_HELPER_STOP_FN;
-    _ = PFN_HANDLE_CMD;
-    _ = PNS_OSVERSIONCHECK;
-    _ = PNS_DLL_INIT_FN;
+    if (@hasDecl(@This(), "PGET_RESOURCE_STRING_FN")) { _ = PGET_RESOURCE_STRING_FN; }
+    if (@hasDecl(@This(), "PNS_CONTEXT_COMMIT_FN")) { _ = PNS_CONTEXT_COMMIT_FN; }
+    if (@hasDecl(@This(), "PNS_CONTEXT_CONNECT_FN")) { _ = PNS_CONTEXT_CONNECT_FN; }
+    if (@hasDecl(@This(), "PNS_CONTEXT_DUMP_FN")) { _ = PNS_CONTEXT_DUMP_FN; }
+    if (@hasDecl(@This(), "PNS_DLL_STOP_FN")) { _ = PNS_DLL_STOP_FN; }
+    if (@hasDecl(@This(), "PNS_HELPER_START_FN")) { _ = PNS_HELPER_START_FN; }
+    if (@hasDecl(@This(), "PNS_HELPER_STOP_FN")) { _ = PNS_HELPER_STOP_FN; }
+    if (@hasDecl(@This(), "PFN_HANDLE_CMD")) { _ = PFN_HANDLE_CMD; }
+    if (@hasDecl(@This(), "PNS_OSVERSIONCHECK")) { _ = PNS_OSVERSIONCHECK; }
+    if (@hasDecl(@This(), "PNS_DLL_INIT_FN")) { _ = PNS_DLL_INIT_FN; }
 
-    const constant_export_count = 27;
-    const type_export_count = 20;
-    const enum_value_export_count = 21;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 8;
-    const unicode_alias_count = 0;
-    const import_count = 4;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

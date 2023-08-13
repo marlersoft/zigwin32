@@ -938,10 +938,8 @@ pub const ROLLBACK_FLAG_NO_UI = @as(u32, 1);
 pub const ROLLBACK_BITS = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (84)
+// Section: Types (118)
 //--------------------------------------------------------------------------------
-pub const HCMNOTIFICATION = ?*opaque{};
-
 pub const CONFIGRET = extern enum(u32) {
     CR_SUCCESS = 0,
     CR_DEFAULT = 1,
@@ -1075,12 +1073,8 @@ pub const CR_INVALID_INDEX = CONFIGRET.CR_INVALID_INDEX;
 pub const CR_INVALID_STRUCTURE_SIZE = CONFIGRET.CR_INVALID_STRUCTURE_SIZE;
 pub const NUM_CR_RESULTS = CONFIGRET.NUM_CR_RESULTS;
 
-pub const SETUP_DI_BUILD_DRIVER_DRIVER_TYPE = extern enum(u32) {
-    LASSDRIVER = 1,
-    OMPATDRIVER = 2,
-};
-pub const SPDIT_CLASSDRIVER = SETUP_DI_BUILD_DRIVER_DRIVER_TYPE.LASSDRIVER;
-pub const SPDIT_COMPATDRIVER = SETUP_DI_BUILD_DRIVER_DRIVER_TYPE.OMPATDRIVER;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_ALTPLATFORM_INFO_V3 = extern struct {
     cbSize: u32,
@@ -1088,7 +1082,7 @@ pub const SP_ALTPLATFORM_INFO_V3 = extern struct {
     MajorVersion: u32,
     MinorVersion: u32,
     ProcessorArchitecture: u16,
-    Anonymous: SP_ALTPLATFORM_INFO_V3._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     FirstValidatedMajorVersion: u32,
     FirstValidatedMinorVersion: u32,
     ProductType: u8,
@@ -1097,12 +1091,22 @@ pub const SP_ALTPLATFORM_INFO_V3 = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_DEVINFO_DATA = extern struct {
     cbSize: u32,
     ClassGuid: Guid,
     DevInst: u32,
     Reserved: usize,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_DEVICE_INTERFACE_DATA = extern struct {
     cbSize: u32,
@@ -1111,15 +1115,30 @@ pub const SP_DEVICE_INTERFACE_DATA = extern struct {
     Reserved: usize,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = extern struct {
     cbSize: u32,
     DevicePath: [1]CHAR,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = extern struct {
     cbSize: u32,
     DevicePath: [1]u16,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_DEVINFO_LIST_DETAIL_DATA_A = extern struct {
     cbSize: u32,
@@ -1128,12 +1147,22 @@ pub const SP_DEVINFO_LIST_DETAIL_DATA_A = extern struct {
     RemoteMachineName: [263]CHAR,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_DEVINFO_LIST_DETAIL_DATA_W = extern struct {
     cbSize: u32,
     ClassGuid: Guid,
     RemoteMachineHandle: HANDLE,
     RemoteMachineName: [263]u16,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_DEVINSTALL_PARAMS_A = extern struct {
     cbSize: u32,
@@ -1148,6 +1177,11 @@ pub const SP_DEVINSTALL_PARAMS_A = extern struct {
     DriverPath: [260]CHAR,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_DEVINSTALL_PARAMS_W = extern struct {
     cbSize: u32,
     Flags: u32,
@@ -1161,16 +1195,31 @@ pub const SP_DEVINSTALL_PARAMS_W = extern struct {
     DriverPath: [260]u16,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_CLASSINSTALL_HEADER = extern struct {
     cbSize: u32,
     InstallFunction: u32,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_ENABLECLASS_PARAMS = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     ClassGuid: Guid,
     EnableMessage: u32,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_PROPCHANGE_PARAMS = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
@@ -1179,11 +1228,21 @@ pub const SP_PROPCHANGE_PARAMS = extern struct {
     HwProfile: u32,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_REMOVEDEVICE_PARAMS = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     Scope: u32,
     HwProfile: u32,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_UNREMOVEDEVICE_PARAMS = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
@@ -1191,14 +1250,10 @@ pub const SP_UNREMOVEDEVICE_PARAMS = extern struct {
     HwProfile: u32,
 };
 
-pub const SP_SELECTDEVICE_PARAMS_A = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Title: [60]CHAR,
-    Instructions: [256]CHAR,
-    ListLabel: [30]CHAR,
-    SubTitle: [256]CHAR,
-    Reserved: [2]u8,
-};
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_SELECTDEVICE_PARAMS_W = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
@@ -1208,16 +1263,21 @@ pub const SP_SELECTDEVICE_PARAMS_W = extern struct {
     SubTitle: [256]u16,
 };
 
-pub const PDETECT_PROGRESS_NOTIFY = fn(
-    ProgressNotifyParam: *c_void,
-    DetectComplete: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_DETECTDEVICE_PARAMS = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     DetectProgressNotify: PDETECT_PROGRESS_NOTIFY,
     ProgressNotifyParam: *c_void,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_INSTALLWIZARD_DATA = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
@@ -1230,6 +1290,11 @@ pub const SP_INSTALLWIZARD_DATA = extern struct {
     hwndWizardDlg: HWND,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_NEWDEVICEWIZARD_DATA = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     Flags: u32,
@@ -1238,11 +1303,10 @@ pub const SP_NEWDEVICEWIZARD_DATA = extern struct {
     hwndWizardDlg: HWND,
 };
 
-pub const SP_TROUBLESHOOTER_PARAMS_A = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    ChmFile: [260]CHAR,
-    HtmlTroubleShooter: [260]CHAR,
-};
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_TROUBLESHOOTER_PARAMS_W = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
@@ -1250,15 +1314,20 @@ pub const SP_TROUBLESHOOTER_PARAMS_W = extern struct {
     HtmlTroubleShooter: [260]u16,
 };
 
-pub const SP_POWERMESSAGEWAKE_PARAMS_A = extern struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    PowerMessageWake: [512]CHAR,
-};
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_POWERMESSAGEWAKE_PARAMS_W = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     PowerMessageWake: [512]u16,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_DRVINFO_DATA_V2_A = extern struct {
     cbSize: u32,
@@ -1271,6 +1340,11 @@ pub const SP_DRVINFO_DATA_V2_A = extern struct {
     DriverVersion: u64,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_DRVINFO_DATA_V2_W = extern struct {
     cbSize: u32,
     DriverType: u32,
@@ -1282,6 +1356,11 @@ pub const SP_DRVINFO_DATA_V2_W = extern struct {
     DriverVersion: u64,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_DRVINFO_DATA_V1_A = extern struct {
     cbSize: u32,
     DriverType: u32,
@@ -1291,6 +1370,11 @@ pub const SP_DRVINFO_DATA_V1_A = extern struct {
     ProviderName: [256]CHAR,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_DRVINFO_DATA_V1_W = extern struct {
     cbSize: u32,
     DriverType: u32,
@@ -1299,6 +1383,11 @@ pub const SP_DRVINFO_DATA_V1_W = extern struct {
     MfgName: [256]u16,
     ProviderName: [256]u16,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_DRVINFO_DETAIL_DATA_A = extern struct {
     cbSize: u32,
@@ -1312,6 +1401,11 @@ pub const SP_DRVINFO_DETAIL_DATA_A = extern struct {
     HardwareID: [1]CHAR,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_DRVINFO_DETAIL_DATA_W = extern struct {
     cbSize: u32,
     InfDate: FILETIME,
@@ -1324,6 +1418,11 @@ pub const SP_DRVINFO_DETAIL_DATA_W = extern struct {
     HardwareID: [1]u16,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_DRVINSTALL_PARAMS = extern struct {
     cbSize: u32,
     Rank: u32,
@@ -1332,12 +1431,10 @@ pub const SP_DRVINSTALL_PARAMS = extern struct {
     Reserved: u32,
 };
 
-pub const PSP_DETSIG_CMPPROC = fn(
-    DeviceInfoSet: *c_void,
-    NewDeviceData: *SP_DEVINFO_DATA,
-    ExistingDeviceData: *SP_DEVINFO_DATA,
-    CompareContext: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const COINSTALLER_CONTEXT_DATA = extern struct {
     PostProcessing: BOOL,
@@ -1345,11 +1442,21 @@ pub const COINSTALLER_CONTEXT_DATA = extern struct {
     PrivateData: *c_void,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_CLASSIMAGELIST_DATA = extern struct {
     cbSize: u32,
     ImageList: HIMAGELIST,
     Reserved: usize,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_PROPSHEETPAGE_REQUEST = extern struct {
     cbSize: u32,
@@ -1358,12 +1465,22 @@ pub const SP_PROPSHEETPAGE_REQUEST = extern struct {
     DeviceInfoData: *SP_DEVINFO_DATA,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_BACKUP_QUEUE_PARAMS_V2_A = extern struct {
     cbSize: u32,
     FullInfPath: [260]CHAR,
     FilenameOffset: i32,
     ReinstallInstance: [260]CHAR,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
 
 pub const SP_BACKUP_QUEUE_PARAMS_V2_W = extern struct {
     cbSize: u32,
@@ -1372,17 +1489,63 @@ pub const SP_BACKUP_QUEUE_PARAMS_V2_W = extern struct {
     ReinstallInstance: [260]u16,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_BACKUP_QUEUE_PARAMS_V1_A = extern struct {
     cbSize: u32,
     FullInfPath: [260]CHAR,
     FilenameOffset: i32,
 };
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 pub const SP_BACKUP_QUEUE_PARAMS_V1_W = extern struct {
     cbSize: u32,
     FullInfPath: [260]u16,
     FilenameOffset: i32,
 };
+
+}, else => struct { } };
+
+pub const HCMNOTIFICATION = ?*opaque{};
+
+pub const SP_SELECTDEVICE_PARAMS_A = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    Title: [60]CHAR,
+    Instructions: [256]CHAR,
+    ListLabel: [30]CHAR,
+    SubTitle: [256]CHAR,
+    Reserved: [2]u8,
+};
+
+pub const PDETECT_PROGRESS_NOTIFY = fn(
+    ProgressNotifyParam: *c_void,
+    DetectComplete: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const SP_TROUBLESHOOTER_PARAMS_A = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    ChmFile: [260]CHAR,
+    HtmlTroubleShooter: [260]CHAR,
+};
+
+pub const SP_POWERMESSAGEWAKE_PARAMS_A = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    PowerMessageWake: [512]CHAR,
+};
+
+pub const PSP_DETSIG_CMPPROC = fn(
+    DeviceInfoSet: *c_void,
+    NewDeviceData: *SP_DEVINFO_DATA,
+    ExistingDeviceData: *SP_DEVINFO_DATA,
+    CompareContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const SetupFileLogInfo = extern enum(i32) {
     SourceFilename = 0,
@@ -1692,7 +1855,7 @@ pub const CM_NOTIFY_FILTER = extern struct {
     Flags: u32,
     FilterType: CM_NOTIFY_FILTER_TYPE,
     Reserved: u32,
-    u: CM_NOTIFY_FILTER._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1724,7 +1887,7 @@ pub const CM_NOTIFY_ACTION_MAX = CM_NOTIFY_ACTION.MAX;
 pub const CM_NOTIFY_EVENT_DATA = extern struct {
     FilterType: CM_NOTIFY_FILTER_TYPE,
     Reserved: u32,
-    u: CM_NOTIFY_EVENT_DATA._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1736,6 +1899,453 @@ pub const PCM_NOTIFY_CALLBACK = fn(
     EventData: *CM_NOTIFY_EVENT_DATA,
     EventDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const SETUP_DI_BUILD_DRIVER_DRIVER_TYPE = extern enum(u32) {
+    LASSDRIVER = 1,
+    OMPATDRIVER = 2,
+};
+pub const SPDIT_CLASSDRIVER = SETUP_DI_BUILD_DRIVER_DRIVER_TYPE.LASSDRIVER;
+pub const SPDIT_COMPATDRIVER = SETUP_DI_BUILD_DRIVER_DRIVER_TYPE.OMPATDRIVER;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_ALTPLATFORM_INFO_V3 = extern struct {
+    cbSize: u32,
+    Platform: u32,
+    MajorVersion: u32,
+    MinorVersion: u32,
+    ProcessorArchitecture: u16,
+    Anonymous: _Anonymous_e__Union,
+    FirstValidatedMajorVersion: u32,
+    FirstValidatedMinorVersion: u32,
+    ProductType: u8,
+    SuiteMask: u16,
+    BuildNumber: u32,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVINFO_DATA = extern struct {
+    cbSize: u32,
+    ClassGuid: Guid,
+    DevInst: u32,
+    Reserved: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVICE_INTERFACE_DATA = extern struct {
+    cbSize: u32,
+    InterfaceClassGuid: Guid,
+    Flags: u32,
+    Reserved: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = extern struct {
+    cbSize: u32,
+    DevicePath: [1]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = extern struct {
+    cbSize: u32,
+    DevicePath: [1]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVINFO_LIST_DETAIL_DATA_A = extern struct {
+    cbSize: u32,
+    ClassGuid: Guid,
+    RemoteMachineHandle: HANDLE,
+    RemoteMachineName: [263]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVINFO_LIST_DETAIL_DATA_W = extern struct {
+    cbSize: u32,
+    ClassGuid: Guid,
+    RemoteMachineHandle: HANDLE,
+    RemoteMachineName: [263]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVINSTALL_PARAMS_A = extern struct {
+    cbSize: u32,
+    Flags: u32,
+    FlagsEx: u32,
+    hwndParent: HWND,
+    InstallMsgHandler: PSP_FILE_CALLBACK_A,
+    InstallMsgHandlerContext: *c_void,
+    FileQueue: *c_void,
+    ClassInstallReserved: usize,
+    Reserved: u32,
+    DriverPath: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVINSTALL_PARAMS_W = extern struct {
+    cbSize: u32,
+    Flags: u32,
+    FlagsEx: u32,
+    hwndParent: HWND,
+    InstallMsgHandler: PSP_FILE_CALLBACK_A,
+    InstallMsgHandlerContext: *c_void,
+    FileQueue: *c_void,
+    ClassInstallReserved: usize,
+    Reserved: u32,
+    DriverPath: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_CLASSINSTALL_HEADER = extern struct {
+    cbSize: u32,
+    InstallFunction: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_ENABLECLASS_PARAMS = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    ClassGuid: Guid,
+    EnableMessage: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_PROPCHANGE_PARAMS = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    StateChange: u32,
+    Scope: u32,
+    HwProfile: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_REMOVEDEVICE_PARAMS = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    Scope: u32,
+    HwProfile: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_UNREMOVEDEVICE_PARAMS = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    Scope: u32,
+    HwProfile: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_SELECTDEVICE_PARAMS_W = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    Title: [60]u16,
+    Instructions: [256]u16,
+    ListLabel: [30]u16,
+    SubTitle: [256]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DETECTDEVICE_PARAMS = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    DetectProgressNotify: PDETECT_PROGRESS_NOTIFY,
+    ProgressNotifyParam: *c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_INSTALLWIZARD_DATA = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    Flags: u32,
+    DynamicPages: [20]isize,
+    NumDynamicPages: u32,
+    DynamicPageFlags: u32,
+    PrivateFlags: u32,
+    PrivateData: LPARAM,
+    hwndWizardDlg: HWND,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_NEWDEVICEWIZARD_DATA = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    Flags: u32,
+    DynamicPages: [20]isize,
+    NumDynamicPages: u32,
+    hwndWizardDlg: HWND,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_TROUBLESHOOTER_PARAMS_W = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    ChmFile: [260]u16,
+    HtmlTroubleShooter: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_POWERMESSAGEWAKE_PARAMS_W = extern struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    PowerMessageWake: [512]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINFO_DATA_V2_A = extern struct {
+    cbSize: u32,
+    DriverType: u32,
+    Reserved: usize,
+    Description: [256]CHAR,
+    MfgName: [256]CHAR,
+    ProviderName: [256]CHAR,
+    DriverDate: FILETIME,
+    DriverVersion: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINFO_DATA_V2_W = extern struct {
+    cbSize: u32,
+    DriverType: u32,
+    Reserved: usize,
+    Description: [256]u16,
+    MfgName: [256]u16,
+    ProviderName: [256]u16,
+    DriverDate: FILETIME,
+    DriverVersion: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINFO_DATA_V1_A = extern struct {
+    cbSize: u32,
+    DriverType: u32,
+    Reserved: usize,
+    Description: [256]CHAR,
+    MfgName: [256]CHAR,
+    ProviderName: [256]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINFO_DATA_V1_W = extern struct {
+    cbSize: u32,
+    DriverType: u32,
+    Reserved: usize,
+    Description: [256]u16,
+    MfgName: [256]u16,
+    ProviderName: [256]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINFO_DETAIL_DATA_A = extern struct {
+    cbSize: u32,
+    InfDate: FILETIME,
+    CompatIDsOffset: u32,
+    CompatIDsLength: u32,
+    Reserved: usize,
+    SectionName: [256]CHAR,
+    InfFileName: [260]CHAR,
+    DrvDescription: [256]CHAR,
+    HardwareID: [1]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINFO_DETAIL_DATA_W = extern struct {
+    cbSize: u32,
+    InfDate: FILETIME,
+    CompatIDsOffset: u32,
+    CompatIDsLength: u32,
+    Reserved: usize,
+    SectionName: [256]u16,
+    InfFileName: [260]u16,
+    DrvDescription: [256]u16,
+    HardwareID: [1]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINSTALL_PARAMS = extern struct {
+    cbSize: u32,
+    Rank: u32,
+    Flags: u32,
+    PrivateData: usize,
+    Reserved: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const COINSTALLER_CONTEXT_DATA = extern struct {
+    PostProcessing: BOOL,
+    InstallResult: u32,
+    PrivateData: *c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_CLASSIMAGELIST_DATA = extern struct {
+    cbSize: u32,
+    ImageList: HIMAGELIST,
+    Reserved: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_PROPSHEETPAGE_REQUEST = extern struct {
+    cbSize: u32,
+    PageRequested: u32,
+    DeviceInfoSet: *c_void,
+    DeviceInfoData: *SP_DEVINFO_DATA,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_BACKUP_QUEUE_PARAMS_V2_A = extern struct {
+    cbSize: u32,
+    FullInfPath: [260]CHAR,
+    FilenameOffset: i32,
+    ReinstallInstance: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_BACKUP_QUEUE_PARAMS_V2_W = extern struct {
+    cbSize: u32,
+    FullInfPath: [260]u16,
+    FilenameOffset: i32,
+    ReinstallInstance: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_BACKUP_QUEUE_PARAMS_V1_A = extern struct {
+    cbSize: u32,
+    FullInfPath: [260]CHAR,
+    FilenameOffset: i32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_BACKUP_QUEUE_PARAMS_V1_W = extern struct {
+    cbSize: u32,
+    FullInfPath: [260]u16,
+    FilenameOffset: i32,
+};
+
+}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------
@@ -5561,28 +6171,19 @@ const HIMAGELIST = @import("controls.zig").HIMAGELIST;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PDETECT_PROGRESS_NOTIFY;
-    _ = PSP_DETSIG_CMPPROC;
-    _ = PCM_NOTIFY_CALLBACK;
+    if (@hasDecl(@This(), "PDETECT_PROGRESS_NOTIFY")) { _ = PDETECT_PROGRESS_NOTIFY; }
+    if (@hasDecl(@This(), "PSP_DETSIG_CMPPROC")) { _ = PSP_DETSIG_CMPPROC; }
+    if (@hasDecl(@This(), "PCM_NOTIFY_CALLBACK")) { _ = PCM_NOTIFY_CALLBACK; }
 
-    const constant_export_count = 934;
-    const type_export_count = 84;
-    const enum_value_export_count = 102;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 403;
-    const unicode_alias_count = 119;
-    const import_count = 23;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

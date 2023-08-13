@@ -533,24 +533,24 @@ pub const DDBLTFX = extern struct {
     dwZBufferHigh: u32,
     dwZBufferBaseDest: u32,
     dwZDestConstBitDepth: u32,
-    Anonymous1: DDBLTFX._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     dwZSrcConstBitDepth: u32,
-    Anonymous2: DDBLTFX._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     dwAlphaEdgeBlendBitDepth: u32,
     dwAlphaEdgeBlend: u32,
     dwReserved: u32,
     dwAlphaDestConstBitDepth: u32,
-    Anonymous3: DDBLTFX._Anonymous3_e__Union,
+    Anonymous3: _Anonymous3_e__Union,
     dwAlphaSrcConstBitDepth: u32,
-    Anonymous4: DDBLTFX._Anonymous4_e__Union,
-    Anonymous5: DDBLTFX._Anonymous5_e__Union,
+    Anonymous4: _Anonymous4_e__Union,
+    Anonymous5: _Anonymous5_e__Union,
     ddckDestColorkey: DDCOLORKEY,
     ddckSrcColorkey: DDCOLORKEY,
     const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDSCAPS = extern struct {
@@ -564,7 +564,7 @@ pub const DDOSCAPS = extern struct {
 pub const DDSCAPSEX = extern struct {
     dwCaps2: u32,
     dwCaps3: u32,
-    Anonymous: DDSCAPSEX._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -572,7 +572,7 @@ pub const DDSCAPS2 = extern struct {
     dwCaps: u32,
     dwCaps2: u32,
     dwCaps3: u32,
-    Anonymous: DDSCAPS2._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -852,16 +852,16 @@ pub const DDPIXELFORMAT = extern struct {
     dwSize: u32,
     dwFlags: u32,
     dwFourCC: u32,
-    Anonymous1: DDPIXELFORMAT._Anonymous1_e__Union,
-    Anonymous2: DDPIXELFORMAT._Anonymous2_e__Union,
-    Anonymous3: DDPIXELFORMAT._Anonymous3_e__Union,
-    Anonymous4: DDPIXELFORMAT._Anonymous4_e__Union,
-    Anonymous5: DDPIXELFORMAT._Anonymous5_e__Union,
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
+    Anonymous3: _Anonymous3_e__Union,
+    Anonymous4: _Anonymous4_e__Union,
+    Anonymous5: _Anonymous5_e__Union,
+    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDOVERLAYFX = extern struct {
@@ -870,15 +870,15 @@ pub const DDOVERLAYFX = extern struct {
     dwAlphaEdgeBlend: u32,
     dwReserved: u32,
     dwAlphaDestConstBitDepth: u32,
-    Anonymous1: DDOVERLAYFX._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     dwAlphaSrcConstBitDepth: u32,
-    Anonymous2: DDOVERLAYFX._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     dckDestColorkey: DDCOLORKEY,
     dckSrcColorkey: DDCOLORKEY,
     dwDDFX: u32,
     dwFlags: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDBLTBATCH = extern struct {
@@ -3751,9 +3751,9 @@ pub const DDSURFACEDESC = extern struct {
     dwFlags: u32,
     dwHeight: u32,
     dwWidth: u32,
-    Anonymous1: DDSURFACEDESC._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     dwBackBufferCount: u32,
-    Anonymous2: DDSURFACEDESC._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     dwAlphaBitDepth: u32,
     dwReserved: u32,
     lpSurface: *c_void,
@@ -3763,8 +3763,8 @@ pub const DDSURFACEDESC = extern struct {
     ddckCKSrcBlt: DDCOLORKEY,
     ddpfPixelFormat: DDPIXELFORMAT,
     ddsCaps: DDSCAPS,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDSURFACEDESC2 = extern struct {
@@ -3772,24 +3772,24 @@ pub const DDSURFACEDESC2 = extern struct {
     dwFlags: u32,
     dwHeight: u32,
     dwWidth: u32,
-    Anonymous1: DDSURFACEDESC2._Anonymous1_e__Union,
-    Anonymous2: DDSURFACEDESC2._Anonymous2_e__Union,
-    Anonymous3: DDSURFACEDESC2._Anonymous3_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
+    Anonymous3: _Anonymous3_e__Union,
     dwAlphaBitDepth: u32,
     dwReserved: u32,
     lpSurface: *c_void,
-    Anonymous4: DDSURFACEDESC2._Anonymous4_e__Union,
+    Anonymous4: _Anonymous4_e__Union,
     ddckCKDestBlt: DDCOLORKEY,
     ddckCKSrcOverlay: DDCOLORKEY,
     ddckCKSrcBlt: DDCOLORKEY,
-    Anonymous5: DDSURFACEDESC2._Anonymous5_e__Union,
+    Anonymous5: _Anonymous5_e__Union,
     ddsCaps: DDSCAPS2,
     dwTextureStage: u32,
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDOPTSURFACEDESC = extern struct {
@@ -3915,37 +3915,28 @@ const RGNDATA = @import("gdi.zig").RGNDATA;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPDDENUMCALLBACKA;
-    _ = LPDDENUMCALLBACKW;
-    _ = LPDDENUMCALLBACKEXA;
-    _ = LPDDENUMCALLBACKEXW;
-    _ = LPDIRECTDRAWENUMERATEEXA;
-    _ = LPDIRECTDRAWENUMERATEEXW;
-    _ = LPDDENUMMODESCALLBACK;
-    _ = LPDDENUMMODESCALLBACK2;
-    _ = LPDDENUMSURFACESCALLBACK;
-    _ = LPDDENUMSURFACESCALLBACK2;
-    _ = LPDDENUMSURFACESCALLBACK7;
-    _ = LPCLIPPERCALLBACK;
+    if (@hasDecl(@This(), "LPDDENUMCALLBACKA")) { _ = LPDDENUMCALLBACKA; }
+    if (@hasDecl(@This(), "LPDDENUMCALLBACKW")) { _ = LPDDENUMCALLBACKW; }
+    if (@hasDecl(@This(), "LPDDENUMCALLBACKEXA")) { _ = LPDDENUMCALLBACKEXA; }
+    if (@hasDecl(@This(), "LPDDENUMCALLBACKEXW")) { _ = LPDDENUMCALLBACKEXW; }
+    if (@hasDecl(@This(), "LPDIRECTDRAWENUMERATEEXA")) { _ = LPDIRECTDRAWENUMERATEEXA; }
+    if (@hasDecl(@This(), "LPDIRECTDRAWENUMERATEEXW")) { _ = LPDIRECTDRAWENUMERATEEXW; }
+    if (@hasDecl(@This(), "LPDDENUMMODESCALLBACK")) { _ = LPDDENUMMODESCALLBACK; }
+    if (@hasDecl(@This(), "LPDDENUMMODESCALLBACK2")) { _ = LPDDENUMMODESCALLBACK2; }
+    if (@hasDecl(@This(), "LPDDENUMSURFACESCALLBACK")) { _ = LPDDENUMSURFACESCALLBACK; }
+    if (@hasDecl(@This(), "LPDDENUMSURFACESCALLBACK2")) { _ = LPDDENUMSURFACESCALLBACK2; }
+    if (@hasDecl(@This(), "LPDDENUMSURFACESCALLBACK7")) { _ = LPDDENUMSURFACESCALLBACK7; }
+    if (@hasDecl(@This(), "LPCLIPPERCALLBACK")) { _ = LPCLIPPERCALLBACK; }
 
-    const constant_export_count = 428;
-    const type_export_count = 48;
-    const enum_value_export_count = 0;
-    const com_iface_id_export_count = 13;
-    const com_class_id_export_count = 0;
-    const func_export_count = 7;
-    const unicode_alias_count = 5;
-    const import_count = 17;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

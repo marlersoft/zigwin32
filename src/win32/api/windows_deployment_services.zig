@@ -2,6 +2,40 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (108)
 //--------------------------------------------------------------------------------
+pub const WdsCliFlagEnumFilterVersion = @as(i32, 1);
+pub const WdsCliFlagEnumFilterFirmware = @as(i32, 2);
+pub const WDS_LOG_TYPE_CLIENT_ERROR = @as(i32, 1);
+pub const WDS_LOG_TYPE_CLIENT_STARTED = @as(i32, 2);
+pub const WDS_LOG_TYPE_CLIENT_FINISHED = @as(i32, 3);
+pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED = @as(i32, 4);
+pub const WDS_LOG_TYPE_CLIENT_APPLY_STARTED = @as(i32, 5);
+pub const WDS_LOG_TYPE_CLIENT_APPLY_FINISHED = @as(i32, 6);
+pub const WDS_LOG_TYPE_CLIENT_GENERIC_MESSAGE = @as(i32, 7);
+pub const WDS_LOG_TYPE_CLIENT_UNATTEND_MODE = @as(i32, 8);
+pub const WDS_LOG_TYPE_CLIENT_TRANSFER_START = @as(i32, 9);
+pub const WDS_LOG_TYPE_CLIENT_TRANSFER_END = @as(i32, 10);
+pub const WDS_LOG_TYPE_CLIENT_TRANSFER_DOWNGRADE = @as(i32, 11);
+pub const WDS_LOG_TYPE_CLIENT_DOMAINJOINERROR = @as(i32, 12);
+pub const WDS_LOG_TYPE_CLIENT_POST_ACTIONS_START = @as(i32, 13);
+pub const WDS_LOG_TYPE_CLIENT_POST_ACTIONS_END = @as(i32, 14);
+pub const WDS_LOG_TYPE_CLIENT_APPLY_STARTED_2 = @as(i32, 15);
+pub const WDS_LOG_TYPE_CLIENT_APPLY_FINISHED_2 = @as(i32, 16);
+pub const WDS_LOG_TYPE_CLIENT_DOMAINJOINERROR_2 = @as(i32, 17);
+pub const WDS_LOG_TYPE_CLIENT_DRIVER_PACKAGE_NOT_ACCESSIBLE = @as(i32, 18);
+pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_START = @as(i32, 19);
+pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_END = @as(i32, 20);
+pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_FAILURE = @as(i32, 21);
+pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED2 = @as(i32, 22);
+pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED3 = @as(i32, 23);
+pub const WDS_LOG_TYPE_CLIENT_MAX_CODE = @as(i32, 24);
+pub const WDS_LOG_LEVEL_DISABLED = @as(i32, 0);
+pub const WDS_LOG_LEVEL_ERROR = @as(i32, 1);
+pub const WDS_LOG_LEVEL_WARNING = @as(i32, 2);
+pub const WDS_LOG_LEVEL_INFO = @as(i32, 3);
+pub const WDS_CLI_MSG_START = @as(i32, 0);
+pub const WDS_CLI_MSG_COMPLETE = @as(i32, 1);
+pub const WDS_CLI_MSG_PROGRESS = @as(i32, 2);
+pub const WDS_CLI_MSG_TEXT = @as(i32, 3);
 pub const WDS_CLI_TRANSFER_ASYNCHRONOUS = @as(u32, 1);
 pub const WDS_CLI_NO_SPARSE_FILE = @as(u32, 2);
 pub const PXE_DHCP_SERVER_PORT = @as(u32, 67);
@@ -76,72 +110,10 @@ pub const WDSBP_OPTVAL_PXE_PROMPT_NOPROMPT = @as(u32, 2);
 pub const WDSBP_OPTVAL_PXE_PROMPT_OPTOUT = @as(u32, 3);
 pub const WDSBP_OPTVAL_NBP_VER_7 = @as(u32, 1792);
 pub const WDSBP_OPTVAL_NBP_VER_8 = @as(u32, 2048);
-pub const WdsCliFlagEnumFilterVersion = @as(i32, 1);
-pub const WdsCliFlagEnumFilterFirmware = @as(i32, 2);
-pub const WDS_LOG_TYPE_CLIENT_ERROR = @as(i32, 1);
-pub const WDS_LOG_TYPE_CLIENT_STARTED = @as(i32, 2);
-pub const WDS_LOG_TYPE_CLIENT_FINISHED = @as(i32, 3);
-pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED = @as(i32, 4);
-pub const WDS_LOG_TYPE_CLIENT_APPLY_STARTED = @as(i32, 5);
-pub const WDS_LOG_TYPE_CLIENT_APPLY_FINISHED = @as(i32, 6);
-pub const WDS_LOG_TYPE_CLIENT_GENERIC_MESSAGE = @as(i32, 7);
-pub const WDS_LOG_TYPE_CLIENT_UNATTEND_MODE = @as(i32, 8);
-pub const WDS_LOG_TYPE_CLIENT_TRANSFER_START = @as(i32, 9);
-pub const WDS_LOG_TYPE_CLIENT_TRANSFER_END = @as(i32, 10);
-pub const WDS_LOG_TYPE_CLIENT_TRANSFER_DOWNGRADE = @as(i32, 11);
-pub const WDS_LOG_TYPE_CLIENT_DOMAINJOINERROR = @as(i32, 12);
-pub const WDS_LOG_TYPE_CLIENT_POST_ACTIONS_START = @as(i32, 13);
-pub const WDS_LOG_TYPE_CLIENT_POST_ACTIONS_END = @as(i32, 14);
-pub const WDS_LOG_TYPE_CLIENT_APPLY_STARTED_2 = @as(i32, 15);
-pub const WDS_LOG_TYPE_CLIENT_APPLY_FINISHED_2 = @as(i32, 16);
-pub const WDS_LOG_TYPE_CLIENT_DOMAINJOINERROR_2 = @as(i32, 17);
-pub const WDS_LOG_TYPE_CLIENT_DRIVER_PACKAGE_NOT_ACCESSIBLE = @as(i32, 18);
-pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_START = @as(i32, 19);
-pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_END = @as(i32, 20);
-pub const WDS_LOG_TYPE_CLIENT_OFFLINE_DRIVER_INJECTION_FAILURE = @as(i32, 21);
-pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED2 = @as(i32, 22);
-pub const WDS_LOG_TYPE_CLIENT_IMAGE_SELECTED3 = @as(i32, 23);
-pub const WDS_LOG_TYPE_CLIENT_MAX_CODE = @as(i32, 24);
-pub const WDS_LOG_LEVEL_DISABLED = @as(i32, 0);
-pub const WDS_LOG_LEVEL_ERROR = @as(i32, 1);
-pub const WDS_LOG_LEVEL_WARNING = @as(i32, 2);
-pub const WDS_LOG_LEVEL_INFO = @as(i32, 3);
-pub const WDS_CLI_MSG_START = @as(i32, 0);
-pub const WDS_CLI_MSG_COMPLETE = @as(i32, 1);
-pub const WDS_CLI_MSG_PROGRESS = @as(i32, 2);
-pub const WDS_CLI_MSG_TEXT = @as(i32, 3);
 
 //--------------------------------------------------------------------------------
 // Section: Types (89)
 //--------------------------------------------------------------------------------
-pub const PROCESSOR_ARCHITECTURE = extern enum(u32) {
-    AMD64 = 9,
-    IA64 = 6,
-    INTEL = 0,
-    ARM = 5,
-    UNKNOWN = 65535,
-};
-pub const PROCESSOR_ARCHITECTURE_AMD64 = PROCESSOR_ARCHITECTURE.AMD64;
-pub const PROCESSOR_ARCHITECTURE_IA64 = PROCESSOR_ARCHITECTURE.IA64;
-pub const PROCESSOR_ARCHITECTURE_INTEL = PROCESSOR_ARCHITECTURE.INTEL;
-pub const PROCESSOR_ARCHITECTURE_ARM = PROCESSOR_ARCHITECTURE.ARM;
-pub const PROCESSOR_ARCHITECTURE_UNKNOWN = PROCESSOR_ARCHITECTURE.UNKNOWN;
-
-pub const PFN_WDS_CLI_CALLBACK_MESSAGE_ID = extern enum(u32) {
-    START = 0,
-    COMPLETE = 1,
-    PROGRESS = 2,
-    TEXT = 3,
-};
-// TODO: enum 'PFN_WDS_CLI_CALLBACK_MESSAGE_ID' has known issues with its value aliases
-
-pub const WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL = extern enum(u32) {
-    AUTH = 1,
-    NO_AUTH = 2,
-};
-pub const WDS_TRANSPORTCLIENT_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.AUTH;
-pub const WDS_TRANSPORTCLIENT_NO_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.NO_AUTH;
-
 pub const WDS_CLI_CRED = extern struct {
     pwszUserName: [*:0]const u16,
     pwszDomain: [*:0]const u16,
@@ -210,7 +182,7 @@ pub const PXE_DHCP_MESSAGE = extern struct {
     HardwareAddress: [16]u8,
     HostName: [64]u8,
     BootFileName: [128]u8,
-    Anonymous: PXE_DHCP_MESSAGE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Option: PXE_DHCP_OPTION,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -252,7 +224,7 @@ pub const PXE_PROVIDER = extern struct {
 
 pub const PXE_ADDRESS = extern struct {
     uFlags: u32,
-    Anonymous: PXE_ADDRESS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     uAddrLen: u32,
     uPort: u16,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -2039,6 +2011,34 @@ pub const IWdsTransportContentProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const PROCESSOR_ARCHITECTURE = extern enum(u32) {
+    AMD64 = 9,
+    IA64 = 6,
+    INTEL = 0,
+    ARM = 5,
+    UNKNOWN = 65535,
+};
+pub const PROCESSOR_ARCHITECTURE_AMD64 = PROCESSOR_ARCHITECTURE.AMD64;
+pub const PROCESSOR_ARCHITECTURE_IA64 = PROCESSOR_ARCHITECTURE.IA64;
+pub const PROCESSOR_ARCHITECTURE_INTEL = PROCESSOR_ARCHITECTURE.INTEL;
+pub const PROCESSOR_ARCHITECTURE_ARM = PROCESSOR_ARCHITECTURE.ARM;
+pub const PROCESSOR_ARCHITECTURE_UNKNOWN = PROCESSOR_ARCHITECTURE.UNKNOWN;
+
+pub const PFN_WDS_CLI_CALLBACK_MESSAGE_ID = extern enum(u32) {
+    START = 0,
+    COMPLETE = 1,
+    PROGRESS = 2,
+    TEXT = 3,
+};
+// TODO: enum 'PFN_WDS_CLI_CALLBACK_MESSAGE_ID' has known issues with its value aliases
+
+pub const WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL = extern enum(u32) {
+    AUTH = 1,
+    NO_AUTH = 2,
+};
+pub const WDS_TRANSPORTCLIENT_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.AUTH;
+pub const WDS_TRANSPORTCLIENT_NO_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.NO_AUTH;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (94)
@@ -2757,33 +2757,24 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PFN_WdsCliTraceFunction;
-    _ = PFN_WdsCliCallback;
-    _ = PFN_WdsTransportClientSessionStart;
-    _ = PFN_WdsTransportClientSessionStartEx;
-    _ = PFN_WdsTransportClientReceiveMetadata;
-    _ = PFN_WdsTransportClientReceiveContents;
-    _ = PFN_WdsTransportClientSessionComplete;
-    _ = PFN_WdsTransportClientSessionNegotiate;
+    if (@hasDecl(@This(), "PFN_WdsCliTraceFunction")) { _ = PFN_WdsCliTraceFunction; }
+    if (@hasDecl(@This(), "PFN_WdsCliCallback")) { _ = PFN_WdsCliCallback; }
+    if (@hasDecl(@This(), "PFN_WdsTransportClientSessionStart")) { _ = PFN_WdsTransportClientSessionStart; }
+    if (@hasDecl(@This(), "PFN_WdsTransportClientSessionStartEx")) { _ = PFN_WdsTransportClientSessionStartEx; }
+    if (@hasDecl(@This(), "PFN_WdsTransportClientReceiveMetadata")) { _ = PFN_WdsTransportClientReceiveMetadata; }
+    if (@hasDecl(@This(), "PFN_WdsTransportClientReceiveContents")) { _ = PFN_WdsTransportClientReceiveContents; }
+    if (@hasDecl(@This(), "PFN_WdsTransportClientSessionComplete")) { _ = PFN_WdsTransportClientSessionComplete; }
+    if (@hasDecl(@This(), "PFN_WdsTransportClientSessionNegotiate")) { _ = PFN_WdsTransportClientSessionNegotiate; }
 
-    const constant_export_count = 108;
-    const type_export_count = 68;
-    const enum_value_export_count = 74;
-    const com_iface_id_export_count = 25;
-    const com_class_id_export_count = 21;
-    const func_export_count = 94;
-    const unicode_alias_count = 0;
-    const import_count = 12;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

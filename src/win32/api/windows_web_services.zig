@@ -2,6 +2,47 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (95)
 //--------------------------------------------------------------------------------
+pub const WS_HTTP_HEADER_MAPPING_COMMA_SEPARATOR = @as(i32, 1);
+pub const WS_HTTP_HEADER_MAPPING_SEMICOLON_SEPARATOR = @as(i32, 2);
+pub const WS_HTTP_HEADER_MAPPING_QUOTED_VALUE = @as(i32, 4);
+pub const WS_HTTP_RESPONSE_MAPPING_STATUS_CODE = @as(i32, 1);
+pub const WS_HTTP_RESPONSE_MAPPING_STATUS_TEXT = @as(i32, 2);
+pub const WS_HTTP_REQUEST_MAPPING_VERB = @as(i32, 2);
+pub const WS_MATCH_URL_DNS_HOST = @as(i32, 1);
+pub const WS_MATCH_URL_DNS_FULLY_QUALIFIED_HOST = @as(i32, 2);
+pub const WS_MATCH_URL_NETBIOS_HOST = @as(i32, 4);
+pub const WS_MATCH_URL_LOCAL_HOST = @as(i32, 8);
+pub const WS_MATCH_URL_HOST_ADDRESSES = @as(i32, 16);
+pub const WS_MATCH_URL_THIS_HOST = @as(i32, 31);
+pub const WS_MATCH_URL_PORT = @as(i32, 32);
+pub const WS_MATCH_URL_EXACT_PATH = @as(i32, 64);
+pub const WS_MATCH_URL_PREFIX_PATH = @as(i32, 128);
+pub const WS_MATCH_URL_NO_QUERY = @as(i32, 256);
+pub const WS_MUST_UNDERSTAND_HEADER_ATTRIBUTE = @as(i32, 1);
+pub const WS_RELAY_HEADER_ATTRIBUTE = @as(i32, 2);
+pub const WS_HTTP_HEADER_AUTH_SCHEME_NONE = @as(i32, 1);
+pub const WS_HTTP_HEADER_AUTH_SCHEME_BASIC = @as(i32, 2);
+pub const WS_HTTP_HEADER_AUTH_SCHEME_DIGEST = @as(i32, 4);
+pub const WS_HTTP_HEADER_AUTH_SCHEME_NTLM = @as(i32, 8);
+pub const WS_HTTP_HEADER_AUTH_SCHEME_NEGOTIATE = @as(i32, 16);
+pub const WS_HTTP_HEADER_AUTH_SCHEME_PASSPORT = @as(i32, 32);
+pub const WS_CERT_FAILURE_CN_MISMATCH = @as(i32, 1);
+pub const WS_CERT_FAILURE_INVALID_DATE = @as(i32, 2);
+pub const WS_CERT_FAILURE_UNTRUSTED_ROOT = @as(i32, 4);
+pub const WS_CERT_FAILURE_WRONG_USAGE = @as(i32, 8);
+pub const WS_CERT_FAILURE_REVOCATION_OFFLINE = @as(i32, 16);
+pub const WS_STRUCT_ABSTRACT = @as(i32, 1);
+pub const WS_STRUCT_IGNORE_TRAILING_ELEMENT_CONTENT = @as(i32, 2);
+pub const WS_STRUCT_IGNORE_UNHANDLED_ATTRIBUTES = @as(i32, 4);
+pub const WS_FIELD_POINTER = @as(i32, 1);
+pub const WS_FIELD_OPTIONAL = @as(i32, 2);
+pub const WS_FIELD_NILLABLE = @as(i32, 4);
+pub const WS_FIELD_NILLABLE_ITEM = @as(i32, 8);
+pub const WS_FIELD_OTHER_NAMESPACE = @as(i32, 16);
+pub const WS_SERVICE_OPERATION_MESSAGE_NILLABLE_ELEMENT = @as(i32, 1);
+pub const WS_URL_FLAGS_ALLOW_HOST_WILDCARDS = @as(i32, 1);
+pub const WS_URL_FLAGS_NO_PATH_COLLAPSE = @as(i32, 2);
+pub const WS_URL_FLAGS_ZERO_TERMINATE = @as(i32, 4);
 pub const WEBAUTHN_API_VERSION_1 = @as(u32, 1);
 pub const WEBAUTHN_API_VERSION_2 = @as(u32, 2);
 pub const WEBAUTHN_RP_ENTITY_INFORMATION_CURRENT_VERSION = @as(u32, 1);
@@ -56,47 +97,6 @@ pub const WEBAUTHN_CREDENTIAL_ATTESTATION_VERSION_1 = @as(u32, 1);
 pub const WEBAUTHN_CREDENTIAL_ATTESTATION_VERSION_2 = @as(u32, 2);
 pub const WEBAUTHN_CREDENTIAL_ATTESTATION_VERSION_3 = @as(u32, 3);
 pub const WEBAUTHN_ASSERTION_CURRENT_VERSION = @as(u32, 1);
-pub const WS_HTTP_HEADER_MAPPING_COMMA_SEPARATOR = @as(i32, 1);
-pub const WS_HTTP_HEADER_MAPPING_SEMICOLON_SEPARATOR = @as(i32, 2);
-pub const WS_HTTP_HEADER_MAPPING_QUOTED_VALUE = @as(i32, 4);
-pub const WS_HTTP_RESPONSE_MAPPING_STATUS_CODE = @as(i32, 1);
-pub const WS_HTTP_RESPONSE_MAPPING_STATUS_TEXT = @as(i32, 2);
-pub const WS_HTTP_REQUEST_MAPPING_VERB = @as(i32, 2);
-pub const WS_MATCH_URL_DNS_HOST = @as(i32, 1);
-pub const WS_MATCH_URL_DNS_FULLY_QUALIFIED_HOST = @as(i32, 2);
-pub const WS_MATCH_URL_NETBIOS_HOST = @as(i32, 4);
-pub const WS_MATCH_URL_LOCAL_HOST = @as(i32, 8);
-pub const WS_MATCH_URL_HOST_ADDRESSES = @as(i32, 16);
-pub const WS_MATCH_URL_THIS_HOST = @as(i32, 31);
-pub const WS_MATCH_URL_PORT = @as(i32, 32);
-pub const WS_MATCH_URL_EXACT_PATH = @as(i32, 64);
-pub const WS_MATCH_URL_PREFIX_PATH = @as(i32, 128);
-pub const WS_MATCH_URL_NO_QUERY = @as(i32, 256);
-pub const WS_MUST_UNDERSTAND_HEADER_ATTRIBUTE = @as(i32, 1);
-pub const WS_RELAY_HEADER_ATTRIBUTE = @as(i32, 2);
-pub const WS_HTTP_HEADER_AUTH_SCHEME_NONE = @as(i32, 1);
-pub const WS_HTTP_HEADER_AUTH_SCHEME_BASIC = @as(i32, 2);
-pub const WS_HTTP_HEADER_AUTH_SCHEME_DIGEST = @as(i32, 4);
-pub const WS_HTTP_HEADER_AUTH_SCHEME_NTLM = @as(i32, 8);
-pub const WS_HTTP_HEADER_AUTH_SCHEME_NEGOTIATE = @as(i32, 16);
-pub const WS_HTTP_HEADER_AUTH_SCHEME_PASSPORT = @as(i32, 32);
-pub const WS_CERT_FAILURE_CN_MISMATCH = @as(i32, 1);
-pub const WS_CERT_FAILURE_INVALID_DATE = @as(i32, 2);
-pub const WS_CERT_FAILURE_UNTRUSTED_ROOT = @as(i32, 4);
-pub const WS_CERT_FAILURE_WRONG_USAGE = @as(i32, 8);
-pub const WS_CERT_FAILURE_REVOCATION_OFFLINE = @as(i32, 16);
-pub const WS_STRUCT_ABSTRACT = @as(i32, 1);
-pub const WS_STRUCT_IGNORE_TRAILING_ELEMENT_CONTENT = @as(i32, 2);
-pub const WS_STRUCT_IGNORE_UNHANDLED_ATTRIBUTES = @as(i32, 4);
-pub const WS_FIELD_POINTER = @as(i32, 1);
-pub const WS_FIELD_OPTIONAL = @as(i32, 2);
-pub const WS_FIELD_NILLABLE = @as(i32, 4);
-pub const WS_FIELD_NILLABLE_ITEM = @as(i32, 8);
-pub const WS_FIELD_OTHER_NAMESPACE = @as(i32, 16);
-pub const WS_SERVICE_OPERATION_MESSAGE_NILLABLE_ELEMENT = @as(i32, 1);
-pub const WS_URL_FLAGS_ALLOW_HOST_WILDCARDS = @as(i32, 1);
-pub const WS_URL_FLAGS_NO_PATH_COLLAPSE = @as(i32, 2);
-pub const WS_URL_FLAGS_ZERO_TERMINATE = @as(i32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (450)
@@ -3739,7 +3739,7 @@ pub const WS_SECURITY_BINDING_PROPERTY_CONSTRAINT = extern struct {
     id: WS_SECURITY_BINDING_PROPERTY_ID,
     allowedValues: *c_void,
     allowedValuesSize: u32,
-    out: WS_SECURITY_BINDING_PROPERTY_CONSTRAINT._out_e__Struct,
+    out: _out_e__Struct,
     const _out_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -3751,7 +3751,7 @@ pub const WS_SECURITY_BINDING_CONSTRAINT = extern struct {
 
 pub const WS_SSL_TRANSPORT_SECURITY_BINDING_CONSTRAINT = extern struct {
     bindingConstraint: WS_SECURITY_BINDING_CONSTRAINT,
-    out: WS_SSL_TRANSPORT_SECURITY_BINDING_CONSTRAINT._out_e__Struct,
+    out: _out_e__Struct,
     const _out_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -3782,7 +3782,7 @@ pub const WS_REQUEST_SECURITY_TOKEN_PROPERTY_CONSTRAINT = extern struct {
     id: WS_REQUEST_SECURITY_TOKEN_PROPERTY_ID,
     allowedValues: *c_void,
     allowedValuesSize: u32,
-    out: WS_REQUEST_SECURITY_TOKEN_PROPERTY_CONSTRAINT._out_e__Struct,
+    out: _out_e__Struct,
     const _out_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -3793,7 +3793,7 @@ pub const WS_ISSUED_TOKEN_MESSAGE_SECURITY_BINDING_CONSTRAINT = extern struct {
     claimConstraintCount: u32,
     requestSecurityTokenPropertyConstraints: *WS_REQUEST_SECURITY_TOKEN_PROPERTY_CONSTRAINT,
     requestSecurityTokenPropertyConstraintCount: u32,
-    out: WS_ISSUED_TOKEN_MESSAGE_SECURITY_BINDING_CONSTRAINT._out_e__Struct,
+    out: _out_e__Struct,
     const _out_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -3801,7 +3801,7 @@ pub const WS_SECURITY_PROPERTY_CONSTRAINT = extern struct {
     id: WS_SECURITY_PROPERTY_ID,
     allowedValues: *c_void,
     allowedValuesSize: u32,
-    out: WS_SECURITY_PROPERTY_CONSTRAINT._out_e__Struct,
+    out: _out_e__Struct,
     const _out_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -3822,7 +3822,7 @@ pub const WS_CHANNEL_PROPERTY_CONSTRAINT = extern struct {
     id: WS_CHANNEL_PROPERTY_ID,
     allowedValues: *c_void,
     allowedValuesSize: u32,
-    out: WS_CHANNEL_PROPERTY_CONSTRAINT._out_e__Struct,
+    out: _out_e__Struct,
     const _out_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -3834,7 +3834,7 @@ pub const WS_ENDPOINT_POLICY_EXTENSION = extern struct {
     policyExtension: WS_POLICY_EXTENSION,
     assertionName: *WS_XML_STRING,
     assertionNs: *WS_XML_STRING,
-    out: WS_ENDPOINT_POLICY_EXTENSION._out_e__Struct,
+    out: _out_e__Struct,
     const _out_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -6044,87 +6044,78 @@ const SecPkgContext_IssuerListInfoEx = @import("security.zig").SecPkgContext_Iss
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = WS_READ_CALLBACK;
-    _ = WS_WRITE_CALLBACK;
-    _ = WS_PUSH_BYTES_CALLBACK;
-    _ = WS_PULL_BYTES_CALLBACK;
-    _ = WS_DYNAMIC_STRING_CALLBACK;
-    _ = WS_ASYNC_CALLBACK;
-    _ = WS_ASYNC_FUNCTION;
-    _ = WS_CREATE_CHANNEL_CALLBACK;
-    _ = WS_FREE_CHANNEL_CALLBACK;
-    _ = WS_RESET_CHANNEL_CALLBACK;
-    _ = WS_ABORT_CHANNEL_CALLBACK;
-    _ = WS_OPEN_CHANNEL_CALLBACK;
-    _ = WS_CLOSE_CHANNEL_CALLBACK;
-    _ = WS_SET_CHANNEL_PROPERTY_CALLBACK;
-    _ = WS_GET_CHANNEL_PROPERTY_CALLBACK;
-    _ = WS_READ_MESSAGE_START_CALLBACK;
-    _ = WS_READ_MESSAGE_END_CALLBACK;
-    _ = WS_WRITE_MESSAGE_START_CALLBACK;
-    _ = WS_WRITE_MESSAGE_END_CALLBACK;
-    _ = WS_ABANDON_MESSAGE_CALLBACK;
-    _ = WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK;
-    _ = WS_CREATE_ENCODER_CALLBACK;
-    _ = WS_ENCODER_GET_CONTENT_TYPE_CALLBACK;
-    _ = WS_ENCODER_START_CALLBACK;
-    _ = WS_ENCODER_ENCODE_CALLBACK;
-    _ = WS_ENCODER_END_CALLBACK;
-    _ = WS_FREE_ENCODER_CALLBACK;
-    _ = WS_CREATE_DECODER_CALLBACK;
-    _ = WS_DECODER_GET_CONTENT_TYPE_CALLBACK;
-    _ = WS_DECODER_START_CALLBACK;
-    _ = WS_DECODER_DECODE_CALLBACK;
-    _ = WS_DECODER_END_CALLBACK;
-    _ = WS_FREE_DECODER_CALLBACK;
-    _ = WS_HTTP_REDIRECT_CALLBACK;
-    _ = WS_CREATE_LISTENER_CALLBACK;
-    _ = WS_FREE_LISTENER_CALLBACK;
-    _ = WS_RESET_LISTENER_CALLBACK;
-    _ = WS_OPEN_LISTENER_CALLBACK;
-    _ = WS_CLOSE_LISTENER_CALLBACK;
-    _ = WS_GET_LISTENER_PROPERTY_CALLBACK;
-    _ = WS_SET_LISTENER_PROPERTY_CALLBACK;
-    _ = WS_ACCEPT_CHANNEL_CALLBACK;
-    _ = WS_ABORT_LISTENER_CALLBACK;
-    _ = WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK;
-    _ = WS_MESSAGE_DONE_CALLBACK;
-    _ = WS_CERTIFICATE_VALIDATION_CALLBACK;
-    _ = WS_GET_CERT_CALLBACK;
-    _ = WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK;
-    _ = WS_VALIDATE_PASSWORD_CALLBACK;
-    _ = WS_VALIDATE_SAML_CALLBACK;
-    _ = WS_DURATION_COMPARISON_CALLBACK;
-    _ = WS_READ_TYPE_CALLBACK;
-    _ = WS_WRITE_TYPE_CALLBACK;
-    _ = WS_IS_DEFAULT_VALUE_CALLBACK;
-    _ = WS_SERVICE_MESSAGE_RECEIVE_CALLBACK;
-    _ = WS_OPERATION_CANCEL_CALLBACK;
-    _ = WS_OPERATION_FREE_STATE_CALLBACK;
-    _ = WS_SERVICE_STUB_CALLBACK;
-    _ = WS_SERVICE_ACCEPT_CHANNEL_CALLBACK;
-    _ = WS_SERVICE_CLOSE_CHANNEL_CALLBACK;
-    _ = WS_SERVICE_SECURITY_CALLBACK;
-    _ = WS_PROXY_MESSAGE_CALLBACK;
+    if (@hasDecl(@This(), "WS_READ_CALLBACK")) { _ = WS_READ_CALLBACK; }
+    if (@hasDecl(@This(), "WS_WRITE_CALLBACK")) { _ = WS_WRITE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_PUSH_BYTES_CALLBACK")) { _ = WS_PUSH_BYTES_CALLBACK; }
+    if (@hasDecl(@This(), "WS_PULL_BYTES_CALLBACK")) { _ = WS_PULL_BYTES_CALLBACK; }
+    if (@hasDecl(@This(), "WS_DYNAMIC_STRING_CALLBACK")) { _ = WS_DYNAMIC_STRING_CALLBACK; }
+    if (@hasDecl(@This(), "WS_ASYNC_CALLBACK")) { _ = WS_ASYNC_CALLBACK; }
+    if (@hasDecl(@This(), "WS_ASYNC_FUNCTION")) { _ = WS_ASYNC_FUNCTION; }
+    if (@hasDecl(@This(), "WS_CREATE_CHANNEL_CALLBACK")) { _ = WS_CREATE_CHANNEL_CALLBACK; }
+    if (@hasDecl(@This(), "WS_FREE_CHANNEL_CALLBACK")) { _ = WS_FREE_CHANNEL_CALLBACK; }
+    if (@hasDecl(@This(), "WS_RESET_CHANNEL_CALLBACK")) { _ = WS_RESET_CHANNEL_CALLBACK; }
+    if (@hasDecl(@This(), "WS_ABORT_CHANNEL_CALLBACK")) { _ = WS_ABORT_CHANNEL_CALLBACK; }
+    if (@hasDecl(@This(), "WS_OPEN_CHANNEL_CALLBACK")) { _ = WS_OPEN_CHANNEL_CALLBACK; }
+    if (@hasDecl(@This(), "WS_CLOSE_CHANNEL_CALLBACK")) { _ = WS_CLOSE_CHANNEL_CALLBACK; }
+    if (@hasDecl(@This(), "WS_SET_CHANNEL_PROPERTY_CALLBACK")) { _ = WS_SET_CHANNEL_PROPERTY_CALLBACK; }
+    if (@hasDecl(@This(), "WS_GET_CHANNEL_PROPERTY_CALLBACK")) { _ = WS_GET_CHANNEL_PROPERTY_CALLBACK; }
+    if (@hasDecl(@This(), "WS_READ_MESSAGE_START_CALLBACK")) { _ = WS_READ_MESSAGE_START_CALLBACK; }
+    if (@hasDecl(@This(), "WS_READ_MESSAGE_END_CALLBACK")) { _ = WS_READ_MESSAGE_END_CALLBACK; }
+    if (@hasDecl(@This(), "WS_WRITE_MESSAGE_START_CALLBACK")) { _ = WS_WRITE_MESSAGE_START_CALLBACK; }
+    if (@hasDecl(@This(), "WS_WRITE_MESSAGE_END_CALLBACK")) { _ = WS_WRITE_MESSAGE_END_CALLBACK; }
+    if (@hasDecl(@This(), "WS_ABANDON_MESSAGE_CALLBACK")) { _ = WS_ABANDON_MESSAGE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK")) { _ = WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK; }
+    if (@hasDecl(@This(), "WS_CREATE_ENCODER_CALLBACK")) { _ = WS_CREATE_ENCODER_CALLBACK; }
+    if (@hasDecl(@This(), "WS_ENCODER_GET_CONTENT_TYPE_CALLBACK")) { _ = WS_ENCODER_GET_CONTENT_TYPE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_ENCODER_START_CALLBACK")) { _ = WS_ENCODER_START_CALLBACK; }
+    if (@hasDecl(@This(), "WS_ENCODER_ENCODE_CALLBACK")) { _ = WS_ENCODER_ENCODE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_ENCODER_END_CALLBACK")) { _ = WS_ENCODER_END_CALLBACK; }
+    if (@hasDecl(@This(), "WS_FREE_ENCODER_CALLBACK")) { _ = WS_FREE_ENCODER_CALLBACK; }
+    if (@hasDecl(@This(), "WS_CREATE_DECODER_CALLBACK")) { _ = WS_CREATE_DECODER_CALLBACK; }
+    if (@hasDecl(@This(), "WS_DECODER_GET_CONTENT_TYPE_CALLBACK")) { _ = WS_DECODER_GET_CONTENT_TYPE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_DECODER_START_CALLBACK")) { _ = WS_DECODER_START_CALLBACK; }
+    if (@hasDecl(@This(), "WS_DECODER_DECODE_CALLBACK")) { _ = WS_DECODER_DECODE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_DECODER_END_CALLBACK")) { _ = WS_DECODER_END_CALLBACK; }
+    if (@hasDecl(@This(), "WS_FREE_DECODER_CALLBACK")) { _ = WS_FREE_DECODER_CALLBACK; }
+    if (@hasDecl(@This(), "WS_HTTP_REDIRECT_CALLBACK")) { _ = WS_HTTP_REDIRECT_CALLBACK; }
+    if (@hasDecl(@This(), "WS_CREATE_LISTENER_CALLBACK")) { _ = WS_CREATE_LISTENER_CALLBACK; }
+    if (@hasDecl(@This(), "WS_FREE_LISTENER_CALLBACK")) { _ = WS_FREE_LISTENER_CALLBACK; }
+    if (@hasDecl(@This(), "WS_RESET_LISTENER_CALLBACK")) { _ = WS_RESET_LISTENER_CALLBACK; }
+    if (@hasDecl(@This(), "WS_OPEN_LISTENER_CALLBACK")) { _ = WS_OPEN_LISTENER_CALLBACK; }
+    if (@hasDecl(@This(), "WS_CLOSE_LISTENER_CALLBACK")) { _ = WS_CLOSE_LISTENER_CALLBACK; }
+    if (@hasDecl(@This(), "WS_GET_LISTENER_PROPERTY_CALLBACK")) { _ = WS_GET_LISTENER_PROPERTY_CALLBACK; }
+    if (@hasDecl(@This(), "WS_SET_LISTENER_PROPERTY_CALLBACK")) { _ = WS_SET_LISTENER_PROPERTY_CALLBACK; }
+    if (@hasDecl(@This(), "WS_ACCEPT_CHANNEL_CALLBACK")) { _ = WS_ACCEPT_CHANNEL_CALLBACK; }
+    if (@hasDecl(@This(), "WS_ABORT_LISTENER_CALLBACK")) { _ = WS_ABORT_LISTENER_CALLBACK; }
+    if (@hasDecl(@This(), "WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK")) { _ = WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK; }
+    if (@hasDecl(@This(), "WS_MESSAGE_DONE_CALLBACK")) { _ = WS_MESSAGE_DONE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_CERTIFICATE_VALIDATION_CALLBACK")) { _ = WS_CERTIFICATE_VALIDATION_CALLBACK; }
+    if (@hasDecl(@This(), "WS_GET_CERT_CALLBACK")) { _ = WS_GET_CERT_CALLBACK; }
+    if (@hasDecl(@This(), "WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK")) { _ = WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK; }
+    if (@hasDecl(@This(), "WS_VALIDATE_PASSWORD_CALLBACK")) { _ = WS_VALIDATE_PASSWORD_CALLBACK; }
+    if (@hasDecl(@This(), "WS_VALIDATE_SAML_CALLBACK")) { _ = WS_VALIDATE_SAML_CALLBACK; }
+    if (@hasDecl(@This(), "WS_DURATION_COMPARISON_CALLBACK")) { _ = WS_DURATION_COMPARISON_CALLBACK; }
+    if (@hasDecl(@This(), "WS_READ_TYPE_CALLBACK")) { _ = WS_READ_TYPE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_WRITE_TYPE_CALLBACK")) { _ = WS_WRITE_TYPE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_IS_DEFAULT_VALUE_CALLBACK")) { _ = WS_IS_DEFAULT_VALUE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_SERVICE_MESSAGE_RECEIVE_CALLBACK")) { _ = WS_SERVICE_MESSAGE_RECEIVE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_OPERATION_CANCEL_CALLBACK")) { _ = WS_OPERATION_CANCEL_CALLBACK; }
+    if (@hasDecl(@This(), "WS_OPERATION_FREE_STATE_CALLBACK")) { _ = WS_OPERATION_FREE_STATE_CALLBACK; }
+    if (@hasDecl(@This(), "WS_SERVICE_STUB_CALLBACK")) { _ = WS_SERVICE_STUB_CALLBACK; }
+    if (@hasDecl(@This(), "WS_SERVICE_ACCEPT_CHANNEL_CALLBACK")) { _ = WS_SERVICE_ACCEPT_CHANNEL_CALLBACK; }
+    if (@hasDecl(@This(), "WS_SERVICE_CLOSE_CHANNEL_CALLBACK")) { _ = WS_SERVICE_CLOSE_CHANNEL_CALLBACK; }
+    if (@hasDecl(@This(), "WS_SERVICE_SECURITY_CALLBACK")) { _ = WS_SERVICE_SECURITY_CALLBACK; }
+    if (@hasDecl(@This(), "WS_PROXY_MESSAGE_CALLBACK")) { _ = WS_PROXY_MESSAGE_CALLBACK; }
 
-    const constant_export_count = 95;
-    const type_export_count = 450;
-    const enum_value_export_count = 828;
-    const com_iface_id_export_count = 1;
-    const com_class_id_export_count = 0;
-    const func_export_count = 203;
-    const unicode_alias_count = 0;
-    const import_count = 11;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

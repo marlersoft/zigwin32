@@ -324,8 +324,41 @@ pub const PREVSTATE = @as(u32, 32);
 pub const SHAREDSECRET = @as(u32, 64);
 
 //--------------------------------------------------------------------------------
-// Section: Types (163)
+// Section: Types (164)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DHCP_SERVER_OPTIONS = extern struct {
+    MessageType: *u8,
+    SubnetMask: *u32,
+    RequestedAddress: *u32,
+    RequestLeaseTime: *u32,
+    OverlayFields: *u8,
+    RouterAddress: *u32,
+    Server: *u32,
+    ParameterRequestList: *u8,
+    ParameterRequestListLength: u32,
+    MachineName: PSTR,
+    MachineNameLength: u32,
+    ClientHardwareAddressType: u8,
+    ClientHardwareAddressLength: u8,
+    ClientHardwareAddress: *u8,
+    ClassIdentifier: PSTR,
+    ClassIdentifierLength: u32,
+    VendorClass: *u8,
+    VendorClassLength: u32,
+    DNSFlags: u32,
+    DNSNameLength: u32,
+    DNSName: *u8,
+    DSDomainNameRequested: u8,
+    DSDomainName: PSTR,
+    DSDomainNameLen: u32,
+    ScopeId: *u32,
+};
+
+}, else => struct { } };
+
 pub const DHCPV6CAPI_PARAMS = extern struct {
     Flags: u32,
     OptionId: u32,
@@ -394,34 +427,6 @@ pub const DHCPCAPI_CLASSID = extern struct {
     Flags: u32,
     Data: *u8,
     nBytesData: u32,
-};
-
-pub const DHCP_SERVER_OPTIONS = extern struct {
-    MessageType: *u8,
-    SubnetMask: *u32,
-    RequestedAddress: *u32,
-    RequestLeaseTime: *u32,
-    OverlayFields: *u8,
-    RouterAddress: *u32,
-    Server: *u32,
-    ParameterRequestList: *u8,
-    ParameterRequestListLength: u32,
-    MachineName: PSTR,
-    MachineNameLength: u32,
-    ClientHardwareAddressType: u8,
-    ClientHardwareAddressLength: u8,
-    ClientHardwareAddress: *u8,
-    ClassIdentifier: PSTR,
-    ClassIdentifierLength: u32,
-    VendorClass: *u8,
-    VendorClassLength: u32,
-    DNSFlags: u32,
-    DNSNameLength: u32,
-    DNSName: *u8,
-    DSDomainNameRequested: u8,
-    DSDomainName: PSTR,
-    DSDomainNameLen: u32,
-    ScopeId: *u32,
 };
 
 pub const LPDHCP_CONTROL = fn(
@@ -611,7 +616,7 @@ pub const DhcpIpRangesBootpOnly = DHCP_SUBNET_ELEMENT_TYPE.IpRangesBootpOnly;
 
 pub const DHCP_SUBNET_ELEMENT_DATA = extern struct {
     ElementType: DHCP_SUBNET_ELEMENT_TYPE,
-    Element: DHCP_SUBNET_ELEMENT_DATA.DHCP_SUBNET_ELEMENT_UNION,
+    Element: DHCP_SUBNET_ELEMENT_UNION,
     const DHCP_SUBNET_ELEMENT_UNION = u32; // TODO: generate this nested type!
 };
 
@@ -686,7 +691,7 @@ pub const DhcpIpv6AddressOption = DHCP_OPTION_DATA_TYPE.Ipv6AddressOption;
 
 pub const DHCP_OPTION_DATA_ELEMENT = extern struct {
     OptionType: DHCP_OPTION_DATA_TYPE,
-    Element: DHCP_OPTION_DATA_ELEMENT.DHCP_OPTION_ELEMENT_UNION,
+    Element: DHCP_OPTION_ELEMENT_UNION,
     const DHCP_OPTION_ELEMENT_UNION = u32; // TODO: generate this nested type!
 };
 
@@ -747,7 +752,7 @@ pub const DHCP_RESERVED_SCOPE = extern struct {
 
 pub const DHCP_OPTION_SCOPE_INFO = extern struct {
     ScopeType: DHCP_OPTION_SCOPE_TYPE,
-    ScopeInfo: DHCP_OPTION_SCOPE_INFO._DHCP_OPTION_SCOPE_UNION,
+    ScopeInfo: _DHCP_OPTION_SCOPE_UNION,
     const _DHCP_OPTION_SCOPE_UNION = u32; // TODO: generate this nested type!
 };
 
@@ -769,7 +774,7 @@ pub const DHCP_RESERVED_SCOPE6 = extern struct {
 
 pub const DHCP_OPTION_SCOPE_INFO6 = extern struct {
     ScopeType: DHCP_OPTION_SCOPE_TYPE6,
-    ScopeInfo: DHCP_OPTION_SCOPE_INFO6.DHCP_OPTION_SCOPE_UNION6,
+    ScopeInfo: DHCP_OPTION_SCOPE_UNION6,
     const DHCP_OPTION_SCOPE_UNION6 = u32; // TODO: generate this nested type!
 };
 
@@ -886,7 +891,7 @@ pub const DhcpClientName = DHCP_SEARCH_INFO_TYPE.Name;
 
 pub const DHCP_SEARCH_INFO = extern struct {
     SearchType: DHCP_SEARCH_INFO_TYPE,
-    SearchInfo: DHCP_SEARCH_INFO.DHCP_CLIENT_SEARCH_UNION,
+    SearchInfo: DHCP_CLIENT_SEARCH_UNION,
     const DHCP_CLIENT_SEARCH_UNION = u32; // TODO: generate this nested type!
 };
 
@@ -915,7 +920,7 @@ pub const DhcpPropIdClientAddressStateEx = DHCP_PROPERTY_ID.ClientAddressStateEx
 pub const DHCP_PROPERTY = extern struct {
     ID: DHCP_PROPERTY_ID,
     Type: DHCP_PROPERTY_TYPE,
-    Value: DHCP_PROPERTY._DHCP_PROPERTY_VALUE_UNION,
+    Value: _DHCP_PROPERTY_VALUE_UNION,
     const _DHCP_PROPERTY_VALUE_UNION = u32; // TODO: generate this nested type!
 };
 
@@ -1114,7 +1119,7 @@ pub const DHCP_RESERVATION_INFO_ARRAY = extern struct {
 
 pub const DHCP_SUBNET_ELEMENT_DATA_V4 = extern struct {
     ElementType: DHCP_SUBNET_ELEMENT_TYPE,
-    Element: DHCP_SUBNET_ELEMENT_DATA_V4.DHCP_SUBNET_ELEMENT_UNION_V4,
+    Element: DHCP_SUBNET_ELEMENT_UNION_V4,
     const DHCP_SUBNET_ELEMENT_UNION_V4 = u32; // TODO: generate this nested type!
 };
 
@@ -1221,21 +1226,21 @@ pub const DHCP_ALL_OPTIONS = extern struct {
     Flags: u32,
     NonVendorOptions: *DHCP_OPTION_ARRAY,
     NumVendorOptions: u32,
-    VendorOptions: *DHCP_ALL_OPTIONS._Anonymous_e__Struct,
+    VendorOptions: *_Anonymous_e__Struct,
     const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const DHCP_ALL_OPTION_VALUES = extern struct {
     Flags: u32,
     NumElements: u32,
-    Options: *DHCP_ALL_OPTION_VALUES._Anonymous_e__Struct,
+    Options: *_Anonymous_e__Struct,
     const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const DHCP_ALL_OPTION_VALUES_PB = extern struct {
     Flags: u32,
     NumElements: u32,
-    Options: *DHCP_ALL_OPTION_VALUES_PB._Anonymous_e__Struct,
+    Options: *_Anonymous_e__Struct,
     const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -1258,7 +1263,7 @@ pub const DHCPDS_SERVERS = extern struct {
 pub const DHCP_ATTRIB = extern struct {
     DhcpAttribId: u32,
     DhcpAttribType: u32,
-    Anonymous: DHCP_ATTRIB._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1276,7 +1281,7 @@ pub const DHCP_BOOTP_IP_RANGE = extern struct {
 
 pub const DHCP_SUBNET_ELEMENT_DATA_V5 = extern struct {
     ElementType: DHCP_SUBNET_ELEMENT_TYPE,
-    Element: DHCP_SUBNET_ELEMENT_DATA_V5._DHCP_SUBNET_ELEMENT_UNION_V5,
+    Element: _DHCP_SUBNET_ELEMENT_UNION_V5,
     const _DHCP_SUBNET_ELEMENT_UNION_V5 = u32; // TODO: generate this nested type!
 };
 
@@ -1399,7 +1404,7 @@ pub const Dhcpv6ExcludedIpRanges = DHCP_SUBNET_ELEMENT_TYPE_V6.ExcludedIpRanges;
 
 pub const DHCP_SUBNET_ELEMENT_DATA_V6 = extern struct {
     ElementType: DHCP_SUBNET_ELEMENT_TYPE_V6,
-    Element: DHCP_SUBNET_ELEMENT_DATA_V6.DHCP_SUBNET_ELEMENT_UNION_V6,
+    Element: DHCP_SUBNET_ELEMENT_UNION_V6,
     const DHCP_SUBNET_ELEMENT_UNION_V6 = u32; // TODO: generate this nested type!
 };
 
@@ -1443,7 +1448,7 @@ pub const Dhcpv6ClientName = DHCP_SEARCH_INFO_TYPE_V6.Name;
 
 pub const DHCP_SEARCH_INFO_V6 = extern struct {
     SearchType: DHCP_SEARCH_INFO_TYPE_V6,
-    SearchInfo: DHCP_SEARCH_INFO_V6._DHCP_CLIENT_SEARCH_UNION_V6,
+    SearchInfo: _DHCP_CLIENT_SEARCH_UNION_V6,
     const _DHCP_CLIENT_SEARCH_UNION_V6 = u32; // TODO: generate this nested type!
 };
 
@@ -1718,6 +1723,39 @@ pub const DHCP_FAILOVER_STATISTICS = extern struct {
     PartnerAddrInUse: u32,
     ThisAddrInUse: u32,
 };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DHCP_SERVER_OPTIONS = extern struct {
+    MessageType: *u8,
+    SubnetMask: *u32,
+    RequestedAddress: *u32,
+    RequestLeaseTime: *u32,
+    OverlayFields: *u8,
+    RouterAddress: *u32,
+    Server: *u32,
+    ParameterRequestList: *u8,
+    ParameterRequestListLength: u32,
+    MachineName: PSTR,
+    MachineNameLength: u32,
+    ClientHardwareAddressType: u8,
+    ClientHardwareAddressLength: u8,
+    ClientHardwareAddress: *u8,
+    ClassIdentifier: PSTR,
+    ClassIdentifierLength: u32,
+    VendorClass: *u8,
+    VendorClassLength: u32,
+    DNSFlags: u32,
+    DNSNameLength: u32,
+    DNSName: *u8,
+    DSDomainNameRequested: u8,
+    DSDomainName: PSTR,
+    DSDomainNameLen: u32,
+    ScopeId: *u32,
+};
+
+}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------
@@ -3385,33 +3423,24 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPDHCP_CONTROL;
-    _ = LPDHCP_NEWPKT;
-    _ = LPDHCP_DROP_SEND;
-    _ = LPDHCP_PROB;
-    _ = LPDHCP_GIVE_ADDRESS;
-    _ = LPDHCP_HANDLE_OPTIONS;
-    _ = LPDHCP_DELETE_CLIENT;
-    _ = LPDHCP_ENTRY_POINT_FUNC;
+    if (@hasDecl(@This(), "LPDHCP_CONTROL")) { _ = LPDHCP_CONTROL; }
+    if (@hasDecl(@This(), "LPDHCP_NEWPKT")) { _ = LPDHCP_NEWPKT; }
+    if (@hasDecl(@This(), "LPDHCP_DROP_SEND")) { _ = LPDHCP_DROP_SEND; }
+    if (@hasDecl(@This(), "LPDHCP_PROB")) { _ = LPDHCP_PROB; }
+    if (@hasDecl(@This(), "LPDHCP_GIVE_ADDRESS")) { _ = LPDHCP_GIVE_ADDRESS; }
+    if (@hasDecl(@This(), "LPDHCP_HANDLE_OPTIONS")) { _ = LPDHCP_HANDLE_OPTIONS; }
+    if (@hasDecl(@This(), "LPDHCP_DELETE_CLIENT")) { _ = LPDHCP_DELETE_CLIENT; }
+    if (@hasDecl(@This(), "LPDHCP_ENTRY_POINT_FUNC")) { _ = LPDHCP_ENTRY_POINT_FUNC; }
 
-    const constant_export_count = 320;
-    const type_export_count = 163;
-    const enum_value_export_count = 107;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 210;
-    const unicode_alias_count = 0;
-    const import_count = 3;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

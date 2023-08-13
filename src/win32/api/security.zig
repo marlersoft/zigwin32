@@ -2,6 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (3228)
 //--------------------------------------------------------------------------------
+pub const CERT_COMPARE_SHIFT = @as(i32, 16);
 pub const CVT_SECONDS = @as(u32, 1);
 pub const DBSESSIONCOUNTDEFAULT = @as(u32, 100);
 pub const DBFLAGS_READONLY = @as(u32, 1);
@@ -3222,7 +3223,6 @@ pub const SL_REARM_REBOOT_REQUIRED = @as(u32, 1);
 pub const SPP_MIGRATION_GATHER_MIGRATABLE_APPS = @as(u32, 1);
 pub const SPP_MIGRATION_GATHER_ACTIVATED_WINDOWS_STATE = @as(u32, 2);
 pub const SPP_MIGRATION_GATHER_ALL = @as(u32, 4294967295);
-pub const CERT_COMPARE_SHIFT = @as(i32, 16);
 pub const wszCMM_PROP_NAME = "Name";
 pub const wszCMM_PROP_DESCRIPTION = "Description";
 pub const wszCMM_PROP_COPYRIGHT = "Copyright";
@@ -3234,50 +3234,55 @@ pub const wszCMM_PROP_ISMULTITHREADED = "IsMultiThreaded";
 //--------------------------------------------------------------------------------
 // Section: Types (2121)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'CryptCloseAsyncHandle', what can Zig do with this information?
-pub const HCRYPTASYNC = ?*opaque{};
+pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = fn(
+    ClientRequest: **c_void,
+    // TODO: what to do with BytesParamIndex 3?
+    ProtocolSubmitBuffer: *c_void,
+    ClientBufferBase: *c_void,
+    SubmitBufferLength: u32,
+    ProtocolReturnBuffer: **c_void,
+    ReturnBufferLength: *u32,
+    ProtocolStatus: *i32,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-// TODO: this type has a FreeFunc 'CertFreeCertificateChainEngine', what can Zig do with this information?
-pub const HCERTCHAINENGINE = ?*opaque{};
+pub const SEC_THREAD_START = fn(
+    lpThreadParameter: *c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-// TODO: this type has a FreeFunc 'LsaDeregisterLogonProcess', what can Zig do with this information?
-pub const LsaHandle = isize;
-
-pub const PSID = isize;
-
-pub const AUTHZ_ACCESS_CHECK_RESULTS_HANDLE = isize;
-
-pub const AUTHZ_CLIENT_CONTEXT_HANDLE = isize;
-
-pub const AUTHZ_RESOURCE_MANAGER_HANDLE = isize;
-
-pub const AUTHZ_AUDIT_EVENT_HANDLE = isize;
-
-pub const AUTHZ_AUDIT_EVENT_TYPE_HANDLE = isize;
-
-pub const AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE = isize;
-
-pub const HDIAGNOSTIC_DATA_QUERY_SESSION = isize;
-
-pub const HDIAGNOSTIC_REPORT = isize;
-
-pub const HDIAGNOSTIC_EVENT_TAG_DESCRIPTION = isize;
-
-pub const HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION = isize;
-
-pub const HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION = isize;
-
-pub const HDIAGNOSTIC_RECORD = isize;
-
-pub const NCRYPT_DESCRIPTOR_HANDLE = isize;
-
-pub const NCRYPT_STREAM_HANDLE = isize;
-
-pub const SAFER_LEVEL_HANDLE = isize;
-
-pub const SC_HANDLE = isize;
-
-pub const SERVICE_STATUS_HANDLE = isize;
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const TOKEN_ACCESS_MASK = extern enum(u32) {
+    DELETE = 65536,
+    READ_CONTROL = 131072,
+    WRITE_DAC = 262144,
+    WRITE_OWNER = 524288,
+    ACCESS_SYSTEM_SECURITY = 16777216,
+    TOKEN_ASSIGN_PRIMARY = 1,
+    TOKEN_DUPLICATE = 2,
+    TOKEN_IMPERSONATE = 4,
+    TOKEN_QUERY = 8,
+    TOKEN_QUERY_SOURCE = 16,
+    TOKEN_ADJUST_PRIVILEGES = 32,
+    TOKEN_ADJUST_GROUPS = 64,
+    TOKEN_ADJUST_DEFAULT = 128,
+    TOKEN_ADJUST_SESSIONID = 256,
+    TOKEN_ALL_ACCESS = 983295,
+    _,
+};
+pub const DELETE = TOKEN_ACCESS_MASK.DELETE;
+pub const READ_CONTROL = TOKEN_ACCESS_MASK.READ_CONTROL;
+pub const WRITE_DAC = TOKEN_ACCESS_MASK.WRITE_DAC;
+pub const WRITE_OWNER = TOKEN_ACCESS_MASK.WRITE_OWNER;
+pub const ACCESS_SYSTEM_SECURITY = TOKEN_ACCESS_MASK.ACCESS_SYSTEM_SECURITY;
+pub const TOKEN_ASSIGN_PRIMARY = TOKEN_ACCESS_MASK.TOKEN_ASSIGN_PRIMARY;
+pub const TOKEN_DUPLICATE = TOKEN_ACCESS_MASK.TOKEN_DUPLICATE;
+pub const TOKEN_IMPERSONATE = TOKEN_ACCESS_MASK.TOKEN_IMPERSONATE;
+pub const TOKEN_QUERY = TOKEN_ACCESS_MASK.TOKEN_QUERY;
+pub const TOKEN_QUERY_SOURCE = TOKEN_ACCESS_MASK.TOKEN_QUERY_SOURCE;
+pub const TOKEN_ADJUST_PRIVILEGES = TOKEN_ACCESS_MASK.TOKEN_ADJUST_PRIVILEGES;
+pub const TOKEN_ADJUST_GROUPS = TOKEN_ACCESS_MASK.TOKEN_ADJUST_GROUPS;
+pub const TOKEN_ADJUST_DEFAULT = TOKEN_ACCESS_MASK.TOKEN_ADJUST_DEFAULT;
+pub const TOKEN_ADJUST_SESSIONID = TOKEN_ACCESS_MASK.TOKEN_ADJUST_SESSIONID;
+pub const TOKEN_ALL_ACCESS = TOKEN_ACCESS_MASK.TOKEN_ALL_ACCESS;
 
 pub const GENERIC_MAPPING = extern struct {
     GenericRead: u32,
@@ -4056,7 +4061,7 @@ pub const CLAIM_SECURITY_ATTRIBUTE_V1 = extern struct {
     Reserved: u16,
     Flags: u32,
     ValueCount: u32,
-    Values: CLAIM_SECURITY_ATTRIBUTE_V1._Values_e__Union,
+    Values: _Values_e__Union,
     const _Values_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -4066,7 +4071,7 @@ pub const CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = extern struct {
     Reserved: u16,
     Flags: CLAIM_SECURITY_ATTRIBUTE_FLAGS,
     ValueCount: u32,
-    Values: CLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1._Values_e__Union,
+    Values: _Values_e__Union,
     const _Values_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -4074,7 +4079,7 @@ pub const CLAIM_SECURITY_ATTRIBUTES_INFORMATION = extern struct {
     Version: u16,
     Reserved: u16,
     AttributeCount: u32,
-    Attribute: CLAIM_SECURITY_ATTRIBUTES_INFORMATION._Attribute_e__Union,
+    Attribute: _Attribute_e__Union,
     const _Attribute_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -4101,122 +4106,58 @@ pub const QUOTA_LIMITS = extern struct {
     TimeLimit: LARGE_INTEGER,
 };
 
-pub const MSA_INFO_LEVEL = extern enum(i32) {
-    @"0" = 0,
-    Max = 1,
-};
-pub const MsaInfoLevel0 = MSA_INFO_LEVEL.@"0";
-pub const MsaInfoLevelMax = MSA_INFO_LEVEL.Max;
-
-pub const MSA_INFO_STATE = extern enum(i32) {
-    NotExist = 1,
-    NotService = 2,
-    CannotInstall = 3,
-    CanInstall = 4,
-    Installed = 5,
-};
-pub const MsaInfoNotExist = MSA_INFO_STATE.NotExist;
-pub const MsaInfoNotService = MSA_INFO_STATE.NotService;
-pub const MsaInfoCannotInstall = MSA_INFO_STATE.CannotInstall;
-pub const MsaInfoCanInstall = MSA_INFO_STATE.CanInstall;
-pub const MsaInfoInstalled = MSA_INFO_STATE.Installed;
-
-pub const MSA_INFO_0 = extern struct {
-    State: MSA_INFO_STATE,
+pub const _SC_NOTIFICATION_REGISTRATION = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
 };
 
-pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = fn(
-    ClientRequest: **c_void,
-    // TODO: what to do with BytesParamIndex 3?
-    ProtocolSubmitBuffer: *c_void,
-    ClientBufferBase: *c_void,
-    SubmitBufferLength: u32,
-    ProtocolReturnBuffer: **c_void,
-    ReturnBufferLength: *u32,
-    ProtocolStatus: *i32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-pub const SEC_THREAD_START = fn(
-    lpThreadParameter: *c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const TOKEN_ACCESS_MASK = extern enum(u32) {
-    DELETE = 65536,
-    READ_CONTROL = 131072,
-    WRITE_DAC = 262144,
-    WRITE_OWNER = 524288,
-    ACCESS_SYSTEM_SECURITY = 16777216,
-    TOKEN_ASSIGN_PRIMARY = 1,
-    TOKEN_DUPLICATE = 2,
-    TOKEN_IMPERSONATE = 4,
-    TOKEN_QUERY = 8,
-    TOKEN_QUERY_SOURCE = 16,
-    TOKEN_ADJUST_PRIVILEGES = 32,
-    TOKEN_ADJUST_GROUPS = 64,
-    TOKEN_ADJUST_DEFAULT = 128,
-    TOKEN_ADJUST_SESSIONID = 256,
-    TOKEN_ALL_ACCESS = 983295,
-    _,
-};
-pub const DELETE = TOKEN_ACCESS_MASK.DELETE;
-pub const READ_CONTROL = TOKEN_ACCESS_MASK.READ_CONTROL;
-pub const WRITE_DAC = TOKEN_ACCESS_MASK.WRITE_DAC;
-pub const WRITE_OWNER = TOKEN_ACCESS_MASK.WRITE_OWNER;
-pub const ACCESS_SYSTEM_SECURITY = TOKEN_ACCESS_MASK.ACCESS_SYSTEM_SECURITY;
-pub const TOKEN_ASSIGN_PRIMARY = TOKEN_ACCESS_MASK.TOKEN_ASSIGN_PRIMARY;
-pub const TOKEN_DUPLICATE = TOKEN_ACCESS_MASK.TOKEN_DUPLICATE;
-pub const TOKEN_IMPERSONATE = TOKEN_ACCESS_MASK.TOKEN_IMPERSONATE;
-pub const TOKEN_QUERY = TOKEN_ACCESS_MASK.TOKEN_QUERY;
-pub const TOKEN_QUERY_SOURCE = TOKEN_ACCESS_MASK.TOKEN_QUERY_SOURCE;
-pub const TOKEN_ADJUST_PRIVILEGES = TOKEN_ACCESS_MASK.TOKEN_ADJUST_PRIVILEGES;
-pub const TOKEN_ADJUST_GROUPS = TOKEN_ACCESS_MASK.TOKEN_ADJUST_GROUPS;
-pub const TOKEN_ADJUST_DEFAULT = TOKEN_ACCESS_MASK.TOKEN_ADJUST_DEFAULT;
-pub const TOKEN_ADJUST_SESSIONID = TOKEN_ACCESS_MASK.TOKEN_ADJUST_SESSIONID;
-pub const TOKEN_ALL_ACCESS = TOKEN_ACCESS_MASK.TOKEN_ALL_ACCESS;
-
-pub const PROCESS_INFORMATION_CLASS = extern enum(i32) {
-    MemoryPriority = 0,
-    MemoryExhaustionInfo = 1,
-    AppMemoryInfo = 2,
-    InPrivateInfo = 3,
-    PowerThrottling = 4,
-    ReservedValue1 = 5,
-    TelemetryCoverageInfo = 6,
-    ProtectionLevelInfo = 7,
-    LeapSecondInfo = 8,
-    InformationClassMax = 9,
-};
-pub const ProcessMemoryPriority = PROCESS_INFORMATION_CLASS.MemoryPriority;
-pub const ProcessMemoryExhaustionInfo = PROCESS_INFORMATION_CLASS.MemoryExhaustionInfo;
-pub const ProcessAppMemoryInfo = PROCESS_INFORMATION_CLASS.AppMemoryInfo;
-pub const ProcessInPrivateInfo = PROCESS_INFORMATION_CLASS.InPrivateInfo;
-pub const ProcessPowerThrottling = PROCESS_INFORMATION_CLASS.PowerThrottling;
-pub const ProcessReservedValue1 = PROCESS_INFORMATION_CLASS.ReservedValue1;
-pub const ProcessTelemetryCoverageInfo = PROCESS_INFORMATION_CLASS.TelemetryCoverageInfo;
-pub const ProcessProtectionLevelInfo = PROCESS_INFORMATION_CLASS.ProtectionLevelInfo;
-pub const ProcessLeapSecondInfo = PROCESS_INFORMATION_CLASS.LeapSecondInfo;
-pub const ProcessInformationClassMax = PROCESS_INFORMATION_CLASS.InformationClassMax;
-
-pub const SEC_WINNT_AUTH_IDENTITY_W = extern struct {
-    User: *u16,
-    UserLength: u32,
-    Domain: *u16,
-    DomainLength: u32,
-    Password: *u16,
-    PasswordLength: u32,
-    Flags: SEC_WINNT_AUTH_IDENTITY,
+pub const _HMAPPER = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
 };
 
-pub const SEC_WINNT_AUTH_IDENTITY_A = extern struct {
-    User: *u8,
-    UserLength: u32,
-    Domain: *u8,
-    DomainLength: u32,
-    Password: *u8,
-    PasswordLength: u32,
-    Flags: SEC_WINNT_AUTH_IDENTITY,
-};
+// TODO: this type has a FreeFunc 'CryptCloseAsyncHandle', what can Zig do with this information?
+pub const HCRYPTASYNC = ?*opaque{};
+
+// TODO: this type has a FreeFunc 'CertFreeCertificateChainEngine', what can Zig do with this information?
+pub const HCERTCHAINENGINE = ?*opaque{};
+
+// TODO: this type has a FreeFunc 'LsaDeregisterLogonProcess', what can Zig do with this information?
+pub const LsaHandle = isize;
+
+pub const PSID = isize;
+
+pub const AUTHZ_ACCESS_CHECK_RESULTS_HANDLE = isize;
+
+pub const AUTHZ_CLIENT_CONTEXT_HANDLE = isize;
+
+pub const AUTHZ_RESOURCE_MANAGER_HANDLE = isize;
+
+pub const AUTHZ_AUDIT_EVENT_HANDLE = isize;
+
+pub const AUTHZ_AUDIT_EVENT_TYPE_HANDLE = isize;
+
+pub const AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE = isize;
+
+pub const HDIAGNOSTIC_DATA_QUERY_SESSION = isize;
+
+pub const HDIAGNOSTIC_REPORT = isize;
+
+pub const HDIAGNOSTIC_EVENT_TAG_DESCRIPTION = isize;
+
+pub const HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION = isize;
+
+pub const HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION = isize;
+
+pub const HDIAGNOSTIC_RECORD = isize;
+
+pub const NCRYPT_DESCRIPTOR_HANDLE = isize;
+
+pub const NCRYPT_STREAM_HANDLE = isize;
+
+pub const SAFER_LEVEL_HANDLE = isize;
+
+pub const SC_HANDLE = isize;
+
+pub const SERVICE_STATUS_HANDLE = isize;
 
 pub const NETRESOURCEA = extern struct {
     dwScope: NET_RESOURCE_SCOPE,
@@ -4274,12 +4215,79 @@ pub const UNICODE_STRING = extern struct {
     Buffer: [*]u16,
 };
 
+pub const SEC_WINNT_AUTH_IDENTITY_W = extern struct {
+    User: *u16,
+    UserLength: u32,
+    Domain: *u16,
+    DomainLength: u32,
+    Password: *u16,
+    PasswordLength: u32,
+    Flags: SEC_WINNT_AUTH_IDENTITY,
+};
+
+pub const SEC_WINNT_AUTH_IDENTITY_A = extern struct {
+    User: *u8,
+    UserLength: u32,
+    Domain: *u8,
+    DomainLength: u32,
+    Password: *u8,
+    PasswordLength: u32,
+    Flags: SEC_WINNT_AUTH_IDENTITY,
+};
+
+pub const PROCESS_INFORMATION_CLASS = extern enum(i32) {
+    MemoryPriority = 0,
+    MemoryExhaustionInfo = 1,
+    AppMemoryInfo = 2,
+    InPrivateInfo = 3,
+    PowerThrottling = 4,
+    ReservedValue1 = 5,
+    TelemetryCoverageInfo = 6,
+    ProtectionLevelInfo = 7,
+    LeapSecondInfo = 8,
+    InformationClassMax = 9,
+};
+pub const ProcessMemoryPriority = PROCESS_INFORMATION_CLASS.MemoryPriority;
+pub const ProcessMemoryExhaustionInfo = PROCESS_INFORMATION_CLASS.MemoryExhaustionInfo;
+pub const ProcessAppMemoryInfo = PROCESS_INFORMATION_CLASS.AppMemoryInfo;
+pub const ProcessInPrivateInfo = PROCESS_INFORMATION_CLASS.InPrivateInfo;
+pub const ProcessPowerThrottling = PROCESS_INFORMATION_CLASS.PowerThrottling;
+pub const ProcessReservedValue1 = PROCESS_INFORMATION_CLASS.ReservedValue1;
+pub const ProcessTelemetryCoverageInfo = PROCESS_INFORMATION_CLASS.TelemetryCoverageInfo;
+pub const ProcessProtectionLevelInfo = PROCESS_INFORMATION_CLASS.ProtectionLevelInfo;
+pub const ProcessLeapSecondInfo = PROCESS_INFORMATION_CLASS.LeapSecondInfo;
+pub const ProcessInformationClassMax = PROCESS_INFORMATION_CLASS.InformationClassMax;
+
+pub const MSA_INFO_LEVEL = extern enum(i32) {
+    @"0" = 0,
+    Max = 1,
+};
+pub const MsaInfoLevel0 = MSA_INFO_LEVEL.@"0";
+pub const MsaInfoLevelMax = MSA_INFO_LEVEL.Max;
+
+pub const MSA_INFO_STATE = extern enum(i32) {
+    NotExist = 1,
+    NotService = 2,
+    CannotInstall = 3,
+    CanInstall = 4,
+    Installed = 5,
+};
+pub const MsaInfoNotExist = MSA_INFO_STATE.NotExist;
+pub const MsaInfoNotService = MSA_INFO_STATE.NotService;
+pub const MsaInfoCannotInstall = MSA_INFO_STATE.CannotInstall;
+pub const MsaInfoCanInstall = MSA_INFO_STATE.CanInstall;
+pub const MsaInfoInstalled = MSA_INFO_STATE.Installed;
+
+pub const MSA_INFO_0 = extern struct {
+    State: MSA_INFO_STATE,
+};
+
 pub const SERVICE_TRIGGER_CUSTOM_STATE_ID = extern struct {
     Data: [2]u32,
 };
 
 pub const SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM = extern struct {
-    u: SERVICE_CUSTOM_SYSTEM_STATE_CHANGE_DATA_ITEM._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -4588,10 +4596,6 @@ pub const PSC_NOTIFICATION_CALLBACK = fn(
     dwNotify: u32,
     pCallbackContext: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const _SC_NOTIFICATION_REGISTRATION = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
 
 pub const SERVICE_REGISTRY_STATE_TYPE = extern enum(i32) {
     ServiceRegistryStateParameters = 0,
@@ -5108,7 +5112,7 @@ pub const LSA_FOREST_TRUST_RECORD = extern struct {
     Flags: u32,
     ForestTrustType: LSA_FOREST_TRUST_RECORD_TYPE,
     Time: LARGE_INTEGER,
-    ForestTrustData: LSA_FOREST_TRUST_RECORD._ForestTrustData_e__Union,
+    ForestTrustData: _ForestTrustData_e__Union,
     const _ForestTrustData_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -7044,7 +7048,13 @@ pub const SEC_WINNT_AUTH_IDENTITY_EXA = extern struct {
     PackageListLength: u32,
 };
 
-pub const SEC_WINNT_AUTH_IDENTITY_INFO = u32; // TODO: implement StructOrUnion types?
+pub const SEC_WINNT_AUTH_IDENTITY_INFO = extern union {
+    AuthIdExw: SEC_WINNT_AUTH_IDENTITY_EXW,
+    AuthIdExa: SEC_WINNT_AUTH_IDENTITY_EXA,
+    AuthId_a: SEC_WINNT_AUTH_IDENTITY_A,
+    AuthId_w: SEC_WINNT_AUTH_IDENTITY_W,
+    AuthIdEx2: SEC_WINNT_AUTH_IDENTITY_EX2,
+};
 
 pub const SECURITY_PACKAGE_OPTIONS = extern struct {
     Size: u32,
@@ -7603,7 +7613,7 @@ pub const SECPKG_NEGO2_INFO = extern struct {
 
 pub const SECPKG_EXTENDED_INFORMATION = extern struct {
     Class: SECPKG_EXTENDED_INFORMATION_CLASS,
-    Info: SECPKG_EXTENDED_INFORMATION._Info_e__Union,
+    Info: _Info_e__Union,
     const _Info_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -7859,8 +7869,8 @@ pub const PLSA_DELETE_SHARED_MEMORY = fn(
 
 pub const PLSA_GET_APP_MODE_INFO = fn(
     UserFunction: ?*u32,
-    Argument1: ?*u64,
-    Argument2: ?*u64,
+    Argument1: ?*usize,
+    Argument2: ?*usize,
     UserData: ?*SecBuffer,
     ReturnToLsa: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -9741,7 +9751,7 @@ pub const CERT_OTHER_NAME = extern struct {
 
 pub const CERT_ALT_NAME_ENTRY = extern struct {
     dwAltNameChoice: u32,
-    Anonymous: CERT_ALT_NAME_ENTRY._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -9856,7 +9866,7 @@ pub const CERT_AUTHORITY_INFO_ACCESS = extern struct {
 
 pub const CRL_DIST_POINT_NAME = extern struct {
     dwDistPointNameChoice: u32,
-    Anonymous: CRL_DIST_POINT_NAME._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -10007,7 +10017,7 @@ pub const CMC_TAGGED_CERT_REQUEST = extern struct {
 
 pub const CMC_TAGGED_REQUEST = extern struct {
     dwTaggedRequestChoice: u32,
-    Anonymous: CMC_TAGGED_REQUEST._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -10053,7 +10063,7 @@ pub const CMC_STATUS_INFO = extern struct {
     rgdwBodyList: *u32,
     pwszStatusString: PWSTR,
     dwOtherInfoChoice: u32,
-    Anonymous: CMC_STATUS_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -10103,7 +10113,7 @@ pub const CERT_LOGOTYPE_IMAGE_INFO = extern struct {
     dwXSize: u32,
     dwYSize: u32,
     dwLogotypeImageResolutionChoice: CERT_LOGOTYPE_CHOICE,
-    Anonymous: CERT_LOGOTYPE_IMAGE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     pwszLanguage: PWSTR,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -10135,7 +10145,7 @@ pub const CERT_LOGOTYPE_DATA = extern struct {
 
 pub const CERT_LOGOTYPE_INFO = extern struct {
     dwLogotypeInfoChoice: CERT_LOGOTYPE_OPTION,
-    Anonymous: CERT_LOGOTYPE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -10155,7 +10165,7 @@ pub const CERT_LOGOTYPE_EXT_INFO = extern struct {
 
 pub const CERT_BIOMETRIC_DATA = extern struct {
     dwTypeOfBiometricDataChoice: CERT_BIOMETRIC_DATA_TYPE,
-    Anonymous: CERT_BIOMETRIC_DATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     HashedUrl: CERT_HASHED_URL,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -10218,7 +10228,7 @@ pub const OCSP_BASIC_REVOKED_INFO = extern struct {
 pub const OCSP_BASIC_RESPONSE_ENTRY = extern struct {
     CertId: OCSP_CERT_ID,
     dwCertStatus: u32,
-    Anonymous: OCSP_BASIC_RESPONSE_ENTRY._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     ThisUpdate: FILETIME,
     NextUpdate: FILETIME,
     cExtension: u32,
@@ -10229,7 +10239,7 @@ pub const OCSP_BASIC_RESPONSE_ENTRY = extern struct {
 pub const OCSP_BASIC_RESPONSE_INFO = extern struct {
     dwVersion: u32,
     dwResponderIdChoice: u32,
-    Anonymous: OCSP_BASIC_RESPONSE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     ProducedAt: FILETIME,
     cResponseEntry: u32,
     rgResponseEntry: *OCSP_BASIC_RESPONSE_ENTRY,
@@ -10272,7 +10282,7 @@ pub const CRYPT_OID_INFO = extern struct {
     pszOID: [*:0]const u8,
     pwszName: [*:0]const u16,
     dwGroupId: u32,
-    Anonymous: CRYPT_OID_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     ExtraInfo: CRYPTOAPI_BLOB,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -10291,7 +10301,7 @@ pub const CERT_STRONG_SIGN_SERIALIZED_INFO = extern struct {
 pub const CERT_STRONG_SIGN_PARA = extern struct {
     cbSize: u32,
     dwInfoChoice: u32,
-    Anonymous: CERT_STRONG_SIGN_PARA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -10302,14 +10312,14 @@ pub const CERT_ISSUER_SERIAL_NUMBER = extern struct {
 
 pub const CERT_ID = extern struct {
     dwIdChoice: CERT_ID_OPTION,
-    Anonymous: CERT_ID._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const CMSG_SIGNER_ENCODE_INFO = extern struct {
     cbSize: u32,
     pCertInfo: *CERT_INFO,
-    Anonymous: CMSG_SIGNER_ENCODE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwKeySpec: u32,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     pvHashAuxInfo: *c_void,
@@ -10365,7 +10375,7 @@ pub const CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO = extern struct {
     hCryptProv: usize,
     dwKeySpec: u32,
     dwKeyChoice: CMSG_KEY_AGREE_OPTION,
-    Anonymous: CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     UserKeyingMaterial: CRYPTOAPI_BLOB,
     cRecipientEncryptedKeys: u32,
     rgpRecipientEncryptedKeys: **CMSG_RECIPIENT_ENCRYPTED_KEY_ENCODE_INFO,
@@ -10378,7 +10388,7 @@ pub const CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO = extern struct {
     pvKeyEncryptionAuxInfo: *c_void,
     hCryptProv: usize,
     dwKeyChoice: u32,
-    Anonymous: CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     KeyId: CRYPTOAPI_BLOB,
     Date: FILETIME,
     pOtherAttr: *CRYPT_ATTRIBUTE_TYPE_VALUE,
@@ -10387,7 +10397,7 @@ pub const CMSG_MAIL_LIST_RECIPIENT_ENCODE_INFO = extern struct {
 
 pub const CMSG_RECIPIENT_ENCODE_INFO = extern struct {
     dwRecipientChoice: u32,
-    Anonymous: CMSG_RECIPIENT_ENCODE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -10477,7 +10487,7 @@ pub const CMSG_RECIPIENT_ENCRYPTED_KEY_INFO = extern struct {
 pub const CMSG_KEY_AGREE_RECIPIENT_INFO = extern struct {
     dwVersion: u32,
     dwOriginatorChoice: CMSG_KEY_AGREE_ORIGINATOR,
-    Anonymous: CMSG_KEY_AGREE_RECIPIENT_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     UserKeyingMaterial: CRYPTOAPI_BLOB,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     cRecipientEncryptedKeys: u32,
@@ -10496,7 +10506,7 @@ pub const CMSG_MAIL_LIST_RECIPIENT_INFO = extern struct {
 
 pub const CMSG_CMS_RECIPIENT_INFO = extern struct {
     dwRecipientChoice: u32,
-    Anonymous: CMSG_CMS_RECIPIENT_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -10510,7 +10520,7 @@ pub const CMSG_CTRL_VERIFY_SIGNATURE_EX_PARA = extern struct {
 
 pub const CMSG_CTRL_DECRYPT_PARA = extern struct {
     cbSize: u32,
-    Anonymous: CMSG_CTRL_DECRYPT_PARA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwKeySpec: u32,
     dwRecipientIndex: u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -10518,7 +10528,7 @@ pub const CMSG_CTRL_DECRYPT_PARA = extern struct {
 
 pub const CMSG_CTRL_KEY_TRANS_DECRYPT_PARA = extern struct {
     cbSize: u32,
-    Anonymous: CMSG_CTRL_KEY_TRANS_DECRYPT_PARA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwKeySpec: u32,
     pKeyTrans: *CMSG_KEY_TRANS_RECIPIENT_INFO,
     dwRecipientIndex: u32,
@@ -10527,7 +10537,7 @@ pub const CMSG_CTRL_KEY_TRANS_DECRYPT_PARA = extern struct {
 
 pub const CMSG_CTRL_KEY_AGREE_DECRYPT_PARA = extern struct {
     cbSize: u32,
-    Anonymous: CMSG_CTRL_KEY_AGREE_DECRYPT_PARA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwKeySpec: u32,
     pKeyAgree: *CMSG_KEY_AGREE_RECIPIENT_INFO,
     dwRecipientIndex: u32,
@@ -10542,7 +10552,7 @@ pub const CMSG_CTRL_MAIL_LIST_DECRYPT_PARA = extern struct {
     pMailList: *CMSG_MAIL_LIST_RECIPIENT_INFO,
     dwRecipientIndex: u32,
     dwKeyChoice: u32,
-    Anonymous: CMSG_CTRL_MAIL_LIST_DECRYPT_PARA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -10607,7 +10617,7 @@ pub const CMSG_CONTENT_ENCRYPT_INFO = extern struct {
     pfnAlloc: PFN_CMSG_ALLOC,
     pfnFree: PFN_CMSG_FREE,
     dwEncryptFlags: u32,
-    Anonymous: CMSG_CONTENT_ENCRYPT_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwFlags: u32,
     fCNG: BOOL,
     pbCNGContentEncryptKeyObject: *u8,
@@ -10649,7 +10659,7 @@ pub const CMSG_KEY_AGREE_ENCRYPT_INFO = extern struct {
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     UserKeyingMaterial: CRYPTOAPI_BLOB,
     dwOriginatorChoice: CMSG_KEY_AGREE_ORIGINATOR,
-    Anonymous: CMSG_KEY_AGREE_ENCRYPT_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     cKeyAgreeKeyEncryptInfo: u32,
     rgpKeyAgreeKeyEncryptInfo: **CMSG_KEY_AGREE_KEY_ENCRYPT_INFO,
     dwFlags: u32,
@@ -10803,7 +10813,7 @@ pub const CRYPT_KEY_PROV_INFO = extern struct {
 
 pub const CERT_KEY_CONTEXT = extern struct {
     cbSize: u32,
-    Anonymous: CERT_KEY_CONTEXT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwKeySpec: u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -10819,8 +10829,8 @@ pub const CRYPT_SMART_CARD_ROOT_INFO = extern struct {
 };
 
 pub const CERT_SYSTEM_STORE_RELOCATE_PARA = extern struct {
-    Anonymous1: CERT_SYSTEM_STORE_RELOCATE_PARA._Anonymous1_e__Union,
-    Anonymous2: CERT_SYSTEM_STORE_RELOCATE_PARA._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
@@ -11322,7 +11332,7 @@ pub const CRYPT_HASH_MESSAGE_PARA = extern struct {
 pub const CRYPT_KEY_SIGN_MESSAGE_PARA = extern struct {
     cbSize: u32,
     dwMsgAndCertEncodingType: CERT_QUERY_ENCODING_TYPE,
-    Anonymous: CRYPT_KEY_SIGN_MESSAGE_PARA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwKeySpec: CERT_KEY_SPEC,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     pvHashAuxInfo: *c_void,
@@ -11627,7 +11637,7 @@ pub const AUTHENTICODE_TS_EXTRA_CERT_CHAIN_POLICY_PARA = extern struct {
 };
 
 pub const HTTPSPolicyCallbackData = extern struct {
-    Anonymous: HTTPSPolicyCallbackData._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwAuthType: HTTPSPOLICY_CALLBACK_DATA_AUTH_TYPE,
     fdwChecks: u32,
     pwszServerName: PWSTR,
@@ -12029,10 +12039,6 @@ pub const SecPkgContext_TokenBinding = extern struct {
     KeyParameters: *u8,
 };
 
-pub const _HMAPPER = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
 pub const SCHANNEL_CRED = extern struct {
     dwVersion: u32,
     cCreds: u32,
@@ -12366,7 +12372,7 @@ pub const TRUSTEE_ACCESSW = extern struct {
 };
 
 pub const ACTRL_OVERLAPPED = extern struct {
-    Anonymous: ACTRL_OVERLAPPED._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Reserved2: u32,
     hEvent: HANDLE,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -13439,7 +13445,7 @@ pub const READER_SEL_REQUEST = extern struct {
     dwShareMode: u32,
     dwPreferredProtocols: u32,
     MatchType: READER_SEL_REQUEST_MATCH_TYPE,
-    Anonymous: READER_SEL_REQUEST._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -14595,8 +14601,8 @@ pub const AUDIT_PARAM = extern struct {
     Type: AUDIT_PARAM_TYPE,
     Length: u32,
     Flags: u32,
-    Anonymous1: AUDIT_PARAM._Anonymous1_e__Union,
-    Anonymous2: AUDIT_PARAM._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
@@ -14614,7 +14620,9 @@ pub const AUTHZ_AUDIT_EVENT_TYPE_LEGACY = extern struct {
     ParameterCount: u16,
 };
 
-pub const AUTHZ_AUDIT_EVENT_TYPE_UNION = u32; // TODO: implement StructOrUnion types?
+pub const AUTHZ_AUDIT_EVENT_TYPE_UNION = extern union {
+    Legacy: AUTHZ_AUDIT_EVENT_TYPE_LEGACY,
+};
 
 pub const AUTHZ_AUDIT_EVENT_TYPE_OLD = extern struct {
     Version: u32,
@@ -14718,7 +14726,7 @@ pub const AUTHZ_SECURITY_ATTRIBUTE_V1 = extern struct {
     Reserved: u16,
     Flags: AUTHZ_SECURITY_ATTRIBUTE_FLAGS,
     ValueCount: u32,
-    Values: AUTHZ_SECURITY_ATTRIBUTE_V1._Values_e__Union,
+    Values: _Values_e__Union,
     const _Values_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -14726,7 +14734,7 @@ pub const AUTHZ_SECURITY_ATTRIBUTES_INFORMATION = extern struct {
     Version: u16,
     Reserved: u16,
     AttributeCount: u32,
-    Attribute: AUTHZ_SECURITY_ATTRIBUTES_INFORMATION._Attribute_e__Union,
+    Attribute: _Attribute_e__Union,
     const _Attribute_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -14810,7 +14818,7 @@ pub const AUTHZ_SOURCE_SCHEMA_REGISTRATION = extern struct {
     szEventSourceXmlSchemaFile: PWSTR,
     szEventAccessStringsFile: PWSTR,
     szExecutableImagePath: PWSTR,
-    Anonymous: AUTHZ_SOURCE_SCHEMA_REGISTRATION._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwObjectTypeNameCount: u32,
     ObjectTypeNames: [1]AUTHZ_REGISTRATION_OBJECT_TYPE_NAME_OFFSET,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -30703,7 +30711,7 @@ pub const CRYPT_XML_KEY_RSA_KEY_VALUE = extern struct {
 
 pub const CRYPT_XML_KEY_VALUE = extern struct {
     dwType: CRYPT_XML_KEY_VALUE_TYPE,
-    Anonymous: CRYPT_XML_KEY_VALUE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -30714,7 +30722,7 @@ pub const CRYPT_XML_ISSUER_SERIAL = extern struct {
 
 pub const CRYPT_XML_X509DATA_ITEM = extern struct {
     dwType: CRYPT_XML_X509DATA_TYPE,
-    Anonymous: CRYPT_XML_X509DATA_ITEM._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -30725,7 +30733,7 @@ pub const CRYPT_XML_X509DATA = extern struct {
 
 pub const CRYPT_XML_KEY_INFO_ITEM = extern struct {
     dwType: CRYPT_XML_KEYINFO_TYPE,
-    Anonymous: CRYPT_XML_KEY_INFO_ITEM._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -33653,7 +33661,7 @@ pub const ENUM_PERIOD_MONTHS = ENUM_PERIOD.MONTHS;
 pub const ENUM_PERIOD_YEARS = ENUM_PERIOD.YEARS;
 
 pub const LLFILETIME = extern struct {
-    Anonymous: LLFILETIME._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -33817,7 +33825,7 @@ pub const WINTRUST_DATA = extern struct {
     dwUIChoice: WINTRUST_DATA_UICHOICE,
     fdwRevocationChecks: WINTRUST_DATA_REVOCATION_CHECKS,
     dwUnionChoice: WINTRUST_DATA_UNION_CHOICE,
-    Anonymous: WINTRUST_DATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwStateAction: WINTRUST_DATA_STATE_ACTION,
     hWVTStateData: HANDLE,
     pwszURLReference: PWSTR,
@@ -33974,7 +33982,7 @@ pub const CRYPT_PROVIDER_DATA = extern struct {
     csProvPrivData: u32,
     pasProvPrivData: *CRYPT_PROVIDER_PRIVDATA,
     dwSubjectChoice: u32,
-    Anonymous: CRYPT_PROVIDER_DATA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     pszUsageOID: PSTR,
     fRecallWithState: BOOL,
     sftSystemTime: FILETIME,
@@ -34157,7 +34165,7 @@ pub const SPC_SIGINFO = extern struct {
 
 pub const SPC_LINK = extern struct {
     dwLinkChoice: u32,
-    Anonymous: SPC_LINK._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -34318,7 +34326,7 @@ pub const CRYPTUI_WIZ_DIGITAL_SIGN_CERT_PVK_INFO = extern struct {
     dwSize: u32,
     pwszSigningCertFileName: PWSTR,
     dwPvkChoice: CRYPTUI_WIZ_DIGITAL_SIGN_PVK_OPTION,
-    Anonymous: CRYPTUI_WIZ_DIGITAL_SIGN_CERT_PVK_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -34337,9 +34345,9 @@ pub const CRYPTUI_WIZ_DIGITAL_SIGN_EXTENDED_INFO = extern struct {
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_INFO = extern struct {
     dwSize: u32,
     dwSubjectChoice: CRYPTUI_WIZ_DIGITAL_SIGN_SUBJECT,
-    Anonymous1: CRYPTUI_WIZ_DIGITAL_SIGN_INFO._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     dwSigningCertChoice: CRYPTUI_WIZ_DIGITAL_SIGN,
-    Anonymous2: CRYPTUI_WIZ_DIGITAL_SIGN_INFO._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     pwszTimestampURL: [*:0]const u16,
     dwAdditionalCertChoice: CRYPTUI_WIZ_DIGITAL_ADDITIONAL_CERT_CHOICE,
     pSignExtInfo: *CRYPTUI_WIZ_DIGITAL_SIGN_EXTENDED_INFO,
@@ -34366,7 +34374,7 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTW = extern struct {
     pCertContext: *CERT_CONTEXT,
     rgszPurposes: *PSTR,
     cPurposes: u32,
-    Anonymous: CRYPTUI_VIEWCERTIFICATE_STRUCTW._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     fpCryptProviderDataTrustedUsage: BOOL,
     idxSigner: u32,
     idxCert: u32,
@@ -34388,7 +34396,7 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTA = extern struct {
     pCertContext: *CERT_CONTEXT,
     rgszPurposes: *PSTR,
     cPurposes: u32,
-    Anonymous: CRYPTUI_VIEWCERTIFICATE_STRUCTA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     fpCryptProviderDataTrustedUsage: BOOL,
     idxSigner: u32,
     idxCert: u32,
@@ -34406,7 +34414,7 @@ pub const CRYPTUI_WIZ_EXPORT_INFO = extern struct {
     dwSize: u32,
     pwszExportFileName: [*:0]const u16,
     dwSubjectChoice: CRYPTUI_WIZ_EXPORT_SUBJECT,
-    Anonymous: CRYPTUI_WIZ_EXPORT_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     cStores: u32,
     rghStores: **c_void,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -34424,7 +34432,7 @@ pub const CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO = extern struct {
 pub const CRYPTUI_WIZ_IMPORT_SRC_INFO = extern struct {
     dwSize: u32,
     dwSubjectChoice: CRYPTUI_WIZ_IMPORT_SUBJECT_OPTION,
-    Anonymous: CRYPTUI_WIZ_IMPORT_SRC_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     dwFlags: CRYPT_KEY_FLAGS,
     pwszPassword: [*:0]const u16,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -34447,7 +34455,7 @@ pub const SIP_SUBJECTINFO = extern struct {
     fdwSecuritySettings: u32,
     dwIndex: u32,
     dwUnionChoice: u32,
-    Anonymous: SIP_SUBJECTINFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     pClientData: *c_void,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -34482,7 +34490,7 @@ pub const SIP_CAP_SET_V3 = extern struct {
     cbSize: u32,
     dwVersion: u32,
     isMultiSign: BOOL,
-    Anonymous: SIP_CAP_SET_V3._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -40077,50 +40085,21 @@ pub extern "ADVAPI32" fn ImpersonateNamedPipeClient(
     hNamedPipe: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "logoncli" fn NetAddServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: PWSTR,
-    Password: PWSTR,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "logoncli" fn NetRemoveServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: PWSTR,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "logoncli" fn NetEnumerateServiceAccounts(
-    ServerName: ?PWSTR,
-    Flags: u32,
-    AccountsCount: *u32,
-    Accounts: ***u16,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "logoncli" fn NetIsServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: PWSTR,
-    IsService: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "logoncli" fn NetQueryServiceAccount(
-    ServerName: ?PWSTR,
-    AccountName: PWSTR,
-    InfoLevel: u32,
-    Buffer: **u8,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn SetUserObjectSecurity(
+    hObj: HANDLE,
+    pSIRequested: *OBJECT_SECURITY_INFORMATION,
+    pSID: *SECURITY_DESCRIPTOR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn SetServiceBits(
-    hServiceStatus: SERVICE_STATUS_HANDLE,
-    dwServiceBits: u32,
-    bSetBitsOn: BOOL,
-    bUpdateImmediately: BOOL,
+pub extern "USER32" fn GetUserObjectSecurity(
+    hObj: HANDLE,
+    pSIRequested: *u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pSID: ?*SECURITY_DESCRIPTOR,
+    nLength: u32,
+    lpnLengthNeeded: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -40470,21 +40449,50 @@ pub extern "ntdll" fn RtlConvertSidToUnicodeString(
     AllocateDestinationString: u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn SetUserObjectSecurity(
-    hObj: HANDLE,
-    pSIRequested: *OBJECT_SECURITY_INFORMATION,
-    pSID: *SECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "logoncli" fn NetAddServiceAccount(
+    ServerName: ?PWSTR,
+    AccountName: PWSTR,
+    Password: PWSTR,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "logoncli" fn NetRemoveServiceAccount(
+    ServerName: ?PWSTR,
+    AccountName: PWSTR,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "logoncli" fn NetEnumerateServiceAccounts(
+    ServerName: ?PWSTR,
+    Flags: u32,
+    AccountsCount: *u32,
+    Accounts: ***u16,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "logoncli" fn NetIsServiceAccount(
+    ServerName: ?PWSTR,
+    AccountName: PWSTR,
+    IsService: *BOOL,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "logoncli" fn NetQueryServiceAccount(
+    ServerName: ?PWSTR,
+    AccountName: PWSTR,
+    InfoLevel: u32,
+    Buffer: **u8,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetUserObjectSecurity(
-    hObj: HANDLE,
-    pSIRequested: *u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pSID: ?*SECURITY_DESCRIPTOR,
-    nLength: u32,
-    lpnLengthNeeded: *u32,
+pub extern "ADVAPI32" fn SetServiceBits(
+    hServiceStatus: SERVICE_STATUS_HANDLE,
+    dwServiceBits: u32,
+    bSetBitsOn: BOOL,
+    bUpdateImmediately: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -49746,10 +49754,10 @@ pub extern "DiagnosticDataQuery" fn DdqGetTranscriptConfiguration(
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const SEC_WINNT_AUTH_IDENTITY_ = SEC_WINNT_AUTH_IDENTITY_A;
         pub const NETRESOURCE = NETRESOURCEA;
         pub const UNIVERSAL_NAME_INFO = UNIVERSAL_NAME_INFOA;
         pub const REMOTE_NAME_INFO = REMOTE_NAME_INFOA;
+        pub const SEC_WINNT_AUTH_IDENTITY_ = SEC_WINNT_AUTH_IDENTITY_A;
         pub const SERVICE_DESCRIPTION = SERVICE_DESCRIPTIONA;
         pub const SERVICE_FAILURE_ACTIONS = SERVICE_FAILURE_ACTIONSA;
         pub const SERVICE_REQUIRED_PRIVILEGES_INFO = SERVICE_REQUIRED_PRIVILEGES_INFOA;
@@ -49969,10 +49977,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CryptUIDlgViewCertificate = CryptUIDlgViewCertificateA;
     },
     .wide => struct {
-        pub const SEC_WINNT_AUTH_IDENTITY_ = SEC_WINNT_AUTH_IDENTITY_W;
         pub const NETRESOURCE = NETRESOURCEW;
         pub const UNIVERSAL_NAME_INFO = UNIVERSAL_NAME_INFOW;
         pub const REMOTE_NAME_INFO = REMOTE_NAME_INFOW;
+        pub const SEC_WINNT_AUTH_IDENTITY_ = SEC_WINNT_AUTH_IDENTITY_W;
         pub const SERVICE_DESCRIPTION = SERVICE_DESCRIPTIONW;
         pub const SERVICE_FAILURE_ACTIONS = SERVICE_FAILURE_ACTIONSW;
         pub const SERVICE_REQUIRED_PRIVILEGES_INFO = SERVICE_REQUIRED_PRIVILEGES_INFOW;
@@ -50192,10 +50200,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CryptUIDlgViewCertificate = CryptUIDlgViewCertificateW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const SEC_WINNT_AUTH_IDENTITY_ = *opaque{};
         pub const NETRESOURCE = *opaque{};
         pub const UNIVERSAL_NAME_INFO = *opaque{};
         pub const REMOTE_NAME_INFO = *opaque{};
+        pub const SEC_WINNT_AUTH_IDENTITY_ = *opaque{};
         pub const SERVICE_DESCRIPTION = *opaque{};
         pub const SERVICE_FAILURE_ACTIONS = *opaque{};
         pub const SERVICE_REQUIRED_PRIVILEGES_INFO = *opaque{};
@@ -50414,10 +50422,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const ConvertSecurityDescriptorToStringSecurityDescriptor = *opaque{};
         pub const CryptUIDlgViewCertificate = *opaque{};
     } else struct {
-        pub const SEC_WINNT_AUTH_IDENTITY_ = @compileError("'SEC_WINNT_AUTH_IDENTITY_' requires that UNICODE be set to true or false in the root module");
         pub const NETRESOURCE = @compileError("'NETRESOURCE' requires that UNICODE be set to true or false in the root module");
         pub const UNIVERSAL_NAME_INFO = @compileError("'UNIVERSAL_NAME_INFO' requires that UNICODE be set to true or false in the root module");
         pub const REMOTE_NAME_INFO = @compileError("'REMOTE_NAME_INFO' requires that UNICODE be set to true or false in the root module");
+        pub const SEC_WINNT_AUTH_IDENTITY_ = @compileError("'SEC_WINNT_AUTH_IDENTITY_' requires that UNICODE be set to true or false in the root module");
         pub const SERVICE_DESCRIPTION = @compileError("'SERVICE_DESCRIPTION' requires that UNICODE be set to true or false in the root module");
         pub const SERVICE_FAILURE_ACTIONS = @compileError("'SERVICE_FAILURE_ACTIONS' requires that UNICODE be set to true or false in the root module");
         pub const SERVICE_REQUIRED_PRIVILEGES_INFO = @compileError("'SERVICE_REQUIRED_PRIVILEGES_INFO' requires that UNICODE be set to true or false in the root module");
@@ -50695,460 +50703,451 @@ const NTSTATUS = @import("system_services.zig").NTSTATUS;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PLSA_AP_CALL_PACKAGE_UNTRUSTED;
-    _ = SEC_THREAD_START;
-    _ = SERVICE_MAIN_FUNCTIONW;
-    _ = SERVICE_MAIN_FUNCTIONA;
-    _ = LPSERVICE_MAIN_FUNCTIONW;
-    _ = LPSERVICE_MAIN_FUNCTIONA;
-    _ = HANDLER_FUNCTION;
-    _ = HANDLER_FUNCTION_EX;
-    _ = LPHANDLER_FUNCTION;
-    _ = LPHANDLER_FUNCTION_EX;
-    _ = PFN_SC_NOTIFY_CALLBACK;
-    _ = PSC_NOTIFICATION_CALLBACK;
-    _ = PSAM_PASSWORD_NOTIFICATION_ROUTINE;
-    _ = PSAM_INIT_NOTIFICATION_ROUTINE;
-    _ = PSAM_PASSWORD_FILTER_ROUTINE;
-    _ = SEC_GET_KEY_FN;
-    _ = ACQUIRE_CREDENTIALS_HANDLE_FN_W;
-    _ = ACQUIRE_CREDENTIALS_HANDLE_FN_A;
-    _ = FREE_CREDENTIALS_HANDLE_FN;
-    _ = ADD_CREDENTIALS_FN_W;
-    _ = ADD_CREDENTIALS_FN_A;
-    _ = CHANGE_PASSWORD_FN_W;
-    _ = CHANGE_PASSWORD_FN_A;
-    _ = INITIALIZE_SECURITY_CONTEXT_FN_W;
-    _ = INITIALIZE_SECURITY_CONTEXT_FN_A;
-    _ = ACCEPT_SECURITY_CONTEXT_FN;
-    _ = COMPLETE_AUTH_TOKEN_FN;
-    _ = IMPERSONATE_SECURITY_CONTEXT_FN;
-    _ = REVERT_SECURITY_CONTEXT_FN;
-    _ = QUERY_SECURITY_CONTEXT_TOKEN_FN;
-    _ = DELETE_SECURITY_CONTEXT_FN;
-    _ = APPLY_CONTROL_TOKEN_FN;
-    _ = QUERY_CONTEXT_ATTRIBUTES_FN_W;
-    _ = QUERY_CONTEXT_ATTRIBUTES_EX_FN_W;
-    _ = QUERY_CONTEXT_ATTRIBUTES_FN_A;
-    _ = QUERY_CONTEXT_ATTRIBUTES_EX_FN_A;
-    _ = SET_CONTEXT_ATTRIBUTES_FN_W;
-    _ = SET_CONTEXT_ATTRIBUTES_FN_A;
-    _ = QUERY_CREDENTIALS_ATTRIBUTES_FN_W;
-    _ = QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W;
-    _ = QUERY_CREDENTIALS_ATTRIBUTES_FN_A;
-    _ = QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A;
-    _ = SET_CREDENTIALS_ATTRIBUTES_FN_W;
-    _ = SET_CREDENTIALS_ATTRIBUTES_FN_A;
-    _ = FREE_CONTEXT_BUFFER_FN;
-    _ = MAKE_SIGNATURE_FN;
-    _ = VERIFY_SIGNATURE_FN;
-    _ = ENCRYPT_MESSAGE_FN;
-    _ = DECRYPT_MESSAGE_FN;
-    _ = ENUMERATE_SECURITY_PACKAGES_FN_W;
-    _ = ENUMERATE_SECURITY_PACKAGES_FN_A;
-    _ = QUERY_SECURITY_PACKAGE_INFO_FN_W;
-    _ = QUERY_SECURITY_PACKAGE_INFO_FN_A;
-    _ = EXPORT_SECURITY_CONTEXT_FN;
-    _ = IMPORT_SECURITY_CONTEXT_FN_W;
-    _ = IMPORT_SECURITY_CONTEXT_FN_A;
-    _ = INIT_SECURITY_INTERFACE_A;
-    _ = INIT_SECURITY_INTERFACE_W;
-    _ = PLSA_CREATE_LOGON_SESSION;
-    _ = PLSA_DELETE_LOGON_SESSION;
-    _ = PLSA_ADD_CREDENTIAL;
-    _ = PLSA_GET_CREDENTIALS;
-    _ = PLSA_DELETE_CREDENTIAL;
-    _ = PLSA_ALLOCATE_LSA_HEAP;
-    _ = PLSA_FREE_LSA_HEAP;
-    _ = PLSA_ALLOCATE_PRIVATE_HEAP;
-    _ = PLSA_FREE_PRIVATE_HEAP;
-    _ = PLSA_ALLOCATE_CLIENT_BUFFER;
-    _ = PLSA_FREE_CLIENT_BUFFER;
-    _ = PLSA_COPY_TO_CLIENT_BUFFER;
-    _ = PLSA_COPY_FROM_CLIENT_BUFFER;
-    _ = PLSA_AP_INITIALIZE_PACKAGE;
-    _ = PLSA_AP_LOGON_USER;
-    _ = PLSA_AP_LOGON_USER_EX;
-    _ = PLSA_AP_CALL_PACKAGE;
-    _ = PLSA_AP_CALL_PACKAGE_PASSTHROUGH;
-    _ = PLSA_AP_LOGON_TERMINATED;
-    _ = PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE;
-    _ = PSAM_CREDENTIAL_UPDATE_REGISTER_ROUTINE;
-    _ = PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE;
-    _ = PSAM_CREDENTIAL_UPDATE_REGISTER_MAPPED_ENTRYPOINTS_ROUTINE;
-    _ = PLSA_CALLBACK_FUNCTION;
-    _ = PLSA_REDIRECTED_LOGON_INIT;
-    _ = PLSA_REDIRECTED_LOGON_CALLBACK;
-    _ = PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK;
-    _ = PLSA_REDIRECTED_LOGON_GET_LOGON_CREDS;
-    _ = PLSA_REDIRECTED_LOGON_GET_SUPP_CREDS;
-    _ = PLSA_IMPERSONATE_CLIENT;
-    _ = PLSA_UNLOAD_PACKAGE;
-    _ = PLSA_DUPLICATE_HANDLE;
-    _ = PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS;
-    _ = PLSA_CREATE_THREAD;
-    _ = PLSA_GET_CLIENT_INFO;
-    _ = PLSA_REGISTER_NOTIFICATION;
-    _ = PLSA_CANCEL_NOTIFICATION;
-    _ = PLSA_MAP_BUFFER;
-    _ = PLSA_CREATE_TOKEN;
-    _ = PLSA_CREATE_TOKEN_EX;
-    _ = PLSA_AUDIT_LOGON;
-    _ = PLSA_CALL_PACKAGE;
-    _ = PLSA_CALL_PACKAGEEX;
-    _ = PLSA_CALL_PACKAGE_PASSTHROUGH;
-    _ = PLSA_GET_CALL_INFO;
-    _ = PLSA_CREATE_SHARED_MEMORY;
-    _ = PLSA_ALLOCATE_SHARED_MEMORY;
-    _ = PLSA_FREE_SHARED_MEMORY;
-    _ = PLSA_DELETE_SHARED_MEMORY;
-    _ = PLSA_GET_APP_MODE_INFO;
-    _ = PLSA_SET_APP_MODE_INFO;
-    _ = PLSA_OPEN_SAM_USER;
-    _ = PLSA_GET_USER_CREDENTIALS;
-    _ = PLSA_GET_USER_AUTH_DATA;
-    _ = PLSA_CLOSE_SAM_USER;
-    _ = PLSA_GET_AUTH_DATA_FOR_USER;
-    _ = PLSA_CONVERT_AUTH_DATA_TO_TOKEN;
-    _ = PLSA_CRACK_SINGLE_NAME;
-    _ = PLSA_AUDIT_ACCOUNT_LOGON;
-    _ = PLSA_CLIENT_CALLBACK;
-    _ = PLSA_REGISTER_CALLBACK;
-    _ = PLSA_GET_EXTENDED_CALL_FLAGS;
-    _ = PLSA_UPDATE_PRIMARY_CREDENTIALS;
-    _ = PLSA_PROTECT_MEMORY;
-    _ = PLSA_OPEN_TOKEN_BY_LOGON_ID;
-    _ = PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN;
-    _ = PLSA_GET_SERVICE_ACCOUNT_PASSWORD;
-    _ = PLSA_AUDIT_LOGON_EX;
-    _ = PLSA_CHECK_PROTECTED_USER_BY_TOKEN;
-    _ = PLSA_QUERY_CLIENT_REQUEST;
-    _ = CredReadFn;
-    _ = CredReadDomainCredentialsFn;
-    _ = CredFreeCredentialsFn;
-    _ = CredWriteFn;
-    _ = CrediUnmarshalandDecodeStringFn;
-    _ = PLSA_LOCATE_PKG_BY_ID;
-    _ = SpInitializeFn;
-    _ = SpShutdownFn;
-    _ = SpGetInfoFn;
-    _ = SpGetExtendedInformationFn;
-    _ = SpSetExtendedInformationFn;
-    _ = PLSA_AP_LOGON_USER_EX2;
-    _ = PLSA_AP_LOGON_USER_EX3;
-    _ = PLSA_AP_PRE_LOGON_USER_SURROGATE;
-    _ = PLSA_AP_POST_LOGON_USER_SURROGATE;
-    _ = SpAcceptCredentialsFn;
-    _ = SpAcquireCredentialsHandleFn;
-    _ = SpFreeCredentialsHandleFn;
-    _ = SpQueryCredentialsAttributesFn;
-    _ = SpSetCredentialsAttributesFn;
-    _ = SpAddCredentialsFn;
-    _ = SpSaveCredentialsFn;
-    _ = SpGetCredentialsFn;
-    _ = SpDeleteCredentialsFn;
-    _ = SpInitLsaModeContextFn;
-    _ = SpDeleteContextFn;
-    _ = SpApplyControlTokenFn;
-    _ = SpAcceptLsaModeContextFn;
-    _ = SpGetUserInfoFn;
-    _ = SpQueryContextAttributesFn;
-    _ = SpSetContextAttributesFn;
-    _ = SpChangeAccountPasswordFn;
-    _ = SpQueryMetaDataFn;
-    _ = SpExchangeMetaDataFn;
-    _ = SpGetCredUIContextFn;
-    _ = SpUpdateCredentialsFn;
-    _ = SpValidateTargetInfoFn;
-    _ = LSA_AP_POST_LOGON_USER;
-    _ = SpGetRemoteCredGuardLogonBufferFn;
-    _ = SpGetRemoteCredGuardSupplementalCredsFn;
-    _ = SpGetTbalSupplementalCredsFn;
-    _ = SpInstanceInitFn;
-    _ = SpInitUserModeContextFn;
-    _ = SpMakeSignatureFn;
-    _ = SpVerifySignatureFn;
-    _ = SpSealMessageFn;
-    _ = SpUnsealMessageFn;
-    _ = SpGetContextTokenFn;
-    _ = SpExportSecurityContextFn;
-    _ = SpImportSecurityContextFn;
-    _ = SpCompleteAuthTokenFn;
-    _ = SpFormatCredentialsFn;
-    _ = SpMarshallSupplementalCredsFn;
-    _ = SpLsaModeInitializeFn;
-    _ = SpUserModeInitializeFn;
-    _ = PKSEC_CREATE_CONTEXT_LIST;
-    _ = PKSEC_INSERT_LIST_ENTRY;
-    _ = PKSEC_REFERENCE_LIST_ENTRY;
-    _ = PKSEC_DEREFERENCE_LIST_ENTRY;
-    _ = PKSEC_SERIALIZE_WINNT_AUTH_DATA;
-    _ = PKSEC_SERIALIZE_SCHANNEL_AUTH_DATA;
-    _ = PKSEC_LOCATE_PKG_BY_ID;
-    _ = KspInitPackageFn;
-    _ = KspDeleteContextFn;
-    _ = KspInitContextFn;
-    _ = KspMakeSignatureFn;
-    _ = KspVerifySignatureFn;
-    _ = KspSealMessageFn;
-    _ = KspUnsealMessageFn;
-    _ = KspGetTokenFn;
-    _ = KspQueryAttributesFn;
-    _ = KspCompleteTokenFn;
-    _ = KspMapHandleFn;
-    _ = KspSetPagingModeFn;
-    _ = KspSerializeAuthDataFn;
-    _ = PFN_NCRYPT_ALLOC;
-    _ = PFN_NCRYPT_FREE;
-    _ = PCRYPT_DECRYPT_PRIVATE_KEY_FUNC;
-    _ = PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC;
-    _ = PCRYPT_RESOLVE_HCRYPTPROV_FUNC;
-    _ = PFN_CRYPT_ALLOC;
-    _ = PFN_CRYPT_FREE;
-    _ = PFN_CRYPT_ENUM_OID_FUNC;
-    _ = PFN_CRYPT_ENUM_OID_INFO;
-    _ = PFN_CMSG_STREAM_OUTPUT;
-    _ = PFN_CMSG_ALLOC;
-    _ = PFN_CMSG_FREE;
-    _ = PFN_CMSG_GEN_ENCRYPT_KEY;
-    _ = PFN_CMSG_EXPORT_ENCRYPT_KEY;
-    _ = PFN_CMSG_IMPORT_ENCRYPT_KEY;
-    _ = PFN_CMSG_GEN_CONTENT_ENCRYPT_KEY;
-    _ = PFN_CMSG_EXPORT_KEY_TRANS;
-    _ = PFN_CMSG_EXPORT_KEY_AGREE;
-    _ = PFN_CMSG_EXPORT_MAIL_LIST;
-    _ = PFN_CMSG_IMPORT_KEY_TRANS;
-    _ = PFN_CMSG_IMPORT_KEY_AGREE;
-    _ = PFN_CMSG_IMPORT_MAIL_LIST;
-    _ = PFN_CMSG_CNG_IMPORT_KEY_TRANS;
-    _ = PFN_CMSG_CNG_IMPORT_KEY_AGREE;
-    _ = PFN_CMSG_CNG_IMPORT_CONTENT_ENCRYPT_KEY;
-    _ = PFN_CERT_DLL_OPEN_STORE_PROV_FUNC;
-    _ = PFN_CERT_STORE_PROV_CLOSE;
-    _ = PFN_CERT_STORE_PROV_READ_CERT;
-    _ = PFN_CERT_STORE_PROV_WRITE_CERT;
-    _ = PFN_CERT_STORE_PROV_DELETE_CERT;
-    _ = PFN_CERT_STORE_PROV_SET_CERT_PROPERTY;
-    _ = PFN_CERT_STORE_PROV_READ_CRL;
-    _ = PFN_CERT_STORE_PROV_WRITE_CRL;
-    _ = PFN_CERT_STORE_PROV_DELETE_CRL;
-    _ = PFN_CERT_STORE_PROV_SET_CRL_PROPERTY;
-    _ = PFN_CERT_STORE_PROV_READ_CTL;
-    _ = PFN_CERT_STORE_PROV_WRITE_CTL;
-    _ = PFN_CERT_STORE_PROV_DELETE_CTL;
-    _ = PFN_CERT_STORE_PROV_SET_CTL_PROPERTY;
-    _ = PFN_CERT_STORE_PROV_CONTROL;
-    _ = PFN_CERT_STORE_PROV_FIND_CERT;
-    _ = PFN_CERT_STORE_PROV_FREE_FIND_CERT;
-    _ = PFN_CERT_STORE_PROV_GET_CERT_PROPERTY;
-    _ = PFN_CERT_STORE_PROV_FIND_CRL;
-    _ = PFN_CERT_STORE_PROV_FREE_FIND_CRL;
-    _ = PFN_CERT_STORE_PROV_GET_CRL_PROPERTY;
-    _ = PFN_CERT_STORE_PROV_FIND_CTL;
-    _ = PFN_CERT_STORE_PROV_FREE_FIND_CTL;
-    _ = PFN_CERT_STORE_PROV_GET_CTL_PROPERTY;
-    _ = PFN_CERT_CREATE_CONTEXT_SORT_FUNC;
-    _ = PFN_CERT_ENUM_SYSTEM_STORE_LOCATION;
-    _ = PFN_CERT_ENUM_SYSTEM_STORE;
-    _ = PFN_CERT_ENUM_PHYSICAL_STORE;
-    _ = PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC;
-    _ = PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC;
-    _ = PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC;
-    _ = PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC;
-    _ = PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC;
-    _ = PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC;
-    _ = PFN_IMPORT_PRIV_KEY_FUNC;
-    _ = PFN_EXPORT_PRIV_KEY_FUNC;
-    _ = PFN_CRYPT_GET_SIGNER_CERTIFICATE;
-    _ = PFN_CRYPT_ASYNC_PARAM_FREE_FUNC;
-    _ = PFN_FREE_ENCODED_OBJECT_FUNC;
-    _ = PFN_CRYPT_CANCEL_RETRIEVAL;
-    _ = PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC;
-    _ = PFN_CANCEL_ASYNC_RETRIEVAL_FUNC;
-    _ = PFN_CRYPT_ENUM_KEYID_PROP;
-    _ = PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK;
-    _ = PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK;
-    _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH;
-    _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET;
-    _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE;
-    _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD;
-    _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE;
-    _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER;
-    _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE;
-    _ = PFN_CERT_IS_WEAK_HASH;
-    _ = SSL_EMPTY_CACHE_FN_A;
-    _ = SSL_EMPTY_CACHE_FN_W;
-    _ = SSL_CRACK_CERTIFICATE_FN;
-    _ = SSL_FREE_CERTIFICATE_FN;
-    _ = SslGetServerIdentityFn;
-    _ = SslGetExtensionsFn;
-    _ = PWLX_USE_CTRL_ALT_DEL;
-    _ = PWLX_SET_CONTEXT_POINTER;
-    _ = PWLX_SAS_NOTIFY;
-    _ = PWLX_SET_TIMEOUT;
-    _ = PWLX_ASSIGN_SHELL_PROTECTION;
-    _ = PWLX_MESSAGE_BOX;
-    _ = PWLX_DIALOG_BOX;
-    _ = PWLX_DIALOG_BOX_INDIRECT;
-    _ = PWLX_DIALOG_BOX_PARAM;
-    _ = PWLX_DIALOG_BOX_INDIRECT_PARAM;
-    _ = PWLX_SWITCH_DESKTOP_TO_USER;
-    _ = PWLX_SWITCH_DESKTOP_TO_WINLOGON;
-    _ = PWLX_CHANGE_PASSWORD_NOTIFY;
-    _ = PWLX_GET_SOURCE_DESKTOP;
-    _ = PWLX_SET_RETURN_DESKTOP;
-    _ = PWLX_CREATE_USER_DESKTOP;
-    _ = PWLX_CHANGE_PASSWORD_NOTIFY_EX;
-    _ = PWLX_CLOSE_USER_DESKTOP;
-    _ = PWLX_SET_OPTION;
-    _ = PWLX_GET_OPTION;
-    _ = PWLX_WIN31_MIGRATE;
-    _ = PWLX_QUERY_CLIENT_CREDENTIALS;
-    _ = PWLX_QUERY_IC_CREDENTIALS;
-    _ = PWLX_QUERY_TS_LOGON_CREDENTIALS;
-    _ = PWLX_DISCONNECT;
-    _ = PWLX_QUERY_TERMINAL_SERVICES_DATA;
-    _ = PWLX_QUERY_CONSOLESWITCH_CREDENTIALS;
-    _ = PFNMSGECALLBACK;
-    _ = PF_NPAddConnection;
-    _ = PF_NPAddConnection3;
-    _ = PF_NPAddConnection4;
-    _ = PF_NPCancelConnection;
-    _ = PF_NPGetConnection;
-    _ = PF_NPGetConnection3;
-    _ = PF_NPGetUniversalName;
-    _ = PF_NPGetConnectionPerformance;
-    _ = PF_NPOpenEnum;
-    _ = PF_NPEnumResource;
-    _ = PF_NPCloseEnum;
-    _ = PF_NPGetCaps;
-    _ = PF_NPGetUser;
-    _ = PF_NPGetPersistentUseOptionsForConnection;
-    _ = PF_NPDeviceMode;
-    _ = PF_NPSearchDialog;
-    _ = PF_NPGetResourceParent;
-    _ = PF_NPGetResourceInformation;
-    _ = PF_NPFormatNetworkName;
-    _ = PF_NPGetPropertyText;
-    _ = PF_NPPropertyDialog;
-    _ = PF_NPGetDirectoryType;
-    _ = PF_NPDirectoryNotify;
-    _ = PF_NPLogonNotify;
-    _ = PF_NPPasswordChangeNotify;
-    _ = PF_AddConnectNotify;
-    _ = PF_CancelConnectNotify;
-    _ = PF_NPFMXGetPermCaps;
-    _ = PF_NPFMXEditPerm;
-    _ = PF_NPFMXGetPermHelp;
-    _ = LPOCNCONNPROCA;
-    _ = LPOCNCONNPROCW;
-    _ = LPOCNCHKPROC;
-    _ = LPOCNDSCPROC;
-    _ = PFN_AUTHZ_DYNAMIC_ACCESS_CHECK;
-    _ = PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS;
-    _ = PFN_AUTHZ_FREE_DYNAMIC_GROUPS;
-    _ = PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY;
-    _ = PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY;
-    _ = FN_PROGRESS;
-    _ = PFNREADOBJECTSECURITY;
-    _ = PFNWRITEOBJECTSECURITY;
-    _ = PFNDSCREATEISECINFO;
-    _ = PFNDSCREATEISECINFOEX;
-    _ = PFNDSCREATESECPAGE;
-    _ = PFNDSEDITSECURITY;
-    _ = FNCERTSRVISSERVERONLINEW;
-    _ = FNCERTSRVBACKUPGETDYNAMICFILELISTW;
-    _ = FNCERTSRVBACKUPPREPAREW;
-    _ = FNCERTSRVBACKUPGETDATABASENAMESW;
-    _ = FNCERTSRVBACKUPOPENFILEW;
-    _ = FNCERTSRVBACKUPREAD;
-    _ = FNCERTSRVBACKUPCLOSE;
-    _ = FNCERTSRVBACKUPGETBACKUPLOGSW;
-    _ = FNCERTSRVBACKUPTRUNCATELOGS;
-    _ = FNCERTSRVBACKUPEND;
-    _ = FNCERTSRVBACKUPFREE;
-    _ = FNCERTSRVRESTOREGETDATABASELOCATIONSW;
-    _ = FNCERTSRVRESTOREPREPAREW;
-    _ = FNCERTSRVRESTOREREGISTERW;
-    _ = FNCERTSRVRESTOREREGISTERCOMPLETE;
-    _ = FNCERTSRVRESTOREEND;
-    _ = FNCERTSRVSERVERCONTROLW;
-    _ = FNIMPORTPFXTOPROVIDER;
-    _ = FNIMPORTPFXTOPROVIDERFREEDATA;
-    _ = PFNCryptStreamOutputCallback;
-    _ = PFNCryptStreamOutputCallbackEx;
-    _ = PFN_CRYPT_XML_WRITE_CALLBACK;
-    _ = PFN_CRYPT_XML_DATA_PROVIDER_READ;
-    _ = PFN_CRYPT_XML_DATA_PROVIDER_CLOSE;
-    _ = PFN_CRYPT_XML_CREATE_TRANSFORM;
-    _ = PFN_CRYPT_XML_ENUM_ALG_INFO;
-    _ = CryptXmlDllGetInterface;
-    _ = CryptXmlDllEncodeAlgorithm;
-    _ = CryptXmlDllCreateDigest;
-    _ = CryptXmlDllDigestData;
-    _ = CryptXmlDllFinalizeDigest;
-    _ = CryptXmlDllCloseDigest;
-    _ = CryptXmlDllSignData;
-    _ = CryptXmlDllVerifySignature;
-    _ = CryptXmlDllGetAlgorithmInfo;
-    _ = CryptXmlDllEncodeKeyValue;
-    _ = CryptXmlDllCreateKey;
-    _ = PFNCMFILTERPROC;
-    _ = PFNCMHOOKPROC;
-    _ = PFNTRUSTHELPER;
-    _ = PFN_CPD_MEM_ALLOC;
-    _ = PFN_CPD_MEM_FREE;
-    _ = PFN_CPD_ADD_STORE;
-    _ = PFN_CPD_ADD_SGNR;
-    _ = PFN_CPD_ADD_CERT;
-    _ = PFN_CPD_ADD_PRIVDATA;
-    _ = PFN_PROVIDER_INIT_CALL;
-    _ = PFN_PROVIDER_OBJTRUST_CALL;
-    _ = PFN_PROVIDER_SIGTRUST_CALL;
-    _ = PFN_PROVIDER_CERTTRUST_CALL;
-    _ = PFN_PROVIDER_FINALPOLICY_CALL;
-    _ = PFN_PROVIDER_TESTFINALPOLICY_CALL;
-    _ = PFN_PROVIDER_CLEANUP_CALL;
-    _ = PFN_PROVIDER_CERTCHKPOLICY_CALL;
-    _ = PFN_PROVUI_CALL;
-    _ = PFN_ALLOCANDFILLDEFUSAGE;
-    _ = PFN_FREEDEFUSAGE;
-    _ = PFNCFILTERPROC;
-    _ = pCryptSIPGetSignedDataMsg;
-    _ = pCryptSIPPutSignedDataMsg;
-    _ = pCryptSIPCreateIndirectData;
-    _ = pCryptSIPVerifyIndirectData;
-    _ = pCryptSIPRemoveSignedDataMsg;
-    _ = pfnIsFileSupported;
-    _ = pfnIsFileSupportedName;
-    _ = pCryptSIPGetCaps;
-    _ = pCryptSIPGetSealedDigest;
-    _ = PFN_CDF_PARSE_ERROR_CALLBACK;
-    _ = PFSCE_QUERY_INFO;
-    _ = PFSCE_SET_INFO;
-    _ = PFSCE_FREE_INFO;
-    _ = PFSCE_LOG_INFO;
-    _ = PF_ConfigAnalyzeService;
-    _ = PF_UpdateService;
+    if (@hasDecl(@This(), "PLSA_AP_CALL_PACKAGE_UNTRUSTED")) { _ = PLSA_AP_CALL_PACKAGE_UNTRUSTED; }
+    if (@hasDecl(@This(), "SEC_THREAD_START")) { _ = SEC_THREAD_START; }
+    if (@hasDecl(@This(), "SERVICE_MAIN_FUNCTIONW")) { _ = SERVICE_MAIN_FUNCTIONW; }
+    if (@hasDecl(@This(), "SERVICE_MAIN_FUNCTIONA")) { _ = SERVICE_MAIN_FUNCTIONA; }
+    if (@hasDecl(@This(), "LPSERVICE_MAIN_FUNCTIONW")) { _ = LPSERVICE_MAIN_FUNCTIONW; }
+    if (@hasDecl(@This(), "LPSERVICE_MAIN_FUNCTIONA")) { _ = LPSERVICE_MAIN_FUNCTIONA; }
+    if (@hasDecl(@This(), "HANDLER_FUNCTION")) { _ = HANDLER_FUNCTION; }
+    if (@hasDecl(@This(), "HANDLER_FUNCTION_EX")) { _ = HANDLER_FUNCTION_EX; }
+    if (@hasDecl(@This(), "LPHANDLER_FUNCTION")) { _ = LPHANDLER_FUNCTION; }
+    if (@hasDecl(@This(), "LPHANDLER_FUNCTION_EX")) { _ = LPHANDLER_FUNCTION_EX; }
+    if (@hasDecl(@This(), "PFN_SC_NOTIFY_CALLBACK")) { _ = PFN_SC_NOTIFY_CALLBACK; }
+    if (@hasDecl(@This(), "PSC_NOTIFICATION_CALLBACK")) { _ = PSC_NOTIFICATION_CALLBACK; }
+    if (@hasDecl(@This(), "PSAM_PASSWORD_NOTIFICATION_ROUTINE")) { _ = PSAM_PASSWORD_NOTIFICATION_ROUTINE; }
+    if (@hasDecl(@This(), "PSAM_INIT_NOTIFICATION_ROUTINE")) { _ = PSAM_INIT_NOTIFICATION_ROUTINE; }
+    if (@hasDecl(@This(), "PSAM_PASSWORD_FILTER_ROUTINE")) { _ = PSAM_PASSWORD_FILTER_ROUTINE; }
+    if (@hasDecl(@This(), "SEC_GET_KEY_FN")) { _ = SEC_GET_KEY_FN; }
+    if (@hasDecl(@This(), "ACQUIRE_CREDENTIALS_HANDLE_FN_W")) { _ = ACQUIRE_CREDENTIALS_HANDLE_FN_W; }
+    if (@hasDecl(@This(), "ACQUIRE_CREDENTIALS_HANDLE_FN_A")) { _ = ACQUIRE_CREDENTIALS_HANDLE_FN_A; }
+    if (@hasDecl(@This(), "FREE_CREDENTIALS_HANDLE_FN")) { _ = FREE_CREDENTIALS_HANDLE_FN; }
+    if (@hasDecl(@This(), "ADD_CREDENTIALS_FN_W")) { _ = ADD_CREDENTIALS_FN_W; }
+    if (@hasDecl(@This(), "ADD_CREDENTIALS_FN_A")) { _ = ADD_CREDENTIALS_FN_A; }
+    if (@hasDecl(@This(), "CHANGE_PASSWORD_FN_W")) { _ = CHANGE_PASSWORD_FN_W; }
+    if (@hasDecl(@This(), "CHANGE_PASSWORD_FN_A")) { _ = CHANGE_PASSWORD_FN_A; }
+    if (@hasDecl(@This(), "INITIALIZE_SECURITY_CONTEXT_FN_W")) { _ = INITIALIZE_SECURITY_CONTEXT_FN_W; }
+    if (@hasDecl(@This(), "INITIALIZE_SECURITY_CONTEXT_FN_A")) { _ = INITIALIZE_SECURITY_CONTEXT_FN_A; }
+    if (@hasDecl(@This(), "ACCEPT_SECURITY_CONTEXT_FN")) { _ = ACCEPT_SECURITY_CONTEXT_FN; }
+    if (@hasDecl(@This(), "COMPLETE_AUTH_TOKEN_FN")) { _ = COMPLETE_AUTH_TOKEN_FN; }
+    if (@hasDecl(@This(), "IMPERSONATE_SECURITY_CONTEXT_FN")) { _ = IMPERSONATE_SECURITY_CONTEXT_FN; }
+    if (@hasDecl(@This(), "REVERT_SECURITY_CONTEXT_FN")) { _ = REVERT_SECURITY_CONTEXT_FN; }
+    if (@hasDecl(@This(), "QUERY_SECURITY_CONTEXT_TOKEN_FN")) { _ = QUERY_SECURITY_CONTEXT_TOKEN_FN; }
+    if (@hasDecl(@This(), "DELETE_SECURITY_CONTEXT_FN")) { _ = DELETE_SECURITY_CONTEXT_FN; }
+    if (@hasDecl(@This(), "APPLY_CONTROL_TOKEN_FN")) { _ = APPLY_CONTROL_TOKEN_FN; }
+    if (@hasDecl(@This(), "QUERY_CONTEXT_ATTRIBUTES_FN_W")) { _ = QUERY_CONTEXT_ATTRIBUTES_FN_W; }
+    if (@hasDecl(@This(), "QUERY_CONTEXT_ATTRIBUTES_EX_FN_W")) { _ = QUERY_CONTEXT_ATTRIBUTES_EX_FN_W; }
+    if (@hasDecl(@This(), "QUERY_CONTEXT_ATTRIBUTES_FN_A")) { _ = QUERY_CONTEXT_ATTRIBUTES_FN_A; }
+    if (@hasDecl(@This(), "QUERY_CONTEXT_ATTRIBUTES_EX_FN_A")) { _ = QUERY_CONTEXT_ATTRIBUTES_EX_FN_A; }
+    if (@hasDecl(@This(), "SET_CONTEXT_ATTRIBUTES_FN_W")) { _ = SET_CONTEXT_ATTRIBUTES_FN_W; }
+    if (@hasDecl(@This(), "SET_CONTEXT_ATTRIBUTES_FN_A")) { _ = SET_CONTEXT_ATTRIBUTES_FN_A; }
+    if (@hasDecl(@This(), "QUERY_CREDENTIALS_ATTRIBUTES_FN_W")) { _ = QUERY_CREDENTIALS_ATTRIBUTES_FN_W; }
+    if (@hasDecl(@This(), "QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W")) { _ = QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W; }
+    if (@hasDecl(@This(), "QUERY_CREDENTIALS_ATTRIBUTES_FN_A")) { _ = QUERY_CREDENTIALS_ATTRIBUTES_FN_A; }
+    if (@hasDecl(@This(), "QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A")) { _ = QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A; }
+    if (@hasDecl(@This(), "SET_CREDENTIALS_ATTRIBUTES_FN_W")) { _ = SET_CREDENTIALS_ATTRIBUTES_FN_W; }
+    if (@hasDecl(@This(), "SET_CREDENTIALS_ATTRIBUTES_FN_A")) { _ = SET_CREDENTIALS_ATTRIBUTES_FN_A; }
+    if (@hasDecl(@This(), "FREE_CONTEXT_BUFFER_FN")) { _ = FREE_CONTEXT_BUFFER_FN; }
+    if (@hasDecl(@This(), "MAKE_SIGNATURE_FN")) { _ = MAKE_SIGNATURE_FN; }
+    if (@hasDecl(@This(), "VERIFY_SIGNATURE_FN")) { _ = VERIFY_SIGNATURE_FN; }
+    if (@hasDecl(@This(), "ENCRYPT_MESSAGE_FN")) { _ = ENCRYPT_MESSAGE_FN; }
+    if (@hasDecl(@This(), "DECRYPT_MESSAGE_FN")) { _ = DECRYPT_MESSAGE_FN; }
+    if (@hasDecl(@This(), "ENUMERATE_SECURITY_PACKAGES_FN_W")) { _ = ENUMERATE_SECURITY_PACKAGES_FN_W; }
+    if (@hasDecl(@This(), "ENUMERATE_SECURITY_PACKAGES_FN_A")) { _ = ENUMERATE_SECURITY_PACKAGES_FN_A; }
+    if (@hasDecl(@This(), "QUERY_SECURITY_PACKAGE_INFO_FN_W")) { _ = QUERY_SECURITY_PACKAGE_INFO_FN_W; }
+    if (@hasDecl(@This(), "QUERY_SECURITY_PACKAGE_INFO_FN_A")) { _ = QUERY_SECURITY_PACKAGE_INFO_FN_A; }
+    if (@hasDecl(@This(), "EXPORT_SECURITY_CONTEXT_FN")) { _ = EXPORT_SECURITY_CONTEXT_FN; }
+    if (@hasDecl(@This(), "IMPORT_SECURITY_CONTEXT_FN_W")) { _ = IMPORT_SECURITY_CONTEXT_FN_W; }
+    if (@hasDecl(@This(), "IMPORT_SECURITY_CONTEXT_FN_A")) { _ = IMPORT_SECURITY_CONTEXT_FN_A; }
+    if (@hasDecl(@This(), "INIT_SECURITY_INTERFACE_A")) { _ = INIT_SECURITY_INTERFACE_A; }
+    if (@hasDecl(@This(), "INIT_SECURITY_INTERFACE_W")) { _ = INIT_SECURITY_INTERFACE_W; }
+    if (@hasDecl(@This(), "PLSA_CREATE_LOGON_SESSION")) { _ = PLSA_CREATE_LOGON_SESSION; }
+    if (@hasDecl(@This(), "PLSA_DELETE_LOGON_SESSION")) { _ = PLSA_DELETE_LOGON_SESSION; }
+    if (@hasDecl(@This(), "PLSA_ADD_CREDENTIAL")) { _ = PLSA_ADD_CREDENTIAL; }
+    if (@hasDecl(@This(), "PLSA_GET_CREDENTIALS")) { _ = PLSA_GET_CREDENTIALS; }
+    if (@hasDecl(@This(), "PLSA_DELETE_CREDENTIAL")) { _ = PLSA_DELETE_CREDENTIAL; }
+    if (@hasDecl(@This(), "PLSA_ALLOCATE_LSA_HEAP")) { _ = PLSA_ALLOCATE_LSA_HEAP; }
+    if (@hasDecl(@This(), "PLSA_FREE_LSA_HEAP")) { _ = PLSA_FREE_LSA_HEAP; }
+    if (@hasDecl(@This(), "PLSA_ALLOCATE_PRIVATE_HEAP")) { _ = PLSA_ALLOCATE_PRIVATE_HEAP; }
+    if (@hasDecl(@This(), "PLSA_FREE_PRIVATE_HEAP")) { _ = PLSA_FREE_PRIVATE_HEAP; }
+    if (@hasDecl(@This(), "PLSA_ALLOCATE_CLIENT_BUFFER")) { _ = PLSA_ALLOCATE_CLIENT_BUFFER; }
+    if (@hasDecl(@This(), "PLSA_FREE_CLIENT_BUFFER")) { _ = PLSA_FREE_CLIENT_BUFFER; }
+    if (@hasDecl(@This(), "PLSA_COPY_TO_CLIENT_BUFFER")) { _ = PLSA_COPY_TO_CLIENT_BUFFER; }
+    if (@hasDecl(@This(), "PLSA_COPY_FROM_CLIENT_BUFFER")) { _ = PLSA_COPY_FROM_CLIENT_BUFFER; }
+    if (@hasDecl(@This(), "PLSA_AP_INITIALIZE_PACKAGE")) { _ = PLSA_AP_INITIALIZE_PACKAGE; }
+    if (@hasDecl(@This(), "PLSA_AP_LOGON_USER")) { _ = PLSA_AP_LOGON_USER; }
+    if (@hasDecl(@This(), "PLSA_AP_LOGON_USER_EX")) { _ = PLSA_AP_LOGON_USER_EX; }
+    if (@hasDecl(@This(), "PLSA_AP_CALL_PACKAGE")) { _ = PLSA_AP_CALL_PACKAGE; }
+    if (@hasDecl(@This(), "PLSA_AP_CALL_PACKAGE_PASSTHROUGH")) { _ = PLSA_AP_CALL_PACKAGE_PASSTHROUGH; }
+    if (@hasDecl(@This(), "PLSA_AP_LOGON_TERMINATED")) { _ = PLSA_AP_LOGON_TERMINATED; }
+    if (@hasDecl(@This(), "PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE")) { _ = PSAM_CREDENTIAL_UPDATE_NOTIFY_ROUTINE; }
+    if (@hasDecl(@This(), "PSAM_CREDENTIAL_UPDATE_REGISTER_ROUTINE")) { _ = PSAM_CREDENTIAL_UPDATE_REGISTER_ROUTINE; }
+    if (@hasDecl(@This(), "PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE")) { _ = PSAM_CREDENTIAL_UPDATE_FREE_ROUTINE; }
+    if (@hasDecl(@This(), "PSAM_CREDENTIAL_UPDATE_REGISTER_MAPPED_ENTRYPOINTS_ROUTINE")) { _ = PSAM_CREDENTIAL_UPDATE_REGISTER_MAPPED_ENTRYPOINTS_ROUTINE; }
+    if (@hasDecl(@This(), "PLSA_CALLBACK_FUNCTION")) { _ = PLSA_CALLBACK_FUNCTION; }
+    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_INIT")) { _ = PLSA_REDIRECTED_LOGON_INIT; }
+    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_CALLBACK")) { _ = PLSA_REDIRECTED_LOGON_CALLBACK; }
+    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK")) { _ = PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK; }
+    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_GET_LOGON_CREDS")) { _ = PLSA_REDIRECTED_LOGON_GET_LOGON_CREDS; }
+    if (@hasDecl(@This(), "PLSA_REDIRECTED_LOGON_GET_SUPP_CREDS")) { _ = PLSA_REDIRECTED_LOGON_GET_SUPP_CREDS; }
+    if (@hasDecl(@This(), "PLSA_IMPERSONATE_CLIENT")) { _ = PLSA_IMPERSONATE_CLIENT; }
+    if (@hasDecl(@This(), "PLSA_UNLOAD_PACKAGE")) { _ = PLSA_UNLOAD_PACKAGE; }
+    if (@hasDecl(@This(), "PLSA_DUPLICATE_HANDLE")) { _ = PLSA_DUPLICATE_HANDLE; }
+    if (@hasDecl(@This(), "PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS")) { _ = PLSA_SAVE_SUPPLEMENTAL_CREDENTIALS; }
+    if (@hasDecl(@This(), "PLSA_CREATE_THREAD")) { _ = PLSA_CREATE_THREAD; }
+    if (@hasDecl(@This(), "PLSA_GET_CLIENT_INFO")) { _ = PLSA_GET_CLIENT_INFO; }
+    if (@hasDecl(@This(), "PLSA_REGISTER_NOTIFICATION")) { _ = PLSA_REGISTER_NOTIFICATION; }
+    if (@hasDecl(@This(), "PLSA_CANCEL_NOTIFICATION")) { _ = PLSA_CANCEL_NOTIFICATION; }
+    if (@hasDecl(@This(), "PLSA_MAP_BUFFER")) { _ = PLSA_MAP_BUFFER; }
+    if (@hasDecl(@This(), "PLSA_CREATE_TOKEN")) { _ = PLSA_CREATE_TOKEN; }
+    if (@hasDecl(@This(), "PLSA_CREATE_TOKEN_EX")) { _ = PLSA_CREATE_TOKEN_EX; }
+    if (@hasDecl(@This(), "PLSA_AUDIT_LOGON")) { _ = PLSA_AUDIT_LOGON; }
+    if (@hasDecl(@This(), "PLSA_CALL_PACKAGE")) { _ = PLSA_CALL_PACKAGE; }
+    if (@hasDecl(@This(), "PLSA_CALL_PACKAGEEX")) { _ = PLSA_CALL_PACKAGEEX; }
+    if (@hasDecl(@This(), "PLSA_CALL_PACKAGE_PASSTHROUGH")) { _ = PLSA_CALL_PACKAGE_PASSTHROUGH; }
+    if (@hasDecl(@This(), "PLSA_GET_CALL_INFO")) { _ = PLSA_GET_CALL_INFO; }
+    if (@hasDecl(@This(), "PLSA_CREATE_SHARED_MEMORY")) { _ = PLSA_CREATE_SHARED_MEMORY; }
+    if (@hasDecl(@This(), "PLSA_ALLOCATE_SHARED_MEMORY")) { _ = PLSA_ALLOCATE_SHARED_MEMORY; }
+    if (@hasDecl(@This(), "PLSA_FREE_SHARED_MEMORY")) { _ = PLSA_FREE_SHARED_MEMORY; }
+    if (@hasDecl(@This(), "PLSA_DELETE_SHARED_MEMORY")) { _ = PLSA_DELETE_SHARED_MEMORY; }
+    if (@hasDecl(@This(), "PLSA_GET_APP_MODE_INFO")) { _ = PLSA_GET_APP_MODE_INFO; }
+    if (@hasDecl(@This(), "PLSA_SET_APP_MODE_INFO")) { _ = PLSA_SET_APP_MODE_INFO; }
+    if (@hasDecl(@This(), "PLSA_OPEN_SAM_USER")) { _ = PLSA_OPEN_SAM_USER; }
+    if (@hasDecl(@This(), "PLSA_GET_USER_CREDENTIALS")) { _ = PLSA_GET_USER_CREDENTIALS; }
+    if (@hasDecl(@This(), "PLSA_GET_USER_AUTH_DATA")) { _ = PLSA_GET_USER_AUTH_DATA; }
+    if (@hasDecl(@This(), "PLSA_CLOSE_SAM_USER")) { _ = PLSA_CLOSE_SAM_USER; }
+    if (@hasDecl(@This(), "PLSA_GET_AUTH_DATA_FOR_USER")) { _ = PLSA_GET_AUTH_DATA_FOR_USER; }
+    if (@hasDecl(@This(), "PLSA_CONVERT_AUTH_DATA_TO_TOKEN")) { _ = PLSA_CONVERT_AUTH_DATA_TO_TOKEN; }
+    if (@hasDecl(@This(), "PLSA_CRACK_SINGLE_NAME")) { _ = PLSA_CRACK_SINGLE_NAME; }
+    if (@hasDecl(@This(), "PLSA_AUDIT_ACCOUNT_LOGON")) { _ = PLSA_AUDIT_ACCOUNT_LOGON; }
+    if (@hasDecl(@This(), "PLSA_CLIENT_CALLBACK")) { _ = PLSA_CLIENT_CALLBACK; }
+    if (@hasDecl(@This(), "PLSA_REGISTER_CALLBACK")) { _ = PLSA_REGISTER_CALLBACK; }
+    if (@hasDecl(@This(), "PLSA_GET_EXTENDED_CALL_FLAGS")) { _ = PLSA_GET_EXTENDED_CALL_FLAGS; }
+    if (@hasDecl(@This(), "PLSA_UPDATE_PRIMARY_CREDENTIALS")) { _ = PLSA_UPDATE_PRIMARY_CREDENTIALS; }
+    if (@hasDecl(@This(), "PLSA_PROTECT_MEMORY")) { _ = PLSA_PROTECT_MEMORY; }
+    if (@hasDecl(@This(), "PLSA_OPEN_TOKEN_BY_LOGON_ID")) { _ = PLSA_OPEN_TOKEN_BY_LOGON_ID; }
+    if (@hasDecl(@This(), "PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN")) { _ = PLSA_EXPAND_AUTH_DATA_FOR_DOMAIN; }
+    if (@hasDecl(@This(), "PLSA_GET_SERVICE_ACCOUNT_PASSWORD")) { _ = PLSA_GET_SERVICE_ACCOUNT_PASSWORD; }
+    if (@hasDecl(@This(), "PLSA_AUDIT_LOGON_EX")) { _ = PLSA_AUDIT_LOGON_EX; }
+    if (@hasDecl(@This(), "PLSA_CHECK_PROTECTED_USER_BY_TOKEN")) { _ = PLSA_CHECK_PROTECTED_USER_BY_TOKEN; }
+    if (@hasDecl(@This(), "PLSA_QUERY_CLIENT_REQUEST")) { _ = PLSA_QUERY_CLIENT_REQUEST; }
+    if (@hasDecl(@This(), "CredReadFn")) { _ = CredReadFn; }
+    if (@hasDecl(@This(), "CredReadDomainCredentialsFn")) { _ = CredReadDomainCredentialsFn; }
+    if (@hasDecl(@This(), "CredFreeCredentialsFn")) { _ = CredFreeCredentialsFn; }
+    if (@hasDecl(@This(), "CredWriteFn")) { _ = CredWriteFn; }
+    if (@hasDecl(@This(), "CrediUnmarshalandDecodeStringFn")) { _ = CrediUnmarshalandDecodeStringFn; }
+    if (@hasDecl(@This(), "PLSA_LOCATE_PKG_BY_ID")) { _ = PLSA_LOCATE_PKG_BY_ID; }
+    if (@hasDecl(@This(), "SpInitializeFn")) { _ = SpInitializeFn; }
+    if (@hasDecl(@This(), "SpShutdownFn")) { _ = SpShutdownFn; }
+    if (@hasDecl(@This(), "SpGetInfoFn")) { _ = SpGetInfoFn; }
+    if (@hasDecl(@This(), "SpGetExtendedInformationFn")) { _ = SpGetExtendedInformationFn; }
+    if (@hasDecl(@This(), "SpSetExtendedInformationFn")) { _ = SpSetExtendedInformationFn; }
+    if (@hasDecl(@This(), "PLSA_AP_LOGON_USER_EX2")) { _ = PLSA_AP_LOGON_USER_EX2; }
+    if (@hasDecl(@This(), "PLSA_AP_LOGON_USER_EX3")) { _ = PLSA_AP_LOGON_USER_EX3; }
+    if (@hasDecl(@This(), "PLSA_AP_PRE_LOGON_USER_SURROGATE")) { _ = PLSA_AP_PRE_LOGON_USER_SURROGATE; }
+    if (@hasDecl(@This(), "PLSA_AP_POST_LOGON_USER_SURROGATE")) { _ = PLSA_AP_POST_LOGON_USER_SURROGATE; }
+    if (@hasDecl(@This(), "SpAcceptCredentialsFn")) { _ = SpAcceptCredentialsFn; }
+    if (@hasDecl(@This(), "SpAcquireCredentialsHandleFn")) { _ = SpAcquireCredentialsHandleFn; }
+    if (@hasDecl(@This(), "SpFreeCredentialsHandleFn")) { _ = SpFreeCredentialsHandleFn; }
+    if (@hasDecl(@This(), "SpQueryCredentialsAttributesFn")) { _ = SpQueryCredentialsAttributesFn; }
+    if (@hasDecl(@This(), "SpSetCredentialsAttributesFn")) { _ = SpSetCredentialsAttributesFn; }
+    if (@hasDecl(@This(), "SpAddCredentialsFn")) { _ = SpAddCredentialsFn; }
+    if (@hasDecl(@This(), "SpSaveCredentialsFn")) { _ = SpSaveCredentialsFn; }
+    if (@hasDecl(@This(), "SpGetCredentialsFn")) { _ = SpGetCredentialsFn; }
+    if (@hasDecl(@This(), "SpDeleteCredentialsFn")) { _ = SpDeleteCredentialsFn; }
+    if (@hasDecl(@This(), "SpInitLsaModeContextFn")) { _ = SpInitLsaModeContextFn; }
+    if (@hasDecl(@This(), "SpDeleteContextFn")) { _ = SpDeleteContextFn; }
+    if (@hasDecl(@This(), "SpApplyControlTokenFn")) { _ = SpApplyControlTokenFn; }
+    if (@hasDecl(@This(), "SpAcceptLsaModeContextFn")) { _ = SpAcceptLsaModeContextFn; }
+    if (@hasDecl(@This(), "SpGetUserInfoFn")) { _ = SpGetUserInfoFn; }
+    if (@hasDecl(@This(), "SpQueryContextAttributesFn")) { _ = SpQueryContextAttributesFn; }
+    if (@hasDecl(@This(), "SpSetContextAttributesFn")) { _ = SpSetContextAttributesFn; }
+    if (@hasDecl(@This(), "SpChangeAccountPasswordFn")) { _ = SpChangeAccountPasswordFn; }
+    if (@hasDecl(@This(), "SpQueryMetaDataFn")) { _ = SpQueryMetaDataFn; }
+    if (@hasDecl(@This(), "SpExchangeMetaDataFn")) { _ = SpExchangeMetaDataFn; }
+    if (@hasDecl(@This(), "SpGetCredUIContextFn")) { _ = SpGetCredUIContextFn; }
+    if (@hasDecl(@This(), "SpUpdateCredentialsFn")) { _ = SpUpdateCredentialsFn; }
+    if (@hasDecl(@This(), "SpValidateTargetInfoFn")) { _ = SpValidateTargetInfoFn; }
+    if (@hasDecl(@This(), "LSA_AP_POST_LOGON_USER")) { _ = LSA_AP_POST_LOGON_USER; }
+    if (@hasDecl(@This(), "SpGetRemoteCredGuardLogonBufferFn")) { _ = SpGetRemoteCredGuardLogonBufferFn; }
+    if (@hasDecl(@This(), "SpGetRemoteCredGuardSupplementalCredsFn")) { _ = SpGetRemoteCredGuardSupplementalCredsFn; }
+    if (@hasDecl(@This(), "SpGetTbalSupplementalCredsFn")) { _ = SpGetTbalSupplementalCredsFn; }
+    if (@hasDecl(@This(), "SpInstanceInitFn")) { _ = SpInstanceInitFn; }
+    if (@hasDecl(@This(), "SpInitUserModeContextFn")) { _ = SpInitUserModeContextFn; }
+    if (@hasDecl(@This(), "SpMakeSignatureFn")) { _ = SpMakeSignatureFn; }
+    if (@hasDecl(@This(), "SpVerifySignatureFn")) { _ = SpVerifySignatureFn; }
+    if (@hasDecl(@This(), "SpSealMessageFn")) { _ = SpSealMessageFn; }
+    if (@hasDecl(@This(), "SpUnsealMessageFn")) { _ = SpUnsealMessageFn; }
+    if (@hasDecl(@This(), "SpGetContextTokenFn")) { _ = SpGetContextTokenFn; }
+    if (@hasDecl(@This(), "SpExportSecurityContextFn")) { _ = SpExportSecurityContextFn; }
+    if (@hasDecl(@This(), "SpImportSecurityContextFn")) { _ = SpImportSecurityContextFn; }
+    if (@hasDecl(@This(), "SpCompleteAuthTokenFn")) { _ = SpCompleteAuthTokenFn; }
+    if (@hasDecl(@This(), "SpFormatCredentialsFn")) { _ = SpFormatCredentialsFn; }
+    if (@hasDecl(@This(), "SpMarshallSupplementalCredsFn")) { _ = SpMarshallSupplementalCredsFn; }
+    if (@hasDecl(@This(), "SpLsaModeInitializeFn")) { _ = SpLsaModeInitializeFn; }
+    if (@hasDecl(@This(), "SpUserModeInitializeFn")) { _ = SpUserModeInitializeFn; }
+    if (@hasDecl(@This(), "PKSEC_CREATE_CONTEXT_LIST")) { _ = PKSEC_CREATE_CONTEXT_LIST; }
+    if (@hasDecl(@This(), "PKSEC_INSERT_LIST_ENTRY")) { _ = PKSEC_INSERT_LIST_ENTRY; }
+    if (@hasDecl(@This(), "PKSEC_REFERENCE_LIST_ENTRY")) { _ = PKSEC_REFERENCE_LIST_ENTRY; }
+    if (@hasDecl(@This(), "PKSEC_DEREFERENCE_LIST_ENTRY")) { _ = PKSEC_DEREFERENCE_LIST_ENTRY; }
+    if (@hasDecl(@This(), "PKSEC_SERIALIZE_WINNT_AUTH_DATA")) { _ = PKSEC_SERIALIZE_WINNT_AUTH_DATA; }
+    if (@hasDecl(@This(), "PKSEC_SERIALIZE_SCHANNEL_AUTH_DATA")) { _ = PKSEC_SERIALIZE_SCHANNEL_AUTH_DATA; }
+    if (@hasDecl(@This(), "PKSEC_LOCATE_PKG_BY_ID")) { _ = PKSEC_LOCATE_PKG_BY_ID; }
+    if (@hasDecl(@This(), "KspInitPackageFn")) { _ = KspInitPackageFn; }
+    if (@hasDecl(@This(), "KspDeleteContextFn")) { _ = KspDeleteContextFn; }
+    if (@hasDecl(@This(), "KspInitContextFn")) { _ = KspInitContextFn; }
+    if (@hasDecl(@This(), "KspMakeSignatureFn")) { _ = KspMakeSignatureFn; }
+    if (@hasDecl(@This(), "KspVerifySignatureFn")) { _ = KspVerifySignatureFn; }
+    if (@hasDecl(@This(), "KspSealMessageFn")) { _ = KspSealMessageFn; }
+    if (@hasDecl(@This(), "KspUnsealMessageFn")) { _ = KspUnsealMessageFn; }
+    if (@hasDecl(@This(), "KspGetTokenFn")) { _ = KspGetTokenFn; }
+    if (@hasDecl(@This(), "KspQueryAttributesFn")) { _ = KspQueryAttributesFn; }
+    if (@hasDecl(@This(), "KspCompleteTokenFn")) { _ = KspCompleteTokenFn; }
+    if (@hasDecl(@This(), "KspMapHandleFn")) { _ = KspMapHandleFn; }
+    if (@hasDecl(@This(), "KspSetPagingModeFn")) { _ = KspSetPagingModeFn; }
+    if (@hasDecl(@This(), "KspSerializeAuthDataFn")) { _ = KspSerializeAuthDataFn; }
+    if (@hasDecl(@This(), "PFN_NCRYPT_ALLOC")) { _ = PFN_NCRYPT_ALLOC; }
+    if (@hasDecl(@This(), "PFN_NCRYPT_FREE")) { _ = PFN_NCRYPT_FREE; }
+    if (@hasDecl(@This(), "PCRYPT_DECRYPT_PRIVATE_KEY_FUNC")) { _ = PCRYPT_DECRYPT_PRIVATE_KEY_FUNC; }
+    if (@hasDecl(@This(), "PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC")) { _ = PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC; }
+    if (@hasDecl(@This(), "PCRYPT_RESOLVE_HCRYPTPROV_FUNC")) { _ = PCRYPT_RESOLVE_HCRYPTPROV_FUNC; }
+    if (@hasDecl(@This(), "PFN_CRYPT_ALLOC")) { _ = PFN_CRYPT_ALLOC; }
+    if (@hasDecl(@This(), "PFN_CRYPT_FREE")) { _ = PFN_CRYPT_FREE; }
+    if (@hasDecl(@This(), "PFN_CRYPT_ENUM_OID_FUNC")) { _ = PFN_CRYPT_ENUM_OID_FUNC; }
+    if (@hasDecl(@This(), "PFN_CRYPT_ENUM_OID_INFO")) { _ = PFN_CRYPT_ENUM_OID_INFO; }
+    if (@hasDecl(@This(), "PFN_CMSG_STREAM_OUTPUT")) { _ = PFN_CMSG_STREAM_OUTPUT; }
+    if (@hasDecl(@This(), "PFN_CMSG_ALLOC")) { _ = PFN_CMSG_ALLOC; }
+    if (@hasDecl(@This(), "PFN_CMSG_FREE")) { _ = PFN_CMSG_FREE; }
+    if (@hasDecl(@This(), "PFN_CMSG_GEN_ENCRYPT_KEY")) { _ = PFN_CMSG_GEN_ENCRYPT_KEY; }
+    if (@hasDecl(@This(), "PFN_CMSG_EXPORT_ENCRYPT_KEY")) { _ = PFN_CMSG_EXPORT_ENCRYPT_KEY; }
+    if (@hasDecl(@This(), "PFN_CMSG_IMPORT_ENCRYPT_KEY")) { _ = PFN_CMSG_IMPORT_ENCRYPT_KEY; }
+    if (@hasDecl(@This(), "PFN_CMSG_GEN_CONTENT_ENCRYPT_KEY")) { _ = PFN_CMSG_GEN_CONTENT_ENCRYPT_KEY; }
+    if (@hasDecl(@This(), "PFN_CMSG_EXPORT_KEY_TRANS")) { _ = PFN_CMSG_EXPORT_KEY_TRANS; }
+    if (@hasDecl(@This(), "PFN_CMSG_EXPORT_KEY_AGREE")) { _ = PFN_CMSG_EXPORT_KEY_AGREE; }
+    if (@hasDecl(@This(), "PFN_CMSG_EXPORT_MAIL_LIST")) { _ = PFN_CMSG_EXPORT_MAIL_LIST; }
+    if (@hasDecl(@This(), "PFN_CMSG_IMPORT_KEY_TRANS")) { _ = PFN_CMSG_IMPORT_KEY_TRANS; }
+    if (@hasDecl(@This(), "PFN_CMSG_IMPORT_KEY_AGREE")) { _ = PFN_CMSG_IMPORT_KEY_AGREE; }
+    if (@hasDecl(@This(), "PFN_CMSG_IMPORT_MAIL_LIST")) { _ = PFN_CMSG_IMPORT_MAIL_LIST; }
+    if (@hasDecl(@This(), "PFN_CMSG_CNG_IMPORT_KEY_TRANS")) { _ = PFN_CMSG_CNG_IMPORT_KEY_TRANS; }
+    if (@hasDecl(@This(), "PFN_CMSG_CNG_IMPORT_KEY_AGREE")) { _ = PFN_CMSG_CNG_IMPORT_KEY_AGREE; }
+    if (@hasDecl(@This(), "PFN_CMSG_CNG_IMPORT_CONTENT_ENCRYPT_KEY")) { _ = PFN_CMSG_CNG_IMPORT_CONTENT_ENCRYPT_KEY; }
+    if (@hasDecl(@This(), "PFN_CERT_DLL_OPEN_STORE_PROV_FUNC")) { _ = PFN_CERT_DLL_OPEN_STORE_PROV_FUNC; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_CLOSE")) { _ = PFN_CERT_STORE_PROV_CLOSE; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_READ_CERT")) { _ = PFN_CERT_STORE_PROV_READ_CERT; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_WRITE_CERT")) { _ = PFN_CERT_STORE_PROV_WRITE_CERT; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_DELETE_CERT")) { _ = PFN_CERT_STORE_PROV_DELETE_CERT; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_SET_CERT_PROPERTY")) { _ = PFN_CERT_STORE_PROV_SET_CERT_PROPERTY; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_READ_CRL")) { _ = PFN_CERT_STORE_PROV_READ_CRL; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_WRITE_CRL")) { _ = PFN_CERT_STORE_PROV_WRITE_CRL; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_DELETE_CRL")) { _ = PFN_CERT_STORE_PROV_DELETE_CRL; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_SET_CRL_PROPERTY")) { _ = PFN_CERT_STORE_PROV_SET_CRL_PROPERTY; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_READ_CTL")) { _ = PFN_CERT_STORE_PROV_READ_CTL; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_WRITE_CTL")) { _ = PFN_CERT_STORE_PROV_WRITE_CTL; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_DELETE_CTL")) { _ = PFN_CERT_STORE_PROV_DELETE_CTL; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_SET_CTL_PROPERTY")) { _ = PFN_CERT_STORE_PROV_SET_CTL_PROPERTY; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_CONTROL")) { _ = PFN_CERT_STORE_PROV_CONTROL; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FIND_CERT")) { _ = PFN_CERT_STORE_PROV_FIND_CERT; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FREE_FIND_CERT")) { _ = PFN_CERT_STORE_PROV_FREE_FIND_CERT; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_GET_CERT_PROPERTY")) { _ = PFN_CERT_STORE_PROV_GET_CERT_PROPERTY; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FIND_CRL")) { _ = PFN_CERT_STORE_PROV_FIND_CRL; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FREE_FIND_CRL")) { _ = PFN_CERT_STORE_PROV_FREE_FIND_CRL; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_GET_CRL_PROPERTY")) { _ = PFN_CERT_STORE_PROV_GET_CRL_PROPERTY; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FIND_CTL")) { _ = PFN_CERT_STORE_PROV_FIND_CTL; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_FREE_FIND_CTL")) { _ = PFN_CERT_STORE_PROV_FREE_FIND_CTL; }
+    if (@hasDecl(@This(), "PFN_CERT_STORE_PROV_GET_CTL_PROPERTY")) { _ = PFN_CERT_STORE_PROV_GET_CTL_PROPERTY; }
+    if (@hasDecl(@This(), "PFN_CERT_CREATE_CONTEXT_SORT_FUNC")) { _ = PFN_CERT_CREATE_CONTEXT_SORT_FUNC; }
+    if (@hasDecl(@This(), "PFN_CERT_ENUM_SYSTEM_STORE_LOCATION")) { _ = PFN_CERT_ENUM_SYSTEM_STORE_LOCATION; }
+    if (@hasDecl(@This(), "PFN_CERT_ENUM_SYSTEM_STORE")) { _ = PFN_CERT_ENUM_SYSTEM_STORE; }
+    if (@hasDecl(@This(), "PFN_CERT_ENUM_PHYSICAL_STORE")) { _ = PFN_CERT_ENUM_PHYSICAL_STORE; }
+    if (@hasDecl(@This(), "PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC")) { _ = PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC; }
+    if (@hasDecl(@This(), "PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC")) { _ = PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC; }
+    if (@hasDecl(@This(), "PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC")) { _ = PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC; }
+    if (@hasDecl(@This(), "PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC")) { _ = PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC; }
+    if (@hasDecl(@This(), "PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC")) { _ = PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC; }
+    if (@hasDecl(@This(), "PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC")) { _ = PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC; }
+    if (@hasDecl(@This(), "PFN_IMPORT_PRIV_KEY_FUNC")) { _ = PFN_IMPORT_PRIV_KEY_FUNC; }
+    if (@hasDecl(@This(), "PFN_EXPORT_PRIV_KEY_FUNC")) { _ = PFN_EXPORT_PRIV_KEY_FUNC; }
+    if (@hasDecl(@This(), "PFN_CRYPT_GET_SIGNER_CERTIFICATE")) { _ = PFN_CRYPT_GET_SIGNER_CERTIFICATE; }
+    if (@hasDecl(@This(), "PFN_CRYPT_ASYNC_PARAM_FREE_FUNC")) { _ = PFN_CRYPT_ASYNC_PARAM_FREE_FUNC; }
+    if (@hasDecl(@This(), "PFN_FREE_ENCODED_OBJECT_FUNC")) { _ = PFN_FREE_ENCODED_OBJECT_FUNC; }
+    if (@hasDecl(@This(), "PFN_CRYPT_CANCEL_RETRIEVAL")) { _ = PFN_CRYPT_CANCEL_RETRIEVAL; }
+    if (@hasDecl(@This(), "PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC")) { _ = PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC; }
+    if (@hasDecl(@This(), "PFN_CANCEL_ASYNC_RETRIEVAL_FUNC")) { _ = PFN_CANCEL_ASYNC_RETRIEVAL_FUNC; }
+    if (@hasDecl(@This(), "PFN_CRYPT_ENUM_KEYID_PROP")) { _ = PFN_CRYPT_ENUM_KEYID_PROP; }
+    if (@hasDecl(@This(), "PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK")) { _ = PFN_CERT_CHAIN_FIND_BY_ISSUER_CALLBACK; }
+    if (@hasDecl(@This(), "PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK")) { _ = PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK; }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH; }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET; }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE; }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD; }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE; }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER; }
+    if (@hasDecl(@This(), "PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE")) { _ = PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_INITIALIZE; }
+    if (@hasDecl(@This(), "PFN_CERT_IS_WEAK_HASH")) { _ = PFN_CERT_IS_WEAK_HASH; }
+    if (@hasDecl(@This(), "SSL_EMPTY_CACHE_FN_A")) { _ = SSL_EMPTY_CACHE_FN_A; }
+    if (@hasDecl(@This(), "SSL_EMPTY_CACHE_FN_W")) { _ = SSL_EMPTY_CACHE_FN_W; }
+    if (@hasDecl(@This(), "SSL_CRACK_CERTIFICATE_FN")) { _ = SSL_CRACK_CERTIFICATE_FN; }
+    if (@hasDecl(@This(), "SSL_FREE_CERTIFICATE_FN")) { _ = SSL_FREE_CERTIFICATE_FN; }
+    if (@hasDecl(@This(), "SslGetServerIdentityFn")) { _ = SslGetServerIdentityFn; }
+    if (@hasDecl(@This(), "SslGetExtensionsFn")) { _ = SslGetExtensionsFn; }
+    if (@hasDecl(@This(), "PWLX_USE_CTRL_ALT_DEL")) { _ = PWLX_USE_CTRL_ALT_DEL; }
+    if (@hasDecl(@This(), "PWLX_SET_CONTEXT_POINTER")) { _ = PWLX_SET_CONTEXT_POINTER; }
+    if (@hasDecl(@This(), "PWLX_SAS_NOTIFY")) { _ = PWLX_SAS_NOTIFY; }
+    if (@hasDecl(@This(), "PWLX_SET_TIMEOUT")) { _ = PWLX_SET_TIMEOUT; }
+    if (@hasDecl(@This(), "PWLX_ASSIGN_SHELL_PROTECTION")) { _ = PWLX_ASSIGN_SHELL_PROTECTION; }
+    if (@hasDecl(@This(), "PWLX_MESSAGE_BOX")) { _ = PWLX_MESSAGE_BOX; }
+    if (@hasDecl(@This(), "PWLX_DIALOG_BOX")) { _ = PWLX_DIALOG_BOX; }
+    if (@hasDecl(@This(), "PWLX_DIALOG_BOX_INDIRECT")) { _ = PWLX_DIALOG_BOX_INDIRECT; }
+    if (@hasDecl(@This(), "PWLX_DIALOG_BOX_PARAM")) { _ = PWLX_DIALOG_BOX_PARAM; }
+    if (@hasDecl(@This(), "PWLX_DIALOG_BOX_INDIRECT_PARAM")) { _ = PWLX_DIALOG_BOX_INDIRECT_PARAM; }
+    if (@hasDecl(@This(), "PWLX_SWITCH_DESKTOP_TO_USER")) { _ = PWLX_SWITCH_DESKTOP_TO_USER; }
+    if (@hasDecl(@This(), "PWLX_SWITCH_DESKTOP_TO_WINLOGON")) { _ = PWLX_SWITCH_DESKTOP_TO_WINLOGON; }
+    if (@hasDecl(@This(), "PWLX_CHANGE_PASSWORD_NOTIFY")) { _ = PWLX_CHANGE_PASSWORD_NOTIFY; }
+    if (@hasDecl(@This(), "PWLX_GET_SOURCE_DESKTOP")) { _ = PWLX_GET_SOURCE_DESKTOP; }
+    if (@hasDecl(@This(), "PWLX_SET_RETURN_DESKTOP")) { _ = PWLX_SET_RETURN_DESKTOP; }
+    if (@hasDecl(@This(), "PWLX_CREATE_USER_DESKTOP")) { _ = PWLX_CREATE_USER_DESKTOP; }
+    if (@hasDecl(@This(), "PWLX_CHANGE_PASSWORD_NOTIFY_EX")) { _ = PWLX_CHANGE_PASSWORD_NOTIFY_EX; }
+    if (@hasDecl(@This(), "PWLX_CLOSE_USER_DESKTOP")) { _ = PWLX_CLOSE_USER_DESKTOP; }
+    if (@hasDecl(@This(), "PWLX_SET_OPTION")) { _ = PWLX_SET_OPTION; }
+    if (@hasDecl(@This(), "PWLX_GET_OPTION")) { _ = PWLX_GET_OPTION; }
+    if (@hasDecl(@This(), "PWLX_WIN31_MIGRATE")) { _ = PWLX_WIN31_MIGRATE; }
+    if (@hasDecl(@This(), "PWLX_QUERY_CLIENT_CREDENTIALS")) { _ = PWLX_QUERY_CLIENT_CREDENTIALS; }
+    if (@hasDecl(@This(), "PWLX_QUERY_IC_CREDENTIALS")) { _ = PWLX_QUERY_IC_CREDENTIALS; }
+    if (@hasDecl(@This(), "PWLX_QUERY_TS_LOGON_CREDENTIALS")) { _ = PWLX_QUERY_TS_LOGON_CREDENTIALS; }
+    if (@hasDecl(@This(), "PWLX_DISCONNECT")) { _ = PWLX_DISCONNECT; }
+    if (@hasDecl(@This(), "PWLX_QUERY_TERMINAL_SERVICES_DATA")) { _ = PWLX_QUERY_TERMINAL_SERVICES_DATA; }
+    if (@hasDecl(@This(), "PWLX_QUERY_CONSOLESWITCH_CREDENTIALS")) { _ = PWLX_QUERY_CONSOLESWITCH_CREDENTIALS; }
+    if (@hasDecl(@This(), "PFNMSGECALLBACK")) { _ = PFNMSGECALLBACK; }
+    if (@hasDecl(@This(), "PF_NPAddConnection")) { _ = PF_NPAddConnection; }
+    if (@hasDecl(@This(), "PF_NPAddConnection3")) { _ = PF_NPAddConnection3; }
+    if (@hasDecl(@This(), "PF_NPAddConnection4")) { _ = PF_NPAddConnection4; }
+    if (@hasDecl(@This(), "PF_NPCancelConnection")) { _ = PF_NPCancelConnection; }
+    if (@hasDecl(@This(), "PF_NPGetConnection")) { _ = PF_NPGetConnection; }
+    if (@hasDecl(@This(), "PF_NPGetConnection3")) { _ = PF_NPGetConnection3; }
+    if (@hasDecl(@This(), "PF_NPGetUniversalName")) { _ = PF_NPGetUniversalName; }
+    if (@hasDecl(@This(), "PF_NPGetConnectionPerformance")) { _ = PF_NPGetConnectionPerformance; }
+    if (@hasDecl(@This(), "PF_NPOpenEnum")) { _ = PF_NPOpenEnum; }
+    if (@hasDecl(@This(), "PF_NPEnumResource")) { _ = PF_NPEnumResource; }
+    if (@hasDecl(@This(), "PF_NPCloseEnum")) { _ = PF_NPCloseEnum; }
+    if (@hasDecl(@This(), "PF_NPGetCaps")) { _ = PF_NPGetCaps; }
+    if (@hasDecl(@This(), "PF_NPGetUser")) { _ = PF_NPGetUser; }
+    if (@hasDecl(@This(), "PF_NPGetPersistentUseOptionsForConnection")) { _ = PF_NPGetPersistentUseOptionsForConnection; }
+    if (@hasDecl(@This(), "PF_NPDeviceMode")) { _ = PF_NPDeviceMode; }
+    if (@hasDecl(@This(), "PF_NPSearchDialog")) { _ = PF_NPSearchDialog; }
+    if (@hasDecl(@This(), "PF_NPGetResourceParent")) { _ = PF_NPGetResourceParent; }
+    if (@hasDecl(@This(), "PF_NPGetResourceInformation")) { _ = PF_NPGetResourceInformation; }
+    if (@hasDecl(@This(), "PF_NPFormatNetworkName")) { _ = PF_NPFormatNetworkName; }
+    if (@hasDecl(@This(), "PF_NPGetPropertyText")) { _ = PF_NPGetPropertyText; }
+    if (@hasDecl(@This(), "PF_NPPropertyDialog")) { _ = PF_NPPropertyDialog; }
+    if (@hasDecl(@This(), "PF_NPGetDirectoryType")) { _ = PF_NPGetDirectoryType; }
+    if (@hasDecl(@This(), "PF_NPDirectoryNotify")) { _ = PF_NPDirectoryNotify; }
+    if (@hasDecl(@This(), "PF_NPLogonNotify")) { _ = PF_NPLogonNotify; }
+    if (@hasDecl(@This(), "PF_NPPasswordChangeNotify")) { _ = PF_NPPasswordChangeNotify; }
+    if (@hasDecl(@This(), "PF_AddConnectNotify")) { _ = PF_AddConnectNotify; }
+    if (@hasDecl(@This(), "PF_CancelConnectNotify")) { _ = PF_CancelConnectNotify; }
+    if (@hasDecl(@This(), "PF_NPFMXGetPermCaps")) { _ = PF_NPFMXGetPermCaps; }
+    if (@hasDecl(@This(), "PF_NPFMXEditPerm")) { _ = PF_NPFMXEditPerm; }
+    if (@hasDecl(@This(), "PF_NPFMXGetPermHelp")) { _ = PF_NPFMXGetPermHelp; }
+    if (@hasDecl(@This(), "LPOCNCONNPROCA")) { _ = LPOCNCONNPROCA; }
+    if (@hasDecl(@This(), "LPOCNCONNPROCW")) { _ = LPOCNCONNPROCW; }
+    if (@hasDecl(@This(), "LPOCNCHKPROC")) { _ = LPOCNCHKPROC; }
+    if (@hasDecl(@This(), "LPOCNDSCPROC")) { _ = LPOCNDSCPROC; }
+    if (@hasDecl(@This(), "PFN_AUTHZ_DYNAMIC_ACCESS_CHECK")) { _ = PFN_AUTHZ_DYNAMIC_ACCESS_CHECK; }
+    if (@hasDecl(@This(), "PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS")) { _ = PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS; }
+    if (@hasDecl(@This(), "PFN_AUTHZ_FREE_DYNAMIC_GROUPS")) { _ = PFN_AUTHZ_FREE_DYNAMIC_GROUPS; }
+    if (@hasDecl(@This(), "PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY")) { _ = PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY; }
+    if (@hasDecl(@This(), "PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY")) { _ = PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY; }
+    if (@hasDecl(@This(), "FN_PROGRESS")) { _ = FN_PROGRESS; }
+    if (@hasDecl(@This(), "PFNREADOBJECTSECURITY")) { _ = PFNREADOBJECTSECURITY; }
+    if (@hasDecl(@This(), "PFNWRITEOBJECTSECURITY")) { _ = PFNWRITEOBJECTSECURITY; }
+    if (@hasDecl(@This(), "PFNDSCREATEISECINFO")) { _ = PFNDSCREATEISECINFO; }
+    if (@hasDecl(@This(), "PFNDSCREATEISECINFOEX")) { _ = PFNDSCREATEISECINFOEX; }
+    if (@hasDecl(@This(), "PFNDSCREATESECPAGE")) { _ = PFNDSCREATESECPAGE; }
+    if (@hasDecl(@This(), "PFNDSEDITSECURITY")) { _ = PFNDSEDITSECURITY; }
+    if (@hasDecl(@This(), "FNCERTSRVISSERVERONLINEW")) { _ = FNCERTSRVISSERVERONLINEW; }
+    if (@hasDecl(@This(), "FNCERTSRVBACKUPGETDYNAMICFILELISTW")) { _ = FNCERTSRVBACKUPGETDYNAMICFILELISTW; }
+    if (@hasDecl(@This(), "FNCERTSRVBACKUPPREPAREW")) { _ = FNCERTSRVBACKUPPREPAREW; }
+    if (@hasDecl(@This(), "FNCERTSRVBACKUPGETDATABASENAMESW")) { _ = FNCERTSRVBACKUPGETDATABASENAMESW; }
+    if (@hasDecl(@This(), "FNCERTSRVBACKUPOPENFILEW")) { _ = FNCERTSRVBACKUPOPENFILEW; }
+    if (@hasDecl(@This(), "FNCERTSRVBACKUPREAD")) { _ = FNCERTSRVBACKUPREAD; }
+    if (@hasDecl(@This(), "FNCERTSRVBACKUPCLOSE")) { _ = FNCERTSRVBACKUPCLOSE; }
+    if (@hasDecl(@This(), "FNCERTSRVBACKUPGETBACKUPLOGSW")) { _ = FNCERTSRVBACKUPGETBACKUPLOGSW; }
+    if (@hasDecl(@This(), "FNCERTSRVBACKUPTRUNCATELOGS")) { _ = FNCERTSRVBACKUPTRUNCATELOGS; }
+    if (@hasDecl(@This(), "FNCERTSRVBACKUPEND")) { _ = FNCERTSRVBACKUPEND; }
+    if (@hasDecl(@This(), "FNCERTSRVBACKUPFREE")) { _ = FNCERTSRVBACKUPFREE; }
+    if (@hasDecl(@This(), "FNCERTSRVRESTOREGETDATABASELOCATIONSW")) { _ = FNCERTSRVRESTOREGETDATABASELOCATIONSW; }
+    if (@hasDecl(@This(), "FNCERTSRVRESTOREPREPAREW")) { _ = FNCERTSRVRESTOREPREPAREW; }
+    if (@hasDecl(@This(), "FNCERTSRVRESTOREREGISTERW")) { _ = FNCERTSRVRESTOREREGISTERW; }
+    if (@hasDecl(@This(), "FNCERTSRVRESTOREREGISTERCOMPLETE")) { _ = FNCERTSRVRESTOREREGISTERCOMPLETE; }
+    if (@hasDecl(@This(), "FNCERTSRVRESTOREEND")) { _ = FNCERTSRVRESTOREEND; }
+    if (@hasDecl(@This(), "FNCERTSRVSERVERCONTROLW")) { _ = FNCERTSRVSERVERCONTROLW; }
+    if (@hasDecl(@This(), "FNIMPORTPFXTOPROVIDER")) { _ = FNIMPORTPFXTOPROVIDER; }
+    if (@hasDecl(@This(), "FNIMPORTPFXTOPROVIDERFREEDATA")) { _ = FNIMPORTPFXTOPROVIDERFREEDATA; }
+    if (@hasDecl(@This(), "PFNCryptStreamOutputCallback")) { _ = PFNCryptStreamOutputCallback; }
+    if (@hasDecl(@This(), "PFNCryptStreamOutputCallbackEx")) { _ = PFNCryptStreamOutputCallbackEx; }
+    if (@hasDecl(@This(), "PFN_CRYPT_XML_WRITE_CALLBACK")) { _ = PFN_CRYPT_XML_WRITE_CALLBACK; }
+    if (@hasDecl(@This(), "PFN_CRYPT_XML_DATA_PROVIDER_READ")) { _ = PFN_CRYPT_XML_DATA_PROVIDER_READ; }
+    if (@hasDecl(@This(), "PFN_CRYPT_XML_DATA_PROVIDER_CLOSE")) { _ = PFN_CRYPT_XML_DATA_PROVIDER_CLOSE; }
+    if (@hasDecl(@This(), "PFN_CRYPT_XML_CREATE_TRANSFORM")) { _ = PFN_CRYPT_XML_CREATE_TRANSFORM; }
+    if (@hasDecl(@This(), "PFN_CRYPT_XML_ENUM_ALG_INFO")) { _ = PFN_CRYPT_XML_ENUM_ALG_INFO; }
+    if (@hasDecl(@This(), "CryptXmlDllGetInterface")) { _ = CryptXmlDllGetInterface; }
+    if (@hasDecl(@This(), "CryptXmlDllEncodeAlgorithm")) { _ = CryptXmlDllEncodeAlgorithm; }
+    if (@hasDecl(@This(), "CryptXmlDllCreateDigest")) { _ = CryptXmlDllCreateDigest; }
+    if (@hasDecl(@This(), "CryptXmlDllDigestData")) { _ = CryptXmlDllDigestData; }
+    if (@hasDecl(@This(), "CryptXmlDllFinalizeDigest")) { _ = CryptXmlDllFinalizeDigest; }
+    if (@hasDecl(@This(), "CryptXmlDllCloseDigest")) { _ = CryptXmlDllCloseDigest; }
+    if (@hasDecl(@This(), "CryptXmlDllSignData")) { _ = CryptXmlDllSignData; }
+    if (@hasDecl(@This(), "CryptXmlDllVerifySignature")) { _ = CryptXmlDllVerifySignature; }
+    if (@hasDecl(@This(), "CryptXmlDllGetAlgorithmInfo")) { _ = CryptXmlDllGetAlgorithmInfo; }
+    if (@hasDecl(@This(), "CryptXmlDllEncodeKeyValue")) { _ = CryptXmlDllEncodeKeyValue; }
+    if (@hasDecl(@This(), "CryptXmlDllCreateKey")) { _ = CryptXmlDllCreateKey; }
+    if (@hasDecl(@This(), "PFNCMFILTERPROC")) { _ = PFNCMFILTERPROC; }
+    if (@hasDecl(@This(), "PFNCMHOOKPROC")) { _ = PFNCMHOOKPROC; }
+    if (@hasDecl(@This(), "PFNTRUSTHELPER")) { _ = PFNTRUSTHELPER; }
+    if (@hasDecl(@This(), "PFN_CPD_MEM_ALLOC")) { _ = PFN_CPD_MEM_ALLOC; }
+    if (@hasDecl(@This(), "PFN_CPD_MEM_FREE")) { _ = PFN_CPD_MEM_FREE; }
+    if (@hasDecl(@This(), "PFN_CPD_ADD_STORE")) { _ = PFN_CPD_ADD_STORE; }
+    if (@hasDecl(@This(), "PFN_CPD_ADD_SGNR")) { _ = PFN_CPD_ADD_SGNR; }
+    if (@hasDecl(@This(), "PFN_CPD_ADD_CERT")) { _ = PFN_CPD_ADD_CERT; }
+    if (@hasDecl(@This(), "PFN_CPD_ADD_PRIVDATA")) { _ = PFN_CPD_ADD_PRIVDATA; }
+    if (@hasDecl(@This(), "PFN_PROVIDER_INIT_CALL")) { _ = PFN_PROVIDER_INIT_CALL; }
+    if (@hasDecl(@This(), "PFN_PROVIDER_OBJTRUST_CALL")) { _ = PFN_PROVIDER_OBJTRUST_CALL; }
+    if (@hasDecl(@This(), "PFN_PROVIDER_SIGTRUST_CALL")) { _ = PFN_PROVIDER_SIGTRUST_CALL; }
+    if (@hasDecl(@This(), "PFN_PROVIDER_CERTTRUST_CALL")) { _ = PFN_PROVIDER_CERTTRUST_CALL; }
+    if (@hasDecl(@This(), "PFN_PROVIDER_FINALPOLICY_CALL")) { _ = PFN_PROVIDER_FINALPOLICY_CALL; }
+    if (@hasDecl(@This(), "PFN_PROVIDER_TESTFINALPOLICY_CALL")) { _ = PFN_PROVIDER_TESTFINALPOLICY_CALL; }
+    if (@hasDecl(@This(), "PFN_PROVIDER_CLEANUP_CALL")) { _ = PFN_PROVIDER_CLEANUP_CALL; }
+    if (@hasDecl(@This(), "PFN_PROVIDER_CERTCHKPOLICY_CALL")) { _ = PFN_PROVIDER_CERTCHKPOLICY_CALL; }
+    if (@hasDecl(@This(), "PFN_PROVUI_CALL")) { _ = PFN_PROVUI_CALL; }
+    if (@hasDecl(@This(), "PFN_ALLOCANDFILLDEFUSAGE")) { _ = PFN_ALLOCANDFILLDEFUSAGE; }
+    if (@hasDecl(@This(), "PFN_FREEDEFUSAGE")) { _ = PFN_FREEDEFUSAGE; }
+    if (@hasDecl(@This(), "PFNCFILTERPROC")) { _ = PFNCFILTERPROC; }
+    if (@hasDecl(@This(), "pCryptSIPGetSignedDataMsg")) { _ = pCryptSIPGetSignedDataMsg; }
+    if (@hasDecl(@This(), "pCryptSIPPutSignedDataMsg")) { _ = pCryptSIPPutSignedDataMsg; }
+    if (@hasDecl(@This(), "pCryptSIPCreateIndirectData")) { _ = pCryptSIPCreateIndirectData; }
+    if (@hasDecl(@This(), "pCryptSIPVerifyIndirectData")) { _ = pCryptSIPVerifyIndirectData; }
+    if (@hasDecl(@This(), "pCryptSIPRemoveSignedDataMsg")) { _ = pCryptSIPRemoveSignedDataMsg; }
+    if (@hasDecl(@This(), "pfnIsFileSupported")) { _ = pfnIsFileSupported; }
+    if (@hasDecl(@This(), "pfnIsFileSupportedName")) { _ = pfnIsFileSupportedName; }
+    if (@hasDecl(@This(), "pCryptSIPGetCaps")) { _ = pCryptSIPGetCaps; }
+    if (@hasDecl(@This(), "pCryptSIPGetSealedDigest")) { _ = pCryptSIPGetSealedDigest; }
+    if (@hasDecl(@This(), "PFN_CDF_PARSE_ERROR_CALLBACK")) { _ = PFN_CDF_PARSE_ERROR_CALLBACK; }
+    if (@hasDecl(@This(), "PFSCE_QUERY_INFO")) { _ = PFSCE_QUERY_INFO; }
+    if (@hasDecl(@This(), "PFSCE_SET_INFO")) { _ = PFSCE_SET_INFO; }
+    if (@hasDecl(@This(), "PFSCE_FREE_INFO")) { _ = PFSCE_FREE_INFO; }
+    if (@hasDecl(@This(), "PFSCE_LOG_INFO")) { _ = PFSCE_LOG_INFO; }
+    if (@hasDecl(@This(), "PF_ConfigAnalyzeService")) { _ = PF_ConfigAnalyzeService; }
+    if (@hasDecl(@This(), "PF_UpdateService")) { _ = PF_UpdateService; }
 
-    const constant_export_count = 3228;
-    const type_export_count = 2015;
-    const enum_value_export_count = 2986;
-    const com_iface_id_export_count = 212;
-    const com_class_id_export_count = 106;
-    const func_export_count = 1169;
-    const unicode_alias_count = 221;
-    const import_count = 52;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

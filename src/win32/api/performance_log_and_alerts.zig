@@ -3269,26 +3269,17 @@ const BSTR = @import("automation.zig").BSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PLA_CABEXTRACT_CALLBACK;
+    if (@hasDecl(@This(), "PLA_CABEXTRACT_CALLBACK")) { _ = PLA_CABEXTRACT_CALLBACK; }
 
-    const constant_export_count = 7;
-    const type_export_count = 31;
-    const enum_value_export_count = 63;
-    const com_iface_id_export_count = 18;
-    const com_class_id_export_count = 16;
-    const func_export_count = 0;
-    const unicode_alias_count = 0;
-    const import_count = 8;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

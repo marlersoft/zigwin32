@@ -2,6 +2,16 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (817)
 //--------------------------------------------------------------------------------
+pub const LM_HB_Extension = @as(i32, 128);
+pub const LM_HB1_PnP = @as(i32, 1);
+pub const LM_HB1_PDA_Palmtop = @as(i32, 2);
+pub const LM_HB1_Computer = @as(i32, 4);
+pub const LM_HB1_Printer = @as(i32, 8);
+pub const LM_HB1_Modem = @as(i32, 16);
+pub const LM_HB1_Fax = @as(i32, 32);
+pub const LM_HB1_LANAccess = @as(i32, 64);
+pub const LM_HB2_Telephony = @as(i32, 1);
+pub const LM_HB2_FileServer = @as(i32, 2);
 pub const ATMPROTO_AALUSER = @as(u32, 0);
 pub const ATMPROTO_AAL1 = @as(u32, 1);
 pub const ATMPROTO_AAL2 = @as(u32, 2);
@@ -809,28 +819,10 @@ pub const SET_SERVICE_PARTIAL_SUCCESS = @as(u32, 1);
 pub const UDP_NOCHECKSUM = @as(u32, 1);
 pub const UDP_CHECKSUM_COVERAGE = @as(u32, 20);
 pub const GAI_STRERROR_BUFFER_SIZE = @as(u32, 1024);
-pub const LM_HB_Extension = @as(i32, 128);
-pub const LM_HB1_PnP = @as(i32, 1);
-pub const LM_HB1_PDA_Palmtop = @as(i32, 2);
-pub const LM_HB1_Computer = @as(i32, 4);
-pub const LM_HB1_Printer = @as(i32, 8);
-pub const LM_HB1_Modem = @as(i32, 16);
-pub const LM_HB1_Fax = @as(i32, 32);
-pub const LM_HB1_LANAccess = @as(i32, 64);
-pub const LM_HB2_Telephony = @as(i32, 1);
-pub const LM_HB2_FileServer = @as(i32, 2);
 
 //--------------------------------------------------------------------------------
-// Section: Types (301)
+// Section: Types (304)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'WSACloseEvent', what can Zig do with this information?
-pub const HWSAEVENT = ?*opaque{};
-
-pub const BLOB = extern struct {
-    cbSize: u32,
-    pBlobData: *u8,
-};
-
 pub const SOCKADDR = extern struct {
     sa_family: u16,
     sa_data: [14]CHAR,
@@ -901,7 +893,7 @@ pub const IPPROTO = extern enum(i32) {
 // TODO: enum 'IPPROTO' has known issues with its value aliases
 
 pub const SCOPE_ID = extern struct {
-    Anonymous: SCOPE_ID._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1080,27 +1072,10 @@ pub const netent = extern struct {
     n_net: u32,
 };
 
-pub const servent = extern struct {
-    s_name: PSTR,
-    s_aliases: **i8,
-    s_proto: PSTR,
-    s_port: i16,
-};
-
 pub const protoent = extern struct {
     p_name: PSTR,
     p_aliases: **i8,
     p_proto: i16,
-};
-
-pub const WSAData = extern struct {
-    wVersion: u16,
-    wHighVersion: u16,
-    iMaxSockets: u16,
-    iMaxUdpDg: u16,
-    lpVendorInfo: PSTR,
-    szDescription: [257]CHAR,
-    szSystemStatus: [129]CHAR,
 };
 
 pub const sockproto = extern struct {
@@ -1202,7 +1177,7 @@ pub const NSP_NOTIFY_APC = WSACOMPLETIONTYPE.APC;
 
 pub const WSACOMPLETION = extern struct {
     Type: WSACOMPLETIONTYPE,
-    Parameters: WSACOMPLETION._Parameters_e__Union,
+    Parameters: _Parameters_e__Union,
     const _Parameters_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1379,7 +1354,11 @@ pub const sockaddr_in6_old = extern struct {
     sin6_addr: IN6_ADDR,
 };
 
-pub const sockaddr_gen = u32; // TODO: implement StructOrUnion types?
+pub const sockaddr_gen = extern union {
+    Address: SOCKADDR,
+    AddressIn: SOCKADDR_IN,
+    AddressIn6: sockaddr_in6_old,
+};
 
 pub const INTERFACE_INFO = extern struct {
     iiFlags: u32,
@@ -1413,7 +1392,7 @@ pub const SOCKADDR_IN6 = extern struct {
     sin6_port: u16,
     sin6_flowinfo: u32,
     sin6_addr: IN6_ADDR,
-    Anonymous: SOCKADDR_IN6._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1642,7 +1621,7 @@ pub const WINDOWS_IAS_SET = extern struct {
     irdaClassName: [64]CHAR,
     irdaAttribName: [256]CHAR,
     irdaAttribType: u32,
-    irdaAttribute: WINDOWS_IAS_SET._irdaAttribute_e__Union,
+    irdaAttribute: _irdaAttribute_e__Union,
     const _irdaAttribute_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1651,7 +1630,7 @@ pub const WINDOWS_IAS_QUERY = extern struct {
     irdaClassName: [64]CHAR,
     irdaAttribName: [256]CHAR,
     irdaAttribType: u32,
-    irdaAttribute: WINDOWS_IAS_QUERY._irdaAttribute_e__Union,
+    irdaAttribute: _irdaAttribute_e__Union,
     const _irdaAttribute_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2089,7 +2068,7 @@ pub const AALUSER_PARAMETERS = extern struct {
 
 pub const AAL_PARAMETERS_IE = extern struct {
     AALType: AAL_TYPE,
-    AALSpecificParameters: AAL_PARAMETERS_IE._AALSpecificParameters_e__Union,
+    AALSpecificParameters: _AALSpecificParameters_e__Union,
     const _AALSpecificParameters_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2160,11 +2139,6 @@ pub const ATM_CONNECTION_ID = extern struct {
     DeviceNumber: u32,
     VPI: u32,
     VCI: u32,
-};
-
-pub const ATM_PVC_PARAMS = extern struct {
-    PvcConnectionId: ATM_CONNECTION_ID,
-    PvcQos: QOS,
 };
 
 pub const NAPI_PROVIDER_TYPE = extern enum(i32) {
@@ -2240,7 +2214,7 @@ pub const LPFN_GETACCEPTEXSOCKADDRS = fn(
 pub const TRANSMIT_PACKETS_ELEMENT = extern struct {
     dwElFlags: u32,
     cLength: u32,
-    Anonymous: TRANSMIT_PACKETS_ELEMENT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2306,8 +2280,8 @@ pub const NLA_INTERNET_NO = NLA_INTERNET.NO;
 pub const NLA_INTERNET_YES = NLA_INTERNET.YES;
 
 pub const NLA_BLOB = extern struct {
-    header: NLA_BLOB._header_e__Struct,
-    data: NLA_BLOB._data_e__Union,
+    header: _header_e__Struct,
+    data: _data_e__Union,
     const _data_e__Union = u32; // TODO: generate this nested type!
     const _header_e__Struct = u32; // TODO: generate this nested type!
 };
@@ -2403,7 +2377,7 @@ pub const RIO_IOCP_COMPLETION = RIO_NOTIFICATION_COMPLETION_TYPE.IOCP_COMPLETION
 
 pub const RIO_NOTIFICATION_COMPLETION = extern struct {
     Type: RIO_NOTIFICATION_COMPLETION_TYPE,
-    Anonymous: RIO_NOTIFICATION_COMPLETION._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3536,6 +3510,88 @@ pub const RESOURCEDISPLAYTYPE_SERVER = RESOURCE_DISPLAY_TYPE.SERVER;
 pub const RESOURCEDISPLAYTYPE_SHARE = RESOURCE_DISPLAY_TYPE.SHARE;
 pub const RESOURCEDISPLAYTYPE_TREE = RESOURCE_DISPLAY_TYPE.TREE;
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const servent = extern struct {
+    s_name: PSTR,
+    s_aliases: **i8,
+    s_proto: PSTR,
+    s_port: i16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const WSAData = extern struct {
+    wVersion: u16,
+    wHighVersion: u16,
+    iMaxSockets: u16,
+    iMaxUdpDg: u16,
+    lpVendorInfo: PSTR,
+    szDescription: [257]CHAR,
+    szSystemStatus: [129]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const ATM_PVC_PARAMS = extern struct {
+    PvcConnectionId: ATM_CONNECTION_ID,
+    PvcQos: QOS,
+};
+
+}, else => struct { } };
+
+// TODO: this type has a FreeFunc 'WSACloseEvent', what can Zig do with this information?
+pub const HWSAEVENT = ?*opaque{};
+
+pub const BLOB = extern struct {
+    cbSize: u32,
+    pBlobData: *u8,
+};
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const servent = extern struct {
+    s_name: PSTR,
+    s_aliases: **i8,
+    s_port: i16,
+    s_proto: PSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const WSAData = extern struct {
+    wVersion: u16,
+    wHighVersion: u16,
+    szDescription: [257]CHAR,
+    szSystemStatus: [129]CHAR,
+    iMaxSockets: u16,
+    iMaxUdpDg: u16,
+    lpVendorInfo: PSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const ATM_PVC_PARAMS = extern struct {
+    PvcConnectionId: ATM_CONNECTION_ID,
+    PvcQos: QOS,
+};
+
+}, else => struct { } };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (186)
@@ -4456,38 +4512,14 @@ pub extern "WS2_32" fn WSCEnumProtocols(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCEnumProtocols32(
-    lpiProtocols: ?*i32,
-    // TODO: what to do with BytesParamIndex 2?
-    lpProtocolBuffer: *WSAPROTOCOL_INFOW,
-    lpdwBufferLength: *u32,
-    lpErrno: *i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCDeinstallProvider(
     lpProviderId: *Guid,
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCDeinstallProvider32(
-    lpProviderId: *Guid,
-    lpErrno: *i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCInstallProvider(
-    lpProviderId: *Guid,
-    lpszProviderDllPath: [*:0]const u16,
-    lpProtocolInfoList: [*]const WSAPROTOCOL_INFOW,
-    dwNumberOfEntries: u32,
-    lpErrno: *i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "WS2_32" fn WSCInstallProvider64_32(
     lpProviderId: *Guid,
     lpszProviderDllPath: [*:0]const u16,
     lpProtocolInfoList: [*]const WSAPROTOCOL_INFOW,
@@ -4503,25 +4535,8 @@ pub extern "WS2_32" fn WSCGetProviderPath(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCGetProviderPath32(
-    lpProviderId: *Guid,
-    lpszProviderDllPath: [*:0]u16,
-    lpProviderDllPathLen: *i32,
-    lpErrno: *i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "WS2_32" fn WSCUpdateProvider(
-    lpProviderId: *Guid,
-    lpszProviderDllPath: [*:0]const u16,
-    lpProtocolInfoList: [*]const WSAPROTOCOL_INFOW,
-    dwNumberOfEntries: u32,
-    lpErrno: *i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCUpdateProvider32(
     lpProviderId: *Guid,
     lpszProviderDllPath: [*:0]const u16,
     lpProtocolInfoList: [*]const WSAPROTOCOL_INFOW,
@@ -4542,28 +4557,6 @@ pub extern "WS2_32" fn WSCSetProviderInfo(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn WSCGetProviderInfo(
-    lpProviderId: *Guid,
-    InfoType: WSC_PROVIDER_INFO_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
-    Info: *u8,
-    InfoSize: *usize,
-    Flags: u32,
-    lpErrno: *i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCSetProviderInfo32(
-    lpProviderId: *Guid,
-    InfoType: WSC_PROVIDER_INFO_TYPE,
-    // TODO: what to do with BytesParamIndex 3?
-    Info: *u8,
-    InfoSize: usize,
-    Flags: u32,
-    lpErrno: *i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCGetProviderInfo32(
     lpProviderId: *Guid,
     InfoType: WSC_PROVIDER_INFO_TYPE,
     // TODO: what to do with BytesParamIndex 3?
@@ -4603,31 +4596,8 @@ pub extern "WS2_32" fn WPUCompleteOverlappedRequest(
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCEnumNameSpaceProviders32(
-    lpdwBufferLength: *u32,
-    // TODO: what to do with BytesParamIndex 0?
-    lpnspBuffer: *WSANAMESPACE_INFOW,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCEnumNameSpaceProvidersEx32(
-    lpdwBufferLength: *u32,
-    // TODO: what to do with BytesParamIndex 0?
-    lpnspBuffer: *WSANAMESPACE_INFOEXW,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCInstallNameSpace(
-    lpszIdentifier: PWSTR,
-    lpszPathName: PWSTR,
-    dwNameSpace: u32,
-    dwVersion: u32,
-    lpProviderId: *Guid,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCInstallNameSpace32(
     lpszIdentifier: PWSTR,
     lpszPathName: PWSTR,
     dwNameSpace: u32,
@@ -4650,44 +4620,10 @@ pub extern "WS2_32" fn WSCInstallNameSpaceEx(
     lpProviderSpecific: *BLOB,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCInstallNameSpaceEx32(
-    lpszIdentifier: PWSTR,
-    lpszPathName: PWSTR,
-    dwNameSpace: u32,
-    dwVersion: u32,
-    lpProviderId: *Guid,
-    lpProviderSpecific: *BLOB,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCUnInstallNameSpace32(
-    lpProviderId: *Guid,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCEnableNSProvider(
     lpProviderId: *Guid,
     fEnable: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCEnableNSProvider32(
-    lpProviderId: *Guid,
-    fEnable: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCInstallProviderAndChains64_32(
-    lpProviderId: *Guid,
-    lpszProviderDllPath: [*:0]const u16,
-    lpszProviderDllPath32: [*:0]const u16,
-    lpszLspName: [*:0]const u16,
-    dwServiceFlags: u32,
-    lpProtocolInfoList: [*]WSAPROTOCOL_INFOW,
-    dwNumberOfEntries: u32,
-    lpdwCatalogEntryId: ?*u32,
-    lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -5051,23 +4987,223 @@ pub extern "WS2_32" fn WSCWriteProviderOrder(
     dwNumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "WS2_32" fn WSCWriteProviderOrder32(
-    lpwdCatalogEntryId: *u32,
-    dwNumberOfEntries: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WS2_32" fn WSCWriteNameSpaceOrder(
     lpProviderId: *Guid,
     dwNumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCEnumProtocols32(
+    lpiProtocols: ?*i32,
+    // TODO: what to do with BytesParamIndex 2?
+    lpProtocolBuffer: *WSAPROTOCOL_INFOW,
+    lpdwBufferLength: *u32,
+    lpErrno: *i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCDeinstallProvider32(
+    lpProviderId: *Guid,
+    lpErrno: *i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "WS2_32" fn WSCInstallProvider64_32(
+    lpProviderId: *Guid,
+    lpszProviderDllPath: [*:0]const u16,
+    lpProtocolInfoList: [*]const WSAPROTOCOL_INFOW,
+    dwNumberOfEntries: u32,
+    lpErrno: *i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCGetProviderPath32(
+    lpProviderId: *Guid,
+    lpszProviderDllPath: [*:0]u16,
+    lpProviderDllPathLen: *i32,
+    lpErrno: *i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCUpdateProvider32(
+    lpProviderId: *Guid,
+    lpszProviderDllPath: [*:0]const u16,
+    lpProtocolInfoList: [*]const WSAPROTOCOL_INFOW,
+    dwNumberOfEntries: u32,
+    lpErrno: *i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCSetProviderInfo32(
+    lpProviderId: *Guid,
+    InfoType: WSC_PROVIDER_INFO_TYPE,
+    // TODO: what to do with BytesParamIndex 3?
+    Info: *u8,
+    InfoSize: usize,
+    Flags: u32,
+    lpErrno: *i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCGetProviderInfo32(
+    lpProviderId: *Guid,
+    InfoType: WSC_PROVIDER_INFO_TYPE,
+    // TODO: what to do with BytesParamIndex 3?
+    Info: *u8,
+    InfoSize: *usize,
+    Flags: u32,
+    lpErrno: *i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCEnumNameSpaceProviders32(
+    lpdwBufferLength: *u32,
+    // TODO: what to do with BytesParamIndex 0?
+    lpnspBuffer: *WSANAMESPACE_INFOW,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCEnumNameSpaceProvidersEx32(
+    lpdwBufferLength: *u32,
+    // TODO: what to do with BytesParamIndex 0?
+    lpnspBuffer: *WSANAMESPACE_INFOEXW,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCInstallNameSpace32(
+    lpszIdentifier: PWSTR,
+    lpszPathName: PWSTR,
+    dwNameSpace: u32,
+    dwVersion: u32,
+    lpProviderId: *Guid,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCInstallNameSpaceEx32(
+    lpszIdentifier: PWSTR,
+    lpszPathName: PWSTR,
+    dwNameSpace: u32,
+    dwVersion: u32,
+    lpProviderId: *Guid,
+    lpProviderSpecific: *BLOB,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCUnInstallNameSpace32(
+    lpProviderId: *Guid,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCEnableNSProvider32(
+    lpProviderId: *Guid,
+    fEnable: BOOL,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCInstallProviderAndChains64_32(
+    lpProviderId: *Guid,
+    lpszProviderDllPath: [*:0]const u16,
+    lpszProviderDllPath32: [*:0]const u16,
+    lpszLspName: [*:0]const u16,
+    dwServiceFlags: u32,
+    lpProtocolInfoList: [*]WSAPROTOCOL_INFOW,
+    dwNumberOfEntries: u32,
+    lpdwCatalogEntryId: ?*u32,
+    lpErrno: *i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "WS2_32" fn WSCWriteProviderOrder32(
+    lpwdCatalogEntryId: *u32,
+    dwNumberOfEntries: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WS2_32" fn WSCWriteNameSpaceOrder32(
     lpProviderId: *Guid,
     dwNumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
+
+}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------
@@ -5258,128 +5394,119 @@ const SOCKADDR_INET = @import("ip_helper.zig").SOCKADDR_INET;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPCONDITIONPROC;
-    _ = LPWSAOVERLAPPED_COMPLETION_ROUTINE;
-    _ = LPFN_TRANSMITFILE;
-    _ = LPFN_ACCEPTEX;
-    _ = LPFN_GETACCEPTEXSOCKADDRS;
-    _ = LPFN_TRANSMITPACKETS;
-    _ = LPFN_CONNECTEX;
-    _ = LPFN_DISCONNECTEX;
-    _ = LPFN_WSARECVMSG;
-    _ = LPFN_WSASENDMSG;
-    _ = LPFN_WSAPOLL;
-    _ = LPFN_RIORECEIVE;
-    _ = LPFN_RIORECEIVEEX;
-    _ = LPFN_RIOSEND;
-    _ = LPFN_RIOSENDEX;
-    _ = LPFN_RIOCLOSECOMPLETIONQUEUE;
-    _ = LPFN_RIOCREATECOMPLETIONQUEUE;
-    _ = LPFN_RIOCREATEREQUESTQUEUE;
-    _ = LPFN_RIODEQUEUECOMPLETION;
-    _ = LPFN_RIODEREGISTERBUFFER;
-    _ = LPFN_RIONOTIFY;
-    _ = LPFN_RIOREGISTERBUFFER;
-    _ = LPFN_RIORESIZECOMPLETIONQUEUE;
-    _ = LPFN_RIORESIZEREQUESTQUEUE;
-    _ = LPBLOCKINGCALLBACK;
-    _ = LPWSAUSERAPC;
-    _ = LPWSPACCEPT;
-    _ = LPWSPADDRESSTOSTRING;
-    _ = LPWSPASYNCSELECT;
-    _ = LPWSPBIND;
-    _ = LPWSPCANCELBLOCKINGCALL;
-    _ = LPWSPCLEANUP;
-    _ = LPWSPCLOSESOCKET;
-    _ = LPWSPCONNECT;
-    _ = LPWSPDUPLICATESOCKET;
-    _ = LPWSPENUMNETWORKEVENTS;
-    _ = LPWSPEVENTSELECT;
-    _ = LPWSPGETOVERLAPPEDRESULT;
-    _ = LPWSPGETPEERNAME;
-    _ = LPWSPGETSOCKNAME;
-    _ = LPWSPGETSOCKOPT;
-    _ = LPWSPGETQOSBYNAME;
-    _ = LPWSPIOCTL;
-    _ = LPWSPJOINLEAF;
-    _ = LPWSPLISTEN;
-    _ = LPWSPRECV;
-    _ = LPWSPRECVDISCONNECT;
-    _ = LPWSPRECVFROM;
-    _ = LPWSPSELECT;
-    _ = LPWSPSEND;
-    _ = LPWSPSENDDISCONNECT;
-    _ = LPWSPSENDTO;
-    _ = LPWSPSETSOCKOPT;
-    _ = LPWSPSHUTDOWN;
-    _ = LPWSPSOCKET;
-    _ = LPWSPSTRINGTOADDRESS;
-    _ = LPWPUCLOSEEVENT;
-    _ = LPWPUCLOSESOCKETHANDLE;
-    _ = LPWPUCREATEEVENT;
-    _ = LPWPUCREATESOCKETHANDLE;
-    _ = LPWPUFDISSET;
-    _ = LPWPUGETPROVIDERPATH;
-    _ = LPWPUMODIFYIFSHANDLE;
-    _ = LPWPUPOSTMESSAGE;
-    _ = LPWPUQUERYBLOCKINGCALLBACK;
-    _ = LPWPUQUERYSOCKETHANDLECONTEXT;
-    _ = LPWPUQUEUEAPC;
-    _ = LPWPURESETEVENT;
-    _ = LPWPUSETEVENT;
-    _ = LPWPUOPENCURRENTTHREAD;
-    _ = LPWPUCLOSETHREAD;
-    _ = LPWPUCOMPLETEOVERLAPPEDREQUEST;
-    _ = LPWSPSTARTUP;
-    _ = LPWSCENUMPROTOCOLS;
-    _ = LPWSCDEINSTALLPROVIDER;
-    _ = LPWSCINSTALLPROVIDER;
-    _ = LPWSCGETPROVIDERPATH;
-    _ = LPWSCUPDATEPROVIDER;
-    _ = LPWSCINSTALLNAMESPACE;
-    _ = LPWSCUNINSTALLNAMESPACE;
-    _ = LPWSCENABLENSPROVIDER;
-    _ = LPNSPCLEANUP;
-    _ = LPNSPLOOKUPSERVICEBEGIN;
-    _ = LPNSPLOOKUPSERVICENEXT;
-    _ = LPNSPIOCTL;
-    _ = LPNSPLOOKUPSERVICEEND;
-    _ = LPNSPSETSERVICE;
-    _ = LPNSPINSTALLSERVICECLASS;
-    _ = LPNSPREMOVESERVICECLASS;
-    _ = LPNSPGETSERVICECLASSINFO;
-    _ = LPNSPSTARTUP;
-    _ = LPNSPV2STARTUP;
-    _ = LPNSPV2CLEANUP;
-    _ = LPNSPV2LOOKUPSERVICEBEGIN;
-    _ = LPNSPV2LOOKUPSERVICENEXTEX;
-    _ = LPNSPV2LOOKUPSERVICEEND;
-    _ = LPNSPV2SETSERVICEEX;
-    _ = LPNSPV2CLIENTSESSIONRUNDOWN;
-    _ = LPFN_NSPAPI;
-    _ = LPSERVICE_CALLBACK_PROC;
-    _ = LPLOOKUPSERVICE_COMPLETION_ROUTINE;
-    _ = LPWSCWRITEPROVIDERORDER;
-    _ = LPWSCWRITENAMESPACEORDER;
+    if (@hasDecl(@This(), "LPCONDITIONPROC")) { _ = LPCONDITIONPROC; }
+    if (@hasDecl(@This(), "LPWSAOVERLAPPED_COMPLETION_ROUTINE")) { _ = LPWSAOVERLAPPED_COMPLETION_ROUTINE; }
+    if (@hasDecl(@This(), "LPFN_TRANSMITFILE")) { _ = LPFN_TRANSMITFILE; }
+    if (@hasDecl(@This(), "LPFN_ACCEPTEX")) { _ = LPFN_ACCEPTEX; }
+    if (@hasDecl(@This(), "LPFN_GETACCEPTEXSOCKADDRS")) { _ = LPFN_GETACCEPTEXSOCKADDRS; }
+    if (@hasDecl(@This(), "LPFN_TRANSMITPACKETS")) { _ = LPFN_TRANSMITPACKETS; }
+    if (@hasDecl(@This(), "LPFN_CONNECTEX")) { _ = LPFN_CONNECTEX; }
+    if (@hasDecl(@This(), "LPFN_DISCONNECTEX")) { _ = LPFN_DISCONNECTEX; }
+    if (@hasDecl(@This(), "LPFN_WSARECVMSG")) { _ = LPFN_WSARECVMSG; }
+    if (@hasDecl(@This(), "LPFN_WSASENDMSG")) { _ = LPFN_WSASENDMSG; }
+    if (@hasDecl(@This(), "LPFN_WSAPOLL")) { _ = LPFN_WSAPOLL; }
+    if (@hasDecl(@This(), "LPFN_RIORECEIVE")) { _ = LPFN_RIORECEIVE; }
+    if (@hasDecl(@This(), "LPFN_RIORECEIVEEX")) { _ = LPFN_RIORECEIVEEX; }
+    if (@hasDecl(@This(), "LPFN_RIOSEND")) { _ = LPFN_RIOSEND; }
+    if (@hasDecl(@This(), "LPFN_RIOSENDEX")) { _ = LPFN_RIOSENDEX; }
+    if (@hasDecl(@This(), "LPFN_RIOCLOSECOMPLETIONQUEUE")) { _ = LPFN_RIOCLOSECOMPLETIONQUEUE; }
+    if (@hasDecl(@This(), "LPFN_RIOCREATECOMPLETIONQUEUE")) { _ = LPFN_RIOCREATECOMPLETIONQUEUE; }
+    if (@hasDecl(@This(), "LPFN_RIOCREATEREQUESTQUEUE")) { _ = LPFN_RIOCREATEREQUESTQUEUE; }
+    if (@hasDecl(@This(), "LPFN_RIODEQUEUECOMPLETION")) { _ = LPFN_RIODEQUEUECOMPLETION; }
+    if (@hasDecl(@This(), "LPFN_RIODEREGISTERBUFFER")) { _ = LPFN_RIODEREGISTERBUFFER; }
+    if (@hasDecl(@This(), "LPFN_RIONOTIFY")) { _ = LPFN_RIONOTIFY; }
+    if (@hasDecl(@This(), "LPFN_RIOREGISTERBUFFER")) { _ = LPFN_RIOREGISTERBUFFER; }
+    if (@hasDecl(@This(), "LPFN_RIORESIZECOMPLETIONQUEUE")) { _ = LPFN_RIORESIZECOMPLETIONQUEUE; }
+    if (@hasDecl(@This(), "LPFN_RIORESIZEREQUESTQUEUE")) { _ = LPFN_RIORESIZEREQUESTQUEUE; }
+    if (@hasDecl(@This(), "LPBLOCKINGCALLBACK")) { _ = LPBLOCKINGCALLBACK; }
+    if (@hasDecl(@This(), "LPWSAUSERAPC")) { _ = LPWSAUSERAPC; }
+    if (@hasDecl(@This(), "LPWSPACCEPT")) { _ = LPWSPACCEPT; }
+    if (@hasDecl(@This(), "LPWSPADDRESSTOSTRING")) { _ = LPWSPADDRESSTOSTRING; }
+    if (@hasDecl(@This(), "LPWSPASYNCSELECT")) { _ = LPWSPASYNCSELECT; }
+    if (@hasDecl(@This(), "LPWSPBIND")) { _ = LPWSPBIND; }
+    if (@hasDecl(@This(), "LPWSPCANCELBLOCKINGCALL")) { _ = LPWSPCANCELBLOCKINGCALL; }
+    if (@hasDecl(@This(), "LPWSPCLEANUP")) { _ = LPWSPCLEANUP; }
+    if (@hasDecl(@This(), "LPWSPCLOSESOCKET")) { _ = LPWSPCLOSESOCKET; }
+    if (@hasDecl(@This(), "LPWSPCONNECT")) { _ = LPWSPCONNECT; }
+    if (@hasDecl(@This(), "LPWSPDUPLICATESOCKET")) { _ = LPWSPDUPLICATESOCKET; }
+    if (@hasDecl(@This(), "LPWSPENUMNETWORKEVENTS")) { _ = LPWSPENUMNETWORKEVENTS; }
+    if (@hasDecl(@This(), "LPWSPEVENTSELECT")) { _ = LPWSPEVENTSELECT; }
+    if (@hasDecl(@This(), "LPWSPGETOVERLAPPEDRESULT")) { _ = LPWSPGETOVERLAPPEDRESULT; }
+    if (@hasDecl(@This(), "LPWSPGETPEERNAME")) { _ = LPWSPGETPEERNAME; }
+    if (@hasDecl(@This(), "LPWSPGETSOCKNAME")) { _ = LPWSPGETSOCKNAME; }
+    if (@hasDecl(@This(), "LPWSPGETSOCKOPT")) { _ = LPWSPGETSOCKOPT; }
+    if (@hasDecl(@This(), "LPWSPGETQOSBYNAME")) { _ = LPWSPGETQOSBYNAME; }
+    if (@hasDecl(@This(), "LPWSPIOCTL")) { _ = LPWSPIOCTL; }
+    if (@hasDecl(@This(), "LPWSPJOINLEAF")) { _ = LPWSPJOINLEAF; }
+    if (@hasDecl(@This(), "LPWSPLISTEN")) { _ = LPWSPLISTEN; }
+    if (@hasDecl(@This(), "LPWSPRECV")) { _ = LPWSPRECV; }
+    if (@hasDecl(@This(), "LPWSPRECVDISCONNECT")) { _ = LPWSPRECVDISCONNECT; }
+    if (@hasDecl(@This(), "LPWSPRECVFROM")) { _ = LPWSPRECVFROM; }
+    if (@hasDecl(@This(), "LPWSPSELECT")) { _ = LPWSPSELECT; }
+    if (@hasDecl(@This(), "LPWSPSEND")) { _ = LPWSPSEND; }
+    if (@hasDecl(@This(), "LPWSPSENDDISCONNECT")) { _ = LPWSPSENDDISCONNECT; }
+    if (@hasDecl(@This(), "LPWSPSENDTO")) { _ = LPWSPSENDTO; }
+    if (@hasDecl(@This(), "LPWSPSETSOCKOPT")) { _ = LPWSPSETSOCKOPT; }
+    if (@hasDecl(@This(), "LPWSPSHUTDOWN")) { _ = LPWSPSHUTDOWN; }
+    if (@hasDecl(@This(), "LPWSPSOCKET")) { _ = LPWSPSOCKET; }
+    if (@hasDecl(@This(), "LPWSPSTRINGTOADDRESS")) { _ = LPWSPSTRINGTOADDRESS; }
+    if (@hasDecl(@This(), "LPWPUCLOSEEVENT")) { _ = LPWPUCLOSEEVENT; }
+    if (@hasDecl(@This(), "LPWPUCLOSESOCKETHANDLE")) { _ = LPWPUCLOSESOCKETHANDLE; }
+    if (@hasDecl(@This(), "LPWPUCREATEEVENT")) { _ = LPWPUCREATEEVENT; }
+    if (@hasDecl(@This(), "LPWPUCREATESOCKETHANDLE")) { _ = LPWPUCREATESOCKETHANDLE; }
+    if (@hasDecl(@This(), "LPWPUFDISSET")) { _ = LPWPUFDISSET; }
+    if (@hasDecl(@This(), "LPWPUGETPROVIDERPATH")) { _ = LPWPUGETPROVIDERPATH; }
+    if (@hasDecl(@This(), "LPWPUMODIFYIFSHANDLE")) { _ = LPWPUMODIFYIFSHANDLE; }
+    if (@hasDecl(@This(), "LPWPUPOSTMESSAGE")) { _ = LPWPUPOSTMESSAGE; }
+    if (@hasDecl(@This(), "LPWPUQUERYBLOCKINGCALLBACK")) { _ = LPWPUQUERYBLOCKINGCALLBACK; }
+    if (@hasDecl(@This(), "LPWPUQUERYSOCKETHANDLECONTEXT")) { _ = LPWPUQUERYSOCKETHANDLECONTEXT; }
+    if (@hasDecl(@This(), "LPWPUQUEUEAPC")) { _ = LPWPUQUEUEAPC; }
+    if (@hasDecl(@This(), "LPWPURESETEVENT")) { _ = LPWPURESETEVENT; }
+    if (@hasDecl(@This(), "LPWPUSETEVENT")) { _ = LPWPUSETEVENT; }
+    if (@hasDecl(@This(), "LPWPUOPENCURRENTTHREAD")) { _ = LPWPUOPENCURRENTTHREAD; }
+    if (@hasDecl(@This(), "LPWPUCLOSETHREAD")) { _ = LPWPUCLOSETHREAD; }
+    if (@hasDecl(@This(), "LPWPUCOMPLETEOVERLAPPEDREQUEST")) { _ = LPWPUCOMPLETEOVERLAPPEDREQUEST; }
+    if (@hasDecl(@This(), "LPWSPSTARTUP")) { _ = LPWSPSTARTUP; }
+    if (@hasDecl(@This(), "LPWSCENUMPROTOCOLS")) { _ = LPWSCENUMPROTOCOLS; }
+    if (@hasDecl(@This(), "LPWSCDEINSTALLPROVIDER")) { _ = LPWSCDEINSTALLPROVIDER; }
+    if (@hasDecl(@This(), "LPWSCINSTALLPROVIDER")) { _ = LPWSCINSTALLPROVIDER; }
+    if (@hasDecl(@This(), "LPWSCGETPROVIDERPATH")) { _ = LPWSCGETPROVIDERPATH; }
+    if (@hasDecl(@This(), "LPWSCUPDATEPROVIDER")) { _ = LPWSCUPDATEPROVIDER; }
+    if (@hasDecl(@This(), "LPWSCINSTALLNAMESPACE")) { _ = LPWSCINSTALLNAMESPACE; }
+    if (@hasDecl(@This(), "LPWSCUNINSTALLNAMESPACE")) { _ = LPWSCUNINSTALLNAMESPACE; }
+    if (@hasDecl(@This(), "LPWSCENABLENSPROVIDER")) { _ = LPWSCENABLENSPROVIDER; }
+    if (@hasDecl(@This(), "LPNSPCLEANUP")) { _ = LPNSPCLEANUP; }
+    if (@hasDecl(@This(), "LPNSPLOOKUPSERVICEBEGIN")) { _ = LPNSPLOOKUPSERVICEBEGIN; }
+    if (@hasDecl(@This(), "LPNSPLOOKUPSERVICENEXT")) { _ = LPNSPLOOKUPSERVICENEXT; }
+    if (@hasDecl(@This(), "LPNSPIOCTL")) { _ = LPNSPIOCTL; }
+    if (@hasDecl(@This(), "LPNSPLOOKUPSERVICEEND")) { _ = LPNSPLOOKUPSERVICEEND; }
+    if (@hasDecl(@This(), "LPNSPSETSERVICE")) { _ = LPNSPSETSERVICE; }
+    if (@hasDecl(@This(), "LPNSPINSTALLSERVICECLASS")) { _ = LPNSPINSTALLSERVICECLASS; }
+    if (@hasDecl(@This(), "LPNSPREMOVESERVICECLASS")) { _ = LPNSPREMOVESERVICECLASS; }
+    if (@hasDecl(@This(), "LPNSPGETSERVICECLASSINFO")) { _ = LPNSPGETSERVICECLASSINFO; }
+    if (@hasDecl(@This(), "LPNSPSTARTUP")) { _ = LPNSPSTARTUP; }
+    if (@hasDecl(@This(), "LPNSPV2STARTUP")) { _ = LPNSPV2STARTUP; }
+    if (@hasDecl(@This(), "LPNSPV2CLEANUP")) { _ = LPNSPV2CLEANUP; }
+    if (@hasDecl(@This(), "LPNSPV2LOOKUPSERVICEBEGIN")) { _ = LPNSPV2LOOKUPSERVICEBEGIN; }
+    if (@hasDecl(@This(), "LPNSPV2LOOKUPSERVICENEXTEX")) { _ = LPNSPV2LOOKUPSERVICENEXTEX; }
+    if (@hasDecl(@This(), "LPNSPV2LOOKUPSERVICEEND")) { _ = LPNSPV2LOOKUPSERVICEEND; }
+    if (@hasDecl(@This(), "LPNSPV2SETSERVICEEX")) { _ = LPNSPV2SETSERVICEEX; }
+    if (@hasDecl(@This(), "LPNSPV2CLIENTSESSIONRUNDOWN")) { _ = LPNSPV2CLIENTSESSIONRUNDOWN; }
+    if (@hasDecl(@This(), "LPFN_NSPAPI")) { _ = LPFN_NSPAPI; }
+    if (@hasDecl(@This(), "LPSERVICE_CALLBACK_PROC")) { _ = LPSERVICE_CALLBACK_PROC; }
+    if (@hasDecl(@This(), "LPLOOKUPSERVICE_COMPLETION_ROUTINE")) { _ = LPLOOKUPSERVICE_COMPLETION_ROUTINE; }
+    if (@hasDecl(@This(), "LPWSCWRITEPROVIDERORDER")) { _ = LPWSCWRITEPROVIDERORDER; }
+    if (@hasDecl(@This(), "LPWSCWRITENAMESPACEORDER")) { _ = LPWSCWRITENAMESPACEORDER; }
 
-    const constant_export_count = 817;
-    const type_export_count = 301;
-    const enum_value_export_count = 217;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 186;
-    const unicode_alias_count = 38;
-    const import_count = 18;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -34,6 +34,52 @@ pub const WNCON_DYNAMIC = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (13)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'WNetCloseEnum', what can Zig do with this information?
+pub const NetEnumHandle = isize;
+
+pub const CONNECTDLGSTRUCTA = extern struct {
+    cbStructure: u32,
+    hwndOwner: HWND,
+    lpConnRes: *NETRESOURCEA,
+    dwFlags: CONNECTDLGSTRUCT_FLAGS,
+    dwDevNum: u32,
+};
+
+pub const CONNECTDLGSTRUCTW = extern struct {
+    cbStructure: u32,
+    hwndOwner: HWND,
+    lpConnRes: *NETRESOURCEW,
+    dwFlags: CONNECTDLGSTRUCT_FLAGS,
+    dwDevNum: u32,
+};
+
+pub const DISCDLGSTRUCTA = extern struct {
+    cbStructure: u32,
+    hwndOwner: HWND,
+    lpLocalName: PSTR,
+    lpRemoteName: PSTR,
+    dwFlags: DISCDLGSTRUCT_FLAGS,
+};
+
+pub const DISCDLGSTRUCTW = extern struct {
+    cbStructure: u32,
+    hwndOwner: HWND,
+    lpLocalName: PWSTR,
+    lpRemoteName: PWSTR,
+    dwFlags: DISCDLGSTRUCT_FLAGS,
+};
+
+pub const NETINFOSTRUCT = extern struct {
+    cbStructure: u32,
+    dwProviderVersion: u32,
+    dwStatus: WIN32_ERROR,
+    dwCharacteristics: NETINFOSTRUCT_CHARACTERISTICS,
+    dwHandle: usize,
+    wNetType: u16,
+    dwPrinters: u32,
+    dwDrives: u32,
+};
+
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WNET_OPEN_ENUM_USAGE = extern enum(u32) {
     None = 0,
@@ -131,52 +177,6 @@ pub const DISCDLGSTRUCT_FLAGS = extern enum(u32) {
 };
 pub const DISC_UPDATE_PROFILE = DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE;
 pub const DISC_NO_FORCE = DISCDLGSTRUCT_FLAGS.NO_FORCE;
-
-// TODO: this type has a FreeFunc 'WNetCloseEnum', what can Zig do with this information?
-pub const NetEnumHandle = isize;
-
-pub const CONNECTDLGSTRUCTA = extern struct {
-    cbStructure: u32,
-    hwndOwner: HWND,
-    lpConnRes: *NETRESOURCEA,
-    dwFlags: CONNECTDLGSTRUCT_FLAGS,
-    dwDevNum: u32,
-};
-
-pub const CONNECTDLGSTRUCTW = extern struct {
-    cbStructure: u32,
-    hwndOwner: HWND,
-    lpConnRes: *NETRESOURCEW,
-    dwFlags: CONNECTDLGSTRUCT_FLAGS,
-    dwDevNum: u32,
-};
-
-pub const DISCDLGSTRUCTA = extern struct {
-    cbStructure: u32,
-    hwndOwner: HWND,
-    lpLocalName: PSTR,
-    lpRemoteName: PSTR,
-    dwFlags: DISCDLGSTRUCT_FLAGS,
-};
-
-pub const DISCDLGSTRUCTW = extern struct {
-    cbStructure: u32,
-    hwndOwner: HWND,
-    lpLocalName: PWSTR,
-    lpRemoteName: PWSTR,
-    dwFlags: DISCDLGSTRUCT_FLAGS,
-};
-
-pub const NETINFOSTRUCT = extern struct {
-    cbStructure: u32,
-    dwProviderVersion: u32,
-    dwStatus: WIN32_ERROR,
-    dwCharacteristics: NETINFOSTRUCT_CHARACTERISTICS,
-    dwHandle: usize,
-    wNetType: u16,
-    dwPrinters: u32,
-    dwDrives: u32,
-};
 
 
 //--------------------------------------------------------------------------------
@@ -663,24 +663,15 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 const NETCONNECTINFOSTRUCT = @import("security.zig").NETCONNECTINFOSTRUCT;
 
 test {
-    const constant_export_count = 28;
-    const type_export_count = 13;
-    const enum_value_export_count = 32;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 45;
-    const unicode_alias_count = 23;
-    const import_count = 10;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -310,8 +310,20 @@ pub const DNS_CONNECTION_PROXY_INFO_FLAG_BYPASSLOCAL = @as(u32, 2);
 pub const DNS_CONNECTION_POLICY_ENTRY_ONDEMAND = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (93)
+// Section: Types (94)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const IP6_ADDRESS = extern union {
+    IP6Qword: [2]u64,
+    IP6Dword: [4]u32,
+    IP6Word: [8]u16,
+    IP6Byte: [16]u8,
+};
+
+}, else => struct { } };
+
 // TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
 pub const DnsContextHandle = isize;
 
@@ -320,11 +332,9 @@ pub const IP4_ARRAY = extern struct {
     AddrArray: [1]u32,
 };
 
-pub const IP6_ADDRESS = u32; // TODO: implement StructOrUnion types?
-
 pub const DNS_ADDR = extern struct {
     MaxSa: [32]CHAR,
-    Data: DNS_ADDR._Data_e__Union,
+    Data: _Data_e__Union,
     const _Data_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -754,10 +764,10 @@ pub const DNS_RECORDW = extern struct {
     pName: PWSTR,
     wType: u16,
     wDataLength: u16,
-    Flags: DNS_RECORDW._Flags_e__Union,
+    Flags: _Flags_e__Union,
     dwTtl: u32,
     dwReserved: u32,
-    Data: DNS_RECORDW._Data_e__Union,
+    Data: _Data_e__Union,
     const _Flags_e__Union = u32; // TODO: generate this nested type!
     const _Data_e__Union = u32; // TODO: generate this nested type!
 };
@@ -767,11 +777,11 @@ pub const _DnsRecordOptW = extern struct {
     pName: PWSTR,
     wType: u16,
     wDataLength: u16,
-    Flags: _DnsRecordOptW._Flags_e__Union,
+    Flags: _Flags_e__Union,
     ExtHeader: DNS_HEADER_EXT,
     wPayloadSize: u16,
     wReserved: u16,
-    Data: _DnsRecordOptW._Data_e__Union,
+    Data: _Data_e__Union,
     const _Flags_e__Union = u32; // TODO: generate this nested type!
     const _Data_e__Union = u32; // TODO: generate this nested type!
 };
@@ -781,10 +791,10 @@ pub const DNS_RECORDA = extern struct {
     pName: PSTR,
     wType: u16,
     wDataLength: u16,
-    Flags: DNS_RECORDA._Flags_e__Union,
+    Flags: _Flags_e__Union,
     dwTtl: u32,
     dwReserved: u32,
-    Data: DNS_RECORDA._Data_e__Union,
+    Data: _Data_e__Union,
     const _Flags_e__Union = u32; // TODO: generate this nested type!
     const _Data_e__Union = u32; // TODO: generate this nested type!
 };
@@ -794,11 +804,11 @@ pub const _DnsRecordOptA = extern struct {
     pName: PSTR,
     wType: u16,
     wDataLength: u16,
-    Flags: _DnsRecordOptA._Flags_e__Union,
+    Flags: _Flags_e__Union,
     ExtHeader: DNS_HEADER_EXT,
     wPayloadSize: u16,
     wReserved: u16,
-    Data: _DnsRecordOptA._Data_e__Union,
+    Data: _Data_e__Union,
     const _Flags_e__Union = u32; // TODO: generate this nested type!
     const _Data_e__Union = u32; // TODO: generate this nested type!
 };
@@ -927,7 +937,7 @@ pub const DNS_CONNECTION_PROXY_INFO = extern struct {
     pwszFriendlyName: PWSTR,
     Flags: u32,
     Switch: DNS_CONNECTION_PROXY_INFO_SWITCH,
-    Anonymous: DNS_CONNECTION_PROXY_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1020,7 +1030,7 @@ pub const DNS_SERVICE_BROWSE_REQUEST = extern struct {
     Version: u32,
     InterfaceIndex: u32,
     QueryName: [*:0]const u16,
-    Anonymous: DNS_SERVICE_BROWSE_REQUEST._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     pQueryContext: *c_void,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -1081,6 +1091,17 @@ pub const MDNS_QUERY_REQUEST = extern struct {
     fAnswerReceived: BOOL,
     ulResendCount: u32,
 };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const IP6_ADDRESS = extern union {
+    IP6Dword: [4]u32,
+    IP6Word: [8]u16,
+    IP6Byte: [16]u8,
+};
+
+}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------
@@ -1577,31 +1598,22 @@ const HANDLE = @import("system_services.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = DNS_PROXY_COMPLETION_ROUTINE;
-    _ = PDNS_QUERY_COMPLETION_ROUTINE;
-    _ = PDNS_SERVICE_BROWSE_CALLBACK;
-    _ = PDNS_SERVICE_RESOLVE_COMPLETE;
-    _ = PDNS_SERVICE_REGISTER_COMPLETE;
-    _ = PMDNS_QUERY_CALLBACK;
+    if (@hasDecl(@This(), "DNS_PROXY_COMPLETION_ROUTINE")) { _ = DNS_PROXY_COMPLETION_ROUTINE; }
+    if (@hasDecl(@This(), "PDNS_QUERY_COMPLETION_ROUTINE")) { _ = PDNS_QUERY_COMPLETION_ROUTINE; }
+    if (@hasDecl(@This(), "PDNS_SERVICE_BROWSE_CALLBACK")) { _ = PDNS_SERVICE_BROWSE_CALLBACK; }
+    if (@hasDecl(@This(), "PDNS_SERVICE_RESOLVE_COMPLETE")) { _ = PDNS_SERVICE_RESOLVE_COMPLETE; }
+    if (@hasDecl(@This(), "PDNS_SERVICE_REGISTER_COMPLETE")) { _ = PDNS_SERVICE_REGISTER_COMPLETE; }
+    if (@hasDecl(@This(), "PMDNS_QUERY_CALLBACK")) { _ = PMDNS_QUERY_CALLBACK; }
 
-    const constant_export_count = 306;
-    const type_export_count = 93;
-    const enum_value_export_count = 52;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 57;
-    const unicode_alias_count = 21;
-    const import_count = 5;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

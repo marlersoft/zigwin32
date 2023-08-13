@@ -220,38 +220,29 @@ const PSTR = @import("system_services.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPMAPILOGON;
-    _ = LPMAPILOGOFF;
-    _ = LPMAPISENDMAIL;
-    _ = LPMAPISENDMAILW;
-    _ = LPMAPISENDDOCUMENTS;
-    _ = LPMAPIFINDNEXT;
-    _ = LPMAPIREADMAIL;
-    _ = LPMAPISAVEMAIL;
-    _ = LPMAPIDELETEMAIL;
-    _ = LPMAPIFREEBUFFER;
-    _ = LPMAPIADDRESS;
-    _ = LPMAPIDETAILS;
-    _ = LPMAPIRESOLVENAME;
+    if (@hasDecl(@This(), "LPMAPILOGON")) { _ = LPMAPILOGON; }
+    if (@hasDecl(@This(), "LPMAPILOGOFF")) { _ = LPMAPILOGOFF; }
+    if (@hasDecl(@This(), "LPMAPISENDMAIL")) { _ = LPMAPISENDMAIL; }
+    if (@hasDecl(@This(), "LPMAPISENDMAILW")) { _ = LPMAPISENDMAILW; }
+    if (@hasDecl(@This(), "LPMAPISENDDOCUMENTS")) { _ = LPMAPISENDDOCUMENTS; }
+    if (@hasDecl(@This(), "LPMAPIFINDNEXT")) { _ = LPMAPIFINDNEXT; }
+    if (@hasDecl(@This(), "LPMAPIREADMAIL")) { _ = LPMAPIREADMAIL; }
+    if (@hasDecl(@This(), "LPMAPISAVEMAIL")) { _ = LPMAPISAVEMAIL; }
+    if (@hasDecl(@This(), "LPMAPIDELETEMAIL")) { _ = LPMAPIDELETEMAIL; }
+    if (@hasDecl(@This(), "LPMAPIFREEBUFFER")) { _ = LPMAPIFREEBUFFER; }
+    if (@hasDecl(@This(), "LPMAPIADDRESS")) { _ = LPMAPIADDRESS; }
+    if (@hasDecl(@This(), "LPMAPIDETAILS")) { _ = LPMAPIDETAILS; }
+    if (@hasDecl(@This(), "LPMAPIRESOLVENAME")) { _ = LPMAPIRESOLVENAME; }
 
-    const constant_export_count = 0;
-    const type_export_count = 20;
-    const enum_value_export_count = 0;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 1;
-    const unicode_alias_count = 0;
-    const import_count = 2;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

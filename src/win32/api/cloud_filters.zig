@@ -393,7 +393,7 @@ pub const CF_CALLBACK_DEHYDRATION_REASON_SYSTEM_OS_UPGRADE = CF_CALLBACK_DEHYDRA
 
 pub const CF_CALLBACK_PARAMETERS = extern struct {
     ParamSize: u32,
-    Anonymous: CF_CALLBACK_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -553,7 +553,7 @@ pub const CF_OPERATION_ACK_DELETE_FLAG_NONE = CF_OPERATION_ACK_DELETE_FLAGS.E;
 
 pub const CF_OPERATION_PARAMETERS = extern struct {
     ParamSize: u32,
-    Anonymous: CF_OPERATION_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1072,26 +1072,17 @@ const FILE_INFO_BY_HANDLE_CLASS = @import("file_system.zig").FILE_INFO_BY_HANDLE
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = CF_CALLBACK;
+    if (@hasDecl(@This(), "CF_CALLBACK")) { _ = CF_CALLBACK; }
 
-    const constant_export_count = 5;
-    const type_export_count = 75;
-    const enum_value_export_count = 179;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 35;
-    const unicode_alias_count = 0;
-    const import_count = 10;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

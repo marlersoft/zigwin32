@@ -16,14 +16,22 @@ pub const MODULEINFO = extern struct {
     EntryPoint: *c_void,
 };
 
-pub const PSAPI_WORKING_SET_BLOCK = u32; // TODO: implement StructOrUnion types?
+pub const PSAPI_WORKING_SET_BLOCK = extern union {
+    Flags: usize,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const PSAPI_WORKING_SET_INFORMATION = extern struct {
     NumberOfEntries: usize,
     WorkingSetInfo: [1]PSAPI_WORKING_SET_BLOCK,
 };
 
-pub const PSAPI_WORKING_SET_EX_BLOCK = u32; // TODO: implement StructOrUnion types?
+pub const PSAPI_WORKING_SET_EX_BLOCK = extern union {
+    Flags: usize,
+    Anonymous: _Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
 
 pub const PSAPI_WORKING_SET_EX_INFORMATION = extern struct {
     VirtualAddress: *c_void,
@@ -337,27 +345,18 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PENUM_PAGE_FILE_CALLBACKW;
-    _ = PENUM_PAGE_FILE_CALLBACKA;
+    if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKW")) { _ = PENUM_PAGE_FILE_CALLBACKW; }
+    if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKA")) { _ = PENUM_PAGE_FILE_CALLBACKA; }
 
-    const constant_export_count = 4;
-    const type_export_count = 13;
-    const enum_value_export_count = 0;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 27;
-    const unicode_alias_count = 8;
-    const import_count = 4;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

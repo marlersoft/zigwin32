@@ -9,10 +9,6 @@ pub const NaN = @import("std").math.nan(f32);
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
-pub const HGESTUREINFO = ?*opaque{};
-
-pub const HTOUCHINPUT = ?*opaque{};
-
 const CLSID_InertiaProcessor_Value = @import("../zig.zig").Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");
 pub const CLSID_InertiaProcessor = &CLSID_InertiaProcessor_Value;
 
@@ -745,6 +741,49 @@ pub const IManipulationProcessor = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const HGESTUREINFO = ?*opaque{};
+
+pub const HTOUCHINPUT = ?*opaque{};
+
+pub const TOUCHINPUT = extern struct {
+    x: i32,
+    y: i32,
+    hSource: HANDLE,
+    dwID: u32,
+    dwFlags: TOUCHEVENTF_FLAGS,
+    dwMask: TOUCHINPUTMASKF_MASK,
+    dwTime: u32,
+    dwExtraInfo: usize,
+    cxContact: u32,
+    cyContact: u32,
+};
+
+pub const GESTUREINFO = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    dwID: u32,
+    hwndTarget: HWND,
+    ptsLocation: POINTS,
+    dwInstanceID: u32,
+    dwSequenceID: u32,
+    ullArguments: u64,
+    cbExtraArgs: u32,
+};
+
+pub const GESTURENOTIFYSTRUCT = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    hwndTarget: HWND,
+    ptsLocation: POINTS,
+    dwInstanceID: u32,
+};
+
+pub const GESTURECONFIG = extern struct {
+    dwID: GESTURECONFIG_ID,
+    dwWant: u32,
+    dwBlock: u32,
+};
+
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const GESTURECONFIG_ID = extern enum(u32) {
     BEGIN = 1,
@@ -804,45 +843,6 @@ pub const REGISTER_TOUCH_WINDOW_FLAGS = extern enum(u32) {
 };
 pub const TWF_FINETOUCH = REGISTER_TOUCH_WINDOW_FLAGS.FINETOUCH;
 pub const TWF_WANTPALM = REGISTER_TOUCH_WINDOW_FLAGS.WANTPALM;
-
-pub const TOUCHINPUT = extern struct {
-    x: i32,
-    y: i32,
-    hSource: HANDLE,
-    dwID: u32,
-    dwFlags: TOUCHEVENTF_FLAGS,
-    dwMask: TOUCHINPUTMASKF_MASK,
-    dwTime: u32,
-    dwExtraInfo: usize,
-    cxContact: u32,
-    cyContact: u32,
-};
-
-pub const GESTUREINFO = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    dwID: u32,
-    hwndTarget: HWND,
-    ptsLocation: POINTS,
-    dwInstanceID: u32,
-    dwSequenceID: u32,
-    ullArguments: u64,
-    cbExtraArgs: u32,
-};
-
-pub const GESTURENOTIFYSTRUCT = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    hwndTarget: HWND,
-    ptsLocation: POINTS,
-    dwInstanceID: u32,
-};
-
-pub const GESTURECONFIG = extern struct {
-    dwID: GESTURECONFIG_ID,
-    dwWant: u32,
-    dwBlock: u32,
-};
 
 
 //--------------------------------------------------------------------------------
@@ -940,24 +940,15 @@ const BOOL = @import("system_services.zig").BOOL;
 const HRESULT = @import("com.zig").HRESULT;
 
 test {
-    const constant_export_count = 3;
-    const type_export_count = 14;
-    const enum_value_export_count = 27;
-    const com_iface_id_export_count = 3;
-    const com_class_id_export_count = 2;
-    const func_export_count = 10;
-    const unicode_alias_count = 0;
-    const import_count = 6;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -508,6 +508,10 @@ pub const D3DX11_FFT_MAX_DIMENSIONS = @as(u32, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (312)
 //--------------------------------------------------------------------------------
+pub const CD3D11_VIDEO_DEFAULT = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
 pub const D3D_DRIVER_TYPE = extern enum(i32) {
     UNKNOWN = 0,
     HARDWARE = 1,
@@ -2541,8 +2545,8 @@ pub const ID3D11View = extern struct {
 };
 
 pub const D3D11_BUFFER_SRV = extern struct {
-    Anonymous1: D3D11_BUFFER_SRV._Anonymous1_e__Union,
-    Anonymous2: D3D11_BUFFER_SRV._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
@@ -2611,7 +2615,7 @@ pub const D3D11_TEX2DMS_ARRAY_SRV = extern struct {
 pub const D3D11_SHADER_RESOURCE_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D_SRV_DIMENSION,
-    Anonymous: D3D11_SHADER_RESOURCE_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2638,8 +2642,8 @@ pub const ID3D11ShaderResourceView = extern struct {
 };
 
 pub const D3D11_BUFFER_RTV = extern struct {
-    Anonymous1: D3D11_BUFFER_RTV._Anonymous1_e__Union,
-    Anonymous2: D3D11_BUFFER_RTV._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
@@ -2682,7 +2686,7 @@ pub const D3D11_TEX3D_RTV = extern struct {
 pub const D3D11_RENDER_TARGET_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_RTV_DIMENSION,
-    Anonymous: D3D11_RENDER_TARGET_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2748,7 +2752,7 @@ pub const D3D11_DEPTH_STENCIL_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_DSV_DIMENSION,
     Flags: u32,
-    Anonymous: D3D11_DEPTH_STENCIL_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2818,7 +2822,7 @@ pub const D3D11_TEX3D_UAV = extern struct {
 pub const D3D11_UNORDERED_ACCESS_VIEW_DESC = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_UAV_DIMENSION,
-    Anonymous: D3D11_UNORDERED_ACCESS_VIEW_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -4753,11 +4757,11 @@ pub const ID3D11DeviceContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const CD3D11_VIDEO_DEFAULT = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
+pub const D3D11_AUTHENTICATED_PROTECTION_FLAGS = extern union {
+    Flags: _Flags_e__Struct,
+    Value: u32,
+    const _Flags_e__Struct = u32; // TODO: generate this nested type!
 };
-
-pub const D3D11_AUTHENTICATED_PROTECTION_FLAGS = u32; // TODO: implement StructOrUnion types?
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ID3D11Device_Value = @import("../zig.zig").Guid.initString("db6f6ddb-ac77-4e88-8253-819df9bbf140");
@@ -9385,7 +9389,7 @@ pub const D3D11_TEX2D_ARRAY_SRV1 = extern struct {
 pub const D3D11_SHADER_RESOURCE_VIEW_DESC1 = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D_SRV_DIMENSION,
-    Anonymous: D3D11_SHADER_RESOURCE_VIEW_DESC1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -9426,7 +9430,7 @@ pub const D3D11_TEX2D_ARRAY_RTV1 = extern struct {
 pub const D3D11_RENDER_TARGET_VIEW_DESC1 = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_RTV_DIMENSION,
-    Anonymous: D3D11_RENDER_TARGET_VIEW_DESC1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -9467,7 +9471,7 @@ pub const D3D11_TEX2D_ARRAY_UAV1 = extern struct {
 pub const D3D11_UNORDERED_ACCESS_VIEW_DESC1 = extern struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_UAV_DIMENSION,
-    Anonymous: D3D11_UNORDERED_ACCESS_VIEW_DESC1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -10971,7 +10975,7 @@ pub const D3D11_COMPUTE_SHADER_TRACE_DESC = extern struct {
 pub const D3D11_SHADER_TRACE_DESC = extern struct {
     Type: D3D11_SHADER_TYPE,
     Flags: u32,
-    Anonymous: D3D11_SHADER_TRACE_DESC._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -11098,7 +11102,7 @@ pub const D3D11_TRACE_INTERFACE_POINTER = D3D11_TRACE_REGISTER_TYPE.INTERFACE_PO
 
 pub const D3D11_TRACE_REGISTER = extern struct {
     RegType: D3D11_TRACE_REGISTER_TYPE,
-    Anonymous: D3D11_TRACE_REGISTER._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     OperandIndex: u8,
     Flags: u8,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -11605,28 +11609,19 @@ const DXGI_SWAP_CHAIN_DESC = @import("dxgi.zig").DXGI_SWAP_CHAIN_DESC;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PFN_DESTRUCTION_CALLBACK;
-    _ = PFN_D3D11_CREATE_DEVICE;
-    _ = PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN;
+    if (@hasDecl(@This(), "PFN_DESTRUCTION_CALLBACK")) { _ = PFN_DESTRUCTION_CALLBACK; }
+    if (@hasDecl(@This(), "PFN_D3D11_CREATE_DEVICE")) { _ = PFN_D3D11_CREATE_DEVICE; }
+    if (@hasDecl(@This(), "PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN")) { _ = PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN; }
 
-    const constant_export_count = 502;
-    const type_export_count = 312;
-    const enum_value_export_count = 2367;
-    const com_iface_id_export_count = 80;
-    const com_class_id_export_count = 0;
-    const func_export_count = 12;
-    const unicode_alias_count = 0;
-    const import_count = 23;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

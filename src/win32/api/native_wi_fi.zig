@@ -2,6 +2,34 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (2207)
 //--------------------------------------------------------------------------------
+pub const L2_REASON_CODE_DOT11_AC_BASE = @as(u32, 131072);
+pub const L2_REASON_CODE_DOT11_MSM_BASE = @as(u32, 196608);
+pub const L2_REASON_CODE_DOT11_SECURITY_BASE = @as(u32, 262144);
+pub const L2_REASON_CODE_ONEX_BASE = @as(u32, 327680);
+pub const L2_REASON_CODE_DOT3_AC_BASE = @as(u32, 393216);
+pub const L2_REASON_CODE_DOT3_MSM_BASE = @as(u32, 458752);
+pub const L2_REASON_CODE_PROFILE_BASE = @as(u32, 524288);
+pub const L2_REASON_CODE_IHV_BASE = @as(u32, 589824);
+pub const L2_REASON_CODE_WIMAX_BASE = @as(u32, 655360);
+pub const L2_REASON_CODE_RESERVED_BASE = @as(u32, 720896);
+pub const WLAN_REASON_CODE_SUCCESS = @as(u32, 0);
+pub const WLAN_REASON_CODE_UNKNOWN = @as(u32, 65537);
+pub const WLAN_REASON_CODE_RANGE_SIZE = @as(u32, 65536);
+pub const WLAN_REASON_CODE_BASE = @as(u32, 131072);
+pub const WLAN_REASON_CODE_AC_BASE = @as(u32, 131072);
+pub const WLAN_REASON_CODE_AC_CONNECT_BASE = @as(u32, 163840);
+pub const WLAN_REASON_CODE_AC_END = @as(u32, 196607);
+pub const WLAN_REASON_CODE_PROFILE_BASE = @as(u32, 524288);
+pub const WLAN_REASON_CODE_PROFILE_CONNECT_BASE = @as(u32, 557056);
+pub const WLAN_REASON_CODE_PROFILE_END = @as(u32, 589823);
+pub const WLAN_REASON_CODE_MSM_BASE = @as(u32, 196608);
+pub const WLAN_REASON_CODE_MSM_CONNECT_BASE = @as(u32, 229376);
+pub const WLAN_REASON_CODE_MSM_END = @as(u32, 262143);
+pub const WLAN_REASON_CODE_MSMSEC_BASE = @as(u32, 262144);
+pub const WLAN_REASON_CODE_MSMSEC_CONNECT_BASE = @as(u32, 294912);
+pub const WLAN_REASON_CODE_MSMSEC_END = @as(u32, 327679);
+pub const WLAN_REASON_CODE_RESERVED_BASE = @as(u32, 720896);
+pub const WLAN_REASON_CODE_RESERVED_END = @as(u32, 786431);
 pub const L2_PROFILE_MAX_NAME_LENGTH = @as(u32, 256);
 pub const L2_NOTIFICATION_SOURCE_NONE = @as(u32, 0);
 pub const L2_NOTIFICATION_SOURCE_DOT3_AUTO_CONFIG = @as(u32, 1);
@@ -2181,34 +2209,6 @@ pub const DEVPKEY_WiFiDirectServices_AdvertisementId = PROPERTYKEY { .fmtid = @i
 pub const DEVPKEY_WiFiDirectServices_ServiceConfigMethods = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 6 };
 pub const DEVPKEY_WiFiDirectServices_RequestServiceInformation = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("31b37743-7c5e-4005-93e6-e953f92b82e9"), .pid = 7 };
 pub const DEVPKEY_WiFi_InterfaceGuid = PROPERTYKEY { .fmtid = @import("../zig.zig").Guid.initString("ef1167eb-cbfc-4341-a568-a7c91a68982c"), .pid = 2 };
-pub const L2_REASON_CODE_DOT11_AC_BASE = @as(u32, 131072);
-pub const L2_REASON_CODE_DOT11_MSM_BASE = @as(u32, 196608);
-pub const L2_REASON_CODE_DOT11_SECURITY_BASE = @as(u32, 262144);
-pub const L2_REASON_CODE_ONEX_BASE = @as(u32, 327680);
-pub const L2_REASON_CODE_DOT3_AC_BASE = @as(u32, 393216);
-pub const L2_REASON_CODE_DOT3_MSM_BASE = @as(u32, 458752);
-pub const L2_REASON_CODE_PROFILE_BASE = @as(u32, 524288);
-pub const L2_REASON_CODE_IHV_BASE = @as(u32, 589824);
-pub const L2_REASON_CODE_WIMAX_BASE = @as(u32, 655360);
-pub const L2_REASON_CODE_RESERVED_BASE = @as(u32, 720896);
-pub const WLAN_REASON_CODE_SUCCESS = @as(u32, 0);
-pub const WLAN_REASON_CODE_UNKNOWN = @as(u32, 65537);
-pub const WLAN_REASON_CODE_RANGE_SIZE = @as(u32, 65536);
-pub const WLAN_REASON_CODE_BASE = @as(u32, 131072);
-pub const WLAN_REASON_CODE_AC_BASE = @as(u32, 131072);
-pub const WLAN_REASON_CODE_AC_CONNECT_BASE = @as(u32, 163840);
-pub const WLAN_REASON_CODE_AC_END = @as(u32, 196607);
-pub const WLAN_REASON_CODE_PROFILE_BASE = @as(u32, 524288);
-pub const WLAN_REASON_CODE_PROFILE_CONNECT_BASE = @as(u32, 557056);
-pub const WLAN_REASON_CODE_PROFILE_END = @as(u32, 589823);
-pub const WLAN_REASON_CODE_MSM_BASE = @as(u32, 196608);
-pub const WLAN_REASON_CODE_MSM_CONNECT_BASE = @as(u32, 229376);
-pub const WLAN_REASON_CODE_MSM_END = @as(u32, 262143);
-pub const WLAN_REASON_CODE_MSMSEC_BASE = @as(u32, 262144);
-pub const WLAN_REASON_CODE_MSMSEC_CONNECT_BASE = @as(u32, 294912);
-pub const WLAN_REASON_CODE_MSMSEC_END = @as(u32, 327679);
-pub const WLAN_REASON_CODE_RESERVED_BASE = @as(u32, 720896);
-pub const WLAN_REASON_CODE_RESERVED_END = @as(u32, 786431);
 
 //--------------------------------------------------------------------------------
 // Section: Types (458)
@@ -2719,7 +2719,7 @@ pub const NDIS_802_11_AUTHENTICATION_EVENT = extern struct {
 pub const NDIS_802_11_TEST = extern struct {
     Length: u32,
     Type: u32,
-    Anonymous: NDIS_802_11_TEST._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3255,7 +3255,7 @@ pub const NDIS_LINK_SPEED = extern struct {
 
 pub const NDIS_GUID = extern struct {
     Guid: Guid,
-    Anonymous: NDIS_GUID._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Size: u32,
     Flags: u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -3340,35 +3340,35 @@ pub const NDIS_OFFLOAD_PARAMETERS = extern struct {
 };
 
 pub const NDIS_TCP_LARGE_SEND_OFFLOAD_V1 = extern struct {
-    IPv4: NDIS_TCP_LARGE_SEND_OFFLOAD_V1._IPv4_e__Struct,
+    IPv4: _IPv4_e__Struct,
     const _IPv4_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_TCP_IP_CHECKSUM_OFFLOAD = extern struct {
-    IPv4Transmit: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv4Transmit_e__Struct,
-    IPv4Receive: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv4Receive_e__Struct,
-    IPv6Transmit: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv6Transmit_e__Struct,
-    IPv6Receive: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv6Receive_e__Struct,
+    IPv4Transmit: _IPv4Transmit_e__Struct,
+    IPv4Receive: _IPv4Receive_e__Struct,
+    IPv6Transmit: _IPv6Transmit_e__Struct,
+    IPv6Receive: _IPv6Receive_e__Struct,
+    const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
     const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_IPSEC_OFFLOAD_V1 = extern struct {
-    Supported: NDIS_IPSEC_OFFLOAD_V1._Supported_e__Struct,
-    IPv4AH: NDIS_IPSEC_OFFLOAD_V1._IPv4AH_e__Struct,
-    IPv4ESP: NDIS_IPSEC_OFFLOAD_V1._IPv4ESP_e__Struct,
-    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
-    const _Supported_e__Struct = u32; // TODO: generate this nested type!
+    Supported: _Supported_e__Struct,
+    IPv4AH: _IPv4AH_e__Struct,
+    IPv4ESP: _IPv4ESP_e__Struct,
     const _IPv4ESP_e__Struct = u32; // TODO: generate this nested type!
+    const _Supported_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_TCP_LARGE_SEND_OFFLOAD_V2 = extern struct {
-    IPv4: NDIS_TCP_LARGE_SEND_OFFLOAD_V2._IPv4_e__Struct,
-    IPv6: NDIS_TCP_LARGE_SEND_OFFLOAD_V2._IPv6_e__Struct,
-    const _IPv4_e__Struct = u32; // TODO: generate this nested type!
+    IPv4: _IPv4_e__Struct,
+    IPv6: _IPv6_e__Struct,
     const _IPv6_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_OFFLOAD = extern struct {
@@ -3381,35 +3381,35 @@ pub const NDIS_OFFLOAD = extern struct {
 };
 
 pub const NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V1 = extern struct {
-    IPv4: NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V1._IPv4_e__Struct,
+    IPv4: _IPv4_e__Struct,
     const _IPv4_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD = extern struct {
-    IPv4Transmit: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv4Transmit_e__Struct,
-    IPv4Receive: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv4Receive_e__Struct,
-    IPv6Transmit: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv6Transmit_e__Struct,
-    IPv6Receive: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv6Receive_e__Struct,
-    const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
+    IPv4Transmit: _IPv4Transmit_e__Struct,
+    IPv4Receive: _IPv4Receive_e__Struct,
+    IPv6Transmit: _IPv6Transmit_e__Struct,
+    IPv6Receive: _IPv6Receive_e__Struct,
     const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_IPSEC_OFFLOAD_V1 = extern struct {
-    Supported: NDIS_WMI_IPSEC_OFFLOAD_V1._Supported_e__Struct,
-    IPv4AH: NDIS_WMI_IPSEC_OFFLOAD_V1._IPv4AH_e__Struct,
-    IPv4ESP: NDIS_WMI_IPSEC_OFFLOAD_V1._IPv4ESP_e__Struct,
-    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
+    Supported: _Supported_e__Struct,
+    IPv4AH: _IPv4AH_e__Struct,
+    IPv4ESP: _IPv4ESP_e__Struct,
     const _IPv4ESP_e__Struct = u32; // TODO: generate this nested type!
     const _Supported_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V2 = extern struct {
-    IPv4: NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V2._IPv4_e__Struct,
-    IPv6: NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V2._IPv6_e__Struct,
-    const _IPv4_e__Struct = u32; // TODO: generate this nested type!
+    IPv4: _IPv4_e__Struct,
+    IPv6: _IPv6_e__Struct,
     const _IPv6_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_OFFLOAD = extern struct {
@@ -4114,7 +4114,7 @@ pub const DOT11_RECV_SENSITIVITY = extern struct {
 };
 
 pub const DOT11_RECV_SENSITIVITY_LIST = extern struct {
-    Anonymous: DOT11_RECV_SENSITIVITY_LIST._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     uNumOfEntries: u32,
     uTotalNumOfEntries: u32,
     dot11RecvSensitivity: [1]DOT11_RECV_SENSITIVITY,
@@ -4196,7 +4196,11 @@ pub const DOT11_BYTE_ARRAY = extern struct {
     ucBuffer: [1]u8,
 };
 
-pub const DOT11_BSS_ENTRY_PHY_SPECIFIC_INFO = u32; // TODO: implement StructOrUnion types?
+pub const DOT11_BSS_ENTRY_PHY_SPECIFIC_INFO = extern union {
+    uChCenterFrequency: u32,
+    FHSS: _FHSS_e__Struct,
+    const _FHSS_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const DOT11_BSS_ENTRY = extern struct {
     uPhyId: u32,
@@ -4529,7 +4533,7 @@ pub const DOT11_PHY_ATTRIBUTES = extern struct {
     uMPDUMaxLength: u32,
     TempType: DOT11_TEMP_TYPE,
     DiversitySupport: DOT11_DIVERSITY_SUPPORT,
-    PhySpecificAttributes: DOT11_PHY_ATTRIBUTES._PhySpecificAttributes_e__Union,
+    PhySpecificAttributes: _PhySpecificAttributes_e__Union,
     uNumberSupportedPowerLevels: u32,
     TxPowerLevels: [8]u32,
     uNumDataRateMappingEntries: u32,
@@ -4835,7 +4839,7 @@ pub const DOT11_STOP_AP_PARAMETERS = extern struct {
 pub const DOT11_PHY_FREQUENCY_ADOPTED_PARAMETERS = extern struct {
     Header: NDIS_OBJECT_HEADER,
     ulPhyId: u32,
-    Anonymous: DOT11_PHY_FREQUENCY_ADOPTED_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -5691,7 +5695,7 @@ pub const WLAN_RAW_DATA = extern struct {
 pub const WLAN_RAW_DATA_LIST = extern struct {
     dwTotalSize: u32,
     dwNumberOfItems: u32,
-    DataList: [1]WLAN_RAW_DATA_LIST._Anonymous_e__Struct,
+    DataList: [1]_Anonymous_e__Struct,
     const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -7798,27 +7802,18 @@ const NET_IF_MEDIA_DUPLEX_STATE = @import("network_drivers.zig").NET_IF_MEDIA_DU
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = WLAN_NOTIFICATION_CALLBACK;
-    _ = WFD_OPEN_SESSION_COMPLETE_CALLBACK;
+    if (@hasDecl(@This(), "WLAN_NOTIFICATION_CALLBACK")) { _ = WLAN_NOTIFICATION_CALLBACK; }
+    if (@hasDecl(@This(), "WFD_OPEN_SESSION_COMPLETE_CALLBACK")) { _ = WFD_OPEN_SESSION_COMPLETE_CALLBACK; }
 
-    const constant_export_count = 2207;
-    const type_export_count = 457;
-    const enum_value_export_count = 634;
-    const com_iface_id_export_count = 10;
-    const com_class_id_export_count = 1;
-    const func_export_count = 61;
-    const unicode_alias_count = 0;
-    const import_count = 17;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

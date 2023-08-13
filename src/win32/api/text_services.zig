@@ -6,36 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (188)
 //--------------------------------------------------------------------------------
-pub const HKL = ?*opaque{};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_ITfMSAAControl_Value = @import("../zig.zig").Guid.initString("b5f8fb3b-393f-4f7c-84cb-504924c2705a");
-pub const IID_ITfMSAAControl = &IID_ITfMSAAControl_Value;
-pub const ITfMSAAControl = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SystemEnableMSAA: fn(
-            self: *const ITfMSAAControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SystemDisableMSAA: fn(
-            self: *const ITfMSAAControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMSAAControl_SystemEnableMSAA(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITfMSAAControl.VTable, self.vtable).SystemEnableMSAA(@ptrCast(*const ITfMSAAControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITfMSAAControl_SystemDisableMSAA(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITfMSAAControl.VTable, self.vtable).SystemDisableMSAA(@ptrCast(*const ITfMSAAControl, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 pub const TS_STATUS = extern struct {
     dwDynamicFlags: u32,
     dwStaticFlags: u32,
@@ -5667,7 +5637,7 @@ pub const TF_CT_COLORREF = TF_DA_COLORTYPE.COLORREF;
 
 pub const TF_DA_COLOR = extern struct {
     type: TF_DA_COLORTYPE,
-    Anonymous: TF_DA_COLOR._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -7152,7 +7122,7 @@ pub const TF_LMLATTELEMENT = extern struct {
     dwFrameStart: u32,
     dwFrameLen: u32,
     dwFlags: u32,
-    Anonymous: TF_LMLATTELEMENT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     bstrText: BSTR,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -7749,6 +7719,8 @@ pub const ITfSpeechUIServer = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const HKL = ?*opaque{};
+
 pub const LANG_BAR_ITEM_ICON_MODE_FLAGS = extern enum(u32) {
     None = 0,
     N = 1,
@@ -7819,6 +7791,34 @@ pub const TF_ES_READ = TF_CONTEXT_EDIT_CONTEXT_FLAGS.READ;
 pub const TF_ES_READWRITE = TF_CONTEXT_EDIT_CONTEXT_FLAGS.READWRITE;
 pub const TF_ES_ASYNC = TF_CONTEXT_EDIT_CONTEXT_FLAGS.ASYNC;
 
+// TODO: this type is limited to platform 'windows5.0'
+const IID_ITfMSAAControl_Value = @import("../zig.zig").Guid.initString("b5f8fb3b-393f-4f7c-84cb-504924c2705a");
+pub const IID_ITfMSAAControl = &IID_ITfMSAAControl_Value;
+pub const ITfMSAAControl = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SystemEnableMSAA: fn(
+            self: *const ITfMSAAControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SystemDisableMSAA: fn(
+            self: *const ITfMSAAControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ITfMSAAControl_SystemEnableMSAA(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ITfMSAAControl.VTable, self.vtable).SystemEnableMSAA(@ptrCast(*const ITfMSAAControl, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ITfMSAAControl_SystemDisableMSAA(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ITfMSAAControl.VTable, self.vtable).SystemDisableMSAA(@ptrCast(*const ITfMSAAControl, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
@@ -7871,24 +7871,15 @@ const SIZE = @import("display_devices.zig").SIZE;
 const HICON = @import("menus_and_resources.zig").HICON;
 
 test {
-    const constant_export_count = 0;
-    const type_export_count = 188;
-    const enum_value_export_count = 149;
-    const com_iface_id_export_count = 139;
-    const com_class_id_export_count = 0;
-    const func_export_count = 2;
-    const unicode_alias_count = 0;
-    const import_count = 21;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

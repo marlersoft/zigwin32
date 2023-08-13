@@ -2,15 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (267)
 //--------------------------------------------------------------------------------
-pub const ACTIVPROF_E_PROFILER_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
-pub const ACTIVPROF_E_PROFILER_ABSENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220991));
-pub const ACTIVPROF_E_UNABLE_TO_APPLY_ACTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220990));
-pub const PROFILER_HEAP_OBJECT_NAME_ID_UNAVAILABLE = @as(u32, 4294967295);
-pub const sevInfo = @as(i32, 0);
-pub const sevProblem = @as(i32, 1);
-pub const sevAttn = @as(i32, 2);
-pub const sevFatal = @as(i32, 3);
-pub const sevMax = @as(i32, 4);
 pub const CATID_ActiveScript = Guid.initString("f0b7a1a1-9847-11cf-8f20-00805f2cd064");
 pub const CATID_ActiveScriptParse = Guid.initString("f0b7a1a2-9847-11cf-8f20-00805f2cd064");
 pub const CATID_ActiveScriptEncode = Guid.initString("f0b7a1a3-9847-11cf-8f20-00805f2cd064");
@@ -269,64 +260,135 @@ pub const THREAD_STATE_RUNNING = @as(u32, 1);
 pub const THREAD_STATE_SUSPENDED = @as(u32, 2);
 pub const THREAD_BLOCKED = @as(u32, 4);
 pub const THREAD_OUT_OF_CONTEXT = @as(u32, 8);
+pub const ACTIVPROF_E_PROFILER_PRESENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220992));
+pub const ACTIVPROF_E_PROFILER_ABSENT = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220991));
+pub const ACTIVPROF_E_UNABLE_TO_APPLY_ACTION = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147220990));
+pub const PROFILER_HEAP_OBJECT_NAME_ID_UNAVAILABLE = @as(u32, 4294967295);
+pub const sevInfo = @as(i32, 0);
+pub const sevProblem = @as(i32, 1);
+pub const sevAttn = @as(i32, 2);
+pub const sevFatal = @as(i32, 3);
+pub const sevMax = @as(i32, 4);
 
 //--------------------------------------------------------------------------------
-// Section: Types (413)
+// Section: Types (447)
 //--------------------------------------------------------------------------------
-pub const CONTEXT = extern struct {
-    P1Home: u64,
-    P2Home: u64,
-    P3Home: u64,
-    P4Home: u64,
-    P5Home: u64,
-    P6Home: u64,
-    ContextFlags: u32,
-    MxCsr: u32,
-    SegCs: u16,
-    SegDs: u16,
-    SegEs: u16,
-    SegFs: u16,
-    SegGs: u16,
-    SegSs: u16,
-    EFlags: u32,
-    Dr0: u64,
-    Dr1: u64,
-    Dr2: u64,
-    Dr3: u64,
-    Dr6: u64,
-    Dr7: u64,
-    Rax: u64,
-    Rcx: u64,
-    Rdx: u64,
-    Rbx: u64,
-    Rsp: u64,
-    Rbp: u64,
-    Rsi: u64,
-    Rdi: u64,
-    R8: u64,
-    R9: u64,
-    R10: u64,
-    R11: u64,
-    R12: u64,
-    R13: u64,
-    R14: u64,
-    R15: u64,
-    Rip: u64,
-    Anonymous: CONTEXT._Anonymous_e__Union,
-    VectorRegister: [26]M128A,
-    VectorControl: u64,
-    DebugControl: u64,
-    LastBranchToRip: u64,
-    LastBranchFromRip: u64,
-    LastExceptionToRip: u64,
-    LastExceptionFromRip: u64,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.Arm64 => struct {
+
+// TODO: not generating this type because it is causing some sort of error
+pub const CONTEXT = usize;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
+    ThreadId: u32,
+    ExceptionPointers: *EXCEPTION_POINTERS,
+    ClientPointers: BOOL,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const MINIDUMP_USER_STREAM = extern struct {
+    Type: u32,
+    BufferSize: u32,
+    Buffer: *c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
+    UserStreamCount: u32,
+    UserStreamArray: *MINIDUMP_USER_STREAM,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.Arm64 => struct {
+
+pub const MINIDUMP_THREAD_CALLBACK = extern struct {
+    ThreadId: u32,
+    ThreadHandle: HANDLE,
+    Pad: u32,
+    Context: CONTEXT,
+    SizeOfContext: u32,
+    StackBase: u64,
+    StackEnd: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.Arm64 => struct {
+
+pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
+    ThreadId: u32,
+    ThreadHandle: HANDLE,
+    Pad: u32,
+    Context: CONTEXT,
+    SizeOfContext: u32,
+    StackBase: u64,
+    StackEnd: u64,
+    BackingStoreBase: u64,
+    BackingStoreEnd: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
+    CallbackRoutine: MINIDUMP_CALLBACK_ROUTINE,
+    CallbackParam: *c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const LOADED_IMAGE = extern struct {
+    ModuleName: PSTR,
+    hFile: HANDLE,
+    MappedAddress: *u8,
+    FileHeader: *IMAGE_NT_HEADERS64,
+    LastRvaSection: *IMAGE_SECTION_HEADER,
+    NumberOfSections: u32,
+    Sections: *IMAGE_SECTION_HEADER,
+    Characteristics: IMAGE_FILE_CHARACTERISTICS,
+    fSystemImage: u8,
+    fDOSImage: u8,
+    fReadOnly: u8,
+    Version: u8,
+    Links: LIST_ENTRY,
+    SizeOfImage: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64 => struct {
+
+// TODO: not generating this type because it is causing some sort of error
+pub const CONTEXT = usize;
+
+}, else => struct { } };
 
 pub const LDT_ENTRY = extern struct {
     LimitLow: u16,
     BaseLow: u16,
-    HighWord: LDT_ENTRY._HighWord_e__Union,
+    HighWord: _HighWord_e__Union,
     const _HighWord_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -373,7 +435,7 @@ pub const WOW64_CONTEXT = extern struct {
 pub const WOW64_LDT_ENTRY = extern struct {
     LimitLow: u16,
     BaseLow: u16,
-    HighWord: WOW64_LDT_ENTRY._HighWord_e__Union,
+    HighWord: _HighWord_e__Union,
     const _HighWord_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -499,7 +561,7 @@ pub const IMAGE_NT_HEADERS32 = extern struct {
 
 pub const IMAGE_SECTION_HEADER = extern struct {
     Name: [8]u8,
-    Misc: IMAGE_SECTION_HEADER._Misc_e__Union,
+    Misc: _Misc_e__Union,
     VirtualAddress: u32,
     SizeOfRawData: u32,
     PointerToRawData: u32,
@@ -644,7 +706,7 @@ pub const IMAGE_FUNCTION_ENTRY = extern struct {
 pub const IMAGE_FUNCTION_ENTRY64 = extern struct {
     StartingAddress: u64,
     EndingAddress: u64,
-    Anonymous: IMAGE_FUNCTION_ENTRY64._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -712,9 +774,17 @@ pub const DEBUG_EVENT = extern struct {
     dwDebugEventCode: DEBUG_EVENT_CODE,
     dwProcessId: u32,
     dwThreadId: u32,
-    u: DEBUG_EVENT._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+// TODO: not generating this type because it is causing some sort of error
+pub const CONTEXT = usize;
+
+}, else => struct { } };
 
 pub const LPTOP_LEVEL_EXCEPTION_FILTER = fn(
     ExceptionInfo: *EXCEPTION_POINTERS,
@@ -777,7 +847,7 @@ pub const WctStatusMax = WCT_OBJECT_STATUS.Max;
 pub const WAITCHAIN_NODE_INFO = extern struct {
     ObjectType: WCT_OBJECT_TYPE,
     ObjectStatus: WCT_OBJECT_STATUS,
-    Anonymous: WAITCHAIN_NODE_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -827,7 +897,7 @@ pub const MINIDUMP_HEADER = extern struct {
     NumberOfStreams: u32,
     StreamDirectoryRva: u32,
     CheckSum: u32,
-    Anonymous: MINIDUMP_HEADER._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Flags: u64,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -923,19 +993,24 @@ pub const ceStreamProcessModuleMap = MINIDUMP_STREAM_TYPE.ceStreamProcessModuleM
 pub const ceStreamDiagnosisList = MINIDUMP_STREAM_TYPE.ceStreamDiagnosisList;
 pub const LastReservedStream = MINIDUMP_STREAM_TYPE.LastReservedStream;
 
-pub const CPU_INFORMATION = u32; // TODO: implement StructOrUnion types?
+pub const CPU_INFORMATION = extern union {
+    X86CpuInfo: _X86CpuInfo_e__Struct,
+    OtherCpuInfo: _OtherCpuInfo_e__Struct,
+    const _X86CpuInfo_e__Struct = u32; // TODO: generate this nested type!
+    const _OtherCpuInfo_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const MINIDUMP_SYSTEM_INFO = extern struct {
     ProcessorArchitecture: PROCESSOR_ARCHITECTURE,
     ProcessorLevel: u16,
     ProcessorRevision: u16,
-    Anonymous1: MINIDUMP_SYSTEM_INFO._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     MajorVersion: u32,
     MinorVersion: u32,
     BuildNumber: u32,
     PlatformId: VER_PLATFORM,
     CSDVersionRva: u32,
-    Anonymous2: MINIDUMP_SYSTEM_INFO._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     Cpu: CPU_INFORMATION,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -1016,12 +1091,6 @@ pub const MINIDUMP_MEMORY64_LIST = extern struct {
     NumberOfMemoryRanges: u64,
     BaseRva: u64,
     MemoryRanges: [1]MINIDUMP_MEMORY_DESCRIPTOR64,
-};
-
-pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
-    ThreadId: u32,
-    ExceptionPointers: *EXCEPTION_POINTERS,
-    ClientPointers: BOOL,
 };
 
 pub const MINIDUMP_EXCEPTION_INFORMATION64 = extern struct {
@@ -1445,17 +1514,6 @@ pub const MINIDUMP_USER_RECORD = extern struct {
     Memory: MINIDUMP_LOCATION_DESCRIPTOR,
 };
 
-pub const MINIDUMP_USER_STREAM = extern struct {
-    Type: u32,
-    BufferSize: u32,
-    Buffer: *c_void,
-};
-
-pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
-    UserStreamCount: u32,
-    UserStreamArray: *MINIDUMP_USER_STREAM,
-};
-
 pub const MINIDUMP_CALLBACK_TYPE = extern enum(i32) {
     ModuleCallback = 0,
     ThreadCallback = 1,
@@ -1501,6 +1559,9 @@ pub const VmQueryCallback = MINIDUMP_CALLBACK_TYPE.VmQueryCallback;
 pub const VmPreReadCallback = MINIDUMP_CALLBACK_TYPE.VmPreReadCallback;
 pub const VmPostReadCallback = MINIDUMP_CALLBACK_TYPE.VmPostReadCallback;
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64 => struct {
+
 pub const MINIDUMP_THREAD_CALLBACK = extern struct {
     ThreadId: u32,
     ThreadHandle: HANDLE,
@@ -1509,6 +1570,11 @@ pub const MINIDUMP_THREAD_CALLBACK = extern struct {
     StackBase: u64,
     StackEnd: u64,
 };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64 => struct {
 
 pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
     ThreadId: u32,
@@ -1520,6 +1586,8 @@ pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
     BackingStoreBase: u64,
     BackingStoreEnd: u64,
 };
+
+}, else => struct { } };
 
 pub const MINIDUMP_INCLUDE_THREAD_CALLBACK = extern struct {
     ThreadId: u32,
@@ -1611,12 +1679,12 @@ pub const MINIDUMP_CALLBACK_INPUT = extern struct {
     ProcessId: u32,
     ProcessHandle: HANDLE,
     CallbackType: u32,
-    Anonymous: MINIDUMP_CALLBACK_INPUT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MINIDUMP_CALLBACK_OUTPUT = extern struct {
-    Anonymous: MINIDUMP_CALLBACK_OUTPUT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1689,11 +1757,6 @@ pub const MINIDUMP_CALLBACK_ROUTINE = fn(
     CallbackInput: *MINIDUMP_CALLBACK_INPUT,
     CallbackOutput: *MINIDUMP_CALLBACK_OUTPUT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
-    CallbackRoutine: MINIDUMP_CALLBACK_ROUTINE,
-    CallbackParam: *c_void,
-};
 
 const CLSID_ProcessDebugManager_Value = @import("../zig.zig").Guid.initString("78a51822-51f4-11d0-8f20-00805f2cd064");
 pub const CLSID_ProcessDebugManager = &CLSID_ProcessDebugManager_Value;
@@ -6608,7 +6671,7 @@ pub const PROFILER_PROPERTY_TYPE_SUBSTRING_INFO = extern struct {
 pub const PROFILER_HEAP_OBJECT_RELATIONSHIP = extern struct {
     relationshipId: u32,
     relationshipInfo: PROFILER_RELATIONSHIP_INFO,
-    Anonymous: PROFILER_HEAP_OBJECT_RELATIONSHIP._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -6619,13 +6682,13 @@ pub const PROFILER_HEAP_OBJECT_RELATIONSHIP_LIST = extern struct {
 
 pub const PROFILER_HEAP_OBJECT_OPTIONAL_INFO = extern struct {
     infoType: PROFILER_HEAP_OBJECT_OPTIONAL_INFO_TYPE,
-    Anonymous: PROFILER_HEAP_OBJECT_OPTIONAL_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const PROFILER_HEAP_OBJECT = extern struct {
     size: u32,
-    Anonymous: PROFILER_HEAP_OBJECT._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     typeNameId: u32,
     flags: u32,
     unused: u16,
@@ -7140,23 +7203,6 @@ pub const RegisterAuthoringClientFunctionType = fn(
 pub const UnregisterAuthoringClientFunctionType = fn(
     host: *IWebApplicationHost,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub const LOADED_IMAGE = extern struct {
-    ModuleName: PSTR,
-    hFile: HANDLE,
-    MappedAddress: *u8,
-    FileHeader: *IMAGE_NT_HEADERS64,
-    LastRvaSection: *IMAGE_SECTION_HEADER,
-    NumberOfSections: u32,
-    Sections: *IMAGE_SECTION_HEADER,
-    Characteristics: IMAGE_FILE_CHARACTERISTICS,
-    fSystemImage: u8,
-    fDOSImage: u8,
-    fReadOnly: u8,
-    Version: u8,
-    Links: LIST_ENTRY,
-    SizeOfImage: u32,
-};
 
 pub const PFIND_DEBUG_FILE_CALLBACK = fn(
     FileHandle: HANDLE,
@@ -7810,7 +7856,7 @@ pub const IMAGEHLP_GET_TYPE_INFO_PARAMS = extern struct {
     TagFilter: u64,
     NumReqs: u32,
     ReqKinds: *IMAGEHLP_SYMBOL_TYPE_INFO,
-    ReqOffsets: *u64,
+    ReqOffsets: *usize,
     ReqSizes: *u32,
     ReqStride: usize,
     BufferSize: usize,
@@ -15205,6 +15251,475 @@ pub const MODLOAD_DATA_TYPE = extern enum(u32) {
 pub const DBHHEADER_DEBUGDIRS = MODLOAD_DATA_TYPE.DEBUGDIRS;
 pub const DBHHEADER_CVMISC = MODLOAD_DATA_TYPE.CVMISC;
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const MINIDUMP_EXCEPTION_INFORMATION = extern struct {
+    ThreadId: u32,
+    ExceptionPointers: *EXCEPTION_POINTERS,
+    ClientPointers: BOOL,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const MINIDUMP_USER_STREAM = extern struct {
+    Type: u32,
+    BufferSize: u32,
+    Buffer: *c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const MINIDUMP_USER_STREAM_INFORMATION = extern struct {
+    UserStreamCount: u32,
+    UserStreamArray: *MINIDUMP_USER_STREAM,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const MINIDUMP_THREAD_CALLBACK = extern struct {
+    ThreadId: u32,
+    ThreadHandle: HANDLE,
+    Context: CONTEXT,
+    SizeOfContext: u32,
+    StackBase: u64,
+    StackEnd: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const MINIDUMP_THREAD_EX_CALLBACK = extern struct {
+    ThreadId: u32,
+    ThreadHandle: HANDLE,
+    Context: CONTEXT,
+    SizeOfContext: u32,
+    StackBase: u64,
+    StackEnd: u64,
+    BackingStoreBase: u64,
+    BackingStoreEnd: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const MINIDUMP_CALLBACK_INFORMATION = extern struct {
+    CallbackRoutine: MINIDUMP_CALLBACK_ROUTINE,
+    CallbackParam: *c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const LOADED_IMAGE = extern struct {
+    ModuleName: PSTR,
+    hFile: HANDLE,
+    MappedAddress: *u8,
+    FileHeader: *IMAGE_NT_HEADERS32,
+    LastRvaSection: *IMAGE_SECTION_HEADER,
+    NumberOfSections: u32,
+    Sections: *IMAGE_SECTION_HEADER,
+    Characteristics: u32,
+    fSystemImage: u8,
+    fDOSImage: u8,
+    fReadOnly: u8,
+    Version: u8,
+    Links: LIST_ENTRY,
+    SizeOfImage: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGE_DEBUG_INFORMATION = extern struct {
+    List: LIST_ENTRY,
+    ReservedSize: u32,
+    ReservedMappedBase: *c_void,
+    ReservedMachine: u16,
+    ReservedCharacteristics: u16,
+    ReservedCheckSum: u32,
+    ImageBase: u32,
+    SizeOfImage: u32,
+    ReservedNumberOfSections: u32,
+    ReservedSections: *IMAGE_SECTION_HEADER,
+    ReservedExportedNamesSize: u32,
+    ReservedExportedNames: PSTR,
+    ReservedNumberOfFunctionTableEntries: u32,
+    ReservedFunctionTableEntries: *IMAGE_FUNCTION_ENTRY,
+    ReservedLowestFunctionStartingAddress: u32,
+    ReservedHighestFunctionEndingAddress: u32,
+    ReservedNumberOfFpoTableEntries: u32,
+    ReservedFpoTableEntries: *FPO_DATA,
+    SizeOfCoffSymbols: u32,
+    CoffSymbols: *IMAGE_COFF_SYMBOLS_HEADER,
+    ReservedSizeOfCodeViewSymbols: u32,
+    ReservedCodeViewSymbols: *c_void,
+    ImageFilePath: PSTR,
+    ImageFileName: PSTR,
+    ReservedDebugFilePath: PSTR,
+    ReservedTimeDateStamp: u32,
+    ReservedRomImage: BOOL,
+    ReservedDebugDirectory: *IMAGE_DEBUG_DIRECTORY,
+    ReservedNumberOfDebugDirectories: u32,
+    ReservedOriginalFunctionTableBaseAddress: u32,
+    Reserved: [2]u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const ADDRESS = extern struct {
+    Offset: u32,
+    Segment: u16,
+    Mode: ADDRESS_MODE,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const KDHELP = extern struct {
+    Thread: u32,
+    ThCallbackStack: u32,
+    NextCallback: u32,
+    FramePointer: u32,
+    KiCallUserMode: u32,
+    KeUserCallbackDispatcher: u32,
+    SystemRangeStart: u32,
+    ThCallbackBStore: u32,
+    KiUserExceptionDispatcher: u32,
+    StackBase: u32,
+    StackLimit: u32,
+    Reserved: [5]u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const STACKFRAME = extern struct {
+    AddrPC: ADDRESS,
+    AddrReturn: ADDRESS,
+    AddrFrame: ADDRESS,
+    AddrStack: ADDRESS,
+    FuncTableEntry: *c_void,
+    Params: [4]u32,
+    Far: BOOL,
+    Virtual: BOOL,
+    Reserved: [3]u32,
+    KdHelp: KDHELP,
+    AddrBStore: ADDRESS,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const PREAD_PROCESS_MEMORY_ROUTINE = fn(
+    hProcess: HANDLE,
+    lpBaseAddress: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
+    nSize: u32,
+    lpNumberOfBytesRead: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const PFUNCTION_TABLE_ACCESS_ROUTINE = fn(
+    hProcess: HANDLE,
+    AddrBase: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const PGET_MODULE_BASE_ROUTINE = fn(
+    hProcess: HANDLE,
+    Address: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const PTRANSLATE_ADDRESS_ROUTINE = fn(
+    hProcess: HANDLE,
+    hThread: HANDLE,
+    lpaddr: *ADDRESS,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const PSYM_ENUMMODULES_CALLBACK = fn(
+    ModuleName: [*:0]const u8,
+    BaseOfDll: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const PSYM_ENUMSYMBOLS_CALLBACK = fn(
+    SymbolName: [*:0]const u8,
+    SymbolAddress: u32,
+    SymbolSize: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const PSYM_ENUMSYMBOLS_CALLBACKW = fn(
+    SymbolName: [*:0]const u16,
+    SymbolAddress: u32,
+    SymbolSize: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const PENUMLOADED_MODULES_CALLBACK = fn(
+    ModuleName: [*:0]const u8,
+    ModuleBase: u32,
+    ModuleSize: u32,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const PSYMBOL_REGISTERED_CALLBACK = fn(
+    hProcess: HANDLE,
+    ActionCode: u32,
+    CallbackData: ?*c_void,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_SYMBOL = extern struct {
+    SizeOfStruct: u32,
+    Address: u32,
+    Size: u32,
+    Flags: u32,
+    MaxNameLength: u32,
+    Name: [1]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_SYMBOL_PACKAGE = extern struct {
+    sym: IMAGEHLP_SYMBOL,
+    name: [2001]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_SYMBOLW = extern struct {
+    SizeOfStruct: u32,
+    Address: u32,
+    Size: u32,
+    Flags: u32,
+    MaxNameLength: u32,
+    Name: [1]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_SYMBOLW_PACKAGE = extern struct {
+    sym: IMAGEHLP_SYMBOLW,
+    name: [2001]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_MODULE = extern struct {
+    SizeOfStruct: u32,
+    BaseOfImage: u32,
+    ImageSize: u32,
+    TimeDateStamp: u32,
+    CheckSum: u32,
+    NumSyms: u32,
+    SymType: SYM_TYPE,
+    ModuleName: [32]CHAR,
+    ImageName: [256]CHAR,
+    LoadedImageName: [256]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_MODULEW = extern struct {
+    SizeOfStruct: u32,
+    BaseOfImage: u32,
+    ImageSize: u32,
+    TimeDateStamp: u32,
+    CheckSum: u32,
+    NumSyms: u32,
+    SymType: SYM_TYPE,
+    ModuleName: [32]u16,
+    ImageName: [256]u16,
+    LoadedImageName: [256]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_LINE = extern struct {
+    SizeOfStruct: u32,
+    Key: *c_void,
+    LineNumber: u32,
+    FileName: [*]u8,
+    Address: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_LINEW = extern struct {
+    SizeOfStruct: u32,
+    Key: *c_void,
+    LineNumber: u32,
+    FileName: [*]u8,
+    Address: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_DEFERRED_SYMBOL_LOAD = extern struct {
+    SizeOfStruct: u32,
+    BaseOfImage: u32,
+    CheckSum: u32,
+    TimeDateStamp: u32,
+    FileName: [260]CHAR,
+    Reparse: u8,
+    hFile: HANDLE,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const IMAGEHLP_DUPLICATE_SYMBOL = extern struct {
+    SizeOfStruct: u32,
+    NumberOfDups: u32,
+    Symbol: *IMAGEHLP_SYMBOL,
+    SelectedSymbol: u32,
+};
+
+}, else => struct { } };
+
 pub const FLASHWINFO = extern struct {
     cbSize: u32,
     hwnd: HWND,
@@ -15215,8 +15730,138 @@ pub const FLASHWINFO = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (265)
+// Section: Functions (292)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.Arm64 => struct {
+
+pub extern "KERNEL32" fn RtlAddFunctionTable(
+    FunctionTable: [*]IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+    EntryCount: u32,
+    BaseAddress: usize,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "KERNEL32" fn RtlDeleteFunctionTable(
+    FunctionTable: *IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.Arm64 => struct {
+
+pub extern "KERNEL32" fn RtlInstallFunctionTableCallback(
+    TableIdentifier: usize,
+    BaseAddress: usize,
+    Length: u32,
+    Callback: PGET_RUNTIME_FUNCTION_CALLBACK,
+    Context: ?*c_void,
+    OutOfProcessCallbackDll: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) u8;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ntdll" fn RtlAddGrowableFunctionTable(
+    DynamicTable: **c_void,
+    FunctionTable: [*]IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+    EntryCount: u32,
+    MaximumEntryCount: u32,
+    RangeBase: usize,
+    RangeEnd: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ntdll" fn RtlGrowFunctionTable(
+    DynamicTable: *c_void,
+    NewEntryCount: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "ntdll" fn RtlDeleteGrowableFunctionTable(
+    DynamicTable: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.Arm64 => struct {
+
+pub extern "KERNEL32" fn RtlLookupFunctionEntry(
+    ControlPc: usize,
+    ImageBase: *usize,
+    HistoryTable: ?*UNWIND_HISTORY_TABLE,
+) callconv(@import("std").os.windows.WINAPI) *IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "KERNEL32" fn RtlRestoreContext(
+    ContextRecord: *CONTEXT,
+    ExceptionRecord: ?*EXCEPTION_RECORD,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "KERNEL32" fn RtlUnwindEx(
+    TargetFrame: ?*c_void,
+    TargetIp: ?*c_void,
+    ExceptionRecord: ?*EXCEPTION_RECORD,
+    ReturnValue: *c_void,
+    ContextRecord: *CONTEXT,
+    HistoryTable: ?*UNWIND_HISTORY_TABLE,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.Arm64 => struct {
+
+pub extern "KERNEL32" fn RtlVirtualUnwind(
+    HandlerType: RTL_VIRTUAL_UNWIND_HANDLER_TYPE,
+    ImageBase: usize,
+    ControlPc: usize,
+    FunctionEntry: *IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
+    ContextRecord: *CONTEXT,
+    HandlerData: **c_void,
+    EstablisherFrame: *usize,
+    ContextPointers: ?*KNONVOLATILE_CONTEXT_POINTERS_ARM64,
+) callconv(@import("std").os.windows.WINAPI) EXCEPTION_ROUTINE;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "dbghelp" fn ImageNtHeader(
+    Base: *c_void,
+) callconv(@import("std").os.windows.WINAPI) *IMAGE_NT_HEADERS64;
+
+}, else => struct { } };
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn RtlCaptureContext(
     ContextRecord: *CONTEXT,
@@ -15230,15 +15875,19 @@ pub extern "KERNEL32" fn RtlUnwind(
     ReturnValue: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64 => struct {
+
 pub extern "KERNEL32" fn RtlAddFunctionTable(
     FunctionTable: [*]IMAGE_RUNTIME_FUNCTION_ENTRY,
     EntryCount: u32,
     BaseAddress: u64,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
-pub extern "KERNEL32" fn RtlDeleteFunctionTable(
-    FunctionTable: *IMAGE_RUNTIME_FUNCTION_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) u8;
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64 => struct {
 
 pub extern "KERNEL32" fn RtlInstallFunctionTableCallback(
     TableIdentifier: u64,
@@ -15249,26 +15898,10 @@ pub extern "KERNEL32" fn RtlInstallFunctionTableCallback(
     OutOfProcessCallbackDll: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ntdll" fn RtlAddGrowableFunctionTable(
-    DynamicTable: **c_void,
-    FunctionTable: [*]IMAGE_RUNTIME_FUNCTION_ENTRY,
-    EntryCount: u32,
-    MaximumEntryCount: u32,
-    RangeBase: usize,
-    RangeEnd: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+}, else => struct { } };
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ntdll" fn RtlGrowFunctionTable(
-    DynamicTable: *c_void,
-    NewEntryCount: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "ntdll" fn RtlDeleteGrowableFunctionTable(
-    DynamicTable: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64 => struct {
 
 pub extern "KERNEL32" fn RtlLookupFunctionEntry(
     ControlPc: u64,
@@ -15276,22 +15909,13 @@ pub extern "KERNEL32" fn RtlLookupFunctionEntry(
     HistoryTable: ?*UNWIND_HISTORY_TABLE,
 ) callconv(@import("std").os.windows.WINAPI) *IMAGE_RUNTIME_FUNCTION_ENTRY;
 
-pub extern "KERNEL32" fn RtlRestoreContext(
-    ContextRecord: *CONTEXT,
-    ExceptionRecord: ?*EXCEPTION_RECORD,
-) callconv(@import("std").os.windows.WINAPI) void;
+}, else => struct { } };
 
-pub extern "KERNEL32" fn RtlUnwindEx(
-    TargetFrame: ?*c_void,
-    TargetIp: ?*c_void,
-    ExceptionRecord: ?*EXCEPTION_RECORD,
-    ReturnValue: *c_void,
-    ContextRecord: *CONTEXT,
-    HistoryTable: ?*UNWIND_HISTORY_TABLE,
-) callconv(@import("std").os.windows.WINAPI) void;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64 => struct {
 
 pub extern "KERNEL32" fn RtlVirtualUnwind(
-    HandlerType: RTL_VIRTUAL_UNWIND_HANDLER_TYPE,
+    HandlerType: u32,
     ImageBase: u64,
     ControlPc: u64,
     FunctionEntry: *IMAGE_RUNTIME_FUNCTION_ENTRY,
@@ -15300,6 +15924,8 @@ pub extern "KERNEL32" fn RtlVirtualUnwind(
     EstablisherFrame: *u64,
     ContextPointers: ?*KNONVOLATILE_CONTEXT_POINTERS,
 ) callconv(@import("std").os.windows.WINAPI) EXCEPTION_ROUTINE;
+
+}, else => struct { } };
 
 pub extern "KERNEL32" fn RtlPcToFileHeader(
     PcValue: *c_void,
@@ -15651,10 +16277,6 @@ pub extern "dbghelp" fn FindExecutableImageExW(
     Callback: ?PFIND_EXE_FILE_CALLBACKW,
     CallerData: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-pub extern "dbghelp" fn ImageNtHeader(
-    Base: *c_void,
-) callconv(@import("std").os.windows.WINAPI) *IMAGE_NT_HEADERS64;
 
 pub extern "dbghelp" fn ImageDirectoryEntryToDataEx(
     Base: *c_void,
@@ -16880,6 +17502,288 @@ pub extern "dbghelp" fn RangeMapWrite(
     DoneBytes: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn ImageNtHeader(
+    Base: *c_void,
+) callconv(@import("std").os.windows.WINAPI) *IMAGE_NT_HEADERS32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn StackWalk(
+    MachineType: u32,
+    hProcess: HANDLE,
+    hThread: HANDLE,
+    StackFrame: *STACKFRAME,
+    ContextRecord: *c_void,
+    ReadMemoryRoutine: ?PREAD_PROCESS_MEMORY_ROUTINE,
+    FunctionTableAccessRoutine: ?PFUNCTION_TABLE_ACCESS_ROUTINE,
+    GetModuleBaseRoutine: ?PGET_MODULE_BASE_ROUTINE,
+    TranslateAddress: ?PTRANSLATE_ADDRESS_ROUTINE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymEnumerateModules(
+    hProcess: HANDLE,
+    EnumModulesCallback: PSYM_ENUMMODULES_CALLBACK,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn EnumerateLoadedModules(
+    hProcess: HANDLE,
+    EnumLoadedModulesCallback: PENUMLOADED_MODULES_CALLBACK,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymFunctionTableAccess(
+    hProcess: HANDLE,
+    AddrBase: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetModuleInfo(
+    hProcess: HANDLE,
+    dwAddr: u32,
+    ModuleInfo: *IMAGEHLP_MODULE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetModuleInfoW(
+    hProcess: HANDLE,
+    dwAddr: u32,
+    ModuleInfo: *IMAGEHLP_MODULEW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetModuleBase(
+    hProcess: HANDLE,
+    dwAddr: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetLineFromAddr(
+    hProcess: HANDLE,
+    dwAddr: u32,
+    pdwDisplacement: *u32,
+    Line: *IMAGEHLP_LINE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetLineFromName(
+    hProcess: HANDLE,
+    ModuleName: ?[*:0]const u8,
+    FileName: ?[*:0]const u8,
+    dwLineNumber: u32,
+    plDisplacement: *i32,
+    Line: *IMAGEHLP_LINE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetLineNext(
+    hProcess: HANDLE,
+    Line: *IMAGEHLP_LINE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetLinePrev(
+    hProcess: HANDLE,
+    Line: *IMAGEHLP_LINE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymUnloadModule(
+    hProcess: HANDLE,
+    BaseOfDll: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymUnDName(
+    sym: *IMAGEHLP_SYMBOL,
+    UnDecName: [*:0]u8,
+    UnDecNameLength: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymRegisterCallback(
+    hProcess: HANDLE,
+    CallbackFunction: PSYMBOL_REGISTERED_CALLBACK,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymRegisterFunctionEntryCallback(
+    hProcess: HANDLE,
+    CallbackFunction: PSYMBOL_FUNCENTRY_CALLBACK,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetSymFromAddr(
+    hProcess: HANDLE,
+    dwAddr: u32,
+    pdwDisplacement: ?*u32,
+    Symbol: *IMAGEHLP_SYMBOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetSymFromName(
+    hProcess: HANDLE,
+    Name: [*:0]const u8,
+    Symbol: *IMAGEHLP_SYMBOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymEnumerateSymbols(
+    hProcess: HANDLE,
+    BaseOfDll: u32,
+    EnumSymbolsCallback: PSYM_ENUMSYMBOLS_CALLBACK,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymEnumerateSymbolsW(
+    hProcess: HANDLE,
+    BaseOfDll: u32,
+    EnumSymbolsCallback: PSYM_ENUMSYMBOLS_CALLBACKW,
+    UserContext: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymLoadModule(
+    hProcess: HANDLE,
+    hFile: HANDLE,
+    ImageName: ?[*:0]const u8,
+    ModuleName: ?[*:0]const u8,
+    BaseOfDll: u32,
+    SizeOfDll: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetSymNext(
+    hProcess: HANDLE,
+    Symbol: *IMAGEHLP_SYMBOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub extern "dbghelp" fn SymGetSymPrev(
+    hProcess: HANDLE,
+    Symbol: *IMAGEHLP_SYMBOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn FlashWindow(
+    hWnd: HWND,
+    bInvert: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn FlashWindowEx(
+    pfwi: *FLASHWINFO,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn MessageBeep(
+    uType: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn SetLastErrorEx(
+    dwErrCode: u32,
+    dwType: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn GetThreadContext(
     hThread: HANDLE,
@@ -16967,15 +17871,28 @@ pub extern "KERNEL32" fn InitializeContext(
     ContextLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86, .X64 => struct {
+
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn GetEnabledXStateFeatures(
 ) callconv(@import("std").os.windows.WINAPI) u64;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86, .X64 => struct {
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn GetXStateFeaturesMask(
     Context: *CONTEXT,
     FeatureMask: *u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86, .X64 => struct {
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn LocateXStateFeature(
@@ -16984,11 +17901,18 @@ pub extern "KERNEL32" fn LocateXStateFeature(
     Length: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86, .X64 => struct {
+
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "KERNEL32" fn SetXStateFeaturesMask(
     Context: *CONTEXT,
     FeatureMask: u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+}, else => struct { } };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlNtStatusToDosError(
@@ -17006,28 +17930,6 @@ pub extern "KERNEL32" fn Wow64SetThreadContext(
     hThread: HANDLE,
     lpContext: *const WOW64_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn FlashWindow(
-    hWnd: HWND,
-    bInvert: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn FlashWindowEx(
-    pfwi: *FLASHWINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn MessageBeep(
-    uType: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn SetLastErrorEx(
-    dwErrCode: u32,
-    dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
 
 
 //--------------------------------------------------------------------------------
@@ -17055,15 +17957,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (37)
+// Section: Imports (38)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const VS_FIXEDFILEINFO = @import("windows_and_messaging.zig").VS_FIXEDFILEINFO;
-const M128A = @import("system_services.zig").M128A;
 const TIME_ZONE_INFORMATION = @import("windows_programming.zig").TIME_ZONE_INFORMATION;
 const IDispatch = @import("automation.zig").IDispatch;
-const CHAR = @import("system_services.zig").CHAR;
 const UNWIND_HISTORY_TABLE = @import("system_services.zig").UNWIND_HISTORY_TABLE;
+const CHAR = @import("system_services.zig").CHAR;
 const NTSTATUS = @import("system_services.zig").NTSTATUS;
 const HRESULT = @import("com.zig").HRESULT;
 const KNONVOLATILE_CONTEXT_POINTERS = @import("system_services.zig").KNONVOLATILE_CONTEXT_POINTERS;
@@ -17073,12 +17974,14 @@ const PROCESSOR_ARCHITECTURE = @import("windows_deployment_services.zig").PROCES
 const DISPPARAMS = @import("automation.zig").DISPPARAMS;
 const ILockBytes = @import("structured_storage.zig").ILockBytes;
 const TYPEDESC = @import("automation.zig").TYPEDESC;
+const KNONVOLATILE_CONTEXT_POINTERS_ARM64 = @import("system_services.zig").KNONVOLATILE_CONTEXT_POINTERS_ARM64;
 const EXCEPTION_ROUTINE = @import("kernel.zig").EXCEPTION_ROUTINE;
 const CADWORD = @import("com.zig").CADWORD;
+const LIST_ENTRY = @import("kernel.zig").LIST_ENTRY;
 const ITypeInfo = @import("automation.zig").ITypeInfo;
 const IHTMLDocument2 = @import("internet_explorer.zig").IHTMLDocument2;
-const LIST_ENTRY = @import("kernel.zig").LIST_ENTRY;
 const IMAGE_RUNTIME_FUNCTION_ENTRY = @import("system_services.zig").IMAGE_RUNTIME_FUNCTION_ENTRY;
+const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY = @import("system_services.zig").IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY;
 const PWSTR = @import("system_services.zig").PWSTR;
 const EXCEPINFO = @import("automation.zig").EXCEPINFO;
 const IUnknown = @import("com.zig").IUnknown;
@@ -17097,99 +18000,99 @@ const IServiceProvider = @import("system_services.zig").IServiceProvider;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PVECTORED_EXCEPTION_HANDLER;
-    _ = LPTOP_LEVEL_EXCEPTION_FILTER;
-    _ = PWAITCHAINCALLBACK;
-    _ = PCOGETCALLSTATE;
-    _ = PCOGETACTIVATIONSTATE;
-    _ = MINIDUMP_CALLBACK_ROUTINE;
-    _ = RegisterAuthoringClientFunctionType;
-    _ = UnregisterAuthoringClientFunctionType;
-    _ = PFIND_DEBUG_FILE_CALLBACK;
-    _ = PFIND_DEBUG_FILE_CALLBACKW;
-    _ = PFINDFILEINPATHCALLBACK;
-    _ = PFINDFILEINPATHCALLBACKW;
-    _ = PFIND_EXE_FILE_CALLBACK;
-    _ = PFIND_EXE_FILE_CALLBACKW;
-    _ = PENUMDIRTREE_CALLBACK;
-    _ = PENUMDIRTREE_CALLBACKW;
-    _ = PREAD_PROCESS_MEMORY_ROUTINE64;
-    _ = PFUNCTION_TABLE_ACCESS_ROUTINE64;
-    _ = PGET_MODULE_BASE_ROUTINE64;
-    _ = PTRANSLATE_ADDRESS_ROUTINE64;
-    _ = PSYM_ENUMMODULES_CALLBACK64;
-    _ = PSYM_ENUMMODULES_CALLBACKW64;
-    _ = PENUMLOADED_MODULES_CALLBACK64;
-    _ = PENUMLOADED_MODULES_CALLBACKW64;
-    _ = PSYM_ENUMSYMBOLS_CALLBACK64;
-    _ = PSYM_ENUMSYMBOLS_CALLBACK64W;
-    _ = PSYMBOL_REGISTERED_CALLBACK64;
-    _ = PSYMBOL_FUNCENTRY_CALLBACK;
-    _ = PSYMBOL_FUNCENTRY_CALLBACK64;
-    _ = PSYM_ENUMSOURCEFILES_CALLBACK;
-    _ = PSYM_ENUMSOURCEFILES_CALLBACKW;
-    _ = PSYM_ENUMLINES_CALLBACK;
-    _ = PSYM_ENUMLINES_CALLBACKW;
-    _ = PENUMSOURCEFILETOKENSCALLBACK;
-    _ = PSYM_ENUMPROCESSES_CALLBACK;
-    _ = PSYM_ENUMERATESYMBOLS_CALLBACK;
-    _ = PSYM_ENUMERATESYMBOLS_CALLBACKW;
-    _ = SYMADDSOURCESTREAM;
-    _ = SYMADDSOURCESTREAMA;
-    _ = PDBGHELP_CREATE_USER_DUMP_CALLBACK;
-    _ = PSYMBOLSERVERPROC;
-    _ = PSYMBOLSERVERPROCA;
-    _ = PSYMBOLSERVERPROCW;
-    _ = PSYMBOLSERVERBYINDEXPROC;
-    _ = PSYMBOLSERVERBYINDEXPROCA;
-    _ = PSYMBOLSERVERBYINDEXPROCW;
-    _ = PSYMBOLSERVEROPENPROC;
-    _ = PSYMBOLSERVERCLOSEPROC;
-    _ = PSYMBOLSERVERSETOPTIONSPROC;
-    _ = PSYMBOLSERVERSETOPTIONSWPROC;
-    _ = PSYMBOLSERVERGETOPTIONSPROC;
-    _ = PSYMBOLSERVERPINGPROC;
-    _ = PSYMBOLSERVERPINGPROCA;
-    _ = PSYMBOLSERVERPINGPROCW;
-    _ = PSYMBOLSERVERGETVERSION;
-    _ = PSYMBOLSERVERDELTANAME;
-    _ = PSYMBOLSERVERDELTANAMEW;
-    _ = PSYMBOLSERVERGETSUPPLEMENT;
-    _ = PSYMBOLSERVERGETSUPPLEMENTW;
-    _ = PSYMBOLSERVERSTORESUPPLEMENT;
-    _ = PSYMBOLSERVERSTORESUPPLEMENTW;
-    _ = PSYMBOLSERVERGETINDEXSTRING;
-    _ = PSYMBOLSERVERGETINDEXSTRINGW;
-    _ = PSYMBOLSERVERSTOREFILE;
-    _ = PSYMBOLSERVERSTOREFILEW;
-    _ = PSYMBOLSERVERISSTORE;
-    _ = PSYMBOLSERVERISSTOREW;
-    _ = PSYMBOLSERVERVERSION;
-    _ = PSYMBOLSERVERMESSAGEPROC;
-    _ = PSYMBOLSERVERWEXPROC;
-    _ = PSYMBOLSERVERPINGPROCWEX;
-    _ = PSYMBOLSERVERGETOPTIONDATAPROC;
-    _ = PSYMBOLSERVERSETHTTPAUTHHEADER;
-    _ = LPCALL_BACK_USER_INTERRUPT_ROUTINE;
+    if (@hasDecl(@This(), "PVECTORED_EXCEPTION_HANDLER")) { _ = PVECTORED_EXCEPTION_HANDLER; }
+    if (@hasDecl(@This(), "LPTOP_LEVEL_EXCEPTION_FILTER")) { _ = LPTOP_LEVEL_EXCEPTION_FILTER; }
+    if (@hasDecl(@This(), "PWAITCHAINCALLBACK")) { _ = PWAITCHAINCALLBACK; }
+    if (@hasDecl(@This(), "PCOGETCALLSTATE")) { _ = PCOGETCALLSTATE; }
+    if (@hasDecl(@This(), "PCOGETACTIVATIONSTATE")) { _ = PCOGETACTIVATIONSTATE; }
+    if (@hasDecl(@This(), "MINIDUMP_CALLBACK_ROUTINE")) { _ = MINIDUMP_CALLBACK_ROUTINE; }
+    if (@hasDecl(@This(), "RegisterAuthoringClientFunctionType")) { _ = RegisterAuthoringClientFunctionType; }
+    if (@hasDecl(@This(), "UnregisterAuthoringClientFunctionType")) { _ = UnregisterAuthoringClientFunctionType; }
+    if (@hasDecl(@This(), "PFIND_DEBUG_FILE_CALLBACK")) { _ = PFIND_DEBUG_FILE_CALLBACK; }
+    if (@hasDecl(@This(), "PFIND_DEBUG_FILE_CALLBACKW")) { _ = PFIND_DEBUG_FILE_CALLBACKW; }
+    if (@hasDecl(@This(), "PFINDFILEINPATHCALLBACK")) { _ = PFINDFILEINPATHCALLBACK; }
+    if (@hasDecl(@This(), "PFINDFILEINPATHCALLBACKW")) { _ = PFINDFILEINPATHCALLBACKW; }
+    if (@hasDecl(@This(), "PFIND_EXE_FILE_CALLBACK")) { _ = PFIND_EXE_FILE_CALLBACK; }
+    if (@hasDecl(@This(), "PFIND_EXE_FILE_CALLBACKW")) { _ = PFIND_EXE_FILE_CALLBACKW; }
+    if (@hasDecl(@This(), "PENUMDIRTREE_CALLBACK")) { _ = PENUMDIRTREE_CALLBACK; }
+    if (@hasDecl(@This(), "PENUMDIRTREE_CALLBACKW")) { _ = PENUMDIRTREE_CALLBACKW; }
+    if (@hasDecl(@This(), "PREAD_PROCESS_MEMORY_ROUTINE64")) { _ = PREAD_PROCESS_MEMORY_ROUTINE64; }
+    if (@hasDecl(@This(), "PFUNCTION_TABLE_ACCESS_ROUTINE64")) { _ = PFUNCTION_TABLE_ACCESS_ROUTINE64; }
+    if (@hasDecl(@This(), "PGET_MODULE_BASE_ROUTINE64")) { _ = PGET_MODULE_BASE_ROUTINE64; }
+    if (@hasDecl(@This(), "PTRANSLATE_ADDRESS_ROUTINE64")) { _ = PTRANSLATE_ADDRESS_ROUTINE64; }
+    if (@hasDecl(@This(), "PSYM_ENUMMODULES_CALLBACK64")) { _ = PSYM_ENUMMODULES_CALLBACK64; }
+    if (@hasDecl(@This(), "PSYM_ENUMMODULES_CALLBACKW64")) { _ = PSYM_ENUMMODULES_CALLBACKW64; }
+    if (@hasDecl(@This(), "PENUMLOADED_MODULES_CALLBACK64")) { _ = PENUMLOADED_MODULES_CALLBACK64; }
+    if (@hasDecl(@This(), "PENUMLOADED_MODULES_CALLBACKW64")) { _ = PENUMLOADED_MODULES_CALLBACKW64; }
+    if (@hasDecl(@This(), "PSYM_ENUMSYMBOLS_CALLBACK64")) { _ = PSYM_ENUMSYMBOLS_CALLBACK64; }
+    if (@hasDecl(@This(), "PSYM_ENUMSYMBOLS_CALLBACK64W")) { _ = PSYM_ENUMSYMBOLS_CALLBACK64W; }
+    if (@hasDecl(@This(), "PSYMBOL_REGISTERED_CALLBACK64")) { _ = PSYMBOL_REGISTERED_CALLBACK64; }
+    if (@hasDecl(@This(), "PSYMBOL_FUNCENTRY_CALLBACK")) { _ = PSYMBOL_FUNCENTRY_CALLBACK; }
+    if (@hasDecl(@This(), "PSYMBOL_FUNCENTRY_CALLBACK64")) { _ = PSYMBOL_FUNCENTRY_CALLBACK64; }
+    if (@hasDecl(@This(), "PSYM_ENUMSOURCEFILES_CALLBACK")) { _ = PSYM_ENUMSOURCEFILES_CALLBACK; }
+    if (@hasDecl(@This(), "PSYM_ENUMSOURCEFILES_CALLBACKW")) { _ = PSYM_ENUMSOURCEFILES_CALLBACKW; }
+    if (@hasDecl(@This(), "PSYM_ENUMLINES_CALLBACK")) { _ = PSYM_ENUMLINES_CALLBACK; }
+    if (@hasDecl(@This(), "PSYM_ENUMLINES_CALLBACKW")) { _ = PSYM_ENUMLINES_CALLBACKW; }
+    if (@hasDecl(@This(), "PENUMSOURCEFILETOKENSCALLBACK")) { _ = PENUMSOURCEFILETOKENSCALLBACK; }
+    if (@hasDecl(@This(), "PSYM_ENUMPROCESSES_CALLBACK")) { _ = PSYM_ENUMPROCESSES_CALLBACK; }
+    if (@hasDecl(@This(), "PSYM_ENUMERATESYMBOLS_CALLBACK")) { _ = PSYM_ENUMERATESYMBOLS_CALLBACK; }
+    if (@hasDecl(@This(), "PSYM_ENUMERATESYMBOLS_CALLBACKW")) { _ = PSYM_ENUMERATESYMBOLS_CALLBACKW; }
+    if (@hasDecl(@This(), "SYMADDSOURCESTREAM")) { _ = SYMADDSOURCESTREAM; }
+    if (@hasDecl(@This(), "SYMADDSOURCESTREAMA")) { _ = SYMADDSOURCESTREAMA; }
+    if (@hasDecl(@This(), "PDBGHELP_CREATE_USER_DUMP_CALLBACK")) { _ = PDBGHELP_CREATE_USER_DUMP_CALLBACK; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERPROC")) { _ = PSYMBOLSERVERPROC; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERPROCA")) { _ = PSYMBOLSERVERPROCA; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERPROCW")) { _ = PSYMBOLSERVERPROCW; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERBYINDEXPROC")) { _ = PSYMBOLSERVERBYINDEXPROC; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERBYINDEXPROCA")) { _ = PSYMBOLSERVERBYINDEXPROCA; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERBYINDEXPROCW")) { _ = PSYMBOLSERVERBYINDEXPROCW; }
+    if (@hasDecl(@This(), "PSYMBOLSERVEROPENPROC")) { _ = PSYMBOLSERVEROPENPROC; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERCLOSEPROC")) { _ = PSYMBOLSERVERCLOSEPROC; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERSETOPTIONSPROC")) { _ = PSYMBOLSERVERSETOPTIONSPROC; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERSETOPTIONSWPROC")) { _ = PSYMBOLSERVERSETOPTIONSWPROC; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERGETOPTIONSPROC")) { _ = PSYMBOLSERVERGETOPTIONSPROC; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERPINGPROC")) { _ = PSYMBOLSERVERPINGPROC; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERPINGPROCA")) { _ = PSYMBOLSERVERPINGPROCA; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERPINGPROCW")) { _ = PSYMBOLSERVERPINGPROCW; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERGETVERSION")) { _ = PSYMBOLSERVERGETVERSION; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERDELTANAME")) { _ = PSYMBOLSERVERDELTANAME; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERDELTANAMEW")) { _ = PSYMBOLSERVERDELTANAMEW; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERGETSUPPLEMENT")) { _ = PSYMBOLSERVERGETSUPPLEMENT; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERGETSUPPLEMENTW")) { _ = PSYMBOLSERVERGETSUPPLEMENTW; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERSTORESUPPLEMENT")) { _ = PSYMBOLSERVERSTORESUPPLEMENT; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERSTORESUPPLEMENTW")) { _ = PSYMBOLSERVERSTORESUPPLEMENTW; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERGETINDEXSTRING")) { _ = PSYMBOLSERVERGETINDEXSTRING; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERGETINDEXSTRINGW")) { _ = PSYMBOLSERVERGETINDEXSTRINGW; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERSTOREFILE")) { _ = PSYMBOLSERVERSTOREFILE; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERSTOREFILEW")) { _ = PSYMBOLSERVERSTOREFILEW; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERISSTORE")) { _ = PSYMBOLSERVERISSTORE; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERISSTOREW")) { _ = PSYMBOLSERVERISSTOREW; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERVERSION")) { _ = PSYMBOLSERVERVERSION; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERMESSAGEPROC")) { _ = PSYMBOLSERVERMESSAGEPROC; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERWEXPROC")) { _ = PSYMBOLSERVERWEXPROC; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERPINGPROCWEX")) { _ = PSYMBOLSERVERPINGPROCWEX; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERGETOPTIONDATAPROC")) { _ = PSYMBOLSERVERGETOPTIONDATAPROC; }
+    if (@hasDecl(@This(), "PSYMBOLSERVERSETHTTPAUTHHEADER")) { _ = PSYMBOLSERVERSETHTTPAUTHHEADER; }
+    if (@hasDecl(@This(), "LPCALL_BACK_USER_INTERRUPT_ROUTINE")) { _ = LPCALL_BACK_USER_INTERRUPT_ROUTINE; }
+    if (@hasDecl(@This(), "PREAD_PROCESS_MEMORY_ROUTINE")) { _ = PREAD_PROCESS_MEMORY_ROUTINE; }
+    if (@hasDecl(@This(), "PFUNCTION_TABLE_ACCESS_ROUTINE")) { _ = PFUNCTION_TABLE_ACCESS_ROUTINE; }
+    if (@hasDecl(@This(), "PGET_MODULE_BASE_ROUTINE")) { _ = PGET_MODULE_BASE_ROUTINE; }
+    if (@hasDecl(@This(), "PTRANSLATE_ADDRESS_ROUTINE")) { _ = PTRANSLATE_ADDRESS_ROUTINE; }
+    if (@hasDecl(@This(), "PSYM_ENUMMODULES_CALLBACK")) { _ = PSYM_ENUMMODULES_CALLBACK; }
+    if (@hasDecl(@This(), "PSYM_ENUMSYMBOLS_CALLBACK")) { _ = PSYM_ENUMSYMBOLS_CALLBACK; }
+    if (@hasDecl(@This(), "PSYM_ENUMSYMBOLS_CALLBACKW")) { _ = PSYM_ENUMSYMBOLS_CALLBACKW; }
+    if (@hasDecl(@This(), "PENUMLOADED_MODULES_CALLBACK")) { _ = PENUMLOADED_MODULES_CALLBACK; }
+    if (@hasDecl(@This(), "PSYMBOL_REGISTERED_CALLBACK")) { _ = PSYMBOL_REGISTERED_CALLBACK; }
 
-    const constant_export_count = 267;
-    const type_export_count = 407;
-    const enum_value_export_count = 3875;
-    const com_iface_id_export_count = 112;
-    const com_class_id_export_count = 6;
-    const func_export_count = 265;
-    const unicode_alias_count = 3;
-    const import_count = 37;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

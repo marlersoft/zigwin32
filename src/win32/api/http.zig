@@ -504,78 +504,73 @@ pub const WINHTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH = @as(u32, 123);
 pub const WINHTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE = @as(u32, 15000);
 
 //--------------------------------------------------------------------------------
-// Section: Types (142)
+// Section: Types (145)
 //--------------------------------------------------------------------------------
-pub const INTERNET_DEFAULT_PORT = extern enum(u32) {
-    HTTP_PORT = 80,
-    HTTPS_PORT = 443,
-    PORT = 0,
-};
-// TODO: enum 'INTERNET_DEFAULT_PORT' has known issues with its value aliases
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const WINHTTP_OPEN_REQUEST_FLAGS = extern enum(u32) {
-    BYPASS_PROXY_CACHE = 256,
-    ESCAPE_DISABLE = 64,
-    ESCAPE_DISABLE_QUERY = 128,
-    ESCAPE_PERCENT = 4,
-    NULL_CODEPAGE = 8,
-    REFRESH = 256,
-    SECURE = 8388608,
-    _,
+pub const WINHTTP_CONNECTION_INFO = extern struct {
+    cbSize: u32,
+    LocalAddress: SOCKADDR_STORAGE,
+    RemoteAddress: SOCKADDR_STORAGE,
 };
-pub const WINHTTP_FLAG_BYPASS_PROXY_CACHE = WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE;
-pub const WINHTTP_FLAG_ESCAPE_DISABLE = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE;
-pub const WINHTTP_FLAG_ESCAPE_DISABLE_QUERY = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE_QUERY;
-pub const WINHTTP_FLAG_ESCAPE_PERCENT = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_PERCENT;
-pub const WINHTTP_FLAG_NULL_CODEPAGE = WINHTTP_OPEN_REQUEST_FLAGS.NULL_CODEPAGE;
-pub const WINHTTP_FLAG_REFRESH = WINHTTP_OPEN_REQUEST_FLAGS.REFRESH;
-pub const WINHTTP_FLAG_SECURE = WINHTTP_OPEN_REQUEST_FLAGS.SECURE;
 
-pub const WIN_HTTP_CREATE_URL_FLAGS = extern enum(u32) {
-    ESCAPE = 2147483648,
-    REJECT_USERPWD = 16384,
-    DECODE = 268435456,
-};
-pub const ICU_ESCAPE = WIN_HTTP_CREATE_URL_FLAGS.ESCAPE;
-pub const ICU_REJECT_USERPWD = WIN_HTTP_CREATE_URL_FLAGS.REJECT_USERPWD;
-pub const ICU_DECODE = WIN_HTTP_CREATE_URL_FLAGS.DECODE;
+}, else => struct { } };
 
-pub const HTTP_RECEIVE_HTTP_REQUEST_FLAGS = extern enum(u32) {
-    COPY_BODY = 1,
-    FLUSH_BODY = 2,
-};
-pub const HTTP_RECEIVE_REQUEST_FLAG_COPY_BODY = HTTP_RECEIVE_HTTP_REQUEST_FLAGS.COPY_BODY;
-pub const HTTP_RECEIVE_REQUEST_FLAG_FLUSH_BODY = HTTP_RECEIVE_HTTP_REQUEST_FLAGS.FLUSH_BODY;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const HTTP_INITIALIZE = extern enum(u32) {
-    CONFIG = 2,
-    SERVER = 1,
-    _,
+pub const WINHTTP_REQUEST_TIMES = extern struct {
+    cTimes: u32,
+    rgullTimes: [64]u64,
 };
-pub const HTTP_INITIALIZE_CONFIG = HTTP_INITIALIZE.CONFIG;
-pub const HTTP_INITIALIZE_SERVER = HTTP_INITIALIZE.SERVER;
 
-pub const WINHTTP_ACCESS_TYPE = extern enum(u32) {
-    NO_PROXY = 1,
-    DEFAULT_PROXY = 0,
-    NAMED_PROXY = 3,
-    AUTOMATIC_PROXY = 4,
-};
-pub const WINHTTP_ACCESS_TYPE_NO_PROXY = WINHTTP_ACCESS_TYPE.NO_PROXY;
-pub const WINHTTP_ACCESS_TYPE_DEFAULT_PROXY = WINHTTP_ACCESS_TYPE.DEFAULT_PROXY;
-pub const WINHTTP_ACCESS_TYPE_NAMED_PROXY = WINHTTP_ACCESS_TYPE.NAMED_PROXY;
-pub const WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY = WINHTTP_ACCESS_TYPE.AUTOMATIC_PROXY;
+}, else => struct { } };
 
-pub const WINHTTP_CREDS_AUTHSCHEME = extern enum(u32) {
-    BASIC = 1,
-    NTLM = 2,
-    NEGOTIATE = 16,
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const WINHTTP_REQUEST_STATS = extern struct {
+    ullFlags: u64,
+    ulIndex: u32,
+    cStats: u32,
+    rgullStats: [32]u64,
 };
-pub const WINHTTP_AUTH_SCHEME_BASIC = WINHTTP_CREDS_AUTHSCHEME.BASIC;
-pub const WINHTTP_AUTH_SCHEME_NTLM = WINHTTP_CREDS_AUTHSCHEME.NTLM;
-pub const WINHTTP_AUTH_SCHEME_NEGOTIATE = WINHTTP_CREDS_AUTHSCHEME.NEGOTIATE;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const WINHTTP_CONNECTION_INFO = extern struct {
+    cbSize: u32,
+    LocalAddress: SOCKADDR_STORAGE,
+    RemoteAddress: SOCKADDR_STORAGE,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const WINHTTP_REQUEST_TIMES = extern struct {
+    cTimes: u32,
+    rgullTimes: [64]u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const WINHTTP_REQUEST_STATS = extern struct {
+    ullFlags: u64,
+    ulIndex: u32,
+    cStats: u32,
+    rgullStats: [32]u64,
+};
+
+}, else => struct { } };
 
 pub const HTTP_SERVER_PROPERTY = extern enum(i32) {
     AuthenticationProperty = 0,
@@ -1082,7 +1077,7 @@ pub const HttpDataChunkMaximum = HTTP_DATA_CHUNK_TYPE.Maximum;
 
 pub const HTTP_DATA_CHUNK = extern struct {
     DataChunkType: HTTP_DATA_CHUNK_TYPE,
-    Anonymous: HTTP_DATA_CHUNK._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1508,7 +1503,7 @@ pub const HTTP_PERFORMANCE_PARAM = extern struct {
 pub const HTTP_SERVICE_CONFIG_SSL_PARAM_EX = extern struct {
     ParamType: HTTP_SSL_SERVICE_CONFIG_EX_PARAM_TYPE,
     Flags: u64,
-    Anonymous: HTTP_SERVICE_CONFIG_SSL_PARAM_EX._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1740,12 +1735,6 @@ pub const WINHTTP_CERTIFICATE_INFO = extern struct {
     dwKeySize: u32,
 };
 
-pub const WINHTTP_CONNECTION_INFO = extern struct {
-    cbSize: u32,
-    LocalAddress: SOCKADDR_STORAGE,
-    RemoteAddress: SOCKADDR_STORAGE,
-};
-
 pub const WINHTTP_REQUEST_TIME_ENTRY = extern enum(i32) {
     ProxyDetectionStart = 0,
     ProxyDetectionEnd = 1,
@@ -1825,11 +1814,6 @@ pub const WinHttpProxyTlsHandshakeClientLeg3End = WINHTTP_REQUEST_TIME_ENTRY.Pro
 pub const WinHttpRequestTimeLast = WINHTTP_REQUEST_TIME_ENTRY.RequestTimeLast;
 pub const WinHttpRequestTimeMax = WINHTTP_REQUEST_TIME_ENTRY.RequestTimeMax;
 
-pub const WINHTTP_REQUEST_TIMES = extern struct {
-    cTimes: u32,
-    rgullTimes: [64]u64,
-};
-
 pub const WINHTTP_REQUEST_STAT_ENTRY = extern enum(i32) {
     ConnectFailureCount = 0,
     ProxyFailureCount = 1,
@@ -1869,16 +1853,9 @@ pub const WinHttpProxyTlsHandshakeServerLeg2Size = WINHTTP_REQUEST_STAT_ENTRY.Pr
 pub const WinHttpRequestStatLast = WINHTTP_REQUEST_STAT_ENTRY.RequestStatLast;
 pub const WinHttpRequestStatMax = WINHTTP_REQUEST_STAT_ENTRY.RequestStatMax;
 
-pub const WINHTTP_REQUEST_STATS = extern struct {
-    ullFlags: u64,
-    ulIndex: u32,
-    cStats: u32,
-    rgullStats: [32]u64,
-};
-
 pub const WINHTTP_EXTENDED_HEADER = extern struct {
-    Anonymous1: WINHTTP_EXTENDED_HEADER._Anonymous1_e__Union,
-    Anonymous2: WINHTTP_EXTENDED_HEADER._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
@@ -1980,6 +1957,77 @@ pub const WINHTTP_WEB_SOCKET_STATUS = extern struct {
     dwBytesTransferred: u32,
     eBufferType: WINHTTP_WEB_SOCKET_BUFFER_TYPE,
 };
+
+pub const INTERNET_DEFAULT_PORT = extern enum(u32) {
+    HTTP_PORT = 80,
+    HTTPS_PORT = 443,
+    PORT = 0,
+};
+// TODO: enum 'INTERNET_DEFAULT_PORT' has known issues with its value aliases
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const WINHTTP_OPEN_REQUEST_FLAGS = extern enum(u32) {
+    BYPASS_PROXY_CACHE = 256,
+    ESCAPE_DISABLE = 64,
+    ESCAPE_DISABLE_QUERY = 128,
+    ESCAPE_PERCENT = 4,
+    NULL_CODEPAGE = 8,
+    REFRESH = 256,
+    SECURE = 8388608,
+    _,
+};
+pub const WINHTTP_FLAG_BYPASS_PROXY_CACHE = WINHTTP_OPEN_REQUEST_FLAGS.BYPASS_PROXY_CACHE;
+pub const WINHTTP_FLAG_ESCAPE_DISABLE = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE;
+pub const WINHTTP_FLAG_ESCAPE_DISABLE_QUERY = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_DISABLE_QUERY;
+pub const WINHTTP_FLAG_ESCAPE_PERCENT = WINHTTP_OPEN_REQUEST_FLAGS.ESCAPE_PERCENT;
+pub const WINHTTP_FLAG_NULL_CODEPAGE = WINHTTP_OPEN_REQUEST_FLAGS.NULL_CODEPAGE;
+pub const WINHTTP_FLAG_REFRESH = WINHTTP_OPEN_REQUEST_FLAGS.REFRESH;
+pub const WINHTTP_FLAG_SECURE = WINHTTP_OPEN_REQUEST_FLAGS.SECURE;
+
+pub const WIN_HTTP_CREATE_URL_FLAGS = extern enum(u32) {
+    ESCAPE = 2147483648,
+    REJECT_USERPWD = 16384,
+    DECODE = 268435456,
+};
+pub const ICU_ESCAPE = WIN_HTTP_CREATE_URL_FLAGS.ESCAPE;
+pub const ICU_REJECT_USERPWD = WIN_HTTP_CREATE_URL_FLAGS.REJECT_USERPWD;
+pub const ICU_DECODE = WIN_HTTP_CREATE_URL_FLAGS.DECODE;
+
+pub const HTTP_RECEIVE_HTTP_REQUEST_FLAGS = extern enum(u32) {
+    COPY_BODY = 1,
+    FLUSH_BODY = 2,
+};
+pub const HTTP_RECEIVE_REQUEST_FLAG_COPY_BODY = HTTP_RECEIVE_HTTP_REQUEST_FLAGS.COPY_BODY;
+pub const HTTP_RECEIVE_REQUEST_FLAG_FLUSH_BODY = HTTP_RECEIVE_HTTP_REQUEST_FLAGS.FLUSH_BODY;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const HTTP_INITIALIZE = extern enum(u32) {
+    CONFIG = 2,
+    SERVER = 1,
+    _,
+};
+pub const HTTP_INITIALIZE_CONFIG = HTTP_INITIALIZE.CONFIG;
+pub const HTTP_INITIALIZE_SERVER = HTTP_INITIALIZE.SERVER;
+
+pub const WINHTTP_ACCESS_TYPE = extern enum(u32) {
+    NO_PROXY = 1,
+    DEFAULT_PROXY = 0,
+    NAMED_PROXY = 3,
+    AUTOMATIC_PROXY = 4,
+};
+pub const WINHTTP_ACCESS_TYPE_NO_PROXY = WINHTTP_ACCESS_TYPE.NO_PROXY;
+pub const WINHTTP_ACCESS_TYPE_DEFAULT_PROXY = WINHTTP_ACCESS_TYPE.DEFAULT_PROXY;
+pub const WINHTTP_ACCESS_TYPE_NAMED_PROXY = WINHTTP_ACCESS_TYPE.NAMED_PROXY;
+pub const WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY = WINHTTP_ACCESS_TYPE.AUTOMATIC_PROXY;
+
+pub const WINHTTP_CREDS_AUTHSCHEME = extern enum(u32) {
+    BASIC = 1,
+    NTLM = 2,
+    NEGOTIATE = 16,
+};
+pub const WINHTTP_AUTH_SCHEME_BASIC = WINHTTP_CREDS_AUTHSCHEME.BASIC;
+pub const WINHTTP_AUTH_SCHEME_NTLM = WINHTTP_CREDS_AUTHSCHEME.NTLM;
+pub const WINHTTP_AUTH_SCHEME_NEGOTIATE = WINHTTP_CREDS_AUTHSCHEME.NEGOTIATE;
 
 
 //--------------------------------------------------------------------------------
@@ -2709,27 +2757,18 @@ const HANDLE = @import("system_services.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = WINHTTP_STATUS_CALLBACK;
-    _ = LPWINHTTP_STATUS_CALLBACK;
+    if (@hasDecl(@This(), "WINHTTP_STATUS_CALLBACK")) { _ = WINHTTP_STATUS_CALLBACK; }
+    if (@hasDecl(@This(), "LPWINHTTP_STATUS_CALLBACK")) { _ = LPWINHTTP_STATUS_CALLBACK; }
 
-    const constant_export_count = 500;
-    const type_export_count = 142;
-    const enum_value_export_count = 317;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 86;
-    const unicode_alias_count = 1;
-    const import_count = 14;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

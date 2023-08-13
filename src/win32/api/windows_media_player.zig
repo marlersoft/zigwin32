@@ -2,45 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (121)
 //--------------------------------------------------------------------------------
-pub const CLSID_XFeedsManager = Guid.initString("fe6b11c3-c72e-4061-86c6-9d163121f229");
-pub const WMPGC_FLAGS_ALLOW_PREROLL = @as(u32, 1);
-pub const WMPGC_FLAGS_SUPPRESS_DIALOGS = @as(u32, 2);
-pub const WMPGC_FLAGS_IGNORE_AV_SYNC = @as(u32, 4);
-pub const WMPGC_FLAGS_DISABLE_PLUGINS = @as(u32, 8);
-pub const WMPGC_FLAGS_USE_CUSTOM_GRAPH = @as(u32, 16);
-pub const WMPUE_EC_USER = @as(u32, 33024);
-pub const WMP_MDRT_FLAGS_UNREPORTED_DELETED_ITEMS = @as(u32, 1);
-pub const WMP_MDRT_FLAGS_UNREPORTED_ADDED_ITEMS = @as(u32, 2);
-pub const IOCTL_WMP_METADATA_ROUND_TRIP = @as(u32, 827346263);
-pub const IOCTL_WMP_DEVICE_CAN_SYNC = @as(u32, 844123479);
-pub const EFFECT_CANGOFULLSCREEN = @as(u32, 1);
-pub const EFFECT_HASPROPERTYPAGE = @as(u32, 2);
-pub const EFFECT_VARIABLEFREQSTEP = @as(u32, 4);
-pub const EFFECT_WINDOWEDONLY = @as(u32, 8);
-pub const EFFECT2_FULLSCREENEXCLUSIVE = @as(u32, 16);
-pub const SA_BUFFER_SIZE = @as(u32, 1024);
-pub const PLUGIN_TYPE_BACKGROUND = @as(u32, 1);
-pub const PLUGIN_TYPE_SEPARATEWINDOW = @as(u32, 2);
-pub const PLUGIN_TYPE_DISPLAYAREA = @as(u32, 3);
-pub const PLUGIN_TYPE_SETTINGSAREA = @as(u32, 4);
-pub const PLUGIN_TYPE_METADATAAREA = @as(u32, 5);
-pub const PLUGIN_FLAGS_HASPROPERTYPAGE = @as(u32, 2147483648);
-pub const PLUGIN_FLAGS_INSTALLAUTORUN = @as(u32, 1073741824);
-pub const PLUGIN_FLAGS_LAUNCHPROPERTYPAGE = @as(u32, 536870912);
-pub const PLUGIN_FLAGS_ACCEPTSMEDIA = @as(u32, 268435456);
-pub const PLUGIN_FLAGS_ACCEPTSPLAYLISTS = @as(u32, 134217728);
-pub const PLUGIN_FLAGS_HASPRESETS = @as(u32, 67108864);
-pub const PLUGIN_FLAGS_HIDDEN = @as(u32, 33554432);
-pub const SUBSCRIPTION_CAP_DEVICEAVAILABLE = @as(u32, 16);
-pub const SUBSCRIPTION_CAP_BACKGROUNDPROCESSING = @as(u32, 8);
-pub const SUBSCRIPTION_CAP_IS_CONTENTPARTNER = @as(u32, 64);
-pub const SUBSCRIPTION_CAP_ALTLOGIN = @as(u32, 128);
-pub const SUBSCRIPTION_CAP_ALLOWPLAY = @as(u32, 1);
-pub const SUBSCRIPTION_CAP_ALLOWCDBURN = @as(u32, 2);
-pub const SUBSCRIPTION_CAP_ALLOWPDATRANSFER = @as(u32, 4);
-pub const SUBSCRIPTION_CAP_PREPAREFORSYNC = @as(u32, 32);
-pub const SUBSCRIPTION_V1_CAPS = @as(u32, 15);
-pub const SUBSCRIPTION_CAP_UILESSMODE_ALLOWPLAY = @as(u32, 256);
 pub const CLSID_WMPSkinManager = Guid.initString("b2a7fd52-301f-4348-b93a-638c6de49229");
 pub const CLSID_WMPMediaPluginRegistrar = Guid.initString("5569e7f5-424b-4b93-89ca-79d17924689a");
 pub const WMP_PLUGINTYPE_DSP = Guid.initString("6434baea-4954-498d-abd5-2b07123e1f04");
@@ -123,6 +84,45 @@ pub const g_szVerifyPermissionSync = "VerifyPermissionSync";
 pub const g_szStationEvent_Started = "TrackStarted";
 pub const g_szStationEvent_Complete = "TrackComplete";
 pub const g_szStationEvent_Skipped = "TrackSkipped";
+pub const CLSID_XFeedsManager = Guid.initString("fe6b11c3-c72e-4061-86c6-9d163121f229");
+pub const WMPGC_FLAGS_ALLOW_PREROLL = @as(u32, 1);
+pub const WMPGC_FLAGS_SUPPRESS_DIALOGS = @as(u32, 2);
+pub const WMPGC_FLAGS_IGNORE_AV_SYNC = @as(u32, 4);
+pub const WMPGC_FLAGS_DISABLE_PLUGINS = @as(u32, 8);
+pub const WMPGC_FLAGS_USE_CUSTOM_GRAPH = @as(u32, 16);
+pub const WMPUE_EC_USER = @as(u32, 33024);
+pub const WMP_MDRT_FLAGS_UNREPORTED_DELETED_ITEMS = @as(u32, 1);
+pub const WMP_MDRT_FLAGS_UNREPORTED_ADDED_ITEMS = @as(u32, 2);
+pub const IOCTL_WMP_METADATA_ROUND_TRIP = @as(u32, 827346263);
+pub const IOCTL_WMP_DEVICE_CAN_SYNC = @as(u32, 844123479);
+pub const EFFECT_CANGOFULLSCREEN = @as(u32, 1);
+pub const EFFECT_HASPROPERTYPAGE = @as(u32, 2);
+pub const EFFECT_VARIABLEFREQSTEP = @as(u32, 4);
+pub const EFFECT_WINDOWEDONLY = @as(u32, 8);
+pub const EFFECT2_FULLSCREENEXCLUSIVE = @as(u32, 16);
+pub const SA_BUFFER_SIZE = @as(u32, 1024);
+pub const PLUGIN_TYPE_BACKGROUND = @as(u32, 1);
+pub const PLUGIN_TYPE_SEPARATEWINDOW = @as(u32, 2);
+pub const PLUGIN_TYPE_DISPLAYAREA = @as(u32, 3);
+pub const PLUGIN_TYPE_SETTINGSAREA = @as(u32, 4);
+pub const PLUGIN_TYPE_METADATAAREA = @as(u32, 5);
+pub const PLUGIN_FLAGS_HASPROPERTYPAGE = @as(u32, 2147483648);
+pub const PLUGIN_FLAGS_INSTALLAUTORUN = @as(u32, 1073741824);
+pub const PLUGIN_FLAGS_LAUNCHPROPERTYPAGE = @as(u32, 536870912);
+pub const PLUGIN_FLAGS_ACCEPTSMEDIA = @as(u32, 268435456);
+pub const PLUGIN_FLAGS_ACCEPTSPLAYLISTS = @as(u32, 134217728);
+pub const PLUGIN_FLAGS_HASPRESETS = @as(u32, 67108864);
+pub const PLUGIN_FLAGS_HIDDEN = @as(u32, 33554432);
+pub const SUBSCRIPTION_CAP_DEVICEAVAILABLE = @as(u32, 16);
+pub const SUBSCRIPTION_CAP_BACKGROUNDPROCESSING = @as(u32, 8);
+pub const SUBSCRIPTION_CAP_IS_CONTENTPARTNER = @as(u32, 64);
+pub const SUBSCRIPTION_CAP_ALTLOGIN = @as(u32, 128);
+pub const SUBSCRIPTION_CAP_ALLOWPLAY = @as(u32, 1);
+pub const SUBSCRIPTION_CAP_ALLOWCDBURN = @as(u32, 2);
+pub const SUBSCRIPTION_CAP_ALLOWPDATRANSFER = @as(u32, 4);
+pub const SUBSCRIPTION_CAP_PREPAREFORSYNC = @as(u32, 32);
+pub const SUBSCRIPTION_V1_CAPS = @as(u32, 15);
+pub const SUBSCRIPTION_CAP_UILESSMODE_ALLOWPLAY = @as(u32, 256);
 
 //--------------------------------------------------------------------------------
 // Section: Types (153)
@@ -9199,24 +9199,15 @@ const SYSTEMTIME = @import("windows_programming.zig").SYSTEMTIME;
 const SIZE = @import("display_devices.zig").SIZE;
 
 test {
-    const constant_export_count = 121;
-    const type_export_count = 147;
-    const enum_value_export_count = 185;
-    const com_iface_id_export_count = 107;
-    const com_class_id_export_count = 6;
-    const func_export_count = 0;
-    const unicode_alias_count = 0;
-    const import_count = 21;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -2,6 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (314)
 //--------------------------------------------------------------------------------
+pub const D3DRTYPECOUNT = @as(u32, 8);
 pub const D3DCS_LEFT = @as(i32, 1);
 pub const D3DCS_RIGHT = @as(i32, 2);
 pub const D3DCS_TOP = @as(i32, 4);
@@ -315,11 +316,75 @@ pub const D3DPRESENT_UPDATEOVERLAYONLY = @as(i32, 32);
 pub const D3DPRESENT_HIDEOVERLAY = @as(i32, 64);
 pub const D3DPRESENT_UPDATECOLORKEY = @as(i32, 128);
 pub const D3DPRESENT_FORCEIMMEDIATE = @as(i32, 256);
-pub const D3DRTYPECOUNT = @as(u32, 8);
 
 //--------------------------------------------------------------------------------
-// Section: Types (148)
+// Section: Types (153)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const D3DADAPTER_IDENTIFIER9 = extern struct {
+    Driver: [512]CHAR,
+    Description: [512]CHAR,
+    DeviceName: [32]CHAR,
+    DriverVersion: LARGE_INTEGER,
+    VendorId: u32,
+    DeviceId: u32,
+    SubSysId: u32,
+    Revision: u32,
+    DeviceIdentifier: Guid,
+    WHQLLevel: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const D3DMEMORYPRESSURE = extern struct {
+    BytesEvictedFromProcess: u64,
+    SizeOfInefficientAllocation: u64,
+    LevelOfEfficiency: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const D3DPRESENTSTATS = extern struct {
+    PresentCount: u32,
+    PresentRefreshCount: u32,
+    SyncRefreshCount: u32,
+    SyncQPCTime: LARGE_INTEGER,
+    SyncGPUTime: LARGE_INTEGER,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const D3DAUTHENTICATEDCHANNEL_QUERYOUTPUTID_OUTPUT = extern struct {
+    Output: D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT,
+    DeviceHandle: HANDLE,
+    CryptoSessionHandle: HANDLE,
+    OutputIDIndex: u32,
+    OutputID: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const D3DAES_CTR_IV = extern struct {
+    IV: u64,
+    Count: u64,
+};
+
+}, else => struct { } };
+
 pub const D3DVECTOR = extern struct {
     x: f32,
     y: f32,
@@ -341,7 +406,7 @@ pub const D3DRECT = extern struct {
 };
 
 pub const D3DMATRIX = extern struct {
-    Anonymous: D3DMATRIX._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1861,19 +1926,6 @@ pub const D3DTRIPATCH_INFO = extern struct {
     Degree: D3DDEGREETYPE,
 };
 
-pub const D3DADAPTER_IDENTIFIER9 = extern struct {
-    Driver: [512]CHAR,
-    Description: [512]CHAR,
-    DeviceName: [32]CHAR,
-    DriverVersion: LARGE_INTEGER,
-    VendorId: u32,
-    DeviceId: u32,
-    SubSysId: u32,
-    Revision: u32,
-    DeviceIdentifier: Guid,
-    WHQLLevel: u32,
-};
-
 pub const D3DRASTER_STATUS = extern struct {
     InVBlank: BOOL,
     ScanLine: u32,
@@ -1984,12 +2036,6 @@ pub const D3DDEVINFO_D3D9CACHEUTILIZATION = extern struct {
     PostTransformVertexCacheHitRate: f32,
 };
 
-pub const D3DMEMORYPRESSURE = extern struct {
-    BytesEvictedFromProcess: u64,
-    SizeOfInefficientAllocation: u64,
-    LevelOfEfficiency: u32,
-};
-
 pub const D3DCOMPOSERECTSOP = extern enum(i32) {
     COPY = 1,
     OR = 2,
@@ -2015,14 +2061,6 @@ pub const D3DCOMPOSERECTDESTINATION = extern struct {
     Reserved: u16,
     X: i16,
     Y: i16,
-};
-
-pub const D3DPRESENTSTATS = extern struct {
-    PresentCount: u32,
-    PresentRefreshCount: u32,
-    SyncRefreshCount: u32,
-    SyncQPCTime: LARGE_INTEGER,
-    SyncGPUTime: LARGE_INTEGER,
 };
 
 pub const D3DSCANLINEORDERING = extern enum(i32) {
@@ -2088,7 +2126,7 @@ pub const D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT = extern struct {
 };
 
 pub const D3DAUTHENTICATEDCHANNEL_PROTECTION_FLAGS = extern struct {
-    Anonymous: D3DAUTHENTICATEDCHANNEL_PROTECTION_FLAGS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2168,14 +2206,6 @@ pub const D3DAUTHENTICATEDCHANNEL_QUERYOUTPUTID_INPUT = extern struct {
     DeviceHandle: HANDLE,
     CryptoSessionHandle: HANDLE,
     OutputIDIndex: u32,
-};
-
-pub const D3DAUTHENTICATEDCHANNEL_QUERYOUTPUTID_OUTPUT = extern struct {
-    Output: D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT,
-    DeviceHandle: HANDLE,
-    CryptoSessionHandle: HANDLE,
-    OutputIDIndex: u32,
-    OutputID: u64,
 };
 
 pub const D3DBUSTYPE = extern enum(i32) {
@@ -2280,11 +2310,6 @@ pub const D3DENCRYPTED_BLOCK_INFO = extern struct {
     NumEncryptedBytesAtBeginning: u32,
     NumBytesInSkipPattern: u32,
     NumBytesInEncryptPattern: u32,
-};
-
-pub const D3DAES_CTR_IV = extern struct {
-    IV: u64,
-    Count: u64,
 };
 
 pub const D3DVSHADERCAPS2_0 = extern struct {
@@ -4706,6 +4731,71 @@ pub const IDirect3DSwapChain9Ex = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const D3DADAPTER_IDENTIFIER9 = extern struct {
+    Driver: [512]CHAR,
+    Description: [512]CHAR,
+    DeviceName: [32]CHAR,
+    DriverVersion: LARGE_INTEGER,
+    VendorId: u32,
+    DeviceId: u32,
+    SubSysId: u32,
+    Revision: u32,
+    DeviceIdentifier: Guid,
+    WHQLLevel: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const D3DMEMORYPRESSURE = extern struct {
+    BytesEvictedFromProcess: u64,
+    SizeOfInefficientAllocation: u64,
+    LevelOfEfficiency: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const D3DPRESENTSTATS = extern struct {
+    PresentCount: u32,
+    PresentRefreshCount: u32,
+    SyncRefreshCount: u32,
+    SyncQPCTime: LARGE_INTEGER,
+    SyncGPUTime: LARGE_INTEGER,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const D3DAUTHENTICATEDCHANNEL_QUERYOUTPUTID_OUTPUT = extern struct {
+    Output: D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT,
+    DeviceHandle: HANDLE,
+    CryptoSessionHandle: HANDLE,
+    OutputIDIndex: u32,
+    OutputID: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const D3DAES_CTR_IV = extern struct {
+    IV: u64,
+    Count: u64,
+};
+
+}, else => struct { } };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (9)
@@ -4781,24 +4871,15 @@ const RGNDATA = @import("gdi.zig").RGNDATA;
 const POINT = @import("display_devices.zig").POINT;
 
 test {
-    const constant_export_count = 314;
-    const type_export_count = 148;
-    const enum_value_export_count = 654;
-    const com_iface_id_export_count = 20;
-    const com_class_id_export_count = 0;
-    const func_export_count = 9;
-    const unicode_alias_count = 0;
-    const import_count = 16;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

@@ -1751,7 +1751,7 @@ pub const INET_FIREWALL_AC_CHANGE = extern struct {
     appContainerSid: *SID,
     userSid: *SID,
     displayName: PWSTR,
-    Anonymous: INET_FIREWALL_AC_CHANGE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3877,27 +3877,18 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PAC_CHANGES_CALLBACK_FN;
-    _ = PNETISO_EDP_ID_CALLBACK_FN;
+    if (@hasDecl(@This(), "PAC_CHANGES_CALLBACK_FN")) { _ = PAC_CHANGES_CALLBACK_FN; }
+    if (@hasDecl(@This(), "PNETISO_EDP_ID_CALLBACK_FN")) { _ = PNETISO_EDP_ID_CALLBACK_FN; }
 
-    const constant_export_count = 4;
-    const type_export_count = 77;
-    const enum_value_export_count = 131;
-    const com_iface_id_export_count = 44;
-    const com_class_id_export_count = 9;
-    const func_export_count = 8;
-    const unicode_alias_count = 0;
-    const import_count = 13;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

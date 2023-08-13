@@ -2,6 +2,49 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (3416)
 //--------------------------------------------------------------------------------
+pub const WM_CAP_START = @as(u32, 1024);
+pub const MODM_USER = @as(u32, 16384);
+pub const MIDM_USER = @as(u32, 16384);
+pub const MODM_MAPPER = @as(u32, 8192);
+pub const MIDM_MAPPER = @as(u32, 8192);
+pub const MODM_INIT = @as(u32, 100);
+pub const MIDM_INIT = @as(u32, 100);
+pub const MODM_INIT_EX = @as(u32, 104);
+pub const MIDM_INIT_EX = @as(u32, 104);
+pub const DRV_MCI_FIRST = @as(u32, 2048);
+pub const ACMDM_BASE = @as(u32, 24576);
+pub const ICM_RESERVED = @as(u32, 20480);
+pub const MIXERCONTROL_CONTROLTYPE_CUSTOM = @as(u32, 0);
+pub const MIXERCONTROL_CONTROLTYPE_BOOLEANMETER = @as(u32, 268500992);
+pub const MIXERCONTROL_CONTROLTYPE_SIGNEDMETER = @as(u32, 268566528);
+pub const MIXERCONTROL_CONTROLTYPE_PEAKMETER = @as(u32, 268566529);
+pub const MIXERCONTROL_CONTROLTYPE_UNSIGNEDMETER = @as(u32, 268632064);
+pub const MIXERCONTROL_CONTROLTYPE_BOOLEAN = @as(u32, 536936448);
+pub const MIXERCONTROL_CONTROLTYPE_ONOFF = @as(u32, 536936449);
+pub const MIXERCONTROL_CONTROLTYPE_MUTE = @as(u32, 536936450);
+pub const MIXERCONTROL_CONTROLTYPE_MONO = @as(u32, 536936451);
+pub const MIXERCONTROL_CONTROLTYPE_LOUDNESS = @as(u32, 536936452);
+pub const MIXERCONTROL_CONTROLTYPE_STEREOENH = @as(u32, 536936453);
+pub const MIXERCONTROL_CONTROLTYPE_BASS_BOOST = @as(u32, 536945271);
+pub const MIXERCONTROL_CONTROLTYPE_BUTTON = @as(u32, 553713664);
+pub const MIXERCONTROL_CONTROLTYPE_DECIBELS = @as(u32, 805568512);
+pub const MIXERCONTROL_CONTROLTYPE_SIGNED = @as(u32, 805437440);
+pub const MIXERCONTROL_CONTROLTYPE_UNSIGNED = @as(u32, 805502976);
+pub const MIXERCONTROL_CONTROLTYPE_PERCENT = @as(u32, 805634048);
+pub const MIXERCONTROL_CONTROLTYPE_SLIDER = @as(u32, 1073872896);
+pub const MIXERCONTROL_CONTROLTYPE_PAN = @as(u32, 1073872897);
+pub const MIXERCONTROL_CONTROLTYPE_QSOUNDPAN = @as(u32, 1073872898);
+pub const MIXERCONTROL_CONTROLTYPE_FADER = @as(u32, 1342373888);
+pub const MIXERCONTROL_CONTROLTYPE_VOLUME = @as(u32, 1342373889);
+pub const MIXERCONTROL_CONTROLTYPE_BASS = @as(u32, 1342373890);
+pub const MIXERCONTROL_CONTROLTYPE_TREBLE = @as(u32, 1342373891);
+pub const MIXERCONTROL_CONTROLTYPE_EQUALIZER = @as(u32, 1342373892);
+pub const MIXERCONTROL_CONTROLTYPE_SINGLESELECT = @as(u32, 1879113728);
+pub const MIXERCONTROL_CONTROLTYPE_MUX = @as(u32, 1879113729);
+pub const MIXERCONTROL_CONTROLTYPE_MULTIPLESELECT = @as(u32, 1895890944);
+pub const MIXERCONTROL_CONTROLTYPE_MIXER = @as(u32, 1895890945);
+pub const MIXERCONTROL_CONTROLTYPE_MICROTIME = @as(u32, 1610809344);
+pub const MIXERCONTROL_CONTROLTYPE_MILLITIME = @as(u32, 1627586560);
 pub const MCI_TEST = @as(i32, 32);
 pub const MCI_CAPTURE = @as(u32, 2160);
 pub const MCI_MONITOR = @as(u32, 2161);
@@ -3375,53 +3418,46 @@ pub const MMIO_DEFAULTBUFFER = @as(u32, 8192);
 pub const TIMERR_NOERROR = @as(u32, 0);
 pub const TIMERR_NOCANDO = @as(u32, 97);
 pub const TIMERR_STRUCT = @as(u32, 129);
-pub const WM_CAP_START = @as(u32, 1024);
-pub const MODM_USER = @as(u32, 16384);
-pub const MIDM_USER = @as(u32, 16384);
-pub const MODM_MAPPER = @as(u32, 8192);
-pub const MIDM_MAPPER = @as(u32, 8192);
-pub const MODM_INIT = @as(u32, 100);
-pub const MIDM_INIT = @as(u32, 100);
-pub const MODM_INIT_EX = @as(u32, 104);
-pub const MIDM_INIT_EX = @as(u32, 104);
-pub const DRV_MCI_FIRST = @as(u32, 2048);
-pub const ACMDM_BASE = @as(u32, 24576);
-pub const ICM_RESERVED = @as(u32, 20480);
-pub const MIXERCONTROL_CONTROLTYPE_CUSTOM = @as(u32, 0);
-pub const MIXERCONTROL_CONTROLTYPE_BOOLEANMETER = @as(u32, 268500992);
-pub const MIXERCONTROL_CONTROLTYPE_SIGNEDMETER = @as(u32, 268566528);
-pub const MIXERCONTROL_CONTROLTYPE_PEAKMETER = @as(u32, 268566529);
-pub const MIXERCONTROL_CONTROLTYPE_UNSIGNEDMETER = @as(u32, 268632064);
-pub const MIXERCONTROL_CONTROLTYPE_BOOLEAN = @as(u32, 536936448);
-pub const MIXERCONTROL_CONTROLTYPE_ONOFF = @as(u32, 536936449);
-pub const MIXERCONTROL_CONTROLTYPE_MUTE = @as(u32, 536936450);
-pub const MIXERCONTROL_CONTROLTYPE_MONO = @as(u32, 536936451);
-pub const MIXERCONTROL_CONTROLTYPE_LOUDNESS = @as(u32, 536936452);
-pub const MIXERCONTROL_CONTROLTYPE_STEREOENH = @as(u32, 536936453);
-pub const MIXERCONTROL_CONTROLTYPE_BASS_BOOST = @as(u32, 536945271);
-pub const MIXERCONTROL_CONTROLTYPE_BUTTON = @as(u32, 553713664);
-pub const MIXERCONTROL_CONTROLTYPE_DECIBELS = @as(u32, 805568512);
-pub const MIXERCONTROL_CONTROLTYPE_SIGNED = @as(u32, 805437440);
-pub const MIXERCONTROL_CONTROLTYPE_UNSIGNED = @as(u32, 805502976);
-pub const MIXERCONTROL_CONTROLTYPE_PERCENT = @as(u32, 805634048);
-pub const MIXERCONTROL_CONTROLTYPE_SLIDER = @as(u32, 1073872896);
-pub const MIXERCONTROL_CONTROLTYPE_PAN = @as(u32, 1073872897);
-pub const MIXERCONTROL_CONTROLTYPE_QSOUNDPAN = @as(u32, 1073872898);
-pub const MIXERCONTROL_CONTROLTYPE_FADER = @as(u32, 1342373888);
-pub const MIXERCONTROL_CONTROLTYPE_VOLUME = @as(u32, 1342373889);
-pub const MIXERCONTROL_CONTROLTYPE_BASS = @as(u32, 1342373890);
-pub const MIXERCONTROL_CONTROLTYPE_TREBLE = @as(u32, 1342373891);
-pub const MIXERCONTROL_CONTROLTYPE_EQUALIZER = @as(u32, 1342373892);
-pub const MIXERCONTROL_CONTROLTYPE_SINGLESELECT = @as(u32, 1879113728);
-pub const MIXERCONTROL_CONTROLTYPE_MUX = @as(u32, 1879113729);
-pub const MIXERCONTROL_CONTROLTYPE_MULTIPLESELECT = @as(u32, 1895890944);
-pub const MIXERCONTROL_CONTROLTYPE_MIXER = @as(u32, 1895890945);
-pub const MIXERCONTROL_CONTROLTYPE_MICROTIME = @as(u32, 1610809344);
-pub const MIXERCONTROL_CONTROLTYPE_MILLITIME = @as(u32, 1627586560);
 
 //--------------------------------------------------------------------------------
-// Section: Types (251)
+// Section: Types (252)
 //--------------------------------------------------------------------------------
+pub const LPWAVECALLBACK = fn(
+    hdrvr: HDRVR,
+    uMsg: u32,
+    dwUser: usize,
+    dw1: usize,
+    dw2: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const LPMIDICALLBACK = fn(
+    hdrvr: HDRVR,
+    uMsg: u32,
+    dwUser: usize,
+    dw1: usize,
+    dw2: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const ACMSTREAMHEADER = extern struct {
+    cbStruct: u32,
+    fdwStatus: u32,
+    dwUser: usize,
+    pbSrc: *u8,
+    cbSrcLength: u32,
+    cbSrcLengthUsed: u32,
+    dwSrcUser: usize,
+    pbDst: *u8,
+    cbDstLength: u32,
+    cbDstLengthUsed: u32,
+    dwDstUser: usize,
+    dwReservedDriver: [15]u32,
+};
+
+}, else => struct { } };
+
 pub const HMIDI = ?*opaque{};
 
 pub const HMIDIIN = ?*opaque{};
@@ -3455,6 +3491,26 @@ pub const HACMOBJ = ?*opaque{};
 pub const HIC = ?*opaque{};
 
 pub const HVIDEO = ?*opaque{};
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const ACMSTREAMHEADER = extern struct {
+    cbStruct: u32,
+    fdwStatus: u32,
+    dwUser: usize,
+    pbSrc: *u8,
+    cbSrcLength: u32,
+    cbSrcLengthUsed: u32,
+    dwSrcUser: usize,
+    pbDst: *u8,
+    cbDstLength: u32,
+    cbDstLengthUsed: u32,
+    dwDstUser: usize,
+    dwReservedDriver: [10]u32,
+};
+
+}, else => struct { } };
 
 pub const WAVEFORMAT = extern struct {
     wFormatTag: u16,
@@ -3490,7 +3546,7 @@ pub const CLSID_KSDATAFORMAT_SUBTYPE_WAVEFORMATEX = &CLSID_KSDATAFORMAT_SUBTYPE_
 
 pub const WAVEFORMATEXTENSIBLE = extern struct {
     Format: WAVEFORMATEX,
-    Samples: WAVEFORMATEXTENSIBLE._Samples_e__Union,
+    Samples: _Samples_e__Union,
     dwChannelMask: u32,
     SubFormat: Guid,
     const _Samples_e__Union = u32; // TODO: generate this nested type!
@@ -3741,7 +3797,7 @@ pub const JPEGINFOHEADER = extern struct {
 
 pub const MMTIME = extern struct {
     wType: u32,
-    u: MMTIME._u_e__Union,
+    u: _u_e__Union,
     const _u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -4151,7 +4207,7 @@ pub const MIXERLINEA = extern struct {
     cControls: u32,
     szShortName: [16]CHAR,
     szName: [64]CHAR,
-    Target: MIXERLINEA._Target_e__Struct,
+    Target: _Target_e__Struct,
     const _Target_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -4168,7 +4224,7 @@ pub const MIXERLINEW = extern struct {
     cControls: u32,
     szShortName: [16]u16,
     szName: [64]u16,
-    Target: MIXERLINEW._Target_e__Struct,
+    Target: _Target_e__Struct,
     const _Target_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -4180,8 +4236,8 @@ pub const MIXERCONTROLA = extern struct {
     cMultipleItems: u32,
     szShortName: [16]CHAR,
     szName: [64]CHAR,
-    Bounds: MIXERCONTROLA._Bounds_e__Union,
-    Metrics: MIXERCONTROLA._Metrics_e__Union,
+    Bounds: _Bounds_e__Union,
+    Metrics: _Metrics_e__Union,
     const _Bounds_e__Union = u32; // TODO: generate this nested type!
     const _Metrics_e__Union = u32; // TODO: generate this nested type!
 };
@@ -4194,16 +4250,16 @@ pub const MIXERCONTROLW = extern struct {
     cMultipleItems: u32,
     szShortName: [16]u16,
     szName: [64]u16,
-    Bounds: MIXERCONTROLW._Bounds_e__Union,
-    Metrics: MIXERCONTROLW._Metrics_e__Union,
-    const _Bounds_e__Union = u32; // TODO: generate this nested type!
+    Bounds: _Bounds_e__Union,
+    Metrics: _Metrics_e__Union,
     const _Metrics_e__Union = u32; // TODO: generate this nested type!
+    const _Bounds_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIXERLINECONTROLSA = extern struct {
     cbStruct: u32,
     dwLineID: u32,
-    Anonymous: MIXERLINECONTROLSA._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     cControls: u32,
     cbmxctrl: u32,
     pamxctrl: *MIXERCONTROLA,
@@ -4213,7 +4269,7 @@ pub const MIXERLINECONTROLSA = extern struct {
 pub const MIXERLINECONTROLSW = extern struct {
     cbStruct: u32,
     dwLineID: u32,
-    Anonymous: MIXERLINECONTROLSW._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     cControls: u32,
     cbmxctrl: u32,
     pamxctrl: *MIXERCONTROLW,
@@ -4224,7 +4280,7 @@ pub const MIXERCONTROLDETAILS = extern struct {
     cbStruct: u32,
     dwControlID: u32,
     cChannels: u32,
-    Anonymous: MIXERCONTROLDETAILS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     cbDetails: u32,
     paDetails: *c_void,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -4958,21 +5014,6 @@ pub const ACMFILTERCHOOSEW = extern struct {
     pszTemplateName: [*:0]const u16,
     lCustData: LPARAM,
     pfnHook: ACMFILTERCHOOSEHOOKPROCW,
-};
-
-pub const ACMSTREAMHEADER = extern struct {
-    cbStruct: u32,
-    fdwStatus: u32,
-    dwUser: usize,
-    pbSrc: *u8,
-    cbSrcLength: u32,
-    cbSrcLengthUsed: u32,
-    dwSrcUser: usize,
-    pbDst: *u8,
-    cbDstLength: u32,
-    cbDstLengthUsed: u32,
-    dwDstUser: usize,
-    dwReservedDriver: [15]u32,
 };
 
 pub const ICOPEN = extern struct {
@@ -5914,26 +5955,15 @@ pub const MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE = MIXERLINE_COMPONENTTYPE.SRC_TE
 pub const MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED = MIXERLINE_COMPONENTTYPE.SRC_UNDEFINED;
 pub const MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT = MIXERLINE_COMPONENTTYPE.SRC_WAVEOUT;
 
-pub const LPWAVECALLBACK = fn(
-    hdrvr: HDRVR,
-    uMsg: u32,
-    dwUser: usize,
-    dw1: usize,
-    dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const LPMIDICALLBACK = fn(
-    hdrvr: HDRVR,
-    uMsg: u32,
-    dwUser: usize,
-    dw1: usize,
-    dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (305)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "WINMM" fn joyConfigChanged(
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "WINMM" fn CloseDriver(
     hDriver: HDRVR,
@@ -8083,11 +8113,6 @@ pub extern "WINMM" fn mmTaskYield(
 pub extern "WINMM" fn mmGetCurrentTask(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "WINMM" fn joyConfigChanged(
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (93)
@@ -8507,56 +8532,47 @@ const POINT = @import("display_devices.zig").POINT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = LPDRVCALLBACK;
-    _ = DRIVERPROC;
-    _ = DRIVERMSGPROC;
-    _ = LPMMIOPROC;
-    _ = ACMDRIVERENUMCB;
-    _ = LPACMDRIVERPROC;
-    _ = ACMFORMATTAGENUMCBA;
-    _ = ACMFORMATTAGENUMCBW;
-    _ = ACMFORMATENUMCBA;
-    _ = ACMFORMATENUMCBW;
-    _ = ACMFORMATCHOOSEHOOKPROCA;
-    _ = ACMFORMATCHOOSEHOOKPROCW;
-    _ = ACMFILTERTAGENUMCBA;
-    _ = ACMFILTERTAGENUMCBW;
-    _ = ACMFILTERENUMCBA;
-    _ = ACMFILTERENUMCBW;
-    _ = ACMFILTERCHOOSEHOOKPROCA;
-    _ = ACMFILTERCHOOSEHOOKPROCW;
-    _ = AVISAVECALLBACK;
-    _ = CAPYIELDCALLBACK;
-    _ = CAPSTATUSCALLBACKW;
-    _ = CAPERRORCALLBACKW;
-    _ = CAPSTATUSCALLBACKA;
-    _ = CAPERRORCALLBACKA;
-    _ = CAPVIDEOCALLBACK;
-    _ = CAPWAVECALLBACK;
-    _ = CAPCONTROLCALLBACK;
-    _ = LPJOYDEVMSGPROC;
-    _ = LPTASKCALLBACK;
-    _ = LPWAVECALLBACK;
-    _ = LPMIDICALLBACK;
+    if (@hasDecl(@This(), "LPWAVECALLBACK")) { _ = LPWAVECALLBACK; }
+    if (@hasDecl(@This(), "LPMIDICALLBACK")) { _ = LPMIDICALLBACK; }
+    if (@hasDecl(@This(), "LPDRVCALLBACK")) { _ = LPDRVCALLBACK; }
+    if (@hasDecl(@This(), "DRIVERPROC")) { _ = DRIVERPROC; }
+    if (@hasDecl(@This(), "DRIVERMSGPROC")) { _ = DRIVERMSGPROC; }
+    if (@hasDecl(@This(), "LPMMIOPROC")) { _ = LPMMIOPROC; }
+    if (@hasDecl(@This(), "ACMDRIVERENUMCB")) { _ = ACMDRIVERENUMCB; }
+    if (@hasDecl(@This(), "LPACMDRIVERPROC")) { _ = LPACMDRIVERPROC; }
+    if (@hasDecl(@This(), "ACMFORMATTAGENUMCBA")) { _ = ACMFORMATTAGENUMCBA; }
+    if (@hasDecl(@This(), "ACMFORMATTAGENUMCBW")) { _ = ACMFORMATTAGENUMCBW; }
+    if (@hasDecl(@This(), "ACMFORMATENUMCBA")) { _ = ACMFORMATENUMCBA; }
+    if (@hasDecl(@This(), "ACMFORMATENUMCBW")) { _ = ACMFORMATENUMCBW; }
+    if (@hasDecl(@This(), "ACMFORMATCHOOSEHOOKPROCA")) { _ = ACMFORMATCHOOSEHOOKPROCA; }
+    if (@hasDecl(@This(), "ACMFORMATCHOOSEHOOKPROCW")) { _ = ACMFORMATCHOOSEHOOKPROCW; }
+    if (@hasDecl(@This(), "ACMFILTERTAGENUMCBA")) { _ = ACMFILTERTAGENUMCBA; }
+    if (@hasDecl(@This(), "ACMFILTERTAGENUMCBW")) { _ = ACMFILTERTAGENUMCBW; }
+    if (@hasDecl(@This(), "ACMFILTERENUMCBA")) { _ = ACMFILTERENUMCBA; }
+    if (@hasDecl(@This(), "ACMFILTERENUMCBW")) { _ = ACMFILTERENUMCBW; }
+    if (@hasDecl(@This(), "ACMFILTERCHOOSEHOOKPROCA")) { _ = ACMFILTERCHOOSEHOOKPROCA; }
+    if (@hasDecl(@This(), "ACMFILTERCHOOSEHOOKPROCW")) { _ = ACMFILTERCHOOSEHOOKPROCW; }
+    if (@hasDecl(@This(), "AVISAVECALLBACK")) { _ = AVISAVECALLBACK; }
+    if (@hasDecl(@This(), "CAPYIELDCALLBACK")) { _ = CAPYIELDCALLBACK; }
+    if (@hasDecl(@This(), "CAPSTATUSCALLBACKW")) { _ = CAPSTATUSCALLBACKW; }
+    if (@hasDecl(@This(), "CAPERRORCALLBACKW")) { _ = CAPERRORCALLBACKW; }
+    if (@hasDecl(@This(), "CAPSTATUSCALLBACKA")) { _ = CAPSTATUSCALLBACKA; }
+    if (@hasDecl(@This(), "CAPERRORCALLBACKA")) { _ = CAPERRORCALLBACKA; }
+    if (@hasDecl(@This(), "CAPVIDEOCALLBACK")) { _ = CAPVIDEOCALLBACK; }
+    if (@hasDecl(@This(), "CAPWAVECALLBACK")) { _ = CAPWAVECALLBACK; }
+    if (@hasDecl(@This(), "CAPCONTROLCALLBACK")) { _ = CAPCONTROLCALLBACK; }
+    if (@hasDecl(@This(), "LPJOYDEVMSGPROC")) { _ = LPJOYDEVMSGPROC; }
+    if (@hasDecl(@This(), "LPTASKCALLBACK")) { _ = LPTASKCALLBACK; }
 
-    const constant_export_count = 3416;
-    const type_export_count = 248;
-    const enum_value_export_count = 33;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 3;
-    const func_export_count = 305;
-    const unicode_alias_count = 93;
-    const import_count = 28;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

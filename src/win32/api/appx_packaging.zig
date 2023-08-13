@@ -20,8 +20,37 @@ pub const PACKAGE_PROPERTY_DYNAMIC = @as(u32, 1048576);
 pub const PACKAGE_FILTER_ALL_LOADED = @as(u32, 0);
 
 //--------------------------------------------------------------------------------
-// Section: Types (118)
+// Section: Types (120)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const PACKAGE_ID = extern struct {
+    reserved: u32,
+    processorArchitecture: u32,
+    version: PACKAGE_VERSION,
+    name: PWSTR,
+    publisher: PWSTR,
+    resourceId: PWSTR,
+    publisherId: PWSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const PACKAGE_INFO = extern struct {
+    reserved: u32,
+    flags: u32,
+    path: PWSTR,
+    packageFullName: PWSTR,
+    packageFamilyName: PWSTR,
+    packageId: PACKAGE_ID,
+};
+
+}, else => struct { } };
+
 const CLSID_AppxFactory_Value = @import("../zig.zig").Guid.initString("5842a140-ff9f-4166-8f5c-62f5b7b0c781");
 pub const CLSID_AppxFactory = &CLSID_AppxFactory_Value;
 
@@ -3227,18 +3256,8 @@ pub const IAppxPackageEditor = extern struct {
 };
 
 pub const PACKAGE_VERSION = extern struct {
-    Anonymous: PACKAGE_VERSION._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PACKAGE_ID = extern struct {
-    reserved: u32,
-    processorArchitecture: u32,
-    version: PACKAGE_VERSION,
-    name: PWSTR,
-    publisher: PWSTR,
-    resourceId: PWSTR,
-    publisherId: PWSTR,
 };
 
 pub const PackagePathType = extern enum(i32) {
@@ -3275,15 +3294,6 @@ pub const PackageOrigin_LineOfBusiness = PackageOrigin.LineOfBusiness;
 
 pub const _PACKAGE_INFO_REFERENCE = extern struct {
     reserved: *c_void,
-};
-
-pub const PACKAGE_INFO = extern struct {
-    reserved: u32,
-    flags: u32,
-    path: PWSTR,
-    packageFullName: PWSTR,
-    packageFamilyName: PWSTR,
-    packageId: PACKAGE_ID,
 };
 
 pub const AppPolicyLifecycleManagement = extern enum(i32) {
@@ -3349,6 +3359,35 @@ pub const AppPolicyCreateFileAccess = extern enum(i32) {
 };
 pub const AppPolicyCreateFileAccess_Full = AppPolicyCreateFileAccess.Full;
 pub const AppPolicyCreateFileAccess_Limited = AppPolicyCreateFileAccess.Limited;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const PACKAGE_ID = extern struct {
+    reserved: u32,
+    processorArchitecture: u32,
+    version: PACKAGE_VERSION,
+    name: PWSTR,
+    publisher: PWSTR,
+    resourceId: PWSTR,
+    publisherId: PWSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const PACKAGE_INFO = extern struct {
+    reserved: u32,
+    flags: u32,
+    path: PWSTR,
+    packageFullName: PWSTR,
+    packageFamilyName: PWSTR,
+    packageId: PACKAGE_ID,
+};
+
+}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------
@@ -3714,24 +3753,15 @@ const PSID = @import("security.zig").PSID;
 const BOOL = @import("system_services.zig").BOOL;
 
 test {
-    const constant_export_count = 16;
-    const type_export_count = 113;
-    const enum_value_export_count = 95;
-    const com_iface_id_export_count = 80;
-    const com_class_id_export_count = 5;
-    const func_export_count = 49;
-    const unicode_alias_count = 0;
-    const import_count = 9;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

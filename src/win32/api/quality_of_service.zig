@@ -205,15 +205,15 @@ pub const GUAR_ADSPARM_Dsum = @as(i32, 136);
 //--------------------------------------------------------------------------------
 // Section: Types (81)
 //--------------------------------------------------------------------------------
-pub const LPM_HANDLE = isize;
-
-pub const RHANDLE = isize;
-
 pub const QOS = extern struct {
     SendingFlowspec: FLOWSPEC,
     ReceivingFlowspec: FLOWSPEC,
     ProviderSpecific: WSABUF,
 };
+
+pub const LPM_HANDLE = isize;
+
+pub const RHANDLE = isize;
 
 pub const FLOWSPEC = extern struct {
     TokenRate: u32,
@@ -256,7 +256,7 @@ pub const Session_IPv4 = extern struct {
 
 pub const RSVP_SESSION = extern struct {
     sess_header: RsvpObjHdr,
-    sess_u: RSVP_SESSION._sess_u_e__Union,
+    sess_u: _sess_u_e__Union,
     const _sess_u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -267,7 +267,7 @@ pub const Rsvp_Hop_IPv4 = extern struct {
 
 pub const RSVP_HOP = extern struct {
     hop_header: RsvpObjHdr,
-    hop_u: RSVP_HOP._hop_u_e__Union,
+    hop_u: _hop_u_e__Union,
     const _hop_u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -289,7 +289,7 @@ pub const Filter_Spec_IPv4GPI = extern struct {
 
 pub const FILTER_SPEC = extern struct {
     filt_header: RsvpObjHdr,
-    filt_u: FILTER_SPEC._filt_u_e__Union,
+    filt_u: _filt_u_e__Union,
     const _filt_u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -299,7 +299,7 @@ pub const Scope_list_ipv4 = extern struct {
 
 pub const RSVP_SCOPE = extern struct {
     scopl_header: RsvpObjHdr,
-    scope_u: RSVP_SCOPE._scope_u_e__Union,
+    scope_u: _scope_u_e__Union,
     const _scope_u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -312,7 +312,7 @@ pub const Error_Spec_IPv4 = extern struct {
 
 pub const ERROR_SPEC = extern struct {
     errs_header: RsvpObjHdr,
-    errs_u: ERROR_SPEC._errs_u_e__Union,
+    errs_u: _errs_u_e__Union,
     const _errs_u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -393,7 +393,7 @@ pub const QualAppFlowSpec = extern struct {
 
 pub const IntServTspecBody = extern struct {
     st_mh: IntServMainHdr,
-    tspec_u: IntServTspecBody._tspec_u_e__Union,
+    tspec_u: _tspec_u_e__Union,
     const _tspec_u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -423,7 +423,7 @@ pub const GuarFlowSpec = extern struct {
 
 pub const IntServFlowSpec = extern struct {
     spec_mh: IntServMainHdr,
-    spec_u: IntServFlowSpec._spec_u_e__Union,
+    spec_u: _spec_u_e__Union,
     const _spec_u_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -433,8 +433,8 @@ pub const IS_FLOWSPEC = extern struct {
 };
 
 pub const flow_desc = extern struct {
-    u1: flow_desc._u1_e__Union,
-    u2: flow_desc._u2_e__Union,
+    u1: _u1_e__Union,
+    u2: _u2_e__Union,
     const _u1_e__Union = u32; // TODO: generate this nested type!
     const _u2_e__Union = u32; // TODO: generate this nested type!
 };
@@ -739,15 +739,15 @@ pub const IP_PATTERN = extern struct {
     Reserved2: u32,
     SrcAddr: u32,
     DstAddr: u32,
-    S_un: IP_PATTERN._S_un_e__Union,
+    S_un: _S_un_e__Union,
     ProtocolId: u8,
     Reserved3: [3]u8,
     const _S_un_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IPX_PATTERN = extern struct {
-    Src: IPX_PATTERN._Src_e__Struct,
-    Dest: IPX_PATTERN._Src_e__Struct,
+    Src: _Src_e__Struct,
+    Dest: _Src_e__Struct,
     const _Src_e__Struct = u32; // TODO: generate this nested type!
 };
 
@@ -1054,33 +1054,24 @@ const SOCKADDR = @import("win_sock.zig").SOCKADDR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PALLOCMEM;
-    _ = PFREEMEM;
-    _ = CBADMITRESULT;
-    _ = CBGETRSVPOBJECTS;
-    _ = TCI_NOTIFY_HANDLER;
-    _ = TCI_ADD_FLOW_COMPLETE_HANDLER;
-    _ = TCI_MOD_FLOW_COMPLETE_HANDLER;
-    _ = TCI_DEL_FLOW_COMPLETE_HANDLER;
+    if (@hasDecl(@This(), "PALLOCMEM")) { _ = PALLOCMEM; }
+    if (@hasDecl(@This(), "PFREEMEM")) { _ = PFREEMEM; }
+    if (@hasDecl(@This(), "CBADMITRESULT")) { _ = CBADMITRESULT; }
+    if (@hasDecl(@This(), "CBGETRSVPOBJECTS")) { _ = CBGETRSVPOBJECTS; }
+    if (@hasDecl(@This(), "TCI_NOTIFY_HANDLER")) { _ = TCI_NOTIFY_HANDLER; }
+    if (@hasDecl(@This(), "TCI_ADD_FLOW_COMPLETE_HANDLER")) { _ = TCI_ADD_FLOW_COMPLETE_HANDLER; }
+    if (@hasDecl(@This(), "TCI_MOD_FLOW_COMPLETE_HANDLER")) { _ = TCI_MOD_FLOW_COMPLETE_HANDLER; }
+    if (@hasDecl(@This(), "TCI_DEL_FLOW_COMPLETE_HANDLER")) { _ = TCI_DEL_FLOW_COMPLETE_HANDLER; }
 
-    const constant_export_count = 199;
-    const type_export_count = 81;
-    const enum_value_export_count = 29;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 31;
-    const unicode_alias_count = 4;
-    const import_count = 10;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

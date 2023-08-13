@@ -80,7 +80,7 @@ pub const PRJ_EXT_INFO_TYPE_SYMLINK = PRJ_EXT_INFO_TYPE.K;
 pub const PRJ_EXTENDED_INFO = extern struct {
     InfoType: PRJ_EXT_INFO_TYPE,
     NextInfoOffset: u32,
-    Anonymous: PRJ_EXTENDED_INFO._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -133,9 +133,9 @@ pub const PRJ_FILE_BASIC_INFO = extern struct {
 
 pub const PRJ_PLACEHOLDER_INFO = extern struct {
     FileBasicInfo: PRJ_FILE_BASIC_INFO,
-    EaInformation: PRJ_PLACEHOLDER_INFO._EaInformation_e__Struct,
-    SecurityInformation: PRJ_PLACEHOLDER_INFO._SecurityInformation_e__Struct,
-    StreamsInformation: PRJ_PLACEHOLDER_INFO._StreamsInformation_e__Struct,
+    EaInformation: _EaInformation_e__Struct,
+    SecurityInformation: _SecurityInformation_e__Struct,
+    StreamsInformation: _StreamsInformation_e__Struct,
     VersionInfo: PRJ_PLACEHOLDER_VERSION_INFO,
     VariableData: [1]u8,
     const _StreamsInformation_e__Struct = u32; // TODO: generate this nested type!
@@ -246,7 +246,14 @@ pub const PRJ_QUERY_FILE_NAME_CB = fn(
     callbackData: *const PRJ_CALLBACK_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PRJ_NOTIFICATION_PARAMETERS = u32; // TODO: implement StructOrUnion types?
+pub const PRJ_NOTIFICATION_PARAMETERS = extern union {
+    PostCreate: _PostCreate_e__Struct,
+    FileRenamed: _FileRenamed_e__Struct,
+    FileDeletedOnHandleClose: _FileDeletedOnHandleClose_e__Struct,
+    const _FileRenamed_e__Struct = u32; // TODO: generate this nested type!
+    const _PostCreate_e__Struct = u32; // TODO: generate this nested type!
+    const _FileDeletedOnHandleClose_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const PRJ_NOTIFICATION_CB = fn(
     callbackData: *const PRJ_CALLBACK_DATA,
@@ -280,7 +287,7 @@ pub const PRJ_COMPLETE_COMMAND_TYPE_ENUMERATION = PRJ_COMPLETE_COMMAND_TYPE.ENUM
 
 pub const PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS = extern struct {
     CommandType: PRJ_COMPLETE_COMMAND_TYPE,
-    Anonymous: PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -450,33 +457,24 @@ const HRESULT = @import("com.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = PRJ_START_DIRECTORY_ENUMERATION_CB;
-    _ = PRJ_GET_DIRECTORY_ENUMERATION_CB;
-    _ = PRJ_END_DIRECTORY_ENUMERATION_CB;
-    _ = PRJ_GET_PLACEHOLDER_INFO_CB;
-    _ = PRJ_GET_FILE_DATA_CB;
-    _ = PRJ_QUERY_FILE_NAME_CB;
-    _ = PRJ_NOTIFICATION_CB;
-    _ = PRJ_CANCEL_COMMAND_CB;
+    if (@hasDecl(@This(), "PRJ_START_DIRECTORY_ENUMERATION_CB")) { _ = PRJ_START_DIRECTORY_ENUMERATION_CB; }
+    if (@hasDecl(@This(), "PRJ_GET_DIRECTORY_ENUMERATION_CB")) { _ = PRJ_GET_DIRECTORY_ENUMERATION_CB; }
+    if (@hasDecl(@This(), "PRJ_END_DIRECTORY_ENUMERATION_CB")) { _ = PRJ_END_DIRECTORY_ENUMERATION_CB; }
+    if (@hasDecl(@This(), "PRJ_GET_PLACEHOLDER_INFO_CB")) { _ = PRJ_GET_PLACEHOLDER_INFO_CB; }
+    if (@hasDecl(@This(), "PRJ_GET_FILE_DATA_CB")) { _ = PRJ_GET_FILE_DATA_CB; }
+    if (@hasDecl(@This(), "PRJ_QUERY_FILE_NAME_CB")) { _ = PRJ_QUERY_FILE_NAME_CB; }
+    if (@hasDecl(@This(), "PRJ_NOTIFICATION_CB")) { _ = PRJ_NOTIFICATION_CB; }
+    if (@hasDecl(@This(), "PRJ_CANCEL_COMMAND_CB")) { _ = PRJ_CANCEL_COMMAND_CB; }
 
-    const constant_export_count = 0;
-    const type_export_count = 31;
-    const enum_value_export_count = 53;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 19;
-    const unicode_alias_count = 0;
-    const import_count = 4;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

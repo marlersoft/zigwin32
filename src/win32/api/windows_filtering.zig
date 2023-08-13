@@ -906,7 +906,7 @@ pub const FWP_TOKEN_INFORMATION = extern struct {
 
 pub const FWP_VALUE0 = extern struct {
     type: FWP_DATA_TYPE,
-    Anonymous: FWP_VALUE0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -958,7 +958,7 @@ pub const FWP_RANGE0 = extern struct {
 
 pub const FWP_CONDITION_VALUE0 = extern struct {
     type: FWP_DATA_TYPE,
-    Anonymous: FWP_CONDITION_VALUE0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1093,9 +1093,9 @@ pub const IKEEXT_CERT_CONFIG_TYPE_MAX = IKEEXT_CERT_CONFIG_TYPE.TYPE_MAX;
 
 pub const IKEEXT_CERTIFICATE_AUTHENTICATION0 = extern struct {
     inboundConfigType: IKEEXT_CERT_CONFIG_TYPE,
-    Anonymous1: IKEEXT_CERTIFICATE_AUTHENTICATION0._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     outboundConfigType: IKEEXT_CERT_CONFIG_TYPE,
-    Anonymous2: IKEEXT_CERTIFICATE_AUTHENTICATION0._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     flags: IKEEXT_CERT_AUTH,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -1103,9 +1103,9 @@ pub const IKEEXT_CERTIFICATE_AUTHENTICATION0 = extern struct {
 
 pub const IKEEXT_CERTIFICATE_AUTHENTICATION1 = extern struct {
     inboundConfigType: IKEEXT_CERT_CONFIG_TYPE,
-    Anonymous1: IKEEXT_CERTIFICATE_AUTHENTICATION1._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     outboundConfigType: IKEEXT_CERT_CONFIG_TYPE,
-    Anonymous2: IKEEXT_CERTIFICATE_AUTHENTICATION1._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     flags: IKEEXT_CERT_AUTH,
     localCertLocationUrl: FWP_BYTE_BLOB,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
@@ -1151,9 +1151,9 @@ pub const IKEEXT_CERTIFICATE_CRITERIA0 = extern struct {
 
 pub const IKEEXT_CERTIFICATE_AUTHENTICATION2 = extern struct {
     inboundConfigType: IKEEXT_CERT_CONFIG_TYPE,
-    Anonymous1: IKEEXT_CERTIFICATE_AUTHENTICATION2._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     outboundConfigType: IKEEXT_CERT_CONFIG_TYPE,
-    Anonymous2: IKEEXT_CERTIFICATE_AUTHENTICATION2._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     flags: IKEEXT_CERT_AUTH,
     localCertLocationUrl: FWP_BYTE_BLOB,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
@@ -1191,19 +1191,19 @@ pub const IKEEXT_EAP_AUTHENTICATION0 = extern struct {
 
 pub const IKEEXT_AUTHENTICATION_METHOD0 = extern struct {
     authenticationMethodType: IKEEXT_AUTHENTICATION_METHOD_TYPE,
-    Anonymous: IKEEXT_AUTHENTICATION_METHOD0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IKEEXT_AUTHENTICATION_METHOD1 = extern struct {
     authenticationMethodType: IKEEXT_AUTHENTICATION_METHOD_TYPE,
-    Anonymous: IKEEXT_AUTHENTICATION_METHOD1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IKEEXT_AUTHENTICATION_METHOD2 = extern struct {
     authenticationMethodType: IKEEXT_AUTHENTICATION_METHOD_TYPE,
-    Anonymous: IKEEXT_AUTHENTICATION_METHOD2._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1432,8 +1432,8 @@ pub const IKEEXT_STATISTICS1 = extern struct {
 
 pub const IKEEXT_TRAFFIC0 = extern struct {
     ipVersion: FWP_IP_VERSION,
-    Anonymous1: IKEEXT_TRAFFIC0._Anonymous1_e__Union,
-    Anonymous2: IKEEXT_TRAFFIC0._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     authIpFilterId: u64,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -1457,7 +1457,7 @@ pub const IKEEXT_NAME_CREDENTIAL0 = extern struct {
 pub const IKEEXT_CREDENTIAL0 = extern struct {
     authenticationMethodType: IKEEXT_AUTHENTICATION_METHOD_TYPE,
     impersonationType: IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE,
-    Anonymous: IKEEXT_CREDENTIAL0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1475,7 +1475,7 @@ pub const IKEEXT_SA_DETAILS0 = extern struct {
     saId: u64,
     keyModuleType: IKEEXT_KEY_MODULE_TYPE,
     ipVersion: FWP_IP_VERSION,
-    Anonymous: IKEEXT_SA_DETAILS0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     ikeTraffic: IKEEXT_TRAFFIC0,
     ikeProposal: IKEEXT_PROPOSAL0,
     cookiePair: IKEEXT_COOKIE_PAIR0,
@@ -1495,7 +1495,7 @@ pub const IKEEXT_CERTIFICATE_CREDENTIAL1 = extern struct {
 pub const IKEEXT_CREDENTIAL1 = extern struct {
     authenticationMethodType: IKEEXT_AUTHENTICATION_METHOD_TYPE,
     impersonationType: IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE,
-    Anonymous: IKEEXT_CREDENTIAL1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1513,7 +1513,7 @@ pub const IKEEXT_SA_DETAILS1 = extern struct {
     saId: u64,
     keyModuleType: IKEEXT_KEY_MODULE_TYPE,
     ipVersion: FWP_IP_VERSION,
-    Anonymous: IKEEXT_SA_DETAILS1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     ikeTraffic: IKEEXT_TRAFFIC0,
     ikeProposal: IKEEXT_PROPOSAL0,
     cookiePair: IKEEXT_COOKIE_PAIR0,
@@ -1527,7 +1527,7 @@ pub const IKEEXT_SA_DETAILS1 = extern struct {
 pub const IKEEXT_CREDENTIAL2 = extern struct {
     authenticationMethodType: IKEEXT_AUTHENTICATION_METHOD_TYPE,
     impersonationType: IKEEXT_AUTHENTICATION_IMPERSONATION_TYPE,
-    Anonymous: IKEEXT_CREDENTIAL2._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1545,7 +1545,7 @@ pub const IKEEXT_SA_DETAILS2 = extern struct {
     saId: u64,
     keyModuleType: IKEEXT_KEY_MODULE_TYPE,
     ipVersion: FWP_IP_VERSION,
-    Anonymous: IKEEXT_SA_DETAILS2._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     ikeTraffic: IKEEXT_TRAFFIC0,
     ikeProposal: IKEEXT_PROPOSAL0,
     cookiePair: IKEEXT_COOKIE_PAIR0,
@@ -1698,7 +1698,7 @@ pub const IPSEC_AUTH_AND_CIPHER_TRANSFORM0 = extern struct {
 
 pub const IPSEC_SA_TRANSFORM0 = extern struct {
     ipsecTransformType: IPSEC_TRANSFORM_TYPE,
-    Anonymous: IPSEC_SA_TRANSFORM0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -1742,8 +1742,8 @@ pub const IPSEC_TRAFFIC_SELECTOR0_ = extern struct {
     portStart: u16,
     portEnd: u16,
     ipVersion: FWP_IP_VERSION,
-    Anonymous1: IPSEC_TRAFFIC_SELECTOR0_._Anonymous1_e__Union,
-    Anonymous2: IPSEC_TRAFFIC_SELECTOR0_._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
@@ -1785,22 +1785,22 @@ pub const IPSEC_TRANSPORT_POLICY2 = extern struct {
 
 pub const IPSEC_TUNNEL_ENDPOINTS0 = extern struct {
     ipVersion: FWP_IP_VERSION,
-    Anonymous1: IPSEC_TUNNEL_ENDPOINTS0._Anonymous1_e__Union,
-    Anonymous2: IPSEC_TUNNEL_ENDPOINTS0._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IPSEC_TUNNEL_ENDPOINT0 = extern struct {
     ipVersion: FWP_IP_VERSION,
-    Anonymous: IPSEC_TUNNEL_ENDPOINT0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IPSEC_TUNNEL_ENDPOINTS2 = extern struct {
     ipVersion: FWP_IP_VERSION,
-    Anonymous1: IPSEC_TUNNEL_ENDPOINTS2._Anonymous1_e__Union,
-    Anonymous2: IPSEC_TUNNEL_ENDPOINTS2._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     localIfLuid: u64,
     remoteFqdn: PWSTR,
     numAddresses: u32,
@@ -1811,8 +1811,8 @@ pub const IPSEC_TUNNEL_ENDPOINTS2 = extern struct {
 
 pub const IPSEC_TUNNEL_ENDPOINTS1 = extern struct {
     ipVersion: FWP_IP_VERSION,
-    Anonymous1: IPSEC_TUNNEL_ENDPOINTS1._Anonymous1_e__Union,
-    Anonymous2: IPSEC_TUNNEL_ENDPOINTS1._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     localIfLuid: u64,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -1975,7 +1975,7 @@ pub const IPSEC_SA_AUTH_AND_CIPHER_INFORMATION0 = extern struct {
 pub const IPSEC_SA0 = extern struct {
     spi: u32,
     saTransformType: IPSEC_TRANSFORM_TYPE,
-    Anonymous: IPSEC_SA0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2039,7 +2039,7 @@ pub const IPSEC_SA_BUNDLE0 = extern struct {
     saList: *IPSEC_SA0,
     keyModuleState: *IPSEC_KEYMODULE_STATE0,
     ipVersion: FWP_IP_VERSION,
-    Anonymous: IPSEC_SA_BUNDLE0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     mmSaId: u64,
     pfsGroup: IPSEC_PFS_GROUP,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -2057,7 +2057,7 @@ pub const IPSEC_SA_BUNDLE1 = extern struct {
     saList: *IPSEC_SA0,
     keyModuleState: *IPSEC_KEYMODULE_STATE0,
     ipVersion: FWP_IP_VERSION,
-    Anonymous: IPSEC_SA_BUNDLE1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     mmSaId: u64,
     pfsGroup: IPSEC_PFS_GROUP,
     saLookupContext: Guid,
@@ -2076,10 +2076,10 @@ pub const IPSEC_TRAFFIC_TYPE_MAX = IPSEC_TRAFFIC_TYPE.MAX;
 
 pub const IPSEC_TRAFFIC0 = extern struct {
     ipVersion: FWP_IP_VERSION,
-    Anonymous1: IPSEC_TRAFFIC0._Anonymous1_e__Union,
-    Anonymous2: IPSEC_TRAFFIC0._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     trafficType: IPSEC_TRAFFIC_TYPE,
-    Anonymous3: IPSEC_TRAFFIC0._Anonymous3_e__Union,
+    Anonymous3: _Anonymous3_e__Union,
     remotePort: u16,
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -2088,10 +2088,10 @@ pub const IPSEC_TRAFFIC0 = extern struct {
 
 pub const IPSEC_TRAFFIC1 = extern struct {
     ipVersion: FWP_IP_VERSION,
-    Anonymous1: IPSEC_TRAFFIC1._Anonymous1_e__Union,
-    Anonymous2: IPSEC_TRAFFIC1._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     trafficType: IPSEC_TRAFFIC_TYPE,
-    Anonymous3: IPSEC_TRAFFIC1._Anonymous3_e__Union,
+    Anonymous3: _Anonymous3_e__Union,
     remotePort: u16,
     localPort: u16,
     ipProtocol: u8,
@@ -2110,7 +2110,7 @@ pub const IPSEC_V4_UDP_ENCAPSULATION0 = extern struct {
 pub const IPSEC_GETSPI0 = extern struct {
     inboundIpsecTraffic: IPSEC_TRAFFIC0,
     ipVersion: FWP_IP_VERSION,
-    Anonymous: IPSEC_GETSPI0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     rngCryptoModuleID: *Guid,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -2118,7 +2118,7 @@ pub const IPSEC_GETSPI0 = extern struct {
 pub const IPSEC_GETSPI1 = extern struct {
     inboundIpsecTraffic: IPSEC_TRAFFIC1,
     ipVersion: FWP_IP_VERSION,
-    Anonymous: IPSEC_GETSPI1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     rngCryptoModuleID: *Guid,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -2128,7 +2128,7 @@ pub const IPSEC_SA_DETAILS0 = extern struct {
     saDirection: FWP_DIRECTION,
     traffic: IPSEC_TRAFFIC0,
     saBundle: IPSEC_SA_BUNDLE0,
-    Anonymous: IPSEC_SA_DETAILS0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     transportFilter: *FWPM_FILTER0,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -2138,7 +2138,7 @@ pub const IPSEC_SA_DETAILS1 = extern struct {
     saDirection: FWP_DIRECTION,
     traffic: IPSEC_TRAFFIC1,
     saBundle: IPSEC_SA_BUNDLE1,
-    Anonymous: IPSEC_SA_DETAILS1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     transportFilter: *FWPM_FILTER0,
     virtualIfTunnelInfo: IPSEC_VIRTUAL_IF_TUNNEL_INFO0,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -2403,7 +2403,7 @@ pub const FWPM_PROVIDER_CONTEXT0 = extern struct {
     providerKey: *Guid,
     providerData: FWP_BYTE_BLOB,
     type: FWPM_PROVIDER_CONTEXT_TYPE,
-    Anonymous: FWPM_PROVIDER_CONTEXT0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     providerContextId: u64,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -2415,7 +2415,7 @@ pub const FWPM_PROVIDER_CONTEXT1 = extern struct {
     providerKey: *Guid,
     providerData: FWP_BYTE_BLOB,
     type: FWPM_PROVIDER_CONTEXT_TYPE,
-    Anonymous: FWPM_PROVIDER_CONTEXT1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     providerContextId: u64,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -2427,7 +2427,7 @@ pub const FWPM_PROVIDER_CONTEXT2 = extern struct {
     providerKey: *Guid,
     providerData: FWP_BYTE_BLOB,
     type: FWPM_PROVIDER_CONTEXT_TYPE,
-    Anonymous: FWPM_PROVIDER_CONTEXT2._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     providerContextId: u64,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -2439,7 +2439,7 @@ pub const FWPM_PROVIDER_CONTEXT3_ = extern struct {
     providerKey: *Guid,
     providerData: FWP_BYTE_BLOB,
     type: FWPM_PROVIDER_CONTEXT_TYPE,
-    Anonymous: FWPM_PROVIDER_CONTEXT3_._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     providerContextId: u64,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -2545,7 +2545,7 @@ pub const FWPM_CALLOUT_SUBSCRIPTION0 = extern struct {
 
 pub const FWPM_ACTION0 = extern struct {
     type: u32,
-    Anonymous: FWPM_ACTION0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -2567,7 +2567,7 @@ pub const FWPM_FILTER0 = extern struct {
     numFilterConditions: u32,
     filterCondition: *FWPM_FILTER_CONDITION0,
     action: FWPM_ACTION0,
-    Anonymous: FWPM_FILTER0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     reserved: *Guid,
     filterId: u64,
     effectiveWeight: FWP_VALUE0,
@@ -2654,8 +2654,8 @@ pub const FWPM_NET_EVENT_HEADER0 = extern struct {
     flags: u32,
     ipVersion: FWP_IP_VERSION,
     ipProtocol: u8,
-    Anonymous1: FWPM_NET_EVENT_HEADER0._Anonymous1_e__Union,
-    Anonymous2: FWPM_NET_EVENT_HEADER0._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     localPort: u16,
     remotePort: u16,
     scopeId: u32,
@@ -2670,14 +2670,14 @@ pub const FWPM_NET_EVENT_HEADER1 = extern struct {
     flags: u32,
     ipVersion: FWP_IP_VERSION,
     ipProtocol: u8,
-    Anonymous1: FWPM_NET_EVENT_HEADER1._Anonymous1_e__Union,
-    Anonymous2: FWPM_NET_EVENT_HEADER1._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     localPort: u16,
     remotePort: u16,
     scopeId: u32,
     appId: FWP_BYTE_BLOB,
     userId: *SID,
-    Anonymous3: FWPM_NET_EVENT_HEADER1._Anonymous3_e__Union,
+    Anonymous3: _Anonymous3_e__Union,
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
@@ -2688,8 +2688,8 @@ pub const FWPM_NET_EVENT_HEADER2 = extern struct {
     flags: u32,
     ipVersion: FWP_IP_VERSION,
     ipProtocol: u8,
-    Anonymous1: FWPM_NET_EVENT_HEADER2._Anonymous1_e__Union,
-    Anonymous2: FWPM_NET_EVENT_HEADER2._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     localPort: u16,
     remotePort: u16,
     scopeId: u32,
@@ -2706,8 +2706,8 @@ pub const FWPM_NET_EVENT_HEADER3 = extern struct {
     flags: u32,
     ipVersion: FWP_IP_VERSION,
     ipProtocol: u8,
-    Anonymous1: FWPM_NET_EVENT_HEADER3._Anonymous1_e__Union,
-    Anonymous2: FWPM_NET_EVENT_HEADER3._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     localPort: u16,
     remotePort: u16,
     scopeId: u32,
@@ -2808,8 +2808,8 @@ pub const FWPM_NET_EVENT_IKEEXT_QM_FAILURE0 = extern struct {
     qmState: IKEEXT_QM_SA_STATE,
     saRole: IKEEXT_SA_ROLE,
     saTrafficType: IPSEC_TRAFFIC_TYPE,
-    Anonymous1: FWPM_NET_EVENT_IKEEXT_QM_FAILURE0._Anonymous1_e__Union,
-    Anonymous2: FWPM_NET_EVENT_IKEEXT_QM_FAILURE0._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     qmFilterId: u64,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
@@ -2822,8 +2822,8 @@ pub const FWPM_NET_EVENT_IKEEXT_QM_FAILURE1_ = extern struct {
     qmState: IKEEXT_QM_SA_STATE,
     saRole: IKEEXT_SA_ROLE,
     saTrafficType: IPSEC_TRAFFIC_TYPE,
-    Anonymous1: FWPM_NET_EVENT_IKEEXT_QM_FAILURE1_._Anonymous1_e__Union,
-    Anonymous2: FWPM_NET_EVENT_IKEEXT_QM_FAILURE1_._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     qmFilterId: u64,
     mmSaLuid: u64,
     mmProviderContextKey: Guid,
@@ -2932,8 +2932,8 @@ pub const FWPM_NET_EVENT_IPSEC_KERNEL_DROP0 = extern struct {
 
 pub const FWPM_NET_EVENT_IPSEC_DOSP_DROP0 = extern struct {
     ipVersion: FWP_IP_VERSION,
-    Anonymous1: FWPM_NET_EVENT_IPSEC_DOSP_DROP0._Anonymous1_e__Union,
-    Anonymous2: FWPM_NET_EVENT_IPSEC_DOSP_DROP0._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     failureStatus: i32,
     direction: FWP_DIRECTION,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -2968,42 +2968,42 @@ pub const FWPM_NET_EVENT_LPM_PACKET_ARRIVAL0_ = extern struct {
 pub const FWPM_NET_EVENT0 = extern struct {
     header: FWPM_NET_EVENT_HEADER0,
     type: FWPM_NET_EVENT_TYPE,
-    Anonymous: FWPM_NET_EVENT0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const FWPM_NET_EVENT1 = extern struct {
     header: FWPM_NET_EVENT_HEADER1,
     type: FWPM_NET_EVENT_TYPE,
-    Anonymous: FWPM_NET_EVENT1._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const FWPM_NET_EVENT2 = extern struct {
     header: FWPM_NET_EVENT_HEADER2,
     type: FWPM_NET_EVENT_TYPE,
-    Anonymous: FWPM_NET_EVENT2._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const FWPM_NET_EVENT3 = extern struct {
     header: FWPM_NET_EVENT_HEADER3,
     type: FWPM_NET_EVENT_TYPE,
-    Anonymous: FWPM_NET_EVENT3._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const FWPM_NET_EVENT4_ = extern struct {
     header: FWPM_NET_EVENT_HEADER3,
     type: FWPM_NET_EVENT_TYPE,
-    Anonymous: FWPM_NET_EVENT4_._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const FWPM_NET_EVENT5_ = extern struct {
     header: FWPM_NET_EVENT_HEADER3,
     type: FWPM_NET_EVENT_TYPE,
-    Anonymous: FWPM_NET_EVENT5_._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3047,8 +3047,8 @@ pub const FWPM_SYSTEM_PORTS0 = extern struct {
 pub const FWPM_CONNECTION0 = extern struct {
     connectionId: u64,
     ipVersion: FWP_IP_VERSION,
-    Anonymous1: FWPM_CONNECTION0._Anonymous1_e__Union,
-    Anonymous2: FWPM_CONNECTION0._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     providerKey: *Guid,
     ipsecTrafficModeType: IPSEC_TRAFFIC_TYPE,
     keyModuleType: IKEEXT_KEY_MODULE_TYPE,
@@ -3101,7 +3101,7 @@ pub const FWPM_VSWITCH_EVENT_MAX = FWPM_VSWITCH_EVENT_TYPE.MAX;
 pub const FWPM_VSWITCH_EVENT0 = extern struct {
     eventType: FWPM_VSWITCH_EVENT_TYPE,
     vSwitchId: PWSTR,
-    Anonymous: FWPM_VSWITCH_EVENT0._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3206,15 +3206,32 @@ pub const FWPM_VSWITCH_EVENT_CALLBACK0 = fn(
     vSwitchEvent: *const FWPM_VSWITCH_EVENT0,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const DL_OUI = u32; // TODO: implement StructOrUnion types?
+pub const DL_OUI = extern union {
+    Byte: [3]u8,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const DL_EI48 = u32; // TODO: implement StructOrUnion types?
+pub const DL_EI48 = extern union {
+    Byte: [3]u8,
+};
 
-pub const DL_EUI48 = u32; // TODO: implement StructOrUnion types?
+pub const DL_EUI48 = extern union {
+    Byte: [6]u8,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
-pub const DL_EI64 = u32; // TODO: implement StructOrUnion types?
+pub const DL_EI64 = extern union {
+    Byte: [5]u8,
+};
 
-pub const DL_EUI64 = u32; // TODO: implement StructOrUnion types?
+pub const DL_EUI64 = extern union {
+    Byte: [8]u8,
+    Value: u64,
+    Anonymous: _Anonymous_e__Struct,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const SNAP_HEADER = extern struct {
     Dsap: u8,
@@ -3227,12 +3244,12 @@ pub const SNAP_HEADER = extern struct {
 pub const ETHERNET_HEADER = extern struct {
     Destination: DL_EUI48,
     Source: DL_EUI48,
-    Anonymous: ETHERNET_HEADER._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const VLAN_TAG = extern struct {
-    Anonymous: VLAN_TAG._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Type: u16,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -3245,16 +3262,16 @@ pub const ICMP_HEADER = extern struct {
 
 pub const ICMP_MESSAGE = extern struct {
     Header: ICMP_HEADER,
-    Data: ICMP_MESSAGE._Data_e__Union,
+    Data: _Data_e__Union,
     const _Data_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const IPV4_HEADER = extern struct {
-    Anonymous1: IPV4_HEADER._Anonymous1_e__Union,
-    Anonymous2: IPV4_HEADER._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     TotalLength: u16,
     Identification: u16,
-    Anonymous3: IPV4_HEADER._Anonymous3_e__Union,
+    Anonymous3: _Anonymous3_e__Union,
     TimeToLive: u8,
     Protocol: u8,
     HeaderChecksum: u16,
@@ -3266,7 +3283,7 @@ pub const IPV4_HEADER = extern struct {
 };
 
 pub const IPV4_OPTION_HEADER = extern struct {
-    Anonymous: IPV4_OPTION_HEADER._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     OptionLength: u8,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -3297,7 +3314,7 @@ pub const IP_OPT_MULTIDEST = IPV4_OPTION_TYPE.MULTIDEST;
 pub const IPV4_TIMESTAMP_OPTION = extern struct {
     OptionHeader: IPV4_OPTION_HEADER,
     Pointer: u8,
-    Anonymous: IPV4_TIMESTAMP_OPTION._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3402,8 +3419,8 @@ pub const ARP_HW_ENET = ARP_HARDWARE_TYPE.ENET;
 pub const ARP_HW_802 = ARP_HARDWARE_TYPE.@"802";
 
 pub const IGMP_HEADER = extern struct {
-    Anonymous1: IGMP_HEADER._Anonymous1_e__Union,
-    Anonymous2: IGMP_HEADER._Anonymous2_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     Checksum: u16,
     MulticastAddress: IN_ADDR,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -3419,11 +3436,11 @@ pub const IGMP_MAX_RESP_CODE_TYPE_FLOAT = IGMP_MAX_RESP_CODE_TYPE.FLOAT;
 
 pub const IGMPV3_QUERY_HEADER = extern struct {
     Type: u8,
-    Anonymous1: IGMPV3_QUERY_HEADER._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     Checksum: u16,
     MulticastAddress: IN_ADDR,
     _bitfield: u8,
-    Anonymous2: IGMPV3_QUERY_HEADER._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     SourceCount: u16,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -3445,7 +3462,7 @@ pub const IGMPV3_REPORT_HEADER = extern struct {
 };
 
 pub const IPV6_HEADER = extern struct {
-    Anonymous: IPV6_HEADER._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     PayloadLength: u16,
     NextHeader: u8,
     HopLimit: u8,
@@ -3457,7 +3474,7 @@ pub const IPV6_HEADER = extern struct {
 pub const IPV6_FRAGMENT_HEADER = extern struct {
     NextHeader: u8,
     Reserved: u8,
-    Anonymous: IPV6_FRAGMENT_HEADER._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     Id: u32,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
@@ -3515,7 +3532,11 @@ pub const nd_router_advert = extern struct {
     nd_ra_retransmit: u32,
 };
 
-pub const IPV6_ROUTER_ADVERTISEMENT_FLAGS = u32; // TODO: implement StructOrUnion types?
+pub const IPV6_ROUTER_ADVERTISEMENT_FLAGS = extern union {
+    Anonymous: _Anonymous_e__Struct,
+    Value: u8,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const nd_neighbor_solicit = extern struct {
     nd_ns_hdr: ICMP_MESSAGE,
@@ -3527,7 +3548,11 @@ pub const nd_neighbor_advert = extern struct {
     nd_na_target: IN6_ADDR,
 };
 
-pub const IPV6_NEIGHBOR_ADVERTISEMENT_FLAGS = u32; // TODO: implement StructOrUnion types?
+pub const IPV6_NEIGHBOR_ADVERTISEMENT_FLAGS = extern union {
+    Anonymous: _Anonymous_e__Struct,
+    Value: u32,
+    const _Anonymous_e__Struct = u32; // TODO: generate this nested type!
+};
 
 pub const nd_redirect = extern struct {
     nd_rd_hdr: ICMP_MESSAGE,
@@ -3573,10 +3598,10 @@ pub const nd_opt_prefix_info = extern struct {
     nd_opt_pi_type: u8,
     nd_opt_pi_len: u8,
     nd_opt_pi_prefix_len: u8,
-    Anonymous1: nd_opt_prefix_info._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     nd_opt_pi_valid_time: u32,
     nd_opt_pi_preferred_time: u32,
-    Anonymous2: nd_opt_prefix_info._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     nd_opt_pi_prefix: IN6_ADDR,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -3600,7 +3625,7 @@ pub const nd_opt_route_info = extern struct {
     nd_opt_ri_type: u8,
     nd_opt_ri_len: u8,
     nd_opt_ri_prefix_len: u8,
-    Anonymous: nd_opt_route_info._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     nd_opt_ri_route_lifetime: u32,
     nd_opt_ri_prefix: IN6_ADDR,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
@@ -3636,11 +3661,11 @@ pub const MLD_MAX_RESP_CODE_TYPE_FLOAT = MLD_MAX_RESP_CODE_TYPE.FLOAT;
 
 pub const MLDV2_QUERY_HEADER = extern struct {
     IcmpHeader: ICMP_HEADER,
-    Anonymous1: MLDV2_QUERY_HEADER._Anonymous1_e__Union,
+    Anonymous1: _Anonymous1_e__Union,
     Reserved: u16,
     MulticastAddress: IN6_ADDR,
     _bitfield: u8,
-    Anonymous2: MLDV2_QUERY_HEADER._Anonymous2_e__Union,
+    Anonymous2: _Anonymous2_e__Union,
     SourceCount: u16,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -3691,7 +3716,7 @@ pub const tcp_opt_sack_permitted = extern struct {
 pub const tcp_opt_sack = extern struct {
     Kind: u8,
     Length: u8,
-    Block: [1]tcp_opt_sack.tcp_opt_sack_block,
+    Block: [1]tcp_opt_sack_block,
     const tcp_opt_sack_block = u32; // TODO: generate this nested type!
 };
 
@@ -3732,13 +3757,13 @@ pub const TUNNEL_SUB_TYPE_HA = TUNNEL_SUB_TYPE.HA;
 
 pub const DL_TEREDO_ADDRESS = extern struct {
     Reserved: [6]u8,
-    Anonymous: DL_TEREDO_ADDRESS._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DL_TEREDO_ADDRESS_PRV = extern struct {
     Reserved: [6]u8,
-    Anonymous: DL_TEREDO_ADDRESS_PRV._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3756,7 +3781,7 @@ pub const MIT_IF_LUID = NPI_MODULEID_TYPE.IF_LUID;
 pub const NPI_MODULEID = extern struct {
     Length: u16,
     Type: NPI_MODULEID_TYPE,
-    Anonymous: NPI_MODULEID._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -5271,42 +5296,33 @@ const ACL = @import("security.zig").ACL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = FWPM_PROVIDER_CHANGE_CALLBACK0;
-    _ = FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0;
-    _ = FWPM_SUBLAYER_CHANGE_CALLBACK0;
-    _ = FWPM_CALLOUT_CHANGE_CALLBACK0;
-    _ = FWPM_FILTER_CHANGE_CALLBACK0;
-    _ = IPSEC_SA_CONTEXT_CALLBACK0;
-    _ = IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0;
-    _ = IPSEC_KEY_MANAGER_DICTATE_KEY0;
-    _ = IPSEC_KEY_MANAGER_NOTIFY_KEY0;
-    _ = FWPM_NET_EVENT_CALLBACK0;
-    _ = FWPM_NET_EVENT_CALLBACK1;
-    _ = FWPM_NET_EVENT_CALLBACK2;
-    _ = FWPM_NET_EVENT_CALLBACK3;
-    _ = FWPM_NET_EVENT_CALLBACK4;
-    _ = FWPM_SYSTEM_PORTS_CALLBACK0;
-    _ = FWPM_CONNECTION_CALLBACK0;
-    _ = FWPM_VSWITCH_EVENT_CALLBACK0;
+    if (@hasDecl(@This(), "FWPM_PROVIDER_CHANGE_CALLBACK0")) { _ = FWPM_PROVIDER_CHANGE_CALLBACK0; }
+    if (@hasDecl(@This(), "FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0")) { _ = FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0; }
+    if (@hasDecl(@This(), "FWPM_SUBLAYER_CHANGE_CALLBACK0")) { _ = FWPM_SUBLAYER_CHANGE_CALLBACK0; }
+    if (@hasDecl(@This(), "FWPM_CALLOUT_CHANGE_CALLBACK0")) { _ = FWPM_CALLOUT_CHANGE_CALLBACK0; }
+    if (@hasDecl(@This(), "FWPM_FILTER_CHANGE_CALLBACK0")) { _ = FWPM_FILTER_CHANGE_CALLBACK0; }
+    if (@hasDecl(@This(), "IPSEC_SA_CONTEXT_CALLBACK0")) { _ = IPSEC_SA_CONTEXT_CALLBACK0; }
+    if (@hasDecl(@This(), "IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0")) { _ = IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0; }
+    if (@hasDecl(@This(), "IPSEC_KEY_MANAGER_DICTATE_KEY0")) { _ = IPSEC_KEY_MANAGER_DICTATE_KEY0; }
+    if (@hasDecl(@This(), "IPSEC_KEY_MANAGER_NOTIFY_KEY0")) { _ = IPSEC_KEY_MANAGER_NOTIFY_KEY0; }
+    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK0")) { _ = FWPM_NET_EVENT_CALLBACK0; }
+    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK1")) { _ = FWPM_NET_EVENT_CALLBACK1; }
+    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK2")) { _ = FWPM_NET_EVENT_CALLBACK2; }
+    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK3")) { _ = FWPM_NET_EVENT_CALLBACK3; }
+    if (@hasDecl(@This(), "FWPM_NET_EVENT_CALLBACK4")) { _ = FWPM_NET_EVENT_CALLBACK4; }
+    if (@hasDecl(@This(), "FWPM_SYSTEM_PORTS_CALLBACK0")) { _ = FWPM_SYSTEM_PORTS_CALLBACK0; }
+    if (@hasDecl(@This(), "FWPM_CONNECTION_CALLBACK0")) { _ = FWPM_CONNECTION_CALLBACK0; }
+    if (@hasDecl(@This(), "FWPM_VSWITCH_EVENT_CALLBACK0")) { _ = FWPM_VSWITCH_EVENT_CALLBACK0; }
 
-    const constant_export_count = 593;
-    const type_export_count = 345;
-    const enum_value_export_count = 389;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 186;
-    const unicode_alias_count = 0;
-    const import_count = 16;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

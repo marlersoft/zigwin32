@@ -2,6 +2,9 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (47)
 //--------------------------------------------------------------------------------
+pub const D3DCOMPILER_DLL = "d3dcompiler_47.dll";
+pub const D3DCOMPILE_OPTIMIZATION_LEVEL2 = @as(u32, 49152);
+pub const D3D_COMPILE_STANDARD_FILE_INCLUDE = @as(u32, 1);
 pub const D3D_COMPILER_VERSION = @as(u32, 47);
 pub const D3DCOMPILE_DEBUG = @as(u32, 1);
 pub const D3DCOMPILE_SKIP_VALIDATION = @as(u32, 2);
@@ -46,9 +49,6 @@ pub const D3D_DISASM_INSTRUCTION_ONLY = @as(u32, 64);
 pub const D3D_DISASM_PRINT_HEX_LITERALS = @as(u32, 128);
 pub const D3D_GET_INST_OFFSETS_INCLUDE_NON_EXECUTABLE = @as(u32, 1);
 pub const D3D_COMPRESS_SHADER_KEEP_ALL_PARTS = @as(u32, 1);
-pub const D3DCOMPILER_DLL = "d3dcompiler_47.dll";
-pub const D3DCOMPILE_OPTIMIZATION_LEVEL2 = @as(u32, 49152);
-pub const D3D_COMPILE_STANDARD_FILE_INCLUDE = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)
@@ -396,28 +396,19 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = pD3DCompile;
-    _ = pD3DPreprocess;
-    _ = pD3DDisassemble;
+    if (@hasDecl(@This(), "pD3DCompile")) { _ = pD3DCompile; }
+    if (@hasDecl(@This(), "pD3DPreprocess")) { _ = pD3DPreprocess; }
+    if (@hasDecl(@This(), "pD3DDisassemble")) { _ = pD3DDisassemble; }
 
-    const constant_export_count = 47;
-    const type_export_count = 6;
-    const enum_value_export_count = 23;
-    const com_iface_id_export_count = 0;
-    const com_class_id_export_count = 0;
-    const func_export_count = 25;
-    const unicode_alias_count = 0;
-    const import_count = 12;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }

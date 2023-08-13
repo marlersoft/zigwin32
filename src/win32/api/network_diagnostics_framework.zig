@@ -79,7 +79,7 @@ pub const DIAG_SOCKADDR = extern struct {
 pub const HELPER_ATTRIBUTE = extern struct {
     pwszName: PWSTR,
     type: ATTRIBUTE_TYPE,
-    Anonymous: HELPER_ATTRIBUTE._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -126,7 +126,7 @@ pub const ShellCommandInfo = extern struct {
 
 pub const UiInfo = extern struct {
     type: UI_INFO_TYPE,
-    Anonymous: UiInfo._Anonymous_e__Union,
+    Anonymous: _Anonymous_e__Union,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -655,24 +655,15 @@ const BOOL = @import("system_services.zig").BOOL;
 const HWND = @import("windows_and_messaging.zig").HWND;
 
 test {
-    const constant_export_count = 22;
-    const type_export_count = 25;
-    const enum_value_export_count = 45;
-    const com_iface_id_export_count = 5;
-    const com_class_id_export_count = 0;
-    const func_export_count = 16;
-    const unicode_alias_count = 0;
-    const import_count = 10;
     @setEvalBranchQuota(
-        constant_export_count +
-        type_export_count +
-        enum_value_export_count +
-        com_iface_id_export_count * 2 + // * 2 for value and ptr
-        com_class_id_export_count * 2 + // * 2 for value and ptr
-        func_export_count +
-        unicode_alias_count +
-        import_count +
-        2 // TODO: why do I need these extra 2?
+        @import("std").meta.declarations(@This()).len * 3
     );
-    @import("std").testing.refAllDecls(@This());
+
+    // reference all the pub declarations
+    if (!@import("std").builtin.is_test) return;
+    inline for (@import("std").meta.declarations(@This())) |decl| {
+        if (decl.is_pub) {
+            _ = decl;
+        }
+    }
 }
