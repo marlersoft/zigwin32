@@ -236,40 +236,8 @@ pub const WLX_OPTION_SMART_CARD_INFO = @as(u32, 65538);
 pub const WLX_OPTION_DISPATCH_TABLE_SIZE = @as(u32, 65539);
 
 //--------------------------------------------------------------------------------
-// Section: Types (320)
+// Section: Types (314)
 //--------------------------------------------------------------------------------
-pub const AUTHZ_ACCESS_CHECK_RESULTS_HANDLE = isize;
-
-pub const AUTHZ_CLIENT_CONTEXT_HANDLE = isize;
-
-pub const AUTHZ_RESOURCE_MANAGER_HANDLE = isize;
-
-pub const AUTHZ_AUDIT_EVENT_HANDLE = *opaque{};
-
-pub const AUTHZ_AUDIT_EVENT_TYPE_HANDLE = isize;
-
-pub const AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE = isize;
-
-pub const HDIAGNOSTIC_DATA_QUERY_SESSION = isize;
-
-pub const HDIAGNOSTIC_REPORT = isize;
-
-pub const HDIAGNOSTIC_EVENT_TAG_DESCRIPTION = isize;
-
-pub const HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION = isize;
-
-pub const HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION = isize;
-
-pub const HDIAGNOSTIC_RECORD = isize;
-
-pub const NCRYPT_DESCRIPTOR_HANDLE = isize;
-
-pub const NCRYPT_STREAM_HANDLE = isize;
-
-pub const SAFER_LEVEL_HANDLE = isize;
-
-pub const SC_HANDLE = isize;
-
 pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = fn(
     ClientRequest: **c_void,
     // TODO: what to do with BytesParamIndex 3?
@@ -353,6 +321,26 @@ pub const TOKEN_ADJUST_GROUPS = TOKEN_ACCESS_MASK.ADJUST_GROUPS;
 pub const TOKEN_ADJUST_DEFAULT = TOKEN_ACCESS_MASK.ADJUST_DEFAULT;
 pub const TOKEN_ADJUST_SESSIONID = TOKEN_ACCESS_MASK.ADJUST_SESSIONID;
 pub const TOKEN_ALL_ACCESS = TOKEN_ACCESS_MASK.ALL_ACCESS;
+
+pub const HDIAGNOSTIC_DATA_QUERY_SESSION = isize;
+
+pub const HDIAGNOSTIC_REPORT = isize;
+
+pub const HDIAGNOSTIC_EVENT_TAG_DESCRIPTION = isize;
+
+pub const HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION = isize;
+
+pub const HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION = isize;
+
+pub const HDIAGNOSTIC_RECORD = isize;
+
+pub const NCRYPT_DESCRIPTOR_HANDLE = isize;
+
+pub const NCRYPT_STREAM_HANDLE = isize;
+
+pub const SAFER_LEVEL_HANDLE = isize;
+
+pub const SC_HANDLE = isize;
 
 pub const GENERIC_MAPPING = extern struct {
     GenericRead: u32,

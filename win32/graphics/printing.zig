@@ -1099,6 +1099,15 @@ pub const _SPLCLIENT_INFO_2_V2 = extern struct {
 
 }, else => struct { } };
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const _SPLCLIENT_INFO_2_V2 = extern struct {
+    hSplPrinter: u64,
+};
+
+}, else => struct { } };
+
 const CLSID_BidiRequest_Value = @import("../zig.zig").Guid.initString("b9162a23-45f9-47cc-80f5-fe0fe9b9e1a2");
 pub const CLSID_BidiRequest = &CLSID_BidiRequest_Value;
 
@@ -6365,15 +6374,6 @@ pub const SPLCLIENT_INFO_1 = extern struct {
 pub const _SPLCLIENT_INFO_2_V1 = extern struct {
     hSplPrinter: usize,
 };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const _SPLCLIENT_INFO_2_V2 = extern struct {
-    hSplPrinter: u64,
-};
-
-}, else => struct { } };
 
 pub const _SPLCLIENT_INFO_2_V3 = extern struct {
     hSplPrinter: u64,

@@ -10202,35 +10202,6 @@ pub const IActiveIME2 = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (1237)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn FindStringOrdinal(
-    dwFindStringOrdinalFlags: u32,
-    lpStringSource: [*:0]const u16,
-    cchSource: i32,
-    lpStringValue: [*:0]const u16,
-    cchValue: i32,
-    bIgnoreCase: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetTextCharset(
-    hdc: HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn GetTextCharsetInfo(
-    hdc: HDC,
-    lpSig: ?*FONTSIGNATURE,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "GDI32" fn TranslateCharsetInfo(
-    lpSrc: *u32,
-    lpCs: *CHARSETINFO,
-    dwFlags: TRANSLATE_CHARSET_INFO_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn lstrcmpA(
     lpString1: [*:0]const u8,
@@ -10310,6 +10281,35 @@ pub extern "ADVAPI32" fn IsTextUnicode(
     iSize: i32,
     lpiResult: ?*IS_TEXT_UNICODE_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn GetTextCharset(
+    hdc: HDC,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn GetTextCharsetInfo(
+    hdc: HDC,
+    lpSig: ?*FONTSIGNATURE,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "GDI32" fn TranslateCharsetInfo(
+    lpSrc: *u32,
+    lpCs: *CHARSETINFO,
+    dwFlags: TRANSLATE_CHARSET_INFO_FLAGS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn FindStringOrdinal(
+    dwFindStringOrdinalFlags: u32,
+    lpStringSource: [*:0]const u16,
+    cchSource: i32,
+    lpStringValue: [*:0]const u16,
+    cchValue: i32,
+    bIgnoreCase: BOOL,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "KERNEL32" fn GetDateFormatA(

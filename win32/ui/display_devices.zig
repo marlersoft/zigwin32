@@ -6,9 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (233)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'EngDeleteSemaphore', what can Zig do with this information?
-pub const HSEMAPHORE = *opaque{};
-
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
@@ -77,824 +74,74 @@ pub const IFIMETRICS = extern struct {
 
 }, else => struct { } };
 
-pub const FD_XFORM = extern struct {
-    eXX: f32,
-    eXY: f32,
-    eYX: f32,
-    eYY: f32,
-};
-
-pub const FD_DEVICEMETRICS = extern struct {
-    flRealizedType: u32,
-    pteBase: POINTE,
-    pteSide: POINTE,
-    lD: i32,
-    fxMaxAscender: i32,
-    fxMaxDescender: i32,
-    ptlUnderline1: POINTL,
-    ptlStrikeOut: POINTL,
-    ptlULThickness: POINTL,
-    ptlSOThickness: POINTL,
-    cxMax: u32,
-    cyMax: u32,
-    cjGlyphMax: u32,
-    fdxQuantized: FD_XFORM,
-    lNonLinearExtLeading: i32,
-    lNonLinearIntLeading: i32,
-    lNonLinearMaxCharWidth: i32,
-    lNonLinearAvgCharWidth: i32,
-    lMinA: i32,
-    lMinC: i32,
-    lMinD: i32,
-    alReserved: [1]i32,
-};
-
-pub const WCRUN = extern struct {
-    wcLow: u16,
-    cGlyphs: u16,
-    phg: *u32,
-};
-
-pub const FD_GLYPHSET = extern struct {
-    cjThis: u32,
-    flAccel: u32,
-    cGlyphsSupported: u32,
-    cRuns: u32,
-    awcrun: [1]WCRUN,
-};
-
-pub const FD_GLYPHATTR = extern struct {
-    cjThis: u32,
-    cGlyphs: u32,
-    iMode: u32,
-    aGlyphAttr: [1]u8,
-};
-
-pub const FD_KERNINGPAIR = extern struct {
-    wcFirst: u16,
-    wcSecond: u16,
-    fwdKern: i16,
-};
-
-pub const FONTDIFF = extern struct {
-    jReserved1: u8,
-    jReserved2: u8,
-    jReserved3: u8,
-    bWeight: u8,
-    usWinWeight: u16,
-    fsSelection: u16,
-    fwdAveCharWidth: i16,
-    fwdMaxCharInc: i16,
-    ptlCaret: POINTL,
-};
-
-pub const FONTSIM = extern struct {
-    dpBold: i32,
-    dpItalic: i32,
-    dpBoldItalic: i32,
-};
-
-pub const IFIEXTRA = extern struct {
-    ulIdentifier: u32,
-    dpFontSig: i32,
-    cig: u32,
-    dpDesignVector: i32,
-    dpAxesInfoW: i32,
-    aulReserved: [1]u32,
-};
-
-pub const DRVFN = extern struct {
-    iFunc: u32,
-    pfn: PFN,
-};
-
-pub const DRVENABLEDATA = extern struct {
-    iDriverVersion: u32,
-    c: u32,
-    pdrvfn: *DRVFN,
-};
-
-pub const DEVINFO = extern struct {
-    flGraphicsCaps: u32,
-    lfDefaultFont: LOGFONTW,
-    lfAnsiVarFont: LOGFONTW,
-    lfAnsiFixFont: LOGFONTW,
-    cFonts: u32,
-    iDitherFormat: u32,
-    cxDither: u16,
-    cyDither: u16,
-    hpalDefault: HPALETTE,
-    flGraphicsCaps2: u32,
-};
-
-pub const LINEATTRS = extern struct {
-    fl: u32,
-    iJoin: u32,
-    iEndCap: u32,
-    elWidth: FLOAT_LONG,
-    eMiterLimit: f32,
-    cstyle: u32,
-    pstyle: *FLOAT_LONG,
-    elStyleState: FLOAT_LONG,
-};
-
-pub const XFORML = extern struct {
-    eM11: f32,
-    eM12: f32,
-    eM21: f32,
-    eM22: f32,
-    eDx: f32,
-    eDy: f32,
-};
-
-pub const CIECHROMA = extern struct {
-    x: i32,
-    y: i32,
-    Y: i32,
-};
-
-pub const COLORINFO = extern struct {
-    Red: CIECHROMA,
-    Green: CIECHROMA,
-    Blue: CIECHROMA,
-    Cyan: CIECHROMA,
-    Magenta: CIECHROMA,
-    Yellow: CIECHROMA,
-    AlignmentWhite: CIECHROMA,
-    RedGamma: i32,
-    GreenGamma: i32,
-    BlueGamma: i32,
-    MagentaInCyanDye: i32,
-    YellowInCyanDye: i32,
-    CyanInMagentaDye: i32,
-    YellowInMagentaDye: i32,
-    CyanInYellowDye: i32,
-    MagentaInYellowDye: i32,
-};
-
-pub const GDIINFO = extern struct {
-    ulVersion: u32,
-    ulTechnology: u32,
-    ulHorzSize: u32,
-    ulVertSize: u32,
-    ulHorzRes: u32,
-    ulVertRes: u32,
-    cBitsPixel: u32,
-    cPlanes: u32,
-    ulNumColors: u32,
-    flRaster: u32,
-    ulLogPixelsX: u32,
-    ulLogPixelsY: u32,
-    flTextCaps: u32,
-    ulDACRed: u32,
-    ulDACGreen: u32,
-    ulDACBlue: u32,
-    ulAspectX: u32,
-    ulAspectY: u32,
-    ulAspectXY: u32,
-    xStyleStep: i32,
-    yStyleStep: i32,
-    denStyleStep: i32,
-    ptlPhysOffset: POINTL,
-    szlPhysSize: SIZE,
-    ulNumPalReg: u32,
-    ciDevice: COLORINFO,
-    ulDevicePelsDPI: u32,
-    ulPrimaryOrder: u32,
-    ulHTPatternSize: u32,
-    ulHTOutputFormat: u32,
-    flHTFlags: u32,
-    ulVRefresh: u32,
-    ulBltAlignment: u32,
-    ulPanningHorzRes: u32,
-    ulPanningVertRes: u32,
-    xPanningAlignment: u32,
-    yPanningAlignment: u32,
-    cxHTPat: u32,
-    cyHTPat: u32,
-    pHTPatA: *u8,
-    pHTPatB: *u8,
-    pHTPatC: *u8,
-    flShadeBlend: u32,
-    ulPhysicalPixelCharacteristics: u32,
-    ulPhysicalPixelGamma: u32,
-};
-
-pub const BRUSHOBJ = extern struct {
-    iSolidColor: u32,
-    pvRbrush: *c_void,
-    flColorType: u32,
-};
-
-pub const CLIPOBJ = extern struct {
-    iUniq: u32,
-    rclBounds: RECTL,
-    iDComplexity: u8,
-    iFComplexity: u8,
-    iMode: u8,
-    fjOptions: u8,
-};
-
-pub const DRIVEROBJ = extern struct {
-    pvObj: *c_void,
-    pFreeProc: FREEOBJPROC,
-    hdev: HDEV,
-    dhpdev: DHPDEV,
-};
-
-pub const FONTOBJ = extern struct {
-    iUniq: u32,
-    iFace: u32,
-    cxMax: u32,
-    flFontType: u32,
-    iTTUniq: usize,
-    iFile: usize,
-    sizLogResPpi: SIZE,
-    ulStyleSize: u32,
-    pvConsumer: *c_void,
-    pvProducer: *c_void,
-};
-
-pub const BLENDOBJ = extern struct {
-    BlendFunction: BLENDFUNCTION,
-};
-
-pub const PALOBJ = extern struct {
-    ulReserved: u32,
-};
-
-pub const PATHOBJ = extern struct {
-    fl: u32,
-    cCurves: u32,
-};
-
-pub const SURFOBJ = extern struct {
-    dhsurf: DHSURF,
-    hsurf: HSURF,
-    dhpdev: DHPDEV,
-    hdev: HDEV,
-    sizlBitmap: SIZE,
-    cjBits: u32,
-    pvBits: *c_void,
-    pvScan0: *c_void,
-    lDelta: i32,
-    iUniq: u32,
-    iBitmapFormat: u32,
-    iType: u16,
-    fjBitmap: u16,
-};
-
-pub const WNDOBJ = extern struct {
-    coClient: CLIPOBJ,
-    pvConsumer: *c_void,
-    rclClient: RECTL,
-    psoOwner: *SURFOBJ,
-};
-
-pub const XLATEOBJ = extern struct {
-    iUniq: u32,
-    flXlate: u32,
-    iSrcType: u16,
-    iDstType: u16,
-    cEntries: u32,
-    pulXlate: *u32,
-};
-
-pub const ENUMRECTS = extern struct {
-    c: u32,
-    arcl: [1]RECTL,
-};
-
-pub const GLYPHBITS = extern struct {
-    ptlOrigin: POINTL,
-    sizlBitmap: SIZE,
-    aj: [1]u8,
-};
-
-pub const GLYPHDEF = extern union {
-    pgb: *GLYPHBITS,
-    ppo: *PATHOBJ,
-};
-
-pub const GLYPHPOS = extern struct {
-    hg: u32,
-    pgdf: *GLYPHDEF,
-    ptl: POINTL,
-};
-
-pub const GLYPHDATA = extern struct {
-    gdf: GLYPHDEF,
-    hg: u32,
-    fxD: i32,
-    fxA: i32,
-    fxAB: i32,
-    fxInkTop: i32,
-    fxInkBottom: i32,
-    rclInk: RECTL,
-    ptqD: POINTQF,
-};
-
-pub const STROBJ = extern struct {
-    cGlyphs: u32,
-    flAccel: u32,
-    ulCharInc: u32,
-    rclBkGround: RECTL,
-    pgp: *GLYPHPOS,
-    pwszOrg: PWSTR,
-};
-
-pub const FONTINFO = extern struct {
-    cjThis: u32,
-    flCaps: u32,
-    cGlyphsSupported: u32,
-    cjMaxGlyph1: u32,
-    cjMaxGlyph4: u32,
-    cjMaxGlyph8: u32,
-    cjMaxGlyph32: u32,
-};
-
-pub const PATHDATA = extern struct {
-    flags: u32,
-    count: u32,
-    pptfx: *POINTFIX,
-};
-
-pub const RUN = extern struct {
-    iStart: i32,
-    iStop: i32,
-};
-
-pub const CLIPLINE = extern struct {
-    ptfxA: POINTFIX,
-    ptfxB: POINTFIX,
-    lStyleState: i32,
-    c: u32,
-    arun: [1]RUN,
-};
-
-pub const PERBANDINFO = extern struct {
-    bRepeatThisBand: BOOL,
-    szlBand: SIZE,
-    ulHorzRes: u32,
-    ulVertRes: u32,
-};
-
-pub const GAMMARAMP = extern struct {
-    Red: [256]u16,
-    Green: [256]u16,
-    Blue: [256]u16,
-};
-
-pub const DEVHTINFO = extern struct {
-    HTFlags: u32,
-    HTPatternSize: u32,
-    DevPelsDPI: u32,
-    ColorInfo: COLORINFO,
-};
-
-pub const DEVHTADJDATA = extern struct {
-    DeviceFlags: u32,
-    DeviceXDPI: u32,
-    DeviceYDPI: u32,
-    pDefHTInfo: *DEVHTINFO,
-    pAdjHTInfo: *DEVHTINFO,
-};
-
-pub const TYPE1_FONT = extern struct {
-    hPFM: HANDLE,
-    hPFB: HANDLE,
-    ulIdentifier: u32,
-};
-
-pub const ENGSAFESEMAPHORE = extern struct {
-    hsem: *HSEMAPHORE__,
-    lCount: i32,
-};
-
-pub const ENG_TIME_FIELDS = extern struct {
-    usYear: u16,
-    usMonth: u16,
-    usDay: u16,
-    usHour: u16,
-    usMinute: u16,
-    usSecond: u16,
-    usMilliseconds: u16,
-    usWeekday: u16,
-};
-
-pub const PFN_DrvQueryGlyphAttrs = fn(
-    param0: *FONTOBJ,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHATTR;
-
-pub const DEVMODEA = extern struct {
-    dmDeviceName: [32]u8,
-    dmSpecVersion: u16,
-    dmDriverVersion: u16,
-    dmSize: u16,
-    dmDriverExtra: u16,
-    dmFields: u32,
-    Anonymous1: extern union {
-        Anonymous1: extern struct {
-            dmOrientation: i16,
-            dmPaperSize: i16,
-            dmPaperLength: i16,
-            dmPaperWidth: i16,
-            dmScale: i16,
-            dmCopies: i16,
-            dmDefaultSource: i16,
-            dmPrintQuality: i16,
-        },
-        Anonymous2: extern struct {
-            dmPosition: POINTL,
-            dmDisplayOrientation: u32,
-            dmDisplayFixedOutput: u32,
-        },
-    },
-    dmColor: i16,
-    dmDuplex: i16,
-    dmYResolution: i16,
-    dmTTOption: i16,
-    dmCollate: i16,
-    dmFormName: [32]u8,
-    dmLogPixels: u16,
-    dmBitsPerPel: u32,
-    dmPelsWidth: u32,
-    dmPelsHeight: u32,
-    Anonymous2: extern union {
-        dmDisplayFlags: u32,
-        dmNup: u32,
-    },
-    dmDisplayFrequency: u32,
-    dmICMMethod: u32,
-    dmICMIntent: u32,
-    dmMediaType: u32,
-    dmDitherType: u32,
-    dmReserved1: u32,
-    dmReserved2: u32,
-    dmPanningWidth: u32,
-    dmPanningHeight: u32,
-};
-
-pub const DEVMODEW = extern struct {
-    dmDeviceName: [32]u16,
-    dmSpecVersion: u16,
-    dmDriverVersion: u16,
-    dmSize: u16,
-    dmDriverExtra: u16,
-    dmFields: u32,
-    Anonymous1: extern union {
-        Anonymous1: extern struct {
-            dmOrientation: i16,
-            dmPaperSize: i16,
-            dmPaperLength: i16,
-            dmPaperWidth: i16,
-            dmScale: i16,
-            dmCopies: i16,
-            dmDefaultSource: i16,
-            dmPrintQuality: i16,
-        },
-        Anonymous2: extern struct {
-            dmPosition: POINTL,
-            dmDisplayOrientation: u32,
-            dmDisplayFixedOutput: u32,
-        },
-    },
-    dmColor: i16,
-    dmDuplex: i16,
-    dmYResolution: i16,
-    dmTTOption: i16,
-    dmCollate: i16,
-    dmFormName: [32]u16,
-    dmLogPixels: u16,
-    dmBitsPerPel: u32,
-    dmPelsWidth: u32,
-    dmPelsHeight: u32,
-    Anonymous2: extern union {
-        dmDisplayFlags: u32,
-        dmNup: u32,
-    },
-    dmDisplayFrequency: u32,
-    dmICMMethod: u32,
-    dmICMIntent: u32,
-    dmMediaType: u32,
-    dmDitherType: u32,
-    dmReserved1: u32,
-    dmReserved2: u32,
-    dmPanningWidth: u32,
-    dmPanningHeight: u32,
-};
-
-pub const DISPLAYCONFIG_RATIONAL = extern struct {
-    Numerator: u32,
-    Denominator: u32,
-};
-
-pub const DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY = enum(i32) {
-    OTHER = -1,
-    HD15 = 0,
-    SVIDEO = 1,
-    COMPOSITE_VIDEO = 2,
-    COMPONENT_VIDEO = 3,
-    DVI = 4,
-    HDMI = 5,
-    LVDS = 6,
-    D_JPN = 8,
-    SDI = 9,
-    DISPLAYPORT_EXTERNAL = 10,
-    DISPLAYPORT_EMBEDDED = 11,
-    UDI_EXTERNAL = 12,
-    UDI_EMBEDDED = 13,
-    SDTVDONGLE = 14,
-    MIRACAST = 15,
-    INDIRECT_WIRED = 16,
-    INDIRECT_VIRTUAL = 17,
-    INTERNAL = -2147483648,
-    // FORCE_UINT32 = -1, this enum value conflicts with OTHER
-};
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_OTHER = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.OTHER;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HD15 = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.HD15;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SVIDEO = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.SVIDEO;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPOSITE_VIDEO = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.COMPOSITE_VIDEO;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPONENT_VIDEO = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.COMPONENT_VIDEO;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DVI = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DVI;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HDMI = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.HDMI;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_LVDS = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.LVDS;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_D_JPN = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.D_JPN;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDI = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.SDI;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EXTERNAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYPORT_EXTERNAL;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EMBEDDED = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYPORT_EMBEDDED;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EXTERNAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.UDI_EXTERNAL;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EMBEDDED = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.UDI_EMBEDDED;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDTVDONGLE = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.SDTVDONGLE;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_MIRACAST = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.MIRACAST;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_WIRED = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.INDIRECT_WIRED;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_VIRTUAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.INDIRECT_VIRTUAL;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INTERNAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.INTERNAL;
-pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_FORCE_UINT32 = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.OTHER;
-
-pub const DISPLAYCONFIG_SCANLINE_ORDERING = enum(i32) {
-    UNSPECIFIED = 0,
-    PROGRESSIVE = 1,
-    INTERLACED = 2,
-    // INTERLACED_UPPERFIELDFIRST = 2, this enum value conflicts with INTERLACED
-    INTERLACED_LOWERFIELDFIRST = 3,
-    FORCE_UINT32 = -1,
-};
-pub const DISPLAYCONFIG_SCANLINE_ORDERING_UNSPECIFIED = DISPLAYCONFIG_SCANLINE_ORDERING.UNSPECIFIED;
-pub const DISPLAYCONFIG_SCANLINE_ORDERING_PROGRESSIVE = DISPLAYCONFIG_SCANLINE_ORDERING.PROGRESSIVE;
-pub const DISPLAYCONFIG_SCANLINE_ORDERING_INTERLACED = DISPLAYCONFIG_SCANLINE_ORDERING.INTERLACED;
-pub const DISPLAYCONFIG_SCANLINE_ORDERING_INTERLACED_UPPERFIELDFIRST = DISPLAYCONFIG_SCANLINE_ORDERING.INTERLACED;
-pub const DISPLAYCONFIG_SCANLINE_ORDERING_INTERLACED_LOWERFIELDFIRST = DISPLAYCONFIG_SCANLINE_ORDERING.INTERLACED_LOWERFIELDFIRST;
-pub const DISPLAYCONFIG_SCANLINE_ORDERING_FORCE_UINT32 = DISPLAYCONFIG_SCANLINE_ORDERING.FORCE_UINT32;
-
-pub const DISPLAYCONFIG_2DREGION = extern struct {
-    cx: u32,
-    cy: u32,
-};
-
-pub const DISPLAYCONFIG_VIDEO_SIGNAL_INFO = extern struct {
-    pixelRate: u64,
-    hSyncFreq: DISPLAYCONFIG_RATIONAL,
-    vSyncFreq: DISPLAYCONFIG_RATIONAL,
-    activeSize: DISPLAYCONFIG_2DREGION,
-    totalSize: DISPLAYCONFIG_2DREGION,
-    Anonymous: extern union {
-        AdditionalSignalInfo: extern struct {
-            _bitfield: u32,
-        },
-        videoStandard: u32,
-    },
-    scanLineOrdering: DISPLAYCONFIG_SCANLINE_ORDERING,
-};
-
-pub const DISPLAYCONFIG_SCALING = enum(i32) {
-    IDENTITY = 1,
-    CENTERED = 2,
-    STRETCHED = 3,
-    ASPECTRATIOCENTEREDMAX = 4,
-    CUSTOM = 5,
-    PREFERRED = 128,
-    FORCE_UINT32 = -1,
-};
-pub const DISPLAYCONFIG_SCALING_IDENTITY = DISPLAYCONFIG_SCALING.IDENTITY;
-pub const DISPLAYCONFIG_SCALING_CENTERED = DISPLAYCONFIG_SCALING.CENTERED;
-pub const DISPLAYCONFIG_SCALING_STRETCHED = DISPLAYCONFIG_SCALING.STRETCHED;
-pub const DISPLAYCONFIG_SCALING_ASPECTRATIOCENTEREDMAX = DISPLAYCONFIG_SCALING.ASPECTRATIOCENTEREDMAX;
-pub const DISPLAYCONFIG_SCALING_CUSTOM = DISPLAYCONFIG_SCALING.CUSTOM;
-pub const DISPLAYCONFIG_SCALING_PREFERRED = DISPLAYCONFIG_SCALING.PREFERRED;
-pub const DISPLAYCONFIG_SCALING_FORCE_UINT32 = DISPLAYCONFIG_SCALING.FORCE_UINT32;
-
-pub const DISPLAYCONFIG_ROTATION = enum(i32) {
-    IDENTITY = 1,
-    ROTATE90 = 2,
-    ROTATE180 = 3,
-    ROTATE270 = 4,
-    FORCE_UINT32 = -1,
-};
-pub const DISPLAYCONFIG_ROTATION_IDENTITY = DISPLAYCONFIG_ROTATION.IDENTITY;
-pub const DISPLAYCONFIG_ROTATION_ROTATE90 = DISPLAYCONFIG_ROTATION.ROTATE90;
-pub const DISPLAYCONFIG_ROTATION_ROTATE180 = DISPLAYCONFIG_ROTATION.ROTATE180;
-pub const DISPLAYCONFIG_ROTATION_ROTATE270 = DISPLAYCONFIG_ROTATION.ROTATE270;
-pub const DISPLAYCONFIG_ROTATION_FORCE_UINT32 = DISPLAYCONFIG_ROTATION.FORCE_UINT32;
-
-pub const DISPLAYCONFIG_MODE_INFO_TYPE = enum(i32) {
-    SOURCE = 1,
-    TARGET = 2,
-    DESKTOP_IMAGE = 3,
-    FORCE_UINT32 = -1,
-};
-pub const DISPLAYCONFIG_MODE_INFO_TYPE_SOURCE = DISPLAYCONFIG_MODE_INFO_TYPE.SOURCE;
-pub const DISPLAYCONFIG_MODE_INFO_TYPE_TARGET = DISPLAYCONFIG_MODE_INFO_TYPE.TARGET;
-pub const DISPLAYCONFIG_MODE_INFO_TYPE_DESKTOP_IMAGE = DISPLAYCONFIG_MODE_INFO_TYPE.DESKTOP_IMAGE;
-pub const DISPLAYCONFIG_MODE_INFO_TYPE_FORCE_UINT32 = DISPLAYCONFIG_MODE_INFO_TYPE.FORCE_UINT32;
-
-pub const DISPLAYCONFIG_PIXELFORMAT = enum(i32) {
-    @"8BPP" = 1,
-    @"16BPP" = 2,
-    @"24BPP" = 3,
-    @"32BPP" = 4,
-    NONGDI = 5,
-    FORCE_UINT32 = -1,
-};
-pub const DISPLAYCONFIG_PIXELFORMAT_8BPP = DISPLAYCONFIG_PIXELFORMAT.@"8BPP";
-pub const DISPLAYCONFIG_PIXELFORMAT_16BPP = DISPLAYCONFIG_PIXELFORMAT.@"16BPP";
-pub const DISPLAYCONFIG_PIXELFORMAT_24BPP = DISPLAYCONFIG_PIXELFORMAT.@"24BPP";
-pub const DISPLAYCONFIG_PIXELFORMAT_32BPP = DISPLAYCONFIG_PIXELFORMAT.@"32BPP";
-pub const DISPLAYCONFIG_PIXELFORMAT_NONGDI = DISPLAYCONFIG_PIXELFORMAT.NONGDI;
-pub const DISPLAYCONFIG_PIXELFORMAT_FORCE_UINT32 = DISPLAYCONFIG_PIXELFORMAT.FORCE_UINT32;
-
-pub const DISPLAYCONFIG_SOURCE_MODE = extern struct {
-    width: u32,
-    height: u32,
-    pixelFormat: DISPLAYCONFIG_PIXELFORMAT,
-    position: POINTL,
-};
-
-pub const DISPLAYCONFIG_TARGET_MODE = extern struct {
-    targetVideoSignalInfo: DISPLAYCONFIG_VIDEO_SIGNAL_INFO,
-};
-
-pub const DISPLAYCONFIG_DESKTOP_IMAGE_INFO = extern struct {
-    PathSourceSize: POINTL,
-    DesktopImageRegion: RECTL,
-    DesktopImageClip: RECTL,
-};
-
-pub const DISPLAYCONFIG_MODE_INFO = extern struct {
-    infoType: DISPLAYCONFIG_MODE_INFO_TYPE,
-    id: u32,
-    adapterId: LUID,
-    Anonymous: extern union {
-        targetMode: DISPLAYCONFIG_TARGET_MODE,
-        sourceMode: DISPLAYCONFIG_SOURCE_MODE,
-        desktopImageInfo: DISPLAYCONFIG_DESKTOP_IMAGE_INFO,
-    },
-};
-
-pub const DISPLAYCONFIG_PATH_SOURCE_INFO = extern struct {
-    adapterId: LUID,
-    id: u32,
-    Anonymous: extern union {
-        modeInfoIdx: u32,
-        Anonymous: extern struct {
-            _bitfield: u32,
-        },
-    },
-    statusFlags: u32,
-};
-
-pub const DISPLAYCONFIG_PATH_TARGET_INFO = extern struct {
-    adapterId: LUID,
-    id: u32,
-    Anonymous: extern union {
-        modeInfoIdx: u32,
-        Anonymous: extern struct {
-            _bitfield: u32,
-        },
-    },
-    outputTechnology: DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY,
-    rotation: DISPLAYCONFIG_ROTATION,
-    scaling: DISPLAYCONFIG_SCALING,
-    refreshRate: DISPLAYCONFIG_RATIONAL,
-    scanLineOrdering: DISPLAYCONFIG_SCANLINE_ORDERING,
-    targetAvailable: BOOL,
-    statusFlags: u32,
-};
-
-pub const DISPLAYCONFIG_PATH_INFO = extern struct {
-    sourceInfo: DISPLAYCONFIG_PATH_SOURCE_INFO,
-    targetInfo: DISPLAYCONFIG_PATH_TARGET_INFO,
-    flags: u32,
-};
-
-pub const DISPLAYCONFIG_TOPOLOGY_ID = enum(i32) {
-    INTERNAL = 1,
-    CLONE = 2,
-    EXTEND = 4,
-    EXTERNAL = 8,
-    FORCE_UINT32 = -1,
-};
-pub const DISPLAYCONFIG_TOPOLOGY_INTERNAL = DISPLAYCONFIG_TOPOLOGY_ID.INTERNAL;
-pub const DISPLAYCONFIG_TOPOLOGY_CLONE = DISPLAYCONFIG_TOPOLOGY_ID.CLONE;
-pub const DISPLAYCONFIG_TOPOLOGY_EXTEND = DISPLAYCONFIG_TOPOLOGY_ID.EXTEND;
-pub const DISPLAYCONFIG_TOPOLOGY_EXTERNAL = DISPLAYCONFIG_TOPOLOGY_ID.EXTERNAL;
-pub const DISPLAYCONFIG_TOPOLOGY_FORCE_UINT32 = DISPLAYCONFIG_TOPOLOGY_ID.FORCE_UINT32;
-
-pub const DISPLAYCONFIG_DEVICE_INFO_TYPE = enum(i32) {
-    GET_SOURCE_NAME = 1,
-    GET_TARGET_NAME = 2,
-    GET_TARGET_PREFERRED_MODE = 3,
-    GET_ADAPTER_NAME = 4,
-    SET_TARGET_PERSISTENCE = 5,
-    GET_TARGET_BASE_TYPE = 6,
-    GET_SUPPORT_VIRTUAL_RESOLUTION = 7,
-    SET_SUPPORT_VIRTUAL_RESOLUTION = 8,
-    GET_ADVANCED_COLOR_INFO = 9,
-    SET_ADVANCED_COLOR_STATE = 10,
-    GET_SDR_WHITE_LEVEL = 11,
-    FORCE_UINT32 = -1,
-};
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_SOURCE_NAME = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_SOURCE_NAME;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_NAME = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_TARGET_NAME;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_PREFERRED_MODE = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_TARGET_PREFERRED_MODE;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_ADAPTER_NAME = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_ADAPTER_NAME;
-pub const DISPLAYCONFIG_DEVICE_INFO_SET_TARGET_PERSISTENCE = DISPLAYCONFIG_DEVICE_INFO_TYPE.SET_TARGET_PERSISTENCE;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_BASE_TYPE = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_TARGET_BASE_TYPE;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_SUPPORT_VIRTUAL_RESOLUTION = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_SUPPORT_VIRTUAL_RESOLUTION;
-pub const DISPLAYCONFIG_DEVICE_INFO_SET_SUPPORT_VIRTUAL_RESOLUTION = DISPLAYCONFIG_DEVICE_INFO_TYPE.SET_SUPPORT_VIRTUAL_RESOLUTION;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_ADVANCED_COLOR_INFO = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_ADVANCED_COLOR_INFO;
-pub const DISPLAYCONFIG_DEVICE_INFO_SET_ADVANCED_COLOR_STATE = DISPLAYCONFIG_DEVICE_INFO_TYPE.SET_ADVANCED_COLOR_STATE;
-pub const DISPLAYCONFIG_DEVICE_INFO_GET_SDR_WHITE_LEVEL = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_SDR_WHITE_LEVEL;
-pub const DISPLAYCONFIG_DEVICE_INFO_FORCE_UINT32 = DISPLAYCONFIG_DEVICE_INFO_TYPE.FORCE_UINT32;
-
-pub const DISPLAYCONFIG_DEVICE_INFO_HEADER = extern struct {
-    type: DISPLAYCONFIG_DEVICE_INFO_TYPE,
-    size: u32,
-    adapterId: LUID,
-    id: u32,
-};
-
-pub const DISPLAYCONFIG_SOURCE_DEVICE_NAME = extern struct {
-    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    viewGdiDeviceName: [32]u16,
-};
-
-pub const DISPLAYCONFIG_TARGET_DEVICE_NAME_FLAGS = extern struct {
-    Anonymous: extern union {
-        Anonymous: extern struct {
-            _bitfield: u32,
-        },
-        value: u32,
-    },
-};
-
-pub const DISPLAYCONFIG_TARGET_DEVICE_NAME = extern struct {
-    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    flags: DISPLAYCONFIG_TARGET_DEVICE_NAME_FLAGS,
-    outputTechnology: DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY,
-    edidManufactureId: u16,
-    edidProductCodeId: u16,
-    connectorInstance: u32,
-    monitorFriendlyDeviceName: [64]u16,
-    monitorDevicePath: [128]u16,
-};
-
-pub const DISPLAYCONFIG_TARGET_PREFERRED_MODE = extern struct {
-    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    width: u32,
-    height: u32,
-    targetMode: DISPLAYCONFIG_TARGET_MODE,
-};
-
-pub const DISPLAYCONFIG_ADAPTER_NAME = extern struct {
-    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    adapterDevicePath: [128]u16,
-};
-
-pub const DISPLAYCONFIG_TARGET_BASE_TYPE = extern struct {
-    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    baseOutputTechnology: DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY,
-};
-
-pub const DISPLAYCONFIG_SET_TARGET_PERSISTENCE = extern struct {
-    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    Anonymous: extern union {
-        Anonymous: extern struct {
-            _bitfield: u32,
-        },
-        value: u32,
-    },
-};
-
-pub const DISPLAYCONFIG_SUPPORT_VIRTUAL_RESOLUTION = extern struct {
-    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
-    Anonymous: extern union {
-        Anonymous: extern struct {
-            _bitfield: u32,
-        },
-        value: u32,
-    },
+const IID_IDirectDrawKernel_Value = @import("../zig.zig").Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
+pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
+pub const IDirectDrawKernel = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCaps: fn(
+            self: *const IDirectDrawKernel,
+            param0: *DDKERNELCAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKernelHandle: fn(
+            self: *const IDirectDrawKernel,
+            param0: *usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseKernelHandle: fn(
+            self: *const IDirectDrawKernel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawKernel_GetCaps(self: *const T, param0: *DDKERNELCAPS) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawKernel, self), param0);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawKernel_GetKernelHandle(self: *const T, param0: *usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawKernel, self), param0);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawKernel, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IDirectDrawSurfaceKernel_Value = @import("../zig.zig").Guid.initString("60755da0-6a40-11d0-9b06-00a0c903a3b8");
+pub const IID_IDirectDrawSurfaceKernel = &IID_IDirectDrawSurfaceKernel_Value;
+pub const IDirectDrawSurfaceKernel = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetKernelHandle: fn(
+            self: *const IDirectDrawSurfaceKernel,
+            param0: *usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseKernelHandle: fn(
+            self: *const IDirectDrawSurfaceKernel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawSurfaceKernel_GetKernelHandle(self: *const T, param0: *usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self), param0);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirectDrawSurfaceKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const DDKERNELCAPS = extern struct {
+    dwSize: u32,
+    dwCaps: u32,
+    dwIRQCaps: u32,
 };
 
 pub const DDVIDEOPORTCAPS = extern struct {
@@ -2107,75 +1354,828 @@ pub const DD_GETDRIVERSTATEDATA = extern struct {
     ddRVal: HRESULT,
 };
 
-const IID_IDirectDrawKernel_Value = @import("../zig.zig").Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
-pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
-pub const IDirectDrawKernel = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCaps: fn(
-            self: *const IDirectDrawKernel,
-            param0: *DDKERNELCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetKernelHandle: fn(
-            self: *const IDirectDrawKernel,
-            param0: *usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseKernelHandle: fn(
-            self: *const IDirectDrawKernel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_GetCaps(self: *const T, param0: *DDKERNELCAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetCaps(@ptrCast(*const IDirectDrawKernel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_GetKernelHandle(self: *const T, param0: *usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawKernel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawKernel, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
+// TODO: this type has a FreeFunc 'EngDeleteSemaphore', what can Zig do with this information?
+pub const HSEMAPHORE = *opaque{};
+
+pub const DEVMODEA = extern struct {
+    dmDeviceName: [32]u8,
+    dmSpecVersion: u16,
+    dmDriverVersion: u16,
+    dmSize: u16,
+    dmDriverExtra: u16,
+    dmFields: u32,
+    Anonymous1: extern union {
+        Anonymous1: extern struct {
+            dmOrientation: i16,
+            dmPaperSize: i16,
+            dmPaperLength: i16,
+            dmPaperWidth: i16,
+            dmScale: i16,
+            dmCopies: i16,
+            dmDefaultSource: i16,
+            dmPrintQuality: i16,
+        },
+        Anonymous2: extern struct {
+            dmPosition: POINTL,
+            dmDisplayOrientation: u32,
+            dmDisplayFixedOutput: u32,
+        },
+    },
+    dmColor: i16,
+    dmDuplex: i16,
+    dmYResolution: i16,
+    dmTTOption: i16,
+    dmCollate: i16,
+    dmFormName: [32]u8,
+    dmLogPixels: u16,
+    dmBitsPerPel: u32,
+    dmPelsWidth: u32,
+    dmPelsHeight: u32,
+    Anonymous2: extern union {
+        dmDisplayFlags: u32,
+        dmNup: u32,
+    },
+    dmDisplayFrequency: u32,
+    dmICMMethod: u32,
+    dmICMIntent: u32,
+    dmMediaType: u32,
+    dmDitherType: u32,
+    dmReserved1: u32,
+    dmReserved2: u32,
+    dmPanningWidth: u32,
+    dmPanningHeight: u32,
 };
 
-const IID_IDirectDrawSurfaceKernel_Value = @import("../zig.zig").Guid.initString("60755da0-6a40-11d0-9b06-00a0c903a3b8");
-pub const IID_IDirectDrawSurfaceKernel = &IID_IDirectDrawSurfaceKernel_Value;
-pub const IDirectDrawSurfaceKernel = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetKernelHandle: fn(
-            self: *const IDirectDrawSurfaceKernel,
-            param0: *usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReleaseKernelHandle: fn(
-            self: *const IDirectDrawSurfaceKernel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurfaceKernel_GetKernelHandle(self: *const T, param0: *usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).GetKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self), param0);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectDrawSurfaceKernel_ReleaseKernelHandle(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirectDrawSurfaceKernel.VTable, self.vtable).ReleaseKernelHandle(@ptrCast(*const IDirectDrawSurfaceKernel, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
+pub const DEVMODEW = extern struct {
+    dmDeviceName: [32]u16,
+    dmSpecVersion: u16,
+    dmDriverVersion: u16,
+    dmSize: u16,
+    dmDriverExtra: u16,
+    dmFields: u32,
+    Anonymous1: extern union {
+        Anonymous1: extern struct {
+            dmOrientation: i16,
+            dmPaperSize: i16,
+            dmPaperLength: i16,
+            dmPaperWidth: i16,
+            dmScale: i16,
+            dmCopies: i16,
+            dmDefaultSource: i16,
+            dmPrintQuality: i16,
+        },
+        Anonymous2: extern struct {
+            dmPosition: POINTL,
+            dmDisplayOrientation: u32,
+            dmDisplayFixedOutput: u32,
+        },
+    },
+    dmColor: i16,
+    dmDuplex: i16,
+    dmYResolution: i16,
+    dmTTOption: i16,
+    dmCollate: i16,
+    dmFormName: [32]u16,
+    dmLogPixels: u16,
+    dmBitsPerPel: u32,
+    dmPelsWidth: u32,
+    dmPelsHeight: u32,
+    Anonymous2: extern union {
+        dmDisplayFlags: u32,
+        dmNup: u32,
+    },
+    dmDisplayFrequency: u32,
+    dmICMMethod: u32,
+    dmICMIntent: u32,
+    dmMediaType: u32,
+    dmDitherType: u32,
+    dmReserved1: u32,
+    dmReserved2: u32,
+    dmPanningWidth: u32,
+    dmPanningHeight: u32,
 };
 
-pub const DDKERNELCAPS = extern struct {
-    dwSize: u32,
-    dwCaps: u32,
-    dwIRQCaps: u32,
+pub const DISPLAYCONFIG_RATIONAL = extern struct {
+    Numerator: u32,
+    Denominator: u32,
 };
+
+pub const DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY = enum(i32) {
+    OTHER = -1,
+    HD15 = 0,
+    SVIDEO = 1,
+    COMPOSITE_VIDEO = 2,
+    COMPONENT_VIDEO = 3,
+    DVI = 4,
+    HDMI = 5,
+    LVDS = 6,
+    D_JPN = 8,
+    SDI = 9,
+    DISPLAYPORT_EXTERNAL = 10,
+    DISPLAYPORT_EMBEDDED = 11,
+    UDI_EXTERNAL = 12,
+    UDI_EMBEDDED = 13,
+    SDTVDONGLE = 14,
+    MIRACAST = 15,
+    INDIRECT_WIRED = 16,
+    INDIRECT_VIRTUAL = 17,
+    INTERNAL = -2147483648,
+    // FORCE_UINT32 = -1, this enum value conflicts with OTHER
+};
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_OTHER = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.OTHER;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HD15 = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.HD15;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SVIDEO = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.SVIDEO;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPOSITE_VIDEO = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.COMPOSITE_VIDEO;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_COMPONENT_VIDEO = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.COMPONENT_VIDEO;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DVI = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DVI;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HDMI = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.HDMI;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_LVDS = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.LVDS;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_D_JPN = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.D_JPN;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDI = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.SDI;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EXTERNAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYPORT_EXTERNAL;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_DISPLAYPORT_EMBEDDED = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.DISPLAYPORT_EMBEDDED;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EXTERNAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.UDI_EXTERNAL;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_UDI_EMBEDDED = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.UDI_EMBEDDED;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SDTVDONGLE = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.SDTVDONGLE;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_MIRACAST = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.MIRACAST;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_WIRED = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.INDIRECT_WIRED;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INDIRECT_VIRTUAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.INDIRECT_VIRTUAL;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INTERNAL = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.INTERNAL;
+pub const DISPLAYCONFIG_OUTPUT_TECHNOLOGY_FORCE_UINT32 = DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY.OTHER;
+
+pub const DISPLAYCONFIG_SCANLINE_ORDERING = enum(i32) {
+    UNSPECIFIED = 0,
+    PROGRESSIVE = 1,
+    INTERLACED = 2,
+    // INTERLACED_UPPERFIELDFIRST = 2, this enum value conflicts with INTERLACED
+    INTERLACED_LOWERFIELDFIRST = 3,
+    FORCE_UINT32 = -1,
+};
+pub const DISPLAYCONFIG_SCANLINE_ORDERING_UNSPECIFIED = DISPLAYCONFIG_SCANLINE_ORDERING.UNSPECIFIED;
+pub const DISPLAYCONFIG_SCANLINE_ORDERING_PROGRESSIVE = DISPLAYCONFIG_SCANLINE_ORDERING.PROGRESSIVE;
+pub const DISPLAYCONFIG_SCANLINE_ORDERING_INTERLACED = DISPLAYCONFIG_SCANLINE_ORDERING.INTERLACED;
+pub const DISPLAYCONFIG_SCANLINE_ORDERING_INTERLACED_UPPERFIELDFIRST = DISPLAYCONFIG_SCANLINE_ORDERING.INTERLACED;
+pub const DISPLAYCONFIG_SCANLINE_ORDERING_INTERLACED_LOWERFIELDFIRST = DISPLAYCONFIG_SCANLINE_ORDERING.INTERLACED_LOWERFIELDFIRST;
+pub const DISPLAYCONFIG_SCANLINE_ORDERING_FORCE_UINT32 = DISPLAYCONFIG_SCANLINE_ORDERING.FORCE_UINT32;
+
+pub const DISPLAYCONFIG_2DREGION = extern struct {
+    cx: u32,
+    cy: u32,
+};
+
+pub const DISPLAYCONFIG_VIDEO_SIGNAL_INFO = extern struct {
+    pixelRate: u64,
+    hSyncFreq: DISPLAYCONFIG_RATIONAL,
+    vSyncFreq: DISPLAYCONFIG_RATIONAL,
+    activeSize: DISPLAYCONFIG_2DREGION,
+    totalSize: DISPLAYCONFIG_2DREGION,
+    Anonymous: extern union {
+        AdditionalSignalInfo: extern struct {
+            _bitfield: u32,
+        },
+        videoStandard: u32,
+    },
+    scanLineOrdering: DISPLAYCONFIG_SCANLINE_ORDERING,
+};
+
+pub const DISPLAYCONFIG_SCALING = enum(i32) {
+    IDENTITY = 1,
+    CENTERED = 2,
+    STRETCHED = 3,
+    ASPECTRATIOCENTEREDMAX = 4,
+    CUSTOM = 5,
+    PREFERRED = 128,
+    FORCE_UINT32 = -1,
+};
+pub const DISPLAYCONFIG_SCALING_IDENTITY = DISPLAYCONFIG_SCALING.IDENTITY;
+pub const DISPLAYCONFIG_SCALING_CENTERED = DISPLAYCONFIG_SCALING.CENTERED;
+pub const DISPLAYCONFIG_SCALING_STRETCHED = DISPLAYCONFIG_SCALING.STRETCHED;
+pub const DISPLAYCONFIG_SCALING_ASPECTRATIOCENTEREDMAX = DISPLAYCONFIG_SCALING.ASPECTRATIOCENTEREDMAX;
+pub const DISPLAYCONFIG_SCALING_CUSTOM = DISPLAYCONFIG_SCALING.CUSTOM;
+pub const DISPLAYCONFIG_SCALING_PREFERRED = DISPLAYCONFIG_SCALING.PREFERRED;
+pub const DISPLAYCONFIG_SCALING_FORCE_UINT32 = DISPLAYCONFIG_SCALING.FORCE_UINT32;
+
+pub const DISPLAYCONFIG_ROTATION = enum(i32) {
+    IDENTITY = 1,
+    ROTATE90 = 2,
+    ROTATE180 = 3,
+    ROTATE270 = 4,
+    FORCE_UINT32 = -1,
+};
+pub const DISPLAYCONFIG_ROTATION_IDENTITY = DISPLAYCONFIG_ROTATION.IDENTITY;
+pub const DISPLAYCONFIG_ROTATION_ROTATE90 = DISPLAYCONFIG_ROTATION.ROTATE90;
+pub const DISPLAYCONFIG_ROTATION_ROTATE180 = DISPLAYCONFIG_ROTATION.ROTATE180;
+pub const DISPLAYCONFIG_ROTATION_ROTATE270 = DISPLAYCONFIG_ROTATION.ROTATE270;
+pub const DISPLAYCONFIG_ROTATION_FORCE_UINT32 = DISPLAYCONFIG_ROTATION.FORCE_UINT32;
+
+pub const DISPLAYCONFIG_MODE_INFO_TYPE = enum(i32) {
+    SOURCE = 1,
+    TARGET = 2,
+    DESKTOP_IMAGE = 3,
+    FORCE_UINT32 = -1,
+};
+pub const DISPLAYCONFIG_MODE_INFO_TYPE_SOURCE = DISPLAYCONFIG_MODE_INFO_TYPE.SOURCE;
+pub const DISPLAYCONFIG_MODE_INFO_TYPE_TARGET = DISPLAYCONFIG_MODE_INFO_TYPE.TARGET;
+pub const DISPLAYCONFIG_MODE_INFO_TYPE_DESKTOP_IMAGE = DISPLAYCONFIG_MODE_INFO_TYPE.DESKTOP_IMAGE;
+pub const DISPLAYCONFIG_MODE_INFO_TYPE_FORCE_UINT32 = DISPLAYCONFIG_MODE_INFO_TYPE.FORCE_UINT32;
+
+pub const DISPLAYCONFIG_PIXELFORMAT = enum(i32) {
+    @"8BPP" = 1,
+    @"16BPP" = 2,
+    @"24BPP" = 3,
+    @"32BPP" = 4,
+    NONGDI = 5,
+    FORCE_UINT32 = -1,
+};
+pub const DISPLAYCONFIG_PIXELFORMAT_8BPP = DISPLAYCONFIG_PIXELFORMAT.@"8BPP";
+pub const DISPLAYCONFIG_PIXELFORMAT_16BPP = DISPLAYCONFIG_PIXELFORMAT.@"16BPP";
+pub const DISPLAYCONFIG_PIXELFORMAT_24BPP = DISPLAYCONFIG_PIXELFORMAT.@"24BPP";
+pub const DISPLAYCONFIG_PIXELFORMAT_32BPP = DISPLAYCONFIG_PIXELFORMAT.@"32BPP";
+pub const DISPLAYCONFIG_PIXELFORMAT_NONGDI = DISPLAYCONFIG_PIXELFORMAT.NONGDI;
+pub const DISPLAYCONFIG_PIXELFORMAT_FORCE_UINT32 = DISPLAYCONFIG_PIXELFORMAT.FORCE_UINT32;
+
+pub const DISPLAYCONFIG_SOURCE_MODE = extern struct {
+    width: u32,
+    height: u32,
+    pixelFormat: DISPLAYCONFIG_PIXELFORMAT,
+    position: POINTL,
+};
+
+pub const DISPLAYCONFIG_TARGET_MODE = extern struct {
+    targetVideoSignalInfo: DISPLAYCONFIG_VIDEO_SIGNAL_INFO,
+};
+
+pub const DISPLAYCONFIG_DESKTOP_IMAGE_INFO = extern struct {
+    PathSourceSize: POINTL,
+    DesktopImageRegion: RECTL,
+    DesktopImageClip: RECTL,
+};
+
+pub const DISPLAYCONFIG_MODE_INFO = extern struct {
+    infoType: DISPLAYCONFIG_MODE_INFO_TYPE,
+    id: u32,
+    adapterId: LUID,
+    Anonymous: extern union {
+        targetMode: DISPLAYCONFIG_TARGET_MODE,
+        sourceMode: DISPLAYCONFIG_SOURCE_MODE,
+        desktopImageInfo: DISPLAYCONFIG_DESKTOP_IMAGE_INFO,
+    },
+};
+
+pub const DISPLAYCONFIG_PATH_SOURCE_INFO = extern struct {
+    adapterId: LUID,
+    id: u32,
+    Anonymous: extern union {
+        modeInfoIdx: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
+    statusFlags: u32,
+};
+
+pub const DISPLAYCONFIG_PATH_TARGET_INFO = extern struct {
+    adapterId: LUID,
+    id: u32,
+    Anonymous: extern union {
+        modeInfoIdx: u32,
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+    },
+    outputTechnology: DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY,
+    rotation: DISPLAYCONFIG_ROTATION,
+    scaling: DISPLAYCONFIG_SCALING,
+    refreshRate: DISPLAYCONFIG_RATIONAL,
+    scanLineOrdering: DISPLAYCONFIG_SCANLINE_ORDERING,
+    targetAvailable: BOOL,
+    statusFlags: u32,
+};
+
+pub const DISPLAYCONFIG_PATH_INFO = extern struct {
+    sourceInfo: DISPLAYCONFIG_PATH_SOURCE_INFO,
+    targetInfo: DISPLAYCONFIG_PATH_TARGET_INFO,
+    flags: u32,
+};
+
+pub const DISPLAYCONFIG_TOPOLOGY_ID = enum(i32) {
+    INTERNAL = 1,
+    CLONE = 2,
+    EXTEND = 4,
+    EXTERNAL = 8,
+    FORCE_UINT32 = -1,
+};
+pub const DISPLAYCONFIG_TOPOLOGY_INTERNAL = DISPLAYCONFIG_TOPOLOGY_ID.INTERNAL;
+pub const DISPLAYCONFIG_TOPOLOGY_CLONE = DISPLAYCONFIG_TOPOLOGY_ID.CLONE;
+pub const DISPLAYCONFIG_TOPOLOGY_EXTEND = DISPLAYCONFIG_TOPOLOGY_ID.EXTEND;
+pub const DISPLAYCONFIG_TOPOLOGY_EXTERNAL = DISPLAYCONFIG_TOPOLOGY_ID.EXTERNAL;
+pub const DISPLAYCONFIG_TOPOLOGY_FORCE_UINT32 = DISPLAYCONFIG_TOPOLOGY_ID.FORCE_UINT32;
+
+pub const DISPLAYCONFIG_DEVICE_INFO_TYPE = enum(i32) {
+    GET_SOURCE_NAME = 1,
+    GET_TARGET_NAME = 2,
+    GET_TARGET_PREFERRED_MODE = 3,
+    GET_ADAPTER_NAME = 4,
+    SET_TARGET_PERSISTENCE = 5,
+    GET_TARGET_BASE_TYPE = 6,
+    GET_SUPPORT_VIRTUAL_RESOLUTION = 7,
+    SET_SUPPORT_VIRTUAL_RESOLUTION = 8,
+    GET_ADVANCED_COLOR_INFO = 9,
+    SET_ADVANCED_COLOR_STATE = 10,
+    GET_SDR_WHITE_LEVEL = 11,
+    FORCE_UINT32 = -1,
+};
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_SOURCE_NAME = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_SOURCE_NAME;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_NAME = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_TARGET_NAME;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_PREFERRED_MODE = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_TARGET_PREFERRED_MODE;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_ADAPTER_NAME = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_ADAPTER_NAME;
+pub const DISPLAYCONFIG_DEVICE_INFO_SET_TARGET_PERSISTENCE = DISPLAYCONFIG_DEVICE_INFO_TYPE.SET_TARGET_PERSISTENCE;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_BASE_TYPE = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_TARGET_BASE_TYPE;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_SUPPORT_VIRTUAL_RESOLUTION = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_SUPPORT_VIRTUAL_RESOLUTION;
+pub const DISPLAYCONFIG_DEVICE_INFO_SET_SUPPORT_VIRTUAL_RESOLUTION = DISPLAYCONFIG_DEVICE_INFO_TYPE.SET_SUPPORT_VIRTUAL_RESOLUTION;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_ADVANCED_COLOR_INFO = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_ADVANCED_COLOR_INFO;
+pub const DISPLAYCONFIG_DEVICE_INFO_SET_ADVANCED_COLOR_STATE = DISPLAYCONFIG_DEVICE_INFO_TYPE.SET_ADVANCED_COLOR_STATE;
+pub const DISPLAYCONFIG_DEVICE_INFO_GET_SDR_WHITE_LEVEL = DISPLAYCONFIG_DEVICE_INFO_TYPE.GET_SDR_WHITE_LEVEL;
+pub const DISPLAYCONFIG_DEVICE_INFO_FORCE_UINT32 = DISPLAYCONFIG_DEVICE_INFO_TYPE.FORCE_UINT32;
+
+pub const DISPLAYCONFIG_DEVICE_INFO_HEADER = extern struct {
+    type: DISPLAYCONFIG_DEVICE_INFO_TYPE,
+    size: u32,
+    adapterId: LUID,
+    id: u32,
+};
+
+pub const DISPLAYCONFIG_SOURCE_DEVICE_NAME = extern struct {
+    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
+    viewGdiDeviceName: [32]u16,
+};
+
+pub const DISPLAYCONFIG_TARGET_DEVICE_NAME_FLAGS = extern struct {
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        value: u32,
+    },
+};
+
+pub const DISPLAYCONFIG_TARGET_DEVICE_NAME = extern struct {
+    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
+    flags: DISPLAYCONFIG_TARGET_DEVICE_NAME_FLAGS,
+    outputTechnology: DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY,
+    edidManufactureId: u16,
+    edidProductCodeId: u16,
+    connectorInstance: u32,
+    monitorFriendlyDeviceName: [64]u16,
+    monitorDevicePath: [128]u16,
+};
+
+pub const DISPLAYCONFIG_TARGET_PREFERRED_MODE = extern struct {
+    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
+    width: u32,
+    height: u32,
+    targetMode: DISPLAYCONFIG_TARGET_MODE,
+};
+
+pub const DISPLAYCONFIG_ADAPTER_NAME = extern struct {
+    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
+    adapterDevicePath: [128]u16,
+};
+
+pub const DISPLAYCONFIG_TARGET_BASE_TYPE = extern struct {
+    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
+    baseOutputTechnology: DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY,
+};
+
+pub const DISPLAYCONFIG_SET_TARGET_PERSISTENCE = extern struct {
+    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        value: u32,
+    },
+};
+
+pub const DISPLAYCONFIG_SUPPORT_VIRTUAL_RESOLUTION = extern struct {
+    header: DISPLAYCONFIG_DEVICE_INFO_HEADER,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        value: u32,
+    },
+};
+
+pub const FD_XFORM = extern struct {
+    eXX: f32,
+    eXY: f32,
+    eYX: f32,
+    eYY: f32,
+};
+
+pub const FD_DEVICEMETRICS = extern struct {
+    flRealizedType: u32,
+    pteBase: POINTE,
+    pteSide: POINTE,
+    lD: i32,
+    fxMaxAscender: i32,
+    fxMaxDescender: i32,
+    ptlUnderline1: POINTL,
+    ptlStrikeOut: POINTL,
+    ptlULThickness: POINTL,
+    ptlSOThickness: POINTL,
+    cxMax: u32,
+    cyMax: u32,
+    cjGlyphMax: u32,
+    fdxQuantized: FD_XFORM,
+    lNonLinearExtLeading: i32,
+    lNonLinearIntLeading: i32,
+    lNonLinearMaxCharWidth: i32,
+    lNonLinearAvgCharWidth: i32,
+    lMinA: i32,
+    lMinC: i32,
+    lMinD: i32,
+    alReserved: [1]i32,
+};
+
+pub const WCRUN = extern struct {
+    wcLow: u16,
+    cGlyphs: u16,
+    phg: *u32,
+};
+
+pub const FD_GLYPHSET = extern struct {
+    cjThis: u32,
+    flAccel: u32,
+    cGlyphsSupported: u32,
+    cRuns: u32,
+    awcrun: [1]WCRUN,
+};
+
+pub const FD_GLYPHATTR = extern struct {
+    cjThis: u32,
+    cGlyphs: u32,
+    iMode: u32,
+    aGlyphAttr: [1]u8,
+};
+
+pub const FD_KERNINGPAIR = extern struct {
+    wcFirst: u16,
+    wcSecond: u16,
+    fwdKern: i16,
+};
+
+pub const FONTDIFF = extern struct {
+    jReserved1: u8,
+    jReserved2: u8,
+    jReserved3: u8,
+    bWeight: u8,
+    usWinWeight: u16,
+    fsSelection: u16,
+    fwdAveCharWidth: i16,
+    fwdMaxCharInc: i16,
+    ptlCaret: POINTL,
+};
+
+pub const FONTSIM = extern struct {
+    dpBold: i32,
+    dpItalic: i32,
+    dpBoldItalic: i32,
+};
+
+pub const IFIEXTRA = extern struct {
+    ulIdentifier: u32,
+    dpFontSig: i32,
+    cig: u32,
+    dpDesignVector: i32,
+    dpAxesInfoW: i32,
+    aulReserved: [1]u32,
+};
+
+pub const DRVFN = extern struct {
+    iFunc: u32,
+    pfn: PFN,
+};
+
+pub const DRVENABLEDATA = extern struct {
+    iDriverVersion: u32,
+    c: u32,
+    pdrvfn: *DRVFN,
+};
+
+pub const DEVINFO = extern struct {
+    flGraphicsCaps: u32,
+    lfDefaultFont: LOGFONTW,
+    lfAnsiVarFont: LOGFONTW,
+    lfAnsiFixFont: LOGFONTW,
+    cFonts: u32,
+    iDitherFormat: u32,
+    cxDither: u16,
+    cyDither: u16,
+    hpalDefault: HPALETTE,
+    flGraphicsCaps2: u32,
+};
+
+pub const LINEATTRS = extern struct {
+    fl: u32,
+    iJoin: u32,
+    iEndCap: u32,
+    elWidth: FLOAT_LONG,
+    eMiterLimit: f32,
+    cstyle: u32,
+    pstyle: *FLOAT_LONG,
+    elStyleState: FLOAT_LONG,
+};
+
+pub const XFORML = extern struct {
+    eM11: f32,
+    eM12: f32,
+    eM21: f32,
+    eM22: f32,
+    eDx: f32,
+    eDy: f32,
+};
+
+pub const CIECHROMA = extern struct {
+    x: i32,
+    y: i32,
+    Y: i32,
+};
+
+pub const COLORINFO = extern struct {
+    Red: CIECHROMA,
+    Green: CIECHROMA,
+    Blue: CIECHROMA,
+    Cyan: CIECHROMA,
+    Magenta: CIECHROMA,
+    Yellow: CIECHROMA,
+    AlignmentWhite: CIECHROMA,
+    RedGamma: i32,
+    GreenGamma: i32,
+    BlueGamma: i32,
+    MagentaInCyanDye: i32,
+    YellowInCyanDye: i32,
+    CyanInMagentaDye: i32,
+    YellowInMagentaDye: i32,
+    CyanInYellowDye: i32,
+    MagentaInYellowDye: i32,
+};
+
+pub const GDIINFO = extern struct {
+    ulVersion: u32,
+    ulTechnology: u32,
+    ulHorzSize: u32,
+    ulVertSize: u32,
+    ulHorzRes: u32,
+    ulVertRes: u32,
+    cBitsPixel: u32,
+    cPlanes: u32,
+    ulNumColors: u32,
+    flRaster: u32,
+    ulLogPixelsX: u32,
+    ulLogPixelsY: u32,
+    flTextCaps: u32,
+    ulDACRed: u32,
+    ulDACGreen: u32,
+    ulDACBlue: u32,
+    ulAspectX: u32,
+    ulAspectY: u32,
+    ulAspectXY: u32,
+    xStyleStep: i32,
+    yStyleStep: i32,
+    denStyleStep: i32,
+    ptlPhysOffset: POINTL,
+    szlPhysSize: SIZE,
+    ulNumPalReg: u32,
+    ciDevice: COLORINFO,
+    ulDevicePelsDPI: u32,
+    ulPrimaryOrder: u32,
+    ulHTPatternSize: u32,
+    ulHTOutputFormat: u32,
+    flHTFlags: u32,
+    ulVRefresh: u32,
+    ulBltAlignment: u32,
+    ulPanningHorzRes: u32,
+    ulPanningVertRes: u32,
+    xPanningAlignment: u32,
+    yPanningAlignment: u32,
+    cxHTPat: u32,
+    cyHTPat: u32,
+    pHTPatA: *u8,
+    pHTPatB: *u8,
+    pHTPatC: *u8,
+    flShadeBlend: u32,
+    ulPhysicalPixelCharacteristics: u32,
+    ulPhysicalPixelGamma: u32,
+};
+
+pub const BRUSHOBJ = extern struct {
+    iSolidColor: u32,
+    pvRbrush: *c_void,
+    flColorType: u32,
+};
+
+pub const CLIPOBJ = extern struct {
+    iUniq: u32,
+    rclBounds: RECTL,
+    iDComplexity: u8,
+    iFComplexity: u8,
+    iMode: u8,
+    fjOptions: u8,
+};
+
+pub const DRIVEROBJ = extern struct {
+    pvObj: *c_void,
+    pFreeProc: FREEOBJPROC,
+    hdev: HDEV,
+    dhpdev: DHPDEV,
+};
+
+pub const FONTOBJ = extern struct {
+    iUniq: u32,
+    iFace: u32,
+    cxMax: u32,
+    flFontType: u32,
+    iTTUniq: usize,
+    iFile: usize,
+    sizLogResPpi: SIZE,
+    ulStyleSize: u32,
+    pvConsumer: *c_void,
+    pvProducer: *c_void,
+};
+
+pub const BLENDOBJ = extern struct {
+    BlendFunction: BLENDFUNCTION,
+};
+
+pub const PALOBJ = extern struct {
+    ulReserved: u32,
+};
+
+pub const PATHOBJ = extern struct {
+    fl: u32,
+    cCurves: u32,
+};
+
+pub const SURFOBJ = extern struct {
+    dhsurf: DHSURF,
+    hsurf: HSURF,
+    dhpdev: DHPDEV,
+    hdev: HDEV,
+    sizlBitmap: SIZE,
+    cjBits: u32,
+    pvBits: *c_void,
+    pvScan0: *c_void,
+    lDelta: i32,
+    iUniq: u32,
+    iBitmapFormat: u32,
+    iType: u16,
+    fjBitmap: u16,
+};
+
+pub const WNDOBJ = extern struct {
+    coClient: CLIPOBJ,
+    pvConsumer: *c_void,
+    rclClient: RECTL,
+    psoOwner: *SURFOBJ,
+};
+
+pub const XLATEOBJ = extern struct {
+    iUniq: u32,
+    flXlate: u32,
+    iSrcType: u16,
+    iDstType: u16,
+    cEntries: u32,
+    pulXlate: *u32,
+};
+
+pub const ENUMRECTS = extern struct {
+    c: u32,
+    arcl: [1]RECTL,
+};
+
+pub const GLYPHBITS = extern struct {
+    ptlOrigin: POINTL,
+    sizlBitmap: SIZE,
+    aj: [1]u8,
+};
+
+pub const GLYPHDEF = extern union {
+    pgb: *GLYPHBITS,
+    ppo: *PATHOBJ,
+};
+
+pub const GLYPHPOS = extern struct {
+    hg: u32,
+    pgdf: *GLYPHDEF,
+    ptl: POINTL,
+};
+
+pub const GLYPHDATA = extern struct {
+    gdf: GLYPHDEF,
+    hg: u32,
+    fxD: i32,
+    fxA: i32,
+    fxAB: i32,
+    fxInkTop: i32,
+    fxInkBottom: i32,
+    rclInk: RECTL,
+    ptqD: POINTQF,
+};
+
+pub const STROBJ = extern struct {
+    cGlyphs: u32,
+    flAccel: u32,
+    ulCharInc: u32,
+    rclBkGround: RECTL,
+    pgp: *GLYPHPOS,
+    pwszOrg: PWSTR,
+};
+
+pub const FONTINFO = extern struct {
+    cjThis: u32,
+    flCaps: u32,
+    cGlyphsSupported: u32,
+    cjMaxGlyph1: u32,
+    cjMaxGlyph4: u32,
+    cjMaxGlyph8: u32,
+    cjMaxGlyph32: u32,
+};
+
+pub const PATHDATA = extern struct {
+    flags: u32,
+    count: u32,
+    pptfx: *POINTFIX,
+};
+
+pub const RUN = extern struct {
+    iStart: i32,
+    iStop: i32,
+};
+
+pub const CLIPLINE = extern struct {
+    ptfxA: POINTFIX,
+    ptfxB: POINTFIX,
+    lStyleState: i32,
+    c: u32,
+    arun: [1]RUN,
+};
+
+pub const PERBANDINFO = extern struct {
+    bRepeatThisBand: BOOL,
+    szlBand: SIZE,
+    ulHorzRes: u32,
+    ulVertRes: u32,
+};
+
+pub const GAMMARAMP = extern struct {
+    Red: [256]u16,
+    Green: [256]u16,
+    Blue: [256]u16,
+};
+
+pub const DEVHTINFO = extern struct {
+    HTFlags: u32,
+    HTPatternSize: u32,
+    DevPelsDPI: u32,
+    ColorInfo: COLORINFO,
+};
+
+pub const DEVHTADJDATA = extern struct {
+    DeviceFlags: u32,
+    DeviceXDPI: u32,
+    DeviceYDPI: u32,
+    pDefHTInfo: *DEVHTINFO,
+    pAdjHTInfo: *DEVHTINFO,
+};
+
+pub const TYPE1_FONT = extern struct {
+    hPFM: HANDLE,
+    hPFB: HANDLE,
+    ulIdentifier: u32,
+};
+
+pub const ENGSAFESEMAPHORE = extern struct {
+    hsem: *HSEMAPHORE__,
+    lCount: i32,
+};
+
+pub const ENG_TIME_FIELDS = extern struct {
+    usYear: u16,
+    usMonth: u16,
+    usDay: u16,
+    usHour: u16,
+    usMinute: u16,
+    usSecond: u16,
+    usMilliseconds: u16,
+    usWeekday: u16,
+};
+
+pub const PFN_DrvQueryGlyphAttrs = fn(
+    param0: *FONTOBJ,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHATTR;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
@@ -2925,7 +2925,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (55)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const DDSCAPSEX = @import("../graphics/direct_draw.zig").DDSCAPSEX;
+const PDD_DESTROYDRIVER = @import("../graphics/direct_draw.zig").PDD_DESTROYDRIVER;
 const DDOVERLAYFX = @import("../graphics/direct_draw.zig").DDOVERLAYFX;
 const POINTE = @import("../system/system_services.zig").POINTE;
 const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
@@ -2943,19 +2943,19 @@ const DDSCAPS2 = @import("../graphics/direct_draw.zig").DDSCAPS2;
 const HDEV = @import("../system/system_services.zig").HDEV;
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
 const VMEMHEAP = @import("../devices/display.zig").VMEMHEAP;
-const PDD_ALPHABLT = @import("../graphics/direct_draw.zig").PDD_ALPHABLT;
 const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
-const HANDLE = @import("../foundation.zig").HANDLE;
 const PFN = @import("../system/system_services.zig").PFN;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PDD_ALPHABLT = @import("../graphics/direct_draw.zig").PDD_ALPHABLT;
 const DDRAWI_DIRECTDRAW_GBL = @import("../graphics/direct_draw.zig").DDRAWI_DIRECTDRAW_GBL;
 const TRIVERTEX = @import("../graphics/gdi.zig").TRIVERTEX;
 const POINTL = @import("../foundation.zig").POINTL;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const HSEMAPHORE__ = @import("../system/system_services.zig").HSEMAPHORE__;
 const PDD_SETCOLORKEY = @import("../graphics/direct_draw.zig").PDD_SETCOLORKEY;
-const DHSURF = @import("../system/system_services.zig").DHSURF;
+const HSEMAPHORE__ = @import("../system/system_services.zig").HSEMAPHORE__;
 const BOOL = @import("../foundation.zig").BOOL;
 const LUID = @import("../system/system_services.zig").LUID;
+const DHSURF = @import("../system/system_services.zig").DHSURF;
 const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
 const DD_DESTROYDDLOCALDATA = @import("../graphics/direct_draw.zig").DD_DESTROYDDLOCALDATA;
 const DDSURFACEDESC = @import("../graphics/direct_draw.zig").DDSURFACEDESC;
@@ -2974,15 +2974,14 @@ const FLOAT_LONG = @import("../system/system_services.zig").FLOAT_LONG;
 const LPDDHAL_WAITFORVERTICALBLANK = @import("../graphics/direct_draw.zig").LPDDHAL_WAITFORVERTICALBLANK;
 const DDPIXELFORMAT = @import("../graphics/direct_draw.zig").DDPIXELFORMAT;
 const DDBLTFX = @import("../graphics/direct_draw.zig").DDBLTFX;
-const RECTL = @import("../foundation.zig").RECTL;
 const SIZE = @import("../foundation.zig").SIZE;
+const RECTL = @import("../foundation.zig").RECTL;
 const PANOSE = @import("../graphics/gdi.zig").PANOSE;
 const DDSCAPS = @import("../graphics/direct_draw.zig").DDSCAPS;
-const PDD_DESTROYDRIVER = @import("../graphics/direct_draw.zig").PDD_DESTROYDRIVER;
+const DDSCAPSEX = @import("../graphics/direct_draw.zig").DDSCAPSEX;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_DrvQueryGlyphAttrs")) { _ = PFN_DrvQueryGlyphAttrs; }
     if (@hasDecl(@This(), "PDD_CANCREATESURFACE")) { _ = PDD_CANCREATESURFACE; }
     if (@hasDecl(@This(), "PDD_WAITFORVERTICALBLANK")) { _ = PDD_WAITFORVERTICALBLANK; }
     if (@hasDecl(@This(), "PDD_CREATESURFACE")) { _ = PDD_CREATESURFACE; }
@@ -3039,6 +3038,7 @@ test {
     if (@hasDecl(@This(), "PDD_MOCOMPCB_RENDER")) { _ = PDD_MOCOMPCB_RENDER; }
     if (@hasDecl(@This(), "PDD_MOCOMPCB_QUERYSTATUS")) { _ = PDD_MOCOMPCB_QUERYSTATUS; }
     if (@hasDecl(@This(), "PDD_MOCOMPCB_DESTROY")) { _ = PDD_MOCOMPCB_DESTROY; }
+    if (@hasDecl(@This(), "PFN_DrvQueryGlyphAttrs")) { _ = PFN_DrvQueryGlyphAttrs; }
 
     @setEvalBranchQuota(
         @import("std").meta.declarations(@This()).len * 3

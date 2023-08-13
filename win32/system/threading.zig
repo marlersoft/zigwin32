@@ -22,20 +22,6 @@ pub const SYNCHRONIZATION_BARRIER_FLAGS_NO_DELETE = @as(u32, 4);
 //--------------------------------------------------------------------------------
 // Section: Types (48)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'DeleteTimerQueueEx', what can Zig do with this information?
-pub const TimerQueueHandle = isize;
-
-// TODO: this type has a FreeFunc 'CloseThreadpool', what can Zig do with this information?
-pub const PTP_POOL = isize;
-
-// TODO: this type has a FreeFunc 'ClosePrivateNamespace', what can Zig do with this information?
-pub const NamespaceHandle = isize;
-
-// TODO: this type has a FreeFunc 'DeleteBoundaryDescriptor', what can Zig do with this information?
-pub const BoundaryDescriptorHandle = isize;
-
-pub const LPPROC_THREAD_ATTRIBUTE_LIST = *c_void;
-
 pub const PROCESS_CREATION_FLAGS = enum(u32) {
     DEBUG_PROCESS = 1,
     DEBUG_ONLY_THIS_PROCESS = 2,
@@ -277,6 +263,94 @@ pub const WAIT_IO_COMPLETION = WAIT_RETURN_CAUSE.IO_COMPLETION;
 pub const WAIT_TIMEOUT = WAIT_RETURN_CAUSE.TIMEOUT;
 pub const WAIT_FAILED = WAIT_RETURN_CAUSE.FAILED;
 
+pub const UMS_SCHEDULER_STARTUP_INFO = extern struct {
+    UmsVersion: u32,
+    CompletionList: *c_void,
+    SchedulerProc: PRTL_UMS_SCHEDULER_ENTRY_POINT,
+    SchedulerParam: *c_void,
+};
+
+pub const UMS_SYSTEM_THREAD_INFORMATION = extern struct {
+    UmsVersion: u32,
+    Anonymous: extern union {
+        Anonymous: extern struct {
+            _bitfield: u32,
+        },
+        ThreadUmsFlags: u32,
+    },
+};
+
+pub const STARTUPINFOEXA = extern struct {
+    StartupInfo: STARTUPINFOA,
+    lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST,
+};
+
+pub const STARTUPINFOEXW = extern struct {
+    StartupInfo: STARTUPINFOW,
+    lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST,
+};
+
+pub const PEB_LDR_DATA = extern struct {
+    Reserved1: [8]u8,
+    Reserved2: [3]*c_void,
+    InMemoryOrderModuleList: LIST_ENTRY,
+};
+
+pub const RTL_USER_PROCESS_PARAMETERS = extern struct {
+    Reserved1: [16]u8,
+    Reserved2: [10]*c_void,
+    ImagePathName: UNICODE_STRING,
+    CommandLine: UNICODE_STRING,
+};
+
+pub const PEB = extern struct {
+    Reserved1: [2]u8,
+    BeingDebugged: u8,
+    Reserved2: [1]u8,
+    Reserved3: [2]*c_void,
+    Ldr: *PEB_LDR_DATA,
+    ProcessParameters: *RTL_USER_PROCESS_PARAMETERS,
+    Reserved4: [3]*c_void,
+    AtlThunkSListPtr: *c_void,
+    Reserved5: *c_void,
+    Reserved6: u32,
+    Reserved7: *c_void,
+    Reserved8: u32,
+    AtlThunkSListPtr32: u32,
+    Reserved9: [45]*c_void,
+    Reserved10: [96]u8,
+    PostProcessInitRoutine: PPS_POST_PROCESS_INIT_ROUTINE,
+    Reserved11: [128]u8,
+    Reserved12: [1]*c_void,
+    SessionId: u32,
+};
+
+pub const PROCESS_BASIC_INFORMATION = extern struct {
+    Reserved1: *c_void,
+    PebBaseAddress: *PEB,
+    Reserved2: [2]*c_void,
+    UniqueProcessId: usize,
+    Reserved3: *c_void,
+};
+
+pub const PROCESSINFOCLASS = enum(i32) {
+    BasicInformation = 0,
+    DebugPort = 7,
+    Wow64Information = 26,
+    ImageFileName = 27,
+    BreakOnTermination = 29,
+};
+pub const ProcessBasicInformation = PROCESSINFOCLASS.BasicInformation;
+pub const ProcessDebugPort = PROCESSINFOCLASS.DebugPort;
+pub const ProcessWow64Information = PROCESSINFOCLASS.Wow64Information;
+pub const ProcessImageFileName = PROCESSINFOCLASS.ImageFileName;
+pub const ProcessBreakOnTermination = PROCESSINFOCLASS.BreakOnTermination;
+
+pub const THREADINFOCLASS = enum(i32) {
+    g = 16,
+};
+pub const ThreadIsIoPending = THREADINFOCLASS.g;
+
 pub const PINIT_ONCE_FN = fn(
     InitOnce: *RTL_RUN_ONCE,
     Parameter: ?*c_void,
@@ -429,93 +503,19 @@ pub const PTP_WIN32_IO_CALLBACK = fn(
     Io: *TP_IO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const UMS_SCHEDULER_STARTUP_INFO = extern struct {
-    UmsVersion: u32,
-    CompletionList: *c_void,
-    SchedulerProc: PRTL_UMS_SCHEDULER_ENTRY_POINT,
-    SchedulerParam: *c_void,
-};
+// TODO: this type has a FreeFunc 'DeleteTimerQueueEx', what can Zig do with this information?
+pub const TimerQueueHandle = isize;
 
-pub const UMS_SYSTEM_THREAD_INFORMATION = extern struct {
-    UmsVersion: u32,
-    Anonymous: extern union {
-        Anonymous: extern struct {
-            _bitfield: u32,
-        },
-        ThreadUmsFlags: u32,
-    },
-};
+// TODO: this type has a FreeFunc 'CloseThreadpool', what can Zig do with this information?
+pub const PTP_POOL = isize;
 
-pub const STARTUPINFOEXA = extern struct {
-    StartupInfo: STARTUPINFOA,
-    lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST,
-};
+// TODO: this type has a FreeFunc 'ClosePrivateNamespace', what can Zig do with this information?
+pub const NamespaceHandle = isize;
 
-pub const STARTUPINFOEXW = extern struct {
-    StartupInfo: STARTUPINFOW,
-    lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST,
-};
+// TODO: this type has a FreeFunc 'DeleteBoundaryDescriptor', what can Zig do with this information?
+pub const BoundaryDescriptorHandle = isize;
 
-pub const PEB_LDR_DATA = extern struct {
-    Reserved1: [8]u8,
-    Reserved2: [3]*c_void,
-    InMemoryOrderModuleList: LIST_ENTRY,
-};
-
-pub const RTL_USER_PROCESS_PARAMETERS = extern struct {
-    Reserved1: [16]u8,
-    Reserved2: [10]*c_void,
-    ImagePathName: UNICODE_STRING,
-    CommandLine: UNICODE_STRING,
-};
-
-pub const PEB = extern struct {
-    Reserved1: [2]u8,
-    BeingDebugged: u8,
-    Reserved2: [1]u8,
-    Reserved3: [2]*c_void,
-    Ldr: *PEB_LDR_DATA,
-    ProcessParameters: *RTL_USER_PROCESS_PARAMETERS,
-    Reserved4: [3]*c_void,
-    AtlThunkSListPtr: *c_void,
-    Reserved5: *c_void,
-    Reserved6: u32,
-    Reserved7: *c_void,
-    Reserved8: u32,
-    AtlThunkSListPtr32: u32,
-    Reserved9: [45]*c_void,
-    Reserved10: [96]u8,
-    PostProcessInitRoutine: PPS_POST_PROCESS_INIT_ROUTINE,
-    Reserved11: [128]u8,
-    Reserved12: [1]*c_void,
-    SessionId: u32,
-};
-
-pub const PROCESS_BASIC_INFORMATION = extern struct {
-    Reserved1: *c_void,
-    PebBaseAddress: *PEB,
-    Reserved2: [2]*c_void,
-    UniqueProcessId: usize,
-    Reserved3: *c_void,
-};
-
-pub const PROCESSINFOCLASS = enum(i32) {
-    BasicInformation = 0,
-    DebugPort = 7,
-    Wow64Information = 26,
-    ImageFileName = 27,
-    BreakOnTermination = 29,
-};
-pub const ProcessBasicInformation = PROCESSINFOCLASS.BasicInformation;
-pub const ProcessDebugPort = PROCESSINFOCLASS.DebugPort;
-pub const ProcessWow64Information = PROCESSINFOCLASS.Wow64Information;
-pub const ProcessImageFileName = PROCESSINFOCLASS.ImageFileName;
-pub const ProcessBreakOnTermination = PROCESSINFOCLASS.BreakOnTermination;
-
-pub const THREADINFOCLASS = enum(i32) {
-    g = 16,
-};
-pub const ThreadIsIoPending = THREADINFOCLASS.g;
+pub const LPPROC_THREAD_ATTRIBUTE_LIST = *c_void;
 
 pub const THREAD_CREATION_FLAGS = enum(u32) {
     THREAD_CREATE_RUN_IMMEDIATELY = 0,
@@ -859,6 +859,373 @@ pub const PROTECTION_LEVEL_NONE = PROCESS_PROTECTION_LEVEL.NONE;
 //--------------------------------------------------------------------------------
 // Section: Functions (276)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetProcessAffinityMask(
+    hProcess: HANDLE,
+    lpProcessAffinityMask: *usize,
+    lpSystemAffinityMask: *usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn SetProcessAffinityMask(
+    hProcess: HANDLE,
+    dwProcessAffinityMask: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetProcessIoCounters(
+    hProcess: HANDLE,
+    lpIoCounters: *IO_COUNTERS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GetProcessWorkingSetSize(
+    hProcess: HANDLE,
+    lpMinimumWorkingSetSize: *usize,
+    lpMaximumWorkingSetSize: *usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn SetProcessWorkingSetSize(
+    hProcess: HANDLE,
+    dwMinimumWorkingSetSize: usize,
+    dwMaximumWorkingSetSize: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn SwitchToFiber(
+    lpFiber: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn DeleteFiber(
+    lpFiber: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn ConvertFiberToThread(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateFiberEx(
+    dwStackCommitSize: usize,
+    dwStackReserveSize: usize,
+    dwFlags: u32,
+    lpStartAddress: LPFIBER_START_ROUTINE,
+    lpParameter: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn ConvertThreadToFiberEx(
+    lpParameter: ?*c_void,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateFiber(
+    dwStackSize: usize,
+    lpStartAddress: LPFIBER_START_ROUTINE,
+    lpParameter: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn ConvertThreadToFiber(
+    lpParameter: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn CreateUmsCompletionList(
+    UmsCompletionList: **c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn DequeueUmsCompletionListItems(
+    UmsCompletionList: *c_void,
+    WaitTimeOut: u32,
+    UmsThreadList: **c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetUmsCompletionListEvent(
+    UmsCompletionList: *c_void,
+    UmsCompletionEvent: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn ExecuteUmsThread(
+    UmsThread: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn UmsThreadYield(
+    SchedulerParam: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn DeleteUmsCompletionList(
+    UmsCompletionList: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetCurrentUmsThread(
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetNextUmsListItem(
+    UmsContext: *c_void,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn QueryUmsThreadInformation(
+    UmsThread: *c_void,
+    UmsThreadInfoClass: RTL_UMS_THREAD_INFO_CLASS,
+    // TODO: what to do with BytesParamIndex 3?
+    UmsThreadInformation: *c_void,
+    UmsThreadInformationLength: u32,
+    ReturnLength: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn SetUmsThreadInformation(
+    UmsThread: *c_void,
+    UmsThreadInfoClass: RTL_UMS_THREAD_INFO_CLASS,
+    UmsThreadInformation: *c_void,
+    UmsThreadInformationLength: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn DeleteUmsThreadContext(
+    UmsThread: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn CreateUmsThreadContext(
+    lpUmsThread: **c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn EnterUmsSchedulingMode(
+    SchedulerStartupInfo: *UMS_SCHEDULER_STARTUP_INFO,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetUmsSystemThreadInformation(
+    ThreadHandle: HANDLE,
+    SystemThreadInfo: *UMS_SYSTEM_THREAD_INFORMATION,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn SetThreadAffinityMask(
+    hThread: HANDLE,
+    dwThreadAffinityMask: usize,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn SetProcessDEPPolicy(
+    dwFlags: PROCESS_DEP_FLAGS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetProcessDEPPolicy(
+    hProcess: HANDLE,
+    lpFlags: *u32,
+    lpPermanent: *BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn PulseEvent(
+    hEvent: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn WinExec(
+    lpCmdLine: [*:0]const u8,
+    uCmdShow: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateSemaphoreA(
+    lpSemaphoreAttributes: ?*SECURITY_ATTRIBUTES,
+    lInitialCount: i32,
+    lMaximumCount: i32,
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn CreateSemaphoreExA(
+    lpSemaphoreAttributes: ?*SECURITY_ATTRIBUTES,
+    lInitialCount: i32,
+    lMaximumCount: i32,
+    lpName: ?[*:0]const u8,
+    dwFlags: u32,
+    dwDesiredAccess: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn QueryFullProcessImageNameA(
+    hProcess: HANDLE,
+    dwFlags: PROCESS_NAME_FORMAT,
+    lpExeName: [*:0]u8,
+    lpdwSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn QueryFullProcessImageNameW(
+    hProcess: HANDLE,
+    dwFlags: PROCESS_NAME_FORMAT,
+    lpExeName: [*:0]u16,
+    lpdwSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn CreateProcessWithLogonW(
+    lpUsername: [*:0]const u16,
+    lpDomain: ?[*:0]const u16,
+    lpPassword: [*:0]const u16,
+    dwLogonFlags: CREATE_PROCESS_LOGON_FLAGS,
+    lpApplicationName: ?[*:0]const u16,
+    lpCommandLine: ?PWSTR,
+    dwCreationFlags: u32,
+    lpEnvironment: ?*c_void,
+    lpCurrentDirectory: ?[*:0]const u16,
+    lpStartupInfo: *STARTUPINFOW,
+    lpProcessInformation: *PROCESS_INFORMATION,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "ADVAPI32" fn CreateProcessWithTokenW(
+    hToken: HANDLE,
+    dwLogonFlags: CREATE_PROCESS_LOGON_FLAGS,
+    lpApplicationName: ?[*:0]const u16,
+    lpCommandLine: ?PWSTR,
+    dwCreationFlags: u32,
+    lpEnvironment: ?*c_void,
+    lpCurrentDirectory: ?[*:0]const u16,
+    lpStartupInfo: *STARTUPINFOW,
+    lpProcessInformation: *PROCESS_INFORMATION,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn RegisterWaitForSingleObject(
+    phNewWaitObject: *HANDLE,
+    hObject: HANDLE,
+    Callback: WAITORTIMERCALLBACK,
+    Context: ?*c_void,
+    dwMilliseconds: u32,
+    dwFlags: WORKER_THREAD_FLAGS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn UnregisterWait(
+    WaitHandle: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn DeleteTimerQueue(
+    TimerQueue: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn CreatePrivateNamespaceA(
+    lpPrivateNamespaceAttributes: ?*SECURITY_ATTRIBUTES,
+    lpBoundaryDescriptor: *c_void,
+    lpAliasPrefix: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn OpenPrivateNamespaceA(
+    lpBoundaryDescriptor: *c_void,
+    lpAliasPrefix: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn CreateBoundaryDescriptorA(
+    Name: [*:0]const u8,
+    Flags: u32,
+) callconv(@import("std").os.windows.WINAPI) BoundaryDescriptorHandle;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn AddIntegrityLabelToBoundaryDescriptor(
+    BoundaryDescriptor: *HANDLE,
+    IntegrityLabel: PSID,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetActiveProcessorGroupCount(
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetMaximumProcessorGroupCount(
+) callconv(@import("std").os.windows.WINAPI) u16;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetActiveProcessorCount(
+    GroupNumber: u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetMaximumProcessorCount(
+    GroupNumber: u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetNumaProcessorNode(
+    Processor: u8,
+    NodeNumber: *u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetNumaNodeNumberFromHandle(
+    hFile: HANDLE,
+    NodeNumber: *u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetNumaProcessorNodeEx(
+    Processor: *PROCESSOR_NUMBER,
+    NodeNumber: *u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetNumaNodeProcessorMask(
+    Node: u8,
+    ProcessorMask: *u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetNumaAvailableMemoryNode(
+    Node: u8,
+    AvailableBytes: *u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.1'
+pub extern "KERNEL32" fn GetNumaAvailableMemoryNodeEx(
+    Node: u16,
+    AvailableBytes: *u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn GetNumaProximityNode(
+    ProximityId: u32,
+    NodeNumber: *u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "ntdll" fn NtQueryInformationProcess(
+    ProcessHandle: HANDLE,
+    ProcessInformationClass: PROCESSINFOCLASS,
+    ProcessInformation: *c_void,
+    ProcessInformationLength: u32,
+    ReturnLength: *u32,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
+pub extern "ntdll" fn NtQueryInformationThread(
+    ThreadHandle: HANDLE,
+    ThreadInformationClass: THREADINFOCLASS,
+    ThreadInformation: *c_void,
+    ThreadInformationLength: u32,
+    ReturnLength: *u32,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn FlsAlloc(
     lpCallback: ?PFLS_CALLBACK_FUNCTION,
@@ -2225,373 +2592,6 @@ pub extern "KERNEL32" fn SetThreadGroupAffinity(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetProcessAffinityMask(
-    hProcess: HANDLE,
-    lpProcessAffinityMask: *usize,
-    lpSystemAffinityMask: *usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetProcessAffinityMask(
-    hProcess: HANDLE,
-    dwProcessAffinityMask: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetProcessIoCounters(
-    hProcess: HANDLE,
-    lpIoCounters: *IO_COUNTERS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GetProcessWorkingSetSize(
-    hProcess: HANDLE,
-    lpMinimumWorkingSetSize: *usize,
-    lpMaximumWorkingSetSize: *usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetProcessWorkingSetSize(
-    hProcess: HANDLE,
-    dwMinimumWorkingSetSize: usize,
-    dwMaximumWorkingSetSize: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SwitchToFiber(
-    lpFiber: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DeleteFiber(
-    lpFiber: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn ConvertFiberToThread(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateFiberEx(
-    dwStackCommitSize: usize,
-    dwStackReserveSize: usize,
-    dwFlags: u32,
-    lpStartAddress: LPFIBER_START_ROUTINE,
-    lpParameter: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn ConvertThreadToFiberEx(
-    lpParameter: ?*c_void,
-    dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateFiber(
-    dwStackSize: usize,
-    lpStartAddress: LPFIBER_START_ROUTINE,
-    lpParameter: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn ConvertThreadToFiber(
-    lpParameter: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn CreateUmsCompletionList(
-    UmsCompletionList: **c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn DequeueUmsCompletionListItems(
-    UmsCompletionList: *c_void,
-    WaitTimeOut: u32,
-    UmsThreadList: **c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetUmsCompletionListEvent(
-    UmsCompletionList: *c_void,
-    UmsCompletionEvent: *HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn ExecuteUmsThread(
-    UmsThread: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn UmsThreadYield(
-    SchedulerParam: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn DeleteUmsCompletionList(
-    UmsCompletionList: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetCurrentUmsThread(
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetNextUmsListItem(
-    UmsContext: *c_void,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn QueryUmsThreadInformation(
-    UmsThread: *c_void,
-    UmsThreadInfoClass: RTL_UMS_THREAD_INFO_CLASS,
-    // TODO: what to do with BytesParamIndex 3?
-    UmsThreadInformation: *c_void,
-    UmsThreadInformationLength: u32,
-    ReturnLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn SetUmsThreadInformation(
-    UmsThread: *c_void,
-    UmsThreadInfoClass: RTL_UMS_THREAD_INFO_CLASS,
-    UmsThreadInformation: *c_void,
-    UmsThreadInformationLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn DeleteUmsThreadContext(
-    UmsThread: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn CreateUmsThreadContext(
-    lpUmsThread: **c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn EnterUmsSchedulingMode(
-    SchedulerStartupInfo: *UMS_SCHEDULER_STARTUP_INFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetUmsSystemThreadInformation(
-    ThreadHandle: HANDLE,
-    SystemThreadInfo: *UMS_SYSTEM_THREAD_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn SetThreadAffinityMask(
-    hThread: HANDLE,
-    dwThreadAffinityMask: usize,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn SetProcessDEPPolicy(
-    dwFlags: PROCESS_DEP_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetProcessDEPPolicy(
-    hProcess: HANDLE,
-    lpFlags: *u32,
-    lpPermanent: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn PulseEvent(
-    hEvent: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn WinExec(
-    lpCmdLine: [*:0]const u8,
-    uCmdShow: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn CreateSemaphoreA(
-    lpSemaphoreAttributes: ?*SECURITY_ATTRIBUTES,
-    lInitialCount: i32,
-    lMaximumCount: i32,
-    lpName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateSemaphoreExA(
-    lpSemaphoreAttributes: ?*SECURITY_ATTRIBUTES,
-    lInitialCount: i32,
-    lMaximumCount: i32,
-    lpName: ?[*:0]const u8,
-    dwFlags: u32,
-    dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) HANDLE;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn QueryFullProcessImageNameA(
-    hProcess: HANDLE,
-    dwFlags: PROCESS_NAME_FORMAT,
-    lpExeName: [*:0]u8,
-    lpdwSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn QueryFullProcessImageNameW(
-    hProcess: HANDLE,
-    dwFlags: PROCESS_NAME_FORMAT,
-    lpExeName: [*:0]u16,
-    lpdwSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreateProcessWithLogonW(
-    lpUsername: [*:0]const u16,
-    lpDomain: ?[*:0]const u16,
-    lpPassword: [*:0]const u16,
-    dwLogonFlags: CREATE_PROCESS_LOGON_FLAGS,
-    lpApplicationName: ?[*:0]const u16,
-    lpCommandLine: ?PWSTR,
-    dwCreationFlags: u32,
-    lpEnvironment: ?*c_void,
-    lpCurrentDirectory: ?[*:0]const u16,
-    lpStartupInfo: *STARTUPINFOW,
-    lpProcessInformation: *PROCESS_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "ADVAPI32" fn CreateProcessWithTokenW(
-    hToken: HANDLE,
-    dwLogonFlags: CREATE_PROCESS_LOGON_FLAGS,
-    lpApplicationName: ?[*:0]const u16,
-    lpCommandLine: ?PWSTR,
-    dwCreationFlags: u32,
-    lpEnvironment: ?*c_void,
-    lpCurrentDirectory: ?[*:0]const u16,
-    lpStartupInfo: *STARTUPINFOW,
-    lpProcessInformation: *PROCESS_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn RegisterWaitForSingleObject(
-    phNewWaitObject: *HANDLE,
-    hObject: HANDLE,
-    Callback: WAITORTIMERCALLBACK,
-    Context: ?*c_void,
-    dwMilliseconds: u32,
-    dwFlags: WORKER_THREAD_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn UnregisterWait(
-    WaitHandle: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn DeleteTimerQueue(
-    TimerQueue: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreatePrivateNamespaceA(
-    lpPrivateNamespaceAttributes: ?*SECURITY_ATTRIBUTES,
-    lpBoundaryDescriptor: *c_void,
-    lpAliasPrefix: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn OpenPrivateNamespaceA(
-    lpBoundaryDescriptor: *c_void,
-    lpAliasPrefix: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) NamespaceHandle;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn CreateBoundaryDescriptorA(
-    Name: [*:0]const u8,
-    Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BoundaryDescriptorHandle;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn AddIntegrityLabelToBoundaryDescriptor(
-    BoundaryDescriptor: *HANDLE,
-    IntegrityLabel: PSID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetActiveProcessorGroupCount(
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetMaximumProcessorGroupCount(
-) callconv(@import("std").os.windows.WINAPI) u16;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetActiveProcessorCount(
-    GroupNumber: u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetMaximumProcessorCount(
-    GroupNumber: u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNumaProcessorNode(
-    Processor: u8,
-    NodeNumber: *u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetNumaNodeNumberFromHandle(
-    hFile: HANDLE,
-    NodeNumber: *u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetNumaProcessorNodeEx(
-    Processor: *PROCESSOR_NUMBER,
-    NodeNumber: *u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNumaNodeProcessorMask(
-    Node: u8,
-    ProcessorMask: *u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNumaAvailableMemoryNode(
-    Node: u8,
-    AvailableBytes: *u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.1'
-pub extern "KERNEL32" fn GetNumaAvailableMemoryNodeEx(
-    Node: u16,
-    AvailableBytes: *u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn GetNumaProximityNode(
-    ProximityId: u32,
-    NodeNumber: *u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub extern "ntdll" fn NtQueryInformationProcess(
-    ProcessHandle: HANDLE,
-    ProcessInformationClass: PROCESSINFOCLASS,
-    ProcessInformation: *c_void,
-    ProcessInformationLength: u32,
-    ReturnLength: *u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-pub extern "ntdll" fn NtQueryInformationThread(
-    ThreadHandle: HANDLE,
-    ThreadInformationClass: THREADINFOCLASS,
-    ThreadInformation: *c_void,
-    ThreadInformationLength: u32,
-    ReturnLength: *u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn AttachThreadInput(
     idAttach: u32,
     idAttachTo: u32,
@@ -2644,71 +2644,71 @@ pub extern "USER32" fn SetProcessRestrictionExemption(
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const STARTUPINFO = STARTUPINFOA;
         pub const STARTUPINFOEX = STARTUPINFOEXA;
+        pub const STARTUPINFO = STARTUPINFOA;
+        pub const CreateSemaphore = CreateSemaphoreA;
+        pub const CreateSemaphoreEx = CreateSemaphoreExA;
+        pub const QueryFullProcessImageName = QueryFullProcessImageNameA;
+        pub const CreatePrivateNamespace = CreatePrivateNamespaceA;
+        pub const OpenPrivateNamespace = OpenPrivateNamespaceA;
+        pub const CreateBoundaryDescriptor = CreateBoundaryDescriptorA;
         pub const CreateMutex = CreateMutexA;
         pub const CreateEvent = CreateEventA;
         pub const OpenEvent = OpenEventA;
         pub const CreateMutexEx = CreateMutexExA;
         pub const CreateEventEx = CreateEventExA;
-        pub const CreateSemaphoreEx = CreateSemaphoreExA;
-        pub const CreateSemaphore = CreateSemaphoreA;
         pub const CreateProcess = CreateProcessA;
         pub const CreateProcessAsUser = CreateProcessAsUserA;
-        pub const CreatePrivateNamespace = CreatePrivateNamespaceA;
-        pub const OpenPrivateNamespace = OpenPrivateNamespaceA;
-        pub const CreateBoundaryDescriptor = CreateBoundaryDescriptorA;
-        pub const QueryFullProcessImageName = QueryFullProcessImageNameA;
     },
     .wide => struct {
-        pub const STARTUPINFO = STARTUPINFOW;
         pub const STARTUPINFOEX = STARTUPINFOEXW;
+        pub const STARTUPINFO = STARTUPINFOW;
+        pub const CreateSemaphore = CreateSemaphoreW;
+        pub const CreateSemaphoreEx = CreateSemaphoreExW;
+        pub const QueryFullProcessImageName = QueryFullProcessImageNameW;
+        pub const CreatePrivateNamespace = CreatePrivateNamespaceW;
+        pub const OpenPrivateNamespace = OpenPrivateNamespaceW;
+        pub const CreateBoundaryDescriptor = CreateBoundaryDescriptorW;
         pub const CreateMutex = CreateMutexW;
         pub const CreateEvent = CreateEventW;
         pub const OpenEvent = OpenEventW;
         pub const CreateMutexEx = CreateMutexExW;
         pub const CreateEventEx = CreateEventExW;
-        pub const CreateSemaphoreEx = CreateSemaphoreExW;
-        pub const CreateSemaphore = CreateSemaphoreW;
         pub const CreateProcess = CreateProcessW;
         pub const CreateProcessAsUser = CreateProcessAsUserW;
-        pub const CreatePrivateNamespace = CreatePrivateNamespaceW;
-        pub const OpenPrivateNamespace = OpenPrivateNamespaceW;
-        pub const CreateBoundaryDescriptor = CreateBoundaryDescriptorW;
-        pub const QueryFullProcessImageName = QueryFullProcessImageNameW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const STARTUPINFO = *opaque{};
         pub const STARTUPINFOEX = *opaque{};
+        pub const STARTUPINFO = *opaque{};
+        pub const CreateSemaphore = *opaque{};
+        pub const CreateSemaphoreEx = *opaque{};
+        pub const QueryFullProcessImageName = *opaque{};
+        pub const CreatePrivateNamespace = *opaque{};
+        pub const OpenPrivateNamespace = *opaque{};
+        pub const CreateBoundaryDescriptor = *opaque{};
         pub const CreateMutex = *opaque{};
         pub const CreateEvent = *opaque{};
         pub const OpenEvent = *opaque{};
         pub const CreateMutexEx = *opaque{};
         pub const CreateEventEx = *opaque{};
-        pub const CreateSemaphoreEx = *opaque{};
-        pub const CreateSemaphore = *opaque{};
         pub const CreateProcess = *opaque{};
         pub const CreateProcessAsUser = *opaque{};
-        pub const CreatePrivateNamespace = *opaque{};
-        pub const OpenPrivateNamespace = *opaque{};
-        pub const CreateBoundaryDescriptor = *opaque{};
-        pub const QueryFullProcessImageName = *opaque{};
     } else struct {
-        pub const STARTUPINFO = @compileError("'STARTUPINFO' requires that UNICODE be set to true or false in the root module");
         pub const STARTUPINFOEX = @compileError("'STARTUPINFOEX' requires that UNICODE be set to true or false in the root module");
+        pub const STARTUPINFO = @compileError("'STARTUPINFO' requires that UNICODE be set to true or false in the root module");
+        pub const CreateSemaphore = @compileError("'CreateSemaphore' requires that UNICODE be set to true or false in the root module");
+        pub const CreateSemaphoreEx = @compileError("'CreateSemaphoreEx' requires that UNICODE be set to true or false in the root module");
+        pub const QueryFullProcessImageName = @compileError("'QueryFullProcessImageName' requires that UNICODE be set to true or false in the root module");
+        pub const CreatePrivateNamespace = @compileError("'CreatePrivateNamespace' requires that UNICODE be set to true or false in the root module");
+        pub const OpenPrivateNamespace = @compileError("'OpenPrivateNamespace' requires that UNICODE be set to true or false in the root module");
+        pub const CreateBoundaryDescriptor = @compileError("'CreateBoundaryDescriptor' requires that UNICODE be set to true or false in the root module");
         pub const CreateMutex = @compileError("'CreateMutex' requires that UNICODE be set to true or false in the root module");
         pub const CreateEvent = @compileError("'CreateEvent' requires that UNICODE be set to true or false in the root module");
         pub const OpenEvent = @compileError("'OpenEvent' requires that UNICODE be set to true or false in the root module");
         pub const CreateMutexEx = @compileError("'CreateMutexEx' requires that UNICODE be set to true or false in the root module");
         pub const CreateEventEx = @compileError("'CreateEventEx' requires that UNICODE be set to true or false in the root module");
-        pub const CreateSemaphoreEx = @compileError("'CreateSemaphoreEx' requires that UNICODE be set to true or false in the root module");
-        pub const CreateSemaphore = @compileError("'CreateSemaphore' requires that UNICODE be set to true or false in the root module");
         pub const CreateProcess = @compileError("'CreateProcess' requires that UNICODE be set to true or false in the root module");
         pub const CreateProcessAsUser = @compileError("'CreateProcessAsUser' requires that UNICODE be set to true or false in the root module");
-        pub const CreatePrivateNamespace = @compileError("'CreatePrivateNamespace' requires that UNICODE be set to true or false in the root module");
-        pub const OpenPrivateNamespace = @compileError("'OpenPrivateNamespace' requires that UNICODE be set to true or false in the root module");
-        pub const CreateBoundaryDescriptor = @compileError("'CreateBoundaryDescriptor' requires that UNICODE be set to true or false in the root module");
-        pub const QueryFullProcessImageName = @compileError("'QueryFullProcessImageName' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
@@ -2745,14 +2745,14 @@ const TP_IO = @import("../system/system_services.zig").TP_IO;
 const TP_POOL_STACK_INFORMATION = @import("../system/system_services.zig").TP_POOL_STACK_INFORMATION;
 const PROCESSOR_NUMBER = @import("../system/kernel.zig").PROCESSOR_NUMBER;
 const TP_CALLBACK_INSTANCE = @import("../system/system_services.zig").TP_CALLBACK_INSTANCE;
-const PFLS_CALLBACK_FUNCTION = @import("../system/system_services.zig").PFLS_CALLBACK_FUNCTION;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const LPTHREAD_START_ROUTINE = @import("../system/system_services.zig").LPTHREAD_START_ROUTINE;
-const PSTR = @import("../foundation.zig").PSTR;
-const PTP_TIMER_CALLBACK = @import("../system/system_services.zig").PTP_TIMER_CALLBACK;
-const PROCESS_DYNAMIC_EH_CONTINUATION_TARGET = @import("../system/system_services.zig").PROCESS_DYNAMIC_EH_CONTINUATION_TARGET;
-const GROUP_AFFINITY = @import("../system/kernel.zig").GROUP_AFFINITY;
 const LPFIBER_START_ROUTINE = @import("../system/windows_programming.zig").LPFIBER_START_ROUTINE;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const PFLS_CALLBACK_FUNCTION = @import("../system/system_services.zig").PFLS_CALLBACK_FUNCTION;
+const PSTR = @import("../foundation.zig").PSTR;
+const LPTHREAD_START_ROUTINE = @import("../system/system_services.zig").LPTHREAD_START_ROUTINE;
+const PROCESS_DYNAMIC_EH_CONTINUATION_TARGET = @import("../system/system_services.zig").PROCESS_DYNAMIC_EH_CONTINUATION_TARGET;
+const PTP_TIMER_CALLBACK = @import("../system/system_services.zig").PTP_TIMER_CALLBACK;
+const GROUP_AFFINITY = @import("../system/kernel.zig").GROUP_AFFINITY;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const TOKEN_ACCESS_MASK = @import("../security.zig").TOKEN_ACCESS_MASK;
 const SYSTEM_CPU_SET_INFORMATION = @import("../system/system_services.zig").SYSTEM_CPU_SET_INFORMATION;

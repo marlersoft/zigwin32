@@ -359,39 +359,6 @@ pub const DHCP_SERVER_OPTIONS = extern struct {
 
 }, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DHCP_SERVER_OPTIONS = extern struct {
-    MessageType: *u8,
-    SubnetMask: *u32,
-    RequestedAddress: *u32,
-    RequestLeaseTime: *u32,
-    OverlayFields: *u8,
-    RouterAddress: *u32,
-    Server: *u32,
-    ParameterRequestList: *u8,
-    ParameterRequestListLength: u32,
-    MachineName: PSTR,
-    MachineNameLength: u32,
-    ClientHardwareAddressType: u8,
-    ClientHardwareAddressLength: u8,
-    ClientHardwareAddress: *u8,
-    ClassIdentifier: PSTR,
-    ClassIdentifierLength: u32,
-    VendorClass: *u8,
-    VendorClassLength: u32,
-    DNSFlags: u32,
-    DNSNameLength: u32,
-    DNSName: *u8,
-    DSDomainNameRequested: u8,
-    DSDomainName: PSTR,
-    DSDomainNameLen: u32,
-    ScopeId: *u32,
-};
-
-}, else => struct { } };
-
 pub const DHCPV6CAPI_PARAMS = extern struct {
     Flags: u32,
     OptionId: u32,
@@ -1837,6 +1804,39 @@ pub const DHCP_FAILOVER_STATISTICS = extern struct {
     PartnerAddrInUse: u32,
     ThisAddrInUse: u32,
 };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DHCP_SERVER_OPTIONS = extern struct {
+    MessageType: *u8,
+    SubnetMask: *u32,
+    RequestedAddress: *u32,
+    RequestLeaseTime: *u32,
+    OverlayFields: *u8,
+    RouterAddress: *u32,
+    Server: *u32,
+    ParameterRequestList: *u8,
+    ParameterRequestListLength: u32,
+    MachineName: PSTR,
+    MachineNameLength: u32,
+    ClientHardwareAddressType: u8,
+    ClientHardwareAddressLength: u8,
+    ClientHardwareAddress: *u8,
+    ClassIdentifier: PSTR,
+    ClassIdentifierLength: u32,
+    VendorClass: *u8,
+    VendorClassLength: u32,
+    DNSFlags: u32,
+    DNSNameLength: u32,
+    DNSName: *u8,
+    DSDomainNameRequested: u8,
+    DSDomainName: PSTR,
+    DSDomainNameLen: u32,
+    ScopeId: *u32,
+};
+
+}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------

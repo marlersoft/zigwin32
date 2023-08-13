@@ -5391,12 +5391,6 @@ pub const HID_DRIVER_CONFIG = extern struct {
     RingBufferSize: u32,
 };
 
-pub const JOYREGHWVALUES = packed struct {
-    jrvHardware: joyrange_tag,
-    dwPOVValues: [4]u32,
-    dwCalFlags: u32,
-};
-
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
@@ -5435,6 +5429,12 @@ pub const HIDD_CONFIGURATION = extern struct {
 };
 
 }, else => struct { } };
+
+pub const JOYREGHWVALUES = packed struct {
+    jrvHardware: joyrange_tag,
+    dwPOVValues: [4]u32,
+    dwCalFlags: u32,
+};
 
 
 //--------------------------------------------------------------------------------

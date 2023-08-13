@@ -788,38 +788,6 @@ pub const MPEGLAYER3_FLAG_PADDING_ISO = MPEGLAYER3WAVEFORMAT_FLAGS.ISO;
 pub const MPEGLAYER3_FLAG_PADDING_ON = MPEGLAYER3WAVEFORMAT_FLAGS.ON;
 pub const MPEGLAYER3_FLAG_PADDING_OFF = MPEGLAYER3WAVEFORMAT_FLAGS.OFF;
 
-pub const KSTOPOLOGY_CONNECTION = extern struct {
-    FromNode: u32,
-    FromNodePin: u32,
-    ToNode: u32,
-    ToNodePin: u32,
-};
-
-pub const TIMECODE = extern union {
-    Anonymous: extern struct {
-        wFrameRate: u16,
-        wFrameFract: u16,
-        dwFrames: u32,
-    },
-    qw: u64,
-};
-
-pub const TIMECODE_SAMPLE = extern struct {
-    qwTick: i64,
-    timecode: TIMECODE,
-    dwUser: u32,
-    dwFlags: u32,
-};
-
-pub const VIDEOENCODER_BITRATE_MODE = enum(i32) {
-    ConstantBitRate = 0,
-    VariableBitRateAverage = 1,
-    VariableBitRatePeak = 2,
-};
-pub const ConstantBitRate = VIDEOENCODER_BITRATE_MODE.ConstantBitRate;
-pub const VariableBitRateAverage = VIDEOENCODER_BITRATE_MODE.VariableBitRateAverage;
-pub const VariableBitRatePeak = VIDEOENCODER_BITRATE_MODE.VariableBitRatePeak;
-
 pub const AMVP_SELECT_FORMAT_BY = enum(i32) {
     DO_NOT_CARE = 0,
     BEST_BANDWIDTH = 1,
@@ -24405,6 +24373,38 @@ pub const DXVA_COPPStatusSignalingCmdData = extern struct {
     ExtendedInfoValidMask: [4]u32,
     ExtendedInfoData: [4]u32,
 };
+
+pub const KSTOPOLOGY_CONNECTION = extern struct {
+    FromNode: u32,
+    FromNodePin: u32,
+    ToNode: u32,
+    ToNodePin: u32,
+};
+
+pub const TIMECODE = extern union {
+    Anonymous: extern struct {
+        wFrameRate: u16,
+        wFrameFract: u16,
+        dwFrames: u32,
+    },
+    qw: u64,
+};
+
+pub const TIMECODE_SAMPLE = extern struct {
+    qwTick: i64,
+    timecode: TIMECODE,
+    dwUser: u32,
+    dwFlags: u32,
+};
+
+pub const VIDEOENCODER_BITRATE_MODE = enum(i32) {
+    ConstantBitRate = 0,
+    VariableBitRateAverage = 1,
+    VariableBitRatePeak = 2,
+};
+pub const ConstantBitRate = VIDEOENCODER_BITRATE_MODE.ConstantBitRate;
+pub const VariableBitRateAverage = VIDEOENCODER_BITRATE_MODE.VariableBitRateAverage;
+pub const VariableBitRatePeak = VIDEOENCODER_BITRATE_MODE.VariableBitRatePeak;
 
 const CLSID_SystemTuningSpaces_Value = @import("../zig.zig").Guid.initString("d02aac50-027e-11d3-9d8e-00c04f72d980");
 pub const CLSID_SystemTuningSpaces = &CLSID_SystemTuningSpaces_Value;

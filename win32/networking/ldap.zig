@@ -139,6 +139,10 @@ pub const LDAP_OPT_REF_DEREF_CONN_PER_MSG = @as(u32, 148);
 //--------------------------------------------------------------------------------
 // Section: Types (26)
 //--------------------------------------------------------------------------------
+pub const ldapsearch = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 pub const LDAP_RETCODE = enum(i32) {
     SUCCESS = 0,
     OPERATIONS_ERROR = 1,
@@ -391,10 +395,6 @@ pub const LDAPAPIFeatureInfoW = extern struct {
 pub const DBGPRINT = fn(
     Format: [*]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const ldapsearch = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
 
 pub const ldapsortkeyW = extern struct {
     sk_attrtype: [*]u16,

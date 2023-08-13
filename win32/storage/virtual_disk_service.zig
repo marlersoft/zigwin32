@@ -523,11 +523,20 @@ pub const VDS_ASYNCOUT_EXPAND_VDISK = VDS_ASYNC_OUTPUT_TYPE.EXPAND_VDISK;
 pub const VDS_ASYNC_OUTPUT = extern struct {
     type: VDS_ASYNC_OUTPUT_TYPE,
     Anonymous: extern union {
+        pub const _cvd = extern struct {
+            pVDiskUnk: *IUnknown,
+        };
+        pub const _ct = extern struct {
+            pTargetUnk: *IUnknown,
+        };
+        pub const _sv = extern struct {
+            ullReclaimedBytes: u64,
+        };
+        pub const _cv = extern struct {
+            pVolumeUnk: *IUnknown,
+        };
         pub const _cpg = extern struct {
             pPortalGroupUnk: *IUnknown,
-        };
-        pub const _cl = extern struct {
-            pLunUnk: *IUnknown,
         };
         pub const _bvp = extern struct {
             pVolumeUnk: *IUnknown,
@@ -536,17 +545,8 @@ pub const VDS_ASYNC_OUTPUT = extern struct {
             ullOffset: u64,
             volumeId: Guid,
         };
-        pub const _cvd = extern struct {
-            pVDiskUnk: *IUnknown,
-        };
-        pub const _sv = extern struct {
-            ullReclaimedBytes: u64,
-        };
-        pub const _cv = extern struct {
-            pVolumeUnk: *IUnknown,
-        };
-        pub const _ct = extern struct {
-            pTargetUnk: *IUnknown,
+        pub const _cl = extern struct {
+            pLunUnk: *IUnknown,
         };
         cp: _cp,
         cv: _cv,

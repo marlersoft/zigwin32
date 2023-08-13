@@ -377,131 +377,6 @@ pub const RTM_NOTIFY_ONLY_MARKED_DESTS = @as(u32, 65536);
 //--------------------------------------------------------------------------------
 pub const HRASCONN = *opaque{};
 
-pub const MPR_INTERFACE_DIAL_MODE = enum(u32) {
-    First = 0,
-    All = 1,
-    AsNeeded = 2,
-};
-pub const MPRDM_DialFirst = MPR_INTERFACE_DIAL_MODE.First;
-pub const MPRDM_DialAll = MPR_INTERFACE_DIAL_MODE.All;
-pub const MPRDM_DialAsNeeded = MPR_INTERFACE_DIAL_MODE.AsNeeded;
-
-pub const RASENTRY_DIAL_MODE = enum(u32) {
-    ll = 1,
-    sNeeded = 2,
-};
-pub const RASEDM_DialAll = RASENTRY_DIAL_MODE.ll;
-pub const RASEDM_DialAsNeeded = RASENTRY_DIAL_MODE.sNeeded;
-
-pub const RAS_FLAGS = enum(u32) {
-    PPP_CONNECTION = 1,
-    MESSENGER_PRESENT = 2,
-    QUARANTINE_PRESENT = 8,
-    ARAP_CONNECTION = 16,
-    // IKEV2_CONNECTION = 16, this enum value conflicts with ARAP_CONNECTION
-    DORMANT = 32,
-};
-pub const RAS_FLAGS_PPP_CONNECTION = RAS_FLAGS.PPP_CONNECTION;
-pub const RAS_FLAGS_MESSENGER_PRESENT = RAS_FLAGS.MESSENGER_PRESENT;
-pub const RAS_FLAGS_QUARANTINE_PRESENT = RAS_FLAGS.QUARANTINE_PRESENT;
-pub const RAS_FLAGS_ARAP_CONNECTION = RAS_FLAGS.ARAP_CONNECTION;
-pub const RAS_FLAGS_IKEV2_CONNECTION = RAS_FLAGS.ARAP_CONNECTION;
-pub const RAS_FLAGS_DORMANT = RAS_FLAGS.DORMANT;
-
-pub const MPR_ET = enum(u32) {
-    None = 0,
-    Require = 1,
-    RequireMax = 2,
-    Optional = 3,
-};
-pub const MPR_ET_None = MPR_ET.None;
-pub const MPR_ET_Require = MPR_ET.Require;
-pub const MPR_ET_RequireMax = MPR_ET.RequireMax;
-pub const MPR_ET_Optional = MPR_ET.Optional;
-
-pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA = enum(u32) {
-    D5 = 5,
-    S = 128,
-    SV2 = 129,
-};
-pub const RASLCPAD_CHAP_MD5 = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.D5;
-pub const RASLCPAD_CHAP_MS = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.S;
-pub const RASLCPAD_CHAP_MSV2 = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.SV2;
-
-pub const PPP_LCP = enum(u32) {
-    PAP = 49187,
-    CHAP = 49699,
-    EAP = 49703,
-    SPAP = 49191,
-};
-pub const PPP_LCP_PAP = PPP_LCP.PAP;
-pub const PPP_LCP_CHAP = PPP_LCP.CHAP;
-pub const PPP_LCP_EAP = PPP_LCP.EAP;
-pub const PPP_LCP_SPAP = PPP_LCP.SPAP;
-
-pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL = enum(u32) {
-    PAP = 49187,
-    SPAP = 49191,
-    CHAP = 49699,
-    EAP = 49703,
-};
-pub const RASLCPAP_PAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.PAP;
-pub const RASLCPAP_SPAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.SPAP;
-pub const RASLCPAP_CHAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.CHAP;
-pub const RASLCPAP_EAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.EAP;
-
-pub const PPP_LCP_INFO_AUTH_DATA = enum(u32) {
-    D5 = 5,
-    S = 128,
-    SV2 = 129,
-};
-pub const PPP_LCP_CHAP_MD5 = PPP_LCP_INFO_AUTH_DATA.D5;
-pub const PPP_LCP_CHAP_MS = PPP_LCP_INFO_AUTH_DATA.S;
-pub const PPP_LCP_CHAP_MSV2 = PPP_LCP_INFO_AUTH_DATA.SV2;
-
-pub const RASIKEV_PROJECTION_INFO_FLAGS = enum(u32) {
-    MOBIKESUPPORTED = 1,
-    BEHIND_NAT = 2,
-    SERVERBEHIND_NAT = 4,
-    _,
-    pub fn initFlags(o: struct {
-        MOBIKESUPPORTED: u1 = 0,
-        BEHIND_NAT: u1 = 0,
-        SERVERBEHIND_NAT: u1 = 0,
-    }) RASIKEV_PROJECTION_INFO_FLAGS {
-        return @intToEnum(RASIKEV_PROJECTION_INFO_FLAGS,
-              (if (o.MOBIKESUPPORTED == 1) @enumToInt(RASIKEV_PROJECTION_INFO_FLAGS.MOBIKESUPPORTED) else 0)
-            | (if (o.BEHIND_NAT == 1) @enumToInt(RASIKEV_PROJECTION_INFO_FLAGS.BEHIND_NAT) else 0)
-            | (if (o.SERVERBEHIND_NAT == 1) @enumToInt(RASIKEV_PROJECTION_INFO_FLAGS.SERVERBEHIND_NAT) else 0)
-        );
-    }
-};
-pub const RASIKEv2_FLAGS_MOBIKESUPPORTED = RASIKEV_PROJECTION_INFO_FLAGS.MOBIKESUPPORTED;
-pub const RASIKEv2_FLAGS_BEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS.BEHIND_NAT;
-pub const RASIKEv2_FLAGS_SERVERBEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS.SERVERBEHIND_NAT;
-
-pub const MPR_VS = enum(u32) {
-    Default = 0,
-    PptpOnly = 1,
-    PptpFirst = 2,
-    L2tpOnly = 3,
-    L2tpFirst = 4,
-};
-pub const MPR_VS_Default = MPR_VS.Default;
-pub const MPR_VS_PptpOnly = MPR_VS.PptpOnly;
-pub const MPR_VS_PptpFirst = MPR_VS.PptpFirst;
-pub const MPR_VS_L2tpOnly = MPR_VS.L2tpOnly;
-pub const MPR_VS_L2tpFirst = MPR_VS.L2tpFirst;
-
-pub const SECURITY_MESSAGE_MSG_ID = enum(u32) {
-    SUCCESS = 1,
-    FAILURE = 2,
-    ERROR = 3,
-};
-pub const SECURITYMSG_SUCCESS = SECURITY_MESSAGE_MSG_ID.SUCCESS;
-pub const SECURITYMSG_FAILURE = SECURITY_MESSAGE_MSG_ID.FAILURE;
-pub const SECURITYMSG_ERROR = SECURITY_MESSAGE_MSG_ID.ERROR;
-
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
@@ -747,32 +622,6 @@ pub const RASDIALDLG = extern struct {
 
 }, else => struct { } };
 
-pub const RASAPIVERSION = enum(i32) {
-    @"500" = 1,
-    @"501" = 2,
-    @"600" = 3,
-    @"601" = 4,
-};
-pub const RASAPIVERSION_500 = RASAPIVERSION.@"500";
-pub const RASAPIVERSION_501 = RASAPIVERSION.@"501";
-pub const RASAPIVERSION_600 = RASAPIVERSION.@"600";
-pub const RASAPIVERSION_601 = RASAPIVERSION.@"601";
-
-pub const RASIPADDR = extern struct {
-    a: u8,
-    b: u8,
-    c: u8,
-    d: u8,
-};
-
-pub const RASTUNNELENDPOINT = extern struct {
-    dwType: u32,
-    Anonymous: extern union {
-        ipv4: IN_ADDR,
-        ipv6: IN6_ADDR,
-    },
-};
-
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
@@ -812,6 +661,377 @@ pub const RASCONNA = extern struct {
 };
 
 }, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASDIALPARAMSW = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    szEntryName: [257]u16,
+    szPhoneNumber: [129]u16,
+    szCallbackNumber: [129]u16,
+    szUserName: [257]u16,
+    szPassword: [257]u16,
+    szDomain: [16]u16,
+    dwSubEntry: u32,
+    dwCallbackId: usize,
+    dwIfIndex: u32,
+    szEncPassword: PWSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASDIALPARAMSA = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    szEntryName: [257]CHAR,
+    szPhoneNumber: [129]CHAR,
+    szCallbackNumber: [129]CHAR,
+    szUserName: [257]CHAR,
+    szPassword: [257]CHAR,
+    szDomain: [16]CHAR,
+    dwSubEntry: u32,
+    dwCallbackId: usize,
+    dwIfIndex: u32,
+    szEncPassword: PSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASEAPINFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSizeofEapInfo: u32,
+    pbEapInfo: *u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASDEVSPECIFICINFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    pbDevSpecificInfo: *u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASDIALEXTENSIONS = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    dwfOptions: u32,
+    hwndParent: HWND,
+    reserved: usize,
+    reserved1: usize,
+    RasEapInfo: RASEAPINFO,
+    fSkipPppAuth: BOOL,
+    RasDevSpecificInfo: RASDEVSPECIFICINFO,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASIKEV2_PROJECTION_INFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwIPv4NegotiationError: u32,
+    ipv4Address: IN_ADDR,
+    ipv4ServerAddress: IN_ADDR,
+    dwIPv6NegotiationError: u32,
+    ipv6Address: IN6_ADDR,
+    ipv6ServerAddress: IN6_ADDR,
+    dwPrefixLength: u32,
+    dwAuthenticationProtocol: u32,
+    dwEapTypeId: u32,
+    dwFlags: RASIKEV_PROJECTION_INFO_FLAGS,
+    dwEncryptionMethod: u32,
+    numIPv4ServerAddresses: u32,
+    ipv4ServerAddresses: *IN_ADDR,
+    numIPv6ServerAddresses: u32,
+    ipv6ServerAddresses: *IN6_ADDR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASADPARAMS = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    pfnRasSetCommSettings: PFNRASSETCOMMSETTINGS,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASPBDLGW = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    dwCallbackId: usize,
+    pCallback: RASPBDLGFUNCW,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASPBDLGA = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    dwCallbackId: usize,
+    pCallback: RASPBDLGFUNCA,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASENTRYDLGW = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    szEntry: [257]u16,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASENTRYDLGA = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    szEntry: [257]CHAR,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RASDIALDLG = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    dwSize: u32,
+    hwndOwner: HWND,
+    dwFlags: u32,
+    xDlg: i32,
+    yDlg: i32,
+    dwSubEntry: u32,
+    dwError: u32,
+    reserved: usize,
+    reserved2: usize,
+};
+
+}, else => struct { } };
+
+pub const MPR_INTERFACE_DIAL_MODE = enum(u32) {
+    First = 0,
+    All = 1,
+    AsNeeded = 2,
+};
+pub const MPRDM_DialFirst = MPR_INTERFACE_DIAL_MODE.First;
+pub const MPRDM_DialAll = MPR_INTERFACE_DIAL_MODE.All;
+pub const MPRDM_DialAsNeeded = MPR_INTERFACE_DIAL_MODE.AsNeeded;
+
+pub const RASENTRY_DIAL_MODE = enum(u32) {
+    ll = 1,
+    sNeeded = 2,
+};
+pub const RASEDM_DialAll = RASENTRY_DIAL_MODE.ll;
+pub const RASEDM_DialAsNeeded = RASENTRY_DIAL_MODE.sNeeded;
+
+pub const RAS_FLAGS = enum(u32) {
+    PPP_CONNECTION = 1,
+    MESSENGER_PRESENT = 2,
+    QUARANTINE_PRESENT = 8,
+    ARAP_CONNECTION = 16,
+    // IKEV2_CONNECTION = 16, this enum value conflicts with ARAP_CONNECTION
+    DORMANT = 32,
+};
+pub const RAS_FLAGS_PPP_CONNECTION = RAS_FLAGS.PPP_CONNECTION;
+pub const RAS_FLAGS_MESSENGER_PRESENT = RAS_FLAGS.MESSENGER_PRESENT;
+pub const RAS_FLAGS_QUARANTINE_PRESENT = RAS_FLAGS.QUARANTINE_PRESENT;
+pub const RAS_FLAGS_ARAP_CONNECTION = RAS_FLAGS.ARAP_CONNECTION;
+pub const RAS_FLAGS_IKEV2_CONNECTION = RAS_FLAGS.ARAP_CONNECTION;
+pub const RAS_FLAGS_DORMANT = RAS_FLAGS.DORMANT;
+
+pub const MPR_ET = enum(u32) {
+    None = 0,
+    Require = 1,
+    RequireMax = 2,
+    Optional = 3,
+};
+pub const MPR_ET_None = MPR_ET.None;
+pub const MPR_ET_Require = MPR_ET.Require;
+pub const MPR_ET_RequireMax = MPR_ET.RequireMax;
+pub const MPR_ET_Optional = MPR_ET.Optional;
+
+pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA = enum(u32) {
+    D5 = 5,
+    S = 128,
+    SV2 = 129,
+};
+pub const RASLCPAD_CHAP_MD5 = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.D5;
+pub const RASLCPAD_CHAP_MS = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.S;
+pub const RASLCPAD_CHAP_MSV2 = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.SV2;
+
+pub const PPP_LCP = enum(u32) {
+    PAP = 49187,
+    CHAP = 49699,
+    EAP = 49703,
+    SPAP = 49191,
+};
+pub const PPP_LCP_PAP = PPP_LCP.PAP;
+pub const PPP_LCP_CHAP = PPP_LCP.CHAP;
+pub const PPP_LCP_EAP = PPP_LCP.EAP;
+pub const PPP_LCP_SPAP = PPP_LCP.SPAP;
+
+pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL = enum(u32) {
+    PAP = 49187,
+    SPAP = 49191,
+    CHAP = 49699,
+    EAP = 49703,
+};
+pub const RASLCPAP_PAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.PAP;
+pub const RASLCPAP_SPAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.SPAP;
+pub const RASLCPAP_CHAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.CHAP;
+pub const RASLCPAP_EAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.EAP;
+
+pub const PPP_LCP_INFO_AUTH_DATA = enum(u32) {
+    D5 = 5,
+    S = 128,
+    SV2 = 129,
+};
+pub const PPP_LCP_CHAP_MD5 = PPP_LCP_INFO_AUTH_DATA.D5;
+pub const PPP_LCP_CHAP_MS = PPP_LCP_INFO_AUTH_DATA.S;
+pub const PPP_LCP_CHAP_MSV2 = PPP_LCP_INFO_AUTH_DATA.SV2;
+
+pub const RASIKEV_PROJECTION_INFO_FLAGS = enum(u32) {
+    MOBIKESUPPORTED = 1,
+    BEHIND_NAT = 2,
+    SERVERBEHIND_NAT = 4,
+    _,
+    pub fn initFlags(o: struct {
+        MOBIKESUPPORTED: u1 = 0,
+        BEHIND_NAT: u1 = 0,
+        SERVERBEHIND_NAT: u1 = 0,
+    }) RASIKEV_PROJECTION_INFO_FLAGS {
+        return @intToEnum(RASIKEV_PROJECTION_INFO_FLAGS,
+              (if (o.MOBIKESUPPORTED == 1) @enumToInt(RASIKEV_PROJECTION_INFO_FLAGS.MOBIKESUPPORTED) else 0)
+            | (if (o.BEHIND_NAT == 1) @enumToInt(RASIKEV_PROJECTION_INFO_FLAGS.BEHIND_NAT) else 0)
+            | (if (o.SERVERBEHIND_NAT == 1) @enumToInt(RASIKEV_PROJECTION_INFO_FLAGS.SERVERBEHIND_NAT) else 0)
+        );
+    }
+};
+pub const RASIKEv2_FLAGS_MOBIKESUPPORTED = RASIKEV_PROJECTION_INFO_FLAGS.MOBIKESUPPORTED;
+pub const RASIKEv2_FLAGS_BEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS.BEHIND_NAT;
+pub const RASIKEv2_FLAGS_SERVERBEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS.SERVERBEHIND_NAT;
+
+pub const MPR_VS = enum(u32) {
+    Default = 0,
+    PptpOnly = 1,
+    PptpFirst = 2,
+    L2tpOnly = 3,
+    L2tpFirst = 4,
+};
+pub const MPR_VS_Default = MPR_VS.Default;
+pub const MPR_VS_PptpOnly = MPR_VS.PptpOnly;
+pub const MPR_VS_PptpFirst = MPR_VS.PptpFirst;
+pub const MPR_VS_L2tpOnly = MPR_VS.L2tpOnly;
+pub const MPR_VS_L2tpFirst = MPR_VS.L2tpFirst;
+
+pub const SECURITY_MESSAGE_MSG_ID = enum(u32) {
+    SUCCESS = 1,
+    FAILURE = 2,
+    ERROR = 3,
+};
+pub const SECURITYMSG_SUCCESS = SECURITY_MESSAGE_MSG_ID.SUCCESS;
+pub const SECURITYMSG_FAILURE = SECURITY_MESSAGE_MSG_ID.FAILURE;
+pub const SECURITYMSG_ERROR = SECURITY_MESSAGE_MSG_ID.ERROR;
+
+pub const RASAPIVERSION = enum(i32) {
+    @"500" = 1,
+    @"501" = 2,
+    @"600" = 3,
+    @"601" = 4,
+};
+pub const RASAPIVERSION_500 = RASAPIVERSION.@"500";
+pub const RASAPIVERSION_501 = RASAPIVERSION.@"501";
+pub const RASAPIVERSION_600 = RASAPIVERSION.@"600";
+pub const RASAPIVERSION_601 = RASAPIVERSION.@"601";
+
+pub const RASIPADDR = extern struct {
+    a: u8,
+    b: u8,
+    c: u8,
+    d: u8,
+};
+
+pub const RASTUNNELENDPOINT = extern struct {
+    dwType: u32,
+    Anonymous: extern union {
+        ipv4: IN_ADDR,
+        ipv6: IN6_ADDR,
+    },
+};
 
 pub const RASCONNSTATE = enum(i32) {
     OpenPort = 0,
@@ -914,85 +1134,6 @@ pub const RASCONNSTATUSA = extern struct {
     remoteEndPoint: RASTUNNELENDPOINT,
     rasconnsubstate: RASCONNSUBSTATE,
 };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASDIALPARAMSW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    szEntryName: [257]u16,
-    szPhoneNumber: [129]u16,
-    szCallbackNumber: [129]u16,
-    szUserName: [257]u16,
-    szPassword: [257]u16,
-    szDomain: [16]u16,
-    dwSubEntry: u32,
-    dwCallbackId: usize,
-    dwIfIndex: u32,
-    szEncPassword: PWSTR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASDIALPARAMSA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    szEntryName: [257]CHAR,
-    szPhoneNumber: [129]CHAR,
-    szCallbackNumber: [129]CHAR,
-    szUserName: [257]CHAR,
-    szPassword: [257]CHAR,
-    szDomain: [16]CHAR,
-    dwSubEntry: u32,
-    dwCallbackId: usize,
-    dwIfIndex: u32,
-    szEncPassword: PSTR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASEAPINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSizeofEapInfo: u32,
-    pbEapInfo: *u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASDEVSPECIFICINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    pbDevSpecificInfo: *u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASDIALEXTENSIONS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    dwfOptions: u32,
-    hwndParent: HWND,
-    reserved: usize,
-    reserved1: usize,
-    RasEapInfo: RASEAPINFO,
-    fSkipPppAuth: BOOL,
-    RasDevSpecificInfo: RASDEVSPECIFICINFO,
-};
-
-}, else => struct { } };
 
 pub const RASENTRYNAMEW = extern struct {
     dwSize: u32,
@@ -1166,30 +1307,6 @@ pub const RASPPP_PROJECTION_INFO = extern struct {
     dwCcpOptions: u32,
     dwCcpServerOptions: u32,
 };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASIKEV2_PROJECTION_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwIPv4NegotiationError: u32,
-    ipv4Address: IN_ADDR,
-    ipv4ServerAddress: IN_ADDR,
-    dwIPv6NegotiationError: u32,
-    ipv6Address: IN6_ADDR,
-    ipv6ServerAddress: IN6_ADDR,
-    dwPrefixLength: u32,
-    dwAuthenticationProtocol: u32,
-    dwEapTypeId: u32,
-    dwFlags: RASIKEV_PROJECTION_INFO_FLAGS,
-    dwEncryptionMethod: u32,
-    numIPv4ServerAddresses: u32,
-    ipv4ServerAddresses: *IN_ADDR,
-    numIPv6ServerAddresses: u32,
-    ipv6ServerAddresses: *IN6_ADDR,
-};
-
-}, else => struct { } };
 
 pub const RASPROJECTION_INFO_TYPE = enum(i32) {
     PPP = 1,
@@ -1415,20 +1532,6 @@ pub const ORASADFUNC = fn(
     param3: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASADPARAMS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-};
-
-}, else => struct { } };
-
 pub const RASADFUNCA = fn(
     param0: PSTR,
     param1: PSTR,
@@ -1560,17 +1663,6 @@ pub const PFNRASSETCOMMSETTINGS = fn(
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    pfnRasSetCommSettings: PFNRASSETCOMMSETTINGS,
-};
-
-}, else => struct { } };
-
 pub const RAS_STATS = extern struct {
     dwSize: u32,
     dwBytesXmited: u32,
@@ -1650,98 +1742,6 @@ pub const RASNOUSERA = extern struct {
     szPassword: [257]CHAR,
     szDomain: [16]CHAR,
 };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASPBDLGW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwCallbackId: usize,
-    pCallback: RASPBDLGFUNCW,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASPBDLGA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwCallbackId: usize,
-    pCallback: RASPBDLGFUNCA,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASENTRYDLGW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    szEntry: [257]u16,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASENTRYDLGA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    szEntry: [257]CHAR,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RASDIALDLG = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwSize: u32,
-    hwndOwner: HWND,
-    dwFlags: u32,
-    xDlg: i32,
-    yDlg: i32,
-    dwSubEntry: u32,
-    dwError: u32,
-    reserved: usize,
-    reserved2: usize,
-};
-
-}, else => struct { } };
 
 pub const RasCustomDialDlgFn = fn(
     hInstDll: HINSTANCE,

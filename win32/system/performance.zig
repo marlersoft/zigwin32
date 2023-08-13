@@ -91,12 +91,6 @@ pub const PLA_CAPABILITY_AUTOLOGGER = @as(u32, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (112)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'PerfStopProvider', what can Zig do with this information?
-pub const PerfProviderHandle = isize;
-
-// TODO: this type has a FreeFunc 'PerfCloseQueryHandle', what can Zig do with this information?
-pub const PerfQueryHandle = isize;
-
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
@@ -128,6 +122,52 @@ pub const PERF_COUNTER_DEFINITION = extern struct {
     CounterNameTitle: PWSTR,
     CounterHelpTitleIndex: u32,
     CounterHelpTitle: PWSTR,
+    DefaultScale: i32,
+    DetailLevel: u32,
+    CounterType: u32,
+    CounterSize: u32,
+    CounterOffset: u32,
+};
+
+}, else => struct { } };
+
+// TODO: this type has a FreeFunc 'PerfStopProvider', what can Zig do with this information?
+pub const PerfProviderHandle = isize;
+
+// TODO: this type has a FreeFunc 'PerfCloseQueryHandle', what can Zig do with this information?
+pub const PerfQueryHandle = isize;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const PERF_OBJECT_TYPE = extern struct {
+    TotalByteLength: u32,
+    DefinitionLength: u32,
+    HeaderLength: u32,
+    ObjectNameTitleIndex: u32,
+    ObjectNameTitle: u32,
+    ObjectHelpTitleIndex: u32,
+    ObjectHelpTitle: u32,
+    DetailLevel: u32,
+    NumCounters: u32,
+    DefaultCounter: i32,
+    NumInstances: i32,
+    CodePage: u32,
+    PerfTime: LARGE_INTEGER,
+    PerfFreq: LARGE_INTEGER,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const PERF_COUNTER_DEFINITION = extern struct {
+    ByteLength: u32,
+    CounterNameTitleIndex: u32,
+    CounterNameTitle: u32,
+    CounterHelpTitleIndex: u32,
+    CounterHelpTitle: u32,
     DefaultScale: i32,
     DetailLevel: u32,
     CounterType: u32,
@@ -327,46 +367,6 @@ pub const PERF_DATA_BLOCK = extern struct {
     SystemNameLength: u32,
     SystemNameOffset: u32,
 };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PERF_OBJECT_TYPE = extern struct {
-    TotalByteLength: u32,
-    DefinitionLength: u32,
-    HeaderLength: u32,
-    ObjectNameTitleIndex: u32,
-    ObjectNameTitle: u32,
-    ObjectHelpTitleIndex: u32,
-    ObjectHelpTitle: u32,
-    DetailLevel: u32,
-    NumCounters: u32,
-    DefaultCounter: i32,
-    NumInstances: i32,
-    CodePage: u32,
-    PerfTime: LARGE_INTEGER,
-    PerfFreq: LARGE_INTEGER,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PERF_COUNTER_DEFINITION = extern struct {
-    ByteLength: u32,
-    CounterNameTitleIndex: u32,
-    CounterNameTitle: u32,
-    CounterHelpTitleIndex: u32,
-    CounterHelpTitle: u32,
-    DefaultScale: i32,
-    DetailLevel: u32,
-    CounterType: u32,
-    CounterSize: u32,
-    CounterOffset: u32,
-};
-
-}, else => struct { } };
 
 pub const PERF_INSTANCE_DEFINITION = extern struct {
     ByteLength: u32,
@@ -671,6 +671,91 @@ pub const PDH_BROWSE_DLG_CONFIG_A = extern struct {
     dwDefaultDetailLevel: PERF_DETAIL,
     szDialogBoxCaption: PSTR,
 };
+
+pub const PERF_DETAIL = enum(u32) {
+    NOVICE = 100,
+    ADVANCED = 200,
+    EXPERT = 300,
+    WIZARD = 400,
+};
+pub const PERF_DETAIL_NOVICE = PERF_DETAIL.NOVICE;
+pub const PERF_DETAIL_ADVANCED = PERF_DETAIL.ADVANCED;
+pub const PERF_DETAIL_EXPERT = PERF_DETAIL.EXPERT;
+pub const PERF_DETAIL_WIZARD = PERF_DETAIL.WIZARD;
+
+pub const REAL_TIME_DATA_SOURCE_ID_FLAGS = enum(u32) {
+    REGISTRY = 1,
+    WBEM = 4,
+};
+pub const DATA_SOURCE_REGISTRY = REAL_TIME_DATA_SOURCE_ID_FLAGS.REGISTRY;
+pub const DATA_SOURCE_WBEM = REAL_TIME_DATA_SOURCE_ID_FLAGS.WBEM;
+
+pub const PDH_PATH_FLAGS = enum(u32) {
+    RESULT = 1,
+    INPUT = 2,
+    NONE = 0,
+};
+pub const PDH_PATH_WBEM_RESULT = PDH_PATH_FLAGS.RESULT;
+pub const PDH_PATH_WBEM_INPUT = PDH_PATH_FLAGS.INPUT;
+pub const PDH_PATH_WBEM_NONE = PDH_PATH_FLAGS.NONE;
+
+pub const PDH_FMT = enum(u32) {
+    DOUBLE = 512,
+    LARGE = 1024,
+    LONG = 256,
+};
+pub const PDH_FMT_DOUBLE = PDH_FMT.DOUBLE;
+pub const PDH_FMT_LARGE = PDH_FMT.LARGE;
+pub const PDH_FMT_LONG = PDH_FMT.LONG;
+
+pub const PDH_LOG_TYPE = enum(u32) {
+    UNDEFINED = 0,
+    CSV = 1,
+    SQL = 7,
+    TSV = 2,
+    BINARY = 8,
+    PERFMON = 6,
+};
+pub const PDH_LOG_TYPE_UNDEFINED = PDH_LOG_TYPE.UNDEFINED;
+pub const PDH_LOG_TYPE_CSV = PDH_LOG_TYPE.CSV;
+pub const PDH_LOG_TYPE_SQL = PDH_LOG_TYPE.SQL;
+pub const PDH_LOG_TYPE_TSV = PDH_LOG_TYPE.TSV;
+pub const PDH_LOG_TYPE_BINARY = PDH_LOG_TYPE.BINARY;
+pub const PDH_LOG_TYPE_PERFMON = PDH_LOG_TYPE.PERFMON;
+
+pub const PDH_LOG = enum(u32) {
+    READ_ACCESS = 65536,
+    WRITE_ACCESS = 131072,
+    UPDATE_ACCESS = 262144,
+};
+pub const PDH_LOG_READ_ACCESS = PDH_LOG.READ_ACCESS;
+pub const PDH_LOG_WRITE_ACCESS = PDH_LOG.WRITE_ACCESS;
+pub const PDH_LOG_UPDATE_ACCESS = PDH_LOG.UPDATE_ACCESS;
+
+pub const PDH_SELECT_DATA_SOURCE_FLAGS = enum(u32) {
+    FILE_BROWSER_ONLY = 1,
+    NONE = 0,
+};
+pub const PDH_FLAGS_FILE_BROWSER_ONLY = PDH_SELECT_DATA_SOURCE_FLAGS.FILE_BROWSER_ONLY;
+pub const PDH_FLAGS_NONE = PDH_SELECT_DATA_SOURCE_FLAGS.NONE;
+
+pub const PDH_DLL_VERSION = enum(u32) {
+    CVERSION_WIN50 = 1280,
+    VERSION = 1283,
+};
+pub const PDH_CVERSION_WIN50 = PDH_DLL_VERSION.CVERSION_WIN50;
+pub const PDH_VERSION = PDH_DLL_VERSION.VERSION;
+
+pub const PERF_COUNTER_AGGREGATE_FUNC = enum(u32) {
+    UNDEFINED = 0,
+    TOTAL = 1,
+    AVG = 2,
+    MIN = 3,
+};
+pub const PERF_AGGREGATE_UNDEFINED = PERF_COUNTER_AGGREGATE_FUNC.UNDEFINED;
+pub const PERF_AGGREGATE_TOTAL = PERF_COUNTER_AGGREGATE_FUNC.TOTAL;
+pub const PERF_AGGREGATE_AVG = PERF_COUNTER_AGGREGATE_FUNC.AVG;
+pub const PERF_AGGREGATE_MIN = PERF_COUNTER_AGGREGATE_FUNC.MIN;
 
 const CLSID_DataCollectorSet_Value = @import("../zig.zig").Guid.initString("03837521-098b-11d8-9414-505054503030");
 pub const CLSID_DataCollectorSet = &CLSID_DataCollectorSet_Value;
@@ -3897,90 +3982,6 @@ pub const IValueMap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PERF_DETAIL = enum(u32) {
-    NOVICE = 100,
-    ADVANCED = 200,
-    EXPERT = 300,
-    WIZARD = 400,
-};
-pub const PERF_DETAIL_NOVICE = PERF_DETAIL.NOVICE;
-pub const PERF_DETAIL_ADVANCED = PERF_DETAIL.ADVANCED;
-pub const PERF_DETAIL_EXPERT = PERF_DETAIL.EXPERT;
-pub const PERF_DETAIL_WIZARD = PERF_DETAIL.WIZARD;
-
-pub const REAL_TIME_DATA_SOURCE_ID_FLAGS = enum(u32) {
-    REGISTRY = 1,
-    WBEM = 4,
-};
-pub const DATA_SOURCE_REGISTRY = REAL_TIME_DATA_SOURCE_ID_FLAGS.REGISTRY;
-pub const DATA_SOURCE_WBEM = REAL_TIME_DATA_SOURCE_ID_FLAGS.WBEM;
-
-pub const PDH_PATH_FLAGS = enum(u32) {
-    RESULT = 1,
-    INPUT = 2,
-    NONE = 0,
-};
-pub const PDH_PATH_WBEM_RESULT = PDH_PATH_FLAGS.RESULT;
-pub const PDH_PATH_WBEM_INPUT = PDH_PATH_FLAGS.INPUT;
-pub const PDH_PATH_WBEM_NONE = PDH_PATH_FLAGS.NONE;
-
-pub const PDH_FMT = enum(u32) {
-    DOUBLE = 512,
-    LARGE = 1024,
-    LONG = 256,
-};
-pub const PDH_FMT_DOUBLE = PDH_FMT.DOUBLE;
-pub const PDH_FMT_LARGE = PDH_FMT.LARGE;
-pub const PDH_FMT_LONG = PDH_FMT.LONG;
-
-pub const PDH_LOG_TYPE = enum(u32) {
-    UNDEFINED = 0,
-    CSV = 1,
-    SQL = 7,
-    TSV = 2,
-    BINARY = 8,
-    PERFMON = 6,
-};
-pub const PDH_LOG_TYPE_UNDEFINED = PDH_LOG_TYPE.UNDEFINED;
-pub const PDH_LOG_TYPE_CSV = PDH_LOG_TYPE.CSV;
-pub const PDH_LOG_TYPE_SQL = PDH_LOG_TYPE.SQL;
-pub const PDH_LOG_TYPE_TSV = PDH_LOG_TYPE.TSV;
-pub const PDH_LOG_TYPE_BINARY = PDH_LOG_TYPE.BINARY;
-pub const PDH_LOG_TYPE_PERFMON = PDH_LOG_TYPE.PERFMON;
-
-pub const PDH_LOG = enum(u32) {
-    READ_ACCESS = 65536,
-    WRITE_ACCESS = 131072,
-    UPDATE_ACCESS = 262144,
-};
-pub const PDH_LOG_READ_ACCESS = PDH_LOG.READ_ACCESS;
-pub const PDH_LOG_WRITE_ACCESS = PDH_LOG.WRITE_ACCESS;
-pub const PDH_LOG_UPDATE_ACCESS = PDH_LOG.UPDATE_ACCESS;
-
-pub const PDH_SELECT_DATA_SOURCE_FLAGS = enum(u32) {
-    FILE_BROWSER_ONLY = 1,
-    NONE = 0,
-};
-pub const PDH_FLAGS_FILE_BROWSER_ONLY = PDH_SELECT_DATA_SOURCE_FLAGS.FILE_BROWSER_ONLY;
-pub const PDH_FLAGS_NONE = PDH_SELECT_DATA_SOURCE_FLAGS.NONE;
-
-pub const PDH_VERSION = enum(u32) {
-    CVERSION_WIN50 = 1280,
-    VERSION = 1283,
-};
-// TODO: enum 'PDH_VERSION' has known issues with its value aliases
-
-pub const PERF_COUNTER_AGGREGATE_FUNC = enum(u32) {
-    UNDEFINED = 0,
-    TOTAL = 1,
-    AVG = 2,
-    MIN = 3,
-};
-pub const PERF_AGGREGATE_UNDEFINED = PERF_COUNTER_AGGREGATE_FUNC.UNDEFINED;
-pub const PERF_AGGREGATE_TOTAL = PERF_COUNTER_AGGREGATE_FUNC.TOTAL;
-pub const PERF_AGGREGATE_AVG = PERF_COUNTER_AGGREGATE_FUNC.AVG;
-pub const PERF_AGGREGATE_MIN = PERF_COUNTER_AGGREGATE_FUNC.MIN;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (135)
@@ -4247,7 +4248,7 @@ pub extern "ADVAPI32" fn PerfDeleteCounters(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDllVersion(
-    lpdwVersion: ?*PDH_VERSION,
+    lpdwVersion: ?*PDH_DLL_VERSION,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'

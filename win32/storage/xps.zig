@@ -91,8 +91,6 @@ pub const XPS_E_PACKAGE_WRITER_NOT_CLOSED = @import("../zig.zig").typedConst(HRE
 //--------------------------------------------------------------------------------
 // Section: Types (110)
 //--------------------------------------------------------------------------------
-pub const HPTPROVIDER = *opaque{};
-
 pub const PSINJECT_POINT = enum(u16) {
     BEGINSTREAM = 1,
     PSADOBE = 2,
@@ -225,6 +223,8 @@ pub const PSINJECT_PAGEBBOX = PSINJECT_POINT.PAGEBBOX;
 pub const PSINJECT_ENDPAGECOMMENTS = PSINJECT_POINT.ENDPAGECOMMENTS;
 pub const PSINJECT_VMSAVE = PSINJECT_POINT.VMSAVE;
 pub const PSINJECT_VMRESTORE = PSINJECT_POINT.VMRESTORE;
+
+pub const HPTPROVIDER = *opaque{};
 
 pub const DRAWPATRECT = extern struct {
     ptPosition: POINT,

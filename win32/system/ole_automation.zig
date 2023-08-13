@@ -93,113 +93,6 @@ pub const LPEXCEPFINO_DEFERRED_FILLIN = fn(
     pExcepInfo: *EXCEPINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const VARENUM = enum(i32) {
-    EMPTY = 0,
-    NULL = 1,
-    I2 = 2,
-    I4 = 3,
-    R4 = 4,
-    R8 = 5,
-    CY = 6,
-    DATE = 7,
-    BSTR = 8,
-    DISPATCH = 9,
-    ERROR = 10,
-    BOOL = 11,
-    VARIANT = 12,
-    UNKNOWN = 13,
-    DECIMAL = 14,
-    I1 = 16,
-    UI1 = 17,
-    UI2 = 18,
-    UI4 = 19,
-    I8 = 20,
-    UI8 = 21,
-    INT = 22,
-    UINT = 23,
-    VOID = 24,
-    HRESULT = 25,
-    PTR = 26,
-    SAFEARRAY = 27,
-    CARRAY = 28,
-    USERDEFINED = 29,
-    LPSTR = 30,
-    LPWSTR = 31,
-    RECORD = 36,
-    INT_PTR = 37,
-    UINT_PTR = 38,
-    FILETIME = 64,
-    BLOB = 65,
-    STREAM = 66,
-    STORAGE = 67,
-    STREAMED_OBJECT = 68,
-    STORED_OBJECT = 69,
-    BLOB_OBJECT = 70,
-    CF = 71,
-    CLSID = 72,
-    VERSIONED_STREAM = 73,
-    BSTR_BLOB = 4095,
-    VECTOR = 4096,
-    ARRAY = 8192,
-    BYREF = 16384,
-    RESERVED = 32768,
-    ILLEGAL = 65535,
-    // ILLEGALMASKED = 4095, this enum value conflicts with BSTR_BLOB
-    // TYPEMASK = 4095, this enum value conflicts with BSTR_BLOB
-};
-pub const VT_EMPTY = VARENUM.EMPTY;
-pub const VT_NULL = VARENUM.NULL;
-pub const VT_I2 = VARENUM.I2;
-pub const VT_I4 = VARENUM.I4;
-pub const VT_R4 = VARENUM.R4;
-pub const VT_R8 = VARENUM.R8;
-pub const VT_CY = VARENUM.CY;
-pub const VT_DATE = VARENUM.DATE;
-pub const VT_BSTR = VARENUM.BSTR;
-pub const VT_DISPATCH = VARENUM.DISPATCH;
-pub const VT_ERROR = VARENUM.ERROR;
-pub const VT_BOOL = VARENUM.BOOL;
-pub const VT_VARIANT = VARENUM.VARIANT;
-pub const VT_UNKNOWN = VARENUM.UNKNOWN;
-pub const VT_DECIMAL = VARENUM.DECIMAL;
-pub const VT_I1 = VARENUM.I1;
-pub const VT_UI1 = VARENUM.UI1;
-pub const VT_UI2 = VARENUM.UI2;
-pub const VT_UI4 = VARENUM.UI4;
-pub const VT_I8 = VARENUM.I8;
-pub const VT_UI8 = VARENUM.UI8;
-pub const VT_INT = VARENUM.INT;
-pub const VT_UINT = VARENUM.UINT;
-pub const VT_VOID = VARENUM.VOID;
-pub const VT_HRESULT = VARENUM.HRESULT;
-pub const VT_PTR = VARENUM.PTR;
-pub const VT_SAFEARRAY = VARENUM.SAFEARRAY;
-pub const VT_CARRAY = VARENUM.CARRAY;
-pub const VT_USERDEFINED = VARENUM.USERDEFINED;
-pub const VT_LPSTR = VARENUM.LPSTR;
-pub const VT_LPWSTR = VARENUM.LPWSTR;
-pub const VT_RECORD = VARENUM.RECORD;
-pub const VT_INT_PTR = VARENUM.INT_PTR;
-pub const VT_UINT_PTR = VARENUM.UINT_PTR;
-pub const VT_FILETIME = VARENUM.FILETIME;
-pub const VT_BLOB = VARENUM.BLOB;
-pub const VT_STREAM = VARENUM.STREAM;
-pub const VT_STORAGE = VARENUM.STORAGE;
-pub const VT_STREAMED_OBJECT = VARENUM.STREAMED_OBJECT;
-pub const VT_STORED_OBJECT = VARENUM.STORED_OBJECT;
-pub const VT_BLOB_OBJECT = VARENUM.BLOB_OBJECT;
-pub const VT_CF = VARENUM.CF;
-pub const VT_CLSID = VARENUM.CLSID;
-pub const VT_VERSIONED_STREAM = VARENUM.VERSIONED_STREAM;
-pub const VT_BSTR_BLOB = VARENUM.BSTR_BLOB;
-pub const VT_VECTOR = VARENUM.VECTOR;
-pub const VT_ARRAY = VARENUM.ARRAY;
-pub const VT_BYREF = VARENUM.BYREF;
-pub const VT_RESERVED = VARENUM.RESERVED;
-pub const VT_ILLEGAL = VARENUM.ILLEGAL;
-pub const VT_ILLEGALMASKED = VARENUM.BSTR_BLOB;
-pub const VT_TYPEMASK = VARENUM.BSTR_BLOB;
-
 pub const SAFEARRAYBOUND = extern struct {
     cElements: u32,
     lLbound: i32,
@@ -2764,9 +2657,116 @@ pub const IProvideRuntimeContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const VARENUM = enum(i32) {
+    EMPTY = 0,
+    NULL = 1,
+    I2 = 2,
+    I4 = 3,
+    R4 = 4,
+    R8 = 5,
+    CY = 6,
+    DATE = 7,
+    BSTR = 8,
+    DISPATCH = 9,
+    ERROR = 10,
+    BOOL = 11,
+    VARIANT = 12,
+    UNKNOWN = 13,
+    DECIMAL = 14,
+    I1 = 16,
+    UI1 = 17,
+    UI2 = 18,
+    UI4 = 19,
+    I8 = 20,
+    UI8 = 21,
+    INT = 22,
+    UINT = 23,
+    VOID = 24,
+    HRESULT = 25,
+    PTR = 26,
+    SAFEARRAY = 27,
+    CARRAY = 28,
+    USERDEFINED = 29,
+    LPSTR = 30,
+    LPWSTR = 31,
+    RECORD = 36,
+    INT_PTR = 37,
+    UINT_PTR = 38,
+    FILETIME = 64,
+    BLOB = 65,
+    STREAM = 66,
+    STORAGE = 67,
+    STREAMED_OBJECT = 68,
+    STORED_OBJECT = 69,
+    BLOB_OBJECT = 70,
+    CF = 71,
+    CLSID = 72,
+    VERSIONED_STREAM = 73,
+    BSTR_BLOB = 4095,
+    VECTOR = 4096,
+    ARRAY = 8192,
+    BYREF = 16384,
+    RESERVED = 32768,
+    ILLEGAL = 65535,
+    // ILLEGALMASKED = 4095, this enum value conflicts with BSTR_BLOB
+    // TYPEMASK = 4095, this enum value conflicts with BSTR_BLOB
+};
+pub const VT_EMPTY = VARENUM.EMPTY;
+pub const VT_NULL = VARENUM.NULL;
+pub const VT_I2 = VARENUM.I2;
+pub const VT_I4 = VARENUM.I4;
+pub const VT_R4 = VARENUM.R4;
+pub const VT_R8 = VARENUM.R8;
+pub const VT_CY = VARENUM.CY;
+pub const VT_DATE = VARENUM.DATE;
+pub const VT_BSTR = VARENUM.BSTR;
+pub const VT_DISPATCH = VARENUM.DISPATCH;
+pub const VT_ERROR = VARENUM.ERROR;
+pub const VT_BOOL = VARENUM.BOOL;
+pub const VT_VARIANT = VARENUM.VARIANT;
+pub const VT_UNKNOWN = VARENUM.UNKNOWN;
+pub const VT_DECIMAL = VARENUM.DECIMAL;
+pub const VT_I1 = VARENUM.I1;
+pub const VT_UI1 = VARENUM.UI1;
+pub const VT_UI2 = VARENUM.UI2;
+pub const VT_UI4 = VARENUM.UI4;
+pub const VT_I8 = VARENUM.I8;
+pub const VT_UI8 = VARENUM.UI8;
+pub const VT_INT = VARENUM.INT;
+pub const VT_UINT = VARENUM.UINT;
+pub const VT_VOID = VARENUM.VOID;
+pub const VT_HRESULT = VARENUM.HRESULT;
+pub const VT_PTR = VARENUM.PTR;
+pub const VT_SAFEARRAY = VARENUM.SAFEARRAY;
+pub const VT_CARRAY = VARENUM.CARRAY;
+pub const VT_USERDEFINED = VARENUM.USERDEFINED;
+pub const VT_LPSTR = VARENUM.LPSTR;
+pub const VT_LPWSTR = VARENUM.LPWSTR;
+pub const VT_RECORD = VARENUM.RECORD;
+pub const VT_INT_PTR = VARENUM.INT_PTR;
+pub const VT_UINT_PTR = VARENUM.UINT_PTR;
+pub const VT_FILETIME = VARENUM.FILETIME;
+pub const VT_BLOB = VARENUM.BLOB;
+pub const VT_STREAM = VARENUM.STREAM;
+pub const VT_STORAGE = VARENUM.STORAGE;
+pub const VT_STREAMED_OBJECT = VARENUM.STREAMED_OBJECT;
+pub const VT_STORED_OBJECT = VARENUM.STORED_OBJECT;
+pub const VT_BLOB_OBJECT = VARENUM.BLOB_OBJECT;
+pub const VT_CF = VARENUM.CF;
+pub const VT_CLSID = VARENUM.CLSID;
+pub const VT_VERSIONED_STREAM = VARENUM.VERSIONED_STREAM;
+pub const VT_BSTR_BLOB = VARENUM.BSTR_BLOB;
+pub const VT_VECTOR = VARENUM.VECTOR;
+pub const VT_ARRAY = VARENUM.ARRAY;
+pub const VT_BYREF = VARENUM.BYREF;
+pub const VT_RESERVED = VARENUM.RESERVED;
+pub const VT_ILLEGAL = VARENUM.ILLEGAL;
+pub const VT_ILLEGALMASKED = VARENUM.BSTR_BLOB;
+pub const VT_TYPEMASK = VARENUM.BSTR_BLOB;
+
 
 //--------------------------------------------------------------------------------
-// Section: Functions (412)
+// Section: Functions (402)
 //--------------------------------------------------------------------------------
 pub extern "OLEAUT32" fn BSTR_UserSize(
     param0: *u32,
@@ -2816,56 +2816,6 @@ pub extern "OLEAUT32" fn BSTR_UserUnmarshal64(
 pub extern "OLEAUT32" fn BSTR_UserFree64(
     param0: *u32,
     param1: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLEAUT32" fn VARIANT_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: *VARIANT,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLEAUT32" fn VARIANT_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *VARIANT,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLEAUT32" fn VARIANT_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *VARIANT,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLEAUT32" fn VARIANT_UserFree(
-    param0: *u32,
-    param1: *VARIANT,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn VARIANT_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: *VARIANT,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn VARIANT_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *VARIANT,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn VARIANT_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *VARIANT,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn VARIANT_UserFree64(
-    param0: *u32,
-    param1: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn HWND_UserSize(
@@ -2937,6 +2887,29 @@ pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree(
     param1: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+pub extern "OLEAUT32" fn VARIANT_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *VARIANT,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLEAUT32" fn VARIANT_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *VARIANT,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLEAUT32" fn VARIANT_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *VARIANT,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLEAUT32" fn VARIANT_UserFree(
+    param0: *u32,
+    param1: *VARIANT,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize64(
     param0: *u32,
@@ -2964,116 +2937,32 @@ pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree64(
     param1: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLE32" fn STGMEDIUM_UserSize(
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn VARIANT_UserSize64(
     param0: *u32,
     param1: u32,
-    param2: *STGMEDIUM,
+    param2: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn STGMEDIUM_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn STGMEDIUM_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn STGMEDIUM_UserFree(
-    param0: *u32,
-    param1: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn STGMEDIUM_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn STGMEDIUM_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn STGMEDIUM_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn STGMEDIUM_UserFree64(
-    param0: *u32,
-    param1: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLEAUT32" fn OleLoadPictureFile(
-    varFileName: VARIANT,
-    lplpdispPicture: **IDispatch,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "OLEAUT32" fn OleLoadPictureFileEx(
-    varFileName: VARIANT,
-    xSizeDesired: u32,
-    ySizeDesired: u32,
-    dwFlags: u32,
-    lplpdispPicture: **IDispatch,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "OLEAUT32" fn OleSavePictureFile(
-    lpdispPicture: *IDispatch,
-    bstrFileName: BSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "OLEAUT32" fn SysAllocString(
-    psz: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BSTR;
-
-pub extern "OLEAUT32" fn SysReAllocString(
-    pbstr: *BSTR,
-    psz: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub extern "OLEAUT32" fn SysAllocStringLen(
-    strIn: ?[*:0]const u16,
-    ui: u32,
-) callconv(@import("std").os.windows.WINAPI) BSTR;
-
-pub extern "OLEAUT32" fn SysReAllocStringLen(
-    pbstr: *BSTR,
-    psz: ?[*:0]const u16,
-    len: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn SysAddRefString(
-    bstrString: BSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "OLEAUT32" fn VARIANT_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: *VARIANT,
+) callconv(@import("std").os.windows.WINAPI) *u8;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn SysReleaseString(
-    bstrString: BSTR,
+pub extern "OLEAUT32" fn VARIANT_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *VARIANT,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn VARIANT_UserFree64(
+    param0: *u32,
+    param1: *VARIANT,
 ) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLEAUT32" fn SysFreeString(
-    bstrString: ?BSTR,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLEAUT32" fn SysStringLen(
-    pbstr: ?BSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLEAUT32" fn SysStringByteLen(
-    bstr: ?BSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLEAUT32" fn SysAllocStringByteLen(
-    psz: ?[*:0]const u8,
-    len: u32,
-) callconv(@import("std").os.windows.WINAPI) BSTR;
 
 pub extern "OLEAUT32" fn DosDateTimeToVariantTime(
     wDosDate: u16,
@@ -5066,6 +4955,70 @@ pub extern "OLEAUT32" fn ClearCustData(
 
 pub extern "OLEAUT32" fn OaEnablePerUserTLibRegistration(
 ) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn STGMEDIUM_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn STGMEDIUM_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn STGMEDIUM_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn STGMEDIUM_UserFree(
+    param0: *u32,
+    param1: *STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn STGMEDIUM_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: *STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn STGMEDIUM_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: *STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn STGMEDIUM_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn STGMEDIUM_UserFree64(
+    param0: *u32,
+    param1: *STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLEAUT32" fn OleLoadPictureFile(
+    varFileName: VARIANT,
+    lplpdispPicture: **IDispatch,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "OLEAUT32" fn OleLoadPictureFileEx(
+    varFileName: VARIANT,
+    xSizeDesired: u32,
+    ySizeDesired: u32,
+    dwFlags: u32,
+    lplpdispPicture: **IDispatch,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "OLEAUT32" fn OleSavePictureFile(
+    lpdispPicture: *IDispatch,
+    bstrFileName: BSTR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 
 //--------------------------------------------------------------------------------

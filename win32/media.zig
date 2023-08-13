@@ -4,7 +4,6 @@ pub const device_manager = @import("media/device_manager.zig");
 pub const library_sharing_services = @import("media/library_sharing_services.zig");
 pub const media_foundation = @import("media/media_foundation.zig");
 pub const media_player = @import("media/media_player.zig");
-pub const media_transport = @import("media/media_transport.zig");
 pub const multimedia = @import("media/multimedia.zig");
 pub const picture_acquisition = @import("media/picture_acquisition.zig");
 pub const speech = @import("media/speech.zig");

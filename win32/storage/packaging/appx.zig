@@ -53,35 +53,6 @@ pub const PACKAGE_INFO = extern struct {
 
 }, else => struct { } };
 
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PACKAGE_ID = extern struct {
-    reserved: u32,
-    processorArchitecture: u32,
-    version: PACKAGE_VERSION,
-    name: PWSTR,
-    publisher: PWSTR,
-    resourceId: PWSTR,
-    publisherId: PWSTR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const PACKAGE_INFO = extern struct {
-    reserved: u32,
-    flags: u32,
-    path: PWSTR,
-    packageFullName: PWSTR,
-    packageFamilyName: PWSTR,
-    packageId: PACKAGE_ID,
-};
-
-}, else => struct { } };
-
 const CLSID_AppxFactory_Value = @import("../../zig.zig").Guid.initString("5842a140-ff9f-4166-8f5c-62f5b7b0c781");
 pub const CLSID_AppxFactory = &CLSID_AppxFactory_Value;
 
@@ -3446,6 +3417,35 @@ pub const AppPolicyCreateFileAccess = enum(i32) {
 };
 pub const AppPolicyCreateFileAccess_Full = AppPolicyCreateFileAccess.Full;
 pub const AppPolicyCreateFileAccess_Limited = AppPolicyCreateFileAccess.Limited;
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const PACKAGE_ID = extern struct {
+    reserved: u32,
+    processorArchitecture: u32,
+    version: PACKAGE_VERSION,
+    name: PWSTR,
+    publisher: PWSTR,
+    resourceId: PWSTR,
+    publisherId: PWSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const PACKAGE_INFO = extern struct {
+    reserved: u32,
+    flags: u32,
+    path: PWSTR,
+    packageFullName: PWSTR,
+    packageFamilyName: PWSTR,
+    packageId: PACKAGE_ID,
+};
+
+}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------

@@ -312,9 +312,6 @@ pub const DNS_CONNECTION_POLICY_ENTRY_ONDEMAND = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (94)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
-pub const DnsContextHandle = isize;
-
 pub const IP4_ARRAY = extern struct {
     AddrCount: u32,
     AddrArray: [1]u32,
@@ -1119,11 +1116,6 @@ pub const DNS_CONNECTION_PROXY_INFO = extern struct {
     Flags: u32,
     Switch: DNS_CONNECTION_PROXY_INFO_SWITCH,
     Anonymous: extern union {
-        pub const _DNS_CONNECTION_PROXY_INFO_SCRIPT = extern struct {
-            pwszScript: PWSTR,
-            pwszUsername: PWSTR,
-            pwszPassword: PWSTR,
-        };
         pub const _DNS_CONNECTION_PROXY_INFO_CONFIG = extern struct {
             pwszServer: PWSTR,
             pwszUsername: PWSTR,
@@ -1131,6 +1123,11 @@ pub const DNS_CONNECTION_PROXY_INFO = extern struct {
             pwszException: PWSTR,
             pwszExtraInfo: PWSTR,
             Port: u16,
+        };
+        pub const _DNS_CONNECTION_PROXY_INFO_SCRIPT = extern struct {
+            pwszScript: PWSTR,
+            pwszUsername: PWSTR,
+            pwszPassword: PWSTR,
         };
         Config: _DNS_CONNECTION_PROXY_INFO_CONFIG,
         Script: _DNS_CONNECTION_PROXY_INFO_SCRIPT,
@@ -1289,6 +1286,9 @@ pub const MDNS_QUERY_REQUEST = extern struct {
     fAnswerReceived: BOOL,
     ulResendCount: u32,
 };
+
+// TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
+pub const DnsContextHandle = isize;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {

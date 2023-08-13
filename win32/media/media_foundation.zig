@@ -1291,281 +1291,6 @@ pub const MF_Plugin_Type_MediaSource = MF_Plugin_Type.MediaSource;
 pub const MF_Plugin_Type_MFT_MatchOutputType = MF_Plugin_Type.MFT_MatchOutputType;
 pub const MF_Plugin_Type_Other = MF_Plugin_Type.Other;
 
-pub const D3DOVERLAYCAPS = extern struct {
-    Caps: u32,
-    MaxOverlayDisplayWidth: u32,
-    MaxOverlayDisplayHeight: u32,
-};
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const D3DCONTENTPROTECTIONCAPS = extern struct {
-    Caps: u32,
-    KeyExchangeType: Guid,
-    BufferAlignmentStart: u32,
-    BlockAlignmentSize: u32,
-    ProtectedMemorySize: u64,
-};
-
-}, else => struct { } };
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IDirect3D9ExOverlayExtension_Value = @import("../zig.zig").Guid.initString("187aeb13-aaf5-4c59-876d-e059088c0df8");
-pub const IID_IDirect3D9ExOverlayExtension = &IID_IDirect3D9ExOverlayExtension_Value;
-pub const IDirect3D9ExOverlayExtension = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CheckDeviceOverlayType: fn(
-            self: *const IDirect3D9ExOverlayExtension,
-            Adapter: u32,
-            DevType: D3DDEVTYPE,
-            OverlayWidth: u32,
-            OverlayHeight: u32,
-            OverlayFormat: D3DFORMAT,
-            pDisplayMode: *D3DDISPLAYMODEEX,
-            DisplayRotation: D3DDISPLAYROTATION,
-            pOverlayCaps: *D3DOVERLAYCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3D9ExOverlayExtension_CheckDeviceOverlayType(self: *const T, Adapter: u32, DevType: D3DDEVTYPE, OverlayWidth: u32, OverlayHeight: u32, OverlayFormat: D3DFORMAT, pDisplayMode: *D3DDISPLAYMODEEX, DisplayRotation: D3DDISPLAYROTATION, pOverlayCaps: *D3DOVERLAYCAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3D9ExOverlayExtension.VTable, self.vtable).CheckDeviceOverlayType(@ptrCast(*const IDirect3D9ExOverlayExtension, self), Adapter, DevType, OverlayWidth, OverlayHeight, OverlayFormat, pDisplayMode, DisplayRotation, pOverlayCaps);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IDirect3DDevice9Video_Value = @import("../zig.zig").Guid.initString("26dc4561-a1ee-4ae7-96da-118a36c0ec95");
-pub const IID_IDirect3DDevice9Video = &IID_IDirect3DDevice9Video_Value;
-pub const IDirect3DDevice9Video = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetContentProtectionCaps: fn(
-            self: *const IDirect3DDevice9Video,
-            pCryptoType: *const Guid,
-            pDecodeProfile: *const Guid,
-            pCaps: *D3DCONTENTPROTECTIONCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateAuthenticatedChannel: fn(
-            self: *const IDirect3DDevice9Video,
-            ChannelType: D3DAUTHENTICATEDCHANNELTYPE,
-            ppAuthenticatedChannel: **IDirect3DAuthenticatedChannel9,
-            pChannelHandle: *HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        CreateCryptoSession: fn(
-            self: *const IDirect3DDevice9Video,
-            pCryptoType: *const Guid,
-            pDecodeProfile: *const Guid,
-            ppCryptoSession: **IDirect3DCryptoSession9,
-            pCryptoHandle: *HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DDevice9Video_GetContentProtectionCaps(self: *const T, pCryptoType: *const Guid, pDecodeProfile: *const Guid, pCaps: *D3DCONTENTPROTECTIONCAPS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).GetContentProtectionCaps(@ptrCast(*const IDirect3DDevice9Video, self), pCryptoType, pDecodeProfile, pCaps);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DDevice9Video_CreateAuthenticatedChannel(self: *const T, ChannelType: D3DAUTHENTICATEDCHANNELTYPE, ppAuthenticatedChannel: **IDirect3DAuthenticatedChannel9, pChannelHandle: *HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).CreateAuthenticatedChannel(@ptrCast(*const IDirect3DDevice9Video, self), ChannelType, ppAuthenticatedChannel, pChannelHandle);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DDevice9Video_CreateCryptoSession(self: *const T, pCryptoType: *const Guid, pDecodeProfile: *const Guid, ppCryptoSession: **IDirect3DCryptoSession9, pCryptoHandle: *HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).CreateCryptoSession(@ptrCast(*const IDirect3DDevice9Video, self), pCryptoType, pDecodeProfile, ppCryptoSession, pCryptoHandle);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IDirect3DAuthenticatedChannel9_Value = @import("../zig.zig").Guid.initString("ff24beee-da21-4beb-98b5-d2f899f98af9");
-pub const IID_IDirect3DAuthenticatedChannel9 = &IID_IDirect3DAuthenticatedChannel9_Value;
-pub const IDirect3DAuthenticatedChannel9 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCertificateSize: fn(
-            self: *const IDirect3DAuthenticatedChannel9,
-            pCertificateSize: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCertificate: fn(
-            self: *const IDirect3DAuthenticatedChannel9,
-            CertifacteSize: u32,
-            ppCertificate: *u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NegotiateKeyExchange: fn(
-            self: *const IDirect3DAuthenticatedChannel9,
-            DataSize: u32,
-            pData: *c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Query: fn(
-            self: *const IDirect3DAuthenticatedChannel9,
-            InputSize: u32,
-            pInput: *const c_void,
-            OutputSize: u32,
-            pOutput: *c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Configure: fn(
-            self: *const IDirect3DAuthenticatedChannel9,
-            InputSize: u32,
-            pInput: *const c_void,
-            pOutput: *D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DAuthenticatedChannel9_GetCertificateSize(self: *const T, pCertificateSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).GetCertificateSize(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), pCertificateSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DAuthenticatedChannel9_GetCertificate(self: *const T, CertifacteSize: u32, ppCertificate: *u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).GetCertificate(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), CertifacteSize, ppCertificate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DAuthenticatedChannel9_NegotiateKeyExchange(self: *const T, DataSize: u32, pData: *c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).NegotiateKeyExchange(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DAuthenticatedChannel9_Query(self: *const T, InputSize: u32, pInput: *const c_void, OutputSize: u32, pOutput: *c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).Query(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), InputSize, pInput, OutputSize, pOutput);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DAuthenticatedChannel9_Configure(self: *const T, InputSize: u32, pInput: *const c_void, pOutput: *D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).Configure(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), InputSize, pInput, pOutput);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IDirect3DCryptoSession9_Value = @import("../zig.zig").Guid.initString("fa0ab799-7a9c-48ca-8c5b-237e71a54434");
-pub const IID_IDirect3DCryptoSession9 = &IID_IDirect3DCryptoSession9_Value;
-pub const IDirect3DCryptoSession9 = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCertificateSize: fn(
-            self: *const IDirect3DCryptoSession9,
-            pCertificateSize: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCertificate: fn(
-            self: *const IDirect3DCryptoSession9,
-            CertifacteSize: u32,
-            ppCertificate: *u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        NegotiateKeyExchange: fn(
-            self: *const IDirect3DCryptoSession9,
-            DataSize: u32,
-            pData: *c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        EncryptionBlt: fn(
-            self: *const IDirect3DCryptoSession9,
-            pSrcSurface: *IDirect3DSurface9,
-            pDstSurface: *IDirect3DSurface9,
-            DstSurfaceSize: u32,
-            pIV: *c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DecryptionBlt: fn(
-            self: *const IDirect3DCryptoSession9,
-            pSrcSurface: *IDirect3DSurface9,
-            pDstSurface: *IDirect3DSurface9,
-            SrcSurfaceSize: u32,
-            pEncryptedBlockInfo: *D3DENCRYPTED_BLOCK_INFO,
-            pContentKey: *c_void,
-            pIV: *c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetSurfacePitch: fn(
-            self: *const IDirect3DCryptoSession9,
-            pSrcSurface: *IDirect3DSurface9,
-            pSurfacePitch: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        StartSessionKeyRefresh: fn(
-            self: *const IDirect3DCryptoSession9,
-            pRandomNumber: *c_void,
-            RandomNumberSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FinishSessionKeyRefresh: fn(
-            self: *const IDirect3DCryptoSession9,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEncryptionBltKey: fn(
-            self: *const IDirect3DCryptoSession9,
-            pReadbackKey: *c_void,
-            KeySize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_GetCertificateSize(self: *const T, pCertificateSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetCertificateSize(@ptrCast(*const IDirect3DCryptoSession9, self), pCertificateSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_GetCertificate(self: *const T, CertifacteSize: u32, ppCertificate: *u8) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetCertificate(@ptrCast(*const IDirect3DCryptoSession9, self), CertifacteSize, ppCertificate);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_NegotiateKeyExchange(self: *const T, DataSize: u32, pData: *c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).NegotiateKeyExchange(@ptrCast(*const IDirect3DCryptoSession9, self), DataSize, pData);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_EncryptionBlt(self: *const T, pSrcSurface: *IDirect3DSurface9, pDstSurface: *IDirect3DSurface9, DstSurfaceSize: u32, pIV: *c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).EncryptionBlt(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pDstSurface, DstSurfaceSize, pIV);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_DecryptionBlt(self: *const T, pSrcSurface: *IDirect3DSurface9, pDstSurface: *IDirect3DSurface9, SrcSurfaceSize: u32, pEncryptedBlockInfo: *D3DENCRYPTED_BLOCK_INFO, pContentKey: *c_void, pIV: *c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).DecryptionBlt(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pDstSurface, SrcSurfaceSize, pEncryptedBlockInfo, pContentKey, pIV);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_GetSurfacePitch(self: *const T, pSrcSurface: *IDirect3DSurface9, pSurfacePitch: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetSurfacePitch(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pSurfacePitch);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_StartSessionKeyRefresh(self: *const T, pRandomNumber: *c_void, RandomNumberSize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).StartSessionKeyRefresh(@ptrCast(*const IDirect3DCryptoSession9, self), pRandomNumber, RandomNumberSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_FinishSessionKeyRefresh(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).FinishSessionKeyRefresh(@ptrCast(*const IDirect3DCryptoSession9, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirect3DCryptoSession9_GetEncryptionBltKey(self: *const T, pReadbackKey: *c_void, KeySize: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetEncryptionBltKey(@ptrCast(*const IDirect3DCryptoSession9, self), pReadbackKey, KeySize);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS = enum(u32) {
-    NE = 0,
-    _WAIT = 1,
-};
-pub const MF_EVENT_FLAG_NONE = MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS.NE;
-pub const MF_EVENT_FLAG_NO_WAIT = MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS._WAIT;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DXVA_VideoSample2 = extern struct {
-    rtStart: i64,
-    rtEnd: i64,
-    SampleFormat: u32,
-    SampleFlags: u32,
-    lpDDSSrcSurface: *c_void,
-    rcSrc: RECT,
-    rcDst: RECT,
-    Palette: [16]DXVA_AYUVsample2,
-};
-
-}, else => struct { } };
-
 pub const CodecAPIEventData = extern struct {
     guid: Guid,
     dataLength: u32,
@@ -1719,6 +1444,40 @@ pub const ICodecAPI = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
+
+pub const MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS = enum(u32) {
+    NE = 0,
+    _WAIT = 1,
+};
+pub const MF_EVENT_FLAG_NONE = MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS.NE;
+pub const MF_EVENT_FLAG_NO_WAIT = MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS._WAIT;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const D3DCONTENTPROTECTIONCAPS = extern struct {
+    Caps: u32,
+    KeyExchangeType: Guid,
+    BufferAlignmentStart: u32,
+    BlockAlignmentSize: u32,
+    ProtectedMemorySize: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const D3DCONTENTPROTECTIONCAPS = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    Caps: u32,
+    KeyExchangeType: Guid,
+    BufferAlignmentStart: u32,
+    BlockAlignmentSize: u32,
+    ProtectedMemorySize: u64,
+};
+
+}, else => struct { } };
 
 pub const D3D12_VIDEO_FIELD_TYPE = enum(i32) {
     NONE = 0,
@@ -27683,16 +27442,257 @@ pub const IMFContentDecryptionModuleFactory = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
-pub const D3DCONTENTPROTECTIONCAPS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Caps: u32,
-    KeyExchangeType: Guid,
-    BufferAlignmentStart: u32,
-    BlockAlignmentSize: u32,
-    ProtectedMemorySize: u64,
+pub const DXVA_VideoSample2 = extern struct {
+    rtStart: i64,
+    rtEnd: i64,
+    SampleFormat: u32,
+    SampleFlags: u32,
+    lpDDSSrcSurface: *c_void,
+    rcSrc: RECT,
+    rcDst: RECT,
+    Palette: [16]DXVA_AYUVsample2,
 };
 
 }, else => struct { } };
+
+pub const D3DOVERLAYCAPS = extern struct {
+    Caps: u32,
+    MaxOverlayDisplayWidth: u32,
+    MaxOverlayDisplayHeight: u32,
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IDirect3D9ExOverlayExtension_Value = @import("../zig.zig").Guid.initString("187aeb13-aaf5-4c59-876d-e059088c0df8");
+pub const IID_IDirect3D9ExOverlayExtension = &IID_IDirect3D9ExOverlayExtension_Value;
+pub const IDirect3D9ExOverlayExtension = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CheckDeviceOverlayType: fn(
+            self: *const IDirect3D9ExOverlayExtension,
+            Adapter: u32,
+            DevType: D3DDEVTYPE,
+            OverlayWidth: u32,
+            OverlayHeight: u32,
+            OverlayFormat: D3DFORMAT,
+            pDisplayMode: *D3DDISPLAYMODEEX,
+            DisplayRotation: D3DDISPLAYROTATION,
+            pOverlayCaps: *D3DOVERLAYCAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3D9ExOverlayExtension_CheckDeviceOverlayType(self: *const T, Adapter: u32, DevType: D3DDEVTYPE, OverlayWidth: u32, OverlayHeight: u32, OverlayFormat: D3DFORMAT, pDisplayMode: *D3DDISPLAYMODEEX, DisplayRotation: D3DDISPLAYROTATION, pOverlayCaps: *D3DOVERLAYCAPS) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3D9ExOverlayExtension.VTable, self.vtable).CheckDeviceOverlayType(@ptrCast(*const IDirect3D9ExOverlayExtension, self), Adapter, DevType, OverlayWidth, OverlayHeight, OverlayFormat, pDisplayMode, DisplayRotation, pOverlayCaps);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IDirect3DDevice9Video_Value = @import("../zig.zig").Guid.initString("26dc4561-a1ee-4ae7-96da-118a36c0ec95");
+pub const IID_IDirect3DDevice9Video = &IID_IDirect3DDevice9Video_Value;
+pub const IDirect3DDevice9Video = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetContentProtectionCaps: fn(
+            self: *const IDirect3DDevice9Video,
+            pCryptoType: *const Guid,
+            pDecodeProfile: *const Guid,
+            pCaps: *D3DCONTENTPROTECTIONCAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAuthenticatedChannel: fn(
+            self: *const IDirect3DDevice9Video,
+            ChannelType: D3DAUTHENTICATEDCHANNELTYPE,
+            ppAuthenticatedChannel: **IDirect3DAuthenticatedChannel9,
+            pChannelHandle: *HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCryptoSession: fn(
+            self: *const IDirect3DDevice9Video,
+            pCryptoType: *const Guid,
+            pDecodeProfile: *const Guid,
+            ppCryptoSession: **IDirect3DCryptoSession9,
+            pCryptoHandle: *HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DDevice9Video_GetContentProtectionCaps(self: *const T, pCryptoType: *const Guid, pDecodeProfile: *const Guid, pCaps: *D3DCONTENTPROTECTIONCAPS) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).GetContentProtectionCaps(@ptrCast(*const IDirect3DDevice9Video, self), pCryptoType, pDecodeProfile, pCaps);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DDevice9Video_CreateAuthenticatedChannel(self: *const T, ChannelType: D3DAUTHENTICATEDCHANNELTYPE, ppAuthenticatedChannel: **IDirect3DAuthenticatedChannel9, pChannelHandle: *HANDLE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).CreateAuthenticatedChannel(@ptrCast(*const IDirect3DDevice9Video, self), ChannelType, ppAuthenticatedChannel, pChannelHandle);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DDevice9Video_CreateCryptoSession(self: *const T, pCryptoType: *const Guid, pDecodeProfile: *const Guid, ppCryptoSession: **IDirect3DCryptoSession9, pCryptoHandle: *HANDLE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DDevice9Video.VTable, self.vtable).CreateCryptoSession(@ptrCast(*const IDirect3DDevice9Video, self), pCryptoType, pDecodeProfile, ppCryptoSession, pCryptoHandle);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IDirect3DAuthenticatedChannel9_Value = @import("../zig.zig").Guid.initString("ff24beee-da21-4beb-98b5-d2f899f98af9");
+pub const IID_IDirect3DAuthenticatedChannel9 = &IID_IDirect3DAuthenticatedChannel9_Value;
+pub const IDirect3DAuthenticatedChannel9 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCertificateSize: fn(
+            self: *const IDirect3DAuthenticatedChannel9,
+            pCertificateSize: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCertificate: fn(
+            self: *const IDirect3DAuthenticatedChannel9,
+            CertifacteSize: u32,
+            ppCertificate: *u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NegotiateKeyExchange: fn(
+            self: *const IDirect3DAuthenticatedChannel9,
+            DataSize: u32,
+            pData: *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Query: fn(
+            self: *const IDirect3DAuthenticatedChannel9,
+            InputSize: u32,
+            pInput: *const c_void,
+            OutputSize: u32,
+            pOutput: *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Configure: fn(
+            self: *const IDirect3DAuthenticatedChannel9,
+            InputSize: u32,
+            pInput: *const c_void,
+            pOutput: *D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DAuthenticatedChannel9_GetCertificateSize(self: *const T, pCertificateSize: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).GetCertificateSize(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), pCertificateSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DAuthenticatedChannel9_GetCertificate(self: *const T, CertifacteSize: u32, ppCertificate: *u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).GetCertificate(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), CertifacteSize, ppCertificate);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DAuthenticatedChannel9_NegotiateKeyExchange(self: *const T, DataSize: u32, pData: *c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).NegotiateKeyExchange(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), DataSize, pData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DAuthenticatedChannel9_Query(self: *const T, InputSize: u32, pInput: *const c_void, OutputSize: u32, pOutput: *c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).Query(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), InputSize, pInput, OutputSize, pOutput);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DAuthenticatedChannel9_Configure(self: *const T, InputSize: u32, pInput: *const c_void, pOutput: *D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DAuthenticatedChannel9.VTable, self.vtable).Configure(@ptrCast(*const IDirect3DAuthenticatedChannel9, self), InputSize, pInput, pOutput);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IDirect3DCryptoSession9_Value = @import("../zig.zig").Guid.initString("fa0ab799-7a9c-48ca-8c5b-237e71a54434");
+pub const IID_IDirect3DCryptoSession9 = &IID_IDirect3DCryptoSession9_Value;
+pub const IDirect3DCryptoSession9 = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCertificateSize: fn(
+            self: *const IDirect3DCryptoSession9,
+            pCertificateSize: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCertificate: fn(
+            self: *const IDirect3DCryptoSession9,
+            CertifacteSize: u32,
+            ppCertificate: *u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NegotiateKeyExchange: fn(
+            self: *const IDirect3DCryptoSession9,
+            DataSize: u32,
+            pData: *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EncryptionBlt: fn(
+            self: *const IDirect3DCryptoSession9,
+            pSrcSurface: *IDirect3DSurface9,
+            pDstSurface: *IDirect3DSurface9,
+            DstSurfaceSize: u32,
+            pIV: *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DecryptionBlt: fn(
+            self: *const IDirect3DCryptoSession9,
+            pSrcSurface: *IDirect3DSurface9,
+            pDstSurface: *IDirect3DSurface9,
+            SrcSurfaceSize: u32,
+            pEncryptedBlockInfo: *D3DENCRYPTED_BLOCK_INFO,
+            pContentKey: *c_void,
+            pIV: *c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSurfacePitch: fn(
+            self: *const IDirect3DCryptoSession9,
+            pSrcSurface: *IDirect3DSurface9,
+            pSurfacePitch: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StartSessionKeyRefresh: fn(
+            self: *const IDirect3DCryptoSession9,
+            pRandomNumber: *c_void,
+            RandomNumberSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FinishSessionKeyRefresh: fn(
+            self: *const IDirect3DCryptoSession9,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEncryptionBltKey: fn(
+            self: *const IDirect3DCryptoSession9,
+            pReadbackKey: *c_void,
+            KeySize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_GetCertificateSize(self: *const T, pCertificateSize: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetCertificateSize(@ptrCast(*const IDirect3DCryptoSession9, self), pCertificateSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_GetCertificate(self: *const T, CertifacteSize: u32, ppCertificate: *u8) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetCertificate(@ptrCast(*const IDirect3DCryptoSession9, self), CertifacteSize, ppCertificate);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_NegotiateKeyExchange(self: *const T, DataSize: u32, pData: *c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).NegotiateKeyExchange(@ptrCast(*const IDirect3DCryptoSession9, self), DataSize, pData);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_EncryptionBlt(self: *const T, pSrcSurface: *IDirect3DSurface9, pDstSurface: *IDirect3DSurface9, DstSurfaceSize: u32, pIV: *c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).EncryptionBlt(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pDstSurface, DstSurfaceSize, pIV);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_DecryptionBlt(self: *const T, pSrcSurface: *IDirect3DSurface9, pDstSurface: *IDirect3DSurface9, SrcSurfaceSize: u32, pEncryptedBlockInfo: *D3DENCRYPTED_BLOCK_INFO, pContentKey: *c_void, pIV: *c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).DecryptionBlt(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pDstSurface, SrcSurfaceSize, pEncryptedBlockInfo, pContentKey, pIV);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_GetSurfacePitch(self: *const T, pSrcSurface: *IDirect3DSurface9, pSurfacePitch: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetSurfacePitch(@ptrCast(*const IDirect3DCryptoSession9, self), pSrcSurface, pSurfacePitch);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_StartSessionKeyRefresh(self: *const T, pRandomNumber: *c_void, RandomNumberSize: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).StartSessionKeyRefresh(@ptrCast(*const IDirect3DCryptoSession9, self), pRandomNumber, RandomNumberSize);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_FinishSessionKeyRefresh(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).FinishSessionKeyRefresh(@ptrCast(*const IDirect3DCryptoSession9, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDirect3DCryptoSession9_GetEncryptionBltKey(self: *const T, pReadbackKey: *c_void, KeySize: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDirect3DCryptoSession9.VTable, self.vtable).GetEncryptionBltKey(@ptrCast(*const IDirect3DCryptoSession9, self), pReadbackKey, KeySize);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
 
 
 //--------------------------------------------------------------------------------
@@ -29314,10 +29314,10 @@ const IMFDeviceTransform = @import("../media/streaming.zig").IMFDeviceTransform;
 const ISpatialAudioMetadataItems = @import("../media/audio/core_audio.zig").ISpatialAudioMetadataItems;
 const INamedPropertyStore = @import("../system/properties_system.zig").INamedPropertyStore;
 const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
-const IDirect3DSurface9 = @import("../graphics/direct3d9.zig").IDirect3DSurface9;
-const D3DENCRYPTED_BLOCK_INFO = @import("../graphics/direct3d9.zig").D3DENCRYPTED_BLOCK_INFO;
-const IStream = @import("../storage/structured_storage.zig").IStream;
 const D3D12_QUERY_TYPE = @import("../graphics/direct3d12.zig").D3D12_QUERY_TYPE;
+const IDirect3DSurface9 = @import("../graphics/direct3d9.zig").IDirect3DSurface9;
+const IStream = @import("../storage/structured_storage.zig").IStream;
+const D3DENCRYPTED_BLOCK_INFO = @import("../graphics/direct3d9.zig").D3DENCRYPTED_BLOCK_INFO;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const D3DDEVTYPE = @import("../graphics/direct3d9.zig").D3DDEVTYPE;
 const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
@@ -29334,9 +29334,9 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const IDirect3DDevice9 = @import("../graphics/direct3d9.zig").IDirect3DDevice9;
 const ID3D12Pageable = @import("../graphics/direct3d12.zig").ID3D12Pageable;
-const D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT = @import("../graphics/direct3d9.zig").D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT;
-const HRESULT = @import("../foundation.zig").HRESULT;
 const DMO_MEDIA_TYPE = @import("../graphics/direct_show.zig").DMO_MEDIA_TYPE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT = @import("../graphics/direct3d9.zig").D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT;
 const VIDEOINFOHEADER2 = @import("../graphics/direct_show.zig").VIDEOINFOHEADER2;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -29355,8 +29355,8 @@ const IClassFactory = @import("../system/com.zig").IClassFactory;
 const MPEG2VIDEOINFO = @import("../graphics/direct_show.zig").MPEG2VIDEOINFO;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IMediaBuffer = @import("../graphics/direct_show.zig").IMediaBuffer;
-const D3DFORMAT = @import("../graphics/direct3d9.zig").D3DFORMAT;
 const D3D12_DISCARD_REGION = @import("../graphics/direct3d12.zig").D3D12_DISCARD_REGION;
+const D3DFORMAT = @import("../graphics/direct3d9.zig").D3DFORMAT;
 const SIZE = @import("../foundation.zig").SIZE;
 const WAVEFORMATEX = @import("../media/multimedia.zig").WAVEFORMATEX;
 const POINT = @import("../foundation.zig").POINT;

@@ -6,6 +6,65 @@
 //--------------------------------------------------------------------------------
 // Section: Types (12)
 //--------------------------------------------------------------------------------
+pub const GameUICompletionRoutine = fn(
+    returnCode: HRESULT,
+    context: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PlayerPickerUICompletionRoutine = fn(
+    returnCode: HRESULT,
+    context: *c_void,
+    selectedXuids: [*]const HSTRING,
+    selectedXuidsCount: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const KnownGamingPrivileges = enum(i32) {
+    BROADCAST = 190,
+    VIEW_FRIENDS_LIST = 197,
+    GAME_DVR = 198,
+    SHARE_KINECT_CONTENT = 199,
+    MULTIPLAYER_PARTIES = 203,
+    COMMUNICATION_VOICE_INGAME = 205,
+    COMMUNICATION_VOICE_SKYPE = 206,
+    CLOUD_GAMING_MANAGE_SESSION = 207,
+    CLOUD_GAMING_JOIN_SESSION = 208,
+    CLOUD_SAVED_GAMES = 209,
+    SHARE_CONTENT = 211,
+    PREMIUM_CONTENT = 214,
+    SUBSCRIPTION_CONTENT = 219,
+    SOCIAL_NETWORK_SHARING = 220,
+    PREMIUM_VIDEO = 224,
+    VIDEO_COMMUNICATIONS = 235,
+    PURCHASE_CONTENT = 245,
+    USER_CREATED_CONTENT = 247,
+    PROFILE_VIEWING = 249,
+    COMMUNICATIONS = 252,
+    MULTIPLAYER_SESSIONS = 254,
+    ADD_FRIEND = 255,
+};
+pub const XPRIVILEGE_BROADCAST = KnownGamingPrivileges.BROADCAST;
+pub const XPRIVILEGE_VIEW_FRIENDS_LIST = KnownGamingPrivileges.VIEW_FRIENDS_LIST;
+pub const XPRIVILEGE_GAME_DVR = KnownGamingPrivileges.GAME_DVR;
+pub const XPRIVILEGE_SHARE_KINECT_CONTENT = KnownGamingPrivileges.SHARE_KINECT_CONTENT;
+pub const XPRIVILEGE_MULTIPLAYER_PARTIES = KnownGamingPrivileges.MULTIPLAYER_PARTIES;
+pub const XPRIVILEGE_COMMUNICATION_VOICE_INGAME = KnownGamingPrivileges.COMMUNICATION_VOICE_INGAME;
+pub const XPRIVILEGE_COMMUNICATION_VOICE_SKYPE = KnownGamingPrivileges.COMMUNICATION_VOICE_SKYPE;
+pub const XPRIVILEGE_CLOUD_GAMING_MANAGE_SESSION = KnownGamingPrivileges.CLOUD_GAMING_MANAGE_SESSION;
+pub const XPRIVILEGE_CLOUD_GAMING_JOIN_SESSION = KnownGamingPrivileges.CLOUD_GAMING_JOIN_SESSION;
+pub const XPRIVILEGE_CLOUD_SAVED_GAMES = KnownGamingPrivileges.CLOUD_SAVED_GAMES;
+pub const XPRIVILEGE_SHARE_CONTENT = KnownGamingPrivileges.SHARE_CONTENT;
+pub const XPRIVILEGE_PREMIUM_CONTENT = KnownGamingPrivileges.PREMIUM_CONTENT;
+pub const XPRIVILEGE_SUBSCRIPTION_CONTENT = KnownGamingPrivileges.SUBSCRIPTION_CONTENT;
+pub const XPRIVILEGE_SOCIAL_NETWORK_SHARING = KnownGamingPrivileges.SOCIAL_NETWORK_SHARING;
+pub const XPRIVILEGE_PREMIUM_VIDEO = KnownGamingPrivileges.PREMIUM_VIDEO;
+pub const XPRIVILEGE_VIDEO_COMMUNICATIONS = KnownGamingPrivileges.VIDEO_COMMUNICATIONS;
+pub const XPRIVILEGE_PURCHASE_CONTENT = KnownGamingPrivileges.PURCHASE_CONTENT;
+pub const XPRIVILEGE_USER_CREATED_CONTENT = KnownGamingPrivileges.USER_CREATED_CONTENT;
+pub const XPRIVILEGE_PROFILE_VIEWING = KnownGamingPrivileges.PROFILE_VIEWING;
+pub const XPRIVILEGE_COMMUNICATIONS = KnownGamingPrivileges.COMMUNICATIONS;
+pub const XPRIVILEGE_MULTIPLAYER_SESSIONS = KnownGamingPrivileges.MULTIPLAYER_SESSIONS;
+pub const XPRIVILEGE_ADD_FRIEND = KnownGamingPrivileges.ADD_FRIEND;
+
 pub const GAMING_DEVICE_VENDOR_ID = enum(i32) {
     NONE = 0,
     MICROSOFT = -1024700366,
@@ -342,84 +401,10 @@ pub const IXblIdpAuthTokenResult2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const GameUICompletionRoutine = fn(
-    returnCode: HRESULT,
-    context: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const PlayerPickerUICompletionRoutine = fn(
-    returnCode: HRESULT,
-    context: *c_void,
-    selectedXuids: [*]const HSTRING,
-    selectedXuidsCount: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const KnownGamingPrivileges = enum(i32) {
-    BROADCAST = 190,
-    VIEW_FRIENDS_LIST = 197,
-    GAME_DVR = 198,
-    SHARE_KINECT_CONTENT = 199,
-    MULTIPLAYER_PARTIES = 203,
-    COMMUNICATION_VOICE_INGAME = 205,
-    COMMUNICATION_VOICE_SKYPE = 206,
-    CLOUD_GAMING_MANAGE_SESSION = 207,
-    CLOUD_GAMING_JOIN_SESSION = 208,
-    CLOUD_SAVED_GAMES = 209,
-    SHARE_CONTENT = 211,
-    PREMIUM_CONTENT = 214,
-    SUBSCRIPTION_CONTENT = 219,
-    SOCIAL_NETWORK_SHARING = 220,
-    PREMIUM_VIDEO = 224,
-    VIDEO_COMMUNICATIONS = 235,
-    PURCHASE_CONTENT = 245,
-    USER_CREATED_CONTENT = 247,
-    PROFILE_VIEWING = 249,
-    COMMUNICATIONS = 252,
-    MULTIPLAYER_SESSIONS = 254,
-    ADD_FRIEND = 255,
-};
-pub const XPRIVILEGE_BROADCAST = KnownGamingPrivileges.BROADCAST;
-pub const XPRIVILEGE_VIEW_FRIENDS_LIST = KnownGamingPrivileges.VIEW_FRIENDS_LIST;
-pub const XPRIVILEGE_GAME_DVR = KnownGamingPrivileges.GAME_DVR;
-pub const XPRIVILEGE_SHARE_KINECT_CONTENT = KnownGamingPrivileges.SHARE_KINECT_CONTENT;
-pub const XPRIVILEGE_MULTIPLAYER_PARTIES = KnownGamingPrivileges.MULTIPLAYER_PARTIES;
-pub const XPRIVILEGE_COMMUNICATION_VOICE_INGAME = KnownGamingPrivileges.COMMUNICATION_VOICE_INGAME;
-pub const XPRIVILEGE_COMMUNICATION_VOICE_SKYPE = KnownGamingPrivileges.COMMUNICATION_VOICE_SKYPE;
-pub const XPRIVILEGE_CLOUD_GAMING_MANAGE_SESSION = KnownGamingPrivileges.CLOUD_GAMING_MANAGE_SESSION;
-pub const XPRIVILEGE_CLOUD_GAMING_JOIN_SESSION = KnownGamingPrivileges.CLOUD_GAMING_JOIN_SESSION;
-pub const XPRIVILEGE_CLOUD_SAVED_GAMES = KnownGamingPrivileges.CLOUD_SAVED_GAMES;
-pub const XPRIVILEGE_SHARE_CONTENT = KnownGamingPrivileges.SHARE_CONTENT;
-pub const XPRIVILEGE_PREMIUM_CONTENT = KnownGamingPrivileges.PREMIUM_CONTENT;
-pub const XPRIVILEGE_SUBSCRIPTION_CONTENT = KnownGamingPrivileges.SUBSCRIPTION_CONTENT;
-pub const XPRIVILEGE_SOCIAL_NETWORK_SHARING = KnownGamingPrivileges.SOCIAL_NETWORK_SHARING;
-pub const XPRIVILEGE_PREMIUM_VIDEO = KnownGamingPrivileges.PREMIUM_VIDEO;
-pub const XPRIVILEGE_VIDEO_COMMUNICATIONS = KnownGamingPrivileges.VIDEO_COMMUNICATIONS;
-pub const XPRIVILEGE_PURCHASE_CONTENT = KnownGamingPrivileges.PURCHASE_CONTENT;
-pub const XPRIVILEGE_USER_CREATED_CONTENT = KnownGamingPrivileges.USER_CREATED_CONTENT;
-pub const XPRIVILEGE_PROFILE_VIEWING = KnownGamingPrivileges.PROFILE_VIEWING;
-pub const XPRIVILEGE_COMMUNICATIONS = KnownGamingPrivileges.COMMUNICATIONS;
-pub const XPRIVILEGE_MULTIPLAYER_SESSIONS = KnownGamingPrivileges.MULTIPLAYER_SESSIONS;
-pub const XPRIVILEGE_ADD_FRIEND = KnownGamingPrivileges.ADD_FRIEND;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (30)
 //--------------------------------------------------------------------------------
-pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn HasExpandedResources(
-    hasExpandedResources: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn GetExpandedResourceExclusiveCpuCount(
-    exclusiveCpuCount: *u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn ReleaseExclusiveCpuSets(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub extern "api-ms-win-gaming-deviceinformation-l1-1-0" fn GetGamingDeviceModelInformation(
-    information: *GAMING_DEVICE_MODEL_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 pub extern "api-ms-win-gaming-tcui-l1-1-0" fn ShowGameInviteUI(
     serviceConfigurationId: HSTRING,
     sessionTemplateName: HSTRING,
@@ -611,6 +596,21 @@ pub extern "api-ms-win-gaming-tcui-l1-1-4" fn ShowUserSettingsUIForUser(
     context: ?*c_void,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn HasExpandedResources(
+    hasExpandedResources: *BOOL,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn GetExpandedResourceExclusiveCpuCount(
+    exclusiveCpuCount: *u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "api-ms-win-gaming-expandedresources-l1-1-0" fn ReleaseExclusiveCpuSets(
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "api-ms-win-gaming-deviceinformation-l1-1-0" fn GetGamingDeviceModelInformation(
+    information: *GAMING_DEVICE_MODEL_INFORMATION,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -628,8 +628,8 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const IInspectable = @import("system/win_rt.zig").IInspectable;
-const PWSTR = @import("foundation.zig").PWSTR;
 const HSTRING = @import("system/win_rt.zig").HSTRING;
+const PWSTR = @import("foundation.zig").PWSTR;
 const IUnknown = @import("system/com.zig").IUnknown;
 const BOOL = @import("foundation.zig").BOOL;
 const HRESULT = @import("foundation.zig").HRESULT;

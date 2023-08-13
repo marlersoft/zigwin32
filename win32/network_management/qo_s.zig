@@ -205,15 +205,15 @@ pub const GUAR_ADSPARM_Dsum = @as(i32, 136);
 //--------------------------------------------------------------------------------
 // Section: Types (81)
 //--------------------------------------------------------------------------------
-pub const LPM_HANDLE = isize;
-
-pub const RHANDLE = isize;
-
 pub const QOS = extern struct {
     SendingFlowspec: FLOWSPEC,
     ReceivingFlowspec: FLOWSPEC,
     ProviderSpecific: WSABUF,
 };
+
+pub const LPM_HANDLE = isize;
+
+pub const RHANDLE = isize;
 
 pub const FLOWSPEC = extern struct {
     TokenRate: u32,

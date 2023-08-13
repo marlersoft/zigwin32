@@ -501,20 +501,6 @@ pub const DSFX_I3DL2_ENVIRONMENT_PRESET_PLATE = @as(i32, 29);
 //--------------------------------------------------------------------------------
 // Section: Types (131)
 //--------------------------------------------------------------------------------
-pub const MDEVICECAPSEX = packed struct {
-    cbSize: u32,
-    pCaps: *c_void,
-};
-
-pub const MIDIOPENDESC = packed struct {
-    hMidi: HMIDI,
-    dwCallback: usize,
-    dwInstance: usize,
-    dnDevNode: usize,
-    cIds: u32,
-    rgIds: [1]midiopenstrmid_tag,
-};
-
 pub const UNCOMPRESSEDAUDIOFORMAT = extern struct {
     guidFormatType: Guid,
     dwSamplesPerFrame: u32,
@@ -3641,6 +3627,20 @@ pub const KSP_PINMODE = extern struct {
     AudioProcessingMode: Guid,
 };
 
+pub const MDEVICECAPSEX = packed struct {
+    cbSize: u32,
+    pCaps: *c_void,
+};
+
+pub const MIDIOPENDESC = packed struct {
+    hMidi: HMIDI,
+    dwCallback: usize,
+    dwInstance: usize,
+    dnDevNode: usize,
+    cIds: u32,
+    rgIds: [1]midiopenstrmid_tag,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
@@ -3737,8 +3737,8 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const LPARAM = @import("../../foundation.zig").LPARAM;
-const midiopenstrmid_tag = @import("../../media/multimedia.zig").midiopenstrmid_tag;
 const PWSTR = @import("../../foundation.zig").PWSTR;
+const midiopenstrmid_tag = @import("../../media/multimedia.zig").midiopenstrmid_tag;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IMMDeviceCollection = @import("../../media/audio/core_audio.zig").IMMDeviceCollection;
@@ -3752,8 +3752,8 @@ const APO_CONNECTION_PROPERTY = @import("../../system/remote_desktop.zig").APO_C
 const OVERLAPPED = @import("../../system/system_services.zig").OVERLAPPED;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const WAVEFORMATEX = @import("../../media/multimedia.zig").WAVEFORMATEX;
-const HMIDI = @import("../../media/multimedia.zig").HMIDI;
 const IPropertyStore = @import("../../system/properties_system.zig").IPropertyStore;
+const HMIDI = @import("../../media/multimedia.zig").HMIDI;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

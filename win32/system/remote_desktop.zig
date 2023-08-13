@@ -226,9 +226,6 @@ pub const DISPID_AX_TOUCHPOINTERCURSORMOVED = @as(u32, 800);
 //--------------------------------------------------------------------------------
 // Section: Types (255)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'WTSVirtualChannelClose', what can Zig do with this information?
-pub const HwtsVirtualChannelHandle = isize;
-
 const CLSID_TSUserExInterfaces_Value = @import("../zig.zig").Guid.initString("0910dd01-df8c-11d1-ae27-00c04fa35813");
 pub const CLSID_TSUserExInterfaces = &CLSID_TSUserExInterfaces_Value;
 
@@ -7010,6 +7007,9 @@ pub const IRemoteDesktopClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type has a FreeFunc 'WTSVirtualChannelClose', what can Zig do with this information?
+pub const HwtsVirtualChannelHandle = isize;
+
 pub const WTSSESSION_NOTIFICATION = extern struct {
     cbSize: u32,
     dwSessionId: u32,
@@ -7317,6 +7317,10 @@ pub const IAudioEndpointControl = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (65)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn WTSGetActiveConsoleSessionId(
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WTSAPI32" fn WTSStopRemoteControlSession(
     LogonId: u32,
@@ -7826,10 +7830,6 @@ pub extern "KERNEL32" fn ProcessIdToSessionId(
     dwProcessId: u32,
     pSessionId: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WTSGetActiveConsoleSessionId(
-) callconv(@import("std").os.windows.WINAPI) u32;
 
 
 //--------------------------------------------------------------------------------

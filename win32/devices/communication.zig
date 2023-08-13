@@ -93,44 +93,6 @@ pub const MDM_PIAFS_OUTGOING = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (18)
 //--------------------------------------------------------------------------------
-pub const MODEMDEVCAPS = extern struct {
-    dwActualSize: u32,
-    dwRequiredSize: u32,
-    dwDevSpecificOffset: u32,
-    dwDevSpecificSize: u32,
-    dwModemProviderVersion: u32,
-    dwModemManufacturerOffset: u32,
-    dwModemManufacturerSize: u32,
-    dwModemModelOffset: u32,
-    dwModemModelSize: u32,
-    dwModemVersionOffset: u32,
-    dwModemVersionSize: u32,
-    dwDialOptions: MODEMDEVCAPS_DIAL_OPTIONS,
-    dwCallSetupFailTimer: u32,
-    dwInactivityTimeout: u32,
-    dwSpeakerVolume: MODEMDEVCAPS_SPEAKER_VOLUME,
-    dwSpeakerMode: MODEMDEVCAPS_SPEAKER_MODE,
-    dwModemOptions: u32,
-    dwMaxDTERate: u32,
-    dwMaxDCERate: u32,
-    abVariablePortion: [1]u8,
-};
-
-pub const MODEMSETTINGS = extern struct {
-    dwActualSize: u32,
-    dwRequiredSize: u32,
-    dwDevSpecificOffset: u32,
-    dwDevSpecificSize: u32,
-    dwCallSetupFailTimer: u32,
-    dwInactivityTimeout: u32,
-    dwSpeakerVolume: MODEM_SPEAKER_VOLUME,
-    dwSpeakerMode: MODEMSETTINGS_SPEAKER_MODE,
-    dwPreferredModemOptions: u32,
-    dwNegotiatedModemOptions: u32,
-    dwNegotiatedDCERate: u32,
-    abVariablePortion: [1]u8,
-};
-
 pub const COMMPROP = extern struct {
     wPacketLength: u16,
     wPacketVersion: u16,
@@ -481,6 +443,44 @@ pub const MDMSPKRFLAG_CALLSETUP = MODEMDEVCAPS_SPEAKER_MODE.CALLSETUP;
 pub const MDMSPKRFLAG_DIAL = MODEMDEVCAPS_SPEAKER_MODE.DIAL;
 pub const MDMSPKRFLAG_OFF = MODEMDEVCAPS_SPEAKER_MODE.OFF;
 pub const MDMSPKRFLAG_ON = MODEMDEVCAPS_SPEAKER_MODE.ON;
+
+pub const MODEMDEVCAPS = extern struct {
+    dwActualSize: u32,
+    dwRequiredSize: u32,
+    dwDevSpecificOffset: u32,
+    dwDevSpecificSize: u32,
+    dwModemProviderVersion: u32,
+    dwModemManufacturerOffset: u32,
+    dwModemManufacturerSize: u32,
+    dwModemModelOffset: u32,
+    dwModemModelSize: u32,
+    dwModemVersionOffset: u32,
+    dwModemVersionSize: u32,
+    dwDialOptions: MODEMDEVCAPS_DIAL_OPTIONS,
+    dwCallSetupFailTimer: u32,
+    dwInactivityTimeout: u32,
+    dwSpeakerVolume: MODEMDEVCAPS_SPEAKER_VOLUME,
+    dwSpeakerMode: MODEMDEVCAPS_SPEAKER_MODE,
+    dwModemOptions: u32,
+    dwMaxDTERate: u32,
+    dwMaxDCERate: u32,
+    abVariablePortion: [1]u8,
+};
+
+pub const MODEMSETTINGS = extern struct {
+    dwActualSize: u32,
+    dwRequiredSize: u32,
+    dwDevSpecificOffset: u32,
+    dwDevSpecificSize: u32,
+    dwCallSetupFailTimer: u32,
+    dwInactivityTimeout: u32,
+    dwSpeakerVolume: MODEM_SPEAKER_VOLUME,
+    dwSpeakerMode: MODEMSETTINGS_SPEAKER_MODE,
+    dwPreferredModemOptions: u32,
+    dwNegotiatedModemOptions: u32,
+    dwNegotiatedDCERate: u32,
+    abVariablePortion: [1]u8,
+};
 
 
 //--------------------------------------------------------------------------------

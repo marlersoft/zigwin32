@@ -43,64 +43,6 @@ pub const ALLJOYN_MEMBER_ANNOTATE_GLOBAL_BROADCAST = @as(u8, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (110)
 //--------------------------------------------------------------------------------
-pub const alljoyn_aboutdata = isize;
-
-pub const alljoyn_aboutdatalistener = isize;
-
-pub const alljoyn_aboutlistener = isize;
-
-pub const alljoyn_aboutobj = isize;
-
-pub const alljoyn_aboutobjectdescription = isize;
-
-pub const alljoyn_aboutproxy = isize;
-
-pub const alljoyn_applicationstatelistener = isize;
-
-pub const alljoyn_authlistener = isize;
-
-pub const alljoyn_autopinger = isize;
-
-pub const alljoyn_busattachment = isize;
-
-pub const alljoyn_buslistener = isize;
-
-pub const alljoyn_busobject = isize;
-
-pub const alljoyn_credentials = isize;
-
-pub const alljoyn_interfacedescription = isize;
-
-pub const alljoyn_keystore = isize;
-
-pub const alljoyn_keystorelistener = isize;
-
-pub const alljoyn_message = isize;
-
-pub const alljoyn_msgarg = isize;
-
-pub const alljoyn_observer = isize;
-
-pub const alljoyn_observerlistener = isize;
-
-pub const alljoyn_permissionconfigurationlistener = isize;
-
-pub const alljoyn_permissionconfigurator = isize;
-
-pub const alljoyn_pinglistener = isize;
-
-pub const alljoyn_proxybusobject = isize;
-
-pub const alljoyn_proxybusobject_ref = isize;
-
-pub const alljoyn_securityapplicationproxy = isize;
-
-pub const alljoyn_sessionlistener = isize;
-
-pub const alljoyn_sessionopts = isize;
-
-pub const alljoyn_sessionportlistener = isize;
-
 pub const _alljoyn_abouticon_handle = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
@@ -1469,6 +1411,64 @@ pub const alljoyn_observerlistener_callback = extern struct {
     object_discovered: alljoyn_observer_object_discovered_ptr,
     object_lost: alljoyn_observer_object_lost_ptr,
 };
+
+pub const alljoyn_aboutdata = isize;
+
+pub const alljoyn_aboutdatalistener = isize;
+
+pub const alljoyn_aboutlistener = isize;
+
+pub const alljoyn_aboutobj = isize;
+
+pub const alljoyn_aboutobjectdescription = isize;
+
+pub const alljoyn_aboutproxy = isize;
+
+pub const alljoyn_applicationstatelistener = isize;
+
+pub const alljoyn_authlistener = isize;
+
+pub const alljoyn_autopinger = isize;
+
+pub const alljoyn_busattachment = isize;
+
+pub const alljoyn_buslistener = isize;
+
+pub const alljoyn_busobject = isize;
+
+pub const alljoyn_credentials = isize;
+
+pub const alljoyn_interfacedescription = isize;
+
+pub const alljoyn_keystore = isize;
+
+pub const alljoyn_keystorelistener = isize;
+
+pub const alljoyn_message = isize;
+
+pub const alljoyn_msgarg = isize;
+
+pub const alljoyn_observer = isize;
+
+pub const alljoyn_observerlistener = isize;
+
+pub const alljoyn_permissionconfigurationlistener = isize;
+
+pub const alljoyn_permissionconfigurator = isize;
+
+pub const alljoyn_pinglistener = isize;
+
+pub const alljoyn_proxybusobject = isize;
+
+pub const alljoyn_proxybusobject_ref = isize;
+
+pub const alljoyn_securityapplicationproxy = isize;
+
+pub const alljoyn_sessionlistener = isize;
+
+pub const alljoyn_sessionopts = isize;
+
+pub const alljoyn_sessionportlistener = isize;
 
 
 //--------------------------------------------------------------------------------

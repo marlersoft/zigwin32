@@ -9,10 +9,48 @@ pub const FILE_CACHE_MIN_HARD_DISABLE = @as(u32, 8);
 pub const MEHC_PATROL_SCRUBBER_PRESENT = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (17)
+// Section: Types (22)
 //--------------------------------------------------------------------------------
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const MEMORY_BASIC_INFORMATION = extern struct {
+    BaseAddress: *c_void,
+    AllocationBase: *c_void,
+    AllocationProtect: PAGE_PROTECTION_FLAGS,
+    PartitionId: u16,
+    RegionSize: usize,
+    State: VIRTUAL_ALLOCATION_TYPE,
+    Protect: PAGE_PROTECTION_FLAGS,
+    Type: PAGE_TYPE,
+};
+
+}, else => struct { } };
+
 // TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
 pub const HeapHandle = *opaque{};
+
+pub const MEMORY_BASIC_INFORMATION32 = extern struct {
+    BaseAddress: u32,
+    AllocationBase: u32,
+    AllocationProtect: PAGE_PROTECTION_FLAGS,
+    RegionSize: u32,
+    State: VIRTUAL_ALLOCATION_TYPE,
+    Protect: PAGE_PROTECTION_FLAGS,
+    Type: PAGE_TYPE,
+};
+
+pub const MEMORY_BASIC_INFORMATION64 = extern struct {
+    BaseAddress: u64,
+    AllocationBase: u64,
+    AllocationProtect: PAGE_PROTECTION_FLAGS,
+    __alignment1: u32,
+    RegionSize: u64,
+    State: VIRTUAL_ALLOCATION_TYPE,
+    Protect: PAGE_PROTECTION_FLAGS,
+    Type: PAGE_TYPE,
+    __alignment2: u32,
+};
 
 pub const PSECURE_MEMORY_CACHE_CALLBACK = fn(
     // TODO: what to do with BytesParamIndex 1?
@@ -71,6 +109,21 @@ pub const WIN32_MEMORY_REGION_INFORMATION = extern struct {
     RegionSize: usize,
     CommitSize: usize,
 };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const MEMORY_BASIC_INFORMATION = extern struct {
+    BaseAddress: *c_void,
+    AllocationBase: *c_void,
+    AllocationProtect: PAGE_PROTECTION_FLAGS,
+    RegionSize: usize,
+    State: VIRTUAL_ALLOCATION_TYPE,
+    Protect: PAGE_PROTECTION_FLAGS,
+    Type: PAGE_TYPE,
+};
+
+}, else => struct { } };
 
 pub const FILE_MAP = enum(u32) {
     WRITE = 2,
@@ -190,7 +243,7 @@ pub const HEAP_TAG_SHIFT = HEAP_FLAGS.TAG_SHIFT;
 pub const HEAP_CREATE_SEGMENT_HEAP = HEAP_FLAGS.CREATE_SEGMENT_HEAP;
 pub const HEAP_CREATE_HARDENED = HEAP_FLAGS.CREATE_HARDENED;
 
-pub const PAGE_TYPE = enum(u32) {
+pub const PAGE_PROTECTION_FLAGS = enum(u32) {
     PAGE_NOACCESS = 1,
     PAGE_READONLY = 2,
     PAGE_READWRITE = 4,
@@ -264,82 +317,82 @@ pub const PAGE_TYPE = enum(u32) {
         SEC_RESERVE: u1 = 0,
         SEC_COMMIT: u1 = 0,
         SEC_IMAGE_NO_EXECUTE: u1 = 0,
-    }) PAGE_TYPE {
-        return @intToEnum(PAGE_TYPE,
-              (if (o.PAGE_NOACCESS == 1) @enumToInt(PAGE_TYPE.PAGE_NOACCESS) else 0)
-            | (if (o.PAGE_READONLY == 1) @enumToInt(PAGE_TYPE.PAGE_READONLY) else 0)
-            | (if (o.PAGE_READWRITE == 1) @enumToInt(PAGE_TYPE.PAGE_READWRITE) else 0)
-            | (if (o.PAGE_WRITECOPY == 1) @enumToInt(PAGE_TYPE.PAGE_WRITECOPY) else 0)
-            | (if (o.PAGE_EXECUTE == 1) @enumToInt(PAGE_TYPE.PAGE_EXECUTE) else 0)
-            | (if (o.PAGE_EXECUTE_READ == 1) @enumToInt(PAGE_TYPE.PAGE_EXECUTE_READ) else 0)
-            | (if (o.PAGE_EXECUTE_READWRITE == 1) @enumToInt(PAGE_TYPE.PAGE_EXECUTE_READWRITE) else 0)
-            | (if (o.PAGE_EXECUTE_WRITECOPY == 1) @enumToInt(PAGE_TYPE.PAGE_EXECUTE_WRITECOPY) else 0)
-            | (if (o.PAGE_GUARD == 1) @enumToInt(PAGE_TYPE.PAGE_GUARD) else 0)
-            | (if (o.PAGE_NOCACHE == 1) @enumToInt(PAGE_TYPE.PAGE_NOCACHE) else 0)
-            | (if (o.PAGE_WRITECOMBINE == 1) @enumToInt(PAGE_TYPE.PAGE_WRITECOMBINE) else 0)
-            | (if (o.PAGE_GRAPHICS_NOACCESS == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_NOACCESS) else 0)
-            | (if (o.PAGE_GRAPHICS_READONLY == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_READONLY) else 0)
-            | (if (o.PAGE_GRAPHICS_READWRITE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_READWRITE) else 0)
-            | (if (o.PAGE_GRAPHICS_EXECUTE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_EXECUTE) else 0)
-            | (if (o.PAGE_GRAPHICS_EXECUTE_READ == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_EXECUTE_READ) else 0)
-            | (if (o.PAGE_GRAPHICS_EXECUTE_READWRITE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_EXECUTE_READWRITE) else 0)
-            | (if (o.PAGE_GRAPHICS_COHERENT == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_COHERENT) else 0)
-            | (if (o.PAGE_GRAPHICS_NOCACHE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_NOCACHE) else 0)
-            | (if (o.PAGE_ENCLAVE_THREAD_CONTROL == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_THREAD_CONTROL) else 0)
-            | (if (o.PAGE_TARGETS_NO_UPDATE == 1) @enumToInt(PAGE_TYPE.PAGE_TARGETS_NO_UPDATE) else 0)
-            | (if (o.PAGE_ENCLAVE_UNVALIDATED == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_UNVALIDATED) else 0)
-            | (if (o.PAGE_ENCLAVE_MASK == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_MASK) else 0)
-            | (if (o.PAGE_ENCLAVE_SS_FIRST == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_SS_FIRST) else 0)
-            | (if (o.PAGE_ENCLAVE_SS_REST == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_SS_REST) else 0)
-            | (if (o.SEC_64K_PAGES == 1) @enumToInt(PAGE_TYPE.SEC_64K_PAGES) else 0)
-            | (if (o.SEC_FILE == 1) @enumToInt(PAGE_TYPE.SEC_FILE) else 0)
-            | (if (o.SEC_IMAGE == 1) @enumToInt(PAGE_TYPE.SEC_IMAGE) else 0)
-            | (if (o.SEC_PROTECTED_IMAGE == 1) @enumToInt(PAGE_TYPE.SEC_PROTECTED_IMAGE) else 0)
-            | (if (o.SEC_RESERVE == 1) @enumToInt(PAGE_TYPE.SEC_RESERVE) else 0)
-            | (if (o.SEC_COMMIT == 1) @enumToInt(PAGE_TYPE.SEC_COMMIT) else 0)
-            | (if (o.SEC_IMAGE_NO_EXECUTE == 1) @enumToInt(PAGE_TYPE.SEC_IMAGE_NO_EXECUTE) else 0)
+    }) PAGE_PROTECTION_FLAGS {
+        return @intToEnum(PAGE_PROTECTION_FLAGS,
+              (if (o.PAGE_NOACCESS == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_NOACCESS) else 0)
+            | (if (o.PAGE_READONLY == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_READONLY) else 0)
+            | (if (o.PAGE_READWRITE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_READWRITE) else 0)
+            | (if (o.PAGE_WRITECOPY == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_WRITECOPY) else 0)
+            | (if (o.PAGE_EXECUTE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_EXECUTE) else 0)
+            | (if (o.PAGE_EXECUTE_READ == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_READ) else 0)
+            | (if (o.PAGE_EXECUTE_READWRITE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_READWRITE) else 0)
+            | (if (o.PAGE_EXECUTE_WRITECOPY == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_WRITECOPY) else 0)
+            | (if (o.PAGE_GUARD == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GUARD) else 0)
+            | (if (o.PAGE_NOCACHE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_NOCACHE) else 0)
+            | (if (o.PAGE_WRITECOMBINE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_WRITECOMBINE) else 0)
+            | (if (o.PAGE_GRAPHICS_NOACCESS == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_NOACCESS) else 0)
+            | (if (o.PAGE_GRAPHICS_READONLY == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_READONLY) else 0)
+            | (if (o.PAGE_GRAPHICS_READWRITE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_READWRITE) else 0)
+            | (if (o.PAGE_GRAPHICS_EXECUTE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_EXECUTE) else 0)
+            | (if (o.PAGE_GRAPHICS_EXECUTE_READ == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_EXECUTE_READ) else 0)
+            | (if (o.PAGE_GRAPHICS_EXECUTE_READWRITE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_EXECUTE_READWRITE) else 0)
+            | (if (o.PAGE_GRAPHICS_COHERENT == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_COHERENT) else 0)
+            | (if (o.PAGE_GRAPHICS_NOCACHE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_NOCACHE) else 0)
+            | (if (o.PAGE_ENCLAVE_THREAD_CONTROL == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_THREAD_CONTROL) else 0)
+            | (if (o.PAGE_TARGETS_NO_UPDATE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_TARGETS_NO_UPDATE) else 0)
+            | (if (o.PAGE_ENCLAVE_UNVALIDATED == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_UNVALIDATED) else 0)
+            | (if (o.PAGE_ENCLAVE_MASK == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_MASK) else 0)
+            | (if (o.PAGE_ENCLAVE_SS_FIRST == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_SS_FIRST) else 0)
+            | (if (o.PAGE_ENCLAVE_SS_REST == 1) @enumToInt(PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_SS_REST) else 0)
+            | (if (o.SEC_64K_PAGES == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_64K_PAGES) else 0)
+            | (if (o.SEC_FILE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_FILE) else 0)
+            | (if (o.SEC_IMAGE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_IMAGE) else 0)
+            | (if (o.SEC_PROTECTED_IMAGE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_PROTECTED_IMAGE) else 0)
+            | (if (o.SEC_RESERVE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_RESERVE) else 0)
+            | (if (o.SEC_COMMIT == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_COMMIT) else 0)
+            | (if (o.SEC_IMAGE_NO_EXECUTE == 1) @enumToInt(PAGE_PROTECTION_FLAGS.SEC_IMAGE_NO_EXECUTE) else 0)
         );
     }
 };
-pub const PAGE_NOACCESS = PAGE_TYPE.PAGE_NOACCESS;
-pub const PAGE_READONLY = PAGE_TYPE.PAGE_READONLY;
-pub const PAGE_READWRITE = PAGE_TYPE.PAGE_READWRITE;
-pub const PAGE_WRITECOPY = PAGE_TYPE.PAGE_WRITECOPY;
-pub const PAGE_EXECUTE = PAGE_TYPE.PAGE_EXECUTE;
-pub const PAGE_EXECUTE_READ = PAGE_TYPE.PAGE_EXECUTE_READ;
-pub const PAGE_EXECUTE_READWRITE = PAGE_TYPE.PAGE_EXECUTE_READWRITE;
-pub const PAGE_EXECUTE_WRITECOPY = PAGE_TYPE.PAGE_EXECUTE_WRITECOPY;
-pub const PAGE_GUARD = PAGE_TYPE.PAGE_GUARD;
-pub const PAGE_NOCACHE = PAGE_TYPE.PAGE_NOCACHE;
-pub const PAGE_WRITECOMBINE = PAGE_TYPE.PAGE_WRITECOMBINE;
-pub const PAGE_GRAPHICS_NOACCESS = PAGE_TYPE.PAGE_GRAPHICS_NOACCESS;
-pub const PAGE_GRAPHICS_READONLY = PAGE_TYPE.PAGE_GRAPHICS_READONLY;
-pub const PAGE_GRAPHICS_READWRITE = PAGE_TYPE.PAGE_GRAPHICS_READWRITE;
-pub const PAGE_GRAPHICS_EXECUTE = PAGE_TYPE.PAGE_GRAPHICS_EXECUTE;
-pub const PAGE_GRAPHICS_EXECUTE_READ = PAGE_TYPE.PAGE_GRAPHICS_EXECUTE_READ;
-pub const PAGE_GRAPHICS_EXECUTE_READWRITE = PAGE_TYPE.PAGE_GRAPHICS_EXECUTE_READWRITE;
-pub const PAGE_GRAPHICS_COHERENT = PAGE_TYPE.PAGE_GRAPHICS_COHERENT;
-pub const PAGE_GRAPHICS_NOCACHE = PAGE_TYPE.PAGE_GRAPHICS_NOCACHE;
-pub const PAGE_ENCLAVE_THREAD_CONTROL = PAGE_TYPE.PAGE_ENCLAVE_THREAD_CONTROL;
-pub const PAGE_REVERT_TO_FILE_MAP = PAGE_TYPE.PAGE_ENCLAVE_THREAD_CONTROL;
-pub const PAGE_TARGETS_NO_UPDATE = PAGE_TYPE.PAGE_TARGETS_NO_UPDATE;
-pub const PAGE_TARGETS_INVALID = PAGE_TYPE.PAGE_TARGETS_NO_UPDATE;
-pub const PAGE_ENCLAVE_UNVALIDATED = PAGE_TYPE.PAGE_ENCLAVE_UNVALIDATED;
-pub const PAGE_ENCLAVE_MASK = PAGE_TYPE.PAGE_ENCLAVE_MASK;
-pub const PAGE_ENCLAVE_DECOMMIT = PAGE_TYPE.PAGE_ENCLAVE_MASK;
-pub const PAGE_ENCLAVE_SS_FIRST = PAGE_TYPE.PAGE_ENCLAVE_SS_FIRST;
-pub const PAGE_ENCLAVE_SS_REST = PAGE_TYPE.PAGE_ENCLAVE_SS_REST;
-pub const SEC_PARTITION_OWNER_HANDLE = PAGE_TYPE.PAGE_GRAPHICS_NOCACHE;
-pub const SEC_64K_PAGES = PAGE_TYPE.SEC_64K_PAGES;
-pub const SEC_FILE = PAGE_TYPE.SEC_FILE;
-pub const SEC_IMAGE = PAGE_TYPE.SEC_IMAGE;
-pub const SEC_PROTECTED_IMAGE = PAGE_TYPE.SEC_PROTECTED_IMAGE;
-pub const SEC_RESERVE = PAGE_TYPE.SEC_RESERVE;
-pub const SEC_COMMIT = PAGE_TYPE.SEC_COMMIT;
-pub const SEC_NOCACHE = PAGE_TYPE.PAGE_ENCLAVE_MASK;
-pub const SEC_WRITECOMBINE = PAGE_TYPE.PAGE_TARGETS_NO_UPDATE;
-pub const SEC_LARGE_PAGES = PAGE_TYPE.PAGE_ENCLAVE_THREAD_CONTROL;
-pub const SEC_IMAGE_NO_EXECUTE = PAGE_TYPE.SEC_IMAGE_NO_EXECUTE;
+pub const PAGE_NOACCESS = PAGE_PROTECTION_FLAGS.PAGE_NOACCESS;
+pub const PAGE_READONLY = PAGE_PROTECTION_FLAGS.PAGE_READONLY;
+pub const PAGE_READWRITE = PAGE_PROTECTION_FLAGS.PAGE_READWRITE;
+pub const PAGE_WRITECOPY = PAGE_PROTECTION_FLAGS.PAGE_WRITECOPY;
+pub const PAGE_EXECUTE = PAGE_PROTECTION_FLAGS.PAGE_EXECUTE;
+pub const PAGE_EXECUTE_READ = PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_READ;
+pub const PAGE_EXECUTE_READWRITE = PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_READWRITE;
+pub const PAGE_EXECUTE_WRITECOPY = PAGE_PROTECTION_FLAGS.PAGE_EXECUTE_WRITECOPY;
+pub const PAGE_GUARD = PAGE_PROTECTION_FLAGS.PAGE_GUARD;
+pub const PAGE_NOCACHE = PAGE_PROTECTION_FLAGS.PAGE_NOCACHE;
+pub const PAGE_WRITECOMBINE = PAGE_PROTECTION_FLAGS.PAGE_WRITECOMBINE;
+pub const PAGE_GRAPHICS_NOACCESS = PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_NOACCESS;
+pub const PAGE_GRAPHICS_READONLY = PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_READONLY;
+pub const PAGE_GRAPHICS_READWRITE = PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_READWRITE;
+pub const PAGE_GRAPHICS_EXECUTE = PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_EXECUTE;
+pub const PAGE_GRAPHICS_EXECUTE_READ = PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_EXECUTE_READ;
+pub const PAGE_GRAPHICS_EXECUTE_READWRITE = PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_EXECUTE_READWRITE;
+pub const PAGE_GRAPHICS_COHERENT = PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_COHERENT;
+pub const PAGE_GRAPHICS_NOCACHE = PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_NOCACHE;
+pub const PAGE_ENCLAVE_THREAD_CONTROL = PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_THREAD_CONTROL;
+pub const PAGE_REVERT_TO_FILE_MAP = PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_THREAD_CONTROL;
+pub const PAGE_TARGETS_NO_UPDATE = PAGE_PROTECTION_FLAGS.PAGE_TARGETS_NO_UPDATE;
+pub const PAGE_TARGETS_INVALID = PAGE_PROTECTION_FLAGS.PAGE_TARGETS_NO_UPDATE;
+pub const PAGE_ENCLAVE_UNVALIDATED = PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_UNVALIDATED;
+pub const PAGE_ENCLAVE_MASK = PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_MASK;
+pub const PAGE_ENCLAVE_DECOMMIT = PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_MASK;
+pub const PAGE_ENCLAVE_SS_FIRST = PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_SS_FIRST;
+pub const PAGE_ENCLAVE_SS_REST = PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_SS_REST;
+pub const SEC_PARTITION_OWNER_HANDLE = PAGE_PROTECTION_FLAGS.PAGE_GRAPHICS_NOCACHE;
+pub const SEC_64K_PAGES = PAGE_PROTECTION_FLAGS.SEC_64K_PAGES;
+pub const SEC_FILE = PAGE_PROTECTION_FLAGS.SEC_FILE;
+pub const SEC_IMAGE = PAGE_PROTECTION_FLAGS.SEC_IMAGE;
+pub const SEC_PROTECTED_IMAGE = PAGE_PROTECTION_FLAGS.SEC_PROTECTED_IMAGE;
+pub const SEC_RESERVE = PAGE_PROTECTION_FLAGS.SEC_RESERVE;
+pub const SEC_COMMIT = PAGE_PROTECTION_FLAGS.SEC_COMMIT;
+pub const SEC_NOCACHE = PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_MASK;
+pub const SEC_WRITECOMBINE = PAGE_PROTECTION_FLAGS.PAGE_TARGETS_NO_UPDATE;
+pub const SEC_LARGE_PAGES = PAGE_PROTECTION_FLAGS.PAGE_ENCLAVE_THREAD_CONTROL;
+pub const SEC_IMAGE_NO_EXECUTE = PAGE_PROTECTION_FLAGS.SEC_IMAGE_NO_EXECUTE;
 
 pub const UNMAP_VIEW_OF_FILE_FLAGS = enum(u32) {
     UNMAP_NONE = 0,
@@ -456,6 +509,27 @@ pub const GMEM_MOVEABLE = GLOBAL_ALLOC_FLAGS.MEM_MOVEABLE;
 pub const GMEM_ZEROINIT = GLOBAL_ALLOC_FLAGS.MEM_ZEROINIT;
 pub const GPTR = GLOBAL_ALLOC_FLAGS.MEM_ZEROINIT;
 
+pub const PAGE_TYPE = enum(u32) {
+    PRIVATE = 131072,
+    MAPPED = 262144,
+    IMAGE = 16777216,
+    _,
+    pub fn initFlags(o: struct {
+        PRIVATE: u1 = 0,
+        MAPPED: u1 = 0,
+        IMAGE: u1 = 0,
+    }) PAGE_TYPE {
+        return @intToEnum(PAGE_TYPE,
+              (if (o.PRIVATE == 1) @enumToInt(PAGE_TYPE.PRIVATE) else 0)
+            | (if (o.MAPPED == 1) @enumToInt(PAGE_TYPE.MAPPED) else 0)
+            | (if (o.IMAGE == 1) @enumToInt(PAGE_TYPE.IMAGE) else 0)
+        );
+    }
+};
+pub const MEM_PRIVATE = PAGE_TYPE.PRIVATE;
+pub const MEM_MAPPED = PAGE_TYPE.MAPPED;
+pub const MEM_IMAGE = PAGE_TYPE.IMAGE;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (99)
@@ -550,7 +624,7 @@ pub extern "KERNEL32" fn LocalFree(
 pub extern "KERNEL32" fn CreateFileMappingA(
     hFile: HANDLE,
     lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
-    flProtect: PAGE_TYPE,
+    flProtect: PAGE_PROTECTION_FLAGS,
     dwMaximumSizeHigh: u32,
     dwMaximumSizeLow: u32,
     lpName: ?[*:0]const u8,
@@ -560,7 +634,7 @@ pub extern "KERNEL32" fn CreateFileMappingA(
 pub extern "KERNEL32" fn CreateFileMappingNumaA(
     hFile: HANDLE,
     lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
-    flProtect: PAGE_TYPE,
+    flProtect: PAGE_PROTECTION_FLAGS,
     dwMaximumSizeHigh: u32,
     dwMaximumSizeLow: u32,
     lpName: ?[*:0]const u8,
@@ -741,15 +815,15 @@ pub extern "KERNEL32" fn VirtualAlloc(
     lpAddress: ?*c_void,
     dwSize: usize,
     flAllocationType: VIRTUAL_ALLOCATION_TYPE,
-    flProtect: PAGE_TYPE,
+    flProtect: PAGE_PROTECTION_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn VirtualProtect(
     lpAddress: *c_void,
     dwSize: usize,
-    flNewProtect: PAGE_TYPE,
-    lpflOldProtect: *PAGE_TYPE,
+    flNewProtect: PAGE_PROTECTION_FLAGS,
+    lpflOldProtect: *PAGE_PROTECTION_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -773,7 +847,7 @@ pub extern "KERNEL32" fn VirtualAllocEx(
     lpAddress: ?*c_void,
     dwSize: usize,
     flAllocationType: VIRTUAL_ALLOCATION_TYPE,
-    flProtect: PAGE_TYPE,
+    flProtect: PAGE_PROTECTION_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -781,8 +855,8 @@ pub extern "KERNEL32" fn VirtualProtectEx(
     hProcess: HANDLE,
     lpAddress: *c_void,
     dwSize: usize,
-    flNewProtect: PAGE_TYPE,
-    lpflOldProtect: *PAGE_TYPE,
+    flNewProtect: PAGE_PROTECTION_FLAGS,
+    lpflOldProtect: *PAGE_PROTECTION_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -798,7 +872,7 @@ pub extern "KERNEL32" fn VirtualQueryEx(
 pub extern "KERNEL32" fn CreateFileMappingW(
     hFile: HANDLE,
     lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
-    flProtect: PAGE_TYPE,
+    flProtect: PAGE_PROTECTION_FLAGS,
     dwMaximumSizeHigh: u32,
     dwMaximumSizeLow: u32,
     lpName: ?[*:0]const u16,
@@ -926,7 +1000,7 @@ pub extern "KERNEL32" fn SetSystemFileCacheSize(
 pub extern "KERNEL32" fn CreateFileMappingNumaW(
     hFile: HANDLE,
     lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
-    flProtect: PAGE_TYPE,
+    flProtect: PAGE_PROTECTION_FLAGS,
     dwMaximumSizeHigh: u32,
     dwMaximumSizeLow: u32,
     lpName: ?[*:0]const u16,
@@ -945,7 +1019,7 @@ pub extern "KERNEL32" fn PrefetchVirtualMemory(
 pub extern "KERNEL32" fn CreateFileMappingFromApp(
     hFile: HANDLE,
     SecurityAttributes: ?*SECURITY_ATTRIBUTES,
-    PageProtection: PAGE_TYPE,
+    PageProtection: PAGE_PROTECTION_FLAGS,
     MaximumSize: u64,
     Name: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
@@ -1167,7 +1241,7 @@ pub extern "api-ms-win-core-memory-l1-1-7" fn CreateFileMapping2(
     File: HANDLE,
     SecurityAttributes: ?*SECURITY_ATTRIBUTES,
     DesiredAccess: u32,
-    PageProtection: PAGE_TYPE,
+    PageProtection: PAGE_PROTECTION_FLAGS,
     AllocationAttributes: u32,
     MaximumSize: u64,
     Name: ?[*:0]const u16,
@@ -1205,7 +1279,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const PWSTR = @import("../foundation.zig").PWSTR;
 const MEM_EXTENDED_PARAMETER = @import("../system/system_services.zig").MEM_EXTENDED_PARAMETER;
@@ -1215,9 +1289,8 @@ const FARPROC = @import("../foundation.zig").FARPROC;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const PSTR = @import("../foundation.zig").PSTR;
-const MEMORY_BASIC_INFORMATION = @import("../system/system_services.zig").MEMORY_BASIC_INFORMATION;
-const BOOL = @import("../foundation.zig").BOOL;
 const CFG_CALL_TARGET_INFO = @import("../system/system_services.zig").CFG_CALL_TARGET_INFO;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

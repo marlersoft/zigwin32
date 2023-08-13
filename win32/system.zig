@@ -2,6 +2,7 @@
 pub const address_book = @import("system/address_book.zig");
 pub const antimalware = @import("system/antimalware.zig");
 pub const application_installation_and_servicing = @import("system/application_installation_and_servicing.zig");
+pub const application_verifier = @import("system/application_verifier.zig");
 pub const assessment_tool = @import("system/assessment_tool.zig");
 pub const com = @import("system/com.zig");
 pub const component_services = @import("system/component_services.zig");

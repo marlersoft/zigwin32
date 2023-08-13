@@ -226,6 +226,15 @@ pub const IMAPI_E_BOOTIMAGE_AND_NONBLANK_DISC = @import("../zig.zig").typedConst
 //--------------------------------------------------------------------------------
 // Section: Types (113)
 //--------------------------------------------------------------------------------
+pub const DISC_RECORDER_STATE_FLAGS = enum(u32) {
+    BURNING = 2,
+    DOING_NOTHING = 0,
+    OPENED = 1,
+};
+pub const RECORDER_BURNING = DISC_RECORDER_STATE_FLAGS.BURNING;
+pub const RECORDER_DOING_NOTHING = DISC_RECORDER_STATE_FLAGS.DOING_NOTHING;
+pub const RECORDER_OPENED = DISC_RECORDER_STATE_FLAGS.OPENED;
+
 const CLSID_MsftDiscMaster2_Value = @import("../zig.zig").Guid.initString("2735412e-7f64-5b0f-8f00-5d77afbe261e");
 pub const CLSID_MsftDiscMaster2 = &CLSID_MsftDiscMaster2_Value;
 
@@ -5387,15 +5396,6 @@ pub const IDiscMaster = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const DISC_RECORDER_STATE_FLAGS = enum(u32) {
-    BURNING = 2,
-    DOING_NOTHING = 0,
-    OPENED = 1,
-};
-pub const RECORDER_BURNING = DISC_RECORDER_STATE_FLAGS.BURNING;
-pub const RECORDER_DOING_NOTHING = DISC_RECORDER_STATE_FLAGS.DOING_NOTHING;
-pub const RECORDER_OPENED = DISC_RECORDER_STATE_FLAGS.OPENED;
 
 
 //--------------------------------------------------------------------------------

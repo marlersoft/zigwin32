@@ -518,7 +518,7 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 const FILETIME = @import("../../foundation.zig").FILETIME;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
-const MEMORY_BASIC_INFORMATION = @import("../../system/system_services.zig").MEMORY_BASIC_INFORMATION;
+const MEMORY_BASIC_INFORMATION = @import("../../system/memory.zig").MEMORY_BASIC_INFORMATION;
 const HANDLE = @import("../../foundation.zig").HANDLE;
 const CONTEXT = @import("../../system/diagnostics/debug.zig").CONTEXT;
 const BOOL = @import("../../foundation.zig").BOOL;

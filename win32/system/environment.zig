@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Functions (19)
+// Section: Functions (23)
 //--------------------------------------------------------------------------------
 pub extern "KERNEL32" fn SetEnvironmentStringsW(
     NewEnvironment: [*]u16,
@@ -108,9 +108,37 @@ pub extern "KERNEL32" fn NeedCurrentDirectoryForExePathW(
     ExeName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn CreateEnvironmentBlock(
+    lpEnvironment: **c_void,
+    hToken: ?HANDLE,
+    bInherit: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn DestroyEnvironmentBlock(
+    lpEnvironment: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn ExpandEnvironmentStringsForUserA(
+    hToken: ?HANDLE,
+    lpSrc: [*:0]const u8,
+    lpDest: [*:0]u8,
+    dwSize: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn ExpandEnvironmentStringsForUserW(
+    hToken: ?HANDLE,
+    lpSrc: [*:0]const u16,
+    lpDest: [*:0]u16,
+    dwSize: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (8)
+// Section: Unicode Aliases (9)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
@@ -122,6 +150,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetCurrentDirectory = SetCurrentDirectoryA;
         pub const GetCurrentDirectory = GetCurrentDirectoryA;
         pub const NeedCurrentDirectoryForExePath = NeedCurrentDirectoryForExePathA;
+        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserA;
     },
     .wide => struct {
         pub const GetCommandLine = GetCommandLineW;
@@ -132,6 +161,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetCurrentDirectory = SetCurrentDirectoryW;
         pub const GetCurrentDirectory = GetCurrentDirectoryW;
         pub const NeedCurrentDirectoryForExePath = NeedCurrentDirectoryForExePathW;
+        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const GetCommandLine = *opaque{};
@@ -142,6 +172,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetCurrentDirectory = *opaque{};
         pub const GetCurrentDirectory = *opaque{};
         pub const NeedCurrentDirectoryForExePath = *opaque{};
+        pub const ExpandEnvironmentStringsForUser = *opaque{};
     } else struct {
         pub const GetCommandLine = @compileError("'GetCommandLine' requires that UNICODE be set to true or false in the root module");
         pub const FreeEnvironmentStrings = @compileError("'FreeEnvironmentStrings' requires that UNICODE be set to true or false in the root module");
@@ -151,13 +182,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SetCurrentDirectory = @compileError("'SetCurrentDirectory' requires that UNICODE be set to true or false in the root module");
         pub const GetCurrentDirectory = @compileError("'GetCurrentDirectory' requires that UNICODE be set to true or false in the root module");
         pub const NeedCurrentDirectoryForExePath = @compileError("'NeedCurrentDirectoryForExePath' requires that UNICODE be set to true or false in the root module");
+        pub const ExpandEnvironmentStringsForUser = @compileError("'ExpandEnvironmentStringsForUser' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const PWSTR = @import("../foundation.zig").PWSTR;
 const PSTR = @import("../foundation.zig").PSTR;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const BOOL = @import("../foundation.zig").BOOL;
 
 test {

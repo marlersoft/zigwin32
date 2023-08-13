@@ -71,9 +71,6 @@ pub const FOCUS_EVENT = @as(u32, 16);
 //--------------------------------------------------------------------------------
 // Section: Types (21)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'ClosePseudoConsole', what can Zig do with this information?
-pub const HPCON = *opaque{};
-
 pub const CONSOLE_MODE = enum(u32) {
     ENABLE_ECHO_INPUT = 4,
     ENABLE_INSERT_MODE = 32,
@@ -133,6 +130,9 @@ pub const STD_HANDLE = enum(u32) {
 pub const STD_INPUT_HANDLE = STD_HANDLE.INPUT_HANDLE;
 pub const STD_OUTPUT_HANDLE = STD_HANDLE.OUTPUT_HANDLE;
 pub const STD_ERROR_HANDLE = STD_HANDLE.ERROR_HANDLE;
+
+// TODO: this type has a FreeFunc 'ClosePseudoConsole', what can Zig do with this information?
+pub const HPCON = *opaque{};
 
 pub const COORD = extern struct {
     X: i16,

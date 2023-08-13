@@ -172,6 +172,42 @@ pub const ID_IPV6_ADDR = @as(u32, 5);
 //--------------------------------------------------------------------------------
 // Section: Types (94)
 //--------------------------------------------------------------------------------
+pub const _ADAPTER_OBJECT = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const SCSI_PASS_THROUGH = extern struct {
+    Length: u16,
+    ScsiStatus: u8,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    CdbLength: u8,
+    SenseInfoLength: u8,
+    DataIn: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    DataBufferOffset: usize,
+    SenseInfoOffset: u32,
+    Cdb: [16]u8,
+};
+
+pub const SCSI_PASS_THROUGH_DIRECT = extern struct {
+    Length: u16,
+    ScsiStatus: u8,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    CdbLength: u8,
+    SenseInfoLength: u8,
+    DataIn: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    DataBuffer: *c_void,
+    SenseInfoOffset: u32,
+    Cdb: [16]u8,
+};
+
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
@@ -213,6 +249,44 @@ pub const SCSI_PASS_THROUGH_DIRECT32 = extern struct {
 };
 
 }, else => struct { } };
+
+pub const SCSI_PASS_THROUGH_EX = extern struct {
+    Version: u32,
+    Length: u32,
+    CdbLength: u32,
+    StorAddressLength: u32,
+    ScsiStatus: u8,
+    SenseInfoLength: u8,
+    DataDirection: u8,
+    Reserved: u8,
+    TimeOutValue: u32,
+    StorAddressOffset: u32,
+    SenseInfoOffset: u32,
+    DataOutTransferLength: u32,
+    DataInTransferLength: u32,
+    DataOutBufferOffset: usize,
+    DataInBufferOffset: usize,
+    Cdb: [1]u8,
+};
+
+pub const SCSI_PASS_THROUGH_DIRECT_EX = extern struct {
+    Version: u32,
+    Length: u32,
+    CdbLength: u32,
+    StorAddressLength: u32,
+    ScsiStatus: u8,
+    SenseInfoLength: u8,
+    DataDirection: u8,
+    Reserved: u8,
+    TimeOutValue: u32,
+    StorAddressOffset: u32,
+    SenseInfoOffset: u32,
+    DataOutTransferLength: u32,
+    DataInTransferLength: u32,
+    DataOutBuffer: *c_void,
+    DataInBuffer: *c_void,
+    Cdb: [1]u8,
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
@@ -262,6 +336,36 @@ pub const SCSI_PASS_THROUGH_DIRECT32_EX = extern struct {
 
 }, else => struct { } };
 
+pub const ATA_PASS_THROUGH_EX = extern struct {
+    Length: u16,
+    AtaFlags: u16,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    ReservedAsUchar: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    ReservedAsUlong: u32,
+    DataBufferOffset: usize,
+    PreviousTaskFile: [8]u8,
+    CurrentTaskFile: [8]u8,
+};
+
+pub const ATA_PASS_THROUGH_DIRECT = extern struct {
+    Length: u16,
+    AtaFlags: u16,
+    PathId: u8,
+    TargetId: u8,
+    Lun: u8,
+    ReservedAsUchar: u8,
+    DataTransferLength: u32,
+    TimeOutValue: u32,
+    ReservedAsUlong: u32,
+    DataBuffer: *c_void,
+    PreviousTaskFile: [8]u8,
+    CurrentTaskFile: [8]u8,
+};
+
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
@@ -301,6 +405,51 @@ pub const ATA_PASS_THROUGH_DIRECT32 = extern struct {
 };
 
 }, else => struct { } };
+
+pub const IDE_IO_CONTROL = extern struct {
+    HeaderLength: u32,
+    Signature: [8]u8,
+    Timeout: u32,
+    ControlCode: u32,
+    ReturnStatus: u32,
+    DataLength: u32,
+};
+
+pub const MPIO_PASS_THROUGH_PATH = extern struct {
+    PassThrough: SCSI_PASS_THROUGH,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+pub const MPIO_PASS_THROUGH_PATH_DIRECT = extern struct {
+    PassThrough: SCSI_PASS_THROUGH_DIRECT,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+pub const MPIO_PASS_THROUGH_PATH_EX = extern struct {
+    PassThroughOffset: u32,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
+
+pub const MPIO_PASS_THROUGH_PATH_DIRECT_EX = extern struct {
+    PassThroughOffset: u32,
+    Version: u32,
+    Length: u16,
+    Flags: u8,
+    PortNumber: u8,
+    MpioPathId: u64,
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
@@ -357,155 +506,6 @@ pub const MPIO_PASS_THROUGH_PATH_DIRECT32_EX = extern struct {
 };
 
 }, else => struct { } };
-
-pub const _ADAPTER_OBJECT = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const SCSI_PASS_THROUGH = extern struct {
-    Length: u16,
-    ScsiStatus: u8,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    CdbLength: u8,
-    SenseInfoLength: u8,
-    DataIn: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    DataBufferOffset: usize,
-    SenseInfoOffset: u32,
-    Cdb: [16]u8,
-};
-
-pub const SCSI_PASS_THROUGH_DIRECT = extern struct {
-    Length: u16,
-    ScsiStatus: u8,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    CdbLength: u8,
-    SenseInfoLength: u8,
-    DataIn: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    DataBuffer: *c_void,
-    SenseInfoOffset: u32,
-    Cdb: [16]u8,
-};
-
-pub const SCSI_PASS_THROUGH_EX = extern struct {
-    Version: u32,
-    Length: u32,
-    CdbLength: u32,
-    StorAddressLength: u32,
-    ScsiStatus: u8,
-    SenseInfoLength: u8,
-    DataDirection: u8,
-    Reserved: u8,
-    TimeOutValue: u32,
-    StorAddressOffset: u32,
-    SenseInfoOffset: u32,
-    DataOutTransferLength: u32,
-    DataInTransferLength: u32,
-    DataOutBufferOffset: usize,
-    DataInBufferOffset: usize,
-    Cdb: [1]u8,
-};
-
-pub const SCSI_PASS_THROUGH_DIRECT_EX = extern struct {
-    Version: u32,
-    Length: u32,
-    CdbLength: u32,
-    StorAddressLength: u32,
-    ScsiStatus: u8,
-    SenseInfoLength: u8,
-    DataDirection: u8,
-    Reserved: u8,
-    TimeOutValue: u32,
-    StorAddressOffset: u32,
-    SenseInfoOffset: u32,
-    DataOutTransferLength: u32,
-    DataInTransferLength: u32,
-    DataOutBuffer: *c_void,
-    DataInBuffer: *c_void,
-    Cdb: [1]u8,
-};
-
-pub const ATA_PASS_THROUGH_EX = extern struct {
-    Length: u16,
-    AtaFlags: u16,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    ReservedAsUchar: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    ReservedAsUlong: u32,
-    DataBufferOffset: usize,
-    PreviousTaskFile: [8]u8,
-    CurrentTaskFile: [8]u8,
-};
-
-pub const ATA_PASS_THROUGH_DIRECT = extern struct {
-    Length: u16,
-    AtaFlags: u16,
-    PathId: u8,
-    TargetId: u8,
-    Lun: u8,
-    ReservedAsUchar: u8,
-    DataTransferLength: u32,
-    TimeOutValue: u32,
-    ReservedAsUlong: u32,
-    DataBuffer: *c_void,
-    PreviousTaskFile: [8]u8,
-    CurrentTaskFile: [8]u8,
-};
-
-pub const IDE_IO_CONTROL = extern struct {
-    HeaderLength: u32,
-    Signature: [8]u8,
-    Timeout: u32,
-    ControlCode: u32,
-    ReturnStatus: u32,
-    DataLength: u32,
-};
-
-pub const MPIO_PASS_THROUGH_PATH = extern struct {
-    PassThrough: SCSI_PASS_THROUGH,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-pub const MPIO_PASS_THROUGH_PATH_DIRECT = extern struct {
-    PassThrough: SCSI_PASS_THROUGH_DIRECT,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-pub const MPIO_PASS_THROUGH_PATH_EX = extern struct {
-    PassThroughOffset: u32,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
-
-pub const MPIO_PASS_THROUGH_PATH_DIRECT_EX = extern struct {
-    PassThroughOffset: u32,
-    Version: u32,
-    Length: u16,
-    Flags: u8,
-    PortNumber: u8,
-    MpioPathId: u64,
-};
 
 pub const SCSI_BUS_DATA = extern struct {
     NumberOfLogicalUnits: u8,

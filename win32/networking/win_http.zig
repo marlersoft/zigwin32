@@ -805,12 +805,14 @@ pub const WINHTTP_REQUEST_STATS = extern struct {
 
 }, else => struct { } };
 
-pub const INTERNET_DEFAULT_PORT = enum(u32) {
+pub const INTERNET_PORT = enum(u32) {
     HTTP_PORT = 80,
     HTTPS_PORT = 443,
     PORT = 0,
 };
-// TODO: enum 'INTERNET_DEFAULT_PORT' has known issues with its value aliases
+pub const INTERNET_DEFAULT_HTTP_PORT = INTERNET_PORT.HTTP_PORT;
+pub const INTERNET_DEFAULT_HTTPS_PORT = INTERNET_PORT.HTTPS_PORT;
+pub const INTERNET_DEFAULT_PORT = INTERNET_PORT.PORT;
 
 pub const WINHTTP_OPEN_REQUEST_FLAGS = enum(u32) {
     BYPASS_PROXY_CACHE = 256,
@@ -948,7 +950,7 @@ pub extern "WINHTTP" fn WinHttpCloseHandle(
 pub extern "WINHTTP" fn WinHttpConnect(
     hSession: *c_void,
     pswzServerName: [*:0]const u16,
-    nServerPort: INTERNET_DEFAULT_PORT,
+    nServerPort: INTERNET_PORT,
     dwReserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 

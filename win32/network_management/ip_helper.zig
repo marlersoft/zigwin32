@@ -438,6 +438,14 @@ pub const IcmpHandle = isize;
 
 pub const HIFTIMESTAMPCHANGE = *opaque{};
 
+pub const ip_option_information = extern struct {
+    Ttl: u8,
+    Tos: u8,
+    Flags: u8,
+    OptionsSize: u8,
+    OptionsData: *u8,
+};
+
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
@@ -450,6 +458,16 @@ pub const ip_option_information32 = extern struct {
 };
 
 }, else => struct { } };
+
+pub const icmp_echo_reply = extern struct {
+    Address: u32,
+    Status: u32,
+    RoundTripTime: u32,
+    DataSize: u16,
+    Reserved: u16,
+    Data: *c_void,
+    Options: ip_option_information,
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
@@ -465,24 +483,6 @@ pub const icmp_echo_reply32 = extern struct {
 };
 
 }, else => struct { } };
-
-pub const ip_option_information = extern struct {
-    Ttl: u8,
-    Tos: u8,
-    Flags: u8,
-    OptionsSize: u8,
-    OptionsData: *u8,
-};
-
-pub const icmp_echo_reply = extern struct {
-    Address: u32,
-    Status: u32,
-    RoundTripTime: u32,
-    DataSize: u16,
-    Reserved: u16,
-    Data: *c_void,
-    Options: ip_option_information,
-};
 
 pub const IPV6_ADDRESS_EX = packed struct {
     sin6_port: u16,

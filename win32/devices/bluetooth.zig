@@ -5,7 +5,7 @@
 pub const BT_PORT_MIN = @as(u32, 1);
 pub const BT_PORT_MAX = @as(u32, 65535);
 pub const BT_PORT_DYN_FIRST = @as(u32, 4097);
-pub const AF_BTH = @as(u32, 32);
+pub const AF_BTH = @as(u16, 32);
 pub const NS_BTH = @as(u32, 16);
 pub const SVCID_BTH_PROVIDER = Guid.initString("06aa63e0-7d60-41ff-afb2-3ee6d2d9392d");
 pub const BTH_ADDR_STRING_SIZE = @as(u32, 12);

@@ -25,9 +25,6 @@ pub const REG_SECURE_CONNECTION = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
-pub const HKEY = *opaque{};
-
 pub const REG_VALUE_TYPE = enum(u32) {
     NONE = 0,
     SZ = 1,
@@ -205,6 +202,9 @@ pub const VALENTW = extern struct {
     ve_valueptr: usize,
     ve_type: REG_VALUE_TYPE,
 };
+
+// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
+pub const HKEY = *opaque{};
 
 pub const REG_SAVE_FORMAT = enum(u32) {
     STANDARD_FORMAT = 1,

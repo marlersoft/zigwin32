@@ -1041,7 +1041,44 @@ pub const KSPROPERTY_MEMORY_TRANSPORT = @as(i32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (1173)
 //--------------------------------------------------------------------------------
-pub const HTASK = *opaque{};
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const KSSTREAM_HEADER = extern struct {
+    Size: u32,
+    TypeSpecificFlags: u32,
+    PresentationTime: KSTIME,
+    Duration: i64,
+    FrameExtent: u32,
+    DataUsed: u32,
+    Data: *c_void,
+    OptionsFlags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = extern struct {
+    NodeProperty: KSNODEPROPERTY,
+    ListenerId: *c_void,
+    Reserved: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../../zig.zig").arch) {
+.X86 => struct {
+
+pub const KSNODEPROPERTY_AUDIO_PROPERTY = extern struct {
+    NodeProperty: KSNODEPROPERTY,
+    AppContext: *c_void,
+    Length: u32,
+    Reserved: u32,
+};
+
+}, else => struct { } };
 
 pub usingnamespace switch (@import("../../zig.zig").arch) {
 .X64, .Arm64 => struct {
@@ -1080,6 +1117,8 @@ pub const KSNODEPROPERTY_AUDIO_PROPERTY = extern struct {
 };
 
 }, else => struct { } };
+
+pub const HTASK = *opaque{};
 
 pub const YIELDPROC = fn(
     mciId: u32,
@@ -11387,45 +11426,6 @@ pub const ISpatialAudioObjectRenderStreamForMetadata = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const KSSTREAM_HEADER = extern struct {
-    Size: u32,
-    TypeSpecificFlags: u32,
-    PresentationTime: KSTIME,
-    Duration: i64,
-    FrameExtent: u32,
-    DataUsed: u32,
-    Data: *c_void,
-    OptionsFlags: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const KSNODEPROPERTY_AUDIO_3D_LISTENER = extern struct {
-    NodeProperty: KSNODEPROPERTY,
-    ListenerId: *c_void,
-    Reserved: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../../zig.zig").arch) {
-.X86 => struct {
-
-pub const KSNODEPROPERTY_AUDIO_PROPERTY = extern struct {
-    NodeProperty: KSNODEPROPERTY,
-    AppContext: *c_void,
-    Length: u32,
-    Reserved: u32,
-};
-
-}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------

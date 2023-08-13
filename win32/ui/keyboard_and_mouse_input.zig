@@ -6,8 +6,6 @@
 //--------------------------------------------------------------------------------
 // Section: Types (30)
 //--------------------------------------------------------------------------------
-pub const HRAWINPUT = *opaque{};
-
 pub const RAW_INPUT_DATA_COMMAND_FLAGS = enum(u32) {
     HEADER = 268435461,
     INPUT = 268435459,
@@ -239,6 +237,8 @@ pub const TME_LEAVE = TRACKMOUSEEVENT_FLAGS.LEAVE;
 pub const TME_NONCLIENT = TRACKMOUSEEVENT_FLAGS.NONCLIENT;
 pub const TME_QUERY = TRACKMOUSEEVENT_FLAGS.QUERY;
 
+pub const HRAWINPUT = *opaque{};
+
 pub const MOUSEMOVEPOINT = extern struct {
     x: i32,
     y: i32,
@@ -386,11 +386,6 @@ pub const RAWINPUTDEVICELIST = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (60)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "COMCTL32" fn _TrackMouseEvent(
-    lpEventTrack: *TRACKMOUSEEVENT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn LoadKeyboardLayoutA(
     pwszKLID: [*:0]const u8,
@@ -758,6 +753,11 @@ pub extern "USER32" fn DefRawInputProc(
     nInput: i32,
     cbSizeHeader: u32,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "COMCTL32" fn _TrackMouseEvent(
+    lpEventTrack: *TRACKMOUSEEVENT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 
 //--------------------------------------------------------------------------------

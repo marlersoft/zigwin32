@@ -33,6 +33,26 @@ pub const WSMAN_FLAG_SEND_NO_MORE_DATA = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (76)
 //--------------------------------------------------------------------------------
+pub const WSMAN_API = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const WSMAN_SESSION = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const WSMAN_OPERATION = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const WSMAN_SHELL = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const WSMAN_COMMAND = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 pub const WSMAN_DATA_TEXT = extern struct {
     bufferLength: u32,
     buffer: [*:0]const u16,
@@ -161,10 +181,6 @@ pub const WSMAN_OPERATION_INFOEX = extern struct {
     dataLocale: [*:0]const u16,
 };
 
-pub const WSMAN_API = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const WSManProxyAccessType = enum(i32) {
     IE_PROXY_CONFIG = 1,
     WINHTTP_PROXY_CONFIG = 2,
@@ -179,10 +195,6 @@ pub const WSMAN_OPTION_PROXY_NO_PROXY_SERVER = WSManProxyAccessType.NO_PROXY_SER
 pub const WSMAN_PROXY_INFO = extern struct {
     accessType: u32,
     authenticationCredentials: WSMAN_AUTHENTICATION_CREDENTIALS,
-};
-
-pub const WSMAN_SESSION = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const WSManSessionOption = enum(i32) {
@@ -234,10 +246,6 @@ pub const WSMAN_OPTION_ALLOW_NEGOTIATE_IMPLICIT_CREDENTIALS = WSManSessionOption
 pub const WSMAN_OPTION_USE_SSL = WSManSessionOption.USE_SSL;
 pub const WSMAN_OPTION_USE_INTEARACTIVE_TOKEN = WSManSessionOption.USE_INTEARACTIVE_TOKEN;
 
-pub const WSMAN_OPERATION = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const WSManCallbackFlags = enum(i32) {
     END_OF_OPERATION = 1,
     END_OF_STREAM = 8,
@@ -260,14 +268,6 @@ pub const WSMAN_FLAG_CALLBACK_RECONNECTED_AFTER_NETWORK_FAILURE = WSManCallbackF
 pub const WSMAN_FLAG_CALLBACK_SHELL_AUTODISCONNECTING = WSManCallbackFlags.SHELL_AUTODISCONNECTING;
 pub const WSMAN_FLAG_CALLBACK_RETRY_ABORTED_DUE_TO_INTERNAL_ERROR = WSManCallbackFlags.RETRY_ABORTED_DUE_TO_INTERNAL_ERROR;
 pub const WSMAN_FLAG_CALLBACK_RECEIVE_DELAY_STREAM_REQUEST_PROCESSED = WSManCallbackFlags.RECEIVE_DELAY_STREAM_REQUEST_PROCESSED;
-
-pub const WSMAN_SHELL = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const WSMAN_COMMAND = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
 
 pub const WSMAN_STREAM_ID_SET = extern struct {
     streamIDsCount: u32,

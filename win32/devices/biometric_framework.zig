@@ -17,18 +17,6 @@ pub const WINBIO_BIR_ALIGN_SIZE = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (178)
 //--------------------------------------------------------------------------------
-pub const _WINIBIO_SENSOR_CONTEXT = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _WINIBIO_ENGINE_CONTEXT = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _WINIBIO_STORAGE_CONTEXT = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const WINBIO_SETTING_SOURCE = enum(u32) {
     INVALID = 0,
     DEFAULT = 1,
@@ -55,6 +43,18 @@ pub const WINBIO_POOL = enum(u32) {
 };
 pub const WINBIO_POOL_SYSTEM = WINBIO_POOL.SYSTEM;
 pub const WINBIO_POOL_PRIVATE = WINBIO_POOL.PRIVATE;
+
+pub const _WINIBIO_SENSOR_CONTEXT = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const _WINIBIO_ENGINE_CONTEXT = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const _WINIBIO_STORAGE_CONTEXT = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 pub const WINBIO_VERSION = extern struct {
     MajorVersion: u32,

@@ -44,6 +44,117 @@ pub const WER_MAX_REGISTERED_RUNTIME_EXCEPTION_MODULES = @as(u32, 16);
 //--------------------------------------------------------------------------------
 // Section: Types (32)
 //--------------------------------------------------------------------------------
+pub const WER_FILE = enum(u32) {
+    ANONYMOUS_DATA = 2,
+    DELETE_WHEN_DONE = 1,
+    _,
+    pub fn initFlags(o: struct {
+        ANONYMOUS_DATA: u1 = 0,
+        DELETE_WHEN_DONE: u1 = 0,
+    }) WER_FILE {
+        return @intToEnum(WER_FILE,
+              (if (o.ANONYMOUS_DATA == 1) @enumToInt(WER_FILE.ANONYMOUS_DATA) else 0)
+            | (if (o.DELETE_WHEN_DONE == 1) @enumToInt(WER_FILE.DELETE_WHEN_DONE) else 0)
+        );
+    }
+};
+pub const WER_FILE_ANONYMOUS_DATA = WER_FILE.ANONYMOUS_DATA;
+pub const WER_FILE_DELETE_WHEN_DONE = WER_FILE.DELETE_WHEN_DONE;
+
+pub const WER_SUBMIT_FLAGS = enum(u32) {
+    ADD_REGISTERED_DATA = 16,
+    HONOR_RECOVERY = 1,
+    HONOR_RESTART = 2,
+    NO_ARCHIVE = 256,
+    NO_CLOSE_UI = 64,
+    NO_QUEUE = 128,
+    OUTOFPROCESS = 32,
+    OUTOFPROCESS_ASYNC = 1024,
+    QUEUE = 4,
+    SHOW_DEBUG = 8,
+    START_MINIMIZED = 512,
+    BYPASS_DATA_THROTTLING = 2048,
+    ARCHIVE_PARAMETERS_ONLY = 4096,
+    REPORT_MACHINE_ID = 8192,
+    _,
+    pub fn initFlags(o: struct {
+        ADD_REGISTERED_DATA: u1 = 0,
+        HONOR_RECOVERY: u1 = 0,
+        HONOR_RESTART: u1 = 0,
+        NO_ARCHIVE: u1 = 0,
+        NO_CLOSE_UI: u1 = 0,
+        NO_QUEUE: u1 = 0,
+        OUTOFPROCESS: u1 = 0,
+        OUTOFPROCESS_ASYNC: u1 = 0,
+        QUEUE: u1 = 0,
+        SHOW_DEBUG: u1 = 0,
+        START_MINIMIZED: u1 = 0,
+        BYPASS_DATA_THROTTLING: u1 = 0,
+        ARCHIVE_PARAMETERS_ONLY: u1 = 0,
+        REPORT_MACHINE_ID: u1 = 0,
+    }) WER_SUBMIT_FLAGS {
+        return @intToEnum(WER_SUBMIT_FLAGS,
+              (if (o.ADD_REGISTERED_DATA == 1) @enumToInt(WER_SUBMIT_FLAGS.ADD_REGISTERED_DATA) else 0)
+            | (if (o.HONOR_RECOVERY == 1) @enumToInt(WER_SUBMIT_FLAGS.HONOR_RECOVERY) else 0)
+            | (if (o.HONOR_RESTART == 1) @enumToInt(WER_SUBMIT_FLAGS.HONOR_RESTART) else 0)
+            | (if (o.NO_ARCHIVE == 1) @enumToInt(WER_SUBMIT_FLAGS.NO_ARCHIVE) else 0)
+            | (if (o.NO_CLOSE_UI == 1) @enumToInt(WER_SUBMIT_FLAGS.NO_CLOSE_UI) else 0)
+            | (if (o.NO_QUEUE == 1) @enumToInt(WER_SUBMIT_FLAGS.NO_QUEUE) else 0)
+            | (if (o.OUTOFPROCESS == 1) @enumToInt(WER_SUBMIT_FLAGS.OUTOFPROCESS) else 0)
+            | (if (o.OUTOFPROCESS_ASYNC == 1) @enumToInt(WER_SUBMIT_FLAGS.OUTOFPROCESS_ASYNC) else 0)
+            | (if (o.QUEUE == 1) @enumToInt(WER_SUBMIT_FLAGS.QUEUE) else 0)
+            | (if (o.SHOW_DEBUG == 1) @enumToInt(WER_SUBMIT_FLAGS.SHOW_DEBUG) else 0)
+            | (if (o.START_MINIMIZED == 1) @enumToInt(WER_SUBMIT_FLAGS.START_MINIMIZED) else 0)
+            | (if (o.BYPASS_DATA_THROTTLING == 1) @enumToInt(WER_SUBMIT_FLAGS.BYPASS_DATA_THROTTLING) else 0)
+            | (if (o.ARCHIVE_PARAMETERS_ONLY == 1) @enumToInt(WER_SUBMIT_FLAGS.ARCHIVE_PARAMETERS_ONLY) else 0)
+            | (if (o.REPORT_MACHINE_ID == 1) @enumToInt(WER_SUBMIT_FLAGS.REPORT_MACHINE_ID) else 0)
+        );
+    }
+};
+pub const WER_SUBMIT_ADD_REGISTERED_DATA = WER_SUBMIT_FLAGS.ADD_REGISTERED_DATA;
+pub const WER_SUBMIT_HONOR_RECOVERY = WER_SUBMIT_FLAGS.HONOR_RECOVERY;
+pub const WER_SUBMIT_HONOR_RESTART = WER_SUBMIT_FLAGS.HONOR_RESTART;
+pub const WER_SUBMIT_NO_ARCHIVE = WER_SUBMIT_FLAGS.NO_ARCHIVE;
+pub const WER_SUBMIT_NO_CLOSE_UI = WER_SUBMIT_FLAGS.NO_CLOSE_UI;
+pub const WER_SUBMIT_NO_QUEUE = WER_SUBMIT_FLAGS.NO_QUEUE;
+pub const WER_SUBMIT_OUTOFPROCESS = WER_SUBMIT_FLAGS.OUTOFPROCESS;
+pub const WER_SUBMIT_OUTOFPROCESS_ASYNC = WER_SUBMIT_FLAGS.OUTOFPROCESS_ASYNC;
+pub const WER_SUBMIT_QUEUE = WER_SUBMIT_FLAGS.QUEUE;
+pub const WER_SUBMIT_SHOW_DEBUG = WER_SUBMIT_FLAGS.SHOW_DEBUG;
+pub const WER_SUBMIT_START_MINIMIZED = WER_SUBMIT_FLAGS.START_MINIMIZED;
+pub const WER_SUBMIT_BYPASS_DATA_THROTTLING = WER_SUBMIT_FLAGS.BYPASS_DATA_THROTTLING;
+pub const WER_SUBMIT_ARCHIVE_PARAMETERS_ONLY = WER_SUBMIT_FLAGS.ARCHIVE_PARAMETERS_ONLY;
+pub const WER_SUBMIT_REPORT_MACHINE_ID = WER_SUBMIT_FLAGS.REPORT_MACHINE_ID;
+
+pub const WER_FAULT_REPORTING = enum(u32) {
+    FLAG_DISABLE_THREAD_SUSPENSION = 4,
+    FLAG_NOHEAP = 1,
+    FLAG_QUEUE = 2,
+    FLAG_QUEUE_UPLOAD = 8,
+    ALWAYS_SHOW_UI = 16,
+    _,
+    pub fn initFlags(o: struct {
+        FLAG_DISABLE_THREAD_SUSPENSION: u1 = 0,
+        FLAG_NOHEAP: u1 = 0,
+        FLAG_QUEUE: u1 = 0,
+        FLAG_QUEUE_UPLOAD: u1 = 0,
+        ALWAYS_SHOW_UI: u1 = 0,
+    }) WER_FAULT_REPORTING {
+        return @intToEnum(WER_FAULT_REPORTING,
+              (if (o.FLAG_DISABLE_THREAD_SUSPENSION == 1) @enumToInt(WER_FAULT_REPORTING.FLAG_DISABLE_THREAD_SUSPENSION) else 0)
+            | (if (o.FLAG_NOHEAP == 1) @enumToInt(WER_FAULT_REPORTING.FLAG_NOHEAP) else 0)
+            | (if (o.FLAG_QUEUE == 1) @enumToInt(WER_FAULT_REPORTING.FLAG_QUEUE) else 0)
+            | (if (o.FLAG_QUEUE_UPLOAD == 1) @enumToInt(WER_FAULT_REPORTING.FLAG_QUEUE_UPLOAD) else 0)
+            | (if (o.ALWAYS_SHOW_UI == 1) @enumToInt(WER_FAULT_REPORTING.ALWAYS_SHOW_UI) else 0)
+        );
+    }
+};
+pub const WER_FAULT_REPORTING_FLAG_DISABLE_THREAD_SUSPENSION = WER_FAULT_REPORTING.FLAG_DISABLE_THREAD_SUSPENSION;
+pub const WER_FAULT_REPORTING_FLAG_NOHEAP = WER_FAULT_REPORTING.FLAG_NOHEAP;
+pub const WER_FAULT_REPORTING_FLAG_QUEUE = WER_FAULT_REPORTING.FLAG_QUEUE;
+pub const WER_FAULT_REPORTING_FLAG_QUEUE_UPLOAD = WER_FAULT_REPORTING.FLAG_QUEUE_UPLOAD;
+pub const WER_FAULT_REPORTING_ALWAYS_SHOW_UI = WER_FAULT_REPORTING.ALWAYS_SHOW_UI;
+
 pub const WER_REPORT_UI = enum(i32) {
     AdditionalDataDlgHeader = 1,
     IconFilePath = 2,
@@ -425,117 +536,6 @@ pub const pfn_ADDEREXCLUDEDAPPLICATIONA = fn(
 pub const pfn_ADDEREXCLUDEDAPPLICATIONW = fn(
     param0: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) EFaultRepRetVal;
-
-pub const WER_FILE = enum(u32) {
-    ANONYMOUS_DATA = 2,
-    DELETE_WHEN_DONE = 1,
-    _,
-    pub fn initFlags(o: struct {
-        ANONYMOUS_DATA: u1 = 0,
-        DELETE_WHEN_DONE: u1 = 0,
-    }) WER_FILE {
-        return @intToEnum(WER_FILE,
-              (if (o.ANONYMOUS_DATA == 1) @enumToInt(WER_FILE.ANONYMOUS_DATA) else 0)
-            | (if (o.DELETE_WHEN_DONE == 1) @enumToInt(WER_FILE.DELETE_WHEN_DONE) else 0)
-        );
-    }
-};
-pub const WER_FILE_ANONYMOUS_DATA = WER_FILE.ANONYMOUS_DATA;
-pub const WER_FILE_DELETE_WHEN_DONE = WER_FILE.DELETE_WHEN_DONE;
-
-pub const WER_SUBMIT_FLAGS = enum(u32) {
-    ADD_REGISTERED_DATA = 16,
-    HONOR_RECOVERY = 1,
-    HONOR_RESTART = 2,
-    NO_ARCHIVE = 256,
-    NO_CLOSE_UI = 64,
-    NO_QUEUE = 128,
-    OUTOFPROCESS = 32,
-    OUTOFPROCESS_ASYNC = 1024,
-    QUEUE = 4,
-    SHOW_DEBUG = 8,
-    START_MINIMIZED = 512,
-    BYPASS_DATA_THROTTLING = 2048,
-    ARCHIVE_PARAMETERS_ONLY = 4096,
-    REPORT_MACHINE_ID = 8192,
-    _,
-    pub fn initFlags(o: struct {
-        ADD_REGISTERED_DATA: u1 = 0,
-        HONOR_RECOVERY: u1 = 0,
-        HONOR_RESTART: u1 = 0,
-        NO_ARCHIVE: u1 = 0,
-        NO_CLOSE_UI: u1 = 0,
-        NO_QUEUE: u1 = 0,
-        OUTOFPROCESS: u1 = 0,
-        OUTOFPROCESS_ASYNC: u1 = 0,
-        QUEUE: u1 = 0,
-        SHOW_DEBUG: u1 = 0,
-        START_MINIMIZED: u1 = 0,
-        BYPASS_DATA_THROTTLING: u1 = 0,
-        ARCHIVE_PARAMETERS_ONLY: u1 = 0,
-        REPORT_MACHINE_ID: u1 = 0,
-    }) WER_SUBMIT_FLAGS {
-        return @intToEnum(WER_SUBMIT_FLAGS,
-              (if (o.ADD_REGISTERED_DATA == 1) @enumToInt(WER_SUBMIT_FLAGS.ADD_REGISTERED_DATA) else 0)
-            | (if (o.HONOR_RECOVERY == 1) @enumToInt(WER_SUBMIT_FLAGS.HONOR_RECOVERY) else 0)
-            | (if (o.HONOR_RESTART == 1) @enumToInt(WER_SUBMIT_FLAGS.HONOR_RESTART) else 0)
-            | (if (o.NO_ARCHIVE == 1) @enumToInt(WER_SUBMIT_FLAGS.NO_ARCHIVE) else 0)
-            | (if (o.NO_CLOSE_UI == 1) @enumToInt(WER_SUBMIT_FLAGS.NO_CLOSE_UI) else 0)
-            | (if (o.NO_QUEUE == 1) @enumToInt(WER_SUBMIT_FLAGS.NO_QUEUE) else 0)
-            | (if (o.OUTOFPROCESS == 1) @enumToInt(WER_SUBMIT_FLAGS.OUTOFPROCESS) else 0)
-            | (if (o.OUTOFPROCESS_ASYNC == 1) @enumToInt(WER_SUBMIT_FLAGS.OUTOFPROCESS_ASYNC) else 0)
-            | (if (o.QUEUE == 1) @enumToInt(WER_SUBMIT_FLAGS.QUEUE) else 0)
-            | (if (o.SHOW_DEBUG == 1) @enumToInt(WER_SUBMIT_FLAGS.SHOW_DEBUG) else 0)
-            | (if (o.START_MINIMIZED == 1) @enumToInt(WER_SUBMIT_FLAGS.START_MINIMIZED) else 0)
-            | (if (o.BYPASS_DATA_THROTTLING == 1) @enumToInt(WER_SUBMIT_FLAGS.BYPASS_DATA_THROTTLING) else 0)
-            | (if (o.ARCHIVE_PARAMETERS_ONLY == 1) @enumToInt(WER_SUBMIT_FLAGS.ARCHIVE_PARAMETERS_ONLY) else 0)
-            | (if (o.REPORT_MACHINE_ID == 1) @enumToInt(WER_SUBMIT_FLAGS.REPORT_MACHINE_ID) else 0)
-        );
-    }
-};
-pub const WER_SUBMIT_ADD_REGISTERED_DATA = WER_SUBMIT_FLAGS.ADD_REGISTERED_DATA;
-pub const WER_SUBMIT_HONOR_RECOVERY = WER_SUBMIT_FLAGS.HONOR_RECOVERY;
-pub const WER_SUBMIT_HONOR_RESTART = WER_SUBMIT_FLAGS.HONOR_RESTART;
-pub const WER_SUBMIT_NO_ARCHIVE = WER_SUBMIT_FLAGS.NO_ARCHIVE;
-pub const WER_SUBMIT_NO_CLOSE_UI = WER_SUBMIT_FLAGS.NO_CLOSE_UI;
-pub const WER_SUBMIT_NO_QUEUE = WER_SUBMIT_FLAGS.NO_QUEUE;
-pub const WER_SUBMIT_OUTOFPROCESS = WER_SUBMIT_FLAGS.OUTOFPROCESS;
-pub const WER_SUBMIT_OUTOFPROCESS_ASYNC = WER_SUBMIT_FLAGS.OUTOFPROCESS_ASYNC;
-pub const WER_SUBMIT_QUEUE = WER_SUBMIT_FLAGS.QUEUE;
-pub const WER_SUBMIT_SHOW_DEBUG = WER_SUBMIT_FLAGS.SHOW_DEBUG;
-pub const WER_SUBMIT_START_MINIMIZED = WER_SUBMIT_FLAGS.START_MINIMIZED;
-pub const WER_SUBMIT_BYPASS_DATA_THROTTLING = WER_SUBMIT_FLAGS.BYPASS_DATA_THROTTLING;
-pub const WER_SUBMIT_ARCHIVE_PARAMETERS_ONLY = WER_SUBMIT_FLAGS.ARCHIVE_PARAMETERS_ONLY;
-pub const WER_SUBMIT_REPORT_MACHINE_ID = WER_SUBMIT_FLAGS.REPORT_MACHINE_ID;
-
-pub const WER_FAULT_REPORTING = enum(u32) {
-    FLAG_DISABLE_THREAD_SUSPENSION = 4,
-    FLAG_NOHEAP = 1,
-    FLAG_QUEUE = 2,
-    FLAG_QUEUE_UPLOAD = 8,
-    ALWAYS_SHOW_UI = 16,
-    _,
-    pub fn initFlags(o: struct {
-        FLAG_DISABLE_THREAD_SUSPENSION: u1 = 0,
-        FLAG_NOHEAP: u1 = 0,
-        FLAG_QUEUE: u1 = 0,
-        FLAG_QUEUE_UPLOAD: u1 = 0,
-        ALWAYS_SHOW_UI: u1 = 0,
-    }) WER_FAULT_REPORTING {
-        return @intToEnum(WER_FAULT_REPORTING,
-              (if (o.FLAG_DISABLE_THREAD_SUSPENSION == 1) @enumToInt(WER_FAULT_REPORTING.FLAG_DISABLE_THREAD_SUSPENSION) else 0)
-            | (if (o.FLAG_NOHEAP == 1) @enumToInt(WER_FAULT_REPORTING.FLAG_NOHEAP) else 0)
-            | (if (o.FLAG_QUEUE == 1) @enumToInt(WER_FAULT_REPORTING.FLAG_QUEUE) else 0)
-            | (if (o.FLAG_QUEUE_UPLOAD == 1) @enumToInt(WER_FAULT_REPORTING.FLAG_QUEUE_UPLOAD) else 0)
-            | (if (o.ALWAYS_SHOW_UI == 1) @enumToInt(WER_FAULT_REPORTING.ALWAYS_SHOW_UI) else 0)
-        );
-    }
-};
-pub const WER_FAULT_REPORTING_FLAG_DISABLE_THREAD_SUSPENSION = WER_FAULT_REPORTING.FLAG_DISABLE_THREAD_SUSPENSION;
-pub const WER_FAULT_REPORTING_FLAG_NOHEAP = WER_FAULT_REPORTING.FLAG_NOHEAP;
-pub const WER_FAULT_REPORTING_FLAG_QUEUE = WER_FAULT_REPORTING.FLAG_QUEUE;
-pub const WER_FAULT_REPORTING_FLAG_QUEUE_UPLOAD = WER_FAULT_REPORTING.FLAG_QUEUE_UPLOAD;
-pub const WER_FAULT_REPORTING_ALWAYS_SHOW_UI = WER_FAULT_REPORTING.ALWAYS_SHOW_UI;
 
 
 //--------------------------------------------------------------------------------

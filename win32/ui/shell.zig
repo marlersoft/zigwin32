@@ -1436,13 +1436,6 @@ pub const CTF_NOADDREFLIB = @as(i32, 8192);
 //--------------------------------------------------------------------------------
 // Section: Types (938)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'SHChangeNotification_Unlock', what can Zig do with this information?
-pub const ShFindChangeNotificationHandle = isize;
-
-pub const HDROP = *opaque{};
-
-pub const HPSXA = *opaque{};
-
 pub const SHGFI_FLAGS = enum(i32) {
     ADDOVERLAYS = 32,
     ATTR_SPECIFIED = 131072,
@@ -2332,99 +2325,6 @@ pub const SSF_ICONSONLY = SSF_MASK.ICONSONLY;
 pub const SSF_SHOWTYPEOVERLAY = SSF_MASK.SHOWTYPEOVERLAY;
 pub const SSF_SHOWSTATUSBAR = SSF_MASK.SHOWSTATUSBAR;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INotifyReplica_Value = @import("../zig.zig").Guid.initString("99180163-da16-101a-935c-444553540000");
-pub const IID_INotifyReplica = &IID_INotifyReplica_Value;
-pub const INotifyReplica = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        YouAreAReplica: fn(
-            self: *const INotifyReplica,
-            ulcOtherReplicas: u32,
-            rgpmkOtherReplicas: [*]*IMoniker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INotifyReplica_YouAreAReplica(self: *const T, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]*IMoniker) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INotifyReplica.VTable, self.vtable).YouAreAReplica(@ptrCast(*const INotifyReplica, self), ulcOtherReplicas, rgpmkOtherReplicas);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const NOTIFY_ICON_MESSAGE = enum(u32) {
-    ADD = 0,
-    MODIFY = 1,
-    DELETE = 2,
-    SETFOCUS = 3,
-    SETVERSION = 4,
-};
-pub const NIM_ADD = NOTIFY_ICON_MESSAGE.ADD;
-pub const NIM_MODIFY = NOTIFY_ICON_MESSAGE.MODIFY;
-pub const NIM_DELETE = NOTIFY_ICON_MESSAGE.DELETE;
-pub const NIM_SETFOCUS = NOTIFY_ICON_MESSAGE.SETFOCUS;
-pub const NIM_SETVERSION = NOTIFY_ICON_MESSAGE.SETVERSION;
-
-pub const NOTIFY_ICON_DATA_FLAGS = enum(u32) {
-    MESSAGE = 1,
-    ICON = 2,
-    TIP = 4,
-    STATE = 8,
-    INFO = 16,
-    GUID = 32,
-    REALTIME = 64,
-    SHOWTIP = 128,
-    _,
-    pub fn initFlags(o: struct {
-        MESSAGE: u1 = 0,
-        ICON: u1 = 0,
-        TIP: u1 = 0,
-        STATE: u1 = 0,
-        INFO: u1 = 0,
-        GUID: u1 = 0,
-        REALTIME: u1 = 0,
-        SHOWTIP: u1 = 0,
-    }) NOTIFY_ICON_DATA_FLAGS {
-        return @intToEnum(NOTIFY_ICON_DATA_FLAGS,
-              (if (o.MESSAGE == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.MESSAGE) else 0)
-            | (if (o.ICON == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.ICON) else 0)
-            | (if (o.TIP == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.TIP) else 0)
-            | (if (o.STATE == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.STATE) else 0)
-            | (if (o.INFO == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.INFO) else 0)
-            | (if (o.GUID == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.GUID) else 0)
-            | (if (o.REALTIME == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.REALTIME) else 0)
-            | (if (o.SHOWTIP == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.SHOWTIP) else 0)
-        );
-    }
-};
-pub const NIF_MESSAGE = NOTIFY_ICON_DATA_FLAGS.MESSAGE;
-pub const NIF_ICON = NOTIFY_ICON_DATA_FLAGS.ICON;
-pub const NIF_TIP = NOTIFY_ICON_DATA_FLAGS.TIP;
-pub const NIF_STATE = NOTIFY_ICON_DATA_FLAGS.STATE;
-pub const NIF_INFO = NOTIFY_ICON_DATA_FLAGS.INFO;
-pub const NIF_GUID = NOTIFY_ICON_DATA_FLAGS.GUID;
-pub const NIF_REALTIME = NOTIFY_ICON_DATA_FLAGS.REALTIME;
-pub const NIF_SHOWTIP = NOTIFY_ICON_DATA_FLAGS.SHOWTIP;
-
-pub const SOFTDISTINFO = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    dwAdState: u32,
-    szTitle: PWSTR,
-    szAbstract: PWSTR,
-    szHREF: PWSTR,
-    dwInstalledVersionMS: u32,
-    dwInstalledVersionLS: u32,
-    dwUpdateVersionMS: u32,
-    dwUpdateVersionLS: u32,
-    dwAdvertisedVersionMS: u32,
-    dwAdvertisedVersionLS: u32,
-    dwReserved: u32,
-};
-
 pub const ShellWindowTypeConstants = enum(i32) {
     EXPLORER = 0,
     BROWSER = 1,
@@ -2565,394 +2465,66 @@ pub const IShellWindows = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SUBCLASSPROC = fn(
-    hWnd: HWND,
-    uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    uIdSubclass: usize,
-    dwRefData: usize,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
-
-pub const HELPINFO = extern struct {
-    cbSize: u32,
-    iContextType: i32,
-    iCtrlId: i32,
-    hItemHandle: HANDLE,
-    dwContextId: usize,
-    MousePos: POINT,
+pub const NOTIFY_ICON_MESSAGE = enum(u32) {
+    ADD = 0,
+    MODIFY = 1,
+    DELETE = 2,
+    SETFOCUS = 3,
+    SETVERSION = 4,
 };
+pub const NIM_ADD = NOTIFY_ICON_MESSAGE.ADD;
+pub const NIM_MODIFY = NOTIFY_ICON_MESSAGE.MODIFY;
+pub const NIM_DELETE = NOTIFY_ICON_MESSAGE.DELETE;
+pub const NIM_SETFOCUS = NOTIFY_ICON_MESSAGE.SETFOCUS;
+pub const NIM_SETVERSION = NOTIFY_ICON_MESSAGE.SETVERSION;
 
-pub const MULTIKEYHELPA = extern struct {
-    mkSize: u32,
-    mkKeylist: CHAR,
-    szKeyphrase: [1]CHAR,
+pub const NOTIFY_ICON_DATA_FLAGS = enum(u32) {
+    MESSAGE = 1,
+    ICON = 2,
+    TIP = 4,
+    STATE = 8,
+    INFO = 16,
+    GUID = 32,
+    REALTIME = 64,
+    SHOWTIP = 128,
+    _,
+    pub fn initFlags(o: struct {
+        MESSAGE: u1 = 0,
+        ICON: u1 = 0,
+        TIP: u1 = 0,
+        STATE: u1 = 0,
+        INFO: u1 = 0,
+        GUID: u1 = 0,
+        REALTIME: u1 = 0,
+        SHOWTIP: u1 = 0,
+    }) NOTIFY_ICON_DATA_FLAGS {
+        return @intToEnum(NOTIFY_ICON_DATA_FLAGS,
+              (if (o.MESSAGE == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.MESSAGE) else 0)
+            | (if (o.ICON == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.ICON) else 0)
+            | (if (o.TIP == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.TIP) else 0)
+            | (if (o.STATE == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.STATE) else 0)
+            | (if (o.INFO == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.INFO) else 0)
+            | (if (o.GUID == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.GUID) else 0)
+            | (if (o.REALTIME == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.REALTIME) else 0)
+            | (if (o.SHOWTIP == 1) @enumToInt(NOTIFY_ICON_DATA_FLAGS.SHOWTIP) else 0)
+        );
+    }
 };
-
-pub const MULTIKEYHELPW = extern struct {
-    mkSize: u32,
-    mkKeylist: u16,
-    szKeyphrase: [1]u16,
-};
-
-pub const HELPWININFOA = extern struct {
-    wStructSize: i32,
-    x: i32,
-    y: i32,
-    dx: i32,
-    dy: i32,
-    wMax: i32,
-    rgchMember: [2]CHAR,
-};
-
-pub const HELPWININFOW = extern struct {
-    wStructSize: i32,
-    x: i32,
-    y: i32,
-    dx: i32,
-    dy: i32,
-    wMax: i32,
-    rgchMember: [2]u16,
-};
-
-pub const APPCATEGORYINFO = extern struct {
-    Locale: u32,
-    pszDescription: PWSTR,
-    AppCategoryId: Guid,
-};
-
-pub const APPCATEGORYINFOLIST = extern struct {
-    cCategory: u32,
-    pCategoryInfo: *APPCATEGORYINFO,
-};
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DRAGINFOA = packed struct {
-    uSize: u32,
-    pt: POINT,
-    fNC: BOOL,
-    lpFileList: [*]u8,
-    grfKeyState: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DRAGINFOW = packed struct {
-    uSize: u32,
-    pt: POINT,
-    fNC: BOOL,
-    lpFileList: [*]u16,
-    grfKeyState: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const APPBARDATA = packed struct {
-    cbSize: u32,
-    hWnd: HWND,
-    uCallbackMessage: u32,
-    uEdge: u32,
-    rc: RECT,
-    lParam: LPARAM,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHFILEOPSTRUCTA = packed struct {
-    hwnd: HWND,
-    wFunc: u32,
-    pFrom: *i8,
-    pTo: *i8,
-    fFlags: u16,
-    fAnyOperationsAborted: BOOL,
-    hNameMappings: *c_void,
-    lpszProgressTitle: [*:0]const u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHFILEOPSTRUCTW = packed struct {
-    hwnd: HWND,
-    wFunc: u32,
-    pFrom: [*]const u16,
-    pTo: [*]const u16,
-    fFlags: u16,
-    fAnyOperationsAborted: BOOL,
-    hNameMappings: *c_void,
-    lpszProgressTitle: [*:0]const u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHNAMEMAPPINGA = packed struct {
-    pszOldPath: PSTR,
-    pszNewPath: PSTR,
-    cchOldPath: i32,
-    cchNewPath: i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHNAMEMAPPINGW = packed struct {
-    pszOldPath: PWSTR,
-    pszNewPath: PWSTR,
-    cchOldPath: i32,
-    cchNewPath: i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHELLEXECUTEINFOA = packed struct {
-    cbSize: u32,
-    fMask: u32,
-    hwnd: HWND,
-    lpVerb: [*:0]const u8,
-    lpFile: [*:0]const u8,
-    lpParameters: [*:0]const u8,
-    lpDirectory: [*:0]const u8,
-    nShow: i32,
-    hInstApp: HINSTANCE,
-    lpIDList: *c_void,
-    lpClass: [*:0]const u8,
-    hkeyClass: HKEY,
-    dwHotKey: u32,
-    Anonymous: packed union {
-        hIcon: HANDLE,
-        hMonitor: HANDLE,
-    },
-    hProcess: HANDLE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHELLEXECUTEINFOW = packed struct {
-    cbSize: u32,
-    fMask: u32,
-    hwnd: HWND,
-    lpVerb: [*:0]const u16,
-    lpFile: [*:0]const u16,
-    lpParameters: [*:0]const u16,
-    lpDirectory: [*:0]const u16,
-    nShow: i32,
-    hInstApp: HINSTANCE,
-    lpIDList: *c_void,
-    lpClass: [*:0]const u16,
-    hkeyClass: HKEY,
-    dwHotKey: u32,
-    Anonymous: packed union {
-        hIcon: HANDLE,
-        hMonitor: HANDLE,
-    },
-    hProcess: HANDLE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHCREATEPROCESSINFOW = packed struct {
-    cbSize: u32,
-    fMask: u32,
-    hwnd: HWND,
-    pszFile: [*:0]const u16,
-    pszParameters: [*:0]const u16,
-    pszCurrentDirectory: [*:0]const u16,
-    hUserToken: HANDLE,
-    lpProcessAttributes: *SECURITY_ATTRIBUTES,
-    lpThreadAttributes: *SECURITY_ATTRIBUTES,
-    bInheritHandles: BOOL,
-    dwCreationFlags: u32,
-    lpStartupInfo: *STARTUPINFOW,
-    lpProcessInformation: *PROCESS_INFORMATION,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ASSOCIATIONELEMENT = packed struct {
-    ac: ASSOCCLASS,
-    hkClass: HKEY,
-    pszClass: [*:0]const u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHQUERYRBINFO = packed struct {
-    cbSize: u32,
-    i64Size: i64,
-    i64NumItems: i64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const NOTIFYICONDATAA = packed struct {
-    cbSize: u32,
-    hWnd: HWND,
-    uID: u32,
-    uFlags: NOTIFY_ICON_DATA_FLAGS,
-    uCallbackMessage: u32,
-    hIcon: HICON,
-    szTip: [128]CHAR,
-    dwState: u32,
-    dwStateMask: u32,
-    szInfo: [256]CHAR,
-    Anonymous: packed union {
-        uTimeout: u32,
-        uVersion: u32,
-    },
-    szInfoTitle: [64]CHAR,
-    dwInfoFlags: u32,
-    guidItem: Guid,
-    hBalloonIcon: HICON,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const NOTIFYICONDATAW = packed struct {
-    cbSize: u32,
-    hWnd: HWND,
-    uID: u32,
-    uFlags: NOTIFY_ICON_DATA_FLAGS,
-    uCallbackMessage: u32,
-    hIcon: HICON,
-    szTip: [128]u16,
-    dwState: u32,
-    dwStateMask: u32,
-    szInfo: [256]u16,
-    Anonymous: packed union {
-        uTimeout: u32,
-        uVersion: u32,
-    },
-    szInfoTitle: [64]u16,
-    dwInfoFlags: u32,
-    guidItem: Guid,
-    hBalloonIcon: HICON,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const NOTIFYICONIDENTIFIER = packed struct {
-    cbSize: u32,
-    hWnd: HWND,
-    uID: u32,
-    guidItem: Guid,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHFILEINFOA = packed struct {
-    hIcon: HICON,
-    iIcon: i32,
-    dwAttributes: u32,
-    szDisplayName: [260]CHAR,
-    szTypeName: [80]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHFILEINFOW = packed struct {
-    hIcon: HICON,
-    iIcon: i32,
-    dwAttributes: u32,
-    szDisplayName: [260]u16,
-    szTypeName: [80]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SHSTOCKICONINFO = packed struct {
-    cbSize: u32,
-    hIcon: HICON,
-    iSysImageIndex: i32,
-    iIcon: i32,
-    szPath: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OPEN_PRINTER_PROPS_INFOA = packed struct {
-    dwSize: u32,
-    pszSheetName: PSTR,
-    uSheetIndex: u32,
-    dwFlags: u32,
-    bModal: BOOL,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OPEN_PRINTER_PROPS_INFOW = packed struct {
-    dwSize: u32,
-    pszSheetName: PWSTR,
-    uSheetIndex: u32,
-    dwFlags: u32,
-    bModal: BOOL,
-};
-
-}, else => struct { } };
-
-pub const _APPSTATE_REGISTRATION = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const _APPCONSTRAIN_REGISTRATION = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
+pub const NIF_MESSAGE = NOTIFY_ICON_DATA_FLAGS.MESSAGE;
+pub const NIF_ICON = NOTIFY_ICON_DATA_FLAGS.ICON;
+pub const NIF_TIP = NOTIFY_ICON_DATA_FLAGS.TIP;
+pub const NIF_STATE = NOTIFY_ICON_DATA_FLAGS.STATE;
+pub const NIF_INFO = NOTIFY_ICON_DATA_FLAGS.INFO;
+pub const NIF_GUID = NOTIFY_ICON_DATA_FLAGS.GUID;
+pub const NIF_REALTIME = NOTIFY_ICON_DATA_FLAGS.REALTIME;
+pub const NIF_SHOWTIP = NOTIFY_ICON_DATA_FLAGS.SHOWTIP;
+
+// TODO: this type has a FreeFunc 'SHChangeNotification_Unlock', what can Zig do with this information?
+pub const ShFindChangeNotificationHandle = isize;
+
+pub const HDROP = *opaque{};
+
+pub const HPSXA = *opaque{};
 
 const CLSID_QueryCancelAutoPlay_Value = @import("../zig.zig").Guid.initString("331f1768-05a9-4ddd-b86e-dae34ddc998a");
 pub const CLSID_QueryCancelAutoPlay = &CLSID_QueryCancelAutoPlay_Value;
@@ -29226,247 +28798,443 @@ pub const PAPPSTATE_CHANGE_ROUTINE = fn(
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+pub const _APPSTATE_REGISTRATION = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 pub const PAPPCONSTRAIN_CHANGE_ROUTINE = fn(
     Constrained: u8,
     Context: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-
-//--------------------------------------------------------------------------------
-// Section: Functions (699)
-//--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn SetWindowSubclass(
-    hWnd: HWND,
-    pfnSubclass: SUBCLASSPROC,
-    uIdSubclass: usize,
-    dwRefData: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const _APPCONSTRAIN_REGISTRATION = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn GetWindowSubclass(
-    hWnd: HWND,
-    pfnSubclass: SUBCLASSPROC,
-    uIdSubclass: usize,
-    pdwRefData: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+const IID_INotifyReplica_Value = @import("../zig.zig").Guid.initString("99180163-da16-101a-935c-444553540000");
+pub const IID_INotifyReplica = &IID_INotifyReplica_Value;
+pub const INotifyReplica = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        YouAreAReplica: fn(
+            self: *const INotifyReplica,
+            ulcOtherReplicas: u32,
+            rgpmkOtherReplicas: [*]*IMoniker,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INotifyReplica_YouAreAReplica(self: *const T, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]*IMoniker) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INotifyReplica.VTable, self.vtable).YouAreAReplica(@ptrCast(*const INotifyReplica, self), ulcOtherReplicas, rgpmkOtherReplicas);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn RemoveWindowSubclass(
-    hWnd: HWND,
-    pfnSubclass: SUBCLASSPROC,
-    uIdSubclass: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const HELPINFO = extern struct {
+    cbSize: u32,
+    iContextType: i32,
+    iCtrlId: i32,
+    hItemHandle: HANDLE,
+    dwContextId: usize,
+    MousePos: POINT,
+};
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn DefSubclassProc(
+pub const MULTIKEYHELPA = extern struct {
+    mkSize: u32,
+    mkKeylist: CHAR,
+    szKeyphrase: [1]CHAR,
+};
+
+pub const MULTIKEYHELPW = extern struct {
+    mkSize: u32,
+    mkKeylist: u16,
+    szKeyphrase: [1]u16,
+};
+
+pub const HELPWININFOA = extern struct {
+    wStructSize: i32,
+    x: i32,
+    y: i32,
+    dx: i32,
+    dy: i32,
+    wMax: i32,
+    rgchMember: [2]CHAR,
+};
+
+pub const HELPWININFOW = extern struct {
+    wStructSize: i32,
+    x: i32,
+    y: i32,
+    dx: i32,
+    dy: i32,
+    wMax: i32,
+    rgchMember: [2]u16,
+};
+
+pub const SOFTDISTINFO = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    dwAdState: u32,
+    szTitle: PWSTR,
+    szAbstract: PWSTR,
+    szHREF: PWSTR,
+    dwInstalledVersionMS: u32,
+    dwInstalledVersionLS: u32,
+    dwUpdateVersionMS: u32,
+    dwUpdateVersionLS: u32,
+    dwAdvertisedVersionMS: u32,
+    dwAdvertisedVersionLS: u32,
+    dwReserved: u32,
+};
+
+pub const SUBCLASSPROC = fn(
     hWnd: HWND,
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
+    uIdSubclass: usize,
+    dwRefData: usize,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn SetWindowContextHelpId(
-    param0: HWND,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetWindowContextHelpId(
-    param0: HWND,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub const DRAGINFOA = packed struct {
+    uSize: u32,
+    pt: POINT,
+    fNC: BOOL,
+    lpFileList: [*]u8,
+    grfKeyState: u32,
+};
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn SetMenuContextHelpId(
-    param0: HMENU,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+}, else => struct { } };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetMenuContextHelpId(
-    param0: HMENU,
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn WinHelpA(
-    hWndMain: ?HWND,
-    lpszHelp: ?[*:0]const u8,
-    uCommand: u32,
-    dwData: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const DRAGINFOW = packed struct {
+    uSize: u32,
+    pt: POINT,
+    fNC: BOOL,
+    lpFileList: [*]u16,
+    grfKeyState: u32,
+};
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn WinHelpW(
-    hWndMain: ?HWND,
-    lpszHelp: ?[*:0]const u16,
-    uCommand: u32,
-    dwData: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+}, else => struct { } };
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn LoadUserProfileA(
-    hToken: HANDLE,
-    lpProfileInfo: *PROFILEINFOA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn LoadUserProfileW(
-    hToken: HANDLE,
-    lpProfileInfo: *PROFILEINFOW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const APPBARDATA = packed struct {
+    cbSize: u32,
+    hWnd: HWND,
+    uCallbackMessage: u32,
+    uEdge: u32,
+    rc: RECT,
+    lParam: LPARAM,
+};
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn UnloadUserProfile(
-    hToken: HANDLE,
-    hProfile: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+}, else => struct { } };
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetProfilesDirectoryA(
-    lpProfileDir: ?[*:0]u8,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetProfilesDirectoryW(
-    lpProfileDir: ?[*:0]u16,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const SHFILEOPSTRUCTA = packed struct {
+    hwnd: HWND,
+    wFunc: u32,
+    pFrom: *i8,
+    pTo: *i8,
+    fFlags: u16,
+    fAnyOperationsAborted: BOOL,
+    hNameMappings: *c_void,
+    lpszProgressTitle: [*:0]const u8,
+};
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetProfileType(
-    dwFlags: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+}, else => struct { } };
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn DeleteProfileA(
-    lpSidString: [*:0]const u8,
-    lpProfilePath: ?[*:0]const u8,
-    lpComputerName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn DeleteProfileW(
-    lpSidString: [*:0]const u16,
-    lpProfilePath: ?[*:0]const u16,
-    lpComputerName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const SHFILEOPSTRUCTW = packed struct {
+    hwnd: HWND,
+    wFunc: u32,
+    pFrom: [*]const u16,
+    pTo: [*]const u16,
+    fFlags: u16,
+    fAnyOperationsAborted: BOOL,
+    hNameMappings: *c_void,
+    lpszProgressTitle: [*:0]const u16,
+};
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn CreateProfile(
-    pszUserSid: [*:0]const u16,
-    pszUserName: [*:0]const u16,
-    pszProfilePath: [*:0]u16,
-    cchProfilePath: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+}, else => struct { } };
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetDefaultUserProfileDirectoryA(
-    lpProfileDir: ?[*:0]u8,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetDefaultUserProfileDirectoryW(
-    lpProfileDir: ?[*:0]u16,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const SHNAMEMAPPINGA = packed struct {
+    pszOldPath: PSTR,
+    pszNewPath: PSTR,
+    cchOldPath: i32,
+    cchNewPath: i32,
+};
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetAllUsersProfileDirectoryA(
-    lpProfileDir: ?[*:0]u8,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+}, else => struct { } };
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetAllUsersProfileDirectoryW(
-    lpProfileDir: ?[*:0]u16,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetUserProfileDirectoryA(
-    hToken: HANDLE,
-    lpProfileDir: ?[*:0]u8,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const SHNAMEMAPPINGW = packed struct {
+    pszOldPath: PWSTR,
+    pszNewPath: PWSTR,
+    cchOldPath: i32,
+    cchNewPath: i32,
+};
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetUserProfileDirectoryW(
-    hToken: HANDLE,
-    lpProfileDir: ?[*:0]u16,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+}, else => struct { } };
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn CreateEnvironmentBlock(
-    lpEnvironment: **c_void,
-    hToken: ?HANDLE,
-    bInherit: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn DestroyEnvironmentBlock(
-    lpEnvironment: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub const SHELLEXECUTEINFOA = packed struct {
+    cbSize: u32,
+    fMask: u32,
+    hwnd: HWND,
+    lpVerb: [*:0]const u8,
+    lpFile: [*:0]const u8,
+    lpParameters: [*:0]const u8,
+    lpDirectory: [*:0]const u8,
+    nShow: i32,
+    hInstApp: HINSTANCE,
+    lpIDList: *c_void,
+    lpClass: [*:0]const u8,
+    hkeyClass: HKEY,
+    dwHotKey: u32,
+    Anonymous: packed union {
+        hIcon: HANDLE,
+        hMonitor: HANDLE,
+    },
+    hProcess: HANDLE,
+};
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn ExpandEnvironmentStringsForUserA(
-    hToken: ?HANDLE,
-    lpSrc: [*:0]const u8,
-    lpDest: [*:0]u8,
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHELLEXECUTEINFOW = packed struct {
+    cbSize: u32,
+    fMask: u32,
+    hwnd: HWND,
+    lpVerb: [*:0]const u16,
+    lpFile: [*:0]const u16,
+    lpParameters: [*:0]const u16,
+    lpDirectory: [*:0]const u16,
+    nShow: i32,
+    hInstApp: HINSTANCE,
+    lpIDList: *c_void,
+    lpClass: [*:0]const u16,
+    hkeyClass: HKEY,
+    dwHotKey: u32,
+    Anonymous: packed union {
+        hIcon: HANDLE,
+        hMonitor: HANDLE,
+    },
+    hProcess: HANDLE,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHCREATEPROCESSINFOW = packed struct {
+    cbSize: u32,
+    fMask: u32,
+    hwnd: HWND,
+    pszFile: [*:0]const u16,
+    pszParameters: [*:0]const u16,
+    pszCurrentDirectory: [*:0]const u16,
+    hUserToken: HANDLE,
+    lpProcessAttributes: *SECURITY_ATTRIBUTES,
+    lpThreadAttributes: *SECURITY_ATTRIBUTES,
+    bInheritHandles: BOOL,
+    dwCreationFlags: u32,
+    lpStartupInfo: *STARTUPINFOW,
+    lpProcessInformation: *PROCESS_INFORMATION,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const ASSOCIATIONELEMENT = packed struct {
+    ac: ASSOCCLASS,
+    hkClass: HKEY,
+    pszClass: [*:0]const u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHQUERYRBINFO = packed struct {
+    cbSize: u32,
+    i64Size: i64,
+    i64NumItems: i64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const NOTIFYICONDATAA = packed struct {
+    cbSize: u32,
+    hWnd: HWND,
+    uID: u32,
+    uFlags: NOTIFY_ICON_DATA_FLAGS,
+    uCallbackMessage: u32,
+    hIcon: HICON,
+    szTip: [128]CHAR,
+    dwState: u32,
+    dwStateMask: u32,
+    szInfo: [256]CHAR,
+    Anonymous: packed union {
+        uTimeout: u32,
+        uVersion: u32,
+    },
+    szInfoTitle: [64]CHAR,
+    dwInfoFlags: u32,
+    guidItem: Guid,
+    hBalloonIcon: HICON,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const NOTIFYICONDATAW = packed struct {
+    cbSize: u32,
+    hWnd: HWND,
+    uID: u32,
+    uFlags: NOTIFY_ICON_DATA_FLAGS,
+    uCallbackMessage: u32,
+    hIcon: HICON,
+    szTip: [128]u16,
+    dwState: u32,
+    dwStateMask: u32,
+    szInfo: [256]u16,
+    Anonymous: packed union {
+        uTimeout: u32,
+        uVersion: u32,
+    },
+    szInfoTitle: [64]u16,
+    dwInfoFlags: u32,
+    guidItem: Guid,
+    hBalloonIcon: HICON,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const NOTIFYICONIDENTIFIER = packed struct {
+    cbSize: u32,
+    hWnd: HWND,
+    uID: u32,
+    guidItem: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHFILEINFOA = packed struct {
+    hIcon: HICON,
+    iIcon: i32,
+    dwAttributes: u32,
+    szDisplayName: [260]CHAR,
+    szTypeName: [80]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHFILEINFOW = packed struct {
+    hIcon: HICON,
+    iIcon: i32,
+    dwAttributes: u32,
+    szDisplayName: [260]u16,
+    szTypeName: [80]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SHSTOCKICONINFO = packed struct {
+    cbSize: u32,
+    hIcon: HICON,
+    iSysImageIndex: i32,
+    iIcon: i32,
+    szPath: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const OPEN_PRINTER_PROPS_INFOA = packed struct {
     dwSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+    pszSheetName: PSTR,
+    uSheetIndex: u32,
+    dwFlags: u32,
+    bModal: BOOL,
+};
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn ExpandEnvironmentStringsForUserW(
-    hToken: ?HANDLE,
-    lpSrc: [*:0]const u16,
-    lpDest: [*:0]u16,
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const OPEN_PRINTER_PROPS_INFOW = packed struct {
     dwSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+    pszSheetName: PWSTR,
+    uSheetIndex: u32,
+    dwFlags: u32,
+    bModal: BOOL,
+};
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn CreateAppContainerProfile(
-    pszAppContainerName: [*:0]const u16,
-    pszDisplayName: [*:0]const u16,
-    pszDescription: [*:0]const u16,
-    pCapabilities: ?[*]SID_AND_ATTRIBUTES,
-    dwCapabilityCount: u32,
-    ppSidAppContainerSid: *PSID,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+}, else => struct { } };
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn DeleteAppContainerProfile(
-    pszAppContainerName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const APPCATEGORYINFO = extern struct {
+    Locale: u32,
+    pszDescription: PWSTR,
+    AppCategoryId: Guid,
+};
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn GetAppContainerRegistryLocation(
-    desiredAccess: u32,
-    phAppContainerKey: *HKEY,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub const APPCATEGORYINFOLIST = extern struct {
+    cCategory: u32,
+    pCategoryInfo: *APPCATEGORYINFO,
+};
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn GetAppContainerFolderPath(
-    pszAppContainerSid: [*:0]const u16,
-    ppszPath: *PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn DeriveAppContainerSidFromAppContainerName(
-    pszAppContainerName: [*:0]const u16,
-    ppsidAppContainerSid: *PSID,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "USERENV" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(
-    psidAppContainerSid: PSID,
-    pszRestrictedAppContainerName: [*:0]const u16,
-    ppsidRestrictedAppContainerSid: *PSID,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
+//--------------------------------------------------------------------------------
+// Section: Functions (689)
+//--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHSimpleIDListFromPath(
     pszPath: [*:0]const u16,
@@ -34053,21 +33821,176 @@ pub extern "api-ms-win-core-psm-appnotify-l1-1-1" fn UnregisterAppConstrainedCha
     Registration: *_APPCONSTRAIN_REGISTRATION,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn SetWindowContextHelpId(
+    param0: HWND,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn GetWindowContextHelpId(
+    param0: HWND,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn SetMenuContextHelpId(
+    param0: HMENU,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn GetMenuContextHelpId(
+    param0: HMENU,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn WinHelpA(
+    hWndMain: ?HWND,
+    lpszHelp: ?[*:0]const u8,
+    uCommand: u32,
+    dwData: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn WinHelpW(
+    hWndMain: ?HWND,
+    lpszHelp: ?[*:0]const u16,
+    uCommand: u32,
+    dwData: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn SetWindowSubclass(
+    hWnd: HWND,
+    pfnSubclass: SUBCLASSPROC,
+    uIdSubclass: usize,
+    dwRefData: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn GetWindowSubclass(
+    hWnd: HWND,
+    pfnSubclass: SUBCLASSPROC,
+    uIdSubclass: usize,
+    pdwRefData: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn RemoveWindowSubclass(
+    hWnd: HWND,
+    pfnSubclass: SUBCLASSPROC,
+    uIdSubclass: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn DefSubclassProc(
+    hWnd: HWND,
+    uMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn LoadUserProfileA(
+    hToken: HANDLE,
+    lpProfileInfo: *PROFILEINFOA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn LoadUserProfileW(
+    hToken: HANDLE,
+    lpProfileInfo: *PROFILEINFOW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn UnloadUserProfile(
+    hToken: HANDLE,
+    hProfile: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetProfilesDirectoryA(
+    lpProfileDir: ?[*:0]u8,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetProfilesDirectoryW(
+    lpProfileDir: ?[*:0]u16,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetProfileType(
+    dwFlags: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn DeleteProfileA(
+    lpSidString: [*:0]const u8,
+    lpProfilePath: ?[*:0]const u8,
+    lpComputerName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn DeleteProfileW(
+    lpSidString: [*:0]const u16,
+    lpProfilePath: ?[*:0]const u16,
+    lpComputerName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "USERENV" fn CreateProfile(
+    pszUserSid: [*:0]const u16,
+    pszUserName: [*:0]const u16,
+    pszProfilePath: [*:0]u16,
+    cchProfilePath: u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetDefaultUserProfileDirectoryA(
+    lpProfileDir: ?[*:0]u8,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetDefaultUserProfileDirectoryW(
+    lpProfileDir: ?[*:0]u16,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetAllUsersProfileDirectoryA(
+    lpProfileDir: ?[*:0]u8,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetAllUsersProfileDirectoryW(
+    lpProfileDir: ?[*:0]u16,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetUserProfileDirectoryA(
+    hToken: HANDLE,
+    lpProfileDir: ?[*:0]u8,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetUserProfileDirectoryW(
+    hToken: HANDLE,
+    lpProfileDir: ?[*:0]u16,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (206)
+// Section: Unicode Aliases (205)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
-        pub const MULTIKEYHELP = MULTIKEYHELPA;
-        pub const HELPWININFO = HELPWININFOA;
-        pub const DRAGINFO = DRAGINFOA;
-        pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTA;
-        pub const SHNAMEMAPPING = SHNAMEMAPPINGA;
-        pub const SHELLEXECUTEINFO = SHELLEXECUTEINFOA;
-        pub const NOTIFYICONDATA = NOTIFYICONDATAA;
-        pub const SHFILEINFO = SHFILEINFOA;
-        pub const OPEN_PRINTER_PROPS_INFO = OPEN_PRINTER_PROPS_INFOA;
         pub const IShellLink = IShellLinkA;
         pub const IExtractIcon = IExtractIconA;
         pub const BROWSEINFO = BROWSEINFOA;
@@ -34076,19 +33999,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHELLSTATE = SHELLSTATEA;
         pub const INewShortcutHook = INewShortcutHookA;
         pub const ICopyHook = ICopyHookA;
+        pub const DRAGINFO = DRAGINFOA;
+        pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTA;
+        pub const SHNAMEMAPPING = SHNAMEMAPPINGA;
+        pub const SHELLEXECUTEINFO = SHELLEXECUTEINFOA;
+        pub const NOTIFYICONDATA = NOTIFYICONDATAA;
+        pub const SHFILEINFO = SHFILEINFOA;
+        pub const OPEN_PRINTER_PROPS_INFO = OPEN_PRINTER_PROPS_INFOA;
         pub const PARSEDURL = PARSEDURLA;
         pub const NEWCPLINFO = NEWCPLINFOA;
         pub const PROFILEINFO = PROFILEINFOA;
         pub const urlinvokecommandinfo = urlinvokecommandinfoA;
         pub const IUniformResourceLocator = IUniformResourceLocatorA;
-        pub const WinHelp = WinHelpA;
-        pub const LoadUserProfile = LoadUserProfileA;
-        pub const GetProfilesDirectory = GetProfilesDirectoryA;
-        pub const DeleteProfile = DeleteProfileA;
-        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryA;
-        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryA;
-        pub const GetUserProfileDirectory = GetUserProfileDirectoryA;
-        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserA;
+        pub const MULTIKEYHELP = MULTIKEYHELPA;
+        pub const HELPWININFO = HELPWININFOA;
         pub const SHGetIconOverlayIndex = SHGetIconOverlayIndexA;
         pub const ILCreateFromPath = ILCreateFromPathA;
         pub const SHGetPathFromIDList = SHGetPathFromIDListA;
@@ -34265,17 +34189,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = SHMessageBoxCheckA;
         pub const SHSendMessageBroadcast = SHSendMessageBroadcastA;
         pub const SHStripMneumonic = SHStripMneumonicA;
+        pub const WinHelp = WinHelpA;
+        pub const LoadUserProfile = LoadUserProfileA;
+        pub const GetProfilesDirectory = GetProfilesDirectoryA;
+        pub const DeleteProfile = DeleteProfileA;
+        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryA;
+        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryA;
+        pub const GetUserProfileDirectory = GetUserProfileDirectoryA;
     },
     .wide => struct {
-        pub const MULTIKEYHELP = MULTIKEYHELPW;
-        pub const HELPWININFO = HELPWININFOW;
-        pub const DRAGINFO = DRAGINFOW;
-        pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTW;
-        pub const SHNAMEMAPPING = SHNAMEMAPPINGW;
-        pub const SHELLEXECUTEINFO = SHELLEXECUTEINFOW;
-        pub const NOTIFYICONDATA = NOTIFYICONDATAW;
-        pub const SHFILEINFO = SHFILEINFOW;
-        pub const OPEN_PRINTER_PROPS_INFO = OPEN_PRINTER_PROPS_INFOW;
         pub const IShellLink = IShellLinkW;
         pub const IExtractIcon = IExtractIconW;
         pub const BROWSEINFO = BROWSEINFOW;
@@ -34284,19 +34206,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHELLSTATE = SHELLSTATEW;
         pub const INewShortcutHook = INewShortcutHookW;
         pub const ICopyHook = ICopyHookW;
+        pub const DRAGINFO = DRAGINFOW;
+        pub const SHFILEOPSTRUCT = SHFILEOPSTRUCTW;
+        pub const SHNAMEMAPPING = SHNAMEMAPPINGW;
+        pub const SHELLEXECUTEINFO = SHELLEXECUTEINFOW;
+        pub const NOTIFYICONDATA = NOTIFYICONDATAW;
+        pub const SHFILEINFO = SHFILEINFOW;
+        pub const OPEN_PRINTER_PROPS_INFO = OPEN_PRINTER_PROPS_INFOW;
         pub const PARSEDURL = PARSEDURLW;
         pub const NEWCPLINFO = NEWCPLINFOW;
         pub const PROFILEINFO = PROFILEINFOW;
         pub const urlinvokecommandinfo = urlinvokecommandinfoW;
         pub const IUniformResourceLocator = IUniformResourceLocatorW;
-        pub const WinHelp = WinHelpW;
-        pub const LoadUserProfile = LoadUserProfileW;
-        pub const GetProfilesDirectory = GetProfilesDirectoryW;
-        pub const DeleteProfile = DeleteProfileW;
-        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryW;
-        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryW;
-        pub const GetUserProfileDirectory = GetUserProfileDirectoryW;
-        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserW;
+        pub const MULTIKEYHELP = MULTIKEYHELPW;
+        pub const HELPWININFO = HELPWININFOW;
         pub const SHGetIconOverlayIndex = SHGetIconOverlayIndexW;
         pub const ILCreateFromPath = ILCreateFromPathW;
         pub const SHGetPathFromIDList = SHGetPathFromIDListW;
@@ -34473,17 +34396,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = SHMessageBoxCheckW;
         pub const SHSendMessageBroadcast = SHSendMessageBroadcastW;
         pub const SHStripMneumonic = SHStripMneumonicW;
+        pub const WinHelp = WinHelpW;
+        pub const LoadUserProfile = LoadUserProfileW;
+        pub const GetProfilesDirectory = GetProfilesDirectoryW;
+        pub const DeleteProfile = DeleteProfileW;
+        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryW;
+        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryW;
+        pub const GetUserProfileDirectory = GetUserProfileDirectoryW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const MULTIKEYHELP = *opaque{};
-        pub const HELPWININFO = *opaque{};
-        pub const DRAGINFO = *opaque{};
-        pub const SHFILEOPSTRUCT = *opaque{};
-        pub const SHNAMEMAPPING = *opaque{};
-        pub const SHELLEXECUTEINFO = *opaque{};
-        pub const NOTIFYICONDATA = *opaque{};
-        pub const SHFILEINFO = *opaque{};
-        pub const OPEN_PRINTER_PROPS_INFO = *opaque{};
         pub const IShellLink = *opaque{};
         pub const IExtractIcon = *opaque{};
         pub const BROWSEINFO = *opaque{};
@@ -34492,19 +34413,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHELLSTATE = *opaque{};
         pub const INewShortcutHook = *opaque{};
         pub const ICopyHook = *opaque{};
+        pub const DRAGINFO = *opaque{};
+        pub const SHFILEOPSTRUCT = *opaque{};
+        pub const SHNAMEMAPPING = *opaque{};
+        pub const SHELLEXECUTEINFO = *opaque{};
+        pub const NOTIFYICONDATA = *opaque{};
+        pub const SHFILEINFO = *opaque{};
+        pub const OPEN_PRINTER_PROPS_INFO = *opaque{};
         pub const PARSEDURL = *opaque{};
         pub const NEWCPLINFO = *opaque{};
         pub const PROFILEINFO = *opaque{};
         pub const urlinvokecommandinfo = *opaque{};
         pub const IUniformResourceLocator = *opaque{};
-        pub const WinHelp = *opaque{};
-        pub const LoadUserProfile = *opaque{};
-        pub const GetProfilesDirectory = *opaque{};
-        pub const DeleteProfile = *opaque{};
-        pub const GetDefaultUserProfileDirectory = *opaque{};
-        pub const GetAllUsersProfileDirectory = *opaque{};
-        pub const GetUserProfileDirectory = *opaque{};
-        pub const ExpandEnvironmentStringsForUser = *opaque{};
+        pub const MULTIKEYHELP = *opaque{};
+        pub const HELPWININFO = *opaque{};
         pub const SHGetIconOverlayIndex = *opaque{};
         pub const ILCreateFromPath = *opaque{};
         pub const SHGetPathFromIDList = *opaque{};
@@ -34681,16 +34603,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = *opaque{};
         pub const SHSendMessageBroadcast = *opaque{};
         pub const SHStripMneumonic = *opaque{};
+        pub const WinHelp = *opaque{};
+        pub const LoadUserProfile = *opaque{};
+        pub const GetProfilesDirectory = *opaque{};
+        pub const DeleteProfile = *opaque{};
+        pub const GetDefaultUserProfileDirectory = *opaque{};
+        pub const GetAllUsersProfileDirectory = *opaque{};
+        pub const GetUserProfileDirectory = *opaque{};
     } else struct {
-        pub const MULTIKEYHELP = @compileError("'MULTIKEYHELP' requires that UNICODE be set to true or false in the root module");
-        pub const HELPWININFO = @compileError("'HELPWININFO' requires that UNICODE be set to true or false in the root module");
-        pub const DRAGINFO = @compileError("'DRAGINFO' requires that UNICODE be set to true or false in the root module");
-        pub const SHFILEOPSTRUCT = @compileError("'SHFILEOPSTRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const SHNAMEMAPPING = @compileError("'SHNAMEMAPPING' requires that UNICODE be set to true or false in the root module");
-        pub const SHELLEXECUTEINFO = @compileError("'SHELLEXECUTEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const NOTIFYICONDATA = @compileError("'NOTIFYICONDATA' requires that UNICODE be set to true or false in the root module");
-        pub const SHFILEINFO = @compileError("'SHFILEINFO' requires that UNICODE be set to true or false in the root module");
-        pub const OPEN_PRINTER_PROPS_INFO = @compileError("'OPEN_PRINTER_PROPS_INFO' requires that UNICODE be set to true or false in the root module");
         pub const IShellLink = @compileError("'IShellLink' requires that UNICODE be set to true or false in the root module");
         pub const IExtractIcon = @compileError("'IExtractIcon' requires that UNICODE be set to true or false in the root module");
         pub const BROWSEINFO = @compileError("'BROWSEINFO' requires that UNICODE be set to true or false in the root module");
@@ -34699,19 +34619,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHELLSTATE = @compileError("'SHELLSTATE' requires that UNICODE be set to true or false in the root module");
         pub const INewShortcutHook = @compileError("'INewShortcutHook' requires that UNICODE be set to true or false in the root module");
         pub const ICopyHook = @compileError("'ICopyHook' requires that UNICODE be set to true or false in the root module");
+        pub const DRAGINFO = @compileError("'DRAGINFO' requires that UNICODE be set to true or false in the root module");
+        pub const SHFILEOPSTRUCT = @compileError("'SHFILEOPSTRUCT' requires that UNICODE be set to true or false in the root module");
+        pub const SHNAMEMAPPING = @compileError("'SHNAMEMAPPING' requires that UNICODE be set to true or false in the root module");
+        pub const SHELLEXECUTEINFO = @compileError("'SHELLEXECUTEINFO' requires that UNICODE be set to true or false in the root module");
+        pub const NOTIFYICONDATA = @compileError("'NOTIFYICONDATA' requires that UNICODE be set to true or false in the root module");
+        pub const SHFILEINFO = @compileError("'SHFILEINFO' requires that UNICODE be set to true or false in the root module");
+        pub const OPEN_PRINTER_PROPS_INFO = @compileError("'OPEN_PRINTER_PROPS_INFO' requires that UNICODE be set to true or false in the root module");
         pub const PARSEDURL = @compileError("'PARSEDURL' requires that UNICODE be set to true or false in the root module");
         pub const NEWCPLINFO = @compileError("'NEWCPLINFO' requires that UNICODE be set to true or false in the root module");
         pub const PROFILEINFO = @compileError("'PROFILEINFO' requires that UNICODE be set to true or false in the root module");
         pub const urlinvokecommandinfo = @compileError("'urlinvokecommandinfo' requires that UNICODE be set to true or false in the root module");
         pub const IUniformResourceLocator = @compileError("'IUniformResourceLocator' requires that UNICODE be set to true or false in the root module");
-        pub const WinHelp = @compileError("'WinHelp' requires that UNICODE be set to true or false in the root module");
-        pub const LoadUserProfile = @compileError("'LoadUserProfile' requires that UNICODE be set to true or false in the root module");
-        pub const GetProfilesDirectory = @compileError("'GetProfilesDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const DeleteProfile = @compileError("'DeleteProfile' requires that UNICODE be set to true or false in the root module");
-        pub const GetDefaultUserProfileDirectory = @compileError("'GetDefaultUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetAllUsersProfileDirectory = @compileError("'GetAllUsersProfileDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetUserProfileDirectory = @compileError("'GetUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const ExpandEnvironmentStringsForUser = @compileError("'ExpandEnvironmentStringsForUser' requires that UNICODE be set to true or false in the root module");
+        pub const MULTIKEYHELP = @compileError("'MULTIKEYHELP' requires that UNICODE be set to true or false in the root module");
+        pub const HELPWININFO = @compileError("'HELPWININFO' requires that UNICODE be set to true or false in the root module");
         pub const SHGetIconOverlayIndex = @compileError("'SHGetIconOverlayIndex' requires that UNICODE be set to true or false in the root module");
         pub const ILCreateFromPath = @compileError("'ILCreateFromPath' requires that UNICODE be set to true or false in the root module");
         pub const SHGetPathFromIDList = @compileError("'SHGetPathFromIDList' requires that UNICODE be set to true or false in the root module");
@@ -34888,17 +34809,23 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = @compileError("'SHMessageBoxCheck' requires that UNICODE be set to true or false in the root module");
         pub const SHSendMessageBroadcast = @compileError("'SHSendMessageBroadcast' requires that UNICODE be set to true or false in the root module");
         pub const SHStripMneumonic = @compileError("'SHStripMneumonic' requires that UNICODE be set to true or false in the root module");
+        pub const WinHelp = @compileError("'WinHelp' requires that UNICODE be set to true or false in the root module");
+        pub const LoadUserProfile = @compileError("'LoadUserProfile' requires that UNICODE be set to true or false in the root module");
+        pub const GetProfilesDirectory = @compileError("'GetProfilesDirectory' requires that UNICODE be set to true or false in the root module");
+        pub const DeleteProfile = @compileError("'DeleteProfile' requires that UNICODE be set to true or false in the root module");
+        pub const GetDefaultUserProfileDirectory = @compileError("'GetDefaultUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
+        pub const GetAllUsersProfileDirectory = @compileError("'GetAllUsersProfileDirectory' requires that UNICODE be set to true or false in the root module");
+        pub const GetUserProfileDirectory = @compileError("'GetUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (93)
+// Section: Imports (91)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const IXMLDOMDocument = @import("../data/xml/ms_xml.zig").IXMLDOMDocument;
-const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
 const IOleCommandTarget = @import("../system/com.zig").IOleCommandTarget;
 const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
@@ -34925,12 +34852,12 @@ const IEnumFORMATETC = @import("../system/com.zig").IEnumFORMATETC;
 const IOleInPlaceSite = @import("../system/com.zig").IOleInPlaceSite;
 const IEnumPrivacyRecords = @import("../web/ms_html.zig").IEnumPrivacyRecords;
 const COORD = @import("../system/console.zig").COORD;
-const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
+const BSTR = @import("../foundation.zig").BSTR;
 const PSTR = @import("../foundation.zig").PSTR;
 const RECT = @import("../foundation.zig").RECT;
 const IStorage = @import("../storage/structured_storage.zig").IStorage;
-const BSTR = @import("../foundation.zig").BSTR;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const IPropertyBag = @import("../system/ole_automation.zig").IPropertyBag;
 const LSTATUS = @import("../foundation.zig").LSTATUS;
 const LPTHREAD_START_ROUTINE = @import("../system/system_services.zig").LPTHREAD_START_ROUTINE;
@@ -34942,22 +34869,21 @@ const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
 const IPropertyChangeArray = @import("../system/properties_system.zig").IPropertyChangeArray;
 const HIMAGELIST = @import("../ui/controls.zig").HIMAGELIST;
 const LPARAM = @import("../foundation.zig").LPARAM;
+const MSG = @import("../ui/windows_and_messaging.zig").MSG;
 const HKEY = @import("../system/registry.zig").HKEY;
+const POINTL = @import("../foundation.zig").POINTL;
+const HDC = @import("../graphics/gdi.zig").HDC;
+const CHAR = @import("../system/system_services.zig").CHAR;
+const IEnumString = @import("../system/com.zig").IEnumString;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const STARTUPINFOW = @import("../system/threading.zig").STARTUPINFOW;
-const CHAR = @import("../system/system_services.zig").CHAR;
-const MSG = @import("../ui/windows_and_messaging.zig").MSG;
-const POINTL = @import("../foundation.zig").POINTL;
-const HRESULT = @import("../foundation.zig").HRESULT;
-const HDC = @import("../graphics/gdi.zig").HDC;
-const IEnumString = @import("../system/com.zig").IEnumString;
 const IEnumGUID = @import("../system/com.zig").IEnumGUID;
 const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
 const IOleObject = @import("../system/com.zig").IOleObject;
 const BOOL = @import("../foundation.zig").BOOL;
 const NMHDR = @import("../ui/controls.zig").NMHDR;
 const IPersist = @import("../system/com.zig").IPersist;
-const PSID = @import("../foundation.zig").PSID;
 const LPFNSVADDPROPSHEETPAGE = @import("../ui/controls.zig").LPFNSVADDPROPSHEETPAGE;
 const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
 const IConnectionPoint = @import("../system/com.zig").IConnectionPoint;
@@ -34966,8 +34892,8 @@ const PDOPSTATUS = @import("../system/properties_system.zig").PDOPSTATUS;
 const IMalloc = @import("../system/com.zig").IMalloc;
 const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 const HICON = @import("../ui/windows_and_messaging.zig").HICON;
-const PROCESS_INFORMATION = @import("../system/threading.zig").PROCESS_INFORMATION;
 const TBBUTTON = @import("../ui/controls.zig").TBBUTTON;
+const PROCESS_INFORMATION = @import("../system/threading.zig").PROCESS_INFORMATION;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IPropertyDescriptionList = @import("../system/properties_system.zig").IPropertyDescriptionList;
 const IDropTarget = @import("../system/com.zig").IDropTarget;
@@ -34989,7 +34915,6 @@ const IServiceProvider = @import("../system/system_services.zig").IServiceProvid
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "SUBCLASSPROC")) { _ = SUBCLASSPROC; }
     if (@hasDecl(@This(), "BFFCALLBACK")) { _ = BFFCALLBACK; }
     if (@hasDecl(@This(), "LPFNDFMCALLBACK")) { _ = LPFNDFMCALLBACK; }
     if (@hasDecl(@This(), "LPFNVIEWCALLBACK")) { _ = LPFNVIEWCALLBACK; }
@@ -34999,6 +34924,7 @@ test {
     if (@hasDecl(@This(), "APPLET_PROC")) { _ = APPLET_PROC; }
     if (@hasDecl(@This(), "PAPPSTATE_CHANGE_ROUTINE")) { _ = PAPPSTATE_CHANGE_ROUTINE; }
     if (@hasDecl(@This(), "PAPPCONSTRAIN_CHANGE_ROUTINE")) { _ = PAPPCONSTRAIN_CHANGE_ROUTINE; }
+    if (@hasDecl(@This(), "SUBCLASSPROC")) { _ = SUBCLASSPROC; }
 
     @setEvalBranchQuota(
         @import("std").meta.declarations(@This()).len * 3

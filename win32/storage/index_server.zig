@@ -305,6 +305,23 @@ pub const DBID = extern struct {
 
 }, else => struct { } };
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBID = extern struct {
+    uGuid: extern union {
+        guid: Guid,
+        pguid: *Guid,
+    },
+    eKind: u32,
+    uName: extern union {
+        pwszName: PWSTR,
+        ulPropid: u32,
+    },
+};
+
+}, else => struct { } };
+
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IPhraseSink_Value = @import("../zig.zig").Guid.initString("cc906ff0-c058-101a-b554-08002b33b0e6");
 pub const IID_IPhraseSink = &IID_IPhraseSink_Value;
@@ -367,23 +384,6 @@ pub const DBKIND_PGUID_NAME = DBKINDENUM.PGUID_NAME;
 pub const DBKIND_PGUID_PROPID = DBKINDENUM.PGUID_PROPID;
 pub const DBKIND_PROPID = DBKINDENUM.PROPID;
 pub const DBKIND_GUID = DBKINDENUM.GUID;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBID = extern struct {
-    uGuid: extern union {
-        guid: Guid,
-        pguid: *Guid,
-    },
-    eKind: u32,
-    uName: extern union {
-        pwszName: PWSTR,
-        ulPropid: u32,
-    },
-};
-
-}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------

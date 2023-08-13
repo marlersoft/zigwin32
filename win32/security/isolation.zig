@@ -39,7 +39,7 @@ pub const IIsolatedAppLauncher = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (3)
+// Section: Functions (9)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "KERNEL32" fn GetAppContainerNamedObjectPath(
@@ -59,6 +59,46 @@ pub extern "api-ms-win-security-isolatedcontainer-l1-1-0" fn IsProcessInIsolated
     isProcessInIsolatedContainer: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn CreateAppContainerProfile(
+    pszAppContainerName: [*:0]const u16,
+    pszDisplayName: [*:0]const u16,
+    pszDescription: [*:0]const u16,
+    pCapabilities: ?[*]SID_AND_ATTRIBUTES,
+    dwCapabilityCount: u32,
+    ppSidAppContainerSid: *PSID,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn DeleteAppContainerProfile(
+    pszAppContainerName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn GetAppContainerRegistryLocation(
+    desiredAccess: u32,
+    phAppContainerKey: *HKEY,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn GetAppContainerFolderPath(
+    pszAppContainerSid: [*:0]const u16,
+    ppszPath: *PWSTR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn DeriveAppContainerSidFromAppContainerName(
+    pszAppContainerName: [*:0]const u16,
+    ppsidAppContainerSid: *PSID,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "USERENV" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(
+    psidAppContainerSid: PSID,
+    pszRestrictedAppContainerName: [*:0]const u16,
+    ppsidRestrictedAppContainerSid: *PSID,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -73,15 +113,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const HKEY = @import("../system/registry.zig").HKEY;
 const PWSTR = @import("../foundation.zig").PWSTR;
+const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const PSID = @import("../foundation.zig").PSID;
 const BOOL = @import("../foundation.zig").BOOL;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

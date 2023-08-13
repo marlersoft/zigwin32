@@ -3423,6 +3423,22 @@ pub const TIMERR_STRUCT = @as(u32, 129);
 //--------------------------------------------------------------------------------
 // Section: Types (251)
 //--------------------------------------------------------------------------------
+pub const LPWAVECALLBACK = fn(
+    hdrvr: HDRVR,
+    uMsg: u32,
+    dwUser: usize,
+    dw1: usize,
+    dw2: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const LPMIDICALLBACK = fn(
+    hdrvr: HDRVR,
+    uMsg: u32,
+    dwUser: usize,
+    dw1: usize,
+    dw2: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub const HMIDI = *opaque{};
 
 pub const HMIDIIN = *opaque{};
@@ -3456,22 +3472,6 @@ pub const HACMOBJ = *opaque{};
 pub const HIC = *opaque{};
 
 pub const HVIDEO = *opaque{};
-
-pub const LPWAVECALLBACK = fn(
-    hdrvr: HDRVR,
-    uMsg: u32,
-    dwUser: usize,
-    dw1: usize,
-    dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const LPMIDICALLBACK = fn(
-    hdrvr: HDRVR,
-    uMsg: u32,
-    dwUser: usize,
-    dw1: usize,
-    dw2: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MIDI_WAVE_OPEN_TYPE = enum(u32) {
     CALLBACK_TYPEMASK = 458752,
@@ -3595,26 +3595,6 @@ pub const ACMSTREAMHEADER = packed struct {
     cbDstLengthUsed: u32,
     dwDstUser: usize,
     dwReservedDriver: [15]u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const ACMSTREAMHEADER = packed struct {
-    cbStruct: u32,
-    fdwStatus: u32,
-    dwUser: usize,
-    pbSrc: *u8,
-    cbSrcLength: u32,
-    cbSrcLengthUsed: u32,
-    dwSrcUser: usize,
-    pbDst: *u8,
-    cbDstLength: u32,
-    cbDstLengthUsed: u32,
-    dwDstUser: usize,
-    dwReservedDriver: [10]u32,
 };
 
 }, else => struct { } };
@@ -6034,6 +6014,26 @@ pub const MCI_OPEN_DRIVER_PARMS = packed struct {
 pub const LPTASKCALLBACK = fn(
     dwInst: usize,
 ) callconv(@import("std").os.windows.WINAPI) void;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const ACMSTREAMHEADER = packed struct {
+    cbStruct: u32,
+    fdwStatus: u32,
+    dwUser: usize,
+    pbSrc: *u8,
+    cbSrcLength: u32,
+    cbSrcLengthUsed: u32,
+    dwSrcUser: usize,
+    pbDst: *u8,
+    cbDstLength: u32,
+    cbDstLengthUsed: u32,
+    dwDstUser: usize,
+    dwReservedDriver: [10]u32,
+};
+
+}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------

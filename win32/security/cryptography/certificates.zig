@@ -2,13 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (390)
 //--------------------------------------------------------------------------------
-pub const wszCMM_PROP_NAME = "Name";
-pub const wszCMM_PROP_DESCRIPTION = "Description";
-pub const wszCMM_PROP_COPYRIGHT = "Copyright";
-pub const wszCMM_PROP_FILEVER = "File Version";
-pub const wszCMM_PROP_PRODUCTVER = "Product Version";
-pub const wszCMM_PROP_DISPLAY_HWND = "HWND";
-pub const wszCMM_PROP_ISMULTITHREADED = "IsMultiThreaded";
 pub const CA_DISP_INCOMPLETE = @as(u32, 0);
 pub const CA_DISP_ERROR = @as(u32, 1);
 pub const CA_DISP_REVOKED = @as(u32, 2);
@@ -392,6 +385,13 @@ pub const XECI_XENROLL = @as(u32, 1);
 pub const XECI_AUTOENROLL = @as(u32, 2);
 pub const XECI_REQWIZARD = @as(u32, 3);
 pub const XECI_CERTREQ = @as(u32, 4);
+pub const wszCMM_PROP_NAME = "Name";
+pub const wszCMM_PROP_DESCRIPTION = "Description";
+pub const wszCMM_PROP_COPYRIGHT = "Copyright";
+pub const wszCMM_PROP_FILEVER = "File Version";
+pub const wszCMM_PROP_PRODUCTVER = "Product Version";
+pub const wszCMM_PROP_DISPLAY_HWND = "HWND";
+pub const wszCMM_PROP_ISMULTITHREADED = "IsMultiThreaded";
 
 //--------------------------------------------------------------------------------
 // Section: Types (343)

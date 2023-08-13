@@ -852,6 +852,363 @@ pub const ERRORINFO = extern struct {
 
 }, else => struct { } };
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBVECTOR = extern struct {
+    size: usize,
+    ptr: *c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBTIMESTAMP = extern struct {
+    year: i16,
+    month: u16,
+    day: u16,
+    hour: u16,
+    minute: u16,
+    second: u16,
+    fraction: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SEC_OBJECT_ELEMENT = extern struct {
+    guidObjectType: Guid,
+    ObjectID: DBID,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SEC_OBJECT = extern struct {
+    cObjects: u32,
+    prgObjects: *SEC_OBJECT_ELEMENT,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBIMPLICITSESSION = extern struct {
+    pUnkOuter: *IUnknown,
+    piid: *Guid,
+    pSession: *IUnknown,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBOBJECT = extern struct {
+    dwFlags: u32,
+    iid: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBBINDEXT = extern struct {
+    pExtension: *u8,
+    ulExtension: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBBINDING = extern struct {
+    iOrdinal: usize,
+    obValue: usize,
+    obLength: usize,
+    obStatus: usize,
+    pTypeInfo: *ITypeInfo,
+    pObject: *DBOBJECT,
+    pBindExt: *DBBINDEXT,
+    dwPart: u32,
+    dwMemOwner: u32,
+    eParamIO: u32,
+    cbMaxLen: usize,
+    dwFlags: u32,
+    wType: u16,
+    bPrecision: u8,
+    bScale: u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBFAILUREINFO = extern struct {
+    hRow: usize,
+    iColumn: usize,
+    failure: HRESULT,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBCOLUMNINFO = extern struct {
+    pwszName: PWSTR,
+    pTypeInfo: *ITypeInfo,
+    iOrdinal: usize,
+    dwFlags: u32,
+    ulColumnSize: usize,
+    wType: u16,
+    bPrecision: u8,
+    bScale: u8,
+    columnid: DBID,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBPARAMS = extern struct {
+    pData: *c_void,
+    cParamSets: usize,
+    hAccessor: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBPARAMINFO = extern struct {
+    dwFlags: u32,
+    iOrdinal: usize,
+    pwszName: PWSTR,
+    pTypeInfo: *ITypeInfo,
+    ulParamSize: usize,
+    wType: u16,
+    bPrecision: u8,
+    bScale: u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBPROPIDSET = extern struct {
+    rgPropertyIDs: *u32,
+    cPropertyIDs: u32,
+    guidPropertySet: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBPROPINFO = extern struct {
+    pwszDescription: PWSTR,
+    dwPropertyID: u32,
+    dwFlags: u32,
+    vtType: u16,
+    vValues: VARIANT,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBPROPINFOSET = extern struct {
+    rgPropertyInfos: *DBPROPINFO,
+    cPropertyInfos: u32,
+    guidPropertySet: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBPROP = extern struct {
+    dwPropertyID: u32,
+    dwOptions: u32,
+    dwStatus: u32,
+    colid: DBID,
+    vValue: VARIANT,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBPROPSET = extern struct {
+    rgProperties: *DBPROP,
+    cProperties: u32,
+    guidPropertySet: Guid,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBINDEXCOLUMNDESC = extern struct {
+    pColumnID: *DBID,
+    eIndexColOrder: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBCOLUMNDESC = extern struct {
+    pwszTypeName: PWSTR,
+    pTypeInfo: *ITypeInfo,
+    rgPropertySets: *DBPROPSET,
+    pclsid: *Guid,
+    cPropertySets: u32,
+    ulColumnSize: usize,
+    dbcid: DBID,
+    wType: u16,
+    bPrecision: u8,
+    bScale: u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBCOLUMNACCESS = extern struct {
+    pData: *c_void,
+    columnid: DBID,
+    cbDataLen: usize,
+    dwStatus: u32,
+    cbMaxLen: usize,
+    dwReserved: usize,
+    wType: u16,
+    bPrecision: u8,
+    bScale: u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBCONSTRAINTDESC = extern struct {
+    pConstraintID: *DBID,
+    ConstraintType: u32,
+    cColumns: usize,
+    rgColumnList: *DBID,
+    pReferencedTableID: *DBID,
+    cForeignKeyColumns: usize,
+    rgForeignKeyColumnList: *DBID,
+    pwszConstraintText: PWSTR,
+    UpdateRule: u32,
+    DeleteRule: u32,
+    MatchType: u32,
+    Deferrability: u32,
+    cReserved: usize,
+    rgReserved: *DBPROPSET,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const MDAXISINFO = extern struct {
+    cbSize: usize,
+    iAxis: usize,
+    cDimensions: usize,
+    cCoordinates: usize,
+    rgcColumns: *usize,
+    rgpwszDimensionNames: *PWSTR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const RMTPACK = extern struct {
+    pISeqStream: *ISequentialStream,
+    cbData: u32,
+    cBSTR: u32,
+    rgBSTR: *BSTR,
+    cVARIANT: u32,
+    rgVARIANT: *VARIANT,
+    cIDISPATCH: u32,
+    rgIDISPATCH: **IDispatch,
+    cIUNKNOWN: u32,
+    rgIUNKNOWN: **IUnknown,
+    cPROPVARIANT: u32,
+    rgPROPVARIANT: *PROPVARIANT,
+    cArray: u32,
+    rgArray: *VARIANT,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBPARAMBINDINFO = extern struct {
+    pwszDataSourceType: PWSTR,
+    pwszName: PWSTR,
+    ulParamSize: usize,
+    dwFlags: u32,
+    bPrecision: u8,
+    bScale: u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const DBLITERALINFO = extern struct {
+    pwszLiteralValue: PWSTR,
+    pwszInvalidChars: PWSTR,
+    pwszInvalidStartingChars: PWSTR,
+    lt: u32,
+    fSupported: BOOL,
+    cchMaxLen: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const ERRORINFO = extern struct {
+    hrError: HRESULT,
+    dwMinor: u32,
+    clsid: Guid,
+    iid: Guid,
+    dispid: i32,
+};
+
+}, else => struct { } };
+
 const IID_IWordSink_Value = @import("../zig.zig").Guid.initString("cc907054-c058-101a-b554-08002b33b0e6");
 pub const IID_IWordSink = &IID_IWordSink_Value;
 pub const IWordSink = extern struct {
@@ -1453,16 +1810,6 @@ pub const DB_NUMERIC = extern struct {
     val: [16]u8,
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBVECTOR = extern struct {
-    size: usize,
-    ptr: *c_void,
-};
-
-}, else => struct { } };
-
 pub const DBDATE = extern struct {
     year: i16,
     month: u16,
@@ -1475,58 +1822,12 @@ pub const DBTIME = extern struct {
     second: u16,
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBTIMESTAMP = extern struct {
-    year: i16,
-    month: u16,
-    day: u16,
-    hour: u16,
-    minute: u16,
-    second: u16,
-    fraction: u32,
-};
-
-}, else => struct { } };
-
 pub const DB_VARNUMERIC = extern struct {
     precision: u8,
     scale: i8,
     sign: u8,
     val: [1]u8,
 };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SEC_OBJECT_ELEMENT = extern struct {
-    guidObjectType: Guid,
-    ObjectID: DBID,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SEC_OBJECT = extern struct {
-    cObjects: u32,
-    prgObjects: *SEC_OBJECT_ELEMENT,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBIMPLICITSESSION = extern struct {
-    pUnkOuter: *IUnknown,
-    piid: *Guid,
-    pSession: *IUnknown,
-};
-
-}, else => struct { } };
 
 pub const DBTYPEENUM = enum(i32) {
     EMPTY = 0,
@@ -1644,16 +1945,6 @@ pub const DBMEMOWNERENUM = enum(i32) {
 };
 pub const DBMEMOWNER_CLIENTOWNED = DBMEMOWNERENUM.CLIENTOWNED;
 pub const DBMEMOWNER_PROVIDEROWNED = DBMEMOWNERENUM.PROVIDEROWNED;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBOBJECT = extern struct {
-    dwFlags: u32,
-    iid: Guid,
-};
-
-}, else => struct { } };
 
 pub const DBSTATUSENUM = enum(i32) {
     S_OK = 0,
@@ -1773,39 +2064,6 @@ pub const DBSTATUSENUM25 = enum(i32) {
 pub const DBSTATUS_E_CANCELED = DBSTATUSENUM25.CANCELED;
 pub const DBSTATUS_E_NOTCOLLECTION = DBSTATUSENUM25.NOTCOLLECTION;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBBINDEXT = extern struct {
-    pExtension: *u8,
-    ulExtension: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBBINDING = extern struct {
-    iOrdinal: usize,
-    obValue: usize,
-    obLength: usize,
-    obStatus: usize,
-    pTypeInfo: *ITypeInfo,
-    pObject: *DBOBJECT,
-    pBindExt: *DBBINDEXT,
-    dwPart: u32,
-    dwMemOwner: u32,
-    eParamIO: u32,
-    cbMaxLen: usize,
-    dwFlags: u32,
-    wType: u16,
-    bPrecision: u8,
-    bScale: u8,
-};
-
-}, else => struct { } };
-
 pub const DBROWSTATUSENUM = enum(i32) {
     S_OK = 0,
     S_MULTIPLECHANGES = 2,
@@ -1854,17 +2112,6 @@ pub const DBSTATUSENUM26 = enum(i32) {
     N = 29,
 };
 pub const DBSTATUS_S_ROWSETCOLUMN = DBSTATUSENUM26.N;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBFAILUREINFO = extern struct {
-    hRow: usize,
-    iColumn: usize,
-    failure: HRESULT,
-};
-
-}, else => struct { } };
 
 pub const DBCOLUMNFLAGSENUM = enum(i32) {
     ISBOOKMARK = 1,
@@ -1931,23 +2178,6 @@ pub const DBTABLESTATISTICSTYPE26 = enum(i32) {
 pub const DBSTAT_HISTOGRAM = DBTABLESTATISTICSTYPE26.HISTOGRAM;
 pub const DBSTAT_COLUMN_CARDINALITY = DBTABLESTATISTICSTYPE26.COLUMN_CARDINALITY;
 pub const DBSTAT_TUPLE_CARDINALITY = DBTABLESTATISTICSTYPE26.TUPLE_CARDINALITY;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBCOLUMNINFO = extern struct {
-    pwszName: PWSTR,
-    pTypeInfo: *ITypeInfo,
-    iOrdinal: usize,
-    dwFlags: u32,
-    ulColumnSize: usize,
-    wType: u16,
-    bPrecision: u8,
-    bScale: u8,
-    columnid: DBID,
-};
-
-}, else => struct { } };
 
 pub const DBBOOKMARK = enum(i32) {
     INVALID = 0,
@@ -2476,17 +2706,6 @@ pub const DBPROP_SKIPROWCOUNTRESULTS = DBPROPENUM26.DBPROP_SKIPROWCOUNTRESULTS;
 pub const DBPROP_IRowsetBookmark = DBPROPENUM26.DBPROP_IRowsetBookmark;
 pub const MDPROP_VISUALMODE = DBPROPENUM26.MDPROP_VISUALMODE;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBPARAMS = extern struct {
-    pData: *c_void,
-    cParamSets: usize,
-    hAccessor: usize,
-};
-
-}, else => struct { } };
-
 pub const DBPARAMFLAGSENUM = enum(i32) {
     INPUT = 1,
     OUTPUT = 2,
@@ -2504,33 +2723,6 @@ pub const DBPARAMFLAGSENUM20 = enum(i32) {
     E = 256,
 };
 pub const DBPARAMFLAGS_SCALEISNEGATIVE = DBPARAMFLAGSENUM20.E;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBPARAMINFO = extern struct {
-    dwFlags: u32,
-    iOrdinal: usize,
-    pwszName: PWSTR,
-    pTypeInfo: *ITypeInfo,
-    ulParamSize: usize,
-    wType: u16,
-    bPrecision: u8,
-    bScale: u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBPROPIDSET = extern struct {
-    rgPropertyIDs: *u32,
-    cPropertyIDs: u32,
-    guidPropertySet: Guid,
-};
-
-}, else => struct { } };
 
 pub const DBPROPFLAGSENUM = enum(i32) {
     NOTSUPPORTED = 0,
@@ -2578,30 +2770,6 @@ pub const DBPROPFLAGSENUM26 = enum(i32) {
 };
 pub const DBPROPFLAGS_STREAM = DBPROPFLAGSENUM26.M;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBPROPINFO = extern struct {
-    pwszDescription: PWSTR,
-    dwPropertyID: u32,
-    dwFlags: u32,
-    vtType: u16,
-    vValues: VARIANT,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBPROPINFOSET = extern struct {
-    rgPropertyInfos: *DBPROPINFO,
-    cPropertyInfos: u32,
-    guidPropertySet: Guid,
-};
-
-}, else => struct { } };
-
 pub const DBPROPOPTIONSENUM = enum(i32) {
     REQUIRED = 0,
     SETIFCHEAP = 1,
@@ -2637,81 +2805,12 @@ pub const DBPROPSTATUSENUM21 = enum(i32) {
 };
 pub const DBPROPSTATUS_NOTAVAILABLE = DBPROPSTATUSENUM21.E;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBPROP = extern struct {
-    dwPropertyID: u32,
-    dwOptions: u32,
-    dwStatus: u32,
-    colid: DBID,
-    vValue: VARIANT,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBPROPSET = extern struct {
-    rgProperties: *DBPROP,
-    cProperties: u32,
-    guidPropertySet: Guid,
-};
-
-}, else => struct { } };
-
 pub const DBINDEX_COL_ORDERENUM = enum(i32) {
     ASC = 0,
     DESC = 1,
 };
 pub const DBINDEX_COL_ORDER_ASC = DBINDEX_COL_ORDERENUM.ASC;
 pub const DBINDEX_COL_ORDER_DESC = DBINDEX_COL_ORDERENUM.DESC;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBINDEXCOLUMNDESC = extern struct {
-    pColumnID: *DBID,
-    eIndexColOrder: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBCOLUMNDESC = extern struct {
-    pwszTypeName: PWSTR,
-    pTypeInfo: *ITypeInfo,
-    rgPropertySets: *DBPROPSET,
-    pclsid: *Guid,
-    cPropertySets: u32,
-    ulColumnSize: usize,
-    dbcid: DBID,
-    wType: u16,
-    bPrecision: u8,
-    bScale: u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBCOLUMNACCESS = extern struct {
-    pData: *c_void,
-    columnid: DBID,
-    cbDataLen: usize,
-    dwStatus: u32,
-    cbMaxLen: usize,
-    dwReserved: usize,
-    wType: u16,
-    bPrecision: u8,
-    bScale: u8,
-};
-
-}, else => struct { } };
 
 pub const DBCOLUMNDESCFLAGSENUM = enum(i32) {
     TYPENAME = 1,
@@ -2897,64 +2996,6 @@ pub const DBDEFERRABILITYENUM = enum(i32) {
 };
 pub const DBDEFERRABILITY_DEFERRED = DBDEFERRABILITYENUM.ED;
 pub const DBDEFERRABILITY_DEFERRABLE = DBDEFERRABILITYENUM.ABLE;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBCONSTRAINTDESC = extern struct {
-    pConstraintID: *DBID,
-    ConstraintType: u32,
-    cColumns: usize,
-    rgColumnList: *DBID,
-    pReferencedTableID: *DBID,
-    cForeignKeyColumns: usize,
-    rgForeignKeyColumnList: *DBID,
-    pwszConstraintText: PWSTR,
-    UpdateRule: u32,
-    DeleteRule: u32,
-    MatchType: u32,
-    Deferrability: u32,
-    cReserved: usize,
-    rgReserved: *DBPROPSET,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const MDAXISINFO = extern struct {
-    cbSize: usize,
-    iAxis: usize,
-    cDimensions: usize,
-    cCoordinates: usize,
-    rgcColumns: *usize,
-    rgpwszDimensionNames: *PWSTR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const RMTPACK = extern struct {
-    pISeqStream: *ISequentialStream,
-    cbData: u32,
-    cBSTR: u32,
-    rgBSTR: *BSTR,
-    cVARIANT: u32,
-    rgVARIANT: *VARIANT,
-    cIDISPATCH: u32,
-    rgIDISPATCH: **IDispatch,
-    cIUNKNOWN: u32,
-    rgIUNKNOWN: **IUnknown,
-    cPROPVARIANT: u32,
-    rgPROPVARIANT: *PROPVARIANT,
-    cArray: u32,
-    rgArray: *VARIANT,
-};
-
-}, else => struct { } };
 
 pub const DBACCESSORFLAGSENUM = enum(i32) {
     INVALID = 0,
@@ -4130,20 +4171,6 @@ pub const ICommandText = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBPARAMBINDINFO = extern struct {
-    pwszDataSourceType: PWSTR,
-    pwszName: PWSTR,
-    ulParamSize: usize,
-    dwFlags: u32,
-    bPrecision: u8,
-    bScale: u8,
-};
-
-}, else => struct { } };
-
 const IID_ICommandWithParameters_Value = @import("../zig.zig").Guid.initString("0c733a64-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ICommandWithParameters = &IID_ICommandWithParameters_Value;
 pub const ICommandWithParameters = extern struct {
@@ -4488,20 +4515,6 @@ pub const DBLITERALENUM21 = enum(i32) {
 };
 pub const DBLITERAL_ESCAPE_PERCENT_SUFFIX = DBLITERALENUM21.PERCENT_SUFFIX;
 pub const DBLITERAL_ESCAPE_UNDERSCORE_SUFFIX = DBLITERALENUM21.UNDERSCORE_SUFFIX;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBLITERALINFO = extern struct {
-    pwszLiteralValue: PWSTR,
-    pwszInvalidChars: PWSTR,
-    pwszInvalidStartingChars: PWSTR,
-    lt: u32,
-    fSupported: BOOL,
-    cchMaxLen: u32,
-};
-
-}, else => struct { } };
 
 const IID_IDBInfo_Value = @import("../zig.zig").Guid.initString("0c733a89-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDBInfo = &IID_IDBInfo_Value;
@@ -5175,19 +5188,6 @@ pub const IParentRowset = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const ERRORINFO = extern struct {
-    hrError: HRESULT,
-    dwMinor: u32,
-    clsid: Guid,
-    iid: Guid,
-    dispid: i32,
-};
-
-}, else => struct { } };
 
 const IID_IErrorRecords_Value = @import("../zig.zig").Guid.initString("0c733a67-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IErrorRecords = &IID_IErrorRecords_Value;

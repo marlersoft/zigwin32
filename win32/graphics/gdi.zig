@@ -1248,67 +1248,6 @@ pub const E_EXCEPTIONINCOMPRESSION = @as(i32, 522);
 //--------------------------------------------------------------------------------
 // Section: Types (240)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'ReleaseDC', what can Zig do with this information?
-pub const HDC = *opaque{};
-
-// TODO: this type has a FreeFunc 'DeleteDC', what can Zig do with this information?
-//TODO: type 'CreatedHDC' is "AlsoUsableFor" 'HDC' which means this type is implicitly
-//      convertible to 'HDC' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const CreatedHDC = HDC;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-//TODO: type 'HBITMAP' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
-//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HBITMAP = HGDIOBJ;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-//TODO: type 'HRGN' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
-//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HRGN = HGDIOBJ;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-//TODO: type 'HPEN' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
-//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HPEN = HGDIOBJ;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-//TODO: type 'HBRUSH' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
-//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HBRUSH = HGDIOBJ;
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-//TODO: type 'HFONT' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
-//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HFONT = HGDIOBJ;
-
-// TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
-pub const HMETAFILE = *opaque{};
-
-// TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
-pub const HENHMETAFILE = *opaque{};
-
-// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-//TODO: type 'HPALETTE' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
-//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
-//      in Zig so for now I'm just defining it as an alias
-pub const HPALETTE = HGDIOBJ;
-
-// TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
-pub const HdcMetdataFileHandle = isize;
-
-// TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
-pub const HdcMetdataEnhFileHandle = isize;
-
-pub const HGDIOBJ = *opaque{};
-
-pub const HMONITOR = *opaque{};
-
 pub const R2_MODE = enum(i32) {
     BLACK = 1,
     NOTMERGEPEN = 2,
@@ -1482,6 +1421,67 @@ pub const DIB_USAGE = enum(u32) {
 };
 pub const DIB_RGB_COLORS = DIB_USAGE.RGB_COLORS;
 pub const DIB_PAL_COLORS = DIB_USAGE.PAL_COLORS;
+
+// TODO: this type has a FreeFunc 'ReleaseDC', what can Zig do with this information?
+pub const HDC = *opaque{};
+
+// TODO: this type has a FreeFunc 'DeleteDC', what can Zig do with this information?
+//TODO: type 'CreatedHDC' is "AlsoUsableFor" 'HDC' which means this type is implicitly
+//      convertible to 'HDC' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const CreatedHDC = HDC;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+//TODO: type 'HBITMAP' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HBITMAP = HGDIOBJ;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+//TODO: type 'HRGN' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HRGN = HGDIOBJ;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+//TODO: type 'HPEN' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HPEN = HGDIOBJ;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+//TODO: type 'HBRUSH' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HBRUSH = HGDIOBJ;
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+//TODO: type 'HFONT' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HFONT = HGDIOBJ;
+
+// TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
+pub const HMETAFILE = *opaque{};
+
+// TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
+pub const HENHMETAFILE = *opaque{};
+
+// TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+//TODO: type 'HPALETTE' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HPALETTE = HGDIOBJ;
+
+// TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
+pub const HdcMetdataFileHandle = isize;
+
+// TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
+pub const HdcMetdataEnhFileHandle = isize;
+
+pub const HGDIOBJ = *opaque{};
+
+pub const HMONITOR = *opaque{};
 
 pub const XFORM = extern struct {
     eM11: f32,
@@ -4502,7 +4502,7 @@ pub extern "GDI32" fn CreateICA(
     pszDevice: ?[*:0]const u8,
     pszPort: ?[*:0]const u8,
     pdm: ?*const DEVMODEA,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) CreatedHDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateICW(
@@ -4510,7 +4510,7 @@ pub extern "GDI32" fn CreateICW(
     pszDevice: ?[*:0]const u16,
     pszPort: ?[*:0]const u16,
     pdm: ?*const DEVMODEW,
-) callconv(@import("std").os.windows.WINAPI) HDC;
+) callconv(@import("std").os.windows.WINAPI) CreatedHDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateMetaFileA(

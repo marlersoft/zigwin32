@@ -67,10 +67,6 @@ pub const WBEMS_DISPID_CONNECTION_READY = @as(u32, 5);
 //--------------------------------------------------------------------------------
 // Section: Types (356)
 //--------------------------------------------------------------------------------
-pub const MI_Module_Self = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 const CLSID_WbemDefPath_Value = @import("../zig.zig").Guid.initString("cf4cc405-e2c5-4ddd-b3ce-5e7582d8c9fa");
 pub const CLSID_WbemDefPath = &CLSID_WbemDefPath_Value;
 
@@ -7474,6 +7470,10 @@ pub const MI_SchemaDecl = extern struct {
     numQualifierDecls: u32,
     classDecls: *const *MI_ClassDecl,
     numClassDecls: u32,
+};
+
+pub const MI_Module_Self = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 pub const MI_ProviderFT_Load = fn(

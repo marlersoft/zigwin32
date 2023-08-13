@@ -2,7 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (345)
 //--------------------------------------------------------------------------------
-pub const CLSID_TraceRelogger = Guid.initString("7b40792d-05ff-44c4-9058-f440c71f17d4");
 pub const WNODE_FLAG_ALL_DATA = @as(u32, 1);
 pub const WNODE_FLAG_SINGLE_INSTANCE = @as(u32, 2);
 pub const WNODE_FLAG_SINGLE_ITEM = @as(u32, 4);
@@ -347,6 +346,7 @@ pub const EVENT_ENABLE_PROPERTY_SOURCE_CONTAINER_TRACKING = @as(u32, 2048);
 pub const PROCESS_TRACE_MODE_REAL_TIME = @as(u32, 256);
 pub const PROCESS_TRACE_MODE_RAW_TIMESTAMP = @as(u32, 4096);
 pub const PROCESS_TRACE_MODE_EVENT_RECORD = @as(u32, 268435456);
+pub const CLSID_TraceRelogger = Guid.initString("7b40792d-05ff-44c4-9058-f440c71f17d4");
 
 //--------------------------------------------------------------------------------
 // Section: Types (102)

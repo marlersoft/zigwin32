@@ -110,6 +110,34 @@ pub const WDS_LOG_LEVEL_INFO = @as(i32, 3);
 //--------------------------------------------------------------------------------
 // Section: Types (89)
 //--------------------------------------------------------------------------------
+pub const PROCESSOR_ARCHITECTURE = enum(u32) {
+    AMD64 = 9,
+    IA64 = 6,
+    INTEL = 0,
+    ARM = 5,
+    UNKNOWN = 65535,
+};
+pub const PROCESSOR_ARCHITECTURE_AMD64 = PROCESSOR_ARCHITECTURE.AMD64;
+pub const PROCESSOR_ARCHITECTURE_IA64 = PROCESSOR_ARCHITECTURE.IA64;
+pub const PROCESSOR_ARCHITECTURE_INTEL = PROCESSOR_ARCHITECTURE.INTEL;
+pub const PROCESSOR_ARCHITECTURE_ARM = PROCESSOR_ARCHITECTURE.ARM;
+pub const PROCESSOR_ARCHITECTURE_UNKNOWN = PROCESSOR_ARCHITECTURE.UNKNOWN;
+
+pub const PFN_WDS_CLI_CALLBACK_MESSAGE_ID = enum(u32) {
+    START = 0,
+    COMPLETE = 1,
+    PROGRESS = 2,
+    TEXT = 3,
+};
+// TODO: enum 'PFN_WDS_CLI_CALLBACK_MESSAGE_ID' has known issues with its value aliases
+
+pub const WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL = enum(u32) {
+    AUTH = 1,
+    NO_AUTH = 2,
+};
+pub const WDS_TRANSPORTCLIENT_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.AUTH;
+pub const WDS_TRANSPORTCLIENT_NO_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.NO_AUTH;
+
 pub const WDS_CLI_CRED = extern struct {
     pwszUserName: [*:0]const u16,
     pwszDomain: [*:0]const u16,
@@ -2010,34 +2038,6 @@ pub const IWdsTransportContentProvider = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const PROCESSOR_ARCHITECTURE = enum(u32) {
-    AMD64 = 9,
-    IA64 = 6,
-    INTEL = 0,
-    ARM = 5,
-    UNKNOWN = 65535,
-};
-pub const PROCESSOR_ARCHITECTURE_AMD64 = PROCESSOR_ARCHITECTURE.AMD64;
-pub const PROCESSOR_ARCHITECTURE_IA64 = PROCESSOR_ARCHITECTURE.IA64;
-pub const PROCESSOR_ARCHITECTURE_INTEL = PROCESSOR_ARCHITECTURE.INTEL;
-pub const PROCESSOR_ARCHITECTURE_ARM = PROCESSOR_ARCHITECTURE.ARM;
-pub const PROCESSOR_ARCHITECTURE_UNKNOWN = PROCESSOR_ARCHITECTURE.UNKNOWN;
-
-pub const PFN_WDS_CLI_CALLBACK_MESSAGE_ID = enum(u32) {
-    START = 0,
-    COMPLETE = 1,
-    PROGRESS = 2,
-    TEXT = 3,
-};
-// TODO: enum 'PFN_WDS_CLI_CALLBACK_MESSAGE_ID' has known issues with its value aliases
-
-pub const WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL = enum(u32) {
-    AUTH = 1,
-    NO_AUTH = 2,
-};
-pub const WDS_TRANSPORTCLIENT_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.AUTH;
-pub const WDS_TRANSPORTCLIENT_NO_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.NO_AUTH;
 
 
 //--------------------------------------------------------------------------------
