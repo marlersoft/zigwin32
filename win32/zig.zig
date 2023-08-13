@@ -1,5 +1,6 @@
 //! This module is maintained by hand and is copied to the generated code directory
 const std = @import("std");
+const builtin = @import("builtin");
 const testing = std.testing;
 
 const root = @import("root");
@@ -20,14 +21,14 @@ pub usingnamespace switch (unicode_mode) {
         pub const TCHAR = u16;
         pub const _T = L;
     },
-    .unspecified => if (@import("builtin").is_test) struct { } else struct {
+    .unspecified => if (builtin.is_test) struct { } else struct {
         pub const TCHAR = @compileError("'TCHAR' requires that UNICODE be set to true or false in the root module");
         pub const _T = @compileError("'_T' requires that UNICODE be set to true or false in the root module");
     },
 };
 
 pub const Arch = enum { X86, X64, Arm64 };
-pub const arch: Arch = switch (std.Target.current.cpu.arch) {
+pub const arch: Arch = switch (builtin.target.cpu.arch) {
     .i386 => .X86,
     .x86_64 => .X64,
     .arm, .armeb => .Arm64,
@@ -50,7 +51,7 @@ pub const Guid = extern union {
         11, 9,
         16, 14,
         19, 21, 24, 26, 28, 30, 32, 34};
-    const hex_offsets = switch (std.Target.current.cpu.arch.endian()) {
+    const hex_offsets = switch (builtin.target.cpu.arch.endian()) {
         .Big => big_endian_hex_offsets,
         .Little => little_endian_hex_offsets,
     };
@@ -80,7 +81,7 @@ fn decodeHexByte(hex: [2]u8) u8 {
 
 test "Guid" {
     try testing.expect(std.mem.eql(u8,
-        switch (std.Target.current.cpu.arch.endian()) {
+        switch (builtin.target.cpu.arch.endian()) {
             .Big    => "\x01\x23\x45\x67\x89\xAB\xEF\x10\x32\x54\x76\x98\xba\xdc\xfe\x91",
             .Little => "\x67\x45\x23\x01\xAB\x89\x10\xEF\x32\x54\x76\x98\xba\xdc\xfe\x91"
         },

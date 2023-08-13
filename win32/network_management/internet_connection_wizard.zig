@@ -66,7 +66,7 @@ test {
     );
 
     // reference all the pub declarations
-    if (!@import("std").builtin.is_test) return;
+    if (!@import("builtin").is_test) return;
     inline for (@import("std").meta.declarations(@This())) |decl| {
         if (decl.is_pub) {
             _ = decl;
