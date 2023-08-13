@@ -2,6 +2,59 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (168)
 //--------------------------------------------------------------------------------
+pub const GUID_EapHost_Cause_MethodDLLNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d800000001");
+pub const GUID_EapHost_Repair_ContactSysadmin = Guid.initString("9612fc67-6150-4209-a85e-a8d800000002");
+pub const GUID_EapHost_Cause_CertStoreInaccessible = Guid.initString("9612fc67-6150-4209-a85e-a8d800000004");
+pub const GUID_EapHost_Cause_Generic_AuthFailure = Guid.initString("9612fc67-6150-4209-a85e-a8d800000104");
+pub const GUID_EapHost_Cause_IdentityUnknown = Guid.initString("9612fc67-6150-4209-a85e-a8d800000204");
+pub const GUID_EapHost_Cause_SimNotValid = Guid.initString("9612fc67-6150-4209-a85e-a8d800000304");
+pub const GUID_EapHost_Cause_Server_CertExpired = Guid.initString("9612fc67-6150-4209-a85e-a8d800000005");
+pub const GUID_EapHost_Cause_Server_CertInvalid = Guid.initString("9612fc67-6150-4209-a85e-a8d800000006");
+pub const GUID_EapHost_Cause_Server_CertNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d800000007");
+pub const GUID_EapHost_Cause_Server_CertRevoked = Guid.initString("9612fc67-6150-4209-a85e-a8d800000008");
+pub const GUID_EapHost_Cause_Server_CertOtherError = Guid.initString("9612fc67-6150-4209-a85e-a8d800000108");
+pub const GUID_EapHost_Cause_User_CertExpired = Guid.initString("9612fc67-6150-4209-a85e-a8d800000009");
+pub const GUID_EapHost_Cause_User_CertInvalid = Guid.initString("9612fc67-6150-4209-a85e-a8d80000000a");
+pub const GUID_EapHost_Cause_User_CertNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d80000000b");
+pub const GUID_EapHost_Cause_User_CertOtherError = Guid.initString("9612fc67-6150-4209-a85e-a8d80000000c");
+pub const GUID_EapHost_Cause_User_CertRejected = Guid.initString("9612fc67-6150-4209-a85e-a8d80000000d");
+pub const GUID_EapHost_Cause_User_CertRevoked = Guid.initString("9612fc67-6150-4209-a85e-a8d80000000e");
+pub const GUID_EapHost_Cause_User_Account_OtherProblem = Guid.initString("9612fc67-6150-4209-a85e-a8d80000010e");
+pub const GUID_EapHost_Cause_User_CredsRejected = Guid.initString("9612fc67-6150-4209-a85e-a8d80000020e");
+pub const GUID_EapHost_Cause_User_Root_CertExpired = Guid.initString("9612fc67-6150-4209-a85e-a8d80000000f");
+pub const GUID_EapHost_Cause_User_Root_CertInvalid = Guid.initString("9612fc67-6150-4209-a85e-a8d800000010");
+pub const GUID_EapHost_Cause_User_Root_CertNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d800000011");
+pub const GUID_EapHost_Cause_Server_Root_CertNameRequired = Guid.initString("9612fc67-6150-4209-a85e-a8d800000012");
+pub const GUID_EapHost_Cause_Server_Root_CertNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d800000112");
+pub const GUID_EapHost_Cause_ThirdPartyMethod_Host_Reset = Guid.initString("9612fc67-6150-4209-a85e-a8d800000212");
+pub const GUID_EapHost_Cause_EapQecInaccessible = Guid.initString("9612fc67-6150-4209-a85e-a8d800000312");
+pub const GUID_EapHost_Repair_Server_ClientSelectServerCert = Guid.initString("9612fc67-6150-4209-a85e-a8d800000018");
+pub const GUID_EapHost_Repair_User_AuthFailure = Guid.initString("9612fc67-6150-4209-a85e-a8d800000019");
+pub const GUID_EapHost_Repair_User_GetNewCert = Guid.initString("9612fc67-6150-4209-a85e-a8d80000001a");
+pub const GUID_EapHost_Repair_User_SelectValidCert = Guid.initString("9612fc67-6150-4209-a85e-a8d80000001b");
+pub const GUID_EapHost_Repair_Retry_Authentication = Guid.initString("9612fc67-6150-4209-a85e-a8d80000011b");
+pub const GUID_EapHost_Cause_EapNegotiationFailed = Guid.initString("9612fc67-6150-4209-a85e-a8d80000001c");
+pub const GUID_EapHost_Cause_XmlMalformed = Guid.initString("9612fc67-6150-4209-a85e-a8d80000001d");
+pub const GUID_EapHost_Cause_MethodDoesNotSupportOperation = Guid.initString("9612fc67-6150-4209-a85e-a8d80000001e");
+pub const GUID_EapHost_Repair_ContactAdmin_AuthFailure = Guid.initString("9612fc67-6150-4209-a85e-a8d80000001f");
+pub const GUID_EapHost_Repair_ContactAdmin_IdentityUnknown = Guid.initString("9612fc67-6150-4209-a85e-a8d800000020");
+pub const GUID_EapHost_Repair_ContactAdmin_NegotiationFailed = Guid.initString("9612fc67-6150-4209-a85e-a8d800000021");
+pub const GUID_EapHost_Repair_ContactAdmin_MethodNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d800000022");
+pub const GUID_EapHost_Repair_RestartNap = Guid.initString("9612fc67-6150-4209-a85e-a8d800000023");
+pub const GUID_EapHost_Repair_ContactAdmin_CertStoreInaccessible = Guid.initString("9612fc67-6150-4209-a85e-a8d800000024");
+pub const GUID_EapHost_Repair_ContactAdmin_InvalidUserAccount = Guid.initString("9612fc67-6150-4209-a85e-a8d800000025");
+pub const GUID_EapHost_Repair_ContactAdmin_RootCertInvalid = Guid.initString("9612fc67-6150-4209-a85e-a8d800000026");
+pub const GUID_EapHost_Repair_ContactAdmin_RootCertNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d800000027");
+pub const GUID_EapHost_Repair_ContactAdmin_RootExpired = Guid.initString("9612fc67-6150-4209-a85e-a8d800000028");
+pub const GUID_EapHost_Repair_ContactAdmin_CertNameAbsent = Guid.initString("9612fc67-6150-4209-a85e-a8d800000029");
+pub const GUID_EapHost_Repair_ContactAdmin_NoSmartCardReader = Guid.initString("9612fc67-6150-4209-a85e-a8d80000002a");
+pub const GUID_EapHost_Cause_No_SmartCardReader_Found = Guid.initString("9612fc67-6150-4209-a85e-a8d80000002b");
+pub const GUID_EapHost_Repair_ContactAdmin_InvalidUserCert = Guid.initString("9612fc67-6150-4209-a85e-a8d80000002c");
+pub const GUID_EapHost_Repair_Method_Not_Support_Sso = Guid.initString("9612fc67-6150-4209-a85e-a8d80000002d");
+pub const GUID_EapHost_Repair_No_ValidSim_Found = Guid.initString("9612fc67-6150-4209-a85e-a8d80000002e");
+pub const GUID_EapHost_Help_ObtainingCerts = Guid.initString("f535eea3-1bdd-46ca-a2fc-a6655939b7e8");
+pub const GUID_EapHost_Help_Troubleshooting = Guid.initString("33307acf-0698-41ba-b014-ea0a2eb8d0a8");
+pub const GUID_EapHost_Cause_Method_Config_Does_Not_Support_Sso = Guid.initString("da18bd32-004f-41fa-ae08-0bc85e5845ac");
 pub const RAS_EAP_ROLE_AUTHENTICATOR = @as(u32, 1);
 pub const RAS_EAP_ROLE_AUTHENTICATEE = @as(u32, 2);
 pub const RAS_EAP_ROLE_EXCLUDE_IN_EAP = @as(u32, 4);
@@ -117,678 +170,10 @@ pub const MAX_EAP_CONFIG_INPUT_FIELD_LENGTH = @as(u32, 256);
 pub const MAX_EAP_CONFIG_INPUT_FIELD_VALUE_LENGTH = @as(u32, 1024);
 pub const CERTIFICATE_HASH_LENGTH = @as(u32, 20);
 pub const EAP_METHOD_AUTHENTICATOR_CONFIG_IS_IDENTITY_PRIVACY = @as(u32, 1);
-pub const GUID_EapHost_Cause_MethodDLLNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d800000001");
-pub const GUID_EapHost_Repair_ContactSysadmin = Guid.initString("9612fc67-6150-4209-a85e-a8d800000002");
-pub const GUID_EapHost_Cause_CertStoreInaccessible = Guid.initString("9612fc67-6150-4209-a85e-a8d800000004");
-pub const GUID_EapHost_Cause_Generic_AuthFailure = Guid.initString("9612fc67-6150-4209-a85e-a8d800000104");
-pub const GUID_EapHost_Cause_IdentityUnknown = Guid.initString("9612fc67-6150-4209-a85e-a8d800000204");
-pub const GUID_EapHost_Cause_SimNotValid = Guid.initString("9612fc67-6150-4209-a85e-a8d800000304");
-pub const GUID_EapHost_Cause_Server_CertExpired = Guid.initString("9612fc67-6150-4209-a85e-a8d800000005");
-pub const GUID_EapHost_Cause_Server_CertInvalid = Guid.initString("9612fc67-6150-4209-a85e-a8d800000006");
-pub const GUID_EapHost_Cause_Server_CertNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d800000007");
-pub const GUID_EapHost_Cause_Server_CertRevoked = Guid.initString("9612fc67-6150-4209-a85e-a8d800000008");
-pub const GUID_EapHost_Cause_Server_CertOtherError = Guid.initString("9612fc67-6150-4209-a85e-a8d800000108");
-pub const GUID_EapHost_Cause_User_CertExpired = Guid.initString("9612fc67-6150-4209-a85e-a8d800000009");
-pub const GUID_EapHost_Cause_User_CertInvalid = Guid.initString("9612fc67-6150-4209-a85e-a8d80000000a");
-pub const GUID_EapHost_Cause_User_CertNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d80000000b");
-pub const GUID_EapHost_Cause_User_CertOtherError = Guid.initString("9612fc67-6150-4209-a85e-a8d80000000c");
-pub const GUID_EapHost_Cause_User_CertRejected = Guid.initString("9612fc67-6150-4209-a85e-a8d80000000d");
-pub const GUID_EapHost_Cause_User_CertRevoked = Guid.initString("9612fc67-6150-4209-a85e-a8d80000000e");
-pub const GUID_EapHost_Cause_User_Account_OtherProblem = Guid.initString("9612fc67-6150-4209-a85e-a8d80000010e");
-pub const GUID_EapHost_Cause_User_CredsRejected = Guid.initString("9612fc67-6150-4209-a85e-a8d80000020e");
-pub const GUID_EapHost_Cause_User_Root_CertExpired = Guid.initString("9612fc67-6150-4209-a85e-a8d80000000f");
-pub const GUID_EapHost_Cause_User_Root_CertInvalid = Guid.initString("9612fc67-6150-4209-a85e-a8d800000010");
-pub const GUID_EapHost_Cause_User_Root_CertNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d800000011");
-pub const GUID_EapHost_Cause_Server_Root_CertNameRequired = Guid.initString("9612fc67-6150-4209-a85e-a8d800000012");
-pub const GUID_EapHost_Cause_Server_Root_CertNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d800000112");
-pub const GUID_EapHost_Cause_ThirdPartyMethod_Host_Reset = Guid.initString("9612fc67-6150-4209-a85e-a8d800000212");
-pub const GUID_EapHost_Cause_EapQecInaccessible = Guid.initString("9612fc67-6150-4209-a85e-a8d800000312");
-pub const GUID_EapHost_Repair_Server_ClientSelectServerCert = Guid.initString("9612fc67-6150-4209-a85e-a8d800000018");
-pub const GUID_EapHost_Repair_User_AuthFailure = Guid.initString("9612fc67-6150-4209-a85e-a8d800000019");
-pub const GUID_EapHost_Repair_User_GetNewCert = Guid.initString("9612fc67-6150-4209-a85e-a8d80000001a");
-pub const GUID_EapHost_Repair_User_SelectValidCert = Guid.initString("9612fc67-6150-4209-a85e-a8d80000001b");
-pub const GUID_EapHost_Repair_Retry_Authentication = Guid.initString("9612fc67-6150-4209-a85e-a8d80000011b");
-pub const GUID_EapHost_Cause_EapNegotiationFailed = Guid.initString("9612fc67-6150-4209-a85e-a8d80000001c");
-pub const GUID_EapHost_Cause_XmlMalformed = Guid.initString("9612fc67-6150-4209-a85e-a8d80000001d");
-pub const GUID_EapHost_Cause_MethodDoesNotSupportOperation = Guid.initString("9612fc67-6150-4209-a85e-a8d80000001e");
-pub const GUID_EapHost_Repair_ContactAdmin_AuthFailure = Guid.initString("9612fc67-6150-4209-a85e-a8d80000001f");
-pub const GUID_EapHost_Repair_ContactAdmin_IdentityUnknown = Guid.initString("9612fc67-6150-4209-a85e-a8d800000020");
-pub const GUID_EapHost_Repair_ContactAdmin_NegotiationFailed = Guid.initString("9612fc67-6150-4209-a85e-a8d800000021");
-pub const GUID_EapHost_Repair_ContactAdmin_MethodNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d800000022");
-pub const GUID_EapHost_Repair_RestartNap = Guid.initString("9612fc67-6150-4209-a85e-a8d800000023");
-pub const GUID_EapHost_Repair_ContactAdmin_CertStoreInaccessible = Guid.initString("9612fc67-6150-4209-a85e-a8d800000024");
-pub const GUID_EapHost_Repair_ContactAdmin_InvalidUserAccount = Guid.initString("9612fc67-6150-4209-a85e-a8d800000025");
-pub const GUID_EapHost_Repair_ContactAdmin_RootCertInvalid = Guid.initString("9612fc67-6150-4209-a85e-a8d800000026");
-pub const GUID_EapHost_Repair_ContactAdmin_RootCertNotFound = Guid.initString("9612fc67-6150-4209-a85e-a8d800000027");
-pub const GUID_EapHost_Repair_ContactAdmin_RootExpired = Guid.initString("9612fc67-6150-4209-a85e-a8d800000028");
-pub const GUID_EapHost_Repair_ContactAdmin_CertNameAbsent = Guid.initString("9612fc67-6150-4209-a85e-a8d800000029");
-pub const GUID_EapHost_Repair_ContactAdmin_NoSmartCardReader = Guid.initString("9612fc67-6150-4209-a85e-a8d80000002a");
-pub const GUID_EapHost_Cause_No_SmartCardReader_Found = Guid.initString("9612fc67-6150-4209-a85e-a8d80000002b");
-pub const GUID_EapHost_Repair_ContactAdmin_InvalidUserCert = Guid.initString("9612fc67-6150-4209-a85e-a8d80000002c");
-pub const GUID_EapHost_Repair_Method_Not_Support_Sso = Guid.initString("9612fc67-6150-4209-a85e-a8d80000002d");
-pub const GUID_EapHost_Repair_No_ValidSim_Found = Guid.initString("9612fc67-6150-4209-a85e-a8d80000002e");
-pub const GUID_EapHost_Help_ObtainingCerts = Guid.initString("f535eea3-1bdd-46ca-a2fc-a6655939b7e8");
-pub const GUID_EapHost_Help_Troubleshooting = Guid.initString("33307acf-0698-41ba-b014-ea0a2eb8d0a8");
-pub const GUID_EapHost_Cause_Method_Config_Does_Not_Support_Sso = Guid.initString("da18bd32-004f-41fa-ae08-0bc85e5845ac");
 
 //--------------------------------------------------------------------------------
 // Section: Types (68)
 //--------------------------------------------------------------------------------
-pub const RAS_AUTH_ATTRIBUTE_TYPE = extern enum(i32) {
-    Minimum = 0,
-    UserName = 1,
-    UserPassword = 2,
-    MD5CHAPPassword = 3,
-    NASIPAddress = 4,
-    NASPort = 5,
-    ServiceType = 6,
-    FramedProtocol = 7,
-    FramedIPAddress = 8,
-    FramedIPNetmask = 9,
-    FramedRouting = 10,
-    FilterId = 11,
-    FramedMTU = 12,
-    FramedCompression = 13,
-    LoginIPHost = 14,
-    LoginService = 15,
-    LoginTCPPort = 16,
-    Unassigned17 = 17,
-    ReplyMessage = 18,
-    CallbackNumber = 19,
-    CallbackId = 20,
-    Unassigned21 = 21,
-    FramedRoute = 22,
-    FramedIPXNetwork = 23,
-    State = 24,
-    Class = 25,
-    VendorSpecific = 26,
-    SessionTimeout = 27,
-    IdleTimeout = 28,
-    TerminationAction = 29,
-    CalledStationId = 30,
-    CallingStationId = 31,
-    NASIdentifier = 32,
-    ProxyState = 33,
-    LoginLATService = 34,
-    LoginLATNode = 35,
-    LoginLATGroup = 36,
-    FramedAppleTalkLink = 37,
-    FramedAppleTalkNetwork = 38,
-    FramedAppleTalkZone = 39,
-    AcctStatusType = 40,
-    AcctDelayTime = 41,
-    AcctInputOctets = 42,
-    AcctOutputOctets = 43,
-    AcctSessionId = 44,
-    AcctAuthentic = 45,
-    AcctSessionTime = 46,
-    AcctInputPackets = 47,
-    AcctOutputPackets = 48,
-    AcctTerminateCause = 49,
-    AcctMultiSessionId = 50,
-    AcctLinkCount = 51,
-    AcctEventTimeStamp = 55,
-    MD5CHAPChallenge = 60,
-    NASPortType = 61,
-    PortLimit = 62,
-    LoginLATPort = 63,
-    TunnelType = 64,
-    TunnelMediumType = 65,
-    TunnelClientEndpoint = 66,
-    TunnelServerEndpoint = 67,
-    ARAPPassword = 70,
-    ARAPFeatures = 71,
-    ARAPZoneAccess = 72,
-    ARAPSecurity = 73,
-    ARAPSecurityData = 74,
-    PasswordRetry = 75,
-    Prompt = 76,
-    ConnectInfo = 77,
-    ConfigurationToken = 78,
-    EAPMessage = 79,
-    Signature = 80,
-    ARAPChallengeResponse = 84,
-    AcctInterimInterval = 85,
-    NASIPv6Address = 95,
-    FramedInterfaceId = 96,
-    FramedIPv6Prefix = 97,
-    LoginIPv6Host = 98,
-    FramedIPv6Route = 99,
-    FramedIPv6Pool = 100,
-    ARAPGuestLogon = 8096,
-    CertificateOID = 8097,
-    EAPConfiguration = 8098,
-    PEAPEmbeddedEAPTypeId = 8099,
-    InnerEAPTypeId = 8099,
-    PEAPFastRoamedSession = 8100,
-    FastRoamedSession = 8100,
-    EAPTLV = 8102,
-    CredentialsChanged = 8103,
-    CertificateThumbprint = 8250,
-    PeerId = 9000,
-    ServerId = 9001,
-    MethodId = 9002,
-    EMSK = 9003,
-    SessionId = 9004,
-    Reserved = -1,
-};
-pub const raatMinimum = RAS_AUTH_ATTRIBUTE_TYPE.Minimum;
-pub const raatUserName = RAS_AUTH_ATTRIBUTE_TYPE.UserName;
-pub const raatUserPassword = RAS_AUTH_ATTRIBUTE_TYPE.UserPassword;
-pub const raatMD5CHAPPassword = RAS_AUTH_ATTRIBUTE_TYPE.MD5CHAPPassword;
-pub const raatNASIPAddress = RAS_AUTH_ATTRIBUTE_TYPE.NASIPAddress;
-pub const raatNASPort = RAS_AUTH_ATTRIBUTE_TYPE.NASPort;
-pub const raatServiceType = RAS_AUTH_ATTRIBUTE_TYPE.ServiceType;
-pub const raatFramedProtocol = RAS_AUTH_ATTRIBUTE_TYPE.FramedProtocol;
-pub const raatFramedIPAddress = RAS_AUTH_ATTRIBUTE_TYPE.FramedIPAddress;
-pub const raatFramedIPNetmask = RAS_AUTH_ATTRIBUTE_TYPE.FramedIPNetmask;
-pub const raatFramedRouting = RAS_AUTH_ATTRIBUTE_TYPE.FramedRouting;
-pub const raatFilterId = RAS_AUTH_ATTRIBUTE_TYPE.FilterId;
-pub const raatFramedMTU = RAS_AUTH_ATTRIBUTE_TYPE.FramedMTU;
-pub const raatFramedCompression = RAS_AUTH_ATTRIBUTE_TYPE.FramedCompression;
-pub const raatLoginIPHost = RAS_AUTH_ATTRIBUTE_TYPE.LoginIPHost;
-pub const raatLoginService = RAS_AUTH_ATTRIBUTE_TYPE.LoginService;
-pub const raatLoginTCPPort = RAS_AUTH_ATTRIBUTE_TYPE.LoginTCPPort;
-pub const raatUnassigned17 = RAS_AUTH_ATTRIBUTE_TYPE.Unassigned17;
-pub const raatReplyMessage = RAS_AUTH_ATTRIBUTE_TYPE.ReplyMessage;
-pub const raatCallbackNumber = RAS_AUTH_ATTRIBUTE_TYPE.CallbackNumber;
-pub const raatCallbackId = RAS_AUTH_ATTRIBUTE_TYPE.CallbackId;
-pub const raatUnassigned21 = RAS_AUTH_ATTRIBUTE_TYPE.Unassigned21;
-pub const raatFramedRoute = RAS_AUTH_ATTRIBUTE_TYPE.FramedRoute;
-pub const raatFramedIPXNetwork = RAS_AUTH_ATTRIBUTE_TYPE.FramedIPXNetwork;
-pub const raatState = RAS_AUTH_ATTRIBUTE_TYPE.State;
-pub const raatClass = RAS_AUTH_ATTRIBUTE_TYPE.Class;
-pub const raatVendorSpecific = RAS_AUTH_ATTRIBUTE_TYPE.VendorSpecific;
-pub const raatSessionTimeout = RAS_AUTH_ATTRIBUTE_TYPE.SessionTimeout;
-pub const raatIdleTimeout = RAS_AUTH_ATTRIBUTE_TYPE.IdleTimeout;
-pub const raatTerminationAction = RAS_AUTH_ATTRIBUTE_TYPE.TerminationAction;
-pub const raatCalledStationId = RAS_AUTH_ATTRIBUTE_TYPE.CalledStationId;
-pub const raatCallingStationId = RAS_AUTH_ATTRIBUTE_TYPE.CallingStationId;
-pub const raatNASIdentifier = RAS_AUTH_ATTRIBUTE_TYPE.NASIdentifier;
-pub const raatProxyState = RAS_AUTH_ATTRIBUTE_TYPE.ProxyState;
-pub const raatLoginLATService = RAS_AUTH_ATTRIBUTE_TYPE.LoginLATService;
-pub const raatLoginLATNode = RAS_AUTH_ATTRIBUTE_TYPE.LoginLATNode;
-pub const raatLoginLATGroup = RAS_AUTH_ATTRIBUTE_TYPE.LoginLATGroup;
-pub const raatFramedAppleTalkLink = RAS_AUTH_ATTRIBUTE_TYPE.FramedAppleTalkLink;
-pub const raatFramedAppleTalkNetwork = RAS_AUTH_ATTRIBUTE_TYPE.FramedAppleTalkNetwork;
-pub const raatFramedAppleTalkZone = RAS_AUTH_ATTRIBUTE_TYPE.FramedAppleTalkZone;
-pub const raatAcctStatusType = RAS_AUTH_ATTRIBUTE_TYPE.AcctStatusType;
-pub const raatAcctDelayTime = RAS_AUTH_ATTRIBUTE_TYPE.AcctDelayTime;
-pub const raatAcctInputOctets = RAS_AUTH_ATTRIBUTE_TYPE.AcctInputOctets;
-pub const raatAcctOutputOctets = RAS_AUTH_ATTRIBUTE_TYPE.AcctOutputOctets;
-pub const raatAcctSessionId = RAS_AUTH_ATTRIBUTE_TYPE.AcctSessionId;
-pub const raatAcctAuthentic = RAS_AUTH_ATTRIBUTE_TYPE.AcctAuthentic;
-pub const raatAcctSessionTime = RAS_AUTH_ATTRIBUTE_TYPE.AcctSessionTime;
-pub const raatAcctInputPackets = RAS_AUTH_ATTRIBUTE_TYPE.AcctInputPackets;
-pub const raatAcctOutputPackets = RAS_AUTH_ATTRIBUTE_TYPE.AcctOutputPackets;
-pub const raatAcctTerminateCause = RAS_AUTH_ATTRIBUTE_TYPE.AcctTerminateCause;
-pub const raatAcctMultiSessionId = RAS_AUTH_ATTRIBUTE_TYPE.AcctMultiSessionId;
-pub const raatAcctLinkCount = RAS_AUTH_ATTRIBUTE_TYPE.AcctLinkCount;
-pub const raatAcctEventTimeStamp = RAS_AUTH_ATTRIBUTE_TYPE.AcctEventTimeStamp;
-pub const raatMD5CHAPChallenge = RAS_AUTH_ATTRIBUTE_TYPE.MD5CHAPChallenge;
-pub const raatNASPortType = RAS_AUTH_ATTRIBUTE_TYPE.NASPortType;
-pub const raatPortLimit = RAS_AUTH_ATTRIBUTE_TYPE.PortLimit;
-pub const raatLoginLATPort = RAS_AUTH_ATTRIBUTE_TYPE.LoginLATPort;
-pub const raatTunnelType = RAS_AUTH_ATTRIBUTE_TYPE.TunnelType;
-pub const raatTunnelMediumType = RAS_AUTH_ATTRIBUTE_TYPE.TunnelMediumType;
-pub const raatTunnelClientEndpoint = RAS_AUTH_ATTRIBUTE_TYPE.TunnelClientEndpoint;
-pub const raatTunnelServerEndpoint = RAS_AUTH_ATTRIBUTE_TYPE.TunnelServerEndpoint;
-pub const raatARAPPassword = RAS_AUTH_ATTRIBUTE_TYPE.ARAPPassword;
-pub const raatARAPFeatures = RAS_AUTH_ATTRIBUTE_TYPE.ARAPFeatures;
-pub const raatARAPZoneAccess = RAS_AUTH_ATTRIBUTE_TYPE.ARAPZoneAccess;
-pub const raatARAPSecurity = RAS_AUTH_ATTRIBUTE_TYPE.ARAPSecurity;
-pub const raatARAPSecurityData = RAS_AUTH_ATTRIBUTE_TYPE.ARAPSecurityData;
-pub const raatPasswordRetry = RAS_AUTH_ATTRIBUTE_TYPE.PasswordRetry;
-pub const raatPrompt = RAS_AUTH_ATTRIBUTE_TYPE.Prompt;
-pub const raatConnectInfo = RAS_AUTH_ATTRIBUTE_TYPE.ConnectInfo;
-pub const raatConfigurationToken = RAS_AUTH_ATTRIBUTE_TYPE.ConfigurationToken;
-pub const raatEAPMessage = RAS_AUTH_ATTRIBUTE_TYPE.EAPMessage;
-pub const raatSignature = RAS_AUTH_ATTRIBUTE_TYPE.Signature;
-pub const raatARAPChallengeResponse = RAS_AUTH_ATTRIBUTE_TYPE.ARAPChallengeResponse;
-pub const raatAcctInterimInterval = RAS_AUTH_ATTRIBUTE_TYPE.AcctInterimInterval;
-pub const raatNASIPv6Address = RAS_AUTH_ATTRIBUTE_TYPE.NASIPv6Address;
-pub const raatFramedInterfaceId = RAS_AUTH_ATTRIBUTE_TYPE.FramedInterfaceId;
-pub const raatFramedIPv6Prefix = RAS_AUTH_ATTRIBUTE_TYPE.FramedIPv6Prefix;
-pub const raatLoginIPv6Host = RAS_AUTH_ATTRIBUTE_TYPE.LoginIPv6Host;
-pub const raatFramedIPv6Route = RAS_AUTH_ATTRIBUTE_TYPE.FramedIPv6Route;
-pub const raatFramedIPv6Pool = RAS_AUTH_ATTRIBUTE_TYPE.FramedIPv6Pool;
-pub const raatARAPGuestLogon = RAS_AUTH_ATTRIBUTE_TYPE.ARAPGuestLogon;
-pub const raatCertificateOID = RAS_AUTH_ATTRIBUTE_TYPE.CertificateOID;
-pub const raatEAPConfiguration = RAS_AUTH_ATTRIBUTE_TYPE.EAPConfiguration;
-pub const raatPEAPEmbeddedEAPTypeId = RAS_AUTH_ATTRIBUTE_TYPE.PEAPEmbeddedEAPTypeId;
-pub const raatInnerEAPTypeId = RAS_AUTH_ATTRIBUTE_TYPE.InnerEAPTypeId;
-pub const raatPEAPFastRoamedSession = RAS_AUTH_ATTRIBUTE_TYPE.PEAPFastRoamedSession;
-pub const raatFastRoamedSession = RAS_AUTH_ATTRIBUTE_TYPE.FastRoamedSession;
-pub const raatEAPTLV = RAS_AUTH_ATTRIBUTE_TYPE.EAPTLV;
-pub const raatCredentialsChanged = RAS_AUTH_ATTRIBUTE_TYPE.CredentialsChanged;
-pub const raatCertificateThumbprint = RAS_AUTH_ATTRIBUTE_TYPE.CertificateThumbprint;
-pub const raatPeerId = RAS_AUTH_ATTRIBUTE_TYPE.PeerId;
-pub const raatServerId = RAS_AUTH_ATTRIBUTE_TYPE.ServerId;
-pub const raatMethodId = RAS_AUTH_ATTRIBUTE_TYPE.MethodId;
-pub const raatEMSK = RAS_AUTH_ATTRIBUTE_TYPE.EMSK;
-pub const raatSessionId = RAS_AUTH_ATTRIBUTE_TYPE.SessionId;
-pub const raatReserved = RAS_AUTH_ATTRIBUTE_TYPE.Reserved;
-
-pub const NgcTicketContext = extern struct {
-    wszTicket: [45]u16,
-    hKey: usize,
-    hImpersonateToken: HANDLE,
-};
-
-pub const RAS_AUTH_ATTRIBUTE = extern struct {
-    raaType: RAS_AUTH_ATTRIBUTE_TYPE,
-    dwLength: u32,
-    Value: *c_void,
-};
-
-pub const PPP_EAP_PACKET = extern struct {
-    Code: u8,
-    Id: u8,
-    Length: [2]u8,
-    Data: [1]u8,
-};
-
-pub const PPP_EAP_INPUT = extern struct {
-    dwSizeInBytes: u32,
-    fFlags: u32,
-    fAuthenticator: BOOL,
-    pwszIdentity: PWSTR,
-    pwszPassword: PWSTR,
-    bInitialId: u8,
-    pUserAttributes: *RAS_AUTH_ATTRIBUTE,
-    fAuthenticationComplete: BOOL,
-    dwAuthResultCode: u32,
-    hTokenImpersonateUser: HANDLE,
-    fSuccessPacketReceived: BOOL,
-    fDataReceivedFromInteractiveUI: BOOL,
-    pDataFromInteractiveUI: *u8,
-    dwSizeOfDataFromInteractiveUI: u32,
-    pConnectionData: *u8,
-    dwSizeOfConnectionData: u32,
-    pUserData: *u8,
-    dwSizeOfUserData: u32,
-    hReserved: HANDLE,
-    guidConnectionId: Guid,
-    isVpn: BOOL,
-};
-
-pub const PPP_EAP_ACTION = extern enum(i32) {
-    NoAction = 0,
-    Authenticate = 1,
-    Done = 2,
-    SendAndDone = 3,
-    Send = 4,
-    SendWithTimeout = 5,
-    SendWithTimeoutInteractive = 6,
-    IndicateTLV = 7,
-    IndicateIdentity = 8,
-};
-pub const EAPACTION_NoAction = PPP_EAP_ACTION.NoAction;
-pub const EAPACTION_Authenticate = PPP_EAP_ACTION.Authenticate;
-pub const EAPACTION_Done = PPP_EAP_ACTION.Done;
-pub const EAPACTION_SendAndDone = PPP_EAP_ACTION.SendAndDone;
-pub const EAPACTION_Send = PPP_EAP_ACTION.Send;
-pub const EAPACTION_SendWithTimeout = PPP_EAP_ACTION.SendWithTimeout;
-pub const EAPACTION_SendWithTimeoutInteractive = PPP_EAP_ACTION.SendWithTimeoutInteractive;
-pub const EAPACTION_IndicateTLV = PPP_EAP_ACTION.IndicateTLV;
-pub const EAPACTION_IndicateIdentity = PPP_EAP_ACTION.IndicateIdentity;
-
-pub const PPP_EAP_OUTPUT = extern struct {
-    dwSizeInBytes: u32,
-    Action: PPP_EAP_ACTION,
-    dwAuthResultCode: u32,
-    pUserAttributes: *RAS_AUTH_ATTRIBUTE,
-    fInvokeInteractiveUI: BOOL,
-    pUIContextData: *u8,
-    dwSizeOfUIContextData: u32,
-    fSaveConnectionData: BOOL,
-    pConnectionData: *u8,
-    dwSizeOfConnectionData: u32,
-    fSaveUserData: BOOL,
-    pUserData: *u8,
-    dwSizeOfUserData: u32,
-    pNgcKerbTicket: *NgcTicketContext,
-    fSaveToCredMan: BOOL,
-};
-
-pub const PPP_EAP_INFO = extern struct {
-    dwSizeInBytes: u32,
-    dwEapTypeId: u32,
-    RasEapInitialize: isize,
-    RasEapBegin: isize,
-    RasEapEnd: isize,
-    RasEapMakeMessage: isize,
-};
-
-pub const LEGACY_IDENTITY_UI_PARAMS = extern struct {
-    eapType: u32,
-    dwFlags: u32,
-    dwSizeofConnectionData: u32,
-    pConnectionData: *u8,
-    dwSizeofUserData: u32,
-    pUserData: *u8,
-    dwSizeofUserDataOut: u32,
-    pUserDataOut: *u8,
-    pwszIdentity: PWSTR,
-    dwError: u32,
-};
-
-pub const LEGACY_INTERACTIVE_UI_PARAMS = extern struct {
-    eapType: u32,
-    dwSizeofContextData: u32,
-    pContextData: *u8,
-    dwSizeofInteractiveUIData: u32,
-    pInteractiveUIData: *u8,
-    dwError: u32,
-};
-
-const IID_IRouterProtocolConfig_Value = @import("../zig.zig").Guid.initString("66a2db16-d706-11d0-a37b-00c04fc9da04");
-pub const IID_IRouterProtocolConfig = &IID_IRouterProtocolConfig_Value;
-pub const IRouterProtocolConfig = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        AddProtocol: fn(
-            self: *const IRouterProtocolConfig,
-            pszMachineName: [*:0]const u16,
-            dwTransportId: u32,
-            dwProtocolId: u32,
-            hWnd: HWND,
-            dwFlags: u32,
-            pRouter: *IUnknown,
-            uReserved1: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RemoveProtocol: fn(
-            self: *const IRouterProtocolConfig,
-            pszMachineName: [*:0]const u16,
-            dwTransportId: u32,
-            dwProtocolId: u32,
-            hWnd: HWND,
-            dwFlags: u32,
-            pRouter: *IUnknown,
-            uReserved1: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRouterProtocolConfig_AddProtocol(self: *const T, pszMachineName: [*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: HWND, dwFlags: u32, pRouter: *IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRouterProtocolConfig.VTable, self.vtable).AddProtocol(@ptrCast(*const IRouterProtocolConfig, self), pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRouterProtocolConfig_RemoveProtocol(self: *const T, pszMachineName: [*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: HWND, dwFlags: u32, pRouter: *IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRouterProtocolConfig.VTable, self.vtable).RemoveProtocol(@ptrCast(*const IRouterProtocolConfig, self), pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IAuthenticationProviderConfig_Value = @import("../zig.zig").Guid.initString("66a2db17-d706-11d0-a37b-00c04fc9da04");
-pub const IID_IAuthenticationProviderConfig = &IID_IAuthenticationProviderConfig_Value;
-pub const IAuthenticationProviderConfig = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IAuthenticationProviderConfig,
-            pszMachineName: [*:0]const u16,
-            puConnectionParam: *usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Uninitialize: fn(
-            self: *const IAuthenticationProviderConfig,
-            uConnectionParam: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Configure: fn(
-            self: *const IAuthenticationProviderConfig,
-            uConnectionParam: usize,
-            hWnd: HWND,
-            dwFlags: u32,
-            uReserved1: usize,
-            uReserved2: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Activate: fn(
-            self: *const IAuthenticationProviderConfig,
-            uConnectionParam: usize,
-            uReserved1: usize,
-            uReserved2: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Deactivate: fn(
-            self: *const IAuthenticationProviderConfig,
-            uConnectionParam: usize,
-            uReserved1: usize,
-            uReserved2: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Initialize(self: *const T, pszMachineName: [*:0]const u16, puConnectionParam: *usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IAuthenticationProviderConfig, self), pszMachineName, puConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Uninitialize(self: *const T, uConnectionParam: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Activate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Activate(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAuthenticationProviderConfig_Deactivate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Deactivate(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IAccountingProviderConfig_Value = @import("../zig.zig").Guid.initString("66a2db18-d706-11d0-a37b-00c04fc9da04");
-pub const IID_IAccountingProviderConfig = &IID_IAccountingProviderConfig_Value;
-pub const IAccountingProviderConfig = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IAccountingProviderConfig,
-            pszMachineName: [*:0]const u16,
-            puConnectionParam: *usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Uninitialize: fn(
-            self: *const IAccountingProviderConfig,
-            uConnectionParam: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Configure: fn(
-            self: *const IAccountingProviderConfig,
-            uConnectionParam: usize,
-            hWnd: HWND,
-            dwFlags: u32,
-            uReserved1: usize,
-            uReserved2: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Activate: fn(
-            self: *const IAccountingProviderConfig,
-            uConnectionParam: usize,
-            uReserved1: usize,
-            uReserved2: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Deactivate: fn(
-            self: *const IAccountingProviderConfig,
-            uConnectionParam: usize,
-            uReserved1: usize,
-            uReserved2: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Initialize(self: *const T, pszMachineName: [*:0]const u16, puConnectionParam: *usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IAccountingProviderConfig, self), pszMachineName, puConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Uninitialize(self: *const T, uConnectionParam: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Activate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Activate(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountingProviderConfig_Deactivate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Deactivate(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEAPProviderConfig_Value = @import("../zig.zig").Guid.initString("66a2db19-d706-11d0-a37b-00c04fc9da04");
-pub const IID_IEAPProviderConfig = &IID_IEAPProviderConfig_Value;
-pub const IEAPProviderConfig = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IEAPProviderConfig,
-            pszMachineName: [*:0]const u16,
-            dwEapTypeId: u32,
-            puConnectionParam: *usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Uninitialize: fn(
-            self: *const IEAPProviderConfig,
-            dwEapTypeId: u32,
-            uConnectionParam: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ServerInvokeConfigUI: fn(
-            self: *const IEAPProviderConfig,
-            dwEapTypeId: u32,
-            uConnectionParam: usize,
-            hWnd: HWND,
-            uReserved1: usize,
-            uReserved2: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RouterInvokeConfigUI: fn(
-            self: *const IEAPProviderConfig,
-            dwEapTypeId: u32,
-            uConnectionParam: usize,
-            hwndParent: HWND,
-            dwFlags: u32,
-            pConnectionDataIn: [*:0]u8,
-            dwSizeOfConnectionDataIn: u32,
-            ppConnectionDataOut: [*]*u8,
-            pdwSizeOfConnectionDataOut: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RouterInvokeCredentialsUI: fn(
-            self: *const IEAPProviderConfig,
-            dwEapTypeId: u32,
-            uConnectionParam: usize,
-            hwndParent: HWND,
-            dwFlags: u32,
-            pConnectionDataIn: [*:0]u8,
-            dwSizeOfConnectionDataIn: u32,
-            pUserDataIn: [*:0]u8,
-            dwSizeOfUserDataIn: u32,
-            ppUserDataOut: [*]*u8,
-            pdwSizeOfUserDataOut: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_Initialize(self: *const T, pszMachineName: [*:0]const u16, dwEapTypeId: u32, puConnectionParam: *usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IEAPProviderConfig, self), pszMachineName, dwEapTypeId, puConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_Uninitialize(self: *const T, dwEapTypeId: u32, uConnectionParam: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_ServerInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: HWND, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).ServerInvokeConfigUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hWnd, uReserved1, uReserved2);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_RouterInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, ppConnectionDataOut: [*]*u8, pdwSizeOfConnectionDataOut: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).RouterInvokeConfigUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, ppConnectionDataOut, pdwSizeOfConnectionDataOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig_RouterInvokeCredentialsUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, pUserDataIn: [*:0]u8, dwSizeOfUserDataIn: u32, ppUserDataOut: [*]*u8, pdwSizeOfUserDataOut: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).RouterInvokeCredentialsUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, pUserDataIn, dwSizeOfUserDataIn, ppUserDataOut, pdwSizeOfUserDataOut);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IEAPProviderConfig2_Value = @import("../zig.zig").Guid.initString("d565917a-85c4-4466-856e-671c3742ea9a");
-pub const IID_IEAPProviderConfig2 = &IID_IEAPProviderConfig2_Value;
-pub const IEAPProviderConfig2 = extern struct {
-    pub const VTable = extern struct {
-        base: IEAPProviderConfig.VTable,
-        ServerInvokeConfigUI2: fn(
-            self: *const IEAPProviderConfig2,
-            dwEapTypeId: u32,
-            uConnectionParam: usize,
-            hWnd: HWND,
-            pConfigDataIn: *const u8,
-            dwSizeOfConfigDataIn: u32,
-            ppConfigDataOut: **u8,
-            pdwSizeOfConfigDataOut: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetGlobalConfig: fn(
-            self: *const IEAPProviderConfig2,
-            dwEapTypeId: u32,
-            ppConfigDataOut: **u8,
-            pdwSizeOfConfigDataOut: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IEAPProviderConfig.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig2_ServerInvokeConfigUI2(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: HWND, pConfigDataIn: *const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: **u8, pdwSizeOfConfigDataOut: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig2.VTable, self.vtable).ServerInvokeConfigUI2(@ptrCast(*const IEAPProviderConfig2, self), dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig2_GetGlobalConfig(self: *const T, dwEapTypeId: u32, ppConfigDataOut: **u8, pdwSizeOfConfigDataOut: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig2.VTable, self.vtable).GetGlobalConfig(@ptrCast(*const IEAPProviderConfig2, self), dwEapTypeId, ppConfigDataOut, pdwSizeOfConfigDataOut);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IEAPProviderConfig3_Value = @import("../zig.zig").Guid.initString("b78ecd12-68bb-4f86-9bf0-8438dd3be982");
-pub const IID_IEAPProviderConfig3 = &IID_IEAPProviderConfig3_Value;
-pub const IEAPProviderConfig3 = extern struct {
-    pub const VTable = extern struct {
-        base: IEAPProviderConfig2.VTable,
-        ServerInvokeCertificateConfigUI: fn(
-            self: *const IEAPProviderConfig3,
-            dwEapTypeId: u32,
-            uConnectionParam: usize,
-            hWnd: HWND,
-            pConfigDataIn: *const u8,
-            dwSizeOfConfigDataIn: u32,
-            ppConfigDataOut: **u8,
-            pdwSizeOfConfigDataOut: *u32,
-            uReserved: usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IEAPProviderConfig2.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEAPProviderConfig3_ServerInvokeCertificateConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: HWND, pConfigDataIn: *const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: **u8, pdwSizeOfConfigDataOut: *u32, uReserved: usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEAPProviderConfig3.VTable, self.vtable).ServerInvokeCertificateConfigUI(@ptrCast(*const IEAPProviderConfig3, self), dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut, uReserved);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 pub const EAP_TYPE = extern struct {
     type: u8,
     dwVendorId: u32,
@@ -1491,6 +876,621 @@ pub const EAP_AUTHENTICATOR_METHOD_ROUTINES = extern struct {
     EapMethodAuthenticatorGetResult: isize,
     EapMethodAuthenticatorEndSession: isize,
     EapMethodAuthenticatorShutdown: isize,
+};
+
+pub const RAS_AUTH_ATTRIBUTE_TYPE = extern enum(i32) {
+    Minimum = 0,
+    UserName = 1,
+    UserPassword = 2,
+    MD5CHAPPassword = 3,
+    NASIPAddress = 4,
+    NASPort = 5,
+    ServiceType = 6,
+    FramedProtocol = 7,
+    FramedIPAddress = 8,
+    FramedIPNetmask = 9,
+    FramedRouting = 10,
+    FilterId = 11,
+    FramedMTU = 12,
+    FramedCompression = 13,
+    LoginIPHost = 14,
+    LoginService = 15,
+    LoginTCPPort = 16,
+    Unassigned17 = 17,
+    ReplyMessage = 18,
+    CallbackNumber = 19,
+    CallbackId = 20,
+    Unassigned21 = 21,
+    FramedRoute = 22,
+    FramedIPXNetwork = 23,
+    State = 24,
+    Class = 25,
+    VendorSpecific = 26,
+    SessionTimeout = 27,
+    IdleTimeout = 28,
+    TerminationAction = 29,
+    CalledStationId = 30,
+    CallingStationId = 31,
+    NASIdentifier = 32,
+    ProxyState = 33,
+    LoginLATService = 34,
+    LoginLATNode = 35,
+    LoginLATGroup = 36,
+    FramedAppleTalkLink = 37,
+    FramedAppleTalkNetwork = 38,
+    FramedAppleTalkZone = 39,
+    AcctStatusType = 40,
+    AcctDelayTime = 41,
+    AcctInputOctets = 42,
+    AcctOutputOctets = 43,
+    AcctSessionId = 44,
+    AcctAuthentic = 45,
+    AcctSessionTime = 46,
+    AcctInputPackets = 47,
+    AcctOutputPackets = 48,
+    AcctTerminateCause = 49,
+    AcctMultiSessionId = 50,
+    AcctLinkCount = 51,
+    AcctEventTimeStamp = 55,
+    MD5CHAPChallenge = 60,
+    NASPortType = 61,
+    PortLimit = 62,
+    LoginLATPort = 63,
+    TunnelType = 64,
+    TunnelMediumType = 65,
+    TunnelClientEndpoint = 66,
+    TunnelServerEndpoint = 67,
+    ARAPPassword = 70,
+    ARAPFeatures = 71,
+    ARAPZoneAccess = 72,
+    ARAPSecurity = 73,
+    ARAPSecurityData = 74,
+    PasswordRetry = 75,
+    Prompt = 76,
+    ConnectInfo = 77,
+    ConfigurationToken = 78,
+    EAPMessage = 79,
+    Signature = 80,
+    ARAPChallengeResponse = 84,
+    AcctInterimInterval = 85,
+    NASIPv6Address = 95,
+    FramedInterfaceId = 96,
+    FramedIPv6Prefix = 97,
+    LoginIPv6Host = 98,
+    FramedIPv6Route = 99,
+    FramedIPv6Pool = 100,
+    ARAPGuestLogon = 8096,
+    CertificateOID = 8097,
+    EAPConfiguration = 8098,
+    PEAPEmbeddedEAPTypeId = 8099,
+    InnerEAPTypeId = 8099,
+    PEAPFastRoamedSession = 8100,
+    FastRoamedSession = 8100,
+    EAPTLV = 8102,
+    CredentialsChanged = 8103,
+    CertificateThumbprint = 8250,
+    PeerId = 9000,
+    ServerId = 9001,
+    MethodId = 9002,
+    EMSK = 9003,
+    SessionId = 9004,
+    Reserved = -1,
+};
+pub const raatMinimum = RAS_AUTH_ATTRIBUTE_TYPE.Minimum;
+pub const raatUserName = RAS_AUTH_ATTRIBUTE_TYPE.UserName;
+pub const raatUserPassword = RAS_AUTH_ATTRIBUTE_TYPE.UserPassword;
+pub const raatMD5CHAPPassword = RAS_AUTH_ATTRIBUTE_TYPE.MD5CHAPPassword;
+pub const raatNASIPAddress = RAS_AUTH_ATTRIBUTE_TYPE.NASIPAddress;
+pub const raatNASPort = RAS_AUTH_ATTRIBUTE_TYPE.NASPort;
+pub const raatServiceType = RAS_AUTH_ATTRIBUTE_TYPE.ServiceType;
+pub const raatFramedProtocol = RAS_AUTH_ATTRIBUTE_TYPE.FramedProtocol;
+pub const raatFramedIPAddress = RAS_AUTH_ATTRIBUTE_TYPE.FramedIPAddress;
+pub const raatFramedIPNetmask = RAS_AUTH_ATTRIBUTE_TYPE.FramedIPNetmask;
+pub const raatFramedRouting = RAS_AUTH_ATTRIBUTE_TYPE.FramedRouting;
+pub const raatFilterId = RAS_AUTH_ATTRIBUTE_TYPE.FilterId;
+pub const raatFramedMTU = RAS_AUTH_ATTRIBUTE_TYPE.FramedMTU;
+pub const raatFramedCompression = RAS_AUTH_ATTRIBUTE_TYPE.FramedCompression;
+pub const raatLoginIPHost = RAS_AUTH_ATTRIBUTE_TYPE.LoginIPHost;
+pub const raatLoginService = RAS_AUTH_ATTRIBUTE_TYPE.LoginService;
+pub const raatLoginTCPPort = RAS_AUTH_ATTRIBUTE_TYPE.LoginTCPPort;
+pub const raatUnassigned17 = RAS_AUTH_ATTRIBUTE_TYPE.Unassigned17;
+pub const raatReplyMessage = RAS_AUTH_ATTRIBUTE_TYPE.ReplyMessage;
+pub const raatCallbackNumber = RAS_AUTH_ATTRIBUTE_TYPE.CallbackNumber;
+pub const raatCallbackId = RAS_AUTH_ATTRIBUTE_TYPE.CallbackId;
+pub const raatUnassigned21 = RAS_AUTH_ATTRIBUTE_TYPE.Unassigned21;
+pub const raatFramedRoute = RAS_AUTH_ATTRIBUTE_TYPE.FramedRoute;
+pub const raatFramedIPXNetwork = RAS_AUTH_ATTRIBUTE_TYPE.FramedIPXNetwork;
+pub const raatState = RAS_AUTH_ATTRIBUTE_TYPE.State;
+pub const raatClass = RAS_AUTH_ATTRIBUTE_TYPE.Class;
+pub const raatVendorSpecific = RAS_AUTH_ATTRIBUTE_TYPE.VendorSpecific;
+pub const raatSessionTimeout = RAS_AUTH_ATTRIBUTE_TYPE.SessionTimeout;
+pub const raatIdleTimeout = RAS_AUTH_ATTRIBUTE_TYPE.IdleTimeout;
+pub const raatTerminationAction = RAS_AUTH_ATTRIBUTE_TYPE.TerminationAction;
+pub const raatCalledStationId = RAS_AUTH_ATTRIBUTE_TYPE.CalledStationId;
+pub const raatCallingStationId = RAS_AUTH_ATTRIBUTE_TYPE.CallingStationId;
+pub const raatNASIdentifier = RAS_AUTH_ATTRIBUTE_TYPE.NASIdentifier;
+pub const raatProxyState = RAS_AUTH_ATTRIBUTE_TYPE.ProxyState;
+pub const raatLoginLATService = RAS_AUTH_ATTRIBUTE_TYPE.LoginLATService;
+pub const raatLoginLATNode = RAS_AUTH_ATTRIBUTE_TYPE.LoginLATNode;
+pub const raatLoginLATGroup = RAS_AUTH_ATTRIBUTE_TYPE.LoginLATGroup;
+pub const raatFramedAppleTalkLink = RAS_AUTH_ATTRIBUTE_TYPE.FramedAppleTalkLink;
+pub const raatFramedAppleTalkNetwork = RAS_AUTH_ATTRIBUTE_TYPE.FramedAppleTalkNetwork;
+pub const raatFramedAppleTalkZone = RAS_AUTH_ATTRIBUTE_TYPE.FramedAppleTalkZone;
+pub const raatAcctStatusType = RAS_AUTH_ATTRIBUTE_TYPE.AcctStatusType;
+pub const raatAcctDelayTime = RAS_AUTH_ATTRIBUTE_TYPE.AcctDelayTime;
+pub const raatAcctInputOctets = RAS_AUTH_ATTRIBUTE_TYPE.AcctInputOctets;
+pub const raatAcctOutputOctets = RAS_AUTH_ATTRIBUTE_TYPE.AcctOutputOctets;
+pub const raatAcctSessionId = RAS_AUTH_ATTRIBUTE_TYPE.AcctSessionId;
+pub const raatAcctAuthentic = RAS_AUTH_ATTRIBUTE_TYPE.AcctAuthentic;
+pub const raatAcctSessionTime = RAS_AUTH_ATTRIBUTE_TYPE.AcctSessionTime;
+pub const raatAcctInputPackets = RAS_AUTH_ATTRIBUTE_TYPE.AcctInputPackets;
+pub const raatAcctOutputPackets = RAS_AUTH_ATTRIBUTE_TYPE.AcctOutputPackets;
+pub const raatAcctTerminateCause = RAS_AUTH_ATTRIBUTE_TYPE.AcctTerminateCause;
+pub const raatAcctMultiSessionId = RAS_AUTH_ATTRIBUTE_TYPE.AcctMultiSessionId;
+pub const raatAcctLinkCount = RAS_AUTH_ATTRIBUTE_TYPE.AcctLinkCount;
+pub const raatAcctEventTimeStamp = RAS_AUTH_ATTRIBUTE_TYPE.AcctEventTimeStamp;
+pub const raatMD5CHAPChallenge = RAS_AUTH_ATTRIBUTE_TYPE.MD5CHAPChallenge;
+pub const raatNASPortType = RAS_AUTH_ATTRIBUTE_TYPE.NASPortType;
+pub const raatPortLimit = RAS_AUTH_ATTRIBUTE_TYPE.PortLimit;
+pub const raatLoginLATPort = RAS_AUTH_ATTRIBUTE_TYPE.LoginLATPort;
+pub const raatTunnelType = RAS_AUTH_ATTRIBUTE_TYPE.TunnelType;
+pub const raatTunnelMediumType = RAS_AUTH_ATTRIBUTE_TYPE.TunnelMediumType;
+pub const raatTunnelClientEndpoint = RAS_AUTH_ATTRIBUTE_TYPE.TunnelClientEndpoint;
+pub const raatTunnelServerEndpoint = RAS_AUTH_ATTRIBUTE_TYPE.TunnelServerEndpoint;
+pub const raatARAPPassword = RAS_AUTH_ATTRIBUTE_TYPE.ARAPPassword;
+pub const raatARAPFeatures = RAS_AUTH_ATTRIBUTE_TYPE.ARAPFeatures;
+pub const raatARAPZoneAccess = RAS_AUTH_ATTRIBUTE_TYPE.ARAPZoneAccess;
+pub const raatARAPSecurity = RAS_AUTH_ATTRIBUTE_TYPE.ARAPSecurity;
+pub const raatARAPSecurityData = RAS_AUTH_ATTRIBUTE_TYPE.ARAPSecurityData;
+pub const raatPasswordRetry = RAS_AUTH_ATTRIBUTE_TYPE.PasswordRetry;
+pub const raatPrompt = RAS_AUTH_ATTRIBUTE_TYPE.Prompt;
+pub const raatConnectInfo = RAS_AUTH_ATTRIBUTE_TYPE.ConnectInfo;
+pub const raatConfigurationToken = RAS_AUTH_ATTRIBUTE_TYPE.ConfigurationToken;
+pub const raatEAPMessage = RAS_AUTH_ATTRIBUTE_TYPE.EAPMessage;
+pub const raatSignature = RAS_AUTH_ATTRIBUTE_TYPE.Signature;
+pub const raatARAPChallengeResponse = RAS_AUTH_ATTRIBUTE_TYPE.ARAPChallengeResponse;
+pub const raatAcctInterimInterval = RAS_AUTH_ATTRIBUTE_TYPE.AcctInterimInterval;
+pub const raatNASIPv6Address = RAS_AUTH_ATTRIBUTE_TYPE.NASIPv6Address;
+pub const raatFramedInterfaceId = RAS_AUTH_ATTRIBUTE_TYPE.FramedInterfaceId;
+pub const raatFramedIPv6Prefix = RAS_AUTH_ATTRIBUTE_TYPE.FramedIPv6Prefix;
+pub const raatLoginIPv6Host = RAS_AUTH_ATTRIBUTE_TYPE.LoginIPv6Host;
+pub const raatFramedIPv6Route = RAS_AUTH_ATTRIBUTE_TYPE.FramedIPv6Route;
+pub const raatFramedIPv6Pool = RAS_AUTH_ATTRIBUTE_TYPE.FramedIPv6Pool;
+pub const raatARAPGuestLogon = RAS_AUTH_ATTRIBUTE_TYPE.ARAPGuestLogon;
+pub const raatCertificateOID = RAS_AUTH_ATTRIBUTE_TYPE.CertificateOID;
+pub const raatEAPConfiguration = RAS_AUTH_ATTRIBUTE_TYPE.EAPConfiguration;
+pub const raatPEAPEmbeddedEAPTypeId = RAS_AUTH_ATTRIBUTE_TYPE.PEAPEmbeddedEAPTypeId;
+pub const raatInnerEAPTypeId = RAS_AUTH_ATTRIBUTE_TYPE.InnerEAPTypeId;
+pub const raatPEAPFastRoamedSession = RAS_AUTH_ATTRIBUTE_TYPE.PEAPFastRoamedSession;
+pub const raatFastRoamedSession = RAS_AUTH_ATTRIBUTE_TYPE.FastRoamedSession;
+pub const raatEAPTLV = RAS_AUTH_ATTRIBUTE_TYPE.EAPTLV;
+pub const raatCredentialsChanged = RAS_AUTH_ATTRIBUTE_TYPE.CredentialsChanged;
+pub const raatCertificateThumbprint = RAS_AUTH_ATTRIBUTE_TYPE.CertificateThumbprint;
+pub const raatPeerId = RAS_AUTH_ATTRIBUTE_TYPE.PeerId;
+pub const raatServerId = RAS_AUTH_ATTRIBUTE_TYPE.ServerId;
+pub const raatMethodId = RAS_AUTH_ATTRIBUTE_TYPE.MethodId;
+pub const raatEMSK = RAS_AUTH_ATTRIBUTE_TYPE.EMSK;
+pub const raatSessionId = RAS_AUTH_ATTRIBUTE_TYPE.SessionId;
+pub const raatReserved = RAS_AUTH_ATTRIBUTE_TYPE.Reserved;
+
+pub const NgcTicketContext = extern struct {
+    wszTicket: [45]u16,
+    hKey: usize,
+    hImpersonateToken: HANDLE,
+};
+
+pub const RAS_AUTH_ATTRIBUTE = extern struct {
+    raaType: RAS_AUTH_ATTRIBUTE_TYPE,
+    dwLength: u32,
+    Value: *c_void,
+};
+
+pub const PPP_EAP_PACKET = extern struct {
+    Code: u8,
+    Id: u8,
+    Length: [2]u8,
+    Data: [1]u8,
+};
+
+pub const PPP_EAP_INPUT = extern struct {
+    dwSizeInBytes: u32,
+    fFlags: u32,
+    fAuthenticator: BOOL,
+    pwszIdentity: PWSTR,
+    pwszPassword: PWSTR,
+    bInitialId: u8,
+    pUserAttributes: *RAS_AUTH_ATTRIBUTE,
+    fAuthenticationComplete: BOOL,
+    dwAuthResultCode: u32,
+    hTokenImpersonateUser: HANDLE,
+    fSuccessPacketReceived: BOOL,
+    fDataReceivedFromInteractiveUI: BOOL,
+    pDataFromInteractiveUI: *u8,
+    dwSizeOfDataFromInteractiveUI: u32,
+    pConnectionData: *u8,
+    dwSizeOfConnectionData: u32,
+    pUserData: *u8,
+    dwSizeOfUserData: u32,
+    hReserved: HANDLE,
+    guidConnectionId: Guid,
+    isVpn: BOOL,
+};
+
+pub const PPP_EAP_ACTION = extern enum(i32) {
+    NoAction = 0,
+    Authenticate = 1,
+    Done = 2,
+    SendAndDone = 3,
+    Send = 4,
+    SendWithTimeout = 5,
+    SendWithTimeoutInteractive = 6,
+    IndicateTLV = 7,
+    IndicateIdentity = 8,
+};
+pub const EAPACTION_NoAction = PPP_EAP_ACTION.NoAction;
+pub const EAPACTION_Authenticate = PPP_EAP_ACTION.Authenticate;
+pub const EAPACTION_Done = PPP_EAP_ACTION.Done;
+pub const EAPACTION_SendAndDone = PPP_EAP_ACTION.SendAndDone;
+pub const EAPACTION_Send = PPP_EAP_ACTION.Send;
+pub const EAPACTION_SendWithTimeout = PPP_EAP_ACTION.SendWithTimeout;
+pub const EAPACTION_SendWithTimeoutInteractive = PPP_EAP_ACTION.SendWithTimeoutInteractive;
+pub const EAPACTION_IndicateTLV = PPP_EAP_ACTION.IndicateTLV;
+pub const EAPACTION_IndicateIdentity = PPP_EAP_ACTION.IndicateIdentity;
+
+pub const PPP_EAP_OUTPUT = extern struct {
+    dwSizeInBytes: u32,
+    Action: PPP_EAP_ACTION,
+    dwAuthResultCode: u32,
+    pUserAttributes: *RAS_AUTH_ATTRIBUTE,
+    fInvokeInteractiveUI: BOOL,
+    pUIContextData: *u8,
+    dwSizeOfUIContextData: u32,
+    fSaveConnectionData: BOOL,
+    pConnectionData: *u8,
+    dwSizeOfConnectionData: u32,
+    fSaveUserData: BOOL,
+    pUserData: *u8,
+    dwSizeOfUserData: u32,
+    pNgcKerbTicket: *NgcTicketContext,
+    fSaveToCredMan: BOOL,
+};
+
+pub const PPP_EAP_INFO = extern struct {
+    dwSizeInBytes: u32,
+    dwEapTypeId: u32,
+    RasEapInitialize: isize,
+    RasEapBegin: isize,
+    RasEapEnd: isize,
+    RasEapMakeMessage: isize,
+};
+
+pub const LEGACY_IDENTITY_UI_PARAMS = extern struct {
+    eapType: u32,
+    dwFlags: u32,
+    dwSizeofConnectionData: u32,
+    pConnectionData: *u8,
+    dwSizeofUserData: u32,
+    pUserData: *u8,
+    dwSizeofUserDataOut: u32,
+    pUserDataOut: *u8,
+    pwszIdentity: PWSTR,
+    dwError: u32,
+};
+
+pub const LEGACY_INTERACTIVE_UI_PARAMS = extern struct {
+    eapType: u32,
+    dwSizeofContextData: u32,
+    pContextData: *u8,
+    dwSizeofInteractiveUIData: u32,
+    pInteractiveUIData: *u8,
+    dwError: u32,
+};
+
+const IID_IRouterProtocolConfig_Value = @import("../zig.zig").Guid.initString("66a2db16-d706-11d0-a37b-00c04fc9da04");
+pub const IID_IRouterProtocolConfig = &IID_IRouterProtocolConfig_Value;
+pub const IRouterProtocolConfig = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        AddProtocol: fn(
+            self: *const IRouterProtocolConfig,
+            pszMachineName: [*:0]const u16,
+            dwTransportId: u32,
+            dwProtocolId: u32,
+            hWnd: HWND,
+            dwFlags: u32,
+            pRouter: *IUnknown,
+            uReserved1: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveProtocol: fn(
+            self: *const IRouterProtocolConfig,
+            pszMachineName: [*:0]const u16,
+            dwTransportId: u32,
+            dwProtocolId: u32,
+            hWnd: HWND,
+            dwFlags: u32,
+            pRouter: *IUnknown,
+            uReserved1: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRouterProtocolConfig_AddProtocol(self: *const T, pszMachineName: [*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: HWND, dwFlags: u32, pRouter: *IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRouterProtocolConfig.VTable, self.vtable).AddProtocol(@ptrCast(*const IRouterProtocolConfig, self), pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IRouterProtocolConfig_RemoveProtocol(self: *const T, pszMachineName: [*:0]const u16, dwTransportId: u32, dwProtocolId: u32, hWnd: HWND, dwFlags: u32, pRouter: *IUnknown, uReserved1: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IRouterProtocolConfig.VTable, self.vtable).RemoveProtocol(@ptrCast(*const IRouterProtocolConfig, self), pszMachineName, dwTransportId, dwProtocolId, hWnd, dwFlags, pRouter, uReserved1);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IAuthenticationProviderConfig_Value = @import("../zig.zig").Guid.initString("66a2db17-d706-11d0-a37b-00c04fc9da04");
+pub const IID_IAuthenticationProviderConfig = &IID_IAuthenticationProviderConfig_Value;
+pub const IAuthenticationProviderConfig = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: fn(
+            self: *const IAuthenticationProviderConfig,
+            pszMachineName: [*:0]const u16,
+            puConnectionParam: *usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Uninitialize: fn(
+            self: *const IAuthenticationProviderConfig,
+            uConnectionParam: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Configure: fn(
+            self: *const IAuthenticationProviderConfig,
+            uConnectionParam: usize,
+            hWnd: HWND,
+            dwFlags: u32,
+            uReserved1: usize,
+            uReserved2: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Activate: fn(
+            self: *const IAuthenticationProviderConfig,
+            uConnectionParam: usize,
+            uReserved1: usize,
+            uReserved2: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Deactivate: fn(
+            self: *const IAuthenticationProviderConfig,
+            uConnectionParam: usize,
+            uReserved1: usize,
+            uReserved2: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAuthenticationProviderConfig_Initialize(self: *const T, pszMachineName: [*:0]const u16, puConnectionParam: *usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IAuthenticationProviderConfig, self), pszMachineName, puConnectionParam);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAuthenticationProviderConfig_Uninitialize(self: *const T, uConnectionParam: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAuthenticationProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAuthenticationProviderConfig_Activate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Activate(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAuthenticationProviderConfig_Deactivate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAuthenticationProviderConfig.VTable, self.vtable).Deactivate(@ptrCast(*const IAuthenticationProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IAccountingProviderConfig_Value = @import("../zig.zig").Guid.initString("66a2db18-d706-11d0-a37b-00c04fc9da04");
+pub const IID_IAccountingProviderConfig = &IID_IAccountingProviderConfig_Value;
+pub const IAccountingProviderConfig = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: fn(
+            self: *const IAccountingProviderConfig,
+            pszMachineName: [*:0]const u16,
+            puConnectionParam: *usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Uninitialize: fn(
+            self: *const IAccountingProviderConfig,
+            uConnectionParam: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Configure: fn(
+            self: *const IAccountingProviderConfig,
+            uConnectionParam: usize,
+            hWnd: HWND,
+            dwFlags: u32,
+            uReserved1: usize,
+            uReserved2: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Activate: fn(
+            self: *const IAccountingProviderConfig,
+            uConnectionParam: usize,
+            uReserved1: usize,
+            uReserved2: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Deactivate: fn(
+            self: *const IAccountingProviderConfig,
+            uConnectionParam: usize,
+            uReserved1: usize,
+            uReserved2: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccountingProviderConfig_Initialize(self: *const T, pszMachineName: [*:0]const u16, puConnectionParam: *usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IAccountingProviderConfig, self), pszMachineName, puConnectionParam);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccountingProviderConfig_Uninitialize(self: *const T, uConnectionParam: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccountingProviderConfig_Configure(self: *const T, uConnectionParam: usize, hWnd: HWND, dwFlags: u32, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, hWnd, dwFlags, uReserved1, uReserved2);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccountingProviderConfig_Activate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Activate(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccountingProviderConfig_Deactivate(self: *const T, uConnectionParam: usize, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccountingProviderConfig.VTable, self.vtable).Deactivate(@ptrCast(*const IAccountingProviderConfig, self), uConnectionParam, uReserved1, uReserved2);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEAPProviderConfig_Value = @import("../zig.zig").Guid.initString("66a2db19-d706-11d0-a37b-00c04fc9da04");
+pub const IID_IEAPProviderConfig = &IID_IEAPProviderConfig_Value;
+pub const IEAPProviderConfig = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: fn(
+            self: *const IEAPProviderConfig,
+            pszMachineName: [*:0]const u16,
+            dwEapTypeId: u32,
+            puConnectionParam: *usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Uninitialize: fn(
+            self: *const IEAPProviderConfig,
+            dwEapTypeId: u32,
+            uConnectionParam: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ServerInvokeConfigUI: fn(
+            self: *const IEAPProviderConfig,
+            dwEapTypeId: u32,
+            uConnectionParam: usize,
+            hWnd: HWND,
+            uReserved1: usize,
+            uReserved2: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RouterInvokeConfigUI: fn(
+            self: *const IEAPProviderConfig,
+            dwEapTypeId: u32,
+            uConnectionParam: usize,
+            hwndParent: HWND,
+            dwFlags: u32,
+            pConnectionDataIn: [*:0]u8,
+            dwSizeOfConnectionDataIn: u32,
+            ppConnectionDataOut: [*]*u8,
+            pdwSizeOfConnectionDataOut: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RouterInvokeCredentialsUI: fn(
+            self: *const IEAPProviderConfig,
+            dwEapTypeId: u32,
+            uConnectionParam: usize,
+            hwndParent: HWND,
+            dwFlags: u32,
+            pConnectionDataIn: [*:0]u8,
+            dwSizeOfConnectionDataIn: u32,
+            pUserDataIn: [*:0]u8,
+            dwSizeOfUserDataIn: u32,
+            ppUserDataOut: [*]*u8,
+            pdwSizeOfUserDataOut: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEAPProviderConfig_Initialize(self: *const T, pszMachineName: [*:0]const u16, dwEapTypeId: u32, puConnectionParam: *usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).Initialize(@ptrCast(*const IEAPProviderConfig, self), pszMachineName, dwEapTypeId, puConnectionParam);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEAPProviderConfig_Uninitialize(self: *const T, dwEapTypeId: u32, uConnectionParam: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).Uninitialize(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEAPProviderConfig_ServerInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: HWND, uReserved1: usize, uReserved2: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).ServerInvokeConfigUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hWnd, uReserved1, uReserved2);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEAPProviderConfig_RouterInvokeConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, ppConnectionDataOut: [*]*u8, pdwSizeOfConnectionDataOut: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).RouterInvokeConfigUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, ppConnectionDataOut, pdwSizeOfConnectionDataOut);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEAPProviderConfig_RouterInvokeCredentialsUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hwndParent: HWND, dwFlags: u32, pConnectionDataIn: [*:0]u8, dwSizeOfConnectionDataIn: u32, pUserDataIn: [*:0]u8, dwSizeOfUserDataIn: u32, ppUserDataOut: [*]*u8, pdwSizeOfUserDataOut: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEAPProviderConfig.VTable, self.vtable).RouterInvokeCredentialsUI(@ptrCast(*const IEAPProviderConfig, self), dwEapTypeId, uConnectionParam, hwndParent, dwFlags, pConnectionDataIn, dwSizeOfConnectionDataIn, pUserDataIn, dwSizeOfUserDataIn, ppUserDataOut, pdwSizeOfUserDataOut);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IEAPProviderConfig2_Value = @import("../zig.zig").Guid.initString("d565917a-85c4-4466-856e-671c3742ea9a");
+pub const IID_IEAPProviderConfig2 = &IID_IEAPProviderConfig2_Value;
+pub const IEAPProviderConfig2 = extern struct {
+    pub const VTable = extern struct {
+        base: IEAPProviderConfig.VTable,
+        ServerInvokeConfigUI2: fn(
+            self: *const IEAPProviderConfig2,
+            dwEapTypeId: u32,
+            uConnectionParam: usize,
+            hWnd: HWND,
+            pConfigDataIn: *const u8,
+            dwSizeOfConfigDataIn: u32,
+            ppConfigDataOut: **u8,
+            pdwSizeOfConfigDataOut: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlobalConfig: fn(
+            self: *const IEAPProviderConfig2,
+            dwEapTypeId: u32,
+            ppConfigDataOut: **u8,
+            pdwSizeOfConfigDataOut: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IEAPProviderConfig.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEAPProviderConfig2_ServerInvokeConfigUI2(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: HWND, pConfigDataIn: *const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: **u8, pdwSizeOfConfigDataOut: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEAPProviderConfig2.VTable, self.vtable).ServerInvokeConfigUI2(@ptrCast(*const IEAPProviderConfig2, self), dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEAPProviderConfig2_GetGlobalConfig(self: *const T, dwEapTypeId: u32, ppConfigDataOut: **u8, pdwSizeOfConfigDataOut: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEAPProviderConfig2.VTable, self.vtable).GetGlobalConfig(@ptrCast(*const IEAPProviderConfig2, self), dwEapTypeId, ppConfigDataOut, pdwSizeOfConfigDataOut);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IEAPProviderConfig3_Value = @import("../zig.zig").Guid.initString("b78ecd12-68bb-4f86-9bf0-8438dd3be982");
+pub const IID_IEAPProviderConfig3 = &IID_IEAPProviderConfig3_Value;
+pub const IEAPProviderConfig3 = extern struct {
+    pub const VTable = extern struct {
+        base: IEAPProviderConfig2.VTable,
+        ServerInvokeCertificateConfigUI: fn(
+            self: *const IEAPProviderConfig3,
+            dwEapTypeId: u32,
+            uConnectionParam: usize,
+            hWnd: HWND,
+            pConfigDataIn: *const u8,
+            dwSizeOfConfigDataIn: u32,
+            ppConfigDataOut: **u8,
+            pdwSizeOfConfigDataOut: *u32,
+            uReserved: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IEAPProviderConfig2.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEAPProviderConfig3_ServerInvokeCertificateConfigUI(self: *const T, dwEapTypeId: u32, uConnectionParam: usize, hWnd: HWND, pConfigDataIn: *const u8, dwSizeOfConfigDataIn: u32, ppConfigDataOut: **u8, pdwSizeOfConfigDataOut: *u32, uReserved: usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEAPProviderConfig3.VTable, self.vtable).ServerInvokeCertificateConfigUI(@ptrCast(*const IEAPProviderConfig3, self), dwEapTypeId, uConnectionParam, hWnd, pConfigDataIn, dwSizeOfConfigDataIn, ppConfigDataOut, pdwSizeOfConfigDataOut, uReserved);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
 
 

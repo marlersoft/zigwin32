@@ -821,110 +821,17 @@ pub const TRANSPORT_QUALITYOFSERVICE_PARMNUM = @as(u32, 201);
 pub const TRANSPORT_NAME_PARMNUM = @as(u32, 202);
 
 //--------------------------------------------------------------------------------
-// Section: Types (293)
+// Section: Types (290)
 //--------------------------------------------------------------------------------
-pub const Net_level = extern enum(u32) {
-    None = 0,
-    @"1" = 1,
-    @"2" = 2,
-    @"3" = 3,
-    @"4" = 4,
-    @"1002" = 1002,
-    @"1005" = 1005,
-    @"21" = 21,
-    @"22" = 22,
-    @"1003" = 1003,
-    @"1006" = 1006,
-    @"1007" = 1007,
-    @"1008" = 1008,
-    @"1009" = 1009,
-    @"1010" = 1010,
-    @"1011" = 1011,
-    @"1012" = 1012,
-    @"1014" = 1014,
-    @"1017" = 1017,
-    @"1020" = 1020,
-    @"1024" = 1024,
-    @"1051" = 1051,
-    @"1052" = 1052,
-    @"1053" = 1053,
-    @"10" = 10,
-    @"11" = 11,
-    @"20" = 20,
-    @"502" = 502,
-    @"503" = 503,
-    @"1004" = 1004,
-    @"1501" = 1501,
-    @"1101" = 1101,
-    @"501" = 501,
-    @"1001" = 1001,
-    @"23" = 23,
-    @"24" = 24,
-};
-pub const level1 = Net_level.@"1";
-pub const level2 = Net_level.@"2";
-pub const level3 = Net_level.@"3";
-pub const level4 = Net_level.@"4";
-pub const level1002 = Net_level.@"1002";
-pub const level1005 = Net_level.@"1005";
-pub const level21 = Net_level.@"21";
-pub const level22 = Net_level.@"22";
-pub const level1003 = Net_level.@"1003";
-pub const level1006 = Net_level.@"1006";
-pub const level1007 = Net_level.@"1007";
-pub const level1008 = Net_level.@"1008";
-pub const level1009 = Net_level.@"1009";
-pub const level1010 = Net_level.@"1010";
-pub const level1011 = Net_level.@"1011";
-pub const level1012 = Net_level.@"1012";
-pub const level1014 = Net_level.@"1014";
-pub const level1017 = Net_level.@"1017";
-pub const level1020 = Net_level.@"1020";
-pub const level1024 = Net_level.@"1024";
-pub const level1051 = Net_level.@"1051";
-pub const level1052 = Net_level.@"1052";
-pub const level1053 = Net_level.@"1053";
-pub const level10 = Net_level.@"10";
-pub const level11 = Net_level.@"11";
-pub const level20 = Net_level.@"20";
-pub const level502 = Net_level.@"502";
-pub const level503 = Net_level.@"503";
-pub const level1004 = Net_level.@"1004";
-pub const level1501 = Net_level.@"1501";
-pub const level1101 = Net_level.@"1101";
-pub const level501 = Net_level.@"501";
-pub const level1001 = Net_level.@"1001";
-pub const level23 = Net_level.@"23";
-pub const level24 = Net_level.@"24";
-
-pub const NetWkstaSetInfo_levelFlags = extern enum(u32) {
-    @"100" = 100,
-    @"101" = 101,
-    @"102" = 102,
-    @"502" = 502,
-    @"1" = 1,
-    @"2" = 2,
-    @"503" = 503,
-    @"1004" = 1004,
-    @"1005" = 1005,
-    @"1006" = 1006,
-    @"1501" = 1501,
-    @"402" = 402,
-    @"403" = 403,
-    @"501" = 501,
-    @"10" = 10,
-};
-// TODO: enum 'NetWkstaSetInfo_levelFlags' has known issues with its value aliases
-
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const NetRequest_dwProvisionOptions = extern enum(u32) {
+pub const NET_REQUEST_PROVISION_OPTIONS = extern enum(u32) {
     R = 1073741824,
     _,
 };
-pub const NETSETUP_PROVISION_ONLINE_CALLER = NetRequest_dwProvisionOptions.R;
+pub const NETSETUP_PROVISION_ONLINE_CALLER = NET_REQUEST_PROVISION_OPTIONS.R;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const NetJoinDomain_fJoinOptionsFlags = extern enum(u32) {
+pub const NET_JOIN_DOMAIN_JOIN_OPTIONS = extern enum(u32) {
     JOIN_DOMAIN = 1,
     ACCT_CREATE = 2,
     WIN9X_UPGRADE = 16,
@@ -944,55 +851,48 @@ pub const NetJoinDomain_fJoinOptionsFlags = extern enum(u32) {
     IGNORE_UNSUPPORTED_FLAGS = 268435456,
     _,
 };
-pub const NETSETUP_JOIN_DOMAIN = NetJoinDomain_fJoinOptionsFlags.JOIN_DOMAIN;
-pub const NETSETUP_ACCT_CREATE = NetJoinDomain_fJoinOptionsFlags.ACCT_CREATE;
-pub const NETSETUP_WIN9X_UPGRADE = NetJoinDomain_fJoinOptionsFlags.WIN9X_UPGRADE;
-pub const NETSETUP_DOMAIN_JOIN_IF_JOINED = NetJoinDomain_fJoinOptionsFlags.DOMAIN_JOIN_IF_JOINED;
-pub const NETSETUP_JOIN_UNSECURE = NetJoinDomain_fJoinOptionsFlags.JOIN_UNSECURE;
-pub const NETSETUP_MACHINE_PWD_PASSED = NetJoinDomain_fJoinOptionsFlags.MACHINE_PWD_PASSED;
-pub const NETSETUP_DEFER_SPN_SET = NetJoinDomain_fJoinOptionsFlags.DEFER_SPN_SET;
-pub const NETSETUP_JOIN_DC_ACCOUNT = NetJoinDomain_fJoinOptionsFlags.JOIN_DC_ACCOUNT;
-pub const NETSETUP_JOIN_WITH_NEW_NAME = NetJoinDomain_fJoinOptionsFlags.JOIN_WITH_NEW_NAME;
-pub const NETSETUP_JOIN_READONLY = NetJoinDomain_fJoinOptionsFlags.JOIN_READONLY;
-pub const NETSETUP_AMBIGUOUS_DC = NetJoinDomain_fJoinOptionsFlags.AMBIGUOUS_DC;
-pub const NETSETUP_NO_NETLOGON_CACHE = NetJoinDomain_fJoinOptionsFlags.NO_NETLOGON_CACHE;
-pub const NETSETUP_DONT_CONTROL_SERVICES = NetJoinDomain_fJoinOptionsFlags.DONT_CONTROL_SERVICES;
-pub const NETSETUP_SET_MACHINE_NAME = NetJoinDomain_fJoinOptionsFlags.SET_MACHINE_NAME;
-pub const NETSETUP_FORCE_SPN_SET = NetJoinDomain_fJoinOptionsFlags.FORCE_SPN_SET;
-pub const NETSETUP_NO_ACCT_REUSE = NetJoinDomain_fJoinOptionsFlags.NO_ACCT_REUSE;
-pub const NETSETUP_IGNORE_UNSUPPORTED_FLAGS = NetJoinDomain_fJoinOptionsFlags.IGNORE_UNSUPPORTED_FLAGS;
+pub const NETSETUP_JOIN_DOMAIN = NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_DOMAIN;
+pub const NETSETUP_ACCT_CREATE = NET_JOIN_DOMAIN_JOIN_OPTIONS.ACCT_CREATE;
+pub const NETSETUP_WIN9X_UPGRADE = NET_JOIN_DOMAIN_JOIN_OPTIONS.WIN9X_UPGRADE;
+pub const NETSETUP_DOMAIN_JOIN_IF_JOINED = NET_JOIN_DOMAIN_JOIN_OPTIONS.DOMAIN_JOIN_IF_JOINED;
+pub const NETSETUP_JOIN_UNSECURE = NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_UNSECURE;
+pub const NETSETUP_MACHINE_PWD_PASSED = NET_JOIN_DOMAIN_JOIN_OPTIONS.MACHINE_PWD_PASSED;
+pub const NETSETUP_DEFER_SPN_SET = NET_JOIN_DOMAIN_JOIN_OPTIONS.DEFER_SPN_SET;
+pub const NETSETUP_JOIN_DC_ACCOUNT = NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_DC_ACCOUNT;
+pub const NETSETUP_JOIN_WITH_NEW_NAME = NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_WITH_NEW_NAME;
+pub const NETSETUP_JOIN_READONLY = NET_JOIN_DOMAIN_JOIN_OPTIONS.JOIN_READONLY;
+pub const NETSETUP_AMBIGUOUS_DC = NET_JOIN_DOMAIN_JOIN_OPTIONS.AMBIGUOUS_DC;
+pub const NETSETUP_NO_NETLOGON_CACHE = NET_JOIN_DOMAIN_JOIN_OPTIONS.NO_NETLOGON_CACHE;
+pub const NETSETUP_DONT_CONTROL_SERVICES = NET_JOIN_DOMAIN_JOIN_OPTIONS.DONT_CONTROL_SERVICES;
+pub const NETSETUP_SET_MACHINE_NAME = NET_JOIN_DOMAIN_JOIN_OPTIONS.SET_MACHINE_NAME;
+pub const NETSETUP_FORCE_SPN_SET = NET_JOIN_DOMAIN_JOIN_OPTIONS.FORCE_SPN_SET;
+pub const NETSETUP_NO_ACCT_REUSE = NET_JOIN_DOMAIN_JOIN_OPTIONS.NO_ACCT_REUSE;
+pub const NETSETUP_IGNORE_UNSUPPORTED_FLAGS = NET_JOIN_DOMAIN_JOIN_OPTIONS.IGNORE_UNSUPPORTED_FLAGS;
 
-pub const NetRemoteComputerSupports_OptionsWantedFlags = extern enum(i32) {
+pub const NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS = extern enum(i32) {
     REMOTE_ADMIN_PROTOCOL = 2,
     RPC = 4,
     SAM_PROTOCOL = 8,
     UNICODE = 16,
     LOCAL = 32,
 };
-pub const SUPPORTS_REMOTE_ADMIN_PROTOCOL = NetRemoteComputerSupports_OptionsWantedFlags.REMOTE_ADMIN_PROTOCOL;
-pub const SUPPORTS_RPC = NetRemoteComputerSupports_OptionsWantedFlags.RPC;
-pub const SUPPORTS_SAM_PROTOCOL = NetRemoteComputerSupports_OptionsWantedFlags.SAM_PROTOCOL;
-pub const SUPPORTS_UNICODE = NetRemoteComputerSupports_OptionsWantedFlags.UNICODE;
-pub const SUPPORTS_LOCAL = NetRemoteComputerSupports_OptionsWantedFlags.LOCAL;
+pub const SUPPORTS_REMOTE_ADMIN_PROTOCOL = NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS.REMOTE_ADMIN_PROTOCOL;
+pub const SUPPORTS_RPC = NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS.RPC;
+pub const SUPPORTS_SAM_PROTOCOL = NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS.SAM_PROTOCOL;
+pub const SUPPORTS_UNICODE = NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS.UNICODE;
+pub const SUPPORTS_LOCAL = NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS.LOCAL;
 
-pub const Net_Level = extern enum(u32) {
-    @"1" = 1,
-    @"2" = 2,
-    @"3" = 3,
+pub const FORCE_LEVEL_FLAGS = extern enum(u32) {
+    NOFORCE = 0,
+    FORCE = 1,
+    LOTS_OF_FORCE = 2,
 };
-pub const Level1 = Net_Level.@"1";
-pub const Level2 = Net_Level.@"2";
-pub const Level3 = Net_Level.@"3";
-
-pub const NetUseAdd_LevelFlags = extern enum(u32) {
-    @"1" = 1,
-    @"2" = 2,
-};
-pub const LevelFlags1 = NetUseAdd_LevelFlags.@"1";
-pub const LevelFlags2 = NetUseAdd_LevelFlags.@"2";
+pub const USE_NOFORCE = FORCE_LEVEL_FLAGS.NOFORCE;
+pub const USE_FORCE = FORCE_LEVEL_FLAGS.FORCE;
+pub const USE_LOTS_OF_FORCE = FORCE_LEVEL_FLAGS.LOTS_OF_FORCE;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const NetServerEnum_servertypeFlags = extern enum(u32) {
+pub const NET_SERVER_TYPE = extern enum(u32) {
     WORKSTATION = 1,
     SERVER = 2,
     SQLSERVER = 4,
@@ -1028,42 +928,42 @@ pub const NetServerEnum_servertypeFlags = extern enum(u32) {
     ALL = 4294967295,
     _,
 };
-pub const SV_TYPE_WORKSTATION = NetServerEnum_servertypeFlags.WORKSTATION;
-pub const SV_TYPE_SERVER = NetServerEnum_servertypeFlags.SERVER;
-pub const SV_TYPE_SQLSERVER = NetServerEnum_servertypeFlags.SQLSERVER;
-pub const SV_TYPE_DOMAIN_CTRL = NetServerEnum_servertypeFlags.DOMAIN_CTRL;
-pub const SV_TYPE_DOMAIN_BAKCTRL = NetServerEnum_servertypeFlags.DOMAIN_BAKCTRL;
-pub const SV_TYPE_TIME_SOURCE = NetServerEnum_servertypeFlags.TIME_SOURCE;
-pub const SV_TYPE_AFP = NetServerEnum_servertypeFlags.AFP;
-pub const SV_TYPE_NOVELL = NetServerEnum_servertypeFlags.NOVELL;
-pub const SV_TYPE_DOMAIN_MEMBER = NetServerEnum_servertypeFlags.DOMAIN_MEMBER;
-pub const SV_TYPE_PRINTQ_SERVER = NetServerEnum_servertypeFlags.PRINTQ_SERVER;
-pub const SV_TYPE_DIALIN_SERVER = NetServerEnum_servertypeFlags.DIALIN_SERVER;
-pub const SV_TYPE_XENIX_SERVER = NetServerEnum_servertypeFlags.XENIX_SERVER;
-pub const SV_TYPE_SERVER_UNIX = NetServerEnum_servertypeFlags.SERVER_UNIX;
-pub const SV_TYPE_NT = NetServerEnum_servertypeFlags.NT;
-pub const SV_TYPE_WFW = NetServerEnum_servertypeFlags.WFW;
-pub const SV_TYPE_SERVER_MFPN = NetServerEnum_servertypeFlags.SERVER_MFPN;
-pub const SV_TYPE_SERVER_NT = NetServerEnum_servertypeFlags.SERVER_NT;
-pub const SV_TYPE_POTENTIAL_BROWSER = NetServerEnum_servertypeFlags.POTENTIAL_BROWSER;
-pub const SV_TYPE_BACKUP_BROWSER = NetServerEnum_servertypeFlags.BACKUP_BROWSER;
-pub const SV_TYPE_MASTER_BROWSER = NetServerEnum_servertypeFlags.MASTER_BROWSER;
-pub const SV_TYPE_DOMAIN_MASTER = NetServerEnum_servertypeFlags.DOMAIN_MASTER;
-pub const SV_TYPE_SERVER_OSF = NetServerEnum_servertypeFlags.SERVER_OSF;
-pub const SV_TYPE_SERVER_VMS = NetServerEnum_servertypeFlags.SERVER_VMS;
-pub const SV_TYPE_WINDOWS = NetServerEnum_servertypeFlags.WINDOWS;
-pub const SV_TYPE_DFS = NetServerEnum_servertypeFlags.DFS;
-pub const SV_TYPE_CLUSTER_NT = NetServerEnum_servertypeFlags.CLUSTER_NT;
-pub const SV_TYPE_TERMINALSERVER = NetServerEnum_servertypeFlags.TERMINALSERVER;
-pub const SV_TYPE_CLUSTER_VS_NT = NetServerEnum_servertypeFlags.CLUSTER_VS_NT;
-pub const SV_TYPE_DCE = NetServerEnum_servertypeFlags.DCE;
-pub const SV_TYPE_ALTERNATE_XPORT = NetServerEnum_servertypeFlags.ALTERNATE_XPORT;
-pub const SV_TYPE_LOCAL_LIST_ONLY = NetServerEnum_servertypeFlags.LOCAL_LIST_ONLY;
-pub const SV_TYPE_DOMAIN_ENUM = NetServerEnum_servertypeFlags.DOMAIN_ENUM;
-pub const SV_TYPE_ALL = NetServerEnum_servertypeFlags.ALL;
+pub const SV_TYPE_WORKSTATION = NET_SERVER_TYPE.WORKSTATION;
+pub const SV_TYPE_SERVER = NET_SERVER_TYPE.SERVER;
+pub const SV_TYPE_SQLSERVER = NET_SERVER_TYPE.SQLSERVER;
+pub const SV_TYPE_DOMAIN_CTRL = NET_SERVER_TYPE.DOMAIN_CTRL;
+pub const SV_TYPE_DOMAIN_BAKCTRL = NET_SERVER_TYPE.DOMAIN_BAKCTRL;
+pub const SV_TYPE_TIME_SOURCE = NET_SERVER_TYPE.TIME_SOURCE;
+pub const SV_TYPE_AFP = NET_SERVER_TYPE.AFP;
+pub const SV_TYPE_NOVELL = NET_SERVER_TYPE.NOVELL;
+pub const SV_TYPE_DOMAIN_MEMBER = NET_SERVER_TYPE.DOMAIN_MEMBER;
+pub const SV_TYPE_PRINTQ_SERVER = NET_SERVER_TYPE.PRINTQ_SERVER;
+pub const SV_TYPE_DIALIN_SERVER = NET_SERVER_TYPE.DIALIN_SERVER;
+pub const SV_TYPE_XENIX_SERVER = NET_SERVER_TYPE.XENIX_SERVER;
+pub const SV_TYPE_SERVER_UNIX = NET_SERVER_TYPE.SERVER_UNIX;
+pub const SV_TYPE_NT = NET_SERVER_TYPE.NT;
+pub const SV_TYPE_WFW = NET_SERVER_TYPE.WFW;
+pub const SV_TYPE_SERVER_MFPN = NET_SERVER_TYPE.SERVER_MFPN;
+pub const SV_TYPE_SERVER_NT = NET_SERVER_TYPE.SERVER_NT;
+pub const SV_TYPE_POTENTIAL_BROWSER = NET_SERVER_TYPE.POTENTIAL_BROWSER;
+pub const SV_TYPE_BACKUP_BROWSER = NET_SERVER_TYPE.BACKUP_BROWSER;
+pub const SV_TYPE_MASTER_BROWSER = NET_SERVER_TYPE.MASTER_BROWSER;
+pub const SV_TYPE_DOMAIN_MASTER = NET_SERVER_TYPE.DOMAIN_MASTER;
+pub const SV_TYPE_SERVER_OSF = NET_SERVER_TYPE.SERVER_OSF;
+pub const SV_TYPE_SERVER_VMS = NET_SERVER_TYPE.SERVER_VMS;
+pub const SV_TYPE_WINDOWS = NET_SERVER_TYPE.WINDOWS;
+pub const SV_TYPE_DFS = NET_SERVER_TYPE.DFS;
+pub const SV_TYPE_CLUSTER_NT = NET_SERVER_TYPE.CLUSTER_NT;
+pub const SV_TYPE_TERMINALSERVER = NET_SERVER_TYPE.TERMINALSERVER;
+pub const SV_TYPE_CLUSTER_VS_NT = NET_SERVER_TYPE.CLUSTER_VS_NT;
+pub const SV_TYPE_DCE = NET_SERVER_TYPE.DCE;
+pub const SV_TYPE_ALTERNATE_XPORT = NET_SERVER_TYPE.ALTERNATE_XPORT;
+pub const SV_TYPE_LOCAL_LIST_ONLY = NET_SERVER_TYPE.LOCAL_LIST_ONLY;
+pub const SV_TYPE_DOMAIN_ENUM = NET_SERVER_TYPE.DOMAIN_ENUM;
+pub const SV_TYPE_ALL = NET_SERVER_TYPE.ALL;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const NetUserEnum_filterFlags = extern enum(u32) {
+pub const NET_USER_ENUM_FILTER_FLAGS = extern enum(u32) {
     TEMP_DUPLICATE_ACCOUNT = 1,
     NORMAL_ACCOUNT = 2,
     INTERDOMAIN_TRUST_ACCOUNT = 8,
@@ -1071,11 +971,11 @@ pub const NetUserEnum_filterFlags = extern enum(u32) {
     SERVER_TRUST_ACCOUNT = 32,
     _,
 };
-pub const FILTER_TEMP_DUPLICATE_ACCOUNT = NetUserEnum_filterFlags.TEMP_DUPLICATE_ACCOUNT;
-pub const FILTER_NORMAL_ACCOUNT = NetUserEnum_filterFlags.NORMAL_ACCOUNT;
-pub const FILTER_INTERDOMAIN_TRUST_ACCOUNT = NetUserEnum_filterFlags.INTERDOMAIN_TRUST_ACCOUNT;
-pub const FILTER_WORKSTATION_TRUST_ACCOUNT = NetUserEnum_filterFlags.WORKSTATION_TRUST_ACCOUNT;
-pub const FILTER_SERVER_TRUST_ACCOUNT = NetUserEnum_filterFlags.SERVER_TRUST_ACCOUNT;
+pub const FILTER_TEMP_DUPLICATE_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.TEMP_DUPLICATE_ACCOUNT;
+pub const FILTER_NORMAL_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.NORMAL_ACCOUNT;
+pub const FILTER_INTERDOMAIN_TRUST_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.INTERDOMAIN_TRUST_ACCOUNT;
+pub const FILTER_WORKSTATION_TRUST_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.WORKSTATION_TRUST_ACCOUNT;
+pub const FILTER_SERVER_TRUST_ACCOUNT = NET_USER_ENUM_FILTER_FLAGS.SERVER_TRUST_ACCOUNT;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const NETSETUP_PROVISION = extern enum(u32) {
@@ -1093,7 +993,7 @@ pub const NETSETUP_PROVISION_SKIP_ACCOUNT_SEARCH = NETSETUP_PROVISION.SKIP_ACCOU
 pub const NETSETUP_PROVISION_ROOT_CA_CERTS = NETSETUP_PROVISION.ROOT_CA_CERTS;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const USER_INFO_4_usri4_flags = extern enum(u32) {
+pub const USER_ACCOUNT_FLAGS = extern enum(u32) {
     SCRIPT = 1,
     ACCOUNTDISABLE = 2,
     HOMEDIR_REQUIRED = 8,
@@ -1111,21 +1011,21 @@ pub const USER_INFO_4_usri4_flags = extern enum(u32) {
     TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = 16777216,
     _,
 };
-pub const UF_SCRIPT = USER_INFO_4_usri4_flags.SCRIPT;
-pub const UF_ACCOUNTDISABLE = USER_INFO_4_usri4_flags.ACCOUNTDISABLE;
-pub const UF_HOMEDIR_REQUIRED = USER_INFO_4_usri4_flags.HOMEDIR_REQUIRED;
-pub const UF_PASSWD_NOTREQD = USER_INFO_4_usri4_flags.PASSWD_NOTREQD;
-pub const UF_PASSWD_CANT_CHANGE = USER_INFO_4_usri4_flags.PASSWD_CANT_CHANGE;
-pub const UF_LOCKOUT = USER_INFO_4_usri4_flags.LOCKOUT;
-pub const UF_DONT_EXPIRE_PASSWD = USER_INFO_4_usri4_flags.DONT_EXPIRE_PASSWD;
-pub const UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED = USER_INFO_4_usri4_flags.ENCRYPTED_TEXT_PASSWORD_ALLOWED;
-pub const UF_NOT_DELEGATED = USER_INFO_4_usri4_flags.NOT_DELEGATED;
-pub const UF_SMARTCARD_REQUIRED = USER_INFO_4_usri4_flags.SMARTCARD_REQUIRED;
-pub const UF_USE_DES_KEY_ONLY = USER_INFO_4_usri4_flags.USE_DES_KEY_ONLY;
-pub const UF_DONT_REQUIRE_PREAUTH = USER_INFO_4_usri4_flags.DONT_REQUIRE_PREAUTH;
-pub const UF_TRUSTED_FOR_DELEGATION = USER_INFO_4_usri4_flags.TRUSTED_FOR_DELEGATION;
-pub const UF_PASSWORD_EXPIRED = USER_INFO_4_usri4_flags.PASSWORD_EXPIRED;
-pub const UF_TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = USER_INFO_4_usri4_flags.TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION;
+pub const UF_SCRIPT = USER_ACCOUNT_FLAGS.SCRIPT;
+pub const UF_ACCOUNTDISABLE = USER_ACCOUNT_FLAGS.ACCOUNTDISABLE;
+pub const UF_HOMEDIR_REQUIRED = USER_ACCOUNT_FLAGS.HOMEDIR_REQUIRED;
+pub const UF_PASSWD_NOTREQD = USER_ACCOUNT_FLAGS.PASSWD_NOTREQD;
+pub const UF_PASSWD_CANT_CHANGE = USER_ACCOUNT_FLAGS.PASSWD_CANT_CHANGE;
+pub const UF_LOCKOUT = USER_ACCOUNT_FLAGS.LOCKOUT;
+pub const UF_DONT_EXPIRE_PASSWD = USER_ACCOUNT_FLAGS.DONT_EXPIRE_PASSWD;
+pub const UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED = USER_ACCOUNT_FLAGS.ENCRYPTED_TEXT_PASSWORD_ALLOWED;
+pub const UF_NOT_DELEGATED = USER_ACCOUNT_FLAGS.NOT_DELEGATED;
+pub const UF_SMARTCARD_REQUIRED = USER_ACCOUNT_FLAGS.SMARTCARD_REQUIRED;
+pub const UF_USE_DES_KEY_ONLY = USER_ACCOUNT_FLAGS.USE_DES_KEY_ONLY;
+pub const UF_DONT_REQUIRE_PREAUTH = USER_ACCOUNT_FLAGS.DONT_REQUIRE_PREAUTH;
+pub const UF_TRUSTED_FOR_DELEGATION = USER_ACCOUNT_FLAGS.TRUSTED_FOR_DELEGATION;
+pub const UF_PASSWORD_EXPIRED = USER_ACCOUNT_FLAGS.PASSWORD_EXPIRED;
+pub const UF_TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION = USER_ACCOUNT_FLAGS.TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const AF_OP = extern enum(u32) {
@@ -1140,12 +1040,12 @@ pub const AF_OP_COMM = AF_OP.COMM;
 pub const AF_OP_SERVER = AF_OP.SERVER;
 pub const AF_OP_ACCOUNTS = AF_OP.ACCOUNTS;
 
-pub const SERVER_INFO_402_sv402_security = extern enum(u32) {
+pub const SERVER_INFO_SECURITY = extern enum(u32) {
     SHARESECURITY = 0,
     USERSECURITY = 1,
 };
-pub const SV_SHARESECURITY = SERVER_INFO_402_sv402_security.SHARESECURITY;
-pub const SV_USERSECURITY = SERVER_INFO_402_sv402_security.USERSECURITY;
+pub const SV_SHARESECURITY = SERVER_INFO_SECURITY.SHARESECURITY;
+pub const SV_USERSECURITY = SERVER_INFO_SECURITY.USERSECURITY;
 
 pub const USER_PRIV = extern enum(u32) {
     GUEST = 0,
@@ -1156,34 +1056,34 @@ pub const USER_PRIV_GUEST = USER_PRIV.GUEST;
 pub const USER_PRIV_USER = USER_PRIV.USER;
 pub const USER_PRIV_ADMIN = USER_PRIV.ADMIN;
 
-pub const USE_INFO_1_ui1_asg_type = extern enum(u32) {
+pub const USE_INFO_ASG_TYPE = extern enum(u32) {
     WILDCARD = 4294967295,
     DISKDEV = 0,
     SPOOLDEV = 1,
     IPC = 3,
 };
-pub const USE_WILDCARD = USE_INFO_1_ui1_asg_type.WILDCARD;
-pub const USE_DISKDEV = USE_INFO_1_ui1_asg_type.DISKDEV;
-pub const USE_SPOOLDEV = USE_INFO_1_ui1_asg_type.SPOOLDEV;
-pub const USE_IPC = USE_INFO_1_ui1_asg_type.IPC;
+pub const USE_WILDCARD = USE_INFO_ASG_TYPE.WILDCARD;
+pub const USE_DISKDEV = USE_INFO_ASG_TYPE.DISKDEV;
+pub const USE_SPOOLDEV = USE_INFO_ASG_TYPE.SPOOLDEV;
+pub const USE_IPC = USE_INFO_ASG_TYPE.IPC;
 
-pub const SERVER_INFO_1016_sv1016_hidden = extern enum(u32) {
+pub const SERVER_INFO_HIDDEN = extern enum(u32) {
     VISIBLE = 0,
     HIDDEN = 1,
 };
-pub const SV_VISIBLE = SERVER_INFO_1016_sv1016_hidden.VISIBLE;
-pub const SV_HIDDEN = SERVER_INFO_1016_sv1016_hidden.HIDDEN;
+pub const SV_VISIBLE = SERVER_INFO_HIDDEN.VISIBLE;
+pub const SV_HIDDEN = SERVER_INFO_HIDDEN.HIDDEN;
 
-pub const USER_MODALS_INFO_1006_usrmod1006_roleFlags = extern enum(u32) {
+pub const USER_MODALS_ROLES = extern enum(u32) {
     STANDALONE = 0,
     MEMBER = 1,
     BACKUP = 2,
     PRIMARY = 3,
 };
-pub const UAS_ROLE_STANDALONE = USER_MODALS_INFO_1006_usrmod1006_roleFlags.STANDALONE;
-pub const UAS_ROLE_MEMBER = USER_MODALS_INFO_1006_usrmod1006_roleFlags.MEMBER;
-pub const UAS_ROLE_BACKUP = USER_MODALS_INFO_1006_usrmod1006_roleFlags.BACKUP;
-pub const UAS_ROLE_PRIMARY = USER_MODALS_INFO_1006_usrmod1006_roleFlags.PRIMARY;
+pub const UAS_ROLE_STANDALONE = USER_MODALS_ROLES.STANDALONE;
+pub const UAS_ROLE_MEMBER = USER_MODALS_ROLES.MEMBER;
+pub const UAS_ROLE_BACKUP = USER_MODALS_ROLES.BACKUP;
+pub const UAS_ROLE_PRIMARY = USER_MODALS_ROLES.PRIMARY;
 
 pub const USER_INFO_0 = extern struct {
     usri0_name: PWSTR,
@@ -1196,7 +1096,7 @@ pub const USER_INFO_1 = extern struct {
     usri1_priv: USER_PRIV,
     usri1_home_dir: PWSTR,
     usri1_comment: PWSTR,
-    usri1_flags: USER_INFO_4_usri4_flags,
+    usri1_flags: USER_ACCOUNT_FLAGS,
     usri1_script_path: PWSTR,
 };
 
@@ -1207,7 +1107,7 @@ pub const USER_INFO_2 = extern struct {
     usri2_priv: USER_PRIV,
     usri2_home_dir: PWSTR,
     usri2_comment: PWSTR,
-    usri2_flags: USER_INFO_4_usri4_flags,
+    usri2_flags: USER_ACCOUNT_FLAGS,
     usri2_script_path: PWSTR,
     usri2_auth_flags: AF_OP,
     usri2_full_name: PWSTR,
@@ -1234,7 +1134,7 @@ pub const USER_INFO_3 = extern struct {
     usri3_priv: USER_PRIV,
     usri3_home_dir: PWSTR,
     usri3_comment: PWSTR,
-    usri3_flags: USER_INFO_4_usri4_flags,
+    usri3_flags: USER_ACCOUNT_FLAGS,
     usri3_script_path: PWSTR,
     usri3_auth_flags: AF_OP,
     usri3_full_name: PWSTR,
@@ -1266,7 +1166,7 @@ pub const USER_INFO_4 = extern struct {
     usri4_priv: USER_PRIV,
     usri4_home_dir: PWSTR,
     usri4_comment: PWSTR,
-    usri4_flags: USER_INFO_4_usri4_flags,
+    usri4_flags: USER_ACCOUNT_FLAGS,
     usri4_script_path: PWSTR,
     usri4_auth_flags: AF_OP,
     usri4_full_name: PWSTR,
@@ -1325,7 +1225,7 @@ pub const USER_INFO_20 = extern struct {
     usri20_name: PWSTR,
     usri20_full_name: PWSTR,
     usri20_comment: PWSTR,
-    usri20_flags: USER_INFO_4_usri4_flags,
+    usri20_flags: USER_ACCOUNT_FLAGS,
     usri20_user_id: u32,
 };
 
@@ -1340,7 +1240,7 @@ pub const USER_INFO_22 = extern struct {
     usri22_priv: USER_PRIV,
     usri22_home_dir: PWSTR,
     usri22_comment: PWSTR,
-    usri22_flags: USER_INFO_4_usri4_flags,
+    usri22_flags: USER_ACCOUNT_FLAGS,
     usri22_script_path: PWSTR,
     usri22_auth_flags: AF_OP,
     usri22_full_name: PWSTR,
@@ -1364,7 +1264,7 @@ pub const USER_INFO_23 = extern struct {
     usri23_name: PWSTR,
     usri23_full_name: PWSTR,
     usri23_comment: PWSTR,
-    usri23_flags: USER_INFO_4_usri4_flags,
+    usri23_flags: USER_ACCOUNT_FLAGS,
     usri23_user_sid: PSID,
 };
 
@@ -1393,7 +1293,7 @@ pub const USER_INFO_1007 = extern struct {
 };
 
 pub const USER_INFO_1008 = extern struct {
-    usri1008_flags: USER_INFO_4_usri4_flags,
+    usri1008_flags: USER_ACCOUNT_FLAGS,
 };
 
 pub const USER_INFO_1009 = extern struct {
@@ -1502,7 +1402,7 @@ pub const USER_MODALS_INFO_1005 = extern struct {
 };
 
 pub const USER_MODALS_INFO_1006 = extern struct {
-    usrmod1006_role: USER_MODALS_INFO_1006_usrmod1006_roleFlags,
+    usrmod1006_role: USER_MODALS_ROLES,
 };
 
 pub const USER_MODALS_INFO_1007 = extern struct {
@@ -1589,7 +1489,7 @@ pub const LOCALGROUP_USERS_INFO_0 = extern struct {
 pub const NET_DISPLAY_USER = extern struct {
     usri1_name: PWSTR,
     usri1_comment: PWSTR,
-    usri1_flags: USER_INFO_4_usri4_flags,
+    usri1_flags: USER_ACCOUNT_FLAGS,
     usri1_full_name: PWSTR,
     usri1_user_id: u32,
     usri1_next_index: u32,
@@ -1598,7 +1498,7 @@ pub const NET_DISPLAY_USER = extern struct {
 pub const NET_DISPLAY_MACHINE = extern struct {
     usri2_name: PWSTR,
     usri2_comment: PWSTR,
-    usri2_flags: USER_INFO_4_usri4_flags,
+    usri2_flags: USER_ACCOUNT_FLAGS,
     usri2_user_id: u32,
     usri2_next_index: u32,
 };
@@ -1949,7 +1849,7 @@ pub const SERVER_INFO_101 = extern struct {
     sv101_name: PWSTR,
     sv101_version_major: u32,
     sv101_version_minor: u32,
-    sv101_type: NetServerEnum_servertypeFlags,
+    sv101_type: NET_SERVER_TYPE,
     sv101_comment: PWSTR,
 };
 
@@ -1958,11 +1858,11 @@ pub const SERVER_INFO_102 = extern struct {
     sv102_name: PWSTR,
     sv102_version_major: u32,
     sv102_version_minor: u32,
-    sv102_type: NetServerEnum_servertypeFlags,
+    sv102_type: NET_SERVER_TYPE,
     sv102_comment: PWSTR,
     sv102_users: u32,
     sv102_disc: i32,
-    sv102_hidden: SERVER_INFO_1016_sv1016_hidden,
+    sv102_hidden: SERVER_INFO_HIDDEN,
     sv102_announce: u32,
     sv102_anndelta: u32,
     sv102_licenses: u32,
@@ -1991,7 +1891,7 @@ pub const SERVER_INFO_402 = extern struct {
     sv402_glist_mtime: u32,
     sv402_alist_mtime: u32,
     sv402_alerts: PWSTR,
-    sv402_security: SERVER_INFO_402_sv402_security,
+    sv402_security: SERVER_INFO_SECURITY,
     sv402_numadmin: u32,
     sv402_lanmask: u32,
     sv402_guestacct: PWSTR,
@@ -2025,7 +1925,7 @@ pub const SERVER_INFO_403 = extern struct {
     sv403_glist_mtime: u32,
     sv403_alist_mtime: u32,
     sv403_alerts: PWSTR,
-    sv403_security: SERVER_INFO_402_sv402_security,
+    sv403_security: SERVER_INFO_SECURITY,
     sv403_numadmin: u32,
     sv403_lanmask: u32,
     sv403_guestacct: PWSTR,
@@ -2241,7 +2141,7 @@ pub const SERVER_INFO_1010 = extern struct {
 };
 
 pub const SERVER_INFO_1016 = extern struct {
-    sv1016_hidden: SERVER_INFO_1016_sv1016_hidden,
+    sv1016_hidden: SERVER_INFO_HIDDEN,
 };
 
 pub const SERVER_INFO_1017 = extern struct {
@@ -2674,7 +2574,7 @@ pub const USE_INFO_1 = extern struct {
     ui1_remote: PWSTR,
     ui1_password: PWSTR,
     ui1_status: u32,
-    ui1_asg_type: USE_INFO_1_ui1_asg_type,
+    ui1_asg_type: USE_INFO_ASG_TYPE,
     ui1_refcount: u32,
     ui1_usecount: u32,
 };
@@ -2684,7 +2584,7 @@ pub const USE_INFO_2 = extern struct {
     ui2_remote: PWSTR,
     ui2_password: PWSTR,
     ui2_status: u32,
-    ui2_asg_type: USE_INFO_1_ui1_asg_type,
+    ui2_asg_type: USE_INFO_ASG_TYPE,
     ui2_refcount: u32,
     ui2_usecount: u32,
     ui2_username: PWSTR,
@@ -3013,7 +2913,7 @@ pub const WKSTA_TRANSPORT_INFO_0 = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserAdd(
     servername: ?[*:0]const u16,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3021,8 +2921,8 @@ pub extern "samcli" fn NetUserAdd(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserEnum(
     servername: ?[*:0]const u16,
-    level: Net_level,
-    filter: NetUserEnum_filterFlags,
+    level: u32,
+    filter: NET_USER_ENUM_FILTER_FLAGS,
     bufptr: **u8,
     prefmaxlen: u32,
     entriesread: *u32,
@@ -3034,7 +2934,7 @@ pub extern "samcli" fn NetUserEnum(
 pub extern "samcli" fn NetUserGetInfo(
     servername: ?[*:0]const u16,
     username: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3042,7 +2942,7 @@ pub extern "samcli" fn NetUserGetInfo(
 pub extern "samcli" fn NetUserSetInfo(
     servername: ?[*:0]const u16,
     username: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3057,7 +2957,7 @@ pub extern "samcli" fn NetUserDel(
 pub extern "samcli" fn NetUserGetGroups(
     servername: ?[*:0]const u16,
     username: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
     prefmaxlen: u32,
     entriesread: *u32,
@@ -3068,7 +2968,7 @@ pub extern "samcli" fn NetUserGetGroups(
 pub extern "samcli" fn NetUserSetGroups(
     servername: ?[*:0]const u16,
     username: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     num_entries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3088,14 +2988,14 @@ pub extern "samcli" fn NetUserGetLocalGroups(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserModalsGet(
     servername: ?[*:0]const u16,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetUserModalsSet(
     servername: ?[*:0]const u16,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3111,7 +3011,7 @@ pub extern "samcli" fn NetUserChangePassword(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGroupAdd(
     servername: ?[*:0]const u16,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3126,7 +3026,7 @@ pub extern "samcli" fn NetGroupAddUser(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGroupEnum(
     servername: ?[*:0]const u16,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
     prefmaxlen: u32,
     entriesread: *u32,
@@ -3138,7 +3038,7 @@ pub extern "samcli" fn NetGroupEnum(
 pub extern "samcli" fn NetGroupGetInfo(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3146,7 +3046,7 @@ pub extern "samcli" fn NetGroupGetInfo(
 pub extern "samcli" fn NetGroupSetInfo(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3168,7 +3068,7 @@ pub extern "samcli" fn NetGroupDelUser(
 pub extern "samcli" fn NetGroupGetUsers(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
     prefmaxlen: u32,
     entriesread: *u32,
@@ -3180,7 +3080,7 @@ pub extern "samcli" fn NetGroupGetUsers(
 pub extern "samcli" fn NetGroupSetUsers(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     totalentries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3188,7 +3088,7 @@ pub extern "samcli" fn NetGroupSetUsers(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetLocalGroupAdd(
     servername: ?[*:0]const u16,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3202,7 +3102,7 @@ pub extern "samcli" fn NetLocalGroupAddMember(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetLocalGroupEnum(
     servername: ?[*:0]const u16,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
     prefmaxlen: u32,
     entriesread: *u32,
@@ -3222,7 +3122,7 @@ pub extern "samcli" fn NetLocalGroupGetInfo(
 pub extern "samcli" fn NetLocalGroupSetInfo(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3243,7 +3143,7 @@ pub extern "samcli" fn NetLocalGroupDelMember(
 pub extern "samcli" fn NetLocalGroupGetMembers(
     servername: ?[*:0]const u16,
     localgroupname: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
     prefmaxlen: u32,
     entriesread: *u32,
@@ -3255,7 +3155,7 @@ pub extern "samcli" fn NetLocalGroupGetMembers(
 pub extern "samcli" fn NetLocalGroupSetMembers(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     totalentries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3264,7 +3164,7 @@ pub extern "samcli" fn NetLocalGroupSetMembers(
 pub extern "samcli" fn NetLocalGroupAddMembers(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     totalentries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3273,7 +3173,7 @@ pub extern "samcli" fn NetLocalGroupAddMembers(
 pub extern "samcli" fn NetLocalGroupDelMembers(
     servername: ?[*:0]const u16,
     groupname: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     totalentries: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3281,7 +3181,7 @@ pub extern "samcli" fn NetLocalGroupDelMembers(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetQueryDisplayInformation(
     ServerName: [*:0]const u16,
-    Level: Net_Level,
+    Level: u32,
     Index: u32,
     EntriesRequested: u32,
     PreferredMaximumLength: u32,
@@ -3292,7 +3192,7 @@ pub extern "samcli" fn NetQueryDisplayInformation(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "samcli" fn NetGetDisplayInformationIndex(
     ServerName: [*:0]const u16,
-    Level: Net_Level,
+    Level: u32,
     Prefix: [*:0]const u16,
     Index: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3310,7 +3210,7 @@ pub extern "NETAPI32" fn NetAccessEnum(
     servername: ?[*:0]const u16,
     BasePath: [*:0]const u16,
     Recursive: u32,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
     prefmaxlen: u32,
     entriesread: *u32,
@@ -3384,7 +3284,7 @@ pub extern "wkscli" fn NetJoinDomain(
     lpMachineAccountOU: ?[*:0]const u16,
     lpAccount: ?[*:0]const u16,
     lpPassword: ?[*:0]const u16,
-    fJoinOptions: NetJoinDomain_fJoinOptionsFlags,
+    fJoinOptions: NET_JOIN_DOMAIN_JOIN_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3476,7 +3376,7 @@ pub extern "NETAPI32" fn NetRequestOfflineDomainJoin(
     // TODO: what to do with BytesParamIndex 1?
     pProvisionBinData: *u8,
     cbProvisionBinDataSize: u32,
-    dwOptions: NetRequest_dwProvisionOptions,
+    dwOptions: NET_REQUEST_PROVISION_OPTIONS,
     lpWindowsPath: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3493,7 +3393,7 @@ pub extern "NETAPI32" fn NetRequestProvisioningPackageInstall(
     // TODO: what to do with BytesParamIndex 1?
     pPackageBinData: *u8,
     dwPackageBinDataSize: u32,
-    dwProvisionOptions: NetRequest_dwProvisionOptions,
+    dwProvisionOptions: NET_REQUEST_PROVISION_OPTIONS,
     lpWindowsPath: [*:0]const u16,
     pvReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3660,7 +3560,7 @@ pub extern "NETAPI32" fn NetMessageNameAdd(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetMessageNameEnum(
     servername: ?[*:0]const u16,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
     prefmaxlen: u32,
     entriesread: *u32,
@@ -3672,7 +3572,7 @@ pub extern "NETAPI32" fn NetMessageNameEnum(
 pub extern "NETAPI32" fn NetMessageNameGetInfo(
     servername: ?[*:0]const u16,
     msgname: [*:0]const u16,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3700,7 +3600,7 @@ pub extern "srvcli" fn NetRemoteTOD(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netutils" fn NetRemoteComputerSupports(
     UncServerName: [*:0]const u16,
-    OptionsWanted: NetRemoteComputerSupports_OptionsWantedFlags,
+    OptionsWanted: NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS,
     OptionsSupported: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3738,12 +3638,12 @@ pub extern "schedcli" fn NetScheduleJobGetInfo(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "NETAPI32" fn NetServerEnum(
     servername: ?[*:0]const u16,
-    level: NetWkstaSetInfo_levelFlags,
+    level: u32,
     bufptr: **u8,
     prefmaxlen: u32,
     entriesread: *u32,
     totalentries: *u32,
-    servertype: NetServerEnum_servertypeFlags,
+    servertype: NET_SERVER_TYPE,
     domain: ?[*:0]const u16,
     resume_handle: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3751,14 +3651,14 @@ pub extern "NETAPI32" fn NetServerEnum(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerGetInfo(
     servername: ?PWSTR,
-    level: NetWkstaSetInfo_levelFlags,
+    level: u32,
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerSetInfo(
     servername: ?PWSTR,
-    level: NetWkstaSetInfo_levelFlags,
+    level: u32,
     buf: *u8,
     ParmError: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3797,21 +3697,21 @@ pub extern "srvcli" fn NetServerTransportAdd(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerTransportAddEx(
     servername: ?PWSTR,
-    level: Net_level,
+    level: u32,
     bufptr: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerTransportDel(
     servername: ?PWSTR,
-    level: Net_level,
+    level: u32,
     bufptr: *u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "srvcli" fn NetServerTransportEnum(
     servername: ?PWSTR,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
     prefmaxlen: u32,
     entriesread: *u32,
@@ -3848,14 +3748,14 @@ pub extern "NETAPI32" fn NetServiceInstall(
     servername: ?[*:0]const u16,
     service: [*:0]const u16,
     argc: u32,
-    argv: [*]*PWSTR,
+    argv: [*]PWSTR,
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetUseAdd(
     servername: ?*i8,
-    LevelFlags: NetUseAdd_LevelFlags,
+    LevelFlags: u32,
     buf: *u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3864,7 +3764,7 @@ pub extern "wkscli" fn NetUseAdd(
 pub extern "wkscli" fn NetUseDel(
     UncServerName: ?PWSTR,
     UseName: PWSTR,
-    ForceLevelFlags: u32,
+    ForceLevelFlags: FORCE_LEVEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3889,14 +3789,14 @@ pub extern "wkscli" fn NetUseGetInfo(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetWkstaGetInfo(
     servername: ?PWSTR,
-    level: NetWkstaSetInfo_levelFlags,
+    level: u32,
     bufptr: ?*?*u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetWkstaSetInfo(
     servername: ?PWSTR,
-    level: NetWkstaSetInfo_levelFlags,
+    level: u32,
     buffer: *u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3904,14 +3804,14 @@ pub extern "wkscli" fn NetWkstaSetInfo(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetWkstaUserGetInfo(
     reserved: ?PWSTR,
-    level: Net_level,
+    level: u32,
     bufptr: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetWkstaUserSetInfo(
     reserved: ?PWSTR,
-    level: Net_level,
+    level: u32,
     buf: *u8,
     parm_err: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3919,7 +3819,7 @@ pub extern "wkscli" fn NetWkstaUserSetInfo(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wkscli" fn NetWkstaUserEnum(
     servername: ?PWSTR,
-    level: Net_level,
+    level: u32,
     bufptr: ?*?*u8,
     prefmaxlen: u32,
     entriesread: ?*u32,
@@ -3937,7 +3837,7 @@ pub extern "wkscli" fn NetWkstaTransportAdd(
 pub extern "wkscli" fn NetWkstaTransportDel(
     servername: ?PWSTR,
     transportname: ?PWSTR,
-    ucond: u32,
+    ucond: FORCE_LEVEL_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3978,8 +3878,8 @@ const BOOL = @import("system_services.zig").BOOL;
 
 test {
     const constant_export_count = 817;
-    const type_export_count = 293;
-    const enum_value_export_count = 163;
+    const type_export_count = 290;
+    const enum_value_export_count = 126;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 113;

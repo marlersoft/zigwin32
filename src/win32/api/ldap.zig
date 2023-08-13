@@ -355,7 +355,7 @@ pub const ldapapiinfoA = extern struct {
     ldapai_api_version: i32,
     ldapai_protocol_version: i32,
     ldapai_extensions: **i8,
-    ldapai_vendor_name: *i8,
+    ldapai_vendor_name: PSTR,
     ldapai_vendor_version: i32,
 };
 
@@ -370,7 +370,7 @@ pub const ldapapiinfoW = extern struct {
 
 pub const LDAPAPIFeatureInfoA = extern struct {
     ldapaif_info_version: i32,
-    ldapaif_name: *i8,
+    ldapaif_name: PSTR,
     ldapaif_version: i32,
 };
 
@@ -2323,14 +2323,14 @@ pub extern "WLDAP32" fn ber_peek_tag(
 pub extern "WLDAP32" fn ber_first_element(
     pBerElement: *berelement,
     pLen: *u32,
-    ppOpaque: **i8,
+    ppOpaque: **CHAR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WLDAP32" fn ber_next_element(
     pBerElement: *berelement,
     pLen: *u32,
-    @"opaque": *i8,
+    @"opaque": PSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -2421,12 +2421,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const PWSTR = @import("system_services.zig").PWSTR;
 const PSTR = @import("system_services.zig").PSTR;
 const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
 const HANDLE = @import("system_services.zig").HANDLE;
+const CHAR = @import("system_services.zig").CHAR;
 const SecPkgContext_IssuerListInfoEx = @import("security.zig").SecPkgContext_IssuerListInfoEx;
 
 test {
@@ -2445,7 +2446,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 243;
     const unicode_alias_count = 14;
-    const import_count = 5;
+    const import_count = 6;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

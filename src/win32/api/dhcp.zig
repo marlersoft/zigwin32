@@ -406,12 +406,12 @@ pub const DHCP_SERVER_OPTIONS = extern struct {
     Server: *u32,
     ParameterRequestList: *u8,
     ParameterRequestListLength: u32,
-    MachineName: *i8,
+    MachineName: PSTR,
     MachineNameLength: u32,
     ClientHardwareAddressType: u8,
     ClientHardwareAddressLength: u8,
     ClientHardwareAddress: *u8,
-    ClassIdentifier: *i8,
+    ClassIdentifier: PSTR,
     ClassIdentifierLength: u32,
     VendorClass: *u8,
     VendorClassLength: u32,
@@ -419,7 +419,7 @@ pub const DHCP_SERVER_OPTIONS = extern struct {
     DNSNameLength: u32,
     DNSName: *u8,
     DSDomainNameRequested: u8,
-    DSDomainName: *i8,
+    DSDomainName: PSTR,
     DSDomainNameLen: u32,
     ScopeId: *u32,
 };
@@ -3377,9 +3377,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const PWSTR = @import("system_services.zig").PWSTR;
+const PSTR = @import("system_services.zig").PSTR;
 const BOOL = @import("system_services.zig").BOOL;
 
 test {
@@ -3400,7 +3401,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 210;
     const unicode_alias_count = 0;
-    const import_count = 2;
+    const import_count = 3;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

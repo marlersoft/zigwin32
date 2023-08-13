@@ -15,14 +15,14 @@ pub const ISystemMediaTransportControlsInterop = extern struct {
             self: *const ISystemMediaTransportControlsInterop,
             appWindow: HWND,
             riid: *const Guid,
-            mediaTransportControl: ?*?*c_void,
+            mediaTransportControl: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISystemMediaTransportControlsInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, mediaTransportControl: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISystemMediaTransportControlsInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, mediaTransportControl: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISystemMediaTransportControlsInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const ISystemMediaTransportControlsInterop, self), appWindow, riid, mediaTransportControl);
         }
     };}

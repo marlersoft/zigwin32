@@ -661,7 +661,7 @@ pub const IITWordWheel = extern struct {
             self: *const IITWordWheel,
             lpITDB: *IITDatabase,
             lpszMoniker: [*:0]const u16,
-            dwFlags: IITWordWheel_OpenFlags,
+            dwFlags: WORD_WHEEL_OPEN_FLAGS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Close: fn(
             self: *const IITWordWheel,
@@ -724,7 +724,7 @@ pub const IITWordWheel = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IITWordWheel_Open(self: *const T, lpITDB: *IITDatabase, lpszMoniker: [*:0]const u16, dwFlags: IITWordWheel_OpenFlags) callconv(.Inline) HRESULT {
+        pub fn IITWordWheel_Open(self: *const T, lpITDB: *IITDatabase, lpszMoniker: [*:0]const u16, dwFlags: WORD_WHEEL_OPEN_FLAGS) callconv(.Inline) HRESULT {
             return @ptrCast(*const IITWordWheel.VTable, self.vtable).Open(@ptrCast(*const IITWordWheel, self), lpITDB, lpszMoniker, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1272,11 +1272,11 @@ pub const IITResultSet = extern struct {
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IITWordWheel_OpenFlags = extern enum(u32) {
+pub const WORD_WHEEL_OPEN_FLAGS = extern enum(u32) {
     T = 0,
     _,
 };
-pub const ITWW_OPEN_CONNECT = IITWordWheel_OpenFlags.T;
+pub const ITWW_OPEN_CONNECT = WORD_WHEEL_OPEN_FLAGS.T;
 
 
 //--------------------------------------------------------------------------------

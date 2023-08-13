@@ -1209,7 +1209,7 @@ pub const IID_ISdoServiceControl = &IID_ISdoServiceControl_Value;
 pub const ISdoServiceControl = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        StartServiceA: fn(
+        StartService: fn(
             self: *const ISdoServiceControl,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         StopService: fn(
@@ -1227,8 +1227,8 @@ pub const ISdoServiceControl = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISdoServiceControl_StartServiceA(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISdoServiceControl.VTable, self.vtable).StartServiceA(@ptrCast(*const ISdoServiceControl, self));
+        pub fn ISdoServiceControl_StartService(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISdoServiceControl.VTable, self.vtable).StartService(@ptrCast(*const ISdoServiceControl, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISdoServiceControl_StopService(self: *const T) callconv(.Inline) HRESULT {
@@ -1277,6 +1277,7 @@ pub const ISdo = extern struct {
         Restore: fn(
             self: *const ISdo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISdo,
             ppEnumVARIANT: **IUnknown,
@@ -1323,6 +1324,7 @@ pub const IID_ISdoCollection = &IID_ISdoCollection_Value;
 pub const ISdoCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ISdoCollection,
             pCount: *i32,
@@ -1352,6 +1354,7 @@ pub const ISdoCollection = extern struct {
             Name: *VARIANT,
             pItem: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISdoCollection,
             ppEnumVARIANT: **IUnknown,

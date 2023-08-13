@@ -2213,18 +2213,6 @@ pub const WLAN_REASON_CODE_RESERVED_END = @as(u32, 786431);
 //--------------------------------------------------------------------------------
 // Section: Types (458)
 //--------------------------------------------------------------------------------
-pub const WlanSetProfileEap_dwFlags = extern enum(u32) {
-    S = 1,
-};
-pub const WLAN_SET_EAPHOST_DATA_ALL_USERS = WlanSetProfileEap_dwFlags.S;
-
-pub const WLAN_CONNECTION_NOTIFICATION_DATAFlags = extern enum(u32) {
-    ADHOC_NETWORK_FORMED = 1,
-    CONSOLE_USER_PROFILE = 4,
-};
-pub const WLAN_CONNECTION_NOTIFICATION_ADHOC_NETWORK_FORMED = WLAN_CONNECTION_NOTIFICATION_DATAFlags.ADHOC_NETWORK_FORMED;
-pub const WLAN_CONNECTION_NOTIFICATION_CONSOLE_USER_PROFILE = WLAN_CONNECTION_NOTIFICATION_DATAFlags.CONSOLE_USER_PROFILE;
-
 pub const DOT11_BSS_TYPE = extern enum(i32) {
     infrastructure = 1,
     independent = 2,
@@ -3030,7 +3018,7 @@ pub const NETWORK_ADDRESS_LIST = extern struct {
 
 pub const NETWORK_ADDRESS_IP = extern struct {
     sin_port: u16,
-    in_addr: u32,
+    IN_ADDR: u32,
     sin_zero: [8]u8,
 };
 
@@ -3361,26 +3349,26 @@ pub const NDIS_TCP_IP_CHECKSUM_OFFLOAD = extern struct {
     IPv4Receive: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv4Receive_e__Struct,
     IPv6Transmit: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv6Transmit_e__Struct,
     IPv6Receive: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv6Receive_e__Struct,
-    const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
     const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_IPSEC_OFFLOAD_V1 = extern struct {
     Supported: NDIS_IPSEC_OFFLOAD_V1._Supported_e__Struct,
     IPv4AH: NDIS_IPSEC_OFFLOAD_V1._IPv4AH_e__Struct,
     IPv4ESP: NDIS_IPSEC_OFFLOAD_V1._IPv4ESP_e__Struct,
-    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
-    const _Supported_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4ESP_e__Struct = u32; // TODO: generate this nested type!
+    const _Supported_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_TCP_LARGE_SEND_OFFLOAD_V2 = extern struct {
     IPv4: NDIS_TCP_LARGE_SEND_OFFLOAD_V2._IPv4_e__Struct,
     IPv6: NDIS_TCP_LARGE_SEND_OFFLOAD_V2._IPv6_e__Struct,
-    const _IPv4_e__Struct = u32; // TODO: generate this nested type!
     const _IPv6_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_OFFLOAD = extern struct {
@@ -3402,26 +3390,26 @@ pub const NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD = extern struct {
     IPv4Receive: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv4Receive_e__Struct,
     IPv6Transmit: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv6Transmit_e__Struct,
     IPv6Receive: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv6Receive_e__Struct,
-    const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
     const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_IPSEC_OFFLOAD_V1 = extern struct {
     Supported: NDIS_WMI_IPSEC_OFFLOAD_V1._Supported_e__Struct,
     IPv4AH: NDIS_WMI_IPSEC_OFFLOAD_V1._IPv4AH_e__Struct,
     IPv4ESP: NDIS_WMI_IPSEC_OFFLOAD_V1._IPv4ESP_e__Struct,
-    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4ESP_e__Struct = u32; // TODO: generate this nested type!
     const _Supported_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V2 = extern struct {
     IPv4: NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V2._IPv4_e__Struct,
     IPv6: NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V2._IPv6_e__Struct,
-    const _IPv4_e__Struct = u32; // TODO: generate this nested type!
     const _IPv6_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_OFFLOAD = extern struct {
@@ -3538,7 +3526,7 @@ pub const NDIS_WMI_ENUM_ADAPTER = extern struct {
     IfIndex: u32,
     NetLuid: NET_LUID_LH,
     DeviceNameLength: u16,
-    DeviceName: [1]i8,
+    DeviceName: [1]CHAR,
 };
 
 pub const NDIS_WMI_OUTPUT_INFO = extern struct {
@@ -5992,7 +5980,7 @@ pub const WLAN_CONNECTION_NOTIFICATION_DATA = extern struct {
     dot11BssType: DOT11_BSS_TYPE,
     bSecurityEnabled: BOOL,
     wlanReasonCode: u32,
-    dwFlags: WLAN_CONNECTION_NOTIFICATION_DATAFlags,
+    dwFlags: WLAN_CONNECTION_NOTIFICATION_FLAGS,
     strProfileXml: [1]u16,
 };
 
@@ -7233,6 +7221,18 @@ pub const IDot11AdHocInterfaceNotificationSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const WLAN_SET_EAPHOST_FLAGS = extern enum(u32) {
+    S = 1,
+};
+pub const WLAN_SET_EAPHOST_DATA_ALL_USERS = WLAN_SET_EAPHOST_FLAGS.S;
+
+pub const WLAN_CONNECTION_NOTIFICATION_FLAGS = extern enum(u32) {
+    ADHOC_NETWORK_FORMED = 1,
+    CONSOLE_USER_PROFILE = 4,
+};
+pub const WLAN_CONNECTION_NOTIFICATION_ADHOC_NETWORK_FORMED = WLAN_CONNECTION_NOTIFICATION_FLAGS.ADHOC_NETWORK_FORMED;
+pub const WLAN_CONNECTION_NOTIFICATION_CONSOLE_USER_PROFILE = WLAN_CONNECTION_NOTIFICATION_FLAGS.CONSOLE_USER_PROFILE;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (61)
@@ -7409,7 +7409,7 @@ pub extern "wlanapi" fn WlanSetProfileEapUserData(
     pInterfaceGuid: *const Guid,
     strProfileName: [*:0]const u16,
     eapType: EAP_METHOD_TYPE,
-    dwFlags: WlanSetProfileEap_dwFlags,
+    dwFlags: WLAN_SET_EAPHOST_FLAGS,
     dwEapUserDataSize: u32,
     // TODO: what to do with BytesParamIndex 5?
     pbEapUserData: ?*const u8,
@@ -7421,7 +7421,7 @@ pub extern "wlanapi" fn WlanSetProfileEapXmlUserData(
     hClientHandle: HANDLE,
     pInterfaceGuid: *const Guid,
     strProfileName: [*:0]const u16,
-    dwFlags: WlanSetProfileEap_dwFlags,
+    dwFlags: WLAN_SET_EAPHOST_FLAGS,
     strEapXmlUserData: [*:0]const u16,
     pReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -7776,11 +7776,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (16)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const NET_LUID_LH = @import("ip_helper.zig").NET_LUID_LH;
 const PWSTR = @import("system_services.zig").PWSTR;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
 const L2_NOTIFICATION_DATA = @import("network_drivers.zig").L2_NOTIFICATION_DATA;
 const HRESULT = @import("com.zig").HRESULT;
@@ -7807,7 +7808,7 @@ test {
     const com_class_id_export_count = 1;
     const func_export_count = 61;
     const unicode_alias_count = 0;
-    const import_count = 16;
+    const import_count = 17;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

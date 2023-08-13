@@ -40,32 +40,6 @@ pub const POINTS = extern struct {
     y: i16,
 };
 
-pub const VIDEOPARAMETERS = extern struct {
-    Guid: Guid,
-    dwOffset: u32,
-    dwCommand: u32,
-    dwFlags: u32,
-    dwMode: u32,
-    dwTVStandard: u32,
-    dwAvailableModes: u32,
-    dwAvailableTVStandard: u32,
-    dwFlickerFilter: u32,
-    dwOverScanX: u32,
-    dwOverScanY: u32,
-    dwMaxUnscaledX: u32,
-    dwMaxUnscaledY: u32,
-    dwPositionX: u32,
-    dwPositionY: u32,
-    dwBrightness: u32,
-    dwContrast: u32,
-    dwCPType: u32,
-    dwCPCommand: u32,
-    dwCPStandard: u32,
-    dwCPKey: u32,
-    bCP_APSTriggerBits: u32,
-    bOEMCopyProtection: [256]u8,
-};
-
 pub const DDVIDEOPORTCAPS = extern struct {
     dwSize: u32,
     dwFlags: u32,
@@ -1669,6 +1643,32 @@ pub const PFN_DrvQueryGlyphAttrs = fn(
     param0: *FONTOBJ,
     param1: u32,
 ) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHATTR;
+
+pub const VIDEOPARAMETERS = extern struct {
+    Guid: Guid,
+    dwOffset: u32,
+    dwCommand: u32,
+    dwFlags: u32,
+    dwMode: u32,
+    dwTVStandard: u32,
+    dwAvailableModes: u32,
+    dwAvailableTVStandard: u32,
+    dwFlickerFilter: u32,
+    dwOverScanX: u32,
+    dwOverScanY: u32,
+    dwMaxUnscaledX: u32,
+    dwMaxUnscaledY: u32,
+    dwPositionX: u32,
+    dwPositionY: u32,
+    dwBrightness: u32,
+    dwContrast: u32,
+    dwCPType: u32,
+    dwCPCommand: u32,
+    dwCPStandard: u32,
+    dwCPKey: u32,
+    bCP_APSTriggerBits: u32,
+    bOEMCopyProtection: [256]u8,
+};
 
 const IID_IDirectDrawKernel_Value = @import("../zig.zig").Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
 pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;

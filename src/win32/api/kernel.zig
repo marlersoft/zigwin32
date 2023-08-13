@@ -79,7 +79,7 @@ pub const WaitDequeue = WAIT_TYPE.Dequeue;
 pub const CSTRING = extern struct {
     Length: u16,
     MaximumLength: u16,
-    Buffer: *const i8,
+    Buffer: [*:0]const u8,
 };
 
 pub const LIST_ENTRY = extern struct {
@@ -94,8 +94,8 @@ pub const SINGLE_LIST_ENTRY = extern struct {
 pub const RTL_BALANCED_NODE = extern struct {
     Anonymous1: RTL_BALANCED_NODE._Anonymous1_e__Union,
     Anonymous2: RTL_BALANCED_NODE._Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const LIST_ENTRY32 = extern struct {
@@ -226,10 +226,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (3)
+// Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const CONTEXT = @import("debug.zig").CONTEXT;
+const PSTR = @import("system_services.zig").PSTR;
 const EXCEPTION_RECORD = @import("debug.zig").EXCEPTION_RECORD;
 
 test {
@@ -243,7 +244,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 0;
     const unicode_alias_count = 0;
-    const import_count = 3;
+    const import_count = 4;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

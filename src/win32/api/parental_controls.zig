@@ -106,7 +106,7 @@ pub const MSG_Event_ContentUsage = @as(i32, -1342177258);
 pub const WPCPROV = Guid.initString("01090065-b467-4503-9b28-533766761087");
 
 //--------------------------------------------------------------------------------
-// Section: Types (46)
+// Section: Types (44)
 //--------------------------------------------------------------------------------
 pub const WPCFLAG_ISBLOCKED = extern enum(i32) {
     NOTBLOCKED = 0,
@@ -819,7 +819,7 @@ pub const IWPCProviderConfig = extern struct {
             self: *const IWPCProviderConfig,
             hWnd: HWND,
             bstrPath: BSTR,
-            dwFlags: GetRestrictions_pdwRestrictions,
+            dwFlags: WPCFLAG_RESTRICTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -834,7 +834,7 @@ pub const IWPCProviderConfig = extern struct {
             return @ptrCast(*const IWPCProviderConfig.VTable, self.vtable).Configure(@ptrCast(*const IWPCProviderConfig, self), hWnd, bstrSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWPCProviderConfig_RequestOverride(self: *const T, hWnd: HWND, bstrPath: BSTR, dwFlags: GetRestrictions_pdwRestrictions) callconv(.Inline) HRESULT {
+        pub fn IWPCProviderConfig_RequestOverride(self: *const T, hWnd: HWND, bstrPath: BSTR, dwFlags: WPCFLAG_RESTRICTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWPCProviderConfig.VTable, self.vtable).RequestOverride(@ptrCast(*const IWPCProviderConfig, self), hWnd, bstrPath, dwFlags);
         }
     };}
@@ -876,7 +876,7 @@ pub const IWPCSettings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRestrictions: fn(
             self: *const IWPCSettings,
-            pdwRestrictions: *GetRestrictions_pdwRestrictions,
+            pdwRestrictions: *WPCFLAG_RESTRICTION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -891,7 +891,7 @@ pub const IWPCSettings = extern struct {
             return @ptrCast(*const IWPCSettings.VTable, self.vtable).GetLastSettingsChangeTime(@ptrCast(*const IWPCSettings, self), pTime);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWPCSettings_GetRestrictions(self: *const T, pdwRestrictions: *GetRestrictions_pdwRestrictions) callconv(.Inline) HRESULT {
+        pub fn IWPCSettings_GetRestrictions(self: *const T, pdwRestrictions: *WPCFLAG_RESTRICTION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWPCSettings.VTable, self.vtable).GetRestrictions(@ptrCast(*const IWPCSettings, self), pdwRestrictions);
         }
     };}
@@ -936,7 +936,7 @@ pub const IWPCWebSettings = extern struct {
         base: IWPCSettings.VTable,
         GetSettings: fn(
             self: *const IWPCWebSettings,
-            pdwSettings: *IWPCWebSettings_GetSettings_pdwSettingsFlags,
+            pdwSettings: *WPCFLAG_WEB_SETTING,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RequestURLOverride: fn(
             self: *const IWPCWebSettings,
@@ -951,7 +951,7 @@ pub const IWPCWebSettings = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWPCSettings.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWPCWebSettings_GetSettings(self: *const T, pdwSettings: *IWPCWebSettings_GetSettings_pdwSettingsFlags) callconv(.Inline) HRESULT {
+        pub fn IWPCWebSettings_GetSettings(self: *const T, pdwSettings: *WPCFLAG_WEB_SETTING) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWPCWebSettings.VTable, self.vtable).GetSettings(@ptrCast(*const IWPCWebSettings, self), pdwSettings);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1063,24 +1063,6 @@ pub const IWPCProviderSupport = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const GetRestrictions_pdwRestrictions = extern enum(u32) {
-    NO_RESTRICTION = 0,
-    LOGGING_REQUIRED = 1,
-    WEB_FILTERED = 2,
-    HOURS_RESTRICTED = 4,
-    GAMES_BLOCKED = 8,
-    APPS_RESTRICTED = 16,
-};
-// TODO: enum 'GetRestrictions_pdwRestrictions' has known issues with its value aliases
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IWPCWebSettings_GetSettings_pdwSettingsFlags = extern enum(u32) {
-    NOTBLOCKED = 0,
-    DOWNLOADSBLOCKED = 1,
-    _,
-};
-// TODO: enum 'IWPCWebSettings_GetSettings_pdwSettingsFlags' has known issues with its value aliases
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -1112,7 +1094,7 @@ const HWND = @import("windows_and_messaging.zig").HWND;
 
 test {
     const constant_export_count = 102;
-    const type_export_count = 43;
+    const type_export_count = 41;
     const enum_value_export_count = 294;
     const com_iface_id_export_count = 8;
     const com_class_id_export_count = 3;

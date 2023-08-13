@@ -92,7 +92,7 @@ pub const COLORADAPTER_PROFILE_NAME_MAX_LENGTH = @as(u32, 80);
 // TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
 pub const HCOLORSPACE = ?*opaque{};
 
-pub const UpdateICMRegKey_command = extern enum(u32) {
+pub const ICM_COMMAND = extern enum(u32) {
     ADDPROFILE = 1,
     DELETEPROFILE = 2,
     QUERYPROFILE = 3,
@@ -101,22 +101,22 @@ pub const UpdateICMRegKey_command = extern enum(u32) {
     UNREGISTERICMATCHER = 6,
     QUERYMATCH = 7,
 };
-pub const ICM_ADDPROFILE = UpdateICMRegKey_command.ADDPROFILE;
-pub const ICM_DELETEPROFILE = UpdateICMRegKey_command.DELETEPROFILE;
-pub const ICM_QUERYPROFILE = UpdateICMRegKey_command.QUERYPROFILE;
-pub const ICM_SETDEFAULTPROFILE = UpdateICMRegKey_command.SETDEFAULTPROFILE;
-pub const ICM_REGISTERICMATCHER = UpdateICMRegKey_command.REGISTERICMATCHER;
-pub const ICM_UNREGISTERICMATCHER = UpdateICMRegKey_command.UNREGISTERICMATCHER;
-pub const ICM_QUERYMATCH = UpdateICMRegKey_command.QUERYMATCH;
+pub const ICM_ADDPROFILE = ICM_COMMAND.ADDPROFILE;
+pub const ICM_DELETEPROFILE = ICM_COMMAND.DELETEPROFILE;
+pub const ICM_QUERYPROFILE = ICM_COMMAND.QUERYPROFILE;
+pub const ICM_SETDEFAULTPROFILE = ICM_COMMAND.SETDEFAULTPROFILE;
+pub const ICM_REGISTERICMATCHER = ICM_COMMAND.REGISTERICMATCHER;
+pub const ICM_UNREGISTERICMATCHER = ICM_COMMAND.UNREGISTERICMATCHER;
+pub const ICM_QUERYMATCH = ICM_COMMAND.QUERYMATCH;
 
-pub const ColorMatchToTarget_actionFlags = extern enum(i32) {
+pub const COLOR_MATCH_TO_TARGET_ACTION = extern enum(i32) {
     ENABLE = 1,
     DISABLE = 2,
     DELETE_TRANSFORM = 3,
 };
-pub const CS_ENABLE = ColorMatchToTarget_actionFlags.ENABLE;
-pub const CS_DISABLE = ColorMatchToTarget_actionFlags.DISABLE;
-pub const CS_DELETE_TRANSFORM = ColorMatchToTarget_actionFlags.DELETE_TRANSFORM;
+pub const CS_ENABLE = COLOR_MATCH_TO_TARGET_ACTION.ENABLE;
+pub const CS_DISABLE = COLOR_MATCH_TO_TARGET_ACTION.DISABLE;
+pub const CS_DELETE_TRANSFORM = COLOR_MATCH_TO_TARGET_ACTION.DELETE_TRANSFORM;
 
 pub const CIEXYZ = extern struct {
     ciexyzX: i32,
@@ -140,7 +140,7 @@ pub const LOGCOLORSPACEA = extern struct {
     lcsGammaRed: u32,
     lcsGammaGreen: u32,
     lcsGammaBlue: u32,
-    lcsFilename: [260]i8,
+    lcsFilename: [260]CHAR,
 };
 
 pub const LOGCOLORSPACEW = extern struct {
@@ -879,7 +879,7 @@ pub extern "GDI32" fn SetDeviceGammaRamp(
 pub extern "GDI32" fn ColorMatchToTarget(
     hdc: HDC,
     hdcTarget: HDC,
-    action: ColorMatchToTarget_actionFlags,
+    action: COLOR_MATCH_TO_TARGET_ACTION,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -901,7 +901,7 @@ pub extern "GDI32" fn UpdateICMRegKeyA(
     reserved: u32,
     lpszCMID: PSTR,
     lpszFileName: PSTR,
-    command: UpdateICMRegKey_command,
+    command: ICM_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -909,7 +909,7 @@ pub extern "GDI32" fn UpdateICMRegKeyW(
     reserved: u32,
     lpszCMID: PWSTR,
     lpszFileName: PWSTR,
-    command: UpdateICMRegKey_command,
+    command: ICM_COMMAND,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -1804,12 +1804,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (15)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
 const HDC = @import("gdi.zig").HDC;
 const PWSTR = @import("system_services.zig").PWSTR;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
 const RGBTRIPLE = @import("gdi.zig").RGBTRIPLE;
 const HRESULT = @import("com.zig").HRESULT;
@@ -1837,7 +1838,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 131;
     const unicode_alias_count = 26;
-    const import_count = 15;
+    const import_count = 16;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

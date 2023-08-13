@@ -1376,8 +1376,6 @@ pub const TITLEBARNAMELEN = @as(u32, 40);
 pub const APPNAMEBUFFERLEN = @as(u32, 40);
 pub const BUFFLEN = @as(u32, 255);
 pub const PID_FIRST_USABLE = @as(u32, 2);
-pub const HLINK_E_FIRST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147221248));
-pub const HLINK_S_FIRST = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262400));
 pub const GPFIDL_DEFAULT = @as(i32, 0);
 pub const GPFIDL_ALTNAME = @as(i32, 1);
 pub const GPFIDL_UNCPRINTER = @as(i32, 2);
@@ -1427,21 +1425,27 @@ pub const CTF_KEYBOARD_LOCALE = @as(i32, 1024);
 pub const CTF_OLEINITIALIZE = @as(i32, 2048);
 pub const CTF_COINIT_MTA = @as(i32, 4096);
 pub const CTF_NOADDREFLIB = @as(i32, 8192);
+pub const HLINK_E_FIRST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -2147221248));
+pub const HLINK_S_FIRST = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262400));
 
 //--------------------------------------------------------------------------------
 // Section: Types (926)
 //--------------------------------------------------------------------------------
-pub const SERIALIZEDPROPERTYVALUE = extern struct {
-    dwType: u32,
-    rgb: [1]u8,
-};
-
 // TODO: this type has a FreeFunc 'SHChangeNotification_Unlock', what can Zig do with this information?
 pub const ShFindChangeNotificationHandle = isize;
 
 pub const HDROP = ?*opaque{};
 
 pub const HPSXA = ?*opaque{};
+
+pub const SUBCLASSPROC = fn(
+    hWnd: HWND,
+    uMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    uIdSubclass: usize,
+    dwRefData: usize,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 pub const SOFTDISTINFO = extern struct {
     cbSize: u32,
@@ -1458,620 +1462,6 @@ pub const SOFTDISTINFO = extern struct {
     dwAdvertisedVersionLS: u32,
     dwReserved: u32,
 };
-
-pub const APPCATEGORYINFO = extern struct {
-    Locale: u32,
-    pszDescription: PWSTR,
-    AppCategoryId: Guid,
-};
-
-pub const APPCATEGORYINFOLIST = extern struct {
-    cCategory: u32,
-    pCategoryInfo: *APPCATEGORYINFO,
-};
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHGFI_FLAGS = extern enum(i32) {
-    ADDOVERLAYS = 32,
-    ATTR_SPECIFIED = 131072,
-    ATTRIBUTES = 2048,
-    DISPLAYNAME = 512,
-    EXETYPE = 8192,
-    ICON = 256,
-    ICONLOCATION = 4096,
-    LARGEICON = 0,
-    LINKOVERLAY = 32768,
-    OPENICON = 2,
-    OVERLAYINDEX = 64,
-    PIDL = 8,
-    SELECTED = 65536,
-    SHELLICONSIZE = 4,
-    SMALLICON = 1,
-    SYSICONINDEX = 16384,
-    TYPENAME = 1024,
-    USEFILEATTRIBUTES = 16,
-    _,
-};
-pub const SHGFI_ADDOVERLAYS = SHGFI_FLAGS.ADDOVERLAYS;
-pub const SHGFI_ATTR_SPECIFIED = SHGFI_FLAGS.ATTR_SPECIFIED;
-pub const SHGFI_ATTRIBUTES = SHGFI_FLAGS.ATTRIBUTES;
-pub const SHGFI_DISPLAYNAME = SHGFI_FLAGS.DISPLAYNAME;
-pub const SHGFI_EXETYPE = SHGFI_FLAGS.EXETYPE;
-pub const SHGFI_ICON = SHGFI_FLAGS.ICON;
-pub const SHGFI_ICONLOCATION = SHGFI_FLAGS.ICONLOCATION;
-pub const SHGFI_LARGEICON = SHGFI_FLAGS.LARGEICON;
-pub const SHGFI_LINKOVERLAY = SHGFI_FLAGS.LINKOVERLAY;
-pub const SHGFI_OPENICON = SHGFI_FLAGS.OPENICON;
-pub const SHGFI_OVERLAYINDEX = SHGFI_FLAGS.OVERLAYINDEX;
-pub const SHGFI_PIDL = SHGFI_FLAGS.PIDL;
-pub const SHGFI_SELECTED = SHGFI_FLAGS.SELECTED;
-pub const SHGFI_SHELLICONSIZE = SHGFI_FLAGS.SHELLICONSIZE;
-pub const SHGFI_SMALLICON = SHGFI_FLAGS.SMALLICON;
-pub const SHGFI_SYSICONINDEX = SHGFI_FLAGS.SYSICONINDEX;
-pub const SHGFI_TYPENAME = SHGFI_FLAGS.TYPENAME;
-pub const SHGFI_USEFILEATTRIBUTES = SHGFI_FLAGS.USEFILEATTRIBUTES;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHCNE_ID = extern enum(u32) {
-    RENAMEITEM = 1,
-    CREATE = 2,
-    DELETE = 4,
-    MKDIR = 8,
-    RMDIR = 16,
-    MEDIAINSERTED = 32,
-    MEDIAREMOVED = 64,
-    DRIVEREMOVED = 128,
-    DRIVEADD = 256,
-    NETSHARE = 512,
-    NETUNSHARE = 1024,
-    ATTRIBUTES = 2048,
-    UPDATEDIR = 4096,
-    UPDATEITEM = 8192,
-    SERVERDISCONNECT = 16384,
-    UPDATEIMAGE = 32768,
-    DRIVEADDGUI = 65536,
-    RENAMEFOLDER = 131072,
-    FREESPACE = 262144,
-    EXTENDED_EVENT = 67108864,
-    ASSOCCHANGED = 134217728,
-    DISKEVENTS = 145439,
-    GLOBALEVENTS = 201687520,
-    ALLEVENTS = 2147483647,
-    INTERRUPT = 2147483648,
-    _,
-};
-pub const SHCNE_RENAMEITEM = SHCNE_ID.RENAMEITEM;
-pub const SHCNE_CREATE = SHCNE_ID.CREATE;
-pub const SHCNE_DELETE = SHCNE_ID.DELETE;
-pub const SHCNE_MKDIR = SHCNE_ID.MKDIR;
-pub const SHCNE_RMDIR = SHCNE_ID.RMDIR;
-pub const SHCNE_MEDIAINSERTED = SHCNE_ID.MEDIAINSERTED;
-pub const SHCNE_MEDIAREMOVED = SHCNE_ID.MEDIAREMOVED;
-pub const SHCNE_DRIVEREMOVED = SHCNE_ID.DRIVEREMOVED;
-pub const SHCNE_DRIVEADD = SHCNE_ID.DRIVEADD;
-pub const SHCNE_NETSHARE = SHCNE_ID.NETSHARE;
-pub const SHCNE_NETUNSHARE = SHCNE_ID.NETUNSHARE;
-pub const SHCNE_ATTRIBUTES = SHCNE_ID.ATTRIBUTES;
-pub const SHCNE_UPDATEDIR = SHCNE_ID.UPDATEDIR;
-pub const SHCNE_UPDATEITEM = SHCNE_ID.UPDATEITEM;
-pub const SHCNE_SERVERDISCONNECT = SHCNE_ID.SERVERDISCONNECT;
-pub const SHCNE_UPDATEIMAGE = SHCNE_ID.UPDATEIMAGE;
-pub const SHCNE_DRIVEADDGUI = SHCNE_ID.DRIVEADDGUI;
-pub const SHCNE_RENAMEFOLDER = SHCNE_ID.RENAMEFOLDER;
-pub const SHCNE_FREESPACE = SHCNE_ID.FREESPACE;
-pub const SHCNE_EXTENDED_EVENT = SHCNE_ID.EXTENDED_EVENT;
-pub const SHCNE_ASSOCCHANGED = SHCNE_ID.ASSOCCHANGED;
-pub const SHCNE_DISKEVENTS = SHCNE_ID.DISKEVENTS;
-pub const SHCNE_GLOBALEVENTS = SHCNE_ID.GLOBALEVENTS;
-pub const SHCNE_ALLEVENTS = SHCNE_ID.ALLEVENTS;
-pub const SHCNE_INTERRUPT = SHCNE_ID.INTERRUPT;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHCNRF_SOURCE = extern enum(i32) {
-    InterruptLevel = 1,
-    ShellLevel = 2,
-    RecursiveInterrupt = 4096,
-    NewDelivery = 32768,
-    _,
-};
-pub const SHCNRF_InterruptLevel = SHCNRF_SOURCE.InterruptLevel;
-pub const SHCNRF_ShellLevel = SHCNRF_SOURCE.ShellLevel;
-pub const SHCNRF_RecursiveInterrupt = SHCNRF_SOURCE.RecursiveInterrupt;
-pub const SHCNRF_NewDelivery = SHCNRF_SOURCE.NewDelivery;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHCNF_FLAGS = extern enum(u32) {
-    IDLIST = 0,
-    PATHA = 1,
-    PRINTERA = 2,
-    DWORD = 3,
-    PATHW = 5,
-    PRINTERW = 6,
-    TYPE = 255,
-    FLUSH = 4096,
-    FLUSHNOWAIT = 12288,
-    NOTIFYRECURSIVE = 65536,
-    PATH = 5,
-    PRINTER = 6,
-    _,
-};
-pub const SHCNF_IDLIST = SHCNF_FLAGS.IDLIST;
-pub const SHCNF_PATHA = SHCNF_FLAGS.PATHA;
-pub const SHCNF_PRINTERA = SHCNF_FLAGS.PRINTERA;
-pub const SHCNF_DWORD = SHCNF_FLAGS.DWORD;
-pub const SHCNF_PATHW = SHCNF_FLAGS.PATHW;
-pub const SHCNF_PRINTERW = SHCNF_FLAGS.PRINTERW;
-pub const SHCNF_TYPE = SHCNF_FLAGS.TYPE;
-pub const SHCNF_FLUSH = SHCNF_FLAGS.FLUSH;
-pub const SHCNF_FLUSHNOWAIT = SHCNF_FLAGS.FLUSHNOWAIT;
-pub const SHCNF_NOTIFYRECURSIVE = SHCNF_FLAGS.NOTIFYRECURSIVE;
-pub const SHCNF_PATH = SHCNF_FLAGS.PATH;
-pub const SHCNF_PRINTER = SHCNF_FLAGS.PRINTER;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const QITIPF_FLAGS = extern enum(i32) {
-    TIPF_DEFAULT = 0,
-    TIPF_USENAME = 1,
-    TIPF_LINKNOTARGET = 2,
-    TIPF_LINKUSETARGET = 4,
-    TIPF_USESLOWTIP = 8,
-    TIPF_SINGLELINE = 16,
-    F_CACHED = 1,
-    F_DONTEXPANDFOLDER = 2,
-    _,
-};
-pub const QITIPF_DEFAULT = QITIPF_FLAGS.TIPF_DEFAULT;
-pub const QITIPF_USENAME = QITIPF_FLAGS.TIPF_USENAME;
-pub const QITIPF_LINKNOTARGET = QITIPF_FLAGS.TIPF_LINKNOTARGET;
-pub const QITIPF_LINKUSETARGET = QITIPF_FLAGS.TIPF_LINKUSETARGET;
-pub const QITIPF_USESLOWTIP = QITIPF_FLAGS.TIPF_USESLOWTIP;
-pub const QITIPF_SINGLELINE = QITIPF_FLAGS.TIPF_SINGLELINE;
-pub const QIF_CACHED = QITIPF_FLAGS.F_CACHED;
-pub const QIF_DONTEXPANDFOLDER = QITIPF_FLAGS.F_DONTEXPANDFOLDER;
-
-pub const SHDID_ID = extern enum(i32) {
-    ROOT_REGITEM = 1,
-    FS_FILE = 2,
-    FS_DIRECTORY = 3,
-    FS_OTHER = 4,
-    COMPUTER_DRIVE35 = 5,
-    COMPUTER_DRIVE525 = 6,
-    COMPUTER_REMOVABLE = 7,
-    COMPUTER_FIXED = 8,
-    COMPUTER_NETDRIVE = 9,
-    COMPUTER_CDROM = 10,
-    COMPUTER_RAMDISK = 11,
-    COMPUTER_OTHER = 12,
-    NET_DOMAIN = 13,
-    NET_SERVER = 14,
-    NET_SHARE = 15,
-    NET_RESTOFNET = 16,
-    NET_OTHER = 17,
-    COMPUTER_IMAGING = 18,
-    COMPUTER_AUDIO = 19,
-    COMPUTER_SHAREDDOCS = 20,
-    MOBILE_DEVICE = 21,
-    REMOTE_DESKTOP_DRIVE = 22,
-};
-pub const SHDID_ROOT_REGITEM = SHDID_ID.ROOT_REGITEM;
-pub const SHDID_FS_FILE = SHDID_ID.FS_FILE;
-pub const SHDID_FS_DIRECTORY = SHDID_ID.FS_DIRECTORY;
-pub const SHDID_FS_OTHER = SHDID_ID.FS_OTHER;
-pub const SHDID_COMPUTER_DRIVE35 = SHDID_ID.COMPUTER_DRIVE35;
-pub const SHDID_COMPUTER_DRIVE525 = SHDID_ID.COMPUTER_DRIVE525;
-pub const SHDID_COMPUTER_REMOVABLE = SHDID_ID.COMPUTER_REMOVABLE;
-pub const SHDID_COMPUTER_FIXED = SHDID_ID.COMPUTER_FIXED;
-pub const SHDID_COMPUTER_NETDRIVE = SHDID_ID.COMPUTER_NETDRIVE;
-pub const SHDID_COMPUTER_CDROM = SHDID_ID.COMPUTER_CDROM;
-pub const SHDID_COMPUTER_RAMDISK = SHDID_ID.COMPUTER_RAMDISK;
-pub const SHDID_COMPUTER_OTHER = SHDID_ID.COMPUTER_OTHER;
-pub const SHDID_NET_DOMAIN = SHDID_ID.NET_DOMAIN;
-pub const SHDID_NET_SERVER = SHDID_ID.NET_SERVER;
-pub const SHDID_NET_SHARE = SHDID_ID.NET_SHARE;
-pub const SHDID_NET_RESTOFNET = SHDID_ID.NET_RESTOFNET;
-pub const SHDID_NET_OTHER = SHDID_ID.NET_OTHER;
-pub const SHDID_COMPUTER_IMAGING = SHDID_ID.COMPUTER_IMAGING;
-pub const SHDID_COMPUTER_AUDIO = SHDID_ID.COMPUTER_AUDIO;
-pub const SHDID_COMPUTER_SHAREDDOCS = SHDID_ID.COMPUTER_SHAREDDOCS;
-pub const SHDID_MOBILE_DEVICE = SHDID_ID.MOBILE_DEVICE;
-pub const SHDID_REMOTE_DESKTOP_DRIVE = SHDID_ID.REMOTE_DESKTOP_DRIVE;
-
-pub const SHGDFIL_FORMAT = extern enum(i32) {
-    FINDDATA = 1,
-    NETRESOURCE = 2,
-    DESCRIPTIONID = 3,
-};
-pub const SHGDFIL_FINDDATA = SHGDFIL_FORMAT.FINDDATA;
-pub const SHGDFIL_NETRESOURCE = SHGDFIL_FORMAT.NETRESOURCE;
-pub const SHGDFIL_DESCRIPTIONID = SHGDFIL_FORMAT.DESCRIPTIONID;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PRF_FLAGS = extern enum(i32) {
-    VERIFYEXISTS = 1,
-    TRYPROGRAMEXTENSIONS = 3,
-    FIRSTDIRDEF = 4,
-    DONTFINDLNK = 8,
-    REQUIREABSOLUTE = 16,
-    _,
-};
-pub const PRF_VERIFYEXISTS = PRF_FLAGS.VERIFYEXISTS;
-pub const PRF_TRYPROGRAMEXTENSIONS = PRF_FLAGS.TRYPROGRAMEXTENSIONS;
-pub const PRF_FIRSTDIRDEF = PRF_FLAGS.FIRSTDIRDEF;
-pub const PRF_DONTFINDLNK = PRF_FLAGS.DONTFINDLNK;
-pub const PRF_REQUIREABSOLUTE = PRF_FLAGS.REQUIREABSOLUTE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PCS_RET = extern enum(u32) {
-    FATAL = 2147483648,
-    REPLACEDCHAR = 1,
-    REMOVEDCHAR = 2,
-    TRUNCATED = 4,
-    PATHTOOLONG = 8,
-    _,
-};
-pub const PCS_FATAL = PCS_RET.FATAL;
-pub const PCS_REPLACEDCHAR = PCS_RET.REPLACEDCHAR;
-pub const PCS_REMOVEDCHAR = PCS_RET.REMOVEDCHAR;
-pub const PCS_TRUNCATED = PCS_RET.TRUNCATED;
-pub const PCS_PATHTOOLONG = PCS_RET.PATHTOOLONG;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MM_FLAGS = extern enum(u32) {
-    ADDSEPARATOR = 1,
-    SUBMENUSHAVEIDS = 2,
-    DONTREMOVESEPS = 4,
-    _,
-};
-pub const MM_ADDSEPARATOR = MM_FLAGS.ADDSEPARATOR;
-pub const MM_SUBMENUSHAVEIDS = MM_FLAGS.SUBMENUSHAVEIDS;
-pub const MM_DONTREMOVESEPS = MM_FLAGS.DONTREMOVESEPS;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHOP_TYPE = extern enum(i32) {
-    PRINTERNAME = 1,
-    FILEPATH = 2,
-    VOLUMEGUID = 4,
-    _,
-};
-pub const SHOP_PRINTERNAME = SHOP_TYPE.PRINTERNAME;
-pub const SHOP_FILEPATH = SHOP_TYPE.FILEPATH;
-pub const SHOP_VOLUMEGUID = SHOP_TYPE.VOLUMEGUID;
-
-pub const SHFMT_ID = extern enum(u32) {
-    T = 65535,
-};
-pub const SHFMT_ID_DEFAULT = SHFMT_ID.T;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SHFMT_OPT = extern enum(i32) {
-    NONE = 0,
-    FULL = 1,
-    SYSONLY = 2,
-    _,
-};
-pub const SHFMT_OPT_NONE = SHFMT_OPT.NONE;
-pub const SHFMT_OPT_FULL = SHFMT_OPT.FULL;
-pub const SHFMT_OPT_SYSONLY = SHFMT_OPT.SYSONLY;
-
-pub const SHFMT_RET = extern enum(u32) {
-    ERROR = 4294967295,
-    CANCEL = 4294967294,
-    NOFORMAT = 4294967293,
-};
-pub const SHFMT_ERROR = SHFMT_RET.ERROR;
-pub const SHFMT_CANCEL = SHFMT_RET.CANCEL;
-pub const SHFMT_NOFORMAT = SHFMT_RET.NOFORMAT;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const VALIDATEUNC_OPTION = extern enum(i32) {
-    CONNECT = 1,
-    NOUI = 2,
-    PRINT = 4,
-    PERSIST = 8,
-    VALID = 15,
-    _,
-};
-pub const VALIDATEUNC_CONNECT = VALIDATEUNC_OPTION.CONNECT;
-pub const VALIDATEUNC_NOUI = VALIDATEUNC_OPTION.NOUI;
-pub const VALIDATEUNC_PRINT = VALIDATEUNC_OPTION.PRINT;
-pub const VALIDATEUNC_PERSIST = VALIDATEUNC_OPTION.PERSIST;
-pub const VALIDATEUNC_VALID = VALIDATEUNC_OPTION.VALID;
-
-pub const SFVM_MESSAGE_ID = extern enum(i32) {
-    MERGEMENU = 1,
-    INVOKECOMMAND = 2,
-    GETHELPTEXT = 3,
-    GETTOOLTIPTEXT = 4,
-    GETBUTTONINFO = 5,
-    GETBUTTONS = 6,
-    INITMENUPOPUP = 7,
-    FSNOTIFY = 14,
-    WINDOWCREATED = 15,
-    GETDETAILSOF = 23,
-    COLUMNCLICK = 24,
-    QUERYFSNOTIFY = 25,
-    DEFITEMCOUNT = 26,
-    DEFVIEWMODE = 27,
-    UNMERGEMENU = 28,
-    UPDATESTATUSBAR = 31,
-    BACKGROUNDENUM = 32,
-    DIDDRAGDROP = 36,
-    SETISFV = 39,
-    THISIDLIST = 41,
-    ADDPROPERTYPAGES = 47,
-    BACKGROUNDENUMDONE = 48,
-    GETNOTIFY = 49,
-    GETSORTDEFAULTS = 53,
-    SIZE = 57,
-    GETZONE = 58,
-    GETPANE = 59,
-    GETHELPTOPIC = 63,
-    GETANIMATION = 68,
-};
-pub const SFVM_MERGEMENU = SFVM_MESSAGE_ID.MERGEMENU;
-pub const SFVM_INVOKECOMMAND = SFVM_MESSAGE_ID.INVOKECOMMAND;
-pub const SFVM_GETHELPTEXT = SFVM_MESSAGE_ID.GETHELPTEXT;
-pub const SFVM_GETTOOLTIPTEXT = SFVM_MESSAGE_ID.GETTOOLTIPTEXT;
-pub const SFVM_GETBUTTONINFO = SFVM_MESSAGE_ID.GETBUTTONINFO;
-pub const SFVM_GETBUTTONS = SFVM_MESSAGE_ID.GETBUTTONS;
-pub const SFVM_INITMENUPOPUP = SFVM_MESSAGE_ID.INITMENUPOPUP;
-pub const SFVM_FSNOTIFY = SFVM_MESSAGE_ID.FSNOTIFY;
-pub const SFVM_WINDOWCREATED = SFVM_MESSAGE_ID.WINDOWCREATED;
-pub const SFVM_GETDETAILSOF = SFVM_MESSAGE_ID.GETDETAILSOF;
-pub const SFVM_COLUMNCLICK = SFVM_MESSAGE_ID.COLUMNCLICK;
-pub const SFVM_QUERYFSNOTIFY = SFVM_MESSAGE_ID.QUERYFSNOTIFY;
-pub const SFVM_DEFITEMCOUNT = SFVM_MESSAGE_ID.DEFITEMCOUNT;
-pub const SFVM_DEFVIEWMODE = SFVM_MESSAGE_ID.DEFVIEWMODE;
-pub const SFVM_UNMERGEMENU = SFVM_MESSAGE_ID.UNMERGEMENU;
-pub const SFVM_UPDATESTATUSBAR = SFVM_MESSAGE_ID.UPDATESTATUSBAR;
-pub const SFVM_BACKGROUNDENUM = SFVM_MESSAGE_ID.BACKGROUNDENUM;
-pub const SFVM_DIDDRAGDROP = SFVM_MESSAGE_ID.DIDDRAGDROP;
-pub const SFVM_SETISFV = SFVM_MESSAGE_ID.SETISFV;
-pub const SFVM_THISIDLIST = SFVM_MESSAGE_ID.THISIDLIST;
-pub const SFVM_ADDPROPERTYPAGES = SFVM_MESSAGE_ID.ADDPROPERTYPAGES;
-pub const SFVM_BACKGROUNDENUMDONE = SFVM_MESSAGE_ID.BACKGROUNDENUMDONE;
-pub const SFVM_GETNOTIFY = SFVM_MESSAGE_ID.GETNOTIFY;
-pub const SFVM_GETSORTDEFAULTS = SFVM_MESSAGE_ID.GETSORTDEFAULTS;
-pub const SFVM_SIZE = SFVM_MESSAGE_ID.SIZE;
-pub const SFVM_GETZONE = SFVM_MESSAGE_ID.GETZONE;
-pub const SFVM_GETPANE = SFVM_MESSAGE_ID.GETPANE;
-pub const SFVM_GETHELPTOPIC = SFVM_MESSAGE_ID.GETHELPTOPIC;
-pub const SFVM_GETANIMATION = SFVM_MESSAGE_ID.GETANIMATION;
-
-pub const SFVS_SELECT = extern enum(i32) {
-    NONE = 0,
-    ALLITEMS = 1,
-    INVERT = 2,
-};
-pub const SFVS_SELECT_NONE = SFVS_SELECT.NONE;
-pub const SFVS_SELECT_ALLITEMS = SFVS_SELECT.ALLITEMS;
-pub const SFVS_SELECT_INVERT = SFVS_SELECT.INVERT;
-
-pub const DFM_MESSAGE_ID = extern enum(i32) {
-    MERGECONTEXTMENU = 1,
-    INVOKECOMMAND = 2,
-    GETHELPTEXT = 5,
-    WM_MEASUREITEM = 6,
-    WM_DRAWITEM = 7,
-    WM_INITMENUPOPUP = 8,
-    VALIDATECMD = 9,
-    MERGECONTEXTMENU_TOP = 10,
-    GETHELPTEXTW = 11,
-    INVOKECOMMANDEX = 12,
-    MAPCOMMANDNAME = 13,
-    GETDEFSTATICID = 14,
-    GETVERBW = 15,
-    GETVERBA = 16,
-    MERGECONTEXTMENU_BOTTOM = 17,
-    MODIFYQCMFLAGS = 18,
-};
-pub const DFM_MERGECONTEXTMENU = DFM_MESSAGE_ID.MERGECONTEXTMENU;
-pub const DFM_INVOKECOMMAND = DFM_MESSAGE_ID.INVOKECOMMAND;
-pub const DFM_GETHELPTEXT = DFM_MESSAGE_ID.GETHELPTEXT;
-pub const DFM_WM_MEASUREITEM = DFM_MESSAGE_ID.WM_MEASUREITEM;
-pub const DFM_WM_DRAWITEM = DFM_MESSAGE_ID.WM_DRAWITEM;
-pub const DFM_WM_INITMENUPOPUP = DFM_MESSAGE_ID.WM_INITMENUPOPUP;
-pub const DFM_VALIDATECMD = DFM_MESSAGE_ID.VALIDATECMD;
-pub const DFM_MERGECONTEXTMENU_TOP = DFM_MESSAGE_ID.MERGECONTEXTMENU_TOP;
-pub const DFM_GETHELPTEXTW = DFM_MESSAGE_ID.GETHELPTEXTW;
-pub const DFM_INVOKECOMMANDEX = DFM_MESSAGE_ID.INVOKECOMMANDEX;
-pub const DFM_MAPCOMMANDNAME = DFM_MESSAGE_ID.MAPCOMMANDNAME;
-pub const DFM_GETDEFSTATICID = DFM_MESSAGE_ID.GETDEFSTATICID;
-pub const DFM_GETVERBW = DFM_MESSAGE_ID.GETVERBW;
-pub const DFM_GETVERBA = DFM_MESSAGE_ID.GETVERBA;
-pub const DFM_MERGECONTEXTMENU_BOTTOM = DFM_MESSAGE_ID.MERGECONTEXTMENU_BOTTOM;
-pub const DFM_MODIFYQCMFLAGS = DFM_MESSAGE_ID.MODIFYQCMFLAGS;
-
-pub const DFM_CMD = extern enum(i32) {
-    DELETE = -1,
-    MOVE = -2,
-    COPY = -3,
-    LINK = -4,
-    PROPERTIES = -5,
-    NEWFOLDER = -6,
-    PASTE = -7,
-    VIEWLIST = -8,
-    VIEWDETAILS = -9,
-    PASTELINK = -10,
-    PASTESPECIAL = -11,
-    MODALPROP = -12,
-    RENAME = -13,
-};
-pub const DFM_CMD_DELETE = DFM_CMD.DELETE;
-pub const DFM_CMD_MOVE = DFM_CMD.MOVE;
-pub const DFM_CMD_COPY = DFM_CMD.COPY;
-pub const DFM_CMD_LINK = DFM_CMD.LINK;
-pub const DFM_CMD_PROPERTIES = DFM_CMD.PROPERTIES;
-pub const DFM_CMD_NEWFOLDER = DFM_CMD.NEWFOLDER;
-pub const DFM_CMD_PASTE = DFM_CMD.PASTE;
-pub const DFM_CMD_VIEWLIST = DFM_CMD.VIEWLIST;
-pub const DFM_CMD_VIEWDETAILS = DFM_CMD.VIEWDETAILS;
-pub const DFM_CMD_PASTELINK = DFM_CMD.PASTELINK;
-pub const DFM_CMD_PASTESPECIAL = DFM_CMD.PASTESPECIAL;
-pub const DFM_CMD_MODALPROP = DFM_CMD.MODALPROP;
-pub const DFM_CMD_RENAME = DFM_CMD.RENAME;
-
-pub const PID_IS = extern enum(i32) {
-    URL = 2,
-    NAME = 4,
-    WORKINGDIR = 5,
-    HOTKEY = 6,
-    SHOWCMD = 7,
-    ICONINDEX = 8,
-    ICONFILE = 9,
-    WHATSNEW = 10,
-    AUTHOR = 11,
-    DESCRIPTION = 12,
-    COMMENT = 13,
-    ROAMED = 15,
-};
-pub const PID_IS_URL = PID_IS.URL;
-pub const PID_IS_NAME = PID_IS.NAME;
-pub const PID_IS_WORKINGDIR = PID_IS.WORKINGDIR;
-pub const PID_IS_HOTKEY = PID_IS.HOTKEY;
-pub const PID_IS_SHOWCMD = PID_IS.SHOWCMD;
-pub const PID_IS_ICONINDEX = PID_IS.ICONINDEX;
-pub const PID_IS_ICONFILE = PID_IS.ICONFILE;
-pub const PID_IS_WHATSNEW = PID_IS.WHATSNEW;
-pub const PID_IS_AUTHOR = PID_IS.AUTHOR;
-pub const PID_IS_DESCRIPTION = PID_IS.DESCRIPTION;
-pub const PID_IS_COMMENT = PID_IS.COMMENT;
-pub const PID_IS_ROAMED = PID_IS.ROAMED;
-
-pub const PID_INTSITE = extern enum(i32) {
-    WHATSNEW = 2,
-    AUTHOR = 3,
-    LASTVISIT = 4,
-    LASTMOD = 5,
-    VISITCOUNT = 6,
-    DESCRIPTION = 7,
-    COMMENT = 8,
-    FLAGS = 9,
-    CONTENTLEN = 10,
-    CONTENTCODE = 11,
-    RECURSE = 12,
-    WATCH = 13,
-    SUBSCRIPTION = 14,
-    URL = 15,
-    TITLE = 16,
-    CODEPAGE = 18,
-    TRACKING = 19,
-    ICONINDEX = 20,
-    ICONFILE = 21,
-    ROAMED = 34,
-};
-pub const PID_INTSITE_WHATSNEW = PID_INTSITE.WHATSNEW;
-pub const PID_INTSITE_AUTHOR = PID_INTSITE.AUTHOR;
-pub const PID_INTSITE_LASTVISIT = PID_INTSITE.LASTVISIT;
-pub const PID_INTSITE_LASTMOD = PID_INTSITE.LASTMOD;
-pub const PID_INTSITE_VISITCOUNT = PID_INTSITE.VISITCOUNT;
-pub const PID_INTSITE_DESCRIPTION = PID_INTSITE.DESCRIPTION;
-pub const PID_INTSITE_COMMENT = PID_INTSITE.COMMENT;
-pub const PID_INTSITE_FLAGS = PID_INTSITE.FLAGS;
-pub const PID_INTSITE_CONTENTLEN = PID_INTSITE.CONTENTLEN;
-pub const PID_INTSITE_CONTENTCODE = PID_INTSITE.CONTENTCODE;
-pub const PID_INTSITE_RECURSE = PID_INTSITE.RECURSE;
-pub const PID_INTSITE_WATCH = PID_INTSITE.WATCH;
-pub const PID_INTSITE_SUBSCRIPTION = PID_INTSITE.SUBSCRIPTION;
-pub const PID_INTSITE_URL = PID_INTSITE.URL;
-pub const PID_INTSITE_TITLE = PID_INTSITE.TITLE;
-pub const PID_INTSITE_CODEPAGE = PID_INTSITE.CODEPAGE;
-pub const PID_INTSITE_TRACKING = PID_INTSITE.TRACKING;
-pub const PID_INTSITE_ICONINDEX = PID_INTSITE.ICONINDEX;
-pub const PID_INTSITE_ICONFILE = PID_INTSITE.ICONFILE;
-pub const PID_INTSITE_ROAMED = PID_INTSITE.ROAMED;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PIDISF_FLAGS = extern enum(i32) {
-    RECENTLYCHANGED = 1,
-    CACHEDSTICKY = 2,
-    CACHEIMAGES = 16,
-    FOLLOWALLLINKS = 32,
-    _,
-};
-pub const PIDISF_RECENTLYCHANGED = PIDISF_FLAGS.RECENTLYCHANGED;
-pub const PIDISF_CACHEDSTICKY = PIDISF_FLAGS.CACHEDSTICKY;
-pub const PIDISF_CACHEIMAGES = PIDISF_FLAGS.CACHEIMAGES;
-pub const PIDISF_FOLLOWALLLINKS = PIDISF_FLAGS.FOLLOWALLLINKS;
-
-pub const PIDISM_OPTIONS = extern enum(i32) {
-    GLOBAL = 0,
-    WATCH = 1,
-    DONTWATCH = 2,
-};
-pub const PIDISM_GLOBAL = PIDISM_OPTIONS.GLOBAL;
-pub const PIDISM_WATCH = PIDISM_OPTIONS.WATCH;
-pub const PIDISM_DONTWATCH = PIDISM_OPTIONS.DONTWATCH;
-
-pub const PIDISR_INFO = extern enum(i32) {
-    UP_TO_DATE = 0,
-    NEEDS_ADD = 1,
-    NEEDS_UPDATE = 2,
-    NEEDS_DELETE = 3,
-};
-pub const PIDISR_UP_TO_DATE = PIDISR_INFO.UP_TO_DATE;
-pub const PIDISR_NEEDS_ADD = PIDISR_INFO.NEEDS_ADD;
-pub const PIDISR_NEEDS_UPDATE = PIDISR_INFO.NEEDS_UPDATE;
-pub const PIDISR_NEEDS_DELETE = PIDISR_INFO.NEEDS_DELETE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SSF_MASK = extern enum(u32) {
-    SHOWALLOBJECTS = 1,
-    SHOWEXTENSIONS = 2,
-    HIDDENFILEEXTS = 4,
-    SERVERADMINUI = 4,
-    SHOWCOMPCOLOR = 8,
-    SORTCOLUMNS = 16,
-    SHOWSYSFILES = 32,
-    DOUBLECLICKINWEBVIEW = 128,
-    SHOWATTRIBCOL = 256,
-    DESKTOPHTML = 512,
-    WIN95CLASSIC = 1024,
-    DONTPRETTYPATH = 2048,
-    SHOWINFOTIP = 8192,
-    MAPNETDRVBUTTON = 4096,
-    NOCONFIRMRECYCLE = 32768,
-    HIDEICONS = 16384,
-    FILTER = 65536,
-    WEBVIEW = 131072,
-    SHOWSUPERHIDDEN = 262144,
-    SEPPROCESS = 524288,
-    NONETCRAWLING = 1048576,
-    STARTPANELON = 2097152,
-    SHOWSTARTPAGE = 4194304,
-    AUTOCHECKSELECT = 8388608,
-    ICONSONLY = 16777216,
-    SHOWTYPEOVERLAY = 33554432,
-    SHOWSTATUSBAR = 67108864,
-    _,
-};
-pub const SSF_SHOWALLOBJECTS = SSF_MASK.SHOWALLOBJECTS;
-pub const SSF_SHOWEXTENSIONS = SSF_MASK.SHOWEXTENSIONS;
-pub const SSF_HIDDENFILEEXTS = SSF_MASK.HIDDENFILEEXTS;
-pub const SSF_SERVERADMINUI = SSF_MASK.SERVERADMINUI;
-pub const SSF_SHOWCOMPCOLOR = SSF_MASK.SHOWCOMPCOLOR;
-pub const SSF_SORTCOLUMNS = SSF_MASK.SORTCOLUMNS;
-pub const SSF_SHOWSYSFILES = SSF_MASK.SHOWSYSFILES;
-pub const SSF_DOUBLECLICKINWEBVIEW = SSF_MASK.DOUBLECLICKINWEBVIEW;
-pub const SSF_SHOWATTRIBCOL = SSF_MASK.SHOWATTRIBCOL;
-pub const SSF_DESKTOPHTML = SSF_MASK.DESKTOPHTML;
-pub const SSF_WIN95CLASSIC = SSF_MASK.WIN95CLASSIC;
-pub const SSF_DONTPRETTYPATH = SSF_MASK.DONTPRETTYPATH;
-pub const SSF_SHOWINFOTIP = SSF_MASK.SHOWINFOTIP;
-pub const SSF_MAPNETDRVBUTTON = SSF_MASK.MAPNETDRVBUTTON;
-pub const SSF_NOCONFIRMRECYCLE = SSF_MASK.NOCONFIRMRECYCLE;
-pub const SSF_HIDEICONS = SSF_MASK.HIDEICONS;
-pub const SSF_FILTER = SSF_MASK.FILTER;
-pub const SSF_WEBVIEW = SSF_MASK.WEBVIEW;
-pub const SSF_SHOWSUPERHIDDEN = SSF_MASK.SHOWSUPERHIDDEN;
-pub const SSF_SEPPROCESS = SSF_MASK.SEPPROCESS;
-pub const SSF_NONETCRAWLING = SSF_MASK.NONETCRAWLING;
-pub const SSF_STARTPANELON = SSF_MASK.STARTPANELON;
-pub const SSF_SHOWSTARTPAGE = SSF_MASK.SHOWSTARTPAGE;
-pub const SSF_AUTOCHECKSELECT = SSF_MASK.AUTOCHECKSELECT;
-pub const SSF_ICONSONLY = SSF_MASK.ICONSONLY;
-pub const SSF_SHOWTYPEOVERLAY = SSF_MASK.SHOWTYPEOVERLAY;
-pub const SSF_SHOWSTATUSBAR = SSF_MASK.SHOWSTATUSBAR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IInitializeWithFile_Value = @import("../zig.zig").Guid.initString("b7d14566-0509-4cce-a71f-0a554233bd9b");
@@ -2209,14 +1599,14 @@ pub const IDelayedPropertyStoreFactory = extern struct {
             flags: GETPROPERTYSTOREFLAGS,
             dwStoreId: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPropertyStoreFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDelayedPropertyStoreFactory_GetDelayedPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, dwStoreId: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDelayedPropertyStoreFactory_GetDelayedPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, dwStoreId: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDelayedPropertyStoreFactory.VTable, self.vtable).GetDelayedPropertyStore(@ptrCast(*const IDelayedPropertyStoreFactory, self), flags, dwStoreId, riid, ppv);
         }
     };}
@@ -2308,28 +1698,24 @@ pub const ICreateObject = extern struct {
             clsid: *const Guid,
             pUnkOuter: *IUnknown,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateObject_CreateObject(self: *const T, clsid: *const Guid, pUnkOuter: *IUnknown, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICreateObject_CreateObject(self: *const T, clsid: *const Guid, pUnkOuter: *IUnknown, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICreateObject.VTable, self.vtable).CreateObject(@ptrCast(*const ICreateObject, self), clsid, pUnkOuter, riid, ppv);
         }
     };}
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SUBCLASSPROC = fn(
-    hWnd: HWND,
-    uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    uIdSubclass: usize,
-    dwRefData: usize,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+pub const SERIALIZEDPROPERTYVALUE = extern struct {
+    dwType: u32,
+    rgb: [1]u8,
+};
 
 pub const ShellWindowTypeConstants = extern enum(i32) {
     EXPLORER = 0,
@@ -2358,6 +1744,7 @@ pub const IID_IShellWindows = &IID_IShellWindows_Value;
 pub const IShellWindows = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IShellWindows,
             Count: *i32,
@@ -2468,6 +1855,17 @@ pub const IShellWindows = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
+};
+
+pub const APPCATEGORYINFO = extern struct {
+    Locale: u32,
+    pszDescription: PWSTR,
+    AppCategoryId: Guid,
+};
+
+pub const APPCATEGORYINFOLIST = extern struct {
+    cCategory: u32,
+    pCategoryInfo: *APPCATEGORYINFO,
 };
 
 const CLSID_QueryCancelAutoPlay_Value = @import("../zig.zig").Guid.initString("331f1768-05a9-4ddd-b86e-dae34ddc998a");
@@ -2718,7 +2116,7 @@ pub const IObjectArray = extern struct {
             self: *const IObjectArray,
             uiIndex: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -2729,7 +2127,7 @@ pub const IObjectArray = extern struct {
             return @ptrCast(*const IObjectArray.VTable, self.vtable).GetCount(@ptrCast(*const IObjectArray, self), pcObjects);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectArray_GetAt(self: *const T, uiIndex: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IObjectArray_GetAt(self: *const T, uiIndex: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectArray.VTable, self.vtable).GetAt(@ptrCast(*const IObjectArray, self), uiIndex, riid, ppv);
         }
     };}
@@ -2960,7 +2358,7 @@ pub const IContextMenu = extern struct {
             idCmd: usize,
             uType: u32,
             pReserved: *u32,
-            pszName: *i8,
+            pszName: PSTR,
             cchMax: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -2976,7 +2374,7 @@ pub const IContextMenu = extern struct {
             return @ptrCast(*const IContextMenu.VTable, self.vtable).InvokeCommand(@ptrCast(*const IContextMenu, self), pici);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContextMenu_GetCommandString(self: *const T, idCmd: usize, uType: u32, pReserved: *u32, pszName: *i8, cchMax: u32) callconv(.Inline) HRESULT {
+        pub fn IContextMenu_GetCommandString(self: *const T, idCmd: usize, uType: u32, pReserved: *u32, pszName: PSTR, cchMax: u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IContextMenu.VTable, self.vtable).GetCommandString(@ptrCast(*const IContextMenu, self), idCmd, uType, pReserved, pszName, cchMax);
         }
     };}
@@ -3598,14 +2996,14 @@ pub const IShellFolder = extern struct {
             pidl: *ITEMIDLIST,
             pbc: *IBindCtx,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         BindToStorage: fn(
             self: *const IShellFolder,
             pidl: *ITEMIDLIST,
             pbc: *IBindCtx,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CompareIDs: fn(
             self: *const IShellFolder,
@@ -3617,7 +3015,7 @@ pub const IShellFolder = extern struct {
             self: *const IShellFolder,
             hwndOwner: HWND,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributesOf: fn(
             self: *const IShellFolder,
@@ -3632,7 +3030,7 @@ pub const IShellFolder = extern struct {
             apidl: [*]*ITEMIDLIST,
             riid: *const Guid,
             rgfReserved: *u32,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDisplayNameOf: fn(
             self: *const IShellFolder,
@@ -3661,11 +3059,11 @@ pub const IShellFolder = extern struct {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).EnumObjects(@ptrCast(*const IShellFolder, self), hwnd, grfFlags, ppenumIDList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFolder_BindToObject(self: *const T, pidl: *ITEMIDLIST, pbc: *IBindCtx, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellFolder_BindToObject(self: *const T, pidl: *ITEMIDLIST, pbc: *IBindCtx, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).BindToObject(@ptrCast(*const IShellFolder, self), pidl, pbc, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFolder_BindToStorage(self: *const T, pidl: *ITEMIDLIST, pbc: *IBindCtx, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellFolder_BindToStorage(self: *const T, pidl: *ITEMIDLIST, pbc: *IBindCtx, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).BindToStorage(@ptrCast(*const IShellFolder, self), pidl, pbc, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3673,7 +3071,7 @@ pub const IShellFolder = extern struct {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).CompareIDs(@ptrCast(*const IShellFolder, self), lParam, pidl1, pidl2);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFolder_CreateViewObject(self: *const T, hwndOwner: HWND, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellFolder_CreateViewObject(self: *const T, hwndOwner: HWND, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).CreateViewObject(@ptrCast(*const IShellFolder, self), hwndOwner, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3681,7 +3079,7 @@ pub const IShellFolder = extern struct {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).GetAttributesOf(@ptrCast(*const IShellFolder, self), cidl, apidl, rgfInOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFolder_GetUIObjectOf(self: *const T, hwndOwner: HWND, cidl: u32, apidl: [*]*ITEMIDLIST, riid: *const Guid, rgfReserved: *u32, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellFolder_GetUIObjectOf(self: *const T, hwndOwner: HWND, cidl: u32, apidl: [*]*ITEMIDLIST, riid: *const Guid, rgfReserved: *u32, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellFolder.VTable, self.vtable).GetUIObjectOf(@ptrCast(*const IShellFolder, self), hwndOwner, cidl, apidl, riid, rgfReserved, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4006,7 +3404,7 @@ pub const IID_IShellView = &IID_IShellView_Value;
 pub const IShellView = extern struct {
     pub const VTable = extern struct {
         base: IOleWindow.VTable,
-        TranslateAcceleratorA: fn(
+        TranslateAccelerator: fn(
             self: *const IShellView,
             pmsg: *MSG,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4054,15 +3452,15 @@ pub const IShellView = extern struct {
             self: *const IShellView,
             uItem: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IOleWindow.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellView_TranslateAcceleratorA(self: *const T, pmsg: *MSG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellView.VTable, self.vtable).TranslateAcceleratorA(@ptrCast(*const IShellView, self), pmsg);
+        pub fn IShellView_TranslateAccelerator(self: *const T, pmsg: *MSG) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellView.VTable, self.vtable).TranslateAccelerator(@ptrCast(*const IShellView, self), pmsg);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IShellView_EnableModeless(self: *const T, fEnable: BOOL) callconv(.Inline) HRESULT {
@@ -4101,7 +3499,7 @@ pub const IShellView = extern struct {
             return @ptrCast(*const IShellView.VTable, self.vtable).SelectItem(@ptrCast(*const IShellView, self), pidlItem, uFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellView_GetItemObject(self: *const T, uItem: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellView_GetItemObject(self: *const T, uItem: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellView.VTable, self.vtable).GetItemObject(@ptrCast(*const IShellView, self), uItem, riid, ppv);
         }
     };}
@@ -4184,7 +3582,7 @@ pub const IFolderView = extern struct {
         GetFolder: fn(
             self: *const IFolderView,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Item: fn(
             self: *const IFolderView,
@@ -4200,7 +3598,7 @@ pub const IFolderView = extern struct {
             self: *const IFolderView,
             uFlags: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetSelectionMarkedItem: fn(
             self: *const IFolderView,
@@ -4251,7 +3649,7 @@ pub const IFolderView = extern struct {
             return @ptrCast(*const IFolderView.VTable, self.vtable).SetCurrentViewMode(@ptrCast(*const IFolderView, self), ViewMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFolderView_GetFolder(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IFolderView_GetFolder(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFolderView.VTable, self.vtable).GetFolder(@ptrCast(*const IFolderView, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4263,7 +3661,7 @@ pub const IFolderView = extern struct {
             return @ptrCast(*const IFolderView.VTable, self.vtable).ItemCount(@ptrCast(*const IFolderView, self), uFlags, pcItems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFolderView_Items(self: *const T, uFlags: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IFolderView_Items(self: *const T, uFlags: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFolderView.VTable, self.vtable).Items(@ptrCast(*const IFolderView, self), uFlags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4389,7 +3787,7 @@ pub const IFolderView2 = extern struct {
             self: *const IFolderView2,
             iItem: i32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetVisibleItem: fn(
             self: *const IFolderView2,
@@ -4497,7 +3895,7 @@ pub const IFolderView2 = extern struct {
             return @ptrCast(*const IFolderView2.VTable, self.vtable).GetSortColumns(@ptrCast(*const IFolderView2, self), rgSortColumns, cColumns);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFolderView2_GetItem(self: *const T, iItem: i32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IFolderView2_GetItem(self: *const T, iItem: i32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFolderView2.VTable, self.vtable).GetItem(@ptrCast(*const IFolderView2, self), iItem, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4561,7 +3959,7 @@ pub const IFolderViewSettings = extern struct {
         GetColumnPropertyList: fn(
             self: *const IFolderViewSettings,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetGroupByProperty: fn(
             self: *const IFolderViewSettings,
@@ -4596,7 +3994,7 @@ pub const IFolderViewSettings = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFolderViewSettings_GetColumnPropertyList(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IFolderViewSettings_GetColumnPropertyList(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFolderViewSettings.VTable, self.vtable).GetColumnPropertyList(@ptrCast(*const IFolderViewSettings, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5294,7 +4692,7 @@ pub const IShellItem = extern struct {
             pbc: *IBindCtx,
             bhid: *const Guid,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetParent: fn(
             self: *const IShellItem,
@@ -5321,7 +4719,7 @@ pub const IShellItem = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItem_BindToHandler(self: *const T, pbc: *IBindCtx, bhid: *const Guid, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItem_BindToHandler(self: *const T, pbc: *IBindCtx, bhid: *const Guid, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItem.VTable, self.vtable).BindToHandler(@ptrCast(*const IShellItem, self), pbc, bhid, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5367,14 +4765,14 @@ pub const IShellItem2 = extern struct {
             self: *const IShellItem2,
             flags: GETPROPERTYSTOREFLAGS,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStoreWithCreateObject: fn(
             self: *const IShellItem2,
             flags: GETPROPERTYSTOREFLAGS,
             punkCreateObject: *IUnknown,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStoreForKeys: fn(
             self: *const IShellItem2,
@@ -5382,13 +4780,13 @@ pub const IShellItem2 = extern struct {
             cKeys: u32,
             flags: GETPROPERTYSTOREFLAGS,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDescriptionList: fn(
             self: *const IShellItem2,
             keyType: *const PROPERTYKEY,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Update: fn(
             self: *const IShellItem2,
@@ -5439,19 +4837,19 @@ pub const IShellItem2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IShellItem.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItem2_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItem2_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItem2.VTable, self.vtable).GetPropertyStore(@ptrCast(*const IShellItem2, self), flags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItem2_GetPropertyStoreWithCreateObject(self: *const T, flags: GETPROPERTYSTOREFLAGS, punkCreateObject: *IUnknown, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItem2_GetPropertyStoreWithCreateObject(self: *const T, flags: GETPROPERTYSTOREFLAGS, punkCreateObject: *IUnknown, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItem2.VTable, self.vtable).GetPropertyStoreWithCreateObject(@ptrCast(*const IShellItem2, self), flags, punkCreateObject, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItem2_GetPropertyStoreForKeys(self: *const T, rgKeys: [*]const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItem2_GetPropertyStoreForKeys(self: *const T, rgKeys: [*]const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItem2.VTable, self.vtable).GetPropertyStoreForKeys(@ptrCast(*const IShellItem2, self), rgKeys, cKeys, flags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItem2_GetPropertyDescriptionList(self: *const T, keyType: *const PROPERTYKEY, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItem2_GetPropertyDescriptionList(self: *const T, keyType: *const PROPERTYKEY, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItem2.VTable, self.vtable).GetPropertyDescriptionList(@ptrCast(*const IShellItem2, self), keyType, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5967,13 +5365,13 @@ pub const IShellItemResources = extern struct {
             self: *const IShellItemResources,
             pcsir: *const SHELL_ITEM_RESOURCE,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateResource: fn(
             self: *const IShellItemResources,
             pcsir: *const SHELL_ITEM_RESOURCE,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         MarkForDelete: fn(
             self: *const IShellItemResources,
@@ -6011,11 +5409,11 @@ pub const IShellItemResources = extern struct {
             return @ptrCast(*const IShellItemResources.VTable, self.vtable).SupportsResource(@ptrCast(*const IShellItemResources, self), pcsir);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItemResources_OpenResource(self: *const T, pcsir: *const SHELL_ITEM_RESOURCE, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItemResources_OpenResource(self: *const T, pcsir: *const SHELL_ITEM_RESOURCE, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItemResources.VTable, self.vtable).OpenResource(@ptrCast(*const IShellItemResources, self), pcsir, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItemResources_CreateResource(self: *const T, pcsir: *const SHELL_ITEM_RESOURCE, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItemResources_CreateResource(self: *const T, pcsir: *const SHELL_ITEM_RESOURCE, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItemResources.VTable, self.vtable).CreateResource(@ptrCast(*const IShellItemResources, self), pcsir, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6269,19 +5667,19 @@ pub const IShellItemArray = extern struct {
             pbc: *IBindCtx,
             bhid: *const Guid,
             riid: *const Guid,
-            ppvOut: ?*?*c_void,
+            ppvOut: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStore: fn(
             self: *const IShellItemArray,
             flags: GETPROPERTYSTOREFLAGS,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDescriptionList: fn(
             self: *const IShellItemArray,
             keyType: *const PROPERTYKEY,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttributes: fn(
             self: *const IShellItemArray,
@@ -6307,15 +5705,15 @@ pub const IShellItemArray = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItemArray_BindToHandler(self: *const T, pbc: *IBindCtx, bhid: *const Guid, riid: *const Guid, ppvOut: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItemArray_BindToHandler(self: *const T, pbc: *IBindCtx, bhid: *const Guid, riid: *const Guid, ppvOut: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItemArray.VTable, self.vtable).BindToHandler(@ptrCast(*const IShellItemArray, self), pbc, bhid, riid, ppvOut);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItemArray_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItemArray_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItemArray.VTable, self.vtable).GetPropertyStore(@ptrCast(*const IShellItemArray, self), flags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellItemArray_GetPropertyDescriptionList(self: *const T, keyType: *const PROPERTYKEY, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellItemArray_GetPropertyDescriptionList(self: *const T, keyType: *const PROPERTYKEY, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellItemArray.VTable, self.vtable).GetPropertyDescriptionList(@ptrCast(*const IShellItemArray, self), keyType, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6374,7 +5772,7 @@ pub const IObjectWithSelection = extern struct {
         GetSelection: fn(
             self: *const IObjectWithSelection,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6385,7 +5783,7 @@ pub const IObjectWithSelection = extern struct {
             return @ptrCast(*const IObjectWithSelection.VTable, self.vtable).SetSelection(@ptrCast(*const IObjectWithSelection, self), psia);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectWithSelection_GetSelection(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IObjectWithSelection_GetSelection(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectWithSelection.VTable, self.vtable).GetSelection(@ptrCast(*const IObjectWithSelection, self), riid, ppv);
         }
     };}
@@ -6467,7 +5865,7 @@ pub const ICategoryProvider = extern struct {
             self: *const ICategoryProvider,
             pguid: *const Guid,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -6494,7 +5892,7 @@ pub const ICategoryProvider = extern struct {
             return @ptrCast(*const ICategoryProvider.VTable, self.vtable).GetCategoryName(@ptrCast(*const ICategoryProvider, self), pguid, pszName, cch);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICategoryProvider_CreateCategory(self: *const T, pguid: *const Guid, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICategoryProvider_CreateCategory(self: *const T, pguid: *const Guid, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICategoryProvider.VTable, self.vtable).CreateCategory(@ptrCast(*const ICategoryProvider, self), pguid, riid, ppv);
         }
     };}
@@ -7575,7 +6973,7 @@ pub const ISearchFolderItemFactory = extern struct {
         GetShellItem: fn(
             self: *const ISearchFolderItemFactory,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetIDList: fn(
             self: *const ISearchFolderItemFactory,
@@ -7626,7 +7024,7 @@ pub const ISearchFolderItemFactory = extern struct {
             return @ptrCast(*const ISearchFolderItemFactory.VTable, self.vtable).SetCondition(@ptrCast(*const ISearchFolderItemFactory, self), pCondition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchFolderItemFactory_GetShellItem(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISearchFolderItemFactory_GetShellItem(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISearchFolderItemFactory.VTable, self.vtable).GetShellItem(@ptrCast(*const ISearchFolderItemFactory, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7705,14 +7103,14 @@ pub const IThumbnailHandlerFactory = extern struct {
             pidlChild: *ITEMIDLIST,
             pbc: *IBindCtx,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IThumbnailHandlerFactory_GetThumbnailHandler(self: *const T, pidlChild: *ITEMIDLIST, pbc: *IBindCtx, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IThumbnailHandlerFactory_GetThumbnailHandler(self: *const T, pidlChild: *ITEMIDLIST, pbc: *IBindCtx, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IThumbnailHandlerFactory.VTable, self.vtable).GetThumbnailHandler(@ptrCast(*const IThumbnailHandlerFactory, self), pidlChild, pbc, riid, ppv);
         }
     };}
@@ -8303,7 +7701,7 @@ pub const IExplorerBrowser = extern struct {
         GetCurrentView: fn(
             self: *const IExplorerBrowser,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -8366,7 +7764,7 @@ pub const IExplorerBrowser = extern struct {
             return @ptrCast(*const IExplorerBrowser.VTable, self.vtable).RemoveAll(@ptrCast(*const IExplorerBrowser, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IExplorerBrowser_GetCurrentView(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IExplorerBrowser_GetCurrentView(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IExplorerBrowser.VTable, self.vtable).GetCurrentView(@ptrCast(*const IExplorerBrowser, self), riid, ppv);
         }
     };}
@@ -8820,14 +8218,14 @@ pub const IObjectProvider = extern struct {
             self: *const IObjectProvider,
             guidObject: *const Guid,
             riid: *const Guid,
-            ppvOut: ?*?*c_void,
+            ppvOut: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectProvider_QueryObject(self: *const T, guidObject: *const Guid, riid: *const Guid, ppvOut: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IObjectProvider_QueryObject(self: *const T, guidObject: *const Guid, riid: *const Guid, ppvOut: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IObjectProvider.VTable, self.vtable).QueryObject(@ptrCast(*const IObjectProvider, self), guidObject, riid, ppvOut);
         }
     };}
@@ -9027,7 +8425,7 @@ pub const IBandSite = extern struct {
             self: *const IBandSite,
             dwBandID: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBandSiteInfo: fn(
             self: *const IBandSite,
@@ -9062,7 +8460,7 @@ pub const IBandSite = extern struct {
             return @ptrCast(*const IBandSite.VTable, self.vtable).RemoveBand(@ptrCast(*const IBandSite, self), dwBandID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBandSite_GetBandObject(self: *const T, dwBandID: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IBandSite_GetBandObject(self: *const T, dwBandID: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBandSite.VTable, self.vtable).GetBandObject(@ptrCast(*const IBandSite, self), dwBandID, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10757,7 +10155,7 @@ pub const IKnownFolder = extern struct {
             self: *const IKnownFolder,
             dwFlags: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPath: fn(
             self: *const IKnownFolder,
@@ -10799,7 +10197,7 @@ pub const IKnownFolder = extern struct {
             return @ptrCast(*const IKnownFolder.VTable, self.vtable).GetCategory(@ptrCast(*const IKnownFolder, self), pCategory);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IKnownFolder_GetShellItem(self: *const T, dwFlags: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IKnownFolder_GetShellItem(self: *const T, dwFlags: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IKnownFolder.VTable, self.vtable).GetShellItem(@ptrCast(*const IKnownFolder, self), dwFlags, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11782,7 +11180,7 @@ pub const IPreviewHandler = extern struct {
             self: *const IPreviewHandler,
             phwnd: *HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TranslateAcceleratorA: fn(
+        TranslateAccelerator: fn(
             self: *const IPreviewHandler,
             pmsg: *MSG,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -11815,8 +11213,8 @@ pub const IPreviewHandler = extern struct {
             return @ptrCast(*const IPreviewHandler.VTable, self.vtable).QueryFocus(@ptrCast(*const IPreviewHandler, self), phwnd);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPreviewHandler_TranslateAcceleratorA(self: *const T, pmsg: *MSG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPreviewHandler.VTable, self.vtable).TranslateAcceleratorA(@ptrCast(*const IPreviewHandler, self), pmsg);
+        pub fn IPreviewHandler_TranslateAccelerator(self: *const T, pmsg: *MSG) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPreviewHandler.VTable, self.vtable).TranslateAccelerator(@ptrCast(*const IPreviewHandler, self), pmsg);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -11837,7 +11235,7 @@ pub const IPreviewHandlerFrame = extern struct {
             self: *const IPreviewHandlerFrame,
             pinfo: *PREVIEWHANDLERFRAMEINFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        TranslateAcceleratorA: fn(
+        TranslateAccelerator: fn(
             self: *const IPreviewHandlerFrame,
             pmsg: *MSG,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -11850,8 +11248,8 @@ pub const IPreviewHandlerFrame = extern struct {
             return @ptrCast(*const IPreviewHandlerFrame.VTable, self.vtable).GetWindowContext(@ptrCast(*const IPreviewHandlerFrame, self), pinfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPreviewHandlerFrame_TranslateAcceleratorA(self: *const T, pmsg: *MSG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPreviewHandlerFrame.VTable, self.vtable).TranslateAcceleratorA(@ptrCast(*const IPreviewHandlerFrame, self), pmsg);
+        pub fn IPreviewHandlerFrame_TranslateAccelerator(self: *const T, pmsg: *MSG) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPreviewHandlerFrame.VTable, self.vtable).TranslateAccelerator(@ptrCast(*const IPreviewHandlerFrame, self), pmsg);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -12216,24 +11614,24 @@ pub const IExplorerCommandProvider = extern struct {
             self: *const IExplorerCommandProvider,
             punkSite: *IUnknown,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCommand: fn(
             self: *const IExplorerCommandProvider,
             rguidCommandId: *const Guid,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IExplorerCommandProvider_GetCommands(self: *const T, punkSite: *IUnknown, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IExplorerCommandProvider_GetCommands(self: *const T, punkSite: *IUnknown, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IExplorerCommandProvider.VTable, self.vtable).GetCommands(@ptrCast(*const IExplorerCommandProvider, self), punkSite, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IExplorerCommandProvider_GetCommand(self: *const T, rguidCommandId: *const Guid, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IExplorerCommandProvider_GetCommand(self: *const T, rguidCommandId: *const Guid, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IExplorerCommandProvider.VTable, self.vtable).GetCommand(@ptrCast(*const IExplorerCommandProvider, self), rguidCommandId, riid, ppv);
         }
     };}
@@ -12390,7 +11788,7 @@ pub const ICustomDestinationList = extern struct {
             self: *const ICustomDestinationList,
             pcMinSlots: *u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         AppendCategory: fn(
             self: *const ICustomDestinationList,
@@ -12411,7 +11809,7 @@ pub const ICustomDestinationList = extern struct {
         GetRemovedDestinations: fn(
             self: *const ICustomDestinationList,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeleteList: fn(
             self: *const ICustomDestinationList,
@@ -12429,7 +11827,7 @@ pub const ICustomDestinationList = extern struct {
             return @ptrCast(*const ICustomDestinationList.VTable, self.vtable).SetAppID(@ptrCast(*const ICustomDestinationList, self), pszAppID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICustomDestinationList_BeginList(self: *const T, pcMinSlots: *u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICustomDestinationList_BeginList(self: *const T, pcMinSlots: *u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICustomDestinationList.VTable, self.vtable).BeginList(@ptrCast(*const ICustomDestinationList, self), pcMinSlots, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12449,7 +11847,7 @@ pub const ICustomDestinationList = extern struct {
             return @ptrCast(*const ICustomDestinationList.VTable, self.vtable).CommitList(@ptrCast(*const ICustomDestinationList, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICustomDestinationList_GetRemovedDestinations(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICustomDestinationList_GetRemovedDestinations(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICustomDestinationList.VTable, self.vtable).GetRemovedDestinations(@ptrCast(*const ICustomDestinationList, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12523,7 +11921,7 @@ pub const IApplicationDocumentLists = extern struct {
             listtype: APPDOCLISTTYPE,
             cItemsDesired: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -12534,7 +11932,7 @@ pub const IApplicationDocumentLists = extern struct {
             return @ptrCast(*const IApplicationDocumentLists.VTable, self.vtable).SetAppID(@ptrCast(*const IApplicationDocumentLists, self), pszAppID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IApplicationDocumentLists_GetList(self: *const T, listtype: APPDOCLISTTYPE, cItemsDesired: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IApplicationDocumentLists_GetList(self: *const T, listtype: APPDOCLISTTYPE, cItemsDesired: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IApplicationDocumentLists.VTable, self.vtable).GetList(@ptrCast(*const IApplicationDocumentLists, self), listtype, cItemsDesired, riid, ppv);
         }
     };}
@@ -12891,14 +12289,14 @@ pub const IOpenSearchSource = extern struct {
             dwStartIndex: u32,
             dwCount: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOpenSearchSource_GetResults(self: *const T, hwnd: HWND, pszQuery: [*:0]const u16, dwStartIndex: u32, dwCount: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IOpenSearchSource_GetResults(self: *const T, hwnd: HWND, pszQuery: [*:0]const u16, dwStartIndex: u32, dwCount: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IOpenSearchSource.VTable, self.vtable).GetResults(@ptrCast(*const IOpenSearchSource, self), hwnd, pszQuery, dwStartIndex, dwCount, riid, ppv);
         }
     };}
@@ -12969,20 +12367,20 @@ pub const IShellLibrary = extern struct {
             self: *const IShellLibrary,
             lff: LIBRARYFOLDERFILTER,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ResolveFolder: fn(
             self: *const IShellLibrary,
             psiFolderToResolve: *IShellItem,
             dwTimeout: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetDefaultSaveFolder: fn(
             self: *const IShellLibrary,
             dsft: DEFAULTSAVEFOLDERTYPE,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetDefaultSaveFolder: fn(
             self: *const IShellLibrary,
@@ -13052,15 +12450,15 @@ pub const IShellLibrary = extern struct {
             return @ptrCast(*const IShellLibrary.VTable, self.vtable).RemoveFolder(@ptrCast(*const IShellLibrary, self), psiLocation);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellLibrary_GetFolders(self: *const T, lff: LIBRARYFOLDERFILTER, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellLibrary_GetFolders(self: *const T, lff: LIBRARYFOLDERFILTER, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellLibrary.VTable, self.vtable).GetFolders(@ptrCast(*const IShellLibrary, self), lff, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellLibrary_ResolveFolder(self: *const T, psiFolderToResolve: *IShellItem, dwTimeout: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellLibrary_ResolveFolder(self: *const T, psiFolderToResolve: *IShellItem, dwTimeout: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellLibrary.VTable, self.vtable).ResolveFolder(@ptrCast(*const IShellLibrary, self), psiFolderToResolve, dwTimeout, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellLibrary_GetDefaultSaveFolder(self: *const T, dsft: DEFAULTSAVEFOLDERTYPE, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IShellLibrary_GetDefaultSaveFolder(self: *const T, dsft: DEFAULTSAVEFOLDERTYPE, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IShellLibrary.VTable, self.vtable).GetDefaultSaveFolder(@ptrCast(*const IShellLibrary, self), dsft, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13481,7 +12879,7 @@ pub const IDataTransferManagerInterop = extern struct {
             self: *const IDataTransferManagerInterop,
             appWindow: HWND,
             riid: *const Guid,
-            dataTransferManager: ?*?*c_void,
+            dataTransferManager: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowShareUIForWindow: fn(
             self: *const IDataTransferManagerInterop,
@@ -13492,7 +12890,7 @@ pub const IDataTransferManagerInterop = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDataTransferManagerInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, dataTransferManager: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IDataTransferManagerInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, dataTransferManager: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDataTransferManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IDataTransferManagerInterop, self), appWindow, riid, dataTransferManager);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14801,7 +14199,7 @@ pub const ISearchBoxInfo = extern struct {
         GetCondition: fn(
             self: *const ISearchBoxInfo,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetText: fn(
             self: *const ISearchBoxInfo,
@@ -14812,7 +14210,7 @@ pub const ISearchBoxInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchBoxInfo_GetCondition(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISearchBoxInfo_GetCondition(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISearchBoxInfo.VTable, self.vtable).GetCondition(@ptrCast(*const ISearchBoxInfo, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -16552,7 +15950,7 @@ pub const IBandHost = extern struct {
             fAvailable: BOOL,
             fVisible: BOOL,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetBandAvailability: fn(
             self: *const IBandHost,
@@ -16568,7 +15966,7 @@ pub const IBandHost = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBandHost_CreateBand(self: *const T, rclsidBand: *const Guid, fAvailable: BOOL, fVisible: BOOL, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IBandHost_CreateBand(self: *const T, rclsidBand: *const Guid, fAvailable: BOOL, fVisible: BOOL, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBandHost.VTable, self.vtable).CreateBand(@ptrCast(*const IBandHost, self), rclsidBand, fAvailable, fVisible, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -16852,10 +16250,12 @@ pub const IID_DFConstraint = &IID_DFConstraint_Value;
 pub const DFConstraint = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const DFConstraint,
             pbs: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: fn(
             self: *const DFConstraint,
             pv: *VARIANT,
@@ -16881,62 +16281,77 @@ pub const IID_FolderItem = &IID_FolderItem_Value;
 pub const FolderItem = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Application: fn(
             self: *const FolderItem,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const FolderItem,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const FolderItem,
             pbs: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const FolderItem,
             bs: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: fn(
             self: *const FolderItem,
             pbs: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GetLink: fn(
             self: *const FolderItem,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GetFolder: fn(
             self: *const FolderItem,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLink: fn(
             self: *const FolderItem,
             pb: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFolder: fn(
             self: *const FolderItem,
             pb: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFileSystem: fn(
             self: *const FolderItem,
             pb: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsBrowsable: fn(
             self: *const FolderItem,
             pb: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModifyDate: fn(
             self: *const FolderItem,
             pdt: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ModifyDate: fn(
             self: *const FolderItem,
             dt: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Size: fn(
             self: *const FolderItem,
             pul: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const FolderItem,
             pbs: *BSTR,
@@ -17030,14 +16445,17 @@ pub const IID_FolderItems = &IID_FolderItems_Value;
 pub const FolderItems = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const FolderItems,
             plCount: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Application: fn(
             self: *const FolderItems,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const FolderItems,
             ppid: **IDispatch,
@@ -17084,14 +16502,17 @@ pub const IID_FolderItemVerb = &IID_FolderItemVerb_Value;
 pub const FolderItemVerb = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Application: fn(
             self: *const FolderItemVerb,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const FolderItemVerb,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const FolderItemVerb,
             pbs: *BSTR,
@@ -17128,14 +16549,17 @@ pub const IID_FolderItemVerbs = &IID_FolderItemVerbs_Value;
 pub const FolderItemVerbs = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const FolderItemVerbs,
             plCount: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Application: fn(
             self: *const FolderItemVerbs,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const FolderItemVerbs,
             ppid: **IDispatch,
@@ -17182,18 +16606,22 @@ pub const IID_Folder = &IID_Folder_Value;
 pub const Folder = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Title: fn(
             self: *const Folder,
             pbs: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Application: fn(
             self: *const Folder,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const Folder,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentFolder: fn(
             self: *const Folder,
             ppsf: **Folder,
@@ -17281,10 +16709,12 @@ pub const IID_Folder2 = &IID_Folder2_Value;
 pub const Folder2 = extern struct {
     pub const VTable = extern struct {
         base: Folder.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Self: fn(
             self: *const Folder2,
             ppfi: **FolderItem,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OfflineStatus: fn(
             self: *const Folder2,
             pul: *i32,
@@ -17292,6 +16722,7 @@ pub const Folder2 = extern struct {
         Synchronize: fn(
             self: *const Folder2,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HaveToShowWebViewBarricade: fn(
             self: *const Folder2,
             pbHaveToShowWebViewBarricade: *i16,
@@ -17332,10 +16763,12 @@ pub const IID_Folder3 = &IID_Folder3_Value;
 pub const Folder3 = extern struct {
     pub const VTable = extern struct {
         base: Folder2.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowWebViewBarricade: fn(
             self: *const Folder3,
             pbShowWebViewBarricade: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowWebViewBarricade: fn(
             self: *const Folder3,
             bShowWebViewBarricade: i16,
@@ -17419,6 +16852,7 @@ pub const FolderItems3 = extern struct {
             grfFlags: i32,
             bstrFileSpec: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Verbs: fn(
             self: *const FolderItems3,
             ppfic: **FolderItemVerbs,
@@ -17444,50 +16878,62 @@ pub const IID_IShellLinkDual = &IID_IShellLinkDual_Value;
 pub const IShellLinkDual = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: fn(
             self: *const IShellLinkDual,
             pbs: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Path: fn(
             self: *const IShellLinkDual,
             bs: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IShellLinkDual,
             pbs: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IShellLinkDual,
             bs: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WorkingDirectory: fn(
             self: *const IShellLinkDual,
             pbs: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WorkingDirectory: fn(
             self: *const IShellLinkDual,
             bs: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Arguments: fn(
             self: *const IShellLinkDual,
             pbs: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Arguments: fn(
             self: *const IShellLinkDual,
             bs: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Hotkey: fn(
             self: *const IShellLinkDual,
             piHK: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Hotkey: fn(
             self: *const IShellLinkDual,
             iHK: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShowCommand: fn(
             self: *const IShellLinkDual,
             piShowCommand: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ShowCommand: fn(
             self: *const IShellLinkDual,
             iShowCommand: i32,
@@ -17587,6 +17033,7 @@ pub const IID_IShellLinkDual2 = &IID_IShellLinkDual2_Value;
 pub const IShellLinkDual2 = extern struct {
     pub const VTable = extern struct {
         base: IShellLinkDual.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Target: fn(
             self: *const IShellLinkDual2,
             ppfi: **FolderItem,
@@ -17609,14 +17056,17 @@ pub const IID_IShellFolderViewDual = &IID_IShellFolderViewDual_Value;
 pub const IShellFolderViewDual = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Application: fn(
             self: *const IShellFolderViewDual,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const IShellFolderViewDual,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Folder: fn(
             self: *const IShellFolderViewDual,
             ppid: **Folder,
@@ -17625,6 +17075,7 @@ pub const IShellFolderViewDual = extern struct {
             self: *const IShellFolderViewDual,
             ppid: **FolderItems,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FocusedItem: fn(
             self: *const IShellFolderViewDual,
             ppid: **FolderItem,
@@ -17641,10 +17092,12 @@ pub const IShellFolderViewDual = extern struct {
             vy: VARIANT,
             pbs: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Script: fn(
             self: *const IShellFolderViewDual,
             ppDisp: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ViewOptions: fn(
             self: *const IShellFolderViewDual,
             plViewOptions: *i32,
@@ -17699,10 +17152,12 @@ pub const IID_IShellFolderViewDual2 = &IID_IShellFolderViewDual2_Value;
 pub const IShellFolderViewDual2 = extern struct {
     pub const VTable = extern struct {
         base: IShellFolderViewDual.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentViewMode: fn(
             self: *const IShellFolderViewDual2,
             pViewMode: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CurrentViewMode: fn(
             self: *const IShellFolderViewDual2,
             ViewMode: u32,
@@ -17737,34 +17192,42 @@ pub const IID_IShellFolderViewDual3 = &IID_IShellFolderViewDual3_Value;
 pub const IShellFolderViewDual3 = extern struct {
     pub const VTable = extern struct {
         base: IShellFolderViewDual2.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GroupBy: fn(
             self: *const IShellFolderViewDual3,
             pbstrGroupBy: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GroupBy: fn(
             self: *const IShellFolderViewDual3,
             bstrGroupBy: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FolderFlags: fn(
             self: *const IShellFolderViewDual3,
             pdwFlags: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FolderFlags: fn(
             self: *const IShellFolderViewDual3,
             dwFlags: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SortColumns: fn(
             self: *const IShellFolderViewDual3,
             pbstrSortColumns: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SortColumns: fn(
             self: *const IShellFolderViewDual3,
             bstrSortColumns: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IconSize: fn(
             self: *const IShellFolderViewDual3,
             iIconSize: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IconSize: fn(
             self: *const IShellFolderViewDual3,
             piIconSize: *i32,
@@ -17822,10 +17285,12 @@ pub const IID_IShellDispatch = &IID_IShellDispatch_Value;
 pub const IShellDispatch = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Application: fn(
             self: *const IShellDispatch,
             ppid: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const IShellDispatch,
             ppid: **IDispatch,
@@ -18228,14 +17693,17 @@ pub const IFileSearchBand = extern struct {
             pvarScope: *VARIANT,
             pvarQueryFile: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchID: fn(
             self: *const IFileSearchBand,
             pbstrSearchID: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scope: fn(
             self: *const IFileSearchBand,
             pvarScope: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryFile: fn(
             self: *const IFileSearchBand,
             pvarFile: *VARIANT,
@@ -18282,19 +17750,23 @@ pub const IWebWizardHost = extern struct {
         Cancel: fn(
             self: *const IWebWizardHost,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Caption: fn(
             self: *const IWebWizardHost,
             bstrCaption: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Caption: fn(
             self: *const IWebWizardHost,
             pbstrCaption: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Property: fn(
             self: *const IWebWizardHost,
             bstrPropertyName: BSTR,
             pvProperty: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Property: fn(
             self: *const IWebWizardHost,
             bstrPropertyName: BSTR,
@@ -18858,7 +18330,7 @@ pub const NT_FE_CONSOLE_PROPS = extern struct {
 
 pub const EXP_DARWIN_LINK = extern struct {
     dbh: DATABLOCK_HEADER,
-    szDarwinID: [260]i8,
+    szDarwinID: [260]CHAR,
     szwDarwinID: [260]u16,
 };
 
@@ -18872,7 +18344,7 @@ pub const EXP_SPECIAL_FOLDER = extern struct {
 pub const EXP_SZ_LINK = extern struct {
     cbSize: u32,
     dwSignature: u32,
-    szTarget: [260]i8,
+    szTarget: [260]CHAR,
     swzTarget: [260]u16,
 };
 
@@ -19370,7 +18842,7 @@ pub const FILEDESCRIPTORA = extern struct {
     ftLastWriteTime: FILETIME,
     nFileSizeHigh: u32,
     nFileSizeLow: u32,
-    cFileName: [260]i8,
+    cFileName: [260]CHAR,
 };
 
 pub const FILEDESCRIPTORW = extern struct {
@@ -21151,12 +20623,12 @@ pub const NOTIFYICONDATAA = extern struct {
     uFlags: u32,
     uCallbackMessage: u32,
     hIcon: HICON,
-    szTip: [128]i8,
+    szTip: [128]CHAR,
     dwState: u32,
     dwStateMask: u32,
-    szInfo: [256]i8,
+    szInfo: [256]CHAR,
     Anonymous: NOTIFYICONDATAA._Anonymous_e__Union,
-    szInfoTitle: [64]i8,
+    szInfoTitle: [64]CHAR,
     dwInfoFlags: u32,
     guidItem: Guid,
     hBalloonIcon: HICON,
@@ -21193,8 +20665,8 @@ pub const SHFILEINFOA = extern struct {
     hIcon: HICON,
     iIcon: i32,
     dwAttributes: u32,
-    szDisplayName: [260]i8,
-    szTypeName: [80]i8,
+    szDisplayName: [260]CHAR,
+    szTypeName: [80]CHAR,
 };
 
 pub const SHFILEINFOW = extern struct {
@@ -23101,7 +22573,7 @@ pub const ISyncMgrHandlerCollection = extern struct {
             self: *const ISyncMgrHandlerCollection,
             pszHandlerID: [*:0]const u16,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -23112,7 +22584,7 @@ pub const ISyncMgrHandlerCollection = extern struct {
             return @ptrCast(*const ISyncMgrHandlerCollection.VTable, self.vtable).GetHandlerEnumerator(@ptrCast(*const ISyncMgrHandlerCollection, self), ppenum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrHandlerCollection_BindToHandler(self: *const T, pszHandlerID: [*:0]const u16, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncMgrHandlerCollection_BindToHandler(self: *const T, pszHandlerID: [*:0]const u16, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMgrHandlerCollection.VTable, self.vtable).BindToHandler(@ptrCast(*const ISyncMgrHandlerCollection, self), pszHandlerID, riid, ppv);
         }
     };}
@@ -23199,7 +22671,7 @@ pub const ISyncMgrHandler = extern struct {
             self: *const ISyncMgrHandler,
             rguidObjectID: *const Guid,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCapabilities: fn(
             self: *const ISyncMgrHandler,
@@ -23238,7 +22710,7 @@ pub const ISyncMgrHandler = extern struct {
             return @ptrCast(*const ISyncMgrHandler.VTable, self.vtable).GetHandlerInfo(@ptrCast(*const ISyncMgrHandler, self), ppHandlerInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrHandler_GetObject(self: *const T, rguidObjectID: *const Guid, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncMgrHandler_GetObject(self: *const T, rguidObjectID: *const Guid, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMgrHandler.VTable, self.vtable).GetObject(@ptrCast(*const ISyncMgrHandler, self), rguidObjectID, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23464,7 +22936,7 @@ pub const ISyncMgrSyncItem = extern struct {
             self: *const ISyncMgrSyncItem,
             rguidObjectID: *const Guid,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCapabilities: fn(
             self: *const ISyncMgrSyncItem,
@@ -23498,7 +22970,7 @@ pub const ISyncMgrSyncItem = extern struct {
             return @ptrCast(*const ISyncMgrSyncItem.VTable, self.vtable).GetItemInfo(@ptrCast(*const ISyncMgrSyncItem, self), ppItemInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrSyncItem_GetObject(self: *const T, rguidObjectID: *const Guid, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncMgrSyncItem_GetObject(self: *const T, rguidObjectID: *const Guid, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMgrSyncItem.VTable, self.vtable).GetObject(@ptrCast(*const ISyncMgrSyncItem, self), rguidObjectID, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -23711,7 +23183,7 @@ pub const ISyncMgrSyncCallback = extern struct {
             pszProgressText: [*:0]const u16,
             pnCancelRequest: *SYNCMGR_CANCEL_REQUEST,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReportEventA: fn(
+        ReportEvent: fn(
             self: *const ISyncMgrSyncCallback,
             pszItemID: [*:0]const u16,
             nLevel: SYNCMGR_EVENT_LEVEL,
@@ -23764,8 +23236,8 @@ pub const ISyncMgrSyncCallback = extern struct {
             return @ptrCast(*const ISyncMgrSyncCallback.VTable, self.vtable).SetHandlerProgressText(@ptrCast(*const ISyncMgrSyncCallback, self), pszProgressText, pnCancelRequest);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrSyncCallback_ReportEventA(self: *const T, pszItemID: [*:0]const u16, nLevel: SYNCMGR_EVENT_LEVEL, nFlags: SYNCMGR_EVENT_FLAGS, pszName: [*:0]const u16, pszDescription: [*:0]const u16, pszLinkText: [*:0]const u16, pszLinkReference: [*:0]const u16, pszContext: [*:0]const u16, pguidEventID: *Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ISyncMgrSyncCallback.VTable, self.vtable).ReportEventA(@ptrCast(*const ISyncMgrSyncCallback, self), pszItemID, nLevel, nFlags, pszName, pszDescription, pszLinkText, pszLinkReference, pszContext, pguidEventID);
+        pub fn ISyncMgrSyncCallback_ReportEvent(self: *const T, pszItemID: [*:0]const u16, nLevel: SYNCMGR_EVENT_LEVEL, nFlags: SYNCMGR_EVENT_FLAGS, pszName: [*:0]const u16, pszDescription: [*:0]const u16, pszLinkText: [*:0]const u16, pszLinkReference: [*:0]const u16, pszContext: [*:0]const u16, pguidEventID: *Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ISyncMgrSyncCallback.VTable, self.vtable).ReportEvent(@ptrCast(*const ISyncMgrSyncCallback, self), pszItemID, nLevel, nFlags, pszName, pszDescription, pszLinkText, pszLinkReference, pszContext, pguidEventID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ISyncMgrSyncCallback_CanContinue(self: *const T, pszItemID: [*:0]const u16) callconv(.Inline) HRESULT {
@@ -24307,7 +23779,7 @@ pub const ISyncMgrConflictStore = extern struct {
             self: *const ISyncMgrConflictStore,
             pConflictIdInfo: *const SYNCMGR_CONFLICT_ID_INFO,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RemoveConflicts: fn(
             self: *const ISyncMgrConflictStore,
@@ -24329,7 +23801,7 @@ pub const ISyncMgrConflictStore = extern struct {
             return @ptrCast(*const ISyncMgrConflictStore.VTable, self.vtable).EnumConflicts(@ptrCast(*const ISyncMgrConflictStore, self), pszHandlerID, pszItemID, ppEnum);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrConflictStore_BindToConflict(self: *const T, pConflictIdInfo: *const SYNCMGR_CONFLICT_ID_INFO, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncMgrConflictStore_BindToConflict(self: *const T, pConflictIdInfo: *const SYNCMGR_CONFLICT_ID_INFO, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMgrConflictStore.VTable, self.vtable).BindToConflict(@ptrCast(*const ISyncMgrConflictStore, self), pConflictIdInfo, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -24424,7 +23896,7 @@ pub const ISyncMgrConflict = extern struct {
         GetResolutionHandler: fn(
             self: *const ISyncMgrConflict,
             riid: *const Guid,
-            ppvResolutionHandler: ?*?*c_void,
+            ppvResolutionHandler: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -24447,7 +23919,7 @@ pub const ISyncMgrConflict = extern struct {
             return @ptrCast(*const ISyncMgrConflict.VTable, self.vtable).Resolve(@ptrCast(*const ISyncMgrConflict, self), pResolveInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrConflict_GetResolutionHandler(self: *const T, riid: *const Guid, ppvResolutionHandler: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncMgrConflict_GetResolutionHandler(self: *const T, riid: *const Guid, ppvResolutionHandler: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMgrConflict.VTable, self.vtable).GetResolutionHandler(@ptrCast(*const ISyncMgrConflict, self), riid, ppvResolutionHandler);
         }
     };}
@@ -25743,7 +25215,7 @@ pub const ISyncMgrSynchronize = extern struct {
             self: *const ISyncMgrSynchronize,
             ItemID: *const Guid,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowProperties: fn(
             self: *const ISyncMgrSynchronize,
@@ -25792,7 +25264,7 @@ pub const ISyncMgrSynchronize = extern struct {
             return @ptrCast(*const ISyncMgrSynchronize.VTable, self.vtable).EnumSyncMgrItems(@ptrCast(*const ISyncMgrSynchronize, self), ppSyncMgrEnumItems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISyncMgrSynchronize_GetItemObject(self: *const T, ItemID: *const Guid, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISyncMgrSynchronize_GetItemObject(self: *const T, ItemID: *const Guid, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISyncMgrSynchronize.VTable, self.vtable).GetItemObject(@ptrCast(*const ISyncMgrSynchronize, self), ItemID, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -26425,7 +25897,7 @@ pub const IHlinkSite = extern struct {
             dwSiteData: u32,
             guidService: *const Guid,
             riid: *const Guid,
-            ppiunk: ?*?*IUnknown,
+            ppiunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetMoniker: fn(
             self: *const IHlinkSite,
@@ -26451,7 +25923,7 @@ pub const IHlinkSite = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHlinkSite_QueryService(self: *const T, dwSiteData: u32, guidService: *const Guid, riid: *const Guid, ppiunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IHlinkSite_QueryService(self: *const T, dwSiteData: u32, guidService: *const Guid, riid: *const Guid, ppiunk: **IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHlinkSite.VTable, self.vtable).QueryService(@ptrCast(*const IHlinkSite, self), dwSiteData, guidService, riid, ppiunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -28297,9 +27769,9 @@ pub const NEWCPLINFOA = extern struct {
     dwHelpContext: u32,
     lData: isize,
     hIcon: HICON,
-    szName: [32]i8,
-    szInfo: [64]i8,
-    szHelpFile: [128]i8,
+    szName: [32]CHAR,
+    szInfo: [64]CHAR,
+    szHelpFile: [128]CHAR,
 };
 
 pub const NEWCPLINFOW = extern struct {
@@ -28488,6 +27960,609 @@ pub const NC_ADDRESS = extern struct {
     PrefixLength: u8,
 };
 
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHGFI_FLAGS = extern enum(i32) {
+    ADDOVERLAYS = 32,
+    ATTR_SPECIFIED = 131072,
+    ATTRIBUTES = 2048,
+    DISPLAYNAME = 512,
+    EXETYPE = 8192,
+    ICON = 256,
+    ICONLOCATION = 4096,
+    LARGEICON = 0,
+    LINKOVERLAY = 32768,
+    OPENICON = 2,
+    OVERLAYINDEX = 64,
+    PIDL = 8,
+    SELECTED = 65536,
+    SHELLICONSIZE = 4,
+    SMALLICON = 1,
+    SYSICONINDEX = 16384,
+    TYPENAME = 1024,
+    USEFILEATTRIBUTES = 16,
+    _,
+};
+pub const SHGFI_ADDOVERLAYS = SHGFI_FLAGS.ADDOVERLAYS;
+pub const SHGFI_ATTR_SPECIFIED = SHGFI_FLAGS.ATTR_SPECIFIED;
+pub const SHGFI_ATTRIBUTES = SHGFI_FLAGS.ATTRIBUTES;
+pub const SHGFI_DISPLAYNAME = SHGFI_FLAGS.DISPLAYNAME;
+pub const SHGFI_EXETYPE = SHGFI_FLAGS.EXETYPE;
+pub const SHGFI_ICON = SHGFI_FLAGS.ICON;
+pub const SHGFI_ICONLOCATION = SHGFI_FLAGS.ICONLOCATION;
+pub const SHGFI_LARGEICON = SHGFI_FLAGS.LARGEICON;
+pub const SHGFI_LINKOVERLAY = SHGFI_FLAGS.LINKOVERLAY;
+pub const SHGFI_OPENICON = SHGFI_FLAGS.OPENICON;
+pub const SHGFI_OVERLAYINDEX = SHGFI_FLAGS.OVERLAYINDEX;
+pub const SHGFI_PIDL = SHGFI_FLAGS.PIDL;
+pub const SHGFI_SELECTED = SHGFI_FLAGS.SELECTED;
+pub const SHGFI_SHELLICONSIZE = SHGFI_FLAGS.SHELLICONSIZE;
+pub const SHGFI_SMALLICON = SHGFI_FLAGS.SMALLICON;
+pub const SHGFI_SYSICONINDEX = SHGFI_FLAGS.SYSICONINDEX;
+pub const SHGFI_TYPENAME = SHGFI_FLAGS.TYPENAME;
+pub const SHGFI_USEFILEATTRIBUTES = SHGFI_FLAGS.USEFILEATTRIBUTES;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHCNE_ID = extern enum(u32) {
+    RENAMEITEM = 1,
+    CREATE = 2,
+    DELETE = 4,
+    MKDIR = 8,
+    RMDIR = 16,
+    MEDIAINSERTED = 32,
+    MEDIAREMOVED = 64,
+    DRIVEREMOVED = 128,
+    DRIVEADD = 256,
+    NETSHARE = 512,
+    NETUNSHARE = 1024,
+    ATTRIBUTES = 2048,
+    UPDATEDIR = 4096,
+    UPDATEITEM = 8192,
+    SERVERDISCONNECT = 16384,
+    UPDATEIMAGE = 32768,
+    DRIVEADDGUI = 65536,
+    RENAMEFOLDER = 131072,
+    FREESPACE = 262144,
+    EXTENDED_EVENT = 67108864,
+    ASSOCCHANGED = 134217728,
+    DISKEVENTS = 145439,
+    GLOBALEVENTS = 201687520,
+    ALLEVENTS = 2147483647,
+    INTERRUPT = 2147483648,
+    _,
+};
+pub const SHCNE_RENAMEITEM = SHCNE_ID.RENAMEITEM;
+pub const SHCNE_CREATE = SHCNE_ID.CREATE;
+pub const SHCNE_DELETE = SHCNE_ID.DELETE;
+pub const SHCNE_MKDIR = SHCNE_ID.MKDIR;
+pub const SHCNE_RMDIR = SHCNE_ID.RMDIR;
+pub const SHCNE_MEDIAINSERTED = SHCNE_ID.MEDIAINSERTED;
+pub const SHCNE_MEDIAREMOVED = SHCNE_ID.MEDIAREMOVED;
+pub const SHCNE_DRIVEREMOVED = SHCNE_ID.DRIVEREMOVED;
+pub const SHCNE_DRIVEADD = SHCNE_ID.DRIVEADD;
+pub const SHCNE_NETSHARE = SHCNE_ID.NETSHARE;
+pub const SHCNE_NETUNSHARE = SHCNE_ID.NETUNSHARE;
+pub const SHCNE_ATTRIBUTES = SHCNE_ID.ATTRIBUTES;
+pub const SHCNE_UPDATEDIR = SHCNE_ID.UPDATEDIR;
+pub const SHCNE_UPDATEITEM = SHCNE_ID.UPDATEITEM;
+pub const SHCNE_SERVERDISCONNECT = SHCNE_ID.SERVERDISCONNECT;
+pub const SHCNE_UPDATEIMAGE = SHCNE_ID.UPDATEIMAGE;
+pub const SHCNE_DRIVEADDGUI = SHCNE_ID.DRIVEADDGUI;
+pub const SHCNE_RENAMEFOLDER = SHCNE_ID.RENAMEFOLDER;
+pub const SHCNE_FREESPACE = SHCNE_ID.FREESPACE;
+pub const SHCNE_EXTENDED_EVENT = SHCNE_ID.EXTENDED_EVENT;
+pub const SHCNE_ASSOCCHANGED = SHCNE_ID.ASSOCCHANGED;
+pub const SHCNE_DISKEVENTS = SHCNE_ID.DISKEVENTS;
+pub const SHCNE_GLOBALEVENTS = SHCNE_ID.GLOBALEVENTS;
+pub const SHCNE_ALLEVENTS = SHCNE_ID.ALLEVENTS;
+pub const SHCNE_INTERRUPT = SHCNE_ID.INTERRUPT;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHCNRF_SOURCE = extern enum(i32) {
+    InterruptLevel = 1,
+    ShellLevel = 2,
+    RecursiveInterrupt = 4096,
+    NewDelivery = 32768,
+    _,
+};
+pub const SHCNRF_InterruptLevel = SHCNRF_SOURCE.InterruptLevel;
+pub const SHCNRF_ShellLevel = SHCNRF_SOURCE.ShellLevel;
+pub const SHCNRF_RecursiveInterrupt = SHCNRF_SOURCE.RecursiveInterrupt;
+pub const SHCNRF_NewDelivery = SHCNRF_SOURCE.NewDelivery;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHCNF_FLAGS = extern enum(u32) {
+    IDLIST = 0,
+    PATHA = 1,
+    PRINTERA = 2,
+    DWORD = 3,
+    PATHW = 5,
+    PRINTERW = 6,
+    TYPE = 255,
+    FLUSH = 4096,
+    FLUSHNOWAIT = 12288,
+    NOTIFYRECURSIVE = 65536,
+    PATH = 5,
+    PRINTER = 6,
+    _,
+};
+pub const SHCNF_IDLIST = SHCNF_FLAGS.IDLIST;
+pub const SHCNF_PATHA = SHCNF_FLAGS.PATHA;
+pub const SHCNF_PRINTERA = SHCNF_FLAGS.PRINTERA;
+pub const SHCNF_DWORD = SHCNF_FLAGS.DWORD;
+pub const SHCNF_PATHW = SHCNF_FLAGS.PATHW;
+pub const SHCNF_PRINTERW = SHCNF_FLAGS.PRINTERW;
+pub const SHCNF_TYPE = SHCNF_FLAGS.TYPE;
+pub const SHCNF_FLUSH = SHCNF_FLAGS.FLUSH;
+pub const SHCNF_FLUSHNOWAIT = SHCNF_FLAGS.FLUSHNOWAIT;
+pub const SHCNF_NOTIFYRECURSIVE = SHCNF_FLAGS.NOTIFYRECURSIVE;
+pub const SHCNF_PATH = SHCNF_FLAGS.PATH;
+pub const SHCNF_PRINTER = SHCNF_FLAGS.PRINTER;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const QITIPF_FLAGS = extern enum(i32) {
+    TIPF_DEFAULT = 0,
+    TIPF_USENAME = 1,
+    TIPF_LINKNOTARGET = 2,
+    TIPF_LINKUSETARGET = 4,
+    TIPF_USESLOWTIP = 8,
+    TIPF_SINGLELINE = 16,
+    F_CACHED = 1,
+    F_DONTEXPANDFOLDER = 2,
+    _,
+};
+pub const QITIPF_DEFAULT = QITIPF_FLAGS.TIPF_DEFAULT;
+pub const QITIPF_USENAME = QITIPF_FLAGS.TIPF_USENAME;
+pub const QITIPF_LINKNOTARGET = QITIPF_FLAGS.TIPF_LINKNOTARGET;
+pub const QITIPF_LINKUSETARGET = QITIPF_FLAGS.TIPF_LINKUSETARGET;
+pub const QITIPF_USESLOWTIP = QITIPF_FLAGS.TIPF_USESLOWTIP;
+pub const QITIPF_SINGLELINE = QITIPF_FLAGS.TIPF_SINGLELINE;
+pub const QIF_CACHED = QITIPF_FLAGS.F_CACHED;
+pub const QIF_DONTEXPANDFOLDER = QITIPF_FLAGS.F_DONTEXPANDFOLDER;
+
+pub const SHDID_ID = extern enum(i32) {
+    ROOT_REGITEM = 1,
+    FS_FILE = 2,
+    FS_DIRECTORY = 3,
+    FS_OTHER = 4,
+    COMPUTER_DRIVE35 = 5,
+    COMPUTER_DRIVE525 = 6,
+    COMPUTER_REMOVABLE = 7,
+    COMPUTER_FIXED = 8,
+    COMPUTER_NETDRIVE = 9,
+    COMPUTER_CDROM = 10,
+    COMPUTER_RAMDISK = 11,
+    COMPUTER_OTHER = 12,
+    NET_DOMAIN = 13,
+    NET_SERVER = 14,
+    NET_SHARE = 15,
+    NET_RESTOFNET = 16,
+    NET_OTHER = 17,
+    COMPUTER_IMAGING = 18,
+    COMPUTER_AUDIO = 19,
+    COMPUTER_SHAREDDOCS = 20,
+    MOBILE_DEVICE = 21,
+    REMOTE_DESKTOP_DRIVE = 22,
+};
+pub const SHDID_ROOT_REGITEM = SHDID_ID.ROOT_REGITEM;
+pub const SHDID_FS_FILE = SHDID_ID.FS_FILE;
+pub const SHDID_FS_DIRECTORY = SHDID_ID.FS_DIRECTORY;
+pub const SHDID_FS_OTHER = SHDID_ID.FS_OTHER;
+pub const SHDID_COMPUTER_DRIVE35 = SHDID_ID.COMPUTER_DRIVE35;
+pub const SHDID_COMPUTER_DRIVE525 = SHDID_ID.COMPUTER_DRIVE525;
+pub const SHDID_COMPUTER_REMOVABLE = SHDID_ID.COMPUTER_REMOVABLE;
+pub const SHDID_COMPUTER_FIXED = SHDID_ID.COMPUTER_FIXED;
+pub const SHDID_COMPUTER_NETDRIVE = SHDID_ID.COMPUTER_NETDRIVE;
+pub const SHDID_COMPUTER_CDROM = SHDID_ID.COMPUTER_CDROM;
+pub const SHDID_COMPUTER_RAMDISK = SHDID_ID.COMPUTER_RAMDISK;
+pub const SHDID_COMPUTER_OTHER = SHDID_ID.COMPUTER_OTHER;
+pub const SHDID_NET_DOMAIN = SHDID_ID.NET_DOMAIN;
+pub const SHDID_NET_SERVER = SHDID_ID.NET_SERVER;
+pub const SHDID_NET_SHARE = SHDID_ID.NET_SHARE;
+pub const SHDID_NET_RESTOFNET = SHDID_ID.NET_RESTOFNET;
+pub const SHDID_NET_OTHER = SHDID_ID.NET_OTHER;
+pub const SHDID_COMPUTER_IMAGING = SHDID_ID.COMPUTER_IMAGING;
+pub const SHDID_COMPUTER_AUDIO = SHDID_ID.COMPUTER_AUDIO;
+pub const SHDID_COMPUTER_SHAREDDOCS = SHDID_ID.COMPUTER_SHAREDDOCS;
+pub const SHDID_MOBILE_DEVICE = SHDID_ID.MOBILE_DEVICE;
+pub const SHDID_REMOTE_DESKTOP_DRIVE = SHDID_ID.REMOTE_DESKTOP_DRIVE;
+
+pub const SHGDFIL_FORMAT = extern enum(i32) {
+    FINDDATA = 1,
+    NETRESOURCE = 2,
+    DESCRIPTIONID = 3,
+};
+pub const SHGDFIL_FINDDATA = SHGDFIL_FORMAT.FINDDATA;
+pub const SHGDFIL_NETRESOURCE = SHGDFIL_FORMAT.NETRESOURCE;
+pub const SHGDFIL_DESCRIPTIONID = SHGDFIL_FORMAT.DESCRIPTIONID;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PRF_FLAGS = extern enum(i32) {
+    VERIFYEXISTS = 1,
+    TRYPROGRAMEXTENSIONS = 3,
+    FIRSTDIRDEF = 4,
+    DONTFINDLNK = 8,
+    REQUIREABSOLUTE = 16,
+    _,
+};
+pub const PRF_VERIFYEXISTS = PRF_FLAGS.VERIFYEXISTS;
+pub const PRF_TRYPROGRAMEXTENSIONS = PRF_FLAGS.TRYPROGRAMEXTENSIONS;
+pub const PRF_FIRSTDIRDEF = PRF_FLAGS.FIRSTDIRDEF;
+pub const PRF_DONTFINDLNK = PRF_FLAGS.DONTFINDLNK;
+pub const PRF_REQUIREABSOLUTE = PRF_FLAGS.REQUIREABSOLUTE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PCS_RET = extern enum(u32) {
+    FATAL = 2147483648,
+    REPLACEDCHAR = 1,
+    REMOVEDCHAR = 2,
+    TRUNCATED = 4,
+    PATHTOOLONG = 8,
+    _,
+};
+pub const PCS_FATAL = PCS_RET.FATAL;
+pub const PCS_REPLACEDCHAR = PCS_RET.REPLACEDCHAR;
+pub const PCS_REMOVEDCHAR = PCS_RET.REMOVEDCHAR;
+pub const PCS_TRUNCATED = PCS_RET.TRUNCATED;
+pub const PCS_PATHTOOLONG = PCS_RET.PATHTOOLONG;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const MM_FLAGS = extern enum(u32) {
+    ADDSEPARATOR = 1,
+    SUBMENUSHAVEIDS = 2,
+    DONTREMOVESEPS = 4,
+    _,
+};
+pub const MM_ADDSEPARATOR = MM_FLAGS.ADDSEPARATOR;
+pub const MM_SUBMENUSHAVEIDS = MM_FLAGS.SUBMENUSHAVEIDS;
+pub const MM_DONTREMOVESEPS = MM_FLAGS.DONTREMOVESEPS;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHOP_TYPE = extern enum(i32) {
+    PRINTERNAME = 1,
+    FILEPATH = 2,
+    VOLUMEGUID = 4,
+    _,
+};
+pub const SHOP_PRINTERNAME = SHOP_TYPE.PRINTERNAME;
+pub const SHOP_FILEPATH = SHOP_TYPE.FILEPATH;
+pub const SHOP_VOLUMEGUID = SHOP_TYPE.VOLUMEGUID;
+
+pub const SHFMT_ID = extern enum(u32) {
+    T = 65535,
+};
+pub const SHFMT_ID_DEFAULT = SHFMT_ID.T;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SHFMT_OPT = extern enum(i32) {
+    NONE = 0,
+    FULL = 1,
+    SYSONLY = 2,
+    _,
+};
+pub const SHFMT_OPT_NONE = SHFMT_OPT.NONE;
+pub const SHFMT_OPT_FULL = SHFMT_OPT.FULL;
+pub const SHFMT_OPT_SYSONLY = SHFMT_OPT.SYSONLY;
+
+pub const SHFMT_RET = extern enum(u32) {
+    ERROR = 4294967295,
+    CANCEL = 4294967294,
+    NOFORMAT = 4294967293,
+};
+pub const SHFMT_ERROR = SHFMT_RET.ERROR;
+pub const SHFMT_CANCEL = SHFMT_RET.CANCEL;
+pub const SHFMT_NOFORMAT = SHFMT_RET.NOFORMAT;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const VALIDATEUNC_OPTION = extern enum(i32) {
+    CONNECT = 1,
+    NOUI = 2,
+    PRINT = 4,
+    PERSIST = 8,
+    VALID = 15,
+    _,
+};
+pub const VALIDATEUNC_CONNECT = VALIDATEUNC_OPTION.CONNECT;
+pub const VALIDATEUNC_NOUI = VALIDATEUNC_OPTION.NOUI;
+pub const VALIDATEUNC_PRINT = VALIDATEUNC_OPTION.PRINT;
+pub const VALIDATEUNC_PERSIST = VALIDATEUNC_OPTION.PERSIST;
+pub const VALIDATEUNC_VALID = VALIDATEUNC_OPTION.VALID;
+
+pub const SFVM_MESSAGE_ID = extern enum(i32) {
+    MERGEMENU = 1,
+    INVOKECOMMAND = 2,
+    GETHELPTEXT = 3,
+    GETTOOLTIPTEXT = 4,
+    GETBUTTONINFO = 5,
+    GETBUTTONS = 6,
+    INITMENUPOPUP = 7,
+    FSNOTIFY = 14,
+    WINDOWCREATED = 15,
+    GETDETAILSOF = 23,
+    COLUMNCLICK = 24,
+    QUERYFSNOTIFY = 25,
+    DEFITEMCOUNT = 26,
+    DEFVIEWMODE = 27,
+    UNMERGEMENU = 28,
+    UPDATESTATUSBAR = 31,
+    BACKGROUNDENUM = 32,
+    DIDDRAGDROP = 36,
+    SETISFV = 39,
+    THISIDLIST = 41,
+    ADDPROPERTYPAGES = 47,
+    BACKGROUNDENUMDONE = 48,
+    GETNOTIFY = 49,
+    GETSORTDEFAULTS = 53,
+    SIZE = 57,
+    GETZONE = 58,
+    GETPANE = 59,
+    GETHELPTOPIC = 63,
+    GETANIMATION = 68,
+};
+pub const SFVM_MERGEMENU = SFVM_MESSAGE_ID.MERGEMENU;
+pub const SFVM_INVOKECOMMAND = SFVM_MESSAGE_ID.INVOKECOMMAND;
+pub const SFVM_GETHELPTEXT = SFVM_MESSAGE_ID.GETHELPTEXT;
+pub const SFVM_GETTOOLTIPTEXT = SFVM_MESSAGE_ID.GETTOOLTIPTEXT;
+pub const SFVM_GETBUTTONINFO = SFVM_MESSAGE_ID.GETBUTTONINFO;
+pub const SFVM_GETBUTTONS = SFVM_MESSAGE_ID.GETBUTTONS;
+pub const SFVM_INITMENUPOPUP = SFVM_MESSAGE_ID.INITMENUPOPUP;
+pub const SFVM_FSNOTIFY = SFVM_MESSAGE_ID.FSNOTIFY;
+pub const SFVM_WINDOWCREATED = SFVM_MESSAGE_ID.WINDOWCREATED;
+pub const SFVM_GETDETAILSOF = SFVM_MESSAGE_ID.GETDETAILSOF;
+pub const SFVM_COLUMNCLICK = SFVM_MESSAGE_ID.COLUMNCLICK;
+pub const SFVM_QUERYFSNOTIFY = SFVM_MESSAGE_ID.QUERYFSNOTIFY;
+pub const SFVM_DEFITEMCOUNT = SFVM_MESSAGE_ID.DEFITEMCOUNT;
+pub const SFVM_DEFVIEWMODE = SFVM_MESSAGE_ID.DEFVIEWMODE;
+pub const SFVM_UNMERGEMENU = SFVM_MESSAGE_ID.UNMERGEMENU;
+pub const SFVM_UPDATESTATUSBAR = SFVM_MESSAGE_ID.UPDATESTATUSBAR;
+pub const SFVM_BACKGROUNDENUM = SFVM_MESSAGE_ID.BACKGROUNDENUM;
+pub const SFVM_DIDDRAGDROP = SFVM_MESSAGE_ID.DIDDRAGDROP;
+pub const SFVM_SETISFV = SFVM_MESSAGE_ID.SETISFV;
+pub const SFVM_THISIDLIST = SFVM_MESSAGE_ID.THISIDLIST;
+pub const SFVM_ADDPROPERTYPAGES = SFVM_MESSAGE_ID.ADDPROPERTYPAGES;
+pub const SFVM_BACKGROUNDENUMDONE = SFVM_MESSAGE_ID.BACKGROUNDENUMDONE;
+pub const SFVM_GETNOTIFY = SFVM_MESSAGE_ID.GETNOTIFY;
+pub const SFVM_GETSORTDEFAULTS = SFVM_MESSAGE_ID.GETSORTDEFAULTS;
+pub const SFVM_SIZE = SFVM_MESSAGE_ID.SIZE;
+pub const SFVM_GETZONE = SFVM_MESSAGE_ID.GETZONE;
+pub const SFVM_GETPANE = SFVM_MESSAGE_ID.GETPANE;
+pub const SFVM_GETHELPTOPIC = SFVM_MESSAGE_ID.GETHELPTOPIC;
+pub const SFVM_GETANIMATION = SFVM_MESSAGE_ID.GETANIMATION;
+
+pub const SFVS_SELECT = extern enum(i32) {
+    NONE = 0,
+    ALLITEMS = 1,
+    INVERT = 2,
+};
+pub const SFVS_SELECT_NONE = SFVS_SELECT.NONE;
+pub const SFVS_SELECT_ALLITEMS = SFVS_SELECT.ALLITEMS;
+pub const SFVS_SELECT_INVERT = SFVS_SELECT.INVERT;
+
+pub const DFM_MESSAGE_ID = extern enum(i32) {
+    MERGECONTEXTMENU = 1,
+    INVOKECOMMAND = 2,
+    GETHELPTEXT = 5,
+    WM_MEASUREITEM = 6,
+    WM_DRAWITEM = 7,
+    WM_INITMENUPOPUP = 8,
+    VALIDATECMD = 9,
+    MERGECONTEXTMENU_TOP = 10,
+    GETHELPTEXTW = 11,
+    INVOKECOMMANDEX = 12,
+    MAPCOMMANDNAME = 13,
+    GETDEFSTATICID = 14,
+    GETVERBW = 15,
+    GETVERBA = 16,
+    MERGECONTEXTMENU_BOTTOM = 17,
+    MODIFYQCMFLAGS = 18,
+};
+pub const DFM_MERGECONTEXTMENU = DFM_MESSAGE_ID.MERGECONTEXTMENU;
+pub const DFM_INVOKECOMMAND = DFM_MESSAGE_ID.INVOKECOMMAND;
+pub const DFM_GETHELPTEXT = DFM_MESSAGE_ID.GETHELPTEXT;
+pub const DFM_WM_MEASUREITEM = DFM_MESSAGE_ID.WM_MEASUREITEM;
+pub const DFM_WM_DRAWITEM = DFM_MESSAGE_ID.WM_DRAWITEM;
+pub const DFM_WM_INITMENUPOPUP = DFM_MESSAGE_ID.WM_INITMENUPOPUP;
+pub const DFM_VALIDATECMD = DFM_MESSAGE_ID.VALIDATECMD;
+pub const DFM_MERGECONTEXTMENU_TOP = DFM_MESSAGE_ID.MERGECONTEXTMENU_TOP;
+pub const DFM_GETHELPTEXTW = DFM_MESSAGE_ID.GETHELPTEXTW;
+pub const DFM_INVOKECOMMANDEX = DFM_MESSAGE_ID.INVOKECOMMANDEX;
+pub const DFM_MAPCOMMANDNAME = DFM_MESSAGE_ID.MAPCOMMANDNAME;
+pub const DFM_GETDEFSTATICID = DFM_MESSAGE_ID.GETDEFSTATICID;
+pub const DFM_GETVERBW = DFM_MESSAGE_ID.GETVERBW;
+pub const DFM_GETVERBA = DFM_MESSAGE_ID.GETVERBA;
+pub const DFM_MERGECONTEXTMENU_BOTTOM = DFM_MESSAGE_ID.MERGECONTEXTMENU_BOTTOM;
+pub const DFM_MODIFYQCMFLAGS = DFM_MESSAGE_ID.MODIFYQCMFLAGS;
+
+pub const DFM_CMD = extern enum(i32) {
+    DELETE = -1,
+    MOVE = -2,
+    COPY = -3,
+    LINK = -4,
+    PROPERTIES = -5,
+    NEWFOLDER = -6,
+    PASTE = -7,
+    VIEWLIST = -8,
+    VIEWDETAILS = -9,
+    PASTELINK = -10,
+    PASTESPECIAL = -11,
+    MODALPROP = -12,
+    RENAME = -13,
+};
+pub const DFM_CMD_DELETE = DFM_CMD.DELETE;
+pub const DFM_CMD_MOVE = DFM_CMD.MOVE;
+pub const DFM_CMD_COPY = DFM_CMD.COPY;
+pub const DFM_CMD_LINK = DFM_CMD.LINK;
+pub const DFM_CMD_PROPERTIES = DFM_CMD.PROPERTIES;
+pub const DFM_CMD_NEWFOLDER = DFM_CMD.NEWFOLDER;
+pub const DFM_CMD_PASTE = DFM_CMD.PASTE;
+pub const DFM_CMD_VIEWLIST = DFM_CMD.VIEWLIST;
+pub const DFM_CMD_VIEWDETAILS = DFM_CMD.VIEWDETAILS;
+pub const DFM_CMD_PASTELINK = DFM_CMD.PASTELINK;
+pub const DFM_CMD_PASTESPECIAL = DFM_CMD.PASTESPECIAL;
+pub const DFM_CMD_MODALPROP = DFM_CMD.MODALPROP;
+pub const DFM_CMD_RENAME = DFM_CMD.RENAME;
+
+pub const PID_IS = extern enum(i32) {
+    URL = 2,
+    NAME = 4,
+    WORKINGDIR = 5,
+    HOTKEY = 6,
+    SHOWCMD = 7,
+    ICONINDEX = 8,
+    ICONFILE = 9,
+    WHATSNEW = 10,
+    AUTHOR = 11,
+    DESCRIPTION = 12,
+    COMMENT = 13,
+    ROAMED = 15,
+};
+pub const PID_IS_URL = PID_IS.URL;
+pub const PID_IS_NAME = PID_IS.NAME;
+pub const PID_IS_WORKINGDIR = PID_IS.WORKINGDIR;
+pub const PID_IS_HOTKEY = PID_IS.HOTKEY;
+pub const PID_IS_SHOWCMD = PID_IS.SHOWCMD;
+pub const PID_IS_ICONINDEX = PID_IS.ICONINDEX;
+pub const PID_IS_ICONFILE = PID_IS.ICONFILE;
+pub const PID_IS_WHATSNEW = PID_IS.WHATSNEW;
+pub const PID_IS_AUTHOR = PID_IS.AUTHOR;
+pub const PID_IS_DESCRIPTION = PID_IS.DESCRIPTION;
+pub const PID_IS_COMMENT = PID_IS.COMMENT;
+pub const PID_IS_ROAMED = PID_IS.ROAMED;
+
+pub const PID_INTSITE = extern enum(i32) {
+    WHATSNEW = 2,
+    AUTHOR = 3,
+    LASTVISIT = 4,
+    LASTMOD = 5,
+    VISITCOUNT = 6,
+    DESCRIPTION = 7,
+    COMMENT = 8,
+    FLAGS = 9,
+    CONTENTLEN = 10,
+    CONTENTCODE = 11,
+    RECURSE = 12,
+    WATCH = 13,
+    SUBSCRIPTION = 14,
+    URL = 15,
+    TITLE = 16,
+    CODEPAGE = 18,
+    TRACKING = 19,
+    ICONINDEX = 20,
+    ICONFILE = 21,
+    ROAMED = 34,
+};
+pub const PID_INTSITE_WHATSNEW = PID_INTSITE.WHATSNEW;
+pub const PID_INTSITE_AUTHOR = PID_INTSITE.AUTHOR;
+pub const PID_INTSITE_LASTVISIT = PID_INTSITE.LASTVISIT;
+pub const PID_INTSITE_LASTMOD = PID_INTSITE.LASTMOD;
+pub const PID_INTSITE_VISITCOUNT = PID_INTSITE.VISITCOUNT;
+pub const PID_INTSITE_DESCRIPTION = PID_INTSITE.DESCRIPTION;
+pub const PID_INTSITE_COMMENT = PID_INTSITE.COMMENT;
+pub const PID_INTSITE_FLAGS = PID_INTSITE.FLAGS;
+pub const PID_INTSITE_CONTENTLEN = PID_INTSITE.CONTENTLEN;
+pub const PID_INTSITE_CONTENTCODE = PID_INTSITE.CONTENTCODE;
+pub const PID_INTSITE_RECURSE = PID_INTSITE.RECURSE;
+pub const PID_INTSITE_WATCH = PID_INTSITE.WATCH;
+pub const PID_INTSITE_SUBSCRIPTION = PID_INTSITE.SUBSCRIPTION;
+pub const PID_INTSITE_URL = PID_INTSITE.URL;
+pub const PID_INTSITE_TITLE = PID_INTSITE.TITLE;
+pub const PID_INTSITE_CODEPAGE = PID_INTSITE.CODEPAGE;
+pub const PID_INTSITE_TRACKING = PID_INTSITE.TRACKING;
+pub const PID_INTSITE_ICONINDEX = PID_INTSITE.ICONINDEX;
+pub const PID_INTSITE_ICONFILE = PID_INTSITE.ICONFILE;
+pub const PID_INTSITE_ROAMED = PID_INTSITE.ROAMED;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PIDISF_FLAGS = extern enum(i32) {
+    RECENTLYCHANGED = 1,
+    CACHEDSTICKY = 2,
+    CACHEIMAGES = 16,
+    FOLLOWALLLINKS = 32,
+    _,
+};
+pub const PIDISF_RECENTLYCHANGED = PIDISF_FLAGS.RECENTLYCHANGED;
+pub const PIDISF_CACHEDSTICKY = PIDISF_FLAGS.CACHEDSTICKY;
+pub const PIDISF_CACHEIMAGES = PIDISF_FLAGS.CACHEIMAGES;
+pub const PIDISF_FOLLOWALLLINKS = PIDISF_FLAGS.FOLLOWALLLINKS;
+
+pub const PIDISM_OPTIONS = extern enum(i32) {
+    GLOBAL = 0,
+    WATCH = 1,
+    DONTWATCH = 2,
+};
+pub const PIDISM_GLOBAL = PIDISM_OPTIONS.GLOBAL;
+pub const PIDISM_WATCH = PIDISM_OPTIONS.WATCH;
+pub const PIDISM_DONTWATCH = PIDISM_OPTIONS.DONTWATCH;
+
+pub const PIDISR_INFO = extern enum(i32) {
+    UP_TO_DATE = 0,
+    NEEDS_ADD = 1,
+    NEEDS_UPDATE = 2,
+    NEEDS_DELETE = 3,
+};
+pub const PIDISR_UP_TO_DATE = PIDISR_INFO.UP_TO_DATE;
+pub const PIDISR_NEEDS_ADD = PIDISR_INFO.NEEDS_ADD;
+pub const PIDISR_NEEDS_UPDATE = PIDISR_INFO.NEEDS_UPDATE;
+pub const PIDISR_NEEDS_DELETE = PIDISR_INFO.NEEDS_DELETE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const SSF_MASK = extern enum(u32) {
+    SHOWALLOBJECTS = 1,
+    SHOWEXTENSIONS = 2,
+    HIDDENFILEEXTS = 4,
+    SERVERADMINUI = 4,
+    SHOWCOMPCOLOR = 8,
+    SORTCOLUMNS = 16,
+    SHOWSYSFILES = 32,
+    DOUBLECLICKINWEBVIEW = 128,
+    SHOWATTRIBCOL = 256,
+    DESKTOPHTML = 512,
+    WIN95CLASSIC = 1024,
+    DONTPRETTYPATH = 2048,
+    SHOWINFOTIP = 8192,
+    MAPNETDRVBUTTON = 4096,
+    NOCONFIRMRECYCLE = 32768,
+    HIDEICONS = 16384,
+    FILTER = 65536,
+    WEBVIEW = 131072,
+    SHOWSUPERHIDDEN = 262144,
+    SEPPROCESS = 524288,
+    NONETCRAWLING = 1048576,
+    STARTPANELON = 2097152,
+    SHOWSTARTPAGE = 4194304,
+    AUTOCHECKSELECT = 8388608,
+    ICONSONLY = 16777216,
+    SHOWTYPEOVERLAY = 33554432,
+    SHOWSTATUSBAR = 67108864,
+    _,
+};
+pub const SSF_SHOWALLOBJECTS = SSF_MASK.SHOWALLOBJECTS;
+pub const SSF_SHOWEXTENSIONS = SSF_MASK.SHOWEXTENSIONS;
+pub const SSF_HIDDENFILEEXTS = SSF_MASK.HIDDENFILEEXTS;
+pub const SSF_SERVERADMINUI = SSF_MASK.SERVERADMINUI;
+pub const SSF_SHOWCOMPCOLOR = SSF_MASK.SHOWCOMPCOLOR;
+pub const SSF_SORTCOLUMNS = SSF_MASK.SORTCOLUMNS;
+pub const SSF_SHOWSYSFILES = SSF_MASK.SHOWSYSFILES;
+pub const SSF_DOUBLECLICKINWEBVIEW = SSF_MASK.DOUBLECLICKINWEBVIEW;
+pub const SSF_SHOWATTRIBCOL = SSF_MASK.SHOWATTRIBCOL;
+pub const SSF_DESKTOPHTML = SSF_MASK.DESKTOPHTML;
+pub const SSF_WIN95CLASSIC = SSF_MASK.WIN95CLASSIC;
+pub const SSF_DONTPRETTYPATH = SSF_MASK.DONTPRETTYPATH;
+pub const SSF_SHOWINFOTIP = SSF_MASK.SHOWINFOTIP;
+pub const SSF_MAPNETDRVBUTTON = SSF_MASK.MAPNETDRVBUTTON;
+pub const SSF_NOCONFIRMRECYCLE = SSF_MASK.NOCONFIRMRECYCLE;
+pub const SSF_HIDEICONS = SSF_MASK.HIDEICONS;
+pub const SSF_FILTER = SSF_MASK.FILTER;
+pub const SSF_WEBVIEW = SSF_MASK.WEBVIEW;
+pub const SSF_SHOWSUPERHIDDEN = SSF_MASK.SHOWSUPERHIDDEN;
+pub const SSF_SEPPROCESS = SSF_MASK.SEPPROCESS;
+pub const SSF_NONETCRAWLING = SSF_MASK.NONETCRAWLING;
+pub const SSF_STARTPANELON = SSF_MASK.STARTPANELON;
+pub const SSF_SHOWSTARTPAGE = SSF_MASK.SHOWSTARTPAGE;
+pub const SSF_AUTOCHECKSELECT = SSF_MASK.AUTOCHECKSELECT;
+pub const SSF_ICONSONLY = SSF_MASK.ICONSONLY;
+pub const SSF_SHOWTYPEOVERLAY = SSF_MASK.SHOWTYPEOVERLAY;
+pub const SSF_SHOWSTATUSBAR = SSF_MASK.SHOWSTATUSBAR;
+
 pub const LOGFONTA = extern struct {
     lfHeight: i32,
     lfWidth: i32,
@@ -28502,7 +28577,7 @@ pub const LOGFONTA = extern struct {
     lfClipPrecision: u8,
     lfQuality: u8,
     lfPitchAndFamily: u8,
-    lfFaceName: [32]i8,
+    lfFaceName: [32]CHAR,
 };
 
 pub const LOGFONTW = extern struct {
@@ -28520,6 +28595,47 @@ pub const LOGFONTW = extern struct {
     lfQuality: u8,
     lfPitchAndFamily: u8,
     lfFaceName: [32]u16,
+};
+
+pub const HELPINFO = extern struct {
+    cbSize: u32,
+    iContextType: i32,
+    iCtrlId: i32,
+    hItemHandle: HANDLE,
+    dwContextId: usize,
+    MousePos: POINT,
+};
+
+pub const MULTIKEYHELPA = extern struct {
+    mkSize: u32,
+    mkKeylist: CHAR,
+    szKeyphrase: [1]CHAR,
+};
+
+pub const MULTIKEYHELPW = extern struct {
+    mkSize: u32,
+    mkKeylist: u16,
+    szKeyphrase: [1]u16,
+};
+
+pub const HELPWININFOA = extern struct {
+    wStructSize: i32,
+    x: i32,
+    y: i32,
+    dx: i32,
+    dy: i32,
+    wMax: i32,
+    rgchMember: [2]CHAR,
+};
+
+pub const HELPWININFOW = extern struct {
+    wStructSize: i32,
+    x: i32,
+    y: i32,
+    dx: i32,
+    dy: i32,
+    wMax: i32,
+    rgchMember: [2]u16,
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -28545,51 +28661,41 @@ pub const INotifyReplica = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const HELPINFO = extern struct {
-    cbSize: u32,
-    iContextType: i32,
-    iCtrlId: i32,
-    hItemHandle: HANDLE,
-    dwContextId: usize,
-    MousePos: POINT,
-};
-
-pub const MULTIKEYHELPA = extern struct {
-    mkSize: u32,
-    mkKeylist: i8,
-    szKeyphrase: [1]i8,
-};
-
-pub const MULTIKEYHELPW = extern struct {
-    mkSize: u32,
-    mkKeylist: u16,
-    szKeyphrase: [1]u16,
-};
-
-pub const HELPWININFOA = extern struct {
-    wStructSize: i32,
-    x: i32,
-    y: i32,
-    dx: i32,
-    dy: i32,
-    wMax: i32,
-    rgchMember: [2]i8,
-};
-
-pub const HELPWININFOW = extern struct {
-    wStructSize: i32,
-    x: i32,
-    y: i32,
-    dx: i32,
-    dy: i32,
-    wMax: i32,
-    rgchMember: [2]u16,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (699)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn SetWindowSubclass(
+    hWnd: HWND,
+    pfnSubclass: SUBCLASSPROC,
+    uIdSubclass: usize,
+    dwRefData: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn GetWindowSubclass(
+    hWnd: HWND,
+    pfnSubclass: SUBCLASSPROC,
+    uIdSubclass: usize,
+    pdwRefData: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn RemoveWindowSubclass(
+    hWnd: HWND,
+    pfnSubclass: SUBCLASSPROC,
+    uIdSubclass: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn DefSubclassProc(
+    hWnd: HWND,
+    uMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
+
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USERENV" fn LoadUserProfileA(
     hToken: HANDLE,
@@ -28752,37 +28858,6 @@ pub extern "USERENV" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRes
     pszRestrictedAppContainerName: [*:0]const u16,
     ppsidRestrictedAppContainerSid: *PSID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn SetWindowSubclass(
-    hWnd: HWND,
-    pfnSubclass: SUBCLASSPROC,
-    uIdSubclass: usize,
-    dwRefData: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn GetWindowSubclass(
-    hWnd: HWND,
-    pfnSubclass: SUBCLASSPROC,
-    uIdSubclass: usize,
-    pdwRefData: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn RemoveWindowSubclass(
-    hWnd: HWND,
-    pfnSubclass: SUBCLASSPROC,
-    uIdSubclass: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn DefSubclassProc(
-    hWnd: HWND,
-    uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHSimpleIDListFromPath(
@@ -29985,7 +30060,7 @@ pub extern "SHELL32" fn SHCreatePropSheetExtArray(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "SHELL32" fn SHOpenPropSheetW(
     pszCaption: ?[*:0]const u16,
-    ahkeys: ?[*]?*HKEY,
+    ahkeys: ?[*]HKEY,
     ckeys: u32,
     pclsidDefault: ?*const Guid,
     pdtobj: *IDataObject,
@@ -31022,7 +31097,7 @@ pub extern "SHLWAPI" fn SHLoadIndirectString(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn IsCharSpaceA(
-    wch: i8,
+    wch: CHAR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -32814,7 +32889,7 @@ pub extern "SHLWAPI" fn SHSendMessageBroadcastW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHStripMneumonicA(
     pszMenu: PSTR,
-) callconv(@import("std").os.windows.WINAPI) i8;
+) callconv(@import("std").os.windows.WINAPI) CHAR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHLWAPI" fn SHStripMneumonicW(
@@ -34250,7 +34325,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (95)
+// Section: Imports (96)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("automation.zig").IDispatch;
@@ -34282,7 +34357,7 @@ const IBindCtx = @import("com.zig").IBindCtx;
 const EXCEPINFO = @import("automation.zig").EXCEPINFO;
 const IEnumFORMATETC = @import("com.zig").IEnumFORMATETC;
 const IOleInPlaceSite = @import("com.zig").IOleInPlaceSite;
-const IEnumPrivacyRecords = @import("debug.zig").IEnumPrivacyRecords;
+const IEnumPrivacyRecords = @import("internet_explorer.zig").IEnumPrivacyRecords;
 const COORD = @import("system_services.zig").COORD;
 const PROPVARIANT = @import("structured_storage.zig").PROPVARIANT;
 const BSTR = @import("automation.zig").BSTR;
@@ -34306,17 +34381,18 @@ const MSG = @import("windows_and_messaging.zig").MSG;
 const HKEY = @import("windows_programming.zig").HKEY;
 const POINTL = @import("display_devices.zig").POINTL;
 const HDC = @import("gdi.zig").HDC;
-const HINSTANCE = @import("system_services.zig").HINSTANCE;
+const CHAR = @import("system_services.zig").CHAR;
 const IEnumString = @import("com.zig").IEnumString;
 const HRESULT = @import("com.zig").HRESULT;
+const HINSTANCE = @import("system_services.zig").HINSTANCE;
 const STARTUPINFOW = @import("system_services.zig").STARTUPINFOW;
-const BYTE_BLOB = @import("com.zig").BYTE_BLOB;
 const IEnumGUID = @import("com.zig").IEnumGUID;
+const BYTE_BLOB = @import("com.zig").BYTE_BLOB;
 const IOleObject = @import("com.zig").IOleObject;
-const NMHDR = @import("controls.zig").NMHDR;
 const BOOL = @import("system_services.zig").BOOL;
-const PSID = @import("security.zig").PSID;
+const NMHDR = @import("controls.zig").NMHDR;
 const IPersist = @import("com.zig").IPersist;
+const PSID = @import("security.zig").PSID;
 const BFFCALLBACK = @import("active_directory.zig").BFFCALLBACK;
 const LPFNSVADDPROPSHEETPAGE = @import("controls.zig").LPFNSVADDPROPSHEETPAGE;
 const HPALETTE = @import("gdi.zig").HPALETTE;
@@ -34367,7 +34443,7 @@ test {
     const com_class_id_export_count = 109;
     const func_export_count = 699;
     const unicode_alias_count = 207;
-    const import_count = 95;
+    const import_count = 96;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

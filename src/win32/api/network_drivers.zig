@@ -4,7 +4,7 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (22)
+// Section: Types (23)
 //--------------------------------------------------------------------------------
 pub const L2_NOTIFICATION_DATA = extern struct {
     NotificationSource: u32,
@@ -19,20 +19,24 @@ pub const SOCKET_ADDRESS_LIST = extern struct {
     Address: [1]SOCKET_ADDRESS,
 };
 
-pub const SOCKADDR_STORAGE_LH = extern struct {
-    ss_family: u16,
-    __ss_pad1: [6]i8,
+pub const SOCKADDR_STORAGE_XP = extern struct {
+    ss_family: i16,
+    __ss_pad1: [6]CHAR,
     __ss_align: i64,
-    __ss_pad2: [112]i8,
+    __ss_pad2: [112]CHAR,
 };
 
-pub const SOCKADDR_IN6_LH = extern struct {
-    sin6_family: u16,
+pub const IN6_ADDR = extern struct {
+    u: IN6_ADDR._u_e__Union,
+    const _u_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const SOCKADDR_IN6_W2KSP1 = extern struct {
+    sin6_family: i16,
     sin6_port: u16,
     sin6_flowinfo: u32,
-    sin6_addr: in6_addr,
-    Anonymous: SOCKADDR_IN6_LH._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+    sin6_addr: IN6_ADDR,
+    sin6_scope_id: u32,
 };
 
 pub const NL_ROUTE_PROTOCOL = extern enum(i32) {
@@ -436,13 +440,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const PWSTR = @import("system_services.zig").PWSTR;
+const CHAR = @import("system_services.zig").CHAR;
 const SOCKET_ADDRESS = @import("win_sock.zig").SOCKET_ADDRESS;
-const in6_addr = @import("win_sock.zig").in6_addr;
 const NTSTATUS = @import("system_services.zig").NTSTATUS;
 
 test {
     const constant_export_count = 0;
-    const type_export_count = 22;
+    const type_export_count = 23;
     const enum_value_export_count = 129;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;

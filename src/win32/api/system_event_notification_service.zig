@@ -10,12 +10,12 @@ pub const NETWORK_ALIVE_INTERNET = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (8)
 //--------------------------------------------------------------------------------
-pub const ISensNetwork_ConnectionLost_ulTypeFlags = extern enum(u32) {
+pub const SENS_CONNECTION_TYPE = extern enum(u32) {
     LAN = 0,
     WAN = 1,
 };
-pub const CONNECTION_LAN = ISensNetwork_ConnectionLost_ulTypeFlags.LAN;
-pub const CONNECTION_WAN = ISensNetwork_ConnectionLost_ulTypeFlags.WAN;
+pub const CONNECTION_LAN = SENS_CONNECTION_TYPE.LAN;
+pub const CONNECTION_WAN = SENS_CONNECTION_TYPE.WAN;
 
 pub const QOCINFO = extern struct {
     dwSize: u32,
@@ -54,7 +54,7 @@ pub const ISensNetwork = extern struct {
         ConnectionLost: fn(
             self: *const ISensNetwork,
             bstrConnection: BSTR,
-            ulType: ISensNetwork_ConnectionLost_ulTypeFlags,
+            ulType: SENS_CONNECTION_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DestinationReachable: fn(
             self: *const ISensNetwork,
@@ -82,7 +82,7 @@ pub const ISensNetwork = extern struct {
             return @ptrCast(*const ISensNetwork.VTable, self.vtable).ConnectionMadeNoQOCInfo(@ptrCast(*const ISensNetwork, self), bstrConnection, ulType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensNetwork_ConnectionLost(self: *const T, bstrConnection: BSTR, ulType: ISensNetwork_ConnectionLost_ulTypeFlags) callconv(.Inline) HRESULT {
+        pub fn ISensNetwork_ConnectionLost(self: *const T, bstrConnection: BSTR, ulType: SENS_CONNECTION_TYPE) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISensNetwork.VTable, self.vtable).ConnectionLost(@ptrCast(*const ISensNetwork, self), bstrConnection, ulType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

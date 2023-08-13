@@ -857,11 +857,11 @@ pub const DDPIXELFORMAT = extern struct {
     Anonymous3: DDPIXELFORMAT._Anonymous3_e__Union,
     Anonymous4: DDPIXELFORMAT._Anonymous4_e__Union,
     Anonymous5: DDPIXELFORMAT._Anonymous5_e__Union,
-    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDOVERLAYFX = extern struct {
@@ -877,8 +877,8 @@ pub const DDOVERLAYFX = extern struct {
     dckSrcColorkey: DDCOLORKEY,
     dwDDFX: u32,
     dwFlags: u32,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDBLTBATCH = extern struct {
@@ -896,8 +896,8 @@ pub const DDGAMMARAMP = extern struct {
 };
 
 pub const DDDEVICEIDENTIFIER = extern struct {
-    szDriver: [512]i8,
-    szDescription: [512]i8,
+    szDriver: [512]CHAR,
+    szDescription: [512]CHAR,
     liDriverVersion: LARGE_INTEGER,
     dwVendorId: u32,
     dwDeviceId: u32,
@@ -907,8 +907,8 @@ pub const DDDEVICEIDENTIFIER = extern struct {
 };
 
 pub const DDDEVICEIDENTIFIER2 = extern struct {
-    szDriver: [512]i8,
-    szDescription: [512]i8,
+    szDriver: [512]CHAR,
+    szDescription: [512]CHAR,
     liDriverVersion: LARGE_INTEGER,
     dwVendorId: u32,
     dwDeviceId: u32,
@@ -3763,8 +3763,8 @@ pub const DDSURFACEDESC = extern struct {
     ddckCKSrcBlt: DDCOLORKEY,
     ddpfPixelFormat: DDPIXELFORMAT,
     ddsCaps: DDSCAPS,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDSURFACEDESC2 = extern struct {
@@ -3785,11 +3785,11 @@ pub const DDSURFACEDESC2 = extern struct {
     Anonymous5: DDSURFACEDESC2._Anonymous5_e__Union,
     ddsCaps: DDSCAPS2,
     dwTextureStage: u32,
-    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous5_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous4_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const DDOPTSURFACEDESC = extern struct {
@@ -3893,12 +3893,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (16)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HDC = @import("gdi.zig").HDC;
 const HMONITOR = @import("gdi.zig").HMONITOR;
 const PWSTR = @import("system_services.zig").PWSTR;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
 const HRESULT = @import("com.zig").HRESULT;
 const PSTR = @import("system_services.zig").PSTR;
@@ -3906,9 +3907,9 @@ const RECT = @import("display_devices.zig").RECT;
 const BOOL = @import("system_services.zig").BOOL;
 const HWND = @import("windows_and_messaging.zig").HWND;
 const LARGE_INTEGER = @import("system_services.zig").LARGE_INTEGER;
-const HANDLE = @import("system_services.zig").HANDLE;
 const DDCOLORKEY = @import("direct_show.zig").DDCOLORKEY;
 const PALETTEENTRY = @import("gdi.zig").PALETTEENTRY;
+const HANDLE = @import("system_services.zig").HANDLE;
 const SIZE = @import("display_devices.zig").SIZE;
 const RGNDATA = @import("gdi.zig").RGNDATA;
 
@@ -3934,7 +3935,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 7;
     const unicode_alias_count = 5;
-    const import_count = 16;
+    const import_count = 17;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

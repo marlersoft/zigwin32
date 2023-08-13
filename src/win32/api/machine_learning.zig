@@ -91,8 +91,8 @@ pub const WINML_MAP_BINDING_DESC = extern struct {
     Anonymous1: WINML_MAP_BINDING_DESC._Anonymous1_e__Union,
     Fields: WINML_TENSOR_DATA_TYPE,
     Anonymous2: WINML_MAP_BINDING_DESC._Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const WINML_IMAGE_BINDING_DESC = extern struct {
@@ -367,13 +367,13 @@ pub const IMLOperatorAttributes = extern struct {
         base: IUnknown.VTable,
         GetAttributeElementCount: fn(
             self: *const IMLOperatorAttributes,
-            name: *const i8,
+            name: [*:0]const u8,
             type: MLOperatorAttributeType,
             elementCount: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAttribute: fn(
             self: *const IMLOperatorAttributes,
-            name: *const i8,
+            name: [*:0]const u8,
             type: MLOperatorAttributeType,
             elementCount: u32,
             elementByteSize: usize,
@@ -381,35 +381,35 @@ pub const IMLOperatorAttributes = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStringAttributeElementLength: fn(
             self: *const IMLOperatorAttributes,
-            name: *const i8,
+            name: [*:0]const u8,
             elementIndex: u32,
             attributeElementByteSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetStringAttributeElement: fn(
             self: *const IMLOperatorAttributes,
-            name: *const i8,
+            name: [*:0]const u8,
             elementIndex: u32,
             attributeElementByteSize: u32,
-            attributeElement: [*]i8,
+            attributeElement: [*:0]u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorAttributes_GetAttributeElementCount(self: *const T, name: *const i8, type: MLOperatorAttributeType, elementCount: *u32) callconv(.Inline) HRESULT {
+        pub fn IMLOperatorAttributes_GetAttributeElementCount(self: *const T, name: [*:0]const u8, type: MLOperatorAttributeType, elementCount: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMLOperatorAttributes.VTable, self.vtable).GetAttributeElementCount(@ptrCast(*const IMLOperatorAttributes, self), name, type, elementCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorAttributes_GetAttribute(self: *const T, name: *const i8, type: MLOperatorAttributeType, elementCount: u32, elementByteSize: usize, value: *c_void) callconv(.Inline) HRESULT {
+        pub fn IMLOperatorAttributes_GetAttribute(self: *const T, name: [*:0]const u8, type: MLOperatorAttributeType, elementCount: u32, elementByteSize: usize, value: *c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMLOperatorAttributes.VTable, self.vtable).GetAttribute(@ptrCast(*const IMLOperatorAttributes, self), name, type, elementCount, elementByteSize, value);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorAttributes_GetStringAttributeElementLength(self: *const T, name: *const i8, elementIndex: u32, attributeElementByteSize: *u32) callconv(.Inline) HRESULT {
+        pub fn IMLOperatorAttributes_GetStringAttributeElementLength(self: *const T, name: [*:0]const u8, elementIndex: u32, attributeElementByteSize: *u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMLOperatorAttributes.VTable, self.vtable).GetStringAttributeElementLength(@ptrCast(*const IMLOperatorAttributes, self), name, elementIndex, attributeElementByteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMLOperatorAttributes_GetStringAttributeElement(self: *const T, name: *const i8, elementIndex: u32, attributeElementByteSize: u32, attributeElement: [*]i8) callconv(.Inline) HRESULT {
+        pub fn IMLOperatorAttributes_GetStringAttributeElement(self: *const T, name: [*:0]const u8, elementIndex: u32, attributeElementByteSize: u32, attributeElement: [*:0]u8) callconv(.Inline) HRESULT {
             return @ptrCast(*const IMLOperatorAttributes.VTable, self.vtable).GetStringAttributeElement(@ptrCast(*const IMLOperatorAttributes, self), name, elementIndex, attributeElementByteSize, attributeElement);
         }
     };}
@@ -729,7 +729,7 @@ pub const MLOperatorSchemaEdgeDescription = extern struct {
 };
 
 pub const MLOperatorEdgeTypeConstraint = extern struct {
-    typeLabel: *const i8,
+    typeLabel: [*:0]const u8,
     allowedTypes: *const MLOperatorEdgeDescription,
     allowedTypeCount: u32,
 };
@@ -919,13 +919,13 @@ pub const IMLOperatorShapeInferrer = extern struct {
 };
 
 pub const MLOperatorAttribute = extern struct {
-    name: *const i8,
+    name: [*:0]const u8,
     type: MLOperatorAttributeType,
     required: bool,
 };
 
 pub const MLOperatorAttributeNameValue = extern struct {
-    name: *const i8,
+    name: [*:0]const u8,
     type: MLOperatorAttributeType,
     valueCount: u32,
     Anonymous: MLOperatorAttributeNameValue._Anonymous_e__Union,
@@ -933,7 +933,7 @@ pub const MLOperatorAttributeNameValue = extern struct {
 };
 
 pub const MLOperatorSchemaDescription = extern struct {
-    name: *const i8,
+    name: [*:0]const u8,
     operatorSetVersionAtLastChange: i32,
     inputs: *const MLOperatorSchemaEdgeDescription,
     inputCount: u32,
@@ -948,7 +948,7 @@ pub const MLOperatorSchemaDescription = extern struct {
 };
 
 pub const MLOperatorSetId = extern struct {
-    domain: *const i8,
+    domain: [*:0]const u8,
     version: i32,
 };
 
@@ -968,8 +968,8 @@ pub const MLOperatorExecutionType = extern enum(u32) {
 // TODO: enum 'MLOperatorExecutionType' has known issues with its value aliases
 
 pub const MLOperatorKernelDescription = extern struct {
-    domain: *const i8,
-    name: *const i8,
+    domain: [*:0]const u8,
+    name: [*:0]const u8,
     minimumOperatorSetVersion: i32,
     executionType: MLOperatorExecutionType,
     typeConstraints: *const MLOperatorEdgeTypeConstraint,
@@ -1064,14 +1064,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
+const PWSTR = @import("system_services.zig").PWSTR;
+const IUnknown = @import("com.zig").IUnknown;
 const HRESULT = @import("com.zig").HRESULT;
 const ID3D12Device = @import("direct3d12.zig").ID3D12Device;
-const PWSTR = @import("system_services.zig").PWSTR;
+const PSTR = @import("system_services.zig").PSTR;
 const BOOL = @import("system_services.zig").BOOL;
 const ID3D12Resource = @import("direct3d12.zig").ID3D12Resource;
-const IUnknown = @import("com.zig").IUnknown;
 
 test {
     const constant_export_count = 1;
@@ -1081,7 +1082,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 2;
     const unicode_alias_count = 0;
-    const import_count = 6;
+    const import_count = 7;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

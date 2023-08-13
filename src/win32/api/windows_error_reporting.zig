@@ -54,7 +54,7 @@ pub const WER_FILE_ANONYMOUS_DATA = WER_FILE.ANONYMOUS_DATA;
 pub const WER_FILE_DELETE_WHEN_DONE = WER_FILE.DELETE_WHEN_DONE;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const WerReportSubmit_dwFlags = extern enum(u32) {
+pub const WER_SUBMIT_FLAGS = extern enum(u32) {
     ADD_REGISTERED_DATA = 16,
     HONOR_RECOVERY = 1,
     HONOR_RESTART = 2,
@@ -71,20 +71,20 @@ pub const WerReportSubmit_dwFlags = extern enum(u32) {
     REPORT_MACHINE_ID = 8192,
     _,
 };
-pub const WER_SUBMIT_ADD_REGISTERED_DATA = WerReportSubmit_dwFlags.ADD_REGISTERED_DATA;
-pub const WER_SUBMIT_HONOR_RECOVERY = WerReportSubmit_dwFlags.HONOR_RECOVERY;
-pub const WER_SUBMIT_HONOR_RESTART = WerReportSubmit_dwFlags.HONOR_RESTART;
-pub const WER_SUBMIT_NO_ARCHIVE = WerReportSubmit_dwFlags.NO_ARCHIVE;
-pub const WER_SUBMIT_NO_CLOSE_UI = WerReportSubmit_dwFlags.NO_CLOSE_UI;
-pub const WER_SUBMIT_NO_QUEUE = WerReportSubmit_dwFlags.NO_QUEUE;
-pub const WER_SUBMIT_OUTOFPROCESS = WerReportSubmit_dwFlags.OUTOFPROCESS;
-pub const WER_SUBMIT_OUTOFPROCESS_ASYNC = WerReportSubmit_dwFlags.OUTOFPROCESS_ASYNC;
-pub const WER_SUBMIT_QUEUE = WerReportSubmit_dwFlags.QUEUE;
-pub const WER_SUBMIT_SHOW_DEBUG = WerReportSubmit_dwFlags.SHOW_DEBUG;
-pub const WER_SUBMIT_START_MINIMIZED = WerReportSubmit_dwFlags.START_MINIMIZED;
-pub const WER_SUBMIT_BYPASS_DATA_THROTTLING = WerReportSubmit_dwFlags.BYPASS_DATA_THROTTLING;
-pub const WER_SUBMIT_ARCHIVE_PARAMETERS_ONLY = WerReportSubmit_dwFlags.ARCHIVE_PARAMETERS_ONLY;
-pub const WER_SUBMIT_REPORT_MACHINE_ID = WerReportSubmit_dwFlags.REPORT_MACHINE_ID;
+pub const WER_SUBMIT_ADD_REGISTERED_DATA = WER_SUBMIT_FLAGS.ADD_REGISTERED_DATA;
+pub const WER_SUBMIT_HONOR_RECOVERY = WER_SUBMIT_FLAGS.HONOR_RECOVERY;
+pub const WER_SUBMIT_HONOR_RESTART = WER_SUBMIT_FLAGS.HONOR_RESTART;
+pub const WER_SUBMIT_NO_ARCHIVE = WER_SUBMIT_FLAGS.NO_ARCHIVE;
+pub const WER_SUBMIT_NO_CLOSE_UI = WER_SUBMIT_FLAGS.NO_CLOSE_UI;
+pub const WER_SUBMIT_NO_QUEUE = WER_SUBMIT_FLAGS.NO_QUEUE;
+pub const WER_SUBMIT_OUTOFPROCESS = WER_SUBMIT_FLAGS.OUTOFPROCESS;
+pub const WER_SUBMIT_OUTOFPROCESS_ASYNC = WER_SUBMIT_FLAGS.OUTOFPROCESS_ASYNC;
+pub const WER_SUBMIT_QUEUE = WER_SUBMIT_FLAGS.QUEUE;
+pub const WER_SUBMIT_SHOW_DEBUG = WER_SUBMIT_FLAGS.SHOW_DEBUG;
+pub const WER_SUBMIT_START_MINIMIZED = WER_SUBMIT_FLAGS.START_MINIMIZED;
+pub const WER_SUBMIT_BYPASS_DATA_THROTTLING = WER_SUBMIT_FLAGS.BYPASS_DATA_THROTTLING;
+pub const WER_SUBMIT_ARCHIVE_PARAMETERS_ONLY = WER_SUBMIT_FLAGS.ARCHIVE_PARAMETERS_ONLY;
+pub const WER_SUBMIT_REPORT_MACHINE_ID = WER_SUBMIT_FLAGS.REPORT_MACHINE_ID;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WER_FAULT_REPORTING = extern enum(u32) {
@@ -522,7 +522,7 @@ pub extern "wer" fn WerReportSetUIOption(
 pub extern "wer" fn WerReportSubmit(
     hReportHandle: isize,
     consent: WER_CONSENT,
-    dwFlags: WerReportSubmit_dwFlags,
+    dwFlags: WER_SUBMIT_FLAGS,
     pSubmitResult: ?*WER_SUBMIT_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

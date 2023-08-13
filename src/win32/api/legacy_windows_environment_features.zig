@@ -17,13 +17,6 @@ pub const STATEBITS_FLAT = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (10)
 //--------------------------------------------------------------------------------
-pub const _ColumnSortOrder = extern enum(i32) {
-    Ascending = 0,
-    Descending = 1,
-};
-pub const SortOrder_Ascending = _ColumnSortOrder.Ascending;
-pub const SortOrder_Descending = _ColumnSortOrder.Descending;
-
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IActiveDesktopP_Value = @import("../zig.zig").Guid.initString("52502ee0-ec80-11d0-89ab-00c04fc2972d");
 pub const IID_IActiveDesktopP = &IID_IActiveDesktopP_Value;
@@ -348,6 +341,13 @@ pub const IBriefcaseInitiator = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
+
+pub const _ColumnSortOrder = extern enum(i32) {
+    Ascending = 0,
+    Descending = 1,
+};
+pub const SortOrder_Ascending = _ColumnSortOrder.Ascending;
+pub const SortOrder_Descending = _ColumnSortOrder.Descending;
 
 
 //--------------------------------------------------------------------------------

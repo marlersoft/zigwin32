@@ -965,7 +965,7 @@ pub const ICondition = extern struct {
         GetSubConditions: fn(
             self: *const ICondition,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetComparisonInfo: fn(
             self: *const ICondition,
@@ -1000,7 +1000,7 @@ pub const ICondition = extern struct {
             return @ptrCast(*const ICondition.VTable, self.vtable).GetConditionType(@ptrCast(*const ICondition, self), pNodeType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICondition_GetSubConditions(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ICondition_GetSubConditions(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICondition.VTable, self.vtable).GetSubConditions(@ptrCast(*const ICondition, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3655,7 +3655,7 @@ pub const ICommandWithParameters = extern struct {
         MapParameterNames: fn(
             self: *const ICommandWithParameters,
             cParamNames: u64,
-            rgParamNames: [*]*PWSTR,
+            rgParamNames: [*]PWSTR,
             rgParamOrdinals: [*]i64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetParameterInfo: fn(
@@ -3673,7 +3673,7 @@ pub const ICommandWithParameters = extern struct {
             return @ptrCast(*const ICommandWithParameters.VTable, self.vtable).GetParameterInfo(@ptrCast(*const ICommandWithParameters, self), pcParams, prgParamInfo, ppNamesBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICommandWithParameters_MapParameterNames(self: *const T, cParamNames: u64, rgParamNames: [*]*PWSTR, rgParamOrdinals: [*]i64) callconv(.Inline) HRESULT {
+        pub fn ICommandWithParameters_MapParameterNames(self: *const T, cParamNames: u64, rgParamNames: [*]PWSTR, rgParamOrdinals: [*]i64) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICommandWithParameters.VTable, self.vtable).MapParameterNames(@ptrCast(*const ICommandWithParameters, self), cParamNames, rgParamNames, rgParamOrdinals);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5463,29 +5463,29 @@ pub const IScopedOperations = extern struct {
         Copy: fn(
             self: *const IScopedOperations,
             cRows: u64,
-            rgpwszSourceURLs: ?[*]?*?PWSTR,
-            rgpwszDestURLs: [*]*PWSTR,
+            rgpwszSourceURLs: ?[*]?PWSTR,
+            rgpwszDestURLs: [*]PWSTR,
             dwCopyFlags: u32,
             pAuthenticate: ?*IAuthenticate,
             rgdwStatus: [*]u32,
-            rgpwszNewURLs: ?[*]?*?PWSTR,
+            rgpwszNewURLs: ?[*]?PWSTR,
             ppStringsBuffer: ?*?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Move: fn(
             self: *const IScopedOperations,
             cRows: u64,
-            rgpwszSourceURLs: ?[*]?*?PWSTR,
-            rgpwszDestURLs: [*]*PWSTR,
+            rgpwszSourceURLs: ?[*]?PWSTR,
+            rgpwszDestURLs: [*]PWSTR,
             dwMoveFlags: u32,
             pAuthenticate: ?*IAuthenticate,
             rgdwStatus: [*]u32,
-            rgpwszNewURLs: ?[*]?*?PWSTR,
+            rgpwszNewURLs: ?[*]?PWSTR,
             ppStringsBuffer: ?*?*u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Delete: fn(
             self: *const IScopedOperations,
             cRows: u64,
-            rgpwszURLs: [*]*PWSTR,
+            rgpwszURLs: [*]PWSTR,
             dwDeleteFlags: u32,
             rgdwStatus: [*]u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -5504,15 +5504,15 @@ pub const IScopedOperations = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBindResource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScopedOperations_Copy(self: *const T, cRows: u64, rgpwszSourceURLs: ?[*]?*?PWSTR, rgpwszDestURLs: [*]*PWSTR, dwCopyFlags: u32, pAuthenticate: ?*IAuthenticate, rgdwStatus: [*]u32, rgpwszNewURLs: ?[*]?*?PWSTR, ppStringsBuffer: ?*?*u16) callconv(.Inline) HRESULT {
+        pub fn IScopedOperations_Copy(self: *const T, cRows: u64, rgpwszSourceURLs: ?[*]?PWSTR, rgpwszDestURLs: [*]PWSTR, dwCopyFlags: u32, pAuthenticate: ?*IAuthenticate, rgdwStatus: [*]u32, rgpwszNewURLs: ?[*]?PWSTR, ppStringsBuffer: ?*?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScopedOperations.VTable, self.vtable).Copy(@ptrCast(*const IScopedOperations, self), cRows, rgpwszSourceURLs, rgpwszDestURLs, dwCopyFlags, pAuthenticate, rgdwStatus, rgpwszNewURLs, ppStringsBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScopedOperations_Move(self: *const T, cRows: u64, rgpwszSourceURLs: ?[*]?*?PWSTR, rgpwszDestURLs: [*]*PWSTR, dwMoveFlags: u32, pAuthenticate: ?*IAuthenticate, rgdwStatus: [*]u32, rgpwszNewURLs: ?[*]?*?PWSTR, ppStringsBuffer: ?*?*u16) callconv(.Inline) HRESULT {
+        pub fn IScopedOperations_Move(self: *const T, cRows: u64, rgpwszSourceURLs: ?[*]?PWSTR, rgpwszDestURLs: [*]PWSTR, dwMoveFlags: u32, pAuthenticate: ?*IAuthenticate, rgdwStatus: [*]u32, rgpwszNewURLs: ?[*]?PWSTR, ppStringsBuffer: ?*?*u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScopedOperations.VTable, self.vtable).Move(@ptrCast(*const IScopedOperations, self), cRows, rgpwszSourceURLs, rgpwszDestURLs, dwMoveFlags, pAuthenticate, rgdwStatus, rgpwszNewURLs, ppStringsBuffer);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IScopedOperations_Delete(self: *const T, cRows: u64, rgpwszURLs: [*]*PWSTR, dwDeleteFlags: u32, rgdwStatus: [*]u32) callconv(.Inline) HRESULT {
+        pub fn IScopedOperations_Delete(self: *const T, cRows: u64, rgpwszURLs: [*]PWSTR, dwDeleteFlags: u32, rgdwStatus: [*]u32) callconv(.Inline) HRESULT {
             return @ptrCast(*const IScopedOperations.VTable, self.vtable).Delete(@ptrCast(*const IScopedOperations, self), cRows, rgpwszURLs, dwDeleteFlags, rgdwStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6083,7 +6083,7 @@ pub const IQuerySolution = extern struct {
         GetErrors: fn(
             self: *const IQuerySolution,
             riid: *const Guid,
-            ppParseErrors: ?*?*c_void,
+            ppParseErrors: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetLexicalData: fn(
             self: *const IQuerySolution,
@@ -6101,7 +6101,7 @@ pub const IQuerySolution = extern struct {
             return @ptrCast(*const IQuerySolution.VTable, self.vtable).GetQuery(@ptrCast(*const IQuerySolution, self), ppQueryNode, ppMainType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQuerySolution_GetErrors(self: *const T, riid: *const Guid, ppParseErrors: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IQuerySolution_GetErrors(self: *const T, riid: *const Guid, ppParseErrors: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IQuerySolution.VTable, self.vtable).GetErrors(@ptrCast(*const IQuerySolution, self), riid, ppParseErrors);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6390,7 +6390,7 @@ pub const IEntity = extern struct {
         Relationships: fn(
             self: *const IEntity,
             riid: *const Guid,
-            pRelationships: ?*?*c_void,
+            pRelationships: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetRelationship: fn(
             self: *const IEntity,
@@ -6400,12 +6400,12 @@ pub const IEntity = extern struct {
         MetaData: fn(
             self: *const IEntity,
             riid: *const Guid,
-            pMetaData: ?*?*c_void,
+            pMetaData: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         NamedEntities: fn(
             self: *const IEntity,
             riid: *const Guid,
-            pNamedEntities: ?*?*c_void,
+            pNamedEntities: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetNamedEntity: fn(
             self: *const IEntity,
@@ -6429,7 +6429,7 @@ pub const IEntity = extern struct {
             return @ptrCast(*const IEntity.VTable, self.vtable).Base(@ptrCast(*const IEntity, self), pBaseEntity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEntity_Relationships(self: *const T, riid: *const Guid, pRelationships: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IEntity_Relationships(self: *const T, riid: *const Guid, pRelationships: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEntity.VTable, self.vtable).Relationships(@ptrCast(*const IEntity, self), riid, pRelationships);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6437,11 +6437,11 @@ pub const IEntity = extern struct {
             return @ptrCast(*const IEntity.VTable, self.vtable).GetRelationship(@ptrCast(*const IEntity, self), pszRelationName, pRelationship);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEntity_MetaData(self: *const T, riid: *const Guid, pMetaData: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IEntity_MetaData(self: *const T, riid: *const Guid, pMetaData: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEntity.VTable, self.vtable).MetaData(@ptrCast(*const IEntity, self), riid, pMetaData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEntity_NamedEntities(self: *const T, riid: *const Guid, pNamedEntities: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IEntity_NamedEntities(self: *const T, riid: *const Guid, pNamedEntities: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IEntity.VTable, self.vtable).NamedEntities(@ptrCast(*const IEntity, self), riid, pNamedEntities);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6477,7 +6477,7 @@ pub const IRelationship = extern struct {
         MetaData: fn(
             self: *const IRelationship,
             riid: *const Guid,
-            pMetaData: ?*?*c_void,
+            pMetaData: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DefaultPhrase: fn(
             self: *const IRelationship,
@@ -6500,7 +6500,7 @@ pub const IRelationship = extern struct {
             return @ptrCast(*const IRelationship.VTable, self.vtable).Destination(@ptrCast(*const IRelationship, self), pDestinationEntity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRelationship_MetaData(self: *const T, riid: *const Guid, pMetaData: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IRelationship_MetaData(self: *const T, riid: *const Guid, pMetaData: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IRelationship.VTable, self.vtable).MetaData(@ptrCast(*const IRelationship, self), riid, pMetaData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6550,7 +6550,7 @@ pub const ISchemaProvider = extern struct {
         Entities: fn(
             self: *const ISchemaProvider,
             riid: *const Guid,
-            pEntities: ?*?*c_void,
+            pEntities: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RootEntity: fn(
             self: *const ISchemaProvider,
@@ -6564,7 +6564,7 @@ pub const ISchemaProvider = extern struct {
         MetaData: fn(
             self: *const ISchemaProvider,
             riid: *const Guid,
-            pMetaData: ?*?*c_void,
+            pMetaData: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Localize: fn(
             self: *const ISchemaProvider,
@@ -6589,7 +6589,7 @@ pub const ISchemaProvider = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISchemaProvider_Entities(self: *const T, riid: *const Guid, pEntities: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISchemaProvider_Entities(self: *const T, riid: *const Guid, pEntities: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISchemaProvider.VTable, self.vtable).Entities(@ptrCast(*const ISchemaProvider, self), riid, pEntities);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6601,7 +6601,7 @@ pub const ISchemaProvider = extern struct {
             return @ptrCast(*const ISchemaProvider.VTable, self.vtable).GetEntity(@ptrCast(*const ISchemaProvider, self), pszEntityName, pEntity);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISchemaProvider_MetaData(self: *const T, riid: *const Guid, pMetaData: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISchemaProvider_MetaData(self: *const T, riid: *const Guid, pMetaData: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISchemaProvider.VTable, self.vtable).MetaData(@ptrCast(*const ISchemaProvider, self), riid, pMetaData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6724,7 +6724,7 @@ pub const IQueryParserManager = extern struct {
             pszCatalog: [*:0]const u16,
             langidForKeywords: u16,
             riid: *const Guid,
-            ppQueryParser: ?*?*c_void,
+            ppQueryParser: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InitializeOptions: fn(
             self: *const IQueryParserManager,
@@ -6742,7 +6742,7 @@ pub const IQueryParserManager = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IQueryParserManager_CreateLoadedParser(self: *const T, pszCatalog: [*:0]const u16, langidForKeywords: u16, riid: *const Guid, ppQueryParser: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IQueryParserManager_CreateLoadedParser(self: *const T, pszCatalog: [*:0]const u16, langidForKeywords: u16, riid: *const Guid, ppQueryParser: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IQueryParserManager.VTable, self.vtable).CreateLoadedParser(@ptrCast(*const IQueryParserManager, self), pszCatalog, langidForKeywords, riid, ppQueryParser);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7223,90 +7223,112 @@ pub const IID_ISearchRoot = &IID_ISearchRoot_Value;
 pub const ISearchRoot = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Schedule: fn(
             self: *const ISearchRoot,
             pszTaskArg: [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Schedule: fn(
             self: *const ISearchRoot,
             ppszTaskArg: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RootURL: fn(
             self: *const ISearchRoot,
             pszURL: [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootURL: fn(
             self: *const ISearchRoot,
             ppszURL: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsHierarchical: fn(
             self: *const ISearchRoot,
             fIsHierarchical: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsHierarchical: fn(
             self: *const ISearchRoot,
             pfIsHierarchical: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProvidesNotifications: fn(
             self: *const ISearchRoot,
             fProvidesNotifications: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProvidesNotifications: fn(
             self: *const ISearchRoot,
             pfProvidesNotifications: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseNotificationsOnly: fn(
             self: *const ISearchRoot,
             fUseNotificationsOnly: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseNotificationsOnly: fn(
             self: *const ISearchRoot,
             pfUseNotificationsOnly: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnumerationDepth: fn(
             self: *const ISearchRoot,
             dwDepth: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnumerationDepth: fn(
             self: *const ISearchRoot,
             pdwDepth: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HostDepth: fn(
             self: *const ISearchRoot,
             dwDepth: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HostDepth: fn(
             self: *const ISearchRoot,
             pdwDepth: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FollowDirectories: fn(
             self: *const ISearchRoot,
             fFollowDirectories: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FollowDirectories: fn(
             self: *const ISearchRoot,
             pfFollowDirectories: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthenticationType: fn(
             self: *const ISearchRoot,
             authType: AUTH_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthenticationType: fn(
             self: *const ISearchRoot,
             pAuthType: *AUTH_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_User: fn(
             self: *const ISearchRoot,
             pszUser: [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_User: fn(
             self: *const ISearchRoot,
             ppszUser: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Password: fn(
             self: *const ISearchRoot,
             pszPassword: [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Password: fn(
             self: *const ISearchRoot,
             ppszPassword: ?*?PWSTR,
@@ -7467,18 +7489,22 @@ pub const IID_ISearchScopeRule = &IID_ISearchScopeRule_Value;
 pub const ISearchScopeRule = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PatternOrURL: fn(
             self: *const ISearchScopeRule,
             ppszPatternOrURL: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsIncluded: fn(
             self: *const ISearchScopeRule,
             pfIsIncluded: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsDefault: fn(
             self: *const ISearchScopeRule,
             pfIsDefault: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FollowFlags: fn(
             self: *const ISearchScopeRule,
             pFollowFlags: *u32,
@@ -7793,7 +7819,7 @@ pub const ISearchItemsChangedSink = extern struct {
             dwNumberOfChanges: u32,
             rgDataChangeEntries: [*]SEARCH_ITEM_CHANGE,
             rgdwDocIds: [*]u32,
-            rghrCompletionCodes: [*]*HRESULT,
+            rghrCompletionCodes: [*]HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7808,7 +7834,7 @@ pub const ISearchItemsChangedSink = extern struct {
             return @ptrCast(*const ISearchItemsChangedSink.VTable, self.vtable).StoppedMonitoringScope(@ptrCast(*const ISearchItemsChangedSink, self), pszURL);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchItemsChangedSink_OnItemsChanged(self: *const T, dwNumberOfChanges: u32, rgDataChangeEntries: [*]SEARCH_ITEM_CHANGE, rgdwDocIds: [*]u32, rghrCompletionCodes: [*]*HRESULT) callconv(.Inline) HRESULT {
+        pub fn ISearchItemsChangedSink_OnItemsChanged(self: *const T, dwNumberOfChanges: u32, rgDataChangeEntries: [*]SEARCH_ITEM_CHANGE, rgdwDocIds: [*]u32, rghrCompletionCodes: [*]HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISearchItemsChangedSink.VTable, self.vtable).OnItemsChanged(@ptrCast(*const ISearchItemsChangedSink, self), dwNumberOfChanges, rgDataChangeEntries, rgdwDocIds, rghrCompletionCodes);
         }
     };}
@@ -7840,7 +7866,7 @@ pub const ISearchPersistentItemsChangedSink = extern struct {
             self: *const ISearchPersistentItemsChangedSink,
             dwNumberOfChanges: u32,
             DataChangeEntries: [*]SEARCH_ITEM_PERSISTENT_CHANGE,
-            hrCompletionCodes: [*]*HRESULT,
+            hrCompletionCodes: [*]HRESULT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -7855,7 +7881,7 @@ pub const ISearchPersistentItemsChangedSink = extern struct {
             return @ptrCast(*const ISearchPersistentItemsChangedSink.VTable, self.vtable).StoppedMonitoringScope(@ptrCast(*const ISearchPersistentItemsChangedSink, self), pszURL);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISearchPersistentItemsChangedSink_OnItemsChanged(self: *const T, dwNumberOfChanges: u32, DataChangeEntries: [*]SEARCH_ITEM_PERSISTENT_CHANGE, hrCompletionCodes: [*]*HRESULT) callconv(.Inline) HRESULT {
+        pub fn ISearchPersistentItemsChangedSink_OnItemsChanged(self: *const T, dwNumberOfChanges: u32, DataChangeEntries: [*]SEARCH_ITEM_PERSISTENT_CHANGE, hrCompletionCodes: [*]HRESULT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISearchPersistentItemsChangedSink.VTable, self.vtable).OnItemsChanged(@ptrCast(*const ISearchPersistentItemsChangedSink, self), dwNumberOfChanges, DataChangeEntries, hrCompletionCodes);
         }
     };}
@@ -7982,6 +8008,7 @@ pub const IID_ISearchCatalogManager = &IID_ISearchCatalogManager_Value;
 pub const ISearchCatalogManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const ISearchCatalogManager,
             pszName: ?*?PWSTR,
@@ -8015,18 +8042,22 @@ pub const ISearchCatalogManager = extern struct {
             self: *const ISearchCatalogManager,
             pszRootURL: [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ConnectTimeout: fn(
             self: *const ISearchCatalogManager,
             dwConnectTimeout: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectTimeout: fn(
             self: *const ISearchCatalogManager,
             pdwConnectTimeout: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DataTimeout: fn(
             self: *const ISearchCatalogManager,
             dwDataTimeout: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataTimeout: fn(
             self: *const ISearchCatalogManager,
             pdwDataTimeout: *u32,
@@ -8086,10 +8117,12 @@ pub const ISearchCatalogManager = extern struct {
             self: *const ISearchCatalogManager,
             ppSearchQueryHelper: ?*?*ISearchQueryHelper,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DiacriticSensitivity: fn(
             self: *const ISearchCatalogManager,
             fDiacriticSensitive: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DiacriticSensitivity: fn(
             self: *const ISearchCatalogManager,
             pfDiacriticSensitive: *BOOL,
@@ -8269,70 +8302,87 @@ pub const IID_ISearchQueryHelper = &IID_ISearchQueryHelper_Value;
 pub const ISearchQueryHelper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectionString: fn(
             self: *const ISearchQueryHelper,
             pszConnectionString: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryContentLocale: fn(
             self: *const ISearchQueryHelper,
             lcid: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryContentLocale: fn(
             self: *const ISearchQueryHelper,
             plcid: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryKeywordLocale: fn(
             self: *const ISearchQueryHelper,
             lcid: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryKeywordLocale: fn(
             self: *const ISearchQueryHelper,
             plcid: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryTermExpansion: fn(
             self: *const ISearchQueryHelper,
             expandTerms: SEARCH_TERM_EXPANSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryTermExpansion: fn(
             self: *const ISearchQueryHelper,
             pExpandTerms: *SEARCH_TERM_EXPANSION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuerySyntax: fn(
             self: *const ISearchQueryHelper,
             querySyntax: SEARCH_QUERY_SYNTAX,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuerySyntax: fn(
             self: *const ISearchQueryHelper,
             pQuerySyntax: *SEARCH_QUERY_SYNTAX,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryContentProperties: fn(
             self: *const ISearchQueryHelper,
             pszContentProperties: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryContentProperties: fn(
             self: *const ISearchQueryHelper,
             ppszContentProperties: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuerySelectColumns: fn(
             self: *const ISearchQueryHelper,
             pszSelectColumns: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuerySelectColumns: fn(
             self: *const ISearchQueryHelper,
             ppszSelectColumns: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryWhereRestrictions: fn(
             self: *const ISearchQueryHelper,
             pszRestrictions: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryWhereRestrictions: fn(
             self: *const ISearchQueryHelper,
             ppszRestrictions: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuerySorting: fn(
             self: *const ISearchQueryHelper,
             pszSorting: ?[*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuerySorting: fn(
             self: *const ISearchQueryHelper,
             ppszSorting: ?*?PWSTR,
@@ -8350,10 +8400,12 @@ pub const ISearchQueryHelper = extern struct {
             pValues: [*]SEARCH_COLUMN_PROPERTIES,
             pftGatherModifiedTime: ?*FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QueryMaxResults: fn(
             self: *const ISearchQueryHelper,
             cMaxResults: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueryMaxResults: fn(
             self: *const ISearchQueryHelper,
             pcMaxResults: *i32,
@@ -8597,10 +8649,12 @@ pub const ISearchManager = extern struct {
             pszName: [*:0]const u16,
             pValue: *const PROPVARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProxyName: fn(
             self: *const ISearchManager,
             ppszProxyName: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BypassList: fn(
             self: *const ISearchManager,
             ppszBypassList: ?*?PWSTR,
@@ -8618,22 +8672,27 @@ pub const ISearchManager = extern struct {
             pszCatalog: [*:0]const u16,
             ppCatalogManager: ?*?*ISearchCatalogManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserAgent: fn(
             self: *const ISearchManager,
             ppszUserAgent: ?*?PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UserAgent: fn(
             self: *const ISearchManager,
             pszUserAgent: [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseProxy: fn(
             self: *const ISearchManager,
             pUseProxy: *PROXY_ACCESS,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalBypass: fn(
             self: *const ISearchManager,
             pfLocalBypass: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PortNumber: fn(
             self: *const ISearchManager,
             pdwPortNumber: *u32,
@@ -8886,13 +8945,13 @@ pub const ISubscriptionItem = extern struct {
         ReadProperties: fn(
             self: *const ISubscriptionItem,
             nCount: u32,
-            rgwszName: [*]const *const [*:0]const u16,
+            rgwszName: [*]const [*:0]const u16,
             rgValue: [*]VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WriteProperties: fn(
             self: *const ISubscriptionItem,
             nCount: u32,
-            rgwszName: [*]const *const [*:0]const u16,
+            rgwszName: [*]const [*:0]const u16,
             rgValue: [*]const VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumProperties: fn(
@@ -8919,11 +8978,11 @@ pub const ISubscriptionItem = extern struct {
             return @ptrCast(*const ISubscriptionItem.VTable, self.vtable).SetSubscriptionItemInfo(@ptrCast(*const ISubscriptionItem, self), pSubscriptionItemInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISubscriptionItem_ReadProperties(self: *const T, nCount: u32, rgwszName: [*]const *const [*:0]const u16, rgValue: [*]VARIANT) callconv(.Inline) HRESULT {
+        pub fn ISubscriptionItem_ReadProperties(self: *const T, nCount: u32, rgwszName: [*]const [*:0]const u16, rgValue: [*]VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISubscriptionItem.VTable, self.vtable).ReadProperties(@ptrCast(*const ISubscriptionItem, self), nCount, rgwszName, rgValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISubscriptionItem_WriteProperties(self: *const T, nCount: u32, rgwszName: [*]const *const [*:0]const u16, rgValue: [*]const VARIANT) callconv(.Inline) HRESULT {
+        pub fn ISubscriptionItem_WriteProperties(self: *const T, nCount: u32, rgwszName: [*]const [*:0]const u16, rgValue: [*]const VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISubscriptionItem.VTable, self.vtable).WriteProperties(@ptrCast(*const ISubscriptionItem, self), nCount, rgwszName, rgValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

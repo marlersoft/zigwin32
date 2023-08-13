@@ -2,6 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (314)
 //--------------------------------------------------------------------------------
+pub const D3DRTYPECOUNT = @as(u32, 8);
 pub const D3DCS_LEFT = @as(i32, 1);
 pub const D3DCS_RIGHT = @as(i32, 2);
 pub const D3DCS_TOP = @as(i32, 4);
@@ -315,7 +316,6 @@ pub const D3DPRESENT_UPDATEOVERLAYONLY = @as(i32, 32);
 pub const D3DPRESENT_HIDEOVERLAY = @as(i32, 64);
 pub const D3DPRESENT_UPDATECOLORKEY = @as(i32, 128);
 pub const D3DPRESENT_FORCEIMMEDIATE = @as(i32, 256);
-pub const D3DRTYPECOUNT = @as(u32, 8);
 
 //--------------------------------------------------------------------------------
 // Section: Types (148)
@@ -1862,9 +1862,9 @@ pub const D3DTRIPATCH_INFO = extern struct {
 };
 
 pub const D3DADAPTER_IDENTIFIER9 = extern struct {
-    Driver: [512]i8,
-    Description: [512]i8,
-    DeviceName: [32]i8,
+    Driver: [512]CHAR,
+    Description: [512]CHAR,
+    DeviceName: [32]CHAR,
     DriverVersion: LARGE_INTEGER,
     VendorId: u32,
     DeviceId: u32,
@@ -4761,12 +4761,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (15)
+// Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HDC = @import("gdi.zig").HDC;
 const HMONITOR = @import("gdi.zig").HMONITOR;
 const PWSTR = @import("system_services.zig").PWSTR;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
 const HRESULT = @import("com.zig").HRESULT;
 const RECT = @import("display_devices.zig").RECT;
@@ -4787,7 +4788,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 9;
     const unicode_alias_count = 0;
-    const import_count = 15;
+    const import_count = 16;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

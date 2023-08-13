@@ -213,7 +213,7 @@ pub const PEER_RECORD = extern struct {
 
 pub const PEER_ADDRESS = extern struct {
     dwSize: u32,
-    sin6: SOCKADDR_IN6_LH,
+    sin6: SOCKADDR_IN6,
 };
 
 pub const PEER_CONNECTION_INFO = extern struct {
@@ -872,19 +872,19 @@ pub const DRT_REGISTRATION = extern struct {
 
 pub const DRT_SECURITY_PROVIDER = extern struct {
     pvContext: *c_void,
-    Attach: *********HRESULT,
+    Attach: isize,
     Detach: isize,
-    RegisterKey: *********HRESULT,
-    UnregisterKey: *********HRESULT,
-    ValidateAndUnpackPayload: *********HRESULT,
-    SecureAndPackPayload: *********HRESULT,
+    RegisterKey: isize,
+    UnregisterKey: isize,
+    ValidateAndUnpackPayload: isize,
+    SecureAndPackPayload: isize,
     FreeData: isize,
-    EncryptData: *********HRESULT,
-    DecryptData: *********HRESULT,
-    GetSerializedCredential: *********HRESULT,
-    ValidateRemoteCredential: *********HRESULT,
-    SignData: *********HRESULT,
-    VerifyData: *********HRESULT,
+    EncryptData: isize,
+    DecryptData: isize,
+    GetSerializedCredential: isize,
+    ValidateRemoteCredential: isize,
+    SignData: isize,
+    VerifyData: isize,
 };
 
 pub const DRT_BOOTSTRAP_RESOLVE_CALLBACK = fn(
@@ -896,12 +896,12 @@ pub const DRT_BOOTSTRAP_RESOLVE_CALLBACK = fn(
 
 pub const DRT_BOOTSTRAP_PROVIDER = extern struct {
     pvContext: *c_void,
-    Attach: *********HRESULT,
+    Attach: isize,
     Detach: isize,
-    InitResolve: *********HRESULT,
-    IssueResolve: *********HRESULT,
+    InitResolve: isize,
+    IssueResolve: isize,
     EndResolve: isize,
-    Register: *********HRESULT,
+    Register: isize,
     Unregister: isize,
 };
 
@@ -929,7 +929,7 @@ pub const DRT_SEARCH_INFO = extern struct {
 };
 
 pub const DRT_ADDRESS = extern struct {
-    socketAddress: SOCKADDR_STORAGE_LH,
+    socketAddress: SOCKADDR_STORAGE,
     flags: u32,
     nearness: i32,
     latency: u32,
@@ -2366,17 +2366,17 @@ const Guid = @import("../zig.zig").Guid;
 const PWSTR = @import("system_services.zig").PWSTR;
 const FILETIME = @import("windows_programming.zig").FILETIME;
 const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
-const SOCKADDR_STORAGE_LH = @import("network_drivers.zig").SOCKADDR_STORAGE_LH;
 const HRESULT = @import("com.zig").HRESULT;
 const SOCKET_ADDRESS_LIST = @import("network_drivers.zig").SOCKET_ADDRESS_LIST;
 const BOOL = @import("system_services.zig").BOOL;
 const HWND = @import("windows_and_messaging.zig").HWND;
 const SOCKADDR = @import("win_sock.zig").SOCKADDR;
 const CERT_PUBLIC_KEY_INFO = @import("security.zig").CERT_PUBLIC_KEY_INFO;
+const SOCKADDR_STORAGE = @import("win_sock.zig").SOCKADDR_STORAGE;
 const OVERLAPPED = @import("system_services.zig").OVERLAPPED;
-const SOCKADDR_IN6_LH = @import("network_drivers.zig").SOCKADDR_IN6_LH;
 const HANDLE = @import("system_services.zig").HANDLE;
 const SOCKET_ADDRESS = @import("win_sock.zig").SOCKET_ADDRESS;
+const SOCKADDR_IN6 = @import("win_sock.zig").SOCKADDR_IN6;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -323,7 +323,7 @@ pub const IP4_ARRAY = extern struct {
 pub const IP6_ADDRESS = u32; // TODO: implement StructOrUnion types?
 
 pub const DNS_ADDR = extern struct {
-    MaxSa: [32]i8,
+    MaxSa: [32]CHAR,
     Data: DNS_ADDR._Data_e__Union,
     const _Data_e__Union = u32; // TODO: generate this nested type!
 };
@@ -875,7 +875,7 @@ pub const DNS_QUERY_REQUEST = extern struct {
 };
 
 pub const DNS_QUERY_CANCEL = extern struct {
-    Reserved: [32]i8,
+    Reserved: [32]CHAR,
 };
 
 pub const DNS_NAME_FORMAT = extern enum(i32) {
@@ -897,7 +897,7 @@ pub const DnsNameValidateTld = DNS_NAME_FORMAT.ValidateTld;
 
 pub const DNS_MESSAGE_BUFFER = extern struct {
     MessageHead: DNS_HEADER,
-    MessageBody: [1]i8,
+    MessageBody: [1]CHAR,
 };
 
 pub const DNS_CONNECTION_PROXY_TYPE = extern enum(i32) {
@@ -1567,12 +1567,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const PWSTR = @import("system_services.zig").PWSTR;
 const PSTR = @import("system_services.zig").PSTR;
-const HANDLE = @import("system_services.zig").HANDLE;
+const CHAR = @import("system_services.zig").CHAR;
 const BOOL = @import("system_services.zig").BOOL;
+const HANDLE = @import("system_services.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
@@ -1590,7 +1591,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 57;
     const unicode_alias_count = 21;
-    const import_count = 4;
+    const import_count = 5;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

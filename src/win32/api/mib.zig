@@ -725,10 +725,10 @@ pub const MIB_TCPTABLE_OWNER_MODULE = extern struct {
 
 pub const MIB_TCP6ROW = extern struct {
     State: MIB_TCP_STATE,
-    LocalAddr: in6_addr,
+    LocalAddr: IN6_ADDR,
     dwLocalScopeId: u32,
     dwLocalPort: u32,
-    RemoteAddr: in6_addr,
+    RemoteAddr: IN6_ADDR,
     dwRemoteScopeId: u32,
     dwRemotePort: u32,
 };
@@ -739,10 +739,10 @@ pub const MIB_TCP6TABLE = extern struct {
 };
 
 pub const MIB_TCP6ROW2 = extern struct {
-    LocalAddr: in6_addr,
+    LocalAddr: IN6_ADDR,
     dwLocalScopeId: u32,
     dwLocalPort: u32,
-    RemoteAddr: in6_addr,
+    RemoteAddr: IN6_ADDR,
     dwRemoteScopeId: u32,
     dwRemotePort: u32,
     State: MIB_TCP_STATE,
@@ -881,7 +881,7 @@ pub const MIB_UDPTABLE_OWNER_MODULE = extern struct {
 };
 
 pub const MIB_UDP6ROW = extern struct {
-    dwLocalAddr: in6_addr,
+    dwLocalAddr: IN6_ADDR,
     dwLocalScopeId: u32,
     dwLocalPort: u32,
 };
@@ -1020,7 +1020,6 @@ const NL_ROUTER_DISCOVERY_BEHAVIOR = @import("network_drivers.zig").NL_ROUTER_DI
 const BOOL = @import("system_services.zig").BOOL;
 const SCOPE_ID = @import("win_sock.zig").SCOPE_ID;
 const MIB_TCP_STATE = @import("ip_helper.zig").MIB_TCP_STATE;
-const in6_addr = @import("win_sock.zig").in6_addr;
 const NDIS_PHYSICAL_MEDIUM = @import("native_wi_fi.zig").NDIS_PHYSICAL_MEDIUM;
 const IF_OPER_STATUS = @import("ip_helper.zig").IF_OPER_STATUS;
 const SOCKADDR_INET = @import("ip_helper.zig").SOCKADDR_INET;
@@ -1033,6 +1032,7 @@ const NDIS_MEDIUM = @import("native_wi_fi.zig").NDIS_MEDIUM;
 const IP_ADDRESS_PREFIX = @import("ip_helper.zig").IP_ADDRESS_PREFIX;
 const TCP_RTO_ALGORITHM = @import("ip_helper.zig").TCP_RTO_ALGORITHM;
 const NET_IF_MEDIA_CONNECT_STATE = @import("network_drivers.zig").NET_IF_MEDIA_CONNECT_STATE;
+const IN6_ADDR = @import("network_drivers.zig").IN6_ADDR;
 const NET_IF_CONNECTION_TYPE = @import("network_drivers.zig").NET_IF_CONNECTION_TYPE;
 const LARGE_INTEGER = @import("system_services.zig").LARGE_INTEGER;
 const NET_IF_DIRECTION_TYPE = @import("network_drivers.zig").NET_IF_DIRECTION_TYPE;

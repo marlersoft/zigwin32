@@ -21,73 +21,6 @@ pub const E_PRINTDEVICECAPABILITIES_FORMAT = @as(u32, 2147745798);
 //--------------------------------------------------------------------------------
 pub const HPTPROVIDER = ?*opaque{};
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PSINJECT_POINT = extern enum(u16) {
-    BEGINSTREAM = 1,
-    PSADOBE = 2,
-    PAGESATEND = 3,
-    PAGES = 4,
-    DOCNEEDEDRES = 5,
-    DOCSUPPLIEDRES = 6,
-    PAGEORDER = 7,
-    ORIENTATION = 8,
-    BOUNDINGBOX = 9,
-    DOCUMENTPROCESSCOLORS = 10,
-    COMMENTS = 11,
-    BEGINDEFAULTS = 12,
-    ENDDEFAULTS = 13,
-    BEGINPROLOG = 14,
-    ENDPROLOG = 15,
-    BEGINSETUP = 16,
-    ENDSETUP = 17,
-    TRAILER = 18,
-    EOF = 19,
-    ENDSTREAM = 20,
-    DOCUMENTPROCESSCOLORSATEND = 21,
-    PAGENUMBER = 100,
-    BEGINPAGESETUP = 101,
-    ENDPAGESETUP = 102,
-    PAGETRAILER = 103,
-    PLATECOLOR = 104,
-    SHOWPAGE = 105,
-    PAGEBBOX = 106,
-    ENDPAGECOMMENTS = 107,
-    VMSAVE = 200,
-    VMRESTORE = 201,
-    _,
-};
-pub const PSINJECT_BEGINSTREAM = PSINJECT_POINT.BEGINSTREAM;
-pub const PSINJECT_PSADOBE = PSINJECT_POINT.PSADOBE;
-pub const PSINJECT_PAGESATEND = PSINJECT_POINT.PAGESATEND;
-pub const PSINJECT_PAGES = PSINJECT_POINT.PAGES;
-pub const PSINJECT_DOCNEEDEDRES = PSINJECT_POINT.DOCNEEDEDRES;
-pub const PSINJECT_DOCSUPPLIEDRES = PSINJECT_POINT.DOCSUPPLIEDRES;
-pub const PSINJECT_PAGEORDER = PSINJECT_POINT.PAGEORDER;
-pub const PSINJECT_ORIENTATION = PSINJECT_POINT.ORIENTATION;
-pub const PSINJECT_BOUNDINGBOX = PSINJECT_POINT.BOUNDINGBOX;
-pub const PSINJECT_DOCUMENTPROCESSCOLORS = PSINJECT_POINT.DOCUMENTPROCESSCOLORS;
-pub const PSINJECT_COMMENTS = PSINJECT_POINT.COMMENTS;
-pub const PSINJECT_BEGINDEFAULTS = PSINJECT_POINT.BEGINDEFAULTS;
-pub const PSINJECT_ENDDEFAULTS = PSINJECT_POINT.ENDDEFAULTS;
-pub const PSINJECT_BEGINPROLOG = PSINJECT_POINT.BEGINPROLOG;
-pub const PSINJECT_ENDPROLOG = PSINJECT_POINT.ENDPROLOG;
-pub const PSINJECT_BEGINSETUP = PSINJECT_POINT.BEGINSETUP;
-pub const PSINJECT_ENDSETUP = PSINJECT_POINT.ENDSETUP;
-pub const PSINJECT_TRAILER = PSINJECT_POINT.TRAILER;
-pub const PSINJECT_EOF = PSINJECT_POINT.EOF;
-pub const PSINJECT_ENDSTREAM = PSINJECT_POINT.ENDSTREAM;
-pub const PSINJECT_DOCUMENTPROCESSCOLORSATEND = PSINJECT_POINT.DOCUMENTPROCESSCOLORSATEND;
-pub const PSINJECT_PAGENUMBER = PSINJECT_POINT.PAGENUMBER;
-pub const PSINJECT_BEGINPAGESETUP = PSINJECT_POINT.BEGINPAGESETUP;
-pub const PSINJECT_ENDPAGESETUP = PSINJECT_POINT.ENDPAGESETUP;
-pub const PSINJECT_PAGETRAILER = PSINJECT_POINT.PAGETRAILER;
-pub const PSINJECT_PLATECOLOR = PSINJECT_POINT.PLATECOLOR;
-pub const PSINJECT_SHOWPAGE = PSINJECT_POINT.SHOWPAGE;
-pub const PSINJECT_PAGEBBOX = PSINJECT_POINT.PAGEBBOX;
-pub const PSINJECT_ENDPAGECOMMENTS = PSINJECT_POINT.ENDPAGECOMMENTS;
-pub const PSINJECT_VMSAVE = PSINJECT_POINT.VMSAVE;
-pub const PSINJECT_VMRESTORE = PSINJECT_POINT.VMRESTORE;
-
 const CLSID_XpsOMObjectFactory_Value = @import("../zig.zig").Guid.initString("e974d26d-3d9b-4d47-88cc-3872f2dc3585");
 pub const CLSID_XpsOMObjectFactory = &CLSID_XpsOMObjectFactory_Value;
 
@@ -5995,7 +5928,7 @@ pub const IPrintDocumentPackageTarget = extern struct {
             self: *const IPrintDocumentPackageTarget,
             guidTargetType: *const Guid,
             riid: *const Guid,
-            ppvTarget: ?*?*c_void,
+            ppvTarget: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Cancel: fn(
             self: *const IPrintDocumentPackageTarget,
@@ -6009,7 +5942,7 @@ pub const IPrintDocumentPackageTarget = extern struct {
             return @ptrCast(*const IPrintDocumentPackageTarget.VTable, self.vtable).GetPackageTargetTypes(@ptrCast(*const IPrintDocumentPackageTarget, self), targetCount, targetTypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDocumentPackageTarget_GetPackageTarget(self: *const T, guidTargetType: *const Guid, riid: *const Guid, ppvTarget: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPrintDocumentPackageTarget_GetPackageTarget(self: *const T, guidTargetType: *const Guid, riid: *const Guid, ppvTarget: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintDocumentPackageTarget.VTable, self.vtable).GetPackageTarget(@ptrCast(*const IPrintDocumentPackageTarget, self), guidTargetType, riid, ppvTarget);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6104,12 +6037,12 @@ pub const kPTPageScope = EPrintTicketScope.PageScope;
 pub const kPTDocumentScope = EPrintTicketScope.DocumentScope;
 pub const kPTJobScope = EPrintTicketScope.JobScope;
 
-pub const PrintWindow_nFlags = extern enum(u32) {
+pub const PRINT_WINDOW_FLAGS = extern enum(u32) {
     Y = 1,
 };
-pub const PW_CLIENTONLY = PrintWindow_nFlags.Y;
+pub const PW_CLIENTONLY = PRINT_WINDOW_FLAGS.Y;
 
-pub const DeviceCapabilities_fwCapability = extern enum(u32) {
+pub const DEVICE_CAPABILITIES = extern enum(u32) {
     BINNAMES = 12,
     BINS = 6,
     COLLATE = 22,
@@ -6141,36 +6074,103 @@ pub const DeviceCapabilities_fwCapability = extern enum(u32) {
     TRUETYPE = 15,
     VERSION = 10,
 };
-pub const DC_BINNAMES = DeviceCapabilities_fwCapability.BINNAMES;
-pub const DC_BINS = DeviceCapabilities_fwCapability.BINS;
-pub const DC_COLLATE = DeviceCapabilities_fwCapability.COLLATE;
-pub const DC_COLORDEVICE = DeviceCapabilities_fwCapability.COLORDEVICE;
-pub const DC_COPIES = DeviceCapabilities_fwCapability.COPIES;
-pub const DC_DRIVER = DeviceCapabilities_fwCapability.DRIVER;
-pub const DC_DUPLEX = DeviceCapabilities_fwCapability.DUPLEX;
-pub const DC_ENUMRESOLUTIONS = DeviceCapabilities_fwCapability.ENUMRESOLUTIONS;
-pub const DC_EXTRA = DeviceCapabilities_fwCapability.EXTRA;
-pub const DC_FIELDS = DeviceCapabilities_fwCapability.FIELDS;
-pub const DC_FILEDEPENDENCIES = DeviceCapabilities_fwCapability.FILEDEPENDENCIES;
-pub const DC_MAXEXTENT = DeviceCapabilities_fwCapability.MAXEXTENT;
-pub const DC_MEDIAREADY = DeviceCapabilities_fwCapability.MEDIAREADY;
-pub const DC_MEDIATYPENAMES = DeviceCapabilities_fwCapability.MEDIATYPENAMES;
-pub const DC_MEDIATYPES = DeviceCapabilities_fwCapability.MEDIATYPES;
-pub const DC_MINEXTENT = DeviceCapabilities_fwCapability.MINEXTENT;
-pub const DC_ORIENTATION = DeviceCapabilities_fwCapability.ORIENTATION;
-pub const DC_NUP = DeviceCapabilities_fwCapability.NUP;
-pub const DC_PAPERNAMES = DeviceCapabilities_fwCapability.PAPERNAMES;
-pub const DC_PAPERS = DeviceCapabilities_fwCapability.PAPERS;
-pub const DC_PAPERSIZE = DeviceCapabilities_fwCapability.PAPERSIZE;
-pub const DC_PERSONALITY = DeviceCapabilities_fwCapability.PERSONALITY;
-pub const DC_PRINTERMEM = DeviceCapabilities_fwCapability.PRINTERMEM;
-pub const DC_PRINTRATE = DeviceCapabilities_fwCapability.PRINTRATE;
-pub const DC_PRINTRATEPPM = DeviceCapabilities_fwCapability.PRINTRATEPPM;
-pub const DC_PRINTRATEUNIT = DeviceCapabilities_fwCapability.PRINTRATEUNIT;
-pub const DC_SIZE = DeviceCapabilities_fwCapability.SIZE;
-pub const DC_STAPLE = DeviceCapabilities_fwCapability.STAPLE;
-pub const DC_TRUETYPE = DeviceCapabilities_fwCapability.TRUETYPE;
-pub const DC_VERSION = DeviceCapabilities_fwCapability.VERSION;
+pub const DC_BINNAMES = DEVICE_CAPABILITIES.BINNAMES;
+pub const DC_BINS = DEVICE_CAPABILITIES.BINS;
+pub const DC_COLLATE = DEVICE_CAPABILITIES.COLLATE;
+pub const DC_COLORDEVICE = DEVICE_CAPABILITIES.COLORDEVICE;
+pub const DC_COPIES = DEVICE_CAPABILITIES.COPIES;
+pub const DC_DRIVER = DEVICE_CAPABILITIES.DRIVER;
+pub const DC_DUPLEX = DEVICE_CAPABILITIES.DUPLEX;
+pub const DC_ENUMRESOLUTIONS = DEVICE_CAPABILITIES.ENUMRESOLUTIONS;
+pub const DC_EXTRA = DEVICE_CAPABILITIES.EXTRA;
+pub const DC_FIELDS = DEVICE_CAPABILITIES.FIELDS;
+pub const DC_FILEDEPENDENCIES = DEVICE_CAPABILITIES.FILEDEPENDENCIES;
+pub const DC_MAXEXTENT = DEVICE_CAPABILITIES.MAXEXTENT;
+pub const DC_MEDIAREADY = DEVICE_CAPABILITIES.MEDIAREADY;
+pub const DC_MEDIATYPENAMES = DEVICE_CAPABILITIES.MEDIATYPENAMES;
+pub const DC_MEDIATYPES = DEVICE_CAPABILITIES.MEDIATYPES;
+pub const DC_MINEXTENT = DEVICE_CAPABILITIES.MINEXTENT;
+pub const DC_ORIENTATION = DEVICE_CAPABILITIES.ORIENTATION;
+pub const DC_NUP = DEVICE_CAPABILITIES.NUP;
+pub const DC_PAPERNAMES = DEVICE_CAPABILITIES.PAPERNAMES;
+pub const DC_PAPERS = DEVICE_CAPABILITIES.PAPERS;
+pub const DC_PAPERSIZE = DEVICE_CAPABILITIES.PAPERSIZE;
+pub const DC_PERSONALITY = DEVICE_CAPABILITIES.PERSONALITY;
+pub const DC_PRINTERMEM = DEVICE_CAPABILITIES.PRINTERMEM;
+pub const DC_PRINTRATE = DEVICE_CAPABILITIES.PRINTRATE;
+pub const DC_PRINTRATEPPM = DEVICE_CAPABILITIES.PRINTRATEPPM;
+pub const DC_PRINTRATEUNIT = DEVICE_CAPABILITIES.PRINTRATEUNIT;
+pub const DC_SIZE = DEVICE_CAPABILITIES.SIZE;
+pub const DC_STAPLE = DEVICE_CAPABILITIES.STAPLE;
+pub const DC_TRUETYPE = DEVICE_CAPABILITIES.TRUETYPE;
+pub const DC_VERSION = DEVICE_CAPABILITIES.VERSION;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PSINJECT_POINT = extern enum(u16) {
+    BEGINSTREAM = 1,
+    PSADOBE = 2,
+    PAGESATEND = 3,
+    PAGES = 4,
+    DOCNEEDEDRES = 5,
+    DOCSUPPLIEDRES = 6,
+    PAGEORDER = 7,
+    ORIENTATION = 8,
+    BOUNDINGBOX = 9,
+    DOCUMENTPROCESSCOLORS = 10,
+    COMMENTS = 11,
+    BEGINDEFAULTS = 12,
+    ENDDEFAULTS = 13,
+    BEGINPROLOG = 14,
+    ENDPROLOG = 15,
+    BEGINSETUP = 16,
+    ENDSETUP = 17,
+    TRAILER = 18,
+    EOF = 19,
+    ENDSTREAM = 20,
+    DOCUMENTPROCESSCOLORSATEND = 21,
+    PAGENUMBER = 100,
+    BEGINPAGESETUP = 101,
+    ENDPAGESETUP = 102,
+    PAGETRAILER = 103,
+    PLATECOLOR = 104,
+    SHOWPAGE = 105,
+    PAGEBBOX = 106,
+    ENDPAGECOMMENTS = 107,
+    VMSAVE = 200,
+    VMRESTORE = 201,
+    _,
+};
+pub const PSINJECT_BEGINSTREAM = PSINJECT_POINT.BEGINSTREAM;
+pub const PSINJECT_PSADOBE = PSINJECT_POINT.PSADOBE;
+pub const PSINJECT_PAGESATEND = PSINJECT_POINT.PAGESATEND;
+pub const PSINJECT_PAGES = PSINJECT_POINT.PAGES;
+pub const PSINJECT_DOCNEEDEDRES = PSINJECT_POINT.DOCNEEDEDRES;
+pub const PSINJECT_DOCSUPPLIEDRES = PSINJECT_POINT.DOCSUPPLIEDRES;
+pub const PSINJECT_PAGEORDER = PSINJECT_POINT.PAGEORDER;
+pub const PSINJECT_ORIENTATION = PSINJECT_POINT.ORIENTATION;
+pub const PSINJECT_BOUNDINGBOX = PSINJECT_POINT.BOUNDINGBOX;
+pub const PSINJECT_DOCUMENTPROCESSCOLORS = PSINJECT_POINT.DOCUMENTPROCESSCOLORS;
+pub const PSINJECT_COMMENTS = PSINJECT_POINT.COMMENTS;
+pub const PSINJECT_BEGINDEFAULTS = PSINJECT_POINT.BEGINDEFAULTS;
+pub const PSINJECT_ENDDEFAULTS = PSINJECT_POINT.ENDDEFAULTS;
+pub const PSINJECT_BEGINPROLOG = PSINJECT_POINT.BEGINPROLOG;
+pub const PSINJECT_ENDPROLOG = PSINJECT_POINT.ENDPROLOG;
+pub const PSINJECT_BEGINSETUP = PSINJECT_POINT.BEGINSETUP;
+pub const PSINJECT_ENDSETUP = PSINJECT_POINT.ENDSETUP;
+pub const PSINJECT_TRAILER = PSINJECT_POINT.TRAILER;
+pub const PSINJECT_EOF = PSINJECT_POINT.EOF;
+pub const PSINJECT_ENDSTREAM = PSINJECT_POINT.ENDSTREAM;
+pub const PSINJECT_DOCUMENTPROCESSCOLORSATEND = PSINJECT_POINT.DOCUMENTPROCESSCOLORSATEND;
+pub const PSINJECT_PAGENUMBER = PSINJECT_POINT.PAGENUMBER;
+pub const PSINJECT_BEGINPAGESETUP = PSINJECT_POINT.BEGINPAGESETUP;
+pub const PSINJECT_ENDPAGESETUP = PSINJECT_POINT.ENDPAGESETUP;
+pub const PSINJECT_PAGETRAILER = PSINJECT_POINT.PAGETRAILER;
+pub const PSINJECT_PLATECOLOR = PSINJECT_POINT.PLATECOLOR;
+pub const PSINJECT_SHOWPAGE = PSINJECT_POINT.SHOWPAGE;
+pub const PSINJECT_PAGEBBOX = PSINJECT_POINT.PAGEBBOX;
+pub const PSINJECT_ENDPAGECOMMENTS = PSINJECT_POINT.ENDPAGECOMMENTS;
+pub const PSINJECT_VMSAVE = PSINJECT_POINT.VMSAVE;
+pub const PSINJECT_VMRESTORE = PSINJECT_POINT.VMRESTORE;
 
 pub const DRAWPATRECT = extern struct {
     ptPosition: POINT,
@@ -6346,7 +6346,7 @@ pub extern "prntvpt" fn PTConvertDevModeToPrintTicket(
 pub extern "WINSPOOL" fn DeviceCapabilitiesA(
     pDevice: [*:0]const u8,
     pPort: ?[*:0]const u8,
-    fwCapability: DeviceCapabilities_fwCapability,
+    fwCapability: DEVICE_CAPABILITIES,
     pOutput: ?PSTR,
     pDevMode: ?*const DEVMODEA,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -6355,7 +6355,7 @@ pub extern "WINSPOOL" fn DeviceCapabilitiesA(
 pub extern "WINSPOOL" fn DeviceCapabilitiesW(
     pDevice: [*:0]const u16,
     pPort: ?[*:0]const u16,
-    fwCapability: DeviceCapabilities_fwCapability,
+    fwCapability: DEVICE_CAPABILITIES,
     pOutput: ?PWSTR,
     pDevMode: ?*const DEVMODEW,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -6424,7 +6424,7 @@ pub extern "GDI32" fn SetAbortProc(
 pub extern "USER32" fn PrintWindow(
     hwnd: HWND,
     hdcBlt: HDC,
-    nFlags: PrintWindow_nFlags,
+    nFlags: PRINT_WINDOW_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 

@@ -90,7 +90,7 @@ pub const EC_DISABLE = DDE_ENABLE_CALLBACK_CMD.DISABLE;
 pub const EC_QUERYWAITING = DDE_ENABLE_CALLBACK_CMD.QUERYWAITING;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const DdeInitialize_afCmd = extern enum(u32) {
+pub const DDE_INITIALIZE_COMMAND = extern enum(u32) {
     APPCLASS_MONITOR = 1,
     APPCLASS_STANDARD = 0,
     APPCMD_CLIENTONLY = 16,
@@ -116,42 +116,42 @@ pub const DdeInitialize_afCmd = extern enum(u32) {
     MF_SENDMSGS = 33554432,
     _,
 };
-pub const APPCLASS_MONITOR = DdeInitialize_afCmd.APPCLASS_MONITOR;
-pub const APPCLASS_STANDARD = DdeInitialize_afCmd.APPCLASS_STANDARD;
-pub const APPCMD_CLIENTONLY = DdeInitialize_afCmd.APPCMD_CLIENTONLY;
-pub const APPCMD_FILTERINITS = DdeInitialize_afCmd.APPCMD_FILTERINITS;
-pub const CBF_FAIL_ALLSVRXACTIONS = DdeInitialize_afCmd.CBF_FAIL_ALLSVRXACTIONS;
-pub const CBF_FAIL_ADVISES = DdeInitialize_afCmd.CBF_FAIL_ADVISES;
-pub const CBF_FAIL_CONNECTIONS = DdeInitialize_afCmd.CBF_FAIL_CONNECTIONS;
-pub const CBF_FAIL_EXECUTES = DdeInitialize_afCmd.CBF_FAIL_EXECUTES;
-pub const CBF_FAIL_POKES = DdeInitialize_afCmd.CBF_FAIL_POKES;
-pub const CBF_FAIL_REQUESTS = DdeInitialize_afCmd.CBF_FAIL_REQUESTS;
-pub const CBF_FAIL_SELFCONNECTIONS = DdeInitialize_afCmd.CBF_FAIL_SELFCONNECTIONS;
-pub const CBF_SKIP_ALLNOTIFICATIONS = DdeInitialize_afCmd.CBF_SKIP_ALLNOTIFICATIONS;
-pub const CBF_SKIP_CONNECT_CONFIRMS = DdeInitialize_afCmd.CBF_SKIP_CONNECT_CONFIRMS;
-pub const CBF_SKIP_DISCONNECTS = DdeInitialize_afCmd.CBF_SKIP_DISCONNECTS;
-pub const CBF_SKIP_REGISTRATIONS = DdeInitialize_afCmd.CBF_SKIP_REGISTRATIONS;
-pub const CBF_SKIP_UNREGISTRATIONS = DdeInitialize_afCmd.CBF_SKIP_UNREGISTRATIONS;
-pub const MF_CALLBACKS = DdeInitialize_afCmd.MF_CALLBACKS;
-pub const MF_CONV = DdeInitialize_afCmd.MF_CONV;
-pub const MF_ERRORS = DdeInitialize_afCmd.MF_ERRORS;
-pub const MF_HSZ_INFO = DdeInitialize_afCmd.MF_HSZ_INFO;
-pub const MF_LINKS = DdeInitialize_afCmd.MF_LINKS;
-pub const MF_POSTMSGS = DdeInitialize_afCmd.MF_POSTMSGS;
-pub const MF_SENDMSGS = DdeInitialize_afCmd.MF_SENDMSGS;
+pub const APPCLASS_MONITOR = DDE_INITIALIZE_COMMAND.APPCLASS_MONITOR;
+pub const APPCLASS_STANDARD = DDE_INITIALIZE_COMMAND.APPCLASS_STANDARD;
+pub const APPCMD_CLIENTONLY = DDE_INITIALIZE_COMMAND.APPCMD_CLIENTONLY;
+pub const APPCMD_FILTERINITS = DDE_INITIALIZE_COMMAND.APPCMD_FILTERINITS;
+pub const CBF_FAIL_ALLSVRXACTIONS = DDE_INITIALIZE_COMMAND.CBF_FAIL_ALLSVRXACTIONS;
+pub const CBF_FAIL_ADVISES = DDE_INITIALIZE_COMMAND.CBF_FAIL_ADVISES;
+pub const CBF_FAIL_CONNECTIONS = DDE_INITIALIZE_COMMAND.CBF_FAIL_CONNECTIONS;
+pub const CBF_FAIL_EXECUTES = DDE_INITIALIZE_COMMAND.CBF_FAIL_EXECUTES;
+pub const CBF_FAIL_POKES = DDE_INITIALIZE_COMMAND.CBF_FAIL_POKES;
+pub const CBF_FAIL_REQUESTS = DDE_INITIALIZE_COMMAND.CBF_FAIL_REQUESTS;
+pub const CBF_FAIL_SELFCONNECTIONS = DDE_INITIALIZE_COMMAND.CBF_FAIL_SELFCONNECTIONS;
+pub const CBF_SKIP_ALLNOTIFICATIONS = DDE_INITIALIZE_COMMAND.CBF_SKIP_ALLNOTIFICATIONS;
+pub const CBF_SKIP_CONNECT_CONFIRMS = DDE_INITIALIZE_COMMAND.CBF_SKIP_CONNECT_CONFIRMS;
+pub const CBF_SKIP_DISCONNECTS = DDE_INITIALIZE_COMMAND.CBF_SKIP_DISCONNECTS;
+pub const CBF_SKIP_REGISTRATIONS = DDE_INITIALIZE_COMMAND.CBF_SKIP_REGISTRATIONS;
+pub const CBF_SKIP_UNREGISTRATIONS = DDE_INITIALIZE_COMMAND.CBF_SKIP_UNREGISTRATIONS;
+pub const MF_CALLBACKS = DDE_INITIALIZE_COMMAND.MF_CALLBACKS;
+pub const MF_CONV = DDE_INITIALIZE_COMMAND.MF_CONV;
+pub const MF_ERRORS = DDE_INITIALIZE_COMMAND.MF_ERRORS;
+pub const MF_HSZ_INFO = DDE_INITIALIZE_COMMAND.MF_HSZ_INFO;
+pub const MF_LINKS = DDE_INITIALIZE_COMMAND.MF_LINKS;
+pub const MF_POSTMSGS = DDE_INITIALIZE_COMMAND.MF_POSTMSGS;
+pub const MF_SENDMSGS = DDE_INITIALIZE_COMMAND.MF_SENDMSGS;
 
-pub const DdeNameService_afCmdFlags = extern enum(u32) {
+pub const DDE_NAME_SERVICE_CMD = extern enum(u32) {
     REGISTER = 1,
     UNREGISTER = 2,
     FILTERON = 4,
     FILTEROFF = 8,
 };
-pub const DNS_REGISTER = DdeNameService_afCmdFlags.REGISTER;
-pub const DNS_UNREGISTER = DdeNameService_afCmdFlags.UNREGISTER;
-pub const DNS_FILTERON = DdeNameService_afCmdFlags.FILTERON;
-pub const DNS_FILTEROFF = DdeNameService_afCmdFlags.FILTEROFF;
+pub const DNS_REGISTER = DDE_NAME_SERVICE_CMD.REGISTER;
+pub const DNS_UNREGISTER = DDE_NAME_SERVICE_CMD.UNREGISTER;
+pub const DNS_FILTERON = DDE_NAME_SERVICE_CMD.FILTERON;
+pub const DNS_FILTEROFF = DDE_NAME_SERVICE_CMD.FILTEROFF;
 
-pub const DdeClientTransaction_wTypeFlags = extern enum(u32) {
+pub const DDE_CLIENT_TRANSACTION_TYPE = extern enum(u32) {
     ADVSTART = 4144,
     ADVSTOP = 32832,
     EXECUTE = 16464,
@@ -168,23 +168,23 @@ pub const DdeClientTransaction_wTypeFlags = extern enum(u32) {
     WILDCONNECT = 8418,
     XACT_COMPLETE = 32896,
 };
-pub const XTYP_ADVSTART = DdeClientTransaction_wTypeFlags.ADVSTART;
-pub const XTYP_ADVSTOP = DdeClientTransaction_wTypeFlags.ADVSTOP;
-pub const XTYP_EXECUTE = DdeClientTransaction_wTypeFlags.EXECUTE;
-pub const XTYP_POKE = DdeClientTransaction_wTypeFlags.POKE;
-pub const XTYP_REQUEST = DdeClientTransaction_wTypeFlags.REQUEST;
-pub const XTYP_ADVDATA = DdeClientTransaction_wTypeFlags.ADVDATA;
-pub const XTYP_ADVREQ = DdeClientTransaction_wTypeFlags.ADVREQ;
-pub const XTYP_CONNECT = DdeClientTransaction_wTypeFlags.CONNECT;
-pub const XTYP_CONNECT_CONFIRM = DdeClientTransaction_wTypeFlags.CONNECT_CONFIRM;
-pub const XTYP_DISCONNECT = DdeClientTransaction_wTypeFlags.DISCONNECT;
-pub const XTYP_MONITOR = DdeClientTransaction_wTypeFlags.MONITOR;
-pub const XTYP_REGISTER = DdeClientTransaction_wTypeFlags.REGISTER;
-pub const XTYP_UNREGISTER = DdeClientTransaction_wTypeFlags.UNREGISTER;
-pub const XTYP_WILDCONNECT = DdeClientTransaction_wTypeFlags.WILDCONNECT;
-pub const XTYP_XACT_COMPLETE = DdeClientTransaction_wTypeFlags.XACT_COMPLETE;
+pub const XTYP_ADVSTART = DDE_CLIENT_TRANSACTION_TYPE.ADVSTART;
+pub const XTYP_ADVSTOP = DDE_CLIENT_TRANSACTION_TYPE.ADVSTOP;
+pub const XTYP_EXECUTE = DDE_CLIENT_TRANSACTION_TYPE.EXECUTE;
+pub const XTYP_POKE = DDE_CLIENT_TRANSACTION_TYPE.POKE;
+pub const XTYP_REQUEST = DDE_CLIENT_TRANSACTION_TYPE.REQUEST;
+pub const XTYP_ADVDATA = DDE_CLIENT_TRANSACTION_TYPE.ADVDATA;
+pub const XTYP_ADVREQ = DDE_CLIENT_TRANSACTION_TYPE.ADVREQ;
+pub const XTYP_CONNECT = DDE_CLIENT_TRANSACTION_TYPE.CONNECT;
+pub const XTYP_CONNECT_CONFIRM = DDE_CLIENT_TRANSACTION_TYPE.CONNECT_CONFIRM;
+pub const XTYP_DISCONNECT = DDE_CLIENT_TRANSACTION_TYPE.DISCONNECT;
+pub const XTYP_MONITOR = DDE_CLIENT_TRANSACTION_TYPE.MONITOR;
+pub const XTYP_REGISTER = DDE_CLIENT_TRANSACTION_TYPE.REGISTER;
+pub const XTYP_UNREGISTER = DDE_CLIENT_TRANSACTION_TYPE.UNREGISTER;
+pub const XTYP_WILDCONNECT = DDE_CLIENT_TRANSACTION_TYPE.WILDCONNECT;
+pub const XTYP_XACT_COMPLETE = DDE_CLIENT_TRANSACTION_TYPE.XACT_COMPLETE;
 
-pub const CONVINFO_wConvstFlags = extern enum(u32) {
+pub const CONVINFO_CONVERSATION_STATE = extern enum(u32) {
     ADVACKRCVD = 13,
     ADVDATAACKRCVD = 16,
     ADVDATASENT = 15,
@@ -203,26 +203,26 @@ pub const CONVINFO_wConvstFlags = extern enum(u32) {
     UNADVACKRCVD = 14,
     UNADVSENT = 12,
 };
-pub const XST_ADVACKRCVD = CONVINFO_wConvstFlags.ADVACKRCVD;
-pub const XST_ADVDATAACKRCVD = CONVINFO_wConvstFlags.ADVDATAACKRCVD;
-pub const XST_ADVDATASENT = CONVINFO_wConvstFlags.ADVDATASENT;
-pub const XST_ADVSENT = CONVINFO_wConvstFlags.ADVSENT;
-pub const XST_CONNECTED = CONVINFO_wConvstFlags.CONNECTED;
-pub const XST_DATARCVD = CONVINFO_wConvstFlags.DATARCVD;
-pub const XST_EXECACKRCVD = CONVINFO_wConvstFlags.EXECACKRCVD;
-pub const XST_EXECSENT = CONVINFO_wConvstFlags.EXECSENT;
-pub const XST_INCOMPLETE = CONVINFO_wConvstFlags.INCOMPLETE;
-pub const XST_INIT1 = CONVINFO_wConvstFlags.INIT1;
-pub const XST_INIT2 = CONVINFO_wConvstFlags.INIT2;
-pub const XST_NULL = CONVINFO_wConvstFlags.NULL;
-pub const XST_POKEACKRCVD = CONVINFO_wConvstFlags.POKEACKRCVD;
-pub const XST_POKESENT = CONVINFO_wConvstFlags.POKESENT;
-pub const XST_REQSENT = CONVINFO_wConvstFlags.REQSENT;
-pub const XST_UNADVACKRCVD = CONVINFO_wConvstFlags.UNADVACKRCVD;
-pub const XST_UNADVSENT = CONVINFO_wConvstFlags.UNADVSENT;
+pub const XST_ADVACKRCVD = CONVINFO_CONVERSATION_STATE.ADVACKRCVD;
+pub const XST_ADVDATAACKRCVD = CONVINFO_CONVERSATION_STATE.ADVDATAACKRCVD;
+pub const XST_ADVDATASENT = CONVINFO_CONVERSATION_STATE.ADVDATASENT;
+pub const XST_ADVSENT = CONVINFO_CONVERSATION_STATE.ADVSENT;
+pub const XST_CONNECTED = CONVINFO_CONVERSATION_STATE.CONNECTED;
+pub const XST_DATARCVD = CONVINFO_CONVERSATION_STATE.DATARCVD;
+pub const XST_EXECACKRCVD = CONVINFO_CONVERSATION_STATE.EXECACKRCVD;
+pub const XST_EXECSENT = CONVINFO_CONVERSATION_STATE.EXECSENT;
+pub const XST_INCOMPLETE = CONVINFO_CONVERSATION_STATE.INCOMPLETE;
+pub const XST_INIT1 = CONVINFO_CONVERSATION_STATE.INIT1;
+pub const XST_INIT2 = CONVINFO_CONVERSATION_STATE.INIT2;
+pub const XST_NULL = CONVINFO_CONVERSATION_STATE.NULL;
+pub const XST_POKEACKRCVD = CONVINFO_CONVERSATION_STATE.POKEACKRCVD;
+pub const XST_POKESENT = CONVINFO_CONVERSATION_STATE.POKESENT;
+pub const XST_REQSENT = CONVINFO_CONVERSATION_STATE.REQSENT;
+pub const XST_UNADVACKRCVD = CONVINFO_CONVERSATION_STATE.UNADVACKRCVD;
+pub const XST_UNADVSENT = CONVINFO_CONVERSATION_STATE.UNADVSENT;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const CONVINFO_wStatusFlags = extern enum(u32) {
+pub const CONVINFO_STATUS = extern enum(u32) {
     ADVISE = 2,
     BLOCKED = 8,
     BLOCKNEXT = 128,
@@ -234,15 +234,15 @@ pub const CONVINFO_wStatusFlags = extern enum(u32) {
     TERMINATED = 32,
     _,
 };
-pub const ST_ADVISE = CONVINFO_wStatusFlags.ADVISE;
-pub const ST_BLOCKED = CONVINFO_wStatusFlags.BLOCKED;
-pub const ST_BLOCKNEXT = CONVINFO_wStatusFlags.BLOCKNEXT;
-pub const ST_CLIENT = CONVINFO_wStatusFlags.CLIENT;
-pub const ST_CONNECTED = CONVINFO_wStatusFlags.CONNECTED;
-pub const ST_INLIST = CONVINFO_wStatusFlags.INLIST;
-pub const ST_ISLOCAL = CONVINFO_wStatusFlags.ISLOCAL;
-pub const ST_ISSELF = CONVINFO_wStatusFlags.ISSELF;
-pub const ST_TERMINATED = CONVINFO_wStatusFlags.TERMINATED;
+pub const ST_ADVISE = CONVINFO_STATUS.ADVISE;
+pub const ST_BLOCKED = CONVINFO_STATUS.BLOCKED;
+pub const ST_BLOCKNEXT = CONVINFO_STATUS.BLOCKNEXT;
+pub const ST_CLIENT = CONVINFO_STATUS.CLIENT;
+pub const ST_CONNECTED = CONVINFO_STATUS.CONNECTED;
+pub const ST_INLIST = CONVINFO_STATUS.INLIST;
+pub const ST_ISLOCAL = CONVINFO_STATUS.ISLOCAL;
+pub const ST_ISSELF = CONVINFO_STATUS.ISSELF;
+pub const ST_TERMINATED = CONVINFO_STATUS.TERMINATED;
 
 pub const DDEACK = extern struct {
     _bitfield: u16,
@@ -300,9 +300,9 @@ pub const CONVINFO = extern struct {
     hszTopic: HSZ,
     hszItem: HSZ,
     wFmt: u32,
-    wType: DdeClientTransaction_wTypeFlags,
-    wStatus: CONVINFO_wStatusFlags,
-    wConvst: CONVINFO_wConvstFlags,
+    wType: DDE_CLIENT_TRANSACTION_TYPE,
+    wStatus: CONVINFO_STATUS,
+    wConvst: CONVINFO_CONVERSATION_STATE,
     wLastError: u32,
     hConvList: HCONVLIST,
     ConvCtxt: CONVCONTEXT,
@@ -363,7 +363,7 @@ pub const MONHSZSTRUCTA = extern struct {
     dwTime: u32,
     hsz: HSZ,
     hTask: HANDLE,
-    str: [1]i8,
+    str: [1]CHAR,
 };
 
 pub const MONHSZSTRUCTW = extern struct {
@@ -472,7 +472,7 @@ pub extern "USER32" fn ReuseDDElParam(
 pub extern "USER32" fn DdeInitializeA(
     pidInst: *u32,
     pfnCallback: PFNCALLBACK,
-    afCmd: DdeInitialize_afCmd,
+    afCmd: DDE_INITIALIZE_COMMAND,
     ulRes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -480,7 +480,7 @@ pub extern "USER32" fn DdeInitializeA(
 pub extern "USER32" fn DdeInitializeW(
     pidInst: *u32,
     pfnCallback: PFNCALLBACK,
-    afCmd: DdeInitialize_afCmd,
+    afCmd: DDE_INITIALIZE_COMMAND,
     ulRes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -572,7 +572,7 @@ pub extern "USER32" fn DdeNameService(
     idInst: u32,
     hsz1: HSZ,
     hsz2: HSZ,
-    afCmd: DdeNameService_afCmdFlags,
+    afCmd: DDE_NAME_SERVICE_CMD,
 ) callconv(@import("std").os.windows.WINAPI) HDDEDATA;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -582,7 +582,7 @@ pub extern "USER32" fn DdeClientTransaction(
     hConv: HCONV,
     hszItem: HSZ,
     wFmt: u32,
-    wType: DdeClientTransaction_wTypeFlags,
+    wType: DDE_CLIENT_TRANSACTION_TYPE,
     dwTimeout: u32,
     pdwResult: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HDDEDATA;
@@ -959,11 +959,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
 const WPARAM = @import("windows_and_messaging.zig").WPARAM;
 const PWSTR = @import("system_services.zig").PWSTR;
+const CHAR = @import("system_services.zig").CHAR;
 const HMETAFILE = @import("gdi.zig").HMETAFILE;
 const SECURITY_QUALITY_OF_SERVICE = @import("security.zig").SECURITY_QUALITY_OF_SERVICE;
 const HANDLE = @import("system_services.zig").HANDLE;
@@ -982,7 +983,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 76;
     const unicode_alias_count = 13;
-    const import_count = 9;
+    const import_count = 10;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

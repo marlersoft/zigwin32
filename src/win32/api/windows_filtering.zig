@@ -600,7 +600,7 @@ pub const TH_OPT_FASTOPEN = @as(u32, 34);
 // Section: Types (345)
 //--------------------------------------------------------------------------------
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IPSEC_SA_BUNDLE1Flags = extern enum(u32) {
+pub const IPSEC_SA_BUNDLE_FLAGS = extern enum(u32) {
     ND_SECURE = 1,
     ND_BOUNDARY = 2,
     ND_PEER_NAT_BOUNDARY = 4,
@@ -613,16 +613,16 @@ pub const IPSEC_SA_BUNDLE1Flags = extern enum(u32) {
     PEER_SUPPORTS_GUARANTEE_ENCRYPTION = 16384,
     _,
 };
-pub const IPSEC_SA_BUNDLE_FLAG_ND_SECURE = IPSEC_SA_BUNDLE1Flags.ND_SECURE;
-pub const IPSEC_SA_BUNDLE_FLAG_ND_BOUNDARY = IPSEC_SA_BUNDLE1Flags.ND_BOUNDARY;
-pub const IPSEC_SA_BUNDLE_FLAG_ND_PEER_NAT_BOUNDARY = IPSEC_SA_BUNDLE1Flags.ND_PEER_NAT_BOUNDARY;
-pub const IPSEC_SA_BUNDLE_FLAG_GUARANTEE_ENCRYPTION = IPSEC_SA_BUNDLE1Flags.GUARANTEE_ENCRYPTION;
-pub const IPSEC_SA_BUNDLE_FLAG_ALLOW_NULL_TARGET_NAME_MATCH = IPSEC_SA_BUNDLE1Flags.ALLOW_NULL_TARGET_NAME_MATCH;
-pub const IPSEC_SA_BUNDLE_FLAG_CLEAR_DF_ON_TUNNEL = IPSEC_SA_BUNDLE1Flags.CLEAR_DF_ON_TUNNEL;
-pub const IPSEC_SA_BUNDLE_FLAG_ASSUME_UDP_CONTEXT_OUTBOUND = IPSEC_SA_BUNDLE1Flags.ASSUME_UDP_CONTEXT_OUTBOUND;
-pub const IPSEC_SA_BUNDLE_FLAG_ND_PEER_BOUNDARY = IPSEC_SA_BUNDLE1Flags.ND_PEER_BOUNDARY;
-pub const IPSEC_SA_BUNDLE_FLAG_SUPPRESS_DUPLICATE_DELETION = IPSEC_SA_BUNDLE1Flags.SUPPRESS_DUPLICATE_DELETION;
-pub const IPSEC_SA_BUNDLE_FLAG_PEER_SUPPORTS_GUARANTEE_ENCRYPTION = IPSEC_SA_BUNDLE1Flags.PEER_SUPPORTS_GUARANTEE_ENCRYPTION;
+pub const IPSEC_SA_BUNDLE_FLAG_ND_SECURE = IPSEC_SA_BUNDLE_FLAGS.ND_SECURE;
+pub const IPSEC_SA_BUNDLE_FLAG_ND_BOUNDARY = IPSEC_SA_BUNDLE_FLAGS.ND_BOUNDARY;
+pub const IPSEC_SA_BUNDLE_FLAG_ND_PEER_NAT_BOUNDARY = IPSEC_SA_BUNDLE_FLAGS.ND_PEER_NAT_BOUNDARY;
+pub const IPSEC_SA_BUNDLE_FLAG_GUARANTEE_ENCRYPTION = IPSEC_SA_BUNDLE_FLAGS.GUARANTEE_ENCRYPTION;
+pub const IPSEC_SA_BUNDLE_FLAG_ALLOW_NULL_TARGET_NAME_MATCH = IPSEC_SA_BUNDLE_FLAGS.ALLOW_NULL_TARGET_NAME_MATCH;
+pub const IPSEC_SA_BUNDLE_FLAG_CLEAR_DF_ON_TUNNEL = IPSEC_SA_BUNDLE_FLAGS.CLEAR_DF_ON_TUNNEL;
+pub const IPSEC_SA_BUNDLE_FLAG_ASSUME_UDP_CONTEXT_OUTBOUND = IPSEC_SA_BUNDLE_FLAGS.ASSUME_UDP_CONTEXT_OUTBOUND;
+pub const IPSEC_SA_BUNDLE_FLAG_ND_PEER_BOUNDARY = IPSEC_SA_BUNDLE_FLAGS.ND_PEER_BOUNDARY;
+pub const IPSEC_SA_BUNDLE_FLAG_SUPPRESS_DUPLICATE_DELETION = IPSEC_SA_BUNDLE_FLAGS.SUPPRESS_DUPLICATE_DELETION;
+pub const IPSEC_SA_BUNDLE_FLAG_PEER_SUPPORTS_GUARANTEE_ENCRYPTION = IPSEC_SA_BUNDLE_FLAGS.PEER_SUPPORTS_GUARANTEE_ENCRYPTION;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const IPSEC_POLICY_FLAG = extern enum(u32) {
@@ -671,13 +671,13 @@ pub const IKEEXT_CERT_AUTH_ALLOW_HTTP_CERT_LOOKUP = IKEEXT_CERT_AUTH.ALLOW_HTTP_
 pub const IKEEXT_CERT_AUTH_URL_CONTAINS_BUNDLE = IKEEXT_CERT_AUTH.URL_CONTAINS_BUNDLE;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IKEEXT_PRESHARED_KEY_AUTHENTICATION1Flags = extern enum(u32) {
+pub const IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS = extern enum(u32) {
     LOCAL_AUTH_ONLY = 1,
     REMOTE_AUTH_ONLY = 2,
     _,
 };
-pub const IKEEXT_PSK_FLAG_LOCAL_AUTH_ONLY = IKEEXT_PRESHARED_KEY_AUTHENTICATION1Flags.LOCAL_AUTH_ONLY;
-pub const IKEEXT_PSK_FLAG_REMOTE_AUTH_ONLY = IKEEXT_PRESHARED_KEY_AUTHENTICATION1Flags.REMOTE_AUTH_ONLY;
+pub const IKEEXT_PSK_FLAG_LOCAL_AUTH_ONLY = IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS.LOCAL_AUTH_ONLY;
+pub const IKEEXT_PSK_FLAG_REMOTE_AUTH_ONLY = IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS.REMOTE_AUTH_ONLY;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const IKEEXT_POLICY_FLAG = extern enum(u32) {
@@ -692,15 +692,15 @@ pub const IKEEXT_POLICY_FLAG_NO_MACHINE_LUID_VERIFY = IKEEXT_POLICY_FLAG.NO_MACH
 pub const IKEEXT_POLICY_FLAG_NO_IMPERSONATION_LUID_VERIFY = IKEEXT_POLICY_FLAG.NO_IMPERSONATION_LUID_VERIFY;
 pub const IKEEXT_POLICY_FLAG_ENABLE_OPTIONAL_DH = IKEEXT_POLICY_FLAG.ENABLE_OPTIONAL_DH;
 
-pub const FWPM_PROVIDER_CONTEXT_SUBSCRIPTION0Flags = extern enum(u32) {
+pub const FWPM_SUBSCRIPTION_FLAGS = extern enum(u32) {
     ADD = 1,
     DELETE = 2,
 };
-pub const FWPM_SUBSCRIPTION_FLAG_NOTIFY_ON_ADD = FWPM_PROVIDER_CONTEXT_SUBSCRIPTION0Flags.ADD;
-pub const FWPM_SUBSCRIPTION_FLAG_NOTIFY_ON_DELETE = FWPM_PROVIDER_CONTEXT_SUBSCRIPTION0Flags.DELETE;
+pub const FWPM_SUBSCRIPTION_FLAG_NOTIFY_ON_ADD = FWPM_SUBSCRIPTION_FLAGS.ADD;
+pub const FWPM_SUBSCRIPTION_FLAG_NOTIFY_ON_DELETE = FWPM_SUBSCRIPTION_FLAGS.DELETE;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IKEEXT_CERT_ROOT_CONFIG0Flags = extern enum(u32) {
+pub const IKEEXT_CERT_FLAGS = extern enum(u32) {
     ENABLE_ACCOUNT_MAPPING = 1,
     DISABLE_REQUEST_PAYLOAD = 2,
     USE_NAP_CERTIFICATE = 4,
@@ -712,18 +712,18 @@ pub const IKEEXT_CERT_ROOT_CONFIG0Flags = extern enum(u32) {
     FOLLOW_RENEWAL_CERTIFICATE = 256,
     _,
 };
-pub const IKEEXT_CERT_FLAG_ENABLE_ACCOUNT_MAPPING = IKEEXT_CERT_ROOT_CONFIG0Flags.ENABLE_ACCOUNT_MAPPING;
-pub const IKEEXT_CERT_FLAG_DISABLE_REQUEST_PAYLOAD = IKEEXT_CERT_ROOT_CONFIG0Flags.DISABLE_REQUEST_PAYLOAD;
-pub const IKEEXT_CERT_FLAG_USE_NAP_CERTIFICATE = IKEEXT_CERT_ROOT_CONFIG0Flags.USE_NAP_CERTIFICATE;
-pub const IKEEXT_CERT_FLAG_INTERMEDIATE_CA = IKEEXT_CERT_ROOT_CONFIG0Flags.INTERMEDIATE_CA;
-pub const IKEEXT_CERT_FLAG_IGNORE_INIT_CERT_MAP_FAILURE = IKEEXT_CERT_ROOT_CONFIG0Flags.IGNORE_INIT_CERT_MAP_FAILURE;
-pub const IKEEXT_CERT_FLAG_PREFER_NAP_CERTIFICATE_OUTBOUND = IKEEXT_CERT_ROOT_CONFIG0Flags.PREFER_NAP_CERTIFICATE_OUTBOUND;
-pub const IKEEXT_CERT_FLAG_SELECT_NAP_CERTIFICATE = IKEEXT_CERT_ROOT_CONFIG0Flags.SELECT_NAP_CERTIFICATE;
-pub const IKEEXT_CERT_FLAG_VERIFY_NAP_CERTIFICATE = IKEEXT_CERT_ROOT_CONFIG0Flags.VERIFY_NAP_CERTIFICATE;
-pub const IKEEXT_CERT_FLAG_FOLLOW_RENEWAL_CERTIFICATE = IKEEXT_CERT_ROOT_CONFIG0Flags.FOLLOW_RENEWAL_CERTIFICATE;
+pub const IKEEXT_CERT_FLAG_ENABLE_ACCOUNT_MAPPING = IKEEXT_CERT_FLAGS.ENABLE_ACCOUNT_MAPPING;
+pub const IKEEXT_CERT_FLAG_DISABLE_REQUEST_PAYLOAD = IKEEXT_CERT_FLAGS.DISABLE_REQUEST_PAYLOAD;
+pub const IKEEXT_CERT_FLAG_USE_NAP_CERTIFICATE = IKEEXT_CERT_FLAGS.USE_NAP_CERTIFICATE;
+pub const IKEEXT_CERT_FLAG_INTERMEDIATE_CA = IKEEXT_CERT_FLAGS.INTERMEDIATE_CA;
+pub const IKEEXT_CERT_FLAG_IGNORE_INIT_CERT_MAP_FAILURE = IKEEXT_CERT_FLAGS.IGNORE_INIT_CERT_MAP_FAILURE;
+pub const IKEEXT_CERT_FLAG_PREFER_NAP_CERTIFICATE_OUTBOUND = IKEEXT_CERT_FLAGS.PREFER_NAP_CERTIFICATE_OUTBOUND;
+pub const IKEEXT_CERT_FLAG_SELECT_NAP_CERTIFICATE = IKEEXT_CERT_FLAGS.SELECT_NAP_CERTIFICATE;
+pub const IKEEXT_CERT_FLAG_VERIFY_NAP_CERTIFICATE = IKEEXT_CERT_FLAGS.VERIFY_NAP_CERTIFICATE;
+pub const IKEEXT_CERT_FLAG_FOLLOW_RENEWAL_CERTIFICATE = IKEEXT_CERT_FLAGS.FOLLOW_RENEWAL_CERTIFICATE;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IPSEC_DOSP_OPTIONS0Flags = extern enum(u32) {
+pub const IPSEC_DOSP_FLAGS = extern enum(u32) {
     ENABLE_IKEV1 = 1,
     ENABLE_IKEV2 = 2,
     DISABLE_AUTHIP = 4,
@@ -732,40 +732,40 @@ pub const IPSEC_DOSP_OPTIONS0Flags = extern enum(u32) {
     FILTER_EXEMPT = 32,
     _,
 };
-pub const IPSEC_DOSP_FLAG_ENABLE_IKEV1 = IPSEC_DOSP_OPTIONS0Flags.ENABLE_IKEV1;
-pub const IPSEC_DOSP_FLAG_ENABLE_IKEV2 = IPSEC_DOSP_OPTIONS0Flags.ENABLE_IKEV2;
-pub const IPSEC_DOSP_FLAG_DISABLE_AUTHIP = IPSEC_DOSP_OPTIONS0Flags.DISABLE_AUTHIP;
-pub const IPSEC_DOSP_FLAG_DISABLE_DEFAULT_BLOCK = IPSEC_DOSP_OPTIONS0Flags.DISABLE_DEFAULT_BLOCK;
-pub const IPSEC_DOSP_FLAG_FILTER_BLOCK = IPSEC_DOSP_OPTIONS0Flags.FILTER_BLOCK;
-pub const IPSEC_DOSP_FLAG_FILTER_EXEMPT = IPSEC_DOSP_OPTIONS0Flags.FILTER_EXEMPT;
+pub const IPSEC_DOSP_FLAG_ENABLE_IKEV1 = IPSEC_DOSP_FLAGS.ENABLE_IKEV1;
+pub const IPSEC_DOSP_FLAG_ENABLE_IKEV2 = IPSEC_DOSP_FLAGS.ENABLE_IKEV2;
+pub const IPSEC_DOSP_FLAG_DISABLE_AUTHIP = IPSEC_DOSP_FLAGS.DISABLE_AUTHIP;
+pub const IPSEC_DOSP_FLAG_DISABLE_DEFAULT_BLOCK = IPSEC_DOSP_FLAGS.DISABLE_DEFAULT_BLOCK;
+pub const IPSEC_DOSP_FLAG_FILTER_BLOCK = IPSEC_DOSP_FLAGS.FILTER_BLOCK;
+pub const IPSEC_DOSP_FLAG_FILTER_EXEMPT = IPSEC_DOSP_FLAGS.FILTER_EXEMPT;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IKEEXT_KERBEROS_AUTHENTICATION1Flags = extern enum(u32) {
+pub const IKEEXT_KERBEROS_AUTHENTICATION_FLAGS = extern enum(u32) {
     ISABLE_INITIATOR_TOKEN_GENERATION = 1,
     ONT_ACCEPT_EXPLICIT_CREDENTIALS = 2,
     _,
 };
-pub const IKEEXT_KERB_AUTH_DISABLE_INITIATOR_TOKEN_GENERATION = IKEEXT_KERBEROS_AUTHENTICATION1Flags.ISABLE_INITIATOR_TOKEN_GENERATION;
-pub const IKEEXT_KERB_AUTH_DONT_ACCEPT_EXPLICIT_CREDENTIALS = IKEEXT_KERBEROS_AUTHENTICATION1Flags.ONT_ACCEPT_EXPLICIT_CREDENTIALS;
+pub const IKEEXT_KERB_AUTH_DISABLE_INITIATOR_TOKEN_GENERATION = IKEEXT_KERBEROS_AUTHENTICATION_FLAGS.ISABLE_INITIATOR_TOKEN_GENERATION;
+pub const IKEEXT_KERB_AUTH_DONT_ACCEPT_EXPLICIT_CREDENTIALS = IKEEXT_KERBEROS_AUTHENTICATION_FLAGS.ONT_ACCEPT_EXPLICIT_CREDENTIALS;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IKEEXT_RESERVED_AUTHENTICATION0Flags = extern enum(u32) {
+pub const IKEEXT_RESERVED_AUTHENTICATION_FLAGS = extern enum(u32) {
     N = 1,
     _,
 };
-pub const IKEEXT_RESERVED_AUTH_DISABLE_INITIATOR_TOKEN_GENERATION = IKEEXT_RESERVED_AUTHENTICATION0Flags.N;
+pub const IKEEXT_RESERVED_AUTH_DISABLE_INITIATOR_TOKEN_GENERATION = IKEEXT_RESERVED_AUTHENTICATION_FLAGS.N;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IKEEXT_EAP_AUTHENTICATION0Flags = extern enum(u32) {
+pub const IKEEXT_EAP_AUTHENTICATION_FLAGS = extern enum(u32) {
     LOCAL_AUTH_ONLY = 1,
     REMOTE_AUTH_ONLY = 2,
     _,
 };
-pub const IKEEXT_EAP_FLAG_LOCAL_AUTH_ONLY = IKEEXT_EAP_AUTHENTICATION0Flags.LOCAL_AUTH_ONLY;
-pub const IKEEXT_EAP_FLAG_REMOTE_AUTH_ONLY = IKEEXT_EAP_AUTHENTICATION0Flags.REMOTE_AUTH_ONLY;
+pub const IKEEXT_EAP_FLAG_LOCAL_AUTH_ONLY = IKEEXT_EAP_AUTHENTICATION_FLAGS.LOCAL_AUTH_ONLY;
+pub const IKEEXT_EAP_FLAG_REMOTE_AUTH_ONLY = IKEEXT_EAP_AUTHENTICATION_FLAGS.REMOTE_AUTH_ONLY;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const FWPM_FILTER0Flags = extern enum(u32) {
+pub const FWPM_FILTER_FLAGS = extern enum(u32) {
     NONE = 0,
     PERSISTENT = 1,
     BOOTTIME = 2,
@@ -776,14 +776,14 @@ pub const FWPM_FILTER0Flags = extern enum(u32) {
     INDEXED = 64,
     _,
 };
-pub const FWPM_FILTER_FLAG_NONE = FWPM_FILTER0Flags.NONE;
-pub const FWPM_FILTER_FLAG_PERSISTENT = FWPM_FILTER0Flags.PERSISTENT;
-pub const FWPM_FILTER_FLAG_BOOTTIME = FWPM_FILTER0Flags.BOOTTIME;
-pub const FWPM_FILTER_FLAG_HAS_PROVIDER_CONTEXT = FWPM_FILTER0Flags.HAS_PROVIDER_CONTEXT;
-pub const FWPM_FILTER_FLAG_CLEAR_ACTION_RIGHT = FWPM_FILTER0Flags.CLEAR_ACTION_RIGHT;
-pub const FWPM_FILTER_FLAG_PERMIT_IF_CALLOUT_UNREGISTERED = FWPM_FILTER0Flags.PERMIT_IF_CALLOUT_UNREGISTERED;
-pub const FWPM_FILTER_FLAG_DISABLED = FWPM_FILTER0Flags.DISABLED;
-pub const FWPM_FILTER_FLAG_INDEXED = FWPM_FILTER0Flags.INDEXED;
+pub const FWPM_FILTER_FLAG_NONE = FWPM_FILTER_FLAGS.NONE;
+pub const FWPM_FILTER_FLAG_PERSISTENT = FWPM_FILTER_FLAGS.PERSISTENT;
+pub const FWPM_FILTER_FLAG_BOOTTIME = FWPM_FILTER_FLAGS.BOOTTIME;
+pub const FWPM_FILTER_FLAG_HAS_PROVIDER_CONTEXT = FWPM_FILTER_FLAGS.HAS_PROVIDER_CONTEXT;
+pub const FWPM_FILTER_FLAG_CLEAR_ACTION_RIGHT = FWPM_FILTER_FLAGS.CLEAR_ACTION_RIGHT;
+pub const FWPM_FILTER_FLAG_PERMIT_IF_CALLOUT_UNREGISTERED = FWPM_FILTER_FLAGS.PERMIT_IF_CALLOUT_UNREGISTERED;
+pub const FWPM_FILTER_FLAG_DISABLED = FWPM_FILTER_FLAGS.DISABLED;
+pub const FWPM_FILTER_FLAG_INDEXED = FWPM_FILTER_FLAGS.INDEXED;
 
 pub const FWP_DIRECTION = extern enum(i32) {
     OUTBOUND = 0,
@@ -1070,12 +1070,12 @@ pub const IKEEXT_PRESHARED_KEY_AUTHENTICATION0 = extern struct {
 
 pub const IKEEXT_PRESHARED_KEY_AUTHENTICATION1 = extern struct {
     presharedKey: FWP_BYTE_BLOB,
-    flags: IKEEXT_PRESHARED_KEY_AUTHENTICATION1Flags,
+    flags: IKEEXT_PRESHARED_KEY_AUTHENTICATION_FLAGS,
 };
 
 pub const IKEEXT_CERT_ROOT_CONFIG0 = extern struct {
     certData: FWP_BYTE_BLOB,
-    flags: IKEEXT_CERT_ROOT_CONFIG0Flags,
+    flags: IKEEXT_CERT_FLAGS,
 };
 
 pub const IKEEXT_CERT_CONFIG_TYPE = extern enum(i32) {
@@ -1169,16 +1169,16 @@ pub const IKEEXT_IPV6_CGA_AUTHENTICATION0 = extern struct {
 };
 
 pub const IKEEXT_KERBEROS_AUTHENTICATION0 = extern struct {
-    flags: IKEEXT_KERBEROS_AUTHENTICATION1Flags,
+    flags: IKEEXT_KERBEROS_AUTHENTICATION_FLAGS,
 };
 
 pub const IKEEXT_KERBEROS_AUTHENTICATION1 = extern struct {
-    flags: IKEEXT_KERBEROS_AUTHENTICATION1Flags,
+    flags: IKEEXT_KERBEROS_AUTHENTICATION_FLAGS,
     proxyServer: PWSTR,
 };
 
 pub const IKEEXT_RESERVED_AUTHENTICATION0 = extern struct {
-    flags: IKEEXT_RESERVED_AUTHENTICATION0Flags,
+    flags: IKEEXT_RESERVED_AUTHENTICATION_FLAGS,
 };
 
 pub const IKEEXT_NTLM_V2_AUTHENTICATION0 = extern struct {
@@ -1186,7 +1186,7 @@ pub const IKEEXT_NTLM_V2_AUTHENTICATION0 = extern struct {
 };
 
 pub const IKEEXT_EAP_AUTHENTICATION0 = extern struct {
-    flags: IKEEXT_EAP_AUTHENTICATION0Flags,
+    flags: IKEEXT_EAP_AUTHENTICATION_FLAGS,
 };
 
 pub const IKEEXT_AUTHENTICATION_METHOD0 = extern struct {
@@ -2028,7 +2028,7 @@ pub const IPSEC_ID0 = extern struct {
 };
 
 pub const IPSEC_SA_BUNDLE0 = extern struct {
-    flags: IPSEC_SA_BUNDLE1Flags,
+    flags: IPSEC_SA_BUNDLE_FLAGS,
     lifetime: IPSEC_SA_LIFETIME0,
     idleTimeoutSeconds: u32,
     ndAllowClearTimeoutSeconds: u32,
@@ -2046,7 +2046,7 @@ pub const IPSEC_SA_BUNDLE0 = extern struct {
 };
 
 pub const IPSEC_SA_BUNDLE1 = extern struct {
-    flags: IPSEC_SA_BUNDLE1Flags,
+    flags: IPSEC_SA_BUNDLE_FLAGS,
     lifetime: IPSEC_SA_LIFETIME0,
     idleTimeoutSeconds: u32,
     ndAllowClearTimeoutSeconds: u32,
@@ -2219,7 +2219,7 @@ pub const IPSEC_DOSP_OPTIONS0 = extern struct {
     defBlockExemptRateLimitBytesPerSec: u32,
     maxStateEntries: u32,
     maxPerIPRateLimitQueues: u32,
-    flags: IPSEC_DOSP_OPTIONS0Flags,
+    flags: IPSEC_DOSP_FLAGS,
     numPublicIFLuids: u32,
     publicIFLuids: *u64,
     numInternalIFLuids: u32,
@@ -2457,7 +2457,7 @@ pub const FWPM_PROVIDER_CONTEXT_CHANGE0 = extern struct {
 
 pub const FWPM_PROVIDER_CONTEXT_SUBSCRIPTION0 = extern struct {
     enumTemplate: *FWPM_PROVIDER_CONTEXT_ENUM_TEMPLATE0,
-    flags: FWPM_PROVIDER_CONTEXT_SUBSCRIPTION0Flags,
+    flags: FWPM_SUBSCRIPTION_FLAGS,
     sessionKey: Guid,
 };
 
@@ -2481,7 +2481,7 @@ pub const FWPM_SUBLAYER_CHANGE0 = extern struct {
 
 pub const FWPM_SUBLAYER_SUBSCRIPTION0 = extern struct {
     enumTemplate: *FWPM_SUBLAYER_ENUM_TEMPLATE0,
-    flags: FWPM_PROVIDER_CONTEXT_SUBSCRIPTION0Flags,
+    flags: FWPM_SUBSCRIPTION_FLAGS,
     sessionKey: Guid,
 };
 
@@ -2558,7 +2558,7 @@ pub const FWPM_FILTER_CONDITION0 = extern struct {
 pub const FWPM_FILTER0 = extern struct {
     filterKey: Guid,
     displayData: FWPM_DISPLAY_DATA0,
-    flags: FWPM_FILTER0Flags,
+    flags: FWPM_FILTER_FLAGS,
     providerKey: *Guid,
     providerData: FWP_BYTE_BLOB,
     layerKey: Guid,
@@ -3258,8 +3258,8 @@ pub const IPV4_HEADER = extern struct {
     TimeToLive: u8,
     Protocol: u8,
     HeaderChecksum: u16,
-    SourceAddress: in_addr,
-    DestinationAddress: in_addr,
+    SourceAddress: IN_ADDR,
+    DestinationAddress: IN_ADDR,
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
@@ -3362,7 +3362,7 @@ pub const ICMPV4_ROUTER_ADVERT_HEADER = extern struct {
 };
 
 pub const ICMPV4_ROUTER_ADVERT_ENTRY = extern struct {
-    RouterAdvertAddr: in_addr,
+    RouterAdvertAddr: IN_ADDR,
     PreferenceLevel: i32,
 };
 
@@ -3405,7 +3405,7 @@ pub const IGMP_HEADER = extern struct {
     Anonymous1: IGMP_HEADER._Anonymous1_e__Union,
     Anonymous2: IGMP_HEADER._Anonymous2_e__Union,
     Checksum: u16,
-    MulticastAddress: in_addr,
+    MulticastAddress: IN_ADDR,
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
@@ -3421,7 +3421,7 @@ pub const IGMPV3_QUERY_HEADER = extern struct {
     Type: u8,
     Anonymous1: IGMPV3_QUERY_HEADER._Anonymous1_e__Union,
     Checksum: u16,
-    MulticastAddress: in_addr,
+    MulticastAddress: IN_ADDR,
     _bitfield: u8,
     Anonymous2: IGMPV3_QUERY_HEADER._Anonymous2_e__Union,
     SourceCount: u16,
@@ -3433,7 +3433,7 @@ pub const IGMPV3_REPORT_RECORD_HEADER = extern struct {
     Type: u8,
     AuxillaryDataLength: u8,
     SourceCount: u16,
-    MulticastAddress: in_addr,
+    MulticastAddress: IN_ADDR,
 };
 
 pub const IGMPV3_REPORT_HEADER = extern struct {
@@ -3449,8 +3449,8 @@ pub const IPV6_HEADER = extern struct {
     PayloadLength: u16,
     NextHeader: u8,
     HopLimit: u8,
-    SourceAddress: in6_addr,
-    DestinationAddress: in6_addr,
+    SourceAddress: IN6_ADDR,
+    DestinationAddress: IN6_ADDR,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3519,20 +3519,20 @@ pub const IPV6_ROUTER_ADVERTISEMENT_FLAGS = u32; // TODO: implement StructOrUnio
 
 pub const nd_neighbor_solicit = extern struct {
     nd_ns_hdr: ICMP_MESSAGE,
-    nd_ns_target: in6_addr,
+    nd_ns_target: IN6_ADDR,
 };
 
 pub const nd_neighbor_advert = extern struct {
     nd_na_hdr: ICMP_MESSAGE,
-    nd_na_target: in6_addr,
+    nd_na_target: IN6_ADDR,
 };
 
 pub const IPV6_NEIGHBOR_ADVERTISEMENT_FLAGS = u32; // TODO: implement StructOrUnion types?
 
 pub const nd_redirect = extern struct {
     nd_rd_hdr: ICMP_MESSAGE,
-    nd_rd_target: in6_addr,
-    nd_rd_dst: in6_addr,
+    nd_rd_target: IN6_ADDR,
+    nd_rd_dst: IN6_ADDR,
 };
 
 pub const nd_opt_hdr = extern struct {
@@ -3577,7 +3577,7 @@ pub const nd_opt_prefix_info = extern struct {
     nd_opt_pi_valid_time: u32,
     nd_opt_pi_preferred_time: u32,
     Anonymous2: nd_opt_prefix_info._Anonymous2_e__Union,
-    nd_opt_pi_prefix: in6_addr,
+    nd_opt_pi_prefix: IN6_ADDR,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
@@ -3602,7 +3602,7 @@ pub const nd_opt_route_info = extern struct {
     nd_opt_ri_prefix_len: u8,
     Anonymous: nd_opt_route_info._Anonymous_e__Union,
     nd_opt_ri_route_lifetime: u32,
-    nd_opt_ri_prefix: in6_addr,
+    nd_opt_ri_prefix: IN6_ADDR,
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
@@ -3624,7 +3624,7 @@ pub const MLD_HEADER = extern struct {
     IcmpHeader: ICMP_HEADER,
     MaxRespTime: u16,
     Reserved: u16,
-    MulticastAddress: in6_addr,
+    MulticastAddress: IN6_ADDR,
 };
 
 pub const MLD_MAX_RESP_CODE_TYPE = extern enum(i32) {
@@ -3638,7 +3638,7 @@ pub const MLDV2_QUERY_HEADER = extern struct {
     IcmpHeader: ICMP_HEADER,
     Anonymous1: MLDV2_QUERY_HEADER._Anonymous1_e__Union,
     Reserved: u16,
-    MulticastAddress: in6_addr,
+    MulticastAddress: IN6_ADDR,
     _bitfield: u8,
     Anonymous2: MLDV2_QUERY_HEADER._Anonymous2_e__Union,
     SourceCount: u16,
@@ -3650,7 +3650,7 @@ pub const MLDV2_REPORT_RECORD_HEADER = extern struct {
     Type: u8,
     AuxillaryDataLength: u8,
     SourceCount: u16,
-    MulticastAddress: in6_addr,
+    MulticastAddress: IN6_ADDR,
 };
 
 pub const MLDV2_REPORT_HEADER = extern struct {
@@ -5258,13 +5258,13 @@ const PWSTR = @import("system_services.zig").PWSTR;
 const SID = @import("security.zig").SID;
 const SID_AND_ATTRIBUTES = @import("security.zig").SID_AND_ATTRIBUTES;
 const FILETIME = @import("windows_programming.zig").FILETIME;
+const IN_ADDR = @import("ip_helper.zig").IN_ADDR;
 const SEC_WINNT_AUTH_IDENTITY_W = @import("security.zig").SEC_WINNT_AUTH_IDENTITY_W;
 const PSTR = @import("system_services.zig").PSTR;
 const PSID = @import("security.zig").PSID;
 const BOOL = @import("system_services.zig").BOOL;
-const in_addr = @import("win_sock.zig").in_addr;
+const IN6_ADDR = @import("network_drivers.zig").IN6_ADDR;
 const SCOPE_ID = @import("win_sock.zig").SCOPE_ID;
-const in6_addr = @import("win_sock.zig").in6_addr;
 const COMPARTMENT_ID = @import("kernel.zig").COMPARTMENT_ID;
 const HANDLE = @import("system_services.zig").HANDLE;
 const ACL = @import("security.zig").ACL;

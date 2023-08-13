@@ -776,7 +776,7 @@ pub const BTH_DEVICE_INFO = extern struct {
     flags: u32,
     address: u64,
     classOfDevice: u32,
-    name: [248]i8,
+    name: [248]CHAR,
 };
 
 pub const BTH_RADIO_IN_RANGE = extern struct {
@@ -1337,11 +1337,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HANDLE = @import("system_services.zig").HANDLE;
 const PWSTR = @import("system_services.zig").PWSTR;
+const CHAR = @import("system_services.zig").CHAR;
 const BOOL = @import("system_services.zig").BOOL;
 const SYSTEMTIME = @import("windows_programming.zig").SYSTEMTIME;
 const HWND = @import("windows_and_messaging.zig").HWND;
@@ -1360,7 +1361,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 34;
     const unicode_alias_count = 0;
-    const import_count = 6;
+    const import_count = 7;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

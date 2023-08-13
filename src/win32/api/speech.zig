@@ -5695,14 +5695,17 @@ pub const IID_ISpeechObjectToken = &IID_ISpeechObjectToken_Value;
 pub const ISpeechObjectToken = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const ISpeechObjectToken,
             ObjectId: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataKey: fn(
             self: *const ISpeechObjectToken,
             DataKey: ?*?*ISpeechDataKey,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Category: fn(
             self: *const ISpeechObjectToken,
             Category: ?*?*ISpeechObjectTokenCategory,
@@ -5832,6 +5835,7 @@ pub const IID_ISpeechObjectTokens = &IID_ISpeechObjectTokens_Value;
 pub const ISpeechObjectTokens = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ISpeechObjectTokens,
             Count: *i32,
@@ -5841,6 +5845,7 @@ pub const ISpeechObjectTokens = extern struct {
             Index: i32,
             Token: ?*?*ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechObjectTokens,
             ppEnumVARIANT: ?*?*IUnknown,
@@ -5870,14 +5875,17 @@ pub const IID_ISpeechObjectTokenCategory = &IID_ISpeechObjectTokenCategory_Value
 pub const ISpeechObjectTokenCategory = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const ISpeechObjectTokenCategory,
             Id: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Default: fn(
             self: *const ISpeechObjectTokenCategory,
             TokenId: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Default: fn(
             self: *const ISpeechObjectTokenCategory,
             TokenId: ?*BSTR,
@@ -5935,26 +5943,32 @@ pub const IID_ISpeechAudioBufferInfo = &IID_ISpeechAudioBufferInfo_Value;
 pub const ISpeechAudioBufferInfo = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinNotification: fn(
             self: *const ISpeechAudioBufferInfo,
             MinNotification: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MinNotification: fn(
             self: *const ISpeechAudioBufferInfo,
             MinNotification: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BufferSize: fn(
             self: *const ISpeechAudioBufferInfo,
             BufferSize: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BufferSize: fn(
             self: *const ISpeechAudioBufferInfo,
             BufferSize: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventBias: fn(
             self: *const ISpeechAudioBufferInfo,
             EventBias: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventBias: fn(
             self: *const ISpeechAudioBufferInfo,
             EventBias: i32,
@@ -5996,22 +6010,27 @@ pub const IID_ISpeechAudioStatus = &IID_ISpeechAudioStatus_Value;
 pub const ISpeechAudioStatus = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FreeBufferSpace: fn(
             self: *const ISpeechAudioStatus,
             FreeBufferSpace: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NonBlockingIO: fn(
             self: *const ISpeechAudioStatus,
             NonBlockingIO: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: fn(
             self: *const ISpeechAudioStatus,
             State: *SpeechAudioState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentSeekPosition: fn(
             self: *const ISpeechAudioStatus,
             CurrentSeekPosition: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDevicePosition: fn(
             self: *const ISpeechAudioStatus,
             CurrentDevicePosition: *VARIANT,
@@ -6049,18 +6068,22 @@ pub const IID_ISpeechAudioFormat = &IID_ISpeechAudioFormat_Value;
 pub const ISpeechAudioFormat = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const ISpeechAudioFormat,
             AudioFormat: *SpeechAudioFormatType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Type: fn(
             self: *const ISpeechAudioFormat,
             AudioFormat: SpeechAudioFormatType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Guid: fn(
             self: *const ISpeechAudioFormat,
             Guid: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Guid: fn(
             self: *const ISpeechAudioFormat,
             Guid: BSTR,
@@ -6110,58 +6133,72 @@ pub const IID_ISpeechWaveFormatEx = &IID_ISpeechWaveFormatEx_Value;
 pub const ISpeechWaveFormatEx = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FormatTag: fn(
             self: *const ISpeechWaveFormatEx,
             FormatTag: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FormatTag: fn(
             self: *const ISpeechWaveFormatEx,
             FormatTag: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Channels: fn(
             self: *const ISpeechWaveFormatEx,
             Channels: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Channels: fn(
             self: *const ISpeechWaveFormatEx,
             Channels: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SamplesPerSec: fn(
             self: *const ISpeechWaveFormatEx,
             SamplesPerSec: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SamplesPerSec: fn(
             self: *const ISpeechWaveFormatEx,
             SamplesPerSec: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AvgBytesPerSec: fn(
             self: *const ISpeechWaveFormatEx,
             AvgBytesPerSec: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AvgBytesPerSec: fn(
             self: *const ISpeechWaveFormatEx,
             AvgBytesPerSec: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BlockAlign: fn(
             self: *const ISpeechWaveFormatEx,
             BlockAlign: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BlockAlign: fn(
             self: *const ISpeechWaveFormatEx,
             BlockAlign: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BitsPerSample: fn(
             self: *const ISpeechWaveFormatEx,
             BitsPerSample: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BitsPerSample: fn(
             self: *const ISpeechWaveFormatEx,
             BitsPerSample: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtraData: fn(
             self: *const ISpeechWaveFormatEx,
             ExtraData: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExtraData: fn(
             self: *const ISpeechWaveFormatEx,
             ExtraData: VARIANT,
@@ -6235,6 +6272,7 @@ pub const IID_ISpeechBaseStream = &IID_ISpeechBaseStream_Value;
 pub const ISpeechBaseStream = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Format: fn(
             self: *const ISpeechBaseStream,
             AudioFormat: ?*?*ISpeechAudioFormat,
@@ -6352,6 +6390,7 @@ pub const IID_ISpeechCustomStream = &IID_ISpeechCustomStream_Value;
 pub const ISpeechCustomStream = extern struct {
     pub const VTable = extern struct {
         base: ISpeechBaseStream.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BaseStream: fn(
             self: *const ISpeechCustomStream,
             ppUnkStream: ?*?*IUnknown,
@@ -6381,34 +6420,42 @@ pub const IID_ISpeechAudio = &IID_ISpeechAudio_Value;
 pub const ISpeechAudio = extern struct {
     pub const VTable = extern struct {
         base: ISpeechBaseStream.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: fn(
             self: *const ISpeechAudio,
             Status: ?*?*ISpeechAudioStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BufferInfo: fn(
             self: *const ISpeechAudio,
             BufferInfo: ?*?*ISpeechAudioBufferInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultFormat: fn(
             self: *const ISpeechAudio,
             StreamFormat: ?*?*ISpeechAudioFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Volume: fn(
             self: *const ISpeechAudio,
             Volume: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Volume: fn(
             self: *const ISpeechAudio,
             Volume: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BufferNotifySize: fn(
             self: *const ISpeechAudio,
             BufferNotifySize: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BufferNotifySize: fn(
             self: *const ISpeechAudio,
             BufferNotifySize: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventHandle: fn(
             self: *const ISpeechAudio,
             EventHandle: *i32,
@@ -6466,22 +6513,27 @@ pub const IID_ISpeechMMSysAudio = &IID_ISpeechMMSysAudio_Value;
 pub const ISpeechMMSysAudio = extern struct {
     pub const VTable = extern struct {
         base: ISpeechAudio.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceId: fn(
             self: *const ISpeechMMSysAudio,
             DeviceId: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DeviceId: fn(
             self: *const ISpeechMMSysAudio,
             DeviceId: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LineId: fn(
             self: *const ISpeechMMSysAudio,
             LineId: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LineId: fn(
             self: *const ISpeechMMSysAudio,
             LineId: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MMHandle: fn(
             self: *const ISpeechMMSysAudio,
             Handle: *i32,
@@ -6519,10 +6571,12 @@ pub const IID_ISpeechVoice = &IID_ISpeechVoice_Value;
 pub const ISpeechVoice = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: fn(
             self: *const ISpeechVoice,
             Status: ?*?*ISpeechVoiceStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Voice: fn(
             self: *const ISpeechVoice,
             Voice: ?*?*ISpeechObjectToken,
@@ -6531,6 +6585,7 @@ pub const ISpeechVoice = extern struct {
             self: *const ISpeechVoice,
             Voice: ?*ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioOutput: fn(
             self: *const ISpeechVoice,
             AudioOutput: ?*?*ISpeechObjectToken,
@@ -6539,6 +6594,7 @@ pub const ISpeechVoice = extern struct {
             self: *const ISpeechVoice,
             AudioOutput: ?*ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioOutputStream: fn(
             self: *const ISpeechVoice,
             AudioOutputStream: ?*?*ISpeechBaseStream,
@@ -6547,58 +6603,72 @@ pub const ISpeechVoice = extern struct {
             self: *const ISpeechVoice,
             AudioOutputStream: ?*ISpeechBaseStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rate: fn(
             self: *const ISpeechVoice,
             Rate: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Rate: fn(
             self: *const ISpeechVoice,
             Rate: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Volume: fn(
             self: *const ISpeechVoice,
             Volume: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Volume: fn(
             self: *const ISpeechVoice,
             Volume: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowAudioOutputFormatChangesOnNextSet: fn(
             self: *const ISpeechVoice,
             Allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowAudioOutputFormatChangesOnNextSet: fn(
             self: *const ISpeechVoice,
             Allow: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventInterests: fn(
             self: *const ISpeechVoice,
             EventInterestFlags: *SpeechVoiceEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventInterests: fn(
             self: *const ISpeechVoice,
             EventInterestFlags: SpeechVoiceEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Priority: fn(
             self: *const ISpeechVoice,
             Priority: SpeechVoicePriority,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Priority: fn(
             self: *const ISpeechVoice,
             Priority: *SpeechVoicePriority,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AlertBoundary: fn(
             self: *const ISpeechVoice,
             Boundary: SpeechVoiceEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlertBoundary: fn(
             self: *const ISpeechVoice,
             Boundary: *SpeechVoiceEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SynchronousSpeakTimeout: fn(
             self: *const ISpeechVoice,
             msTimeout: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SynchronousSpeakTimeout: fn(
             self: *const ISpeechVoice,
             msTimeout: *i32,
@@ -6802,50 +6872,62 @@ pub const IID_ISpeechVoiceStatus = &IID_ISpeechVoiceStatus_Value;
 pub const ISpeechVoiceStatus = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentStreamNumber: fn(
             self: *const ISpeechVoiceStatus,
             StreamNumber: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastStreamNumberQueued: fn(
             self: *const ISpeechVoiceStatus,
             StreamNumber: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastHResult: fn(
             self: *const ISpeechVoiceStatus,
             HResult: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunningState: fn(
             self: *const ISpeechVoiceStatus,
             State: *SpeechRunState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InputWordPosition: fn(
             self: *const ISpeechVoiceStatus,
             Position: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InputWordLength: fn(
             self: *const ISpeechVoiceStatus,
             Length: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InputSentencePosition: fn(
             self: *const ISpeechVoiceStatus,
             Position: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InputSentenceLength: fn(
             self: *const ISpeechVoiceStatus,
             Length: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastBookmark: fn(
             self: *const ISpeechVoiceStatus,
             Bookmark: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastBookmarkId: fn(
             self: *const ISpeechVoiceStatus,
             BookmarkId: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhonemeId: fn(
             self: *const ISpeechVoiceStatus,
             PhoneId: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VisemeId: fn(
             self: *const ISpeechVoiceStatus,
             VisemeId: *i16,
@@ -6928,14 +7010,17 @@ pub const ISpeechRecognizer = extern struct {
             self: *const ISpeechRecognizer,
             Recognizer: ?*ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recognizer: fn(
             self: *const ISpeechRecognizer,
             Recognizer: ?*?*ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowAudioInputFormatChangesOnNextSet: fn(
             self: *const ISpeechRecognizer,
             Allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowAudioInputFormatChangesOnNextSet: fn(
             self: *const ISpeechRecognizer,
             Allow: *i16,
@@ -6944,6 +7029,7 @@ pub const ISpeechRecognizer = extern struct {
             self: *const ISpeechRecognizer,
             AudioInput: ?*ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioInput: fn(
             self: *const ISpeechRecognizer,
             AudioInput: ?*?*ISpeechObjectToken,
@@ -6952,22 +7038,27 @@ pub const ISpeechRecognizer = extern struct {
             self: *const ISpeechRecognizer,
             AudioInputStream: ?*ISpeechBaseStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioInputStream: fn(
             self: *const ISpeechRecognizer,
             AudioInputStream: ?*?*ISpeechBaseStream,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsShared: fn(
             self: *const ISpeechRecognizer,
             Shared: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_State: fn(
             self: *const ISpeechRecognizer,
             State: SpeechRecognizerState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: fn(
             self: *const ISpeechRecognizer,
             State: *SpeechRecognizerState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: fn(
             self: *const ISpeechRecognizer,
             Status: ?*?*ISpeechRecognizerStatus,
@@ -6976,6 +7067,7 @@ pub const ISpeechRecognizer = extern struct {
             self: *const ISpeechRecognizer,
             Profile: ?*ISpeechObjectToken,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Profile: fn(
             self: *const ISpeechRecognizer,
             Profile: ?*?*ISpeechObjectToken,
@@ -7167,26 +7259,32 @@ pub const IID_ISpeechRecognizerStatus = &IID_ISpeechRecognizerStatus_Value;
 pub const ISpeechRecognizerStatus = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioStatus: fn(
             self: *const ISpeechRecognizerStatus,
             AudioStatus: ?*?*ISpeechAudioStatus,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentStreamPosition: fn(
             self: *const ISpeechRecognizerStatus,
             pCurrentStreamPos: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentStreamNumber: fn(
             self: *const ISpeechRecognizerStatus,
             StreamNumber: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfActiveRules: fn(
             self: *const ISpeechRecognizerStatus,
             NumberOfActiveRules: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClsidEngine: fn(
             self: *const ISpeechRecognizerStatus,
             ClsidEngine: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedLanguages: fn(
             self: *const ISpeechRecognizerStatus,
             SupportedLanguages: *VARIANT,
@@ -7228,14 +7326,17 @@ pub const IID_ISpeechRecoContext = &IID_ISpeechRecoContext_Value;
 pub const ISpeechRecoContext = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recognizer: fn(
             self: *const ISpeechRecoContext,
             Recognizer: ?*?*ISpeechRecognizer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioInputInterferenceStatus: fn(
             self: *const ISpeechRecoContext,
             Interference: *SpeechInterference,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestedUIType: fn(
             self: *const ISpeechRecoContext,
             UIType: ?*BSTR,
@@ -7244,54 +7345,67 @@ pub const ISpeechRecoContext = extern struct {
             self: *const ISpeechRecoContext,
             Voice: ?*ISpeechVoice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Voice: fn(
             self: *const ISpeechRecoContext,
             Voice: ?*?*ISpeechVoice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowVoiceFormatMatchingOnNextSet: fn(
             self: *const ISpeechRecoContext,
             Allow: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowVoiceFormatMatchingOnNextSet: fn(
             self: *const ISpeechRecoContext,
             pAllow: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_VoicePurgeEvent: fn(
             self: *const ISpeechRecoContext,
             EventInterest: SpeechRecoEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VoicePurgeEvent: fn(
             self: *const ISpeechRecoContext,
             EventInterest: *SpeechRecoEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventInterests: fn(
             self: *const ISpeechRecoContext,
             EventInterest: SpeechRecoEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventInterests: fn(
             self: *const ISpeechRecoContext,
             EventInterest: *SpeechRecoEvents,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CmdMaxAlternates: fn(
             self: *const ISpeechRecoContext,
             MaxAlternates: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CmdMaxAlternates: fn(
             self: *const ISpeechRecoContext,
             MaxAlternates: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_State: fn(
             self: *const ISpeechRecoContext,
             State: SpeechRecoContextState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: fn(
             self: *const ISpeechRecoContext,
             State: *SpeechRecoContextState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RetainedAudio: fn(
             self: *const ISpeechRecoContext,
             Option: SpeechRetainedAudioOptions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RetainedAudio: fn(
             self: *const ISpeechRecoContext,
             Option: *SpeechRetainedAudioOptions,
@@ -7300,6 +7414,7 @@ pub const ISpeechRecoContext = extern struct {
             self: *const ISpeechRecoContext,
             Format: ?*ISpeechAudioFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RetainedAudioFormat: fn(
             self: *const ISpeechRecoContext,
             Format: ?*?*ISpeechAudioFormat,
@@ -7443,22 +7558,27 @@ pub const IID_ISpeechRecoGrammar = &IID_ISpeechRecoGrammar_Value;
 pub const ISpeechRecoGrammar = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const ISpeechRecoGrammar,
             Id: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecoContext: fn(
             self: *const ISpeechRecoGrammar,
             RecoContext: ?*?*ISpeechRecoContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_State: fn(
             self: *const ISpeechRecoGrammar,
             State: SpeechGrammarState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: fn(
             self: *const ISpeechRecoGrammar,
             State: *SpeechGrammarState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rules: fn(
             self: *const ISpeechRecoGrammar,
             Rules: ?*?*ISpeechGrammarRules,
@@ -7637,18 +7757,22 @@ pub const IID_ISpeechGrammarRule = &IID_ISpeechGrammarRule_Value;
 pub const ISpeechGrammarRule = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Attributes: fn(
             self: *const ISpeechGrammarRule,
             Attributes: *SpeechRuleAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialState: fn(
             self: *const ISpeechGrammarRule,
             State: ?*?*ISpeechGrammarRuleState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const ISpeechGrammarRule,
             Name: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const ISpeechGrammarRule,
             Id: *i32,
@@ -7706,6 +7830,7 @@ pub const IID_ISpeechGrammarRules = &IID_ISpeechGrammarRules_Value;
 pub const ISpeechGrammarRules = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ISpeechGrammarRules,
             Count: *i32,
@@ -7720,10 +7845,12 @@ pub const ISpeechGrammarRules = extern struct {
             Index: i32,
             Rule: ?*?*ISpeechGrammarRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechGrammarRules,
             EnumVARIANT: ?*?*IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Dynamic: fn(
             self: *const ISpeechGrammarRules,
             Dynamic: *i16,
@@ -7788,10 +7915,12 @@ pub const IID_ISpeechGrammarRuleState = &IID_ISpeechGrammarRuleState_Value;
 pub const ISpeechGrammarRuleState = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rule: fn(
             self: *const ISpeechGrammarRuleState,
             Rule: ?*?*ISpeechGrammarRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Transitions: fn(
             self: *const ISpeechGrammarRuleState,
             Transitions: ?*?*ISpeechGrammarRuleStateTransitions,
@@ -7858,34 +7987,42 @@ pub const IID_ISpeechGrammarRuleStateTransition = &IID_ISpeechGrammarRuleStateTr
 pub const ISpeechGrammarRuleStateTransition = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const ISpeechGrammarRuleStateTransition,
             Type: *SpeechGrammarRuleStateTransitionType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Text: fn(
             self: *const ISpeechGrammarRuleStateTransition,
             Text: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rule: fn(
             self: *const ISpeechGrammarRuleStateTransition,
             Rule: ?*?*ISpeechGrammarRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Weight: fn(
             self: *const ISpeechGrammarRuleStateTransition,
             Weight: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyName: fn(
             self: *const ISpeechGrammarRuleStateTransition,
             PropertyName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyId: fn(
             self: *const ISpeechGrammarRuleStateTransition,
             PropertyId: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyValue: fn(
             self: *const ISpeechGrammarRuleStateTransition,
             PropertyValue: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NextState: fn(
             self: *const ISpeechGrammarRuleStateTransition,
             NextState: ?*?*ISpeechGrammarRuleState,
@@ -7935,6 +8072,7 @@ pub const IID_ISpeechGrammarRuleStateTransitions = &IID_ISpeechGrammarRuleStateT
 pub const ISpeechGrammarRuleStateTransitions = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ISpeechGrammarRuleStateTransitions,
             Count: *i32,
@@ -7944,6 +8082,7 @@ pub const ISpeechGrammarRuleStateTransitions = extern struct {
             Index: i32,
             Transition: ?*?*ISpeechGrammarRuleStateTransition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechGrammarRuleStateTransitions,
             EnumVARIANT: ?*?*IUnknown,
@@ -7973,34 +8112,42 @@ pub const IID_ISpeechTextSelectionInformation = &IID_ISpeechTextSelectionInforma
 pub const ISpeechTextSelectionInformation = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ActiveOffset: fn(
             self: *const ISpeechTextSelectionInformation,
             ActiveOffset: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActiveOffset: fn(
             self: *const ISpeechTextSelectionInformation,
             ActiveOffset: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ActiveLength: fn(
             self: *const ISpeechTextSelectionInformation,
             ActiveLength: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActiveLength: fn(
             self: *const ISpeechTextSelectionInformation,
             ActiveLength: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelectionOffset: fn(
             self: *const ISpeechTextSelectionInformation,
             SelectionOffset: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelectionOffset: fn(
             self: *const ISpeechTextSelectionInformation,
             SelectionOffset: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelectionLength: fn(
             self: *const ISpeechTextSelectionInformation,
             SelectionLength: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelectionLength: fn(
             self: *const ISpeechTextSelectionInformation,
             SelectionLength: *i32,
@@ -8050,10 +8197,12 @@ pub const IID_ISpeechRecoResult = &IID_ISpeechRecoResult_Value;
 pub const ISpeechRecoResult = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecoContext: fn(
             self: *const ISpeechRecoResult,
             RecoContext: ?*?*ISpeechRecoContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Times: fn(
             self: *const ISpeechRecoResult,
             Times: ?*?*ISpeechRecoResultTimes,
@@ -8062,10 +8211,12 @@ pub const ISpeechRecoResult = extern struct {
             self: *const ISpeechRecoResult,
             Format: ?*ISpeechAudioFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioFormat: fn(
             self: *const ISpeechRecoResult,
             Format: ?*?*ISpeechAudioFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhraseInfo: fn(
             self: *const ISpeechRecoResult,
             PhraseInfo: ?*?*ISpeechPhraseInfo,
@@ -8173,18 +8324,22 @@ pub const IID_ISpeechRecoResultTimes = &IID_ISpeechRecoResultTimes_Value;
 pub const ISpeechRecoResultTimes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StreamTime: fn(
             self: *const ISpeechRecoResultTimes,
             Time: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Length: fn(
             self: *const ISpeechRecoResultTimes,
             Length: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TickCount: fn(
             self: *const ISpeechRecoResultTimes,
             TickCount: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OffsetFromStart: fn(
             self: *const ISpeechRecoResultTimes,
             OffsetFromStart: *VARIANT,
@@ -8218,18 +8373,22 @@ pub const IID_ISpeechPhraseAlternate = &IID_ISpeechPhraseAlternate_Value;
 pub const ISpeechPhraseAlternate = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecoResult: fn(
             self: *const ISpeechPhraseAlternate,
             RecoResult: ?*?*ISpeechRecoResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartElementInResult: fn(
             self: *const ISpeechPhraseAlternate,
             StartElement: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfElementsInResult: fn(
             self: *const ISpeechPhraseAlternate,
             NumberOfElements: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhraseInfo: fn(
             self: *const ISpeechPhraseAlternate,
             PhraseInfo: ?*?*ISpeechPhraseInfo,
@@ -8270,6 +8429,7 @@ pub const IID_ISpeechPhraseAlternates = &IID_ISpeechPhraseAlternates_Value;
 pub const ISpeechPhraseAlternates = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ISpeechPhraseAlternates,
             Count: *i32,
@@ -8279,6 +8439,7 @@ pub const ISpeechPhraseAlternates = extern struct {
             Index: i32,
             PhraseAlternate: ?*?*ISpeechPhraseAlternate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechPhraseAlternates,
             EnumVARIANT: ?*?*IUnknown,
@@ -8308,54 +8469,67 @@ pub const IID_ISpeechPhraseInfo = &IID_ISpeechPhraseInfo_Value;
 pub const ISpeechPhraseInfo = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LanguageId: fn(
             self: *const ISpeechPhraseInfo,
             LanguageId: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GrammarId: fn(
             self: *const ISpeechPhraseInfo,
             GrammarId: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartTime: fn(
             self: *const ISpeechPhraseInfo,
             StartTime: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioStreamPosition: fn(
             self: *const ISpeechPhraseInfo,
             AudioStreamPosition: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioSizeBytes: fn(
             self: *const ISpeechPhraseInfo,
             pAudioSizeBytes: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RetainedSizeBytes: fn(
             self: *const ISpeechPhraseInfo,
             RetainedSizeBytes: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioSizeTime: fn(
             self: *const ISpeechPhraseInfo,
             AudioSizeTime: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rule: fn(
             self: *const ISpeechPhraseInfo,
             Rule: ?*?*ISpeechPhraseRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: fn(
             self: *const ISpeechPhraseInfo,
             Properties: ?*?*ISpeechPhraseProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Elements: fn(
             self: *const ISpeechPhraseInfo,
             Elements: ?*?*ISpeechPhraseElements,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Replacements: fn(
             self: *const ISpeechPhraseInfo,
             Replacements: ?*?*ISpeechPhraseReplacements,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EngineId: fn(
             self: *const ISpeechPhraseInfo,
             EngineIdGuid: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnginePrivateData: fn(
             self: *const ISpeechPhraseInfo,
             PrivateData: *VARIANT,
@@ -8455,54 +8629,67 @@ pub const IID_ISpeechPhraseElement = &IID_ISpeechPhraseElement_Value;
 pub const ISpeechPhraseElement = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioTimeOffset: fn(
             self: *const ISpeechPhraseElement,
             AudioTimeOffset: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioSizeTime: fn(
             self: *const ISpeechPhraseElement,
             AudioSizeTime: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioStreamOffset: fn(
             self: *const ISpeechPhraseElement,
             AudioStreamOffset: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioSizeBytes: fn(
             self: *const ISpeechPhraseElement,
             AudioSizeBytes: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RetainedStreamOffset: fn(
             self: *const ISpeechPhraseElement,
             RetainedStreamOffset: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RetainedSizeBytes: fn(
             self: *const ISpeechPhraseElement,
             RetainedSizeBytes: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayText: fn(
             self: *const ISpeechPhraseElement,
             DisplayText: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LexicalForm: fn(
             self: *const ISpeechPhraseElement,
             LexicalForm: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Pronunciation: fn(
             self: *const ISpeechPhraseElement,
             Pronunciation: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayAttributes: fn(
             self: *const ISpeechPhraseElement,
             DisplayAttributes: *SpeechDisplayAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequiredConfidence: fn(
             self: *const ISpeechPhraseElement,
             RequiredConfidence: *SpeechEngineConfidence,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActualConfidence: fn(
             self: *const ISpeechPhraseElement,
             ActualConfidence: *SpeechEngineConfidence,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EngineConfidence: fn(
             self: *const ISpeechPhraseElement,
             EngineConfidence: *f32,
@@ -8572,6 +8759,7 @@ pub const IID_ISpeechPhraseElements = &IID_ISpeechPhraseElements_Value;
 pub const ISpeechPhraseElements = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ISpeechPhraseElements,
             Count: *i32,
@@ -8581,6 +8769,7 @@ pub const ISpeechPhraseElements = extern struct {
             Index: i32,
             Element: ?*?*ISpeechPhraseElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechPhraseElements,
             EnumVARIANT: ?*?*IUnknown,
@@ -8610,18 +8799,22 @@ pub const IID_ISpeechPhraseReplacement = &IID_ISpeechPhraseReplacement_Value;
 pub const ISpeechPhraseReplacement = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayAttributes: fn(
             self: *const ISpeechPhraseReplacement,
             DisplayAttributes: *SpeechDisplayAttributes,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Text: fn(
             self: *const ISpeechPhraseReplacement,
             Text: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirstElement: fn(
             self: *const ISpeechPhraseReplacement,
             FirstElement: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfElements: fn(
             self: *const ISpeechPhraseReplacement,
             NumberOfElements: *i32,
@@ -8655,6 +8848,7 @@ pub const IID_ISpeechPhraseReplacements = &IID_ISpeechPhraseReplacements_Value;
 pub const ISpeechPhraseReplacements = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ISpeechPhraseReplacements,
             Count: *i32,
@@ -8664,6 +8858,7 @@ pub const ISpeechPhraseReplacements = extern struct {
             Index: i32,
             Reps: ?*?*ISpeechPhraseReplacement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechPhraseReplacements,
             EnumVARIANT: ?*?*IUnknown,
@@ -8693,38 +8888,47 @@ pub const IID_ISpeechPhraseProperty = &IID_ISpeechPhraseProperty_Value;
 pub const ISpeechPhraseProperty = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const ISpeechPhraseProperty,
             Name: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const ISpeechPhraseProperty,
             Id: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: fn(
             self: *const ISpeechPhraseProperty,
             Value: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirstElement: fn(
             self: *const ISpeechPhraseProperty,
             FirstElement: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfElements: fn(
             self: *const ISpeechPhraseProperty,
             NumberOfElements: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EngineConfidence: fn(
             self: *const ISpeechPhraseProperty,
             Confidence: *f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Confidence: fn(
             self: *const ISpeechPhraseProperty,
             Confidence: *SpeechEngineConfidence,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const ISpeechPhraseProperty,
             ParentProperty: ?*?*ISpeechPhraseProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Children: fn(
             self: *const ISpeechPhraseProperty,
             Children: ?*?*ISpeechPhraseProperties,
@@ -8778,6 +8982,7 @@ pub const IID_ISpeechPhraseProperties = &IID_ISpeechPhraseProperties_Value;
 pub const ISpeechPhraseProperties = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ISpeechPhraseProperties,
             Count: *i32,
@@ -8787,6 +8992,7 @@ pub const ISpeechPhraseProperties = extern struct {
             Index: i32,
             Property: ?*?*ISpeechPhraseProperty,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechPhraseProperties,
             EnumVARIANT: ?*?*IUnknown,
@@ -8816,34 +9022,42 @@ pub const IID_ISpeechPhraseRule = &IID_ISpeechPhraseRule_Value;
 pub const ISpeechPhraseRule = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const ISpeechPhraseRule,
             Name: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const ISpeechPhraseRule,
             Id: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirstElement: fn(
             self: *const ISpeechPhraseRule,
             FirstElement: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfElements: fn(
             self: *const ISpeechPhraseRule,
             NumberOfElements: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const ISpeechPhraseRule,
             Parent: ?*?*ISpeechPhraseRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Children: fn(
             self: *const ISpeechPhraseRule,
             Children: ?*?*ISpeechPhraseRules,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Confidence: fn(
             self: *const ISpeechPhraseRule,
             ActualConfidence: *SpeechEngineConfidence,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EngineConfidence: fn(
             self: *const ISpeechPhraseRule,
             EngineConfidence: *f32,
@@ -8893,6 +9107,7 @@ pub const IID_ISpeechPhraseRules = &IID_ISpeechPhraseRules_Value;
 pub const ISpeechPhraseRules = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ISpeechPhraseRules,
             Count: *i32,
@@ -8902,6 +9117,7 @@ pub const ISpeechPhraseRules = extern struct {
             Index: i32,
             Rule: ?*?*ISpeechPhraseRule,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechPhraseRules,
             EnumVARIANT: ?*?*IUnknown,
@@ -8931,6 +9147,7 @@ pub const IID_ISpeechLexicon = &IID_ISpeechLexicon_Value;
 pub const ISpeechLexicon = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GenerationId: fn(
             self: *const ISpeechLexicon,
             GenerationId: *i32,
@@ -9026,6 +9243,7 @@ pub const IID_ISpeechLexiconWords = &IID_ISpeechLexiconWords_Value;
 pub const ISpeechLexiconWords = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ISpeechLexiconWords,
             Count: *i32,
@@ -9035,6 +9253,7 @@ pub const ISpeechLexiconWords = extern struct {
             Index: i32,
             Word: ?*?*ISpeechLexiconWord,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechLexiconWords,
             EnumVARIANT: ?*?*IUnknown,
@@ -9064,18 +9283,22 @@ pub const IID_ISpeechLexiconWord = &IID_ISpeechLexiconWord_Value;
 pub const ISpeechLexiconWord = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LangId: fn(
             self: *const ISpeechLexiconWord,
             LangId: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const ISpeechLexiconWord,
             WordType: *SpeechWordType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Word: fn(
             self: *const ISpeechLexiconWord,
             Word: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Pronunciations: fn(
             self: *const ISpeechLexiconWord,
             Pronunciations: ?*?*ISpeechLexiconPronunciations,
@@ -9109,6 +9332,7 @@ pub const IID_ISpeechLexiconPronunciations = &IID_ISpeechLexiconPronunciations_V
 pub const ISpeechLexiconPronunciations = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ISpeechLexiconPronunciations,
             Count: *i32,
@@ -9118,6 +9342,7 @@ pub const ISpeechLexiconPronunciations = extern struct {
             Index: i32,
             Pronunciation: ?*?*ISpeechLexiconPronunciation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ISpeechLexiconPronunciations,
             EnumVARIANT: ?*?*IUnknown,
@@ -9147,22 +9372,27 @@ pub const IID_ISpeechLexiconPronunciation = &IID_ISpeechLexiconPronunciation_Val
 pub const ISpeechLexiconPronunciation = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const ISpeechLexiconPronunciation,
             LexiconType: *SpeechLexiconType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LangId: fn(
             self: *const ISpeechLexiconPronunciation,
             LangId: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PartOfSpeech: fn(
             self: *const ISpeechLexiconPronunciation,
             PartOfSpeech: *SpeechPartOfSpeech,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhoneIds: fn(
             self: *const ISpeechLexiconPronunciation,
             PhoneIds: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Symbolic: fn(
             self: *const ISpeechLexiconPronunciation,
             Symbolic: ?*BSTR,
@@ -9235,10 +9465,12 @@ pub const IID_ISpeechRecoResultDispatch = &IID_ISpeechRecoResultDispatch_Value;
 pub const ISpeechRecoResultDispatch = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecoContext: fn(
             self: *const ISpeechRecoResultDispatch,
             RecoContext: ?*?*ISpeechRecoContext,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Times: fn(
             self: *const ISpeechRecoResultDispatch,
             Times: ?*?*ISpeechRecoResultTimes,
@@ -9247,10 +9479,12 @@ pub const ISpeechRecoResultDispatch = extern struct {
             self: *const ISpeechRecoResultDispatch,
             Format: ?*ISpeechAudioFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioFormat: fn(
             self: *const ISpeechRecoResultDispatch,
             Format: ?*?*ISpeechAudioFormat,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhraseInfo: fn(
             self: *const ISpeechRecoResultDispatch,
             PhraseInfo: ?*?*ISpeechPhraseInfo,
@@ -9389,10 +9623,12 @@ pub const IID_ISpeechPhoneConverter = &IID_ISpeechPhoneConverter_Value;
 pub const ISpeechPhoneConverter = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LanguageId: fn(
             self: *const ISpeechPhoneConverter,
             LanguageId: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LanguageId: fn(
             self: *const ISpeechPhoneConverter,
             LanguageId: i32,

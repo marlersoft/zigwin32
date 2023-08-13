@@ -7,17 +7,17 @@
 // Section: Types (1)
 //--------------------------------------------------------------------------------
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const RegisterApplicationRestart_dwFlags = extern enum(u32) {
+pub const REGISTER_APPLICATION_RESTART_FLAGS = extern enum(u32) {
     CRASH = 1,
     HANG = 2,
     PATCH = 4,
     REBOOT = 8,
     _,
 };
-pub const RESTART_NO_CRASH = RegisterApplicationRestart_dwFlags.CRASH;
-pub const RESTART_NO_HANG = RegisterApplicationRestart_dwFlags.HANG;
-pub const RESTART_NO_PATCH = RegisterApplicationRestart_dwFlags.PATCH;
-pub const RESTART_NO_REBOOT = RegisterApplicationRestart_dwFlags.REBOOT;
+pub const RESTART_NO_CRASH = REGISTER_APPLICATION_RESTART_FLAGS.CRASH;
+pub const RESTART_NO_HANG = REGISTER_APPLICATION_RESTART_FLAGS.HANG;
+pub const RESTART_NO_PATCH = REGISTER_APPLICATION_RESTART_FLAGS.PATCH;
+pub const RESTART_NO_REBOOT = REGISTER_APPLICATION_RESTART_FLAGS.REBOOT;
 
 
 //--------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ pub extern "KERNEL32" fn UnregisterApplicationRecoveryCallback(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "KERNEL32" fn RegisterApplicationRestart(
     pwzCommandline: ?[*:0]const u16,
-    dwFlags: RegisterApplicationRestart_dwFlags,
+    dwFlags: REGISTER_APPLICATION_RESTART_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

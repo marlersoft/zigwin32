@@ -59,6 +59,7 @@ pub const index_server = @import("api/index_server.zig");
 pub const ink_input = @import("api/ink_input.zig");
 pub const installable_file_systems = @import("api/installable_file_systems.zig");
 pub const interaction_context = @import("api/interaction_context.zig");
+pub const internet_explorer = @import("api/internet_explorer.zig");
 pub const intl = @import("api/intl.zig");
 pub const ip_helper = @import("api/ip_helper.zig");
 pub const iscsi_disc = @import("api/iscsi_disc.zig");
@@ -200,7 +201,7 @@ pub const xinput = @import("api/xinput.zig");
 pub const xml_http_extended_request = @import("api/xml_http_extended_request.zig");
 pub const xps = @import("api/xps.zig");
 test {
-    const api_count = 200;
+    const api_count = 201;
     @setEvalBranchQuota(api_count);
     @import("std").testing.refAllDecls(@This());
 }

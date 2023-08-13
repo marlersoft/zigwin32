@@ -575,10 +575,12 @@ pub const IWSMan = extern struct {
             self: *const IWSMan,
             connectionOptions: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommandLine: fn(
             self: *const IWSMan,
             value: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: fn(
             self: *const IWSMan,
             value: *BSTR,
@@ -881,14 +883,17 @@ pub const IID_IWSManConnectionOptions = &IID_IWSManConnectionOptions_Value;
 pub const IWSManConnectionOptions = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserName: fn(
             self: *const IWSManConnectionOptions,
             name: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UserName: fn(
             self: *const IWSManConnectionOptions,
             name: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Password: fn(
             self: *const IWSManConnectionOptions,
             password: BSTR,
@@ -919,10 +924,12 @@ pub const IID_IWSManConnectionOptionsEx = &IID_IWSManConnectionOptionsEx_Value;
 pub const IWSManConnectionOptionsEx = extern struct {
     pub const VTable = extern struct {
         base: IWSManConnectionOptions.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CertificateThumbprint: fn(
             self: *const IWSManConnectionOptionsEx,
             thumbprint: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CertificateThumbprint: fn(
             self: *const IWSManConnectionOptionsEx,
             thumbprint: BSTR,
@@ -1076,22 +1083,27 @@ pub const IWSManSession = extern struct {
             flags: i32,
             result: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: fn(
             self: *const IWSManSession,
             value: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BatchItems: fn(
             self: *const IWSManSession,
             value: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BatchItems: fn(
             self: *const IWSManSession,
             value: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timeout: fn(
             self: *const IWSManSession,
             value: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Timeout: fn(
             self: *const IWSManSession,
             value: i32,
@@ -1162,10 +1174,12 @@ pub const IWSManEnumerator = extern struct {
             self: *const IWSManEnumerator,
             resource: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AtEndOfStream: fn(
             self: *const IWSManEnumerator,
             eos: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: fn(
             self: *const IWSManEnumerator,
             value: *BSTR,
@@ -1196,10 +1210,12 @@ pub const IID_IWSManResourceLocator = &IID_IWSManResourceLocator_Value;
 pub const IWSManResourceLocator = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ResourceURI: fn(
             self: *const IWSManResourceLocator,
             uri: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResourceURI: fn(
             self: *const IWSManResourceLocator,
             uri: *BSTR,
@@ -1212,18 +1228,22 @@ pub const IWSManResourceLocator = extern struct {
         ClearSelectors: fn(
             self: *const IWSManResourceLocator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FragmentPath: fn(
             self: *const IWSManResourceLocator,
             text: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FragmentPath: fn(
             self: *const IWSManResourceLocator,
             text: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FragmentDialect: fn(
             self: *const IWSManResourceLocator,
             text: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FragmentDialect: fn(
             self: *const IWSManResourceLocator,
             text: BSTR,
@@ -1234,10 +1254,12 @@ pub const IWSManResourceLocator = extern struct {
             OptionValue: VARIANT,
             mustComply: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MustUnderstandOptions: fn(
             self: *const IWSManResourceLocator,
             mustUnderstand: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MustUnderstandOptions: fn(
             self: *const IWSManResourceLocator,
             mustUnderstand: *BOOL,
@@ -1245,6 +1267,7 @@ pub const IWSManResourceLocator = extern struct {
         ClearOptions: fn(
             self: *const IWSManResourceLocator,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: fn(
             self: *const IWSManResourceLocator,
             value: *BSTR,

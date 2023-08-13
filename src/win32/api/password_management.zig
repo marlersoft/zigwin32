@@ -8,7 +8,7 @@ pub const CYPHER_BLOCK_LENGTH = @as(u32, 8);
 // Section: Types (4)
 //--------------------------------------------------------------------------------
 pub const CYPHER_BLOCK = extern struct {
-    data: [8]i8,
+    data: [8]CHAR,
 };
 
 pub const LM_OWF_PASSWORD = extern struct {
@@ -63,9 +63,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (1)
+// Section: Imports (2)
 //--------------------------------------------------------------------------------
 const PWSTR = @import("system_services.zig").PWSTR;
+const CHAR = @import("system_services.zig").CHAR;
 
 test {
     const constant_export_count = 1;
@@ -75,7 +76,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 2;
     const unicode_alias_count = 0;
-    const import_count = 1;
+    const import_count = 2;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

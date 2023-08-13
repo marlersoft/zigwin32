@@ -53,14 +53,17 @@ pub const IID_IRendezvousSession = &IID_IRendezvousSession_Value;
 pub const IRendezvousSession = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: fn(
             self: *const IRendezvousSession,
             pSessionState: *RENDEZVOUS_SESSION_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteUser: fn(
             self: *const IRendezvousSession,
             bstrUserName: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: fn(
             self: *const IRendezvousSession,
             pFlags: *i32,

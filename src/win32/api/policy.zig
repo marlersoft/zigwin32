@@ -106,7 +106,7 @@ pub const GROUP_POLICY_OBJECTA = extern struct {
     lpDSPath: PSTR,
     lpFileSysPath: PSTR,
     lpDisplayName: PSTR,
-    szGPOName: [50]i8,
+    szGPOName: [50]CHAR,
     GPOLink: GPO_LINK,
     lParam: LPARAM,
     pNext: *GROUP_POLICY_OBJECTA,
@@ -865,17 +865,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
 const HKEY = @import("windows_programming.zig").HKEY;
 const PWSTR = @import("system_services.zig").PWSTR;
 const SAFEARRAY = @import("automation.zig").SAFEARRAY;
-const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
-const OBJECT_TYPE_LIST = @import("security.zig").OBJECT_TYPE_LIST;
+const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
 const HRESULT = @import("com.zig").HRESULT;
+const OBJECT_TYPE_LIST = @import("security.zig").OBJECT_TYPE_LIST;
 const IWbemClassObject = @import("wmi.zig").IWbemClassObject;
 const APPCATEGORYINFOLIST = @import("shell.zig").APPCATEGORYINFOLIST;
 const PSTR = @import("system_services.zig").PSTR;
@@ -903,7 +904,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 32;
     const unicode_alias_count = 4;
-    const import_count = 21;
+    const import_count = 22;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

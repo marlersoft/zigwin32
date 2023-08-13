@@ -33,6 +33,32 @@ pub const TBS_TCGLOG_DRTM_RESUME = @as(u32, 5);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
+pub const TBS_COMMAND_PRIORITY = extern enum(u32) {
+    LOW = 100,
+    NORMAL = 200,
+    SYSTEM = 400,
+    HIGH = 300,
+    MAX = 2147483648,
+};
+pub const TBS_COMMAND_PRIORITY_LOW = TBS_COMMAND_PRIORITY.LOW;
+pub const TBS_COMMAND_PRIORITY_NORMAL = TBS_COMMAND_PRIORITY.NORMAL;
+pub const TBS_COMMAND_PRIORITY_SYSTEM = TBS_COMMAND_PRIORITY.SYSTEM;
+pub const TBS_COMMAND_PRIORITY_HIGH = TBS_COMMAND_PRIORITY.HIGH;
+pub const TBS_COMMAND_PRIORITY_MAX = TBS_COMMAND_PRIORITY.MAX;
+
+pub const TBS_COMMAND_LOCALITY = extern enum(u32) {
+    ZERO = 0,
+    ONE = 1,
+    TWO = 2,
+    THREE = 3,
+    FOUR = 4,
+};
+pub const TBS_COMMAND_LOCALITY_ZERO = TBS_COMMAND_LOCALITY.ZERO;
+pub const TBS_COMMAND_LOCALITY_ONE = TBS_COMMAND_LOCALITY.ONE;
+pub const TBS_COMMAND_LOCALITY_TWO = TBS_COMMAND_LOCALITY.TWO;
+pub const TBS_COMMAND_LOCALITY_THREE = TBS_COMMAND_LOCALITY.THREE;
+pub const TBS_COMMAND_LOCALITY_FOUR = TBS_COMMAND_LOCALITY.FOUR;
+
 pub const TBS_CONTEXT_PARAMS = extern struct {
     version: u32,
 };
@@ -55,32 +81,6 @@ pub const TPM_DEVICE_INFO = extern struct {
     tpmImpRevision: u32,
 };
 
-pub const Tbsip_Submit_Command_PriorityFlags = extern enum(u32) {
-    LOW = 100,
-    NORMAL = 200,
-    SYSTEM = 400,
-    HIGH = 300,
-    MAX = 2147483648,
-};
-pub const TBS_COMMAND_PRIORITY_LOW = Tbsip_Submit_Command_PriorityFlags.LOW;
-pub const TBS_COMMAND_PRIORITY_NORMAL = Tbsip_Submit_Command_PriorityFlags.NORMAL;
-pub const TBS_COMMAND_PRIORITY_SYSTEM = Tbsip_Submit_Command_PriorityFlags.SYSTEM;
-pub const TBS_COMMAND_PRIORITY_HIGH = Tbsip_Submit_Command_PriorityFlags.HIGH;
-pub const TBS_COMMAND_PRIORITY_MAX = Tbsip_Submit_Command_PriorityFlags.MAX;
-
-pub const Tbsip_Submit_Command_LocalityFlags = extern enum(u32) {
-    ZERO = 0,
-    ONE = 1,
-    TWO = 2,
-    THREE = 3,
-    FOUR = 4,
-};
-pub const TBS_COMMAND_LOCALITY_ZERO = Tbsip_Submit_Command_LocalityFlags.ZERO;
-pub const TBS_COMMAND_LOCALITY_ONE = Tbsip_Submit_Command_LocalityFlags.ONE;
-pub const TBS_COMMAND_LOCALITY_TWO = Tbsip_Submit_Command_LocalityFlags.TWO;
-pub const TBS_COMMAND_LOCALITY_THREE = Tbsip_Submit_Command_LocalityFlags.THREE;
-pub const TBS_COMMAND_LOCALITY_FOUR = Tbsip_Submit_Command_LocalityFlags.FOUR;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (13)
@@ -99,8 +99,8 @@ pub extern "tbs" fn Tbsip_Context_Close(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "tbs" fn Tbsip_Submit_Command(
     hContext: *c_void,
-    Locality: Tbsip_Submit_Command_LocalityFlags,
-    Priority: Tbsip_Submit_Command_PriorityFlags,
+    Locality: TBS_COMMAND_LOCALITY,
+    Priority: TBS_COMMAND_PRIORITY,
     // TODO: what to do with BytesParamIndex 4?
     pabCommand: *u8,
     cbCommand: u32,

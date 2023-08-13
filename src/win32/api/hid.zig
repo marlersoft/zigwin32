@@ -1788,7 +1788,7 @@ pub const DIFILEEFFECT = extern struct {
     dwSize: u32,
     GuidEffect: Guid,
     lpDiEffect: *DIEFFECT,
-    szFriendlyName: [260]i8,
+    szFriendlyName: [260]CHAR,
 };
 
 pub const LPDIENUMEFFECTSINFILECALLBACK = fn(
@@ -1975,7 +1975,7 @@ pub const DIACTIONFORMATA = extern struct {
     hInstString: HINSTANCE,
     ftTimeStamp: FILETIME,
     dwCRC: u32,
-    tszActionMap: [260]i8,
+    tszActionMap: [260]CHAR,
 };
 
 pub const DIACTIONFORMATW = extern struct {
@@ -2030,7 +2030,7 @@ pub const DICONFIGUREDEVICESPARAMSW = extern struct {
 };
 
 pub const DIDEVICEIMAGEINFOA = extern struct {
-    tszImagePath: [260]i8,
+    tszImagePath: [260]CHAR,
     dwFlags: u32,
     dwViewID: u32,
     rcOverlay: RECT,
@@ -2083,7 +2083,7 @@ pub const DIDEVICEOBJECTINSTANCE_DX3A = extern struct {
     dwOfs: u32,
     dwType: u32,
     dwFlags: u32,
-    tszName: [260]i8,
+    tszName: [260]CHAR,
 };
 
 pub const DIDEVICEOBJECTINSTANCE_DX3W = extern struct {
@@ -2101,7 +2101,7 @@ pub const DIDEVICEOBJECTINSTANCEA = extern struct {
     dwOfs: u32,
     dwType: u32,
     dwFlags: u32,
-    tszName: [260]i8,
+    tszName: [260]CHAR,
     dwFFMaxForce: u32,
     dwFFForceResolution: u32,
     wCollectionNumber: u16,
@@ -2219,8 +2219,8 @@ pub const DIDEVICEINSTANCE_DX3A = extern struct {
     guidInstance: Guid,
     guidProduct: Guid,
     dwDevType: u32,
-    tszInstanceName: [260]i8,
-    tszProductName: [260]i8,
+    tszInstanceName: [260]CHAR,
+    tszProductName: [260]CHAR,
 };
 
 pub const DIDEVICEINSTANCE_DX3W = extern struct {
@@ -2237,8 +2237,8 @@ pub const DIDEVICEINSTANCEA = extern struct {
     guidInstance: Guid,
     guidProduct: Guid,
     dwDevType: u32,
-    tszInstanceName: [260]i8,
-    tszProductName: [260]i8,
+    tszInstanceName: [260]CHAR,
+    tszProductName: [260]CHAR,
     guidFFDriver: Guid,
     wUsagePage: u16,
     wUsage: u16,
@@ -2552,7 +2552,7 @@ pub const DIEFFECTINFOA = extern struct {
     dwEffType: u32,
     dwStaticParams: u32,
     dwDynamicParams: u32,
-    tszName: [260]i8,
+    tszName: [260]CHAR,
 };
 
 pub const DIEFFECTINFOW = extern struct {
@@ -5128,14 +5128,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (19)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HKEY = @import("windows_programming.zig").HKEY;
 const HINSTANCE = @import("system_services.zig").HINSTANCE;
 const FILETIME = @import("windows_programming.zig").FILETIME;
-const PWSTR = @import("system_services.zig").PWSTR;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
+const PWSTR = @import("system_services.zig").PWSTR;
 const HRESULT = @import("com.zig").HRESULT;
 const joyreguservalues_tag = @import("multimedia.zig").joyreguservalues_tag;
 const PSTR = @import("system_services.zig").PSTR;
@@ -5173,7 +5174,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 44;
     const unicode_alias_count = 22;
-    const import_count = 18;
+    const import_count = 19;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

@@ -120,7 +120,7 @@ pub const IInkDesktopHost = extern struct {
         CreateInkPresenter: fn(
             self: *const IInkDesktopHost,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateAndInitializeInkPresenter: fn(
             self: *const IInkDesktopHost,
@@ -128,7 +128,7 @@ pub const IInkDesktopHost = extern struct {
             width: f32,
             height: f32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -139,11 +139,11 @@ pub const IInkDesktopHost = extern struct {
             return @ptrCast(*const IInkDesktopHost.VTable, self.vtable).QueueWorkItem(@ptrCast(*const IInkDesktopHost, self), workItem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDesktopHost_CreateInkPresenter(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IInkDesktopHost_CreateInkPresenter(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDesktopHost.VTable, self.vtable).CreateInkPresenter(@ptrCast(*const IInkDesktopHost, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkDesktopHost_CreateAndInitializeInkPresenter(self: *const T, rootVisual: *IUnknown, width: f32, height: f32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IInkDesktopHost_CreateAndInitializeInkPresenter(self: *const T, rootVisual: *IUnknown, width: f32, height: f32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInkDesktopHost.VTable, self.vtable).CreateAndInitializeInkPresenter(@ptrCast(*const IInkDesktopHost, self), rootVisual, width, height, riid, ppv);
         }
     };}

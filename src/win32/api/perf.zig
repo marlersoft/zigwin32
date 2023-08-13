@@ -153,7 +153,7 @@ pub const PERF_COUNTER_REG_INFO = extern struct {
     PerfTimeId: u32,
     PerfFreqId: u32,
     MultiId: u32,
-    AggregateFunc: PERF_COUNTER_REG_INFO_AggregateFuncFlags,
+    AggregateFunc: PERF_COUNTER_AGGREGATE_FUNC,
     Reserved: u32,
 };
 
@@ -433,20 +433,20 @@ pub const PERF_DETAIL_ADVANCED = PERF_DETAIL.ADVANCED;
 pub const PERF_DETAIL_EXPERT = PERF_DETAIL.EXPERT;
 pub const PERF_DETAIL_WIZARD = PERF_DETAIL.WIZARD;
 
-pub const PdhSetDefaultRealTimeDataSource_dwDataSourceIdFlags = extern enum(u32) {
+pub const REAL_TIME_DATA_SOURCE_ID_FLAGS = extern enum(u32) {
     REGISTRY = 1,
     WBEM = 4,
 };
-pub const DATA_SOURCE_REGISTRY = PdhSetDefaultRealTimeDataSource_dwDataSourceIdFlags.REGISTRY;
-pub const DATA_SOURCE_WBEM = PdhSetDefaultRealTimeDataSource_dwDataSourceIdFlags.WBEM;
+pub const DATA_SOURCE_REGISTRY = REAL_TIME_DATA_SOURCE_ID_FLAGS.REGISTRY;
+pub const DATA_SOURCE_WBEM = REAL_TIME_DATA_SOURCE_ID_FLAGS.WBEM;
 
-pub const PdhMakeCounterPath_dwFlags = extern enum(u32) {
+pub const PDH_PATH_FLAGS = extern enum(u32) {
     RESULT = 1,
     INPUT = 2,
     None = 0,
 };
-pub const PDH_PATH_WBEM_RESULT = PdhMakeCounterPath_dwFlags.RESULT;
-pub const PDH_PATH_WBEM_INPUT = PdhMakeCounterPath_dwFlags.INPUT;
+pub const PDH_PATH_WBEM_RESULT = PDH_PATH_FLAGS.RESULT;
+pub const PDH_PATH_WBEM_INPUT = PDH_PATH_FLAGS.INPUT;
 
 pub const PDH_FMT = extern enum(u32) {
     DOUBLE = 512,
@@ -481,29 +481,28 @@ pub const PDH_LOG_READ_ACCESS = PDH_LOG.READ_ACCESS;
 pub const PDH_LOG_WRITE_ACCESS = PDH_LOG.WRITE_ACCESS;
 pub const PDH_LOG_UPDATE_ACCESS = PDH_LOG.UPDATE_ACCESS;
 
-pub const PdhSelectDataSource_dwFlags = extern enum(u32) {
+pub const PDH_SELECT_DATA_SOURCE_FLAGS = extern enum(u32) {
     Y = 1,
     None = 0,
 };
-pub const PDH_FLAGS_FILE_BROWSER_ONLY = PdhSelectDataSource_dwFlags.Y;
+pub const PDH_FLAGS_FILE_BROWSER_ONLY = PDH_SELECT_DATA_SOURCE_FLAGS.Y;
 
-pub const PdhGetDllVersion_lpdwVersionFlags = extern enum(u32) {
+pub const PDH_VERSION = extern enum(u32) {
     CVERSION_WIN50 = 1280,
     VERSION = 1283,
 };
-pub const PDH_CVERSION_WIN50 = PdhGetDllVersion_lpdwVersionFlags.CVERSION_WIN50;
-pub const PDH_VERSION = PdhGetDllVersion_lpdwVersionFlags.VERSION;
+// TODO: enum 'PDH_VERSION' has known issues with its value aliases
 
-pub const PERF_COUNTER_REG_INFO_AggregateFuncFlags = extern enum(u32) {
+pub const PERF_COUNTER_AGGREGATE_FUNC = extern enum(u32) {
     UNDEFINED = 0,
     TOTAL = 1,
     AVG = 2,
     MIN = 3,
 };
-pub const PERF_AGGREGATE_UNDEFINED = PERF_COUNTER_REG_INFO_AggregateFuncFlags.UNDEFINED;
-pub const PERF_AGGREGATE_TOTAL = PERF_COUNTER_REG_INFO_AggregateFuncFlags.TOTAL;
-pub const PERF_AGGREGATE_AVG = PERF_COUNTER_REG_INFO_AggregateFuncFlags.AVG;
-pub const PERF_AGGREGATE_MIN = PERF_COUNTER_REG_INFO_AggregateFuncFlags.MIN;
+pub const PERF_AGGREGATE_UNDEFINED = PERF_COUNTER_AGGREGATE_FUNC.UNDEFINED;
+pub const PERF_AGGREGATE_TOTAL = PERF_COUNTER_AGGREGATE_FUNC.TOTAL;
+pub const PERF_AGGREGATE_AVG = PERF_COUNTER_AGGREGATE_FUNC.AVG;
+pub const PERF_AGGREGATE_MIN = PERF_COUNTER_AGGREGATE_FUNC.MIN;
 
 
 //--------------------------------------------------------------------------------
@@ -749,7 +748,7 @@ pub extern "ADVAPI32" fn PerfDeleteCounters(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhGetDllVersion(
-    lpdwVersion: ?*PdhGetDllVersion_lpdwVersionFlags,
+    lpdwVersion: ?*PDH_VERSION,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -996,7 +995,7 @@ pub extern "pdh" fn PdhMakeCounterPathW(
     pCounterPathElements: *PDH_COUNTER_PATH_ELEMENTS_W,
     szFullPathBuffer: ?PWSTR,
     pcchBufferSize: *u32,
-    dwFlags: PdhMakeCounterPath_dwFlags,
+    dwFlags: PDH_PATH_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1004,7 +1003,7 @@ pub extern "pdh" fn PdhMakeCounterPathA(
     pCounterPathElements: *PDH_COUNTER_PATH_ELEMENTS_A,
     szFullPathBuffer: ?PSTR,
     pcchBufferSize: *u32,
-    dwFlags: PdhMakeCounterPath_dwFlags,
+    dwFlags: PDH_PATH_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1213,7 +1212,7 @@ pub extern "pdh" fn PdhCloseLog(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhSelectDataSourceW(
     hWndOwner: HWND,
-    dwFlags: PdhSelectDataSource_dwFlags,
+    dwFlags: PDH_SELECT_DATA_SOURCE_FLAGS,
     szDataSource: PWSTR,
     pcchBufferLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1221,7 +1220,7 @@ pub extern "pdh" fn PdhSelectDataSourceW(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhSelectDataSourceA(
     hWndOwner: HWND,
-    dwFlags: PdhSelectDataSource_dwFlags,
+    dwFlags: PDH_SELECT_DATA_SOURCE_FLAGS,
     szDataSource: PSTR,
     pcchBufferLength: *u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1286,7 +1285,7 @@ pub extern "pdh" fn PdhReadRawLogRecord(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "pdh" fn PdhSetDefaultRealTimeDataSource(
-    dwDataSourceId: PdhSetDefaultRealTimeDataSource_dwDataSourceIdFlags,
+    dwDataSourceId: REAL_TIME_DATA_SOURCE_ID_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1709,7 +1708,7 @@ test {
 
     const constant_export_count = 35;
     const type_export_count = 54;
-    const enum_value_export_count = 42;
+    const enum_value_export_count = 40;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 131;

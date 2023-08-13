@@ -348,6 +348,65 @@ pub const CLSID_ClientNetManager = Guid.initString("cd12a3ce-9c42-11d2-beed-0060
 //--------------------------------------------------------------------------------
 // Section: Types (180)
 //--------------------------------------------------------------------------------
+const IID_IAMWMBufferPass_Value = @import("../zig.zig").Guid.initString("6dd816d7-e740-4123-9e24-2444412644d8");
+pub const IID_IAMWMBufferPass = &IID_IAMWMBufferPass_Value;
+pub const IAMWMBufferPass = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetNotify: fn(
+            self: *const IAMWMBufferPass,
+            pCallback: *IAMWMBufferPassCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAMWMBufferPass_SetNotify(self: *const T, pCallback: *IAMWMBufferPassCallback) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAMWMBufferPass.VTable, self.vtable).SetNotify(@ptrCast(*const IAMWMBufferPass, self), pCallback);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IAMWMBufferPassCallback_Value = @import("../zig.zig").Guid.initString("b25b8372-d2d2-44b2-8653-1b8dae332489");
+pub const IID_IAMWMBufferPassCallback = &IID_IAMWMBufferPassCallback_Value;
+pub const IAMWMBufferPassCallback = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Notify: fn(
+            self: *const IAMWMBufferPassCallback,
+            pNSSBuffer3: *INSSBuffer3,
+            pPin: *IPin,
+            prtStart: *i64,
+            prtEnd: *i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAMWMBufferPassCallback_Notify(self: *const T, pNSSBuffer3: *INSSBuffer3, pPin: *IPin, prtStart: *i64, prtEnd: *i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAMWMBufferPassCallback.VTable, self.vtable).Notify(@ptrCast(*const IAMWMBufferPassCallback, self), pNSSBuffer3, pPin, prtStart, prtEnd);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const _AM_ASFWRITERCONFIG_PARAM = extern enum(i32) {
+    AUTOINDEX = 1,
+    MULTIPASS = 2,
+    DONTCOMPRESS = 3,
+};
+pub const AM_CONFIGASFWRITER_PARAM_AUTOINDEX = _AM_ASFWRITERCONFIG_PARAM.AUTOINDEX;
+pub const AM_CONFIGASFWRITER_PARAM_MULTIPASS = _AM_ASFWRITERCONFIG_PARAM.MULTIPASS;
+pub const AM_CONFIGASFWRITER_PARAM_DONTCOMPRESS = _AM_ASFWRITERCONFIG_PARAM.DONTCOMPRESS;
+
+pub const AM_WMT_EVENT_DATA = extern struct {
+    hrStatus: HRESULT,
+    pData: *c_void,
+};
+
 const IID_INSSBuffer_Value = @import("../zig.zig").Guid.initString("e1cd3524-03d7-11d2-9eed-006097d2d7cf");
 pub const IID_INSSBuffer = &IID_INSSBuffer_Value;
 pub const INSSBuffer = extern struct {
@@ -7195,65 +7254,6 @@ pub const IWMSInternalAdminNetSource3 = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IAMWMBufferPass_Value = @import("../zig.zig").Guid.initString("6dd816d7-e740-4123-9e24-2444412644d8");
-pub const IID_IAMWMBufferPass = &IID_IAMWMBufferPass_Value;
-pub const IAMWMBufferPass = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetNotify: fn(
-            self: *const IAMWMBufferPass,
-            pCallback: *IAMWMBufferPassCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMWMBufferPass_SetNotify(self: *const T, pCallback: *IAMWMBufferPassCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAMWMBufferPass.VTable, self.vtable).SetNotify(@ptrCast(*const IAMWMBufferPass, self), pCallback);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IAMWMBufferPassCallback_Value = @import("../zig.zig").Guid.initString("b25b8372-d2d2-44b2-8653-1b8dae332489");
-pub const IID_IAMWMBufferPassCallback = &IID_IAMWMBufferPassCallback_Value;
-pub const IAMWMBufferPassCallback = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Notify: fn(
-            self: *const IAMWMBufferPassCallback,
-            pNSSBuffer3: *INSSBuffer3,
-            pPin: *IPin,
-            prtStart: *i64,
-            prtEnd: *i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMWMBufferPassCallback_Notify(self: *const T, pNSSBuffer3: *INSSBuffer3, pPin: *IPin, prtStart: *i64, prtEnd: *i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAMWMBufferPassCallback.VTable, self.vtable).Notify(@ptrCast(*const IAMWMBufferPassCallback, self), pNSSBuffer3, pPin, prtStart, prtEnd);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const _AM_ASFWRITERCONFIG_PARAM = extern enum(i32) {
-    AUTOINDEX = 1,
-    MULTIPASS = 2,
-    DONTCOMPRESS = 3,
-};
-pub const AM_CONFIGASFWRITER_PARAM_AUTOINDEX = _AM_ASFWRITERCONFIG_PARAM.AUTOINDEX;
-pub const AM_CONFIGASFWRITER_PARAM_MULTIPASS = _AM_ASFWRITERCONFIG_PARAM.MULTIPASS;
-pub const AM_CONFIGASFWRITER_PARAM_DONTCOMPRESS = _AM_ASFWRITERCONFIG_PARAM.DONTCOMPRESS;
-
-pub const AM_WMT_EVENT_DATA = extern struct {
-    hrStatus: HRESULT,
-    pData: *c_void,
 };
 
 

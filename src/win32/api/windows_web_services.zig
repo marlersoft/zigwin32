@@ -3389,8 +3389,8 @@ pub const WS_WSZ_DESCRIPTION = extern struct {
 };
 
 pub const WS_INT8_DESCRIPTION = extern struct {
-    minValue: i8,
-    maxValue: i8,
+    minValue: CHAR,
+    maxValue: CHAR,
 };
 
 pub const WS_UINT8_DESCRIPTION = extern struct {
@@ -6028,13 +6028,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const DECIMAL = @import("system_services.zig").DECIMAL;
 const IInspectable = @import("win_rt.zig").IInspectable;
 const PWSTR = @import("system_services.zig").PWSTR;
 const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
+const CHAR = @import("system_services.zig").CHAR;
 const FILETIME = @import("windows_programming.zig").FILETIME;
 const HRESULT = @import("com.zig").HRESULT;
 const BOOL = @import("system_services.zig").BOOL;
@@ -6113,7 +6114,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 203;
     const unicode_alias_count = 0;
-    const import_count = 10;
+    const import_count = 11;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

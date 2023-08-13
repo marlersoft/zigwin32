@@ -901,7 +901,7 @@ pub const INTERNET_DIAGNOSTIC_SOCKET_INFO = extern struct {
 };
 
 pub const INTERNET_PROXY_INFO = extern struct {
-    dwAccessType: INTERNET_PROXY_INFO_dwAccessTypeFlags,
+    dwAccessType: INTERNET_ACCESS_TYPE,
     lpszProxy: *i8,
     lpszProxyBypass: *i8,
 };
@@ -940,7 +940,7 @@ pub const INTERNET_VERSION_INFO = extern struct {
 };
 
 pub const INTERNET_CONNECTED_INFO = extern struct {
-    dwConnectedState: INTERNET_CONNECTED_INFO_dwConnectedStateFlags,
+    dwConnectedState: INTERNET_STATE,
     dwFlags: u32,
 };
 
@@ -1049,13 +1049,13 @@ pub const IncomingCookieState = extern struct {
     cLeashed: i32,
     cDowngraded: i32,
     cBlocked: i32,
-    pszLocation: *const i8,
+    pszLocation: [*:0]const u8,
 };
 
 pub const OutgoingCookieState = extern struct {
     cSent: i32,
     cSuppressed: i32,
-    pszLocation: *const i8,
+    pszLocation: [*:0]const u8,
 };
 
 pub const InternetCookieHistory = extern struct {
@@ -1071,12 +1071,12 @@ pub const CookieDecision = extern struct {
 };
 
 pub const GOPHER_FIND_DATAA = extern struct {
-    DisplayString: [129]i8,
+    DisplayString: [129]CHAR,
     GopherType: GOPHER_TYPE,
     SizeLow: u32,
     SizeHigh: u32,
     LastModificationTime: FILETIME,
-    Locator: [654]i8,
+    Locator: [654]CHAR,
 };
 
 pub const GOPHER_FIND_DATAW = extern struct {
@@ -1254,7 +1254,7 @@ pub const INTERNET_CACHE_GROUP_INFOA = extern struct {
     dwDiskUsage: u32,
     dwDiskQuota: u32,
     dwOwnerStorage: [4]u32,
-    szGroupName: [120]i8,
+    szGroupName: [120]CHAR,
 };
 
 pub const INTERNET_CACHE_GROUP_INFOW = extern struct {
@@ -1268,14 +1268,14 @@ pub const INTERNET_CACHE_GROUP_INFOW = extern struct {
 };
 
 pub const AutoProxyHelperVtbl = extern struct {
-    IsResolvable: **********BOOL,
+    IsResolvable: isize,
     GetIPAddress: isize,
     ResolveHostName: isize,
-    IsInNet: **********BOOL,
-    IsResolvableEx: **********BOOL,
+    IsInNet: isize,
+    IsResolvableEx: isize,
     GetIPAddressEx: isize,
     ResolveHostNameEx: isize,
-    IsInNetEx: **********BOOL,
+    IsInNetEx: isize,
     SortIpList: isize,
 };
 
@@ -1591,7 +1591,7 @@ pub const COOKIE_DLG_INFO = extern struct {
 };
 
 pub const INTERNET_CACHE_CONFIG_PATH_ENTRYA = extern struct {
-    CachePath: [260]i8,
+    CachePath: [260]CHAR,
     dwCacheSize: u32,
 };
 
@@ -1890,35 +1890,37 @@ pub const CACHE_CONFIG_USER_MODE_FC = CACHE_CONFIG.USER_MODE_FC;
 pub const CACHE_CONFIG_CONTENT_USAGE_FC = CACHE_CONFIG.CONTENT_USAGE_FC;
 pub const CACHE_CONFIG_STICKY_CONTENT_USAGE_FC = CACHE_CONFIG.STICKY_CONTENT_USAGE_FC;
 
-pub const Ftp_dwFlags = extern enum(u32) {
+pub const FTP_FLAGS = extern enum(u32) {
     FTP_TRANSFER_TYPE_ASCII = 1,
     FTP_TRANSFER_TYPE_BINARY = 2,
     FTP_TRANSFER_TYPE_UNKNOWN = 0,
     INTERNET_FLAG_TRANSFER_ASCII = 1,
     INTERNET_FLAG_TRANSFER_BINARY = 2,
 };
-pub const FTP_TRANSFER_TYPE_ASCII = Ftp_dwFlags.FTP_TRANSFER_TYPE_ASCII;
-pub const FTP_TRANSFER_TYPE_BINARY = Ftp_dwFlags.FTP_TRANSFER_TYPE_BINARY;
-pub const FTP_TRANSFER_TYPE_UNKNOWN = Ftp_dwFlags.FTP_TRANSFER_TYPE_UNKNOWN;
-pub const INTERNET_FLAG_TRANSFER_ASCII = Ftp_dwFlags.INTERNET_FLAG_TRANSFER_ASCII;
-pub const INTERNET_FLAG_TRANSFER_BINARY = Ftp_dwFlags.INTERNET_FLAG_TRANSFER_BINARY;
+pub const FTP_TRANSFER_TYPE_ASCII = FTP_FLAGS.FTP_TRANSFER_TYPE_ASCII;
+pub const FTP_TRANSFER_TYPE_BINARY = FTP_FLAGS.FTP_TRANSFER_TYPE_BINARY;
+pub const FTP_TRANSFER_TYPE_UNKNOWN = FTP_FLAGS.FTP_TRANSFER_TYPE_UNKNOWN;
+pub const INTERNET_FLAG_TRANSFER_ASCII = FTP_FLAGS.INTERNET_FLAG_TRANSFER_ASCII;
+pub const INTERNET_FLAG_TRANSFER_BINARY = FTP_FLAGS.INTERNET_FLAG_TRANSFER_BINARY;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const INTERNET_CONNECTION = extern enum(u32) {
-    CONFIGURED = 64,
-    LAN_ = 2,
-    MODEM = 1,
-    MODEM_BUSY = 8,
-    OFFLINE_ = 32,
-    PROXY = 4,
+    CONNECTION_CONFIGURED = 64,
+    CONNECTION_LAN_ = 2,
+    CONNECTION_MODEM = 1,
+    CONNECTION_MODEM_BUSY = 8,
+    CONNECTION_OFFLINE_ = 32,
+    CONNECTION_PROXY = 4,
+    RAS_INSTALLED = 16,
     _,
 };
-pub const INTERNET_CONNECTION_CONFIGURED = INTERNET_CONNECTION.CONFIGURED;
-pub const INTERNET_CONNECTION_LAN_ = INTERNET_CONNECTION.LAN_;
-pub const INTERNET_CONNECTION_MODEM = INTERNET_CONNECTION.MODEM;
-pub const INTERNET_CONNECTION_MODEM_BUSY = INTERNET_CONNECTION.MODEM_BUSY;
-pub const INTERNET_CONNECTION_OFFLINE_ = INTERNET_CONNECTION.OFFLINE_;
-pub const INTERNET_CONNECTION_PROXY = INTERNET_CONNECTION.PROXY;
+pub const INTERNET_CONNECTION_CONFIGURED = INTERNET_CONNECTION.CONNECTION_CONFIGURED;
+pub const INTERNET_CONNECTION_LAN_ = INTERNET_CONNECTION.CONNECTION_LAN_;
+pub const INTERNET_CONNECTION_MODEM = INTERNET_CONNECTION.CONNECTION_MODEM;
+pub const INTERNET_CONNECTION_MODEM_BUSY = INTERNET_CONNECTION.CONNECTION_MODEM_BUSY;
+pub const INTERNET_CONNECTION_OFFLINE_ = INTERNET_CONNECTION.CONNECTION_OFFLINE_;
+pub const INTERNET_CONNECTION_PROXY = INTERNET_CONNECTION.CONNECTION_PROXY;
+pub const INTERNET_RAS_INSTALLED = INTERNET_CONNECTION.RAS_INSTALLED;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const HTTP_ADDREQ_FLAG = extern enum(u32) {
@@ -1937,23 +1939,23 @@ pub const HTTP_ADDREQ_FLAG_COALESCE_WITH_COMMA = HTTP_ADDREQ_FLAG.COALESCE_WITH_
 pub const HTTP_ADDREQ_FLAG_COALESCE_WITH_SEMICOLON = HTTP_ADDREQ_FLAG.COALESCE_WITH_SEMICOLON;
 pub const HTTP_ADDREQ_FLAG_REPLACE = HTTP_ADDREQ_FLAG.REPLACE;
 
-pub const InternetGetCookieEx_dwFlags = extern enum(u32) {
+pub const INTERNET_COOKIE_FLAGS = extern enum(u32) {
     COOKIE_HTTPONLY = 8192,
     COOKIE_THIRD_PARTY = 16,
     FLAG_RESTRICTED_ZONE = 131072,
 };
-pub const INTERNET_COOKIE_HTTPONLY = InternetGetCookieEx_dwFlags.COOKIE_HTTPONLY;
-pub const INTERNET_COOKIE_THIRD_PARTY = InternetGetCookieEx_dwFlags.COOKIE_THIRD_PARTY;
-pub const INTERNET_FLAG_RESTRICTED_ZONE = InternetGetCookieEx_dwFlags.FLAG_RESTRICTED_ZONE;
+pub const INTERNET_COOKIE_HTTPONLY = INTERNET_COOKIE_FLAGS.COOKIE_HTTPONLY;
+pub const INTERNET_COOKIE_THIRD_PARTY = INTERNET_COOKIE_FLAGS.COOKIE_THIRD_PARTY;
+pub const INTERNET_FLAG_RESTRICTED_ZONE = INTERNET_COOKIE_FLAGS.FLAG_RESTRICTED_ZONE;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const DetectAutoProxyUrl_dwDetectFlags = extern enum(u32) {
+pub const PROXY_AUTO_DETECT_TYPE = extern enum(u32) {
     HCP = 1,
     NS_A = 2,
     _,
 };
-pub const PROXY_AUTO_DETECT_TYPE_DHCP = DetectAutoProxyUrl_dwDetectFlags.HCP;
-pub const PROXY_AUTO_DETECT_TYPE_DNS_A = DetectAutoProxyUrl_dwDetectFlags.NS_A;
+pub const PROXY_AUTO_DETECT_TYPE_DHCP = PROXY_AUTO_DETECT_TYPE.HCP;
+pub const PROXY_AUTO_DETECT_TYPE_DNS_A = PROXY_AUTO_DETECT_TYPE.NS_A;
 
 pub const INTERNET_AUTODIAL = extern enum(u32) {
     FAILIFSECURITYCHECK = 4,
@@ -2038,27 +2040,27 @@ pub const INTERNET_PER_CONN_AUTOCONFIG_RELOAD_DELAY_MINS = INTERNET_PER_CONN.AUT
 pub const INTERNET_PER_CONN_AUTOCONFIG_LAST_DETECT_TIME = INTERNET_PER_CONN.AUTOCONFIG_LAST_DETECT_TIME;
 pub const INTERNET_PER_CONN_AUTOCONFIG_LAST_DETECT_URL = INTERNET_PER_CONN.AUTOCONFIG_LAST_DETECT_URL;
 
-pub const INTERNET_PROXY_INFO_dwAccessTypeFlags = extern enum(u32) {
+pub const INTERNET_ACCESS_TYPE = extern enum(u32) {
     DIRECT = 1,
     PRECONFIG = 0,
     PROXY = 3,
 };
-pub const INTERNET_OPEN_TYPE_DIRECT = INTERNET_PROXY_INFO_dwAccessTypeFlags.DIRECT;
-pub const INTERNET_OPEN_TYPE_PRECONFIG = INTERNET_PROXY_INFO_dwAccessTypeFlags.PRECONFIG;
-pub const INTERNET_OPEN_TYPE_PROXY = INTERNET_PROXY_INFO_dwAccessTypeFlags.PROXY;
+pub const INTERNET_OPEN_TYPE_DIRECT = INTERNET_ACCESS_TYPE.DIRECT;
+pub const INTERNET_OPEN_TYPE_PRECONFIG = INTERNET_ACCESS_TYPE.PRECONFIG;
+pub const INTERNET_OPEN_TYPE_PROXY = INTERNET_ACCESS_TYPE.PROXY;
 
-pub const INTERNET_CONNECTED_INFO_dwConnectedStateFlags = extern enum(u32) {
+pub const INTERNET_STATE = extern enum(u32) {
     CONNECTED = 1,
     DISCONNECTED = 2,
     DISCONNECTED_BY_USER = 16,
     IDLE = 256,
     BUSY = 512,
 };
-pub const INTERNET_STATE_CONNECTED = INTERNET_CONNECTED_INFO_dwConnectedStateFlags.CONNECTED;
-pub const INTERNET_STATE_DISCONNECTED = INTERNET_CONNECTED_INFO_dwConnectedStateFlags.DISCONNECTED;
-pub const INTERNET_STATE_DISCONNECTED_BY_USER = INTERNET_CONNECTED_INFO_dwConnectedStateFlags.DISCONNECTED_BY_USER;
-pub const INTERNET_STATE_IDLE = INTERNET_CONNECTED_INFO_dwConnectedStateFlags.IDLE;
-pub const INTERNET_STATE_BUSY = INTERNET_CONNECTED_INFO_dwConnectedStateFlags.BUSY;
+pub const INTERNET_STATE_CONNECTED = INTERNET_STATE.CONNECTED;
+pub const INTERNET_STATE_DISCONNECTED = INTERNET_STATE.DISCONNECTED;
+pub const INTERNET_STATE_DISCONNECTED_BY_USER = INTERNET_STATE.DISCONNECTED_BY_USER;
+pub const INTERNET_STATE_IDLE = INTERNET_STATE.IDLE;
+pub const INTERNET_STATE_BUSY = INTERNET_STATE.BUSY;
 
 pub const HTTP_VERSION_INFO = extern struct {
     dwMajorVersion: u32,
@@ -2121,7 +2123,7 @@ pub extern "WININET" fn InternetTimeToSystemTime(
 pub extern "WININET" fn InternetCrackUrlA(
     lpszUrl: [*:0]const u8,
     dwUrlLength: u32,
-    dwFlags: WinHttpCreateUrl_dwFlags,
+    dwFlags: WIN_HTTP_CREATE_URL_FLAGS,
     lpUrlComponents: *URL_COMPONENTSA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2129,7 +2131,7 @@ pub extern "WININET" fn InternetCrackUrlA(
 pub extern "WININET" fn InternetCrackUrlW(
     lpszUrl: [*:0]const u16,
     dwUrlLength: u32,
-    dwFlags: WinHttpCreateUrl_dwFlags,
+    dwFlags: WIN_HTTP_CREATE_URL_FLAGS,
     lpUrlComponents: *URL_COMPONENTSW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2451,7 +2453,7 @@ pub extern "WININET" fn FtpPutFileA(
     hConnect: *c_void,
     lpszLocalFile: [*:0]const u8,
     lpszNewRemoteFile: [*:0]const u8,
-    dwFlags: Ftp_dwFlags,
+    dwFlags: FTP_FLAGS,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2460,7 +2462,7 @@ pub extern "WININET" fn FtpPutFileW(
     hConnect: *c_void,
     lpszLocalFile: [*:0]const u16,
     lpszNewRemoteFile: [*:0]const u16,
-    dwFlags: Ftp_dwFlags,
+    dwFlags: FTP_FLAGS,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2513,7 +2515,7 @@ pub extern "WININET" fn FtpOpenFileA(
     hConnect: *c_void,
     lpszFileName: [*:0]const u8,
     dwAccess: u32,
-    dwFlags: Ftp_dwFlags,
+    dwFlags: FTP_FLAGS,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
@@ -2522,7 +2524,7 @@ pub extern "WININET" fn FtpOpenFileW(
     hConnect: *c_void,
     lpszFileName: [*:0]const u16,
     dwAccess: u32,
-    dwFlags: Ftp_dwFlags,
+    dwFlags: FTP_FLAGS,
     dwContext: usize,
 ) callconv(@import("std").os.windows.WINAPI) *c_void;
 
@@ -2580,7 +2582,7 @@ pub extern "WININET" fn FtpGetCurrentDirectoryW(
 pub extern "WININET" fn FtpCommandA(
     hConnect: *c_void,
     fExpectResponse: BOOL,
-    dwFlags: Ftp_dwFlags,
+    dwFlags: FTP_FLAGS,
     lpszCommand: [*:0]const u8,
     dwContext: usize,
     phFtpCommand: ?*?*c_void,
@@ -2590,7 +2592,7 @@ pub extern "WININET" fn FtpCommandA(
 pub extern "WININET" fn FtpCommandW(
     hConnect: *c_void,
     fExpectResponse: BOOL,
-    dwFlags: Ftp_dwFlags,
+    dwFlags: FTP_FLAGS,
     lpszCommand: [*:0]const u16,
     dwContext: usize,
     phFtpCommand: ?*?*c_void,
@@ -2866,7 +2868,7 @@ pub extern "WININET" fn InternetGetCookieExA(
     lpszCookieName: ?[*:0]const u8,
     lpszCookieData: ?[*:0]u8,
     lpdwSize: *u32,
-    dwFlags: InternetGetCookieEx_dwFlags,
+    dwFlags: INTERNET_COOKIE_FLAGS,
     lpReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -2876,7 +2878,7 @@ pub extern "WININET" fn InternetGetCookieExW(
     lpszCookieName: ?[*:0]const u16,
     lpszCookieData: ?[*:0]u16,
     lpdwSize: *u32,
-    dwFlags: InternetGetCookieEx_dwFlags,
+    dwFlags: INTERNET_COOKIE_FLAGS,
     lpReserved: *c_void,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -3439,7 +3441,7 @@ pub extern "WININET" fn InternetInitializeAutoProxyDll(
 pub extern "WININET" fn DetectAutoProxyUrl(
     pszAutoProxyUrl: [*:0]u8,
     cchAutoProxyUrl: u32,
-    dwDetectFlags: DetectAutoProxyUrl_dwDetectFlags,
+    dwDetectFlags: PROXY_AUTO_DETECT_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -3653,7 +3655,7 @@ pub extern "WININET" fn InternetWriteFileExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "WININET" fn FindP3PPolicySymbol(
-    pszSymbol: *const i8,
+    pszSymbol: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "WININET" fn HttpGetServerCredentials(
@@ -4589,26 +4591,27 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (22)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const PWSTR = @import("system_services.zig").PWSTR;
 const FILETIME = @import("windows_programming.zig").FILETIME;
-const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
-const CERT_CHAIN_CONTEXT = @import("security.zig").CERT_CHAIN_CONTEXT;
+const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
 const HRESULT = @import("com.zig").HRESULT;
-const HINSTANCE = @import("system_services.zig").HINSTANCE;
+const CERT_CHAIN_CONTEXT = @import("security.zig").CERT_CHAIN_CONTEXT;
 const SecPkgContext_Bindings = @import("security.zig").SecPkgContext_Bindings;
-const BSTR = @import("automation.zig").BSTR;
+const WIN_HTTP_CREATE_URL_FLAGS = @import("http.zig").WIN_HTTP_CREATE_URL_FLAGS;
 const PSTR = @import("system_services.zig").PSTR;
 const HBITMAP = @import("gdi.zig").HBITMAP;
 const BOOL = @import("system_services.zig").BOOL;
 const HWND = @import("windows_and_messaging.zig").HWND;
 const SecPkgContext_CipherInfo = @import("security.zig").SecPkgContext_CipherInfo;
 const IInspectable = @import("win_rt.zig").IInspectable;
-const WinHttpCreateUrl_dwFlags = @import("http.zig").WinHttpCreateUrl_dwFlags;
 const WIN32_FIND_DATAW = @import("file_system.zig").WIN32_FIND_DATAW;
+const HINSTANCE = @import("system_services.zig").HINSTANCE;
+const BSTR = @import("automation.zig").BSTR;
 const SecPkgContext_ConnectionInfo = @import("security.zig").SecPkgContext_ConnectionInfo;
 const SYSTEMTIME = @import("windows_programming.zig").SYSTEMTIME;
 const HANDLE = @import("system_services.zig").HANDLE;
@@ -4627,12 +4630,12 @@ test {
 
     const constant_export_count = 845;
     const type_export_count = 116;
-    const enum_value_export_count = 157;
+    const enum_value_export_count = 158;
     const com_iface_id_export_count = 5;
     const com_class_id_export_count = 1;
     const func_export_count = 296;
     const unicode_alias_count = 81;
-    const import_count = 22;
+    const import_count = 23;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

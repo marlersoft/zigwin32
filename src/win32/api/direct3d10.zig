@@ -680,7 +680,7 @@ pub const D3D10_COLOR_WRITE_ENABLE_ALL = D3D10_COLOR_WRITE_ENABLE.ALL;
 
 pub const D3D10_BLEND_DESC = extern struct {
     AlphaToCoverageEnable: BOOL,
-    BlendEnable: [8]***BOOL,
+    BlendEnable: [8]*BOOL,
     SrcBlend: D3D10_BLEND,
     DestBlend: D3D10_BLEND,
     BlendOp: D3D10_BLEND_OP,

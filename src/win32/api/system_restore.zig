@@ -27,40 +27,16 @@ pub const MAX_DESC_W = @as(u32, 256);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const RESTOREPOINTINFOA_dwRestorePtType = extern enum(u32) {
-    APPLICATION_INSTALL = 0,
-    APPLICATION_UNINSTALL = 1,
-    DEVICE_DRIVER_INSTALL = 10,
-    MODIFY_SETTINGS = 12,
-    CANCELLED_OPERATION = 13,
-};
-pub const APPLICATION_INSTALL = RESTOREPOINTINFOA_dwRestorePtType.APPLICATION_INSTALL;
-pub const APPLICATION_UNINSTALL = RESTOREPOINTINFOA_dwRestorePtType.APPLICATION_UNINSTALL;
-pub const DEVICE_DRIVER_INSTALL = RESTOREPOINTINFOA_dwRestorePtType.DEVICE_DRIVER_INSTALL;
-pub const MODIFY_SETTINGS = RESTOREPOINTINFOA_dwRestorePtType.MODIFY_SETTINGS;
-pub const CANCELLED_OPERATION = RESTOREPOINTINFOA_dwRestorePtType.CANCELLED_OPERATION;
-
-pub const RESTOREPOINTINFOA_dwEventType = extern enum(u32) {
-    BEGIN_NESTED_SYSTEM_CHANGE = 102,
-    BEGIN_SYSTEM_CHANGE = 100,
-    END_NESTED_SYSTEM_CHANGE = 103,
-    END_SYSTEM_CHANGE = 101,
-};
-pub const BEGIN_NESTED_SYSTEM_CHANGE = RESTOREPOINTINFOA_dwEventType.BEGIN_NESTED_SYSTEM_CHANGE;
-pub const BEGIN_SYSTEM_CHANGE = RESTOREPOINTINFOA_dwEventType.BEGIN_SYSTEM_CHANGE;
-pub const END_NESTED_SYSTEM_CHANGE = RESTOREPOINTINFOA_dwEventType.END_NESTED_SYSTEM_CHANGE;
-pub const END_SYSTEM_CHANGE = RESTOREPOINTINFOA_dwEventType.END_SYSTEM_CHANGE;
-
 pub const RESTOREPOINTINFOA = extern struct {
-    dwEventType: RESTOREPOINTINFOA_dwEventType,
-    dwRestorePtType: RESTOREPOINTINFOA_dwRestorePtType,
+    dwEventType: RESTOREPOINTINFO_EVENT_TYPE,
+    dwRestorePtType: RESTOREPOINTINFO_TYPE,
     llSequenceNumber: i64,
-    szDescription: [64]i8,
+    szDescription: [64]CHAR,
 };
 
 pub const RESTOREPOINTINFOW = extern struct {
-    dwEventType: RESTOREPOINTINFOA_dwEventType,
-    dwRestorePtType: RESTOREPOINTINFOA_dwRestorePtType,
+    dwEventType: RESTOREPOINTINFO_EVENT_TYPE,
+    dwRestorePtType: RESTOREPOINTINFO_TYPE,
     llSequenceNumber: i64,
     szDescription: [256]u16,
 };
@@ -77,6 +53,30 @@ pub const STATEMGRSTATUS = extern struct {
     nStatus: u32,
     llSequenceNumber: i64,
 };
+
+pub const RESTOREPOINTINFO_TYPE = extern enum(u32) {
+    APPLICATION_INSTALL = 0,
+    APPLICATION_UNINSTALL = 1,
+    DEVICE_DRIVER_INSTALL = 10,
+    MODIFY_SETTINGS = 12,
+    CANCELLED_OPERATION = 13,
+};
+pub const APPLICATION_INSTALL = RESTOREPOINTINFO_TYPE.APPLICATION_INSTALL;
+pub const APPLICATION_UNINSTALL = RESTOREPOINTINFO_TYPE.APPLICATION_UNINSTALL;
+pub const DEVICE_DRIVER_INSTALL = RESTOREPOINTINFO_TYPE.DEVICE_DRIVER_INSTALL;
+pub const MODIFY_SETTINGS = RESTOREPOINTINFO_TYPE.MODIFY_SETTINGS;
+pub const CANCELLED_OPERATION = RESTOREPOINTINFO_TYPE.CANCELLED_OPERATION;
+
+pub const RESTOREPOINTINFO_EVENT_TYPE = extern enum(u32) {
+    BEGIN_NESTED_SYSTEM_CHANGE = 102,
+    BEGIN_SYSTEM_CHANGE = 100,
+    END_NESTED_SYSTEM_CHANGE = 103,
+    END_SYSTEM_CHANGE = 101,
+};
+pub const BEGIN_NESTED_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.BEGIN_NESTED_SYSTEM_CHANGE;
+pub const BEGIN_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.BEGIN_SYSTEM_CHANGE;
+pub const END_NESTED_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.END_NESTED_SYSTEM_CHANGE;
+pub const END_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.END_SYSTEM_CHANGE;
 
 
 //--------------------------------------------------------------------------------
@@ -116,9 +116,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const FILETIME = @import("windows_programming.zig").FILETIME;
+const CHAR = @import("system_services.zig").CHAR;
 const BOOL = @import("system_services.zig").BOOL;
 
 test {
@@ -129,7 +130,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 2;
     const unicode_alias_count = 2;
-    const import_count = 2;
+    const import_count = 3;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

@@ -896,9 +896,9 @@ pub const ISCSI_TARGET_MAPPINGW = extern struct {
 };
 
 pub const ISCSI_TARGET_MAPPINGA = extern struct {
-    InitiatorName: [256]i8,
-    TargetName: [224]i8,
-    OSDeviceName: [260]i8,
+    InitiatorName: [256]CHAR,
+    TargetName: [224]CHAR,
+    OSDeviceName: [260]CHAR,
     SessionId: ISCSI_UNIQUE_SESSION_ID,
     OSBusNumber: u32,
     OSTargetNumber: u32,
@@ -913,8 +913,8 @@ pub const ISCSI_TARGET_PORTALW = extern struct {
 };
 
 pub const ISCSI_TARGET_PORTALA = extern struct {
-    SymbolicName: [256]i8,
-    Address: [256]i8,
+    SymbolicName: [256]CHAR,
+    Address: [256]CHAR,
     Socket: u16,
 };
 
@@ -927,10 +927,10 @@ pub const ISCSI_TARGET_PORTAL_INFOW = extern struct {
 };
 
 pub const ISCSI_TARGET_PORTAL_INFOA = extern struct {
-    InitiatorName: [256]i8,
+    InitiatorName: [256]CHAR,
     InitiatorPortNumber: u32,
-    SymbolicName: [256]i8,
-    Address: [256]i8,
+    SymbolicName: [256]CHAR,
+    Address: [256]CHAR,
     Socket: u16,
 };
 
@@ -945,10 +945,10 @@ pub const ISCSI_TARGET_PORTAL_INFO_EXW = extern struct {
 };
 
 pub const ISCSI_TARGET_PORTAL_INFO_EXA = extern struct {
-    InitiatorName: [256]i8,
+    InitiatorName: [256]CHAR,
     InitiatorPortNumber: u32,
-    SymbolicName: [256]i8,
-    Address: [256]i8,
+    SymbolicName: [256]CHAR,
+    Address: [256]CHAR,
     Socket: u16,
     SecurityFlags: u64,
     LoginOptions: ISCSI_LOGIN_OPTIONS,
@@ -1044,12 +1044,12 @@ pub const ISCSI_DEVICE_ON_SESSIONW = extern struct {
 };
 
 pub const ISCSI_DEVICE_ON_SESSIONA = extern struct {
-    InitiatorName: [256]i8,
-    TargetName: [224]i8,
+    InitiatorName: [256]CHAR,
+    TargetName: [224]CHAR,
     ScsiAddress: SCSI_ADDRESS,
     DeviceInterfaceType: Guid,
-    DeviceInterfaceName: [260]i8,
-    LegacyName: [260]i8,
+    DeviceInterfaceName: [260]CHAR,
+    LegacyName: [260]CHAR,
     StorageDeviceNumber: STORAGE_DEVICE_NUMBER,
     DeviceInstance: u32,
 };
@@ -1066,9 +1066,9 @@ pub const PERSISTENT_ISCSI_LOGIN_INFOW = extern struct {
 };
 
 pub const PERSISTENT_ISCSI_LOGIN_INFOA = extern struct {
-    TargetName: [224]i8,
+    TargetName: [224]CHAR,
     IsInformationalSession: u8,
-    InitiatorInstance: [256]i8,
+    InitiatorInstance: [256]CHAR,
     InitiatorPortNumber: u32,
     TargetPortal: ISCSI_TARGET_PORTALA,
     SecurityFlags: u64,
@@ -1852,12 +1852,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (5)
+// Section: Imports (6)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const STORAGE_DEVICE_NUMBER = @import("system_services.zig").STORAGE_DEVICE_NUMBER;
 const LARGE_INTEGER = @import("system_services.zig").LARGE_INTEGER;
 const PWSTR = @import("system_services.zig").PWSTR;
+const CHAR = @import("system_services.zig").CHAR;
 const PSTR = @import("system_services.zig").PSTR;
 
 test {
@@ -1872,7 +1873,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 79;
     const unicode_alias_count = 42;
-    const import_count = 5;
+    const import_count = 6;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

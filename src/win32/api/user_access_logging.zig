@@ -331,7 +331,7 @@ pub const UAL_DATA_BLOB = extern struct {
     Size: u32,
     RoleGuid: Guid,
     TenantId: Guid,
-    Address: SOCKADDR_STORAGE_LH,
+    Address: SOCKADDR_STORAGE,
     UserName: [260]u16,
 };
 
@@ -385,7 +385,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const PWSTR = @import("system_services.zig").PWSTR;
 const IUnknown = @import("com.zig").IUnknown;
-const SOCKADDR_STORAGE_LH = @import("network_drivers.zig").SOCKADDR_STORAGE_LH;
+const SOCKADDR_STORAGE = @import("win_sock.zig").SOCKADDR_STORAGE;
 const HRESULT = @import("com.zig").HRESULT;
 const HANDLE = @import("system_services.zig").HANDLE;
 const ITfFunction = @import("text_services.zig").ITfFunction;

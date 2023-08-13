@@ -1026,1511 +1026,6 @@ pub const JET_bitDumpCacheNoDecommit = @as(u32, 128);
 //--------------------------------------------------------------------------------
 // Section: Types (136)
 //--------------------------------------------------------------------------------
-pub const VERSIONEDSTREAM = extern struct {
-    guidVersion: Guid,
-    pStream: *IStream,
-};
-
-pub const CAC = extern struct {
-    cElems: u32,
-    pElems: *i8,
-};
-
-pub const CAUB = extern struct {
-    cElems: u32,
-    pElems: *u8,
-};
-
-pub const CAI = extern struct {
-    cElems: u32,
-    pElems: *i16,
-};
-
-pub const CAUI = extern struct {
-    cElems: u32,
-    pElems: *u16,
-};
-
-pub const CAL = extern struct {
-    cElems: u32,
-    pElems: *i32,
-};
-
-pub const CAUL = extern struct {
-    cElems: u32,
-    pElems: *u32,
-};
-
-pub const CAFLT = extern struct {
-    cElems: u32,
-    pElems: *f32,
-};
-
-pub const CADBL = extern struct {
-    cElems: u32,
-    pElems: *f64,
-};
-
-pub const CACY = extern struct {
-    cElems: u32,
-    pElems: *CY,
-};
-
-pub const CADATE = extern struct {
-    cElems: u32,
-    pElems: *f64,
-};
-
-pub const CABSTR = extern struct {
-    cElems: u32,
-    pElems: *BSTR,
-};
-
-pub const CABSTRBLOB = extern struct {
-    cElems: u32,
-    pElems: *BSTRBLOB,
-};
-
-pub const CABOOL = extern struct {
-    cElems: u32,
-    pElems: *i16,
-};
-
-pub const CASCODE = extern struct {
-    cElems: u32,
-    pElems: *i32,
-};
-
-pub const CAPROPVARIANT = extern struct {
-    cElems: u32,
-    pElems: *PROPVARIANT,
-};
-
-pub const CAH = extern struct {
-    cElems: u32,
-    pElems: *LARGE_INTEGER,
-};
-
-pub const CAUH = extern struct {
-    cElems: u32,
-    pElems: *ULARGE_INTEGER,
-};
-
-pub const CALPSTR = extern struct {
-    cElems: u32,
-    pElems: *PSTR,
-};
-
-pub const CALPWSTR = extern struct {
-    cElems: u32,
-    pElems: *PWSTR,
-};
-
-pub const CAFILETIME = extern struct {
-    cElems: u32,
-    pElems: *FILETIME,
-};
-
-pub const CACLIPDATA = extern struct {
-    cElems: u32,
-    pElems: *CLIPDATA,
-};
-
-pub const CACLSID = extern struct {
-    cElems: u32,
-    pElems: *Guid,
-};
-
-pub const PROPVARIANT = extern struct {
-    Anonymous: PROPVARIANT._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const PROPSPEC = extern struct {
-    ulKind: PROPSPEC_ulKind,
-    Anonymous: PROPSPEC._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const STATPROPSTG = extern struct {
-    lpwstrName: PWSTR,
-    propid: u32,
-    vt: u16,
-};
-
-pub const STATPROPSETSTG = extern struct {
-    fmtid: Guid,
-    clsid: Guid,
-    grfFlags: u32,
-    mtime: FILETIME,
-    ctime: FILETIME,
-    atime: FILETIME,
-    dwOSVersion: u32,
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IPropertyStorage_Value = @import("../zig.zig").Guid.initString("00000138-0000-0000-c000-000000000046");
-pub const IID_IPropertyStorage = &IID_IPropertyStorage_Value;
-pub const IPropertyStorage = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        ReadMultiple: fn(
-            self: *const IPropertyStorage,
-            cpspec: u32,
-            rgpspec: [*]const PROPSPEC,
-            rgpropvar: [*]PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteMultiple: fn(
-            self: *const IPropertyStorage,
-            cpspec: u32,
-            rgpspec: [*]const PROPSPEC,
-            rgpropvar: [*]const PROPVARIANT,
-            propidNameFirst: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeleteMultiple: fn(
-            self: *const IPropertyStorage,
-            cpspec: u32,
-            rgpspec: [*]const PROPSPEC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ReadPropertyNames: fn(
-            self: *const IPropertyStorage,
-            cpropid: u32,
-            rgpropid: [*]const u32,
-            rglpwstrName: [*]*PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WritePropertyNames: fn(
-            self: *const IPropertyStorage,
-            cpropid: u32,
-            rgpropid: [*]const u32,
-            rglpwstrName: [*]const *const [*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DeletePropertyNames: fn(
-            self: *const IPropertyStorage,
-            cpropid: u32,
-            rgpropid: [*]const u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Commit: fn(
-            self: *const IPropertyStorage,
-            grfCommitFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Revert: fn(
-            self: *const IPropertyStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Enum: fn(
-            self: *const IPropertyStorage,
-            ppenum: **IEnumSTATPROPSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetTimes: fn(
-            self: *const IPropertyStorage,
-            pctime: *const FILETIME,
-            patime: *const FILETIME,
-            pmtime: *const FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetClass: fn(
-            self: *const IPropertyStorage,
-            clsid: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Stat: fn(
-            self: *const IPropertyStorage,
-            pstatpsstg: *STATPROPSETSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_ReadMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).ReadMultiple(@ptrCast(*const IPropertyStorage, self), cpspec, rgpspec, rgpropvar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_WriteMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]const PROPVARIANT, propidNameFirst: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).WriteMultiple(@ptrCast(*const IPropertyStorage, self), cpspec, rgpspec, rgpropvar, propidNameFirst);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_DeleteMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).DeleteMultiple(@ptrCast(*const IPropertyStorage, self), cpspec, rgpspec);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_ReadPropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]*PWSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).ReadPropertyNames(@ptrCast(*const IPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_WritePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const *const [*:0]const u16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).WritePropertyNames(@ptrCast(*const IPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_DeletePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).DeletePropertyNames(@ptrCast(*const IPropertyStorage, self), cpropid, rgpropid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_Commit(self: *const T, grfCommitFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Commit(@ptrCast(*const IPropertyStorage, self), grfCommitFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_Revert(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Revert(@ptrCast(*const IPropertyStorage, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_Enum(self: *const T, ppenum: **IEnumSTATPROPSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Enum(@ptrCast(*const IPropertyStorage, self), ppenum);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_SetTimes(self: *const T, pctime: *const FILETIME, patime: *const FILETIME, pmtime: *const FILETIME) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).SetTimes(@ptrCast(*const IPropertyStorage, self), pctime, patime, pmtime);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_SetClass(self: *const T, clsid: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).SetClass(@ptrCast(*const IPropertyStorage, self), clsid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStorage_Stat(self: *const T, pstatpsstg: *STATPROPSETSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Stat(@ptrCast(*const IPropertyStorage, self), pstatpsstg);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IPropertySetStorage_Value = @import("../zig.zig").Guid.initString("0000013a-0000-0000-c000-000000000046");
-pub const IID_IPropertySetStorage = &IID_IPropertySetStorage_Value;
-pub const IPropertySetStorage = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Create: fn(
-            self: *const IPropertySetStorage,
-            rfmtid: *const Guid,
-            pclsid: *const Guid,
-            grfFlags: u32,
-            grfMode: u32,
-            ppprstg: **IPropertyStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Open: fn(
-            self: *const IPropertySetStorage,
-            rfmtid: *const Guid,
-            grfMode: u32,
-            ppprstg: **IPropertyStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Delete: fn(
-            self: *const IPropertySetStorage,
-            rfmtid: *const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Enum: fn(
-            self: *const IPropertySetStorage,
-            ppenum: **IEnumSTATPROPSETSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySetStorage_Create(self: *const T, rfmtid: *const Guid, pclsid: *const Guid, grfFlags: u32, grfMode: u32, ppprstg: **IPropertyStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Create(@ptrCast(*const IPropertySetStorage, self), rfmtid, pclsid, grfFlags, grfMode, ppprstg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySetStorage_Open(self: *const T, rfmtid: *const Guid, grfMode: u32, ppprstg: **IPropertyStorage) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Open(@ptrCast(*const IPropertySetStorage, self), rfmtid, grfMode, ppprstg);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySetStorage_Delete(self: *const T, rfmtid: *const Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Delete(@ptrCast(*const IPropertySetStorage, self), rfmtid);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySetStorage_Enum(self: *const T, ppenum: **IEnumSTATPROPSETSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Enum(@ptrCast(*const IPropertySetStorage, self), ppenum);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumSTATPROPSTG_Value = @import("../zig.zig").Guid.initString("00000139-0000-0000-c000-000000000046");
-pub const IID_IEnumSTATPROPSTG = &IID_IEnumSTATPROPSTG_Value;
-pub const IEnumSTATPROPSTG = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumSTATPROPSTG,
-            celt: u32,
-            rgelt: [*]STATPROPSTG,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumSTATPROPSTG,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumSTATPROPSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumSTATPROPSTG,
-            ppenum: **IEnumSTATPROPSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSTG_Next(self: *const T, celt: u32, rgelt: [*]STATPROPSTG, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Next(@ptrCast(*const IEnumSTATPROPSTG, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSTG_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Skip(@ptrCast(*const IEnumSTATPROPSTG, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSTG_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Reset(@ptrCast(*const IEnumSTATPROPSTG, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSTG_Clone(self: *const T, ppenum: **IEnumSTATPROPSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Clone(@ptrCast(*const IEnumSTATPROPSTG, self), ppenum);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows5.0'
-const IID_IEnumSTATPROPSETSTG_Value = @import("../zig.zig").Guid.initString("0000013b-0000-0000-c000-000000000046");
-pub const IID_IEnumSTATPROPSETSTG = &IID_IEnumSTATPROPSETSTG_Value;
-pub const IEnumSTATPROPSETSTG = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Next: fn(
-            self: *const IEnumSTATPROPSETSTG,
-            celt: u32,
-            rgelt: [*]STATPROPSETSTG,
-            pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Skip: fn(
-            self: *const IEnumSTATPROPSETSTG,
-            celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IEnumSTATPROPSETSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Clone: fn(
-            self: *const IEnumSTATPROPSETSTG,
-            ppenum: **IEnumSTATPROPSETSTG,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSETSTG_Next(self: *const T, celt: u32, rgelt: [*]STATPROPSETSTG, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Next(@ptrCast(*const IEnumSTATPROPSETSTG, self), celt, rgelt, pceltFetched);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSETSTG_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Skip(@ptrCast(*const IEnumSTATPROPSETSTG, self), celt);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSETSTG_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Reset(@ptrCast(*const IEnumSTATPROPSETSTG, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumSTATPROPSETSTG_Clone(self: *const T, ppenum: **IEnumSTATPROPSETSTG) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Clone(@ptrCast(*const IEnumSTATPROPSETSTG, self), ppenum);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const STGOPTIONS = extern struct {
-    usVersion: u16,
-    reserved: u16,
-    ulSectorSize: u32,
-    pwcsTemplateFile: [*:0]const u16,
-};
-
-pub const PIDMSI_STATUS_VALUE = extern enum(i32) {
-    NORMAL = 0,
-    NEW = 1,
-    PRELIM = 2,
-    DRAFT = 3,
-    INPROGRESS = 4,
-    EDIT = 5,
-    REVIEW = 6,
-    PROOF = 7,
-    FINAL = 8,
-    OTHER = 32767,
-};
-pub const PIDMSI_STATUS_NORMAL = PIDMSI_STATUS_VALUE.NORMAL;
-pub const PIDMSI_STATUS_NEW = PIDMSI_STATUS_VALUE.NEW;
-pub const PIDMSI_STATUS_PRELIM = PIDMSI_STATUS_VALUE.PRELIM;
-pub const PIDMSI_STATUS_DRAFT = PIDMSI_STATUS_VALUE.DRAFT;
-pub const PIDMSI_STATUS_INPROGRESS = PIDMSI_STATUS_VALUE.INPROGRESS;
-pub const PIDMSI_STATUS_EDIT = PIDMSI_STATUS_VALUE.EDIT;
-pub const PIDMSI_STATUS_REVIEW = PIDMSI_STATUS_VALUE.REVIEW;
-pub const PIDMSI_STATUS_PROOF = PIDMSI_STATUS_VALUE.PROOF;
-pub const PIDMSI_STATUS_FINAL = PIDMSI_STATUS_VALUE.FINAL;
-pub const PIDMSI_STATUS_OTHER = PIDMSI_STATUS_VALUE.OTHER;
-
-pub const PMemoryAllocator = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const JET_INDEXID = extern struct {
-    cbStruct: u32,
-    rgbIndexId: [16]u8,
-};
-
-pub const JET_PFNSTATUS = fn(
-    sesid: u64,
-    snp: u32,
-    snt: u32,
-    pv: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const JET_RSTMAP_A = extern struct {
-    szDatabaseName: *i8,
-    szNewDatabaseName: *i8,
-};
-
-pub const JET_RSTMAP_W = extern struct {
-    szDatabaseName: PWSTR,
-    szNewDatabaseName: PWSTR,
-};
-
-pub const CONVERT_A = extern struct {
-    szOldDll: *i8,
-    Anonymous: CONVERT_A._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const CONVERT_W = extern struct {
-    szOldDll: PWSTR,
-    Anonymous: CONVERT_W._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JET_CALLBACK = fn(
-    sesid: u64,
-    dbid: u32,
-    tableid: u64,
-    cbtyp: u32,
-    pvArg1: ?*c_void,
-    pvArg2: ?*c_void,
-    pvContext: ?*c_void,
-    ulUnused: u64,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const JET_SNPROG = extern struct {
-    cbStruct: u32,
-    cunitDone: u32,
-    cunitTotal: u32,
-};
-
-pub const JET_DBINFOUPGRADE = extern struct {
-    cbStruct: u32,
-    cbFilesizeLow: u32,
-    cbFilesizeHigh: u32,
-    cbFreeSpaceRequiredLow: u32,
-    cbFreeSpaceRequiredHigh: u32,
-    csecToUpgrade: u32,
-    Anonymous: JET_DBINFOUPGRADE._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JET_OBJECTINFO = extern struct {
-    cbStruct: u32,
-    objtyp: u32,
-    dtCreate: f64,
-    dtUpdate: f64,
-    grbit: u32,
-    flags: u32,
-    cRecord: u32,
-    cPage: u32,
-};
-
-pub const JET_OBJECTLIST = extern struct {
-    cbStruct: u32,
-    tableid: u64,
-    cRecord: u32,
-    columnidcontainername: u32,
-    columnidobjectname: u32,
-    columnidobjtyp: u32,
-    columniddtCreate: u32,
-    columniddtUpdate: u32,
-    columnidgrbit: u32,
-    columnidflags: u32,
-    columnidcRecord: u32,
-    columnidcPage: u32,
-};
-
-pub const JET_COLUMNLIST = extern struct {
-    cbStruct: u32,
-    tableid: u64,
-    cRecord: u32,
-    columnidPresentationOrder: u32,
-    columnidcolumnname: u32,
-    columnidcolumnid: u32,
-    columnidcoltyp: u32,
-    columnidCountry: u32,
-    columnidLangid: u32,
-    columnidCp: u32,
-    columnidCollate: u32,
-    columnidcbMax: u32,
-    columnidgrbit: u32,
-    columnidDefault: u32,
-    columnidBaseTableName: u32,
-    columnidBaseColumnName: u32,
-    columnidDefinitionName: u32,
-};
-
-pub const JET_COLUMNDEF = extern struct {
-    cbStruct: u32,
-    columnid: u32,
-    coltyp: u32,
-    wCountry: u16,
-    langid: u16,
-    cp: u16,
-    wCollate: u16,
-    cbMax: u32,
-    grbit: u32,
-};
-
-pub const JET_COLUMNBASE_A = extern struct {
-    cbStruct: u32,
-    columnid: u32,
-    coltyp: u32,
-    wCountry: u16,
-    langid: u16,
-    cp: u16,
-    wFiller: u16,
-    cbMax: u32,
-    grbit: u32,
-    szBaseTableName: [256]i8,
-    szBaseColumnName: [256]i8,
-};
-
-pub const JET_COLUMNBASE_W = extern struct {
-    cbStruct: u32,
-    columnid: u32,
-    coltyp: u32,
-    wCountry: u16,
-    langid: u16,
-    cp: u16,
-    wFiller: u16,
-    cbMax: u32,
-    grbit: u32,
-    szBaseTableName: [256]u16,
-    szBaseColumnName: [256]u16,
-};
-
-pub const JET_INDEXLIST = extern struct {
-    cbStruct: u32,
-    tableid: u64,
-    cRecord: u32,
-    columnidindexname: u32,
-    columnidgrbitIndex: u32,
-    columnidcKey: u32,
-    columnidcEntry: u32,
-    columnidcPage: u32,
-    columnidcColumn: u32,
-    columnidiColumn: u32,
-    columnidcolumnid: u32,
-    columnidcoltyp: u32,
-    columnidCountry: u32,
-    columnidLangid: u32,
-    columnidCp: u32,
-    columnidCollate: u32,
-    columnidgrbitColumn: u32,
-    columnidcolumnname: u32,
-    columnidLCMapFlags: u32,
-};
-
-pub const JET_COLUMNCREATE_A = extern struct {
-    cbStruct: u32,
-    szColumnName: *i8,
-    coltyp: u32,
-    cbMax: u32,
-    grbit: u32,
-    pvDefault: *c_void,
-    cbDefault: u32,
-    cp: u32,
-    columnid: u32,
-    err: i32,
-};
-
-pub const JET_COLUMNCREATE_W = extern struct {
-    cbStruct: u32,
-    szColumnName: PWSTR,
-    coltyp: u32,
-    cbMax: u32,
-    grbit: u32,
-    pvDefault: *c_void,
-    cbDefault: u32,
-    cp: u32,
-    columnid: u32,
-    err: i32,
-};
-
-pub const JET_USERDEFINEDDEFAULT_A = extern struct {
-    szCallback: *i8,
-    pbUserData: *u8,
-    cbUserData: u32,
-    szDependantColumns: *i8,
-};
-
-pub const JET_USERDEFINEDDEFAULT_W = extern struct {
-    szCallback: PWSTR,
-    pbUserData: *u8,
-    cbUserData: u32,
-    szDependantColumns: PWSTR,
-};
-
-pub const JET_CONDITIONALCOLUMN_A = extern struct {
-    cbStruct: u32,
-    szColumnName: *i8,
-    grbit: u32,
-};
-
-pub const JET_CONDITIONALCOLUMN_W = extern struct {
-    cbStruct: u32,
-    szColumnName: PWSTR,
-    grbit: u32,
-};
-
-pub const JET_UNICODEINDEX = extern struct {
-    lcid: u32,
-    dwMapFlags: u32,
-};
-
-pub const JET_UNICODEINDEX2 = extern struct {
-    szLocaleName: PWSTR,
-    dwMapFlags: u32,
-};
-
-pub const JET_TUPLELIMITS = extern struct {
-    chLengthMin: u32,
-    chLengthMax: u32,
-    chToIndexMax: u32,
-    cchIncrement: u32,
-    ichStart: u32,
-};
-
-pub const JET_SPACEHINTS = extern struct {
-    cbStruct: u32,
-    ulInitialDensity: u32,
-    cbInitial: u32,
-    grbit: u32,
-    ulMaintDensity: u32,
-    ulGrowth: u32,
-    cbMinExtent: u32,
-    cbMaxExtent: u32,
-};
-
-pub const JET_INDEXCREATE_A = extern struct {
-    cbStruct: u32,
-    szIndexName: *i8,
-    szKey: *i8,
-    cbKey: u32,
-    grbit: u32,
-    ulDensity: u32,
-    Anonymous1: JET_INDEXCREATE_A._Anonymous1_e__Union,
-    Anonymous2: JET_INDEXCREATE_A._Anonymous2_e__Union,
-    rgconditionalcolumn: *JET_CONDITIONALCOLUMN_A,
-    cConditionalColumn: u32,
-    err: i32,
-    cbKeyMost: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JET_INDEXCREATE_W = extern struct {
-    cbStruct: u32,
-    szIndexName: PWSTR,
-    szKey: PWSTR,
-    cbKey: u32,
-    grbit: u32,
-    ulDensity: u32,
-    Anonymous1: JET_INDEXCREATE_W._Anonymous1_e__Union,
-    Anonymous2: JET_INDEXCREATE_W._Anonymous2_e__Union,
-    rgconditionalcolumn: *JET_CONDITIONALCOLUMN_W,
-    cConditionalColumn: u32,
-    err: i32,
-    cbKeyMost: u32,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JET_INDEXCREATE2_A = extern struct {
-    cbStruct: u32,
-    szIndexName: *i8,
-    szKey: *i8,
-    cbKey: u32,
-    grbit: u32,
-    ulDensity: u32,
-    Anonymous1: JET_INDEXCREATE2_A._Anonymous1_e__Union,
-    Anonymous2: JET_INDEXCREATE2_A._Anonymous2_e__Union,
-    rgconditionalcolumn: *JET_CONDITIONALCOLUMN_A,
-    cConditionalColumn: u32,
-    err: i32,
-    cbKeyMost: u32,
-    pSpacehints: *JET_SPACEHINTS,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JET_INDEXCREATE2_W = extern struct {
-    cbStruct: u32,
-    szIndexName: PWSTR,
-    szKey: PWSTR,
-    cbKey: u32,
-    grbit: u32,
-    ulDensity: u32,
-    Anonymous1: JET_INDEXCREATE2_W._Anonymous1_e__Union,
-    Anonymous2: JET_INDEXCREATE2_W._Anonymous2_e__Union,
-    rgconditionalcolumn: *JET_CONDITIONALCOLUMN_W,
-    cConditionalColumn: u32,
-    err: i32,
-    cbKeyMost: u32,
-    pSpacehints: *JET_SPACEHINTS,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JET_INDEXCREATE3_A = extern struct {
-    cbStruct: u32,
-    szIndexName: *i8,
-    szKey: *i8,
-    cbKey: u32,
-    grbit: u32,
-    ulDensity: u32,
-    pidxunicode: *JET_UNICODEINDEX2,
-    Anonymous: JET_INDEXCREATE3_A._Anonymous_e__Union,
-    rgconditionalcolumn: *JET_CONDITIONALCOLUMN_A,
-    cConditionalColumn: u32,
-    err: i32,
-    cbKeyMost: u32,
-    pSpacehints: *JET_SPACEHINTS,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JET_INDEXCREATE3_W = extern struct {
-    cbStruct: u32,
-    szIndexName: PWSTR,
-    szKey: PWSTR,
-    cbKey: u32,
-    grbit: u32,
-    ulDensity: u32,
-    pidxunicode: *JET_UNICODEINDEX2,
-    Anonymous: JET_INDEXCREATE3_W._Anonymous_e__Union,
-    rgconditionalcolumn: *JET_CONDITIONALCOLUMN_W,
-    cConditionalColumn: u32,
-    err: i32,
-    cbKeyMost: u32,
-    pSpacehints: *JET_SPACEHINTS,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JET_TABLECREATE_A = extern struct {
-    cbStruct: u32,
-    szTableName: *i8,
-    szTemplateTableName: *i8,
-    ulPages: u32,
-    ulDensity: u32,
-    rgcolumncreate: *JET_COLUMNCREATE_A,
-    cColumns: u32,
-    rgindexcreate: *JET_INDEXCREATE_A,
-    cIndexes: u32,
-    grbit: u32,
-    tableid: u64,
-    cCreated: u32,
-};
-
-pub const JET_TABLECREATE_W = extern struct {
-    cbStruct: u32,
-    szTableName: PWSTR,
-    szTemplateTableName: PWSTR,
-    ulPages: u32,
-    ulDensity: u32,
-    rgcolumncreate: *JET_COLUMNCREATE_W,
-    cColumns: u32,
-    rgindexcreate: *JET_INDEXCREATE_W,
-    cIndexes: u32,
-    grbit: u32,
-    tableid: u64,
-    cCreated: u32,
-};
-
-pub const JET_TABLECREATE2_A = extern struct {
-    cbStruct: u32,
-    szTableName: *i8,
-    szTemplateTableName: *i8,
-    ulPages: u32,
-    ulDensity: u32,
-    rgcolumncreate: *JET_COLUMNCREATE_A,
-    cColumns: u32,
-    rgindexcreate: *JET_INDEXCREATE_A,
-    cIndexes: u32,
-    szCallback: *i8,
-    cbtyp: u32,
-    grbit: u32,
-    tableid: u64,
-    cCreated: u32,
-};
-
-pub const JET_TABLECREATE2_W = extern struct {
-    cbStruct: u32,
-    szTableName: PWSTR,
-    szTemplateTableName: PWSTR,
-    ulPages: u32,
-    ulDensity: u32,
-    rgcolumncreate: *JET_COLUMNCREATE_W,
-    cColumns: u32,
-    rgindexcreate: *JET_INDEXCREATE_W,
-    cIndexes: u32,
-    szCallback: PWSTR,
-    cbtyp: u32,
-    grbit: u32,
-    tableid: u64,
-    cCreated: u32,
-};
-
-pub const JET_TABLECREATE3_A = extern struct {
-    cbStruct: u32,
-    szTableName: *i8,
-    szTemplateTableName: *i8,
-    ulPages: u32,
-    ulDensity: u32,
-    rgcolumncreate: *JET_COLUMNCREATE_A,
-    cColumns: u32,
-    rgindexcreate: *JET_INDEXCREATE2_A,
-    cIndexes: u32,
-    szCallback: *i8,
-    cbtyp: u32,
-    grbit: u32,
-    pSeqSpacehints: *JET_SPACEHINTS,
-    pLVSpacehints: *JET_SPACEHINTS,
-    cbSeparateLV: u32,
-    tableid: u64,
-    cCreated: u32,
-};
-
-pub const JET_TABLECREATE3_W = extern struct {
-    cbStruct: u32,
-    szTableName: PWSTR,
-    szTemplateTableName: PWSTR,
-    ulPages: u32,
-    ulDensity: u32,
-    rgcolumncreate: *JET_COLUMNCREATE_W,
-    cColumns: u32,
-    rgindexcreate: *JET_INDEXCREATE2_W,
-    cIndexes: u32,
-    szCallback: PWSTR,
-    cbtyp: u32,
-    grbit: u32,
-    pSeqSpacehints: *JET_SPACEHINTS,
-    pLVSpacehints: *JET_SPACEHINTS,
-    cbSeparateLV: u32,
-    tableid: u64,
-    cCreated: u32,
-};
-
-pub const JET_TABLECREATE4_A = extern struct {
-    cbStruct: u32,
-    szTableName: *i8,
-    szTemplateTableName: *i8,
-    ulPages: u32,
-    ulDensity: u32,
-    rgcolumncreate: *JET_COLUMNCREATE_A,
-    cColumns: u32,
-    rgindexcreate: *JET_INDEXCREATE3_A,
-    cIndexes: u32,
-    szCallback: *i8,
-    cbtyp: u32,
-    grbit: u32,
-    pSeqSpacehints: *JET_SPACEHINTS,
-    pLVSpacehints: *JET_SPACEHINTS,
-    cbSeparateLV: u32,
-    tableid: u64,
-    cCreated: u32,
-};
-
-pub const JET_TABLECREATE4_W = extern struct {
-    cbStruct: u32,
-    szTableName: PWSTR,
-    szTemplateTableName: PWSTR,
-    ulPages: u32,
-    ulDensity: u32,
-    rgcolumncreate: *JET_COLUMNCREATE_W,
-    cColumns: u32,
-    rgindexcreate: *JET_INDEXCREATE3_W,
-    cIndexes: u32,
-    szCallback: PWSTR,
-    cbtyp: u32,
-    grbit: u32,
-    pSeqSpacehints: *JET_SPACEHINTS,
-    pLVSpacehints: *JET_SPACEHINTS,
-    cbSeparateLV: u32,
-    tableid: u64,
-    cCreated: u32,
-};
-
-pub const JET_OPENTEMPORARYTABLE = extern struct {
-    cbStruct: u32,
-    prgcolumndef: *const JET_COLUMNDEF,
-    ccolumn: u32,
-    pidxunicode: *JET_UNICODEINDEX,
-    grbit: u32,
-    prgcolumnid: *u32,
-    cbKeyMost: u32,
-    cbVarSegMac: u32,
-    tableid: u64,
-};
-
-pub const JET_OPENTEMPORARYTABLE2 = extern struct {
-    cbStruct: u32,
-    prgcolumndef: *const JET_COLUMNDEF,
-    ccolumn: u32,
-    pidxunicode: *JET_UNICODEINDEX2,
-    grbit: u32,
-    prgcolumnid: *u32,
-    cbKeyMost: u32,
-    cbVarSegMac: u32,
-    tableid: u64,
-};
-
-pub const JET_RETINFO = extern struct {
-    cbStruct: u32,
-    ibLongValue: u32,
-    itagSequence: u32,
-    columnidNextTagged: u32,
-};
-
-pub const JET_SETINFO = extern struct {
-    cbStruct: u32,
-    ibLongValue: u32,
-    itagSequence: u32,
-};
-
-pub const JET_RECPOS = extern struct {
-    cbStruct: u32,
-    centriesLT: u32,
-    centriesInRange: u32,
-    centriesTotal: u32,
-};
-
-pub const JET_RECORDLIST = extern struct {
-    cbStruct: u32,
-    tableid: u64,
-    cRecord: u32,
-    columnidBookmark: u32,
-};
-
-pub const JET_INDEXRANGE = extern struct {
-    cbStruct: u32,
-    tableid: u64,
-    grbit: u32,
-};
-
-pub const JET_RELOP = extern enum(i32) {
-    Equals = 0,
-    PrefixEquals = 1,
-    NotEquals = 2,
-    LessThanOrEqual = 3,
-    LessThan = 4,
-    GreaterThanOrEqual = 5,
-    GreaterThan = 6,
-    BitmaskEqualsZero = 7,
-    BitmaskNotEqualsZero = 8,
-};
-pub const JET_relopEquals = JET_RELOP.Equals;
-pub const JET_relopPrefixEquals = JET_RELOP.PrefixEquals;
-pub const JET_relopNotEquals = JET_RELOP.NotEquals;
-pub const JET_relopLessThanOrEqual = JET_RELOP.LessThanOrEqual;
-pub const JET_relopLessThan = JET_RELOP.LessThan;
-pub const JET_relopGreaterThanOrEqual = JET_RELOP.GreaterThanOrEqual;
-pub const JET_relopGreaterThan = JET_RELOP.GreaterThan;
-pub const JET_relopBitmaskEqualsZero = JET_RELOP.BitmaskEqualsZero;
-pub const JET_relopBitmaskNotEqualsZero = JET_RELOP.BitmaskNotEqualsZero;
-
-pub const JET_INDEX_COLUMN = extern struct {
-    columnid: u32,
-    relop: JET_RELOP,
-    pv: *c_void,
-    cb: u32,
-    grbit: u32,
-};
-
-pub const JET_INDEX_RANGE = extern struct {
-    rgStartColumns: *JET_INDEX_COLUMN,
-    cStartColumns: u32,
-    rgEndColumns: *JET_INDEX_COLUMN,
-    cEndColumns: u32,
-};
-
-pub const JET_LOGTIME = extern struct {
-    bSeconds: i8,
-    bMinutes: i8,
-    bHours: i8,
-    bDay: i8,
-    bMonth: i8,
-    bYear: i8,
-    Anonymous1: JET_LOGTIME._Anonymous1_e__Union,
-    Anonymous2: JET_LOGTIME._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JET_BKLOGTIME = extern struct {
-    bSeconds: i8,
-    bMinutes: i8,
-    bHours: i8,
-    bDay: i8,
-    bMonth: i8,
-    bYear: i8,
-    Anonymous1: JET_BKLOGTIME._Anonymous1_e__Union,
-    Anonymous2: JET_BKLOGTIME._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JET_LGPOS = extern struct {
-    ib: u16,
-    isec: u16,
-    lGeneration: i32,
-};
-
-pub const JET_SIGNATURE = extern struct {
-    ulRandom: u32,
-    logtimeCreate: JET_LOGTIME,
-    szComputerName: [16]i8,
-};
-
-pub const JET_BKINFO = extern struct {
-    lgposMark: JET_LGPOS,
-    Anonymous: JET_BKINFO._Anonymous_e__Union,
-    genLow: u32,
-    genHigh: u32,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JET_DBINFOMISC = extern struct {
-    ulVersion: u32,
-    ulUpdate: u32,
-    signDb: JET_SIGNATURE,
-    dbstate: u32,
-    lgposConsistent: JET_LGPOS,
-    logtimeConsistent: JET_LOGTIME,
-    logtimeAttach: JET_LOGTIME,
-    lgposAttach: JET_LGPOS,
-    logtimeDetach: JET_LOGTIME,
-    lgposDetach: JET_LGPOS,
-    signLog: JET_SIGNATURE,
-    bkinfoFullPrev: JET_BKINFO,
-    bkinfoIncPrev: JET_BKINFO,
-    bkinfoFullCur: JET_BKINFO,
-    fShadowingDisabled: u32,
-    fUpgradeDb: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    lSPNumber: i32,
-    cbPageSize: u32,
-};
-
-pub const JET_DBINFOMISC2 = extern struct {
-    ulVersion: u32,
-    ulUpdate: u32,
-    signDb: JET_SIGNATURE,
-    dbstate: u32,
-    lgposConsistent: JET_LGPOS,
-    logtimeConsistent: JET_LOGTIME,
-    logtimeAttach: JET_LOGTIME,
-    lgposAttach: JET_LGPOS,
-    logtimeDetach: JET_LOGTIME,
-    lgposDetach: JET_LGPOS,
-    signLog: JET_SIGNATURE,
-    bkinfoFullPrev: JET_BKINFO,
-    bkinfoIncPrev: JET_BKINFO,
-    bkinfoFullCur: JET_BKINFO,
-    fShadowingDisabled: u32,
-    fUpgradeDb: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    lSPNumber: i32,
-    cbPageSize: u32,
-    genMinRequired: u32,
-    genMaxRequired: u32,
-    logtimeGenMaxCreate: JET_LOGTIME,
-    ulRepairCount: u32,
-    logtimeRepair: JET_LOGTIME,
-    ulRepairCountOld: u32,
-    ulECCFixSuccess: u32,
-    logtimeECCFixSuccess: JET_LOGTIME,
-    ulECCFixSuccessOld: u32,
-    ulECCFixFail: u32,
-    logtimeECCFixFail: JET_LOGTIME,
-    ulECCFixFailOld: u32,
-    ulBadChecksum: u32,
-    logtimeBadChecksum: JET_LOGTIME,
-    ulBadChecksumOld: u32,
-};
-
-pub const JET_DBINFOMISC3 = extern struct {
-    ulVersion: u32,
-    ulUpdate: u32,
-    signDb: JET_SIGNATURE,
-    dbstate: u32,
-    lgposConsistent: JET_LGPOS,
-    logtimeConsistent: JET_LOGTIME,
-    logtimeAttach: JET_LOGTIME,
-    lgposAttach: JET_LGPOS,
-    logtimeDetach: JET_LOGTIME,
-    lgposDetach: JET_LGPOS,
-    signLog: JET_SIGNATURE,
-    bkinfoFullPrev: JET_BKINFO,
-    bkinfoIncPrev: JET_BKINFO,
-    bkinfoFullCur: JET_BKINFO,
-    fShadowingDisabled: u32,
-    fUpgradeDb: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    lSPNumber: i32,
-    cbPageSize: u32,
-    genMinRequired: u32,
-    genMaxRequired: u32,
-    logtimeGenMaxCreate: JET_LOGTIME,
-    ulRepairCount: u32,
-    logtimeRepair: JET_LOGTIME,
-    ulRepairCountOld: u32,
-    ulECCFixSuccess: u32,
-    logtimeECCFixSuccess: JET_LOGTIME,
-    ulECCFixSuccessOld: u32,
-    ulECCFixFail: u32,
-    logtimeECCFixFail: JET_LOGTIME,
-    ulECCFixFailOld: u32,
-    ulBadChecksum: u32,
-    logtimeBadChecksum: JET_LOGTIME,
-    ulBadChecksumOld: u32,
-    genCommitted: u32,
-};
-
-pub const JET_DBINFOMISC4 = extern struct {
-    ulVersion: u32,
-    ulUpdate: u32,
-    signDb: JET_SIGNATURE,
-    dbstate: u32,
-    lgposConsistent: JET_LGPOS,
-    logtimeConsistent: JET_LOGTIME,
-    logtimeAttach: JET_LOGTIME,
-    lgposAttach: JET_LGPOS,
-    logtimeDetach: JET_LOGTIME,
-    lgposDetach: JET_LGPOS,
-    signLog: JET_SIGNATURE,
-    bkinfoFullPrev: JET_BKINFO,
-    bkinfoIncPrev: JET_BKINFO,
-    bkinfoFullCur: JET_BKINFO,
-    fShadowingDisabled: u32,
-    fUpgradeDb: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    lSPNumber: i32,
-    cbPageSize: u32,
-    genMinRequired: u32,
-    genMaxRequired: u32,
-    logtimeGenMaxCreate: JET_LOGTIME,
-    ulRepairCount: u32,
-    logtimeRepair: JET_LOGTIME,
-    ulRepairCountOld: u32,
-    ulECCFixSuccess: u32,
-    logtimeECCFixSuccess: JET_LOGTIME,
-    ulECCFixSuccessOld: u32,
-    ulECCFixFail: u32,
-    logtimeECCFixFail: JET_LOGTIME,
-    ulECCFixFailOld: u32,
-    ulBadChecksum: u32,
-    logtimeBadChecksum: JET_LOGTIME,
-    ulBadChecksumOld: u32,
-    genCommitted: u32,
-    bkinfoCopyPrev: JET_BKINFO,
-    bkinfoDiffPrev: JET_BKINFO,
-};
-
-pub const JET_THREADSTATS = extern struct {
-    cbStruct: u32,
-    cPageReferenced: u32,
-    cPageRead: u32,
-    cPagePreread: u32,
-    cPageDirtied: u32,
-    cPageRedirtied: u32,
-    cLogRecord: u32,
-    cbLogRecord: u32,
-};
-
-pub const JET_THREADSTATS2 = extern struct {
-    cbStruct: u32,
-    cPageReferenced: u32,
-    cPageRead: u32,
-    cPagePreread: u32,
-    cPageDirtied: u32,
-    cPageRedirtied: u32,
-    cLogRecord: u32,
-    cbLogRecord: u32,
-    cusecPageCacheMiss: u64,
-    cPageCacheMiss: u32,
-};
-
-pub const JET_RSTINFO_A = extern struct {
-    cbStruct: u32,
-    rgrstmap: *JET_RSTMAP_A,
-    crstmap: i32,
-    lgposStop: JET_LGPOS,
-    logtimeStop: JET_LOGTIME,
-    pfnStatus: JET_PFNSTATUS,
-};
-
-pub const JET_RSTINFO_W = extern struct {
-    cbStruct: u32,
-    rgrstmap: *JET_RSTMAP_W,
-    crstmap: i32,
-    lgposStop: JET_LGPOS,
-    logtimeStop: JET_LOGTIME,
-    pfnStatus: JET_PFNSTATUS,
-};
-
-pub const JET_ERRCAT = extern enum(i32) {
-    Unknown = 0,
-    Error = 1,
-    Operation = 2,
-    Fatal = 3,
-    IO = 4,
-    Resource = 5,
-    Memory = 6,
-    Quota = 7,
-    Disk = 8,
-    Data = 9,
-    Corruption = 10,
-    Inconsistent = 11,
-    Fragmentation = 12,
-    Api = 13,
-    Usage = 14,
-    State = 15,
-    Obsolete = 16,
-    Max = 17,
-};
-pub const JET_errcatUnknown = JET_ERRCAT.Unknown;
-pub const JET_errcatError = JET_ERRCAT.Error;
-pub const JET_errcatOperation = JET_ERRCAT.Operation;
-pub const JET_errcatFatal = JET_ERRCAT.Fatal;
-pub const JET_errcatIO = JET_ERRCAT.IO;
-pub const JET_errcatResource = JET_ERRCAT.Resource;
-pub const JET_errcatMemory = JET_ERRCAT.Memory;
-pub const JET_errcatQuota = JET_ERRCAT.Quota;
-pub const JET_errcatDisk = JET_ERRCAT.Disk;
-pub const JET_errcatData = JET_ERRCAT.Data;
-pub const JET_errcatCorruption = JET_ERRCAT.Corruption;
-pub const JET_errcatInconsistent = JET_ERRCAT.Inconsistent;
-pub const JET_errcatFragmentation = JET_ERRCAT.Fragmentation;
-pub const JET_errcatApi = JET_ERRCAT.Api;
-pub const JET_errcatUsage = JET_ERRCAT.Usage;
-pub const JET_errcatState = JET_ERRCAT.State;
-pub const JET_errcatObsolete = JET_ERRCAT.Obsolete;
-pub const JET_errcatMax = JET_ERRCAT.Max;
-
-pub const JET_ERRINFOBASIC_W = extern struct {
-    cbStruct: u32,
-    errValue: i32,
-    errcatMostSpecific: JET_ERRCAT,
-    rgCategoricalHierarchy: [8]u8,
-    lSourceLine: u32,
-    rgszSourceFile: [64]u16,
-};
-
-pub const JET_COMMIT_ID = extern struct {
-    signLog: JET_SIGNATURE,
-    reserved: i32,
-    commitId: i64,
-};
-
-pub const JET_PFNDURABLECOMMITCALLBACK = fn(
-    instance: u64,
-    pCommitIdSeen: *JET_COMMIT_ID,
-    grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-pub const JET_INDEXCHECKING = extern enum(i32) {
-    Off = 0,
-    On = 1,
-    DeferToOpenTable = 2,
-    Max = 3,
-};
-pub const JET_IndexCheckingOff = JET_INDEXCHECKING.Off;
-pub const JET_IndexCheckingOn = JET_INDEXCHECKING.On;
-pub const JET_IndexCheckingDeferToOpenTable = JET_INDEXCHECKING.DeferToOpenTable;
-pub const JET_IndexCheckingMax = JET_INDEXCHECKING.Max;
-
-pub const JET_OPERATIONCONTEXT = extern struct {
-    ulUserID: u32,
-    nOperationID: u8,
-    nOperationType: u8,
-    nClientType: u8,
-    fFlags: u8,
-};
-
-pub const JET_SETCOLUMN = extern struct {
-    columnid: u32,
-    pvData: *const c_void,
-    cbData: u32,
-    grbit: u32,
-    ibLongValue: u32,
-    itagSequence: u32,
-    err: i32,
-};
-
-pub const JET_SETSYSPARAM_A = extern struct {
-    paramid: u32,
-    lParam: u64,
-    sz: *const i8,
-    err: i32,
-};
-
-pub const JET_SETSYSPARAM_W = extern struct {
-    paramid: u32,
-    lParam: u64,
-    sz: [*:0]const u16,
-    err: i32,
-};
-
-pub const JET_RETRIEVECOLUMN = extern struct {
-    columnid: u32,
-    pvData: *c_void,
-    cbData: u32,
-    cbActual: u32,
-    grbit: u32,
-    ibLongValue: u32,
-    itagSequence: u32,
-    columnidNextTagged: u32,
-    err: i32,
-};
-
-pub const JET_ENUMCOLUMNID = extern struct {
-    columnid: u32,
-    ctagSequence: u32,
-    rgtagSequence: *u32,
-};
-
-pub const JET_ENUMCOLUMNVALUE = extern struct {
-    itagSequence: u32,
-    err: i32,
-    cbData: u32,
-    pvData: *c_void,
-};
-
-pub const JET_ENUMCOLUMN = extern struct {
-    columnid: u32,
-    err: i32,
-    Anonymous: JET_ENUMCOLUMN._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const JET_PFNREALLOC = fn(
-    pvContext: ?*c_void,
-    pv: ?*c_void,
-    cb: u32,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-pub const JET_RECSIZE = extern struct {
-    cbData: u64,
-    cbLongValueData: u64,
-    cbOverhead: u64,
-    cbLongValueOverhead: u64,
-    cNonTaggedColumns: u64,
-    cTaggedColumns: u64,
-    cLongValues: u64,
-    cMultiValues: u64,
-};
-
-pub const JET_RECSIZE2 = extern struct {
-    cbData: u64,
-    cbLongValueData: u64,
-    cbOverhead: u64,
-    cbLongValueOverhead: u64,
-    cNonTaggedColumns: u64,
-    cTaggedColumns: u64,
-    cLongValues: u64,
-    cMultiValues: u64,
-    cCompressedColumns: u64,
-    cbDataCompressed: u64,
-    cbLongValueDataCompressed: u64,
-};
-
-pub const JET_LOGINFO_A = extern struct {
-    cbSize: u32,
-    ulGenLow: u32,
-    ulGenHigh: u32,
-    szBaseName: [4]i8,
-};
-
-pub const JET_LOGINFO_W = extern struct {
-    cbSize: u32,
-    ulGenLow: u32,
-    ulGenHigh: u32,
-    szBaseName: [4]u16,
-};
-
-pub const JET_INSTANCE_INFO_A = extern struct {
-    hInstanceId: u64,
-    szInstanceName: *i8,
-    cDatabases: u64,
-    szDatabaseFileName: **i8,
-    szDatabaseDisplayName: **i8,
-    szDatabaseSLVFileName_Obsolete: **i8,
-};
-
-pub const JET_INSTANCE_INFO_W = extern struct {
-    hInstanceId: u64,
-    szInstanceName: PWSTR,
-    cDatabases: u64,
-    szDatabaseFileName: **u16,
-    szDatabaseDisplayName: **u16,
-    szDatabaseSLVFileName_Obsolete: **u16,
-};
-
-pub const PROPSPEC_ulKind = extern enum(u32) {
-    LPWSTR = 0,
-    PROPID = 1,
-};
-pub const PRSPEC_LPWSTR = PROPSPEC_ulKind.LPWSTR;
-pub const PRSPEC_PROPID = PROPSPEC_ulKind.PROPID;
-
-pub const STGC = extern enum(i32) {
-    DEFAULT = 0,
-    OVERWRITE = 1,
-    ONLYIFCURRENT = 2,
-    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
-    CONSOLIDATE = 8,
-};
-pub const STGC_DEFAULT = STGC.DEFAULT;
-pub const STGC_OVERWRITE = STGC.OVERWRITE;
-pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
-pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
-pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
-
-pub const STGMOVE = extern enum(i32) {
-    MOVE = 0,
-    COPY = 1,
-    SHALLOWCOPY = 2,
-};
-pub const STGMOVE_MOVE = STGMOVE.MOVE;
-pub const STGMOVE_COPY = STGMOVE.COPY;
-pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
-
-pub const STATFLAG = extern enum(i32) {
-    DEFAULT = 0,
-    NONAME = 1,
-    NOOPEN = 2,
-};
-pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
-pub const STATFLAG_NONAME = STATFLAG.NONAME;
-pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
-
 // TODO: this type is limited to platform 'windows5.0'
 const IID_ISequentialStream_Value = @import("../zig.zig").Guid.initString("0c733a30-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ISequentialStream = &IID_ISequentialStream_Value;
@@ -3177,10 +1672,1614 @@ pub const IDirectWriterLock = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const STGC = extern enum(i32) {
+    DEFAULT = 0,
+    OVERWRITE = 1,
+    ONLYIFCURRENT = 2,
+    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
+    CONSOLIDATE = 8,
+};
+pub const STGC_DEFAULT = STGC.DEFAULT;
+pub const STGC_OVERWRITE = STGC.OVERWRITE;
+pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
+pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
+pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
+
+pub const STGMOVE = extern enum(i32) {
+    MOVE = 0,
+    COPY = 1,
+    SHALLOWCOPY = 2,
+};
+pub const STGMOVE_MOVE = STGMOVE.MOVE;
+pub const STGMOVE_COPY = STGMOVE.COPY;
+pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
+
+pub const STATFLAG = extern enum(i32) {
+    DEFAULT = 0,
+    NONAME = 1,
+    NOOPEN = 2,
+};
+pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
+pub const STATFLAG_NONAME = STATFLAG.NONAME;
+pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
+
+pub const VERSIONEDSTREAM = extern struct {
+    guidVersion: Guid,
+    pStream: *IStream,
+};
+
+pub const CAC = extern struct {
+    cElems: u32,
+    pElems: PSTR,
+};
+
+pub const CAUB = extern struct {
+    cElems: u32,
+    pElems: *u8,
+};
+
+pub const CAI = extern struct {
+    cElems: u32,
+    pElems: *i16,
+};
+
+pub const CAUI = extern struct {
+    cElems: u32,
+    pElems: *u16,
+};
+
+pub const CAL = extern struct {
+    cElems: u32,
+    pElems: *i32,
+};
+
+pub const CAUL = extern struct {
+    cElems: u32,
+    pElems: *u32,
+};
+
+pub const CAFLT = extern struct {
+    cElems: u32,
+    pElems: *f32,
+};
+
+pub const CADBL = extern struct {
+    cElems: u32,
+    pElems: *f64,
+};
+
+pub const CACY = extern struct {
+    cElems: u32,
+    pElems: *CY,
+};
+
+pub const CADATE = extern struct {
+    cElems: u32,
+    pElems: *f64,
+};
+
+pub const CABSTR = extern struct {
+    cElems: u32,
+    pElems: *BSTR,
+};
+
+pub const CABSTRBLOB = extern struct {
+    cElems: u32,
+    pElems: *BSTRBLOB,
+};
+
+pub const CABOOL = extern struct {
+    cElems: u32,
+    pElems: *i16,
+};
+
+pub const CASCODE = extern struct {
+    cElems: u32,
+    pElems: *i32,
+};
+
+pub const CAPROPVARIANT = extern struct {
+    cElems: u32,
+    pElems: *PROPVARIANT,
+};
+
+pub const CAH = extern struct {
+    cElems: u32,
+    pElems: *LARGE_INTEGER,
+};
+
+pub const CAUH = extern struct {
+    cElems: u32,
+    pElems: *ULARGE_INTEGER,
+};
+
+pub const CALPSTR = extern struct {
+    cElems: u32,
+    pElems: *PSTR,
+};
+
+pub const CALPWSTR = extern struct {
+    cElems: u32,
+    pElems: *PWSTR,
+};
+
+pub const CAFILETIME = extern struct {
+    cElems: u32,
+    pElems: *FILETIME,
+};
+
+pub const CACLIPDATA = extern struct {
+    cElems: u32,
+    pElems: *CLIPDATA,
+};
+
+pub const CACLSID = extern struct {
+    cElems: u32,
+    pElems: *Guid,
+};
+
+pub const PROPVARIANT = extern struct {
+    Anonymous: PROPVARIANT._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const PROPSPEC = extern struct {
+    ulKind: PROPSPEC_KIND,
+    Anonymous: PROPSPEC._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const STATPROPSTG = extern struct {
+    lpwstrName: PWSTR,
+    propid: u32,
+    vt: u16,
+};
+
+pub const STATPROPSETSTG = extern struct {
+    fmtid: Guid,
+    clsid: Guid,
+    grfFlags: u32,
+    mtime: FILETIME,
+    ctime: FILETIME,
+    atime: FILETIME,
+    dwOSVersion: u32,
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IPropertyStorage_Value = @import("../zig.zig").Guid.initString("00000138-0000-0000-c000-000000000046");
+pub const IID_IPropertyStorage = &IID_IPropertyStorage_Value;
+pub const IPropertyStorage = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ReadMultiple: fn(
+            self: *const IPropertyStorage,
+            cpspec: u32,
+            rgpspec: [*]const PROPSPEC,
+            rgpropvar: [*]PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteMultiple: fn(
+            self: *const IPropertyStorage,
+            cpspec: u32,
+            rgpspec: [*]const PROPSPEC,
+            rgpropvar: [*]const PROPVARIANT,
+            propidNameFirst: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteMultiple: fn(
+            self: *const IPropertyStorage,
+            cpspec: u32,
+            rgpspec: [*]const PROPSPEC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReadPropertyNames: fn(
+            self: *const IPropertyStorage,
+            cpropid: u32,
+            rgpropid: [*]const u32,
+            rglpwstrName: [*]PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WritePropertyNames: fn(
+            self: *const IPropertyStorage,
+            cpropid: u32,
+            rgpropid: [*]const u32,
+            rglpwstrName: [*]const [*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeletePropertyNames: fn(
+            self: *const IPropertyStorage,
+            cpropid: u32,
+            rgpropid: [*]const u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Commit: fn(
+            self: *const IPropertyStorage,
+            grfCommitFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Revert: fn(
+            self: *const IPropertyStorage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Enum: fn(
+            self: *const IPropertyStorage,
+            ppenum: **IEnumSTATPROPSTG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTimes: fn(
+            self: *const IPropertyStorage,
+            pctime: *const FILETIME,
+            patime: *const FILETIME,
+            pmtime: *const FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetClass: fn(
+            self: *const IPropertyStorage,
+            clsid: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Stat: fn(
+            self: *const IPropertyStorage,
+            pstatpsstg: *STATPROPSETSTG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyStorage_ReadMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]PROPVARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).ReadMultiple(@ptrCast(*const IPropertyStorage, self), cpspec, rgpspec, rgpropvar);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyStorage_WriteMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC, rgpropvar: [*]const PROPVARIANT, propidNameFirst: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).WriteMultiple(@ptrCast(*const IPropertyStorage, self), cpspec, rgpspec, rgpropvar, propidNameFirst);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyStorage_DeleteMultiple(self: *const T, cpspec: u32, rgpspec: [*]const PROPSPEC) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).DeleteMultiple(@ptrCast(*const IPropertyStorage, self), cpspec, rgpspec);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyStorage_ReadPropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]PWSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).ReadPropertyNames(@ptrCast(*const IPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyStorage_WritePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const [*:0]const u16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).WritePropertyNames(@ptrCast(*const IPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyStorage_DeletePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).DeletePropertyNames(@ptrCast(*const IPropertyStorage, self), cpropid, rgpropid);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyStorage_Commit(self: *const T, grfCommitFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Commit(@ptrCast(*const IPropertyStorage, self), grfCommitFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyStorage_Revert(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Revert(@ptrCast(*const IPropertyStorage, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyStorage_Enum(self: *const T, ppenum: **IEnumSTATPROPSTG) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Enum(@ptrCast(*const IPropertyStorage, self), ppenum);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyStorage_SetTimes(self: *const T, pctime: *const FILETIME, patime: *const FILETIME, pmtime: *const FILETIME) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).SetTimes(@ptrCast(*const IPropertyStorage, self), pctime, patime, pmtime);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyStorage_SetClass(self: *const T, clsid: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).SetClass(@ptrCast(*const IPropertyStorage, self), clsid);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertyStorage_Stat(self: *const T, pstatpsstg: *STATPROPSETSTG) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertyStorage.VTable, self.vtable).Stat(@ptrCast(*const IPropertyStorage, self), pstatpsstg);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IPropertySetStorage_Value = @import("../zig.zig").Guid.initString("0000013a-0000-0000-c000-000000000046");
+pub const IID_IPropertySetStorage = &IID_IPropertySetStorage_Value;
+pub const IPropertySetStorage = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Create: fn(
+            self: *const IPropertySetStorage,
+            rfmtid: *const Guid,
+            pclsid: *const Guid,
+            grfFlags: u32,
+            grfMode: u32,
+            ppprstg: **IPropertyStorage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Open: fn(
+            self: *const IPropertySetStorage,
+            rfmtid: *const Guid,
+            grfMode: u32,
+            ppprstg: **IPropertyStorage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Delete: fn(
+            self: *const IPropertySetStorage,
+            rfmtid: *const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Enum: fn(
+            self: *const IPropertySetStorage,
+            ppenum: **IEnumSTATPROPSETSTG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertySetStorage_Create(self: *const T, rfmtid: *const Guid, pclsid: *const Guid, grfFlags: u32, grfMode: u32, ppprstg: **IPropertyStorage) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Create(@ptrCast(*const IPropertySetStorage, self), rfmtid, pclsid, grfFlags, grfMode, ppprstg);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertySetStorage_Open(self: *const T, rfmtid: *const Guid, grfMode: u32, ppprstg: **IPropertyStorage) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Open(@ptrCast(*const IPropertySetStorage, self), rfmtid, grfMode, ppprstg);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertySetStorage_Delete(self: *const T, rfmtid: *const Guid) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Delete(@ptrCast(*const IPropertySetStorage, self), rfmtid);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPropertySetStorage_Enum(self: *const T, ppenum: **IEnumSTATPROPSETSTG) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPropertySetStorage.VTable, self.vtable).Enum(@ptrCast(*const IPropertySetStorage, self), ppenum);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumSTATPROPSTG_Value = @import("../zig.zig").Guid.initString("00000139-0000-0000-c000-000000000046");
+pub const IID_IEnumSTATPROPSTG = &IID_IEnumSTATPROPSTG_Value;
+pub const IEnumSTATPROPSTG = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IEnumSTATPROPSTG,
+            celt: u32,
+            rgelt: [*]STATPROPSTG,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: fn(
+            self: *const IEnumSTATPROPSTG,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IEnumSTATPROPSTG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IEnumSTATPROPSTG,
+            ppenum: **IEnumSTATPROPSTG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumSTATPROPSTG_Next(self: *const T, celt: u32, rgelt: [*]STATPROPSTG, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Next(@ptrCast(*const IEnumSTATPROPSTG, self), celt, rgelt, pceltFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumSTATPROPSTG_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Skip(@ptrCast(*const IEnumSTATPROPSTG, self), celt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumSTATPROPSTG_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Reset(@ptrCast(*const IEnumSTATPROPSTG, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumSTATPROPSTG_Clone(self: *const T, ppenum: **IEnumSTATPROPSTG) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumSTATPROPSTG.VTable, self.vtable).Clone(@ptrCast(*const IEnumSTATPROPSTG, self), ppenum);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows5.0'
+const IID_IEnumSTATPROPSETSTG_Value = @import("../zig.zig").Guid.initString("0000013b-0000-0000-c000-000000000046");
+pub const IID_IEnumSTATPROPSETSTG = &IID_IEnumSTATPROPSETSTG_Value;
+pub const IEnumSTATPROPSETSTG = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Next: fn(
+            self: *const IEnumSTATPROPSETSTG,
+            celt: u32,
+            rgelt: [*]STATPROPSETSTG,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: fn(
+            self: *const IEnumSTATPROPSETSTG,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IEnumSTATPROPSETSTG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: fn(
+            self: *const IEnumSTATPROPSETSTG,
+            ppenum: **IEnumSTATPROPSETSTG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumSTATPROPSETSTG_Next(self: *const T, celt: u32, rgelt: [*]STATPROPSETSTG, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Next(@ptrCast(*const IEnumSTATPROPSETSTG, self), celt, rgelt, pceltFetched);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumSTATPROPSETSTG_Skip(self: *const T, celt: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Skip(@ptrCast(*const IEnumSTATPROPSETSTG, self), celt);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumSTATPROPSETSTG_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Reset(@ptrCast(*const IEnumSTATPROPSETSTG, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IEnumSTATPROPSETSTG_Clone(self: *const T, ppenum: **IEnumSTATPROPSETSTG) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IEnumSTATPROPSETSTG.VTable, self.vtable).Clone(@ptrCast(*const IEnumSTATPROPSETSTG, self), ppenum);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const STGOPTIONS = extern struct {
+    usVersion: u16,
+    reserved: u16,
+    ulSectorSize: u32,
+    pwcsTemplateFile: [*:0]const u16,
+};
+
+pub const PIDMSI_STATUS_VALUE = extern enum(i32) {
+    NORMAL = 0,
+    NEW = 1,
+    PRELIM = 2,
+    DRAFT = 3,
+    INPROGRESS = 4,
+    EDIT = 5,
+    REVIEW = 6,
+    PROOF = 7,
+    FINAL = 8,
+    OTHER = 32767,
+};
+pub const PIDMSI_STATUS_NORMAL = PIDMSI_STATUS_VALUE.NORMAL;
+pub const PIDMSI_STATUS_NEW = PIDMSI_STATUS_VALUE.NEW;
+pub const PIDMSI_STATUS_PRELIM = PIDMSI_STATUS_VALUE.PRELIM;
+pub const PIDMSI_STATUS_DRAFT = PIDMSI_STATUS_VALUE.DRAFT;
+pub const PIDMSI_STATUS_INPROGRESS = PIDMSI_STATUS_VALUE.INPROGRESS;
+pub const PIDMSI_STATUS_EDIT = PIDMSI_STATUS_VALUE.EDIT;
+pub const PIDMSI_STATUS_REVIEW = PIDMSI_STATUS_VALUE.REVIEW;
+pub const PIDMSI_STATUS_PROOF = PIDMSI_STATUS_VALUE.PROOF;
+pub const PIDMSI_STATUS_FINAL = PIDMSI_STATUS_VALUE.FINAL;
+pub const PIDMSI_STATUS_OTHER = PIDMSI_STATUS_VALUE.OTHER;
+
+pub const PMemoryAllocator = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const JET_INDEXID = extern struct {
+    cbStruct: u32,
+    rgbIndexId: [16]u8,
+};
+
+pub const JET_PFNSTATUS = fn(
+    sesid: u64,
+    snp: u32,
+    snt: u32,
+    pv: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const JET_RSTMAP_A = extern struct {
+    szDatabaseName: PSTR,
+    szNewDatabaseName: PSTR,
+};
+
+pub const JET_RSTMAP_W = extern struct {
+    szDatabaseName: PWSTR,
+    szNewDatabaseName: PWSTR,
+};
+
+pub const CONVERT_A = extern struct {
+    szOldDll: PSTR,
+    Anonymous: CONVERT_A._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const CONVERT_W = extern struct {
+    szOldDll: PWSTR,
+    Anonymous: CONVERT_W._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JET_CALLBACK = fn(
+    sesid: u64,
+    dbid: u32,
+    tableid: u64,
+    cbtyp: u32,
+    pvArg1: ?*c_void,
+    pvArg2: ?*c_void,
+    pvContext: ?*c_void,
+    ulUnused: u64,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const JET_SNPROG = extern struct {
+    cbStruct: u32,
+    cunitDone: u32,
+    cunitTotal: u32,
+};
+
+pub const JET_DBINFOUPGRADE = extern struct {
+    cbStruct: u32,
+    cbFilesizeLow: u32,
+    cbFilesizeHigh: u32,
+    cbFreeSpaceRequiredLow: u32,
+    cbFreeSpaceRequiredHigh: u32,
+    csecToUpgrade: u32,
+    Anonymous: JET_DBINFOUPGRADE._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JET_OBJECTINFO = extern struct {
+    cbStruct: u32,
+    objtyp: u32,
+    dtCreate: f64,
+    dtUpdate: f64,
+    grbit: u32,
+    flags: u32,
+    cRecord: u32,
+    cPage: u32,
+};
+
+pub const JET_OBJECTLIST = extern struct {
+    cbStruct: u32,
+    tableid: u64,
+    cRecord: u32,
+    columnidcontainername: u32,
+    columnidobjectname: u32,
+    columnidobjtyp: u32,
+    columniddtCreate: u32,
+    columniddtUpdate: u32,
+    columnidgrbit: u32,
+    columnidflags: u32,
+    columnidcRecord: u32,
+    columnidcPage: u32,
+};
+
+pub const JET_COLUMNLIST = extern struct {
+    cbStruct: u32,
+    tableid: u64,
+    cRecord: u32,
+    columnidPresentationOrder: u32,
+    columnidcolumnname: u32,
+    columnidcolumnid: u32,
+    columnidcoltyp: u32,
+    columnidCountry: u32,
+    columnidLangid: u32,
+    columnidCp: u32,
+    columnidCollate: u32,
+    columnidcbMax: u32,
+    columnidgrbit: u32,
+    columnidDefault: u32,
+    columnidBaseTableName: u32,
+    columnidBaseColumnName: u32,
+    columnidDefinitionName: u32,
+};
+
+pub const JET_COLUMNDEF = extern struct {
+    cbStruct: u32,
+    columnid: u32,
+    coltyp: u32,
+    wCountry: u16,
+    langid: u16,
+    cp: u16,
+    wCollate: u16,
+    cbMax: u32,
+    grbit: u32,
+};
+
+pub const JET_COLUMNBASE_A = extern struct {
+    cbStruct: u32,
+    columnid: u32,
+    coltyp: u32,
+    wCountry: u16,
+    langid: u16,
+    cp: u16,
+    wFiller: u16,
+    cbMax: u32,
+    grbit: u32,
+    szBaseTableName: [256]CHAR,
+    szBaseColumnName: [256]CHAR,
+};
+
+pub const JET_COLUMNBASE_W = extern struct {
+    cbStruct: u32,
+    columnid: u32,
+    coltyp: u32,
+    wCountry: u16,
+    langid: u16,
+    cp: u16,
+    wFiller: u16,
+    cbMax: u32,
+    grbit: u32,
+    szBaseTableName: [256]u16,
+    szBaseColumnName: [256]u16,
+};
+
+pub const JET_INDEXLIST = extern struct {
+    cbStruct: u32,
+    tableid: u64,
+    cRecord: u32,
+    columnidindexname: u32,
+    columnidgrbitIndex: u32,
+    columnidcKey: u32,
+    columnidcEntry: u32,
+    columnidcPage: u32,
+    columnidcColumn: u32,
+    columnidiColumn: u32,
+    columnidcolumnid: u32,
+    columnidcoltyp: u32,
+    columnidCountry: u32,
+    columnidLangid: u32,
+    columnidCp: u32,
+    columnidCollate: u32,
+    columnidgrbitColumn: u32,
+    columnidcolumnname: u32,
+    columnidLCMapFlags: u32,
+};
+
+pub const JET_COLUMNCREATE_A = extern struct {
+    cbStruct: u32,
+    szColumnName: PSTR,
+    coltyp: u32,
+    cbMax: u32,
+    grbit: u32,
+    pvDefault: *c_void,
+    cbDefault: u32,
+    cp: u32,
+    columnid: u32,
+    err: i32,
+};
+
+pub const JET_COLUMNCREATE_W = extern struct {
+    cbStruct: u32,
+    szColumnName: PWSTR,
+    coltyp: u32,
+    cbMax: u32,
+    grbit: u32,
+    pvDefault: *c_void,
+    cbDefault: u32,
+    cp: u32,
+    columnid: u32,
+    err: i32,
+};
+
+pub const JET_USERDEFINEDDEFAULT_A = extern struct {
+    szCallback: PSTR,
+    pbUserData: *u8,
+    cbUserData: u32,
+    szDependantColumns: PSTR,
+};
+
+pub const JET_USERDEFINEDDEFAULT_W = extern struct {
+    szCallback: PWSTR,
+    pbUserData: *u8,
+    cbUserData: u32,
+    szDependantColumns: PWSTR,
+};
+
+pub const JET_CONDITIONALCOLUMN_A = extern struct {
+    cbStruct: u32,
+    szColumnName: PSTR,
+    grbit: u32,
+};
+
+pub const JET_CONDITIONALCOLUMN_W = extern struct {
+    cbStruct: u32,
+    szColumnName: PWSTR,
+    grbit: u32,
+};
+
+pub const JET_UNICODEINDEX = extern struct {
+    lcid: u32,
+    dwMapFlags: u32,
+};
+
+pub const JET_UNICODEINDEX2 = extern struct {
+    szLocaleName: PWSTR,
+    dwMapFlags: u32,
+};
+
+pub const JET_TUPLELIMITS = extern struct {
+    chLengthMin: u32,
+    chLengthMax: u32,
+    chToIndexMax: u32,
+    cchIncrement: u32,
+    ichStart: u32,
+};
+
+pub const JET_SPACEHINTS = extern struct {
+    cbStruct: u32,
+    ulInitialDensity: u32,
+    cbInitial: u32,
+    grbit: u32,
+    ulMaintDensity: u32,
+    ulGrowth: u32,
+    cbMinExtent: u32,
+    cbMaxExtent: u32,
+};
+
+pub const JET_INDEXCREATE_A = extern struct {
+    cbStruct: u32,
+    szIndexName: PSTR,
+    szKey: PSTR,
+    cbKey: u32,
+    grbit: u32,
+    ulDensity: u32,
+    Anonymous1: JET_INDEXCREATE_A._Anonymous1_e__Union,
+    Anonymous2: JET_INDEXCREATE_A._Anonymous2_e__Union,
+    rgconditionalcolumn: *JET_CONDITIONALCOLUMN_A,
+    cConditionalColumn: u32,
+    err: i32,
+    cbKeyMost: u32,
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JET_INDEXCREATE_W = extern struct {
+    cbStruct: u32,
+    szIndexName: PWSTR,
+    szKey: PWSTR,
+    cbKey: u32,
+    grbit: u32,
+    ulDensity: u32,
+    Anonymous1: JET_INDEXCREATE_W._Anonymous1_e__Union,
+    Anonymous2: JET_INDEXCREATE_W._Anonymous2_e__Union,
+    rgconditionalcolumn: *JET_CONDITIONALCOLUMN_W,
+    cConditionalColumn: u32,
+    err: i32,
+    cbKeyMost: u32,
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JET_INDEXCREATE2_A = extern struct {
+    cbStruct: u32,
+    szIndexName: PSTR,
+    szKey: PSTR,
+    cbKey: u32,
+    grbit: u32,
+    ulDensity: u32,
+    Anonymous1: JET_INDEXCREATE2_A._Anonymous1_e__Union,
+    Anonymous2: JET_INDEXCREATE2_A._Anonymous2_e__Union,
+    rgconditionalcolumn: *JET_CONDITIONALCOLUMN_A,
+    cConditionalColumn: u32,
+    err: i32,
+    cbKeyMost: u32,
+    pSpacehints: *JET_SPACEHINTS,
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JET_INDEXCREATE2_W = extern struct {
+    cbStruct: u32,
+    szIndexName: PWSTR,
+    szKey: PWSTR,
+    cbKey: u32,
+    grbit: u32,
+    ulDensity: u32,
+    Anonymous1: JET_INDEXCREATE2_W._Anonymous1_e__Union,
+    Anonymous2: JET_INDEXCREATE2_W._Anonymous2_e__Union,
+    rgconditionalcolumn: *JET_CONDITIONALCOLUMN_W,
+    cConditionalColumn: u32,
+    err: i32,
+    cbKeyMost: u32,
+    pSpacehints: *JET_SPACEHINTS,
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JET_INDEXCREATE3_A = extern struct {
+    cbStruct: u32,
+    szIndexName: PSTR,
+    szKey: PSTR,
+    cbKey: u32,
+    grbit: u32,
+    ulDensity: u32,
+    pidxunicode: *JET_UNICODEINDEX2,
+    Anonymous: JET_INDEXCREATE3_A._Anonymous_e__Union,
+    rgconditionalcolumn: *JET_CONDITIONALCOLUMN_A,
+    cConditionalColumn: u32,
+    err: i32,
+    cbKeyMost: u32,
+    pSpacehints: *JET_SPACEHINTS,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JET_INDEXCREATE3_W = extern struct {
+    cbStruct: u32,
+    szIndexName: PWSTR,
+    szKey: PWSTR,
+    cbKey: u32,
+    grbit: u32,
+    ulDensity: u32,
+    pidxunicode: *JET_UNICODEINDEX2,
+    Anonymous: JET_INDEXCREATE3_W._Anonymous_e__Union,
+    rgconditionalcolumn: *JET_CONDITIONALCOLUMN_W,
+    cConditionalColumn: u32,
+    err: i32,
+    cbKeyMost: u32,
+    pSpacehints: *JET_SPACEHINTS,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JET_TABLECREATE_A = extern struct {
+    cbStruct: u32,
+    szTableName: PSTR,
+    szTemplateTableName: PSTR,
+    ulPages: u32,
+    ulDensity: u32,
+    rgcolumncreate: *JET_COLUMNCREATE_A,
+    cColumns: u32,
+    rgindexcreate: *JET_INDEXCREATE_A,
+    cIndexes: u32,
+    grbit: u32,
+    tableid: u64,
+    cCreated: u32,
+};
+
+pub const JET_TABLECREATE_W = extern struct {
+    cbStruct: u32,
+    szTableName: PWSTR,
+    szTemplateTableName: PWSTR,
+    ulPages: u32,
+    ulDensity: u32,
+    rgcolumncreate: *JET_COLUMNCREATE_W,
+    cColumns: u32,
+    rgindexcreate: *JET_INDEXCREATE_W,
+    cIndexes: u32,
+    grbit: u32,
+    tableid: u64,
+    cCreated: u32,
+};
+
+pub const JET_TABLECREATE2_A = extern struct {
+    cbStruct: u32,
+    szTableName: PSTR,
+    szTemplateTableName: PSTR,
+    ulPages: u32,
+    ulDensity: u32,
+    rgcolumncreate: *JET_COLUMNCREATE_A,
+    cColumns: u32,
+    rgindexcreate: *JET_INDEXCREATE_A,
+    cIndexes: u32,
+    szCallback: PSTR,
+    cbtyp: u32,
+    grbit: u32,
+    tableid: u64,
+    cCreated: u32,
+};
+
+pub const JET_TABLECREATE2_W = extern struct {
+    cbStruct: u32,
+    szTableName: PWSTR,
+    szTemplateTableName: PWSTR,
+    ulPages: u32,
+    ulDensity: u32,
+    rgcolumncreate: *JET_COLUMNCREATE_W,
+    cColumns: u32,
+    rgindexcreate: *JET_INDEXCREATE_W,
+    cIndexes: u32,
+    szCallback: PWSTR,
+    cbtyp: u32,
+    grbit: u32,
+    tableid: u64,
+    cCreated: u32,
+};
+
+pub const JET_TABLECREATE3_A = extern struct {
+    cbStruct: u32,
+    szTableName: PSTR,
+    szTemplateTableName: PSTR,
+    ulPages: u32,
+    ulDensity: u32,
+    rgcolumncreate: *JET_COLUMNCREATE_A,
+    cColumns: u32,
+    rgindexcreate: *JET_INDEXCREATE2_A,
+    cIndexes: u32,
+    szCallback: PSTR,
+    cbtyp: u32,
+    grbit: u32,
+    pSeqSpacehints: *JET_SPACEHINTS,
+    pLVSpacehints: *JET_SPACEHINTS,
+    cbSeparateLV: u32,
+    tableid: u64,
+    cCreated: u32,
+};
+
+pub const JET_TABLECREATE3_W = extern struct {
+    cbStruct: u32,
+    szTableName: PWSTR,
+    szTemplateTableName: PWSTR,
+    ulPages: u32,
+    ulDensity: u32,
+    rgcolumncreate: *JET_COLUMNCREATE_W,
+    cColumns: u32,
+    rgindexcreate: *JET_INDEXCREATE2_W,
+    cIndexes: u32,
+    szCallback: PWSTR,
+    cbtyp: u32,
+    grbit: u32,
+    pSeqSpacehints: *JET_SPACEHINTS,
+    pLVSpacehints: *JET_SPACEHINTS,
+    cbSeparateLV: u32,
+    tableid: u64,
+    cCreated: u32,
+};
+
+pub const JET_TABLECREATE4_A = extern struct {
+    cbStruct: u32,
+    szTableName: PSTR,
+    szTemplateTableName: PSTR,
+    ulPages: u32,
+    ulDensity: u32,
+    rgcolumncreate: *JET_COLUMNCREATE_A,
+    cColumns: u32,
+    rgindexcreate: *JET_INDEXCREATE3_A,
+    cIndexes: u32,
+    szCallback: PSTR,
+    cbtyp: u32,
+    grbit: u32,
+    pSeqSpacehints: *JET_SPACEHINTS,
+    pLVSpacehints: *JET_SPACEHINTS,
+    cbSeparateLV: u32,
+    tableid: u64,
+    cCreated: u32,
+};
+
+pub const JET_TABLECREATE4_W = extern struct {
+    cbStruct: u32,
+    szTableName: PWSTR,
+    szTemplateTableName: PWSTR,
+    ulPages: u32,
+    ulDensity: u32,
+    rgcolumncreate: *JET_COLUMNCREATE_W,
+    cColumns: u32,
+    rgindexcreate: *JET_INDEXCREATE3_W,
+    cIndexes: u32,
+    szCallback: PWSTR,
+    cbtyp: u32,
+    grbit: u32,
+    pSeqSpacehints: *JET_SPACEHINTS,
+    pLVSpacehints: *JET_SPACEHINTS,
+    cbSeparateLV: u32,
+    tableid: u64,
+    cCreated: u32,
+};
+
+pub const JET_OPENTEMPORARYTABLE = extern struct {
+    cbStruct: u32,
+    prgcolumndef: *const JET_COLUMNDEF,
+    ccolumn: u32,
+    pidxunicode: *JET_UNICODEINDEX,
+    grbit: u32,
+    prgcolumnid: *u32,
+    cbKeyMost: u32,
+    cbVarSegMac: u32,
+    tableid: u64,
+};
+
+pub const JET_OPENTEMPORARYTABLE2 = extern struct {
+    cbStruct: u32,
+    prgcolumndef: *const JET_COLUMNDEF,
+    ccolumn: u32,
+    pidxunicode: *JET_UNICODEINDEX2,
+    grbit: u32,
+    prgcolumnid: *u32,
+    cbKeyMost: u32,
+    cbVarSegMac: u32,
+    tableid: u64,
+};
+
+pub const JET_RETINFO = extern struct {
+    cbStruct: u32,
+    ibLongValue: u32,
+    itagSequence: u32,
+    columnidNextTagged: u32,
+};
+
+pub const JET_SETINFO = extern struct {
+    cbStruct: u32,
+    ibLongValue: u32,
+    itagSequence: u32,
+};
+
+pub const JET_RECPOS = extern struct {
+    cbStruct: u32,
+    centriesLT: u32,
+    centriesInRange: u32,
+    centriesTotal: u32,
+};
+
+pub const JET_RECORDLIST = extern struct {
+    cbStruct: u32,
+    tableid: u64,
+    cRecord: u32,
+    columnidBookmark: u32,
+};
+
+pub const JET_INDEXRANGE = extern struct {
+    cbStruct: u32,
+    tableid: u64,
+    grbit: u32,
+};
+
+pub const JET_RELOP = extern enum(i32) {
+    Equals = 0,
+    PrefixEquals = 1,
+    NotEquals = 2,
+    LessThanOrEqual = 3,
+    LessThan = 4,
+    GreaterThanOrEqual = 5,
+    GreaterThan = 6,
+    BitmaskEqualsZero = 7,
+    BitmaskNotEqualsZero = 8,
+};
+pub const JET_relopEquals = JET_RELOP.Equals;
+pub const JET_relopPrefixEquals = JET_RELOP.PrefixEquals;
+pub const JET_relopNotEquals = JET_RELOP.NotEquals;
+pub const JET_relopLessThanOrEqual = JET_RELOP.LessThanOrEqual;
+pub const JET_relopLessThan = JET_RELOP.LessThan;
+pub const JET_relopGreaterThanOrEqual = JET_RELOP.GreaterThanOrEqual;
+pub const JET_relopGreaterThan = JET_RELOP.GreaterThan;
+pub const JET_relopBitmaskEqualsZero = JET_RELOP.BitmaskEqualsZero;
+pub const JET_relopBitmaskNotEqualsZero = JET_RELOP.BitmaskNotEqualsZero;
+
+pub const JET_INDEX_COLUMN = extern struct {
+    columnid: u32,
+    relop: JET_RELOP,
+    pv: *c_void,
+    cb: u32,
+    grbit: u32,
+};
+
+pub const JET_INDEX_RANGE = extern struct {
+    rgStartColumns: *JET_INDEX_COLUMN,
+    cStartColumns: u32,
+    rgEndColumns: *JET_INDEX_COLUMN,
+    cEndColumns: u32,
+};
+
+pub const JET_LOGTIME = extern struct {
+    bSeconds: CHAR,
+    bMinutes: CHAR,
+    bHours: CHAR,
+    bDay: CHAR,
+    bMonth: CHAR,
+    bYear: CHAR,
+    Anonymous1: JET_LOGTIME._Anonymous1_e__Union,
+    Anonymous2: JET_LOGTIME._Anonymous2_e__Union,
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JET_BKLOGTIME = extern struct {
+    bSeconds: CHAR,
+    bMinutes: CHAR,
+    bHours: CHAR,
+    bDay: CHAR,
+    bMonth: CHAR,
+    bYear: CHAR,
+    Anonymous1: JET_BKLOGTIME._Anonymous1_e__Union,
+    Anonymous2: JET_BKLOGTIME._Anonymous2_e__Union,
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JET_LGPOS = extern struct {
+    ib: u16,
+    isec: u16,
+    lGeneration: i32,
+};
+
+pub const JET_SIGNATURE = extern struct {
+    ulRandom: u32,
+    logtimeCreate: JET_LOGTIME,
+    szComputerName: [16]CHAR,
+};
+
+pub const JET_BKINFO = extern struct {
+    lgposMark: JET_LGPOS,
+    Anonymous: JET_BKINFO._Anonymous_e__Union,
+    genLow: u32,
+    genHigh: u32,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JET_DBINFOMISC = extern struct {
+    ulVersion: u32,
+    ulUpdate: u32,
+    signDb: JET_SIGNATURE,
+    dbstate: u32,
+    lgposConsistent: JET_LGPOS,
+    logtimeConsistent: JET_LOGTIME,
+    logtimeAttach: JET_LOGTIME,
+    lgposAttach: JET_LGPOS,
+    logtimeDetach: JET_LOGTIME,
+    lgposDetach: JET_LGPOS,
+    signLog: JET_SIGNATURE,
+    bkinfoFullPrev: JET_BKINFO,
+    bkinfoIncPrev: JET_BKINFO,
+    bkinfoFullCur: JET_BKINFO,
+    fShadowingDisabled: u32,
+    fUpgradeDb: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    lSPNumber: i32,
+    cbPageSize: u32,
+};
+
+pub const JET_DBINFOMISC2 = extern struct {
+    ulVersion: u32,
+    ulUpdate: u32,
+    signDb: JET_SIGNATURE,
+    dbstate: u32,
+    lgposConsistent: JET_LGPOS,
+    logtimeConsistent: JET_LOGTIME,
+    logtimeAttach: JET_LOGTIME,
+    lgposAttach: JET_LGPOS,
+    logtimeDetach: JET_LOGTIME,
+    lgposDetach: JET_LGPOS,
+    signLog: JET_SIGNATURE,
+    bkinfoFullPrev: JET_BKINFO,
+    bkinfoIncPrev: JET_BKINFO,
+    bkinfoFullCur: JET_BKINFO,
+    fShadowingDisabled: u32,
+    fUpgradeDb: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    lSPNumber: i32,
+    cbPageSize: u32,
+    genMinRequired: u32,
+    genMaxRequired: u32,
+    logtimeGenMaxCreate: JET_LOGTIME,
+    ulRepairCount: u32,
+    logtimeRepair: JET_LOGTIME,
+    ulRepairCountOld: u32,
+    ulECCFixSuccess: u32,
+    logtimeECCFixSuccess: JET_LOGTIME,
+    ulECCFixSuccessOld: u32,
+    ulECCFixFail: u32,
+    logtimeECCFixFail: JET_LOGTIME,
+    ulECCFixFailOld: u32,
+    ulBadChecksum: u32,
+    logtimeBadChecksum: JET_LOGTIME,
+    ulBadChecksumOld: u32,
+};
+
+pub const JET_DBINFOMISC3 = extern struct {
+    ulVersion: u32,
+    ulUpdate: u32,
+    signDb: JET_SIGNATURE,
+    dbstate: u32,
+    lgposConsistent: JET_LGPOS,
+    logtimeConsistent: JET_LOGTIME,
+    logtimeAttach: JET_LOGTIME,
+    lgposAttach: JET_LGPOS,
+    logtimeDetach: JET_LOGTIME,
+    lgposDetach: JET_LGPOS,
+    signLog: JET_SIGNATURE,
+    bkinfoFullPrev: JET_BKINFO,
+    bkinfoIncPrev: JET_BKINFO,
+    bkinfoFullCur: JET_BKINFO,
+    fShadowingDisabled: u32,
+    fUpgradeDb: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    lSPNumber: i32,
+    cbPageSize: u32,
+    genMinRequired: u32,
+    genMaxRequired: u32,
+    logtimeGenMaxCreate: JET_LOGTIME,
+    ulRepairCount: u32,
+    logtimeRepair: JET_LOGTIME,
+    ulRepairCountOld: u32,
+    ulECCFixSuccess: u32,
+    logtimeECCFixSuccess: JET_LOGTIME,
+    ulECCFixSuccessOld: u32,
+    ulECCFixFail: u32,
+    logtimeECCFixFail: JET_LOGTIME,
+    ulECCFixFailOld: u32,
+    ulBadChecksum: u32,
+    logtimeBadChecksum: JET_LOGTIME,
+    ulBadChecksumOld: u32,
+    genCommitted: u32,
+};
+
+pub const JET_DBINFOMISC4 = extern struct {
+    ulVersion: u32,
+    ulUpdate: u32,
+    signDb: JET_SIGNATURE,
+    dbstate: u32,
+    lgposConsistent: JET_LGPOS,
+    logtimeConsistent: JET_LOGTIME,
+    logtimeAttach: JET_LOGTIME,
+    lgposAttach: JET_LGPOS,
+    logtimeDetach: JET_LOGTIME,
+    lgposDetach: JET_LGPOS,
+    signLog: JET_SIGNATURE,
+    bkinfoFullPrev: JET_BKINFO,
+    bkinfoIncPrev: JET_BKINFO,
+    bkinfoFullCur: JET_BKINFO,
+    fShadowingDisabled: u32,
+    fUpgradeDb: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    lSPNumber: i32,
+    cbPageSize: u32,
+    genMinRequired: u32,
+    genMaxRequired: u32,
+    logtimeGenMaxCreate: JET_LOGTIME,
+    ulRepairCount: u32,
+    logtimeRepair: JET_LOGTIME,
+    ulRepairCountOld: u32,
+    ulECCFixSuccess: u32,
+    logtimeECCFixSuccess: JET_LOGTIME,
+    ulECCFixSuccessOld: u32,
+    ulECCFixFail: u32,
+    logtimeECCFixFail: JET_LOGTIME,
+    ulECCFixFailOld: u32,
+    ulBadChecksum: u32,
+    logtimeBadChecksum: JET_LOGTIME,
+    ulBadChecksumOld: u32,
+    genCommitted: u32,
+    bkinfoCopyPrev: JET_BKINFO,
+    bkinfoDiffPrev: JET_BKINFO,
+};
+
+pub const JET_THREADSTATS = extern struct {
+    cbStruct: u32,
+    cPageReferenced: u32,
+    cPageRead: u32,
+    cPagePreread: u32,
+    cPageDirtied: u32,
+    cPageRedirtied: u32,
+    cLogRecord: u32,
+    cbLogRecord: u32,
+};
+
+pub const JET_THREADSTATS2 = extern struct {
+    cbStruct: u32,
+    cPageReferenced: u32,
+    cPageRead: u32,
+    cPagePreread: u32,
+    cPageDirtied: u32,
+    cPageRedirtied: u32,
+    cLogRecord: u32,
+    cbLogRecord: u32,
+    cusecPageCacheMiss: u64,
+    cPageCacheMiss: u32,
+};
+
+pub const JET_RSTINFO_A = extern struct {
+    cbStruct: u32,
+    rgrstmap: *JET_RSTMAP_A,
+    crstmap: i32,
+    lgposStop: JET_LGPOS,
+    logtimeStop: JET_LOGTIME,
+    pfnStatus: JET_PFNSTATUS,
+};
+
+pub const JET_RSTINFO_W = extern struct {
+    cbStruct: u32,
+    rgrstmap: *JET_RSTMAP_W,
+    crstmap: i32,
+    lgposStop: JET_LGPOS,
+    logtimeStop: JET_LOGTIME,
+    pfnStatus: JET_PFNSTATUS,
+};
+
+pub const JET_ERRCAT = extern enum(i32) {
+    Unknown = 0,
+    Error = 1,
+    Operation = 2,
+    Fatal = 3,
+    IO = 4,
+    Resource = 5,
+    Memory = 6,
+    Quota = 7,
+    Disk = 8,
+    Data = 9,
+    Corruption = 10,
+    Inconsistent = 11,
+    Fragmentation = 12,
+    Api = 13,
+    Usage = 14,
+    State = 15,
+    Obsolete = 16,
+    Max = 17,
+};
+pub const JET_errcatUnknown = JET_ERRCAT.Unknown;
+pub const JET_errcatError = JET_ERRCAT.Error;
+pub const JET_errcatOperation = JET_ERRCAT.Operation;
+pub const JET_errcatFatal = JET_ERRCAT.Fatal;
+pub const JET_errcatIO = JET_ERRCAT.IO;
+pub const JET_errcatResource = JET_ERRCAT.Resource;
+pub const JET_errcatMemory = JET_ERRCAT.Memory;
+pub const JET_errcatQuota = JET_ERRCAT.Quota;
+pub const JET_errcatDisk = JET_ERRCAT.Disk;
+pub const JET_errcatData = JET_ERRCAT.Data;
+pub const JET_errcatCorruption = JET_ERRCAT.Corruption;
+pub const JET_errcatInconsistent = JET_ERRCAT.Inconsistent;
+pub const JET_errcatFragmentation = JET_ERRCAT.Fragmentation;
+pub const JET_errcatApi = JET_ERRCAT.Api;
+pub const JET_errcatUsage = JET_ERRCAT.Usage;
+pub const JET_errcatState = JET_ERRCAT.State;
+pub const JET_errcatObsolete = JET_ERRCAT.Obsolete;
+pub const JET_errcatMax = JET_ERRCAT.Max;
+
+pub const JET_ERRINFOBASIC_W = extern struct {
+    cbStruct: u32,
+    errValue: i32,
+    errcatMostSpecific: JET_ERRCAT,
+    rgCategoricalHierarchy: [8]u8,
+    lSourceLine: u32,
+    rgszSourceFile: [64]u16,
+};
+
+pub const JET_COMMIT_ID = extern struct {
+    signLog: JET_SIGNATURE,
+    reserved: i32,
+    commitId: i64,
+};
+
+pub const JET_PFNDURABLECOMMITCALLBACK = fn(
+    instance: u64,
+    pCommitIdSeen: *JET_COMMIT_ID,
+    grbit: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const JET_INDEXCHECKING = extern enum(i32) {
+    Off = 0,
+    On = 1,
+    DeferToOpenTable = 2,
+    Max = 3,
+};
+pub const JET_IndexCheckingOff = JET_INDEXCHECKING.Off;
+pub const JET_IndexCheckingOn = JET_INDEXCHECKING.On;
+pub const JET_IndexCheckingDeferToOpenTable = JET_INDEXCHECKING.DeferToOpenTable;
+pub const JET_IndexCheckingMax = JET_INDEXCHECKING.Max;
+
+pub const JET_OPERATIONCONTEXT = extern struct {
+    ulUserID: u32,
+    nOperationID: u8,
+    nOperationType: u8,
+    nClientType: u8,
+    fFlags: u8,
+};
+
+pub const JET_SETCOLUMN = extern struct {
+    columnid: u32,
+    pvData: *const c_void,
+    cbData: u32,
+    grbit: u32,
+    ibLongValue: u32,
+    itagSequence: u32,
+    err: i32,
+};
+
+pub const JET_SETSYSPARAM_A = extern struct {
+    paramid: u32,
+    lParam: u64,
+    sz: [*:0]const u8,
+    err: i32,
+};
+
+pub const JET_SETSYSPARAM_W = extern struct {
+    paramid: u32,
+    lParam: u64,
+    sz: [*:0]const u16,
+    err: i32,
+};
+
+pub const JET_RETRIEVECOLUMN = extern struct {
+    columnid: u32,
+    pvData: *c_void,
+    cbData: u32,
+    cbActual: u32,
+    grbit: u32,
+    ibLongValue: u32,
+    itagSequence: u32,
+    columnidNextTagged: u32,
+    err: i32,
+};
+
+pub const JET_ENUMCOLUMNID = extern struct {
+    columnid: u32,
+    ctagSequence: u32,
+    rgtagSequence: *u32,
+};
+
+pub const JET_ENUMCOLUMNVALUE = extern struct {
+    itagSequence: u32,
+    err: i32,
+    cbData: u32,
+    pvData: *c_void,
+};
+
+pub const JET_ENUMCOLUMN = extern struct {
+    columnid: u32,
+    err: i32,
+    Anonymous: JET_ENUMCOLUMN._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const JET_PFNREALLOC = fn(
+    pvContext: ?*c_void,
+    pv: ?*c_void,
+    cb: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+pub const JET_RECSIZE = extern struct {
+    cbData: u64,
+    cbLongValueData: u64,
+    cbOverhead: u64,
+    cbLongValueOverhead: u64,
+    cNonTaggedColumns: u64,
+    cTaggedColumns: u64,
+    cLongValues: u64,
+    cMultiValues: u64,
+};
+
+pub const JET_RECSIZE2 = extern struct {
+    cbData: u64,
+    cbLongValueData: u64,
+    cbOverhead: u64,
+    cbLongValueOverhead: u64,
+    cNonTaggedColumns: u64,
+    cTaggedColumns: u64,
+    cLongValues: u64,
+    cMultiValues: u64,
+    cCompressedColumns: u64,
+    cbDataCompressed: u64,
+    cbLongValueDataCompressed: u64,
+};
+
+pub const JET_LOGINFO_A = extern struct {
+    cbSize: u32,
+    ulGenLow: u32,
+    ulGenHigh: u32,
+    szBaseName: [4]CHAR,
+};
+
+pub const JET_LOGINFO_W = extern struct {
+    cbSize: u32,
+    ulGenLow: u32,
+    ulGenHigh: u32,
+    szBaseName: [4]u16,
+};
+
+pub const JET_INSTANCE_INFO_A = extern struct {
+    hInstanceId: u64,
+    szInstanceName: PSTR,
+    cDatabases: u64,
+    szDatabaseFileName: **i8,
+    szDatabaseDisplayName: **i8,
+    szDatabaseSLVFileName_Obsolete: **i8,
+};
+
+pub const JET_INSTANCE_INFO_W = extern struct {
+    hInstanceId: u64,
+    szInstanceName: PWSTR,
+    cDatabases: u64,
+    szDatabaseFileName: **u16,
+    szDatabaseDisplayName: **u16,
+    szDatabaseSLVFileName_Obsolete: **u16,
+};
+
+pub const PROPSPEC_KIND = extern enum(u32) {
+    LPWSTR = 0,
+    PROPID = 1,
+};
+pub const PRSPEC_LPWSTR = PROPSPEC_KIND.LPWSTR;
+pub const PRSPEC_PROPID = PROPSPEC_KIND.PROPID;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (274)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn WriteFmtUserTypeStg(
+    pstg: *IStorage,
+    cf: u16,
+    lpszUserType: PWSTR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn ReadFmtUserTypeStg(
+    pstg: *IStorage,
+    pcf: *u16,
+    lplpszUserType: ?*?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn OleConvertOLESTREAMToIStorage(
+    lpolestream: *OLESTREAM,
+    pstg: *IStorage,
+    ptd: *const DVTARGETDEVICE,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn OleConvertIStorageToOLESTREAM(
+    pstg: *IStorage,
+    lpolestream: *OLESTREAM,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn SetConvertStg(
+    pStg: *IStorage,
+    fConvert: BOOL,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn OleConvertIStorageToOLESTREAMEx(
+    pstg: *IStorage,
+    cfFormat: u16,
+    lWidth: i32,
+    lHeight: i32,
+    dwSize: u32,
+    pmedium: *STGMEDIUM,
+    polestm: *OLESTREAM,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ole32" fn OleConvertOLESTREAMToIStorageEx(
+    polestm: *OLESTREAM,
+    pstg: *IStorage,
+    pcfFormat: *u16,
+    plwWidth: *i32,
+    plHeight: *i32,
+    pdwSize: *u32,
+    pmedium: *STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn CreateStreamOnHGlobal(
+    hGlobal: isize,
+    fDeleteOnRelease: BOOL,
+    ppstm: **IStream,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn GetHGlobalFromStream(
+    pstm: *IStream,
+    phglobal: *isize,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn PropVariantCopy(
+    pvarDest: *PROPVARIANT,
+    pvarSrc: *const PROPVARIANT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn PropVariantClear(
+    pvar: *PROPVARIANT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "OLE32" fn FreePropVariantArray(
+    cVariants: u32,
+    rgvars: [*]PROPVARIANT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "PROPSYS" fn StgSerializePropVariant(
+    ppropvar: *const PROPVARIANT,
+    ppProp: **SERIALIZEDPROPERTYVALUE,
+    pcb: *u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "PROPSYS" fn StgDeserializePropVariant(
+    pprop: *const SERIALIZEDPROPERTYVALUE,
+    cbMax: u32,
+    ppropvar: *PROPVARIANT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "OLE32" fn StgCreateDocfile(
     pwcsName: ?[*:0]const u16,
@@ -3967,7 +4066,7 @@ pub extern "ESENT" fn JetCreateIndexA(
     szIndexName: *i8,
     grbit: u32,
     // TODO: what to do with BytesParamIndex 5?
-    szKey: *const i8,
+    szKey: [*:0]const u8,
     cbKey: u32,
     lDensity: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4984,7 +5083,7 @@ pub extern "ESENT" fn JetGetInstanceInfoW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetFreeBuffer(
-    pbBuf: *i8,
+    pbBuf: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ESENT" fn JetSetLS(
@@ -5094,105 +5193,6 @@ pub extern "ESENT" fn JetGetSessionParameter(
     cbParamMax: u32,
     pcbParamActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn WriteFmtUserTypeStg(
-    pstg: *IStorage,
-    cf: u16,
-    lpszUserType: PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn ReadFmtUserTypeStg(
-    pstg: *IStorage,
-    pcf: *u16,
-    lplpszUserType: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn OleConvertOLESTREAMToIStorage(
-    lpolestream: *OLESTREAM,
-    pstg: *IStorage,
-    ptd: *const DVTARGETDEVICE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn OleConvertIStorageToOLESTREAM(
-    pstg: *IStorage,
-    lpolestream: *OLESTREAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn SetConvertStg(
-    pStg: *IStorage,
-    fConvert: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn OleConvertIStorageToOLESTREAMEx(
-    pstg: *IStorage,
-    cfFormat: u16,
-    lWidth: i32,
-    lHeight: i32,
-    dwSize: u32,
-    pmedium: *STGMEDIUM,
-    polestm: *OLESTREAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "ole32" fn OleConvertOLESTREAMToIStorageEx(
-    polestm: *OLESTREAM,
-    pstg: *IStorage,
-    pcfFormat: *u16,
-    plwWidth: *i32,
-    plHeight: *i32,
-    pdwSize: *u32,
-    pmedium: *STGMEDIUM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn CreateStreamOnHGlobal(
-    hGlobal: isize,
-    fDeleteOnRelease: BOOL,
-    ppstm: **IStream,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn GetHGlobalFromStream(
-    pstm: *IStream,
-    phglobal: *isize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn PropVariantCopy(
-    pvarDest: *PROPVARIANT,
-    pvarSrc: *const PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn PropVariantClear(
-    pvar: *PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "OLE32" fn FreePropVariantArray(
-    cVariants: u32,
-    rgvars: [*]PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "PROPSYS" fn StgSerializePropVariant(
-    ppropvar: *const PROPVARIANT,
-    ppProp: **SERIALIZEDPROPERTYVALUE,
-    pcb: *u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "PROPSYS" fn StgDeserializePropVariant(
-    pprop: *const SERIALIZEDPROPERTYVALUE,
-    cbMax: u32,
-    ppropvar: *PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 
 //--------------------------------------------------------------------------------
@@ -5548,15 +5548,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (20)
+// Section: Imports (21)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
 const ULARGE_INTEGER = @import("system_services.zig").ULARGE_INTEGER;
 const PWSTR = @import("system_services.zig").PWSTR;
 const FILETIME = @import("windows_programming.zig").FILETIME;
-const CY = @import("system_services.zig").CY;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
+const CY = @import("system_services.zig").CY;
 const HRESULT = @import("com.zig").HRESULT;
 const BSTRBLOB = @import("system_services.zig").BSTRBLOB;
 const SERIALIZEDPROPERTYVALUE = @import("shell.zig").SERIALIZEDPROPERTYVALUE;
@@ -5585,7 +5586,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 274;
     const unicode_alias_count = 85;
-    const import_count = 20;
+    const import_count = 21;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

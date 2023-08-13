@@ -2064,6 +2064,7 @@ pub const IBackgroundCopyJob1 = extern struct {
         SwitchToForeground: fn(
             self: *const IBackgroundCopyJob1,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JobID: fn(
             self: *const IBackgroundCopyJob1,
             pguidJobID: *Guid,
@@ -2232,10 +2233,12 @@ pub const IBackgroundCopyGroup = extern struct {
         CancelGroup: fn(
             self: *const IBackgroundCopyGroup,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Size: fn(
             self: *const IBackgroundCopyGroup,
             pdwSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GroupID: fn(
             self: *const IBackgroundCopyGroup,
             pguidGroupID: *Guid,
@@ -2256,7 +2259,7 @@ pub const IBackgroundCopyGroup = extern struct {
         QueryNewJobInterface: fn(
             self: *const IBackgroundCopyGroup,
             iid: *const Guid,
-            pUnk: ?*?*IUnknown,
+            pUnk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         SetNotificationPointer: fn(
             self: *const IBackgroundCopyGroup,
@@ -2320,7 +2323,7 @@ pub const IBackgroundCopyGroup = extern struct {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).SwitchToForeground(@ptrCast(*const IBackgroundCopyGroup, self));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyGroup_QueryNewJobInterface(self: *const T, iid: *const Guid, pUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyGroup_QueryNewJobInterface(self: *const T, iid: *const Guid, pUnk: **IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IBackgroundCopyGroup.VTable, self.vtable).QueryNewJobInterface(@ptrCast(*const IBackgroundCopyGroup, self), iid, pUnk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

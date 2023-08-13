@@ -270,24 +270,29 @@ pub const IID_IStringCollection = &IID_IStringCollection_Value;
 pub const IStringCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IStringCollection,
             index: i32,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Item: fn(
             self: *const IStringCollection,
             index: i32,
             value: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IStringCollection,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IStringCollection,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReadOnly: fn(
             self: *const IStringCollection,
             retval: *i16,
@@ -367,38 +372,47 @@ pub const IID_IWebProxy = &IID_IWebProxy_Value;
 pub const IWebProxy = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Address: fn(
             self: *const IWebProxy,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Address: fn(
             self: *const IWebProxy,
             value: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BypassList: fn(
             self: *const IWebProxy,
             retval: **IStringCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BypassList: fn(
             self: *const IWebProxy,
             value: *IStringCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BypassProxyOnLocal: fn(
             self: *const IWebProxy,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BypassProxyOnLocal: fn(
             self: *const IWebProxy,
             value: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReadOnly: fn(
             self: *const IWebProxy,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserName: fn(
             self: *const IWebProxy,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UserName: fn(
             self: *const IWebProxy,
             value: BSTR,
@@ -417,10 +431,12 @@ pub const IWebProxy = extern struct {
             parentWindow: HWND,
             title: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoDetect: fn(
             self: *const IWebProxy,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoDetect: fn(
             self: *const IWebProxy,
             value: i16,
@@ -495,10 +511,12 @@ pub const IID_ISystemInformation = &IID_ISystemInformation_Value;
 pub const ISystemInformation = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OemHardwareSupportLink: fn(
             self: *const ISystemInformation,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RebootRequired: fn(
             self: *const ISystemInformation,
             retval: *i16,
@@ -548,10 +566,12 @@ pub const IID_IAutomaticUpdatesResults = &IID_IAutomaticUpdatesResults_Value;
 pub const IAutomaticUpdatesResults = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastSearchSuccessDate: fn(
             self: *const IAutomaticUpdatesResults,
             retval: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastInstallationSuccessDate: fn(
             self: *const IAutomaticUpdatesResults,
             retval: *VARIANT,
@@ -578,34 +598,42 @@ pub const IID_IAutomaticUpdatesSettings = &IID_IAutomaticUpdatesSettings_Value;
 pub const IAutomaticUpdatesSettings = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NotificationLevel: fn(
             self: *const IAutomaticUpdatesSettings,
             retval: *AutomaticUpdatesNotificationLevel,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NotificationLevel: fn(
             self: *const IAutomaticUpdatesSettings,
             value: AutomaticUpdatesNotificationLevel,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReadOnly: fn(
             self: *const IAutomaticUpdatesSettings,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Required: fn(
             self: *const IAutomaticUpdatesSettings,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ScheduledInstallationDay: fn(
             self: *const IAutomaticUpdatesSettings,
             retval: *AutomaticUpdatesScheduledInstallationDay,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ScheduledInstallationDay: fn(
             self: *const IAutomaticUpdatesSettings,
             value: AutomaticUpdatesScheduledInstallationDay,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ScheduledInstallationTime: fn(
             self: *const IAutomaticUpdatesSettings,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ScheduledInstallationTime: fn(
             self: *const IAutomaticUpdatesSettings,
             value: i32,
@@ -670,10 +698,12 @@ pub const IID_IAutomaticUpdatesSettings2 = &IID_IAutomaticUpdatesSettings2_Value
 pub const IAutomaticUpdatesSettings2 = extern struct {
     pub const VTable = extern struct {
         base: IAutomaticUpdatesSettings.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IncludeRecommendedUpdates: fn(
             self: *const IAutomaticUpdatesSettings2,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IncludeRecommendedUpdates: fn(
             self: *const IAutomaticUpdatesSettings2,
             value: i16,
@@ -710,18 +740,22 @@ pub const IID_IAutomaticUpdatesSettings3 = &IID_IAutomaticUpdatesSettings3_Value
 pub const IAutomaticUpdatesSettings3 = extern struct {
     pub const VTable = extern struct {
         base: IAutomaticUpdatesSettings2.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NonAdministratorsElevated: fn(
             self: *const IAutomaticUpdatesSettings3,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NonAdministratorsElevated: fn(
             self: *const IAutomaticUpdatesSettings3,
             value: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FeaturedUpdatesEnabled: fn(
             self: *const IAutomaticUpdatesSettings3,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FeaturedUpdatesEnabled: fn(
             self: *const IAutomaticUpdatesSettings3,
             value: i16,
@@ -768,10 +802,12 @@ pub const IAutomaticUpdates = extern struct {
         ShowSettingsDialog: fn(
             self: *const IAutomaticUpdates,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Settings: fn(
             self: *const IAutomaticUpdates,
             retval: **IAutomaticUpdatesSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceEnabled: fn(
             self: *const IAutomaticUpdates,
             retval: *i16,
@@ -821,6 +857,7 @@ pub const IID_IAutomaticUpdates2 = &IID_IAutomaticUpdates2_Value;
 pub const IAutomaticUpdates2 = extern struct {
     pub const VTable = extern struct {
         base: IAutomaticUpdates.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Results: fn(
             self: *const IAutomaticUpdates2,
             retval: **IAutomaticUpdatesResults,
@@ -843,10 +880,12 @@ pub const IID_IUpdateIdentity = &IID_IUpdateIdentity_Value;
 pub const IUpdateIdentity = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RevisionNumber: fn(
             self: *const IUpdateIdentity,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UpdateID: fn(
             self: *const IUpdateIdentity,
             retval: *BSTR,
@@ -873,18 +912,22 @@ pub const IID_IImageInformation = &IID_IImageInformation_Value;
 pub const IImageInformation = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AltText: fn(
             self: *const IImageInformation,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Height: fn(
             self: *const IImageInformation,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Source: fn(
             self: *const IImageInformation,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Width: fn(
             self: *const IImageInformation,
             retval: *i32,
@@ -919,38 +962,47 @@ pub const IID_ICategory = &IID_ICategory_Value;
 pub const ICategory = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const ICategory,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CategoryID: fn(
             self: *const ICategory,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Children: fn(
             self: *const ICategory,
             retval: **ICategoryCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const ICategory,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Image: fn(
             self: *const ICategory,
             retval: **IImageInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Order: fn(
             self: *const ICategory,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const ICategory,
             retval: **ICategory,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const ICategory,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Updates: fn(
             self: *const ICategory,
             retval: **IUpdateCollection,
@@ -1005,15 +1057,18 @@ pub const IID_ICategoryCollection = &IID_ICategoryCollection_Value;
 pub const ICategoryCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const ICategoryCollection,
             index: i32,
             retval: **ICategory,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const ICategoryCollection,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const ICategoryCollection,
             retval: *i32,
@@ -1044,18 +1099,22 @@ pub const IID_IInstallationBehavior = &IID_IInstallationBehavior_Value;
 pub const IInstallationBehavior = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanRequestUserInput: fn(
             self: *const IInstallationBehavior,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Impact: fn(
             self: *const IInstallationBehavior,
             retval: *InstallationImpact,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RebootBehavior: fn(
             self: *const IInstallationBehavior,
             retval: *InstallationRebootBehavior,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequiresNetworkConnectivity: fn(
             self: *const IInstallationBehavior,
             retval: *i16,
@@ -1090,6 +1149,7 @@ pub const IID_IUpdateDownloadContent = &IID_IUpdateDownloadContent_Value;
 pub const IUpdateDownloadContent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DownloadUrl: fn(
             self: *const IUpdateDownloadContent,
             retval: *BSTR,
@@ -1112,6 +1172,7 @@ pub const IID_IUpdateDownloadContent2 = &IID_IUpdateDownloadContent2_Value;
 pub const IUpdateDownloadContent2 = extern struct {
     pub const VTable = extern struct {
         base: IUpdateDownloadContent.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsDeltaCompressedContent: fn(
             self: *const IUpdateDownloadContent2,
             retval: *i16,
@@ -1134,15 +1195,18 @@ pub const IID_IUpdateDownloadContentCollection = &IID_IUpdateDownloadContentColl
 pub const IUpdateDownloadContentCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IUpdateDownloadContentCollection,
             index: i32,
             retval: **IUpdateDownloadContent,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IUpdateDownloadContentCollection,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IUpdateDownloadContentCollection,
             retval: *i32,
@@ -1173,162 +1237,202 @@ pub const IID_IUpdate = &IID_IUpdate_Value;
 pub const IUpdate = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Title: fn(
             self: *const IUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoSelectOnWebSites: fn(
             self: *const IUpdate,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BundledUpdates: fn(
             self: *const IUpdate,
             retval: **IUpdateCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanRequireSource: fn(
             self: *const IUpdate,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Categories: fn(
             self: *const IUpdate,
             retval: **ICategoryCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Deadline: fn(
             self: *const IUpdate,
             retval: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeltaCompressedContentAvailable: fn(
             self: *const IUpdate,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeltaCompressedContentPreferred: fn(
             self: *const IUpdate,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EulaAccepted: fn(
             self: *const IUpdate,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EulaText: fn(
             self: *const IUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HandlerID: fn(
             self: *const IUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Identity: fn(
             self: *const IUpdate,
             retval: **IUpdateIdentity,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Image: fn(
             self: *const IUpdate,
             retval: **IImageInformation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InstallationBehavior: fn(
             self: *const IUpdate,
             retval: **IInstallationBehavior,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsBeta: fn(
             self: *const IUpdate,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsDownloaded: fn(
             self: *const IUpdate,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsHidden: fn(
             self: *const IUpdate,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsHidden: fn(
             self: *const IUpdate,
             value: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsInstalled: fn(
             self: *const IUpdate,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsMandatory: fn(
             self: *const IUpdate,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsUninstallable: fn(
             self: *const IUpdate,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Languages: fn(
             self: *const IUpdate,
             retval: **IStringCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastDeploymentChangeTime: fn(
             self: *const IUpdate,
             retval: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxDownloadSize: fn(
             self: *const IUpdate,
             retval: *DECIMAL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinDownloadSize: fn(
             self: *const IUpdate,
             retval: *DECIMAL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MoreInfoUrls: fn(
             self: *const IUpdate,
             retval: **IStringCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MsrcSeverity: fn(
             self: *const IUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecommendedCpuSpeed: fn(
             self: *const IUpdate,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecommendedHardDiskSpace: fn(
             self: *const IUpdate,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecommendedMemory: fn(
             self: *const IUpdate,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReleaseNotes: fn(
             self: *const IUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SecurityBulletinIDs: fn(
             self: *const IUpdate,
             retval: **IStringCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupersededUpdateIDs: fn(
             self: *const IUpdate,
             retval: **IStringCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportUrl: fn(
             self: *const IUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IUpdate,
             retval: *UpdateType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UninstallationNotes: fn(
             self: *const IUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UninstallationBehavior: fn(
             self: *const IUpdate,
             retval: **IInstallationBehavior,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UninstallationSteps: fn(
             self: *const IUpdate,
             retval: **IStringCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KBArticleIDs: fn(
             self: *const IUpdate,
             retval: **IStringCollection,
@@ -1336,6 +1440,7 @@ pub const IUpdate = extern struct {
         AcceptEula: fn(
             self: *const IUpdate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeploymentAction: fn(
             self: *const IUpdate,
             retval: *DeploymentAction,
@@ -1345,10 +1450,12 @@ pub const IUpdate = extern struct {
             path: BSTR,
             toExtractCabFiles: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DownloadPriority: fn(
             self: *const IUpdate,
             retval: *DownloadPriority,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DownloadContents: fn(
             self: *const IUpdate,
             retval: **IUpdateDownloadContentCollection,
@@ -1547,34 +1654,42 @@ pub const IID_IWindowsDriverUpdate = &IID_IWindowsDriverUpdate_Value;
 pub const IWindowsDriverUpdate = extern struct {
     pub const VTable = extern struct {
         base: IUpdate.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverClass: fn(
             self: *const IWindowsDriverUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverHardwareID: fn(
             self: *const IWindowsDriverUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverManufacturer: fn(
             self: *const IWindowsDriverUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverModel: fn(
             self: *const IWindowsDriverUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverProvider: fn(
             self: *const IWindowsDriverUpdate,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverVerDate: fn(
             self: *const IWindowsDriverUpdate,
             retval: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceProblemNumber: fn(
             self: *const IWindowsDriverUpdate,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceStatus: fn(
             self: *const IWindowsDriverUpdate,
             retval: *i32,
@@ -1625,14 +1740,17 @@ pub const IID_IUpdate2 = &IID_IUpdate2_Value;
 pub const IUpdate2 = extern struct {
     pub const VTable = extern struct {
         base: IUpdate.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RebootRequired: fn(
             self: *const IUpdate2,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsPresent: fn(
             self: *const IUpdate2,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CveIDs: fn(
             self: *const IUpdate2,
             retval: **IStringCollection,
@@ -1671,6 +1789,7 @@ pub const IID_IUpdate3 = &IID_IUpdate3_Value;
 pub const IUpdate3 = extern struct {
     pub const VTable = extern struct {
         base: IUpdate2.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BrowseOnly: fn(
             self: *const IUpdate3,
             retval: *i16,
@@ -1693,6 +1812,7 @@ pub const IID_IUpdate4 = &IID_IUpdate4_Value;
 pub const IUpdate4 = extern struct {
     pub const VTable = extern struct {
         base: IUpdate3.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PerUser: fn(
             self: *const IUpdate4,
             retval: *i16,
@@ -1715,10 +1835,12 @@ pub const IID_IUpdate5 = &IID_IUpdate5_Value;
 pub const IUpdate5 = extern struct {
     pub const VTable = extern struct {
         base: IUpdate4.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoSelection: fn(
             self: *const IUpdate5,
             retval: *AutoSelectionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoDownload: fn(
             self: *const IUpdate5,
             retval: *AutoDownloadMode,
@@ -1745,14 +1867,17 @@ pub const IID_IWindowsDriverUpdate2 = &IID_IWindowsDriverUpdate2_Value;
 pub const IWindowsDriverUpdate2 = extern struct {
     pub const VTable = extern struct {
         base: IWindowsDriverUpdate.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RebootRequired: fn(
             self: *const IWindowsDriverUpdate2,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsPresent: fn(
             self: *const IWindowsDriverUpdate2,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CveIDs: fn(
             self: *const IWindowsDriverUpdate2,
             retval: **IStringCollection,
@@ -1791,6 +1916,7 @@ pub const IID_IWindowsDriverUpdate3 = &IID_IWindowsDriverUpdate3_Value;
 pub const IWindowsDriverUpdate3 = extern struct {
     pub const VTable = extern struct {
         base: IWindowsDriverUpdate2.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BrowseOnly: fn(
             self: *const IWindowsDriverUpdate3,
             retval: *i16,
@@ -1813,34 +1939,42 @@ pub const IID_IWindowsDriverUpdateEntry = &IID_IWindowsDriverUpdateEntry_Value;
 pub const IWindowsDriverUpdateEntry = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverClass: fn(
             self: *const IWindowsDriverUpdateEntry,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverHardwareID: fn(
             self: *const IWindowsDriverUpdateEntry,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverManufacturer: fn(
             self: *const IWindowsDriverUpdateEntry,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverModel: fn(
             self: *const IWindowsDriverUpdateEntry,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverProvider: fn(
             self: *const IWindowsDriverUpdateEntry,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverVerDate: fn(
             self: *const IWindowsDriverUpdateEntry,
             retval: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceProblemNumber: fn(
             self: *const IWindowsDriverUpdateEntry,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceStatus: fn(
             self: *const IWindowsDriverUpdateEntry,
             retval: *i32,
@@ -1891,15 +2025,18 @@ pub const IID_IWindowsDriverUpdateEntryCollection = &IID_IWindowsDriverUpdateEnt
 pub const IWindowsDriverUpdateEntryCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IWindowsDriverUpdateEntryCollection,
             index: i32,
             retval: **IWindowsDriverUpdateEntry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IWindowsDriverUpdateEntryCollection,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IWindowsDriverUpdateEntryCollection,
             retval: *i32,
@@ -1930,10 +2067,12 @@ pub const IID_IWindowsDriverUpdate4 = &IID_IWindowsDriverUpdate4_Value;
 pub const IWindowsDriverUpdate4 = extern struct {
     pub const VTable = extern struct {
         base: IWindowsDriverUpdate3.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowsDriverUpdateEntries: fn(
             self: *const IWindowsDriverUpdate4,
             retval: **IWindowsDriverUpdateEntryCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PerUser: fn(
             self: *const IWindowsDriverUpdate4,
             retval: *i16,
@@ -1960,10 +2099,12 @@ pub const IID_IWindowsDriverUpdate5 = &IID_IWindowsDriverUpdate5_Value;
 pub const IWindowsDriverUpdate5 = extern struct {
     pub const VTable = extern struct {
         base: IWindowsDriverUpdate4.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoSelection: fn(
             self: *const IWindowsDriverUpdate5,
             retval: *AutoSelectionMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoDownload: fn(
             self: *const IWindowsDriverUpdate5,
             retval: *AutoDownloadMode,
@@ -1990,24 +2131,29 @@ pub const IID_IUpdateCollection = &IID_IUpdateCollection_Value;
 pub const IUpdateCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IUpdateCollection,
             index: i32,
             retval: **IUpdate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Item: fn(
             self: *const IUpdateCollection,
             index: i32,
             value: *IUpdate,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IUpdateCollection,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IUpdateCollection,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReadOnly: fn(
             self: *const IUpdateCollection,
             retval: *i16,
@@ -2087,14 +2233,17 @@ pub const IID_IUpdateException = &IID_IUpdateException_Value;
 pub const IUpdateException = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Message: fn(
             self: *const IUpdateException,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HResult: fn(
             self: *const IUpdateException,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Context: fn(
             self: *const IUpdateException,
             retval: *UpdateExceptionContext,
@@ -2125,6 +2274,7 @@ pub const IID_IInvalidProductLicenseException = &IID_IInvalidProductLicenseExcep
 pub const IInvalidProductLicenseException = extern struct {
     pub const VTable = extern struct {
         base: IUpdateException.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Product: fn(
             self: *const IInvalidProductLicenseException,
             retval: *BSTR,
@@ -2147,15 +2297,18 @@ pub const IID_IUpdateExceptionCollection = &IID_IUpdateExceptionCollection_Value
 pub const IUpdateExceptionCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IUpdateExceptionCollection,
             index: i32,
             retval: **IUpdateException,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IUpdateExceptionCollection,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IUpdateExceptionCollection,
             retval: *i32,
@@ -2186,18 +2339,22 @@ pub const IID_ISearchResult = &IID_ISearchResult_Value;
 pub const ISearchResult = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResultCode: fn(
             self: *const ISearchResult,
             retval: *OperationResultCode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootCategories: fn(
             self: *const ISearchResult,
             retval: **ICategoryCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Updates: fn(
             self: *const ISearchResult,
             retval: **IUpdateCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Warnings: fn(
             self: *const ISearchResult,
             retval: **IUpdateExceptionCollection,
@@ -2232,10 +2389,12 @@ pub const IID_ISearchJob = &IID_ISearchJob_Value;
 pub const ISearchJob = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AsyncState: fn(
             self: *const ISearchJob,
             retval: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsCompleted: fn(
             self: *const ISearchJob,
             retval: *i16,
@@ -2313,58 +2472,72 @@ pub const IID_IUpdateHistoryEntry = &IID_IUpdateHistoryEntry_Value;
 pub const IUpdateHistoryEntry = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operation: fn(
             self: *const IUpdateHistoryEntry,
             retval: *UpdateOperation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResultCode: fn(
             self: *const IUpdateHistoryEntry,
             retval: *OperationResultCode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HResult: fn(
             self: *const IUpdateHistoryEntry,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Date: fn(
             self: *const IUpdateHistoryEntry,
             retval: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UpdateIdentity: fn(
             self: *const IUpdateHistoryEntry,
             retval: **IUpdateIdentity,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Title: fn(
             self: *const IUpdateHistoryEntry,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IUpdateHistoryEntry,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UnmappedResultCode: fn(
             self: *const IUpdateHistoryEntry,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientApplicationID: fn(
             self: *const IUpdateHistoryEntry,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerSelection: fn(
             self: *const IUpdateHistoryEntry,
             retval: *ServerSelection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceID: fn(
             self: *const IUpdateHistoryEntry,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UninstallationSteps: fn(
             self: *const IUpdateHistoryEntry,
             retval: **IStringCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UninstallationNotes: fn(
             self: *const IUpdateHistoryEntry,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportUrl: fn(
             self: *const IUpdateHistoryEntry,
             retval: *BSTR,
@@ -2439,6 +2612,7 @@ pub const IID_IUpdateHistoryEntry2 = &IID_IUpdateHistoryEntry2_Value;
 pub const IUpdateHistoryEntry2 = extern struct {
     pub const VTable = extern struct {
         base: IUpdateHistoryEntry.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Categories: fn(
             self: *const IUpdateHistoryEntry2,
             retval: **ICategoryCollection,
@@ -2461,15 +2635,18 @@ pub const IID_IUpdateHistoryEntryCollection = &IID_IUpdateHistoryEntryCollection
 pub const IUpdateHistoryEntryCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IUpdateHistoryEntryCollection,
             index: i32,
             retval: **IUpdateHistoryEntry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IUpdateHistoryEntryCollection,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IUpdateHistoryEntryCollection,
             retval: *i32,
@@ -2500,34 +2677,42 @@ pub const IID_IUpdateSearcher = &IID_IUpdateSearcher_Value;
 pub const IUpdateSearcher = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanAutomaticallyUpgradeService: fn(
             self: *const IUpdateSearcher,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CanAutomaticallyUpgradeService: fn(
             self: *const IUpdateSearcher,
             value: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientApplicationID: fn(
             self: *const IUpdateSearcher,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClientApplicationID: fn(
             self: *const IUpdateSearcher,
             value: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IncludePotentiallySupersededUpdates: fn(
             self: *const IUpdateSearcher,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IncludePotentiallySupersededUpdates: fn(
             self: *const IUpdateSearcher,
             value: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerSelection: fn(
             self: *const IUpdateSearcher,
             retval: *ServerSelection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServerSelection: fn(
             self: *const IUpdateSearcher,
             value: ServerSelection,
@@ -2560,10 +2745,12 @@ pub const IUpdateSearcher = extern struct {
             criteria: BSTR,
             retval: **ISearchResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Online: fn(
             self: *const IUpdateSearcher,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Online: fn(
             self: *const IUpdateSearcher,
             value: i16,
@@ -2572,10 +2759,12 @@ pub const IUpdateSearcher = extern struct {
             self: *const IUpdateSearcher,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceID: fn(
             self: *const IUpdateSearcher,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServiceID: fn(
             self: *const IUpdateSearcher,
             value: BSTR,
@@ -2666,10 +2855,12 @@ pub const IID_IUpdateSearcher2 = &IID_IUpdateSearcher2_Value;
 pub const IUpdateSearcher2 = extern struct {
     pub const VTable = extern struct {
         base: IUpdateSearcher.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IgnoreDownloadPriority: fn(
             self: *const IUpdateSearcher2,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IgnoreDownloadPriority: fn(
             self: *const IUpdateSearcher2,
             value: i16,
@@ -2696,10 +2887,12 @@ pub const IID_IUpdateSearcher3 = &IID_IUpdateSearcher3_Value;
 pub const IUpdateSearcher3 = extern struct {
     pub const VTable = extern struct {
         base: IUpdateSearcher2.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SearchScope: fn(
             self: *const IUpdateSearcher3,
             retval: *SearchScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SearchScope: fn(
             self: *const IUpdateSearcher3,
             value: SearchScope,
@@ -2726,10 +2919,12 @@ pub const IID_IUpdateDownloadResult = &IID_IUpdateDownloadResult_Value;
 pub const IUpdateDownloadResult = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HResult: fn(
             self: *const IUpdateDownloadResult,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResultCode: fn(
             self: *const IUpdateDownloadResult,
             retval: *OperationResultCode,
@@ -2756,10 +2951,12 @@ pub const IID_IDownloadResult = &IID_IDownloadResult_Value;
 pub const IDownloadResult = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HResult: fn(
             self: *const IDownloadResult,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResultCode: fn(
             self: *const IDownloadResult,
             retval: *OperationResultCode,
@@ -2795,26 +2992,32 @@ pub const IID_IDownloadProgress = &IID_IDownloadProgress_Value;
 pub const IDownloadProgress = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentUpdateBytesDownloaded: fn(
             self: *const IDownloadProgress,
             retval: *DECIMAL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentUpdateBytesToDownload: fn(
             self: *const IDownloadProgress,
             retval: *DECIMAL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentUpdateIndex: fn(
             self: *const IDownloadProgress,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PercentComplete: fn(
             self: *const IDownloadProgress,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TotalBytesDownloaded: fn(
             self: *const IDownloadProgress,
             retval: *DECIMAL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TotalBytesToDownload: fn(
             self: *const IDownloadProgress,
             retval: *DECIMAL,
@@ -2824,10 +3027,12 @@ pub const IDownloadProgress = extern struct {
             updateIndex: i32,
             retval: **IUpdateDownloadResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentUpdateDownloadPhase: fn(
             self: *const IDownloadProgress,
             retval: *DownloadPhase,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentUpdatePercentComplete: fn(
             self: *const IDownloadProgress,
             retval: *i32,
@@ -2882,14 +3087,17 @@ pub const IID_IDownloadJob = &IID_IDownloadJob_Value;
 pub const IDownloadJob = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AsyncState: fn(
             self: *const IDownloadJob,
             retval: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsCompleted: fn(
             self: *const IDownloadJob,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Updates: fn(
             self: *const IDownloadJob,
             retval: **IUpdateCollection,
@@ -2979,6 +3187,7 @@ pub const IID_IDownloadProgressChangedCallbackArgs = &IID_IDownloadProgressChang
 pub const IDownloadProgressChangedCallbackArgs = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Progress: fn(
             self: *const IDownloadProgressChangedCallbackArgs,
             retval: **IDownloadProgress,
@@ -3024,34 +3233,42 @@ pub const IID_IUpdateDownloader = &IID_IUpdateDownloader_Value;
 pub const IUpdateDownloader = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientApplicationID: fn(
             self: *const IUpdateDownloader,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClientApplicationID: fn(
             self: *const IUpdateDownloader,
             value: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsForced: fn(
             self: *const IUpdateDownloader,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsForced: fn(
             self: *const IUpdateDownloader,
             value: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Priority: fn(
             self: *const IUpdateDownloader,
             retval: *DownloadPriority,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Priority: fn(
             self: *const IUpdateDownloader,
             value: DownloadPriority,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Updates: fn(
             self: *const IUpdateDownloader,
             retval: **IUpdateCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Updates: fn(
             self: *const IUpdateDownloader,
             value: *IUpdateCollection,
@@ -3130,14 +3347,17 @@ pub const IID_IUpdateInstallationResult = &IID_IUpdateInstallationResult_Value;
 pub const IUpdateInstallationResult = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HResult: fn(
             self: *const IUpdateInstallationResult,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RebootRequired: fn(
             self: *const IUpdateInstallationResult,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResultCode: fn(
             self: *const IUpdateInstallationResult,
             retval: *OperationResultCode,
@@ -3168,14 +3388,17 @@ pub const IID_IInstallationResult = &IID_IInstallationResult_Value;
 pub const IInstallationResult = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HResult: fn(
             self: *const IInstallationResult,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RebootRequired: fn(
             self: *const IInstallationResult,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResultCode: fn(
             self: *const IInstallationResult,
             retval: *OperationResultCode,
@@ -3215,14 +3438,17 @@ pub const IID_IInstallationProgress = &IID_IInstallationProgress_Value;
 pub const IInstallationProgress = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentUpdateIndex: fn(
             self: *const IInstallationProgress,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentUpdatePercentComplete: fn(
             self: *const IInstallationProgress,
             retval: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PercentComplete: fn(
             self: *const IInstallationProgress,
             retval: *i32,
@@ -3262,14 +3488,17 @@ pub const IID_IInstallationJob = &IID_IInstallationJob_Value;
 pub const IInstallationJob = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AsyncState: fn(
             self: *const IInstallationJob,
             retval: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsCompleted: fn(
             self: *const IInstallationJob,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Updates: fn(
             self: *const IInstallationJob,
             retval: **IUpdateCollection,
@@ -3359,6 +3588,7 @@ pub const IID_IInstallationProgressChangedCallbackArgs = &IID_IInstallationProgr
 pub const IInstallationProgressChangedCallbackArgs = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Progress: fn(
             self: *const IInstallationProgressChangedCallbackArgs,
             retval: **IInstallationProgress,
@@ -3404,42 +3634,52 @@ pub const IID_IUpdateInstaller = &IID_IUpdateInstaller_Value;
 pub const IUpdateInstaller = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientApplicationID: fn(
             self: *const IUpdateInstaller,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClientApplicationID: fn(
             self: *const IUpdateInstaller,
             value: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsForced: fn(
             self: *const IUpdateInstaller,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsForced: fn(
             self: *const IUpdateInstaller,
             value: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentHwnd: fn(
             self: *const IUpdateInstaller,
             retval: *HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ParentHwnd: fn(
             self: *const IUpdateInstaller,
             value: HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ParentWindow: fn(
             self: *const IUpdateInstaller,
             value: *IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentWindow: fn(
             self: *const IUpdateInstaller,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Updates: fn(
             self: *const IUpdateInstaller,
             retval: **IUpdateCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Updates: fn(
             self: *const IUpdateInstaller,
             value: *IUpdateCollection,
@@ -3477,6 +3717,7 @@ pub const IUpdateInstaller = extern struct {
             dialogTitle: BSTR,
             retval: **IInstallationResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsBusy: fn(
             self: *const IUpdateInstaller,
             retval: *i16,
@@ -3485,14 +3726,17 @@ pub const IUpdateInstaller = extern struct {
             self: *const IUpdateInstaller,
             retval: **IInstallationResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowSourcePrompts: fn(
             self: *const IUpdateInstaller,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowSourcePrompts: fn(
             self: *const IUpdateInstaller,
             value: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RebootRequiredBeforeInstallation: fn(
             self: *const IUpdateInstaller,
             retval: *i16,
@@ -3595,10 +3839,12 @@ pub const IID_IUpdateInstaller2 = &IID_IUpdateInstaller2_Value;
 pub const IUpdateInstaller2 = extern struct {
     pub const VTable = extern struct {
         base: IUpdateInstaller.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ForceQuiet: fn(
             self: *const IUpdateInstaller2,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ForceQuiet: fn(
             self: *const IUpdateInstaller2,
             value: i16,
@@ -3625,10 +3871,12 @@ pub const IID_IUpdateInstaller3 = &IID_IUpdateInstaller3_Value;
 pub const IUpdateInstaller3 = extern struct {
     pub const VTable = extern struct {
         base: IUpdateInstaller2.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AttemptCloseAppsIfNecessary: fn(
             self: *const IUpdateInstaller3,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttemptCloseAppsIfNecessary: fn(
             self: *const IUpdateInstaller3,
             value: i16,
@@ -3677,22 +3925,27 @@ pub const IID_IUpdateSession = &IID_IUpdateSession_Value;
 pub const IUpdateSession = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientApplicationID: fn(
             self: *const IUpdateSession,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClientApplicationID: fn(
             self: *const IUpdateSession,
             value: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReadOnly: fn(
             self: *const IUpdateSession,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WebProxy: fn(
             self: *const IUpdateSession,
             retval: **IWebProxy,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WebProxy: fn(
             self: *const IUpdateSession,
             value: *IWebProxy,
@@ -3755,10 +4008,12 @@ pub const IID_IUpdateSession2 = &IID_IUpdateSession2_Value;
 pub const IUpdateSession2 = extern struct {
     pub const VTable = extern struct {
         base: IUpdateSession.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserLocale: fn(
             self: *const IUpdateSession2,
             retval: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UserLocale: fn(
             self: *const IUpdateSession2,
             lcid: u32,
@@ -3818,54 +4073,67 @@ pub const IID_IUpdateService = &IID_IUpdateService_Value;
 pub const IUpdateService = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IUpdateService,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContentValidationCert: fn(
             self: *const IUpdateService,
             retval: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExpirationDate: fn(
             self: *const IUpdateService,
             retval: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsManaged: fn(
             self: *const IUpdateService,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRegisteredWithAU: fn(
             self: *const IUpdateService,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IssueDate: fn(
             self: *const IUpdateService,
             retval: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OffersWindowsUpdates: fn(
             self: *const IUpdateService,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RedirectUrls: fn(
             self: *const IUpdateService,
             retval: **IStringCollection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceID: fn(
             self: *const IUpdateService,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsScanPackageService: fn(
             self: *const IUpdateService,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanRegisterWithAU: fn(
             self: *const IUpdateService,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceUrl: fn(
             self: *const IUpdateService,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SetupPrefix: fn(
             self: *const IUpdateService,
             retval: *BSTR,
@@ -3936,6 +4204,7 @@ pub const IID_IUpdateService2 = &IID_IUpdateService2_Value;
 pub const IUpdateService2 = extern struct {
     pub const VTable = extern struct {
         base: IUpdateService.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsDefaultAUService: fn(
             self: *const IUpdateService2,
             retval: *i16,
@@ -3958,15 +4227,18 @@ pub const IID_IUpdateServiceCollection = &IID_IUpdateServiceCollection_Value;
 pub const IUpdateServiceCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IUpdateServiceCollection,
             index: i32,
             retval: **IUpdateService,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IUpdateServiceCollection,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IUpdateServiceCollection,
             retval: *i32,
@@ -3997,18 +4269,22 @@ pub const IID_IUpdateServiceRegistration = &IID_IUpdateServiceRegistration_Value
 pub const IUpdateServiceRegistration = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RegistrationState: fn(
             self: *const IUpdateServiceRegistration,
             retval: *UpdateServiceRegistrationState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceID: fn(
             self: *const IUpdateServiceRegistration,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsPendingRegistrationWithAU: fn(
             self: *const IUpdateServiceRegistration,
             retval: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Service: fn(
             self: *const IUpdateServiceRegistration,
             retval: **IUpdateService2,
@@ -4043,6 +4319,7 @@ pub const IID_IUpdateServiceManager = &IID_IUpdateServiceManager_Value;
 pub const IUpdateServiceManager = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Services: fn(
             self: *const IUpdateServiceManager,
             retval: **IUpdateServiceCollection,
@@ -4119,10 +4396,12 @@ pub const IID_IUpdateServiceManager2 = &IID_IUpdateServiceManager2_Value;
 pub const IUpdateServiceManager2 = extern struct {
     pub const VTable = extern struct {
         base: IUpdateServiceManager.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientApplicationID: fn(
             self: *const IUpdateServiceManager2,
             retval: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClientApplicationID: fn(
             self: *const IUpdateServiceManager2,
             value: BSTR,

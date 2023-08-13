@@ -3717,8 +3717,8 @@ pub const ECHOWAVEFILTER = extern struct {
 
 pub const s_RIFFWAVE_inst = extern struct {
     bUnshiftedNote: u8,
-    chFineTune: i8,
-    chGain: i8,
+    chFineTune: CHAR,
+    chGain: CHAR,
     bLowNote: u8,
     bHighNote: u8,
     bLowVelocity: u8,
@@ -3831,7 +3831,7 @@ pub const WAVEOUTCAPSA = extern struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     dwFormats: u32,
     wChannels: u16,
     wReserved1: u16,
@@ -3853,7 +3853,7 @@ pub const WAVEOUTCAPS2A = extern struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     dwFormats: u32,
     wChannels: u16,
     wReserved1: u16,
@@ -3881,7 +3881,7 @@ pub const WAVEINCAPSA = extern struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     dwFormats: u32,
     wChannels: u16,
     wReserved1: u16,
@@ -3901,7 +3901,7 @@ pub const WAVEINCAPS2A = extern struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     dwFormats: u32,
     wChannels: u16,
     wReserved1: u16,
@@ -3927,7 +3927,7 @@ pub const MIDIOUTCAPSA = extern struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     wTechnology: u16,
     wVoices: u16,
     wNotes: u16,
@@ -3951,7 +3951,7 @@ pub const MIDIOUTCAPS2A = extern struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     wTechnology: u16,
     wVoices: u16,
     wNotes: u16,
@@ -3981,7 +3981,7 @@ pub const MIDIINCAPSA = extern struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     dwSupport: u32,
 };
 
@@ -3997,7 +3997,7 @@ pub const MIDIINCAPS2A = extern struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     dwSupport: u32,
     ManufacturerGuid: Guid,
     ProductGuid: Guid,
@@ -4054,7 +4054,7 @@ pub const AUXCAPSA = extern struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     wTechnology: u16,
     wReserved1: u16,
     dwSupport: u32,
@@ -4074,7 +4074,7 @@ pub const AUXCAPS2A = extern struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     wTechnology: u16,
     wReserved1: u16,
     dwSupport: u32,
@@ -4100,7 +4100,7 @@ pub const MIXERCAPSA = extern struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     fdwSupport: u32,
     cDestinations: u32,
 };
@@ -4118,7 +4118,7 @@ pub const MIXERCAPS2A = extern struct {
     wMid: u16,
     wPid: u16,
     vDriverVersion: u32,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     fdwSupport: u32,
     cDestinations: u32,
     ManufacturerGuid: Guid,
@@ -4149,8 +4149,8 @@ pub const MIXERLINEA = extern struct {
     cChannels: u32,
     cConnections: u32,
     cControls: u32,
-    szShortName: [16]i8,
-    szName: [64]i8,
+    szShortName: [16]CHAR,
+    szName: [64]CHAR,
     Target: MIXERLINEA._Target_e__Struct,
     const _Target_e__Struct = u32; // TODO: generate this nested type!
 };
@@ -4178,8 +4178,8 @@ pub const MIXERCONTROLA = extern struct {
     dwControlType: u32,
     fdwControl: u32,
     cMultipleItems: u32,
-    szShortName: [16]i8,
-    szName: [64]i8,
+    szShortName: [16]CHAR,
+    szName: [64]CHAR,
     Bounds: MIXERCONTROLA._Bounds_e__Union,
     Metrics: MIXERCONTROLA._Metrics_e__Union,
     const _Bounds_e__Union = u32; // TODO: generate this nested type!
@@ -4196,8 +4196,8 @@ pub const MIXERCONTROLW = extern struct {
     szName: [64]u16,
     Bounds: MIXERCONTROLW._Bounds_e__Union,
     Metrics: MIXERCONTROLW._Metrics_e__Union,
-    const _Metrics_e__Union = u32; // TODO: generate this nested type!
     const _Bounds_e__Union = u32; // TODO: generate this nested type!
+    const _Metrics_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MIXERLINECONTROLSA = extern struct {
@@ -4233,7 +4233,7 @@ pub const MIXERCONTROLDETAILS = extern struct {
 pub const MIXERCONTROLDETAILS_LISTTEXTA = extern struct {
     dwParam1: u32,
     dwParam2: u32,
-    szName: [64]i8,
+    szName: [64]CHAR,
 };
 
 pub const MIXERCONTROLDETAILS_LISTTEXTW = extern struct {
@@ -4262,7 +4262,7 @@ pub const TIMECAPS = extern struct {
 pub const JOYCAPSA = extern struct {
     wMid: u16,
     wPid: u16,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     wXmin: u32,
     wXmax: u32,
     wYmin: u32,
@@ -4282,8 +4282,8 @@ pub const JOYCAPSA = extern struct {
     wMaxAxes: u32,
     wNumAxes: u32,
     wMaxButtons: u32,
-    szRegKey: [32]i8,
-    szOEMVxD: [260]i8,
+    szRegKey: [32]CHAR,
+    szOEMVxD: [260]CHAR,
 };
 
 pub const JOYCAPSW = extern struct {
@@ -4316,7 +4316,7 @@ pub const JOYCAPSW = extern struct {
 pub const JOYCAPS2A = extern struct {
     wMid: u16,
     wPid: u16,
-    szPname: [32]i8,
+    szPname: [32]CHAR,
     wXmin: u32,
     wXmax: u32,
     wYmin: u32,
@@ -4336,8 +4336,8 @@ pub const JOYCAPS2A = extern struct {
     wMaxAxes: u32,
     wNumAxes: u32,
     wMaxButtons: u32,
-    szRegKey: [32]i8,
-    szOEMVxD: [260]i8,
+    szRegKey: [32]CHAR,
+    szOEMVxD: [260]CHAR,
     ManufacturerGuid: Guid,
     ProductGuid: Guid,
     NameGuid: Guid,
@@ -4682,7 +4682,7 @@ pub const LPACMDRIVERPROC = fn(
     param4: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const tACMDRIVERDETAILSA = extern struct {
+pub const ACMDRIVERDETAILSA = extern struct {
     cbStruct: u32,
     fccType: u32,
     fccComp: u32,
@@ -4694,14 +4694,14 @@ pub const tACMDRIVERDETAILSA = extern struct {
     cFormatTags: u32,
     cFilterTags: u32,
     hicon: HICON,
-    szShortName: [32]i8,
-    szLongName: [128]i8,
-    szCopyright: [80]i8,
-    szLicensing: [128]i8,
-    szFeatures: [512]i8,
+    szShortName: [32]CHAR,
+    szLongName: [128]CHAR,
+    szCopyright: [80]CHAR,
+    szLicensing: [128]CHAR,
+    szFeatures: [512]CHAR,
 };
 
-pub const tACMDRIVERDETAILSW = extern struct {
+pub const ACMDRIVERDETAILSW = extern struct {
     cbStruct: u32,
     fccType: u32,
     fccComp: u32,
@@ -4727,7 +4727,7 @@ pub const ACMFORMATTAGDETAILSA = extern struct {
     cbFormatSize: u32,
     fdwSupport: u32,
     cStandardFormats: u32,
-    szFormatTag: [48]i8,
+    szFormatTag: [48]CHAR,
 };
 
 pub const ACMFORMATTAGDETAILSW = extern struct {
@@ -4754,14 +4754,14 @@ pub const ACMFORMATTAGENUMCBW = fn(
     fdwSupport: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const tACMFORMATDETAILSA = extern struct {
+pub const ACMFORMATDETAILSA = extern struct {
     cbStruct: u32,
     dwFormatIndex: u32,
     dwFormatTag: u32,
     fdwSupport: u32,
     pwfx: *WAVEFORMATEX,
     cbwfx: u32,
-    szFormat: [128]i8,
+    szFormat: [128]CHAR,
 };
 
 pub const tACMFORMATDETAILSW = extern struct {
@@ -4776,7 +4776,7 @@ pub const tACMFORMATDETAILSW = extern struct {
 
 pub const ACMFORMATENUMCBA = fn(
     hadid: HACMDRIVERID,
-    pafd: *tACMFORMATDETAILSA,
+    pafd: *ACMFORMATDETAILSA,
     dwInstance: usize,
     fdwSupport: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -4802,15 +4802,15 @@ pub const ACMFORMATCHOOSEHOOKPROCW = fn(
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const tACMFORMATCHOOSEA = extern struct {
+pub const ACMFORMATCHOOSEA = extern struct {
     cbStruct: u32,
     fdwStyle: u32,
     hwndOwner: HWND,
     pwfx: *WAVEFORMATEX,
     cbwfx: u32,
     pszTitle: [*:0]const u8,
-    szFormatTag: [48]i8,
-    szFormat: [128]i8,
+    szFormatTag: [48]CHAR,
+    szFormat: [128]CHAR,
     pszName: PSTR,
     cchName: u32,
     fdwEnum: u32,
@@ -4821,7 +4821,7 @@ pub const tACMFORMATCHOOSEA = extern struct {
     pfnHook: ACMFORMATCHOOSEHOOKPROCA,
 };
 
-pub const tACMFORMATCHOOSEW = extern struct {
+pub const ACMFORMATCHOOSEW = extern struct {
     cbStruct: u32,
     fdwStyle: u32,
     hwndOwner: HWND,
@@ -4847,7 +4847,7 @@ pub const ACMFILTERTAGDETAILSA = extern struct {
     cbFilterSize: u32,
     fdwSupport: u32,
     cStandardFilters: u32,
-    szFilterTag: [48]i8,
+    szFilterTag: [48]CHAR,
 };
 
 pub const ACMFILTERTAGDETAILSW = extern struct {
@@ -4874,17 +4874,17 @@ pub const ACMFILTERTAGENUMCBW = fn(
     fdwSupport: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const tACMFILTERDETAILSA = extern struct {
+pub const ACMFILTERDETAILSA = extern struct {
     cbStruct: u32,
     dwFilterIndex: u32,
     dwFilterTag: u32,
     fdwSupport: u32,
     pwfltr: *WAVEFILTER,
     cbwfltr: u32,
-    szFilter: [128]i8,
+    szFilter: [128]CHAR,
 };
 
-pub const tACMFILTERDETAILSW = extern struct {
+pub const ACMFILTERDETAILSW = extern struct {
     cbStruct: u32,
     dwFilterIndex: u32,
     dwFilterTag: u32,
@@ -4896,14 +4896,14 @@ pub const tACMFILTERDETAILSW = extern struct {
 
 pub const ACMFILTERENUMCBA = fn(
     hadid: HACMDRIVERID,
-    pafd: *tACMFILTERDETAILSA,
+    pafd: *ACMFILTERDETAILSA,
     dwInstance: usize,
     fdwSupport: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const ACMFILTERENUMCBW = fn(
     hadid: HACMDRIVERID,
-    pafd: *tACMFILTERDETAILSW,
+    pafd: *ACMFILTERDETAILSW,
     dwInstance: usize,
     fdwSupport: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -4922,15 +4922,15 @@ pub const ACMFILTERCHOOSEHOOKPROCW = fn(
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const tACMFILTERCHOOSEA = extern struct {
+pub const ACMFILTERCHOOSEA = extern struct {
     cbStruct: u32,
     fdwStyle: u32,
     hwndOwner: HWND,
     pwfltr: *WAVEFILTER,
     cbwfltr: u32,
     pszTitle: [*:0]const u8,
-    szFilterTag: [48]i8,
-    szFilter: [128]i8,
+    szFilterTag: [48]CHAR,
+    szFilter: [128]CHAR,
     pszName: PSTR,
     cchName: u32,
     fdwEnum: u32,
@@ -4941,7 +4941,7 @@ pub const tACMFILTERCHOOSEA = extern struct {
     pfnHook: ACMFILTERCHOOSEHOOKPROCA,
 };
 
-pub const tACMFILTERCHOOSEW = extern struct {
+pub const ACMFILTERCHOOSEW = extern struct {
     cbStruct: u32,
     fdwStyle: u32,
     hwndOwner: HWND,
@@ -5175,7 +5175,7 @@ pub const AVISTREAMINFOA = extern struct {
     rcFrame: RECT,
     dwEditCount: u32,
     dwFormatChangeCount: u32,
-    szName: [64]i8,
+    szName: [64]CHAR,
 };
 
 pub const AVIFILEINFOW = extern struct {
@@ -5205,7 +5205,7 @@ pub const AVIFILEINFOA = extern struct {
     dwRate: u32,
     dwLength: u32,
     dwEditCount: u32,
-    szFileType: [64]i8,
+    szFileType: [64]CHAR,
 };
 
 pub const AVISAVECALLBACK = fn(
@@ -6075,7 +6075,7 @@ pub extern "WINMM" fn mmioRead(
 pub extern "WINMM" fn mmioWrite(
     hmmio: HMMIO,
     // TODO: what to do with BytesParamIndex 2?
-    pch: *const i8,
+    pch: [*:0]const u8,
     cch: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -7019,14 +7019,14 @@ pub extern "MSACM32" fn acmDriverPriority(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSACM32" fn acmDriverDetailsA(
     hadid: HACMDRIVERID,
-    padd: *tACMDRIVERDETAILSA,
+    padd: *ACMDRIVERDETAILSA,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSACM32" fn acmDriverDetailsW(
     hadid: HACMDRIVERID,
-    padd: *tACMDRIVERDETAILSW,
+    padd: *ACMDRIVERDETAILSW,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -7065,7 +7065,7 @@ pub extern "MSACM32" fn acmFormatTagEnumW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSACM32" fn acmFormatDetailsA(
     had: HACMDRIVER,
-    pafd: *tACMFORMATDETAILSA,
+    pafd: *ACMFORMATDETAILSA,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -7079,7 +7079,7 @@ pub extern "MSACM32" fn acmFormatDetailsW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSACM32" fn acmFormatEnumA(
     had: HACMDRIVER,
-    pafd: *tACMFORMATDETAILSA,
+    pafd: *ACMFORMATDETAILSA,
     fnCallback: ACMFORMATENUMCBA,
     dwInstance: usize,
     fdwEnum: u32,
@@ -7105,12 +7105,12 @@ pub extern "MSACM32" fn acmFormatSuggest(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSACM32" fn acmFormatChooseA(
-    pafmtc: *tACMFORMATCHOOSEA,
+    pafmtc: *ACMFORMATCHOOSEA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSACM32" fn acmFormatChooseW(
-    pafmtc: *tACMFORMATCHOOSEW,
+    pafmtc: *ACMFORMATCHOOSEW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -7148,21 +7148,21 @@ pub extern "MSACM32" fn acmFilterTagEnumW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSACM32" fn acmFilterDetailsA(
     had: HACMDRIVER,
-    pafd: *tACMFILTERDETAILSA,
+    pafd: *ACMFILTERDETAILSA,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSACM32" fn acmFilterDetailsW(
     had: HACMDRIVER,
-    pafd: *tACMFILTERDETAILSW,
+    pafd: *ACMFILTERDETAILSW,
     fdwDetails: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSACM32" fn acmFilterEnumA(
     had: HACMDRIVER,
-    pafd: *tACMFILTERDETAILSA,
+    pafd: *ACMFILTERDETAILSA,
     fnCallback: ACMFILTERENUMCBA,
     dwInstance: usize,
     fdwEnum: u32,
@@ -7171,7 +7171,7 @@ pub extern "MSACM32" fn acmFilterEnumA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSACM32" fn acmFilterEnumW(
     had: HACMDRIVER,
-    pafd: *tACMFILTERDETAILSW,
+    pafd: *ACMFILTERDETAILSW,
     fnCallback: ACMFILTERENUMCBW,
     dwInstance: usize,
     fdwEnum: u32,
@@ -7179,12 +7179,12 @@ pub extern "MSACM32" fn acmFilterEnumW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSACM32" fn acmFilterChooseA(
-    pafltrc: *tACMFILTERCHOOSEA,
+    pafltrc: *ACMFILTERCHOOSEA,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSACM32" fn acmFilterChooseW(
-    pafltrc: *tACMFILTERCHOOSEW,
+    pafltrc: *ACMFILTERCHOOSEW,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8090,7 +8090,7 @@ pub extern "WINMM" fn joyConfigChanged(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (94)
+// Section: Unicode Aliases (93)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
@@ -8124,19 +8124,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MCI_DGV_SETVIDEO_PARMS = MCI_DGV_SETVIDEO_PARMSA;
         pub const MCI_DGV_STATUS_PARMS = MCI_DGV_STATUS_PARMSA;
         pub const MCI_DGV_WINDOW_PARMS = MCI_DGV_WINDOW_PARMSA;
-        pub const tACMDRIVERDETAILS = tACMDRIVERDETAILSA;
+        pub const ACMDRIVERDETAILS = ACMDRIVERDETAILSA;
         pub const ACMFORMATTAGDETAILS = ACMFORMATTAGDETAILSA;
         pub const ACMFORMATTAGENUMCB = ACMFORMATTAGENUMCBA;
-        pub const tACMFORMATDETAILS = tACMFORMATDETAILSA;
         pub const ACMFORMATENUMCB = ACMFORMATENUMCBA;
         pub const ACMFORMATCHOOSEHOOKPROC = ACMFORMATCHOOSEHOOKPROCA;
-        pub const tACMFORMATCHOOSE = tACMFORMATCHOOSEA;
+        pub const ACMFORMATCHOOSE = ACMFORMATCHOOSEA;
         pub const ACMFILTERTAGDETAILS = ACMFILTERTAGDETAILSA;
         pub const ACMFILTERTAGENUMCB = ACMFILTERTAGENUMCBA;
-        pub const tACMFILTERDETAILS = tACMFILTERDETAILSA;
+        pub const ACMFILTERDETAILS = ACMFILTERDETAILSA;
         pub const ACMFILTERENUMCB = ACMFILTERENUMCBA;
         pub const ACMFILTERCHOOSEHOOKPROC = ACMFILTERCHOOSEHOOKPROCA;
-        pub const tACMFILTERCHOOSE = tACMFILTERCHOOSEA;
+        pub const ACMFILTERCHOOSE = ACMFILTERCHOOSEA;
         pub const AVISTREAMINFO = AVISTREAMINFOA;
         pub const AVIFILEINFO = AVIFILEINFOA;
         pub const CAPSTATUSCALLBACK = CAPSTATUSCALLBACKA;
@@ -8220,19 +8219,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MCI_DGV_SETVIDEO_PARMS = MCI_DGV_SETVIDEO_PARMSW;
         pub const MCI_DGV_STATUS_PARMS = MCI_DGV_STATUS_PARMSW;
         pub const MCI_DGV_WINDOW_PARMS = MCI_DGV_WINDOW_PARMSW;
-        pub const tACMDRIVERDETAILS = tACMDRIVERDETAILSW;
+        pub const ACMDRIVERDETAILS = ACMDRIVERDETAILSW;
         pub const ACMFORMATTAGDETAILS = ACMFORMATTAGDETAILSW;
         pub const ACMFORMATTAGENUMCB = ACMFORMATTAGENUMCBW;
-        pub const tACMFORMATDETAILS = tACMFORMATDETAILSW;
         pub const ACMFORMATENUMCB = ACMFORMATENUMCBW;
         pub const ACMFORMATCHOOSEHOOKPROC = ACMFORMATCHOOSEHOOKPROCW;
-        pub const tACMFORMATCHOOSE = tACMFORMATCHOOSEW;
+        pub const ACMFORMATCHOOSE = ACMFORMATCHOOSEW;
         pub const ACMFILTERTAGDETAILS = ACMFILTERTAGDETAILSW;
         pub const ACMFILTERTAGENUMCB = ACMFILTERTAGENUMCBW;
-        pub const tACMFILTERDETAILS = tACMFILTERDETAILSW;
+        pub const ACMFILTERDETAILS = ACMFILTERDETAILSW;
         pub const ACMFILTERENUMCB = ACMFILTERENUMCBW;
         pub const ACMFILTERCHOOSEHOOKPROC = ACMFILTERCHOOSEHOOKPROCW;
-        pub const tACMFILTERCHOOSE = tACMFILTERCHOOSEW;
+        pub const ACMFILTERCHOOSE = ACMFILTERCHOOSEW;
         pub const AVISTREAMINFO = AVISTREAMINFOW;
         pub const AVIFILEINFO = AVIFILEINFOW;
         pub const CAPSTATUSCALLBACK = CAPSTATUSCALLBACKW;
@@ -8316,19 +8314,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MCI_DGV_SETVIDEO_PARMS = *opaque{};
         pub const MCI_DGV_STATUS_PARMS = *opaque{};
         pub const MCI_DGV_WINDOW_PARMS = *opaque{};
-        pub const tACMDRIVERDETAILS = *opaque{};
+        pub const ACMDRIVERDETAILS = *opaque{};
         pub const ACMFORMATTAGDETAILS = *opaque{};
         pub const ACMFORMATTAGENUMCB = *opaque{};
-        pub const tACMFORMATDETAILS = *opaque{};
         pub const ACMFORMATENUMCB = *opaque{};
         pub const ACMFORMATCHOOSEHOOKPROC = *opaque{};
-        pub const tACMFORMATCHOOSE = *opaque{};
+        pub const ACMFORMATCHOOSE = *opaque{};
         pub const ACMFILTERTAGDETAILS = *opaque{};
         pub const ACMFILTERTAGENUMCB = *opaque{};
-        pub const tACMFILTERDETAILS = *opaque{};
+        pub const ACMFILTERDETAILS = *opaque{};
         pub const ACMFILTERENUMCB = *opaque{};
         pub const ACMFILTERCHOOSEHOOKPROC = *opaque{};
-        pub const tACMFILTERCHOOSE = *opaque{};
+        pub const ACMFILTERCHOOSE = *opaque{};
         pub const AVISTREAMINFO = *opaque{};
         pub const AVIFILEINFO = *opaque{};
         pub const CAPSTATUSCALLBACK = *opaque{};
@@ -8411,19 +8408,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const MCI_DGV_SETVIDEO_PARMS = @compileError("'MCI_DGV_SETVIDEO_PARMS' requires that UNICODE be set to true or false in the root module");
         pub const MCI_DGV_STATUS_PARMS = @compileError("'MCI_DGV_STATUS_PARMS' requires that UNICODE be set to true or false in the root module");
         pub const MCI_DGV_WINDOW_PARMS = @compileError("'MCI_DGV_WINDOW_PARMS' requires that UNICODE be set to true or false in the root module");
-        pub const tACMDRIVERDETAILS = @compileError("'tACMDRIVERDETAILS' requires that UNICODE be set to true or false in the root module");
+        pub const ACMDRIVERDETAILS = @compileError("'ACMDRIVERDETAILS' requires that UNICODE be set to true or false in the root module");
         pub const ACMFORMATTAGDETAILS = @compileError("'ACMFORMATTAGDETAILS' requires that UNICODE be set to true or false in the root module");
         pub const ACMFORMATTAGENUMCB = @compileError("'ACMFORMATTAGENUMCB' requires that UNICODE be set to true or false in the root module");
-        pub const tACMFORMATDETAILS = @compileError("'tACMFORMATDETAILS' requires that UNICODE be set to true or false in the root module");
         pub const ACMFORMATENUMCB = @compileError("'ACMFORMATENUMCB' requires that UNICODE be set to true or false in the root module");
         pub const ACMFORMATCHOOSEHOOKPROC = @compileError("'ACMFORMATCHOOSEHOOKPROC' requires that UNICODE be set to true or false in the root module");
-        pub const tACMFORMATCHOOSE = @compileError("'tACMFORMATCHOOSE' requires that UNICODE be set to true or false in the root module");
+        pub const ACMFORMATCHOOSE = @compileError("'ACMFORMATCHOOSE' requires that UNICODE be set to true or false in the root module");
         pub const ACMFILTERTAGDETAILS = @compileError("'ACMFILTERTAGDETAILS' requires that UNICODE be set to true or false in the root module");
         pub const ACMFILTERTAGENUMCB = @compileError("'ACMFILTERTAGENUMCB' requires that UNICODE be set to true or false in the root module");
-        pub const tACMFILTERDETAILS = @compileError("'tACMFILTERDETAILS' requires that UNICODE be set to true or false in the root module");
+        pub const ACMFILTERDETAILS = @compileError("'ACMFILTERDETAILS' requires that UNICODE be set to true or false in the root module");
         pub const ACMFILTERENUMCB = @compileError("'ACMFILTERENUMCB' requires that UNICODE be set to true or false in the root module");
         pub const ACMFILTERCHOOSEHOOKPROC = @compileError("'ACMFILTERCHOOSEHOOKPROC' requires that UNICODE be set to true or false in the root module");
-        pub const tACMFILTERCHOOSE = @compileError("'tACMFILTERCHOOSE' requires that UNICODE be set to true or false in the root module");
+        pub const ACMFILTERCHOOSE = @compileError("'ACMFILTERCHOOSE' requires that UNICODE be set to true or false in the root module");
         pub const AVISTREAMINFO = @compileError("'AVISTREAMINFO' requires that UNICODE be set to true or false in the root module");
         pub const AVIFILEINFO = @compileError("'AVIFILEINFO' requires that UNICODE be set to true or false in the root module");
         pub const CAPSTATUSCALLBACK = @compileError("'CAPSTATUSCALLBACK' requires that UNICODE be set to true or false in the root module");
@@ -8478,13 +8474,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (27)
+// Section: Imports (28)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
 const HDC = @import("gdi.zig").HDC;
 const HINSTANCE = @import("system_services.zig").HINSTANCE;
 const JOYREGHWVALUES = @import("hid.zig").JOYREGHWVALUES;
+const CHAR = @import("system_services.zig").CHAR;
 const OPENFILENAMEA = @import("windows_and_messaging.zig").OPENFILENAMEA;
 const HRESULT = @import("com.zig").HRESULT;
 const BITMAPINFOHEADER = @import("gdi.zig").BITMAPINFOHEADER;
@@ -8548,8 +8545,8 @@ test {
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 3;
     const func_export_count = 305;
-    const unicode_alias_count = 94;
-    const import_count = 27;
+    const unicode_alias_count = 93;
+    const import_count = 28;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

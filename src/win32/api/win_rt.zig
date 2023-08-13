@@ -96,10 +96,6 @@ pub const AgileReferenceOptions = extern enum(i32) {
 pub const AGILEREFERENCE_DEFAULT = AgileReferenceOptions.FAULT;
 pub const AGILEREFERENCE_DELAYEDMARSHAL = AgileReferenceOptions.LAYEDMARSHAL;
 
-pub const EventRegistrationToken = extern struct {
-    value: i64,
-};
-
 pub const HSTRING_HEADER = extern struct {
     Reserved: HSTRING_HEADER._Reserved_e__Union,
     const _Reserved_e__Union = u32; // TODO: generate this nested type!
@@ -162,34 +158,34 @@ pub const IAccountsSettingsPaneInterop = extern struct {
             self: *const IAccountsSettingsPaneInterop,
             appWindow: HWND,
             riid: *const Guid,
-            accountsSettingsPane: ?*?*c_void,
+            accountsSettingsPane: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowManageAccountsForWindowAsync: fn(
             self: *const IAccountsSettingsPaneInterop,
             appWindow: HWND,
             riid: *const Guid,
-            asyncAction: ?*?*c_void,
+            asyncAction: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowAddAccountForWindowAsync: fn(
             self: *const IAccountsSettingsPaneInterop,
             appWindow: HWND,
             riid: *const Guid,
-            asyncAction: ?*?*c_void,
+            asyncAction: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountsSettingsPaneInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, accountsSettingsPane: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAccountsSettingsPaneInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, accountsSettingsPane: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccountsSettingsPaneInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IAccountsSettingsPaneInterop, self), appWindow, riid, accountsSettingsPane);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountsSettingsPaneInterop_ShowManageAccountsForWindowAsync(self: *const T, appWindow: HWND, riid: *const Guid, asyncAction: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAccountsSettingsPaneInterop_ShowManageAccountsForWindowAsync(self: *const T, appWindow: HWND, riid: *const Guid, asyncAction: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccountsSettingsPaneInterop.VTable, self.vtable).ShowManageAccountsForWindowAsync(@ptrCast(*const IAccountsSettingsPaneInterop, self), appWindow, riid, asyncAction);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccountsSettingsPaneInterop_ShowAddAccountForWindowAsync(self: *const T, appWindow: HWND, riid: *const Guid, asyncAction: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAccountsSettingsPaneInterop_ShowAddAccountForWindowAsync(self: *const T, appWindow: HWND, riid: *const Guid, asyncAction: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccountsSettingsPaneInterop.VTable, self.vtable).ShowAddAccountForWindowAsync(@ptrCast(*const IAccountsSettingsPaneInterop, self), appWindow, riid, asyncAction);
         }
     };}
@@ -204,14 +200,14 @@ pub const IAppServiceConnectionExtendedExecution = extern struct {
         OpenForExtendedExecutionAsync: fn(
             self: *const IAppServiceConnectionExtendedExecution,
             riid: *const Guid,
-            operation: ?*?*c_void,
+            operation: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAppServiceConnectionExtendedExecution_OpenForExtendedExecutionAsync(self: *const T, riid: *const Guid, operation: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IAppServiceConnectionExtendedExecution_OpenForExtendedExecutionAsync(self: *const T, riid: *const Guid, operation: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAppServiceConnectionExtendedExecution.VTable, self.vtable).OpenForExtendedExecutionAsync(@ptrCast(*const IAppServiceConnectionExtendedExecution, self), riid, operation);
         }
     };}
@@ -223,6 +219,7 @@ pub const IID_ICorrelationVectorSource = &IID_ICorrelationVectorSource_Value;
 pub const ICorrelationVectorSource = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CorrelationVector: fn(
             self: *const ICorrelationVectorSource,
             cv: *HSTRING,
@@ -414,14 +411,14 @@ pub const IInputPaneInterop = extern struct {
             self: *const IInputPaneInterop,
             appWindow: HWND,
             riid: *const Guid,
-            inputPane: ?*?*c_void,
+            inputPane: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInputPaneInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, inputPane: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IInputPaneInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, inputPane: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IInputPaneInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IInputPaneInterop, self), appWindow, riid, inputPane);
         }
     };}
@@ -438,7 +435,7 @@ pub const IPlayToManagerInterop = extern struct {
             self: *const IPlayToManagerInterop,
             appWindow: HWND,
             riid: *const Guid,
-            playToManager: ?*?*c_void,
+            playToManager: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowPlayToUIForWindow: fn(
             self: *const IPlayToManagerInterop,
@@ -449,7 +446,7 @@ pub const IPlayToManagerInterop = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPlayToManagerInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, playToManager: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPlayToManagerInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, playToManager: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPlayToManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IPlayToManagerInterop, self), appWindow, riid, playToManager);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -469,24 +466,24 @@ pub const IPrinting3DManagerInterop = extern struct {
             self: *const IPrinting3DManagerInterop,
             appWindow: HWND,
             riid: *const Guid,
-            printManager: ?*?*c_void,
+            printManager: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowPrintUIForWindowAsync: fn(
             self: *const IPrinting3DManagerInterop,
             appWindow: HWND,
             riid: *const Guid,
-            asyncOperation: ?*?*c_void,
+            asyncOperation: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinting3DManagerInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, printManager: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPrinting3DManagerInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, printManager: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrinting3DManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IPrinting3DManagerInterop, self), appWindow, riid, printManager);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrinting3DManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: HWND, riid: *const Guid, asyncOperation: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPrinting3DManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: HWND, riid: *const Guid, asyncOperation: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrinting3DManagerInterop.VTable, self.vtable).ShowPrintUIForWindowAsync(@ptrCast(*const IPrinting3DManagerInterop, self), appWindow, riid, asyncOperation);
         }
     };}
@@ -503,24 +500,24 @@ pub const IPrintManagerInterop = extern struct {
             self: *const IPrintManagerInterop,
             appWindow: HWND,
             riid: *const Guid,
-            printManager: ?*?*c_void,
+            printManager: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         ShowPrintUIForWindowAsync: fn(
             self: *const IPrintManagerInterop,
             appWindow: HWND,
             riid: *const Guid,
-            asyncOperation: ?*?*c_void,
+            asyncOperation: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintManagerInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, printManager: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPrintManagerInterop_GetForWindow(self: *const T, appWindow: HWND, riid: *const Guid, printManager: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IPrintManagerInterop, self), appWindow, riid, printManager);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: HWND, riid: *const Guid, asyncOperation: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPrintManagerInterop_ShowPrintUIForWindowAsync(self: *const T, appWindow: HWND, riid: *const Guid, asyncOperation: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPrintManagerInterop.VTable, self.vtable).ShowPrintUIForWindowAsync(@ptrCast(*const IPrintManagerInterop, self), appWindow, riid, asyncOperation);
         }
     };}
@@ -532,14 +529,17 @@ pub const IID_ICorrelationVectorInformation = &IID_ICorrelationVectorInformation
 pub const ICorrelationVectorInformation = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastCorrelationVectorForThread: fn(
             self: *const ICorrelationVectorInformation,
             cv: *HSTRING,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NextCorrelationVectorForThread: fn(
             self: *const ICorrelationVectorInformation,
             cv: *HSTRING,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NextCorrelationVectorForThread: fn(
             self: *const ICorrelationVectorInformation,
             cv: HSTRING,
@@ -573,14 +573,14 @@ pub const IUIViewSettingsInterop = extern struct {
             self: *const IUIViewSettingsInterop,
             hwnd: HWND,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIViewSettingsInterop_GetForWindow(self: *const T, hwnd: HWND, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUIViewSettingsInterop_GetForWindow(self: *const T, hwnd: HWND, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIViewSettingsInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const IUIViewSettingsInterop, self), hwnd, riid, ppv);
         }
     };}
@@ -1696,6 +1696,7 @@ pub const IID_IDesktopWindowTargetInterop = &IID_IDesktopWindowTargetInterop_Val
 pub const IDesktopWindowTargetInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Hwnd: fn(
             self: *const IDesktopWindowTargetInterop,
             value: *HWND,
@@ -1722,10 +1723,12 @@ pub const IDesktopWindowContentBridgeInterop = extern struct {
             compositor: *struct{comment: []const u8 = "MissingClrType Compositor.Windows.UI.Composition"},
             parentHwnd: HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Hwnd: fn(
             self: *const IDesktopWindowContentBridgeInterop,
             value: *HWND,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppliedScaleFactor: fn(
             self: *const IDesktopWindowContentBridgeInterop,
             value: *f32,
@@ -2092,24 +2095,14 @@ pub const IMemoryBufferByteAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const EventRegistrationToken = extern struct {
+    value: i64,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (70)
 //--------------------------------------------------------------------------------
-pub extern "OLE32" fn CoDecodeProxy(
-    dwClientPid: u32,
-    ui64ProxyAddress: u64,
-    pServerInformation: *ServerInformation,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "OLE32" fn RoGetAgileReference(
-    options: AgileReferenceOptions,
-    riid: *const Guid,
-    pUnk: *IUnknown,
-    ppAgileReference: **IAgileReference,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserSize(
     param0: *u32,
@@ -2163,6 +2156,20 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserFree64(
     param0: *u32,
     param1: *HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn CoDecodeProxy(
+    dwClientPid: u32,
+    ui64ProxyAddress: u64,
+    pServerInformation: *ServerInformation,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "OLE32" fn RoGetAgileReference(
+    options: AgileReferenceOptions,
+    riid: *const Guid,
+    pUnk: *IUnknown,
+    ppAgileReference: **IAgileReference,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "Windows.Data.Pdf" fn PdfCreateRenderer(
     pDevice: *IDXGIDevice,

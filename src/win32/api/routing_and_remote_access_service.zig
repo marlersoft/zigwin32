@@ -373,7 +373,7 @@ pub const RTM_CHANGE_TYPE_FORWARDING = @as(u32, 4);
 pub const RTM_NOTIFY_ONLY_MARKED_DESTS = @as(u32, 65536);
 
 //--------------------------------------------------------------------------------
-// Section: Types (225)
+// Section: Types (224)
 //--------------------------------------------------------------------------------
 pub const HRASCONN = ?*opaque{};
 
@@ -392,13 +392,6 @@ pub const RASENTRY_DIAL_MODE = extern enum(u32) {
 };
 pub const RASEDM_DialAll = RASENTRY_DIAL_MODE.ll;
 pub const RASEDM_DialAsNeeded = RASENTRY_DIAL_MODE.sNeeded;
-
-pub const MPR_INTERFACE_2_dwIdleDisconnectSeconds = extern enum(u32) {
-    Disabled = 4294967295,
-    UseGlobalValue = 0,
-};
-pub const MPRIDS_Disabled = MPR_INTERFACE_2_dwIdleDisconnectSeconds.Disabled;
-pub const MPRIDS_UseGlobalValue = MPR_INTERFACE_2_dwIdleDisconnectSeconds.UseGlobalValue;
 
 pub const RAS_FLAGS = extern enum(u32) {
     PPP_CONNECTION = 1,
@@ -426,14 +419,14 @@ pub const MPR_ET_Require = MPR_ET.Require;
 pub const MPR_ET_RequireMax = MPR_ET.RequireMax;
 pub const MPR_ET_Optional = MPR_ET.Optional;
 
-pub const RASPPP_PROJECTION_INFO_dwServerAuthenticationData = extern enum(u32) {
+pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA = extern enum(u32) {
     D5 = 5,
     S = 128,
     SV2 = 129,
 };
-pub const RASLCPAD_CHAP_MD5 = RASPPP_PROJECTION_INFO_dwServerAuthenticationData.D5;
-pub const RASLCPAD_CHAP_MS = RASPPP_PROJECTION_INFO_dwServerAuthenticationData.S;
-pub const RASLCPAD_CHAP_MSV2 = RASPPP_PROJECTION_INFO_dwServerAuthenticationData.SV2;
+pub const RASLCPAD_CHAP_MD5 = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.D5;
+pub const RASLCPAD_CHAP_MS = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.S;
+pub const RASLCPAD_CHAP_MSV2 = RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA.SV2;
 
 pub const PPP_LCP = extern enum(u32) {
     PAP = 49187,
@@ -446,36 +439,36 @@ pub const PPP_LCP_CHAP = PPP_LCP.CHAP;
 pub const PPP_LCP_EAP = PPP_LCP.EAP;
 pub const PPP_LCP_SPAP = PPP_LCP.SPAP;
 
-pub const RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol = extern enum(u32) {
+pub const RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL = extern enum(u32) {
     PAP = 49187,
     SPAP = 49191,
     CHAP = 49699,
     EAP = 49703,
 };
-pub const RASLCPAP_PAP = RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol.PAP;
-pub const RASLCPAP_SPAP = RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol.SPAP;
-pub const RASLCPAP_CHAP = RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol.CHAP;
-pub const RASLCPAP_EAP = RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol.EAP;
+pub const RASLCPAP_PAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.PAP;
+pub const RASLCPAP_SPAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.SPAP;
+pub const RASLCPAP_CHAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.CHAP;
+pub const RASLCPAP_EAP = RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL.EAP;
 
-pub const PPP_LCP_INFO_dwAuthenticationData = extern enum(u32) {
+pub const PPP_LCP_INFO_AUTH_DATA = extern enum(u32) {
     D5 = 5,
     S = 128,
     SV2 = 129,
 };
-pub const PPP_LCP_CHAP_MD5 = PPP_LCP_INFO_dwAuthenticationData.D5;
-pub const PPP_LCP_CHAP_MS = PPP_LCP_INFO_dwAuthenticationData.S;
-pub const PPP_LCP_CHAP_MSV2 = PPP_LCP_INFO_dwAuthenticationData.SV2;
+pub const PPP_LCP_CHAP_MD5 = PPP_LCP_INFO_AUTH_DATA.D5;
+pub const PPP_LCP_CHAP_MS = PPP_LCP_INFO_AUTH_DATA.S;
+pub const PPP_LCP_CHAP_MSV2 = PPP_LCP_INFO_AUTH_DATA.SV2;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const RASIKEV2_PROJECTION_INFOFlags = extern enum(u32) {
+pub const RASIKEV_PROJECTION_INFO_FLAGS = extern enum(u32) {
     MOBIKESUPPORTED = 1,
     BEHIND_NAT = 2,
     SERVERBEHIND_NAT = 4,
     _,
 };
-pub const RASIKEv2_FLAGS_MOBIKESUPPORTED = RASIKEV2_PROJECTION_INFOFlags.MOBIKESUPPORTED;
-pub const RASIKEv2_FLAGS_BEHIND_NAT = RASIKEV2_PROJECTION_INFOFlags.BEHIND_NAT;
-pub const RASIKEv2_FLAGS_SERVERBEHIND_NAT = RASIKEV2_PROJECTION_INFOFlags.SERVERBEHIND_NAT;
+pub const RASIKEv2_FLAGS_MOBIKESUPPORTED = RASIKEV_PROJECTION_INFO_FLAGS.MOBIKESUPPORTED;
+pub const RASIKEv2_FLAGS_BEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS.BEHIND_NAT;
+pub const RASIKEv2_FLAGS_SERVERBEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS.SERVERBEHIND_NAT;
 
 pub const MPR_VS = extern enum(u32) {
     Default = 0,
@@ -490,14 +483,14 @@ pub const MPR_VS_PptpFirst = MPR_VS.PptpFirst;
 pub const MPR_VS_L2tpOnly = MPR_VS.L2tpOnly;
 pub const MPR_VS_L2tpFirst = MPR_VS.L2tpFirst;
 
-pub const SECURITY_MESSAGE_dwMsgIdFlags = extern enum(u32) {
+pub const SECURITY_MESSAGE_MSG_ID = extern enum(u32) {
     SUCCESS = 1,
     FAILURE = 2,
     ERROR = 3,
 };
-pub const SECURITYMSG_SUCCESS = SECURITY_MESSAGE_dwMsgIdFlags.SUCCESS;
-pub const SECURITYMSG_FAILURE = SECURITY_MESSAGE_dwMsgIdFlags.FAILURE;
-pub const SECURITYMSG_ERROR = SECURITY_MESSAGE_dwMsgIdFlags.ERROR;
+pub const SECURITYMSG_SUCCESS = SECURITY_MESSAGE_MSG_ID.SUCCESS;
+pub const SECURITYMSG_FAILURE = SECURITY_MESSAGE_MSG_ID.FAILURE;
+pub const SECURITYMSG_ERROR = SECURITY_MESSAGE_MSG_ID.ERROR;
 
 pub const RASAPIVERSION = extern enum(i32) {
     @"500" = 1,
@@ -540,10 +533,10 @@ pub const RASCONNW = extern struct {
 pub const RASCONNA = extern struct {
     dwSize: u32,
     hrasconn: HRASCONN,
-    szEntryName: [257]i8,
-    szDeviceType: [17]i8,
-    szDeviceName: [129]i8,
-    szPhonebook: [260]i8,
+    szEntryName: [257]CHAR,
+    szDeviceType: [17]CHAR,
+    szDeviceName: [129]CHAR,
+    szPhonebook: [260]CHAR,
     dwSubEntry: u32,
     guidEntry: Guid,
     dwFlags: u32,
@@ -645,9 +638,9 @@ pub const RASCONNSTATUSA = extern struct {
     dwSize: u32,
     rasconnstate: RASCONNSTATE,
     dwError: u32,
-    szDeviceType: [17]i8,
-    szDeviceName: [129]i8,
-    szPhoneNumber: [129]i8,
+    szDeviceType: [17]CHAR,
+    szDeviceName: [129]CHAR,
+    szPhoneNumber: [129]CHAR,
     localEndPoint: RASTUNNELENDPOINT,
     remoteEndPoint: RASTUNNELENDPOINT,
     rasconnsubstate: RASCONNSUBSTATE,
@@ -669,12 +662,12 @@ pub const RASDIALPARAMSW = extern struct {
 
 pub const RASDIALPARAMSA = extern struct {
     dwSize: u32,
-    szEntryName: [257]i8,
-    szPhoneNumber: [129]i8,
-    szCallbackNumber: [129]i8,
-    szUserName: [257]i8,
-    szPassword: [257]i8,
-    szDomain: [16]i8,
+    szEntryName: [257]CHAR,
+    szPhoneNumber: [129]CHAR,
+    szCallbackNumber: [129]CHAR,
+    szUserName: [257]CHAR,
+    szPassword: [257]CHAR,
+    szDomain: [16]CHAR,
     dwSubEntry: u32,
     dwCallbackId: usize,
     dwIfIndex: u32,
@@ -711,9 +704,9 @@ pub const RASENTRYNAMEW = extern struct {
 
 pub const RASENTRYNAMEA = extern struct {
     dwSize: u32,
-    szEntryName: [257]i8,
+    szEntryName: [257]CHAR,
     dwFlags: u32,
-    szPhonebookPath: [261]i8,
+    szPhonebookPath: [261]CHAR,
 };
 
 pub const RASPROJECTION = extern enum(i32) {
@@ -743,7 +736,7 @@ pub const RASAMBW = extern struct {
 pub const RASAMBA = extern struct {
     dwSize: u32,
     dwError: u32,
-    szNetBiosError: [17]i8,
+    szNetBiosError: [17]CHAR,
     bLana: u8,
 };
 
@@ -760,8 +753,8 @@ pub const RASPPPNBFA = extern struct {
     dwSize: u32,
     dwError: u32,
     dwNetBiosError: u32,
-    szNetBiosError: [17]i8,
-    szWorkstationName: [17]i8,
+    szNetBiosError: [17]CHAR,
+    szWorkstationName: [17]CHAR,
     bLana: u8,
 };
 
@@ -774,7 +767,7 @@ pub const RASIPXW = extern struct {
 pub const RASPPPIPXA = extern struct {
     dwSize: u32,
     dwError: u32,
-    szIpxAddress: [22]i8,
+    szIpxAddress: [22]CHAR,
 };
 
 pub const RASPPPIPW = extern struct {
@@ -789,8 +782,8 @@ pub const RASPPPIPW = extern struct {
 pub const RASPPPIPA = extern struct {
     dwSize: u32,
     dwError: u32,
-    szIpAddress: [16]i8,
-    szServerIpAddress: [16]i8,
+    szIpAddress: [16]CHAR,
+    szServerIpAddress: [16]CHAR,
     dwOptions: u32,
     dwServerOptions: u32,
 };
@@ -835,7 +828,7 @@ pub const RASPPPLCPA = extern struct {
     fMultilink: BOOL,
     dwTerminateReason: u32,
     dwServerTerminateReason: u32,
-    szReplyMessage: [1024]i8,
+    szReplyMessage: [1024]CHAR,
     dwOptions: u32,
     dwServerOptions: u32,
 };
@@ -851,8 +844,8 @@ pub const RASPPPCCP = extern struct {
 
 pub const RASPPP_PROJECTION_INFO = extern struct {
     dwIPv4NegotiationError: u32,
-    ipv4Address: in_addr,
-    ipv4ServerAddress: in_addr,
+    ipv4Address: IN_ADDR,
+    ipv4ServerAddress: IN_ADDR,
     dwIPv4Options: u32,
     dwIPv4ServerOptions: u32,
     dwIPv6NegotiationError: u32,
@@ -860,10 +853,10 @@ pub const RASPPP_PROJECTION_INFO = extern struct {
     bServerInterfaceIdentifier: [8]u8,
     fBundled: BOOL,
     fMultilink: BOOL,
-    dwAuthenticationProtocol: RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol,
-    dwAuthenticationData: RASPPP_PROJECTION_INFO_dwServerAuthenticationData,
-    dwServerAuthenticationProtocol: RASPPP_PROJECTION_INFO_dwServerAuthenticationProtocol,
-    dwServerAuthenticationData: RASPPP_PROJECTION_INFO_dwServerAuthenticationData,
+    dwAuthenticationProtocol: RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL,
+    dwAuthenticationData: RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA,
+    dwServerAuthenticationProtocol: RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL,
+    dwServerAuthenticationData: RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA,
     dwEapTypeId: u32,
     dwServerEapTypeId: u32,
     dwLcpOptions: u32,
@@ -877,20 +870,20 @@ pub const RASPPP_PROJECTION_INFO = extern struct {
 
 pub const RASIKEV2_PROJECTION_INFO = extern struct {
     dwIPv4NegotiationError: u32,
-    ipv4Address: in_addr,
-    ipv4ServerAddress: in_addr,
+    ipv4Address: IN_ADDR,
+    ipv4ServerAddress: IN_ADDR,
     dwIPv6NegotiationError: u32,
-    ipv6Address: in6_addr,
-    ipv6ServerAddress: in6_addr,
+    ipv6Address: IN6_ADDR,
+    ipv6ServerAddress: IN6_ADDR,
     dwPrefixLength: u32,
     dwAuthenticationProtocol: u32,
     dwEapTypeId: u32,
-    dwFlags: RASIKEV2_PROJECTION_INFOFlags,
+    dwFlags: RASIKEV_PROJECTION_INFO_FLAGS,
     dwEncryptionMethod: u32,
     numIPv4ServerAddresses: u32,
-    ipv4ServerAddresses: *in_addr,
+    ipv4ServerAddresses: *IN_ADDR,
     numIPv6ServerAddresses: u32,
-    ipv6ServerAddresses: *in6_addr,
+    ipv6ServerAddresses: *IN6_ADDR,
 };
 
 pub const RASPROJECTION_INFO_TYPE = extern enum(i32) {
@@ -968,8 +961,8 @@ pub const RASDEVINFOW = extern struct {
 
 pub const RASDEVINFOA = extern struct {
     dwSize: u32,
-    szDeviceType: [17]i8,
-    szDeviceName: [129]i8,
+    szDeviceType: [17]CHAR,
+    szDeviceName: [129]CHAR,
 };
 
 pub const RASCTRYINFO = extern struct {
@@ -985,8 +978,8 @@ pub const RASENTRYA = extern struct {
     dwfOptions: u32,
     dwCountryID: u32,
     dwCountryCode: u32,
-    szAreaCode: [11]i8,
-    szLocalPhoneNumber: [129]i8,
+    szAreaCode: [11]CHAR,
+    szLocalPhoneNumber: [129]CHAR,
     dwAlternateOffset: u32,
     ipaddr: RASIPADDR,
     ipaddrDns: RASIPADDR,
@@ -996,15 +989,15 @@ pub const RASENTRYA = extern struct {
     dwFrameSize: u32,
     dwfNetProtocols: u32,
     dwFramingProtocol: u32,
-    szScript: [260]i8,
-    szAutodialDll: [260]i8,
-    szAutodialFunc: [260]i8,
-    szDeviceType: [17]i8,
-    szDeviceName: [129]i8,
-    szX25PadType: [33]i8,
-    szX25Address: [201]i8,
-    szX25Facilities: [201]i8,
-    szX25UserData: [201]i8,
+    szScript: [260]CHAR,
+    szAutodialDll: [260]CHAR,
+    szAutodialFunc: [260]CHAR,
+    szDeviceType: [17]CHAR,
+    szDeviceName: [129]CHAR,
+    szX25PadType: [33]CHAR,
+    szX25Address: [201]CHAR,
+    szX25Facilities: [201]CHAR,
+    szX25UserData: [201]CHAR,
     dwChannels: u32,
     dwReserved1: u32,
     dwReserved2: u32,
@@ -1019,25 +1012,25 @@ pub const RASENTRYA = extern struct {
     dwEncryptionType: u32,
     dwCustomAuthKey: u32,
     guidId: Guid,
-    szCustomDialDll: [260]i8,
+    szCustomDialDll: [260]CHAR,
     dwVpnStrategy: u32,
     dwfOptions2: u32,
     dwfOptions3: u32,
-    szDnsSuffix: [256]i8,
+    szDnsSuffix: [256]CHAR,
     dwTcpWindowSize: u32,
-    szPrerequisitePbk: [260]i8,
-    szPrerequisiteEntry: [257]i8,
+    szPrerequisitePbk: [260]CHAR,
+    szPrerequisiteEntry: [257]CHAR,
     dwRedialCount: u32,
     dwRedialPause: u32,
-    ipv6addrDns: in6_addr,
-    ipv6addrDnsAlt: in6_addr,
+    ipv6addrDns: IN6_ADDR,
+    ipv6addrDnsAlt: IN6_ADDR,
     dwIPv4InterfaceMetric: u32,
     dwIPv6InterfaceMetric: u32,
-    ipv6addr: in6_addr,
+    ipv6addr: IN6_ADDR,
     dwIPv6PrefixLength: u32,
     dwNetworkOutageTime: u32,
-    szIDi: [257]i8,
-    szIDr: [257]i8,
+    szIDi: [257]CHAR,
+    szIDr: [257]CHAR,
     fIsImsConfig: BOOL,
     IdiType: IKEV2_ID_PAYLOAD_TYPE,
     IdrType: IKEV2_ID_PAYLOAD_TYPE,
@@ -1093,11 +1086,11 @@ pub const RASENTRYW = extern struct {
     szPrerequisiteEntry: [257]u16,
     dwRedialCount: u32,
     dwRedialPause: u32,
-    ipv6addrDns: in6_addr,
-    ipv6addrDnsAlt: in6_addr,
+    ipv6addrDns: IN6_ADDR,
+    ipv6addrDnsAlt: IN6_ADDR,
     dwIPv4InterfaceMetric: u32,
     dwIPv6InterfaceMetric: u32,
-    ipv6addr: in6_addr,
+    ipv6addr: IN6_ADDR,
     dwIPv6PrefixLength: u32,
     dwNetworkOutageTime: u32,
     szIDi: [257]u16,
@@ -1140,9 +1133,9 @@ pub const RASADFUNCW = fn(
 pub const RASSUBENTRYA = extern struct {
     dwSize: u32,
     dwfFlags: u32,
-    szDeviceType: [17]i8,
-    szDeviceName: [129]i8,
-    szLocalPhoneNumber: [129]i8,
+    szDeviceType: [17]CHAR,
+    szDeviceName: [129]CHAR,
+    szLocalPhoneNumber: [129]CHAR,
     dwAlternateOffset: u32,
 };
 
@@ -1158,9 +1151,9 @@ pub const RASSUBENTRYW = extern struct {
 pub const RASCREDENTIALSA = extern struct {
     dwSize: u32,
     dwMask: u32,
-    szUserName: [257]i8,
-    szPassword: [257]i8,
-    szDomain: [16]i8,
+    szUserName: [257]CHAR,
+    szPassword: [257]CHAR,
+    szDomain: [16]CHAR,
 };
 
 pub const RASCREDENTIALSW = extern struct {
@@ -1175,7 +1168,7 @@ pub const RASAUTODIALENTRYA = extern struct {
     dwSize: u32,
     dwFlags: u32,
     dwDialingLocation: u32,
-    szEntry: [257]i8,
+    szEntry: [257]CHAR,
 };
 
 pub const RASAUTODIALENTRYW = extern struct {
@@ -1186,7 +1179,7 @@ pub const RASAUTODIALENTRYW = extern struct {
 };
 
 pub const RASEAPUSERIDENTITYA = extern struct {
-    szUserName: [257]i8,
+    szUserName: [257]CHAR,
     dwSizeofEapInfo: u32,
     pbEapInfo: [1]u8,
 };
@@ -1334,9 +1327,9 @@ pub const RASNOUSERA = extern struct {
     dwSize: u32,
     dwFlags: u32,
     dwTimeoutMs: u32,
-    szUserName: [257]i8,
-    szPassword: [257]i8,
-    szDomain: [16]i8,
+    szUserName: [257]CHAR,
+    szPassword: [257]CHAR,
+    szDomain: [16]CHAR,
 };
 
 pub const RASPBDLGW = extern struct {
@@ -1383,7 +1376,7 @@ pub const RASENTRYDLGA = extern struct {
     dwFlags: u32,
     xDlg: i32,
     yDlg: i32,
-    szEntry: [257]i8,
+    szEntry: [257]CHAR,
     dwError: u32,
     reserved: usize,
     reserved2: usize,
@@ -1507,7 +1500,7 @@ pub const MPR_INTERFACE_2 = extern struct {
     dwDialExtraSampleSeconds: u32,
     dwHangUpExtraPercent: u32,
     dwHangUpExtraSampleSeconds: u32,
-    dwIdleDisconnectSeconds: MPR_INTERFACE_2_dwIdleDisconnectSeconds,
+    dwIdleDisconnectSeconds: u32,
     dwType: u32,
     dwEncryptionType: MPR_ET,
     dwCustomAuthKey: u32,
@@ -1547,7 +1540,7 @@ pub const MPR_INTERFACE_3 = extern struct {
     dwDialExtraSampleSeconds: u32,
     dwHangUpExtraPercent: u32,
     dwHangUpExtraSampleSeconds: u32,
-    dwIdleDisconnectSeconds: MPR_INTERFACE_2_dwIdleDisconnectSeconds,
+    dwIdleDisconnectSeconds: u32,
     dwType: u32,
     dwEncryptionType: MPR_ET,
     dwCustomAuthKey: u32,
@@ -1556,9 +1549,9 @@ pub const MPR_INTERFACE_3 = extern struct {
     guidId: Guid,
     dwVpnStrategy: MPR_VS,
     AddressCount: u32,
-    ipv6addrDns: in6_addr,
-    ipv6addrDnsAlt: in6_addr,
-    ipv6addr: *in6_addr,
+    ipv6addrDns: IN6_ADDR,
+    ipv6addrDnsAlt: IN6_ADDR,
+    ipv6addr: *IN6_ADDR,
 };
 
 pub const MPR_DEVICE_0 = extern struct {
@@ -1762,7 +1755,7 @@ pub const PPP_CCP_INFO = extern struct {
 pub const PPP_LCP_INFO = extern struct {
     dwError: u32,
     dwAuthenticationProtocol: PPP_LCP,
-    dwAuthenticationData: PPP_LCP_INFO_dwAuthenticationData,
+    dwAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
     dwRemoteAuthenticationProtocol: u32,
     dwRemoteAuthenticationData: u32,
     dwTerminateReason: u32,
@@ -1902,9 +1895,9 @@ pub const PPP_PROJECTION_INFO = extern struct {
     IPv6SubInterfaceIndex: u64,
     dwLcpError: u32,
     dwAuthenticationProtocol: PPP_LCP,
-    dwAuthenticationData: PPP_LCP_INFO_dwAuthenticationData,
+    dwAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
     dwRemoteAuthenticationProtocol: PPP_LCP,
-    dwRemoteAuthenticationData: PPP_LCP_INFO_dwAuthenticationData,
+    dwRemoteAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
     dwLcpTerminateReason: u32,
     dwLcpRemoteTerminateReason: u32,
     dwLcpOptions: u32,
@@ -1933,9 +1926,9 @@ pub const PPP_PROJECTION_INFO2 = extern struct {
     IPv6SubInterfaceIndex: u64,
     dwLcpError: u32,
     dwAuthenticationProtocol: PPP_LCP,
-    dwAuthenticationData: PPP_LCP_INFO_dwAuthenticationData,
+    dwAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
     dwRemoteAuthenticationProtocol: PPP_LCP,
-    dwRemoteAuthenticationData: PPP_LCP_INFO_dwAuthenticationData,
+    dwRemoteAuthenticationData: PPP_LCP_INFO_AUTH_DATA,
     dwLcpTerminateReason: u32,
     dwLcpRemoteTerminateReason: u32,
     dwLcpOptions: u32,
@@ -2336,14 +2329,14 @@ pub const PMPRADMINRELEASEIPADRESS = fn(
 pub const PMPRADMINGETIPV6ADDRESSFORUSER = fn(
     param0: PWSTR,
     param1: PWSTR,
-    param2: *in6_addr,
+    param2: *IN6_ADDR,
     param3: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PMPRADMINRELEASEIPV6ADDRESSFORUSER = fn(
     param0: PWSTR,
     param1: PWSTR,
-    param2: *in6_addr,
+    param2: *IN6_ADDR,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PMPRADMINACCEPTNEWCONNECTION = fn(
@@ -2439,17 +2432,17 @@ pub const MPRAPI_ADMIN_DLL_CALLBACKS = extern struct {
 };
 
 pub const SECURITY_MESSAGE = extern struct {
-    dwMsgId: SECURITY_MESSAGE_dwMsgIdFlags,
+    dwMsgId: SECURITY_MESSAGE_MSG_ID,
     hPort: isize,
     dwError: u32,
-    UserName: [257]i8,
-    Domain: [16]i8,
+    UserName: [257]CHAR,
+    Domain: [16]CHAR,
 };
 
 pub const RAS_SECURITY_INFO = extern struct {
     LastError: u32,
     BytesReceived: u32,
-    DeviceName: [129]i8,
+    DeviceName: [129]CHAR,
 };
 
 pub const RASSECURITYPROC = fn(
@@ -4356,14 +4349,14 @@ pub extern "rtm" fn MgmGroupEnumerationEnd(
 
 pub extern "rtm" fn RtmConvertNetAddressToIpv6AddressAndLength(
     pNetAddress: *RTM_NET_ADDRESS,
-    pAddress: *in6_addr,
+    pAddress: *IN6_ADDR,
     pLength: *u32,
     dwAddressSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "rtm" fn RtmConvertIpv6AddressAndLengthToNetAddress(
     pNetAddress: *RTM_NET_ADDRESS,
-    Address: in6_addr,
+    Address: IN6_ADDR,
     dwLength: u32,
     dwAddressSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -5073,21 +5066,22 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (13)
+// Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HWND = @import("windows_and_messaging.zig").HWND;
 const PWSTR = @import("system_services.zig").PWSTR;
 const HINSTANCE = @import("system_services.zig").HINSTANCE;
+const CHAR = @import("system_services.zig").CHAR;
 const FILETIME = @import("windows_programming.zig").FILETIME;
-const in6_addr = @import("win_sock.zig").in6_addr;
 const MIB_IPMCAST_MFE = @import("mib.zig").MIB_IPMCAST_MFE;
-const HANDLE = @import("system_services.zig").HANDLE;
+const IN_ADDR = @import("ip_helper.zig").IN_ADDR;
 const PSTR = @import("system_services.zig").PSTR;
-const CRYPTOAPI_BLOB = @import("security.zig").CRYPTOAPI_BLOB;
 const BOOL = @import("system_services.zig").BOOL;
 const LUID = @import("kernel.zig").LUID;
-const in_addr = @import("win_sock.zig").in_addr;
+const HWND = @import("windows_and_messaging.zig").HWND;
+const IN6_ADDR = @import("network_drivers.zig").IN6_ADDR;
+const HANDLE = @import("system_services.zig").HANDLE;
+const CRYPTOAPI_BLOB = @import("security.zig").CRYPTOAPI_BLOB;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
@@ -5144,13 +5138,13 @@ test {
     _ = RTM_ENTITY_EXPORT_METHOD;
 
     const constant_export_count = 369;
-    const type_export_count = 225;
-    const enum_value_export_count = 144;
+    const type_export_count = 224;
+    const enum_value_export_count = 142;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 277;
     const unicode_alias_count = 60;
-    const import_count = 13;
+    const import_count = 14;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

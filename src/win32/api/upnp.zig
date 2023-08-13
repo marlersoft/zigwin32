@@ -199,14 +199,17 @@ pub const IID_IUPnPServices = &IID_IUPnPServices_Value;
 pub const IUPnPServices = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IUPnPServices,
             plCount: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IUPnPServices,
             ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IUPnPServices,
             bstrServiceId: BSTR,
@@ -250,6 +253,7 @@ pub const IUPnPService = extern struct {
             pvOutActionArgs: *VARIANT,
             pvRetVal: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceTypeIdentifier: fn(
             self: *const IUPnPService,
             pVal: *BSTR,
@@ -258,10 +262,12 @@ pub const IUPnPService = extern struct {
             self: *const IUPnPService,
             pUnkCallback: *IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const IUPnPService,
             pbstrId: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastTransportStatus: fn(
             self: *const IUPnPService,
             plValue: *i32,
@@ -508,14 +514,17 @@ pub const IID_IUPnPDevices = &IID_IUPnPDevices_Value;
 pub const IUPnPDevices = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IUPnPDevices,
             plCount: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IUPnPDevices,
             ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IUPnPDevices,
             bstrUDN: BSTR,
@@ -547,70 +556,87 @@ pub const IID_IUPnPDevice = &IID_IUPnPDevice_Value;
 pub const IUPnPDevice = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRootDevice: fn(
             self: *const IUPnPDevice,
             pvarb: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RootDevice: fn(
             self: *const IUPnPDevice,
             ppudRootDevice: **IUPnPDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ParentDevice: fn(
             self: *const IUPnPDevice,
             ppudDeviceParent: **IUPnPDevice,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HasChildren: fn(
             self: *const IUPnPDevice,
             pvarb: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Children: fn(
             self: *const IUPnPDevice,
             ppudChildren: **IUPnPDevices,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UniqueDeviceName: fn(
             self: *const IUPnPDevice,
             pbstr: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FriendlyName: fn(
             self: *const IUPnPDevice,
             pbstr: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IUPnPDevice,
             pbstr: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PresentationURL: fn(
             self: *const IUPnPDevice,
             pbstr: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ManufacturerName: fn(
             self: *const IUPnPDevice,
             pbstr: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ManufacturerURL: fn(
             self: *const IUPnPDevice,
             pbstr: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModelName: fn(
             self: *const IUPnPDevice,
             pbstr: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModelNumber: fn(
             self: *const IUPnPDevice,
             pbstr: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IUPnPDevice,
             pbstr: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModelURL: fn(
             self: *const IUPnPDevice,
             pbstr: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UPC: fn(
             self: *const IUPnPDevice,
             pbstr: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SerialNumber: fn(
             self: *const IUPnPDevice,
             pbstr: *BSTR,
@@ -623,6 +649,7 @@ pub const IUPnPDevice = extern struct {
             lBitDepth: i32,
             pbstrIconURL: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Services: fn(
             self: *const IUPnPDevice,
             ppusServices: **IUPnPServices,
@@ -761,6 +788,7 @@ pub const IID_IUPnPDescriptionDocument = &IID_IUPnPDescriptionDocument_Value;
 pub const IUPnPDescriptionDocument = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReadyState: fn(
             self: *const IUPnPDescriptionDocument,
             plReadyState: *i32,
@@ -774,6 +802,7 @@ pub const IUPnPDescriptionDocument = extern struct {
             bstrUrl: BSTR,
             punkCallback: *IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LoadResult: fn(
             self: *const IUPnPDescriptionDocument,
             phrError: *i32,

@@ -942,12 +942,12 @@ pub const ROLLBACK_BITS = @as(u32, 1);
 //--------------------------------------------------------------------------------
 pub const HCMNOTIFICATION = ?*opaque{};
 
-pub const SetupDiBuildDriverInfoList_DriverTypeFlags = extern enum(u32) {
+pub const SETUP_DI_BUILD_DRIVER_DRIVER_TYPE = extern enum(u32) {
     LASSDRIVER = 1,
     OMPATDRIVER = 2,
 };
-pub const SPDIT_CLASSDRIVER = SetupDiBuildDriverInfoList_DriverTypeFlags.LASSDRIVER;
-pub const SPDIT_COMPATDRIVER = SetupDiBuildDriverInfoList_DriverTypeFlags.OMPATDRIVER;
+pub const SPDIT_CLASSDRIVER = SETUP_DI_BUILD_DRIVER_DRIVER_TYPE.LASSDRIVER;
+pub const SPDIT_COMPATDRIVER = SETUP_DI_BUILD_DRIVER_DRIVER_TYPE.OMPATDRIVER;
 
 pub const SP_ALTPLATFORM_INFO_V3 = extern struct {
     cbSize: u32,
@@ -980,7 +980,7 @@ pub const SP_DEVICE_INTERFACE_DATA = extern struct {
 
 pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = extern struct {
     cbSize: u32,
-    DevicePath: [1]i8,
+    DevicePath: [1]CHAR,
 };
 
 pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = extern struct {
@@ -992,7 +992,7 @@ pub const SP_DEVINFO_LIST_DETAIL_DATA_A = extern struct {
     cbSize: u32,
     ClassGuid: Guid,
     RemoteMachineHandle: HANDLE,
-    RemoteMachineName: [263]i8,
+    RemoteMachineName: [263]CHAR,
 };
 
 pub const SP_DEVINFO_LIST_DETAIL_DATA_W = extern struct {
@@ -1012,7 +1012,7 @@ pub const SP_DEVINSTALL_PARAMS_A = extern struct {
     FileQueue: *c_void,
     ClassInstallReserved: usize,
     Reserved: u32,
-    DriverPath: [260]i8,
+    DriverPath: [260]CHAR,
 };
 
 pub const SP_DEVINSTALL_PARAMS_W = extern struct {
@@ -1060,10 +1060,10 @@ pub const SP_UNREMOVEDEVICE_PARAMS = extern struct {
 
 pub const SP_SELECTDEVICE_PARAMS_A = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Title: [60]i8,
-    Instructions: [256]i8,
-    ListLabel: [30]i8,
-    SubTitle: [256]i8,
+    Title: [60]CHAR,
+    Instructions: [256]CHAR,
+    ListLabel: [30]CHAR,
+    SubTitle: [256]CHAR,
     Reserved: [2]u8,
 };
 
@@ -1107,8 +1107,8 @@ pub const SP_NEWDEVICEWIZARD_DATA = extern struct {
 
 pub const SP_TROUBLESHOOTER_PARAMS_A = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    ChmFile: [260]i8,
-    HtmlTroubleShooter: [260]i8,
+    ChmFile: [260]CHAR,
+    HtmlTroubleShooter: [260]CHAR,
 };
 
 pub const SP_TROUBLESHOOTER_PARAMS_W = extern struct {
@@ -1119,7 +1119,7 @@ pub const SP_TROUBLESHOOTER_PARAMS_W = extern struct {
 
 pub const SP_POWERMESSAGEWAKE_PARAMS_A = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    PowerMessageWake: [512]i8,
+    PowerMessageWake: [512]CHAR,
 };
 
 pub const SP_POWERMESSAGEWAKE_PARAMS_W = extern struct {
@@ -1131,9 +1131,9 @@ pub const SP_DRVINFO_DATA_V2_A = extern struct {
     cbSize: u32,
     DriverType: u32,
     Reserved: usize,
-    Description: [256]i8,
-    MfgName: [256]i8,
-    ProviderName: [256]i8,
+    Description: [256]CHAR,
+    MfgName: [256]CHAR,
+    ProviderName: [256]CHAR,
     DriverDate: FILETIME,
     DriverVersion: u64,
 };
@@ -1153,9 +1153,9 @@ pub const SP_DRVINFO_DATA_V1_A = extern struct {
     cbSize: u32,
     DriverType: u32,
     Reserved: usize,
-    Description: [256]i8,
-    MfgName: [256]i8,
-    ProviderName: [256]i8,
+    Description: [256]CHAR,
+    MfgName: [256]CHAR,
+    ProviderName: [256]CHAR,
 };
 
 pub const SP_DRVINFO_DATA_V1_W = extern struct {
@@ -1173,10 +1173,10 @@ pub const SP_DRVINFO_DETAIL_DATA_A = extern struct {
     CompatIDsOffset: u32,
     CompatIDsLength: u32,
     Reserved: usize,
-    SectionName: [256]i8,
-    InfFileName: [260]i8,
-    DrvDescription: [256]i8,
-    HardwareID: [1]i8,
+    SectionName: [256]CHAR,
+    InfFileName: [260]CHAR,
+    DrvDescription: [256]CHAR,
+    HardwareID: [1]CHAR,
 };
 
 pub const SP_DRVINFO_DETAIL_DATA_W = extern struct {
@@ -1227,9 +1227,9 @@ pub const SP_PROPSHEETPAGE_REQUEST = extern struct {
 
 pub const SP_BACKUP_QUEUE_PARAMS_V2_A = extern struct {
     cbSize: u32,
-    FullInfPath: [260]i8,
+    FullInfPath: [260]CHAR,
     FilenameOffset: i32,
-    ReinstallInstance: [260]i8,
+    ReinstallInstance: [260]CHAR,
 };
 
 pub const SP_BACKUP_QUEUE_PARAMS_V2_W = extern struct {
@@ -1241,7 +1241,7 @@ pub const SP_BACKUP_QUEUE_PARAMS_V2_W = extern struct {
 
 pub const SP_BACKUP_QUEUE_PARAMS_V1_A = extern struct {
     cbSize: u32,
-    FullInfPath: [260]i8,
+    FullInfPath: [260]CHAR,
     FilenameOffset: i32,
 };
 
@@ -1303,7 +1303,7 @@ pub const CONFLICT_DETAILS_A = extern struct {
     CD_dnDevInst: u32,
     CD_rdResDes: usize,
     CD_ulFlags: u32,
-    CD_szDescription: [260]i8,
+    CD_szDescription: [260]CHAR,
 };
 
 pub const CONFLICT_DETAILS_W = extern struct {
@@ -1533,7 +1533,7 @@ pub const Connection_Resource_s = extern struct {
 
 pub const HWProfileInfo_sA = extern struct {
     HWPI_ulHWProfile: u32,
-    HWPI_szFriendlyName: [80]i8,
+    HWPI_szFriendlyName: [80]CHAR,
     HWPI_dwFlags: u32,
 };
 
@@ -2073,7 +2073,7 @@ pub extern "SETUPAPI" fn SetupDiRegisterDeviceInfo(
 pub extern "SETUPAPI" fn SetupDiBuildDriverInfoList(
     DeviceInfoSet: *c_void,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-    DriverType: SetupDiBuildDriverInfoList_DriverTypeFlags,
+    DriverType: SETUP_DI_BUILD_DRIVER_DRIVER_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5533,13 +5533,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (22)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const PSP_FILE_CALLBACK_A = @import("application_installation_and_servicing.zig").PSP_FILE_CALLBACK_A;
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
 const FILETIME = @import("windows_programming.zig").FILETIME;
 const SP_ALTPLATFORM_INFO_V2 = @import("application_installation_and_servicing.zig").SP_ALTPLATFORM_INFO_V2;
+const CHAR = @import("system_services.zig").CHAR;
 const PWSTR = @import("system_services.zig").PWSTR;
 const INFCONTEXT = @import("application_installation_and_servicing.zig").INFCONTEXT;
 const HKEY = @import("windows_programming.zig").HKEY;
@@ -5571,7 +5572,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 403;
     const unicode_alias_count = 119;
-    const import_count = 22;
+    const import_count = 23;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

@@ -6837,7 +6837,7 @@ pub const KSGOP_USERDATA = extern struct {
     sc: u32,
     reserved1: u32,
     cFields: u8,
-    l21Data: [3]i8,
+    l21Data: [3]CHAR,
 };
 
 const CLSID_KSDATAFORMAT_TYPE_DVD_ENCRYPTED_PACK_Value = @import("../zig.zig").Guid.initString("ed0b916a-044d-11d1-aa78-00c04fc31d60");
@@ -11337,12 +11337,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (22)
+// Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HDC = @import("gdi.zig").HDC;
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
 const PWSTR = @import("system_services.zig").PWSTR;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
 const TIMECODE_SAMPLE = @import("direct_show.zig").TIMECODE_SAMPLE;
 const HRESULT = @import("com.zig").HRESULT;
@@ -11373,7 +11374,7 @@ test {
     const com_class_id_export_count = 519;
     const func_export_count = 28;
     const unicode_alias_count = 18;
-    const import_count = 22;
+    const import_count = 23;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

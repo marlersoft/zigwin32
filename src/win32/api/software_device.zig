@@ -6,6 +6,8 @@
 //--------------------------------------------------------------------------------
 // Section: Types (5)
 //--------------------------------------------------------------------------------
+pub const HSWDEVICE = ?*opaque{};
+
 pub const SW_DEVICE_CAPABILITIES = extern enum(i32) {
     None = 0,
     Removable = 1,
@@ -46,8 +48,6 @@ pub const SW_DEVICE_CREATE_CALLBACK = fn(
     pContext: ?*c_void,
     pszDeviceInstanceId: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const HSWDEVICE = ?*opaque{};
 
 
 //--------------------------------------------------------------------------------

@@ -73,7 +73,7 @@ pub const LIFE_TIME = extern struct {
 
 pub const DIAG_SOCKADDR = extern struct {
     family: u16,
-    data: [126]i8,
+    data: [126]CHAR,
 };
 
 pub const HELPER_ATTRIBUTE = extern struct {
@@ -408,14 +408,14 @@ pub const INetDiagHelperUtilFactory = extern struct {
         CreateUtilityInstance: fn(
             self: *const INetDiagHelperUtilFactory,
             riid: *const Guid,
-            ppvObject: ?*?*c_void,
+            ppvObject: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetDiagHelperUtilFactory_CreateUtilityInstance(self: *const T, riid: *const Guid, ppvObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn INetDiagHelperUtilFactory_CreateUtilityInstance(self: *const T, riid: *const Guid, ppvObject: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const INetDiagHelperUtilFactory.VTable, self.vtable).CreateUtilityInstance(@ptrCast(*const INetDiagHelperUtilFactory, self), riid, ppvObject);
         }
     };}
@@ -641,13 +641,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const FILETIME = @import("windows_programming.zig").FILETIME;
 const PWSTR = @import("system_services.zig").PWSTR;
-const SID = @import("security.zig").SID;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
+const SID = @import("security.zig").SID;
 const HRESULT = @import("com.zig").HRESULT;
 const SOCKET_ADDRESS_LIST = @import("network_drivers.zig").SOCKET_ADDRESS_LIST;
 const BOOL = @import("system_services.zig").BOOL;
@@ -661,7 +662,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 16;
     const unicode_alias_count = 0;
-    const import_count = 9;
+    const import_count = 10;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

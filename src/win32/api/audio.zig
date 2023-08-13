@@ -3326,7 +3326,7 @@ pub const IDirectMusicSynth = extern struct {
         Unload: fn(
             self: *const IDirectMusicSynth,
             hDownload: HANDLE,
-            lpFreeHandle: ***********HRESULT,
+            lpFreeHandle: isize,
             hUserData: HANDLE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         PlayBuffer: fn(
@@ -3407,7 +3407,7 @@ pub const IDirectMusicSynth = extern struct {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Download(@ptrCast(*const IDirectMusicSynth, self), phDownload, pvData, pbFree);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectMusicSynth_Unload(self: *const T, hDownload: HANDLE, lpFreeHandle: ***********HRESULT, hUserData: HANDLE) callconv(.Inline) HRESULT {
+        pub fn IDirectMusicSynth_Unload(self: *const T, hDownload: HANDLE, lpFreeHandle: isize, hUserData: HANDLE) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDirectMusicSynth.VTable, self.vtable).Unload(@ptrCast(*const IDirectMusicSynth, self), hDownload, lpFreeHandle, hUserData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3624,20 +3624,6 @@ pub const KSP_PINMODE = extern struct {
     AudioProcessingMode: Guid,
 };
 
-pub const MDEVICECAPSEX = extern struct {
-    cbSize: u32,
-    pCaps: *c_void,
-};
-
-pub const MIDIOPENDESC = extern struct {
-    hMidi: HMIDI,
-    dwCallback: usize,
-    dwInstance: usize,
-    dnDevNode: usize,
-    cIds: u32,
-    rgIds: [1]midiopenstrmid_tag,
-};
-
 const IID_IPropertyStore_Value = @import("../zig.zig").Guid.initString("886d8eeb-8cf2-4446-8d02-cdba1dbdcf99");
 pub const IID_IPropertyStore = &IID_IPropertyStore_Value;
 pub const IPropertyStore = extern struct {
@@ -3691,6 +3677,20 @@ pub const IPropertyStore = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
+};
+
+pub const MDEVICECAPSEX = extern struct {
+    cbSize: u32,
+    pCaps: *c_void,
+};
+
+pub const MIDIOPENDESC = extern struct {
+    hMidi: HMIDI,
+    dwCallback: usize,
+    dwInstance: usize,
+    dnDevNode: usize,
+    cIds: u32,
+    rgIds: [1]midiopenstrmid_tag,
 };
 
 

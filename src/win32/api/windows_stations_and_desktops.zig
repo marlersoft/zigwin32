@@ -12,7 +12,7 @@ pub const HWINSTA = ?*opaque{};
 // TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
 pub const HDESK = ?*opaque{};
 
-pub const GetUserObjectInformation_nIndex = extern enum(u32) {
+pub const USER_OBJECT_INFORMATION_INDEX = extern enum(u32) {
     FLAGS = 1,
     HEAPSIZE = 5,
     IO = 6,
@@ -20,12 +20,12 @@ pub const GetUserObjectInformation_nIndex = extern enum(u32) {
     TYPE = 3,
     USER_SID = 4,
 };
-pub const UOI_FLAGS = GetUserObjectInformation_nIndex.FLAGS;
-pub const UOI_HEAPSIZE = GetUserObjectInformation_nIndex.HEAPSIZE;
-pub const UOI_IO = GetUserObjectInformation_nIndex.IO;
-pub const UOI_NAME = GetUserObjectInformation_nIndex.NAME;
-pub const UOI_TYPE = GetUserObjectInformation_nIndex.TYPE;
-pub const UOI_USER_SID = GetUserObjectInformation_nIndex.USER_SID;
+pub const UOI_FLAGS = USER_OBJECT_INFORMATION_INDEX.FLAGS;
+pub const UOI_HEAPSIZE = USER_OBJECT_INFORMATION_INDEX.HEAPSIZE;
+pub const UOI_IO = USER_OBJECT_INFORMATION_INDEX.IO;
+pub const UOI_NAME = USER_OBJECT_INFORMATION_INDEX.NAME;
+pub const UOI_TYPE = USER_OBJECT_INFORMATION_INDEX.TYPE;
+pub const UOI_USER_SID = USER_OBJECT_INFORMATION_INDEX.USER_SID;
 
 pub const USEROBJECTFLAGS = extern struct {
     fInherit: BOOL,
@@ -204,7 +204,7 @@ pub extern "USER32" fn GetProcessWindowStation(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetUserObjectInformationA(
     hObj: HANDLE,
-    nIndex: GetUserObjectInformation_nIndex,
+    nIndex: USER_OBJECT_INFORMATION_INDEX,
     // TODO: what to do with BytesParamIndex 3?
     pvInfo: ?*c_void,
     nLength: u32,
@@ -214,7 +214,7 @@ pub extern "USER32" fn GetUserObjectInformationA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetUserObjectInformationW(
     hObj: HANDLE,
-    nIndex: GetUserObjectInformation_nIndex,
+    nIndex: USER_OBJECT_INFORMATION_INDEX,
     // TODO: what to do with BytesParamIndex 3?
     pvInfo: ?*c_void,
     nLength: u32,

@@ -242,7 +242,7 @@ pub const RsvpObjHdr = extern struct {
 };
 
 pub const Session_IPv4 = extern struct {
-    sess_destaddr: in_addr,
+    sess_destaddr: IN_ADDR,
     sess_protid: u8,
     sess_flags: u8,
     sess_destport: u16,
@@ -255,7 +255,7 @@ pub const RSVP_SESSION = extern struct {
 };
 
 pub const Rsvp_Hop_IPv4 = extern struct {
-    hop_ipaddr: in_addr,
+    hop_ipaddr: IN_ADDR,
     hop_LIH: u32,
 };
 
@@ -271,13 +271,13 @@ pub const RESV_STYLE = extern struct {
 };
 
 pub const Filter_Spec_IPv4 = extern struct {
-    filt_ipaddr: in_addr,
+    filt_ipaddr: IN_ADDR,
     filt_unused: u16,
     filt_port: u16,
 };
 
 pub const Filter_Spec_IPv4GPI = extern struct {
-    filt_ipaddr: in_addr,
+    filt_ipaddr: IN_ADDR,
     filt_gpi: u32,
 };
 
@@ -288,7 +288,7 @@ pub const FILTER_SPEC = extern struct {
 };
 
 pub const Scope_list_ipv4 = extern struct {
-    scopl_ipaddr: [1]in_addr,
+    scopl_ipaddr: [1]IN_ADDR,
 };
 
 pub const RSVP_SCOPE = extern struct {
@@ -298,7 +298,7 @@ pub const RSVP_SCOPE = extern struct {
 };
 
 pub const Error_Spec_IPv4 = extern struct {
-    errs_errnode: in_addr,
+    errs_errnode: IN_ADDR,
     errs_flags: u8,
     errs_code: u8,
     errs_value: u16,
@@ -535,8 +535,8 @@ pub const LPM_INIT_INFO = extern struct {
 pub const lpmiptable = extern struct {
     ulIfIndex: u32,
     MediaType: u32,
-    IfIpAddr: in_addr,
-    IfNetMask: in_addr,
+    IfIpAddr: IN_ADDR,
+    IfNetMask: IN_ADDR,
 };
 
 pub const QOS_TRAFFIC_TYPE = extern enum(i32) {
@@ -1042,15 +1042,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const SOCKADDR = @import("win_sock.zig").SOCKADDR;
 const PWSTR = @import("system_services.zig").PWSTR;
 const NETWORK_ADDRESS_LIST = @import("native_wi_fi.zig").NETWORK_ADDRESS_LIST;
 const WSABUF = @import("win_sock.zig").WSABUF;
 const OVERLAPPED = @import("system_services.zig").OVERLAPPED;
+const IN_ADDR = @import("ip_helper.zig").IN_ADDR;
 const HANDLE = @import("system_services.zig").HANDLE;
 const PSTR = @import("system_services.zig").PSTR;
 const BOOL = @import("system_services.zig").BOOL;
-const in_addr = @import("win_sock.zig").in_addr;
+const SOCKADDR = @import("win_sock.zig").SOCKADDR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

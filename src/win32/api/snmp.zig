@@ -96,6 +96,175 @@ pub const MAXVENDORINFO = @as(u32, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (29)
 //--------------------------------------------------------------------------------
+pub const SNMP_PDU_TYPE = extern enum(u32) {
+    GET = 160,
+    GETNEXT = 161,
+    RESPONSE = 162,
+    SET = 163,
+    GETBULK = 165,
+    TRAP = 167,
+};
+pub const SNMP_PDU_GET = SNMP_PDU_TYPE.GET;
+pub const SNMP_PDU_GETNEXT = SNMP_PDU_TYPE.GETNEXT;
+pub const SNMP_PDU_RESPONSE = SNMP_PDU_TYPE.RESPONSE;
+pub const SNMP_PDU_SET = SNMP_PDU_TYPE.SET;
+pub const SNMP_PDU_GETBULK = SNMP_PDU_TYPE.GETBULK;
+pub const SNMP_PDU_TRAP = SNMP_PDU_TYPE.TRAP;
+
+pub const SNMP_EXTENSION_REQUEST_TYPE = extern enum(u32) {
+    GET = 160,
+    GET_NEXT = 161,
+    SET_TEST = 224,
+    SET_COMMIT = 163,
+    SET_UNDO = 225,
+    SET_CLEANUP = 226,
+};
+pub const SNMP_EXTENSION_GET = SNMP_EXTENSION_REQUEST_TYPE.GET;
+pub const SNMP_EXTENSION_GET_NEXT = SNMP_EXTENSION_REQUEST_TYPE.GET_NEXT;
+pub const SNMP_EXTENSION_SET_TEST = SNMP_EXTENSION_REQUEST_TYPE.SET_TEST;
+pub const SNMP_EXTENSION_SET_COMMIT = SNMP_EXTENSION_REQUEST_TYPE.SET_COMMIT;
+pub const SNMP_EXTENSION_SET_UNDO = SNMP_EXTENSION_REQUEST_TYPE.SET_UNDO;
+pub const SNMP_EXTENSION_SET_CLEANUP = SNMP_EXTENSION_REQUEST_TYPE.SET_CLEANUP;
+
+pub const SNMP_API_TRANSLATE_MODE = extern enum(u32) {
+    TRANSLATED = 0,
+    UNTRANSLATED_V1 = 1,
+    UNTRANSLATED_V2 = 2,
+};
+pub const SNMPAPI_TRANSLATED = SNMP_API_TRANSLATE_MODE.TRANSLATED;
+pub const SNMPAPI_UNTRANSLATED_V1 = SNMP_API_TRANSLATE_MODE.UNTRANSLATED_V1;
+pub const SNMPAPI_UNTRANSLATED_V2 = SNMP_API_TRANSLATE_MODE.UNTRANSLATED_V2;
+
+pub const SNMP_GENERICTRAP = extern enum(u32) {
+    COLDSTART = 0,
+    WARMSTART = 1,
+    LINKDOWN = 2,
+    LINKUP = 3,
+    AUTHFAILURE = 4,
+    EGPNEIGHLOSS = 5,
+    ENTERSPECIFIC = 6,
+};
+pub const SNMP_GENERICTRAP_COLDSTART = SNMP_GENERICTRAP.COLDSTART;
+pub const SNMP_GENERICTRAP_WARMSTART = SNMP_GENERICTRAP.WARMSTART;
+pub const SNMP_GENERICTRAP_LINKDOWN = SNMP_GENERICTRAP.LINKDOWN;
+pub const SNMP_GENERICTRAP_LINKUP = SNMP_GENERICTRAP.LINKUP;
+pub const SNMP_GENERICTRAP_AUTHFAILURE = SNMP_GENERICTRAP.AUTHFAILURE;
+pub const SNMP_GENERICTRAP_EGPNEIGHLOSS = SNMP_GENERICTRAP.EGPNEIGHLOSS;
+pub const SNMP_GENERICTRAP_ENTERSPECIFIC = SNMP_GENERICTRAP.ENTERSPECIFIC;
+
+pub const SNMP_ERROR_STATUS = extern enum(u32) {
+    NOERROR = 0,
+    TOOBIG = 1,
+    NOSUCHNAME = 2,
+    BADVALUE = 3,
+    READONLY = 4,
+    GENERR = 5,
+    NOACCESS = 6,
+    WRONGTYPE = 7,
+    WRONGLENGTH = 8,
+    WRONGENCODING = 9,
+    WRONGVALUE = 10,
+    NOCREATION = 11,
+    INCONSISTENTVALUE = 12,
+    RESOURCEUNAVAILABLE = 13,
+    COMMITFAILED = 14,
+    UNDOFAILED = 15,
+    AUTHORIZATIONERROR = 16,
+    NOTWRITABLE = 17,
+    INCONSISTENTNAME = 18,
+};
+pub const SNMP_ERRORSTATUS_NOERROR = SNMP_ERROR_STATUS.NOERROR;
+pub const SNMP_ERRORSTATUS_TOOBIG = SNMP_ERROR_STATUS.TOOBIG;
+pub const SNMP_ERRORSTATUS_NOSUCHNAME = SNMP_ERROR_STATUS.NOSUCHNAME;
+pub const SNMP_ERRORSTATUS_BADVALUE = SNMP_ERROR_STATUS.BADVALUE;
+pub const SNMP_ERRORSTATUS_READONLY = SNMP_ERROR_STATUS.READONLY;
+pub const SNMP_ERRORSTATUS_GENERR = SNMP_ERROR_STATUS.GENERR;
+pub const SNMP_ERRORSTATUS_NOACCESS = SNMP_ERROR_STATUS.NOACCESS;
+pub const SNMP_ERRORSTATUS_WRONGTYPE = SNMP_ERROR_STATUS.WRONGTYPE;
+pub const SNMP_ERRORSTATUS_WRONGLENGTH = SNMP_ERROR_STATUS.WRONGLENGTH;
+pub const SNMP_ERRORSTATUS_WRONGENCODING = SNMP_ERROR_STATUS.WRONGENCODING;
+pub const SNMP_ERRORSTATUS_WRONGVALUE = SNMP_ERROR_STATUS.WRONGVALUE;
+pub const SNMP_ERRORSTATUS_NOCREATION = SNMP_ERROR_STATUS.NOCREATION;
+pub const SNMP_ERRORSTATUS_INCONSISTENTVALUE = SNMP_ERROR_STATUS.INCONSISTENTVALUE;
+pub const SNMP_ERRORSTATUS_RESOURCEUNAVAILABLE = SNMP_ERROR_STATUS.RESOURCEUNAVAILABLE;
+pub const SNMP_ERRORSTATUS_COMMITFAILED = SNMP_ERROR_STATUS.COMMITFAILED;
+pub const SNMP_ERRORSTATUS_UNDOFAILED = SNMP_ERROR_STATUS.UNDOFAILED;
+pub const SNMP_ERRORSTATUS_AUTHORIZATIONERROR = SNMP_ERROR_STATUS.AUTHORIZATIONERROR;
+pub const SNMP_ERRORSTATUS_NOTWRITABLE = SNMP_ERROR_STATUS.NOTWRITABLE;
+pub const SNMP_ERRORSTATUS_INCONSISTENTNAME = SNMP_ERROR_STATUS.INCONSISTENTNAME;
+
+pub const SNMP_STATUS = extern enum(u32) {
+    N = 1,
+    FF = 0,
+};
+pub const SNMPAPI_ON = SNMP_STATUS.N;
+pub const SNMPAPI_OFF = SNMP_STATUS.FF;
+
+pub const SNMP_OUTPUT_LOG_TYPE = extern enum(u32) {
+    CONSOLE = 1,
+    LOGFILE = 2,
+    DEBUGGER = 8,
+};
+pub const SNMP_OUTPUT_TO_CONSOLE = SNMP_OUTPUT_LOG_TYPE.CONSOLE;
+pub const SNMP_OUTPUT_TO_LOGFILE = SNMP_OUTPUT_LOG_TYPE.LOGFILE;
+pub const SNMP_OUTPUT_TO_DEBUGGER = SNMP_OUTPUT_LOG_TYPE.DEBUGGER;
+
+pub const SNMP_LOG = extern enum(u32) {
+    SILENT = 0,
+    FATAL = 1,
+    ERROR = 2,
+    WARNING = 3,
+    TRACE = 4,
+    VERBOSE = 5,
+};
+pub const SNMP_LOG_SILENT = SNMP_LOG.SILENT;
+pub const SNMP_LOG_FATAL = SNMP_LOG.FATAL;
+pub const SNMP_LOG_ERROR = SNMP_LOG.ERROR;
+pub const SNMP_LOG_WARNING = SNMP_LOG.WARNING;
+pub const SNMP_LOG_TRACE = SNMP_LOG.TRACE;
+pub const SNMP_LOG_VERBOSE = SNMP_LOG.VERBOSE;
+
+pub const SNMP_ERROR = extern enum(u32) {
+    NOERROR = 0,
+    TOOBIG = 1,
+    NOSUCHNAME = 2,
+    BADVALUE = 3,
+    READONLY = 4,
+    GENERR = 5,
+    NOACCESS = 6,
+    WRONGTYPE = 7,
+    WRONGLENGTH = 8,
+    WRONGENCODING = 9,
+    WRONGVALUE = 10,
+    NOCREATION = 11,
+    INCONSISTENTVALUE = 12,
+    RESOURCEUNAVAILABLE = 13,
+    COMMITFAILED = 14,
+    UNDOFAILED = 15,
+    AUTHORIZATIONERROR = 16,
+    NOTWRITABLE = 17,
+    INCONSISTENTNAME = 18,
+};
+pub const SNMP_ERROR_NOERROR = SNMP_ERROR.NOERROR;
+pub const SNMP_ERROR_TOOBIG = SNMP_ERROR.TOOBIG;
+pub const SNMP_ERROR_NOSUCHNAME = SNMP_ERROR.NOSUCHNAME;
+pub const SNMP_ERROR_BADVALUE = SNMP_ERROR.BADVALUE;
+pub const SNMP_ERROR_READONLY = SNMP_ERROR.READONLY;
+pub const SNMP_ERROR_GENERR = SNMP_ERROR.GENERR;
+pub const SNMP_ERROR_NOACCESS = SNMP_ERROR.NOACCESS;
+pub const SNMP_ERROR_WRONGTYPE = SNMP_ERROR.WRONGTYPE;
+pub const SNMP_ERROR_WRONGLENGTH = SNMP_ERROR.WRONGLENGTH;
+pub const SNMP_ERROR_WRONGENCODING = SNMP_ERROR.WRONGENCODING;
+pub const SNMP_ERROR_WRONGVALUE = SNMP_ERROR.WRONGVALUE;
+pub const SNMP_ERROR_NOCREATION = SNMP_ERROR.NOCREATION;
+pub const SNMP_ERROR_INCONSISTENTVALUE = SNMP_ERROR.INCONSISTENTVALUE;
+pub const SNMP_ERROR_RESOURCEUNAVAILABLE = SNMP_ERROR.RESOURCEUNAVAILABLE;
+pub const SNMP_ERROR_COMMITFAILED = SNMP_ERROR.COMMITFAILED;
+pub const SNMP_ERROR_UNDOFAILED = SNMP_ERROR.UNDOFAILED;
+pub const SNMP_ERROR_AUTHORIZATIONERROR = SNMP_ERROR.AUTHORIZATIONERROR;
+pub const SNMP_ERROR_NOTWRITABLE = SNMP_ERROR.NOTWRITABLE;
+pub const SNMP_ERROR_INCONSISTENTNAME = SNMP_ERROR.INCONSISTENTNAME;
+
 pub const AsnOctetString = extern struct {
     stream: *u8,
     length: u32,
@@ -186,10 +355,10 @@ pub const smiVALUE = extern struct {
 };
 
 pub const smiVENDORINFO = extern struct {
-    vendorName: [64]i8,
-    vendorContact: [64]i8,
-    vendorVersionId: [32]i8,
-    vendorVersionDate: [32]i8,
+    vendorName: [64]CHAR,
+    vendorContact: [64]CHAR,
+    vendorVersionId: [32]CHAR,
+    vendorVersionDate: [32]CHAR,
     vendorEnterprise: u32,
 };
 
@@ -212,175 +381,6 @@ pub const PFNSNMPSTARTUPEX = fn(
 
 pub const PFNSNMPCLEANUPEX = fn(
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const SNMP_PDU_TYPE = extern enum(u32) {
-    GET = 160,
-    GETNEXT = 161,
-    RESPONSE = 162,
-    SET = 163,
-    GETBULK = 165,
-    TRAP = 167,
-};
-pub const SNMP_PDU_GET = SNMP_PDU_TYPE.GET;
-pub const SNMP_PDU_GETNEXT = SNMP_PDU_TYPE.GETNEXT;
-pub const SNMP_PDU_RESPONSE = SNMP_PDU_TYPE.RESPONSE;
-pub const SNMP_PDU_SET = SNMP_PDU_TYPE.SET;
-pub const SNMP_PDU_GETBULK = SNMP_PDU_TYPE.GETBULK;
-pub const SNMP_PDU_TRAP = SNMP_PDU_TYPE.TRAP;
-
-pub const SNMP_EXTENSION_REQUEST_TYPE = extern enum(u32) {
-    GET = 160,
-    GET_NEXT = 161,
-    SET_TEST = 224,
-    SET_COMMIT = 163,
-    SET_UNDO = 225,
-    SET_CLEANUP = 226,
-};
-pub const SNMP_EXTENSION_GET = SNMP_EXTENSION_REQUEST_TYPE.GET;
-pub const SNMP_EXTENSION_GET_NEXT = SNMP_EXTENSION_REQUEST_TYPE.GET_NEXT;
-pub const SNMP_EXTENSION_SET_TEST = SNMP_EXTENSION_REQUEST_TYPE.SET_TEST;
-pub const SNMP_EXTENSION_SET_COMMIT = SNMP_EXTENSION_REQUEST_TYPE.SET_COMMIT;
-pub const SNMP_EXTENSION_SET_UNDO = SNMP_EXTENSION_REQUEST_TYPE.SET_UNDO;
-pub const SNMP_EXTENSION_SET_CLEANUP = SNMP_EXTENSION_REQUEST_TYPE.SET_CLEANUP;
-
-pub const Snmp_nTranslateMode = extern enum(u32) {
-    TRANSLATED = 0,
-    UNTRANSLATED_V1 = 1,
-    UNTRANSLATED_V2 = 2,
-};
-pub const SNMPAPI_TRANSLATED = Snmp_nTranslateMode.TRANSLATED;
-pub const SNMPAPI_UNTRANSLATED_V1 = Snmp_nTranslateMode.UNTRANSLATED_V1;
-pub const SNMPAPI_UNTRANSLATED_V2 = Snmp_nTranslateMode.UNTRANSLATED_V2;
-
-pub const SNMP_GENERICTRAP = extern enum(u32) {
-    COLDSTART = 0,
-    WARMSTART = 1,
-    LINKDOWN = 2,
-    LINKUP = 3,
-    AUTHFAILURE = 4,
-    EGPNEIGHLOSS = 5,
-    ENTERSPECIFIC = 6,
-};
-pub const SNMP_GENERICTRAP_COLDSTART = SNMP_GENERICTRAP.COLDSTART;
-pub const SNMP_GENERICTRAP_WARMSTART = SNMP_GENERICTRAP.WARMSTART;
-pub const SNMP_GENERICTRAP_LINKDOWN = SNMP_GENERICTRAP.LINKDOWN;
-pub const SNMP_GENERICTRAP_LINKUP = SNMP_GENERICTRAP.LINKUP;
-pub const SNMP_GENERICTRAP_AUTHFAILURE = SNMP_GENERICTRAP.AUTHFAILURE;
-pub const SNMP_GENERICTRAP_EGPNEIGHLOSS = SNMP_GENERICTRAP.EGPNEIGHLOSS;
-pub const SNMP_GENERICTRAP_ENTERSPECIFIC = SNMP_GENERICTRAP.ENTERSPECIFIC;
-
-pub const SnmpExtensionQueryEx_pErrorStatusFlags = extern enum(u32) {
-    NOERROR = 0,
-    TOOBIG = 1,
-    NOSUCHNAME = 2,
-    BADVALUE = 3,
-    READONLY = 4,
-    GENERR = 5,
-    NOACCESS = 6,
-    WRONGTYPE = 7,
-    WRONGLENGTH = 8,
-    WRONGENCODING = 9,
-    WRONGVALUE = 10,
-    NOCREATION = 11,
-    INCONSISTENTVALUE = 12,
-    RESOURCEUNAVAILABLE = 13,
-    COMMITFAILED = 14,
-    UNDOFAILED = 15,
-    AUTHORIZATIONERROR = 16,
-    NOTWRITABLE = 17,
-    INCONSISTENTNAME = 18,
-};
-pub const SNMP_ERRORSTATUS_NOERROR = SnmpExtensionQueryEx_pErrorStatusFlags.NOERROR;
-pub const SNMP_ERRORSTATUS_TOOBIG = SnmpExtensionQueryEx_pErrorStatusFlags.TOOBIG;
-pub const SNMP_ERRORSTATUS_NOSUCHNAME = SnmpExtensionQueryEx_pErrorStatusFlags.NOSUCHNAME;
-pub const SNMP_ERRORSTATUS_BADVALUE = SnmpExtensionQueryEx_pErrorStatusFlags.BADVALUE;
-pub const SNMP_ERRORSTATUS_READONLY = SnmpExtensionQueryEx_pErrorStatusFlags.READONLY;
-pub const SNMP_ERRORSTATUS_GENERR = SnmpExtensionQueryEx_pErrorStatusFlags.GENERR;
-pub const SNMP_ERRORSTATUS_NOACCESS = SnmpExtensionQueryEx_pErrorStatusFlags.NOACCESS;
-pub const SNMP_ERRORSTATUS_WRONGTYPE = SnmpExtensionQueryEx_pErrorStatusFlags.WRONGTYPE;
-pub const SNMP_ERRORSTATUS_WRONGLENGTH = SnmpExtensionQueryEx_pErrorStatusFlags.WRONGLENGTH;
-pub const SNMP_ERRORSTATUS_WRONGENCODING = SnmpExtensionQueryEx_pErrorStatusFlags.WRONGENCODING;
-pub const SNMP_ERRORSTATUS_WRONGVALUE = SnmpExtensionQueryEx_pErrorStatusFlags.WRONGVALUE;
-pub const SNMP_ERRORSTATUS_NOCREATION = SnmpExtensionQueryEx_pErrorStatusFlags.NOCREATION;
-pub const SNMP_ERRORSTATUS_INCONSISTENTVALUE = SnmpExtensionQueryEx_pErrorStatusFlags.INCONSISTENTVALUE;
-pub const SNMP_ERRORSTATUS_RESOURCEUNAVAILABLE = SnmpExtensionQueryEx_pErrorStatusFlags.RESOURCEUNAVAILABLE;
-pub const SNMP_ERRORSTATUS_COMMITFAILED = SnmpExtensionQueryEx_pErrorStatusFlags.COMMITFAILED;
-pub const SNMP_ERRORSTATUS_UNDOFAILED = SnmpExtensionQueryEx_pErrorStatusFlags.UNDOFAILED;
-pub const SNMP_ERRORSTATUS_AUTHORIZATIONERROR = SnmpExtensionQueryEx_pErrorStatusFlags.AUTHORIZATIONERROR;
-pub const SNMP_ERRORSTATUS_NOTWRITABLE = SnmpExtensionQueryEx_pErrorStatusFlags.NOTWRITABLE;
-pub const SNMP_ERRORSTATUS_INCONSISTENTNAME = SnmpExtensionQueryEx_pErrorStatusFlags.INCONSISTENTNAME;
-
-pub const Snmp_lStatus = extern enum(u32) {
-    N = 1,
-    FF = 0,
-};
-pub const SNMPAPI_ON = Snmp_lStatus.N;
-pub const SNMPAPI_OFF = Snmp_lStatus.FF;
-
-pub const SnmpSvcSetLogType_nLogTypeFlags = extern enum(u32) {
-    CONSOLE = 1,
-    LOGFILE = 2,
-    DEBUGGER = 8,
-};
-pub const SNMP_OUTPUT_TO_CONSOLE = SnmpSvcSetLogType_nLogTypeFlags.CONSOLE;
-pub const SNMP_OUTPUT_TO_LOGFILE = SnmpSvcSetLogType_nLogTypeFlags.LOGFILE;
-pub const SNMP_OUTPUT_TO_DEBUGGER = SnmpSvcSetLogType_nLogTypeFlags.DEBUGGER;
-
-pub const SNMP_LOG = extern enum(u32) {
-    SILENT = 0,
-    FATAL = 1,
-    ERROR = 2,
-    WARNING = 3,
-    TRACE = 4,
-    VERBOSE = 5,
-};
-pub const SNMP_LOG_SILENT = SNMP_LOG.SILENT;
-pub const SNMP_LOG_FATAL = SNMP_LOG.FATAL;
-pub const SNMP_LOG_ERROR = SNMP_LOG.ERROR;
-pub const SNMP_LOG_WARNING = SNMP_LOG.WARNING;
-pub const SNMP_LOG_TRACE = SNMP_LOG.TRACE;
-pub const SNMP_LOG_VERBOSE = SNMP_LOG.VERBOSE;
-
-pub const SnmpGetPduData_error_statusFlags = extern enum(u32) {
-    NOERROR = 0,
-    TOOBIG = 1,
-    NOSUCHNAME = 2,
-    BADVALUE = 3,
-    READONLY = 4,
-    GENERR = 5,
-    NOACCESS = 6,
-    WRONGTYPE = 7,
-    WRONGLENGTH = 8,
-    WRONGENCODING = 9,
-    WRONGVALUE = 10,
-    NOCREATION = 11,
-    INCONSISTENTVALUE = 12,
-    RESOURCEUNAVAILABLE = 13,
-    COMMITFAILED = 14,
-    UNDOFAILED = 15,
-    AUTHORIZATIONERROR = 16,
-    NOTWRITABLE = 17,
-    INCONSISTENTNAME = 18,
-};
-pub const SNMP_ERROR_NOERROR = SnmpGetPduData_error_statusFlags.NOERROR;
-pub const SNMP_ERROR_TOOBIG = SnmpGetPduData_error_statusFlags.TOOBIG;
-pub const SNMP_ERROR_NOSUCHNAME = SnmpGetPduData_error_statusFlags.NOSUCHNAME;
-pub const SNMP_ERROR_BADVALUE = SnmpGetPduData_error_statusFlags.BADVALUE;
-pub const SNMP_ERROR_READONLY = SnmpGetPduData_error_statusFlags.READONLY;
-pub const SNMP_ERROR_GENERR = SnmpGetPduData_error_statusFlags.GENERR;
-pub const SNMP_ERROR_NOACCESS = SnmpGetPduData_error_statusFlags.NOACCESS;
-pub const SNMP_ERROR_WRONGTYPE = SnmpGetPduData_error_statusFlags.WRONGTYPE;
-pub const SNMP_ERROR_WRONGLENGTH = SnmpGetPduData_error_statusFlags.WRONGLENGTH;
-pub const SNMP_ERROR_WRONGENCODING = SnmpGetPduData_error_statusFlags.WRONGENCODING;
-pub const SNMP_ERROR_WRONGVALUE = SnmpGetPduData_error_statusFlags.WRONGVALUE;
-pub const SNMP_ERROR_NOCREATION = SnmpGetPduData_error_statusFlags.NOCREATION;
-pub const SNMP_ERROR_INCONSISTENTVALUE = SnmpGetPduData_error_statusFlags.INCONSISTENTVALUE;
-pub const SNMP_ERROR_RESOURCEUNAVAILABLE = SnmpGetPduData_error_statusFlags.RESOURCEUNAVAILABLE;
-pub const SNMP_ERROR_COMMITFAILED = SnmpGetPduData_error_statusFlags.COMMITFAILED;
-pub const SNMP_ERROR_UNDOFAILED = SnmpGetPduData_error_statusFlags.UNDOFAILED;
-pub const SNMP_ERROR_AUTHORIZATIONERROR = SnmpGetPduData_error_statusFlags.AUTHORIZATIONERROR;
-pub const SNMP_ERROR_NOTWRITABLE = SnmpGetPduData_error_statusFlags.NOTWRITABLE;
-pub const SNMP_ERROR_INCONSISTENTNAME = SnmpGetPduData_error_statusFlags.INCONSISTENTNAME;
 
 
 //--------------------------------------------------------------------------------
@@ -521,7 +521,7 @@ pub extern "snmpapi" fn SnmpSvcSetLogLevel(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "snmpapi" fn SnmpSvcSetLogType(
-    nLogType: SnmpSvcSetLogType_nLogTypeFlags,
+    nLogType: SNMP_OUTPUT_LOG_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -559,7 +559,7 @@ pub extern "mgmtapi" fn SnmpMgrRequest(
     session: *c_void,
     requestType: u8,
     variableBindings: *SnmpVarBindList,
-    errorStatus: *SnmpExtensionQueryEx_pErrorStatusFlags,
+    errorStatus: *SNMP_ERROR_STATUS,
     errorIndex: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -604,22 +604,22 @@ pub extern "mgmtapi" fn SnmpMgrGetTrapEx(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpGetTranslateMode(
-    nTranslateMode: *Snmp_nTranslateMode,
+    nTranslateMode: *SNMP_API_TRANSLATE_MODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpSetTranslateMode(
-    nTranslateMode: Snmp_nTranslateMode,
+    nTranslateMode: SNMP_API_TRANSLATE_MODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpGetRetransmitMode(
-    nRetransmitMode: *Snmp_lStatus,
+    nRetransmitMode: *SNMP_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpSetRetransmitMode(
-    nRetransmitMode: Snmp_lStatus,
+    nRetransmitMode: SNMP_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -658,8 +658,8 @@ pub extern "wsnmp32" fn SnmpStartup(
     nMajorVersion: *u32,
     nMinorVersion: *u32,
     nLevel: *u32,
-    nTranslateMode: *Snmp_nTranslateMode,
-    nRetransmitMode: *Snmp_lStatus,
+    nTranslateMode: *SNMP_API_TRANSLATE_MODE,
+    nRetransmitMode: *SNMP_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -702,7 +702,7 @@ pub extern "wsnmp32" fn SnmpRegister(
     dstEntity: isize,
     context: isize,
     notification: *smiOID,
-    state: Snmp_lStatus,
+    state: SNMP_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -716,7 +716,7 @@ pub extern "wsnmp32" fn SnmpCreateSession(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpListen(
     hEntity: isize,
-    lStatus: Snmp_lStatus,
+    lStatus: SNMP_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "wsnmp32" fn SnmpListenEx(
@@ -736,8 +736,8 @@ pub extern "wsnmp32" fn SnmpStartupEx(
     nMajorVersion: *u32,
     nMinorVersion: *u32,
     nLevel: *u32,
-    nTranslateMode: *Snmp_nTranslateMode,
-    nRetransmitMode: *Snmp_lStatus,
+    nTranslateMode: *SNMP_API_TRANSLATE_MODE,
+    nRetransmitMode: *SNMP_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -798,9 +798,9 @@ pub extern "wsnmp32" fn SnmpCreatePdu(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "wsnmp32" fn SnmpGetPduData(
     PDU: isize,
-    PDU_type: *i32,
+    PDU_type: *SNMP_PDU_TYPE,
     request_id: *i32,
-    error_status: *SnmpGetPduData_error_statusFlags,
+    error_status: *SNMP_ERROR,
     error_index: *i32,
     varbindlist: *isize,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -943,10 +943,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
 const WPARAM = @import("windows_and_messaging.zig").WPARAM;
+const CHAR = @import("system_services.zig").CHAR;
 const HANDLE = @import("system_services.zig").HANDLE;
 const PSTR = @import("system_services.zig").PSTR;
 const BOOL = @import("system_services.zig").BOOL;
@@ -972,7 +973,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 84;
     const unicode_alias_count = 0;
-    const import_count = 6;
+    const import_count = 7;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

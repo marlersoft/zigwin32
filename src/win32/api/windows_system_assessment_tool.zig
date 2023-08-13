@@ -78,14 +78,17 @@ pub const IID_IProvideWinSATAssessmentInfo = &IID_IProvideWinSATAssessmentInfo_V
 pub const IProvideWinSATAssessmentInfo = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Score: fn(
             self: *const IProvideWinSATAssessmentInfo,
             score: *f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Title: fn(
             self: *const IProvideWinSATAssessmentInfo,
             title: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IProvideWinSATAssessmentInfo,
             description: ?*BSTR,
@@ -121,18 +124,22 @@ pub const IProvideWinSATResultsInfo = extern struct {
             assessment: WINSAT_ASSESSMENT_TYPE,
             ppinfo: ?*?*IProvideWinSATAssessmentInfo,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AssessmentState: fn(
             self: *const IProvideWinSATResultsInfo,
             state: *WINSAT_ASSESSMENT_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AssessmentDateTime: fn(
             self: *const IProvideWinSATResultsInfo,
             fileTime: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SystemRating: fn(
             self: *const IProvideWinSATResultsInfo,
             level: *f32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RatingStateDesc: fn(
             self: *const IProvideWinSATResultsInfo,
             description: ?*BSTR,
@@ -171,12 +178,14 @@ pub const IID_IQueryRecentWinSATAssessment = &IID_IQueryRecentWinSATAssessment_V
 pub const IQueryRecentWinSATAssessment = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_XML: fn(
             self: *const IQueryRecentWinSATAssessment,
             xPath: BSTR,
             namespaces: BSTR,
             ppDomNodeList: ?*?*IXMLDOMNodeList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Info: fn(
             self: *const IQueryRecentWinSATAssessment,
             ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo,
@@ -203,6 +212,7 @@ pub const IID_IProvideWinSATVisuals = &IID_IProvideWinSATVisuals_Value;
 pub const IProvideWinSATVisuals = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Bitmap: fn(
             self: *const IProvideWinSATVisuals,
             bitmapSize: WINSAT_BITMAP_SIZE,
@@ -228,6 +238,7 @@ pub const IID_IQueryAllWinSATAssessments = &IID_IQueryAllWinSATAssessments_Value
 pub const IQueryAllWinSATAssessments = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllXML: fn(
             self: *const IQueryAllWinSATAssessments,
             xPath: BSTR,

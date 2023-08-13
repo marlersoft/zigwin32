@@ -821,7 +821,7 @@ pub const LM_HB2_Telephony = @as(i32, 1);
 pub const LM_HB2_FileServer = @as(i32, 2);
 
 //--------------------------------------------------------------------------------
-// Section: Types (302)
+// Section: Types (301)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'WSACloseEvent', what can Zig do with this information?
 pub const HWSAEVENT = ?*opaque{};
@@ -831,14 +831,9 @@ pub const BLOB = extern struct {
     pBlobData: *u8,
 };
 
-pub const in_addr = extern struct {
-    S_un: in_addr._S_un_e__Union,
-    const _S_un_e__Union = u32; // TODO: generate this nested type!
-};
-
 pub const SOCKADDR = extern struct {
     sa_family: u16,
-    sa_data: [14]i8,
+    sa_data: [14]CHAR,
 };
 
 pub const SOCKET_ADDRESS = extern struct {
@@ -853,11 +848,11 @@ pub const CSADDR_INFO = extern struct {
     iProtocol: i32,
 };
 
-pub const sockaddr_storage_xp = extern struct {
-    ss_family: i16,
-    __ss_pad1: [6]i8,
+pub const SOCKADDR_STORAGE = extern struct {
+    ss_family: u16,
+    __ss_pad1: [6]CHAR,
     __ss_align: i64,
-    __ss_pad2: [112]i8,
+    __ss_pad2: [112]CHAR,
 };
 
 pub const SOCKET_PROCESSOR_AFFINITY = extern struct {
@@ -910,14 +905,14 @@ pub const SCOPE_ID = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
-pub const sockaddr_in = extern struct {
+pub const SOCKADDR_IN = extern struct {
     sin_family: u16,
     sin_port: u16,
-    sin_addr: in_addr,
-    sin_zero: [8]i8,
+    sin_addr: IN_ADDR,
+    sin_zero: [8]CHAR,
 };
 
-pub const sockaddr_dl = extern struct {
+pub const SOCKADDR_DL = extern struct {
     sdl_family: u16,
     sdl_data: [8]u8,
     sdl_zero: [4]u8,
@@ -925,7 +920,7 @@ pub const sockaddr_dl = extern struct {
 
 pub const WSABUF = extern struct {
     len: u32,
-    buf: *i8,
+    buf: PSTR,
 };
 
 pub const WSAMSG = extern struct {
@@ -949,7 +944,7 @@ pub const ADDRINFOA = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: *i8,
+    ai_canonname: PSTR,
     ai_addr: *SOCKADDR,
     ai_next: *ADDRINFOA,
 };
@@ -971,7 +966,7 @@ pub const addrinfoexA = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: *i8,
+    ai_canonname: PSTR,
     ai_addr: *SOCKADDR,
     ai_blob: *c_void,
     ai_bloblen: usize,
@@ -999,14 +994,14 @@ pub const addrinfoex2A = extern struct {
     ai_socktype: i32,
     ai_protocol: i32,
     ai_addrlen: usize,
-    ai_canonname: *i8,
+    ai_canonname: PSTR,
     ai_addr: *SOCKADDR,
     ai_blob: *c_void,
     ai_bloblen: usize,
     ai_provider: *Guid,
     ai_next: *addrinfoex2A,
     ai_version: i32,
-    ai_fqdn: *i8,
+    ai_fqdn: PSTR,
 };
 
 pub const addrinfoex2W = extern struct {
@@ -1071,7 +1066,7 @@ pub const timeval = extern struct {
 };
 
 pub const hostent = extern struct {
-    h_name: *i8,
+    h_name: PSTR,
     h_aliases: **i8,
     h_addrtype: i16,
     h_length: i16,
@@ -1079,21 +1074,21 @@ pub const hostent = extern struct {
 };
 
 pub const netent = extern struct {
-    n_name: *i8,
+    n_name: PSTR,
     n_aliases: **i8,
     n_addrtype: i16,
     n_net: u32,
 };
 
 pub const servent = extern struct {
-    s_name: *i8,
+    s_name: PSTR,
     s_aliases: **i8,
-    s_proto: *i8,
+    s_proto: PSTR,
     s_port: i16,
 };
 
 pub const protoent = extern struct {
-    p_name: *i8,
+    p_name: PSTR,
     p_aliases: **i8,
     p_proto: i16,
 };
@@ -1103,9 +1098,9 @@ pub const WSAData = extern struct {
     wHighVersion: u16,
     iMaxSockets: u16,
     iMaxUdpDg: u16,
-    lpVendorInfo: *i8,
-    szDescription: [257]i8,
-    szSystemStatus: [129]i8,
+    lpVendorInfo: PSTR,
+    szDescription: [257]CHAR,
+    szSystemStatus: [129]CHAR,
 };
 
 pub const sockproto = extern struct {
@@ -1148,7 +1143,7 @@ pub const WSAPROTOCOL_INFOA = extern struct {
     iSecurityScheme: i32,
     dwMessageSize: u32,
     dwProviderReserved: u32,
-    szProtocol: [256]i8,
+    szProtocol: [256]CHAR,
 };
 
 pub const WSAPROTOCOL_INFOW = extern struct {
@@ -1377,16 +1372,11 @@ pub const WSAPOLLFD = extern struct {
     revents: i16,
 };
 
-pub const in6_addr = extern struct {
-    u: in6_addr._u_e__Union,
-    const _u_e__Union = u32; // TODO: generate this nested type!
-};
-
 pub const sockaddr_in6_old = extern struct {
     sin6_family: i16,
     sin6_port: u16,
     sin6_flowinfo: u32,
-    sin6_addr: in6_addr,
+    sin6_addr: IN6_ADDR,
 };
 
 pub const sockaddr_gen = u32; // TODO: implement StructOrUnion types?
@@ -1418,12 +1408,13 @@ pub const IP_PMTUDISC_DONT = PMTUD_STATE.DONT;
 pub const IP_PMTUDISC_PROBE = PMTUD_STATE.PROBE;
 pub const IP_PMTUDISC_MAX = PMTUD_STATE.MAX;
 
-pub const sockaddr_in6_w2ksp1 = extern struct {
-    sin6_family: i16,
+pub const SOCKADDR_IN6 = extern struct {
+    sin6_family: u16,
     sin6_port: u16,
     sin6_flowinfo: u32,
-    sin6_addr: in6_addr,
-    sin6_scope_id: u32,
+    sin6_addr: IN6_ADDR,
+    Anonymous: SOCKADDR_IN6._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const MULTICAST_MODE_TYPE = extern enum(i32) {
@@ -1433,77 +1424,77 @@ pub const MULTICAST_MODE_TYPE = extern enum(i32) {
 pub const MCAST_INCLUDE = MULTICAST_MODE_TYPE.INCLUDE;
 pub const MCAST_EXCLUDE = MULTICAST_MODE_TYPE.EXCLUDE;
 
-pub const ip_mreq = extern struct {
-    imr_multiaddr: in_addr,
-    imr_interface: in_addr,
+pub const IP_MREQ = extern struct {
+    imr_multiaddr: IN_ADDR,
+    imr_interface: IN_ADDR,
 };
 
-pub const ip_mreq_source = extern struct {
-    imr_multiaddr: in_addr,
-    imr_sourceaddr: in_addr,
-    imr_interface: in_addr,
+pub const IP_MREQ_SOURCE = extern struct {
+    imr_multiaddr: IN_ADDR,
+    imr_sourceaddr: IN_ADDR,
+    imr_interface: IN_ADDR,
 };
 
-pub const ip_msfilter = extern struct {
-    imsf_multiaddr: in_addr,
-    imsf_interface: in_addr,
+pub const IP_MSFILTER = extern struct {
+    imsf_multiaddr: IN_ADDR,
+    imsf_interface: IN_ADDR,
     imsf_fmode: MULTICAST_MODE_TYPE,
     imsf_numsrc: u32,
-    imsf_slist: [1]in_addr,
+    imsf_slist: [1]IN_ADDR,
 };
 
-pub const ipv6_mreq = extern struct {
-    ipv6mr_multiaddr: in6_addr,
+pub const IPV6_MREQ = extern struct {
+    ipv6mr_multiaddr: IN6_ADDR,
     ipv6mr_interface: u32,
 };
 
-pub const group_req = extern struct {
+pub const GROUP_REQ = extern struct {
     gr_interface: u32,
-    gr_group: SOCKADDR_STORAGE_LH,
+    gr_group: SOCKADDR_STORAGE,
 };
 
-pub const group_source_req = extern struct {
+pub const GROUP_SOURCE_REQ = extern struct {
     gsr_interface: u32,
-    gsr_group: SOCKADDR_STORAGE_LH,
-    gsr_source: SOCKADDR_STORAGE_LH,
+    gsr_group: SOCKADDR_STORAGE,
+    gsr_source: SOCKADDR_STORAGE,
 };
 
-pub const group_filter = extern struct {
+pub const GROUP_FILTER = extern struct {
     gf_interface: u32,
-    gf_group: SOCKADDR_STORAGE_LH,
+    gf_group: SOCKADDR_STORAGE,
     gf_fmode: MULTICAST_MODE_TYPE,
     gf_numsrc: u32,
-    gf_slist: [1]SOCKADDR_STORAGE_LH,
+    gf_slist: [1]SOCKADDR_STORAGE,
 };
 
-pub const in_pktinfo = extern struct {
-    ipi_addr: in_addr,
+pub const IN_PKTINFO = extern struct {
+    ipi_addr: IN_ADDR,
     ipi_ifindex: u32,
 };
 
-pub const in6_pktinfo = extern struct {
-    ipi6_addr: in6_addr,
+pub const IN6_PKTINFO = extern struct {
+    ipi6_addr: IN6_ADDR,
     ipi6_ifindex: u32,
 };
 
-pub const in_pktinfo_ex = extern struct {
-    pkt_info: in_pktinfo,
+pub const IN_PKTINFO_EX = extern struct {
+    pkt_info: IN_PKTINFO,
     scope_id: SCOPE_ID,
 };
 
 pub const in6_pktinfo_ex = extern struct {
-    pkt_info: in6_pktinfo,
+    pkt_info: IN6_PKTINFO,
     scope_id: SCOPE_ID,
 };
 
-pub const in_recverr = extern struct {
+pub const IN_RECVERR = extern struct {
     protocol: IPPROTO,
     info: u32,
     type: u8,
     code: u8,
 };
 
-pub const icmp_error_info = extern struct {
+pub const ICMP_ERROR_INFO = extern struct {
     srcaddress: SOCKADDR_INET,
     protocol: IPPROTO,
     type: u8,
@@ -1620,12 +1611,12 @@ pub const LM_IRPARMS = extern struct {
 pub const SOCKADDR_IRDA = extern struct {
     irdaAddressFamily: u16,
     irdaDeviceID: [4]u8,
-    irdaServiceName: [25]i8,
+    irdaServiceName: [25]CHAR,
 };
 
 pub const WINDOWS_IRDA_DEVICE_INFO = extern struct {
     irdaDeviceID: [4]u8,
-    irdaDeviceName: [22]i8,
+    irdaDeviceName: [22]CHAR,
     irdaDeviceHints1: u8,
     irdaDeviceHints2: u8,
     irdaCharSet: u8,
@@ -1633,7 +1624,7 @@ pub const WINDOWS_IRDA_DEVICE_INFO = extern struct {
 
 pub const WCE_IRDA_DEVICE_INFO = extern struct {
     irdaDeviceID: [4]u8,
-    irdaDeviceName: [22]i8,
+    irdaDeviceName: [22]CHAR,
     Reserved: [2]u8,
 };
 
@@ -1648,8 +1639,8 @@ pub const WCE_DEVICELIST = extern struct {
 };
 
 pub const WINDOWS_IAS_SET = extern struct {
-    irdaClassName: [64]i8,
-    irdaAttribName: [256]i8,
+    irdaClassName: [64]CHAR,
+    irdaAttribName: [256]CHAR,
     irdaAttribType: u32,
     irdaAttribute: WINDOWS_IAS_SET._irdaAttribute_e__Union,
     const _irdaAttribute_e__Union = u32; // TODO: generate this nested type!
@@ -1657,8 +1648,8 @@ pub const WINDOWS_IAS_SET = extern struct {
 
 pub const WINDOWS_IAS_QUERY = extern struct {
     irdaDeviceID: [4]u8,
-    irdaClassName: [64]i8,
-    irdaAttribName: [256]i8,
+    irdaClassName: [64]CHAR,
+    irdaAttribName: [256]CHAR,
     irdaAttribType: u32,
     irdaAttribute: WINDOWS_IAS_QUERY._irdaAttribute_e__Union,
     const _irdaAttribute_e__Union = u32; // TODO: generate this nested type!
@@ -1933,20 +1924,20 @@ pub const SOCKET_SECURITY_SETTINGS_IPSEC = extern struct {
 
 pub const SOCKET_PEER_TARGET_NAME = extern struct {
     SecurityProtocol: SOCKET_SECURITY_PROTOCOL,
-    PeerAddress: SOCKADDR_STORAGE_LH,
+    PeerAddress: SOCKADDR_STORAGE,
     PeerTargetNameStringLen: u32,
     AllStrings: [1]u16,
 };
 
 pub const SOCKET_SECURITY_QUERY_TEMPLATE = extern struct {
     SecurityProtocol: SOCKET_SECURITY_PROTOCOL,
-    PeerAddress: SOCKADDR_STORAGE_LH,
+    PeerAddress: SOCKADDR_STORAGE,
     PeerTokenAccessMask: u32,
 };
 
 pub const SOCKET_SECURITY_QUERY_TEMPLATE_IPSEC2 = extern struct {
     SecurityProtocol: SOCKET_SECURITY_PROTOCOL,
-    PeerAddress: SOCKADDR_STORAGE_LH,
+    PeerAddress: SOCKADDR_STORAGE,
     PeerTokenAccessMask: u32,
     Flags: u32,
     FieldMask: u32,
@@ -2610,7 +2601,7 @@ pub const LPWSPGETSOCKOPT = fn(
     level: i32,
     optname: i32,
     // TODO: what to do with BytesParamIndex 4?
-    optval: *i8,
+    optval: PSTR,
     optlen: *i32,
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -2737,7 +2728,7 @@ pub const LPWSPSETSOCKOPT = fn(
     level: i32,
     optname: i32,
     // TODO: what to do with BytesParamIndex 4?
-    optval: ?*const i8,
+    optval: ?[*:0]const u8,
     optlen: i32,
     lpErrno: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3197,7 +3188,7 @@ pub const SERVICE_INFOA = extern struct {
     lpServiceName: PSTR,
     lpComment: PSTR,
     lpLocale: PSTR,
-    dwDisplayHint: SERVICE_INFOA_dwDisplayHint,
+    dwDisplayHint: RESOURCE_DISPLAY_TYPE,
     dwVersion: u32,
     dwTime: u32,
     lpMachineName: PSTR,
@@ -3210,7 +3201,7 @@ pub const SERVICE_INFOW = extern struct {
     lpServiceName: PWSTR,
     lpComment: PWSTR,
     lpLocale: PWSTR,
-    dwDisplayHint: SERVICE_INFOA_dwDisplayHint,
+    dwDisplayHint: RESOURCE_DISPLAY_TYPE,
     dwVersion: u32,
     dwTime: u32,
     lpMachineName: PWSTR,
@@ -3308,28 +3299,227 @@ pub const LPWSCWRITENAMESPACEORDER = fn(
     dwNumberOfEntries: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const SetService_dwOperation = extern enum(u32) {
+pub const WSA_ERROR = extern enum(i32) {
+    _IO_PENDING = 997,
+    _IO_INCOMPLETE = 996,
+    _INVALID_HANDLE = 6,
+    _INVALID_PARAMETER = 87,
+    _NOT_ENOUGH_MEMORY = 8,
+    _OPERATION_ABORTED = 995,
+    BASEERR = 10000,
+    EINTR = 10004,
+    EBADF = 10009,
+    EACCES = 10013,
+    EFAULT = 10014,
+    EINVAL = 10022,
+    EMFILE = 10024,
+    EWOULDBLOCK = 10035,
+    EINPROGRESS = 10036,
+    EALREADY = 10037,
+    ENOTSOCK = 10038,
+    EDESTADDRREQ = 10039,
+    EMSGSIZE = 10040,
+    EPROTOTYPE = 10041,
+    ENOPROTOOPT = 10042,
+    EPROTONOSUPPORT = 10043,
+    ESOCKTNOSUPPORT = 10044,
+    EOPNOTSUPP = 10045,
+    EPFNOSUPPORT = 10046,
+    EAFNOSUPPORT = 10047,
+    EADDRINUSE = 10048,
+    EADDRNOTAVAIL = 10049,
+    ENETDOWN = 10050,
+    ENETUNREACH = 10051,
+    ENETRESET = 10052,
+    ECONNABORTED = 10053,
+    ECONNRESET = 10054,
+    ENOBUFS = 10055,
+    EISCONN = 10056,
+    ENOTCONN = 10057,
+    ESHUTDOWN = 10058,
+    ETOOMANYREFS = 10059,
+    ETIMEDOUT = 10060,
+    ECONNREFUSED = 10061,
+    ELOOP = 10062,
+    ENAMETOOLONG = 10063,
+    EHOSTDOWN = 10064,
+    EHOSTUNREACH = 10065,
+    ENOTEMPTY = 10066,
+    EPROCLIM = 10067,
+    EUSERS = 10068,
+    EDQUOT = 10069,
+    ESTALE = 10070,
+    EREMOTE = 10071,
+    SYSNOTREADY = 10091,
+    VERNOTSUPPORTED = 10092,
+    NOTINITIALISED = 10093,
+    EDISCON = 10101,
+    ENOMORE = 10102,
+    ECANCELLED = 10103,
+    EINVALIDPROCTABLE = 10104,
+    EINVALIDPROVIDER = 10105,
+    EPROVIDERFAILEDINIT = 10106,
+    SYSCALLFAILURE = 10107,
+    SERVICE_NOT_FOUND = 10108,
+    TYPE_NOT_FOUND = 10109,
+    _E_NO_MORE = 10110,
+    _E_CANCELLED = 10111,
+    EREFUSED = 10112,
+    HOST_NOT_FOUND = 11001,
+    TRY_AGAIN = 11002,
+    NO_RECOVERY = 11003,
+    NO_DATA = 11004,
+    _QOS_RECEIVERS = 11005,
+    _QOS_SENDERS = 11006,
+    _QOS_NO_SENDERS = 11007,
+    _QOS_NO_RECEIVERS = 11008,
+    _QOS_REQUEST_CONFIRMED = 11009,
+    _QOS_ADMISSION_FAILURE = 11010,
+    _QOS_POLICY_FAILURE = 11011,
+    _QOS_BAD_STYLE = 11012,
+    _QOS_BAD_OBJECT = 11013,
+    _QOS_TRAFFIC_CTRL_ERROR = 11014,
+    _QOS_GENERIC_ERROR = 11015,
+    _QOS_ESERVICETYPE = 11016,
+    _QOS_EFLOWSPEC = 11017,
+    _QOS_EPROVSPECBUF = 11018,
+    _QOS_EFILTERSTYLE = 11019,
+    _QOS_EFILTERTYPE = 11020,
+    _QOS_EFILTERCOUNT = 11021,
+    _QOS_EOBJLENGTH = 11022,
+    _QOS_EFLOWCOUNT = 11023,
+    _QOS_EUNKOWNPSOBJ = 11024,
+    _QOS_EPOLICYOBJ = 11025,
+    _QOS_EFLOWDESC = 11026,
+    _QOS_EPSFLOWSPEC = 11027,
+    _QOS_EPSFILTERSPEC = 11028,
+    _QOS_ESDMODEOBJ = 11029,
+    _QOS_ESHAPERATEOBJ = 11030,
+    _QOS_RESERVED_PETYPE = 11031,
+    _SECURE_HOST_NOT_FOUND = 11032,
+    _IPSEC_NAME_POLICY_ERROR = 11033,
+};
+pub const WSA_IO_PENDING = WSA_ERROR._IO_PENDING;
+pub const WSA_IO_INCOMPLETE = WSA_ERROR._IO_INCOMPLETE;
+pub const WSA_INVALID_HANDLE = WSA_ERROR._INVALID_HANDLE;
+pub const WSA_INVALID_PARAMETER = WSA_ERROR._INVALID_PARAMETER;
+pub const WSA_NOT_ENOUGH_MEMORY = WSA_ERROR._NOT_ENOUGH_MEMORY;
+pub const WSA_OPERATION_ABORTED = WSA_ERROR._OPERATION_ABORTED;
+pub const WSABASEERR = WSA_ERROR.BASEERR;
+pub const WSAEINTR = WSA_ERROR.EINTR;
+pub const WSAEBADF = WSA_ERROR.EBADF;
+pub const WSAEACCES = WSA_ERROR.EACCES;
+pub const WSAEFAULT = WSA_ERROR.EFAULT;
+pub const WSAEINVAL = WSA_ERROR.EINVAL;
+pub const WSAEMFILE = WSA_ERROR.EMFILE;
+pub const WSAEWOULDBLOCK = WSA_ERROR.EWOULDBLOCK;
+pub const WSAEINPROGRESS = WSA_ERROR.EINPROGRESS;
+pub const WSAEALREADY = WSA_ERROR.EALREADY;
+pub const WSAENOTSOCK = WSA_ERROR.ENOTSOCK;
+pub const WSAEDESTADDRREQ = WSA_ERROR.EDESTADDRREQ;
+pub const WSAEMSGSIZE = WSA_ERROR.EMSGSIZE;
+pub const WSAEPROTOTYPE = WSA_ERROR.EPROTOTYPE;
+pub const WSAENOPROTOOPT = WSA_ERROR.ENOPROTOOPT;
+pub const WSAEPROTONOSUPPORT = WSA_ERROR.EPROTONOSUPPORT;
+pub const WSAESOCKTNOSUPPORT = WSA_ERROR.ESOCKTNOSUPPORT;
+pub const WSAEOPNOTSUPP = WSA_ERROR.EOPNOTSUPP;
+pub const WSAEPFNOSUPPORT = WSA_ERROR.EPFNOSUPPORT;
+pub const WSAEAFNOSUPPORT = WSA_ERROR.EAFNOSUPPORT;
+pub const WSAEADDRINUSE = WSA_ERROR.EADDRINUSE;
+pub const WSAEADDRNOTAVAIL = WSA_ERROR.EADDRNOTAVAIL;
+pub const WSAENETDOWN = WSA_ERROR.ENETDOWN;
+pub const WSAENETUNREACH = WSA_ERROR.ENETUNREACH;
+pub const WSAENETRESET = WSA_ERROR.ENETRESET;
+pub const WSAECONNABORTED = WSA_ERROR.ECONNABORTED;
+pub const WSAECONNRESET = WSA_ERROR.ECONNRESET;
+pub const WSAENOBUFS = WSA_ERROR.ENOBUFS;
+pub const WSAEISCONN = WSA_ERROR.EISCONN;
+pub const WSAENOTCONN = WSA_ERROR.ENOTCONN;
+pub const WSAESHUTDOWN = WSA_ERROR.ESHUTDOWN;
+pub const WSAETOOMANYREFS = WSA_ERROR.ETOOMANYREFS;
+pub const WSAETIMEDOUT = WSA_ERROR.ETIMEDOUT;
+pub const WSAECONNREFUSED = WSA_ERROR.ECONNREFUSED;
+pub const WSAELOOP = WSA_ERROR.ELOOP;
+pub const WSAENAMETOOLONG = WSA_ERROR.ENAMETOOLONG;
+pub const WSAEHOSTDOWN = WSA_ERROR.EHOSTDOWN;
+pub const WSAEHOSTUNREACH = WSA_ERROR.EHOSTUNREACH;
+pub const WSAENOTEMPTY = WSA_ERROR.ENOTEMPTY;
+pub const WSAEPROCLIM = WSA_ERROR.EPROCLIM;
+pub const WSAEUSERS = WSA_ERROR.EUSERS;
+pub const WSAEDQUOT = WSA_ERROR.EDQUOT;
+pub const WSAESTALE = WSA_ERROR.ESTALE;
+pub const WSAEREMOTE = WSA_ERROR.EREMOTE;
+pub const WSASYSNOTREADY = WSA_ERROR.SYSNOTREADY;
+pub const WSAVERNOTSUPPORTED = WSA_ERROR.VERNOTSUPPORTED;
+pub const WSANOTINITIALISED = WSA_ERROR.NOTINITIALISED;
+pub const WSAEDISCON = WSA_ERROR.EDISCON;
+pub const WSAENOMORE = WSA_ERROR.ENOMORE;
+pub const WSAECANCELLED = WSA_ERROR.ECANCELLED;
+pub const WSAEINVALIDPROCTABLE = WSA_ERROR.EINVALIDPROCTABLE;
+pub const WSAEINVALIDPROVIDER = WSA_ERROR.EINVALIDPROVIDER;
+pub const WSAEPROVIDERFAILEDINIT = WSA_ERROR.EPROVIDERFAILEDINIT;
+pub const WSASYSCALLFAILURE = WSA_ERROR.SYSCALLFAILURE;
+pub const WSASERVICE_NOT_FOUND = WSA_ERROR.SERVICE_NOT_FOUND;
+pub const WSATYPE_NOT_FOUND = WSA_ERROR.TYPE_NOT_FOUND;
+pub const WSA_E_NO_MORE = WSA_ERROR._E_NO_MORE;
+pub const WSA_E_CANCELLED = WSA_ERROR._E_CANCELLED;
+pub const WSAEREFUSED = WSA_ERROR.EREFUSED;
+pub const WSAHOST_NOT_FOUND = WSA_ERROR.HOST_NOT_FOUND;
+pub const WSATRY_AGAIN = WSA_ERROR.TRY_AGAIN;
+pub const WSANO_RECOVERY = WSA_ERROR.NO_RECOVERY;
+pub const WSANO_DATA = WSA_ERROR.NO_DATA;
+pub const WSA_QOS_RECEIVERS = WSA_ERROR._QOS_RECEIVERS;
+pub const WSA_QOS_SENDERS = WSA_ERROR._QOS_SENDERS;
+pub const WSA_QOS_NO_SENDERS = WSA_ERROR._QOS_NO_SENDERS;
+pub const WSA_QOS_NO_RECEIVERS = WSA_ERROR._QOS_NO_RECEIVERS;
+pub const WSA_QOS_REQUEST_CONFIRMED = WSA_ERROR._QOS_REQUEST_CONFIRMED;
+pub const WSA_QOS_ADMISSION_FAILURE = WSA_ERROR._QOS_ADMISSION_FAILURE;
+pub const WSA_QOS_POLICY_FAILURE = WSA_ERROR._QOS_POLICY_FAILURE;
+pub const WSA_QOS_BAD_STYLE = WSA_ERROR._QOS_BAD_STYLE;
+pub const WSA_QOS_BAD_OBJECT = WSA_ERROR._QOS_BAD_OBJECT;
+pub const WSA_QOS_TRAFFIC_CTRL_ERROR = WSA_ERROR._QOS_TRAFFIC_CTRL_ERROR;
+pub const WSA_QOS_GENERIC_ERROR = WSA_ERROR._QOS_GENERIC_ERROR;
+pub const WSA_QOS_ESERVICETYPE = WSA_ERROR._QOS_ESERVICETYPE;
+pub const WSA_QOS_EFLOWSPEC = WSA_ERROR._QOS_EFLOWSPEC;
+pub const WSA_QOS_EPROVSPECBUF = WSA_ERROR._QOS_EPROVSPECBUF;
+pub const WSA_QOS_EFILTERSTYLE = WSA_ERROR._QOS_EFILTERSTYLE;
+pub const WSA_QOS_EFILTERTYPE = WSA_ERROR._QOS_EFILTERTYPE;
+pub const WSA_QOS_EFILTERCOUNT = WSA_ERROR._QOS_EFILTERCOUNT;
+pub const WSA_QOS_EOBJLENGTH = WSA_ERROR._QOS_EOBJLENGTH;
+pub const WSA_QOS_EFLOWCOUNT = WSA_ERROR._QOS_EFLOWCOUNT;
+pub const WSA_QOS_EUNKOWNPSOBJ = WSA_ERROR._QOS_EUNKOWNPSOBJ;
+pub const WSA_QOS_EPOLICYOBJ = WSA_ERROR._QOS_EPOLICYOBJ;
+pub const WSA_QOS_EFLOWDESC = WSA_ERROR._QOS_EFLOWDESC;
+pub const WSA_QOS_EPSFLOWSPEC = WSA_ERROR._QOS_EPSFLOWSPEC;
+pub const WSA_QOS_EPSFILTERSPEC = WSA_ERROR._QOS_EPSFILTERSPEC;
+pub const WSA_QOS_ESDMODEOBJ = WSA_ERROR._QOS_ESDMODEOBJ;
+pub const WSA_QOS_ESHAPERATEOBJ = WSA_ERROR._QOS_ESHAPERATEOBJ;
+pub const WSA_QOS_RESERVED_PETYPE = WSA_ERROR._QOS_RESERVED_PETYPE;
+pub const WSA_SECURE_HOST_NOT_FOUND = WSA_ERROR._SECURE_HOST_NOT_FOUND;
+pub const WSA_IPSEC_NAME_POLICY_ERROR = WSA_ERROR._IPSEC_NAME_POLICY_ERROR;
+
+pub const SET_SERVICE_OPERATION = extern enum(u32) {
     REGISTER = 1,
     DEREGISTER = 2,
     FLUSH = 3,
     ADD_TYPE = 4,
     DELETE_TYPE = 5,
 };
-pub const SERVICE_REGISTER = SetService_dwOperation.REGISTER;
-pub const SERVICE_DEREGISTER = SetService_dwOperation.DEREGISTER;
-pub const SERVICE_FLUSH = SetService_dwOperation.FLUSH;
-pub const SERVICE_ADD_TYPE = SetService_dwOperation.ADD_TYPE;
-pub const SERVICE_DELETE_TYPE = SetService_dwOperation.DELETE_TYPE;
+pub const SERVICE_REGISTER = SET_SERVICE_OPERATION.REGISTER;
+pub const SERVICE_DEREGISTER = SET_SERVICE_OPERATION.DEREGISTER;
+pub const SERVICE_FLUSH = SET_SERVICE_OPERATION.FLUSH;
+pub const SERVICE_ADD_TYPE = SET_SERVICE_OPERATION.ADD_TYPE;
+pub const SERVICE_DELETE_TYPE = SET_SERVICE_OPERATION.DELETE_TYPE;
 
-pub const send_flags = extern enum(u32) {
+pub const SEND_FLAGS = extern enum(u32) {
     DONTROUTE = 4,
     OOB = 1,
     _,
 };
-pub const MSG_DONTROUTE = send_flags.DONTROUTE;
-pub const MSG_OOB = send_flags.OOB;
+pub const MSG_DONTROUTE = SEND_FLAGS.DONTROUTE;
+pub const MSG_OOB = SEND_FLAGS.OOB;
 
-pub const SERVICE_INFOA_dwDisplayHint = extern enum(u32) {
+pub const RESOURCE_DISPLAY_TYPE = extern enum(u32) {
     DOMAIN = 1,
     FILE = 4,
     GENERIC = 0,
@@ -3338,13 +3528,13 @@ pub const SERVICE_INFOA_dwDisplayHint = extern enum(u32) {
     SHARE = 3,
     TREE = 10,
 };
-pub const RESOURCEDISPLAYTYPE_DOMAIN = SERVICE_INFOA_dwDisplayHint.DOMAIN;
-pub const RESOURCEDISPLAYTYPE_FILE = SERVICE_INFOA_dwDisplayHint.FILE;
-pub const RESOURCEDISPLAYTYPE_GENERIC = SERVICE_INFOA_dwDisplayHint.GENERIC;
-pub const RESOURCEDISPLAYTYPE_GROUP = SERVICE_INFOA_dwDisplayHint.GROUP;
-pub const RESOURCEDISPLAYTYPE_SERVER = SERVICE_INFOA_dwDisplayHint.SERVER;
-pub const RESOURCEDISPLAYTYPE_SHARE = SERVICE_INFOA_dwDisplayHint.SHARE;
-pub const RESOURCEDISPLAYTYPE_TREE = SERVICE_INFOA_dwDisplayHint.TREE;
+pub const RESOURCEDISPLAYTYPE_DOMAIN = RESOURCE_DISPLAY_TYPE.DOMAIN;
+pub const RESOURCEDISPLAYTYPE_FILE = RESOURCE_DISPLAY_TYPE.FILE;
+pub const RESOURCEDISPLAYTYPE_GENERIC = RESOURCE_DISPLAY_TYPE.GENERIC;
+pub const RESOURCEDISPLAYTYPE_GROUP = RESOURCE_DISPLAY_TYPE.GROUP;
+pub const RESOURCEDISPLAYTYPE_SERVER = RESOURCE_DISPLAY_TYPE.SERVER;
+pub const RESOURCEDISPLAYTYPE_SHARE = RESOURCE_DISPLAY_TYPE.SHARE;
+pub const RESOURCEDISPLAYTYPE_TREE = RESOURCE_DISPLAY_TYPE.TREE;
 
 
 //--------------------------------------------------------------------------------
@@ -3414,7 +3604,7 @@ pub extern "WS2_32" fn getsockopt(
     level: i32,
     optname: i32,
     // TODO: what to do with BytesParamIndex 4?
-    optval: *i8,
+    optval: PSTR,
     optlen: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3430,13 +3620,13 @@ pub extern "WS2_32" fn htons(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn inet_addr(
-    cp: *const i8,
+    cp: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn inet_ntoa(
-    in: in_addr,
-) callconv(@import("std").os.windows.WINAPI) *i8;
+    in: IN_ADDR,
+) callconv(@import("std").os.windows.WINAPI) PSTR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn listen(
@@ -3458,7 +3648,7 @@ pub extern "WS2_32" fn ntohs(
 pub extern "WS2_32" fn recv(
     s: usize,
     // TODO: what to do with BytesParamIndex 2?
-    buf: *i8,
+    buf: PSTR,
     len: i32,
     flags: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -3467,7 +3657,7 @@ pub extern "WS2_32" fn recv(
 pub extern "WS2_32" fn recvfrom(
     s: usize,
     // TODO: what to do with BytesParamIndex 2?
-    buf: *i8,
+    buf: PSTR,
     len: i32,
     flags: i32,
     // TODO: what to do with BytesParamIndex 5?
@@ -3488,16 +3678,16 @@ pub extern "WS2_32" fn select(
 pub extern "WS2_32" fn send(
     s: usize,
     // TODO: what to do with BytesParamIndex 2?
-    buf: *const i8,
+    buf: [*:0]const u8,
     len: i32,
-    flags: send_flags,
+    flags: SEND_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn sendto(
     s: usize,
     // TODO: what to do with BytesParamIndex 2?
-    buf: *const i8,
+    buf: [*:0]const u8,
     len: i32,
     flags: i32,
     // TODO: what to do with BytesParamIndex 5?
@@ -3511,7 +3701,7 @@ pub extern "WS2_32" fn setsockopt(
     level: i32,
     optname: i32,
     // TODO: what to do with BytesParamIndex 4?
-    optval: ?*const i8,
+    optval: ?[*:0]const u8,
     optlen: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3531,20 +3721,20 @@ pub extern "WS2_32" fn socket(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn gethostbyaddr(
     // TODO: what to do with BytesParamIndex 1?
-    addr: *const i8,
+    addr: [*:0]const u8,
     len: i32,
     type: i32,
 ) callconv(@import("std").os.windows.WINAPI) *hostent;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn gethostbyname(
-    name: *const i8,
+    name: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) *hostent;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn gethostname(
     // TODO: what to do with BytesParamIndex 1?
-    name: *i8,
+    name: PSTR,
     namelen: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -3557,13 +3747,13 @@ pub extern "WS2_32" fn GetHostNameW(
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn getservbyport(
     port: i32,
-    proto: ?*const i8,
+    proto: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) *servent;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn getservbyname(
-    name: *const i8,
-    proto: ?*const i8,
+    name: [*:0]const u8,
+    proto: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) *servent;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3573,7 +3763,7 @@ pub extern "WS2_32" fn getprotobynumber(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn getprotobyname(
-    name: *const i8,
+    name: [*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) *protoent;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -3593,7 +3783,7 @@ pub extern "WS2_32" fn WSASetLastError(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "WS2_32" fn WSAGetLastError(
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WSA_ERROR;
 
 pub extern "WS2_32" fn WSAIsBlocking(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -3612,10 +3802,10 @@ pub extern "WS2_32" fn WSACancelBlockingCall(
 pub extern "WS2_32" fn WSAAsyncGetServByName(
     hWnd: HWND,
     wMsg: u32,
-    name: *const i8,
-    proto: *const i8,
+    name: [*:0]const u8,
+    proto: [*:0]const u8,
     // TODO: what to do with BytesParamIndex 5?
-    buf: *i8,
+    buf: PSTR,
     buflen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
@@ -3624,9 +3814,9 @@ pub extern "WS2_32" fn WSAAsyncGetServByPort(
     hWnd: HWND,
     wMsg: u32,
     port: i32,
-    proto: *const i8,
+    proto: [*:0]const u8,
     // TODO: what to do with BytesParamIndex 5?
-    buf: *i8,
+    buf: PSTR,
     buflen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
@@ -3634,9 +3824,9 @@ pub extern "WS2_32" fn WSAAsyncGetServByPort(
 pub extern "WS2_32" fn WSAAsyncGetProtoByName(
     hWnd: HWND,
     wMsg: u32,
-    name: *const i8,
+    name: [*:0]const u8,
     // TODO: what to do with BytesParamIndex 4?
-    buf: *i8,
+    buf: PSTR,
     buflen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
@@ -3646,7 +3836,7 @@ pub extern "WS2_32" fn WSAAsyncGetProtoByNumber(
     wMsg: u32,
     number: i32,
     // TODO: what to do with BytesParamIndex 4?
-    buf: *i8,
+    buf: PSTR,
     buflen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
@@ -3654,9 +3844,9 @@ pub extern "WS2_32" fn WSAAsyncGetProtoByNumber(
 pub extern "WS2_32" fn WSAAsyncGetHostByName(
     hWnd: HWND,
     wMsg: u32,
-    name: *const i8,
+    name: [*:0]const u8,
     // TODO: what to do with BytesParamIndex 4?
-    buf: *i8,
+    buf: PSTR,
     buflen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
@@ -3665,11 +3855,11 @@ pub extern "WS2_32" fn WSAAsyncGetHostByAddr(
     hWnd: HWND,
     wMsg: u32,
     // TODO: what to do with BytesParamIndex 3?
-    addr: *const i8,
+    addr: [*:0]const u8,
     len: i32,
     type: i32,
     // TODO: what to do with BytesParamIndex 6?
-    buf: *i8,
+    buf: PSTR,
     buflen: i32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
@@ -4185,7 +4375,7 @@ pub extern "WS2_32" fn WSAPoll(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ntdll" fn RtlIpv4AddressToStringExA(
-    Address: *const in_addr,
+    Address: *const IN_ADDR,
     Port: u16,
     AddressString: [*:0]u8,
     AddressStringLength: *u32,
@@ -4194,12 +4384,12 @@ pub extern "ntdll" fn RtlIpv4AddressToStringExA(
 pub extern "ntdll" fn RtlIpv4StringToAddressExA(
     AddressString: [*:0]const u8,
     Strict: u8,
-    Address: *in_addr,
+    Address: *IN_ADDR,
     Port: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "ntdll" fn RtlIpv6AddressToStringExA(
-    Address: *const in6_addr,
+    Address: *const IN6_ADDR,
     ScopeId: u32,
     Port: u16,
     AddressString: [*:0]u8,
@@ -4208,7 +4398,7 @@ pub extern "ntdll" fn RtlIpv6AddressToStringExA(
 
 pub extern "ntdll" fn RtlIpv6StringToAddressExA(
     AddressString: [*:0]const u8,
-    Address: *in6_addr,
+    Address: *IN6_ADDR,
     ScopeId: *u32,
     Port: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4217,7 +4407,7 @@ pub extern "ntdll" fn RtlIpv6StringToAddressExA(
 pub extern "MSWSOCK" fn WSARecvEx(
     s: usize,
     // TODO: what to do with BytesParamIndex 2?
-    buf: *i8,
+    buf: PSTR,
     len: i32,
     flags: *i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -4594,7 +4784,7 @@ pub extern "MSWSOCK" fn GetNameByTypeW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn SetServiceA(
     dwNameSpace: u32,
-    dwOperation: SetService_dwOperation,
+    dwOperation: SET_SERVICE_OPERATION,
     dwFlags: u32,
     lpServiceInfo: *SERVICE_INFOA,
     lpServiceAsyncInfo: ?*SERVICE_ASYNC_INFO,
@@ -4604,7 +4794,7 @@ pub extern "MSWSOCK" fn SetServiceA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MSWSOCK" fn SetServiceW(
     dwNameSpace: u32,
-    dwOperation: SetService_dwOperation,
+    dwOperation: SET_SERVICE_OPERATION,
     dwFlags: u32,
     lpServiceInfo: *SERVICE_INFOW,
     lpServiceAsyncInfo: ?*SERVICE_ASYNC_INFO,
@@ -5045,19 +5235,21 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (16)
+// Section: Imports (18)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
 const PWSTR = @import("system_services.zig").PWSTR;
+const CHAR = @import("system_services.zig").CHAR;
 const PROCESSOR_NUMBER = @import("system_services.zig").PROCESSOR_NUMBER;
-const SOCKADDR_STORAGE_LH = @import("network_drivers.zig").SOCKADDR_STORAGE_LH;
-const SOCKET_ADDRESS_LIST = @import("network_drivers.zig").SOCKET_ADDRESS_LIST;
 const HRESULT = @import("com.zig").HRESULT;
+const SOCKET_ADDRESS_LIST = @import("network_drivers.zig").SOCKET_ADDRESS_LIST;
+const IN_ADDR = @import("ip_helper.zig").IN_ADDR;
 const PSTR = @import("system_services.zig").PSTR;
 const BOOL = @import("system_services.zig").BOOL;
 const HWND = @import("windows_and_messaging.zig").HWND;
 const QOS = @import("quality_of_service.zig").QOS;
+const IN6_ADDR = @import("network_drivers.zig").IN6_ADDR;
 const WPARAM = @import("windows_and_messaging.zig").WPARAM;
 const OVERLAPPED = @import("system_services.zig").OVERLAPPED;
 const FARPROC = @import("system_services.zig").FARPROC;
@@ -5171,13 +5363,13 @@ test {
     _ = LPWSCWRITENAMESPACEORDER;
 
     const constant_export_count = 817;
-    const type_export_count = 302;
-    const enum_value_export_count = 119;
+    const type_export_count = 301;
+    const enum_value_export_count = 217;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 186;
     const unicode_alias_count = 38;
-    const import_count = 16;
+    const import_count = 18;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

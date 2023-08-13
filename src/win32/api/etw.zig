@@ -948,7 +948,7 @@ pub const MaxEventInfo = EVENT_INFO_CLASS.MaxEventInfo;
 
 pub const PENABLECALLBACK = fn(
     SourceId: *Guid,
-    IsEnabled: PENABLECALLBACK_IsEnabledFlags,
+    IsEnabled: ENABLECALLBACK_ENABLED_STATE,
     Level: u8,
     MatchAnyKeyword: u64,
     MatchAllKeyword: u64,
@@ -1697,7 +1697,7 @@ pub const ITraceRelogger = extern struct {
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const TraceMessage_MessageFlags = extern enum(u32) {
+pub const TRACE_MESSAGE_FLAGS = extern enum(u32) {
     COMPONENTID = 4,
     GUID = 2,
     SEQUENCE = 1,
@@ -1705,20 +1705,20 @@ pub const TraceMessage_MessageFlags = extern enum(u32) {
     TIMESTAMP = 8,
     _,
 };
-pub const TRACE_MESSAGE_COMPONENTID = TraceMessage_MessageFlags.COMPONENTID;
-pub const TRACE_MESSAGE_GUID = TraceMessage_MessageFlags.GUID;
-pub const TRACE_MESSAGE_SEQUENCE = TraceMessage_MessageFlags.SEQUENCE;
-pub const TRACE_MESSAGE_SYSTEMINFO = TraceMessage_MessageFlags.SYSTEMINFO;
-pub const TRACE_MESSAGE_TIMESTAMP = TraceMessage_MessageFlags.TIMESTAMP;
+pub const TRACE_MESSAGE_COMPONENTID = TRACE_MESSAGE_FLAGS.COMPONENTID;
+pub const TRACE_MESSAGE_GUID = TRACE_MESSAGE_FLAGS.GUID;
+pub const TRACE_MESSAGE_SEQUENCE = TRACE_MESSAGE_FLAGS.SEQUENCE;
+pub const TRACE_MESSAGE_SYSTEMINFO = TRACE_MESSAGE_FLAGS.SYSTEMINFO;
+pub const TRACE_MESSAGE_TIMESTAMP = TRACE_MESSAGE_FLAGS.TIMESTAMP;
 
-pub const PENABLECALLBACK_IsEnabledFlags = extern enum(u32) {
+pub const ENABLECALLBACK_ENABLED_STATE = extern enum(u32) {
     DISABLE_PROVIDER = 0,
     ENABLE_PROVIDER = 1,
     CAPTURE_STATE = 2,
 };
-pub const EVENT_CONTROL_CODE_DISABLE_PROVIDER = PENABLECALLBACK_IsEnabledFlags.DISABLE_PROVIDER;
-pub const EVENT_CONTROL_CODE_ENABLE_PROVIDER = PENABLECALLBACK_IsEnabledFlags.ENABLE_PROVIDER;
-pub const EVENT_CONTROL_CODE_CAPTURE_STATE = PENABLECALLBACK_IsEnabledFlags.CAPTURE_STATE;
+pub const EVENT_CONTROL_CODE_DISABLE_PROVIDER = ENABLECALLBACK_ENABLED_STATE.DISABLE_PROVIDER;
+pub const EVENT_CONTROL_CODE_ENABLE_PROVIDER = ENABLECALLBACK_ENABLED_STATE.ENABLE_PROVIDER;
+pub const EVENT_CONTROL_CODE_CAPTURE_STATE = ENABLECALLBACK_ENABLED_STATE.CAPTURE_STATE;
 
 pub const EVENT_TRACE_CONTROL = extern enum(u32) {
     FLUSH = 3,
@@ -1794,12 +1794,6 @@ pub const EVENT_TRACE_FLAG_VIRTUAL_ALLOC = EVENT_TRACE_FLAG.VIRTUAL_ALLOC;
 //--------------------------------------------------------------------------------
 // Section: Functions (79)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "ADVAPI32" fn CveEventWrite(
-    CveId: [*:0]const u16,
-    AdditionalDetails: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn StartTraceW(
     TraceHandle: *u64,
@@ -2084,7 +2078,7 @@ pub extern "ADVAPI32" fn RemoveTraceCallback(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn TraceMessage(
     LoggerHandle: u64,
-    MessageFlags: TraceMessage_MessageFlags,
+    MessageFlags: TRACE_MESSAGE_FLAGS,
     MessageGuid: *Guid,
     MessageNumber: u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -2092,7 +2086,7 @@ pub extern "ADVAPI32" fn TraceMessage(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn TraceMessageVa(
     LoggerHandle: u64,
-    MessageFlags: TraceMessage_MessageFlags,
+    MessageFlags: TRACE_MESSAGE_FLAGS,
     MessageGuid: *Guid,
     MessageNumber: u16,
     MessageArgList: *i8,
@@ -2406,6 +2400,12 @@ pub extern "TDH" fn TdhGetManifestEventInformation(
     Buffer: ?*TRACE_EVENT_INFO,
     BufferSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "ADVAPI32" fn CveEventWrite(
+    CveId: [*:0]const u16,
+    AdditionalDetails: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 
 //--------------------------------------------------------------------------------

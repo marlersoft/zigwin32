@@ -125,13 +125,13 @@ pub const RM_WRITE_STATUS_CALLBACK = fn(
 pub extern "rstrtmgr" fn RmStartSession(
     pSessionHandle: *u32,
     dwSessionFlags: u32,
-    strSessionKey: *u16,
+    strSessionKey: PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "RstrtMgr" fn RmJoinSession(
     pSessionHandle: *u32,
-    strSessionKey: *const u16,
+    strSessionKey: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -143,11 +143,11 @@ pub extern "rstrtmgr" fn RmEndSession(
 pub extern "rstrtmgr" fn RmRegisterResources(
     dwSessionHandle: u32,
     nFiles: u32,
-    rgsFileNames: ?[*]?*?PWSTR,
+    rgsFileNames: ?[*]?PWSTR,
     nApplications: u32,
     rgApplications: ?[*]RM_UNIQUE_PROCESS,
     nServices: u32,
-    rgsServiceNames: ?[*]?*?PWSTR,
+    rgsServiceNames: ?[*]?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'

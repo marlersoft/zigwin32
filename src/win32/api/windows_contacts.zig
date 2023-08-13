@@ -180,7 +180,7 @@ pub const IContactProperties = extern struct {
             pszArrayElementName: [*:0]const u16,
             dwFlags: u32,
             dwLabelCount: u32,
-            ppszLabels: [*]*PWSTR,
+            ppszLabels: [*]PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateArrayNode: fn(
             self: *const IContactProperties,
@@ -212,7 +212,7 @@ pub const IContactProperties = extern struct {
             dwFlags: u32,
             pszMultiValueName: [*:0]const u16,
             dwLabelCount: u32,
-            ppszLabels: [*]*PWSTR,
+            ppszLabels: [*]PWSTR,
             fAnyLabelMatches: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -248,7 +248,7 @@ pub const IContactProperties = extern struct {
             return @ptrCast(*const IContactProperties.VTable, self.vtable).SetBinary(@ptrCast(*const IContactProperties, self), pszPropertyName, dwFlags, pszContentType, pStream);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_SetLabels(self: *const T, pszArrayElementName: [*:0]const u16, dwFlags: u32, dwLabelCount: u32, ppszLabels: [*]*PWSTR) callconv(.Inline) HRESULT {
+        pub fn IContactProperties_SetLabels(self: *const T, pszArrayElementName: [*:0]const u16, dwFlags: u32, dwLabelCount: u32, ppszLabels: [*]PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IContactProperties.VTable, self.vtable).SetLabels(@ptrCast(*const IContactProperties, self), pszArrayElementName, dwFlags, dwLabelCount, ppszLabels);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -268,7 +268,7 @@ pub const IContactProperties = extern struct {
             return @ptrCast(*const IContactProperties.VTable, self.vtable).DeleteLabels(@ptrCast(*const IContactProperties, self), pszArrayElementName, dwFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IContactProperties_GetPropertyCollection(self: *const T, ppPropertyCollection: **IContactPropertyCollection, dwFlags: u32, pszMultiValueName: [*:0]const u16, dwLabelCount: u32, ppszLabels: [*]*PWSTR, fAnyLabelMatches: BOOL) callconv(.Inline) HRESULT {
+        pub fn IContactProperties_GetPropertyCollection(self: *const T, ppPropertyCollection: **IContactPropertyCollection, dwFlags: u32, pszMultiValueName: [*:0]const u16, dwLabelCount: u32, ppszLabels: [*]PWSTR, fAnyLabelMatches: BOOL) callconv(.Inline) HRESULT {
             return @ptrCast(*const IContactProperties.VTable, self.vtable).GetPropertyCollection(@ptrCast(*const IContactProperties, self), ppPropertyCollection, dwFlags, pszMultiValueName, dwLabelCount, ppszLabels, fAnyLabelMatches);
         }
     };}

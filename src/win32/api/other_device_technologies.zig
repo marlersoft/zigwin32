@@ -50,7 +50,7 @@ pub const WSDAPI_ADDRESSFAMILY_IPV4 = @as(u32, 1);
 pub const WSDAPI_ADDRESSFAMILY_IPV6 = @as(u32, 2);
 
 //--------------------------------------------------------------------------------
-// Section: Types (134)
+// Section: Types (133)
 //--------------------------------------------------------------------------------
 pub const PropertyConstraint = extern enum(i32) {
     EQUALS = 0,
@@ -524,7 +524,7 @@ pub const IFunctionDiscoveryProvider = extern struct {
             iProviderInstanceContext: isize,
             guidService: *const Guid,
             riid: *const Guid,
-            ppIUnknown: ?*?*IUnknown,
+            ppIUnknown: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InstanceReleased: fn(
             self: *const IFunctionDiscoveryProvider,
@@ -560,7 +560,7 @@ pub const IFunctionDiscoveryProvider = extern struct {
             return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstancePropertyStoreFlush(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryProvider_InstanceQueryService(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: isize, guidService: *const Guid, riid: *const Guid, ppIUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IFunctionDiscoveryProvider_InstanceQueryService(self: *const T, pIFunctionInstance: *IFunctionInstance, iProviderInstanceContext: isize, guidService: *const Guid, riid: *const Guid, ppIUnknown: **IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFunctionDiscoveryProvider.VTable, self.vtable).InstanceQueryService(@ptrCast(*const IFunctionDiscoveryProvider, self), pIFunctionInstance, iProviderInstanceContext, guidService, riid, ppIUnknown);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -895,14 +895,14 @@ pub const IFunctionDiscoveryServiceProvider = extern struct {
             self: *const IFunctionDiscoveryServiceProvider,
             pIFunctionInstance: *IFunctionInstance,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IFunctionDiscoveryServiceProvider_Initialize(self: *const T, pIFunctionInstance: *IFunctionInstance, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IFunctionDiscoveryServiceProvider_Initialize(self: *const T, pIFunctionInstance: *IFunctionInstance, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IFunctionDiscoveryServiceProvider.VTable, self.vtable).Initialize(@ptrCast(*const IFunctionDiscoveryServiceProvider, self), pIFunctionInstance, riid, ppv);
         }
     };}
@@ -1414,10 +1414,6 @@ pub const IWSDUdpMessageParameters = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
-};
-
-pub const SOCKADDR_STORAGE = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
 };
 
 pub const WSDUdpMessageType = extern enum(i32) {
@@ -3743,12 +3739,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const PWSTR = @import("system_services.zig").PWSTR;
 const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
 const IUnknown = @import("com.zig").IUnknown;
+const SOCKADDR_STORAGE = @import("win_sock.zig").SOCKADDR_STORAGE;
 const HRESULT = @import("com.zig").HRESULT;
 const PROPERTYKEY = @import("windows_properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("structured_storage.zig").PROPVARIANT;
@@ -3763,13 +3760,13 @@ test {
     _ = PWSD_SOAP_MESSAGE_HANDLER;
 
     const constant_export_count = 46;
-    const type_export_count = 132;
+    const type_export_count = 131;
     const enum_value_export_count = 92;
     const com_iface_id_export_count = 48;
     const com_class_id_export_count = 2;
     const func_export_count = 32;
     const unicode_alias_count = 0;
-    const import_count = 11;
+    const import_count = 12;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

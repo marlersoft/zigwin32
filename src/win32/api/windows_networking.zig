@@ -32,13 +32,13 @@ pub const WNCON_SLOWLINK = @as(u32, 4);
 pub const WNCON_DYNAMIC = @as(u32, 8);
 
 //--------------------------------------------------------------------------------
-// Section: Types (14)
+// Section: Types (13)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'WNetCloseEnum', what can Zig do with this information?
 pub const NetEnumHandle = isize;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const WNetOpenEnum_dwUsage = extern enum(u32) {
+pub const WNET_OPEN_ENUM_USAGE = extern enum(u32) {
     None = 0,
     CONNECTABLE = 1,
     CONTAINER = 2,
@@ -46,13 +46,13 @@ pub const WNetOpenEnum_dwUsage = extern enum(u32) {
     ALL = 19,
     _,
 };
-pub const RESOURCEUSAGE_CONNECTABLE = WNetOpenEnum_dwUsage.CONNECTABLE;
-pub const RESOURCEUSAGE_CONTAINER = WNetOpenEnum_dwUsage.CONTAINER;
-pub const RESOURCEUSAGE_ATTACHED = WNetOpenEnum_dwUsage.ATTACHED;
-pub const RESOURCEUSAGE_ALL = WNetOpenEnum_dwUsage.ALL;
+pub const RESOURCEUSAGE_CONNECTABLE = WNET_OPEN_ENUM_USAGE.CONNECTABLE;
+pub const RESOURCEUSAGE_CONTAINER = WNET_OPEN_ENUM_USAGE.CONTAINER;
+pub const RESOURCEUSAGE_ATTACHED = WNET_OPEN_ENUM_USAGE.ATTACHED;
+pub const RESOURCEUSAGE_ALL = WNET_OPEN_ENUM_USAGE.ALL;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const WNetUseConnection_dwFlags = extern enum(u32) {
+pub const NET_USE_CONNECT_FLAGS = extern enum(u32) {
     INTERACTIVE = 8,
     PROMPT = 16,
     REDIRECT = 128,
@@ -60,89 +60,86 @@ pub const WNetUseConnection_dwFlags = extern enum(u32) {
     COMMANDLINE = 2048,
     CMD_SAVECRED = 4096,
     TEMPORARY = 4,
+    DEFERRED = 1024,
+    UPDATE_RECENT = 2,
     _,
 };
-pub const CONNECT_INTERACTIVE = WNetUseConnection_dwFlags.INTERACTIVE;
-pub const CONNECT_PROMPT = WNetUseConnection_dwFlags.PROMPT;
-pub const CONNECT_REDIRECT = WNetUseConnection_dwFlags.REDIRECT;
-pub const CONNECT_UPDATE_PROFILE = WNetUseConnection_dwFlags.UPDATE_PROFILE;
-pub const CONNECT_COMMANDLINE = WNetUseConnection_dwFlags.COMMANDLINE;
-pub const CONNECT_CMD_SAVECRED = WNetUseConnection_dwFlags.CMD_SAVECRED;
-pub const CONNECT_TEMPORARY = WNetUseConnection_dwFlags.TEMPORARY;
+pub const CONNECT_INTERACTIVE = NET_USE_CONNECT_FLAGS.INTERACTIVE;
+pub const CONNECT_PROMPT = NET_USE_CONNECT_FLAGS.PROMPT;
+pub const CONNECT_REDIRECT = NET_USE_CONNECT_FLAGS.REDIRECT;
+pub const CONNECT_UPDATE_PROFILE = NET_USE_CONNECT_FLAGS.UPDATE_PROFILE;
+pub const CONNECT_COMMANDLINE = NET_USE_CONNECT_FLAGS.COMMANDLINE;
+pub const CONNECT_CMD_SAVECRED = NET_USE_CONNECT_FLAGS.CMD_SAVECRED;
+pub const CONNECT_TEMPORARY = NET_USE_CONNECT_FLAGS.TEMPORARY;
+pub const CONNECT_DEFERRED = NET_USE_CONNECT_FLAGS.DEFERRED;
+pub const CONNECT_UPDATE_RECENT = NET_USE_CONNECT_FLAGS.UPDATE_RECENT;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const WNetOpenEnum_dwType = extern enum(u32) {
+pub const NET_RESOURCE_TYPE = extern enum(u32) {
     ANY = 0,
     DISK = 1,
     PRINT = 2,
     _,
 };
-pub const RESOURCETYPE_ANY = WNetOpenEnum_dwType.ANY;
-pub const RESOURCETYPE_DISK = WNetOpenEnum_dwType.DISK;
-pub const RESOURCETYPE_PRINT = WNetOpenEnum_dwType.PRINT;
+pub const RESOURCETYPE_ANY = NET_RESOURCE_TYPE.ANY;
+pub const RESOURCETYPE_DISK = NET_RESOURCE_TYPE.DISK;
+pub const RESOURCETYPE_PRINT = NET_RESOURCE_TYPE.PRINT;
 
-pub const WNetOpenEnum_dwScope = extern enum(u32) {
+pub const NET_RESOURCE_SCOPE = extern enum(u32) {
     CONNECTED = 1,
     CONTEXT = 5,
     GLOBALNET = 2,
     REMEMBERED = 3,
 };
-pub const RESOURCE_CONNECTED = WNetOpenEnum_dwScope.CONNECTED;
-pub const RESOURCE_CONTEXT = WNetOpenEnum_dwScope.CONTEXT;
-pub const RESOURCE_GLOBALNET = WNetOpenEnum_dwScope.GLOBALNET;
-pub const RESOURCE_REMEMBERED = WNetOpenEnum_dwScope.REMEMBERED;
+pub const RESOURCE_CONNECTED = NET_RESOURCE_SCOPE.CONNECTED;
+pub const RESOURCE_CONTEXT = NET_RESOURCE_SCOPE.CONTEXT;
+pub const RESOURCE_GLOBALNET = NET_RESOURCE_SCOPE.GLOBALNET;
+pub const RESOURCE_REMEMBERED = NET_RESOURCE_SCOPE.REMEMBERED;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const NETINFOSTRUCT_dwCharacteristicsFlags = extern enum(u32) {
+pub const NETINFOSTRUCT_CHARACTERISTICS = extern enum(u32) {
     DLL16 = 1,
     DISKRED = 4,
     PRINTERRED = 8,
     _,
 };
-pub const NETINFO_DLL16 = NETINFOSTRUCT_dwCharacteristicsFlags.DLL16;
-pub const NETINFO_DISKRED = NETINFOSTRUCT_dwCharacteristicsFlags.DISKRED;
-pub const NETINFO_PRINTERRED = NETINFOSTRUCT_dwCharacteristicsFlags.PRINTERRED;
-
-pub const NETINFOSTRUCT_dwStatusFlags = extern enum(i32) {
-    NO_ERROR = 0,
-    ERROR_NO_NETWORK = 1222,
-    ERROR_BUSY = 170,
-};
-pub const NO_ERROR = NETINFOSTRUCT_dwStatusFlags.NO_ERROR;
-pub const ERROR_NO_NETWORK = NETINFOSTRUCT_dwStatusFlags.ERROR_NO_NETWORK;
-pub const ERROR_BUSY = NETINFOSTRUCT_dwStatusFlags.ERROR_BUSY;
+pub const NETINFO_DLL16 = NETINFOSTRUCT_CHARACTERISTICS.DLL16;
+pub const NETINFO_DISKRED = NETINFOSTRUCT_CHARACTERISTICS.DISKRED;
+pub const NETINFO_PRINTERRED = NETINFOSTRUCT_CHARACTERISTICS.PRINTERRED;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const CONNECTDLGSTRUCTW_dwFlags = extern enum(u32) {
-    RO_PATH = 1,
-    CONN_POINT = 2,
-    USE_MRU = 4,
-    HIDE_BOX = 8,
-    PERSIST = 16,
-    NOT_PERSIST = 32,
+pub const CONNECTDLGSTRUCT_FLAGS = extern enum(u32) {
+    SidTypeUser = 1,
+    CONNDLG_RO_PATH = 1,
+    CONNDLG_CONN_POINT = 2,
+    CONNDLG_USE_MRU = 4,
+    CONNDLG_HIDE_BOX = 8,
+    CONNDLG_PERSIST = 16,
+    CONNDLG_NOT_PERSIST = 32,
     _,
 };
-pub const CONNDLG_RO_PATH = CONNECTDLGSTRUCTW_dwFlags.RO_PATH;
-pub const CONNDLG_CONN_POINT = CONNECTDLGSTRUCTW_dwFlags.CONN_POINT;
-pub const CONNDLG_USE_MRU = CONNECTDLGSTRUCTW_dwFlags.USE_MRU;
-pub const CONNDLG_HIDE_BOX = CONNECTDLGSTRUCTW_dwFlags.HIDE_BOX;
-pub const CONNDLG_PERSIST = CONNECTDLGSTRUCTW_dwFlags.PERSIST;
-pub const CONNDLG_NOT_PERSIST = CONNECTDLGSTRUCTW_dwFlags.NOT_PERSIST;
+pub const SidTypeUser = CONNECTDLGSTRUCT_FLAGS.SidTypeUser;
+pub const CONNDLG_RO_PATH = CONNECTDLGSTRUCT_FLAGS.CONNDLG_RO_PATH;
+pub const CONNDLG_CONN_POINT = CONNECTDLGSTRUCT_FLAGS.CONNDLG_CONN_POINT;
+pub const CONNDLG_USE_MRU = CONNECTDLGSTRUCT_FLAGS.CONNDLG_USE_MRU;
+pub const CONNDLG_HIDE_BOX = CONNECTDLGSTRUCT_FLAGS.CONNDLG_HIDE_BOX;
+pub const CONNDLG_PERSIST = CONNECTDLGSTRUCT_FLAGS.CONNDLG_PERSIST;
+pub const CONNDLG_NOT_PERSIST = CONNECTDLGSTRUCT_FLAGS.CONNDLG_NOT_PERSIST;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const DISCDLGSTRUCTA_dwFlags = extern enum(u32) {
+pub const DISCDLGSTRUCT_FLAGS = extern enum(u32) {
     UPDATE_PROFILE = 1,
     NO_FORCE = 64,
     _,
 };
-pub const DISC_UPDATE_PROFILE = DISCDLGSTRUCTA_dwFlags.UPDATE_PROFILE;
-pub const DISC_NO_FORCE = DISCDLGSTRUCTA_dwFlags.NO_FORCE;
+pub const DISC_UPDATE_PROFILE = DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE;
+pub const DISC_NO_FORCE = DISCDLGSTRUCT_FLAGS.NO_FORCE;
 
 pub const CONNECTDLGSTRUCTA = extern struct {
     cbStructure: u32,
     hwndOwner: HWND,
     lpConnRes: *NETRESOURCEA,
-    dwFlags: CONNECTDLGSTRUCTW_dwFlags,
+    dwFlags: CONNECTDLGSTRUCT_FLAGS,
     dwDevNum: u32,
 };
 
@@ -150,7 +147,7 @@ pub const CONNECTDLGSTRUCTW = extern struct {
     cbStructure: u32,
     hwndOwner: HWND,
     lpConnRes: *NETRESOURCEW,
-    dwFlags: CONNECTDLGSTRUCTW_dwFlags,
+    dwFlags: CONNECTDLGSTRUCT_FLAGS,
     dwDevNum: u32,
 };
 
@@ -159,7 +156,7 @@ pub const DISCDLGSTRUCTA = extern struct {
     hwndOwner: HWND,
     lpLocalName: PSTR,
     lpRemoteName: PSTR,
-    dwFlags: DISCDLGSTRUCTA_dwFlags,
+    dwFlags: DISCDLGSTRUCT_FLAGS,
 };
 
 pub const DISCDLGSTRUCTW = extern struct {
@@ -167,14 +164,14 @@ pub const DISCDLGSTRUCTW = extern struct {
     hwndOwner: HWND,
     lpLocalName: PWSTR,
     lpRemoteName: PWSTR,
-    dwFlags: DISCDLGSTRUCTA_dwFlags,
+    dwFlags: DISCDLGSTRUCT_FLAGS,
 };
 
 pub const NETINFOSTRUCT = extern struct {
     cbStructure: u32,
     dwProviderVersion: u32,
-    dwStatus: NETINFOSTRUCT_dwStatusFlags,
-    dwCharacteristics: NETINFOSTRUCT_dwCharacteristicsFlags,
+    dwStatus: WIN32_ERROR,
+    dwCharacteristics: NETINFOSTRUCT_CHARACTERISTICS,
     dwHandle: usize,
     wNetType: u16,
     dwPrinters: u32,
@@ -303,7 +300,7 @@ pub extern "MPR" fn WNetUseConnectionA(
     lpNetResource: *NETRESOURCEA,
     lpPassword: ?[*:0]const u8,
     lpUserId: ?[*:0]const u8,
-    dwFlags: WNetUseConnection_dwFlags,
+    dwFlags: NET_USE_CONNECT_FLAGS,
     lpAccessName: ?[*:0]u8,
     lpBufferSize: ?*u32,
     lpResult: ?*u32,
@@ -315,7 +312,7 @@ pub extern "MPR" fn WNetUseConnectionW(
     lpNetResource: *NETRESOURCEW,
     lpPassword: ?[*:0]const u16,
     lpUserId: ?[*:0]const u16,
-    dwFlags: WNetUseConnection_dwFlags,
+    dwFlags: NET_USE_CONNECT_FLAGS,
     lpAccessName: ?[*:0]u16,
     lpBufferSize: ?*u32,
     lpResult: ?*u32,
@@ -385,18 +382,18 @@ pub extern "MPR" fn WNetDisconnectDialog1W(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetOpenEnumA(
-    dwScope: WNetOpenEnum_dwScope,
-    dwType: WNetOpenEnum_dwType,
-    dwUsage: WNetOpenEnum_dwUsage,
+    dwScope: NET_RESOURCE_SCOPE,
+    dwType: NET_RESOURCE_TYPE,
+    dwUsage: WNET_OPEN_ENUM_USAGE,
     lpNetResource: ?*NETRESOURCEA,
     lphEnum: *NetEnumHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetOpenEnumW(
-    dwScope: WNetOpenEnum_dwScope,
-    dwType: WNetOpenEnum_dwType,
-    dwUsage: WNetOpenEnum_dwUsage,
+    dwScope: NET_RESOURCE_SCOPE,
+    dwType: NET_RESOURCE_TYPE,
+    dwUsage: WNET_OPEN_ENUM_USAGE,
     lpNetResource: ?*NETRESOURCEW,
     lphEnum: *NetEnumHandle,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -461,7 +458,7 @@ pub extern "MPR" fn WNetGetResourceInformationW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetGetUniversalNameA(
     lpLocalPath: [*:0]const u8,
-    dwInfoLevel: NPGetUniversalName_dwInfoLevel,
+    dwInfoLevel: UNC_INFO_LEVEL,
     // TODO: what to do with BytesParamIndex 3?
     lpBuffer: *c_void,
     lpBufferSize: *u32,
@@ -470,7 +467,7 @@ pub extern "MPR" fn WNetGetUniversalNameA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "MPR" fn WNetGetUniversalNameW(
     lpLocalPath: [*:0]const u16,
-    dwInfoLevel: NPGetUniversalName_dwInfoLevel,
+    dwInfoLevel: UNC_INFO_LEVEL,
     // TODO: what to do with BytesParamIndex 3?
     lpBuffer: *c_void,
     lpBufferSize: *u32,
@@ -652,11 +649,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const NETRESOURCEW = @import("security.zig").NETRESOURCEW;
+const WIN32_ERROR = @import("debug.zig").WIN32_ERROR;
 const PWSTR = @import("system_services.zig").PWSTR;
-const NPGetUniversalName_dwInfoLevel = @import("security.zig").NPGetUniversalName_dwInfoLevel;
+const UNC_INFO_LEVEL = @import("security.zig").UNC_INFO_LEVEL;
 const NETRESOURCEA = @import("security.zig").NETRESOURCEA;
 const HANDLE = @import("system_services.zig").HANDLE;
 const PSTR = @import("system_services.zig").PSTR;
@@ -666,13 +664,13 @@ const NETCONNECTINFOSTRUCT = @import("security.zig").NETCONNECTINFOSTRUCT;
 
 test {
     const constant_export_count = 28;
-    const type_export_count = 14;
+    const type_export_count = 13;
     const enum_value_export_count = 32;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 45;
     const unicode_alias_count = 23;
-    const import_count = 9;
+    const import_count = 10;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

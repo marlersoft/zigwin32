@@ -659,6 +659,7 @@ pub const IMILBitmapEffects = extern struct {
             self: *const IMILBitmapEffects,
             ppiuReturn: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: fn(
             self: *const IMILBitmapEffects,
             ppEffect: **IMILBitmapEffectGroup,
@@ -668,6 +669,7 @@ pub const IMILBitmapEffects = extern struct {
             uindex: u32,
             ppEffect: **IMILBitmapEffect,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IMILBitmapEffects,
             puiCount: *u32,

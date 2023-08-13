@@ -141,10 +141,12 @@ pub const INetworkListManager = extern struct {
             gdNetworkConnectionId: Guid,
             ppNetworkConnection: **INetworkConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnectedToInternet: fn(
             self: *const INetworkListManager,
             pbIsConnected: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnected: fn(
             self: *const INetworkListManager,
             pbIsConnected: *i16,
@@ -276,10 +278,12 @@ pub const INetwork = extern struct {
             pdwLowDateTimeConnected: *u32,
             pdwHighDateTimeConnected: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnectedToInternet: fn(
             self: *const INetwork,
             pbIsConnected: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnected: fn(
             self: *const INetwork,
             pbIsConnected: *i16,
@@ -362,6 +366,7 @@ pub const IID_IEnumNetworks = &IID_IEnumNetworks_Value;
 pub const IEnumNetworks = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IEnumNetworks,
             ppEnumVar: **IEnumVARIANT,
@@ -482,10 +487,12 @@ pub const INetworkConnection = extern struct {
             self: *const INetworkConnection,
             ppNetwork: **INetwork,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnectedToInternet: fn(
             self: *const INetworkConnection,
             pbIsConnected: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnected: fn(
             self: *const INetworkConnection,
             pbIsConnected: *i16,
@@ -548,6 +555,7 @@ pub const IID_IEnumNetworkConnections = &IID_IEnumNetworkConnections_Value;
 pub const IEnumNetworkConnections = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IEnumNetworkConnections,
             ppEnumVar: **IEnumVARIANT,

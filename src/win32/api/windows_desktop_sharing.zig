@@ -291,10 +291,12 @@ pub const IID_IRDPSRAPIDebug = &IID_IRDPSRAPIDebug_Value;
 pub const IRDPSRAPIDebug = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CLXCmdLine: fn(
             self: *const IRDPSRAPIDebug,
             CLXCmdLine: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CLXCmdLine: fn(
             self: *const IRDPSRAPIDebug,
             pCLXCmdLine: *BSTR,
@@ -443,22 +445,27 @@ pub const IID_IRDPSRAPIWindow = &IID_IRDPSRAPIWindow_Value;
 pub const IRDPSRAPIWindow = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const IRDPSRAPIWindow,
             pRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Application: fn(
             self: *const IRDPSRAPIWindow,
             pApplication: **IRDPSRAPIApplication,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Shared: fn(
             self: *const IRDPSRAPIWindow,
             pRetVal: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Shared: fn(
             self: *const IRDPSRAPIWindow,
             NewVal: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IRDPSRAPIWindow,
             pRetVal: *BSTR,
@@ -466,6 +473,7 @@ pub const IRDPSRAPIWindow = extern struct {
         Show: fn(
             self: *const IRDPSRAPIWindow,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: fn(
             self: *const IRDPSRAPIWindow,
             pdwFlags: *u32,
@@ -512,10 +520,12 @@ pub const IID_IRDPSRAPIWindowList = &IID_IRDPSRAPIWindowList_Value;
 pub const IRDPSRAPIWindowList = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IRDPSRAPIWindowList,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IRDPSRAPIWindowList,
             item: i32,
@@ -543,26 +553,32 @@ pub const IID_IRDPSRAPIApplication = &IID_IRDPSRAPIApplication_Value;
 pub const IRDPSRAPIApplication = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Windows: fn(
             self: *const IRDPSRAPIApplication,
             pWindowList: **IRDPSRAPIWindowList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const IRDPSRAPIApplication,
             pRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Shared: fn(
             self: *const IRDPSRAPIApplication,
             pRetVal: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Shared: fn(
             self: *const IRDPSRAPIApplication,
             NewVal: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IRDPSRAPIApplication,
             pRetVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: fn(
             self: *const IRDPSRAPIApplication,
             pdwFlags: *u32,
@@ -605,10 +621,12 @@ pub const IID_IRDPSRAPIApplicationList = &IID_IRDPSRAPIApplicationList_Value;
 pub const IRDPSRAPIApplicationList = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IRDPSRAPIApplicationList,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IRDPSRAPIApplicationList,
             item: i32,
@@ -636,18 +654,22 @@ pub const IID_IRDPSRAPIApplicationFilter = &IID_IRDPSRAPIApplicationFilter_Value
 pub const IRDPSRAPIApplicationFilter = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Applications: fn(
             self: *const IRDPSRAPIApplicationFilter,
             pApplications: **IRDPSRAPIApplicationList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Windows: fn(
             self: *const IRDPSRAPIApplicationFilter,
             pWindows: **IRDPSRAPIWindowList,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: fn(
             self: *const IRDPSRAPIApplicationFilter,
             pRetVal: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: fn(
             self: *const IRDPSRAPIApplicationFilter,
             NewVal: i16,
@@ -682,11 +704,13 @@ pub const IID_IRDPSRAPISessionProperties = &IID_IRDPSRAPISessionProperties_Value
 pub const IRDPSRAPISessionProperties = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Property: fn(
             self: *const IRDPSRAPISessionProperties,
             PropertyName: BSTR,
             pVal: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Property: fn(
             self: *const IRDPSRAPISessionProperties,
             PropertyName: BSTR,
@@ -714,30 +738,37 @@ pub const IID_IRDPSRAPIInvitation = &IID_IRDPSRAPIInvitation_Value;
 pub const IRDPSRAPIInvitation = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectionString: fn(
             self: *const IRDPSRAPIInvitation,
             pbstrVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GroupName: fn(
             self: *const IRDPSRAPIInvitation,
             pbstrVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Password: fn(
             self: *const IRDPSRAPIInvitation,
             pbstrVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AttendeeLimit: fn(
             self: *const IRDPSRAPIInvitation,
             pRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AttendeeLimit: fn(
             self: *const IRDPSRAPIInvitation,
             NewVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Revoked: fn(
             self: *const IRDPSRAPIInvitation,
             pRetVal: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Revoked: fn(
             self: *const IRDPSRAPIInvitation,
             NewVal: i16,
@@ -784,15 +815,18 @@ pub const IID_IRDPSRAPIInvitationManager = &IID_IRDPSRAPIInvitationManager_Value
 pub const IRDPSRAPIInvitationManager = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IRDPSRAPIInvitationManager,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IRDPSRAPIInvitationManager,
             item: VARIANT,
             ppInvitation: **IRDPSRAPIInvitation,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IRDPSRAPIInvitationManager,
             pRetVal: *i32,
@@ -835,22 +869,27 @@ pub const IID_IRDPSRAPITcpConnectionInfo = &IID_IRDPSRAPITcpConnectionInfo_Value
 pub const IRDPSRAPITcpConnectionInfo = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Protocol: fn(
             self: *const IRDPSRAPITcpConnectionInfo,
             plProtocol: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalPort: fn(
             self: *const IRDPSRAPITcpConnectionInfo,
             plPort: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LocalIP: fn(
             self: *const IRDPSRAPITcpConnectionInfo,
             pbsrLocalIP: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PeerPort: fn(
             self: *const IRDPSRAPITcpConnectionInfo,
             plPort: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PeerIP: fn(
             self: *const IRDPSRAPITcpConnectionInfo,
             pbstrIP: *BSTR,
@@ -889,22 +928,27 @@ pub const IID_IRDPSRAPIAttendee = &IID_IRDPSRAPIAttendee_Value;
 pub const IRDPSRAPIAttendee = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const IRDPSRAPIAttendee,
             pId: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteName: fn(
             self: *const IRDPSRAPIAttendee,
             pVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ControlLevel: fn(
             self: *const IRDPSRAPIAttendee,
             pVal: *CTRL_LEVEL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ControlLevel: fn(
             self: *const IRDPSRAPIAttendee,
             pNewVal: CTRL_LEVEL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Invitation: fn(
             self: *const IRDPSRAPIAttendee,
             ppVal: **IRDPSRAPIInvitation,
@@ -912,10 +956,12 @@ pub const IRDPSRAPIAttendee = extern struct {
         TerminateConnection: fn(
             self: *const IRDPSRAPIAttendee,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: fn(
             self: *const IRDPSRAPIAttendee,
             plFlags: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectivityInfo: fn(
             self: *const IRDPSRAPIAttendee,
             ppVal: **IUnknown,
@@ -966,10 +1012,12 @@ pub const IID_IRDPSRAPIAttendeeManager = &IID_IRDPSRAPIAttendeeManager_Value;
 pub const IRDPSRAPIAttendeeManager = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IRDPSRAPIAttendeeManager,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IRDPSRAPIAttendeeManager,
             id: i32,
@@ -997,14 +1045,17 @@ pub const IID_IRDPSRAPIAttendeeDisconnectInfo = &IID_IRDPSRAPIAttendeeDisconnect
 pub const IRDPSRAPIAttendeeDisconnectInfo = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Attendee: fn(
             self: *const IRDPSRAPIAttendeeDisconnectInfo,
             retval: **IRDPSRAPIAttendee,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Reason: fn(
             self: *const IRDPSRAPIAttendeeDisconnectInfo,
             pReason: *ATTENDEE_DISCONNECT_REASON,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Code: fn(
             self: *const IRDPSRAPIAttendeeDisconnectInfo,
             pVal: *i32,
@@ -1046,14 +1097,17 @@ pub const IRDPSRAPIVirtualChannel = extern struct {
             lAttendeeId: i32,
             AccessType: CHANNEL_ACCESS_ENUM,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IRDPSRAPIVirtualChannel,
             pbstrName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: fn(
             self: *const IRDPSRAPIVirtualChannel,
             plFlags: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Priority: fn(
             self: *const IRDPSRAPIVirtualChannel,
             pPriority: *CHANNEL_PRIORITY,
@@ -1092,10 +1146,12 @@ pub const IID_IRDPSRAPIVirtualChannelManager = &IID_IRDPSRAPIVirtualChannelManag
 pub const IRDPSRAPIVirtualChannelManager = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IRDPSRAPIVirtualChannelManager,
             retval: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IRDPSRAPIVirtualChannelManager,
             item: VARIANT,
@@ -1143,26 +1199,32 @@ pub const IRDPSRAPIViewer = extern struct {
         Disconnect: fn(
             self: *const IRDPSRAPIViewer,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Attendees: fn(
             self: *const IRDPSRAPIViewer,
             ppVal: **IRDPSRAPIAttendeeManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Invitations: fn(
             self: *const IRDPSRAPIViewer,
             ppVal: **IRDPSRAPIInvitationManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationFilter: fn(
             self: *const IRDPSRAPIViewer,
             ppVal: **IRDPSRAPIApplicationFilter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VirtualChannelManager: fn(
             self: *const IRDPSRAPIViewer,
             ppVal: **IRDPSRAPIVirtualChannelManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SmartSizing: fn(
             self: *const IRDPSRAPIViewer,
             vbSmartSizing: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SmartSizing: fn(
             self: *const IRDPSRAPIViewer,
             pvbSmartSizing: *i16,
@@ -1171,10 +1233,12 @@ pub const IRDPSRAPIViewer = extern struct {
             self: *const IRDPSRAPIViewer,
             CtrlLevel: CTRL_LEVEL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisconnectedText: fn(
             self: *const IRDPSRAPIViewer,
             bstrDisconnectedText: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisconnectedText: fn(
             self: *const IRDPSRAPIViewer,
             pbstrDisconnectedText: *BSTR,
@@ -1183,6 +1247,7 @@ pub const IRDPSRAPIViewer = extern struct {
             self: *const IRDPSRAPIViewer,
             Bpp: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: fn(
             self: *const IRDPSRAPIViewer,
             ppVal: **IRDPSRAPISessionProperties,
@@ -1375,14 +1440,17 @@ pub const IID_IRDPSRAPIFrameBuffer = &IID_IRDPSRAPIFrameBuffer_Value;
 pub const IRDPSRAPIFrameBuffer = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Width: fn(
             self: *const IRDPSRAPIFrameBuffer,
             plWidth: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Height: fn(
             self: *const IRDPSRAPIFrameBuffer,
             plHeight: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Bpp: fn(
             self: *const IRDPSRAPIFrameBuffer,
             plBpp: *i32,
@@ -1425,42 +1493,52 @@ pub const IID_IRDPSRAPITransportStreamBuffer = &IID_IRDPSRAPITransportStreamBuff
 pub const IRDPSRAPITransportStreamBuffer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Storage: fn(
             self: *const IRDPSRAPITransportStreamBuffer,
             ppbStorage: **u8,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StorageSize: fn(
             self: *const IRDPSRAPITransportStreamBuffer,
             plMaxStore: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PayloadSize: fn(
             self: *const IRDPSRAPITransportStreamBuffer,
             plRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PayloadSize: fn(
             self: *const IRDPSRAPITransportStreamBuffer,
             lVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PayloadOffset: fn(
             self: *const IRDPSRAPITransportStreamBuffer,
             plRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PayloadOffset: fn(
             self: *const IRDPSRAPITransportStreamBuffer,
             lRetVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: fn(
             self: *const IRDPSRAPITransportStreamBuffer,
             plFlags: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Flags: fn(
             self: *const IRDPSRAPITransportStreamBuffer,
             lFlags: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Context: fn(
             self: *const IRDPSRAPITransportStreamBuffer,
             ppContext: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Context: fn(
             self: *const IRDPSRAPITransportStreamBuffer,
             pContext: *IUnknown,
@@ -1625,30 +1703,37 @@ pub const IRDPSRAPISharingSession = extern struct {
         Close: fn(
             self: *const IRDPSRAPISharingSession,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ColorDepth: fn(
             self: *const IRDPSRAPISharingSession,
             colorDepth: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ColorDepth: fn(
             self: *const IRDPSRAPISharingSession,
             pColorDepth: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: fn(
             self: *const IRDPSRAPISharingSession,
             ppVal: **IRDPSRAPISessionProperties,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Attendees: fn(
             self: *const IRDPSRAPISharingSession,
             ppVal: **IRDPSRAPIAttendeeManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Invitations: fn(
             self: *const IRDPSRAPISharingSession,
             ppVal: **IRDPSRAPIInvitationManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationFilter: fn(
             self: *const IRDPSRAPISharingSession,
             ppVal: **IRDPSRAPIApplicationFilter,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VirtualChannelManager: fn(
             self: *const IRDPSRAPISharingSession,
             ppVal: **IRDPSRAPIVirtualChannelManager,
@@ -1753,6 +1838,7 @@ pub const IRDPSRAPISharingSession2 = extern struct {
             bstrGroup: BSTR,
             bstrAuthenticatedAttendeeName: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FrameBuffer: fn(
             self: *const IRDPSRAPISharingSession2,
             ppVal: **IRDPSRAPIFrameBuffer,

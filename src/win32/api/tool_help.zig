@@ -21,7 +21,7 @@ pub const HEAPENTRY32 = extern struct {
     hHandle: HANDLE,
     dwAddress: usize,
     dwBlockSize: usize,
-    dwFlags: HEAPENTRY32_dwFlags,
+    dwFlags: HEAPENTRY32_FLAGS,
     dwLockCount: u32,
     dwResvd: u32,
     th32ProcessID: u32,
@@ -51,7 +51,7 @@ pub const PROCESSENTRY32 = extern struct {
     th32ParentProcessID: u32,
     pcPriClassBase: i32,
     dwFlags: u32,
-    szExeFile: [260]i8,
+    szExeFile: [260]CHAR,
 };
 
 pub const THREADENTRY32 = extern struct {
@@ -86,12 +86,12 @@ pub const MODULEENTRY32 = extern struct {
     modBaseAddr: *u8,
     modBaseSize: u32,
     hModule: isize,
-    szModule: [256]i8,
-    szExePath: [260]i8,
+    szModule: [256]CHAR,
+    szExePath: [260]CHAR,
 };
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const CreateToolhelp32Snapshot_dwFlags = extern enum(u32) {
+pub const CREATE_TOOLHELP_SNAPSHOT_FLAGS = extern enum(u32) {
     INHERIT = 2147483648,
     SNAPALL = 15,
     SNAPHEAPLIST = 1,
@@ -101,22 +101,22 @@ pub const CreateToolhelp32Snapshot_dwFlags = extern enum(u32) {
     SNAPTHREAD = 4,
     _,
 };
-pub const TH32CS_INHERIT = CreateToolhelp32Snapshot_dwFlags.INHERIT;
-pub const TH32CS_SNAPALL = CreateToolhelp32Snapshot_dwFlags.SNAPALL;
-pub const TH32CS_SNAPHEAPLIST = CreateToolhelp32Snapshot_dwFlags.SNAPHEAPLIST;
-pub const TH32CS_SNAPMODULE = CreateToolhelp32Snapshot_dwFlags.SNAPMODULE;
-pub const TH32CS_SNAPMODULE32 = CreateToolhelp32Snapshot_dwFlags.SNAPMODULE32;
-pub const TH32CS_SNAPPROCESS = CreateToolhelp32Snapshot_dwFlags.SNAPPROCESS;
-pub const TH32CS_SNAPTHREAD = CreateToolhelp32Snapshot_dwFlags.SNAPTHREAD;
+pub const TH32CS_INHERIT = CREATE_TOOLHELP_SNAPSHOT_FLAGS.INHERIT;
+pub const TH32CS_SNAPALL = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPALL;
+pub const TH32CS_SNAPHEAPLIST = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPHEAPLIST;
+pub const TH32CS_SNAPMODULE = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE;
+pub const TH32CS_SNAPMODULE32 = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPMODULE32;
+pub const TH32CS_SNAPPROCESS = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPPROCESS;
+pub const TH32CS_SNAPTHREAD = CREATE_TOOLHELP_SNAPSHOT_FLAGS.SNAPTHREAD;
 
-pub const HEAPENTRY32_dwFlags = extern enum(u32) {
+pub const HEAPENTRY32_FLAGS = extern enum(u32) {
     FIXED = 1,
     FREE = 2,
     MOVEABLE = 4,
 };
-pub const LF32_FIXED = HEAPENTRY32_dwFlags.FIXED;
-pub const LF32_FREE = HEAPENTRY32_dwFlags.FREE;
-pub const LF32_MOVEABLE = HEAPENTRY32_dwFlags.MOVEABLE;
+pub const LF32_FIXED = HEAPENTRY32_FLAGS.FIXED;
+pub const LF32_FREE = HEAPENTRY32_FLAGS.FREE;
+pub const LF32_MOVEABLE = HEAPENTRY32_FLAGS.MOVEABLE;
 
 
 //--------------------------------------------------------------------------------
@@ -124,7 +124,7 @@ pub const LF32_MOVEABLE = HEAPENTRY32_dwFlags.MOVEABLE;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CreateToolhelp32Snapshot(
-    dwFlags: CreateToolhelp32Snapshot_dwFlags,
+    dwFlags: CREATE_TOOLHELP_SNAPSHOT_FLAGS,
     th32ProcessID: u32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
@@ -235,9 +235,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (2)
+// Section: Imports (3)
 //--------------------------------------------------------------------------------
 const HANDLE = @import("system_services.zig").HANDLE;
+const CHAR = @import("system_services.zig").CHAR;
 const BOOL = @import("system_services.zig").BOOL;
 
 test {
@@ -248,7 +249,7 @@ test {
     const com_class_id_export_count = 0;
     const func_export_count = 16;
     const unicode_alias_count = 0;
-    const import_count = 2;
+    const import_count = 3;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

@@ -401,26 +401,32 @@ pub const IID_IDispLatLongReport = &IID_IDispLatLongReport_Value;
 pub const IDispLatLongReport = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Latitude: fn(
             self: *const IDispLatLongReport,
             pVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Longitude: fn(
             self: *const IDispLatLongReport,
             pVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ErrorRadius: fn(
             self: *const IDispLatLongReport,
             pVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Altitude: fn(
             self: *const IDispLatLongReport,
             pVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AltitudeError: fn(
             self: *const IDispLatLongReport,
             pVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timestamp: fn(
             self: *const IDispLatLongReport,
             pVal: *f64,
@@ -462,34 +468,42 @@ pub const IID_IDispCivicAddressReport = &IID_IDispCivicAddressReport_Value;
 pub const IDispCivicAddressReport = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AddressLine1: fn(
             self: *const IDispCivicAddressReport,
             pAddress1: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AddressLine2: fn(
             self: *const IDispCivicAddressReport,
             pAddress2: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_City: fn(
             self: *const IDispCivicAddressReport,
             pCity: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StateProvince: fn(
             self: *const IDispCivicAddressReport,
             pStateProvince: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PostalCode: fn(
             self: *const IDispCivicAddressReport,
             pPostalCode: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CountryRegion: fn(
             self: *const IDispCivicAddressReport,
             pCountryRegion: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DetailLevel: fn(
             self: *const IDispCivicAddressReport,
             pDetailLevel: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timestamp: fn(
             self: *const IDispCivicAddressReport,
             pVal: *f64,
@@ -546,22 +560,27 @@ pub const ILocationReportFactory = extern struct {
         StopListeningForReports: fn(
             self: *const ILocationReportFactory,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: fn(
             self: *const ILocationReportFactory,
             pVal: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportInterval: fn(
             self: *const ILocationReportFactory,
             pMilliseconds: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReportInterval: fn(
             self: *const ILocationReportFactory,
             millisecondsRequested: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredAccuracy: fn(
             self: *const ILocationReportFactory,
             pDesiredAccuracy: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredAccuracy: fn(
             self: *const ILocationReportFactory,
             desiredAccuracy: u32,
@@ -615,6 +634,7 @@ pub const IID_ILatLongReportFactory = &IID_ILatLongReportFactory_Value;
 pub const ILatLongReportFactory = extern struct {
     pub const VTable = extern struct {
         base: ILocationReportFactory.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LatLongReport: fn(
             self: *const ILatLongReportFactory,
             pVal: ?*?*IDispLatLongReport,
@@ -636,6 +656,7 @@ pub const IID_ICivicAddressReportFactory = &IID_ICivicAddressReportFactory_Value
 pub const ICivicAddressReportFactory = extern struct {
     pub const VTable = extern struct {
         base: ILocationReportFactory.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CivicAddressReport: fn(
             self: *const ICivicAddressReportFactory,
             pVal: ?*?*IDispCivicAddressReport,

@@ -431,12 +431,21 @@ pub const IOCTL_IP_GET_BEST_INTERFACE = @as(u32, 105);
 pub const IOCTL_IP_UNIDIRECTIONAL_ADAPTER_ADDRESS = @as(u32, 106);
 
 //--------------------------------------------------------------------------------
-// Section: Types (103)
+// Section: Types (104)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'IcmpCloseHandle', what can Zig do with this information?
 pub const IcmpHandle = isize;
 
 pub const HIFTIMESTAMPCHANGE = ?*opaque{};
+
+pub const NET_ADDRESS_INFO = extern struct {
+    comment: [*]const u8 = "TODO: why is this struct empty?"
+};
+
+pub const IN_ADDR = extern struct {
+    S_un: IN_ADDR._S_un_e__Union,
+    const _S_un_e__Union = u32; // TODO: generate this nested type!
+};
 
 pub const SCOPE_LEVEL = extern enum(i32) {
     Interface = 1,
@@ -460,8 +469,8 @@ pub const ScopeLevelCount = SCOPE_LEVEL.Count;
 pub const SOCKADDR_INET = u32; // TODO: implement StructOrUnion types?
 
 pub const SOCKADDR_IN6_PAIR = extern struct {
-    SourceAddress: *SOCKADDR_IN6_LH,
-    DestinationAddress: *SOCKADDR_IN6_LH,
+    SourceAddress: *SOCKADDR_IN6,
+    DestinationAddress: *SOCKADDR_IN6,
 };
 
 pub const NL_PREFIX_ORIGIN = extern enum(i32) {
@@ -571,21 +580,17 @@ pub const NL_BANDWIDTH_INFORMATION = extern struct {
     BandwidthPeaked: u8,
 };
 
-pub const NET_ADDRESS_INFO = extern struct {
-    comment: [*]const u8 = "TODO: why is this struct empty?"
-};
-
-pub const Get_Family = extern enum(u32) {
+pub const ADDRESS_FAMILY = extern enum(u32) {
     INET = 2,
     INET6 = 23,
     UNSPEC = 0,
 };
-pub const AF_INET = Get_Family.INET;
-pub const AF_INET6 = Get_Family.INET6;
-pub const AF_UNSPEC = Get_Family.UNSPEC;
+pub const AF_INET = ADDRESS_FAMILY.INET;
+pub const AF_INET6 = ADDRESS_FAMILY.INET6;
+pub const AF_UNSPEC = ADDRESS_FAMILY.UNSPEC;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const GetAdaptersAddresses_Flags = extern enum(u32) {
+pub const GET_ADAPTERS_ADDRESSES_FLAGS = extern enum(u32) {
     SKIP_UNICAST = 1,
     SKIP_ANYCAST = 2,
     SKIP_MULTICAST = 4,
@@ -599,17 +604,17 @@ pub const GetAdaptersAddresses_Flags = extern enum(u32) {
     INCLUDE_TUNNEL_BINDINGORDER = 1024,
     _,
 };
-pub const GAA_FLAG_SKIP_UNICAST = GetAdaptersAddresses_Flags.SKIP_UNICAST;
-pub const GAA_FLAG_SKIP_ANYCAST = GetAdaptersAddresses_Flags.SKIP_ANYCAST;
-pub const GAA_FLAG_SKIP_MULTICAST = GetAdaptersAddresses_Flags.SKIP_MULTICAST;
-pub const GAA_FLAG_SKIP_DNS_SERVER = GetAdaptersAddresses_Flags.SKIP_DNS_SERVER;
-pub const GAA_FLAG_INCLUDE_PREFIX = GetAdaptersAddresses_Flags.INCLUDE_PREFIX;
-pub const GAA_FLAG_SKIP_FRIENDLY_NAME = GetAdaptersAddresses_Flags.SKIP_FRIENDLY_NAME;
-pub const GAA_FLAG_INCLUDE_WINS_INFO = GetAdaptersAddresses_Flags.INCLUDE_WINS_INFO;
-pub const GAA_FLAG_INCLUDE_GATEWAYS = GetAdaptersAddresses_Flags.INCLUDE_GATEWAYS;
-pub const GAA_FLAG_INCLUDE_ALL_INTERFACES = GetAdaptersAddresses_Flags.INCLUDE_ALL_INTERFACES;
-pub const GAA_FLAG_INCLUDE_ALL_COMPARTMENTS = GetAdaptersAddresses_Flags.INCLUDE_ALL_COMPARTMENTS;
-pub const GAA_FLAG_INCLUDE_TUNNEL_BINDINGORDER = GetAdaptersAddresses_Flags.INCLUDE_TUNNEL_BINDINGORDER;
+pub const GAA_FLAG_SKIP_UNICAST = GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_UNICAST;
+pub const GAA_FLAG_SKIP_ANYCAST = GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_ANYCAST;
+pub const GAA_FLAG_SKIP_MULTICAST = GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_MULTICAST;
+pub const GAA_FLAG_SKIP_DNS_SERVER = GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_DNS_SERVER;
+pub const GAA_FLAG_INCLUDE_PREFIX = GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_PREFIX;
+pub const GAA_FLAG_SKIP_FRIENDLY_NAME = GET_ADAPTERS_ADDRESSES_FLAGS.SKIP_FRIENDLY_NAME;
+pub const GAA_FLAG_INCLUDE_WINS_INFO = GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_WINS_INFO;
+pub const GAA_FLAG_INCLUDE_GATEWAYS = GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_GATEWAYS;
+pub const GAA_FLAG_INCLUDE_ALL_INTERFACES = GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_ALL_INTERFACES;
+pub const GAA_FLAG_INCLUDE_ALL_COMPARTMENTS = GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_ALL_COMPARTMENTS;
+pub const GAA_FLAG_INCLUDE_TUNNEL_BINDINGORDER = GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_TUNNEL_BINDINGORDER;
 
 pub const ip_option_information = extern struct {
     Ttl: u8,
@@ -983,7 +988,7 @@ pub const MIB_ROUTESTATE = extern struct {
 };
 
 pub const IP_ADDRESS_STRING = extern struct {
-    String: [16]i8,
+    String: [16]CHAR,
 };
 
 pub const IP_ADDR_STRING = extern struct {
@@ -996,8 +1001,8 @@ pub const IP_ADDR_STRING = extern struct {
 pub const IP_ADAPTER_INFO = extern struct {
     Next: *IP_ADAPTER_INFO,
     ComboIndex: u32,
-    AdapterName: [260]i8,
-    Description: [132]i8,
+    AdapterName: [260]CHAR,
+    Description: [132]CHAR,
     AddressLength: u32,
     Address: [8]u8,
     Index: u32,
@@ -1161,12 +1166,12 @@ pub const IP_PER_ADAPTER_INFO_W2KSP1 = extern struct {
 };
 
 pub const FIXED_INFO_W2KSP1 = extern struct {
-    HostName: [132]i8,
-    DomainName: [132]i8,
+    HostName: [132]CHAR,
+    DomainName: [132]CHAR,
     CurrentDnsServer: *IP_ADDR_STRING,
     DnsServerList: IP_ADDR_STRING,
     NodeType: u32,
-    ScopeId: [260]i8,
+    ScopeId: [260]CHAR,
     EnableRouting: u32,
     EnableProxy: u32,
     EnableDns: u32,
@@ -1462,19 +1467,19 @@ pub const NET_ADDRESS_IPV6 = NET_ADDRESS_FORMAT.IPV6;
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdll" fn RtlIpv4AddressToStringA(
-    Addr: *const in_addr,
+    Addr: *const IN_ADDR,
     S: *[16]u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdll" fn RtlIpv4AddressToStringW(
-    Addr: *const in_addr,
+    Addr: *const IN_ADDR,
     S: *[16]u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdll" fn RtlIpv4AddressToStringExW(
-    Address: *const in_addr,
+    Address: *const IN_ADDR,
     Port: u16,
     AddressString: [*:0]u16,
     AddressStringLength: *u32,
@@ -1485,7 +1490,7 @@ pub extern "ntdll" fn RtlIpv4StringToAddressA(
     S: [*:0]const u8,
     Strict: u8,
     Terminator: *PSTR,
-    Addr: *in_addr,
+    Addr: *IN_ADDR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -1493,32 +1498,32 @@ pub extern "ntdll" fn RtlIpv4StringToAddressW(
     S: [*:0]const u16,
     Strict: u8,
     Terminator: *PWSTR,
-    Addr: *in_addr,
+    Addr: *IN_ADDR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdll" fn RtlIpv4StringToAddressExW(
     AddressString: [*:0]const u16,
     Strict: u8,
-    Address: *in_addr,
+    Address: *IN_ADDR,
     Port: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdll" fn RtlIpv6AddressToStringA(
-    Addr: *const in6_addr,
+    Addr: *const IN6_ADDR,
     S: *[46]u8,
 ) callconv(@import("std").os.windows.WINAPI) PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdll" fn RtlIpv6AddressToStringW(
-    Addr: *const in6_addr,
+    Addr: *const IN6_ADDR,
     S: *[46]u16,
 ) callconv(@import("std").os.windows.WINAPI) PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdll" fn RtlIpv6AddressToStringExW(
-    Address: *const in6_addr,
+    Address: *const IN6_ADDR,
     ScopeId: u32,
     Port: u16,
     AddressString: [*:0]u16,
@@ -1529,20 +1534,20 @@ pub extern "ntdll" fn RtlIpv6AddressToStringExW(
 pub extern "ntdll" fn RtlIpv6StringToAddressA(
     S: [*:0]const u8,
     Terminator: *PSTR,
-    Addr: *in6_addr,
+    Addr: *IN6_ADDR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdll" fn RtlIpv6StringToAddressW(
     S: [*:0]const u16,
     Terminator: *PWSTR,
-    Addr: *in6_addr,
+    Addr: *IN6_ADDR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ntdll" fn RtlIpv6StringToAddressExW(
     AddressString: [*:0]const u16,
-    Address: *in6_addr,
+    Address: *IN6_ADDR,
     ScopeId: *u32,
     Port: *u16,
 ) callconv(@import("std").os.windows.WINAPI) i32;
@@ -1853,9 +1858,9 @@ pub extern "IPHLPAPI" fn FreeMibTable(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn CreateSortedAddressPairs(
-    SourceAddressList: ?*const SOCKADDR_IN6_LH,
+    SourceAddressList: ?*const SOCKADDR_IN6,
     SourceAddressCount: u32,
-    DestinationAddressList: *const SOCKADDR_IN6_LH,
+    DestinationAddressList: *const SOCKADDR_IN6,
     DestinationAddressCount: u32,
     AddressSortOptions: u32,
     SortedAddressPairList: **SOCKADDR_IN6_PAIR,
@@ -1874,7 +1879,7 @@ pub extern "IPHLPAPI" fn ConvertCompartmentIdToGuid(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "IPHLPAPI" fn ConvertInterfaceNameToLuidA(
-    InterfaceName: *const i8,
+    InterfaceName: [*:0]const u8,
     InterfaceLuid: *NET_LUID_LH,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
@@ -2093,8 +2098,8 @@ pub extern "IPHLPAPI" fn Icmp6SendEcho2(
     Event: HANDLE,
     ApcRoutine: ?FARPROC,
     ApcContext: ?*c_void,
-    SourceAddress: *SOCKADDR_IN6_LH,
-    DestinationAddress: *SOCKADDR_IN6_LH,
+    SourceAddress: *SOCKADDR_IN6,
+    DestinationAddress: *SOCKADDR_IN6,
     // TODO: what to do with BytesParamIndex 7?
     RequestData: *c_void,
     RequestSize: u16,
@@ -2363,7 +2368,7 @@ pub extern "IPHLPAPI" fn SetIpStatisticsEx(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn GetIpStatisticsEx(
     Statistics: *MIB_IPSTATS_LH,
-    Family: Get_Family,
+    Family: ADDRESS_FAMILY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -2375,25 +2380,25 @@ pub extern "IPHLPAPI" fn GetIcmpStatisticsEx(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn GetTcpStatisticsEx(
     Statistics: *MIB_TCPSTATS_LH,
-    Family: Get_Family,
+    Family: ADDRESS_FAMILY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn GetUdpStatisticsEx(
     Statistics: *MIB_UDPSTATS,
-    Family: Get_Family,
+    Family: ADDRESS_FAMILY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "IPHLPAPI" fn GetTcpStatisticsEx2(
     Statistics: *MIB_TCPSTATS2,
-    Family: Get_Family,
+    Family: ADDRESS_FAMILY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "IPHLPAPI" fn GetUdpStatisticsEx2(
     Statistics: *MIB_UDPSTATS2,
-    Family: Get_Family,
+    Family: ADDRESS_FAMILY,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2563,8 +2568,8 @@ pub extern "IPHLPAPI" fn GetAdapterOrderMap(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "IPHLPAPI" fn GetAdaptersAddresses(
-    Family: Get_Family,
-    Flags: GetAdaptersAddresses_Flags,
+    Family: ADDRESS_FAMILY,
+    Flags: GET_ADAPTERS_ADDRESSES_FLAGS,
     Reserved: *c_void,
     // TODO: what to do with BytesParamIndex 4?
     AdapterAddresses: ?*IP_ADAPTER_ADDRESSES_LH,
@@ -2771,11 +2776,9 @@ const MIB_IPINTERFACE_TABLE = @import("mib.zig").MIB_IPINTERFACE_TABLE;
 const MIB_UNICASTIPADDRESS_TABLE = @import("mib.zig").MIB_UNICASTIPADDRESS_TABLE;
 const MIB_IPPATH_TABLE = @import("mib.zig").MIB_IPPATH_TABLE;
 const MIB_IF_ROW2 = @import("mib.zig").MIB_IF_ROW2;
-const in_addr = @import("win_sock.zig").in_addr;
 const MIB_UDPSTATS = @import("mib.zig").MIB_UDPSTATS;
 const SOCKADDR = @import("win_sock.zig").SOCKADDR;
 const OVERLAPPED = @import("system_services.zig").OVERLAPPED;
-const in6_addr = @import("win_sock.zig").in6_addr;
 const MIB_IPADDRTABLE = @import("mib.zig").MIB_IPADDRTABLE;
 const MIB_TCPSTATS_LH = @import("mib.zig").MIB_TCPSTATS_LH;
 const MIB_ICMP = @import("mib.zig").MIB_ICMP;
@@ -2788,15 +2791,18 @@ const MIB_IPNET_TABLE2 = @import("mib.zig").MIB_IPNET_TABLE2;
 const MIB_NOTIFICATION_TYPE = @import("mib.zig").MIB_NOTIFICATION_TYPE;
 const PSTR = @import("system_services.zig").PSTR;
 const MIB_IF_TABLE2 = @import("mib.zig").MIB_IF_TABLE2;
+const IN6_ADDR = @import("network_drivers.zig").IN6_ADDR;
 const NET_IF_CONNECTION_TYPE = @import("network_drivers.zig").NET_IF_CONNECTION_TYPE;
 const MIB_IPNETROW_LH = @import("mib.zig").MIB_IPNETROW_LH;
 const MIB_IPFORWARDROW = @import("mib.zig").MIB_IPFORWARDROW;
 const HANDLE = @import("system_services.zig").HANDLE;
 const TUNNEL_TYPE = @import("network_drivers.zig").TUNNEL_TYPE;
+const SOCKADDR_IN6 = @import("win_sock.zig").SOCKADDR_IN6;
 const MIB_UDPSTATS2 = @import("mib.zig").MIB_UDPSTATS2;
 const MIB_IPINTERFACE_ROW = @import("mib.zig").MIB_IPINTERFACE_ROW;
 const MIB_IPFORWARD_TABLE2 = @import("mib.zig").MIB_IPFORWARD_TABLE2;
 const MIB_IF_TABLE_LEVEL = @import("network_drivers.zig").MIB_IF_TABLE_LEVEL;
+const CHAR = @import("system_services.zig").CHAR;
 const MIB_IPPATH_ROW = @import("mib.zig").MIB_IPPATH_ROW;
 const MIB_ICMP_EX_XPSP1 = @import("mib.zig").MIB_ICMP_EX_XPSP1;
 const MIB_TCP6ROW = @import("mib.zig").MIB_TCP6ROW;
@@ -2821,7 +2827,6 @@ const MIB_UDP6ROW_OWNER_MODULE = @import("mib.zig").MIB_UDP6ROW_OWNER_MODULE;
 const MIB_TCPTABLE = @import("mib.zig").MIB_TCPTABLE;
 const MIB_IPNETTABLE = @import("mib.zig").MIB_IPNETTABLE;
 const MIB_IPNET_ROW2 = @import("mib.zig").MIB_IPNET_ROW2;
-const SOCKADDR_IN6_LH = @import("network_drivers.zig").SOCKADDR_IN6_LH;
 const MIB_IFROW = @import("mib.zig").MIB_IFROW;
 const MIB_UDP6TABLE = @import("mib.zig").MIB_UDP6TABLE;
 const SOCKET_ADDRESS = @import("win_sock.zig").SOCKET_ADDRESS;
@@ -2838,7 +2843,7 @@ test {
     _ = PINTERFACE_TIMESTAMP_CONFIG_CHANGE_CALLBACK;
 
     const constant_export_count = 427;
-    const type_export_count = 103;
+    const type_export_count = 104;
     const enum_value_export_count = 155;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;

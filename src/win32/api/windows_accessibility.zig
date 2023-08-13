@@ -930,7 +930,7 @@ pub const UIA_SummaryChangeId = @as(i32, 90000);
 pub const UIA_SayAsInterpretAsMetadataId = @as(i32, 100000);
 
 //--------------------------------------------------------------------------------
-// Section: Types (260)
+// Section: Types (261)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
 pub const HWINEVENTHOOK = ?*opaque{};
@@ -1010,38 +1010,38 @@ pub const SSF_AVAILABLE = SOUNDSENTRY_FLAGS.AVAILABLE;
 pub const SSF_INDICATOR = SOUNDSENTRY_FLAGS.INDICATOR;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const AccSetRunningUtilityState_dwUtilityStateFlags = extern enum(u32) {
+pub const ACC_UTILITY_STATE_FLAGS = extern enum(u32) {
     ON_SCREEN_KEYBOARD_ACTIVE = 1,
     TOUCH_MODIFICATION_ACTIVE = 2,
     PRIORITY_AUDIO_ACTIVE = 4,
     PRIORITY_AUDIO_ACTIVE_NODUCK = 8,
     _,
 };
-pub const ANRUS_ON_SCREEN_KEYBOARD_ACTIVE = AccSetRunningUtilityState_dwUtilityStateFlags.ON_SCREEN_KEYBOARD_ACTIVE;
-pub const ANRUS_TOUCH_MODIFICATION_ACTIVE = AccSetRunningUtilityState_dwUtilityStateFlags.TOUCH_MODIFICATION_ACTIVE;
-pub const ANRUS_PRIORITY_AUDIO_ACTIVE = AccSetRunningUtilityState_dwUtilityStateFlags.PRIORITY_AUDIO_ACTIVE;
-pub const ANRUS_PRIORITY_AUDIO_ACTIVE_NODUCK = AccSetRunningUtilityState_dwUtilityStateFlags.PRIORITY_AUDIO_ACTIVE_NODUCK;
+pub const ANRUS_ON_SCREEN_KEYBOARD_ACTIVE = ACC_UTILITY_STATE_FLAGS.ON_SCREEN_KEYBOARD_ACTIVE;
+pub const ANRUS_TOUCH_MODIFICATION_ACTIVE = ACC_UTILITY_STATE_FLAGS.TOUCH_MODIFICATION_ACTIVE;
+pub const ANRUS_PRIORITY_AUDIO_ACTIVE = ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE;
+pub const ANRUS_PRIORITY_AUDIO_ACTIVE_NODUCK = ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE_NODUCK;
 
-pub const SOUNDSENTRYW_iFSGrafEffect = extern enum(u32) {
+pub const SOUND_SENTRY_GRAPHICS_EFFECT = extern enum(u32) {
     DISPLAY = 3,
     NONE = 0,
 };
-pub const SSGF_DISPLAY = SOUNDSENTRYW_iFSGrafEffect.DISPLAY;
-pub const SSGF_NONE = SOUNDSENTRYW_iFSGrafEffect.NONE;
+pub const SSGF_DISPLAY = SOUND_SENTRY_GRAPHICS_EFFECT.DISPLAY;
+pub const SSGF_NONE = SOUND_SENTRY_GRAPHICS_EFFECT.NONE;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const SERIALKEYSW_dwFlags = extern enum(u32) {
+pub const SERIALKEYS_FLAGS = extern enum(u32) {
     AVAILABLE = 2,
     INDICATOR = 4,
     SERIALKEYSON = 1,
     _,
 };
-pub const SERKF_AVAILABLE = SERIALKEYSW_dwFlags.AVAILABLE;
-pub const SERKF_INDICATOR = SERIALKEYSW_dwFlags.INDICATOR;
-pub const SERKF_SERIALKEYSON = SERIALKEYSW_dwFlags.SERIALKEYSON;
+pub const SERKF_AVAILABLE = SERIALKEYS_FLAGS.AVAILABLE;
+pub const SERKF_INDICATOR = SERIALKEYS_FLAGS.INDICATOR;
+pub const SERKF_SERIALKEYSON = SERIALKEYS_FLAGS.SERIALKEYSON;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const HIGHCONTRASTW_dwFlags = extern enum(u32) {
+pub const HIGHCONTRASTW_FLAGS = extern enum(u32) {
     HIGHCONTRASTON = 1,
     AVAILABLE = 2,
     HOTKEYACTIVE = 4,
@@ -1052,38 +1052,38 @@ pub const HIGHCONTRASTW_dwFlags = extern enum(u32) {
     OPTION_NOTHEMECHANGE = 4096,
     _,
 };
-pub const HCF_HIGHCONTRASTON = HIGHCONTRASTW_dwFlags.HIGHCONTRASTON;
-pub const HCF_AVAILABLE = HIGHCONTRASTW_dwFlags.AVAILABLE;
-pub const HCF_HOTKEYACTIVE = HIGHCONTRASTW_dwFlags.HOTKEYACTIVE;
-pub const HCF_CONFIRMHOTKEY = HIGHCONTRASTW_dwFlags.CONFIRMHOTKEY;
-pub const HCF_HOTKEYSOUND = HIGHCONTRASTW_dwFlags.HOTKEYSOUND;
-pub const HCF_INDICATOR = HIGHCONTRASTW_dwFlags.INDICATOR;
-pub const HCF_HOTKEYAVAILABLE = HIGHCONTRASTW_dwFlags.HOTKEYAVAILABLE;
-pub const HCF_OPTION_NOTHEMECHANGE = HIGHCONTRASTW_dwFlags.OPTION_NOTHEMECHANGE;
+pub const HCF_HIGHCONTRASTON = HIGHCONTRASTW_FLAGS.HIGHCONTRASTON;
+pub const HCF_AVAILABLE = HIGHCONTRASTW_FLAGS.AVAILABLE;
+pub const HCF_HOTKEYACTIVE = HIGHCONTRASTW_FLAGS.HOTKEYACTIVE;
+pub const HCF_CONFIRMHOTKEY = HIGHCONTRASTW_FLAGS.CONFIRMHOTKEY;
+pub const HCF_HOTKEYSOUND = HIGHCONTRASTW_FLAGS.HOTKEYSOUND;
+pub const HCF_INDICATOR = HIGHCONTRASTW_FLAGS.INDICATOR;
+pub const HCF_HOTKEYAVAILABLE = HIGHCONTRASTW_FLAGS.HOTKEYAVAILABLE;
+pub const HCF_OPTION_NOTHEMECHANGE = HIGHCONTRASTW_FLAGS.OPTION_NOTHEMECHANGE;
 
-pub const SOUNDSENTRYA_iFSTextEffect = extern enum(u32) {
+pub const SOUNDSENTRY_TEXT_EFFECT = extern enum(u32) {
     BORDER = 2,
     CHARS = 1,
     DISPLAY = 3,
     NONE = 0,
 };
-pub const SSTF_BORDER = SOUNDSENTRYA_iFSTextEffect.BORDER;
-pub const SSTF_CHARS = SOUNDSENTRYA_iFSTextEffect.CHARS;
-pub const SSTF_DISPLAY = SOUNDSENTRYA_iFSTextEffect.DISPLAY;
-pub const SSTF_NONE = SOUNDSENTRYA_iFSTextEffect.NONE;
+pub const SSTF_BORDER = SOUNDSENTRY_TEXT_EFFECT.BORDER;
+pub const SSTF_CHARS = SOUNDSENTRY_TEXT_EFFECT.CHARS;
+pub const SSTF_DISPLAY = SOUNDSENTRY_TEXT_EFFECT.DISPLAY;
+pub const SSTF_NONE = SOUNDSENTRY_TEXT_EFFECT.NONE;
 
-pub const SOUNDSENTRYA_iWindowsEffect = extern enum(u32) {
+pub const SOUNDSENTRY_WINDOWS_EFFECT = extern enum(u32) {
     CUSTOM = 4,
     DISPLAY = 3,
     NONE = 0,
     TITLE = 1,
     WINDOW = 2,
 };
-pub const SSWF_CUSTOM = SOUNDSENTRYA_iWindowsEffect.CUSTOM;
-pub const SSWF_DISPLAY = SOUNDSENTRYA_iWindowsEffect.DISPLAY;
-pub const SSWF_NONE = SOUNDSENTRYA_iWindowsEffect.NONE;
-pub const SSWF_TITLE = SOUNDSENTRYA_iWindowsEffect.TITLE;
-pub const SSWF_WINDOW = SOUNDSENTRYA_iWindowsEffect.WINDOW;
+pub const SSWF_CUSTOM = SOUNDSENTRY_WINDOWS_EFFECT.CUSTOM;
+pub const SSWF_DISPLAY = SOUNDSENTRY_WINDOWS_EFFECT.DISPLAY;
+pub const SSWF_NONE = SOUNDSENTRY_WINDOWS_EFFECT.NONE;
+pub const SSWF_TITLE = SOUNDSENTRY_WINDOWS_EFFECT.TITLE;
+pub const SSWF_WINDOW = SOUNDSENTRY_WINDOWS_EFFECT.WINDOW;
 
 const CLSID_MSAAControl_Value = @import("../zig.zig").Guid.initString("08cd963f-7a3e-4f5c-9bd8-d692bb043c5b");
 pub const CLSID_MSAAControl = &CLSID_MSAAControl_Value;
@@ -1346,9 +1346,9 @@ pub const ICoCreateLocally = extern struct {
             rclsid: *const Guid,
             dwClsContext: u32,
             riid: *const Guid,
-            punk: ?*?*IUnknown,
+            punk: **IUnknown,
             riidParam: *const Guid,
-            punkParam: ?*IUnknown,
+            punkParam: *IUnknown,
             varParam: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -1356,7 +1356,7 @@ pub const ICoCreateLocally = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoCreateLocally_CoCreateLocally(self: *const T, rclsid: *const Guid, dwClsContext: u32, riid: *const Guid, punk: ?*?*IUnknown, riidParam: *const Guid, punkParam: ?*IUnknown, varParam: VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICoCreateLocally_CoCreateLocally(self: *const T, rclsid: *const Guid, dwClsContext: u32, riid: *const Guid, punk: **IUnknown, riidParam: *const Guid, punkParam: *IUnknown, varParam: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICoCreateLocally.VTable, self.vtable).CoCreateLocally(@ptrCast(*const ICoCreateLocally, self), rclsid, dwClsContext, riid, punk, riidParam, punkParam, varParam);
         }
     };}
@@ -1373,7 +1373,7 @@ pub const ICoCreatedLocally = extern struct {
             self: *const ICoCreatedLocally,
             punkLocalObject: *IUnknown,
             riidParam: *const Guid,
-            punkParam: ?*IUnknown,
+            punkParam: *IUnknown,
             varParam: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
@@ -1381,7 +1381,7 @@ pub const ICoCreatedLocally = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICoCreatedLocally_LocalInit(self: *const T, punkLocalObject: *IUnknown, riidParam: *const Guid, punkParam: ?*IUnknown, varParam: VARIANT) callconv(.Inline) HRESULT {
+        pub fn ICoCreatedLocally_LocalInit(self: *const T, punkLocalObject: *IUnknown, riidParam: *const Guid, punkParam: *IUnknown, varParam: VARIANT) callconv(.Inline) HRESULT {
             return @ptrCast(*const ICoCreatedLocally.VTable, self.vtable).LocalInit(@ptrCast(*const ICoCreatedLocally, self), punkLocalObject, riidParam, punkParam, varParam);
         }
     };}
@@ -1396,7 +1396,7 @@ pub const IAccStore = extern struct {
         Register: fn(
             self: *const IAccStore,
             riid: *const Guid,
-            punk: ?*IUnknown,
+            punk: *IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         Unregister: fn(
             self: *const IAccStore,
@@ -1410,13 +1410,13 @@ pub const IAccStore = extern struct {
             self: *const IAccStore,
             hWnd: HWND,
             riid: *const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LookupByPoint: fn(
             self: *const IAccStore,
             pt: POINT,
             riid: *const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         OnDocumentFocus: fn(
             self: *const IAccStore,
@@ -1425,14 +1425,14 @@ pub const IAccStore = extern struct {
         GetFocused: fn(
             self: *const IAccStore,
             riid: *const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccStore_Register(self: *const T, riid: *const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccStore_Register(self: *const T, riid: *const Guid, punk: *IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccStore.VTable, self.vtable).Register(@ptrCast(*const IAccStore, self), riid, punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1444,11 +1444,11 @@ pub const IAccStore = extern struct {
             return @ptrCast(*const IAccStore.VTable, self.vtable).GetDocuments(@ptrCast(*const IAccStore, self), enumUnknown);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccStore_LookupByHWND(self: *const T, hWnd: HWND, riid: *const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccStore_LookupByHWND(self: *const T, hWnd: HWND, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccStore.VTable, self.vtable).LookupByHWND(@ptrCast(*const IAccStore, self), hWnd, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccStore_LookupByPoint(self: *const T, pt: POINT, riid: *const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccStore_LookupByPoint(self: *const T, pt: POINT, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccStore.VTable, self.vtable).LookupByPoint(@ptrCast(*const IAccStore, self), pt, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1456,7 +1456,7 @@ pub const IAccStore = extern struct {
             return @ptrCast(*const IAccStore.VTable, self.vtable).OnDocumentFocus(@ptrCast(*const IAccStore, self), punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccStore_GetFocused(self: *const T, riid: *const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccStore_GetFocused(self: *const T, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccStore.VTable, self.vtable).GetFocused(@ptrCast(*const IAccStore, self), riid, ppunk);
         }
     };}
@@ -1472,7 +1472,7 @@ pub const IAccServerDocMgr = extern struct {
         NewDocument: fn(
             self: *const IAccServerDocMgr,
             riid: *const Guid,
-            punk: ?*IUnknown,
+            punk: *IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         RevokeDocument: fn(
             self: *const IAccServerDocMgr,
@@ -1487,7 +1487,7 @@ pub const IAccServerDocMgr = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccServerDocMgr_NewDocument(self: *const T, riid: *const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccServerDocMgr_NewDocument(self: *const T, riid: *const Guid, punk: *IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccServerDocMgr.VTable, self.vtable).NewDocument(@ptrCast(*const IAccServerDocMgr, self), riid, punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1516,18 +1516,18 @@ pub const IAccClientDocMgr = extern struct {
             self: *const IAccClientDocMgr,
             hWnd: HWND,
             riid: *const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         LookupByPoint: fn(
             self: *const IAccClientDocMgr,
             pt: POINT,
             riid: *const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetFocused: fn(
             self: *const IAccClientDocMgr,
             riid: *const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1538,15 +1538,15 @@ pub const IAccClientDocMgr = extern struct {
             return @ptrCast(*const IAccClientDocMgr.VTable, self.vtable).GetDocuments(@ptrCast(*const IAccClientDocMgr, self), enumUnknown);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccClientDocMgr_LookupByHWND(self: *const T, hWnd: HWND, riid: *const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccClientDocMgr_LookupByHWND(self: *const T, hWnd: HWND, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccClientDocMgr.VTable, self.vtable).LookupByHWND(@ptrCast(*const IAccClientDocMgr, self), hWnd, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccClientDocMgr_LookupByPoint(self: *const T, pt: POINT, riid: *const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccClientDocMgr_LookupByPoint(self: *const T, pt: POINT, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccClientDocMgr.VTable, self.vtable).LookupByPoint(@ptrCast(*const IAccClientDocMgr, self), pt, riid, ppunk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccClientDocMgr_GetFocused(self: *const T, riid: *const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IAccClientDocMgr_GetFocused(self: *const T, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAccClientDocMgr.VTable, self.vtable).GetFocused(@ptrCast(*const IAccClientDocMgr, self), riid, ppunk);
         }
     };}
@@ -1561,23 +1561,23 @@ pub const IDocWrap = extern struct {
         SetDoc: fn(
             self: *const IDocWrap,
             riid: *const Guid,
-            punk: ?*IUnknown,
+            punk: *IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetWrappedDoc: fn(
             self: *const IDocWrap,
             riid: *const Guid,
-            ppunk: ?*?*IUnknown,
+            ppunk: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDocWrap_SetDoc(self: *const T, riid: *const Guid, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDocWrap_SetDoc(self: *const T, riid: *const Guid, punk: *IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDocWrap.VTable, self.vtable).SetDoc(@ptrCast(*const IDocWrap, self), riid, punk);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDocWrap_GetWrappedDoc(self: *const T, riid: *const Guid, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn IDocWrap_GetWrappedDoc(self: *const T, riid: *const Guid, ppunk: **IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDocWrap.VTable, self.vtable).GetWrappedDoc(@ptrCast(*const IDocWrap, self), riid, ppunk);
         }
     };}
@@ -1592,14 +1592,14 @@ pub const IClonableWrapper = extern struct {
         CloneNewWrapper: fn(
             self: *const IClonableWrapper,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IClonableWrapper_CloneNewWrapper(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IClonableWrapper_CloneNewWrapper(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IClonableWrapper.VTable, self.vtable).CloneNewWrapper(@ptrCast(*const IClonableWrapper, self), riid, ppv);
         }
     };}
@@ -1662,68 +1662,82 @@ pub const IID_IAccessible = &IID_IAccessible_Value;
 pub const IAccessible = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accParent: fn(
             self: *const IAccessible,
             ppdispParent: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accChildCount: fn(
             self: *const IAccessible,
             pcountChildren: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accChild: fn(
             self: *const IAccessible,
             varChild: VARIANT,
             ppdispChild: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accName: fn(
             self: *const IAccessible,
             varChild: VARIANT,
             pszName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accValue: fn(
             self: *const IAccessible,
             varChild: VARIANT,
             pszValue: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accDescription: fn(
             self: *const IAccessible,
             varChild: VARIANT,
             pszDescription: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accRole: fn(
             self: *const IAccessible,
             varChild: VARIANT,
             pvarRole: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accState: fn(
             self: *const IAccessible,
             varChild: VARIANT,
             pvarState: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accHelp: fn(
             self: *const IAccessible,
             varChild: VARIANT,
             pszHelp: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accHelpTopic: fn(
             self: *const IAccessible,
             pszHelpFile: *BSTR,
             varChild: VARIANT,
             pidTopic: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accKeyboardShortcut: fn(
             self: *const IAccessible,
             varChild: VARIANT,
             pszKeyboardShortcut: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accFocus: fn(
             self: *const IAccessible,
             pvarChild: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accSelection: fn(
             self: *const IAccessible,
             pvarChildren: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_accDefaultAction: fn(
             self: *const IAccessible,
             varChild: VARIANT,
@@ -1758,11 +1772,13 @@ pub const IAccessible = extern struct {
             self: *const IAccessible,
             varChild: VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_accName: fn(
             self: *const IAccessible,
             varChild: VARIANT,
             szName: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_accValue: fn(
             self: *const IAccessible,
             varChild: VARIANT,
@@ -2804,6 +2820,7 @@ pub const IID_IRawElementProviderSimple = &IID_IRawElementProviderSimple_Value;
 pub const IRawElementProviderSimple = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProviderOptions: fn(
             self: *const IRawElementProviderSimple,
             pRetVal: *ProviderOptions,
@@ -2818,6 +2835,7 @@ pub const IRawElementProviderSimple = extern struct {
             propertyId: i32,
             pRetVal: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HostRawElementProvider: fn(
             self: *const IRawElementProviderSimple,
             pRetVal: **IRawElementProviderSimple,
@@ -2987,6 +3005,7 @@ pub const IRawElementProviderFragment = extern struct {
             self: *const IRawElementProviderFragment,
             pRetVal: **SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BoundingRectangle: fn(
             self: *const IRawElementProviderFragment,
             pRetVal: *UiaRect,
@@ -2998,6 +3017,7 @@ pub const IRawElementProviderFragment = extern struct {
         SetFocus: fn(
             self: *const IRawElementProviderFragment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FragmentRoot: fn(
             self: *const IRawElementProviderFragment,
             pRetVal: **IRawElementProviderFragmentRoot,
@@ -3252,6 +3272,7 @@ pub const IDockProvider = extern struct {
             self: *const IDockProvider,
             dockPosition: DockPosition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DockPosition: fn(
             self: *const IDockProvider,
             pRetVal: *DockPosition,
@@ -3284,6 +3305,7 @@ pub const IExpandCollapseProvider = extern struct {
         Collapse: fn(
             self: *const IExpandCollapseProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExpandCollapseState: fn(
             self: *const IExpandCollapseProvider,
             pRetVal: *ExpandCollapseState,
@@ -3320,10 +3342,12 @@ pub const IGridProvider = extern struct {
             column: i32,
             pRetVal: **IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RowCount: fn(
             self: *const IGridProvider,
             pRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ColumnCount: fn(
             self: *const IGridProvider,
             pRetVal: *i32,
@@ -3354,22 +3378,27 @@ pub const IID_IGridItemProvider = &IID_IGridItemProvider_Value;
 pub const IGridItemProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Row: fn(
             self: *const IGridItemProvider,
             pRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Column: fn(
             self: *const IGridItemProvider,
             pRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RowSpan: fn(
             self: *const IGridItemProvider,
             pRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ColumnSpan: fn(
             self: *const IGridItemProvider,
             pRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContainingGrid: fn(
             self: *const IGridItemProvider,
             pRetVal: **IRawElementProviderSimple,
@@ -3438,6 +3467,7 @@ pub const IMultipleViewProvider = extern struct {
             self: *const IMultipleViewProvider,
             viewId: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentView: fn(
             self: *const IMultipleViewProvider,
             pRetVal: *i32,
@@ -3480,26 +3510,32 @@ pub const IRangeValueProvider = extern struct {
             self: *const IRangeValueProvider,
             val: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: fn(
             self: *const IRangeValueProvider,
             pRetVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsReadOnly: fn(
             self: *const IRangeValueProvider,
             pRetVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Maximum: fn(
             self: *const IRangeValueProvider,
             pRetVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Minimum: fn(
             self: *const IRangeValueProvider,
             pRetVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LargeChange: fn(
             self: *const IRangeValueProvider,
             pRetVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SmallChange: fn(
             self: *const IRangeValueProvider,
             pRetVal: *f64,
@@ -3571,10 +3607,12 @@ pub const ISelectionProvider = extern struct {
             self: *const ISelectionProvider,
             pRetVal: **SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanSelectMultiple: fn(
             self: *const ISelectionProvider,
             pRetVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSelectionRequired: fn(
             self: *const ISelectionProvider,
             pRetVal: *BOOL,
@@ -3605,18 +3643,22 @@ pub const IID_ISelectionProvider2 = &IID_ISelectionProvider2_Value;
 pub const ISelectionProvider2 = extern struct {
     pub const VTable = extern struct {
         base: ISelectionProvider.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirstSelectedItem: fn(
             self: *const ISelectionProvider2,
             retVal: **IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastSelectedItem: fn(
             self: *const ISelectionProvider2,
             retVal: **IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentSelectedItem: fn(
             self: *const ISelectionProvider2,
             retVal: **IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ItemCount: fn(
             self: *const ISelectionProvider2,
             retVal: *i32,
@@ -3661,26 +3703,32 @@ pub const IScrollProvider = extern struct {
             horizontalPercent: f64,
             verticalPercent: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HorizontalScrollPercent: fn(
             self: *const IScrollProvider,
             pRetVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VerticalScrollPercent: fn(
             self: *const IScrollProvider,
             pRetVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HorizontalViewSize: fn(
             self: *const IScrollProvider,
             pRetVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VerticalViewSize: fn(
             self: *const IScrollProvider,
             pRetVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HorizontallyScrollable: fn(
             self: *const IScrollProvider,
             pRetVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VerticallyScrollable: fn(
             self: *const IScrollProvider,
             pRetVal: *BOOL,
@@ -3740,10 +3788,12 @@ pub const ISelectionItemProvider = extern struct {
         RemoveFromSelection: fn(
             self: *const ISelectionItemProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSelected: fn(
             self: *const ISelectionItemProvider,
             pRetVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelectionContainer: fn(
             self: *const ISelectionItemProvider,
             pRetVal: **IRawElementProviderSimple,
@@ -3819,6 +3869,7 @@ pub const ITableProvider = extern struct {
             self: *const ITableProvider,
             pRetVal: **SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RowOrColumnMajor: fn(
             self: *const ITableProvider,
             pRetVal: *RowOrColumnMajor,
@@ -3882,6 +3933,7 @@ pub const IToggleProvider = extern struct {
         Toggle: fn(
             self: *const IToggleProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ToggleState: fn(
             self: *const IToggleProvider,
             pRetVal: *ToggleState,
@@ -3922,14 +3974,17 @@ pub const ITransformProvider = extern struct {
             self: *const ITransformProvider,
             degrees: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanMove: fn(
             self: *const ITransformProvider,
             pRetVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanResize: fn(
             self: *const ITransformProvider,
             pRetVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanRotate: fn(
             self: *const ITransformProvider,
             pRetVal: *BOOL,
@@ -3976,10 +4031,12 @@ pub const IValueProvider = extern struct {
             self: *const IValueProvider,
             val: [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: fn(
             self: *const IValueProvider,
             pRetVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsReadOnly: fn(
             self: *const IValueProvider,
             pRetVal: *BOOL,
@@ -4022,26 +4079,32 @@ pub const IWindowProvider = extern struct {
             milliseconds: i32,
             pRetVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanMaximize: fn(
             self: *const IWindowProvider,
             pRetVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanMinimize: fn(
             self: *const IWindowProvider,
             pRetVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsModal: fn(
             self: *const IWindowProvider,
             pRetVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowVisualState: fn(
             self: *const IWindowProvider,
             pRetVal: *WindowVisualState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowInteractionState: fn(
             self: *const IWindowProvider,
             pRetVal: *WindowInteractionState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTopmost: fn(
             self: *const IWindowProvider,
             pRetVal: *BOOL,
@@ -4111,34 +4174,42 @@ pub const ILegacyIAccessibleProvider = extern struct {
             self: *const ILegacyIAccessibleProvider,
             ppAccessible: **IAccessible,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ChildId: fn(
             self: *const ILegacyIAccessibleProvider,
             pRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const ILegacyIAccessibleProvider,
             pszName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: fn(
             self: *const ILegacyIAccessibleProvider,
             pszValue: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const ILegacyIAccessibleProvider,
             pszDescription: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Role: fn(
             self: *const ILegacyIAccessibleProvider,
             pdwRole: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: fn(
             self: *const ILegacyIAccessibleProvider,
             pdwState: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Help: fn(
             self: *const ILegacyIAccessibleProvider,
             pszHelp: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeyboardShortcut: fn(
             self: *const ILegacyIAccessibleProvider,
             pszKeyboardShortcut: *BSTR,
@@ -4147,6 +4218,7 @@ pub const ILegacyIAccessibleProvider = extern struct {
             self: *const ILegacyIAccessibleProvider,
             pvarSelectedChildren: **SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultAction: fn(
             self: *const ILegacyIAccessibleProvider,
             pszDefaultAction: *BSTR,
@@ -4289,22 +4361,27 @@ pub const IID_IAnnotationProvider = &IID_IAnnotationProvider_Value;
 pub const IAnnotationProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AnnotationTypeId: fn(
             self: *const IAnnotationProvider,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AnnotationTypeName: fn(
             self: *const IAnnotationProvider,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Author: fn(
             self: *const IAnnotationProvider,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DateTime: fn(
             self: *const IAnnotationProvider,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Target: fn(
             self: *const IAnnotationProvider,
             retVal: **IRawElementProviderSimple,
@@ -4343,30 +4420,37 @@ pub const IID_IStylesProvider = &IID_IStylesProvider_Value;
 pub const IStylesProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StyleId: fn(
             self: *const IStylesProvider,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StyleName: fn(
             self: *const IStylesProvider,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FillColor: fn(
             self: *const IStylesProvider,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FillPatternStyle: fn(
             self: *const IStylesProvider,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Shape: fn(
             self: *const IStylesProvider,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FillPatternColor: fn(
             self: *const IStylesProvider,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtendedProperties: fn(
             self: *const IStylesProvider,
             retVal: *BSTR,
@@ -4436,6 +4520,7 @@ pub const IID_ISpreadsheetItemProvider = &IID_ISpreadsheetItemProvider_Value;
 pub const ISpreadsheetItemProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Formula: fn(
             self: *const ISpreadsheetItemProvider,
             pRetVal: *BSTR,
@@ -4478,18 +4563,22 @@ pub const ITransformProvider2 = extern struct {
             self: *const ITransformProvider2,
             zoom: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanZoom: fn(
             self: *const ITransformProvider2,
             pRetVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ZoomLevel: fn(
             self: *const ITransformProvider2,
             pRetVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ZoomMinimum: fn(
             self: *const ITransformProvider2,
             pRetVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ZoomMaximum: fn(
             self: *const ITransformProvider2,
             pRetVal: *f64,
@@ -4536,14 +4625,17 @@ pub const IID_IDragProvider = &IID_IDragProvider_Value;
 pub const IDragProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsGrabbed: fn(
             self: *const IDragProvider,
             pRetVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DropEffect: fn(
             self: *const IDragProvider,
             pRetVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DropEffects: fn(
             self: *const IDragProvider,
             pRetVal: **SAFEARRAY,
@@ -4582,10 +4674,12 @@ pub const IID_IDropTargetProvider = &IID_IDropTargetProvider_Value;
 pub const IDropTargetProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DropTargetEffect: fn(
             self: *const IDropTargetProvider,
             pRetVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DropTargetEffects: fn(
             self: *const IDropTargetProvider,
             pRetVal: **SAFEARRAY,
@@ -4804,10 +4898,12 @@ pub const ITextProvider = extern struct {
             point: UiaPoint,
             pRetVal: **ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DocumentRange: fn(
             self: *const ITextProvider,
             pRetVal: **ITextRangeProvider,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedTextSelection: fn(
             self: *const ITextProvider,
             pRetVal: *SupportedTextSelection,
@@ -4933,10 +5029,12 @@ pub const IID_ITextChildProvider = &IID_ITextChildProvider_Value;
 pub const ITextChildProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TextContainer: fn(
             self: *const ITextChildProvider,
             pRetVal: **IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TextRange: fn(
             self: *const ITextChildProvider,
             pRetVal: **ITextRangeProvider,
@@ -5225,13 +5323,13 @@ pub const IUIAutomationElement = extern struct {
             self: *const IUIAutomationElement,
             patternId: i32,
             riid: *const Guid,
-            patternObject: ?*?*c_void,
+            patternObject: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCachedPatternAs: fn(
             self: *const IUIAutomationElement,
             patternId: i32,
             riid: *const Guid,
-            patternObject: ?*?*c_void,
+            patternObject: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetCurrentPattern: fn(
             self: *const IUIAutomationElement,
@@ -5251,258 +5349,322 @@ pub const IUIAutomationElement = extern struct {
             self: *const IUIAutomationElement,
             children: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentProcessId: fn(
             self: *const IUIAutomationElement,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentControlType: fn(
             self: *const IUIAutomationElement,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLocalizedControlType: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentName: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAcceleratorKey: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAccessKey: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHasKeyboardFocus: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsKeyboardFocusable: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsEnabled: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAutomationId: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentClassName: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHelpText: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCulture: fn(
             self: *const IUIAutomationElement,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsControlElement: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsContentElement: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsPassword: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentNativeWindowHandle: fn(
             self: *const IUIAutomationElement,
             retVal: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentItemType: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsOffscreen: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentOrientation: fn(
             self: *const IUIAutomationElement,
             retVal: *OrientationType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFrameworkId: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsRequiredForForm: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentItemStatus: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentBoundingRectangle: fn(
             self: *const IUIAutomationElement,
             retVal: *RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLabeledBy: fn(
             self: *const IUIAutomationElement,
             retVal: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAriaRole: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAriaProperties: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsDataValidForForm: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentControllerFor: fn(
             self: *const IUIAutomationElement,
             retVal: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDescribedBy: fn(
             self: *const IUIAutomationElement,
             retVal: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFlowsTo: fn(
             self: *const IUIAutomationElement,
             retVal: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentProviderDescription: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedProcessId: fn(
             self: *const IUIAutomationElement,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedControlType: fn(
             self: *const IUIAutomationElement,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLocalizedControlType: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedName: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAcceleratorKey: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAccessKey: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHasKeyboardFocus: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsKeyboardFocusable: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsEnabled: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAutomationId: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedClassName: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHelpText: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCulture: fn(
             self: *const IUIAutomationElement,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsControlElement: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsContentElement: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsPassword: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedNativeWindowHandle: fn(
             self: *const IUIAutomationElement,
             retVal: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedItemType: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsOffscreen: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedOrientation: fn(
             self: *const IUIAutomationElement,
             retVal: *OrientationType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFrameworkId: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsRequiredForForm: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedItemStatus: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedBoundingRectangle: fn(
             self: *const IUIAutomationElement,
             retVal: *RECT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLabeledBy: fn(
             self: *const IUIAutomationElement,
             retVal: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAriaRole: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAriaProperties: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsDataValidForForm: fn(
             self: *const IUIAutomationElement,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedControllerFor: fn(
             self: *const IUIAutomationElement,
             retVal: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDescribedBy: fn(
             self: *const IUIAutomationElement,
             retVal: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFlowsTo: fn(
             self: *const IUIAutomationElement,
             retVal: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedProviderDescription: fn(
             self: *const IUIAutomationElement,
             retVal: *BSTR,
@@ -5561,11 +5723,11 @@ pub const IUIAutomationElement = extern struct {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCachedPropertyValueEx(@ptrCast(*const IUIAutomationElement, self), propertyId, ignoreDefaultValue, retVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCurrentPatternAs(self: *const T, patternId: i32, riid: *const Guid, patternObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCurrentPatternAs(self: *const T, patternId: i32, riid: *const Guid, patternObject: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCurrentPatternAs(@ptrCast(*const IUIAutomationElement, self), patternId, riid, patternObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IUIAutomationElement_GetCachedPatternAs(self: *const T, patternId: i32, riid: *const Guid, patternObject: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IUIAutomationElement_GetCachedPatternAs(self: *const T, patternId: i32, riid: *const Guid, patternObject: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomationElement.VTable, self.vtable).GetCachedPatternAs(@ptrCast(*const IUIAutomationElement, self), patternId, riid, patternObject);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5854,6 +6016,7 @@ pub const IID_IUIAutomationElementArray = &IID_IUIAutomationElementArray_Value;
 pub const IUIAutomationElementArray = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Length: fn(
             self: *const IUIAutomationElementArray,
             length: *i32,
@@ -5899,6 +6062,7 @@ pub const IID_IUIAutomationBoolCondition = &IID_IUIAutomationBoolCondition_Value
 pub const IUIAutomationBoolCondition = extern struct {
     pub const VTable = extern struct {
         base: IUIAutomationCondition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BooleanValue: fn(
             self: *const IUIAutomationBoolCondition,
             boolVal: *BOOL,
@@ -5921,14 +6085,17 @@ pub const IID_IUIAutomationPropertyCondition = &IID_IUIAutomationPropertyConditi
 pub const IUIAutomationPropertyCondition = extern struct {
     pub const VTable = extern struct {
         base: IUIAutomationCondition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyId: fn(
             self: *const IUIAutomationPropertyCondition,
             propertyId: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyValue: fn(
             self: *const IUIAutomationPropertyCondition,
             propertyValue: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyConditionFlags: fn(
             self: *const IUIAutomationPropertyCondition,
             flags: *PropertyConditionFlags,
@@ -5959,6 +6126,7 @@ pub const IID_IUIAutomationAndCondition = &IID_IUIAutomationAndCondition_Value;
 pub const IUIAutomationAndCondition = extern struct {
     pub const VTable = extern struct {
         base: IUIAutomationCondition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ChildCount: fn(
             self: *const IUIAutomationAndCondition,
             childCount: *i32,
@@ -5998,6 +6166,7 @@ pub const IID_IUIAutomationOrCondition = &IID_IUIAutomationOrCondition_Value;
 pub const IUIAutomationOrCondition = extern struct {
     pub const VTable = extern struct {
         base: IUIAutomationCondition.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ChildCount: fn(
             self: *const IUIAutomationOrCondition,
             childCount: *i32,
@@ -6071,26 +6240,32 @@ pub const IUIAutomationCacheRequest = extern struct {
             self: *const IUIAutomationCacheRequest,
             clonedRequest: **IUIAutomationCacheRequest,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TreeScope: fn(
             self: *const IUIAutomationCacheRequest,
             scope: *TreeScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TreeScope: fn(
             self: *const IUIAutomationCacheRequest,
             scope: TreeScope,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TreeFilter: fn(
             self: *const IUIAutomationCacheRequest,
             filter: **IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TreeFilter: fn(
             self: *const IUIAutomationCacheRequest,
             filter: *IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutomationElementMode: fn(
             self: *const IUIAutomationCacheRequest,
             mode: *AutomationElementMode,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutomationElementMode: fn(
             self: *const IUIAutomationCacheRequest,
             mode: AutomationElementMode,
@@ -6211,6 +6386,7 @@ pub const IUIAutomationTreeWalker = extern struct {
             cacheRequest: *IUIAutomationCacheRequest,
             normalized: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Condition: fn(
             self: *const IUIAutomationTreeWalker,
             condition: **IUIAutomationCondition,
@@ -6473,10 +6649,12 @@ pub const IUIAutomationDockPattern = extern struct {
             self: *const IUIAutomationDockPattern,
             dockPos: DockPosition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDockPosition: fn(
             self: *const IUIAutomationDockPattern,
             retVal: *DockPosition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDockPosition: fn(
             self: *const IUIAutomationDockPattern,
             retVal: *DockPosition,
@@ -6513,10 +6691,12 @@ pub const IUIAutomationExpandCollapsePattern = extern struct {
         Collapse: fn(
             self: *const IUIAutomationExpandCollapsePattern,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentExpandCollapseState: fn(
             self: *const IUIAutomationExpandCollapsePattern,
             retVal: *ExpandCollapseState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedExpandCollapseState: fn(
             self: *const IUIAutomationExpandCollapsePattern,
             retVal: *ExpandCollapseState,
@@ -6557,18 +6737,22 @@ pub const IUIAutomationGridPattern = extern struct {
             column: i32,
             element: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRowCount: fn(
             self: *const IUIAutomationGridPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentColumnCount: fn(
             self: *const IUIAutomationGridPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedRowCount: fn(
             self: *const IUIAutomationGridPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedColumnCount: fn(
             self: *const IUIAutomationGridPattern,
             retVal: *i32,
@@ -6607,42 +6791,52 @@ pub const IID_IUIAutomationGridItemPattern = &IID_IUIAutomationGridItemPattern_V
 pub const IUIAutomationGridItemPattern = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentContainingGrid: fn(
             self: *const IUIAutomationGridItemPattern,
             retVal: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRow: fn(
             self: *const IUIAutomationGridItemPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentColumn: fn(
             self: *const IUIAutomationGridItemPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRowSpan: fn(
             self: *const IUIAutomationGridItemPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentColumnSpan: fn(
             self: *const IUIAutomationGridItemPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedContainingGrid: fn(
             self: *const IUIAutomationGridItemPattern,
             retVal: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedRow: fn(
             self: *const IUIAutomationGridItemPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedColumn: fn(
             self: *const IUIAutomationGridItemPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedRowSpan: fn(
             self: *const IUIAutomationGridItemPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedColumnSpan: fn(
             self: *const IUIAutomationGridItemPattern,
             retVal: *i32,
@@ -6710,6 +6904,7 @@ pub const IUIAutomationMultipleViewPattern = extern struct {
             self: *const IUIAutomationMultipleViewPattern,
             view: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCurrentView: fn(
             self: *const IUIAutomationMultipleViewPattern,
             retVal: *i32,
@@ -6718,6 +6913,7 @@ pub const IUIAutomationMultipleViewPattern = extern struct {
             self: *const IUIAutomationMultipleViewPattern,
             retVal: **SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCurrentView: fn(
             self: *const IUIAutomationMultipleViewPattern,
             retVal: *i32,
@@ -6790,50 +6986,62 @@ pub const IUIAutomationRangeValuePattern = extern struct {
             self: *const IUIAutomationRangeValuePattern,
             val: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentValue: fn(
             self: *const IUIAutomationRangeValuePattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsReadOnly: fn(
             self: *const IUIAutomationRangeValuePattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentMaximum: fn(
             self: *const IUIAutomationRangeValuePattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentMinimum: fn(
             self: *const IUIAutomationRangeValuePattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLargeChange: fn(
             self: *const IUIAutomationRangeValuePattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentSmallChange: fn(
             self: *const IUIAutomationRangeValuePattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedValue: fn(
             self: *const IUIAutomationRangeValuePattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsReadOnly: fn(
             self: *const IUIAutomationRangeValuePattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedMaximum: fn(
             self: *const IUIAutomationRangeValuePattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedMinimum: fn(
             self: *const IUIAutomationRangeValuePattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLargeChange: fn(
             self: *const IUIAutomationRangeValuePattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedSmallChange: fn(
             self: *const IUIAutomationRangeValuePattern,
             retVal: *f64,
@@ -6914,50 +7122,62 @@ pub const IUIAutomationScrollPattern = extern struct {
             horizontalPercent: f64,
             verticalPercent: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHorizontalScrollPercent: fn(
             self: *const IUIAutomationScrollPattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentVerticalScrollPercent: fn(
             self: *const IUIAutomationScrollPattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHorizontalViewSize: fn(
             self: *const IUIAutomationScrollPattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentVerticalViewSize: fn(
             self: *const IUIAutomationScrollPattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHorizontallyScrollable: fn(
             self: *const IUIAutomationScrollPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentVerticallyScrollable: fn(
             self: *const IUIAutomationScrollPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHorizontalScrollPercent: fn(
             self: *const IUIAutomationScrollPattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedVerticalScrollPercent: fn(
             self: *const IUIAutomationScrollPattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHorizontalViewSize: fn(
             self: *const IUIAutomationScrollPattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedVerticalViewSize: fn(
             self: *const IUIAutomationScrollPattern,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHorizontallyScrollable: fn(
             self: *const IUIAutomationScrollPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedVerticallyScrollable: fn(
             self: *const IUIAutomationScrollPattern,
             retVal: *BOOL,
@@ -7057,10 +7277,12 @@ pub const IUIAutomationSelectionPattern = extern struct {
             self: *const IUIAutomationSelectionPattern,
             retVal: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanSelectMultiple: fn(
             self: *const IUIAutomationSelectionPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsSelectionRequired: fn(
             self: *const IUIAutomationSelectionPattern,
             retVal: *BOOL,
@@ -7069,10 +7291,12 @@ pub const IUIAutomationSelectionPattern = extern struct {
             self: *const IUIAutomationSelectionPattern,
             retVal: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanSelectMultiple: fn(
             self: *const IUIAutomationSelectionPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsSelectionRequired: fn(
             self: *const IUIAutomationSelectionPattern,
             retVal: *BOOL,
@@ -7115,34 +7339,42 @@ pub const IID_IUIAutomationSelectionPattern2 = &IID_IUIAutomationSelectionPatter
 pub const IUIAutomationSelectionPattern2 = extern struct {
     pub const VTable = extern struct {
         base: IUIAutomationSelectionPattern.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFirstSelectedItem: fn(
             self: *const IUIAutomationSelectionPattern2,
             retVal: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLastSelectedItem: fn(
             self: *const IUIAutomationSelectionPattern2,
             retVal: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCurrentSelectedItem: fn(
             self: *const IUIAutomationSelectionPattern2,
             retVal: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentItemCount: fn(
             self: *const IUIAutomationSelectionPattern2,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFirstSelectedItem: fn(
             self: *const IUIAutomationSelectionPattern2,
             retVal: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLastSelectedItem: fn(
             self: *const IUIAutomationSelectionPattern2,
             retVal: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCurrentSelectedItem: fn(
             self: *const IUIAutomationSelectionPattern2,
             retVal: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedItemCount: fn(
             self: *const IUIAutomationSelectionPattern2,
             retVal: *i32,
@@ -7202,18 +7434,22 @@ pub const IUIAutomationSelectionItemPattern = extern struct {
         RemoveFromSelection: fn(
             self: *const IUIAutomationSelectionItemPattern,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsSelected: fn(
             self: *const IUIAutomationSelectionItemPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentSelectionContainer: fn(
             self: *const IUIAutomationSelectionItemPattern,
             retVal: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsSelected: fn(
             self: *const IUIAutomationSelectionItemPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedSelectionContainer: fn(
             self: *const IUIAutomationSelectionItemPattern,
             retVal: **IUIAutomationElement,
@@ -7297,6 +7533,7 @@ pub const IUIAutomationTablePattern = extern struct {
             self: *const IUIAutomationTablePattern,
             retVal: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRowOrColumnMajor: fn(
             self: *const IUIAutomationTablePattern,
             retVal: *RowOrColumnMajor,
@@ -7309,6 +7546,7 @@ pub const IUIAutomationTablePattern = extern struct {
             self: *const IUIAutomationTablePattern,
             retVal: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedRowOrColumnMajor: fn(
             self: *const IUIAutomationTablePattern,
             retVal: *RowOrColumnMajor,
@@ -7400,10 +7638,12 @@ pub const IUIAutomationTogglePattern = extern struct {
         Toggle: fn(
             self: *const IUIAutomationTogglePattern,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentToggleState: fn(
             self: *const IUIAutomationTogglePattern,
             retVal: *ToggleState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedToggleState: fn(
             self: *const IUIAutomationTogglePattern,
             retVal: *ToggleState,
@@ -7448,26 +7688,32 @@ pub const IUIAutomationTransformPattern = extern struct {
             self: *const IUIAutomationTransformPattern,
             degrees: f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanMove: fn(
             self: *const IUIAutomationTransformPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanResize: fn(
             self: *const IUIAutomationTransformPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanRotate: fn(
             self: *const IUIAutomationTransformPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanMove: fn(
             self: *const IUIAutomationTransformPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanResize: fn(
             self: *const IUIAutomationTransformPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanRotate: fn(
             self: *const IUIAutomationTransformPattern,
             retVal: *BOOL,
@@ -7526,18 +7772,22 @@ pub const IUIAutomationValuePattern = extern struct {
             self: *const IUIAutomationValuePattern,
             val: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentValue: fn(
             self: *const IUIAutomationValuePattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsReadOnly: fn(
             self: *const IUIAutomationValuePattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedValue: fn(
             self: *const IUIAutomationValuePattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsReadOnly: fn(
             self: *const IUIAutomationValuePattern,
             retVal: *BOOL,
@@ -7588,50 +7838,62 @@ pub const IUIAutomationWindowPattern = extern struct {
             self: *const IUIAutomationWindowPattern,
             state: WindowVisualState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanMaximize: fn(
             self: *const IUIAutomationWindowPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanMinimize: fn(
             self: *const IUIAutomationWindowPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsModal: fn(
             self: *const IUIAutomationWindowPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsTopmost: fn(
             self: *const IUIAutomationWindowPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentWindowVisualState: fn(
             self: *const IUIAutomationWindowPattern,
             retVal: *WindowVisualState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentWindowInteractionState: fn(
             self: *const IUIAutomationWindowPattern,
             retVal: *WindowInteractionState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanMaximize: fn(
             self: *const IUIAutomationWindowPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanMinimize: fn(
             self: *const IUIAutomationWindowPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsModal: fn(
             self: *const IUIAutomationWindowPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsTopmost: fn(
             self: *const IUIAutomationWindowPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedWindowVisualState: fn(
             self: *const IUIAutomationWindowPattern,
             retVal: *WindowVisualState,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedWindowInteractionState: fn(
             self: *const IUIAutomationWindowPattern,
             retVal: *WindowInteractionState,
@@ -7947,6 +8209,7 @@ pub const IID_IUIAutomationTextRangeArray = &IID_IUIAutomationTextRangeArray_Val
 pub const IUIAutomationTextRangeArray = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Length: fn(
             self: *const IUIAutomationTextRangeArray,
             length: *i32,
@@ -7996,10 +8259,12 @@ pub const IUIAutomationTextPattern = extern struct {
             self: *const IUIAutomationTextPattern,
             ranges: **IUIAutomationTextRangeArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DocumentRange: fn(
             self: *const IUIAutomationTextPattern,
             range: **IUIAutomationTextRange,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedTextSelection: fn(
             self: *const IUIAutomationTextPattern,
             supportedTextSelection: *SupportedTextSelection,
@@ -8161,34 +8426,42 @@ pub const IUIAutomationLegacyIAccessiblePattern = extern struct {
             self: *const IUIAutomationLegacyIAccessiblePattern,
             szValue: [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentChildId: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentName: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pszName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentValue: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pszValue: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDescription: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pszDescription: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentRole: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pdwRole: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentState: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pdwState: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHelp: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pszHelp: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentKeyboardShortcut: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pszKeyboardShortcut: *BSTR,
@@ -8197,38 +8470,47 @@ pub const IUIAutomationLegacyIAccessiblePattern = extern struct {
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pvarSelectedChildren: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDefaultAction: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pszDefaultAction: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedChildId: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pRetVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedName: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pszName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedValue: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pszValue: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDescription: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pszDescription: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedRole: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pdwRole: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedState: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pdwState: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHelp: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pszHelp: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedKeyboardShortcut: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pszKeyboardShortcut: *BSTR,
@@ -8237,6 +8519,7 @@ pub const IUIAutomationLegacyIAccessiblePattern = extern struct {
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pvarSelectedChildren: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDefaultAction: fn(
             self: *const IUIAutomationLegacyIAccessiblePattern,
             pszDefaultAction: *BSTR,
@@ -8401,42 +8684,52 @@ pub const IID_IUIAutomationAnnotationPattern = &IID_IUIAutomationAnnotationPatte
 pub const IUIAutomationAnnotationPattern = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAnnotationTypeId: fn(
             self: *const IUIAutomationAnnotationPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAnnotationTypeName: fn(
             self: *const IUIAutomationAnnotationPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAuthor: fn(
             self: *const IUIAutomationAnnotationPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDateTime: fn(
             self: *const IUIAutomationAnnotationPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentTarget: fn(
             self: *const IUIAutomationAnnotationPattern,
             retVal: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAnnotationTypeId: fn(
             self: *const IUIAutomationAnnotationPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAnnotationTypeName: fn(
             self: *const IUIAutomationAnnotationPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAuthor: fn(
             self: *const IUIAutomationAnnotationPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDateTime: fn(
             self: *const IUIAutomationAnnotationPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedTarget: fn(
             self: *const IUIAutomationAnnotationPattern,
             retVal: **IUIAutomationElement,
@@ -8495,30 +8788,37 @@ pub const IID_IUIAutomationStylesPattern = &IID_IUIAutomationStylesPattern_Value
 pub const IUIAutomationStylesPattern = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentStyleId: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentStyleName: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFillColor: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFillPatternStyle: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentShape: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFillPatternColor: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentExtendedProperties: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *BSTR,
@@ -8528,30 +8828,37 @@ pub const IUIAutomationStylesPattern = extern struct {
             propertyArray: **ExtendedProperty,
             propertyCount: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedStyleId: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedStyleName: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFillColor: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFillPatternStyle: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedShape: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFillPatternColor: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedExtendedProperties: fn(
             self: *const IUIAutomationStylesPattern,
             retVal: *BSTR,
@@ -8662,6 +8969,7 @@ pub const IID_IUIAutomationSpreadsheetItemPattern = &IID_IUIAutomationSpreadshee
 pub const IUIAutomationSpreadsheetItemPattern = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFormula: fn(
             self: *const IUIAutomationSpreadsheetItemPattern,
             retVal: *BSTR,
@@ -8674,6 +8982,7 @@ pub const IUIAutomationSpreadsheetItemPattern = extern struct {
             self: *const IUIAutomationSpreadsheetItemPattern,
             retVal: **SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFormula: fn(
             self: *const IUIAutomationSpreadsheetItemPattern,
             retVal: *BSTR,
@@ -8732,34 +9041,42 @@ pub const IUIAutomationTransformPattern2 = extern struct {
             self: *const IUIAutomationTransformPattern2,
             zoomUnit: ZoomUnit,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentCanZoom: fn(
             self: *const IUIAutomationTransformPattern2,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedCanZoom: fn(
             self: *const IUIAutomationTransformPattern2,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentZoomLevel: fn(
             self: *const IUIAutomationTransformPattern2,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedZoomLevel: fn(
             self: *const IUIAutomationTransformPattern2,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentZoomMinimum: fn(
             self: *const IUIAutomationTransformPattern2,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedZoomMinimum: fn(
             self: *const IUIAutomationTransformPattern2,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentZoomMaximum: fn(
             self: *const IUIAutomationTransformPattern2,
             retVal: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedZoomMaximum: fn(
             self: *const IUIAutomationTransformPattern2,
             retVal: *f64,
@@ -8818,10 +9135,12 @@ pub const IID_IUIAutomationTextChildPattern = &IID_IUIAutomationTextChildPattern
 pub const IUIAutomationTextChildPattern = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TextContainer: fn(
             self: *const IUIAutomationTextChildPattern,
             container: **IUIAutomationElement,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TextRange: fn(
             self: *const IUIAutomationTextChildPattern,
             range: **IUIAutomationTextRange,
@@ -8848,26 +9167,32 @@ pub const IID_IUIAutomationDragPattern = &IID_IUIAutomationDragPattern_Value;
 pub const IUIAutomationDragPattern = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsGrabbed: fn(
             self: *const IUIAutomationDragPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsGrabbed: fn(
             self: *const IUIAutomationDragPattern,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDropEffect: fn(
             self: *const IUIAutomationDragPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDropEffect: fn(
             self: *const IUIAutomationDragPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDropEffects: fn(
             self: *const IUIAutomationDragPattern,
             retVal: **SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDropEffects: fn(
             self: *const IUIAutomationDragPattern,
             retVal: **SAFEARRAY,
@@ -8926,18 +9251,22 @@ pub const IID_IUIAutomationDropTargetPattern = &IID_IUIAutomationDropTargetPatte
 pub const IUIAutomationDropTargetPattern = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDropTargetEffect: fn(
             self: *const IUIAutomationDropTargetPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDropTargetEffect: fn(
             self: *const IUIAutomationDropTargetPattern,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDropTargetEffects: fn(
             self: *const IUIAutomationDropTargetPattern,
             retVal: **SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedDropTargetEffects: fn(
             self: *const IUIAutomationDropTargetPattern,
             retVal: **SAFEARRAY,
@@ -8972,26 +9301,32 @@ pub const IID_IUIAutomationElement2 = &IID_IUIAutomationElement2_Value;
 pub const IUIAutomationElement2 = extern struct {
     pub const VTable = extern struct {
         base: IUIAutomationElement.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentOptimizeForVisualContent: fn(
             self: *const IUIAutomationElement2,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedOptimizeForVisualContent: fn(
             self: *const IUIAutomationElement2,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLiveSetting: fn(
             self: *const IUIAutomationElement2,
             retVal: *LiveSetting,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLiveSetting: fn(
             self: *const IUIAutomationElement2,
             retVal: *LiveSetting,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFlowsFrom: fn(
             self: *const IUIAutomationElement2,
             retVal: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFlowsFrom: fn(
             self: *const IUIAutomationElement2,
             retVal: **IUIAutomationElementArray,
@@ -9037,10 +9372,12 @@ pub const IUIAutomationElement3 = extern struct {
         ShowContextMenu: fn(
             self: *const IUIAutomationElement3,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsPeripheral: fn(
             self: *const IUIAutomationElement3,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsPeripheral: fn(
             self: *const IUIAutomationElement3,
             retVal: *BOOL,
@@ -9071,42 +9408,52 @@ pub const IID_IUIAutomationElement4 = &IID_IUIAutomationElement4_Value;
 pub const IUIAutomationElement4 = extern struct {
     pub const VTable = extern struct {
         base: IUIAutomationElement3.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentPositionInSet: fn(
             self: *const IUIAutomationElement4,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentSizeOfSet: fn(
             self: *const IUIAutomationElement4,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLevel: fn(
             self: *const IUIAutomationElement4,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAnnotationTypes: fn(
             self: *const IUIAutomationElement4,
             retVal: **SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAnnotationObjects: fn(
             self: *const IUIAutomationElement4,
             retVal: **IUIAutomationElementArray,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedPositionInSet: fn(
             self: *const IUIAutomationElement4,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedSizeOfSet: fn(
             self: *const IUIAutomationElement4,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLevel: fn(
             self: *const IUIAutomationElement4,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAnnotationTypes: fn(
             self: *const IUIAutomationElement4,
             retVal: **SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedAnnotationObjects: fn(
             self: *const IUIAutomationElement4,
             retVal: **IUIAutomationElementArray,
@@ -9165,18 +9512,22 @@ pub const IID_IUIAutomationElement5 = &IID_IUIAutomationElement5_Value;
 pub const IUIAutomationElement5 = extern struct {
     pub const VTable = extern struct {
         base: IUIAutomationElement4.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLandmarkType: fn(
             self: *const IUIAutomationElement5,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentLocalizedLandmarkType: fn(
             self: *const IUIAutomationElement5,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLandmarkType: fn(
             self: *const IUIAutomationElement5,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedLocalizedLandmarkType: fn(
             self: *const IUIAutomationElement5,
             retVal: *BSTR,
@@ -9211,10 +9562,12 @@ pub const IID_IUIAutomationElement6 = &IID_IUIAutomationElement6_Value;
 pub const IUIAutomationElement6 = extern struct {
     pub const VTable = extern struct {
         base: IUIAutomationElement5.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFullDescription: fn(
             self: *const IUIAutomationElement6,
             retVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedFullDescription: fn(
             self: *const IUIAutomationElement6,
             retVal: *BSTR,
@@ -9315,10 +9668,12 @@ pub const IID_IUIAutomationElement8 = &IID_IUIAutomationElement8_Value;
 pub const IUIAutomationElement8 = extern struct {
     pub const VTable = extern struct {
         base: IUIAutomationElement7.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentHeadingLevel: fn(
             self: *const IUIAutomationElement8,
             retVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedHeadingLevel: fn(
             self: *const IUIAutomationElement8,
             retVal: *i32,
@@ -9345,10 +9700,12 @@ pub const IID_IUIAutomationElement9 = &IID_IUIAutomationElement9_Value;
 pub const IUIAutomationElement9 = extern struct {
     pub const VTable = extern struct {
         base: IUIAutomationElement8.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentIsDialog: fn(
             self: *const IUIAutomationElement9,
             retVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CachedIsDialog: fn(
             self: *const IUIAutomationElement9,
             retVal: *BOOL,
@@ -9382,6 +9739,7 @@ pub const IUIAutomationProxyFactory = extern struct {
             idChild: i32,
             provider: **IRawElementProviderSimple,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProxyFactoryId: fn(
             self: *const IUIAutomationProxyFactory,
             factoryId: *BSTR,
@@ -9408,46 +9766,57 @@ pub const IID_IUIAutomationProxyFactoryEntry = &IID_IUIAutomationProxyFactoryEnt
 pub const IUIAutomationProxyFactoryEntry = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProxyFactory: fn(
             self: *const IUIAutomationProxyFactoryEntry,
             factory: **IUIAutomationProxyFactory,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassName: fn(
             self: *const IUIAutomationProxyFactoryEntry,
             className: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImageName: fn(
             self: *const IUIAutomationProxyFactoryEntry,
             imageName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowSubstringMatch: fn(
             self: *const IUIAutomationProxyFactoryEntry,
             allowSubstringMatch: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanCheckBaseClass: fn(
             self: *const IUIAutomationProxyFactoryEntry,
             canCheckBaseClass: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NeedsAdviseEvents: fn(
             self: *const IUIAutomationProxyFactoryEntry,
             adviseEvents: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClassName: fn(
             self: *const IUIAutomationProxyFactoryEntry,
             className: [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ImageName: fn(
             self: *const IUIAutomationProxyFactoryEntry,
             imageName: [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowSubstringMatch: fn(
             self: *const IUIAutomationProxyFactoryEntry,
             allowSubstringMatch: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CanCheckBaseClass: fn(
             self: *const IUIAutomationProxyFactoryEntry,
             canCheckBaseClass: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NeedsAdviseEvents: fn(
             self: *const IUIAutomationProxyFactoryEntry,
             adviseEvents: BOOL,
@@ -9530,6 +9899,7 @@ pub const IID_IUIAutomationProxyFactoryMapping = &IID_IUIAutomationProxyFactoryM
 pub const IUIAutomationProxyFactoryMapping = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IUIAutomationProxyFactoryMapping,
             count: *u32,
@@ -9764,26 +10134,32 @@ pub const IUIAutomation = extern struct {
             pCondition: *IUIAutomationCondition,
             walker: **IUIAutomationTreeWalker,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ControlViewWalker: fn(
             self: *const IUIAutomation,
             walker: **IUIAutomationTreeWalker,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContentViewWalker: fn(
             self: *const IUIAutomation,
             walker: **IUIAutomationTreeWalker,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RawViewWalker: fn(
             self: *const IUIAutomation,
             walker: **IUIAutomationTreeWalker,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RawViewCondition: fn(
             self: *const IUIAutomation,
             condition: **IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ControlViewCondition: fn(
             self: *const IUIAutomation,
             condition: **IUIAutomationCondition,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContentViewCondition: fn(
             self: *const IUIAutomation,
             condition: **IUIAutomationCondition,
@@ -9945,6 +10321,7 @@ pub const IUIAutomation = extern struct {
             factory: *IUIAutomationProxyFactory,
             factoryEntry: **IUIAutomationProxyFactoryEntry,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProxyFactoryMapping: fn(
             self: *const IUIAutomation,
             factoryMapping: **IUIAutomationProxyFactoryMapping,
@@ -9976,10 +10353,12 @@ pub const IUIAutomation = extern struct {
             value: VARIANT,
             isNotSupported: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReservedNotSupportedValue: fn(
             self: *const IUIAutomation,
             notSupportedValue: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReservedMixedAttributeValue: fn(
             self: *const IUIAutomation,
             mixedAttributeValue: **IUnknown,
@@ -10231,26 +10610,32 @@ pub const IID_IUIAutomation2 = &IID_IUIAutomation2_Value;
 pub const IUIAutomation2 = extern struct {
     pub const VTable = extern struct {
         base: IUIAutomation.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoSetFocus: fn(
             self: *const IUIAutomation2,
             autoSetFocus: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoSetFocus: fn(
             self: *const IUIAutomation2,
             autoSetFocus: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectionTimeout: fn(
             self: *const IUIAutomation2,
             timeout: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ConnectionTimeout: fn(
             self: *const IUIAutomation2,
             timeout: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionTimeout: fn(
             self: *const IUIAutomation2,
             timeout: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TransactionTimeout: fn(
             self: *const IUIAutomation2,
             timeout: u32,
@@ -10387,6 +10772,102 @@ pub const IUIAutomation5 = extern struct {
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IUIAutomation5_RemoveNotificationEventHandler(self: *const T, element: *IUIAutomationElement, handler: *IUIAutomationNotificationEventHandler) callconv(.Inline) HRESULT {
             return @ptrCast(*const IUIAutomation5.VTable, self.vtable).RemoveNotificationEventHandler(@ptrCast(*const IUIAutomation5, self), element, handler);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows10.0.17763'
+const IID_IUIAutomation6_Value = @import("../zig.zig").Guid.initString("aae072da-29e3-413d-87a7-192dbf81ed10");
+pub const IID_IUIAutomation6 = &IID_IUIAutomation6_Value;
+pub const IUIAutomation6 = extern struct {
+    pub const VTable = extern struct {
+        base: IUIAutomation5.VTable,
+        CreateEventHandlerGroup: fn(
+            self: *const IUIAutomation6,
+            handlerGroup: **IUIAutomationEventHandlerGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddEventHandlerGroup: fn(
+            self: *const IUIAutomation6,
+            element: *IUIAutomationElement,
+            handlerGroup: *IUIAutomationEventHandlerGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveEventHandlerGroup: fn(
+            self: *const IUIAutomation6,
+            element: *IUIAutomationElement,
+            handlerGroup: *IUIAutomationEventHandlerGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ConnectionRecoveryBehavior: fn(
+            self: *const IUIAutomation6,
+            connectionRecoveryBehaviorOptions: *ConnectionRecoveryBehaviorOptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_ConnectionRecoveryBehavior: fn(
+            self: *const IUIAutomation6,
+            connectionRecoveryBehaviorOptions: ConnectionRecoveryBehaviorOptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CoalesceEvents: fn(
+            self: *const IUIAutomation6,
+            coalesceEventsOptions: *CoalesceEventsOptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_CoalesceEvents: fn(
+            self: *const IUIAutomation6,
+            coalesceEventsOptions: CoalesceEventsOptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddActiveTextPositionChangedEventHandler: fn(
+            self: *const IUIAutomation6,
+            element: *IUIAutomationElement,
+            scope: TreeScope,
+            cacheRequest: *IUIAutomationCacheRequest,
+            handler: *IUIAutomationActiveTextPositionChangedEventHandler,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveActiveTextPositionChangedEventHandler: fn(
+            self: *const IUIAutomation6,
+            element: *IUIAutomationElement,
+            handler: *IUIAutomationActiveTextPositionChangedEventHandler,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUIAutomation5.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IUIAutomation6_CreateEventHandlerGroup(self: *const T, handlerGroup: **IUIAutomationEventHandlerGroup) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IUIAutomation6.VTable, self.vtable).CreateEventHandlerGroup(@ptrCast(*const IUIAutomation6, self), handlerGroup);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IUIAutomation6_AddEventHandlerGroup(self: *const T, element: *IUIAutomationElement, handlerGroup: *IUIAutomationEventHandlerGroup) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IUIAutomation6.VTable, self.vtable).AddEventHandlerGroup(@ptrCast(*const IUIAutomation6, self), element, handlerGroup);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IUIAutomation6_RemoveEventHandlerGroup(self: *const T, element: *IUIAutomationElement, handlerGroup: *IUIAutomationEventHandlerGroup) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IUIAutomation6.VTable, self.vtable).RemoveEventHandlerGroup(@ptrCast(*const IUIAutomation6, self), element, handlerGroup);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IUIAutomation6_get_ConnectionRecoveryBehavior(self: *const T, connectionRecoveryBehaviorOptions: *ConnectionRecoveryBehaviorOptions) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IUIAutomation6.VTable, self.vtable).get_ConnectionRecoveryBehavior(@ptrCast(*const IUIAutomation6, self), connectionRecoveryBehaviorOptions);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IUIAutomation6_put_ConnectionRecoveryBehavior(self: *const T, connectionRecoveryBehaviorOptions: ConnectionRecoveryBehaviorOptions) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IUIAutomation6.VTable, self.vtable).put_ConnectionRecoveryBehavior(@ptrCast(*const IUIAutomation6, self), connectionRecoveryBehaviorOptions);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IUIAutomation6_get_CoalesceEvents(self: *const T, coalesceEventsOptions: *CoalesceEventsOptions) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IUIAutomation6.VTable, self.vtable).get_CoalesceEvents(@ptrCast(*const IUIAutomation6, self), coalesceEventsOptions);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IUIAutomation6_put_CoalesceEvents(self: *const T, coalesceEventsOptions: CoalesceEventsOptions) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IUIAutomation6.VTable, self.vtable).put_CoalesceEvents(@ptrCast(*const IUIAutomation6, self), coalesceEventsOptions);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IUIAutomation6_AddActiveTextPositionChangedEventHandler(self: *const T, element: *IUIAutomationElement, scope: TreeScope, cacheRequest: *IUIAutomationCacheRequest, handler: *IUIAutomationActiveTextPositionChangedEventHandler) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IUIAutomation6.VTable, self.vtable).AddActiveTextPositionChangedEventHandler(@ptrCast(*const IUIAutomation6, self), element, scope, cacheRequest, handler);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IUIAutomation6_RemoveActiveTextPositionChangedEventHandler(self: *const T, element: *IUIAutomationElement, handler: *IUIAutomationActiveTextPositionChangedEventHandler) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IUIAutomation6.VTable, self.vtable).RemoveActiveTextPositionChangedEventHandler(@ptrCast(*const IUIAutomation6, self), element, handler);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -10579,7 +11060,7 @@ pub const UiaEventCallback = fn(
 
 pub const SERIALKEYSA = extern struct {
     cbSize: u32,
-    dwFlags: SERIALKEYSW_dwFlags,
+    dwFlags: SERIALKEYS_FLAGS,
     lpszActivePort: PSTR,
     lpszPort: PSTR,
     iBaudRate: u32,
@@ -10589,7 +11070,7 @@ pub const SERIALKEYSA = extern struct {
 
 pub const SERIALKEYSW = extern struct {
     cbSize: u32,
-    dwFlags: SERIALKEYSW_dwFlags,
+    dwFlags: SERIALKEYS_FLAGS,
     lpszActivePort: PWSTR,
     lpszPort: PWSTR,
     iBaudRate: u32,
@@ -10599,13 +11080,13 @@ pub const SERIALKEYSW = extern struct {
 
 pub const HIGHCONTRASTA = extern struct {
     cbSize: u32,
-    dwFlags: HIGHCONTRASTW_dwFlags,
+    dwFlags: HIGHCONTRASTW_FLAGS,
     lpszDefaultScheme: PSTR,
 };
 
 pub const HIGHCONTRASTW = extern struct {
     cbSize: u32,
-    dwFlags: HIGHCONTRASTW_dwFlags,
+    dwFlags: HIGHCONTRASTW_FLAGS,
     lpszDefaultScheme: PWSTR,
 };
 
@@ -10642,13 +11123,13 @@ pub const ACCESSTIMEOUT = extern struct {
 pub const SOUNDSENTRYA = extern struct {
     cbSize: u32,
     dwFlags: SOUNDSENTRY_FLAGS,
-    iFSTextEffect: SOUNDSENTRYA_iFSTextEffect,
+    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
     iFSTextEffectMSec: u32,
     iFSTextEffectColorBits: u32,
-    iFSGrafEffect: SOUNDSENTRYW_iFSGrafEffect,
+    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
     iFSGrafEffectMSec: u32,
     iFSGrafEffectColor: u32,
-    iWindowsEffect: SOUNDSENTRYA_iWindowsEffect,
+    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
     iWindowsEffectMSec: u32,
     lpszWindowsEffectDLL: PSTR,
     iWindowsEffectOrdinal: u32,
@@ -10657,13 +11138,13 @@ pub const SOUNDSENTRYA = extern struct {
 pub const SOUNDSENTRYW = extern struct {
     cbSize: u32,
     dwFlags: SOUNDSENTRY_FLAGS,
-    iFSTextEffect: SOUNDSENTRYA_iFSTextEffect,
+    iFSTextEffect: SOUNDSENTRY_TEXT_EFFECT,
     iFSTextEffectMSec: u32,
     iFSTextEffectColorBits: u32,
-    iFSGrafEffect: SOUNDSENTRYW_iFSGrafEffect,
+    iFSGrafEffect: SOUND_SENTRY_GRAPHICS_EFFECT,
     iFSGrafEffectMSec: u32,
     iFSGrafEffectColor: u32,
-    iWindowsEffect: SOUNDSENTRYA_iWindowsEffect,
+    iWindowsEffect: SOUNDSENTRY_WINDOWS_EFFECT,
     iWindowsEffectMSec: u32,
     lpszWindowsEffectDLL: PWSTR,
     iWindowsEffectOrdinal: u32,
@@ -10806,7 +11287,7 @@ pub extern "OLEACC" fn CreateStdAccessibleProxyW(
 pub extern "OLEACC" fn AccSetRunningUtilityState(
     hwndApp: HWND,
     dwUtilityStateMask: u32,
-    dwUtilityState: AccSetRunningUtilityState_dwUtilityStateFlags,
+    dwUtilityState: ACC_UTILITY_STATE_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -11577,9 +12058,9 @@ test {
     _ = WINEVENTPROC;
 
     const constant_export_count = 926;
-    const type_export_count = 250;
+    const type_export_count = 251;
     const enum_value_export_count = 333;
-    const com_iface_id_export_count = 147;
+    const com_iface_id_export_count = 148;
     const com_class_id_export_count = 10;
     const func_export_count = 123;
     const unicode_alias_count = 6;

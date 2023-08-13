@@ -16,14 +16,14 @@ pub const ISpatialInteractionManagerInterop = extern struct {
             self: *const ISpatialInteractionManagerInterop,
             window: HWND,
             riid: *const Guid,
-            spatialInteractionManager: ?*?*c_void,
+            spatialInteractionManager: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISpatialInteractionManagerInterop_GetForWindow(self: *const T, window: HWND, riid: *const Guid, spatialInteractionManager: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn ISpatialInteractionManagerInterop_GetForWindow(self: *const T, window: HWND, riid: *const Guid, spatialInteractionManager: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const ISpatialInteractionManagerInterop.VTable, self.vtable).GetForWindow(@ptrCast(*const ISpatialInteractionManagerInterop, self), window, riid, spatialInteractionManager);
         }
     };}
@@ -40,14 +40,14 @@ pub const IHolographicSpaceInterop = extern struct {
             self: *const IHolographicSpaceInterop,
             window: HWND,
             riid: *const Guid,
-            holographicSpace: ?*?*c_void,
+            holographicSpace: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IHolographicSpaceInterop_CreateForWindow(self: *const T, window: HWND, riid: *const Guid, holographicSpace: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IHolographicSpaceInterop_CreateForWindow(self: *const T, window: HWND, riid: *const Guid, holographicSpace: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IHolographicSpaceInterop.VTable, self.vtable).CreateForWindow(@ptrCast(*const IHolographicSpaceInterop, self), window, riid, holographicSpace);
         }
     };}

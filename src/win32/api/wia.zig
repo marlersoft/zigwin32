@@ -514,13 +514,13 @@ pub const IWiaPropertyStorage = extern struct {
             self: *const IWiaPropertyStorage,
             cpropid: u32,
             rgpropid: [*]const u32,
-            rglpwstrName: [*]*PWSTR,
+            rglpwstrName: [*]PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         WritePropertyNames: fn(
             self: *const IWiaPropertyStorage,
             cpropid: u32,
             rgpropid: [*]const u32,
-            rglpwstrName: [*]const *const [*:0]const u16,
+            rglpwstrName: [*]const [*:0]const u16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePropertyNames: fn(
             self: *const IWiaPropertyStorage,
@@ -590,11 +590,11 @@ pub const IWiaPropertyStorage = extern struct {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).DeleteMultiple(@ptrCast(*const IWiaPropertyStorage, self), cpspec, rgpspec);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_ReadPropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]*PWSTR) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_ReadPropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).ReadPropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWiaPropertyStorage_WritePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const *const [*:0]const u16) callconv(.Inline) HRESULT {
+        pub fn IWiaPropertyStorage_WritePropertyNames(self: *const T, cpropid: u32, rgpropid: [*]const u32, rglpwstrName: [*]const [*:0]const u16) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWiaPropertyStorage.VTable, self.vtable).WritePropertyNames(@ptrCast(*const IWiaPropertyStorage, self), cpropid, rgpropid, rglpwstrName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1009,18 +1009,22 @@ pub const IID_IWiaVideo = &IID_IWiaVideo_Value;
 pub const IWiaVideo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PreviewVisible: fn(
             self: *const IWiaVideo,
             pbPreviewVisible: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PreviewVisible: fn(
             self: *const IWiaVideo,
             bPreviewVisible: BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImagesDirectory: fn(
             self: *const IWiaVideo,
             pbstrImageDirectory: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ImagesDirectory: fn(
             self: *const IWiaVideo,
             bstrImageDirectory: BSTR,

@@ -229,6 +229,304 @@ pub const CONNECTION_PROPERTY_CURSOR_BLINK_DISABLED = Guid.initString("4b150580-
 // TODO: this type has a FreeFunc 'WTSVirtualChannelClose', what can Zig do with this information?
 pub const HwtsVirtualChannelHandle = isize;
 
+pub const APO_BUFFER_FLAGS = extern enum(i32) {
+    INVALID = 0,
+    VALID = 1,
+    SILENT = 2,
+};
+pub const BUFFER_INVALID = APO_BUFFER_FLAGS.INVALID;
+pub const BUFFER_VALID = APO_BUFFER_FLAGS.VALID;
+pub const BUFFER_SILENT = APO_BUFFER_FLAGS.SILENT;
+
+pub const APO_CONNECTION_PROPERTY = extern struct {
+    pBuffer: usize,
+    u32ValidFrameCount: u32,
+    u32BufferFlags: APO_BUFFER_FLAGS,
+    u32Signature: u32,
+};
+
+pub const AE_POSITION_FLAGS = extern enum(i32) {
+    INVALID = 0,
+    DISCONTINUOUS = 1,
+    CONTINUOUS = 2,
+    QPC_ERROR = 4,
+};
+pub const POSITION_INVALID = AE_POSITION_FLAGS.INVALID;
+pub const POSITION_DISCONTINUOUS = AE_POSITION_FLAGS.DISCONTINUOUS;
+pub const POSITION_CONTINUOUS = AE_POSITION_FLAGS.CONTINUOUS;
+pub const POSITION_QPC_ERROR = AE_POSITION_FLAGS.QPC_ERROR;
+
+pub const AE_CURRENT_POSITION = extern struct {
+    u64DevicePosition: u64,
+    u64StreamPosition: u64,
+    u64PaddingFrames: u64,
+    hnsQPCPosition: i64,
+    f32FramesPerSecond: f32,
+    Flag: AE_POSITION_FLAGS,
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioEndpoint_Value = @import("../zig.zig").Guid.initString("30a99515-1527-4451-af9f-00c5f0234daf");
+pub const IID_IAudioEndpoint = &IID_IAudioEndpoint_Value;
+pub const IAudioEndpoint = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetFrameFormat: fn(
+            self: *const IAudioEndpoint,
+            ppFormat: **WAVEFORMATEX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFramesPerPacket: fn(
+            self: *const IAudioEndpoint,
+            pFramesPerPacket: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLatency: fn(
+            self: *const IAudioEndpoint,
+            pLatency: *i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStreamFlags: fn(
+            self: *const IAudioEndpoint,
+            streamFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEventHandle: fn(
+            self: *const IAudioEndpoint,
+            eventHandle: HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpoint_GetFrameFormat(self: *const T, ppFormat: **WAVEFORMATEX) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).GetFrameFormat(@ptrCast(*const IAudioEndpoint, self), ppFormat);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpoint_GetFramesPerPacket(self: *const T, pFramesPerPacket: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).GetFramesPerPacket(@ptrCast(*const IAudioEndpoint, self), pFramesPerPacket);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpoint_GetLatency(self: *const T, pLatency: *i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).GetLatency(@ptrCast(*const IAudioEndpoint, self), pLatency);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpoint_SetStreamFlags(self: *const T, streamFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).SetStreamFlags(@ptrCast(*const IAudioEndpoint, self), streamFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpoint_SetEventHandle(self: *const T, eventHandle: HANDLE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).SetEventHandle(@ptrCast(*const IAudioEndpoint, self), eventHandle);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioEndpointRT_Value = @import("../zig.zig").Guid.initString("dfd2005f-a6e5-4d39-a265-939ada9fbb4d");
+pub const IID_IAudioEndpointRT = &IID_IAudioEndpointRT_Value;
+pub const IAudioEndpointRT = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrentPadding: fn(
+            self: *const IAudioEndpointRT,
+            pPadding: *i64,
+            pAeCurrentPosition: *AE_CURRENT_POSITION,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ProcessingComplete: fn(
+            self: *const IAudioEndpointRT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetPinInactive: fn(
+            self: *const IAudioEndpointRT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPinActive: fn(
+            self: *const IAudioEndpointRT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointRT_GetCurrentPadding(self: *const T, pPadding: *i64, pAeCurrentPosition: *AE_CURRENT_POSITION) callconv(.Inline) void {
+            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).GetCurrentPadding(@ptrCast(*const IAudioEndpointRT, self), pPadding, pAeCurrentPosition);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointRT_ProcessingComplete(self: *const T) callconv(.Inline) void {
+            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).ProcessingComplete(@ptrCast(*const IAudioEndpointRT, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointRT_SetPinInactive(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).SetPinInactive(@ptrCast(*const IAudioEndpointRT, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointRT_SetPinActive(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).SetPinActive(@ptrCast(*const IAudioEndpointRT, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioInputEndpointRT_Value = @import("../zig.zig").Guid.initString("8026ab61-92b2-43c1-a1df-5c37ebd08d82");
+pub const IID_IAudioInputEndpointRT = &IID_IAudioInputEndpointRT_Value;
+pub const IAudioInputEndpointRT = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetInputDataPointer: fn(
+            self: *const IAudioInputEndpointRT,
+            pConnectionProperty: *APO_CONNECTION_PROPERTY,
+            pAeTimeStamp: *AE_CURRENT_POSITION,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ReleaseInputDataPointer: fn(
+            self: *const IAudioInputEndpointRT,
+            u32FrameCount: u32,
+            pDataPointer: usize,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        PulseEndpoint: fn(
+            self: *const IAudioInputEndpointRT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioInputEndpointRT_GetInputDataPointer(self: *const T, pConnectionProperty: *APO_CONNECTION_PROPERTY, pAeTimeStamp: *AE_CURRENT_POSITION) callconv(.Inline) void {
+            return @ptrCast(*const IAudioInputEndpointRT.VTable, self.vtable).GetInputDataPointer(@ptrCast(*const IAudioInputEndpointRT, self), pConnectionProperty, pAeTimeStamp);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioInputEndpointRT_ReleaseInputDataPointer(self: *const T, u32FrameCount: u32, pDataPointer: usize) callconv(.Inline) void {
+            return @ptrCast(*const IAudioInputEndpointRT.VTable, self.vtable).ReleaseInputDataPointer(@ptrCast(*const IAudioInputEndpointRT, self), u32FrameCount, pDataPointer);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioInputEndpointRT_PulseEndpoint(self: *const T) callconv(.Inline) void {
+            return @ptrCast(*const IAudioInputEndpointRT.VTable, self.vtable).PulseEndpoint(@ptrCast(*const IAudioInputEndpointRT, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioOutputEndpointRT_Value = @import("../zig.zig").Guid.initString("8fa906e4-c31c-4e31-932e-19a66385e9aa");
+pub const IID_IAudioOutputEndpointRT = &IID_IAudioOutputEndpointRT_Value;
+pub const IAudioOutputEndpointRT = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetOutputDataPointer: fn(
+            self: *const IAudioOutputEndpointRT,
+            u32FrameCount: u32,
+            pAeTimeStamp: *AE_CURRENT_POSITION,
+        ) callconv(@import("std").os.windows.WINAPI) usize,
+        ReleaseOutputDataPointer: fn(
+            self: *const IAudioOutputEndpointRT,
+            pConnectionProperty: *const APO_CONNECTION_PROPERTY,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        PulseEndpoint: fn(
+            self: *const IAudioOutputEndpointRT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioOutputEndpointRT_GetOutputDataPointer(self: *const T, u32FrameCount: u32, pAeTimeStamp: *AE_CURRENT_POSITION) callconv(.Inline) usize {
+            return @ptrCast(*const IAudioOutputEndpointRT.VTable, self.vtable).GetOutputDataPointer(@ptrCast(*const IAudioOutputEndpointRT, self), u32FrameCount, pAeTimeStamp);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioOutputEndpointRT_ReleaseOutputDataPointer(self: *const T, pConnectionProperty: *const APO_CONNECTION_PROPERTY) callconv(.Inline) void {
+            return @ptrCast(*const IAudioOutputEndpointRT.VTable, self.vtable).ReleaseOutputDataPointer(@ptrCast(*const IAudioOutputEndpointRT, self), pConnectionProperty);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioOutputEndpointRT_PulseEndpoint(self: *const T) callconv(.Inline) void {
+            return @ptrCast(*const IAudioOutputEndpointRT.VTable, self.vtable).PulseEndpoint(@ptrCast(*const IAudioOutputEndpointRT, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioDeviceEndpoint_Value = @import("../zig.zig").Guid.initString("d4952f5a-a0b2-4cc4-8b82-9358488dd8ac");
+pub const IID_IAudioDeviceEndpoint = &IID_IAudioDeviceEndpoint_Value;
+pub const IAudioDeviceEndpoint = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetBuffer: fn(
+            self: *const IAudioDeviceEndpoint,
+            MaxPeriod: i64,
+            u32LatencyCoefficient: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRTCaps: fn(
+            self: *const IAudioDeviceEndpoint,
+            pbIsRTCapable: *BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEventDrivenCapable: fn(
+            self: *const IAudioDeviceEndpoint,
+            pbisEventCapable: *BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteExclusiveModeParametersToSharedMemory: fn(
+            self: *const IAudioDeviceEndpoint,
+            hTargetProcess: usize,
+            hnsPeriod: i64,
+            hnsBufferDuration: i64,
+            u32LatencyCoefficient: u32,
+            pu32SharedMemorySize: *u32,
+            phSharedMemory: *usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioDeviceEndpoint_SetBuffer(self: *const T, MaxPeriod: i64, u32LatencyCoefficient: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).SetBuffer(@ptrCast(*const IAudioDeviceEndpoint, self), MaxPeriod, u32LatencyCoefficient);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioDeviceEndpoint_GetRTCaps(self: *const T, pbIsRTCapable: *BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).GetRTCaps(@ptrCast(*const IAudioDeviceEndpoint, self), pbIsRTCapable);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioDeviceEndpoint_GetEventDrivenCapable(self: *const T, pbisEventCapable: *BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).GetEventDrivenCapable(@ptrCast(*const IAudioDeviceEndpoint, self), pbisEventCapable);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioDeviceEndpoint_WriteExclusiveModeParametersToSharedMemory(self: *const T, hTargetProcess: usize, hnsPeriod: i64, hnsBufferDuration: i64, u32LatencyCoefficient: u32, pu32SharedMemorySize: *u32, phSharedMemory: *usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).WriteExclusiveModeParametersToSharedMemory(@ptrCast(*const IAudioDeviceEndpoint, self), hTargetProcess, hnsPeriod, hnsBufferDuration, u32LatencyCoefficient, pu32SharedMemorySize, phSharedMemory);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioEndpointControl_Value = @import("../zig.zig").Guid.initString("c684b72a-6df4-4774-bdf9-76b77509b653");
+pub const IID_IAudioEndpointControl = &IID_IAudioEndpointControl_Value;
+pub const IAudioEndpointControl = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Start: fn(
+            self: *const IAudioEndpointControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IAudioEndpointControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Stop: fn(
+            self: *const IAudioEndpointControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointControl_Start(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpointControl.VTable, self.vtable).Start(@ptrCast(*const IAudioEndpointControl, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointControl_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpointControl.VTable, self.vtable).Reset(@ptrCast(*const IAudioEndpointControl, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointControl_Stop(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpointControl.VTable, self.vtable).Stop(@ptrCast(*const IAudioEndpointControl, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
 const CLSID_TSUserExInterfaces_Value = @import("../zig.zig").Guid.initString("0910dd01-df8c-11d1-ae27-00c04fa35813");
 pub const CLSID_TSUserExInterfaces = &CLSID_TSUserExInterfaces_Value;
 
@@ -241,122 +539,152 @@ pub const IID_IADsTSUserEx = &IID_IADsTSUserEx_Value;
 pub const IADsTSUserEx = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TerminalServicesProfilePath: fn(
             self: *const IADsTSUserEx,
             pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TerminalServicesProfilePath: fn(
             self: *const IADsTSUserEx,
             pNewVal: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TerminalServicesHomeDirectory: fn(
             self: *const IADsTSUserEx,
             pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TerminalServicesHomeDirectory: fn(
             self: *const IADsTSUserEx,
             pNewVal: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TerminalServicesHomeDrive: fn(
             self: *const IADsTSUserEx,
             pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TerminalServicesHomeDrive: fn(
             self: *const IADsTSUserEx,
             pNewVal: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowLogon: fn(
             self: *const IADsTSUserEx,
             pVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowLogon: fn(
             self: *const IADsTSUserEx,
             NewVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableRemoteControl: fn(
             self: *const IADsTSUserEx,
             pVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableRemoteControl: fn(
             self: *const IADsTSUserEx,
             NewVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxDisconnectionTime: fn(
             self: *const IADsTSUserEx,
             pVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxDisconnectionTime: fn(
             self: *const IADsTSUserEx,
             NewVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxConnectionTime: fn(
             self: *const IADsTSUserEx,
             pVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxConnectionTime: fn(
             self: *const IADsTSUserEx,
             NewVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxIdleTime: fn(
             self: *const IADsTSUserEx,
             pVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxIdleTime: fn(
             self: *const IADsTSUserEx,
             NewVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReconnectionAction: fn(
             self: *const IADsTSUserEx,
             pNewVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReconnectionAction: fn(
             self: *const IADsTSUserEx,
             NewVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BrokenConnectionAction: fn(
             self: *const IADsTSUserEx,
             pNewVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BrokenConnectionAction: fn(
             self: *const IADsTSUserEx,
             NewVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectClientDrivesAtLogon: fn(
             self: *const IADsTSUserEx,
             pNewVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ConnectClientDrivesAtLogon: fn(
             self: *const IADsTSUserEx,
             NewVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectClientPrintersAtLogon: fn(
             self: *const IADsTSUserEx,
             pVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ConnectClientPrintersAtLogon: fn(
             self: *const IADsTSUserEx,
             NewVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultToMainPrinter: fn(
             self: *const IADsTSUserEx,
             pVal: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DefaultToMainPrinter: fn(
             self: *const IADsTSUserEx,
             NewVal: i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TerminalServicesWorkDirectory: fn(
             self: *const IADsTSUserEx,
             pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TerminalServicesWorkDirectory: fn(
             self: *const IADsTSUserEx,
             pNewVal: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TerminalServicesInitialProgram: fn(
             self: *const IADsTSUserEx,
             pVal: ?*BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TerminalServicesInitialProgram: fn(
             self: *const IADsTSUserEx,
             pNewVal: BSTR,
@@ -974,11 +1302,11 @@ pub const WTSCONFIGINFOA = extern struct {
     fDisablePrinterRedirection: u32,
     fDisableDefaultMainClientPrinter: u32,
     ShadowSettings: u32,
-    LogonUserName: [21]i8,
-    LogonDomain: [18]i8,
-    WorkDirectory: [261]i8,
-    InitialProgram: [261]i8,
-    ApplicationName: [261]i8,
+    LogonUserName: [21]CHAR,
+    LogonDomain: [18]CHAR,
+    WorkDirectory: [261]CHAR,
+    InitialProgram: [261]CHAR,
+    ApplicationName: [261]CHAR,
 };
 
 pub const WTSINFOW = extern struct {
@@ -1009,9 +1337,9 @@ pub const WTSINFOA = extern struct {
     OutgoingFrames: u32,
     IncomingCompressedBytes: u32,
     OutgoingCompressedBy: u32,
-    WinStationName: [32]i8,
-    Domain: [17]i8,
-    UserName: [21]i8,
+    WinStationName: [32]CHAR,
+    Domain: [17]CHAR,
+    UserName: [21]CHAR,
     ConnectTime: LARGE_INTEGER,
     DisconnectTime: LARGE_INTEGER,
     LastInputTime: LARGE_INTEGER,
@@ -1043,9 +1371,9 @@ pub const WTSINFOEX_LEVEL1_A = extern struct {
     SessionId: u32,
     SessionState: WTS_CONNECTSTATE_CLASS,
     SessionFlags: i32,
-    WinStationName: [33]i8,
-    UserName: [21]i8,
-    DomainName: [18]i8,
+    WinStationName: [33]CHAR,
+    UserName: [21]CHAR,
+    DomainName: [18]CHAR,
     LogonTime: LARGE_INTEGER,
     ConnectTime: LARGE_INTEGER,
     DisconnectTime: LARGE_INTEGER,
@@ -1096,30 +1424,30 @@ pub const WTSCLIENTW = extern struct {
 };
 
 pub const WTSCLIENTA = extern struct {
-    ClientName: [21]i8,
-    Domain: [18]i8,
-    UserName: [21]i8,
-    WorkDirectory: [261]i8,
-    InitialProgram: [261]i8,
+    ClientName: [21]CHAR,
+    Domain: [18]CHAR,
+    UserName: [21]CHAR,
+    WorkDirectory: [261]CHAR,
+    InitialProgram: [261]CHAR,
     EncryptionLevel: u8,
     ClientAddressFamily: u32,
     ClientAddress: [31]u16,
     HRes: u16,
     VRes: u16,
     ColorDepth: u16,
-    ClientDirectory: [261]i8,
+    ClientDirectory: [261]CHAR,
     ClientBuildNumber: u32,
     ClientHardwareId: u32,
     ClientProductId: u16,
     OutBufCountHost: u16,
     OutBufCountClient: u16,
     OutBufLength: u16,
-    DeviceId: [261]i8,
+    DeviceId: [261]CHAR,
 };
 
 pub const _WTS_PRODUCT_INFOA = extern struct {
-    CompanyName: [256]i8,
-    ProductID: [4]i8,
+    CompanyName: [256]CHAR,
+    ProductID: [4]CHAR,
 };
 
 pub const _WTS_PRODUCT_INFOW = extern struct {
@@ -1216,11 +1544,11 @@ pub const WTSUSERCONFIGA = extern struct {
     ReconnectSettings: u32,
     ShadowingSettings: u32,
     TerminalServerRemoteHomeDir: u32,
-    InitialProgram: [261]i8,
-    WorkDirectory: [261]i8,
-    TerminalServerProfilePath: [261]i8,
-    TerminalServerHomeDir: [261]i8,
-    TerminalServerHomeDirDrive: [4]i8,
+    InitialProgram: [261]CHAR,
+    WorkDirectory: [261]CHAR,
+    TerminalServerProfilePath: [261]CHAR,
+    TerminalServerHomeDir: [261]CHAR,
+    TerminalServerHomeDirDrive: [4]CHAR,
 };
 
 pub const WTSUSERCONFIGW = extern struct {
@@ -1356,11 +1684,11 @@ pub const WTSLISTENERCONFIGA = extern struct {
     SecurityLayer: u32,
     MinEncryptionLevel: u32,
     UserAuthentication: u32,
-    Comment: [61]i8,
-    LogonUserName: [21]i8,
-    LogonDomain: [18]i8,
-    WorkDirectory: [261]i8,
-    InitialProgram: [261]i8,
+    Comment: [61]CHAR,
+    LogonUserName: [21]CHAR,
+    LogonDomain: [18]CHAR,
+    WorkDirectory: [261]CHAR,
+    InitialProgram: [261]CHAR,
 };
 
 pub const WTSSBX_MACHINE_DRAIN = extern enum(i32) {
@@ -1534,7 +1862,7 @@ pub const IWTSSBPlugin = extern struct {
 };
 
 pub const CHANNEL_DEF = extern struct {
-    name: [8]i8,
+    name: [8]CHAR,
     options: u32,
 };
 
@@ -2438,18 +2766,22 @@ pub const IID_ITsSbEnvironment = &IID_ITsSbEnvironment_Value;
 pub const ITsSbEnvironment = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const ITsSbEnvironment,
             pVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerWeight: fn(
             self: *const ITsSbEnvironment,
             pVal: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnvironmentPropertySet: fn(
             self: *const ITsSbEnvironment,
             ppPropertySet: **ITsSbEnvironmentPropertySet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnvironmentPropertySet: fn(
             self: *const ITsSbEnvironment,
             pVal: *ITsSbEnvironmentPropertySet,
@@ -2484,6 +2816,7 @@ pub const IID_ITsSbLoadBalanceResult = &IID_ITsSbLoadBalanceResult_Value;
 pub const ITsSbLoadBalanceResult = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetName: fn(
             self: *const ITsSbLoadBalanceResult,
             pVal: *BSTR,
@@ -2506,80 +2839,99 @@ pub const IID_ITsSbTarget = &IID_ITsSbTarget_Value;
 pub const ITsSbTarget = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetName: fn(
             self: *const ITsSbTarget,
             pVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TargetName: fn(
             self: *const ITsSbTarget,
             Val: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FarmName: fn(
             self: *const ITsSbTarget,
             pVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FarmName: fn(
             self: *const ITsSbTarget,
             Val: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetFQDN: fn(
             self: *const ITsSbTarget,
             TargetFqdnName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TargetFQDN: fn(
             self: *const ITsSbTarget,
             Val: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetNetbios: fn(
             self: *const ITsSbTarget,
             TargetNetbiosName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TargetNetbios: fn(
             self: *const ITsSbTarget,
             Val: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpAddresses: fn(
             self: *const ITsSbTarget,
             SOCKADDR: [*]TSSD_ConnectionPoint,
             numAddresses: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IpAddresses: fn(
             self: *const ITsSbTarget,
             SOCKADDR: [*]TSSD_ConnectionPoint,
             numAddresses: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetState: fn(
             self: *const ITsSbTarget,
             pState: *TARGET_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TargetState: fn(
             self: *const ITsSbTarget,
             State: TARGET_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetPropertySet: fn(
             self: *const ITsSbTarget,
             ppPropertySet: **ITsSbTargetPropertySet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TargetPropertySet: fn(
             self: *const ITsSbTarget,
             pVal: *ITsSbTargetPropertySet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnvironmentName: fn(
             self: *const ITsSbTarget,
             pVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnvironmentName: fn(
             self: *const ITsSbTarget,
             Val: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumSessions: fn(
             self: *const ITsSbTarget,
             pNumSessions: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumPendingConnections: fn(
             self: *const ITsSbTarget,
             pNumPendingConnections: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetLoad: fn(
             self: *const ITsSbTarget,
             pTargetLoad: *u32,
@@ -2674,70 +3026,87 @@ pub const IID_ITsSbSession = &IID_ITsSbSession_Value;
 pub const ITsSbSession = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SessionId: fn(
             self: *const ITsSbSession,
             pVal: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetName: fn(
             self: *const ITsSbSession,
             targetName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TargetName: fn(
             self: *const ITsSbSession,
             targetName: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Username: fn(
             self: *const ITsSbSession,
             userName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Domain: fn(
             self: *const ITsSbSession,
             domain: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: fn(
             self: *const ITsSbSession,
             pState: *TSSESSION_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_State: fn(
             self: *const ITsSbSession,
             State: TSSESSION_STATE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CreateTime: fn(
             self: *const ITsSbSession,
             pTime: *FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CreateTime: fn(
             self: *const ITsSbSession,
             Time: FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisconnectTime: fn(
             self: *const ITsSbSession,
             pTime: *FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisconnectTime: fn(
             self: *const ITsSbSession,
             Time: FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialProgram: fn(
             self: *const ITsSbSession,
             app: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialProgram: fn(
             self: *const ITsSbSession,
             Application: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientDisplay: fn(
             self: *const ITsSbSession,
             pClientDisplay: *CLIENT_DISPLAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClientDisplay: fn(
             self: *const ITsSbSession,
             pClientDisplay: CLIENT_DISPLAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ProtocolType: fn(
             self: *const ITsSbSession,
             pVal: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProtocolType: fn(
             self: *const ITsSbSession,
             Val: u32,
@@ -2913,38 +3282,47 @@ pub const IID_ITsSbTaskInfo = &IID_ITsSbTaskInfo_Value;
 pub const ITsSbTaskInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetId: fn(
             self: *const ITsSbTaskInfo,
             pName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartTime: fn(
             self: *const ITsSbTaskInfo,
             pStartTime: *FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EndTime: fn(
             self: *const ITsSbTaskInfo,
             pEndTime: *FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Deadline: fn(
             self: *const ITsSbTaskInfo,
             pDeadline: *FILETIME,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Identifier: fn(
             self: *const ITsSbTaskInfo,
             pIdentifier: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Label: fn(
             self: *const ITsSbTaskInfo,
             pLabel: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Context: fn(
             self: *const ITsSbTaskInfo,
             pContext: **SAFEARRAY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Plugin: fn(
             self: *const ITsSbTaskInfo,
             pPlugin: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: fn(
             self: *const ITsSbTaskInfo,
             pStatus: *RDV_TASK_STATUS,
@@ -3285,22 +3663,27 @@ pub const IID_ITsSbClientConnection = &IID_ITsSbClientConnection_Value;
 pub const ITsSbClientConnection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserName: fn(
             self: *const ITsSbClientConnection,
             pVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Domain: fn(
             self: *const ITsSbClientConnection,
             pVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialProgram: fn(
             self: *const ITsSbClientConnection,
             pVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LoadBalanceResult: fn(
             self: *const ITsSbClientConnection,
             ppVal: **ITsSbLoadBalanceResult,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FarmName: fn(
             self: *const ITsSbClientConnection,
             pVal: *BSTR,
@@ -3316,29 +3699,36 @@ pub const ITsSbClientConnection = extern struct {
             contextId: BSTR,
             context: *VARIANT,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Environment: fn(
             self: *const ITsSbClientConnection,
             ppEnvironment: **ITsSbEnvironment,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectionError: fn(
             self: *const ITsSbClientConnection,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SamUserAccount: fn(
             self: *const ITsSbClientConnection,
             pVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClientConnectionPropertySet: fn(
             self: *const ITsSbClientConnection,
             ppPropertySet: **ITsSbClientConnectionPropertySet,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFirstAssignment: fn(
             self: *const ITsSbClientConnection,
             ppVal: *BOOL,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RdFarmType: fn(
             self: *const ITsSbClientConnection,
             pRdFarmType: *RD_FARM_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserSidString: fn(
             self: *const ITsSbClientConnection,
             pszUserSidString: **i8,
@@ -4139,10 +4529,12 @@ pub const ItsPubPlugin = extern struct {
             self: *const ItsPubPlugin,
             lastUpdateTime: *u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_pluginName: fn(
             self: *const ItsPubPlugin,
             pVal: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_pluginVersion: fn(
             self: *const ItsPubPlugin,
             pVal: *BSTR,
@@ -4150,8 +4542,8 @@ pub const ItsPubPlugin = extern struct {
         ResolveResource: fn(
             self: *const ItsPubPlugin,
             resourceType: *u32,
-            resourceLocation: *u16,
-            endPointName: *u16,
+            resourceLocation: PWSTR,
+            endPointName: PWSTR,
             userID: PWSTR,
             alias: PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4180,7 +4572,7 @@ pub const ItsPubPlugin = extern struct {
             return @ptrCast(*const ItsPubPlugin.VTable, self.vtable).get_pluginVersion(@ptrCast(*const ItsPubPlugin, self), pVal);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ItsPubPlugin_ResolveResource(self: *const T, resourceType: *u32, resourceLocation: *u16, endPointName: *u16, userID: PWSTR, alias: PWSTR) callconv(.Inline) HRESULT {
+        pub fn ItsPubPlugin_ResolveResource(self: *const T, resourceType: *u32, resourceLocation: PWSTR, endPointName: PWSTR, userID: PWSTR, alias: PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ItsPubPlugin.VTable, self.vtable).ResolveResource(@ptrCast(*const ItsPubPlugin, self), resourceType, resourceLocation, endPointName, userID, alias);
         }
     };}
@@ -4241,7 +4633,7 @@ pub const ItsPubPlugin2 = extern struct {
             poolId: [*:0]const u16,
             ePdResolutionType: TSPUB_PLUGIN_PD_RESOLUTION_TYPE,
             pPdAssignmentType: *TSPUB_PLUGIN_PD_ASSIGNMENT_TYPE,
-            endPointName: *u16,
+            endPointName: PWSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         DeletePersonalDesktopAssignment: fn(
             self: *const ItsPubPlugin2,
@@ -4262,7 +4654,7 @@ pub const ItsPubPlugin2 = extern struct {
             return @ptrCast(*const ItsPubPlugin2.VTable, self.vtable).GetResource2(@ptrCast(*const ItsPubPlugin2, self), alias, flags, resource);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ItsPubPlugin2_ResolvePersonalDesktop(self: *const T, userId: [*:0]const u16, poolId: [*:0]const u16, ePdResolutionType: TSPUB_PLUGIN_PD_RESOLUTION_TYPE, pPdAssignmentType: *TSPUB_PLUGIN_PD_ASSIGNMENT_TYPE, endPointName: *u16) callconv(.Inline) HRESULT {
+        pub fn ItsPubPlugin2_ResolvePersonalDesktop(self: *const T, userId: [*:0]const u16, poolId: [*:0]const u16, ePdResolutionType: TSPUB_PLUGIN_PD_RESOLUTION_TYPE, pPdAssignmentType: *TSPUB_PLUGIN_PD_ASSIGNMENT_TYPE, endPointName: PWSTR) callconv(.Inline) HRESULT {
             return @ptrCast(*const ItsPubPlugin2.VTable, self.vtable).ResolvePersonalDesktop(@ptrCast(*const ItsPubPlugin2, self), userId, poolId, ePdResolutionType, pPdAssignmentType, endPointName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5450,7 +5842,7 @@ pub const IWTSProtocolConnection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVirtualChannel: fn(
             self: *const IWTSProtocolConnection,
-            szEndpointName: *i8,
+            szEndpointName: PSTR,
             bStatic: BOOL,
             RequestedPriority: u32,
             phChannel: *usize,
@@ -5552,7 +5944,7 @@ pub const IWTSProtocolConnection = extern struct {
             return @ptrCast(*const IWTSProtocolConnection.VTable, self.vtable).SendBeep(@ptrCast(*const IWTSProtocolConnection, self), Frequency, Duration);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWTSProtocolConnection_CreateVirtualChannel(self: *const T, szEndpointName: *i8, bStatic: BOOL, RequestedPriority: u32, phChannel: *usize) callconv(.Inline) HRESULT {
+        pub fn IWTSProtocolConnection_CreateVirtualChannel(self: *const T, szEndpointName: PSTR, bStatic: BOOL, RequestedPriority: u32, phChannel: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWTSProtocolConnection.VTable, self.vtable).CreateVirtualChannel(@ptrCast(*const IWTSProtocolConnection, self), szEndpointName, bStatic, RequestedPriority, phChannel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6118,7 +6510,7 @@ pub const IWRdsProtocolConnection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateVirtualChannel: fn(
             self: *const IWRdsProtocolConnection,
-            szEndpointName: *i8,
+            szEndpointName: PSTR,
             bStatic: BOOL,
             RequestedPriority: u32,
             phChannel: *usize,
@@ -6224,7 +6616,7 @@ pub const IWRdsProtocolConnection = extern struct {
             return @ptrCast(*const IWRdsProtocolConnection.VTable, self.vtable).SetErrorInfo(@ptrCast(*const IWRdsProtocolConnection, self), ulError);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWRdsProtocolConnection_CreateVirtualChannel(self: *const T, szEndpointName: *i8, bStatic: BOOL, RequestedPriority: u32, phChannel: *usize) callconv(.Inline) HRESULT {
+        pub fn IWRdsProtocolConnection_CreateVirtualChannel(self: *const T, szEndpointName: PSTR, bStatic: BOOL, RequestedPriority: u32, phChannel: *usize) callconv(.Inline) HRESULT {
             return @ptrCast(*const IWRdsProtocolConnection.VTable, self.vtable).CreateVirtualChannel(@ptrCast(*const IWRdsProtocolConnection, self), szEndpointName, bStatic, RequestedPriority, phChannel);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6705,26 +7097,32 @@ pub const IID_IRemoteDesktopClientTouchPointer = &IID_IRemoteDesktopClientTouchP
 pub const IRemoteDesktopClientTouchPointer = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: fn(
             self: *const IRemoteDesktopClientTouchPointer,
             enabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: fn(
             self: *const IRemoteDesktopClientTouchPointer,
             enabled: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventsEnabled: fn(
             self: *const IRemoteDesktopClientTouchPointer,
             eventsEnabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventsEnabled: fn(
             self: *const IRemoteDesktopClientTouchPointer,
             eventsEnabled: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PointerSpeed: fn(
             self: *const IRemoteDesktopClientTouchPointer,
             pointerSpeed: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PointerSpeed: fn(
             self: *const IRemoteDesktopClientTouchPointer,
             pointerSpeed: *u32,
@@ -6793,14 +7191,17 @@ pub const IRemoteDesktopClient = extern struct {
             width: u32,
             height: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Settings: fn(
             self: *const IRemoteDesktopClient,
             settings: ?*?*IRemoteDesktopClientSettings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Actions: fn(
             self: *const IRemoteDesktopClient,
             actions: ?*?*IRemoteDesktopClientActions,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TouchPointer: fn(
             self: *const IRemoteDesktopClient,
             touchPointer: ?*?*IRemoteDesktopClientTouchPointer,
@@ -6872,304 +7273,6 @@ pub const IRemoteDesktopClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const APO_BUFFER_FLAGS = extern enum(i32) {
-    INVALID = 0,
-    VALID = 1,
-    SILENT = 2,
-};
-pub const BUFFER_INVALID = APO_BUFFER_FLAGS.INVALID;
-pub const BUFFER_VALID = APO_BUFFER_FLAGS.VALID;
-pub const BUFFER_SILENT = APO_BUFFER_FLAGS.SILENT;
-
-pub const APO_CONNECTION_PROPERTY = extern struct {
-    pBuffer: usize,
-    u32ValidFrameCount: u32,
-    u32BufferFlags: APO_BUFFER_FLAGS,
-    u32Signature: u32,
-};
-
-pub const AE_POSITION_FLAGS = extern enum(i32) {
-    INVALID = 0,
-    DISCONTINUOUS = 1,
-    CONTINUOUS = 2,
-    QPC_ERROR = 4,
-};
-pub const POSITION_INVALID = AE_POSITION_FLAGS.INVALID;
-pub const POSITION_DISCONTINUOUS = AE_POSITION_FLAGS.DISCONTINUOUS;
-pub const POSITION_CONTINUOUS = AE_POSITION_FLAGS.CONTINUOUS;
-pub const POSITION_QPC_ERROR = AE_POSITION_FLAGS.QPC_ERROR;
-
-pub const AE_CURRENT_POSITION = extern struct {
-    u64DevicePosition: u64,
-    u64StreamPosition: u64,
-    u64PaddingFrames: u64,
-    hnsQPCPosition: i64,
-    f32FramesPerSecond: f32,
-    Flag: AE_POSITION_FLAGS,
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioEndpoint_Value = @import("../zig.zig").Guid.initString("30a99515-1527-4451-af9f-00c5f0234daf");
-pub const IID_IAudioEndpoint = &IID_IAudioEndpoint_Value;
-pub const IAudioEndpoint = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetFrameFormat: fn(
-            self: *const IAudioEndpoint,
-            ppFormat: **WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFramesPerPacket: fn(
-            self: *const IAudioEndpoint,
-            pFramesPerPacket: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLatency: fn(
-            self: *const IAudioEndpoint,
-            pLatency: *i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStreamFlags: fn(
-            self: *const IAudioEndpoint,
-            streamFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEventHandle: fn(
-            self: *const IAudioEndpoint,
-            eventHandle: HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpoint_GetFrameFormat(self: *const T, ppFormat: **WAVEFORMATEX) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).GetFrameFormat(@ptrCast(*const IAudioEndpoint, self), ppFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpoint_GetFramesPerPacket(self: *const T, pFramesPerPacket: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).GetFramesPerPacket(@ptrCast(*const IAudioEndpoint, self), pFramesPerPacket);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpoint_GetLatency(self: *const T, pLatency: *i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).GetLatency(@ptrCast(*const IAudioEndpoint, self), pLatency);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpoint_SetStreamFlags(self: *const T, streamFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).SetStreamFlags(@ptrCast(*const IAudioEndpoint, self), streamFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpoint_SetEventHandle(self: *const T, eventHandle: HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).SetEventHandle(@ptrCast(*const IAudioEndpoint, self), eventHandle);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioEndpointRT_Value = @import("../zig.zig").Guid.initString("dfd2005f-a6e5-4d39-a265-939ada9fbb4d");
-pub const IID_IAudioEndpointRT = &IID_IAudioEndpointRT_Value;
-pub const IAudioEndpointRT = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrentPadding: fn(
-            self: *const IAudioEndpointRT,
-            pPadding: *i64,
-            pAeCurrentPosition: *AE_CURRENT_POSITION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        ProcessingComplete: fn(
-            self: *const IAudioEndpointRT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        SetPinInactive: fn(
-            self: *const IAudioEndpointRT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPinActive: fn(
-            self: *const IAudioEndpointRT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointRT_GetCurrentPadding(self: *const T, pPadding: *i64, pAeCurrentPosition: *AE_CURRENT_POSITION) callconv(.Inline) void {
-            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).GetCurrentPadding(@ptrCast(*const IAudioEndpointRT, self), pPadding, pAeCurrentPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointRT_ProcessingComplete(self: *const T) callconv(.Inline) void {
-            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).ProcessingComplete(@ptrCast(*const IAudioEndpointRT, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointRT_SetPinInactive(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).SetPinInactive(@ptrCast(*const IAudioEndpointRT, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointRT_SetPinActive(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).SetPinActive(@ptrCast(*const IAudioEndpointRT, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioInputEndpointRT_Value = @import("../zig.zig").Guid.initString("8026ab61-92b2-43c1-a1df-5c37ebd08d82");
-pub const IID_IAudioInputEndpointRT = &IID_IAudioInputEndpointRT_Value;
-pub const IAudioInputEndpointRT = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetInputDataPointer: fn(
-            self: *const IAudioInputEndpointRT,
-            pConnectionProperty: *APO_CONNECTION_PROPERTY,
-            pAeTimeStamp: *AE_CURRENT_POSITION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        ReleaseInputDataPointer: fn(
-            self: *const IAudioInputEndpointRT,
-            u32FrameCount: u32,
-            pDataPointer: usize,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        PulseEndpoint: fn(
-            self: *const IAudioInputEndpointRT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioInputEndpointRT_GetInputDataPointer(self: *const T, pConnectionProperty: *APO_CONNECTION_PROPERTY, pAeTimeStamp: *AE_CURRENT_POSITION) callconv(.Inline) void {
-            return @ptrCast(*const IAudioInputEndpointRT.VTable, self.vtable).GetInputDataPointer(@ptrCast(*const IAudioInputEndpointRT, self), pConnectionProperty, pAeTimeStamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioInputEndpointRT_ReleaseInputDataPointer(self: *const T, u32FrameCount: u32, pDataPointer: usize) callconv(.Inline) void {
-            return @ptrCast(*const IAudioInputEndpointRT.VTable, self.vtable).ReleaseInputDataPointer(@ptrCast(*const IAudioInputEndpointRT, self), u32FrameCount, pDataPointer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioInputEndpointRT_PulseEndpoint(self: *const T) callconv(.Inline) void {
-            return @ptrCast(*const IAudioInputEndpointRT.VTable, self.vtable).PulseEndpoint(@ptrCast(*const IAudioInputEndpointRT, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioOutputEndpointRT_Value = @import("../zig.zig").Guid.initString("8fa906e4-c31c-4e31-932e-19a66385e9aa");
-pub const IID_IAudioOutputEndpointRT = &IID_IAudioOutputEndpointRT_Value;
-pub const IAudioOutputEndpointRT = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetOutputDataPointer: fn(
-            self: *const IAudioOutputEndpointRT,
-            u32FrameCount: u32,
-            pAeTimeStamp: *AE_CURRENT_POSITION,
-        ) callconv(@import("std").os.windows.WINAPI) usize,
-        ReleaseOutputDataPointer: fn(
-            self: *const IAudioOutputEndpointRT,
-            pConnectionProperty: *const APO_CONNECTION_PROPERTY,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        PulseEndpoint: fn(
-            self: *const IAudioOutputEndpointRT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioOutputEndpointRT_GetOutputDataPointer(self: *const T, u32FrameCount: u32, pAeTimeStamp: *AE_CURRENT_POSITION) callconv(.Inline) usize {
-            return @ptrCast(*const IAudioOutputEndpointRT.VTable, self.vtable).GetOutputDataPointer(@ptrCast(*const IAudioOutputEndpointRT, self), u32FrameCount, pAeTimeStamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioOutputEndpointRT_ReleaseOutputDataPointer(self: *const T, pConnectionProperty: *const APO_CONNECTION_PROPERTY) callconv(.Inline) void {
-            return @ptrCast(*const IAudioOutputEndpointRT.VTable, self.vtable).ReleaseOutputDataPointer(@ptrCast(*const IAudioOutputEndpointRT, self), pConnectionProperty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioOutputEndpointRT_PulseEndpoint(self: *const T) callconv(.Inline) void {
-            return @ptrCast(*const IAudioOutputEndpointRT.VTable, self.vtable).PulseEndpoint(@ptrCast(*const IAudioOutputEndpointRT, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioDeviceEndpoint_Value = @import("../zig.zig").Guid.initString("d4952f5a-a0b2-4cc4-8b82-9358488dd8ac");
-pub const IID_IAudioDeviceEndpoint = &IID_IAudioDeviceEndpoint_Value;
-pub const IAudioDeviceEndpoint = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetBuffer: fn(
-            self: *const IAudioDeviceEndpoint,
-            MaxPeriod: i64,
-            u32LatencyCoefficient: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRTCaps: fn(
-            self: *const IAudioDeviceEndpoint,
-            pbIsRTCapable: *BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEventDrivenCapable: fn(
-            self: *const IAudioDeviceEndpoint,
-            pbisEventCapable: *BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteExclusiveModeParametersToSharedMemory: fn(
-            self: *const IAudioDeviceEndpoint,
-            hTargetProcess: usize,
-            hnsPeriod: i64,
-            hnsBufferDuration: i64,
-            u32LatencyCoefficient: u32,
-            pu32SharedMemorySize: *u32,
-            phSharedMemory: *usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioDeviceEndpoint_SetBuffer(self: *const T, MaxPeriod: i64, u32LatencyCoefficient: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).SetBuffer(@ptrCast(*const IAudioDeviceEndpoint, self), MaxPeriod, u32LatencyCoefficient);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioDeviceEndpoint_GetRTCaps(self: *const T, pbIsRTCapable: *BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).GetRTCaps(@ptrCast(*const IAudioDeviceEndpoint, self), pbIsRTCapable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioDeviceEndpoint_GetEventDrivenCapable(self: *const T, pbisEventCapable: *BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).GetEventDrivenCapable(@ptrCast(*const IAudioDeviceEndpoint, self), pbisEventCapable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioDeviceEndpoint_WriteExclusiveModeParametersToSharedMemory(self: *const T, hTargetProcess: usize, hnsPeriod: i64, hnsBufferDuration: i64, u32LatencyCoefficient: u32, pu32SharedMemorySize: *u32, phSharedMemory: *usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).WriteExclusiveModeParametersToSharedMemory(@ptrCast(*const IAudioDeviceEndpoint, self), hTargetProcess, hnsPeriod, hnsBufferDuration, u32LatencyCoefficient, pu32SharedMemorySize, phSharedMemory);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioEndpointControl_Value = @import("../zig.zig").Guid.initString("c684b72a-6df4-4774-bdf9-76b77509b653");
-pub const IID_IAudioEndpointControl = &IID_IAudioEndpointControl_Value;
-pub const IAudioEndpointControl = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Start: fn(
-            self: *const IAudioEndpointControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IAudioEndpointControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Stop: fn(
-            self: *const IAudioEndpointControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointControl_Start(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpointControl.VTable, self.vtable).Start(@ptrCast(*const IAudioEndpointControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointControl_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpointControl.VTable, self.vtable).Reset(@ptrCast(*const IAudioEndpointControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointControl_Stop(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpointControl.VTable, self.vtable).Stop(@ptrCast(*const IAudioEndpointControl, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 pub const WTSSESSION_NOTIFICATION = extern struct {
     cbSize: u32,
     dwSessionId: u32,
@@ -7179,6 +7282,16 @@ pub const WTSSESSION_NOTIFICATION = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Functions (65)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn ProcessIdToSessionId(
+    dwProcessId: u32,
+    pSessionId: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn WTSGetActiveConsoleSessionId(
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WTSAPI32" fn WTSStopRemoteControlSession(
     LogonId: u32,
@@ -7683,16 +7796,6 @@ pub extern "WTSAPI32" fn WTSSetRenderHint(
     pHintData: ?*u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn ProcessIdToSessionId(
-    dwProcessId: u32,
-    pSessionId: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WTSGetActiveConsoleSessionId(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (34)
@@ -7843,15 +7946,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("automation.zig").IDispatch;
 const SAFEARRAY = @import("automation.zig").SAFEARRAY;
 const PWSTR = @import("system_services.zig").PWSTR;
 const FILETIME = @import("windows_programming.zig").FILETIME;
-const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
+const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
 const HRESULT = @import("com.zig").HRESULT;
 const MESSAGEBOX_STYLE = @import("windows_and_messaging.zig").MESSAGEBOX_STYLE;
 const BSTR = @import("automation.zig").BSTR;
@@ -7884,7 +7988,7 @@ test {
     const com_class_id_export_count = 3;
     const func_export_count = 65;
     const unicode_alias_count = 34;
-    const import_count = 21;
+    const import_count = 22;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

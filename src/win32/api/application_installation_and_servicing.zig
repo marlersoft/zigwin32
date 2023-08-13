@@ -86,7 +86,7 @@ pub const SFC_SCAN_IMMEDIATE = @as(u32, 3);
 pub const SFC_QUOTA_DEFAULT = @as(u32, 50);
 
 //--------------------------------------------------------------------------------
-// Section: Types (118)
+// Section: Types (113)
 //--------------------------------------------------------------------------------
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SP_COPY_STYLE = extern enum(u32) {
@@ -149,116 +149,58 @@ pub const SP_COPY_IN_USE_TRY_RENAME = SP_COPY_STYLE.IN_USE_TRY_RENAME;
 pub const SP_COPY_INBOX_INF = SP_COPY_STYLE.INBOX_INF;
 pub const SP_COPY_HARDLINK = SP_COPY_STYLE.HARDLINK;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MsiCreateTransformSummaryInfo_iErrorConditions = extern enum(u32) {
-    none = 0,
-    ADDEXISTINGROW = 1,
-    DELMISSINGROW = 2,
-    ADDEXISTINGTABLE = 4,
-    DELMISSINGTABLE = 8,
-    UPDATEMISSINGROW = 16,
-    CHANGECODEPAGE = 32,
-    _,
-};
-// TODO: enum 'MsiCreateTransformSummaryInfo_iErrorConditions' has known issues with its value aliases
-
-pub const Setup_Operation = extern enum(u32) {
+pub const SETUP_FILE_OPERATION = extern enum(u32) {
     DELETE = 2,
     COPY = 0,
 };
-pub const FILEOP_DELETE = Setup_Operation.DELETE;
-pub const FILEOP_COPY = Setup_Operation.COPY;
+pub const FILEOP_DELETE = SETUP_FILE_OPERATION.DELETE;
+pub const FILEOP_COPY = SETUP_FILE_OPERATION.COPY;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MsiCreateTransformSummaryInfo_iValidation = extern enum(u32) {
-    none = 0,
-    LANGUAGE = 1,
-    PRODUCT = 2,
-    _,
-};
-// TODO: enum 'MsiCreateTransformSummaryInfo_iValidation' has known issues with its value aliases
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MsiGetFeatureValidStates_lpInstallStates = extern enum(u32) {
-    @"2" = 2,
-    @"4" = 4,
-    @"8" = 8,
-    @"16" = 16,
-    @"32" = 32,
-    _,
-};
-pub const lpInstallStates2 = MsiGetFeatureValidStates_lpInstallStates.@"2";
-pub const lpInstallStates4 = MsiGetFeatureValidStates_lpInstallStates.@"4";
-pub const lpInstallStates8 = MsiGetFeatureValidStates_lpInstallStates.@"8";
-pub const lpInstallStates16 = MsiGetFeatureValidStates_lpInstallStates.@"16";
-pub const lpInstallStates32 = MsiGetFeatureValidStates_lpInstallStates.@"32";
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MsiEnumClientsEx_dwContext = extern enum(u32) {
-    USERMANAGED = 1,
-    USERUNMANAGED = 2,
-    MACHINE = 4,
-    _,
-};
-// TODO: enum 'MsiEnumClientsEx_dwContext' has known issues with its value aliases
-
-pub const SetupCopyOEMInf_OEMSourceMediaType = extern enum(u32) {
+pub const OEM_SOURCE_MEDIA_TYPE = extern enum(u32) {
     NONE = 0,
     PATH = 1,
     URL = 2,
 };
-pub const SPOST_NONE = SetupCopyOEMInf_OEMSourceMediaType.NONE;
-pub const SPOST_PATH = SetupCopyOEMInf_OEMSourceMediaType.PATH;
-pub const SPOST_URL = SetupCopyOEMInf_OEMSourceMediaType.URL;
+pub const SPOST_NONE = OEM_SOURCE_MEDIA_TYPE.NONE;
+pub const SPOST_PATH = OEM_SOURCE_MEDIA_TYPE.PATH;
+pub const SPOST_URL = OEM_SOURCE_MEDIA_TYPE.URL;
 
-pub const MsiProvideAssembly_dwAssemblyInfo = extern enum(u32) {
+pub const MSIASSEMBLYINFO = extern enum(u32) {
     NETASSEMBLY = 0,
     WIN32ASSEMBLY = 1,
 };
-pub const MSIASSEMBLYINFO_NETASSEMBLY = MsiProvideAssembly_dwAssemblyInfo.NETASSEMBLY;
-pub const MSIASSEMBLYINFO_WIN32ASSEMBLY = MsiProvideAssembly_dwAssemblyInfo.WIN32ASSEMBLY;
+pub const MSIASSEMBLYINFO_NETASSEMBLY = MSIASSEMBLYINFO.NETASSEMBLY;
+pub const MSIASSEMBLYINFO_WIN32ASSEMBLY = MSIASSEMBLYINFO.WIN32ASSEMBLY;
 
-pub const IAssemblyCache_UninstallAssembly_pulDispositionFlags = extern enum(u32) {
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION = extern enum(u32) {
     UNINSTALLED = 1,
     STILL_IN_USE = 2,
     ALREADY_UNINSTALLED = 3,
     DELETE_PENDING = 4,
 };
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_UNINSTALLED = IAssemblyCache_UninstallAssembly_pulDispositionFlags.UNINSTALLED;
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_STILL_IN_USE = IAssemblyCache_UninstallAssembly_pulDispositionFlags.STILL_IN_USE;
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_ALREADY_UNINSTALLED = IAssemblyCache_UninstallAssembly_pulDispositionFlags.ALREADY_UNINSTALLED;
-pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_DELETE_PENDING = IAssemblyCache_UninstallAssembly_pulDispositionFlags.DELETE_PENDING;
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_UNINSTALLED = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.UNINSTALLED;
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_STILL_IN_USE = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.STILL_IN_USE;
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_ALREADY_UNINSTALLED = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.ALREADY_UNINSTALLED;
+pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_DELETE_PENDING = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.DELETE_PENDING;
 
 // TODO: This Enum is marked as [Flags], what do I do with this?
-pub const MsiAdvertiseScript_dwFlags = extern enum(u32) {
-    CACHEINFO = 1,
-    SHORTCUTS = 4,
-    MACHINEASSIGN = 8,
-    REGDATA_CNFGINFO = 32,
-    VALIDATE_TRANSFORMS_LIST = 64,
-    REGDATA_CLASSINFO = 128,
-    REGDATA_EXTENSIONINFO = 256,
-    REGDATA_APPINFO = 384,
-    REGDATA = 416,
-    _,
-};
-// TODO: enum 'MsiAdvertiseScript_dwFlags' has known issues with its value aliases
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const IAssemblyCache_QueryAssemblyInfoFlags = extern enum(u32) {
+pub const QUERYASMINFO_FLAGS = extern enum(u32) {
     E = 1,
     _,
 };
-pub const QUERYASMINFO_FLAG_VALIDATE = IAssemblyCache_QueryAssemblyInfoFlags.E;
+pub const QUERYASMINFO_FLAG_VALIDATE = QUERYASMINFO_FLAGS.E;
 
-pub const SP_INF_INFORMATION_InfStyleFlags = extern enum(u32) {
+pub const SP_INF_STYLE = extern enum(u32) {
     NONE = 0,
     OLDNT = 1,
     WIN4 = 2,
 };
-pub const INF_STYLE_NONE = SP_INF_INFORMATION_InfStyleFlags.NONE;
-pub const INF_STYLE_OLDNT = SP_INF_INFORMATION_InfStyleFlags.OLDNT;
-pub const INF_STYLE_WIN4 = SP_INF_INFORMATION_InfStyleFlags.WIN4;
+pub const INF_STYLE_NONE = SP_INF_STYLE.NONE;
+pub const INF_STYLE_OLDNT = SP_INF_STYLE.OLDNT;
+pub const INF_STYLE_WIN4 = SP_INF_STYLE.WIN4;
+
+// TODO: this type has a FreeFunc 'MsiCloseHandle', what can Zig do with this information?
+pub const MSIHANDLE = u32;
 
 pub const ACTIVATION_CONTEXT_QUERY_INDEX = extern struct {
     ulAssemblyIndex: u32,
@@ -351,9 +293,6 @@ pub const ACTIVATION_CONTEXT_DETAILED_INFORMATION = extern struct {
     lpAppDirPath: [*:0]const u16,
 };
 
-// TODO: this type has a FreeFunc 'MsiCloseHandle', what can Zig do with this information?
-pub const MSIHANDLE = u32;
-
 pub const INFCONTEXT = extern struct {
     Inf: *c_void,
     CurrentInf: *c_void,
@@ -362,14 +301,14 @@ pub const INFCONTEXT = extern struct {
 };
 
 pub const SP_INF_INFORMATION = extern struct {
-    InfStyle: SP_INF_INFORMATION_InfStyleFlags,
+    InfStyle: SP_INF_STYLE,
     InfCount: u32,
     VersionData: [1]u8,
 };
 
 pub const SP_ALTPLATFORM_INFO_V2 = extern struct {
     cbSize: u32,
-    Platform: MINIDUMP_SYSTEM_INFO_PlatformIdFlags,
+    Platform: VER_PLATFORM,
     MajorVersion: u32,
     MinorVersion: u32,
     ProcessorArchitecture: u16,
@@ -381,7 +320,7 @@ pub const SP_ALTPLATFORM_INFO_V2 = extern struct {
 
 pub const SP_ALTPLATFORM_INFO_V1 = extern struct {
     cbSize: u32,
-    Platform: MINIDUMP_SYSTEM_INFO_PlatformIdFlags,
+    Platform: VER_PLATFORM,
     MajorVersion: u32,
     MinorVersion: u32,
     ProcessorArchitecture: u16,
@@ -390,8 +329,8 @@ pub const SP_ALTPLATFORM_INFO_V1 = extern struct {
 
 pub const SP_ORIGINAL_FILE_INFO_A = extern struct {
     cbSize: u32,
-    OriginalInfName: [260]i8,
-    OriginalCatalogName: [260]i8,
+    OriginalInfName: [260]CHAR,
+    OriginalCatalogName: [260]CHAR,
 };
 
 pub const SP_ORIGINAL_FILE_INFO_W = extern struct {
@@ -489,7 +428,7 @@ pub const FILE_IN_CABINET_INFO_A = extern struct {
     DosDate: u16,
     DosTime: u16,
     DosAttribs: u16,
-    FullTargetName: [260]i8,
+    FullTargetName: [260]CHAR,
 };
 
 pub const FILE_IN_CABINET_INFO_W = extern struct {
@@ -548,9 +487,9 @@ pub const SP_FILE_COPY_PARAMS_W = extern struct {
 
 pub const SP_INF_SIGNER_INFO_V1_A = extern struct {
     cbSize: u32,
-    CatalogFile: [260]i8,
-    DigitalSigner: [260]i8,
-    DigitalSignerVersion: [260]i8,
+    CatalogFile: [260]CHAR,
+    DigitalSigner: [260]CHAR,
+    DigitalSignerVersion: [260]CHAR,
 };
 
 pub const SP_INF_SIGNER_INFO_V1_W = extern struct {
@@ -562,9 +501,9 @@ pub const SP_INF_SIGNER_INFO_V1_W = extern struct {
 
 pub const SP_INF_SIGNER_INFO_V2_A = extern struct {
     cbSize: u32,
-    CatalogFile: [260]i8,
-    DigitalSigner: [260]i8,
-    DigitalSignerVersion: [260]i8,
+    CatalogFile: [260]CHAR,
+    DigitalSigner: [260]CHAR,
+    DigitalSignerVersion: [260]CHAR,
     SignerScore: u32,
 };
 
@@ -768,15 +707,18 @@ pub const IID_IMsmStrings = &IID_IMsmStrings_Value;
 pub const IMsmStrings = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IMsmStrings,
             Item: i32,
             Return: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IMsmStrings,
             Count: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IMsmStrings,
             NewEnum: **IUnknown,
@@ -806,30 +748,37 @@ pub const IID_IMsmError = &IID_IMsmError_Value;
 pub const IMsmError = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IMsmError,
             ErrorType: *msmErrorType,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: fn(
             self: *const IMsmError,
             ErrorPath: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Language: fn(
             self: *const IMsmError,
             ErrorLanguage: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DatabaseTable: fn(
             self: *const IMsmError,
             ErrorTable: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DatabaseKeys: fn(
             self: *const IMsmError,
             ErrorKeys: **IMsmStrings,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleTable: fn(
             self: *const IMsmError,
             ErrorTable: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleKeys: fn(
             self: *const IMsmError,
             ErrorKeys: **IMsmStrings,
@@ -921,15 +870,18 @@ pub const IID_IMsmErrors = &IID_IMsmErrors_Value;
 pub const IMsmErrors = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IMsmErrors,
             Item: i32,
             Return: **IMsmError,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IMsmErrors,
             Count: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IMsmErrors,
             NewEnum: **IUnknown,
@@ -959,14 +911,17 @@ pub const IID_IMsmDependency = &IID_IMsmDependency_Value;
 pub const IMsmDependency = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Module: fn(
             self: *const IMsmDependency,
             Module: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Language: fn(
             self: *const IMsmDependency,
             Language: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: fn(
             self: *const IMsmDependency,
             Version: *BSTR,
@@ -1042,15 +997,18 @@ pub const IID_IMsmDependencies = &IID_IMsmDependencies_Value;
 pub const IMsmDependencies = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IMsmDependencies,
             Item: i32,
             Return: **IMsmDependency,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IMsmDependencies,
             Count: *i32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IMsmDependencies,
             NewEnum: **IUnknown,
@@ -1107,10 +1065,12 @@ pub const IMsmMerge = extern struct {
             self: *const IMsmMerge,
             Message: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Errors: fn(
             self: *const IMsmMerge,
             Errors: **IMsmErrors,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Dependencies: fn(
             self: *const IMsmMerge,
             Dependencies: **IMsmDependencies,
@@ -1197,6 +1157,7 @@ pub const IID_IMsmGetFiles = &IID_IMsmGetFiles_Value;
 pub const IMsmGetFiles = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleFiles: fn(
             self: *const IMsmGetFiles,
             Files: **IMsmStrings,
@@ -1606,7 +1567,7 @@ pub const MSITRANSACTION = extern enum(i32) {
 pub const MSITRANSACTION_CHAIN_EMBEDDEDUI = MSITRANSACTION.CHAIN_EMBEDDEDUI;
 pub const MSITRANSACTION_JOIN_EXISTING_EMBEDDEDUI = MSITRANSACTION.JOIN_EXISTING_EMBEDDEDUI;
 
-pub const MSITRANSACTIONSTATE = extern enum(i32) {
+pub const MSITRANSACTIONSTATE = extern enum(u32) {
     ROLLBACK = 0,
     COMMIT = 1,
 };
@@ -1798,6 +1759,7 @@ pub const MSITRANSFORM_ERROR = extern enum(i32) {
     UPDATEMISSINGROW = 16,
     CHANGECODEPAGE = 32,
     VIEWTRANSFORM = 256,
+    NONE = 0,
 };
 pub const MSITRANSFORM_ERROR_ADDEXISTINGROW = MSITRANSFORM_ERROR.ADDEXISTINGROW;
 pub const MSITRANSFORM_ERROR_DELMISSINGROW = MSITRANSFORM_ERROR.DELMISSINGROW;
@@ -1806,6 +1768,7 @@ pub const MSITRANSFORM_ERROR_DELMISSINGTABLE = MSITRANSFORM_ERROR.DELMISSINGTABL
 pub const MSITRANSFORM_ERROR_UPDATEMISSINGROW = MSITRANSFORM_ERROR.UPDATEMISSINGROW;
 pub const MSITRANSFORM_ERROR_CHANGECODEPAGE = MSITRANSFORM_ERROR.CHANGECODEPAGE;
 pub const MSITRANSFORM_ERROR_VIEWTRANSFORM = MSITRANSFORM_ERROR.VIEWTRANSFORM;
+pub const MSITRANSFORM_ERROR_NONE = MSITRANSFORM_ERROR.NONE;
 
 pub const MSITRANSFORM_VALIDATE = extern enum(i32) {
     LANGUAGE = 1,
@@ -2107,11 +2070,11 @@ pub const IAssemblyCache = extern struct {
             dwFlags: u32,
             pszAssemblyName: [*:0]const u16,
             pRefData: *FUSION_INSTALL_REFERENCE,
-            pulDisposition: *IAssemblyCache_UninstallAssembly_pulDispositionFlags,
+            pulDisposition: *IASSEMBLYCACHE_UNINSTALL_DISPOSITION,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         QueryAssemblyInfo: fn(
             self: *const IAssemblyCache,
-            dwFlags: IAssemblyCache_QueryAssemblyInfoFlags,
+            dwFlags: QUERYASMINFO_FLAGS,
             pszAssemblyName: [*:0]const u16,
             pAsmInfo: *ASSEMBLY_INFO,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2137,11 +2100,11 @@ pub const IAssemblyCache = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyCache_UninstallAssembly(self: *const T, dwFlags: u32, pszAssemblyName: [*:0]const u16, pRefData: *FUSION_INSTALL_REFERENCE, pulDisposition: *IAssemblyCache_UninstallAssembly_pulDispositionFlags) callconv(.Inline) HRESULT {
+        pub fn IAssemblyCache_UninstallAssembly(self: *const T, dwFlags: u32, pszAssemblyName: [*:0]const u16, pRefData: *FUSION_INSTALL_REFERENCE, pulDisposition: *IASSEMBLYCACHE_UNINSTALL_DISPOSITION) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyCache.VTable, self.vtable).UninstallAssembly(@ptrCast(*const IAssemblyCache, self), dwFlags, pszAssemblyName, pRefData, pulDisposition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAssemblyCache_QueryAssemblyInfo(self: *const T, dwFlags: IAssemblyCache_QueryAssemblyInfoFlags, pszAssemblyName: [*:0]const u16, pAsmInfo: *ASSEMBLY_INFO) callconv(.Inline) HRESULT {
+        pub fn IAssemblyCache_QueryAssemblyInfo(self: *const T, dwFlags: QUERYASMINFO_FLAGS, pszAssemblyName: [*:0]const u16, pAsmInfo: *ASSEMBLY_INFO) callconv(.Inline) HRESULT {
             return @ptrCast(*const IAssemblyCache.VTable, self.vtable).QueryAssemblyInfo(@ptrCast(*const IAssemblyCache, self), dwFlags, pszAssemblyName, pAsmInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3127,7 +3090,7 @@ pub extern "SETUPAPI" fn SetupSetFileQueueFlags(
 pub extern "SETUPAPI" fn SetupCopyOEMInfA(
     SourceInfFileName: [*:0]const u8,
     OEMSourceMediaLocation: ?[*:0]const u8,
-    OEMSourceMediaType: SetupCopyOEMInf_OEMSourceMediaType,
+    OEMSourceMediaType: OEM_SOURCE_MEDIA_TYPE,
     CopyStyle: u32,
     DestinationInfFileName: ?[*:0]u8,
     DestinationInfFileNameSize: u32,
@@ -3139,7 +3102,7 @@ pub extern "SETUPAPI" fn SetupCopyOEMInfA(
 pub extern "SETUPAPI" fn SetupCopyOEMInfW(
     SourceInfFileName: [*:0]const u16,
     OEMSourceMediaLocation: ?[*:0]const u16,
-    OEMSourceMediaType: SetupCopyOEMInf_OEMSourceMediaType,
+    OEMSourceMediaType: OEM_SOURCE_MEDIA_TYPE,
     CopyStyle: u32,
     DestinationInfFileName: ?[*:0]u16,
     DestinationInfFileNameSize: u32,
@@ -3260,7 +3223,7 @@ pub extern "SETUPAPI" fn SetupAddToDiskSpaceListA(
     DiskSpace: *c_void,
     TargetFilespec: [*:0]const u8,
     FileSize: i64,
-    Operation: Setup_Operation,
+    Operation: SETUP_FILE_OPERATION,
     Reserved1: *c_void,
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -3270,7 +3233,7 @@ pub extern "SETUPAPI" fn SetupAddToDiskSpaceListW(
     DiskSpace: *c_void,
     TargetFilespec: [*:0]const u16,
     FileSize: i64,
-    Operation: Setup_Operation,
+    Operation: SETUP_FILE_OPERATION,
     Reserved1: *c_void,
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -3281,7 +3244,7 @@ pub extern "SETUPAPI" fn SetupAddSectionToDiskSpaceListA(
     InfHandle: *c_void,
     ListInfHandle: ?*c_void,
     SectionName: [*:0]const u8,
-    Operation: Setup_Operation,
+    Operation: SETUP_FILE_OPERATION,
     Reserved1: *c_void,
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -3292,7 +3255,7 @@ pub extern "SETUPAPI" fn SetupAddSectionToDiskSpaceListW(
     InfHandle: *c_void,
     ListInfHandle: ?*c_void,
     SectionName: [*:0]const u16,
-    Operation: Setup_Operation,
+    Operation: SETUP_FILE_OPERATION,
     Reserved1: *c_void,
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -3321,7 +3284,7 @@ pub extern "SETUPAPI" fn SetupAddInstallSectionToDiskSpaceListW(
 pub extern "SETUPAPI" fn SetupRemoveFromDiskSpaceListA(
     DiskSpace: *c_void,
     TargetFilespec: [*:0]const u8,
-    Operation: Setup_Operation,
+    Operation: SETUP_FILE_OPERATION,
     Reserved1: *c_void,
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -3330,7 +3293,7 @@ pub extern "SETUPAPI" fn SetupRemoveFromDiskSpaceListA(
 pub extern "SETUPAPI" fn SetupRemoveFromDiskSpaceListW(
     DiskSpace: *c_void,
     TargetFilespec: [*:0]const u16,
-    Operation: Setup_Operation,
+    Operation: SETUP_FILE_OPERATION,
     Reserved1: *c_void,
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -3341,7 +3304,7 @@ pub extern "SETUPAPI" fn SetupRemoveSectionFromDiskSpaceListA(
     InfHandle: *c_void,
     ListInfHandle: ?*c_void,
     SectionName: [*:0]const u8,
-    Operation: Setup_Operation,
+    Operation: SETUP_FILE_OPERATION,
     Reserved1: *c_void,
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -3352,7 +3315,7 @@ pub extern "SETUPAPI" fn SetupRemoveSectionFromDiskSpaceListW(
     InfHandle: *c_void,
     ListInfHandle: ?*c_void,
     SectionName: [*:0]const u16,
-    Operation: Setup_Operation,
+    Operation: SETUP_FILE_OPERATION,
     Reserved1: *c_void,
     Reserved2: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -3730,14 +3693,14 @@ pub extern "msi" fn MsiSetExternalUIRecord(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnableLogA(
-    dwLogMode: u32,
+    dwLogMode: INSTALLOGMODE,
     szLogFile: ?[*:0]const u8,
     dwLogAttributes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEnableLogW(
-    dwLogMode: u32,
+    dwLogMode: INSTALLOGMODE,
     szLogFile: ?[*:0]const u16,
     dwLogAttributes: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3803,21 +3766,21 @@ pub extern "msi" fn MsiInstallProductW(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureProductA(
     szProduct: [*:0]const u8,
-    iInstallLevel: i32,
+    iInstallLevel: INSTALLLEVEL,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureProductW(
     szProduct: [*:0]const u16,
-    iInstallLevel: i32,
+    iInstallLevel: INSTALLLEVEL,
     eInstallState: INSTALLSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureProductExA(
     szProduct: [*:0]const u8,
-    iInstallLevel: i32,
+    iInstallLevel: INSTALLLEVEL,
     eInstallState: INSTALLSTATE,
     szCommandLine: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3825,7 +3788,7 @@ pub extern "msi" fn MsiConfigureProductExA(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiConfigureProductExW(
     szProduct: [*:0]const u16,
-    iInstallLevel: i32,
+    iInstallLevel: INSTALLLEVEL,
     eInstallState: INSTALLSTATE,
     szCommandLine: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3833,13 +3796,13 @@ pub extern "msi" fn MsiConfigureProductExW(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiReinstallProductA(
     szProduct: [*:0]const u8,
-    szReinstallMode: u32,
+    szReinstallMode: REINSTALLMODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiReinstallProductW(
     szProduct: [*:0]const u16,
-    szReinstallMode: u32,
+    szReinstallMode: REINSTALLMODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -3899,7 +3862,7 @@ pub extern "msi" fn MsiProcessAdvertiseScriptW(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseScriptA(
     szScriptFile: [*:0]const u8,
-    dwFlags: MsiAdvertiseScript_dwFlags,
+    dwFlags: u32,
     phRegData: ?*HKEY,
     fRemoveItems: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -3907,7 +3870,7 @@ pub extern "msi" fn MsiAdvertiseScriptA(
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiAdvertiseScriptW(
     szScriptFile: [*:0]const u16,
-    dwFlags: MsiAdvertiseScript_dwFlags,
+    dwFlags: u32,
     phRegData: ?*HKEY,
     fRemoveItems: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4137,8 +4100,8 @@ pub extern "msi" fn MsiEnumPatchesExA(
     dwContext: u32,
     dwFilter: u32,
     dwIndex: u32,
-    szPatchCode: ?*i8,
-    szTargetProductCode: ?*i8,
+    szPatchCode: ?PSTR,
+    szTargetProductCode: ?PSTR,
     pdwTargetProductContext: ?*MSIINSTALLCONTEXT,
     szTargetUserSid: ?[*:0]u8,
     pcchTargetUserSid: ?*u32,
@@ -4151,8 +4114,8 @@ pub extern "msi" fn MsiEnumPatchesExW(
     dwContext: u32,
     dwFilter: u32,
     dwIndex: u32,
-    szPatchCode: ?*u16,
-    szTargetProductCode: ?*u16,
+    szPatchCode: ?PWSTR,
+    szTargetProductCode: ?PWSTR,
     pdwTargetProductContext: ?*MSIINSTALLCONTEXT,
     szTargetUserSid: ?[*:0]u16,
     pcchTargetUserSid: ?*u32,
@@ -4250,14 +4213,14 @@ pub extern "msi" fn MsiConfigureFeatureW(
 pub extern "msi" fn MsiReinstallFeatureA(
     szProduct: [*:0]const u8,
     szFeature: [*:0]const u8,
-    dwReinstallMode: u32,
+    dwReinstallMode: REINSTALLMODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiReinstallFeatureW(
     szProduct: [*:0]const u16,
     szFeature: [*:0]const u16,
-    dwReinstallMode: u32,
+    dwReinstallMode: REINSTALLMODE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -4265,7 +4228,7 @@ pub extern "msi" fn MsiProvideComponentA(
     szProduct: [*:0]const u8,
     szFeature: [*:0]const u8,
     szComponent: [*:0]const u8,
-    dwInstallMode: u32,
+    dwInstallMode: INSTALLMODE,
     lpPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4275,7 +4238,7 @@ pub extern "msi" fn MsiProvideComponentW(
     szProduct: [*:0]const u16,
     szFeature: [*:0]const u16,
     szComponent: [*:0]const u16,
-    dwInstallMode: u32,
+    dwInstallMode: INSTALLMODE,
     lpPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4284,7 +4247,7 @@ pub extern "msi" fn MsiProvideComponentW(
 pub extern "msi" fn MsiProvideQualifiedComponentA(
     szCategory: [*:0]const u8,
     szQualifier: [*:0]const u8,
-    dwInstallMode: u32,
+    dwInstallMode: INSTALLMODE,
     lpPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4293,7 +4256,7 @@ pub extern "msi" fn MsiProvideQualifiedComponentA(
 pub extern "msi" fn MsiProvideQualifiedComponentW(
     szCategory: [*:0]const u16,
     szQualifier: [*:0]const u16,
-    dwInstallMode: u32,
+    dwInstallMode: INSTALLMODE,
     lpPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4302,7 +4265,7 @@ pub extern "msi" fn MsiProvideQualifiedComponentW(
 pub extern "msi" fn MsiProvideQualifiedComponentExA(
     szCategory: [*:0]const u8,
     szQualifier: [*:0]const u8,
-    dwInstallMode: u32,
+    dwInstallMode: INSTALLMODE,
     szProduct: ?[*:0]const u8,
     dwUnused1: u32,
     dwUnused2: u32,
@@ -4314,7 +4277,7 @@ pub extern "msi" fn MsiProvideQualifiedComponentExA(
 pub extern "msi" fn MsiProvideQualifiedComponentExW(
     szCategory: [*:0]const u16,
     szQualifier: [*:0]const u16,
-    dwInstallMode: u32,
+    dwInstallMode: INSTALLMODE,
     szProduct: ?[*:0]const u16,
     dwUnused1: u32,
     dwUnused2: u32,
@@ -4362,8 +4325,8 @@ pub extern "msi" fn MsiGetComponentPathExW(
 pub extern "msi" fn MsiProvideAssemblyA(
     szAssemblyName: [*:0]const u8,
     szAppContext: ?[*:0]const u8,
-    dwInstallMode: u32,
-    dwAssemblyInfo: MsiProvideAssembly_dwAssemblyInfo,
+    dwInstallMode: INSTALLMODE,
+    dwAssemblyInfo: MSIASSEMBLYINFO,
     lpPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4372,8 +4335,8 @@ pub extern "msi" fn MsiProvideAssemblyA(
 pub extern "msi" fn MsiProvideAssemblyW(
     szAssemblyName: [*:0]const u16,
     szAppContext: ?[*:0]const u16,
-    dwInstallMode: u32,
-    dwAssemblyInfo: MsiProvideAssembly_dwAssemblyInfo,
+    dwInstallMode: INSTALLMODE,
+    dwAssemblyInfo: MSIASSEMBLYINFO,
     lpPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
@@ -4414,7 +4377,7 @@ pub extern "msi" fn MsiEnumProductsExA(
     szUserSid: ?[*:0]const u8,
     dwContext: u32,
     dwIndex: u32,
-    szInstalledProductCode: ?*i8,
+    szInstalledProductCode: ?PSTR,
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u8,
     pcchSid: ?*u32,
@@ -4426,7 +4389,7 @@ pub extern "msi" fn MsiEnumProductsExW(
     szUserSid: ?[*:0]const u16,
     dwContext: u32,
     dwIndex: u32,
-    szInstalledProductCode: ?*u16,
+    szInstalledProductCode: ?PWSTR,
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u16,
     pcchSid: ?*u32,
@@ -4481,7 +4444,7 @@ pub extern "msi" fn MsiEnumComponentsExA(
     szUserSid: ?[*:0]const u8,
     dwContext: u32,
     dwIndex: u32,
-    szInstalledComponentCode: ?*i8,
+    szInstalledComponentCode: ?PSTR,
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u8,
     pcchSid: ?*u32,
@@ -4492,7 +4455,7 @@ pub extern "msi" fn MsiEnumComponentsExW(
     szUserSid: ?[*:0]const u16,
     dwContext: u32,
     dwIndex: u32,
-    szInstalledComponentCode: ?*u16,
+    szInstalledComponentCode: ?PWSTR,
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u16,
     pcchSid: ?*u32,
@@ -4516,9 +4479,9 @@ pub extern "msi" fn MsiEnumClientsW(
 pub extern "msi" fn MsiEnumClientsExA(
     szComponent: [*:0]const u8,
     szUserSid: ?[*:0]const u8,
-    dwContext: MsiEnumClientsEx_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwProductIndex: u32,
-    szProductBuf: ?*i8,
+    szProductBuf: ?PSTR,
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u8,
     pcchSid: ?*u32,
@@ -4528,9 +4491,9 @@ pub extern "msi" fn MsiEnumClientsExA(
 pub extern "msi" fn MsiEnumClientsExW(
     szComponent: [*:0]const u16,
     szUserSid: ?[*:0]const u16,
-    dwContext: MsiEnumClientsEx_dwContext,
+    dwContext: MSIINSTALLCONTEXT,
     dwProductIndex: u32,
-    szProductBuf: ?*u16,
+    szProductBuf: ?PWSTR,
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u16,
     pcchSid: ?*u32,
@@ -5054,7 +5017,7 @@ pub extern "msi" fn MsiBeginTransactionW(
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiEndTransaction(
-    dwTransactionState: u32,
+    dwTransactionState: MSITRANSACTIONSTATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -5298,14 +5261,14 @@ pub extern "msi" fn MsiDatabaseGenerateTransformW(
 pub extern "msi" fn MsiDatabaseApplyTransformA(
     hDatabase: MSIHANDLE,
     szTransformFile: [*:0]const u8,
-    iErrorConditions: i32,
+    iErrorConditions: MSITRANSFORM_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiDatabaseApplyTransformW(
     hDatabase: MSIHANDLE,
     szTransformFile: [*:0]const u16,
-    iErrorConditions: i32,
+    iErrorConditions: MSITRANSFORM_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -5313,8 +5276,8 @@ pub extern "msi" fn MsiCreateTransformSummaryInfoA(
     hDatabase: MSIHANDLE,
     hDatabaseReference: MSIHANDLE,
     szTransformFile: [*:0]const u8,
-    iErrorConditions: MsiCreateTransformSummaryInfo_iErrorConditions,
-    iValidation: MsiCreateTransformSummaryInfo_iValidation,
+    iErrorConditions: MSITRANSFORM_ERROR,
+    iValidation: MSITRANSFORM_VALIDATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -5322,8 +5285,8 @@ pub extern "msi" fn MsiCreateTransformSummaryInfoW(
     hDatabase: MSIHANDLE,
     hDatabaseReference: MSIHANDLE,
     szTransformFile: [*:0]const u16,
-    iErrorConditions: MsiCreateTransformSummaryInfo_iErrorConditions,
-    iValidation: MsiCreateTransformSummaryInfo_iValidation,
+    iErrorConditions: MSITRANSFORM_ERROR,
+    iValidation: MSITRANSFORM_VALIDATE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -5420,7 +5383,7 @@ pub extern "msi" fn MsiRecordReadStream(
     hRecord: MSIHANDLE,
     iField: u32,
     // TODO: what to do with BytesParamIndex 3?
-    szDataBuf: ?*i8,
+    szDataBuf: ?PSTR,
     pcbDataBuf: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -5669,14 +5632,14 @@ pub extern "msi" fn MsiSetInstallLevel(
 pub extern "msi" fn MsiGetFeatureValidStatesA(
     hInstall: MSIHANDLE,
     szFeature: [*:0]const u8,
-    lpInstallStates: *MsiGetFeatureValidStates_lpInstallStates,
+    lpInstallStates: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
 pub extern "msi" fn MsiGetFeatureValidStatesW(
     hInstall: MSIHANDLE,
     szFeature: [*:0]const u16,
-    lpInstallStates: *MsiGetFeatureValidStates_lpInstallStates,
+    lpInstallStates: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'Windows 8'
@@ -6726,27 +6689,28 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("automation.zig").IDispatch;
 const ULARGE_INTEGER = @import("system_services.zig").ULARGE_INTEGER;
 const PWSTR = @import("system_services.zig").PWSTR;
-const IStream = @import("structured_storage.zig").IStream;
-const HKEY = @import("windows_programming.zig").HKEY;
+const VER_PLATFORM = @import("debug.zig").VER_PLATFORM;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
-const HINSTANCE = @import("system_services.zig").HINSTANCE;
+const IStream = @import("structured_storage.zig").IStream;
 const HRESULT = @import("com.zig").HRESULT;
-const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
-const FILETIME = @import("windows_programming.zig").FILETIME;
+const HKEY = @import("windows_programming.zig").HKEY;
+const HINSTANCE = @import("system_services.zig").HINSTANCE;
 const BSTR = @import("automation.zig").BSTR;
 const PSTR = @import("system_services.zig").PSTR;
+const CERT_CONTEXT = @import("security.zig").CERT_CONTEXT;
 const BOOL = @import("system_services.zig").BOOL;
 const HWND = @import("windows_and_messaging.zig").HWND;
+const FILETIME = @import("windows_programming.zig").FILETIME;
 const LARGE_INTEGER = @import("system_services.zig").LARGE_INTEGER;
 const SetupFileLogInfo = @import("device_and_driver_installation.zig").SetupFileLogInfo;
 const SP_DEVINFO_DATA = @import("device_and_driver_installation.zig").SP_DEVINFO_DATA;
-const MINIDUMP_SYSTEM_INFO_PlatformIdFlags = @import("debug.zig").MINIDUMP_SYSTEM_INFO_PlatformIdFlags;
 const HANDLE = @import("system_services.zig").HANDLE;
 const ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA = @import("windows_programming.zig").ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA;
 
@@ -6761,13 +6725,13 @@ test {
     _ = PINSTALLUI_HANDLER_RECORD;
 
     const constant_export_count = 82;
-    const type_export_count = 117;
-    const enum_value_export_count = 368;
+    const type_export_count = 112;
+    const enum_value_export_count = 364;
     const com_iface_id_export_count = 14;
     const com_class_id_export_count = 1;
     const func_export_count = 453;
     const unicode_alias_count = 207;
-    const import_count = 21;
+    const import_count = 22;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

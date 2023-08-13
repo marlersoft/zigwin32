@@ -945,6 +945,9 @@ pub const DISPID_THIS = @as(i32, -613);
 //--------------------------------------------------------------------------------
 // Section: Types (88)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'SysFreeString', what can Zig do with this information?
+pub const BSTR = *u16;
+
 pub const SAFEARRAYBOUND = extern struct {
     cElements: u32,
     lLbound: i32,
@@ -2721,14 +2724,14 @@ pub const ITypeFactory = extern struct {
             self: *const ITypeFactory,
             pTypeInfo: *ITypeInfo,
             riid: *const Guid,
-            ppv: ?*?*IUnknown,
+            ppv: **IUnknown,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITypeFactory_CreateFromTypeInfo(self: *const T, pTypeInfo: *ITypeInfo, riid: *const Guid, ppv: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        pub fn ITypeFactory_CreateFromTypeInfo(self: *const T, pTypeInfo: *ITypeInfo, riid: *const Guid, ppv: **IUnknown) callconv(.Inline) HRESULT {
             return @ptrCast(*const ITypeFactory.VTable, self.vtable).CreateFromTypeInfo(@ptrCast(*const ITypeFactory, self), pTypeInfo, riid, ppv);
         }
     };}
@@ -3463,9 +3466,6 @@ pub const IProvideRuntimeContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: this type has a FreeFunc 'SysFreeString', what can Zig do with this information?
-pub const BSTR = *u16;
-
 pub const VARENUM = extern enum(i32) {
     EMPTY = 0,
     NULL = 1,
@@ -3581,6 +3581,102 @@ pub const LPEXCEPFINO_DEFERRED_FILLIN = fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (412)
 //--------------------------------------------------------------------------------
+pub extern "OLE32" fn HWND_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HWND_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HWND_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HWND_UserFree(
+    param0: *u32,
+    param1: *HWND,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HWND_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HWND_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HWND_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HWND,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HWND_UserFree64(
+    param0: *u32,
+    param1: *HWND,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLEAUT32" fn BSTR_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *BSTR,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLEAUT32" fn BSTR_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *BSTR,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLEAUT32" fn BSTR_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *BSTR,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLEAUT32" fn BSTR_UserFree(
+    param0: *u32,
+    param1: *BSTR,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn BSTR_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: *BSTR,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn BSTR_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: *BSTR,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn BSTR_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *BSTR,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn BSTR_UserFree64(
+    param0: *u32,
+    param1: *BSTR,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub extern "OLEAUT32" fn VARIANT_UserSize(
     param0: *u32,
     param1: u32,
@@ -3629,152 +3725,6 @@ pub extern "OLEAUT32" fn VARIANT_UserUnmarshal64(
 pub extern "OLEAUT32" fn VARIANT_UserFree64(
     param0: *u32,
     param1: *VARIANT,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLEAUT32" fn BSTR_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLEAUT32" fn BSTR_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLEAUT32" fn BSTR_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLEAUT32" fn BSTR_UserFree(
-    param0: *u32,
-    param1: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HWND_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HWND_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HWND_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HWND_UserFree(
-    param0: *u32,
-    param1: *HWND,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn BSTR_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn BSTR_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn BSTR_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn BSTR_UserFree64(
-    param0: *u32,
-    param1: *BSTR,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HWND_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HWND_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HWND_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HWND,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HWND_UserFree64(
-    param0: *u32,
-    param1: *HWND,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree(
-    param0: *u32,
-    param1: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree64(
-    param0: *u32,
-    param1: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLEAUT32" fn SysAllocString(
@@ -4107,7 +4057,7 @@ pub extern "OLEAUT32" fn VarUI1FromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI1FromI1(
-    cIn: i8,
+    cIn: CHAR,
     pbOut: *u8,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4185,7 +4135,7 @@ pub extern "OLEAUT32" fn VarI2FromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI2FromI1(
-    cIn: i8,
+    cIn: CHAR,
     psOut: *i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4263,7 +4213,7 @@ pub extern "OLEAUT32" fn VarI4FromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI4FromI1(
-    cIn: i8,
+    cIn: CHAR,
     plOut: *i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4336,7 +4286,7 @@ pub extern "OLEAUT32" fn VarI8FromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI8FromI1(
-    cIn: i8,
+    cIn: CHAR,
     pi64Out: *i64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4414,7 +4364,7 @@ pub extern "OLEAUT32" fn VarR4FromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR4FromI1(
-    cIn: i8,
+    cIn: CHAR,
     pfltOut: *f32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4492,7 +4442,7 @@ pub extern "OLEAUT32" fn VarR8FromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarR8FromI1(
-    cIn: i8,
+    cIn: CHAR,
     pdblOut: *f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4570,7 +4520,7 @@ pub extern "OLEAUT32" fn VarDateFromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDateFromI1(
-    cIn: i8,
+    cIn: CHAR,
     pdateOut: *f64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4648,7 +4598,7 @@ pub extern "OLEAUT32" fn VarCyFromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarCyFromI1(
-    cIn: i8,
+    cIn: CHAR,
     pcyOut: *CY,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4743,7 +4693,7 @@ pub extern "OLEAUT32" fn VarBstrFromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBstrFromI1(
-    cIn: i8,
+    cIn: CHAR,
     lcid: u32,
     dwFlags: u32,
     pbstrOut: *BSTR,
@@ -4831,7 +4781,7 @@ pub extern "OLEAUT32" fn VarBoolFromDisp(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarBoolFromI1(
-    cIn: i8,
+    cIn: CHAR,
     pboolOut: *i16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -4857,80 +4807,80 @@ pub extern "OLEAUT32" fn VarBoolFromDec(
 
 pub extern "OLEAUT32" fn VarI1FromUI1(
     bIn: u8,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromI2(
     uiIn: i16,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromI4(
     lIn: i32,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromI8(
     i64In: i64,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromR4(
     fltIn: f32,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromR8(
     dblIn: f64,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromDate(
     dateIn: f64,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromCy(
     cyIn: CY,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromStr(
     strIn: [*:0]const u16,
     lcid: u32,
     dwFlags: u32,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromDisp(
     pdispIn: *IDispatch,
     lcid: u32,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromBool(
     boolIn: i16,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromUI2(
     uiIn: u16,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromUI4(
     ulIn: u32,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromUI8(
     i64In: u64,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarI1FromDec(
     pdecIn: *const DECIMAL,
-    pcOut: *i8,
+    pcOut: PSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromUI1(
@@ -4992,7 +4942,7 @@ pub extern "OLEAUT32" fn VarUI2FromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI2FromI1(
-    cIn: i8,
+    cIn: CHAR,
     puiOut: *u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5070,7 +5020,7 @@ pub extern "OLEAUT32" fn VarUI4FromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI4FromI1(
-    cIn: i8,
+    cIn: CHAR,
     pulOut: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5143,7 +5093,7 @@ pub extern "OLEAUT32" fn VarUI8FromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarUI8FromI1(
-    cIn: i8,
+    cIn: CHAR,
     pi64Out: *u64,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5221,7 +5171,7 @@ pub extern "OLEAUT32" fn VarDecFromBool(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "OLEAUT32" fn VarDecFromI1(
-    cIn: i8,
+    cIn: CHAR,
     pdecOut: *DECIMAL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -5816,6 +5766,29 @@ pub extern "OLEAUT32" fn ClearCustData(
 pub extern "OLEAUT32" fn OaEnablePerUserTLibRegistration(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree(
+    param0: *u32,
+    param1: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub extern "OLE32" fn STGMEDIUM_UserSize(
     param0: *u32,
     param1: u32,
@@ -5837,6 +5810,33 @@ pub extern "OLE32" fn STGMEDIUM_UserUnmarshal(
 pub extern "OLE32" fn STGMEDIUM_UserFree(
     param0: *u32,
     param1: *STGMEDIUM,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree64(
+    param0: *u32,
+    param1: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn STGMEDIUM_UserSize64(
@@ -5894,11 +5894,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const PWSTR = @import("system_services.zig").PWSTR;
 const FLAGGED_WORD_BLOB = @import("com.zig").FLAGGED_WORD_BLOB;
+const CHAR = @import("system_services.zig").CHAR;
 const IUnknown = @import("com.zig").IUnknown;
 const CY = @import("system_services.zig").CY;
 const HRESULT = @import("com.zig").HRESULT;
@@ -5922,7 +5923,7 @@ test {
     const com_class_id_export_count = 2;
     const func_export_count = 412;
     const unicode_alias_count = 0;
-    const import_count = 14;
+    const import_count = 15;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

@@ -100,7 +100,7 @@ pub const IPropertyChangeArray = extern struct {
             self: *const IPropertyChangeArray,
             iIndex: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         InsertAt: fn(
             self: *const IPropertyChangeArray,
@@ -132,7 +132,7 @@ pub const IPropertyChangeArray = extern struct {
             return @ptrCast(*const IPropertyChangeArray.VTable, self.vtable).GetCount(@ptrCast(*const IPropertyChangeArray, self), pcOperations);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyChangeArray_GetAt(self: *const T, iIndex: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyChangeArray_GetAt(self: *const T, iIndex: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyChangeArray.VTable, self.vtable).GetAt(@ptrCast(*const IPropertyChangeArray, self), iIndex, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -345,13 +345,13 @@ pub const IPropertyEnumTypeList = extern struct {
             self: *const IPropertyEnumTypeList,
             itype: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetConditionAt: fn(
             self: *const IPropertyEnumTypeList,
             nIndex: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FindMatchingIndex: fn(
             self: *const IPropertyEnumTypeList,
@@ -367,11 +367,11 @@ pub const IPropertyEnumTypeList = extern struct {
             return @ptrCast(*const IPropertyEnumTypeList.VTable, self.vtable).GetCount(@ptrCast(*const IPropertyEnumTypeList, self), pctypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyEnumTypeList_GetAt(self: *const T, itype: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyEnumTypeList_GetAt(self: *const T, itype: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyEnumTypeList.VTable, self.vtable).GetAt(@ptrCast(*const IPropertyEnumTypeList, self), itype, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyEnumTypeList_GetConditionAt(self: *const T, nIndex: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyEnumTypeList_GetConditionAt(self: *const T, nIndex: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyEnumTypeList.VTable, self.vtable).GetConditionAt(@ptrCast(*const IPropertyEnumTypeList, self), nIndex, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -666,7 +666,7 @@ pub const IPropertyDescription = extern struct {
         GetEnumTypeList: fn(
             self: *const IPropertyDescription,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CoerceToCanonicalValue: fn(
             self: *const IPropertyDescription,
@@ -755,7 +755,7 @@ pub const IPropertyDescription = extern struct {
             return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetConditionType(@ptrCast(*const IPropertyDescription, self), pcontype, popDefault);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyDescription_GetEnumTypeList(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyDescription_GetEnumTypeList(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyDescription.VTable, self.vtable).GetEnumTypeList(@ptrCast(*const IPropertyDescription, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -806,23 +806,23 @@ pub const IPropertyDescriptionAliasInfo = extern struct {
         GetSortByAlias: fn(
             self: *const IPropertyDescriptionAliasInfo,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetAdditionalSortByAliases: fn(
             self: *const IPropertyDescriptionAliasInfo,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPropertyDescription.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyDescriptionAliasInfo_GetSortByAlias(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyDescriptionAliasInfo_GetSortByAlias(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyDescriptionAliasInfo.VTable, self.vtable).GetSortByAlias(@ptrCast(*const IPropertyDescriptionAliasInfo, self), riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyDescriptionAliasInfo_GetAdditionalSortByAliases(self: *const T, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyDescriptionAliasInfo_GetAdditionalSortByAliases(self: *const T, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyDescriptionAliasInfo.VTable, self.vtable).GetAdditionalSortByAliases(@ptrCast(*const IPropertyDescriptionAliasInfo, self), riid, ppv);
         }
     };}
@@ -915,14 +915,14 @@ pub const IPropertyDescriptionRelatedPropertyInfo = extern struct {
             self: *const IPropertyDescriptionRelatedPropertyInfo,
             pszRelationshipName: [*:0]const u16,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPropertyDescription.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyDescriptionRelatedPropertyInfo_GetRelatedProperty(self: *const T, pszRelationshipName: [*:0]const u16, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyDescriptionRelatedPropertyInfo_GetRelatedProperty(self: *const T, pszRelationshipName: [*:0]const u16, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyDescriptionRelatedPropertyInfo.VTable, self.vtable).GetRelatedProperty(@ptrCast(*const IPropertyDescriptionRelatedPropertyInfo, self), pszRelationshipName, riid, ppv);
         }
     };}
@@ -956,25 +956,25 @@ pub const IPropertySystem = extern struct {
             self: *const IPropertySystem,
             propkey: *const PROPERTYKEY,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDescriptionByName: fn(
             self: *const IPropertySystem,
             pszCanonicalName: [*:0]const u16,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyDescriptionListFromString: fn(
             self: *const IPropertySystem,
             pszPropList: [*:0]const u16,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         EnumeratePropertyDescriptions: fn(
             self: *const IPropertySystem,
             filterOn: PROPDESC_ENUMFILTER,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         FormatForDisplay: fn(
             self: *const IPropertySystem,
@@ -1007,19 +1007,19 @@ pub const IPropertySystem = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySystem_GetPropertyDescription(self: *const T, propkey: *const PROPERTYKEY, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertySystem_GetPropertyDescription(self: *const T, propkey: *const PROPERTYKEY, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertySystem.VTable, self.vtable).GetPropertyDescription(@ptrCast(*const IPropertySystem, self), propkey, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySystem_GetPropertyDescriptionByName(self: *const T, pszCanonicalName: [*:0]const u16, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertySystem_GetPropertyDescriptionByName(self: *const T, pszCanonicalName: [*:0]const u16, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertySystem.VTable, self.vtable).GetPropertyDescriptionByName(@ptrCast(*const IPropertySystem, self), pszCanonicalName, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySystem_GetPropertyDescriptionListFromString(self: *const T, pszPropList: [*:0]const u16, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertySystem_GetPropertyDescriptionListFromString(self: *const T, pszPropList: [*:0]const u16, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertySystem.VTable, self.vtable).GetPropertyDescriptionListFromString(@ptrCast(*const IPropertySystem, self), pszPropList, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertySystem_EnumeratePropertyDescriptions(self: *const T, filterOn: PROPDESC_ENUMFILTER, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertySystem_EnumeratePropertyDescriptions(self: *const T, filterOn: PROPDESC_ENUMFILTER, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertySystem.VTable, self.vtable).EnumeratePropertyDescriptions(@ptrCast(*const IPropertySystem, self), filterOn, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1060,7 +1060,7 @@ pub const IPropertyDescriptionList = extern struct {
             self: *const IPropertyDescriptionList,
             iElem: u32,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
@@ -1071,7 +1071,7 @@ pub const IPropertyDescriptionList = extern struct {
             return @ptrCast(*const IPropertyDescriptionList.VTable, self.vtable).GetCount(@ptrCast(*const IPropertyDescriptionList, self), pcElem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyDescriptionList_GetAt(self: *const T, iElem: u32, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyDescriptionList_GetAt(self: *const T, iElem: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyDescriptionList.VTable, self.vtable).GetAt(@ptrCast(*const IPropertyDescriptionList, self), iElem, riid, ppv);
         }
     };}
@@ -1089,7 +1089,7 @@ pub const IPropertyStoreFactory = extern struct {
             flags: GETPROPERTYSTOREFLAGS,
             pUnkFactory: *IUnknown,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         GetPropertyStoreForKeys: fn(
             self: *const IPropertyStoreFactory,
@@ -1097,18 +1097,18 @@ pub const IPropertyStoreFactory = extern struct {
             cKeys: u32,
             flags: GETPROPERTYSTOREFLAGS,
             riid: *const Guid,
-            ppv: ?*?*c_void,
+            ppv: **c_void,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStoreFactory_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, pUnkFactory: *IUnknown, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyStoreFactory_GetPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, pUnkFactory: *IUnknown, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyStoreFactory.VTable, self.vtable).GetPropertyStore(@ptrCast(*const IPropertyStoreFactory, self), flags, pUnkFactory, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPropertyStoreFactory_GetPropertyStoreForKeys(self: *const T, rgKeys: *const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: *const Guid, ppv: ?*?*c_void) callconv(.Inline) HRESULT {
+        pub fn IPropertyStoreFactory_GetPropertyStoreForKeys(self: *const T, rgKeys: *const PROPERTYKEY, cKeys: u32, flags: GETPROPERTYSTOREFLAGS, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
             return @ptrCast(*const IPropertyStoreFactory.VTable, self.vtable).GetPropertyStoreForKeys(@ptrCast(*const IPropertyStoreFactory, self), rgKeys, cKeys, flags, riid, ppv);
         }
     };}
@@ -1417,16 +1417,16 @@ pub const SESF_ALL_FLAGS = SYNC_ENGINE_STATE_FLAGS.ALL_FLAGS;
 pub const PROPPRG = extern struct {
     flPrg: u16,
     flPrgInit: u16,
-    achTitle: [30]i8,
-    achCmdLine: [128]i8,
-    achWorkDir: [64]i8,
+    achTitle: [30]CHAR,
+    achCmdLine: [128]CHAR,
+    achWorkDir: [64]CHAR,
     wHotKey: u16,
-    achIconFile: [80]i8,
+    achIconFile: [80]CHAR,
     wIconIndex: u16,
     dwEnhModeFlags: u32,
     dwRealModeFlags: u32,
-    achOtherFile: [80]i8,
-    achPIFFile: [260]i8,
+    achOtherFile: [80]CHAR,
+    achPIFFile: [260]CHAR,
 };
 
 
@@ -3031,11 +3031,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (28)
+// Section: Imports (29)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const HINSTANCE = @import("system_services.zig").HINSTANCE;
 const POINTL = @import("display_devices.zig").POINTL;
+const CHAR = @import("system_services.zig").CHAR;
 const FILETIME = @import("windows_programming.zig").FILETIME;
 const HRESULT = @import("com.zig").HRESULT;
 const BOOL = @import("system_services.zig").BOOL;
@@ -3070,7 +3071,7 @@ test {
     const com_class_id_export_count = 3;
     const func_export_count = 227;
     const unicode_alias_count = 0;
-    const import_count = 28;
+    const import_count = 29;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

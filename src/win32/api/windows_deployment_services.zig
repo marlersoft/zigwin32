@@ -127,20 +127,20 @@ pub const PROCESSOR_ARCHITECTURE_INTEL = PROCESSOR_ARCHITECTURE.INTEL;
 pub const PROCESSOR_ARCHITECTURE_ARM = PROCESSOR_ARCHITECTURE.ARM;
 pub const PROCESSOR_ARCHITECTURE_UNKNOWN = PROCESSOR_ARCHITECTURE.UNKNOWN;
 
-pub const PFN_WdsCliCallback_dwMessageIdFlags = extern enum(u32) {
+pub const PFN_WDS_CLI_CALLBACK_MESSAGE_ID = extern enum(u32) {
     START = 0,
     COMPLETE = 1,
     PROGRESS = 2,
     TEXT = 3,
 };
-// TODO: enum 'PFN_WdsCliCallback_dwMessageIdFlags' has known issues with its value aliases
+// TODO: enum 'PFN_WDS_CLI_CALLBACK_MESSAGE_ID' has known issues with its value aliases
 
-pub const WDS_TRANSPORTCLIENT_REQUEST_ulAuthLevelFlags = extern enum(u32) {
+pub const WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL = extern enum(u32) {
     AUTH = 1,
     NO_AUTH = 2,
 };
-pub const WDS_TRANSPORTCLIENT_AUTH = WDS_TRANSPORTCLIENT_REQUEST_ulAuthLevelFlags.AUTH;
-pub const WDS_TRANSPORTCLIENT_NO_AUTH = WDS_TRANSPORTCLIENT_REQUEST_ulAuthLevelFlags.NO_AUTH;
+pub const WDS_TRANSPORTCLIENT_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.AUTH;
+pub const WDS_TRANSPORTCLIENT_NO_AUTH = WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL.NO_AUTH;
 
 pub const WDS_CLI_CRED = extern struct {
     pwszUserName: [*:0]const u16,
@@ -183,7 +183,7 @@ pub const WDS_CLI_IMAGE_PARAM_SPARSE_FILE = WDS_CLI_IMAGE_PARAM_TYPE.SPARSE_FILE
 pub const WDS_CLI_IMAGE_PARAM_SUPPORTED_FIRMWARES = WDS_CLI_IMAGE_PARAM_TYPE.SUPPORTED_FIRMWARES;
 
 pub const PFN_WdsCliCallback = fn(
-    dwMessageId: PFN_WdsCliCallback_dwMessageIdFlags,
+    dwMessageId: PFN_WDS_CLI_CALLBACK_MESSAGE_ID,
     wParam: WPARAM,
     lParam: LPARAM,
     pvUserData: ?*c_void,
@@ -374,7 +374,7 @@ pub const PFN_WdsTransportClientSessionNegotiate = fn(
 pub const WDS_TRANSPORTCLIENT_REQUEST = extern struct {
     ulLength: u32,
     ulApiVersion: u32,
-    ulAuthLevel: WDS_TRANSPORTCLIENT_REQUEST_ulAuthLevelFlags,
+    ulAuthLevel: WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL,
     pwszServer: [*:0]const u16,
     pwszNamespace: [*:0]const u16,
     pwszObjectName: [*:0]const u16,
@@ -572,6 +572,7 @@ pub const IID_IWdsTransportCacheable = &IID_IWdsTransportCacheable_Value;
 pub const IWdsTransportCacheable = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Dirty: fn(
             self: *const IWdsTransportCacheable,
             pbDirty: *i16,
@@ -615,15 +616,18 @@ pub const IID_IWdsTransportCollection = &IID_IWdsTransportCollection_Value;
 pub const IWdsTransportCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: fn(
             self: *const IWdsTransportCollection,
             pulCount: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: fn(
             self: *const IWdsTransportCollection,
             ulIndex: u32,
             ppVal: **IDispatch,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: fn(
             self: *const IWdsTransportCollection,
             ppVal: **IUnknown,
@@ -677,18 +681,22 @@ pub const IID_IWdsTransportServer = &IID_IWdsTransportServer_Value;
 pub const IWdsTransportServer = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IWdsTransportServer,
             pbszName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SetupManager: fn(
             self: *const IWdsTransportServer,
             ppWdsTransportSetupManager: **IWdsTransportSetupManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConfigurationManager: fn(
             self: *const IWdsTransportServer,
             ppWdsTransportConfigurationManager: **IWdsTransportConfigurationManager,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NamespaceManager: fn(
             self: *const IWdsTransportServer,
             ppWdsTransportNamespaceManager: **IWdsTransportNamespaceManager,
@@ -732,6 +740,7 @@ pub const IID_IWdsTransportServer2 = &IID_IWdsTransportServer2_Value;
 pub const IWdsTransportServer2 = extern struct {
     pub const VTable = extern struct {
         base: IWdsTransportServer.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TftpManager: fn(
             self: *const IWdsTransportServer2,
             ppWdsTransportTftpManager: **IWdsTransportTftpManager,
@@ -754,14 +763,17 @@ pub const IID_IWdsTransportSetupManager = &IID_IWdsTransportSetupManager_Value;
 pub const IWdsTransportSetupManager = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: fn(
             self: *const IWdsTransportSetupManager,
             pullVersion: *u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InstalledFeatures: fn(
             self: *const IWdsTransportSetupManager,
             pulInstalledFeatures: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Protocols: fn(
             self: *const IWdsTransportSetupManager,
             pulProtocols: *u32,
@@ -811,10 +823,12 @@ pub const IID_IWdsTransportSetupManager2 = &IID_IWdsTransportSetupManager2_Value
 pub const IWdsTransportSetupManager2 = extern struct {
     pub const VTable = extern struct {
         base: IWdsTransportSetupManager.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TftpCapabilities: fn(
             self: *const IWdsTransportSetupManager2,
             pulTftpCapabilities: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContentProviders: fn(
             self: *const IWdsTransportSetupManager2,
             ppProviderCollection: **IWdsTransportCollection,
@@ -841,14 +855,17 @@ pub const IID_IWdsTransportConfigurationManager = &IID_IWdsTransportConfiguratio
 pub const IWdsTransportConfigurationManager = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServicePolicy: fn(
             self: *const IWdsTransportConfigurationManager,
             ppWdsTransportServicePolicy: **IWdsTransportServicePolicy,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DiagnosticsPolicy: fn(
             self: *const IWdsTransportConfigurationManager,
             ppWdsTransportDiagnosticsPolicy: **IWdsTransportDiagnosticsPolicy,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WdsTransportServicesRunning: fn(
             self: *const IWdsTransportConfigurationManager,
             bRealtimeStatus: i16,
@@ -923,6 +940,7 @@ pub const IID_IWdsTransportConfigurationManager2 = &IID_IWdsTransportConfigurati
 pub const IWdsTransportConfigurationManager2 = extern struct {
     pub const VTable = extern struct {
         base: IWdsTransportConfigurationManager.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MulticastSessionPolicy: fn(
             self: *const IWdsTransportConfigurationManager2,
             ppWdsTransportMulticastSessionPolicy: **IWdsTransportMulticastSessionPolicy,
@@ -1013,56 +1031,68 @@ pub const IID_IWdsTransportServicePolicy = &IID_IWdsTransportServicePolicy_Value
 pub const IWdsTransportServicePolicy = extern struct {
     pub const VTable = extern struct {
         base: IWdsTransportCacheable.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpAddressSource: fn(
             self: *const IWdsTransportServicePolicy,
             AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
             pSourceType: *WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IpAddressSource: fn(
             self: *const IWdsTransportServicePolicy,
             AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
             SourceType: WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartIpAddress: fn(
             self: *const IWdsTransportServicePolicy,
             AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
             pbszStartIpAddress: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StartIpAddress: fn(
             self: *const IWdsTransportServicePolicy,
             AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
             bszStartIpAddress: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EndIpAddress: fn(
             self: *const IWdsTransportServicePolicy,
             AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
             pbszEndIpAddress: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EndIpAddress: fn(
             self: *const IWdsTransportServicePolicy,
             AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
             bszEndIpAddress: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartPort: fn(
             self: *const IWdsTransportServicePolicy,
             pulStartPort: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StartPort: fn(
             self: *const IWdsTransportServicePolicy,
             ulStartPort: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EndPort: fn(
             self: *const IWdsTransportServicePolicy,
             pulEndPort: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EndPort: fn(
             self: *const IWdsTransportServicePolicy,
             ulEndPort: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkProfile: fn(
             self: *const IWdsTransportServicePolicy,
             pProfileType: *WDSTRANSPORT_NETWORK_PROFILE_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NetworkProfile: fn(
             self: *const IWdsTransportServicePolicy,
             ProfileType: WDSTRANSPORT_NETWORK_PROFILE_TYPE,
@@ -1129,26 +1159,32 @@ pub const IID_IWdsTransportServicePolicy2 = &IID_IWdsTransportServicePolicy2_Val
 pub const IWdsTransportServicePolicy2 = extern struct {
     pub const VTable = extern struct {
         base: IWdsTransportServicePolicy.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UdpPortPolicy: fn(
             self: *const IWdsTransportServicePolicy2,
             pUdpPortPolicy: *WDSTRANSPORT_UDP_PORT_POLICY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UdpPortPolicy: fn(
             self: *const IWdsTransportServicePolicy2,
             UdpPortPolicy: WDSTRANSPORT_UDP_PORT_POLICY,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TftpMaximumBlockSize: fn(
             self: *const IWdsTransportServicePolicy2,
             pulTftpMaximumBlockSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TftpMaximumBlockSize: fn(
             self: *const IWdsTransportServicePolicy2,
             ulTftpMaximumBlockSize: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableTftpVariableWindowExtension: fn(
             self: *const IWdsTransportServicePolicy2,
             pbEnableTftpVariableWindowExtension: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableTftpVariableWindowExtension: fn(
             self: *const IWdsTransportServicePolicy2,
             bEnableTftpVariableWindowExtension: i16,
@@ -1191,18 +1227,22 @@ pub const IID_IWdsTransportDiagnosticsPolicy = &IID_IWdsTransportDiagnosticsPoli
 pub const IWdsTransportDiagnosticsPolicy = extern struct {
     pub const VTable = extern struct {
         base: IWdsTransportCacheable.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: fn(
             self: *const IWdsTransportDiagnosticsPolicy,
             pbEnabled: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: fn(
             self: *const IWdsTransportDiagnosticsPolicy,
             bEnabled: i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Components: fn(
             self: *const IWdsTransportDiagnosticsPolicy,
             pulComponents: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Components: fn(
             self: *const IWdsTransportDiagnosticsPolicy,
             ulComponents: u32,
@@ -1237,34 +1277,42 @@ pub const IID_IWdsTransportMulticastSessionPolicy = &IID_IWdsTransportMulticastS
 pub const IWdsTransportMulticastSessionPolicy = extern struct {
     pub const VTable = extern struct {
         base: IWdsTransportCacheable.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SlowClientHandling: fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             pSlowClientHandling: *WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SlowClientHandling: fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             SlowClientHandling: WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoDisconnectThreshold: fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             pulThreshold: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoDisconnectThreshold: fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             ulThreshold: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MultistreamStreamCount: fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             pulStreamCount: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MultistreamStreamCount: fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             ulStreamCount: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SlowClientFallback: fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             pbClientFallback: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SlowClientFallback: fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             bClientFallback: i16,
@@ -1315,66 +1363,82 @@ pub const IID_IWdsTransportNamespace = &IID_IWdsTransportNamespace_Value;
 pub const IWdsTransportNamespace = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: fn(
             self: *const IWdsTransportNamespace,
             pType: *WDSTRANSPORT_NAMESPACE_TYPE,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const IWdsTransportNamespace,
             pulId: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IWdsTransportNamespace,
             pbszName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: fn(
             self: *const IWdsTransportNamespace,
             bszName: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FriendlyName: fn(
             self: *const IWdsTransportNamespace,
             pbszFriendlyName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FriendlyName: fn(
             self: *const IWdsTransportNamespace,
             bszFriendlyName: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IWdsTransportNamespace,
             pbszDescription: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: fn(
             self: *const IWdsTransportNamespace,
             bszDescription: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContentProvider: fn(
             self: *const IWdsTransportNamespace,
             pbszContentProvider: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ContentProvider: fn(
             self: *const IWdsTransportNamespace,
             bszContentProvider: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Configuration: fn(
             self: *const IWdsTransportNamespace,
             pbszConfiguration: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Configuration: fn(
             self: *const IWdsTransportNamespace,
             bszConfiguration: BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Registered: fn(
             self: *const IWdsTransportNamespace,
             pbRegistered: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tombstoned: fn(
             self: *const IWdsTransportNamespace,
             pbTombstoned: *i16,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TombstoneTime: fn(
             self: *const IWdsTransportNamespace,
             pTombstoneTime: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransmissionStarted: fn(
             self: *const IWdsTransportNamespace,
             pbTransmissionStarted: *i16,
@@ -1544,18 +1608,22 @@ pub const IID_IWdsTransportNamespaceScheduledCastAutoStart = &IID_IWdsTransportN
 pub const IWdsTransportNamespaceScheduledCastAutoStart = extern struct {
     pub const VTable = extern struct {
         base: IWdsTransportNamespaceScheduledCast.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinimumClients: fn(
             self: *const IWdsTransportNamespaceScheduledCastAutoStart,
             pulMinimumClients: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MinimumClients: fn(
             self: *const IWdsTransportNamespaceScheduledCastAutoStart,
             ulMinimumClients: u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartTime: fn(
             self: *const IWdsTransportNamespaceScheduledCastAutoStart,
             pStartTime: *f64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StartTime: fn(
             self: *const IWdsTransportNamespaceScheduledCastAutoStart,
             StartTime: f64,
@@ -1590,14 +1658,17 @@ pub const IID_IWdsTransportContent = &IID_IWdsTransportContent_Value;
 pub const IWdsTransportContent = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Namespace: fn(
             self: *const IWdsTransportContent,
             ppWdsTransportNamespace: **IWdsTransportNamespace,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const IWdsTransportContent,
             pulId: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IWdsTransportContent,
             pbszName: *BSTR,
@@ -1643,26 +1714,32 @@ pub const IID_IWdsTransportSession = &IID_IWdsTransportSession_Value;
 pub const IWdsTransportSession = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Content: fn(
             self: *const IWdsTransportSession,
             ppWdsTransportContent: **IWdsTransportContent,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const IWdsTransportSession,
             pulId: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkInterfaceName: fn(
             self: *const IWdsTransportSession,
             pbszNetworkInterfaceName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkInterfaceAddress: fn(
             self: *const IWdsTransportSession,
             pbszNetworkInterfaceAddress: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransferRate: fn(
             self: *const IWdsTransportSession,
             pulTransferRate: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MasterClientId: fn(
             self: *const IWdsTransportSession,
             pulMasterClientId: *u32,
@@ -1720,46 +1797,57 @@ pub const IID_IWdsTransportClient = &IID_IWdsTransportClient_Value;
 pub const IWdsTransportClient = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Session: fn(
             self: *const IWdsTransportClient,
             ppWdsTransportSession: **IWdsTransportSession,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: fn(
             self: *const IWdsTransportClient,
             pulId: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IWdsTransportClient,
             pbszName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MacAddress: fn(
             self: *const IWdsTransportClient,
             pbszMacAddress: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpAddress: fn(
             self: *const IWdsTransportClient,
             pbszIpAddress: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PercentCompletion: fn(
             self: *const IWdsTransportClient,
             pulPercentCompletion: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JoinDuration: fn(
             self: *const IWdsTransportClient,
             pulJoinDuration: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CpuUtilization: fn(
             self: *const IWdsTransportClient,
             pulCpuUtilization: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MemoryUtilization: fn(
             self: *const IWdsTransportClient,
             pulMemoryUtilization: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkUtilization: fn(
             self: *const IWdsTransportClient,
             pulNetworkUtilization: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserIdentity: fn(
             self: *const IWdsTransportClient,
             pbszUserIdentity: *BSTR,
@@ -1830,30 +1918,37 @@ pub const IID_IWdsTransportTftpClient = &IID_IWdsTransportTftpClient_Value;
 pub const IWdsTransportTftpClient = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileName: fn(
             self: *const IWdsTransportTftpClient,
             pbszFileName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpAddress: fn(
             self: *const IWdsTransportTftpClient,
             pbszIpAddress: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timeout: fn(
             self: *const IWdsTransportTftpClient,
             pulTimeout: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFileOffset: fn(
             self: *const IWdsTransportTftpClient,
             pul64CurrentOffset: *u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileSize: fn(
             self: *const IWdsTransportTftpClient,
             pul64FileSize: *u64,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BlockSize: fn(
             self: *const IWdsTransportTftpClient,
             pulBlockSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowSize: fn(
             self: *const IWdsTransportTftpClient,
             pulWindowSize: *u32,
@@ -1900,18 +1995,22 @@ pub const IID_IWdsTransportContentProvider = &IID_IWdsTransportContentProvider_V
 pub const IWdsTransportContentProvider = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: fn(
             self: *const IWdsTransportContentProvider,
             pbszName: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: fn(
             self: *const IWdsTransportContentProvider,
             pbszDescription: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FilePath: fn(
             self: *const IWdsTransportContentProvider,
             pbszFilePath: *BSTR,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitializationRoutine: fn(
             self: *const IWdsTransportContentProvider,
             pbszInitializationRoutine: *BSTR,
