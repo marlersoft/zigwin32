@@ -6848,15 +6848,14 @@ pub const HIDP_VALUE_CAPS = extern struct {
 };
 
 pub const HIDP_LINK_COLLECTION_NODE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    LinkUsage: u16,
-    LinkUsagePage: u16,
-    Parent: u16,
-    NumberOfChildren: u16,
-    NextSibling: u16,
-    FirstChild: u16,
-    _bitfield: u32,
-    UserContext: ?*anyopaque,
+    LinkUsage: u16 align(4),
+    LinkUsagePage: u16 align(4),
+    Parent: u16 align(4),
+    NumberOfChildren: u16 align(4),
+    NextSibling: u16 align(4),
+    FirstChild: u16 align(4),
+    _bitfield: u32 align(4),
+    UserContext: ?*anyopaque align(4),
 };
 
 pub const _HIDP_PREPARSED_DATA = extern struct {
@@ -6898,11 +6897,10 @@ pub const HIDP_UNKNOWN_TOKEN = extern struct {
 };
 
 pub const HIDP_EXTENDED_ATTRIBUTES = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    NumGlobalUnknowns: u8,
-    Reserved: [3]u8,
-    GlobalUnknowns: ?*HIDP_UNKNOWN_TOKEN,
-    Data: [1]u32,
+    NumGlobalUnknowns: u8 align(4),
+    Reserved: [3]u8 align(4),
+    GlobalUnknowns: ?*HIDP_UNKNOWN_TOKEN align(4),
+    Data: [1]u32 align(4),
 };
 
 pub const HIDP_BUTTON_ARRAY_DATA = extern struct {
@@ -6951,10 +6949,9 @@ pub const PFN_HidP_GetVersionInternal = switch (@import("builtin").zig_backend) 
 } ;
 
 pub const HIDD_CONFIGURATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cookie: ?*anyopaque,
-    size: u32,
-    RingBufferSize: u32,
+    cookie: ?*anyopaque align(4),
+    size: u32 align(4),
+    RingBufferSize: u32 align(4),
 };
 
 pub const HIDD_ATTRIBUTES = extern struct {

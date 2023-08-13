@@ -4785,10 +4785,10 @@ pub const NMLVDISPINFOW = extern struct {
     item: LVITEMW,
 };
 
-pub const NMLVKEYDOWN = packed struct {
-    hdr: NMHDR,
-    wVKey: u16,
-    flags: u32,
+pub const NMLVKEYDOWN = extern struct {
+    hdr: NMHDR align(1),
+    wVKey: u16 align(1),
+    flags: u32 align(1),
 };
 
 pub const NMLVLINK = extern struct {
@@ -4989,10 +4989,10 @@ pub const NMTVDISPINFOEXW = extern struct {
     item: TVITEMEXW,
 };
 
-pub const NMTVKEYDOWN = packed struct {
-    hdr: NMHDR,
-    wVKey: u16,
-    flags: u32,
+pub const NMTVKEYDOWN = extern struct {
+    hdr: NMHDR align(1),
+    wVKey: u16 align(1),
+    flags: u32 align(1),
 };
 
 pub const NMTVCUSTOMDRAW = extern struct {
@@ -5142,10 +5142,10 @@ pub const TCHITTESTINFO = extern struct {
     flags: TCHITTESTINFO_FLAGS,
 };
 
-pub const NMTCKEYDOWN = packed struct {
-    hdr: NMHDR,
-    wVKey: u16,
-    flags: u32,
+pub const NMTCKEYDOWN = extern struct {
+    hdr: NMHDR align(1),
+    wVKey: u16 align(1),
+    flags: u32 align(1),
 };
 
 pub const MCHITTESTINFO = extern struct {
@@ -5272,14 +5272,14 @@ pub const NMIPADDRESS = extern struct {
     iValue: i32,
 };
 
-pub const NMPGSCROLL = packed struct {
-    hdr: NMHDR,
-    fwKeys: NMPGSCROLL_KEYS,
-    rcParent: RECT,
-    iDir: NMPGSCROLL_DIR,
-    iXpos: i32,
-    iYpos: i32,
-    iScroll: i32,
+pub const NMPGSCROLL = extern struct {
+    hdr: NMHDR align(1),
+    fwKeys: NMPGSCROLL_KEYS align(1),
+    rcParent: RECT align(1),
+    iDir: NMPGSCROLL_DIR align(1),
+    iXpos: i32 align(1),
+    iYpos: i32 align(1),
+    iScroll: i32 align(1),
 };
 
 pub const NMPGCALCSIZE = extern struct {
@@ -5465,9 +5465,9 @@ pub const TDN_VERIFICATION_CLICKED = TASKDIALOG_NOTIFICATIONS.VERIFICATION_CLICK
 pub const TDN_HELP = TASKDIALOG_NOTIFICATIONS.HELP;
 pub const TDN_EXPANDO_BUTTON_CLICKED = TASKDIALOG_NOTIFICATIONS.EXPANDO_BUTTON_CLICKED;
 
-pub const TASKDIALOG_BUTTON = packed struct {
-    nButtonID: i32,
-    pszButtonText: ?[*:0]const u16,
+pub const TASKDIALOG_BUTTON = extern struct {
+    nButtonID: i32 align(1),
+    pszButtonText: ?[*:0]const u16 align(1),
 };
 
 pub const TASKDIALOG_ELEMENTS = enum(i32) {
@@ -5503,37 +5503,37 @@ pub const TDCBF_CANCEL_BUTTON = TASKDIALOG_COMMON_BUTTON_FLAGS.CANCEL_BUTTON;
 pub const TDCBF_RETRY_BUTTON = TASKDIALOG_COMMON_BUTTON_FLAGS.RETRY_BUTTON;
 pub const TDCBF_CLOSE_BUTTON = TASKDIALOG_COMMON_BUTTON_FLAGS.CLOSE_BUTTON;
 
-pub const TASKDIALOGCONFIG = packed struct {
-    cbSize: u32,
-    hwndParent: ?HWND,
-    hInstance: ?HINSTANCE,
-    dwFlags: TASKDIALOG_FLAGS,
-    dwCommonButtons: TASKDIALOG_COMMON_BUTTON_FLAGS,
-    pszWindowTitle: ?[*:0]const u16,
-    Anonymous1: packed union {
-        hMainIcon: ?HICON,
-        pszMainIcon: ?[*:0]const u16,
-    },
-    pszMainInstruction: ?[*:0]const u16,
-    pszContent: ?[*:0]const u16,
-    cButtons: u32,
-    pButtons: ?*const TASKDIALOG_BUTTON,
-    nDefaultButton: i32,
-    cRadioButtons: u32,
-    pRadioButtons: ?*const TASKDIALOG_BUTTON,
-    nDefaultRadioButton: i32,
-    pszVerificationText: ?[*:0]const u16,
-    pszExpandedInformation: ?[*:0]const u16,
-    pszExpandedControlText: ?[*:0]const u16,
-    pszCollapsedControlText: ?[*:0]const u16,
-    Anonymous2: packed union {
-        hFooterIcon: ?HICON,
-        pszFooterIcon: ?[*:0]const u16,
-    },
-    pszFooter: ?[*:0]const u16,
-    pfCallback: ?PFTASKDIALOGCALLBACK,
-    lpCallbackData: isize,
-    cxWidth: u32,
+pub const TASKDIALOGCONFIG = extern struct {
+    cbSize: u32 align(1),
+    hwndParent: ?HWND align(1),
+    hInstance: ?HINSTANCE align(1),
+    dwFlags: TASKDIALOG_FLAGS align(1),
+    dwCommonButtons: TASKDIALOG_COMMON_BUTTON_FLAGS align(1),
+    pszWindowTitle: ?[*:0]const u16 align(1),
+    Anonymous1: extern union {
+        hMainIcon: ?HICON align(1),
+        pszMainIcon: ?[*:0]const u16 align(1),
+    } align(1),
+    pszMainInstruction: ?[*:0]const u16 align(1),
+    pszContent: ?[*:0]const u16 align(1),
+    cButtons: u32 align(1),
+    pButtons: ?*const TASKDIALOG_BUTTON align(1),
+    nDefaultButton: i32 align(1),
+    cRadioButtons: u32 align(1),
+    pRadioButtons: ?*const TASKDIALOG_BUTTON align(1),
+    nDefaultRadioButton: i32 align(1),
+    pszVerificationText: ?[*:0]const u16 align(1),
+    pszExpandedInformation: ?[*:0]const u16 align(1),
+    pszExpandedControlText: ?[*:0]const u16 align(1),
+    pszCollapsedControlText: ?[*:0]const u16 align(1),
+    Anonymous2: extern union {
+        hFooterIcon: ?HICON align(1),
+        pszFooterIcon: ?[*:0]const u16 align(1),
+    } align(1),
+    pszFooter: ?[*:0]const u16 align(1),
+    pfCallback: ?PFTASKDIALOGCALLBACK align(1),
+    lpCallbackData: isize align(1),
+    cxWidth: u32 align(1),
 };
 
 pub const PFNDAENUMCALLBACK = switch (@import("builtin").zig_backend) {

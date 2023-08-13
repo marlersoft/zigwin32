@@ -5026,115 +5026,112 @@ pub const HIBERFILE_BUCKET = extern struct {
 };
 
 pub const IMAGE_DOS_HEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    e_magic: u16,
-    e_cblp: u16,
-    e_cp: u16,
-    e_crlc: u16,
-    e_cparhdr: u16,
-    e_minalloc: u16,
-    e_maxalloc: u16,
-    e_ss: u16,
-    e_sp: u16,
-    e_csum: u16,
-    e_ip: u16,
-    e_cs: u16,
-    e_lfarlc: u16,
-    e_ovno: u16,
-    e_res: [4]u16,
-    e_oemid: u16,
-    e_oeminfo: u16,
-    e_res2: [10]u16,
-    e_lfanew: i32,
+    e_magic: u16 align(2),
+    e_cblp: u16 align(2),
+    e_cp: u16 align(2),
+    e_crlc: u16 align(2),
+    e_cparhdr: u16 align(2),
+    e_minalloc: u16 align(2),
+    e_maxalloc: u16 align(2),
+    e_ss: u16 align(2),
+    e_sp: u16 align(2),
+    e_csum: u16 align(2),
+    e_ip: u16 align(2),
+    e_cs: u16 align(2),
+    e_lfarlc: u16 align(2),
+    e_ovno: u16 align(2),
+    e_res: [4]u16 align(2),
+    e_oemid: u16 align(2),
+    e_oeminfo: u16 align(2),
+    e_res2: [10]u16 align(2),
+    e_lfanew: i32 align(2),
 };
 
 pub const IMAGE_OS2_HEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ne_magic: u16,
-    ne_ver: CHAR,
-    ne_rev: CHAR,
-    ne_enttab: u16,
-    ne_cbenttab: u16,
-    ne_crc: i32,
-    ne_flags: u16,
-    ne_autodata: u16,
-    ne_heap: u16,
-    ne_stack: u16,
-    ne_csip: i32,
-    ne_sssp: i32,
-    ne_cseg: u16,
-    ne_cmod: u16,
-    ne_cbnrestab: u16,
-    ne_segtab: u16,
-    ne_rsrctab: u16,
-    ne_restab: u16,
-    ne_modtab: u16,
-    ne_imptab: u16,
-    ne_nrestab: i32,
-    ne_cmovent: u16,
-    ne_align: u16,
-    ne_cres: u16,
-    ne_exetyp: u8,
-    ne_flagsothers: u8,
-    ne_pretthunks: u16,
-    ne_psegrefbytes: u16,
-    ne_swaparea: u16,
-    ne_expver: u16,
+    ne_magic: u16 align(2),
+    ne_ver: CHAR align(2),
+    ne_rev: CHAR align(2),
+    ne_enttab: u16 align(2),
+    ne_cbenttab: u16 align(2),
+    ne_crc: i32 align(2),
+    ne_flags: u16 align(2),
+    ne_autodata: u16 align(2),
+    ne_heap: u16 align(2),
+    ne_stack: u16 align(2),
+    ne_csip: i32 align(2),
+    ne_sssp: i32 align(2),
+    ne_cseg: u16 align(2),
+    ne_cmod: u16 align(2),
+    ne_cbnrestab: u16 align(2),
+    ne_segtab: u16 align(2),
+    ne_rsrctab: u16 align(2),
+    ne_restab: u16 align(2),
+    ne_modtab: u16 align(2),
+    ne_imptab: u16 align(2),
+    ne_nrestab: i32 align(2),
+    ne_cmovent: u16 align(2),
+    ne_align: u16 align(2),
+    ne_cres: u16 align(2),
+    ne_exetyp: u8 align(2),
+    ne_flagsothers: u8 align(2),
+    ne_pretthunks: u16 align(2),
+    ne_psegrefbytes: u16 align(2),
+    ne_swaparea: u16 align(2),
+    ne_expver: u16 align(2),
 };
 
 pub const IMAGE_VXD_HEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    e32_magic: u16,
-    e32_border: u8,
-    e32_worder: u8,
-    e32_level: u32,
-    e32_cpu: u16,
-    e32_os: u16,
-    e32_ver: u32,
-    e32_mflags: u32,
-    e32_mpages: u32,
-    e32_startobj: u32,
-    e32_eip: u32,
-    e32_stackobj: u32,
-    e32_esp: u32,
-    e32_pagesize: u32,
-    e32_lastpagesize: u32,
-    e32_fixupsize: u32,
-    e32_fixupsum: u32,
-    e32_ldrsize: u32,
-    e32_ldrsum: u32,
-    e32_objtab: u32,
-    e32_objcnt: u32,
-    e32_objmap: u32,
-    e32_itermap: u32,
-    e32_rsrctab: u32,
-    e32_rsrccnt: u32,
-    e32_restab: u32,
-    e32_enttab: u32,
-    e32_dirtab: u32,
-    e32_dircnt: u32,
-    e32_fpagetab: u32,
-    e32_frectab: u32,
-    e32_impmod: u32,
-    e32_impmodcnt: u32,
-    e32_impproc: u32,
-    e32_pagesum: u32,
-    e32_datapage: u32,
-    e32_preload: u32,
-    e32_nrestab: u32,
-    e32_cbnrestab: u32,
-    e32_nressum: u32,
-    e32_autodata: u32,
-    e32_debuginfo: u32,
-    e32_debuglen: u32,
-    e32_instpreload: u32,
-    e32_instdemand: u32,
-    e32_heapsize: u32,
-    e32_res3: [12]u8,
-    e32_winresoff: u32,
-    e32_winreslen: u32,
-    e32_devid: u16,
-    e32_ddkver: u16,
+    e32_magic: u16 align(2),
+    e32_border: u8 align(2),
+    e32_worder: u8 align(2),
+    e32_level: u32 align(2),
+    e32_cpu: u16 align(2),
+    e32_os: u16 align(2),
+    e32_ver: u32 align(2),
+    e32_mflags: u32 align(2),
+    e32_mpages: u32 align(2),
+    e32_startobj: u32 align(2),
+    e32_eip: u32 align(2),
+    e32_stackobj: u32 align(2),
+    e32_esp: u32 align(2),
+    e32_pagesize: u32 align(2),
+    e32_lastpagesize: u32 align(2),
+    e32_fixupsize: u32 align(2),
+    e32_fixupsum: u32 align(2),
+    e32_ldrsize: u32 align(2),
+    e32_ldrsum: u32 align(2),
+    e32_objtab: u32 align(2),
+    e32_objcnt: u32 align(2),
+    e32_objmap: u32 align(2),
+    e32_itermap: u32 align(2),
+    e32_rsrctab: u32 align(2),
+    e32_rsrccnt: u32 align(2),
+    e32_restab: u32 align(2),
+    e32_enttab: u32 align(2),
+    e32_dirtab: u32 align(2),
+    e32_dircnt: u32 align(2),
+    e32_fpagetab: u32 align(2),
+    e32_frectab: u32 align(2),
+    e32_impmod: u32 align(2),
+    e32_impmodcnt: u32 align(2),
+    e32_impproc: u32 align(2),
+    e32_pagesum: u32 align(2),
+    e32_datapage: u32 align(2),
+    e32_preload: u32 align(2),
+    e32_nrestab: u32 align(2),
+    e32_cbnrestab: u32 align(2),
+    e32_nressum: u32 align(2),
+    e32_autodata: u32 align(2),
+    e32_debuginfo: u32 align(2),
+    e32_debuglen: u32 align(2),
+    e32_instpreload: u32 align(2),
+    e32_instdemand: u32 align(2),
+    e32_heapsize: u32 align(2),
+    e32_res3: [12]u8 align(2),
+    e32_winresoff: u32 align(2),
+    e32_winreslen: u32 align(2),
+    e32_devid: u16 align(2),
+    e32_ddkver: u16 align(2),
 };
 
 pub const ANON_OBJECT_HEADER = extern struct {
@@ -5177,127 +5174,112 @@ pub const ANON_OBJECT_HEADER_BIGOBJ = extern struct {
 };
 
 pub const IMAGE_SYMBOL = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
     N: extern union {
-        // WARNING: unable to add field alignment because it's not implemented for unions
-        ShortName: [8]u8,
+        ShortName: [8]u8 align(2),
         Name: extern struct {
-            // WARNING: unable to add field alignment because it's causing a compiler bug
-            Short: u32,
-            Long: u32,
-        },
-        LongName: [2]u32,
-    },
-    Value: u32,
-    SectionNumber: i16,
-    Type: u16,
-    StorageClass: u8,
-    NumberOfAuxSymbols: u8,
+            Short: u32 align(2),
+            Long: u32 align(2),
+        } align(2),
+        LongName: [2]u32 align(2),
+    } align(2),
+    Value: u32 align(2),
+    SectionNumber: i16 align(2),
+    Type: u16 align(2),
+    StorageClass: u8 align(2),
+    NumberOfAuxSymbols: u8 align(2),
 };
 
 pub const IMAGE_SYMBOL_EX = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
     N: extern union {
-        // WARNING: unable to add field alignment because it's not implemented for unions
-        ShortName: [8]u8,
+        ShortName: [8]u8 align(2),
         Name: extern struct {
-            // WARNING: unable to add field alignment because it's causing a compiler bug
-            Short: u32,
-            Long: u32,
-        },
-        LongName: [2]u32,
-    },
-    Value: u32,
-    SectionNumber: i32,
-    Type: u16,
-    StorageClass: u8,
-    NumberOfAuxSymbols: u8,
+            Short: u32 align(2),
+            Long: u32 align(2),
+        } align(2),
+        LongName: [2]u32 align(2),
+    } align(2),
+    Value: u32 align(2),
+    SectionNumber: i32 align(2),
+    Type: u16 align(2),
+    StorageClass: u8 align(2),
+    NumberOfAuxSymbols: u8 align(2),
 };
 
 pub const IMAGE_AUX_SYMBOL_TOKEN_DEF = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    bAuxType: u8,
-    bReserved: u8,
-    SymbolTableIndex: u32,
-    rgbReserved: [12]u8,
+    bAuxType: u8 align(2),
+    bReserved: u8 align(2),
+    SymbolTableIndex: u32 align(2),
+    rgbReserved: [12]u8 align(2),
 };
 
 pub const IMAGE_AUX_SYMBOL = extern union {
     Sym: extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        TagIndex: u32,
+        TagIndex: u32 align(2),
         Misc: extern union {
-            // WARNING: unable to add field alignment because it's not implemented for unions
             LnSz: extern struct {
                 Linenumber: u16,
                 Size: u16,
-            },
-            TotalSize: u32,
-        },
+            } align(2),
+            TotalSize: u32 align(2),
+        } align(2),
         FcnAry: extern union {
             Function: extern struct {
-                // WARNING: unable to add field alignment because it's causing a compiler bug
-                PointerToLinenumber: u32,
-                PointerToNextFunction: u32,
+                PointerToLinenumber: u32 align(2),
+                PointerToNextFunction: u32 align(2),
             },
             Array: extern struct {
                 Dimension: [4]u16,
             },
-        },
-        TvIndex: u16,
+        } align(2),
+        TvIndex: u16 align(2),
     },
     File: extern struct {
         Name: [18]u8,
     },
     Section: extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        Length: u32,
-        NumberOfRelocations: u16,
-        NumberOfLinenumbers: u16,
-        CheckSum: u32,
-        Number: i16,
-        Selection: u8,
-        bReserved: u8,
-        HighNumber: i16,
+        Length: u32 align(2),
+        NumberOfRelocations: u16 align(2),
+        NumberOfLinenumbers: u16 align(2),
+        CheckSum: u32 align(2),
+        Number: i16 align(2),
+        Selection: u8 align(2),
+        bReserved: u8 align(2),
+        HighNumber: i16 align(2),
     },
     TokenDef: IMAGE_AUX_SYMBOL_TOKEN_DEF,
     CRC: extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        crc: u32,
-        rgbReserved: [14]u8,
+        crc: u32 align(2),
+        rgbReserved: [14]u8 align(2),
     },
 };
 
 pub const IMAGE_AUX_SYMBOL_EX = extern union {
     Sym: extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        WeakDefaultSymIndex: u32,
-        WeakSearchType: u32,
-        rgbReserved: [12]u8,
+        WeakDefaultSymIndex: u32 align(2),
+        WeakSearchType: u32 align(2),
+        rgbReserved: [12]u8 align(2),
     },
     File: extern struct {
         Name: [20]u8,
     },
     Section: extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        Length: u32,
-        NumberOfRelocations: u16,
-        NumberOfLinenumbers: u16,
-        CheckSum: u32,
-        Number: i16,
-        Selection: u8,
-        bReserved: u8,
-        HighNumber: i16,
-        rgbReserved: [2]u8,
+        Length: u32 align(2),
+        NumberOfRelocations: u16 align(2),
+        NumberOfLinenumbers: u16 align(2),
+        CheckSum: u32 align(2),
+        Number: i16 align(2),
+        Selection: u8 align(2),
+        bReserved: u8 align(2),
+        HighNumber: i16 align(2),
+        rgbReserved: [2]u8 align(2),
     },
     Anonymous: extern struct {
         TokenDef: IMAGE_AUX_SYMBOL_TOKEN_DEF,
         rgbReserved: [2]u8,
     },
     CRC: extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        crc: u32,
-        rgbReserved: [16]u8,
+        crc: u32 align(2),
+        rgbReserved: [16]u8 align(2),
     },
 };
 
@@ -5307,21 +5289,18 @@ pub const IMAGE_AUX_SYMBOL_TYPE = enum(i32) {
 pub const IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF = IMAGE_AUX_SYMBOL_TYPE.F;
 
 pub const IMAGE_RELOCATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
     Anonymous: extern union {
-        // WARNING: unable to add field alignment because it's not implemented for unions
-        VirtualAddress: u32,
-        RelocCount: u32,
-    },
-    SymbolTableIndex: u32,
-    Type: u16,
+        VirtualAddress: u32 align(2),
+        RelocCount: u32 align(2),
+    } align(2),
+    SymbolTableIndex: u32 align(2),
+    Type: u16 align(2),
 };
 
 pub const IMAGE_LINENUMBER = extern struct {
     Type: extern union {
-        // WARNING: unable to add field alignment because it's not implemented for unions
-        SymbolTableIndex: u32,
-        VirtualAddress: u32,
+        SymbolTableIndex: u32 align(2),
+        VirtualAddress: u32 align(2),
     },
     Linenumber: u16,
 };
@@ -5374,18 +5353,17 @@ pub const PIMAGE_TLS_CALLBACK = switch (@import("builtin").zig_backend) {
 } ;
 
 pub const IMAGE_TLS_DIRECTORY64 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    StartAddressOfRawData: u64,
-    EndAddressOfRawData: u64,
-    AddressOfIndex: u64,
-    AddressOfCallBacks: u64,
-    SizeOfZeroFill: u32,
+    StartAddressOfRawData: u64 align(4),
+    EndAddressOfRawData: u64 align(4),
+    AddressOfIndex: u64 align(4),
+    AddressOfCallBacks: u64 align(4),
+    SizeOfZeroFill: u32 align(4),
     Anonymous: extern union {
         Characteristics: u32,
         Anonymous: extern struct {
             _bitfield: u32,
         },
-    },
+    } align(4),
 };
 
 pub const IMAGE_TLS_DIRECTORY32 = extern struct {
@@ -5472,53 +5450,53 @@ pub const IMAGE_DYNAMIC_RELOCATION_TABLE = extern struct {
     Size: u32,
 };
 
-pub const IMAGE_DYNAMIC_RELOCATION32 = packed struct {
-    Symbol: u32,
-    BaseRelocSize: u32,
+pub const IMAGE_DYNAMIC_RELOCATION32 = extern struct {
+    Symbol: u32 align(1),
+    BaseRelocSize: u32 align(1),
 };
 
-pub const IMAGE_DYNAMIC_RELOCATION64 = packed struct {
-    Symbol: u64,
-    BaseRelocSize: u32,
+pub const IMAGE_DYNAMIC_RELOCATION64 = extern struct {
+    Symbol: u64 align(1),
+    BaseRelocSize: u32 align(1),
 };
 
-pub const IMAGE_DYNAMIC_RELOCATION32_V2 = packed struct {
-    HeaderSize: u32,
-    FixupInfoSize: u32,
-    Symbol: u32,
-    SymbolGroup: u32,
-    Flags: u32,
+pub const IMAGE_DYNAMIC_RELOCATION32_V2 = extern struct {
+    HeaderSize: u32 align(1),
+    FixupInfoSize: u32 align(1),
+    Symbol: u32 align(1),
+    SymbolGroup: u32 align(1),
+    Flags: u32 align(1),
 };
 
-pub const IMAGE_DYNAMIC_RELOCATION64_V2 = packed struct {
-    HeaderSize: u32,
-    FixupInfoSize: u32,
-    Symbol: u64,
-    SymbolGroup: u32,
-    Flags: u32,
+pub const IMAGE_DYNAMIC_RELOCATION64_V2 = extern struct {
+    HeaderSize: u32 align(1),
+    FixupInfoSize: u32 align(1),
+    Symbol: u64 align(1),
+    SymbolGroup: u32 align(1),
+    Flags: u32 align(1),
 };
 
 pub const IMAGE_PROLOGUE_DYNAMIC_RELOCATION_HEADER = extern struct {
     PrologueByteCount: u8,
 };
 
-pub const IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER = packed struct {
-    EpilogueCount: u32,
-    EpilogueByteCount: u8,
-    BranchDescriptorElementSize: u8,
-    BranchDescriptorCount: u16,
+pub const IMAGE_EPILOGUE_DYNAMIC_RELOCATION_HEADER = extern struct {
+    EpilogueCount: u32 align(1),
+    EpilogueByteCount: u8 align(1),
+    BranchDescriptorElementSize: u8 align(1),
+    BranchDescriptorCount: u16 align(1),
 };
 
-pub const IMAGE_IMPORT_CONTROL_TRANSFER_DYNAMIC_RELOCATION = packed struct {
-    _bitfield: u32,
+pub const IMAGE_IMPORT_CONTROL_TRANSFER_DYNAMIC_RELOCATION = extern struct {
+    _bitfield: u32 align(1),
 };
 
-pub const IMAGE_INDIR_CONTROL_TRANSFER_DYNAMIC_RELOCATION = packed struct {
-    _bitfield: u16,
+pub const IMAGE_INDIR_CONTROL_TRANSFER_DYNAMIC_RELOCATION = extern struct {
+    _bitfield: u16 align(1),
 };
 
-pub const IMAGE_SWITCHTABLE_BRANCH_DYNAMIC_RELOCATION = packed struct {
-    _bitfield: u16,
+pub const IMAGE_SWITCHTABLE_BRANCH_DYNAMIC_RELOCATION = extern struct {
+    _bitfield: u16 align(1),
 };
 
 pub const IMAGE_HOT_PATCH_INFO = extern struct {
@@ -5590,12 +5568,11 @@ pub const IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY_XDATA = extern union {
 };
 
 pub const IMAGE_ALPHA64_RUNTIME_FUNCTION_ENTRY = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    BeginAddress: u64,
-    EndAddress: u64,
-    ExceptionHandler: u64,
-    HandlerData: u64,
-    PrologEndAddress: u64,
+    BeginAddress: u64 align(4),
+    EndAddress: u64 align(4),
+    ExceptionHandler: u64 align(4),
+    HandlerData: u64 align(4),
+    PrologEndAddress: u64 align(4),
 };
 
 pub const IMAGE_ALPHA_RUNTIME_FUNCTION_ENTRY = extern struct {
@@ -5631,16 +5608,15 @@ pub const IMAGE_SEPARATE_DEBUG_HEADER = extern struct {
 };
 
 pub const NON_PAGED_DEBUG_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Signature: u16,
-    Flags: u16,
-    Size: u32,
-    Machine: u16,
-    Characteristics: u16,
-    TimeDateStamp: u32,
-    CheckSum: u32,
-    SizeOfImage: u32,
-    ImageBase: u64,
+    Signature: u16 align(4),
+    Flags: u16 align(4),
+    Size: u32 align(4),
+    Machine: u16 align(4),
+    Characteristics: u16 align(4),
+    TimeDateStamp: u32 align(4),
+    CheckSum: u32 align(4),
+    SizeOfImage: u32 align(4),
+    ImageBase: u64 align(4),
 };
 
 pub const IMAGE_ARCHITECTURE_HEADER = extern struct {

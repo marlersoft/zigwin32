@@ -13,9 +13,9 @@ pub const PERCEIVEDFLAG_ZIPFOLDER = @as(u32, 64);
 //--------------------------------------------------------------------------------
 // Section: Types (11)
 //--------------------------------------------------------------------------------
-pub const SHITEMID = packed struct {
-    cb: u16,
-    abID: [1]u8,
+pub const SHITEMID = extern struct {
+    cb: u16 align(1),
+    abID: [1]u8 align(1),
 };
 
 pub const ITEMIDLIST = extern struct {
@@ -40,10 +40,10 @@ pub const STRRET = extern struct {
     },
 };
 
-pub const SHELLDETAILS = packed struct {
-    fmt: i32,
-    cxChar: i32,
-    str: STRRET,
+pub const SHELLDETAILS = extern struct {
+    fmt: i32 align(1),
+    cxChar: i32 align(1),
+    str: STRRET align(1),
 };
 
 pub const PERCEIVED = enum(i32) {

@@ -6312,17 +6312,16 @@ pub const D3DADAPTER_IDENTIFIER9 = switch(@import("../zig.zig").arch) {
         WHQLLevel: u32,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        Driver: [512]CHAR,
-        Description: [512]CHAR,
-        DeviceName: [32]CHAR,
-        DriverVersion: LARGE_INTEGER,
-        VendorId: u32,
-        DeviceId: u32,
-        SubSysId: u32,
-        Revision: u32,
-        DeviceIdentifier: Guid,
-        WHQLLevel: u32,
+        Driver: [512]CHAR align(4),
+        Description: [512]CHAR align(4),
+        DeviceName: [32]CHAR align(4),
+        DriverVersion: LARGE_INTEGER align(4),
+        VendorId: u32 align(4),
+        DeviceId: u32 align(4),
+        SubSysId: u32 align(4),
+        Revision: u32 align(4),
+        DeviceIdentifier: Guid align(4),
+        WHQLLevel: u32 align(4),
     },
 };
 pub const D3DMEMORYPRESSURE = switch(@import("../zig.zig").arch) {
@@ -6332,10 +6331,9 @@ pub const D3DMEMORYPRESSURE = switch(@import("../zig.zig").arch) {
         LevelOfEfficiency: u32,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        BytesEvictedFromProcess: u64,
-        SizeOfInefficientAllocation: u64,
-        LevelOfEfficiency: u32,
+        BytesEvictedFromProcess: u64 align(4),
+        SizeOfInefficientAllocation: u64 align(4),
+        LevelOfEfficiency: u32 align(4),
     },
 };
 pub const D3DPRESENTSTATS = switch(@import("../zig.zig").arch) {
@@ -6347,12 +6345,11 @@ pub const D3DPRESENTSTATS = switch(@import("../zig.zig").arch) {
         SyncGPUTime: LARGE_INTEGER,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        PresentCount: u32,
-        PresentRefreshCount: u32,
-        SyncRefreshCount: u32,
-        SyncQPCTime: LARGE_INTEGER,
-        SyncGPUTime: LARGE_INTEGER,
+        PresentCount: u32 align(4),
+        PresentRefreshCount: u32 align(4),
+        SyncRefreshCount: u32 align(4),
+        SyncQPCTime: LARGE_INTEGER align(4),
+        SyncGPUTime: LARGE_INTEGER align(4),
     },
 };
 pub const D3DAUTHENTICATEDCHANNEL_QUERYOUTPUTID_OUTPUT = switch(@import("../zig.zig").arch) {
@@ -6364,12 +6361,11 @@ pub const D3DAUTHENTICATEDCHANNEL_QUERYOUTPUTID_OUTPUT = switch(@import("../zig.
         OutputID: u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        Output: D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT,
-        DeviceHandle: ?HANDLE,
-        CryptoSessionHandle: ?HANDLE,
-        OutputIDIndex: u32,
-        OutputID: u64,
+        Output: D3DAUTHENTICATEDCHANNEL_QUERY_OUTPUT align(4),
+        DeviceHandle: ?HANDLE align(4),
+        CryptoSessionHandle: ?HANDLE align(4),
+        OutputIDIndex: u32 align(4),
+        OutputID: u64 align(4),
     },
 };
 pub const D3DAES_CTR_IV = switch(@import("../zig.zig").arch) {
@@ -6378,9 +6374,8 @@ pub const D3DAES_CTR_IV = switch(@import("../zig.zig").arch) {
         Count: u64,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        IV: u64,
-        Count: u64,
+        IV: u64 align(4),
+        Count: u64 align(4),
     },
 };
 

@@ -3071,9 +3071,8 @@ pub const ATM_CONNECTION_ID = extern struct {
 };
 
 pub const ATM_PVC_PARAMS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    PvcConnectionId: ATM_CONNECTION_ID,
-    PvcQos: QOS,
+    PvcConnectionId: ATM_CONNECTION_ID align(4),
+    PvcQos: QOS align(4),
 };
 
 pub const NAPI_PROVIDER_TYPE = enum(i32) {

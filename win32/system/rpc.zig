@@ -1399,18 +1399,8 @@ pub const RpcReceiveComplete = RPC_ASYNC_EVENT.ReceiveComplete;
 pub const RpcClientDisconnect = RPC_ASYNC_EVENT.ClientDisconnect;
 pub const RpcClientCancel = RPC_ASYNC_EVENT.ClientCancel;
 
-pub const PFN_RPCNOTIFICATION_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pAsync: ?*RPC_ASYNC_STATE,
-        Context: ?*anyopaque,
-        Event: RPC_ASYNC_EVENT,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        pAsync: ?*RPC_ASYNC_STATE,
-        Context: ?*anyopaque,
-        Event: RPC_ASYNC_EVENT,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PFN_RPCNOTIFICATION_ROUTINE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const RPC_ASYNC_NOTIFICATION_INFO = extern union {
     APC: extern struct {
@@ -1701,14 +1691,8 @@ pub const SCONTEXT_QUEUE = extern struct {
     ArrayOfObjects: ?*?*NDR_SCONTEXT_1,
 };
 
-pub const EXPR_EVAL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*MIDL_STUB_MESSAGE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*MIDL_STUB_MESSAGE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const EXPR_EVAL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const ARRAY_INFO = extern struct {
     Dimension: i32,
@@ -1833,14 +1817,8 @@ pub const GENERIC_BINDING_INFO = extern struct {
     pfnUnbind: ?GENERIC_UNBIND_ROUTINE,
 };
 
-pub const XMIT_HELPER_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*MIDL_STUB_MESSAGE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*MIDL_STUB_MESSAGE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const XMIT_HELPER_ROUTINE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const XMIT_ROUTINE_QUINTUPLE = extern struct {
     pfnTranslateToXmit: ?XMIT_HELPER_ROUTINE,
@@ -6397,14 +6375,11 @@ test {
     if (@hasDecl(@This(), "I_RpcProxyFilterIfFn")) { _ = I_RpcProxyFilterIfFn; }
     if (@hasDecl(@This(), "I_RpcProxyUpdatePerfCounterFn")) { _ = I_RpcProxyUpdatePerfCounterFn; }
     if (@hasDecl(@This(), "I_RpcProxyUpdatePerfCounterBackendServerFn")) { _ = I_RpcProxyUpdatePerfCounterBackendServerFn; }
-    if (@hasDecl(@This(), "PFN_RPCNOTIFICATION_ROUTINE")) { _ = PFN_RPCNOTIFICATION_ROUTINE; }
     if (@hasDecl(@This(), "NDR_RUNDOWN")) { _ = NDR_RUNDOWN; }
     if (@hasDecl(@This(), "NDR_NOTIFY_ROUTINE")) { _ = NDR_NOTIFY_ROUTINE; }
     if (@hasDecl(@This(), "NDR_NOTIFY2_ROUTINE")) { _ = NDR_NOTIFY2_ROUTINE; }
-    if (@hasDecl(@This(), "EXPR_EVAL")) { _ = EXPR_EVAL; }
     if (@hasDecl(@This(), "GENERIC_BINDING_ROUTINE")) { _ = GENERIC_BINDING_ROUTINE; }
     if (@hasDecl(@This(), "GENERIC_UNBIND_ROUTINE")) { _ = GENERIC_UNBIND_ROUTINE; }
-    if (@hasDecl(@This(), "XMIT_HELPER_ROUTINE")) { _ = XMIT_HELPER_ROUTINE; }
     if (@hasDecl(@This(), "USER_MARSHAL_SIZING_ROUTINE")) { _ = USER_MARSHAL_SIZING_ROUTINE; }
     if (@hasDecl(@This(), "USER_MARSHAL_MARSHALLING_ROUTINE")) { _ = USER_MARSHAL_MARSHALLING_ROUTINE; }
     if (@hasDecl(@This(), "USER_MARSHAL_UNMARSHALLING_ROUTINE")) { _ = USER_MARSHAL_UNMARSHALLING_ROUTINE; }

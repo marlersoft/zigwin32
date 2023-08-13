@@ -13920,11 +13920,11 @@ pub const IApplicationAssociationRegistration = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DELEGATEITEMID = packed struct {
-    cbSize: u16,
-    wOuter: u16,
-    cbInner: u16,
-    rgb: [1]u8,
+pub const DELEGATEITEMID = extern struct {
+    cbSize: u16 align(1),
+    wOuter: u16 align(1),
+    cbInner: u16 align(1),
+    rgb: [1]u8 align(1),
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -30670,64 +30670,64 @@ pub const SLDF_PERSIST_VOLUME_ID_RELATIVE = SHELL_LINK_DATA_FLAGS.PERSIST_VOLUME
 pub const SLDF_VALID = SHELL_LINK_DATA_FLAGS.VALID;
 pub const SLDF_RESERVED = SHELL_LINK_DATA_FLAGS.RESERVED;
 
-pub const DATABLOCK_HEADER = packed struct {
-    cbSize: u32,
-    dwSignature: u32,
+pub const DATABLOCK_HEADER = extern struct {
+    cbSize: u32 align(1),
+    dwSignature: u32 align(1),
 };
 
-pub const NT_CONSOLE_PROPS = packed struct {
-    dbh: DATABLOCK_HEADER,
-    wFillAttribute: u16,
-    wPopupFillAttribute: u16,
-    dwScreenBufferSize: COORD,
-    dwWindowSize: COORD,
-    dwWindowOrigin: COORD,
-    nFont: u32,
-    nInputBufferSize: u32,
-    dwFontSize: COORD,
-    uFontFamily: u32,
-    uFontWeight: u32,
-    FaceName: [32]u16,
-    uCursorSize: u32,
-    bFullScreen: BOOL,
-    bQuickEdit: BOOL,
-    bInsertMode: BOOL,
-    bAutoPosition: BOOL,
-    uHistoryBufferSize: u32,
-    uNumberOfHistoryBuffers: u32,
-    bHistoryNoDup: BOOL,
-    ColorTable: [16]u32,
+pub const NT_CONSOLE_PROPS = extern struct {
+    dbh: DATABLOCK_HEADER align(1),
+    wFillAttribute: u16 align(1),
+    wPopupFillAttribute: u16 align(1),
+    dwScreenBufferSize: COORD align(1),
+    dwWindowSize: COORD align(1),
+    dwWindowOrigin: COORD align(1),
+    nFont: u32 align(1),
+    nInputBufferSize: u32 align(1),
+    dwFontSize: COORD align(1),
+    uFontFamily: u32 align(1),
+    uFontWeight: u32 align(1),
+    FaceName: [32]u16 align(1),
+    uCursorSize: u32 align(1),
+    bFullScreen: BOOL align(1),
+    bQuickEdit: BOOL align(1),
+    bInsertMode: BOOL align(1),
+    bAutoPosition: BOOL align(1),
+    uHistoryBufferSize: u32 align(1),
+    uNumberOfHistoryBuffers: u32 align(1),
+    bHistoryNoDup: BOOL align(1),
+    ColorTable: [16]u32 align(1),
 };
 
-pub const NT_FE_CONSOLE_PROPS = packed struct {
-    dbh: DATABLOCK_HEADER,
-    uCodePage: u32,
+pub const NT_FE_CONSOLE_PROPS = extern struct {
+    dbh: DATABLOCK_HEADER align(1),
+    uCodePage: u32 align(1),
 };
 
-pub const EXP_DARWIN_LINK = packed struct {
-    dbh: DATABLOCK_HEADER,
-    szDarwinID: [260]CHAR,
-    szwDarwinID: [260]u16,
+pub const EXP_DARWIN_LINK = extern struct {
+    dbh: DATABLOCK_HEADER align(1),
+    szDarwinID: [260]CHAR align(1),
+    szwDarwinID: [260]u16 align(1),
 };
 
-pub const EXP_SPECIAL_FOLDER = packed struct {
-    cbSize: u32,
-    dwSignature: u32,
-    idSpecialFolder: u32,
-    cbOffset: u32,
+pub const EXP_SPECIAL_FOLDER = extern struct {
+    cbSize: u32 align(1),
+    dwSignature: u32 align(1),
+    idSpecialFolder: u32 align(1),
+    cbOffset: u32 align(1),
 };
 
-pub const EXP_SZ_LINK = packed struct {
-    cbSize: u32,
-    dwSignature: u32,
-    szTarget: [260]CHAR,
-    swzTarget: [260]u16,
+pub const EXP_SZ_LINK = extern struct {
+    cbSize: u32 align(1),
+    dwSignature: u32 align(1),
+    szTarget: [260]CHAR align(1),
+    swzTarget: [260]u16 align(1),
 };
 
-pub const EXP_PROPERTYSTORAGE = packed struct {
-    cbSize: u32,
-    dwSignature: u32,
-    abPropertyStorage: [1]u8,
+pub const EXP_PROPERTYSTORAGE = extern struct {
+    cbSize: u32 align(1),
+    dwSignature: u32 align(1),
+    abPropertyStorage: [1]u8 align(1),
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -31361,9 +31361,9 @@ pub const NRESARRAY = extern struct {
     nr: [1]NETRESOURCEA,
 };
 
-pub const CIDA = packed struct {
-    cidl: u32,
-    aoffset: [1]u32,
+pub const CIDA = extern struct {
+    cidl: u32 align(1),
+    aoffset: [1]u32 align(1),
 };
 
 pub const FD_FLAGS = enum(i32) {
@@ -31389,54 +31389,54 @@ pub const FD_PROGRESSUI = FD_FLAGS.PROGRESSUI;
 pub const FD_LINKUI = FD_FLAGS.LINKUI;
 pub const FD_UNICODE = FD_FLAGS.UNICODE;
 
-pub const FILEDESCRIPTORA = packed struct {
-    dwFlags: u32,
-    clsid: Guid,
-    sizel: SIZE,
-    pointl: POINTL,
-    dwFileAttributes: u32,
-    ftCreationTime: FILETIME,
-    ftLastAccessTime: FILETIME,
-    ftLastWriteTime: FILETIME,
-    nFileSizeHigh: u32,
-    nFileSizeLow: u32,
-    cFileName: [260]CHAR,
+pub const FILEDESCRIPTORA = extern struct {
+    dwFlags: u32 align(1),
+    clsid: Guid align(1),
+    sizel: SIZE align(1),
+    pointl: POINTL align(1),
+    dwFileAttributes: u32 align(1),
+    ftCreationTime: FILETIME align(1),
+    ftLastAccessTime: FILETIME align(1),
+    ftLastWriteTime: FILETIME align(1),
+    nFileSizeHigh: u32 align(1),
+    nFileSizeLow: u32 align(1),
+    cFileName: [260]CHAR align(1),
 };
 
-pub const FILEDESCRIPTORW = packed struct {
-    dwFlags: u32,
-    clsid: Guid,
-    sizel: SIZE,
-    pointl: POINTL,
-    dwFileAttributes: u32,
-    ftCreationTime: FILETIME,
-    ftLastAccessTime: FILETIME,
-    ftLastWriteTime: FILETIME,
-    nFileSizeHigh: u32,
-    nFileSizeLow: u32,
-    cFileName: [260]u16,
+pub const FILEDESCRIPTORW = extern struct {
+    dwFlags: u32 align(1),
+    clsid: Guid align(1),
+    sizel: SIZE align(1),
+    pointl: POINTL align(1),
+    dwFileAttributes: u32 align(1),
+    ftCreationTime: FILETIME align(1),
+    ftLastAccessTime: FILETIME align(1),
+    ftLastWriteTime: FILETIME align(1),
+    nFileSizeHigh: u32 align(1),
+    nFileSizeLow: u32 align(1),
+    cFileName: [260]u16 align(1),
 };
 
 // TODO: not generating this type because array of 'win32.ui.shell.FILEDESCRIPTORA' not allowed in packed struct due to padding bits
 pub const FILEGROUPDESCRIPTORA = usize;
 
-pub const FILEGROUPDESCRIPTORW = packed struct {
-    cItems: u32,
-    fgd: [1]FILEDESCRIPTORW,
+pub const FILEGROUPDESCRIPTORW = extern struct {
+    cItems: u32 align(1),
+    fgd: [1]FILEDESCRIPTORW align(1),
 };
 
-pub const DROPFILES = packed struct {
-    pFiles: u32,
-    pt: POINT,
-    fNC: BOOL,
-    fWide: BOOL,
+pub const DROPFILES = extern struct {
+    pFiles: u32 align(1),
+    pt: POINT align(1),
+    fNC: BOOL align(1),
+    fWide: BOOL align(1),
 };
 
-pub const FILE_ATTRIBUTES_ARRAY = packed struct {
-    cItems: u32,
-    dwSumFileAttributes: u32,
-    dwProductFileAttributes: u32,
-    rgdwFileAttributes: [1]u32,
+pub const FILE_ATTRIBUTES_ARRAY = extern struct {
+    cItems: u32 align(1),
+    dwSumFileAttributes: u32 align(1),
+    dwProductFileAttributes: u32 align(1),
+    rgdwFileAttributes: [1]u32 align(1),
 };
 
 pub const DROPIMAGETYPE = enum(i32) {
@@ -31458,15 +31458,15 @@ pub const DROPIMAGE_LABEL = DROPIMAGETYPE.LABEL;
 pub const DROPIMAGE_WARNING = DROPIMAGETYPE.WARNING;
 pub const DROPIMAGE_NOIMAGE = DROPIMAGETYPE.NOIMAGE;
 
-pub const DROPDESCRIPTION = packed struct {
-    type: DROPIMAGETYPE,
-    szMessage: [260]u16,
-    szInsert: [260]u16,
+pub const DROPDESCRIPTION = extern struct {
+    type: DROPIMAGETYPE align(1),
+    szMessage: [260]u16 align(1),
+    szInsert: [260]u16 align(1),
 };
 
-pub const SHChangeNotifyEntry = packed struct {
-    pidl: ?*ITEMIDLIST,
-    fRecursive: BOOL,
+pub const SHChangeNotifyEntry = extern struct {
+    pidl: ?*ITEMIDLIST align(1),
+    fRecursive: BOOL align(1),
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -31564,36 +31564,36 @@ pub const SHARD_LINK = SHARD.LINK;
 pub const SHARD_APPIDINFOLINK = SHARD.APPIDINFOLINK;
 pub const SHARD_SHELLITEM = SHARD.SHELLITEM;
 
-pub const SHARDAPPIDINFO = packed struct {
-    psi: ?*IShellItem,
-    pszAppID: ?[*:0]const u16,
+pub const SHARDAPPIDINFO = extern struct {
+    psi: ?*IShellItem align(1),
+    pszAppID: ?[*:0]const u16 align(1),
 };
 
-pub const SHARDAPPIDINFOIDLIST = packed struct {
-    pidl: ?*ITEMIDLIST,
-    pszAppID: ?[*:0]const u16,
+pub const SHARDAPPIDINFOIDLIST = extern struct {
+    pidl: ?*ITEMIDLIST align(1),
+    pszAppID: ?[*:0]const u16 align(1),
 };
 
-pub const SHARDAPPIDINFOLINK = packed struct {
-    psl: ?*IShellLinkA,
-    pszAppID: ?[*:0]const u16,
+pub const SHARDAPPIDINFOLINK = extern struct {
+    psl: ?*IShellLinkA align(1),
+    pszAppID: ?[*:0]const u16 align(1),
 };
 
-pub const SHChangeDWORDAsIDList = packed struct {
-    cb: u16,
-    dwItem1: u32,
-    dwItem2: u32,
-    cbZero: u16,
+pub const SHChangeDWORDAsIDList = extern struct {
+    cb: u16 align(1),
+    dwItem1: u32 align(1),
+    dwItem2: u32 align(1),
+    cbZero: u16 align(1),
 };
 
-pub const SHChangeUpdateImageIDList = packed struct {
-    cb: u16,
-    iIconIndex: i32,
-    iCurIndex: i32,
-    uFlags: u32,
-    dwProcessID: u32,
-    szName: [260]u16,
-    cbZero: u16,
+pub const SHChangeUpdateImageIDList = extern struct {
+    cb: u16 align(1),
+    iIconIndex: i32 align(1),
+    iCurIndex: i32 align(1),
+    uFlags: u32 align(1),
+    dwProcessID: u32 align(1),
+    szName: [260]u16 align(1),
+    cbZero: u16 align(1),
 };
 
 pub const SCNRT_STATUS = enum(i32) {
@@ -31608,19 +31608,19 @@ pub const SHDESCRIPTIONID = extern struct {
     clsid: Guid,
 };
 
-pub const AUTO_SCROLL_DATA = packed struct {
-    iNextSample: i32,
-    dwLastScroll: u32,
-    bFull: BOOL,
-    pts: [3]POINT,
-    dwTimes: [3]u32,
+pub const AUTO_SCROLL_DATA = extern struct {
+    iNextSample: i32 align(1),
+    dwLastScroll: u32 align(1),
+    bFull: BOOL align(1),
+    pts: [3]POINT align(1),
+    dwTimes: [3]u32 align(1),
 };
 
-pub const CABINETSTATE = packed struct {
-    cLength: u16,
-    nVersion: u16,
-    _bitfield: i32,
-    fMenuEnumFilter: u32,
+pub const CABINETSTATE = extern struct {
+    cLength: u16 align(1),
+    nVersion: u16 align(1),
+    _bitfield: i32 align(1),
+    fMenuEnumFilter: u32 align(1),
 };
 
 pub const RESTRICTIONS = enum(i32) {
@@ -32570,30 +32570,30 @@ pub const CSFV = extern struct {
     fvm: FOLDERVIEWMODE,
 };
 
-pub const SHELLSTATEA = packed struct {
-    _bitfield1: i32,
-    dwWin95Unused: u32,
-    uWin95Unused: u32,
-    lParamSort: i32,
-    iSortDirection: i32,
-    version: u32,
-    uNotUsed: u32,
-    _bitfield2: i32,
+pub const SHELLSTATEA = extern struct {
+    _bitfield1: i32 align(1),
+    dwWin95Unused: u32 align(1),
+    uWin95Unused: u32 align(1),
+    lParamSort: i32 align(1),
+    iSortDirection: i32 align(1),
+    version: u32 align(1),
+    uNotUsed: u32 align(1),
+    _bitfield2: i32 align(1),
 };
 
-pub const SHELLSTATEW = packed struct {
-    _bitfield1: i32,
-    dwWin95Unused: u32,
-    uWin95Unused: u32,
-    lParamSort: i32,
-    iSortDirection: i32,
-    version: u32,
-    uNotUsed: u32,
-    _bitfield2: i32,
+pub const SHELLSTATEW = extern struct {
+    _bitfield1: i32 align(1),
+    dwWin95Unused: u32 align(1),
+    uWin95Unused: u32 align(1),
+    lParamSort: i32 align(1),
+    iSortDirection: i32 align(1),
+    version: u32 align(1),
+    uNotUsed: u32 align(1),
+    _bitfield2: i32 align(1),
 };
 
-pub const SHELLFLAGSTATE = packed struct {
-    _bitfield: i32,
+pub const SHELLFLAGSTATE = extern struct {
+    _bitfield: i32 align(1),
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -33251,14 +33251,14 @@ pub const IDeskBarClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SHCOLUMNINFO = packed struct {
-    scid: PROPERTYKEY,
-    vt: u16,
-    fmt: u32,
-    cChars: u32,
-    csFlags: u32,
-    wszTitle: [80]u16,
-    wszDescription: [128]u16,
+pub const SHCOLUMNINFO = extern struct {
+    scid: PROPERTYKEY align(1),
+    vt: u16 align(1),
+    fmt: u32 align(1),
+    cChars: u32 align(1),
+    csFlags: u32 align(1),
+    wszTitle: [80]u16 align(1),
+    wszDescription: [128]u16 align(1),
 };
 
 pub const SHCOLUMNINIT = extern struct {
@@ -33337,10 +33337,10 @@ pub const IColumnProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const SHChangeProductKeyAsIDList = packed struct {
-    cb: u16,
-    wszProductKey: [39]u16,
-    cbZero: u16,
+pub const SHChangeProductKeyAsIDList = extern struct {
+    cb: u16 align(1),
+    wszProductKey: [39]u16 align(1),
+    cbZero: u16 align(1),
 };
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -43865,33 +43865,33 @@ pub const APPLET_PROC = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) i32,
 } ;
 
-pub const CPLINFO = packed struct {
-    idIcon: i32,
-    idName: i32,
-    idInfo: i32,
-    lData: isize,
+pub const CPLINFO = extern struct {
+    idIcon: i32 align(1),
+    idName: i32 align(1),
+    idInfo: i32 align(1),
+    lData: isize align(1),
 };
 
-pub const NEWCPLINFOA = packed struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwHelpContext: u32,
-    lData: isize,
-    hIcon: ?HICON,
-    szName: [32]CHAR,
-    szInfo: [64]CHAR,
-    szHelpFile: [128]CHAR,
+pub const NEWCPLINFOA = extern struct {
+    dwSize: u32 align(1),
+    dwFlags: u32 align(1),
+    dwHelpContext: u32 align(1),
+    lData: isize align(1),
+    hIcon: ?HICON align(1),
+    szName: [32]CHAR align(1),
+    szInfo: [64]CHAR align(1),
+    szHelpFile: [128]CHAR align(1),
 };
 
-pub const NEWCPLINFOW = packed struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwHelpContext: u32,
-    lData: isize,
-    hIcon: ?HICON,
-    szName: [32]u16,
-    szInfo: [64]u16,
-    szHelpFile: [128]u16,
+pub const NEWCPLINFOW = extern struct {
+    dwSize: u32 align(1),
+    dwFlags: u32 align(1),
+    dwHelpContext: u32 align(1),
+    lData: isize align(1),
+    hIcon: ?HICON align(1),
+    szName: [32]u16 align(1),
+    szInfo: [64]u16 align(1),
+    szHelpFile: [128]u16 align(1),
 };
 
 pub const PROFILEINFOA = extern struct {
@@ -44168,12 +44168,12 @@ pub const DRAGINFOA = switch(@import("../zig.zig").arch) {
         lpFileList: ?[*]u8,
         grfKeyState: u32,
     },
-    .X86 => packed struct {
-        uSize: u32,
-        pt: POINT,
-        fNC: BOOL,
-        lpFileList: ?[*]u8,
-        grfKeyState: u32,
+    .X86 => extern struct {
+        uSize: u32 align(1),
+        pt: POINT align(1),
+        fNC: BOOL align(1),
+        lpFileList: ?[*]u8 align(1),
+        grfKeyState: u32 align(1),
     },
 };
 pub const DRAGINFOW = switch(@import("../zig.zig").arch) {
@@ -44184,12 +44184,12 @@ pub const DRAGINFOW = switch(@import("../zig.zig").arch) {
         lpFileList: ?[*]u16,
         grfKeyState: u32,
     },
-    .X86 => packed struct {
-        uSize: u32,
-        pt: POINT,
-        fNC: BOOL,
-        lpFileList: ?[*]u16,
-        grfKeyState: u32,
+    .X86 => extern struct {
+        uSize: u32 align(1),
+        pt: POINT align(1),
+        fNC: BOOL align(1),
+        lpFileList: ?[*]u16 align(1),
+        grfKeyState: u32 align(1),
     },
 };
 pub const APPBARDATA = switch(@import("../zig.zig").arch) {
@@ -44201,13 +44201,13 @@ pub const APPBARDATA = switch(@import("../zig.zig").arch) {
         rc: RECT,
         lParam: LPARAM,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        hWnd: ?HWND,
-        uCallbackMessage: u32,
-        uEdge: u32,
-        rc: RECT,
-        lParam: LPARAM,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        hWnd: ?HWND align(1),
+        uCallbackMessage: u32 align(1),
+        uEdge: u32 align(1),
+        rc: RECT align(1),
+        lParam: LPARAM align(1),
     },
 };
 pub const SHFILEOPSTRUCTA = switch(@import("../zig.zig").arch) {
@@ -44221,15 +44221,15 @@ pub const SHFILEOPSTRUCTA = switch(@import("../zig.zig").arch) {
         hNameMappings: ?*anyopaque,
         lpszProgressTitle: ?[*:0]const u8,
     },
-    .X86 => packed struct {
-        hwnd: ?HWND,
-        wFunc: u32,
-        pFrom: ?*i8,
-        pTo: ?*i8,
-        fFlags: u16,
-        fAnyOperationsAborted: BOOL,
-        hNameMappings: ?*anyopaque,
-        lpszProgressTitle: ?[*:0]const u8,
+    .X86 => extern struct {
+        hwnd: ?HWND align(1),
+        wFunc: u32 align(1),
+        pFrom: ?*i8 align(1),
+        pTo: ?*i8 align(1),
+        fFlags: u16 align(1),
+        fAnyOperationsAborted: BOOL align(1),
+        hNameMappings: ?*anyopaque align(1),
+        lpszProgressTitle: ?[*:0]const u8 align(1),
     },
 };
 pub const SHFILEOPSTRUCTW = switch(@import("../zig.zig").arch) {
@@ -44243,15 +44243,15 @@ pub const SHFILEOPSTRUCTW = switch(@import("../zig.zig").arch) {
         hNameMappings: ?*anyopaque,
         lpszProgressTitle: ?[*:0]const u16,
     },
-    .X86 => packed struct {
-        hwnd: ?HWND,
-        wFunc: u32,
-        pFrom: ?[*]const u16,
-        pTo: ?[*]const u16,
-        fFlags: u16,
-        fAnyOperationsAborted: BOOL,
-        hNameMappings: ?*anyopaque,
-        lpszProgressTitle: ?[*:0]const u16,
+    .X86 => extern struct {
+        hwnd: ?HWND align(1),
+        wFunc: u32 align(1),
+        pFrom: ?[*]const u16 align(1),
+        pTo: ?[*]const u16 align(1),
+        fFlags: u16 align(1),
+        fAnyOperationsAborted: BOOL align(1),
+        hNameMappings: ?*anyopaque align(1),
+        lpszProgressTitle: ?[*:0]const u16 align(1),
     },
 };
 pub const SHNAMEMAPPINGA = switch(@import("../zig.zig").arch) {
@@ -44261,11 +44261,11 @@ pub const SHNAMEMAPPINGA = switch(@import("../zig.zig").arch) {
         cchOldPath: i32,
         cchNewPath: i32,
     },
-    .X86 => packed struct {
-        pszOldPath: ?PSTR,
-        pszNewPath: ?PSTR,
-        cchOldPath: i32,
-        cchNewPath: i32,
+    .X86 => extern struct {
+        pszOldPath: ?PSTR align(1),
+        pszNewPath: ?PSTR align(1),
+        cchOldPath: i32 align(1),
+        cchNewPath: i32 align(1),
     },
 };
 pub const SHNAMEMAPPINGW = switch(@import("../zig.zig").arch) {
@@ -44275,11 +44275,11 @@ pub const SHNAMEMAPPINGW = switch(@import("../zig.zig").arch) {
         cchOldPath: i32,
         cchNewPath: i32,
     },
-    .X86 => packed struct {
-        pszOldPath: ?PWSTR,
-        pszNewPath: ?PWSTR,
-        cchOldPath: i32,
-        cchNewPath: i32,
+    .X86 => extern struct {
+        pszOldPath: ?PWSTR align(1),
+        pszNewPath: ?PWSTR align(1),
+        cchOldPath: i32 align(1),
+        cchNewPath: i32 align(1),
     },
 };
 pub const SHELLEXECUTEINFOA = switch(@import("../zig.zig").arch) {
@@ -44303,25 +44303,25 @@ pub const SHELLEXECUTEINFOA = switch(@import("../zig.zig").arch) {
         },
         hProcess: ?HANDLE,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        fMask: u32,
-        hwnd: ?HWND,
-        lpVerb: ?[*:0]const u8,
-        lpFile: ?[*:0]const u8,
-        lpParameters: ?[*:0]const u8,
-        lpDirectory: ?[*:0]const u8,
-        nShow: i32,
-        hInstApp: ?HINSTANCE,
-        lpIDList: ?*anyopaque,
-        lpClass: ?[*:0]const u8,
-        hkeyClass: ?HKEY,
-        dwHotKey: u32,
-        Anonymous: packed union {
-            hIcon: ?HANDLE,
-            hMonitor: ?HANDLE,
-        },
-        hProcess: ?HANDLE,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        fMask: u32 align(1),
+        hwnd: ?HWND align(1),
+        lpVerb: ?[*:0]const u8 align(1),
+        lpFile: ?[*:0]const u8 align(1),
+        lpParameters: ?[*:0]const u8 align(1),
+        lpDirectory: ?[*:0]const u8 align(1),
+        nShow: i32 align(1),
+        hInstApp: ?HINSTANCE align(1),
+        lpIDList: ?*anyopaque align(1),
+        lpClass: ?[*:0]const u8 align(1),
+        hkeyClass: ?HKEY align(1),
+        dwHotKey: u32 align(1),
+        Anonymous: extern union {
+            hIcon: ?HANDLE align(1),
+            hMonitor: ?HANDLE align(1),
+        } align(1),
+        hProcess: ?HANDLE align(1),
     },
 };
 pub const SHELLEXECUTEINFOW = switch(@import("../zig.zig").arch) {
@@ -44345,25 +44345,25 @@ pub const SHELLEXECUTEINFOW = switch(@import("../zig.zig").arch) {
         },
         hProcess: ?HANDLE,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        fMask: u32,
-        hwnd: ?HWND,
-        lpVerb: ?[*:0]const u16,
-        lpFile: ?[*:0]const u16,
-        lpParameters: ?[*:0]const u16,
-        lpDirectory: ?[*:0]const u16,
-        nShow: i32,
-        hInstApp: ?HINSTANCE,
-        lpIDList: ?*anyopaque,
-        lpClass: ?[*:0]const u16,
-        hkeyClass: ?HKEY,
-        dwHotKey: u32,
-        Anonymous: packed union {
-            hIcon: ?HANDLE,
-            hMonitor: ?HANDLE,
-        },
-        hProcess: ?HANDLE,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        fMask: u32 align(1),
+        hwnd: ?HWND align(1),
+        lpVerb: ?[*:0]const u16 align(1),
+        lpFile: ?[*:0]const u16 align(1),
+        lpParameters: ?[*:0]const u16 align(1),
+        lpDirectory: ?[*:0]const u16 align(1),
+        nShow: i32 align(1),
+        hInstApp: ?HINSTANCE align(1),
+        lpIDList: ?*anyopaque align(1),
+        lpClass: ?[*:0]const u16 align(1),
+        hkeyClass: ?HKEY align(1),
+        dwHotKey: u32 align(1),
+        Anonymous: extern union {
+            hIcon: ?HANDLE align(1),
+            hMonitor: ?HANDLE align(1),
+        } align(1),
+        hProcess: ?HANDLE align(1),
     },
 };
 pub const SHCREATEPROCESSINFOW = switch(@import("../zig.zig").arch) {
@@ -44382,20 +44382,20 @@ pub const SHCREATEPROCESSINFOW = switch(@import("../zig.zig").arch) {
         lpStartupInfo: ?*STARTUPINFOW,
         lpProcessInformation: ?*PROCESS_INFORMATION,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        fMask: u32,
-        hwnd: ?HWND,
-        pszFile: ?[*:0]const u16,
-        pszParameters: ?[*:0]const u16,
-        pszCurrentDirectory: ?[*:0]const u16,
-        hUserToken: ?HANDLE,
-        lpProcessAttributes: ?*SECURITY_ATTRIBUTES,
-        lpThreadAttributes: ?*SECURITY_ATTRIBUTES,
-        bInheritHandles: BOOL,
-        dwCreationFlags: u32,
-        lpStartupInfo: ?*STARTUPINFOW,
-        lpProcessInformation: ?*PROCESS_INFORMATION,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        fMask: u32 align(1),
+        hwnd: ?HWND align(1),
+        pszFile: ?[*:0]const u16 align(1),
+        pszParameters: ?[*:0]const u16 align(1),
+        pszCurrentDirectory: ?[*:0]const u16 align(1),
+        hUserToken: ?HANDLE align(1),
+        lpProcessAttributes: ?*SECURITY_ATTRIBUTES align(1),
+        lpThreadAttributes: ?*SECURITY_ATTRIBUTES align(1),
+        bInheritHandles: BOOL align(1),
+        dwCreationFlags: u32 align(1),
+        lpStartupInfo: ?*STARTUPINFOW align(1),
+        lpProcessInformation: ?*PROCESS_INFORMATION align(1),
     },
 };
 pub const ASSOCIATIONELEMENT = switch(@import("../zig.zig").arch) {
@@ -44404,10 +44404,10 @@ pub const ASSOCIATIONELEMENT = switch(@import("../zig.zig").arch) {
         hkClass: ?HKEY,
         pszClass: ?[*:0]const u16,
     },
-    .X86 => packed struct {
-        ac: ASSOCCLASS,
-        hkClass: ?HKEY,
-        pszClass: ?[*:0]const u16,
+    .X86 => extern struct {
+        ac: ASSOCCLASS align(1),
+        hkClass: ?HKEY align(1),
+        pszClass: ?[*:0]const u16 align(1),
     },
 };
 pub const SHQUERYRBINFO = switch(@import("../zig.zig").arch) {
@@ -44416,10 +44416,10 @@ pub const SHQUERYRBINFO = switch(@import("../zig.zig").arch) {
         i64Size: i64,
         i64NumItems: i64,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        i64Size: i64,
-        i64NumItems: i64,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        i64Size: i64 align(1),
+        i64NumItems: i64 align(1),
     },
 };
 pub const NOTIFYICONDATAA = switch(@import("../zig.zig").arch) {
@@ -44443,25 +44443,25 @@ pub const NOTIFYICONDATAA = switch(@import("../zig.zig").arch) {
         guidItem: Guid,
         hBalloonIcon: ?HICON,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        hWnd: ?HWND,
-        uID: u32,
-        uFlags: NOTIFY_ICON_DATA_FLAGS,
-        uCallbackMessage: u32,
-        hIcon: ?HICON,
-        szTip: [128]CHAR,
-        dwState: u32,
-        dwStateMask: u32,
-        szInfo: [256]CHAR,
-        Anonymous: packed union {
-            uTimeout: u32,
-            uVersion: u32,
-        },
-        szInfoTitle: [64]CHAR,
-        dwInfoFlags: u32,
-        guidItem: Guid,
-        hBalloonIcon: ?HICON,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        hWnd: ?HWND align(1),
+        uID: u32 align(1),
+        uFlags: NOTIFY_ICON_DATA_FLAGS align(1),
+        uCallbackMessage: u32 align(1),
+        hIcon: ?HICON align(1),
+        szTip: [128]CHAR align(1),
+        dwState: u32 align(1),
+        dwStateMask: u32 align(1),
+        szInfo: [256]CHAR align(1),
+        Anonymous: extern union {
+            uTimeout: u32 align(1),
+            uVersion: u32 align(1),
+        } align(1),
+        szInfoTitle: [64]CHAR align(1),
+        dwInfoFlags: u32 align(1),
+        guidItem: Guid align(1),
+        hBalloonIcon: ?HICON align(1),
     },
 };
 pub const NOTIFYICONDATAW = switch(@import("../zig.zig").arch) {
@@ -44485,25 +44485,25 @@ pub const NOTIFYICONDATAW = switch(@import("../zig.zig").arch) {
         guidItem: Guid,
         hBalloonIcon: ?HICON,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        hWnd: ?HWND,
-        uID: u32,
-        uFlags: NOTIFY_ICON_DATA_FLAGS,
-        uCallbackMessage: u32,
-        hIcon: ?HICON,
-        szTip: [128]u16,
-        dwState: u32,
-        dwStateMask: u32,
-        szInfo: [256]u16,
-        Anonymous: packed union {
-            uTimeout: u32,
-            uVersion: u32,
-        },
-        szInfoTitle: [64]u16,
-        dwInfoFlags: u32,
-        guidItem: Guid,
-        hBalloonIcon: ?HICON,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        hWnd: ?HWND align(1),
+        uID: u32 align(1),
+        uFlags: NOTIFY_ICON_DATA_FLAGS align(1),
+        uCallbackMessage: u32 align(1),
+        hIcon: ?HICON align(1),
+        szTip: [128]u16 align(1),
+        dwState: u32 align(1),
+        dwStateMask: u32 align(1),
+        szInfo: [256]u16 align(1),
+        Anonymous: extern union {
+            uTimeout: u32 align(1),
+            uVersion: u32 align(1),
+        } align(1),
+        szInfoTitle: [64]u16 align(1),
+        dwInfoFlags: u32 align(1),
+        guidItem: Guid align(1),
+        hBalloonIcon: ?HICON align(1),
     },
 };
 pub const NOTIFYICONIDENTIFIER = switch(@import("../zig.zig").arch) {
@@ -44513,11 +44513,11 @@ pub const NOTIFYICONIDENTIFIER = switch(@import("../zig.zig").arch) {
         uID: u32,
         guidItem: Guid,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        hWnd: ?HWND,
-        uID: u32,
-        guidItem: Guid,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        hWnd: ?HWND align(1),
+        uID: u32 align(1),
+        guidItem: Guid align(1),
     },
 };
 pub const SHFILEINFOA = switch(@import("../zig.zig").arch) {
@@ -44528,12 +44528,12 @@ pub const SHFILEINFOA = switch(@import("../zig.zig").arch) {
         szDisplayName: [260]CHAR,
         szTypeName: [80]CHAR,
     },
-    .X86 => packed struct {
-        hIcon: ?HICON,
-        iIcon: i32,
-        dwAttributes: u32,
-        szDisplayName: [260]CHAR,
-        szTypeName: [80]CHAR,
+    .X86 => extern struct {
+        hIcon: ?HICON align(1),
+        iIcon: i32 align(1),
+        dwAttributes: u32 align(1),
+        szDisplayName: [260]CHAR align(1),
+        szTypeName: [80]CHAR align(1),
     },
 };
 pub const SHFILEINFOW = switch(@import("../zig.zig").arch) {
@@ -44544,12 +44544,12 @@ pub const SHFILEINFOW = switch(@import("../zig.zig").arch) {
         szDisplayName: [260]u16,
         szTypeName: [80]u16,
     },
-    .X86 => packed struct {
-        hIcon: ?HICON,
-        iIcon: i32,
-        dwAttributes: u32,
-        szDisplayName: [260]u16,
-        szTypeName: [80]u16,
+    .X86 => extern struct {
+        hIcon: ?HICON align(1),
+        iIcon: i32 align(1),
+        dwAttributes: u32 align(1),
+        szDisplayName: [260]u16 align(1),
+        szTypeName: [80]u16 align(1),
     },
 };
 pub const SHSTOCKICONINFO = switch(@import("../zig.zig").arch) {
@@ -44560,12 +44560,12 @@ pub const SHSTOCKICONINFO = switch(@import("../zig.zig").arch) {
         iIcon: i32,
         szPath: [260]u16,
     },
-    .X86 => packed struct {
-        cbSize: u32,
-        hIcon: ?HICON,
-        iSysImageIndex: i32,
-        iIcon: i32,
-        szPath: [260]u16,
+    .X86 => extern struct {
+        cbSize: u32 align(1),
+        hIcon: ?HICON align(1),
+        iSysImageIndex: i32 align(1),
+        iIcon: i32 align(1),
+        szPath: [260]u16 align(1),
     },
 };
 pub const OPEN_PRINTER_PROPS_INFOA = switch(@import("../zig.zig").arch) {
@@ -44576,12 +44576,12 @@ pub const OPEN_PRINTER_PROPS_INFOA = switch(@import("../zig.zig").arch) {
         dwFlags: u32,
         bModal: BOOL,
     },
-    .X86 => packed struct {
-        dwSize: u32,
-        pszSheetName: ?PSTR,
-        uSheetIndex: u32,
-        dwFlags: u32,
-        bModal: BOOL,
+    .X86 => extern struct {
+        dwSize: u32 align(1),
+        pszSheetName: ?PSTR align(1),
+        uSheetIndex: u32 align(1),
+        dwFlags: u32 align(1),
+        bModal: BOOL align(1),
     },
 };
 pub const OPEN_PRINTER_PROPS_INFOW = switch(@import("../zig.zig").arch) {
@@ -44592,12 +44592,12 @@ pub const OPEN_PRINTER_PROPS_INFOW = switch(@import("../zig.zig").arch) {
         dwFlags: u32,
         bModal: BOOL,
     },
-    .X86 => packed struct {
-        dwSize: u32,
-        pszSheetName: ?PWSTR,
-        uSheetIndex: u32,
-        dwFlags: u32,
-        bModal: BOOL,
+    .X86 => extern struct {
+        dwSize: u32 align(1),
+        pszSheetName: ?PWSTR align(1),
+        uSheetIndex: u32 align(1),
+        dwFlags: u32 align(1),
+        bModal: BOOL align(1),
     },
 };
 

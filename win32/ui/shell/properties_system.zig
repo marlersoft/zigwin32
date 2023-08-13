@@ -2398,19 +2398,19 @@ pub const SESF_SERVICE_UNAVAILABLE = SYNC_ENGINE_STATE_FLAGS.SERVICE_UNAVAILABLE
 pub const SESF_PAUSED_DUE_TO_USER_REQUEST = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_USER_REQUEST;
 pub const SESF_ALL_FLAGS = SYNC_ENGINE_STATE_FLAGS.ALL_FLAGS;
 
-pub const PROPPRG = packed struct {
-    flPrg: u16,
-    flPrgInit: u16,
-    achTitle: [30]CHAR,
-    achCmdLine: [128]CHAR,
-    achWorkDir: [64]CHAR,
-    wHotKey: u16,
-    achIconFile: [80]CHAR,
-    wIconIndex: u16,
-    dwEnhModeFlags: u32,
-    dwRealModeFlags: u32,
-    achOtherFile: [80]CHAR,
-    achPIFFile: [260]CHAR,
+pub const PROPPRG = extern struct {
+    flPrg: u16 align(1),
+    flPrgInit: u16 align(1),
+    achTitle: [30]CHAR align(1),
+    achCmdLine: [128]CHAR align(1),
+    achWorkDir: [64]CHAR align(1),
+    wHotKey: u16 align(1),
+    achIconFile: [80]CHAR align(1),
+    wIconIndex: u16 align(1),
+    dwEnhModeFlags: u32 align(1),
+    dwRealModeFlags: u32 align(1),
+    achOtherFile: [80]CHAR align(1),
+    achPIFFile: [260]CHAR align(1),
 };
 
 

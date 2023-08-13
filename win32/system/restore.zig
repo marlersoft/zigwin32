@@ -51,31 +51,31 @@ pub const BEGIN_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.BEGIN_SYSTEM_CHANGE;
 pub const END_NESTED_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.END_NESTED_SYSTEM_CHANGE;
 pub const END_SYSTEM_CHANGE = RESTOREPOINTINFO_EVENT_TYPE.END_SYSTEM_CHANGE;
 
-pub const RESTOREPOINTINFOA = packed struct {
-    dwEventType: RESTOREPOINTINFO_EVENT_TYPE,
-    dwRestorePtType: RESTOREPOINTINFO_TYPE,
-    llSequenceNumber: i64,
-    szDescription: [64]CHAR,
+pub const RESTOREPOINTINFOA = extern struct {
+    dwEventType: RESTOREPOINTINFO_EVENT_TYPE align(1),
+    dwRestorePtType: RESTOREPOINTINFO_TYPE align(1),
+    llSequenceNumber: i64 align(1),
+    szDescription: [64]CHAR align(1),
 };
 
-pub const RESTOREPOINTINFOW = packed struct {
-    dwEventType: RESTOREPOINTINFO_EVENT_TYPE,
-    dwRestorePtType: RESTOREPOINTINFO_TYPE,
-    llSequenceNumber: i64,
-    szDescription: [256]u16,
+pub const RESTOREPOINTINFOW = extern struct {
+    dwEventType: RESTOREPOINTINFO_EVENT_TYPE align(1),
+    dwRestorePtType: RESTOREPOINTINFO_TYPE align(1),
+    llSequenceNumber: i64 align(1),
+    szDescription: [256]u16 align(1),
 };
 
-pub const _RESTOREPTINFOEX = packed struct {
-    ftCreation: FILETIME,
-    dwEventType: u32,
-    dwRestorePtType: u32,
-    dwRPNum: u32,
-    szDescription: [256]u16,
+pub const _RESTOREPTINFOEX = extern struct {
+    ftCreation: FILETIME align(1),
+    dwEventType: u32 align(1),
+    dwRestorePtType: u32 align(1),
+    dwRPNum: u32 align(1),
+    szDescription: [256]u16 align(1),
 };
 
-pub const STATEMGRSTATUS = packed struct {
-    nStatus: u32,
-    llSequenceNumber: i64,
+pub const STATEMGRSTATUS = extern struct {
+    nStatus: u32 align(1),
+    llSequenceNumber: i64 align(1),
 };
 
 

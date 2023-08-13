@@ -294,32 +294,32 @@ pub const PXE_DHCP_OPTION = extern struct {
     OptionValue: [1]u8,
 };
 
-pub const PXE_DHCP_MESSAGE = packed struct {
-    Operation: u8,
-    HardwareAddressType: u8,
-    HardwareAddressLength: u8,
-    HopCount: u8,
-    TransactionID: u32,
-    SecondsSinceBoot: u16,
-    Reserved: u16,
-    ClientIpAddress: u32,
-    YourIpAddress: u32,
-    BootstrapServerAddress: u32,
-    RelayAgentIpAddress: u32,
-    HardwareAddress: [16]u8,
-    HostName: [64]u8,
-    BootFileName: [128]u8,
-    Anonymous: packed union {
-        bMagicCookie: [4]u8,
-        uMagicCookie: u32,
-    },
-    Option: PXE_DHCP_OPTION,
+pub const PXE_DHCP_MESSAGE = extern struct {
+    Operation: u8 align(1),
+    HardwareAddressType: u8 align(1),
+    HardwareAddressLength: u8 align(1),
+    HopCount: u8 align(1),
+    TransactionID: u32 align(1),
+    SecondsSinceBoot: u16 align(1),
+    Reserved: u16 align(1),
+    ClientIpAddress: u32 align(1),
+    YourIpAddress: u32 align(1),
+    BootstrapServerAddress: u32 align(1),
+    RelayAgentIpAddress: u32 align(1),
+    HardwareAddress: [16]u8 align(1),
+    HostName: [64]u8 align(1),
+    BootFileName: [128]u8 align(1),
+    Anonymous: extern union {
+        bMagicCookie: [4]u8 align(1),
+        uMagicCookie: u32 align(1),
+    } align(1),
+    Option: PXE_DHCP_OPTION align(1),
 };
 
-pub const PXE_DHCPV6_OPTION = packed struct {
-    OptionCode: u16,
-    DataLength: u16,
-    Data: [1]u8,
+pub const PXE_DHCPV6_OPTION = extern struct {
+    OptionCode: u16 align(1),
+    DataLength: u16 align(1),
+    Data: [1]u8 align(1),
 };
 
 pub const PXE_DHCPV6_MESSAGE_HEADER = extern struct {

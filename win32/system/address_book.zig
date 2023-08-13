@@ -2734,18 +2734,8 @@ pub const genderUnspecified = Gender.Unspecified;
 pub const genderFemale = Gender.Female;
 pub const genderMale = Gender.Male;
 
-pub const CALLERRELEASE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ulCallerData: u32,
-        lpTblData: ?*ITableData,
-        lpVue: ?*IMAPITable,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        ulCallerData: u32,
-        lpTblData: ?*ITableData,
-        lpVue: ?*IMAPITable,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const CALLERRELEASE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const ITableData = extern struct {
     pub const VTable = extern struct {
@@ -4688,7 +4678,6 @@ test {
     if (@hasDecl(@This(), "LPFNABSDI")) { _ = LPFNABSDI; }
     if (@hasDecl(@This(), "LPFNDISMISS")) { _ = LPFNDISMISS; }
     if (@hasDecl(@This(), "LPFNBUTTON")) { _ = LPFNBUTTON; }
-    if (@hasDecl(@This(), "CALLERRELEASE")) { _ = CALLERRELEASE; }
     if (@hasDecl(@This(), "FNIDLE")) { _ = FNIDLE; }
     if (@hasDecl(@This(), "PFNIDLE")) { _ = PFNIDLE; }
     if (@hasDecl(@This(), "LPOPENSTREAMONFILE")) { _ = LPOPENSTREAMONFILE; }

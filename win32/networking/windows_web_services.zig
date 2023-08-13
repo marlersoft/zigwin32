@@ -2252,24 +2252,8 @@ pub const WS_ASYNC_CALLBACK = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) void,
 } ;
 
-pub const WS_ASYNC_FUNCTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hr: HRESULT,
-        callbackModel: WS_CALLBACK_MODEL,
-        callbackState: ?*anyopaque,
-        next: ?*WS_ASYNC_OPERATION,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        hr: HRESULT,
-        callbackModel: WS_CALLBACK_MODEL,
-        callbackState: ?*anyopaque,
-        next: ?*WS_ASYNC_OPERATION,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const WS_ASYNC_FUNCTION = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const WS_CREATE_CHANNEL_CALLBACK = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
@@ -6617,7 +6601,6 @@ test {
     if (@hasDecl(@This(), "WS_PULL_BYTES_CALLBACK")) { _ = WS_PULL_BYTES_CALLBACK; }
     if (@hasDecl(@This(), "WS_DYNAMIC_STRING_CALLBACK")) { _ = WS_DYNAMIC_STRING_CALLBACK; }
     if (@hasDecl(@This(), "WS_ASYNC_CALLBACK")) { _ = WS_ASYNC_CALLBACK; }
-    if (@hasDecl(@This(), "WS_ASYNC_FUNCTION")) { _ = WS_ASYNC_FUNCTION; }
     if (@hasDecl(@This(), "WS_CREATE_CHANNEL_CALLBACK")) { _ = WS_CREATE_CHANNEL_CALLBACK; }
     if (@hasDecl(@This(), "WS_FREE_CHANNEL_CALLBACK")) { _ = WS_FREE_CHANNEL_CALLBACK; }
     if (@hasDecl(@This(), "WS_RESET_CHANNEL_CALLBACK")) { _ = WS_RESET_CHANNEL_CALLBACK; }

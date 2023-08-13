@@ -1128,15 +1128,15 @@ pub const DISPLAYCONFIG_SET_MONITOR_SPECIALIZATION = extern struct {
     specializationApplicationName: [128]u16,
 };
 
-pub const PHYSICAL_MONITOR = packed struct {
-    hPhysicalMonitor: ?HANDLE,
-    szPhysicalMonitorDescription: [128]u16,
+pub const PHYSICAL_MONITOR = extern struct {
+    hPhysicalMonitor: ?HANDLE align(1),
+    szPhysicalMonitorDescription: [128]u16 align(1),
 };
 
-pub const MC_TIMING_REPORT = packed struct {
-    dwHorizontalFrequencyInHZ: u32,
-    dwVerticalFrequencyInHZ: u32,
-    bTimingStatusByte: u8,
+pub const MC_TIMING_REPORT = extern struct {
+    dwHorizontalFrequencyInHZ: u32 align(1),
+    dwVerticalFrequencyInHZ: u32 align(1),
+    bTimingStatusByte: u8 align(1),
 };
 
 pub const MC_VCP_CODE_TYPE = enum(i32) {

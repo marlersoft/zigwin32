@@ -4042,9 +4042,8 @@ pub const WOF_FILE_COMPRESSION_INFO_V1 = extern struct {
 
 pub const TXF_ID = extern struct {
     Anonymous: extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        LowPart: i64,
-        HighPart: i64,
+        LowPart: i64 align(4),
+        HighPart: i64 align(4),
     },
 };
 
@@ -4055,31 +4054,29 @@ pub const TXF_LOG_RECORD_BASE = extern struct {
 };
 
 pub const TXF_LOG_RECORD_WRITE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Version: u16,
-    RecordType: u16,
-    RecordLength: u32,
-    Flags: u32,
-    TxfFileId: TXF_ID,
-    KtmGuid: Guid,
-    ByteOffsetInFile: i64,
-    NumBytesWritten: u32,
-    ByteOffsetInStructure: u32,
-    FileNameLength: u32,
-    FileNameByteOffsetInStructure: u32,
+    Version: u16 align(4),
+    RecordType: u16 align(4),
+    RecordLength: u32 align(4),
+    Flags: u32 align(4),
+    TxfFileId: TXF_ID align(4),
+    KtmGuid: Guid align(4),
+    ByteOffsetInFile: i64 align(4),
+    NumBytesWritten: u32 align(4),
+    ByteOffsetInStructure: u32 align(4),
+    FileNameLength: u32 align(4),
+    FileNameByteOffsetInStructure: u32 align(4),
 };
 
 pub const TXF_LOG_RECORD_TRUNCATE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    Version: u16,
-    RecordType: u16,
-    RecordLength: u32,
-    Flags: u32,
-    TxfFileId: TXF_ID,
-    KtmGuid: Guid,
-    NewFileSize: i64,
-    FileNameLength: u32,
-    FileNameByteOffsetInStructure: u32,
+    Version: u16 align(4),
+    RecordType: u16 align(4),
+    RecordLength: u32 align(4),
+    Flags: u32 align(4),
+    TxfFileId: TXF_ID align(4),
+    KtmGuid: Guid align(4),
+    NewFileSize: i64 align(4),
+    FileNameLength: u32 align(4),
+    FileNameByteOffsetInStructure: u32 align(4),
 };
 
 pub const TXF_LOG_RECORD_AFFECTED_FILE = extern struct {
@@ -4424,20 +4421,8 @@ pub const STAT_SERVER_0 = extern struct {
     sts0_bigbufneed: u32,
 };
 
-pub const PFN_IO_COMPLETION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pContext: ?*FIO_CONTEXT,
-        lpo: ?*FH_OVERLAPPED,
-        cb: u32,
-        dwCompletionStatus: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        pContext: ?*FIO_CONTEXT,
-        lpo: ?*FH_OVERLAPPED,
-        cb: u32,
-        dwCompletionStatus: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PFN_IO_COMPLETION = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const FH_OVERLAPPED = extern struct {
     Internal: usize,
@@ -8670,7 +8655,6 @@ test {
     if (@hasDecl(@This(), "PLOG_UNPINNED_CALLBACK")) { _ = PLOG_UNPINNED_CALLBACK; }
     if (@hasDecl(@This(), "WofEnumEntryProc")) { _ = WofEnumEntryProc; }
     if (@hasDecl(@This(), "WofEnumFilesProc")) { _ = WofEnumFilesProc; }
-    if (@hasDecl(@This(), "PFN_IO_COMPLETION")) { _ = PFN_IO_COMPLETION; }
     if (@hasDecl(@This(), "FCACHE_CREATE_CALLBACK")) { _ = FCACHE_CREATE_CALLBACK; }
     if (@hasDecl(@This(), "FCACHE_RICHCREATE_CALLBACK")) { _ = FCACHE_RICHCREATE_CALLBACK; }
     if (@hasDecl(@This(), "CACHE_KEY_COMPARE")) { _ = CACHE_KEY_COMPARE; }

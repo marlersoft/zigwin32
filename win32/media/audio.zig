@@ -725,536 +725,536 @@ pub const IMessageFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WAVEFORMATEXTENSIBLE = packed struct {
-    Format: WAVEFORMATEX,
-    Samples: packed union {
-        wValidBitsPerSample: u16,
-        wSamplesPerBlock: u16,
-        wReserved: u16,
-    },
-    dwChannelMask: u32,
-    SubFormat: Guid,
+pub const WAVEFORMATEXTENSIBLE = extern struct {
+    Format: WAVEFORMATEX align(1),
+    Samples: extern union {
+        wValidBitsPerSample: u16 align(1),
+        wSamplesPerBlock: u16 align(1),
+        wReserved: u16 align(1),
+    } align(1),
+    dwChannelMask: u32 align(1),
+    SubFormat: Guid align(1),
 };
 
-pub const WAVEFILTER = packed struct {
-    cbStruct: u32,
-    dwFilterTag: u32,
-    fdwFilter: u32,
-    dwReserved: [5]u32,
+pub const WAVEFILTER = extern struct {
+    cbStruct: u32 align(1),
+    dwFilterTag: u32 align(1),
+    fdwFilter: u32 align(1),
+    dwReserved: [5]u32 align(1),
 };
 
-pub const VOLUMEWAVEFILTER = packed struct {
-    wfltr: WAVEFILTER,
-    dwVolume: u32,
+pub const VOLUMEWAVEFILTER = extern struct {
+    wfltr: WAVEFILTER align(1),
+    dwVolume: u32 align(1),
 };
 
-pub const ECHOWAVEFILTER = packed struct {
-    wfltr: WAVEFILTER,
-    dwVolume: u32,
-    dwDelay: u32,
+pub const ECHOWAVEFILTER = extern struct {
+    wfltr: WAVEFILTER align(1),
+    dwVolume: u32 align(1),
+    dwDelay: u32 align(1),
 };
 
-pub const WAVEHDR = packed struct {
-    lpData: ?PSTR,
-    dwBufferLength: u32,
-    dwBytesRecorded: u32,
-    dwUser: usize,
-    dwFlags: u32,
-    dwLoops: u32,
-    lpNext: ?*WAVEHDR,
-    reserved: usize,
+pub const WAVEHDR = extern struct {
+    lpData: ?PSTR align(1),
+    dwBufferLength: u32 align(1),
+    dwBytesRecorded: u32 align(1),
+    dwUser: usize align(1),
+    dwFlags: u32 align(1),
+    dwLoops: u32 align(1),
+    lpNext: ?*WAVEHDR align(1),
+    reserved: usize align(1),
 };
 
-pub const WAVEOUTCAPSA = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]CHAR,
-    dwFormats: u32,
-    wChannels: u16,
-    wReserved1: u16,
-    dwSupport: u32,
+pub const WAVEOUTCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
 };
 
-pub const WAVEOUTCAPSW = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
-    dwFormats: u32,
-    wChannels: u16,
-    wReserved1: u16,
-    dwSupport: u32,
+pub const WAVEOUTCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
 };
 
-pub const WAVEOUTCAPS2A = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]CHAR,
-    dwFormats: u32,
-    wChannels: u16,
-    wReserved1: u16,
-    dwSupport: u32,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const WAVEOUTCAPS2A = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const WAVEOUTCAPS2W = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
-    dwFormats: u32,
-    wChannels: u16,
-    wReserved1: u16,
-    dwSupport: u32,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const WAVEOUTCAPS2W = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const WAVEINCAPSA = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]CHAR,
-    dwFormats: u32,
-    wChannels: u16,
-    wReserved1: u16,
+pub const WAVEINCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
 };
 
-pub const WAVEINCAPSW = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
-    dwFormats: u32,
-    wChannels: u16,
-    wReserved1: u16,
+pub const WAVEINCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
 };
 
-pub const WAVEINCAPS2A = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]CHAR,
-    dwFormats: u32,
-    wChannels: u16,
-    wReserved1: u16,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const WAVEINCAPS2A = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const WAVEINCAPS2W = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
-    dwFormats: u32,
-    wChannels: u16,
-    wReserved1: u16,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const WAVEINCAPS2W = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    dwFormats: u32 align(1),
+    wChannels: u16 align(1),
+    wReserved1: u16 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const WAVEFORMAT = packed struct {
-    wFormatTag: u16,
-    nChannels: u16,
-    nSamplesPerSec: u32,
-    nAvgBytesPerSec: u32,
-    nBlockAlign: u16,
+pub const WAVEFORMAT = extern struct {
+    wFormatTag: u16 align(1),
+    nChannels: u16 align(1),
+    nSamplesPerSec: u32 align(1),
+    nAvgBytesPerSec: u32 align(1),
+    nBlockAlign: u16 align(1),
 };
 
-pub const PCMWAVEFORMAT = packed struct {
-    wf: WAVEFORMAT,
-    wBitsPerSample: u16,
+pub const PCMWAVEFORMAT = extern struct {
+    wf: WAVEFORMAT align(1),
+    wBitsPerSample: u16 align(1),
 };
 
-pub const WAVEFORMATEX = packed struct {
-    wFormatTag: u16,
-    nChannels: u16,
-    nSamplesPerSec: u32,
-    nAvgBytesPerSec: u32,
-    nBlockAlign: u16,
-    wBitsPerSample: u16,
-    cbSize: u16,
+pub const WAVEFORMATEX = extern struct {
+    wFormatTag: u16 align(1),
+    nChannels: u16 align(1),
+    nSamplesPerSec: u32 align(1),
+    nAvgBytesPerSec: u32 align(1),
+    nBlockAlign: u16 align(1),
+    wBitsPerSample: u16 align(1),
+    cbSize: u16 align(1),
 };
 
-pub const MIDIOUTCAPSA = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]CHAR,
-    wTechnology: u16,
-    wVoices: u16,
-    wNotes: u16,
-    wChannelMask: u16,
-    dwSupport: u32,
+pub const MIDIOUTCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    wTechnology: u16 align(1),
+    wVoices: u16 align(1),
+    wNotes: u16 align(1),
+    wChannelMask: u16 align(1),
+    dwSupport: u32 align(1),
 };
 
-pub const MIDIOUTCAPSW = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
-    wTechnology: u16,
-    wVoices: u16,
-    wNotes: u16,
-    wChannelMask: u16,
-    dwSupport: u32,
+pub const MIDIOUTCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    wTechnology: u16 align(1),
+    wVoices: u16 align(1),
+    wNotes: u16 align(1),
+    wChannelMask: u16 align(1),
+    dwSupport: u32 align(1),
 };
 
-pub const MIDIOUTCAPS2A = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]CHAR,
-    wTechnology: u16,
-    wVoices: u16,
-    wNotes: u16,
-    wChannelMask: u16,
-    dwSupport: u32,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const MIDIOUTCAPS2A = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    wTechnology: u16 align(1),
+    wVoices: u16 align(1),
+    wNotes: u16 align(1),
+    wChannelMask: u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const MIDIOUTCAPS2W = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
-    wTechnology: u16,
-    wVoices: u16,
-    wNotes: u16,
-    wChannelMask: u16,
-    dwSupport: u32,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const MIDIOUTCAPS2W = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    wTechnology: u16 align(1),
+    wVoices: u16 align(1),
+    wNotes: u16 align(1),
+    wChannelMask: u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const MIDIINCAPSA = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]CHAR,
-    dwSupport: u32,
+pub const MIDIINCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    dwSupport: u32 align(1),
 };
 
-pub const MIDIINCAPSW = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
-    dwSupport: u32,
+pub const MIDIINCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    dwSupport: u32 align(1),
 };
 
-pub const MIDIINCAPS2A = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]CHAR,
-    dwSupport: u32,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const MIDIINCAPS2A = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const MIDIINCAPS2W = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
-    dwSupport: u32,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const MIDIINCAPS2W = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const MIDIHDR = packed struct {
-    lpData: ?PSTR,
-    dwBufferLength: u32,
-    dwBytesRecorded: u32,
-    dwUser: usize,
-    dwFlags: u32,
-    lpNext: ?*MIDIHDR,
-    reserved: usize,
-    dwOffset: u32,
-    dwReserved: [8]usize,
+pub const MIDIHDR = extern struct {
+    lpData: ?PSTR align(1),
+    dwBufferLength: u32 align(1),
+    dwBytesRecorded: u32 align(1),
+    dwUser: usize align(1),
+    dwFlags: u32 align(1),
+    lpNext: ?*MIDIHDR align(1),
+    reserved: usize align(1),
+    dwOffset: u32 align(1),
+    dwReserved: [8]usize align(1),
 };
 
-pub const MIDIEVENT = packed struct {
-    dwDeltaTime: u32,
-    dwStreamID: u32,
-    dwEvent: u32,
-    dwParms: [1]u32,
+pub const MIDIEVENT = extern struct {
+    dwDeltaTime: u32 align(1),
+    dwStreamID: u32 align(1),
+    dwEvent: u32 align(1),
+    dwParms: [1]u32 align(1),
 };
 
-pub const MIDISTRMBUFFVER = packed struct {
-    dwVersion: u32,
-    dwMid: u32,
-    dwOEMVersion: u32,
+pub const MIDISTRMBUFFVER = extern struct {
+    dwVersion: u32 align(1),
+    dwMid: u32 align(1),
+    dwOEMVersion: u32 align(1),
 };
 
-pub const MIDIPROPTIMEDIV = packed struct {
-    cbStruct: u32,
-    dwTimeDiv: u32,
+pub const MIDIPROPTIMEDIV = extern struct {
+    cbStruct: u32 align(1),
+    dwTimeDiv: u32 align(1),
 };
 
-pub const MIDIPROPTEMPO = packed struct {
-    cbStruct: u32,
-    dwTempo: u32,
+pub const MIDIPROPTEMPO = extern struct {
+    cbStruct: u32 align(1),
+    dwTempo: u32 align(1),
 };
 
-pub const AUXCAPSA = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]CHAR,
-    wTechnology: u16,
-    wReserved1: u16,
-    dwSupport: u32,
+pub const AUXCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    wTechnology: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
 };
 
-pub const AUXCAPSW = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
-    wTechnology: u16,
-    wReserved1: u16,
-    dwSupport: u32,
+pub const AUXCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    wTechnology: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
 };
 
-pub const AUXCAPS2A = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]CHAR,
-    wTechnology: u16,
-    wReserved1: u16,
-    dwSupport: u32,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const AUXCAPS2A = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    wTechnology: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const AUXCAPS2W = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
-    wTechnology: u16,
-    wReserved1: u16,
-    dwSupport: u32,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const AUXCAPS2W = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    wTechnology: u16 align(1),
+    wReserved1: u16 align(1),
+    dwSupport: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const MIXERCAPSA = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]CHAR,
-    fdwSupport: u32,
-    cDestinations: u32,
+pub const MIXERCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    fdwSupport: u32 align(1),
+    cDestinations: u32 align(1),
 };
 
-pub const MIXERCAPSW = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
-    fdwSupport: u32,
-    cDestinations: u32,
+pub const MIXERCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    fdwSupport: u32 align(1),
+    cDestinations: u32 align(1),
 };
 
-pub const MIXERCAPS2A = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]CHAR,
-    fdwSupport: u32,
-    cDestinations: u32,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const MIXERCAPS2A = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]CHAR align(1),
+    fdwSupport: u32 align(1),
+    cDestinations: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const MIXERCAPS2W = packed struct {
-    wMid: u16,
-    wPid: u16,
-    vDriverVersion: u32,
-    szPname: [32]u16,
-    fdwSupport: u32,
-    cDestinations: u32,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const MIXERCAPS2W = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vDriverVersion: u32 align(1),
+    szPname: [32]u16 align(1),
+    fdwSupport: u32 align(1),
+    cDestinations: u32 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const MIXERLINEA = packed struct {
-    cbStruct: u32,
-    dwDestination: u32,
-    dwSource: u32,
-    dwLineID: u32,
-    fdwLine: u32,
-    dwUser: usize,
-    dwComponentType: MIXERLINE_COMPONENTTYPE,
-    cChannels: u32,
-    cConnections: u32,
-    cControls: u32,
-    szShortName: [16]CHAR,
-    szName: [64]CHAR,
-    Target: packed struct {
-        dwType: u32,
-        dwDeviceID: u32,
-        wMid: u16,
-        wPid: u16,
-        vDriverVersion: u32,
-        szPname: [32]CHAR,
-    },
+pub const MIXERLINEA = extern struct {
+    cbStruct: u32 align(1),
+    dwDestination: u32 align(1),
+    dwSource: u32 align(1),
+    dwLineID: u32 align(1),
+    fdwLine: u32 align(1),
+    dwUser: usize align(1),
+    dwComponentType: MIXERLINE_COMPONENTTYPE align(1),
+    cChannels: u32 align(1),
+    cConnections: u32 align(1),
+    cControls: u32 align(1),
+    szShortName: [16]CHAR align(1),
+    szName: [64]CHAR align(1),
+    Target: extern struct {
+        dwType: u32 align(1),
+        dwDeviceID: u32 align(1),
+        wMid: u16 align(1),
+        wPid: u16 align(1),
+        vDriverVersion: u32 align(1),
+        szPname: [32]CHAR align(1),
+    } align(1),
 };
 
-pub const MIXERLINEW = packed struct {
-    cbStruct: u32,
-    dwDestination: u32,
-    dwSource: u32,
-    dwLineID: u32,
-    fdwLine: u32,
-    dwUser: usize,
-    dwComponentType: MIXERLINE_COMPONENTTYPE,
-    cChannels: u32,
-    cConnections: u32,
-    cControls: u32,
-    szShortName: [16]u16,
-    szName: [64]u16,
-    Target: packed struct {
-        dwType: u32,
-        dwDeviceID: u32,
-        wMid: u16,
-        wPid: u16,
-        vDriverVersion: u32,
-        szPname: [32]u16,
-    },
+pub const MIXERLINEW = extern struct {
+    cbStruct: u32 align(1),
+    dwDestination: u32 align(1),
+    dwSource: u32 align(1),
+    dwLineID: u32 align(1),
+    fdwLine: u32 align(1),
+    dwUser: usize align(1),
+    dwComponentType: MIXERLINE_COMPONENTTYPE align(1),
+    cChannels: u32 align(1),
+    cConnections: u32 align(1),
+    cControls: u32 align(1),
+    szShortName: [16]u16 align(1),
+    szName: [64]u16 align(1),
+    Target: extern struct {
+        dwType: u32 align(1),
+        dwDeviceID: u32 align(1),
+        wMid: u16 align(1),
+        wPid: u16 align(1),
+        vDriverVersion: u32 align(1),
+        szPname: [32]u16 align(1),
+    } align(1),
 };
 
-pub const MIXERCONTROLA = packed struct {
-    cbStruct: u32,
-    dwControlID: u32,
-    dwControlType: u32,
-    fdwControl: u32,
-    cMultipleItems: u32,
-    szShortName: [16]CHAR,
-    szName: [64]CHAR,
-    Bounds: packed union {
-        Anonymous1: packed struct {
-            lMinimum: i32,
-            lMaximum: i32,
-        },
-        Anonymous2: packed struct {
-            dwMinimum: u32,
-            dwMaximum: u32,
-        },
-        dwReserved: [6]u32,
-    },
-    Metrics: packed union {
-        cSteps: u32,
-        cbCustomData: u32,
-        dwReserved: [6]u32,
-    },
+pub const MIXERCONTROLA = extern struct {
+    cbStruct: u32 align(1),
+    dwControlID: u32 align(1),
+    dwControlType: u32 align(1),
+    fdwControl: u32 align(1),
+    cMultipleItems: u32 align(1),
+    szShortName: [16]CHAR align(1),
+    szName: [64]CHAR align(1),
+    Bounds: extern union {
+        Anonymous1: extern struct {
+            lMinimum: i32 align(1),
+            lMaximum: i32 align(1),
+        } align(1),
+        Anonymous2: extern struct {
+            dwMinimum: u32 align(1),
+            dwMaximum: u32 align(1),
+        } align(1),
+        dwReserved: [6]u32 align(1),
+    } align(1),
+    Metrics: extern union {
+        cSteps: u32 align(1),
+        cbCustomData: u32 align(1),
+        dwReserved: [6]u32 align(1),
+    } align(1),
 };
 
-pub const MIXERCONTROLW = packed struct {
-    cbStruct: u32,
-    dwControlID: u32,
-    dwControlType: u32,
-    fdwControl: u32,
-    cMultipleItems: u32,
-    szShortName: [16]u16,
-    szName: [64]u16,
-    Bounds: packed union {
-        Anonymous1: packed struct {
-            lMinimum: i32,
-            lMaximum: i32,
-        },
-        Anonymous2: packed struct {
-            dwMinimum: u32,
-            dwMaximum: u32,
-        },
-        dwReserved: [6]u32,
-    },
-    Metrics: packed union {
-        cSteps: u32,
-        cbCustomData: u32,
-        dwReserved: [6]u32,
-    },
+pub const MIXERCONTROLW = extern struct {
+    cbStruct: u32 align(1),
+    dwControlID: u32 align(1),
+    dwControlType: u32 align(1),
+    fdwControl: u32 align(1),
+    cMultipleItems: u32 align(1),
+    szShortName: [16]u16 align(1),
+    szName: [64]u16 align(1),
+    Bounds: extern union {
+        Anonymous1: extern struct {
+            lMinimum: i32 align(1),
+            lMaximum: i32 align(1),
+        } align(1),
+        Anonymous2: extern struct {
+            dwMinimum: u32 align(1),
+            dwMaximum: u32 align(1),
+        } align(1),
+        dwReserved: [6]u32 align(1),
+    } align(1),
+    Metrics: extern union {
+        cSteps: u32 align(1),
+        cbCustomData: u32 align(1),
+        dwReserved: [6]u32 align(1),
+    } align(1),
 };
 
-pub const MIXERLINECONTROLSA = packed struct {
-    cbStruct: u32,
-    dwLineID: u32,
-    Anonymous: packed union {
-        dwControlID: u32,
-        dwControlType: u32,
-    },
-    cControls: u32,
-    cbmxctrl: u32,
-    pamxctrl: ?*MIXERCONTROLA,
+pub const MIXERLINECONTROLSA = extern struct {
+    cbStruct: u32 align(1),
+    dwLineID: u32 align(1),
+    Anonymous: extern union {
+        dwControlID: u32 align(1),
+        dwControlType: u32 align(1),
+    } align(1),
+    cControls: u32 align(1),
+    cbmxctrl: u32 align(1),
+    pamxctrl: ?*MIXERCONTROLA align(1),
 };
 
-pub const MIXERLINECONTROLSW = packed struct {
-    cbStruct: u32,
-    dwLineID: u32,
-    Anonymous: packed union {
-        dwControlID: u32,
-        dwControlType: u32,
-    },
-    cControls: u32,
-    cbmxctrl: u32,
-    pamxctrl: ?*MIXERCONTROLW,
+pub const MIXERLINECONTROLSW = extern struct {
+    cbStruct: u32 align(1),
+    dwLineID: u32 align(1),
+    Anonymous: extern union {
+        dwControlID: u32 align(1),
+        dwControlType: u32 align(1),
+    } align(1),
+    cControls: u32 align(1),
+    cbmxctrl: u32 align(1),
+    pamxctrl: ?*MIXERCONTROLW align(1),
 };
 
-pub const MIXERCONTROLDETAILS = packed struct {
-    cbStruct: u32,
-    dwControlID: u32,
-    cChannels: u32,
-    Anonymous: packed union {
-        hwndOwner: ?HWND,
-        cMultipleItems: u32,
-    },
-    cbDetails: u32,
-    paDetails: ?*anyopaque,
+pub const MIXERCONTROLDETAILS = extern struct {
+    cbStruct: u32 align(1),
+    dwControlID: u32 align(1),
+    cChannels: u32 align(1),
+    Anonymous: extern union {
+        hwndOwner: ?HWND align(1),
+        cMultipleItems: u32 align(1),
+    } align(1),
+    cbDetails: u32 align(1),
+    paDetails: ?*anyopaque align(1),
 };
 
-pub const MIXERCONTROLDETAILS_LISTTEXTA = packed struct {
-    dwParam1: u32,
-    dwParam2: u32,
-    szName: [64]CHAR,
+pub const MIXERCONTROLDETAILS_LISTTEXTA = extern struct {
+    dwParam1: u32 align(1),
+    dwParam2: u32 align(1),
+    szName: [64]CHAR align(1),
 };
 
-pub const MIXERCONTROLDETAILS_LISTTEXTW = packed struct {
-    dwParam1: u32,
-    dwParam2: u32,
-    szName: [64]u16,
+pub const MIXERCONTROLDETAILS_LISTTEXTW = extern struct {
+    dwParam1: u32 align(1),
+    dwParam2: u32 align(1),
+    szName: [64]u16 align(1),
 };
 
-pub const MIXERCONTROLDETAILS_BOOLEAN = packed struct {
-    fValue: i32,
+pub const MIXERCONTROLDETAILS_BOOLEAN = extern struct {
+    fValue: i32 align(1),
 };
 
-pub const MIXERCONTROLDETAILS_SIGNED = packed struct {
-    lValue: i32,
+pub const MIXERCONTROLDETAILS_SIGNED = extern struct {
+    lValue: i32 align(1),
 };
 
-pub const MIXERCONTROLDETAILS_UNSIGNED = packed struct {
-    dwValue: u32,
+pub const MIXERCONTROLDETAILS_UNSIGNED = extern struct {
+    dwValue: u32 align(1),
 };
 
 pub const AUDCLNT_SHAREMODE = enum(i32) {
@@ -2529,25 +2529,25 @@ pub const SPATIAL_AUDIO_STREAM_OPTIONS = enum(u32) {
 pub const SPATIAL_AUDIO_STREAM_OPTIONS_NONE = SPATIAL_AUDIO_STREAM_OPTIONS.NONE;
 pub const SPATIAL_AUDIO_STREAM_OPTIONS_OFFLOAD = SPATIAL_AUDIO_STREAM_OPTIONS.OFFLOAD;
 
-pub const SpatialAudioObjectRenderStreamActivationParams = packed struct {
-    ObjectFormat: ?*const WAVEFORMATEX,
-    StaticObjectTypeMask: AudioObjectType,
-    MinDynamicObjectCount: u32,
-    MaxDynamicObjectCount: u32,
-    Category: AUDIO_STREAM_CATEGORY,
-    EventHandle: ?HANDLE,
-    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify,
+pub const SpatialAudioObjectRenderStreamActivationParams = extern struct {
+    ObjectFormat: ?*const WAVEFORMATEX align(1),
+    StaticObjectTypeMask: AudioObjectType align(1),
+    MinDynamicObjectCount: u32 align(1),
+    MaxDynamicObjectCount: u32 align(1),
+    Category: AUDIO_STREAM_CATEGORY align(1),
+    EventHandle: ?HANDLE align(1),
+    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
 };
 
-pub const SpatialAudioObjectRenderStreamActivationParams2 = packed struct {
-    ObjectFormat: ?*const WAVEFORMATEX,
-    StaticObjectTypeMask: AudioObjectType,
-    MinDynamicObjectCount: u32,
-    MaxDynamicObjectCount: u32,
-    Category: AUDIO_STREAM_CATEGORY,
-    EventHandle: ?HANDLE,
-    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify,
-    Options: SPATIAL_AUDIO_STREAM_OPTIONS,
+pub const SpatialAudioObjectRenderStreamActivationParams2 = extern struct {
+    ObjectFormat: ?*const WAVEFORMATEX align(1),
+    StaticObjectTypeMask: AudioObjectType align(1),
+    MinDynamicObjectCount: u32 align(1),
+    MaxDynamicObjectCount: u32 align(1),
+    Category: AUDIO_STREAM_CATEGORY align(1),
+    EventHandle: ?HANDLE align(1),
+    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
+    Options: SPATIAL_AUDIO_STREAM_OPTIONS align(1),
 };
 
 const IID_IAudioFormatEnumerator_Value = Guid.initString("dcdaa858-895a-4a22-a5eb-67bda506096d");
@@ -3108,20 +3108,20 @@ pub const SpatialAudioHrtfDistanceDecayType = enum(i32) {
 pub const SpatialAudioHrtfDistanceDecay_NaturalDecay = SpatialAudioHrtfDistanceDecayType.NaturalDecay;
 pub const SpatialAudioHrtfDistanceDecay_CustomDecay = SpatialAudioHrtfDistanceDecayType.CustomDecay;
 
-pub const SpatialAudioHrtfDirectivity = packed struct {
-    Type: SpatialAudioHrtfDirectivityType,
-    Scaling: f32,
+pub const SpatialAudioHrtfDirectivity = extern struct {
+    Type: SpatialAudioHrtfDirectivityType align(1),
+    Scaling: f32 align(1),
 };
 
-pub const SpatialAudioHrtfDirectivityCardioid = packed struct {
-    directivity: SpatialAudioHrtfDirectivity,
-    Order: f32,
+pub const SpatialAudioHrtfDirectivityCardioid = extern struct {
+    directivity: SpatialAudioHrtfDirectivity align(1),
+    Order: f32 align(1),
 };
 
-pub const SpatialAudioHrtfDirectivityCone = packed struct {
-    directivity: SpatialAudioHrtfDirectivity,
-    InnerAngle: f32,
-    OuterAngle: f32,
+pub const SpatialAudioHrtfDirectivityCone = extern struct {
+    directivity: SpatialAudioHrtfDirectivity align(1),
+    InnerAngle: f32 align(1),
+    OuterAngle: f32 align(1),
 };
 
 pub const SpatialAudioHrtfDirectivityUnion = extern union {
@@ -3130,41 +3130,41 @@ pub const SpatialAudioHrtfDirectivityUnion = extern union {
     Omni: SpatialAudioHrtfDirectivity,
 };
 
-pub const SpatialAudioHrtfDistanceDecay = packed struct {
-    Type: SpatialAudioHrtfDistanceDecayType,
-    MaxGain: f32,
-    MinGain: f32,
-    UnityGainDistance: f32,
-    CutoffDistance: f32,
+pub const SpatialAudioHrtfDistanceDecay = extern struct {
+    Type: SpatialAudioHrtfDistanceDecayType align(1),
+    MaxGain: f32 align(1),
+    MinGain: f32 align(1),
+    UnityGainDistance: f32 align(1),
+    CutoffDistance: f32 align(1),
 };
 
-pub const SpatialAudioHrtfActivationParams = packed struct {
-    ObjectFormat: ?*const WAVEFORMATEX,
-    StaticObjectTypeMask: AudioObjectType,
-    MinDynamicObjectCount: u32,
-    MaxDynamicObjectCount: u32,
-    Category: AUDIO_STREAM_CATEGORY,
-    EventHandle: ?HANDLE,
-    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify,
-    DistanceDecay: ?*SpatialAudioHrtfDistanceDecay,
-    Directivity: ?*SpatialAudioHrtfDirectivityUnion,
-    Environment: ?*SpatialAudioHrtfEnvironmentType,
-    Orientation: ?*f32,
+pub const SpatialAudioHrtfActivationParams = extern struct {
+    ObjectFormat: ?*const WAVEFORMATEX align(1),
+    StaticObjectTypeMask: AudioObjectType align(1),
+    MinDynamicObjectCount: u32 align(1),
+    MaxDynamicObjectCount: u32 align(1),
+    Category: AUDIO_STREAM_CATEGORY align(1),
+    EventHandle: ?HANDLE align(1),
+    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
+    DistanceDecay: ?*SpatialAudioHrtfDistanceDecay align(1),
+    Directivity: ?*SpatialAudioHrtfDirectivityUnion align(1),
+    Environment: ?*SpatialAudioHrtfEnvironmentType align(1),
+    Orientation: ?*f32 align(1),
 };
 
-pub const SpatialAudioHrtfActivationParams2 = packed struct {
-    ObjectFormat: ?*const WAVEFORMATEX,
-    StaticObjectTypeMask: AudioObjectType,
-    MinDynamicObjectCount: u32,
-    MaxDynamicObjectCount: u32,
-    Category: AUDIO_STREAM_CATEGORY,
-    EventHandle: ?HANDLE,
-    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify,
-    DistanceDecay: ?*SpatialAudioHrtfDistanceDecay,
-    Directivity: ?*SpatialAudioHrtfDirectivityUnion,
-    Environment: ?*SpatialAudioHrtfEnvironmentType,
-    Orientation: ?*f32,
-    Options: SPATIAL_AUDIO_STREAM_OPTIONS,
+pub const SpatialAudioHrtfActivationParams2 = extern struct {
+    ObjectFormat: ?*const WAVEFORMATEX align(1),
+    StaticObjectTypeMask: AudioObjectType align(1),
+    MinDynamicObjectCount: u32 align(1),
+    MaxDynamicObjectCount: u32 align(1),
+    Category: AUDIO_STREAM_CATEGORY align(1),
+    EventHandle: ?HANDLE align(1),
+    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
+    DistanceDecay: ?*SpatialAudioHrtfDistanceDecay align(1),
+    Directivity: ?*SpatialAudioHrtfDirectivityUnion align(1),
+    Environment: ?*SpatialAudioHrtfEnvironmentType align(1),
+    Orientation: ?*f32 align(1),
+    Options: SPATIAL_AUDIO_STREAM_OPTIONS align(1),
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -5756,38 +5756,38 @@ pub const SpatialAudioMetadataCopy_Append = SpatialAudioMetadataCopyMode.Append;
 pub const SpatialAudioMetadataCopy_AppendMergeWithLast = SpatialAudioMetadataCopyMode.AppendMergeWithLast;
 pub const SpatialAudioMetadataCopy_AppendMergeWithFirst = SpatialAudioMetadataCopyMode.AppendMergeWithFirst;
 
-pub const SpatialAudioMetadataItemsInfo = packed struct {
-    FrameCount: u16,
-    ItemCount: u16,
-    MaxItemCount: u16,
-    MaxValueBufferLength: u32,
+pub const SpatialAudioMetadataItemsInfo = extern struct {
+    FrameCount: u16 align(1),
+    ItemCount: u16 align(1),
+    MaxItemCount: u16 align(1),
+    MaxValueBufferLength: u32 align(1),
 };
 
-pub const SpatialAudioObjectRenderStreamForMetadataActivationParams = packed struct {
-    ObjectFormat: ?*const WAVEFORMATEX,
-    StaticObjectTypeMask: AudioObjectType,
-    MinDynamicObjectCount: u32,
-    MaxDynamicObjectCount: u32,
-    Category: AUDIO_STREAM_CATEGORY,
-    EventHandle: ?HANDLE,
-    MetadataFormatId: Guid,
-    MaxMetadataItemCount: u16,
-    MetadataActivationParams: ?*const PROPVARIANT,
-    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify,
+pub const SpatialAudioObjectRenderStreamForMetadataActivationParams = extern struct {
+    ObjectFormat: ?*const WAVEFORMATEX align(1),
+    StaticObjectTypeMask: AudioObjectType align(1),
+    MinDynamicObjectCount: u32 align(1),
+    MaxDynamicObjectCount: u32 align(1),
+    Category: AUDIO_STREAM_CATEGORY align(1),
+    EventHandle: ?HANDLE align(1),
+    MetadataFormatId: Guid align(1),
+    MaxMetadataItemCount: u16 align(1),
+    MetadataActivationParams: ?*const PROPVARIANT align(1),
+    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
 };
 
-pub const SpatialAudioObjectRenderStreamForMetadataActivationParams2 = packed struct {
-    ObjectFormat: ?*const WAVEFORMATEX,
-    StaticObjectTypeMask: AudioObjectType,
-    MinDynamicObjectCount: u32,
-    MaxDynamicObjectCount: u32,
-    Category: AUDIO_STREAM_CATEGORY,
-    EventHandle: ?HANDLE,
-    MetadataFormatId: Guid,
-    MaxMetadataItemCount: u32,
-    MetadataActivationParams: ?*const PROPVARIANT,
-    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify,
-    Options: SPATIAL_AUDIO_STREAM_OPTIONS,
+pub const SpatialAudioObjectRenderStreamForMetadataActivationParams2 = extern struct {
+    ObjectFormat: ?*const WAVEFORMATEX align(1),
+    StaticObjectTypeMask: AudioObjectType align(1),
+    MinDynamicObjectCount: u32 align(1),
+    MaxDynamicObjectCount: u32 align(1),
+    Category: AUDIO_STREAM_CATEGORY align(1),
+    EventHandle: ?HANDLE align(1),
+    MetadataFormatId: Guid align(1),
+    MaxMetadataItemCount: u32 align(1),
+    MetadataActivationParams: ?*const PROPVARIANT align(1),
+    NotifyObject: ?*ISpatialAudioObjectRenderStreamNotify align(1),
+    Options: SPATIAL_AUDIO_STREAM_OPTIONS align(1),
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
@@ -6376,16 +6376,8 @@ pub const AUDIOCLIENT_ACTIVATION_PARAMS = extern struct {
     },
 };
 
-pub const PAudioStateMonitorCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        audioStateMonitor: ?*IAudioStateMonitor,
-        context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        audioStateMonitor: ?*IAudioStateMonitor,
-        context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PAudioStateMonitorCallback = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const AudioStateMonitorSoundLevel = enum(i32) {
     Muted = 0,
@@ -6483,62 +6475,62 @@ pub const LPACMDRIVERPROC = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) LRESULT,
 } ;
 
-pub const ACMDRIVERDETAILSA = packed struct {
-    cbStruct: u32,
-    fccType: u32,
-    fccComp: u32,
-    wMid: u16,
-    wPid: u16,
-    vdwACM: u32,
-    vdwDriver: u32,
-    fdwSupport: u32,
-    cFormatTags: u32,
-    cFilterTags: u32,
-    hicon: ?HICON,
-    szShortName: [32]CHAR,
-    szLongName: [128]CHAR,
-    szCopyright: [80]CHAR,
-    szLicensing: [128]CHAR,
-    szFeatures: [512]CHAR,
+pub const ACMDRIVERDETAILSA = extern struct {
+    cbStruct: u32 align(1),
+    fccType: u32 align(1),
+    fccComp: u32 align(1),
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vdwACM: u32 align(1),
+    vdwDriver: u32 align(1),
+    fdwSupport: u32 align(1),
+    cFormatTags: u32 align(1),
+    cFilterTags: u32 align(1),
+    hicon: ?HICON align(1),
+    szShortName: [32]CHAR align(1),
+    szLongName: [128]CHAR align(1),
+    szCopyright: [80]CHAR align(1),
+    szLicensing: [128]CHAR align(1),
+    szFeatures: [512]CHAR align(1),
 };
 
-pub const ACMDRIVERDETAILSW = packed struct {
-    cbStruct: u32,
-    fccType: u32,
-    fccComp: u32,
-    wMid: u16,
-    wPid: u16,
-    vdwACM: u32,
-    vdwDriver: u32,
-    fdwSupport: u32,
-    cFormatTags: u32,
-    cFilterTags: u32,
-    hicon: ?HICON,
-    szShortName: [32]u16,
-    szLongName: [128]u16,
-    szCopyright: [80]u16,
-    szLicensing: [128]u16,
-    szFeatures: [512]u16,
+pub const ACMDRIVERDETAILSW = extern struct {
+    cbStruct: u32 align(1),
+    fccType: u32 align(1),
+    fccComp: u32 align(1),
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    vdwACM: u32 align(1),
+    vdwDriver: u32 align(1),
+    fdwSupport: u32 align(1),
+    cFormatTags: u32 align(1),
+    cFilterTags: u32 align(1),
+    hicon: ?HICON align(1),
+    szShortName: [32]u16 align(1),
+    szLongName: [128]u16 align(1),
+    szCopyright: [80]u16 align(1),
+    szLicensing: [128]u16 align(1),
+    szFeatures: [512]u16 align(1),
 };
 
-pub const ACMFORMATTAGDETAILSA = packed struct {
-    cbStruct: u32,
-    dwFormatTagIndex: u32,
-    dwFormatTag: u32,
-    cbFormatSize: u32,
-    fdwSupport: u32,
-    cStandardFormats: u32,
-    szFormatTag: [48]CHAR,
+pub const ACMFORMATTAGDETAILSA = extern struct {
+    cbStruct: u32 align(1),
+    dwFormatTagIndex: u32 align(1),
+    dwFormatTag: u32 align(1),
+    cbFormatSize: u32 align(1),
+    fdwSupport: u32 align(1),
+    cStandardFormats: u32 align(1),
+    szFormatTag: [48]CHAR align(1),
 };
 
-pub const ACMFORMATTAGDETAILSW = packed struct {
-    cbStruct: u32,
-    dwFormatTagIndex: u32,
-    dwFormatTag: u32,
-    cbFormatSize: u32,
-    fdwSupport: u32,
-    cStandardFormats: u32,
-    szFormatTag: [48]u16,
+pub const ACMFORMATTAGDETAILSW = extern struct {
+    cbStruct: u32 align(1),
+    dwFormatTagIndex: u32 align(1),
+    dwFormatTag: u32 align(1),
+    cbFormatSize: u32 align(1),
+    fdwSupport: u32 align(1),
+    cStandardFormats: u32 align(1),
+    szFormatTag: [48]u16 align(1),
 };
 
 pub const ACMFORMATTAGENUMCBA = switch (@import("builtin").zig_backend) {
@@ -6571,24 +6563,24 @@ pub const ACMFORMATTAGENUMCBW = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
 } ;
 
-pub const ACMFORMATDETAILSA = packed struct {
-    cbStruct: u32,
-    dwFormatIndex: u32,
-    dwFormatTag: u32,
-    fdwSupport: u32,
-    pwfx: ?*WAVEFORMATEX,
-    cbwfx: u32,
-    szFormat: [128]CHAR,
+pub const ACMFORMATDETAILSA = extern struct {
+    cbStruct: u32 align(1),
+    dwFormatIndex: u32 align(1),
+    dwFormatTag: u32 align(1),
+    fdwSupport: u32 align(1),
+    pwfx: ?*WAVEFORMATEX align(1),
+    cbwfx: u32 align(1),
+    szFormat: [128]CHAR align(1),
 };
 
-pub const tACMFORMATDETAILSW = packed struct {
-    cbStruct: u32,
-    dwFormatIndex: u32,
-    dwFormatTag: u32,
-    fdwSupport: u32,
-    pwfx: ?*WAVEFORMATEX,
-    cbwfx: u32,
-    szFormat: [128]u16,
+pub const tACMFORMATDETAILSW = extern struct {
+    cbStruct: u32 align(1),
+    dwFormatIndex: u32 align(1),
+    dwFormatTag: u32 align(1),
+    fdwSupport: u32 align(1),
+    pwfx: ?*WAVEFORMATEX align(1),
+    cbwfx: u32 align(1),
+    szFormat: [128]u16 align(1),
 };
 
 pub const ACMFORMATENUMCBA = switch (@import("builtin").zig_backend) {
@@ -6651,62 +6643,62 @@ pub const ACMFORMATCHOOSEHOOKPROCW = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) u32,
 } ;
 
-pub const ACMFORMATCHOOSEA = packed struct {
-    cbStruct: u32,
-    fdwStyle: u32,
-    hwndOwner: ?HWND,
-    pwfx: ?*WAVEFORMATEX,
-    cbwfx: u32,
-    pszTitle: ?[*:0]const u8,
-    szFormatTag: [48]CHAR,
-    szFormat: [128]CHAR,
-    pszName: ?PSTR,
-    cchName: u32,
-    fdwEnum: u32,
-    pwfxEnum: ?*WAVEFORMATEX,
-    hInstance: ?HINSTANCE,
-    pszTemplateName: ?[*:0]const u8,
-    lCustData: LPARAM,
-    pfnHook: ?ACMFORMATCHOOSEHOOKPROCA,
+pub const ACMFORMATCHOOSEA = extern struct {
+    cbStruct: u32 align(1),
+    fdwStyle: u32 align(1),
+    hwndOwner: ?HWND align(1),
+    pwfx: ?*WAVEFORMATEX align(1),
+    cbwfx: u32 align(1),
+    pszTitle: ?[*:0]const u8 align(1),
+    szFormatTag: [48]CHAR align(1),
+    szFormat: [128]CHAR align(1),
+    pszName: ?PSTR align(1),
+    cchName: u32 align(1),
+    fdwEnum: u32 align(1),
+    pwfxEnum: ?*WAVEFORMATEX align(1),
+    hInstance: ?HINSTANCE align(1),
+    pszTemplateName: ?[*:0]const u8 align(1),
+    lCustData: LPARAM align(1),
+    pfnHook: ?ACMFORMATCHOOSEHOOKPROCA align(1),
 };
 
-pub const ACMFORMATCHOOSEW = packed struct {
-    cbStruct: u32,
-    fdwStyle: u32,
-    hwndOwner: ?HWND,
-    pwfx: ?*WAVEFORMATEX,
-    cbwfx: u32,
-    pszTitle: ?[*:0]const u16,
-    szFormatTag: [48]u16,
-    szFormat: [128]u16,
-    pszName: ?PWSTR,
-    cchName: u32,
-    fdwEnum: u32,
-    pwfxEnum: ?*WAVEFORMATEX,
-    hInstance: ?HINSTANCE,
-    pszTemplateName: ?[*:0]const u16,
-    lCustData: LPARAM,
-    pfnHook: ?ACMFORMATCHOOSEHOOKPROCW,
+pub const ACMFORMATCHOOSEW = extern struct {
+    cbStruct: u32 align(1),
+    fdwStyle: u32 align(1),
+    hwndOwner: ?HWND align(1),
+    pwfx: ?*WAVEFORMATEX align(1),
+    cbwfx: u32 align(1),
+    pszTitle: ?[*:0]const u16 align(1),
+    szFormatTag: [48]u16 align(1),
+    szFormat: [128]u16 align(1),
+    pszName: ?PWSTR align(1),
+    cchName: u32 align(1),
+    fdwEnum: u32 align(1),
+    pwfxEnum: ?*WAVEFORMATEX align(1),
+    hInstance: ?HINSTANCE align(1),
+    pszTemplateName: ?[*:0]const u16 align(1),
+    lCustData: LPARAM align(1),
+    pfnHook: ?ACMFORMATCHOOSEHOOKPROCW align(1),
 };
 
-pub const ACMFILTERTAGDETAILSA = packed struct {
-    cbStruct: u32,
-    dwFilterTagIndex: u32,
-    dwFilterTag: u32,
-    cbFilterSize: u32,
-    fdwSupport: u32,
-    cStandardFilters: u32,
-    szFilterTag: [48]CHAR,
+pub const ACMFILTERTAGDETAILSA = extern struct {
+    cbStruct: u32 align(1),
+    dwFilterTagIndex: u32 align(1),
+    dwFilterTag: u32 align(1),
+    cbFilterSize: u32 align(1),
+    fdwSupport: u32 align(1),
+    cStandardFilters: u32 align(1),
+    szFilterTag: [48]CHAR align(1),
 };
 
-pub const ACMFILTERTAGDETAILSW = packed struct {
-    cbStruct: u32,
-    dwFilterTagIndex: u32,
-    dwFilterTag: u32,
-    cbFilterSize: u32,
-    fdwSupport: u32,
-    cStandardFilters: u32,
-    szFilterTag: [48]u16,
+pub const ACMFILTERTAGDETAILSW = extern struct {
+    cbStruct: u32 align(1),
+    dwFilterTagIndex: u32 align(1),
+    dwFilterTag: u32 align(1),
+    cbFilterSize: u32 align(1),
+    fdwSupport: u32 align(1),
+    cStandardFilters: u32 align(1),
+    szFilterTag: [48]u16 align(1),
 };
 
 pub const ACMFILTERTAGENUMCBA = switch (@import("builtin").zig_backend) {
@@ -6739,24 +6731,24 @@ pub const ACMFILTERTAGENUMCBW = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
 } ;
 
-pub const ACMFILTERDETAILSA = packed struct {
-    cbStruct: u32,
-    dwFilterIndex: u32,
-    dwFilterTag: u32,
-    fdwSupport: u32,
-    pwfltr: ?*WAVEFILTER,
-    cbwfltr: u32,
-    szFilter: [128]CHAR,
+pub const ACMFILTERDETAILSA = extern struct {
+    cbStruct: u32 align(1),
+    dwFilterIndex: u32 align(1),
+    dwFilterTag: u32 align(1),
+    fdwSupport: u32 align(1),
+    pwfltr: ?*WAVEFILTER align(1),
+    cbwfltr: u32 align(1),
+    szFilter: [128]CHAR align(1),
 };
 
-pub const ACMFILTERDETAILSW = packed struct {
-    cbStruct: u32,
-    dwFilterIndex: u32,
-    dwFilterTag: u32,
-    fdwSupport: u32,
-    pwfltr: ?*WAVEFILTER,
-    cbwfltr: u32,
-    szFilter: [128]u16,
+pub const ACMFILTERDETAILSW = extern struct {
+    cbStruct: u32 align(1),
+    dwFilterIndex: u32 align(1),
+    dwFilterTag: u32 align(1),
+    fdwSupport: u32 align(1),
+    pwfltr: ?*WAVEFILTER align(1),
+    cbwfltr: u32 align(1),
+    szFilter: [128]u16 align(1),
 };
 
 pub const ACMFILTERENUMCBA = switch (@import("builtin").zig_backend) {
@@ -6819,151 +6811,151 @@ pub const ACMFILTERCHOOSEHOOKPROCW = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) u32,
 } ;
 
-pub const ACMFILTERCHOOSEA = packed struct {
-    cbStruct: u32,
-    fdwStyle: u32,
-    hwndOwner: ?HWND,
-    pwfltr: ?*WAVEFILTER,
-    cbwfltr: u32,
-    pszTitle: ?[*:0]const u8,
-    szFilterTag: [48]CHAR,
-    szFilter: [128]CHAR,
-    pszName: ?PSTR,
-    cchName: u32,
-    fdwEnum: u32,
-    pwfltrEnum: ?*WAVEFILTER,
-    hInstance: ?HINSTANCE,
-    pszTemplateName: ?[*:0]const u8,
-    lCustData: LPARAM,
-    pfnHook: ?ACMFILTERCHOOSEHOOKPROCA,
+pub const ACMFILTERCHOOSEA = extern struct {
+    cbStruct: u32 align(1),
+    fdwStyle: u32 align(1),
+    hwndOwner: ?HWND align(1),
+    pwfltr: ?*WAVEFILTER align(1),
+    cbwfltr: u32 align(1),
+    pszTitle: ?[*:0]const u8 align(1),
+    szFilterTag: [48]CHAR align(1),
+    szFilter: [128]CHAR align(1),
+    pszName: ?PSTR align(1),
+    cchName: u32 align(1),
+    fdwEnum: u32 align(1),
+    pwfltrEnum: ?*WAVEFILTER align(1),
+    hInstance: ?HINSTANCE align(1),
+    pszTemplateName: ?[*:0]const u8 align(1),
+    lCustData: LPARAM align(1),
+    pfnHook: ?ACMFILTERCHOOSEHOOKPROCA align(1),
 };
 
-pub const ACMFILTERCHOOSEW = packed struct {
-    cbStruct: u32,
-    fdwStyle: u32,
-    hwndOwner: ?HWND,
-    pwfltr: ?*WAVEFILTER,
-    cbwfltr: u32,
-    pszTitle: ?[*:0]const u16,
-    szFilterTag: [48]u16,
-    szFilter: [128]u16,
-    pszName: ?PWSTR,
-    cchName: u32,
-    fdwEnum: u32,
-    pwfltrEnum: ?*WAVEFILTER,
-    hInstance: ?HINSTANCE,
-    pszTemplateName: ?[*:0]const u16,
-    lCustData: LPARAM,
-    pfnHook: ?ACMFILTERCHOOSEHOOKPROCW,
+pub const ACMFILTERCHOOSEW = extern struct {
+    cbStruct: u32 align(1),
+    fdwStyle: u32 align(1),
+    hwndOwner: ?HWND align(1),
+    pwfltr: ?*WAVEFILTER align(1),
+    cbwfltr: u32 align(1),
+    pszTitle: ?[*:0]const u16 align(1),
+    szFilterTag: [48]u16 align(1),
+    szFilter: [128]u16 align(1),
+    pszName: ?PWSTR align(1),
+    cchName: u32 align(1),
+    fdwEnum: u32 align(1),
+    pwfltrEnum: ?*WAVEFILTER align(1),
+    hInstance: ?HINSTANCE align(1),
+    pszTemplateName: ?[*:0]const u16 align(1),
+    lCustData: LPARAM align(1),
+    pfnHook: ?ACMFILTERCHOOSEHOOKPROCW align(1),
 };
 
 
-pub const tACMDRVOPENDESCA = packed struct {
-    cbStruct: u32,
-    fccType: u32,
-    fccComp: u32,
-    dwVersion: u32,
-    dwFlags: u32,
-    dwError: u32,
-    pszSectionName: ?[*:0]const u8,
-    pszAliasName: ?[*:0]const u8,
-    dnDevNode: u32,
+pub const tACMDRVOPENDESCA = extern struct {
+    cbStruct: u32 align(1),
+    fccType: u32 align(1),
+    fccComp: u32 align(1),
+    dwVersion: u32 align(1),
+    dwFlags: u32 align(1),
+    dwError: u32 align(1),
+    pszSectionName: ?[*:0]const u8 align(1),
+    pszAliasName: ?[*:0]const u8 align(1),
+    dnDevNode: u32 align(1),
 };
 
-pub const tACMDRVOPENDESCW = packed struct {
-    cbStruct: u32,
-    fccType: u32,
-    fccComp: u32,
-    dwVersion: u32,
-    dwFlags: u32,
-    dwError: u32,
-    pszSectionName: ?[*:0]const u16,
-    pszAliasName: ?[*:0]const u16,
-    dnDevNode: u32,
+pub const tACMDRVOPENDESCW = extern struct {
+    cbStruct: u32 align(1),
+    fccType: u32 align(1),
+    fccComp: u32 align(1),
+    dwVersion: u32 align(1),
+    dwFlags: u32 align(1),
+    dwError: u32 align(1),
+    pszSectionName: ?[*:0]const u16 align(1),
+    pszAliasName: ?[*:0]const u16 align(1),
+    dnDevNode: u32 align(1),
 };
 
-pub const ACMDRVSTREAMINSTANCE = packed struct {
-    cbStruct: u32,
-    pwfxSrc: ?*WAVEFORMATEX,
-    pwfxDst: ?*WAVEFORMATEX,
-    pwfltr: ?*WAVEFILTER,
-    dwCallback: usize,
-    dwInstance: usize,
-    fdwOpen: u32,
-    fdwDriver: u32,
-    dwDriver: usize,
-    has: ?HACMSTREAM,
+pub const ACMDRVSTREAMINSTANCE = extern struct {
+    cbStruct: u32 align(1),
+    pwfxSrc: ?*WAVEFORMATEX align(1),
+    pwfxDst: ?*WAVEFORMATEX align(1),
+    pwfltr: ?*WAVEFILTER align(1),
+    dwCallback: usize align(1),
+    dwInstance: usize align(1),
+    fdwOpen: u32 align(1),
+    fdwDriver: u32 align(1),
+    dwDriver: usize align(1),
+    has: ?HACMSTREAM align(1),
 };
 
-pub const ACMDRVSTREAMHEADER = packed struct {
-    cbStruct: u32,
-    fdwStatus: u32,
-    dwUser: usize,
-    pbSrc: ?*u8,
-    cbSrcLength: u32,
-    cbSrcLengthUsed: u32,
-    dwSrcUser: usize,
-    pbDst: ?*u8,
-    cbDstLength: u32,
-    cbDstLengthUsed: u32,
-    dwDstUser: usize,
-    fdwConvert: u32,
-    padshNext: ?*ACMDRVSTREAMHEADER,
-    fdwDriver: u32,
-    dwDriver: usize,
-    fdwPrepared: u32,
-    dwPrepared: usize,
-    pbPreparedSrc: ?*u8,
-    cbPreparedSrcLength: u32,
-    pbPreparedDst: ?*u8,
-    cbPreparedDstLength: u32,
+pub const ACMDRVSTREAMHEADER = extern struct {
+    cbStruct: u32 align(1),
+    fdwStatus: u32 align(1),
+    dwUser: usize align(1),
+    pbSrc: ?*u8 align(1),
+    cbSrcLength: u32 align(1),
+    cbSrcLengthUsed: u32 align(1),
+    dwSrcUser: usize align(1),
+    pbDst: ?*u8 align(1),
+    cbDstLength: u32 align(1),
+    cbDstLengthUsed: u32 align(1),
+    dwDstUser: usize align(1),
+    fdwConvert: u32 align(1),
+    padshNext: ?*ACMDRVSTREAMHEADER align(1),
+    fdwDriver: u32 align(1),
+    dwDriver: usize align(1),
+    fdwPrepared: u32 align(1),
+    dwPrepared: usize align(1),
+    pbPreparedSrc: ?*u8 align(1),
+    cbPreparedSrcLength: u32 align(1),
+    pbPreparedDst: ?*u8 align(1),
+    cbPreparedDstLength: u32 align(1),
 };
 
-pub const ACMDRVSTREAMSIZE = packed struct {
-    cbStruct: u32,
-    fdwSize: u32,
-    cbSrcLength: u32,
-    cbDstLength: u32,
+pub const ACMDRVSTREAMSIZE = extern struct {
+    cbStruct: u32 align(1),
+    fdwSize: u32 align(1),
+    cbSrcLength: u32 align(1),
+    cbDstLength: u32 align(1),
 };
 
-pub const ACMDRVFORMATSUGGEST = packed struct {
-    cbStruct: u32,
-    fdwSuggest: u32,
-    pwfxSrc: ?*WAVEFORMATEX,
-    cbwfxSrc: u32,
-    pwfxDst: ?*WAVEFORMATEX,
-    cbwfxDst: u32,
+pub const ACMDRVFORMATSUGGEST = extern struct {
+    cbStruct: u32 align(1),
+    fdwSuggest: u32 align(1),
+    pwfxSrc: ?*WAVEFORMATEX align(1),
+    cbwfxSrc: u32 align(1),
+    pwfxDst: ?*WAVEFORMATEX align(1),
+    cbwfxDst: u32 align(1),
 };
 
 
 pub const ACMSTREAMHEADER = switch(@import("../zig.zig").arch) {
-    .X64, .Arm64 => packed struct {
-        cbStruct: u32,
-        fdwStatus: u32,
-        dwUser: usize,
-        pbSrc: ?*u8,
-        cbSrcLength: u32,
-        cbSrcLengthUsed: u32,
-        dwSrcUser: usize,
-        pbDst: ?*u8,
-        cbDstLength: u32,
-        cbDstLengthUsed: u32,
-        dwDstUser: usize,
-        dwReservedDriver: [15]u32,
+    .X64, .Arm64 => extern struct {
+        cbStruct: u32 align(1),
+        fdwStatus: u32 align(1),
+        dwUser: usize align(1),
+        pbSrc: ?*u8 align(1),
+        cbSrcLength: u32 align(1),
+        cbSrcLengthUsed: u32 align(1),
+        dwSrcUser: usize align(1),
+        pbDst: ?*u8 align(1),
+        cbDstLength: u32 align(1),
+        cbDstLengthUsed: u32 align(1),
+        dwDstUser: usize align(1),
+        dwReservedDriver: [15]u32 align(1),
     },
-    .X86 => packed struct {
-        cbStruct: u32,
-        fdwStatus: u32,
-        dwUser: usize,
-        pbSrc: ?*u8,
-        cbSrcLength: u32,
-        cbSrcLengthUsed: u32,
-        dwSrcUser: usize,
-        pbDst: ?*u8,
-        cbDstLength: u32,
-        cbDstLengthUsed: u32,
-        dwDstUser: usize,
-        dwReservedDriver: [10]u32,
+    .X86 => extern struct {
+        cbStruct: u32 align(1),
+        fdwStatus: u32 align(1),
+        dwUser: usize align(1),
+        pbSrc: ?*u8 align(1),
+        cbSrcLength: u32 align(1),
+        cbSrcLengthUsed: u32 align(1),
+        dwSrcUser: usize align(1),
+        pbDst: ?*u8 align(1),
+        cbDstLength: u32 align(1),
+        cbDstLengthUsed: u32 align(1),
+        dwDstUser: usize align(1),
+        dwReservedDriver: [10]u32 align(1),
     },
 };
 
@@ -8307,7 +8299,6 @@ test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
     if (@hasDecl(@This(), "LPWAVECALLBACK")) { _ = LPWAVECALLBACK; }
     if (@hasDecl(@This(), "LPMIDICALLBACK")) { _ = LPMIDICALLBACK; }
-    if (@hasDecl(@This(), "PAudioStateMonitorCallback")) { _ = PAudioStateMonitorCallback; }
     if (@hasDecl(@This(), "ACMDRIVERENUMCB")) { _ = ACMDRIVERENUMCB; }
     if (@hasDecl(@This(), "LPACMDRIVERPROC")) { _ = LPACMDRIVERPROC; }
     if (@hasDecl(@This(), "ACMFORMATTAGENUMCBA")) { _ = ACMFORMATTAGENUMCBA; }

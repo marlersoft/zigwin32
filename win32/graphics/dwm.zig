@@ -26,11 +26,11 @@ pub const c_DwmMaxAdapters = @as(u32, 16);
 //--------------------------------------------------------------------------------
 // Section: Types (15)
 //--------------------------------------------------------------------------------
-pub const DWM_BLURBEHIND = packed struct {
-    dwFlags: u32,
-    fEnable: BOOL,
-    hRgnBlur: ?HRGN,
-    fTransitionOnMaximized: BOOL,
+pub const DWM_BLURBEHIND = extern struct {
+    dwFlags: u32 align(1),
+    fEnable: BOOL align(1),
+    hRgnBlur: ?HRGN align(1),
+    fTransitionOnMaximized: BOOL align(1),
 };
 
 pub const DWMWINDOWATTRIBUTE = enum(i32) {
@@ -117,61 +117,61 @@ pub const DWMFLIP3D_EXCLUDEBELOW = DWMFLIP3DWINDOWPOLICY.EXCLUDEBELOW;
 pub const DWMFLIP3D_EXCLUDEABOVE = DWMFLIP3DWINDOWPOLICY.EXCLUDEABOVE;
 pub const DWMFLIP3D_LAST = DWMFLIP3DWINDOWPOLICY.LAST;
 
-pub const DWM_THUMBNAIL_PROPERTIES = packed struct {
-    dwFlags: u32,
-    rcDestination: RECT,
-    rcSource: RECT,
-    opacity: u8,
-    fVisible: BOOL,
-    fSourceClientAreaOnly: BOOL,
+pub const DWM_THUMBNAIL_PROPERTIES = extern struct {
+    dwFlags: u32 align(1),
+    rcDestination: RECT align(1),
+    rcSource: RECT align(1),
+    opacity: u8 align(1),
+    fVisible: BOOL align(1),
+    fSourceClientAreaOnly: BOOL align(1),
 };
 
-pub const UNSIGNED_RATIO = packed struct {
-    uiNumerator: u32,
-    uiDenominator: u32,
+pub const UNSIGNED_RATIO = extern struct {
+    uiNumerator: u32 align(1),
+    uiDenominator: u32 align(1),
 };
 
-pub const DWM_TIMING_INFO = packed struct {
-    cbSize: u32,
-    rateRefresh: UNSIGNED_RATIO,
-    qpcRefreshPeriod: u64,
-    rateCompose: UNSIGNED_RATIO,
-    qpcVBlank: u64,
-    cRefresh: u64,
-    cDXRefresh: u32,
-    qpcCompose: u64,
-    cFrame: u64,
-    cDXPresent: u32,
-    cRefreshFrame: u64,
-    cFrameSubmitted: u64,
-    cDXPresentSubmitted: u32,
-    cFrameConfirmed: u64,
-    cDXPresentConfirmed: u32,
-    cRefreshConfirmed: u64,
-    cDXRefreshConfirmed: u32,
-    cFramesLate: u64,
-    cFramesOutstanding: u32,
-    cFrameDisplayed: u64,
-    qpcFrameDisplayed: u64,
-    cRefreshFrameDisplayed: u64,
-    cFrameComplete: u64,
-    qpcFrameComplete: u64,
-    cFramePending: u64,
-    qpcFramePending: u64,
-    cFramesDisplayed: u64,
-    cFramesComplete: u64,
-    cFramesPending: u64,
-    cFramesAvailable: u64,
-    cFramesDropped: u64,
-    cFramesMissed: u64,
-    cRefreshNextDisplayed: u64,
-    cRefreshNextPresented: u64,
-    cRefreshesDisplayed: u64,
-    cRefreshesPresented: u64,
-    cRefreshStarted: u64,
-    cPixelsReceived: u64,
-    cPixelsDrawn: u64,
-    cBuffersEmpty: u64,
+pub const DWM_TIMING_INFO = extern struct {
+    cbSize: u32 align(1),
+    rateRefresh: UNSIGNED_RATIO align(1),
+    qpcRefreshPeriod: u64 align(1),
+    rateCompose: UNSIGNED_RATIO align(1),
+    qpcVBlank: u64 align(1),
+    cRefresh: u64 align(1),
+    cDXRefresh: u32 align(1),
+    qpcCompose: u64 align(1),
+    cFrame: u64 align(1),
+    cDXPresent: u32 align(1),
+    cRefreshFrame: u64 align(1),
+    cFrameSubmitted: u64 align(1),
+    cDXPresentSubmitted: u32 align(1),
+    cFrameConfirmed: u64 align(1),
+    cDXPresentConfirmed: u32 align(1),
+    cRefreshConfirmed: u64 align(1),
+    cDXRefreshConfirmed: u32 align(1),
+    cFramesLate: u64 align(1),
+    cFramesOutstanding: u32 align(1),
+    cFrameDisplayed: u64 align(1),
+    qpcFrameDisplayed: u64 align(1),
+    cRefreshFrameDisplayed: u64 align(1),
+    cFrameComplete: u64 align(1),
+    qpcFrameComplete: u64 align(1),
+    cFramePending: u64 align(1),
+    qpcFramePending: u64 align(1),
+    cFramesDisplayed: u64 align(1),
+    cFramesComplete: u64 align(1),
+    cFramesPending: u64 align(1),
+    cFramesAvailable: u64 align(1),
+    cFramesDropped: u64 align(1),
+    cFramesMissed: u64 align(1),
+    cRefreshNextDisplayed: u64 align(1),
+    cRefreshNextPresented: u64 align(1),
+    cRefreshesDisplayed: u64 align(1),
+    cRefreshesPresented: u64 align(1),
+    cRefreshStarted: u64 align(1),
+    cPixelsReceived: u64 align(1),
+    cPixelsDrawn: u64 align(1),
+    cBuffersEmpty: u64 align(1),
 };
 
 pub const DWM_SOURCE_FRAME_SAMPLING = enum(i32) {
@@ -183,24 +183,24 @@ pub const DWM_SOURCE_FRAME_SAMPLING_POINT = DWM_SOURCE_FRAME_SAMPLING.POINT;
 pub const DWM_SOURCE_FRAME_SAMPLING_COVERAGE = DWM_SOURCE_FRAME_SAMPLING.COVERAGE;
 pub const DWM_SOURCE_FRAME_SAMPLING_LAST = DWM_SOURCE_FRAME_SAMPLING.LAST;
 
-pub const DWM_PRESENT_PARAMETERS = packed struct {
-    cbSize: u32,
-    fQueue: BOOL,
-    cRefreshStart: u64,
-    cBuffer: u32,
-    fUseSourceRate: BOOL,
-    rateSource: UNSIGNED_RATIO,
-    cRefreshesPerFrame: u32,
-    eSampling: DWM_SOURCE_FRAME_SAMPLING,
+pub const DWM_PRESENT_PARAMETERS = extern struct {
+    cbSize: u32 align(1),
+    fQueue: BOOL align(1),
+    cRefreshStart: u64 align(1),
+    cBuffer: u32 align(1),
+    fUseSourceRate: BOOL align(1),
+    rateSource: UNSIGNED_RATIO align(1),
+    cRefreshesPerFrame: u32 align(1),
+    eSampling: DWM_SOURCE_FRAME_SAMPLING align(1),
 };
 
-pub const MilMatrix3x2D = packed struct {
-    S_11: f64,
-    S_12: f64,
-    S_21: f64,
-    S_22: f64,
-    DX: f64,
-    DY: f64,
+pub const MilMatrix3x2D = extern struct {
+    S_11: f64 align(1),
+    S_12: f64 align(1),
+    S_21: f64 align(1),
+    S_22: f64 align(1),
+    DX: f64 align(1),
+    DY: f64 align(1),
 };
 
 pub const DWMTRANSITION_OWNEDWINDOW_TARGET = enum(i32) {

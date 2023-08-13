@@ -832,27 +832,11 @@ pub const WCS_PROFILE_MANAGEMENT_SCOPE = enum(i32) {
 pub const WCS_PROFILE_MANAGEMENT_SCOPE_SYSTEM_WIDE = WCS_PROFILE_MANAGEMENT_SCOPE.SYSTEM_WIDE;
 pub const WCS_PROFILE_MANAGEMENT_SCOPE_CURRENT_USER = WCS_PROFILE_MANAGEMENT_SCOPE.CURRENT_USER;
 
-pub const PCMSCALLBACKW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*COLORMATCHSETUPW,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*COLORMATCHSETUPW,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PCMSCALLBACKW = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
-pub const PCMSCALLBACKA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*COLORMATCHSETUPA,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*COLORMATCHSETUPA,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PCMSCALLBACKA = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const COLORMATCHSETUPW = extern struct {
     dwSize: u32,
@@ -1916,8 +1900,6 @@ test {
     if (@hasDecl(@This(), "ICMENUMPROCA")) { _ = ICMENUMPROCA; }
     if (@hasDecl(@This(), "ICMENUMPROCW")) { _ = ICMENUMPROCW; }
     if (@hasDecl(@This(), "LPBMCALLBACKFN")) { _ = LPBMCALLBACKFN; }
-    if (@hasDecl(@This(), "PCMSCALLBACKW")) { _ = PCMSCALLBACKW; }
-    if (@hasDecl(@This(), "PCMSCALLBACKA")) { _ = PCMSCALLBACKA; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

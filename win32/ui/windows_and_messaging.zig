@@ -4931,25 +4931,23 @@ pub const FLASHWINFO = extern struct {
 };
 
 pub const DLGTEMPLATE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    style: u32,
-    dwExtendedStyle: u32,
-    cdit: u16,
-    x: i16,
-    y: i16,
-    cx: i16,
-    cy: i16,
+    style: u32 align(2),
+    dwExtendedStyle: u32 align(2),
+    cdit: u16 align(2),
+    x: i16 align(2),
+    y: i16 align(2),
+    cx: i16 align(2),
+    cy: i16 align(2),
 };
 
 pub const DLGITEMTEMPLATE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    style: u32,
-    dwExtendedStyle: u32,
-    x: i16,
-    y: i16,
-    cx: i16,
-    cy: i16,
-    id: u16,
+    style: u32 align(2),
+    dwExtendedStyle: u32 align(2),
+    x: i16 align(2),
+    y: i16 align(2),
+    cx: i16 align(2),
+    cy: i16 align(2),
+    id: u16 align(2),
 };
 
 pub const POINTER_INPUT_TYPE = enum(i32) {

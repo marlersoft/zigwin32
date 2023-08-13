@@ -1279,83 +1279,83 @@ pub const IDPE_ATTR = extern struct {
     PeAttribValue: [4]u8,
 };
 
-pub const WBCL_Iterator = packed struct {
-    firstElementPtr: ?*anyopaque,
-    logSize: u32,
-    currentElementPtr: ?*anyopaque,
-    currentElementSize: u32,
-    digestSize: u16,
-    logFormat: u16,
-    numberOfDigests: u32,
-    digestSizes: ?*anyopaque,
-    supportedAlgorithms: u32,
-    hashAlgorithm: u16,
+pub const WBCL_Iterator = extern struct {
+    firstElementPtr: ?*anyopaque align(1),
+    logSize: u32 align(1),
+    currentElementPtr: ?*anyopaque align(1),
+    currentElementSize: u32 align(1),
+    digestSize: u16 align(1),
+    logFormat: u16 align(1),
+    numberOfDigests: u32 align(1),
+    digestSizes: ?*anyopaque align(1),
+    supportedAlgorithms: u32 align(1),
+    hashAlgorithm: u16 align(1),
 };
 
-pub const TCG_PCClientPCREventStruct = packed struct {
-    pcrIndex: u32,
-    eventType: u32,
-    digest: [20]u8,
-    eventDataSize: u32,
-    event: [1]u8,
+pub const TCG_PCClientPCREventStruct = extern struct {
+    pcrIndex: u32 align(1),
+    eventType: u32 align(1),
+    digest: [20]u8 align(1),
+    eventDataSize: u32 align(1),
+    event: [1]u8 align(1),
 };
 
-pub const TCG_PCClientTaggedEventStruct = packed struct {
-    EventID: u32,
-    EventDataSize: u32,
-    EventData: [1]u8,
+pub const TCG_PCClientTaggedEventStruct = extern struct {
+    EventID: u32 align(1),
+    EventDataSize: u32 align(1),
+    EventData: [1]u8 align(1),
 };
 
-pub const WBCL_LogHdr = packed struct {
-    signature: u32,
-    version: u32,
-    entries: u32,
-    length: u32,
+pub const WBCL_LogHdr = extern struct {
+    signature: u32 align(1),
+    version: u32 align(1),
+    entries: u32 align(1),
+    length: u32 align(1),
 };
 
-pub const tag_SIPAEVENT_VSM_IDK_RSA_INFO = packed struct {
-    KeyBitLength: u32,
-    PublicExpLengthBytes: u32,
-    ModulusSizeBytes: u32,
-    PublicKeyData: [1]u8,
+pub const tag_SIPAEVENT_VSM_IDK_RSA_INFO = extern struct {
+    KeyBitLength: u32 align(1),
+    PublicExpLengthBytes: u32 align(1),
+    ModulusSizeBytes: u32 align(1),
+    PublicKeyData: [1]u8 align(1),
 };
 
-pub const tag_SIPAEVENT_VSM_IDK_INFO_PAYLOAD = packed struct {
-    KeyAlgID: u32,
+pub const tag_SIPAEVENT_VSM_IDK_INFO_PAYLOAD = extern struct {
+    KeyAlgID: u32 align(1),
     Anonymous: extern union {
         RsaKeyInfo: tag_SIPAEVENT_VSM_IDK_RSA_INFO,
-    },
+    } align(1),
 };
 
-pub const tag_SIPAEVENT_SI_POLICY_PAYLOAD = packed struct {
-    PolicyVersion: u64,
-    PolicyNameLength: u16,
-    HashAlgID: u16,
-    DigestLength: u32,
-    VarLengthData: [1]u8,
+pub const tag_SIPAEVENT_SI_POLICY_PAYLOAD = extern struct {
+    PolicyVersion: u64 align(1),
+    PolicyNameLength: u16 align(1),
+    HashAlgID: u16 align(1),
+    DigestLength: u32 align(1),
+    VarLengthData: [1]u8 align(1),
 };
 
-pub const tag_SIPAEVENT_REVOCATION_LIST_PAYLOAD = packed struct {
-    CreationTime: i64,
-    DigestLength: u32,
-    HashAlgID: u16,
-    Digest: [1]u8,
+pub const tag_SIPAEVENT_REVOCATION_LIST_PAYLOAD = extern struct {
+    CreationTime: i64 align(1),
+    DigestLength: u32 align(1),
+    HashAlgID: u16 align(1),
+    Digest: [1]u8 align(1),
 };
 
-pub const tag_SIPAEVENT_KSR_SIGNATURE_PAYLOAD = packed struct {
-    SignAlgID: u32,
-    SignatureLength: u32,
-    Signature: [1]u8,
+pub const tag_SIPAEVENT_KSR_SIGNATURE_PAYLOAD = extern struct {
+    SignAlgID: u32 align(1),
+    SignatureLength: u32 align(1),
+    Signature: [1]u8 align(1),
 };
 
-pub const tag_SIPAEVENT_SBCP_INFO_PAYLOAD_V1 = packed struct {
-    PayloadVersion: u32,
-    VarDataOffset: u32,
-    HashAlgID: u16,
-    DigestLength: u16,
-    Options: u32,
-    SignersCount: u32,
-    VarData: [1]u8,
+pub const tag_SIPAEVENT_SBCP_INFO_PAYLOAD_V1 = extern struct {
+    PayloadVersion: u32 align(1),
+    VarDataOffset: u32 align(1),
+    HashAlgID: u16 align(1),
+    DigestLength: u16 align(1),
+    Options: u32 align(1),
+    SignersCount: u32 align(1),
+    VarData: [1]u8 align(1),
 };
 
 pub const QOS = extern struct {

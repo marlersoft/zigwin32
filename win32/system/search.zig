@@ -3485,14 +3485,8 @@ pub const IWordSink = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PFNFILLTEXTBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pTextSource: ?*TEXT_SOURCE,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        pTextSource: ?*TEXT_SOURCE,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+// TODO: this function pointer causes dependency loop problems, so it's stubbed out
+pub const PFNFILLTEXTBUFFER = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
 
 pub const TEXT_SOURCE = extern struct {
     pfnFillTextBuffer: ?PFNFILLTEXTBUFFER,
@@ -18816,9 +18810,8 @@ pub const DBVECTOR = switch(@import("../zig.zig").arch) {
         ptr: ?*anyopaque,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        size: usize,
-        ptr: ?*anyopaque,
+        size: usize align(2),
+        ptr: ?*anyopaque align(2),
     },
 };
 pub const DBTIMESTAMP = switch(@import("../zig.zig").arch) {
@@ -18832,14 +18825,13 @@ pub const DBTIMESTAMP = switch(@import("../zig.zig").arch) {
         fraction: u32,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        year: i16,
-        month: u16,
-        day: u16,
-        hour: u16,
-        minute: u16,
-        second: u16,
-        fraction: u32,
+        year: i16 align(2),
+        month: u16 align(2),
+        day: u16 align(2),
+        hour: u16 align(2),
+        minute: u16 align(2),
+        second: u16 align(2),
+        fraction: u32 align(2),
     },
 };
 pub const SEC_OBJECT_ELEMENT = switch(@import("../zig.zig").arch) {
@@ -18848,9 +18840,8 @@ pub const SEC_OBJECT_ELEMENT = switch(@import("../zig.zig").arch) {
         ObjectID: DBID,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        guidObjectType: Guid,
-        ObjectID: DBID,
+        guidObjectType: Guid align(2),
+        ObjectID: DBID align(2),
     },
 };
 pub const SEC_OBJECT = switch(@import("../zig.zig").arch) {
@@ -18859,9 +18850,8 @@ pub const SEC_OBJECT = switch(@import("../zig.zig").arch) {
         prgObjects: ?*SEC_OBJECT_ELEMENT,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        cObjects: u32,
-        prgObjects: ?*SEC_OBJECT_ELEMENT,
+        cObjects: u32 align(2),
+        prgObjects: ?*SEC_OBJECT_ELEMENT align(2),
     },
 };
 pub const DBIMPLICITSESSION = switch(@import("../zig.zig").arch) {
@@ -18871,10 +18861,9 @@ pub const DBIMPLICITSESSION = switch(@import("../zig.zig").arch) {
         pSession: ?*IUnknown,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        pUnkOuter: ?*IUnknown,
-        piid: ?*Guid,
-        pSession: ?*IUnknown,
+        pUnkOuter: ?*IUnknown align(2),
+        piid: ?*Guid align(2),
+        pSession: ?*IUnknown align(2),
     },
 };
 pub const DBOBJECT = switch(@import("../zig.zig").arch) {
@@ -18883,9 +18872,8 @@ pub const DBOBJECT = switch(@import("../zig.zig").arch) {
         iid: Guid,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        dwFlags: u32,
-        iid: Guid,
+        dwFlags: u32 align(2),
+        iid: Guid align(2),
     },
 };
 pub const DBBINDEXT = switch(@import("../zig.zig").arch) {
@@ -18894,9 +18882,8 @@ pub const DBBINDEXT = switch(@import("../zig.zig").arch) {
         ulExtension: usize,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        pExtension: ?*u8,
-        ulExtension: usize,
+        pExtension: ?*u8 align(2),
+        ulExtension: usize align(2),
     },
 };
 pub const DBBINDING = switch(@import("../zig.zig").arch) {
@@ -18918,22 +18905,21 @@ pub const DBBINDING = switch(@import("../zig.zig").arch) {
         bScale: u8,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        iOrdinal: usize,
-        obValue: usize,
-        obLength: usize,
-        obStatus: usize,
-        pTypeInfo: ?*ITypeInfo,
-        pObject: ?*DBOBJECT,
-        pBindExt: ?*DBBINDEXT,
-        dwPart: u32,
-        dwMemOwner: u32,
-        eParamIO: u32,
-        cbMaxLen: usize,
-        dwFlags: u32,
-        wType: u16,
-        bPrecision: u8,
-        bScale: u8,
+        iOrdinal: usize align(2),
+        obValue: usize align(2),
+        obLength: usize align(2),
+        obStatus: usize align(2),
+        pTypeInfo: ?*ITypeInfo align(2),
+        pObject: ?*DBOBJECT align(2),
+        pBindExt: ?*DBBINDEXT align(2),
+        dwPart: u32 align(2),
+        dwMemOwner: u32 align(2),
+        eParamIO: u32 align(2),
+        cbMaxLen: usize align(2),
+        dwFlags: u32 align(2),
+        wType: u16 align(2),
+        bPrecision: u8 align(2),
+        bScale: u8 align(2),
     },
 };
 pub const DBFAILUREINFO = switch(@import("../zig.zig").arch) {
@@ -18943,10 +18929,9 @@ pub const DBFAILUREINFO = switch(@import("../zig.zig").arch) {
         failure: HRESULT,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        hRow: usize,
-        iColumn: usize,
-        failure: HRESULT,
+        hRow: usize align(2),
+        iColumn: usize align(2),
+        failure: HRESULT align(2),
     },
 };
 pub const DBCOLUMNINFO = switch(@import("../zig.zig").arch) {
@@ -18962,16 +18947,15 @@ pub const DBCOLUMNINFO = switch(@import("../zig.zig").arch) {
         columnid: DBID,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        pwszName: ?PWSTR,
-        pTypeInfo: ?*ITypeInfo,
-        iOrdinal: usize,
-        dwFlags: u32,
-        ulColumnSize: usize,
-        wType: u16,
-        bPrecision: u8,
-        bScale: u8,
-        columnid: DBID,
+        pwszName: ?PWSTR align(2),
+        pTypeInfo: ?*ITypeInfo align(2),
+        iOrdinal: usize align(2),
+        dwFlags: u32 align(2),
+        ulColumnSize: usize align(2),
+        wType: u16 align(2),
+        bPrecision: u8 align(2),
+        bScale: u8 align(2),
+        columnid: DBID align(2),
     },
 };
 pub const DBPARAMS = switch(@import("../zig.zig").arch) {
@@ -18981,10 +18965,9 @@ pub const DBPARAMS = switch(@import("../zig.zig").arch) {
         hAccessor: usize,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        pData: ?*anyopaque,
-        cParamSets: usize,
-        hAccessor: usize,
+        pData: ?*anyopaque align(2),
+        cParamSets: usize align(2),
+        hAccessor: usize align(2),
     },
 };
 pub const DBPARAMINFO = switch(@import("../zig.zig").arch) {
@@ -18999,15 +18982,14 @@ pub const DBPARAMINFO = switch(@import("../zig.zig").arch) {
         bScale: u8,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        dwFlags: u32,
-        iOrdinal: usize,
-        pwszName: ?PWSTR,
-        pTypeInfo: ?*ITypeInfo,
-        ulParamSize: usize,
-        wType: u16,
-        bPrecision: u8,
-        bScale: u8,
+        dwFlags: u32 align(2),
+        iOrdinal: usize align(2),
+        pwszName: ?PWSTR align(2),
+        pTypeInfo: ?*ITypeInfo align(2),
+        ulParamSize: usize align(2),
+        wType: u16 align(2),
+        bPrecision: u8 align(2),
+        bScale: u8 align(2),
     },
 };
 pub const DBPROPIDSET = switch(@import("../zig.zig").arch) {
@@ -19017,10 +18999,9 @@ pub const DBPROPIDSET = switch(@import("../zig.zig").arch) {
         guidPropertySet: Guid,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        rgPropertyIDs: ?*u32,
-        cPropertyIDs: u32,
-        guidPropertySet: Guid,
+        rgPropertyIDs: ?*u32 align(2),
+        cPropertyIDs: u32 align(2),
+        guidPropertySet: Guid align(2),
     },
 };
 pub const DBPROPINFO = switch(@import("../zig.zig").arch) {
@@ -19032,12 +19013,11 @@ pub const DBPROPINFO = switch(@import("../zig.zig").arch) {
         vValues: VARIANT,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        pwszDescription: ?PWSTR,
-        dwPropertyID: u32,
-        dwFlags: u32,
-        vtType: u16,
-        vValues: VARIANT,
+        pwszDescription: ?PWSTR align(2),
+        dwPropertyID: u32 align(2),
+        dwFlags: u32 align(2),
+        vtType: u16 align(2),
+        vValues: VARIANT align(2),
     },
 };
 pub const DBPROPINFOSET = switch(@import("../zig.zig").arch) {
@@ -19047,10 +19027,9 @@ pub const DBPROPINFOSET = switch(@import("../zig.zig").arch) {
         guidPropertySet: Guid,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        rgPropertyInfos: ?*DBPROPINFO,
-        cPropertyInfos: u32,
-        guidPropertySet: Guid,
+        rgPropertyInfos: ?*DBPROPINFO align(2),
+        cPropertyInfos: u32 align(2),
+        guidPropertySet: Guid align(2),
     },
 };
 pub const DBPROP = switch(@import("../zig.zig").arch) {
@@ -19062,12 +19041,11 @@ pub const DBPROP = switch(@import("../zig.zig").arch) {
         vValue: VARIANT,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        dwPropertyID: u32,
-        dwOptions: u32,
-        dwStatus: u32,
-        colid: DBID,
-        vValue: VARIANT,
+        dwPropertyID: u32 align(2),
+        dwOptions: u32 align(2),
+        dwStatus: u32 align(2),
+        colid: DBID align(2),
+        vValue: VARIANT align(2),
     },
 };
 pub const DBPROPSET = switch(@import("../zig.zig").arch) {
@@ -19077,10 +19055,9 @@ pub const DBPROPSET = switch(@import("../zig.zig").arch) {
         guidPropertySet: Guid,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        rgProperties: ?*DBPROP,
-        cProperties: u32,
-        guidPropertySet: Guid,
+        rgProperties: ?*DBPROP align(2),
+        cProperties: u32 align(2),
+        guidPropertySet: Guid align(2),
     },
 };
 pub const DBINDEXCOLUMNDESC = switch(@import("../zig.zig").arch) {
@@ -19089,9 +19066,8 @@ pub const DBINDEXCOLUMNDESC = switch(@import("../zig.zig").arch) {
         eIndexColOrder: u32,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        pColumnID: ?*DBID,
-        eIndexColOrder: u32,
+        pColumnID: ?*DBID align(2),
+        eIndexColOrder: u32 align(2),
     },
 };
 pub const DBCOLUMNDESC = switch(@import("../zig.zig").arch) {
@@ -19108,17 +19084,16 @@ pub const DBCOLUMNDESC = switch(@import("../zig.zig").arch) {
         bScale: u8,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        pwszTypeName: ?PWSTR,
-        pTypeInfo: ?*ITypeInfo,
-        rgPropertySets: ?*DBPROPSET,
-        pclsid: ?*Guid,
-        cPropertySets: u32,
-        ulColumnSize: usize,
-        dbcid: DBID,
-        wType: u16,
-        bPrecision: u8,
-        bScale: u8,
+        pwszTypeName: ?PWSTR align(2),
+        pTypeInfo: ?*ITypeInfo align(2),
+        rgPropertySets: ?*DBPROPSET align(2),
+        pclsid: ?*Guid align(2),
+        cPropertySets: u32 align(2),
+        ulColumnSize: usize align(2),
+        dbcid: DBID align(2),
+        wType: u16 align(2),
+        bPrecision: u8 align(2),
+        bScale: u8 align(2),
     },
 };
 pub const DBCOLUMNACCESS = switch(@import("../zig.zig").arch) {
@@ -19134,16 +19109,15 @@ pub const DBCOLUMNACCESS = switch(@import("../zig.zig").arch) {
         bScale: u8,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        pData: ?*anyopaque,
-        columnid: DBID,
-        cbDataLen: usize,
-        dwStatus: u32,
-        cbMaxLen: usize,
-        dwReserved: usize,
-        wType: u16,
-        bPrecision: u8,
-        bScale: u8,
+        pData: ?*anyopaque align(2),
+        columnid: DBID align(2),
+        cbDataLen: usize align(2),
+        dwStatus: u32 align(2),
+        cbMaxLen: usize align(2),
+        dwReserved: usize align(2),
+        wType: u16 align(2),
+        bPrecision: u8 align(2),
+        bScale: u8 align(2),
     },
 };
 pub const DBCONSTRAINTDESC = switch(@import("../zig.zig").arch) {
@@ -19164,21 +19138,20 @@ pub const DBCONSTRAINTDESC = switch(@import("../zig.zig").arch) {
         rgReserved: ?*DBPROPSET,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        pConstraintID: ?*DBID,
-        ConstraintType: u32,
-        cColumns: usize,
-        rgColumnList: ?*DBID,
-        pReferencedTableID: ?*DBID,
-        cForeignKeyColumns: usize,
-        rgForeignKeyColumnList: ?*DBID,
-        pwszConstraintText: ?PWSTR,
-        UpdateRule: u32,
-        DeleteRule: u32,
-        MatchType: u32,
-        Deferrability: u32,
-        cReserved: usize,
-        rgReserved: ?*DBPROPSET,
+        pConstraintID: ?*DBID align(2),
+        ConstraintType: u32 align(2),
+        cColumns: usize align(2),
+        rgColumnList: ?*DBID align(2),
+        pReferencedTableID: ?*DBID align(2),
+        cForeignKeyColumns: usize align(2),
+        rgForeignKeyColumnList: ?*DBID align(2),
+        pwszConstraintText: ?PWSTR align(2),
+        UpdateRule: u32 align(2),
+        DeleteRule: u32 align(2),
+        MatchType: u32 align(2),
+        Deferrability: u32 align(2),
+        cReserved: usize align(2),
+        rgReserved: ?*DBPROPSET align(2),
     },
 };
 pub const MDAXISINFO = switch(@import("../zig.zig").arch) {
@@ -19191,13 +19164,12 @@ pub const MDAXISINFO = switch(@import("../zig.zig").arch) {
         rgpwszDimensionNames: ?*?PWSTR,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        cbSize: usize,
-        iAxis: usize,
-        cDimensions: usize,
-        cCoordinates: usize,
-        rgcColumns: ?*usize,
-        rgpwszDimensionNames: ?*?PWSTR,
+        cbSize: usize align(2),
+        iAxis: usize align(2),
+        cDimensions: usize align(2),
+        cCoordinates: usize align(2),
+        rgcColumns: ?*usize align(2),
+        rgpwszDimensionNames: ?*?PWSTR align(2),
     },
 };
 pub const RMTPACK = switch(@import("../zig.zig").arch) {
@@ -19218,21 +19190,20 @@ pub const RMTPACK = switch(@import("../zig.zig").arch) {
         rgArray: ?*VARIANT,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        pISeqStream: ?*ISequentialStream,
-        cbData: u32,
-        cBSTR: u32,
-        rgBSTR: ?*?BSTR,
-        cVARIANT: u32,
-        rgVARIANT: ?*VARIANT,
-        cIDISPATCH: u32,
-        rgIDISPATCH: ?*?*IDispatch,
-        cIUNKNOWN: u32,
-        rgIUNKNOWN: ?*?*IUnknown,
-        cPROPVARIANT: u32,
-        rgPROPVARIANT: ?*PROPVARIANT,
-        cArray: u32,
-        rgArray: ?*VARIANT,
+        pISeqStream: ?*ISequentialStream align(2),
+        cbData: u32 align(2),
+        cBSTR: u32 align(2),
+        rgBSTR: ?*?BSTR align(2),
+        cVARIANT: u32 align(2),
+        rgVARIANT: ?*VARIANT align(2),
+        cIDISPATCH: u32 align(2),
+        rgIDISPATCH: ?*?*IDispatch align(2),
+        cIUNKNOWN: u32 align(2),
+        rgIUNKNOWN: ?*?*IUnknown align(2),
+        cPROPVARIANT: u32 align(2),
+        rgPROPVARIANT: ?*PROPVARIANT align(2),
+        cArray: u32 align(2),
+        rgArray: ?*VARIANT align(2),
     },
 };
 pub const DBPARAMBINDINFO = switch(@import("../zig.zig").arch) {
@@ -19245,13 +19216,12 @@ pub const DBPARAMBINDINFO = switch(@import("../zig.zig").arch) {
         bScale: u8,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        pwszDataSourceType: ?PWSTR,
-        pwszName: ?PWSTR,
-        ulParamSize: usize,
-        dwFlags: u32,
-        bPrecision: u8,
-        bScale: u8,
+        pwszDataSourceType: ?PWSTR align(2),
+        pwszName: ?PWSTR align(2),
+        ulParamSize: usize align(2),
+        dwFlags: u32 align(2),
+        bPrecision: u8 align(2),
+        bScale: u8 align(2),
     },
 };
 pub const DBLITERALINFO = switch(@import("../zig.zig").arch) {
@@ -19264,13 +19234,12 @@ pub const DBLITERALINFO = switch(@import("../zig.zig").arch) {
         cchMaxLen: u32,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        pwszLiteralValue: ?PWSTR,
-        pwszInvalidChars: ?PWSTR,
-        pwszInvalidStartingChars: ?PWSTR,
-        lt: u32,
-        fSupported: BOOL,
-        cchMaxLen: u32,
+        pwszLiteralValue: ?PWSTR align(2),
+        pwszInvalidChars: ?PWSTR align(2),
+        pwszInvalidStartingChars: ?PWSTR align(2),
+        lt: u32 align(2),
+        fSupported: BOOL align(2),
+        cchMaxLen: u32 align(2),
     },
 };
 pub const ERRORINFO = switch(@import("../zig.zig").arch) {
@@ -19282,12 +19251,11 @@ pub const ERRORINFO = switch(@import("../zig.zig").arch) {
         dispid: i32,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        hrError: HRESULT,
-        dwMinor: u32,
-        clsid: Guid,
-        iid: Guid,
-        dispid: i32,
+        hrError: HRESULT align(2),
+        dwMinor: u32 align(2),
+        clsid: Guid align(2),
+        iid: Guid align(2),
+        dispid: i32 align(2),
     },
 };
 pub const tagDBROWWATCHRANGE = switch(@import("../zig.zig").arch) {
@@ -19298,11 +19266,10 @@ pub const tagDBROWWATCHRANGE = switch(@import("../zig.zig").arch) {
         iRow: usize,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        hRegion: usize,
-        eChangeKind: u32,
-        hRow: usize,
-        iRow: usize,
+        hRegion: usize align(2),
+        eChangeKind: u32 align(2),
+        hRow: usize align(2),
+        iRow: usize align(2),
     },
 };
 pub const DBCOST = switch(@import("../zig.zig").arch) {
@@ -19312,10 +19279,9 @@ pub const DBCOST = switch(@import("../zig.zig").arch) {
         lValue: i32,
     },
     .X86 => extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        eKind: u32,
-        dwUnits: u32,
-        lValue: i32,
+        eKind: u32 align(2),
+        dwUnits: u32 align(2),
+        lValue: i32 align(2),
     },
 };
 
@@ -21493,7 +21459,6 @@ const WORDREP_BREAK_TYPE = @import("../storage/index_server.zig").WORDREP_BREAK_
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNFILLTEXTBUFFER")) { _ = PFNFILLTEXTBUFFER; }
     if (@hasDecl(@This(), "SQL_ASYNC_NOTIFICATION_CALLBACK")) { _ = SQL_ASYNC_NOTIFICATION_CALLBACK; }
 
     @setEvalBranchQuota(

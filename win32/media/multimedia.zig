@@ -4659,205 +4659,205 @@ pub const HVIDEO = *opaque{};
 const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value = Guid.initString("00000003-0000-0010-8000-00aa00389b71");
 pub const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT = &CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value;
 
-pub const ADPCMCOEFSET = packed struct {
-    iCoef1: i16,
-    iCoef2: i16,
+pub const ADPCMCOEFSET = extern struct {
+    iCoef1: i16 align(1),
+    iCoef2: i16 align(1),
 };
 
-pub const ADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wSamplesPerBlock: u16,
-    wNumCoef: u16,
-    aCoef: [1]ADPCMCOEFSET,
+pub const ADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wSamplesPerBlock: u16 align(1),
+    wNumCoef: u16 align(1),
+    aCoef: [1]ADPCMCOEFSET align(1),
 };
 
-pub const DRMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wReserved: u16,
-    ulContentId: u32,
-    wfxSecure: WAVEFORMATEX,
+pub const DRMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wReserved: u16 align(1),
+    ulContentId: u32 align(1),
+    wfxSecure: WAVEFORMATEX align(1),
 };
 
-pub const DVIADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wSamplesPerBlock: u16,
+pub const DVIADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wSamplesPerBlock: u16 align(1),
 };
 
-pub const IMAADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wSamplesPerBlock: u16,
+pub const IMAADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wSamplesPerBlock: u16 align(1),
 };
 
-pub const MEDIASPACEADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wRevision: u16,
+pub const MEDIASPACEADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wRevision: u16 align(1),
 };
 
-pub const SIERRAADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wRevision: u16,
+pub const SIERRAADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wRevision: u16 align(1),
 };
 
-pub const G723_ADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    cbExtraSize: u16,
-    nAuxBlockSize: u16,
+pub const G723_ADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    cbExtraSize: u16 align(1),
+    nAuxBlockSize: u16 align(1),
 };
 
-pub const DIGISTDWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const DIGISTDWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
-pub const DIGIFIXWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const DIGIFIXWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
-pub const DIALOGICOKIADPCMWAVEFORMAT = packed struct {
-    ewf: WAVEFORMATEX,
+pub const DIALOGICOKIADPCMWAVEFORMAT = extern struct {
+    ewf: WAVEFORMATEX align(1),
 };
 
-pub const YAMAHA_ADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const YAMAHA_ADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
-pub const SONARCWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wCompType: u16,
+pub const SONARCWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wCompType: u16 align(1),
 };
 
-pub const TRUESPEECHWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wRevision: u16,
-    nSamplesPerBlock: u16,
-    abReserved: [28]u8,
+pub const TRUESPEECHWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wRevision: u16 align(1),
+    nSamplesPerBlock: u16 align(1),
+    abReserved: [28]u8 align(1),
 };
 
-pub const ECHOSC1WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const ECHOSC1WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
-pub const AUDIOFILE_AF36WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const AUDIOFILE_AF36WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
-pub const APTXWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const APTXWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
-pub const AUDIOFILE_AF10WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const AUDIOFILE_AF10WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
-pub const DOLBYAC2WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    nAuxBitsCode: u16,
+pub const DOLBYAC2WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    nAuxBitsCode: u16 align(1),
 };
 
-pub const GSM610WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wSamplesPerBlock: u16,
+pub const GSM610WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wSamplesPerBlock: u16 align(1),
 };
 
-pub const ADPCMEWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wSamplesPerBlock: u16,
+pub const ADPCMEWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wSamplesPerBlock: u16 align(1),
 };
 
-pub const CONTRESVQLPCWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wSamplesPerBlock: u16,
+pub const CONTRESVQLPCWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wSamplesPerBlock: u16 align(1),
 };
 
-pub const DIGIREALWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wSamplesPerBlock: u16,
+pub const DIGIREALWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wSamplesPerBlock: u16 align(1),
 };
 
-pub const DIGIADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wSamplesPerBlock: u16,
+pub const DIGIADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wSamplesPerBlock: u16 align(1),
 };
 
-pub const CONTRESCR10WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wSamplesPerBlock: u16,
+pub const CONTRESCR10WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wSamplesPerBlock: u16 align(1),
 };
 
-pub const NMS_VBXADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wSamplesPerBlock: u16,
+pub const NMS_VBXADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wSamplesPerBlock: u16 align(1),
 };
 
-pub const G721_ADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    nAuxBlockSize: u16,
+pub const G721_ADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    nAuxBlockSize: u16 align(1),
 };
 
-pub const MSAUDIO1WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wSamplesPerBlock: u16,
-    wEncodeOptions: u16,
+pub const MSAUDIO1WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wSamplesPerBlock: u16 align(1),
+    wEncodeOptions: u16 align(1),
 };
 
-pub const WMAUDIO2WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    dwSamplesPerBlock: u32,
-    wEncodeOptions: u16,
-    dwSuperBlockAlign: u32,
+pub const WMAUDIO2WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    dwSamplesPerBlock: u32 align(1),
+    wEncodeOptions: u16 align(1),
+    dwSuperBlockAlign: u32 align(1),
 };
 
-pub const WMAUDIO3WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wValidBitsPerSample: u16,
-    dwChannelMask: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-    wEncodeOptions: u16,
-    wReserved3: u16,
+pub const WMAUDIO3WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wValidBitsPerSample: u16 align(1),
+    dwChannelMask: u32 align(1),
+    dwReserved1: u32 align(1),
+    dwReserved2: u32 align(1),
+    wEncodeOptions: u16 align(1),
+    wReserved3: u16 align(1),
 };
 
-pub const CREATIVEADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wRevision: u16,
+pub const CREATIVEADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wRevision: u16 align(1),
 };
 
-pub const CREATIVEFASTSPEECH8WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wRevision: u16,
+pub const CREATIVEFASTSPEECH8WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wRevision: u16 align(1),
 };
 
-pub const CREATIVEFASTSPEECH10WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wRevision: u16,
+pub const CREATIVEFASTSPEECH10WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wRevision: u16 align(1),
 };
 
-pub const FMTOWNS_SND_WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wRevision: u16,
+pub const FMTOWNS_SND_WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wRevision: u16 align(1),
 };
 
-pub const OLIGSMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const OLIGSMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
-pub const OLIADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const OLIADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
-pub const OLICELPWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const OLICELPWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
-pub const OLISBCWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const OLISBCWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
-pub const OLIOPRWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const OLIOPRWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
-pub const CSIMAADPCMWAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
+pub const CSIMAADPCMWAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
 };
 
 pub const s_RIFFWAVE_inst = extern struct {
@@ -4870,18 +4870,18 @@ pub const s_RIFFWAVE_inst = extern struct {
     bHighVelocity: u8,
 };
 
-pub const EXBMINFOHEADER = packed struct {
-    bmi: BITMAPINFOHEADER,
-    biExtDataOffset: u32,
+pub const EXBMINFOHEADER = extern struct {
+    bmi: BITMAPINFOHEADER align(1),
+    biExtDataOffset: u32 align(1),
 };
 
-pub const JPEGINFOHEADER = packed struct {
-    JPEGSize: u32,
-    JPEGProcess: u32,
-    JPEGColorSpaceID: u32,
-    JPEGBitsPerSample: u32,
-    JPEGHSubSampling: u32,
-    JPEGVSubSampling: u32,
+pub const JPEGINFOHEADER = extern struct {
+    JPEGSize: u32 align(1),
+    JPEGProcess: u32 align(1),
+    JPEGColorSpaceID: u32 align(1),
+    JPEGBitsPerSample: u32 align(1),
+    JPEGHSubSampling: u32 align(1),
+    JPEGVSubSampling: u32 align(1),
 };
 
 pub const YIELDPROC = switch (@import("builtin").zig_backend) {
@@ -4895,322 +4895,322 @@ pub const YIELDPROC = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) u32,
 } ;
 
-pub const MCI_GENERIC_PARMS = packed struct {
-    dwCallback: usize,
+pub const MCI_GENERIC_PARMS = extern struct {
+    dwCallback: usize align(1),
 };
 
-pub const MCI_OPEN_PARMSA = packed struct {
-    dwCallback: usize,
-    wDeviceID: u32,
-    lpstrDeviceType: ?[*:0]const u8,
-    lpstrElementName: ?[*:0]const u8,
-    lpstrAlias: ?[*:0]const u8,
+pub const MCI_OPEN_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    wDeviceID: u32 align(1),
+    lpstrDeviceType: ?[*:0]const u8 align(1),
+    lpstrElementName: ?[*:0]const u8 align(1),
+    lpstrAlias: ?[*:0]const u8 align(1),
 };
 
-pub const MCI_OPEN_PARMSW = packed struct {
-    dwCallback: usize,
-    wDeviceID: u32,
-    lpstrDeviceType: ?[*:0]const u16,
-    lpstrElementName: ?[*:0]const u16,
-    lpstrAlias: ?[*:0]const u16,
+pub const MCI_OPEN_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    wDeviceID: u32 align(1),
+    lpstrDeviceType: ?[*:0]const u16 align(1),
+    lpstrElementName: ?[*:0]const u16 align(1),
+    lpstrAlias: ?[*:0]const u16 align(1),
 };
 
-pub const MCI_PLAY_PARMS = packed struct {
-    dwCallback: usize,
-    dwFrom: u32,
-    dwTo: u32,
+pub const MCI_PLAY_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwFrom: u32 align(1),
+    dwTo: u32 align(1),
 };
 
-pub const MCI_SEEK_PARMS = packed struct {
-    dwCallback: usize,
-    dwTo: u32,
+pub const MCI_SEEK_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwTo: u32 align(1),
 };
 
-pub const MCI_STATUS_PARMS = packed struct {
-    dwCallback: usize,
-    dwReturn: usize,
-    dwItem: u32,
-    dwTrack: u32,
+pub const MCI_STATUS_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwReturn: usize align(1),
+    dwItem: u32 align(1),
+    dwTrack: u32 align(1),
 };
 
-pub const MCI_INFO_PARMSA = packed struct {
-    dwCallback: usize,
-    lpstrReturn: ?PSTR,
-    dwRetSize: u32,
+pub const MCI_INFO_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpstrReturn: ?PSTR align(1),
+    dwRetSize: u32 align(1),
 };
 
-pub const MCI_INFO_PARMSW = packed struct {
-    dwCallback: usize,
-    lpstrReturn: ?PWSTR,
-    dwRetSize: u32,
+pub const MCI_INFO_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpstrReturn: ?PWSTR align(1),
+    dwRetSize: u32 align(1),
 };
 
-pub const MCI_GETDEVCAPS_PARMS = packed struct {
-    dwCallback: usize,
-    dwReturn: u32,
-    dwItem: u32,
+pub const MCI_GETDEVCAPS_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwReturn: u32 align(1),
+    dwItem: u32 align(1),
 };
 
-pub const MCI_SYSINFO_PARMSA = packed struct {
-    dwCallback: usize,
-    lpstrReturn: ?PSTR,
-    dwRetSize: u32,
-    dwNumber: u32,
-    wDeviceType: u32,
+pub const MCI_SYSINFO_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpstrReturn: ?PSTR align(1),
+    dwRetSize: u32 align(1),
+    dwNumber: u32 align(1),
+    wDeviceType: u32 align(1),
 };
 
-pub const MCI_SYSINFO_PARMSW = packed struct {
-    dwCallback: usize,
-    lpstrReturn: ?PWSTR,
-    dwRetSize: u32,
-    dwNumber: u32,
-    wDeviceType: u32,
+pub const MCI_SYSINFO_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpstrReturn: ?PWSTR align(1),
+    dwRetSize: u32 align(1),
+    dwNumber: u32 align(1),
+    wDeviceType: u32 align(1),
 };
 
-pub const MCI_SET_PARMS = packed struct {
-    dwCallback: usize,
-    dwTimeFormat: u32,
-    dwAudio: u32,
+pub const MCI_SET_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwTimeFormat: u32 align(1),
+    dwAudio: u32 align(1),
 };
 
-pub const MCI_BREAK_PARMS = packed struct {
-    dwCallback: usize,
-    nVirtKey: i32,
-    hwndBreak: ?HWND,
+pub const MCI_BREAK_PARMS = extern struct {
+    dwCallback: usize align(1),
+    nVirtKey: i32 align(1),
+    hwndBreak: ?HWND align(1),
 };
 
-pub const MCI_SAVE_PARMSA = packed struct {
-    dwCallback: usize,
-    lpfilename: ?[*:0]const u8,
+pub const MCI_SAVE_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpfilename: ?[*:0]const u8 align(1),
 };
 
-pub const MCI_SAVE_PARMSW = packed struct {
-    dwCallback: usize,
-    lpfilename: ?[*:0]const u16,
+pub const MCI_SAVE_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpfilename: ?[*:0]const u16 align(1),
 };
 
-pub const MCI_LOAD_PARMSA = packed struct {
-    dwCallback: usize,
-    lpfilename: ?[*:0]const u8,
+pub const MCI_LOAD_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpfilename: ?[*:0]const u8 align(1),
 };
 
-pub const MCI_LOAD_PARMSW = packed struct {
-    dwCallback: usize,
-    lpfilename: ?[*:0]const u16,
+pub const MCI_LOAD_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpfilename: ?[*:0]const u16 align(1),
 };
 
-pub const MCI_RECORD_PARMS = packed struct {
-    dwCallback: usize,
-    dwFrom: u32,
-    dwTo: u32,
+pub const MCI_RECORD_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwFrom: u32 align(1),
+    dwTo: u32 align(1),
 };
 
-pub const MCI_VD_PLAY_PARMS = packed struct {
-    dwCallback: usize,
-    dwFrom: u32,
-    dwTo: u32,
-    dwSpeed: u32,
+pub const MCI_VD_PLAY_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwFrom: u32 align(1),
+    dwTo: u32 align(1),
+    dwSpeed: u32 align(1),
 };
 
-pub const MCI_VD_STEP_PARMS = packed struct {
-    dwCallback: usize,
-    dwFrames: u32,
+pub const MCI_VD_STEP_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwFrames: u32 align(1),
 };
 
-pub const MCI_VD_ESCAPE_PARMSA = packed struct {
-    dwCallback: usize,
-    lpstrCommand: ?[*:0]const u8,
+pub const MCI_VD_ESCAPE_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpstrCommand: ?[*:0]const u8 align(1),
 };
 
-pub const MCI_VD_ESCAPE_PARMSW = packed struct {
-    dwCallback: usize,
-    lpstrCommand: ?[*:0]const u16,
+pub const MCI_VD_ESCAPE_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpstrCommand: ?[*:0]const u16 align(1),
 };
 
-pub const MCI_WAVE_OPEN_PARMSA = packed struct {
-    dwCallback: usize,
-    wDeviceID: u32,
-    lpstrDeviceType: ?[*:0]const u8,
-    lpstrElementName: ?[*:0]const u8,
-    lpstrAlias: ?[*:0]const u8,
-    dwBufferSeconds: u32,
+pub const MCI_WAVE_OPEN_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    wDeviceID: u32 align(1),
+    lpstrDeviceType: ?[*:0]const u8 align(1),
+    lpstrElementName: ?[*:0]const u8 align(1),
+    lpstrAlias: ?[*:0]const u8 align(1),
+    dwBufferSeconds: u32 align(1),
 };
 
-pub const MCI_WAVE_OPEN_PARMSW = packed struct {
-    dwCallback: usize,
-    wDeviceID: u32,
-    lpstrDeviceType: ?[*:0]const u16,
-    lpstrElementName: ?[*:0]const u16,
-    lpstrAlias: ?[*:0]const u16,
-    dwBufferSeconds: u32,
+pub const MCI_WAVE_OPEN_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    wDeviceID: u32 align(1),
+    lpstrDeviceType: ?[*:0]const u16 align(1),
+    lpstrElementName: ?[*:0]const u16 align(1),
+    lpstrAlias: ?[*:0]const u16 align(1),
+    dwBufferSeconds: u32 align(1),
 };
 
-pub const MCI_WAVE_DELETE_PARMS = packed struct {
-    dwCallback: usize,
-    dwFrom: u32,
-    dwTo: u32,
+pub const MCI_WAVE_DELETE_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwFrom: u32 align(1),
+    dwTo: u32 align(1),
 };
 
-pub const MCI_WAVE_SET_PARMS = packed struct {
-    dwCallback: usize,
-    dwTimeFormat: u32,
-    dwAudio: u32,
-    wInput: u32,
-    wOutput: u32,
-    wFormatTag: u16,
-    wReserved2: u16,
-    nChannels: u16,
-    wReserved3: u16,
-    nSamplesPerSec: u32,
-    nAvgBytesPerSec: u32,
-    nBlockAlign: u16,
-    wReserved4: u16,
-    wBitsPerSample: u16,
-    wReserved5: u16,
+pub const MCI_WAVE_SET_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwTimeFormat: u32 align(1),
+    dwAudio: u32 align(1),
+    wInput: u32 align(1),
+    wOutput: u32 align(1),
+    wFormatTag: u16 align(1),
+    wReserved2: u16 align(1),
+    nChannels: u16 align(1),
+    wReserved3: u16 align(1),
+    nSamplesPerSec: u32 align(1),
+    nAvgBytesPerSec: u32 align(1),
+    nBlockAlign: u16 align(1),
+    wReserved4: u16 align(1),
+    wBitsPerSample: u16 align(1),
+    wReserved5: u16 align(1),
 };
 
-pub const MCI_SEQ_SET_PARMS = packed struct {
-    dwCallback: usize,
-    dwTimeFormat: u32,
-    dwAudio: u32,
-    dwTempo: u32,
-    dwPort: u32,
-    dwSlave: u32,
-    dwMaster: u32,
-    dwOffset: u32,
+pub const MCI_SEQ_SET_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwTimeFormat: u32 align(1),
+    dwAudio: u32 align(1),
+    dwTempo: u32 align(1),
+    dwPort: u32 align(1),
+    dwSlave: u32 align(1),
+    dwMaster: u32 align(1),
+    dwOffset: u32 align(1),
 };
 
-pub const MCI_ANIM_OPEN_PARMSA = packed struct {
-    dwCallback: usize,
-    wDeviceID: u32,
-    lpstrDeviceType: ?[*:0]const u8,
-    lpstrElementName: ?[*:0]const u8,
-    lpstrAlias: ?[*:0]const u8,
-    dwStyle: u32,
-    hWndParent: ?HWND,
+pub const MCI_ANIM_OPEN_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    wDeviceID: u32 align(1),
+    lpstrDeviceType: ?[*:0]const u8 align(1),
+    lpstrElementName: ?[*:0]const u8 align(1),
+    lpstrAlias: ?[*:0]const u8 align(1),
+    dwStyle: u32 align(1),
+    hWndParent: ?HWND align(1),
 };
 
-pub const MCI_ANIM_OPEN_PARMSW = packed struct {
-    dwCallback: usize,
-    wDeviceID: u32,
-    lpstrDeviceType: ?[*:0]const u16,
-    lpstrElementName: ?[*:0]const u16,
-    lpstrAlias: ?[*:0]const u16,
-    dwStyle: u32,
-    hWndParent: ?HWND,
+pub const MCI_ANIM_OPEN_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    wDeviceID: u32 align(1),
+    lpstrDeviceType: ?[*:0]const u16 align(1),
+    lpstrElementName: ?[*:0]const u16 align(1),
+    lpstrAlias: ?[*:0]const u16 align(1),
+    dwStyle: u32 align(1),
+    hWndParent: ?HWND align(1),
 };
 
-pub const MCI_ANIM_PLAY_PARMS = packed struct {
-    dwCallback: usize,
-    dwFrom: u32,
-    dwTo: u32,
-    dwSpeed: u32,
+pub const MCI_ANIM_PLAY_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwFrom: u32 align(1),
+    dwTo: u32 align(1),
+    dwSpeed: u32 align(1),
 };
 
-pub const MCI_ANIM_STEP_PARMS = packed struct {
-    dwCallback: usize,
-    dwFrames: u32,
+pub const MCI_ANIM_STEP_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwFrames: u32 align(1),
 };
 
-pub const MCI_ANIM_WINDOW_PARMSA = packed struct {
-    dwCallback: usize,
-    hWnd: ?HWND,
-    nCmdShow: u32,
-    lpstrText: ?[*:0]const u8,
+pub const MCI_ANIM_WINDOW_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    hWnd: ?HWND align(1),
+    nCmdShow: u32 align(1),
+    lpstrText: ?[*:0]const u8 align(1),
 };
 
-pub const MCI_ANIM_WINDOW_PARMSW = packed struct {
-    dwCallback: usize,
-    hWnd: ?HWND,
-    nCmdShow: u32,
-    lpstrText: ?[*:0]const u16,
+pub const MCI_ANIM_WINDOW_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    hWnd: ?HWND align(1),
+    nCmdShow: u32 align(1),
+    lpstrText: ?[*:0]const u16 align(1),
 };
 
-pub const MCI_ANIM_RECT_PARMS = packed struct {
-    dwCallback: usize,
-    rc: RECT,
+pub const MCI_ANIM_RECT_PARMS = extern struct {
+    dwCallback: usize align(1),
+    rc: RECT align(1),
 };
 
-pub const MCI_ANIM_UPDATE_PARMS = packed struct {
-    dwCallback: usize,
-    rc: RECT,
-    hDC: ?HDC,
+pub const MCI_ANIM_UPDATE_PARMS = extern struct {
+    dwCallback: usize align(1),
+    rc: RECT align(1),
+    hDC: ?HDC align(1),
 };
 
-pub const MCI_OVLY_OPEN_PARMSA = packed struct {
-    dwCallback: usize,
-    wDeviceID: u32,
-    lpstrDeviceType: ?[*:0]const u8,
-    lpstrElementName: ?[*:0]const u8,
-    lpstrAlias: ?[*:0]const u8,
-    dwStyle: u32,
-    hWndParent: ?HWND,
+pub const MCI_OVLY_OPEN_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    wDeviceID: u32 align(1),
+    lpstrDeviceType: ?[*:0]const u8 align(1),
+    lpstrElementName: ?[*:0]const u8 align(1),
+    lpstrAlias: ?[*:0]const u8 align(1),
+    dwStyle: u32 align(1),
+    hWndParent: ?HWND align(1),
 };
 
-pub const MCI_OVLY_OPEN_PARMSW = packed struct {
-    dwCallback: usize,
-    wDeviceID: u32,
-    lpstrDeviceType: ?[*:0]const u16,
-    lpstrElementName: ?[*:0]const u16,
-    lpstrAlias: ?[*:0]const u16,
-    dwStyle: u32,
-    hWndParent: ?HWND,
+pub const MCI_OVLY_OPEN_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    wDeviceID: u32 align(1),
+    lpstrDeviceType: ?[*:0]const u16 align(1),
+    lpstrElementName: ?[*:0]const u16 align(1),
+    lpstrAlias: ?[*:0]const u16 align(1),
+    dwStyle: u32 align(1),
+    hWndParent: ?HWND align(1),
 };
 
-pub const MCI_OVLY_WINDOW_PARMSA = packed struct {
-    dwCallback: usize,
-    hWnd: ?HWND,
-    nCmdShow: u32,
-    lpstrText: ?[*:0]const u8,
+pub const MCI_OVLY_WINDOW_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    hWnd: ?HWND align(1),
+    nCmdShow: u32 align(1),
+    lpstrText: ?[*:0]const u8 align(1),
 };
 
-pub const MCI_OVLY_WINDOW_PARMSW = packed struct {
-    dwCallback: usize,
-    hWnd: ?HWND,
-    nCmdShow: u32,
-    lpstrText: ?[*:0]const u16,
+pub const MCI_OVLY_WINDOW_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    hWnd: ?HWND align(1),
+    nCmdShow: u32 align(1),
+    lpstrText: ?[*:0]const u16 align(1),
 };
 
-pub const MCI_OVLY_RECT_PARMS = packed struct {
-    dwCallback: usize,
-    rc: RECT,
+pub const MCI_OVLY_RECT_PARMS = extern struct {
+    dwCallback: usize align(1),
+    rc: RECT align(1),
 };
 
-pub const MCI_OVLY_SAVE_PARMSA = packed struct {
-    dwCallback: usize,
-    lpfilename: ?[*:0]const u8,
-    rc: RECT,
+pub const MCI_OVLY_SAVE_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpfilename: ?[*:0]const u8 align(1),
+    rc: RECT align(1),
 };
 
-pub const MCI_OVLY_SAVE_PARMSW = packed struct {
-    dwCallback: usize,
-    lpfilename: ?[*:0]const u16,
-    rc: RECT,
+pub const MCI_OVLY_SAVE_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpfilename: ?[*:0]const u16 align(1),
+    rc: RECT align(1),
 };
 
-pub const MCI_OVLY_LOAD_PARMSA = packed struct {
-    dwCallback: usize,
-    lpfilename: ?[*:0]const u8,
-    rc: RECT,
+pub const MCI_OVLY_LOAD_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpfilename: ?[*:0]const u8 align(1),
+    rc: RECT align(1),
 };
 
-pub const MCI_OVLY_LOAD_PARMSW = packed struct {
-    dwCallback: usize,
-    lpfilename: ?[*:0]const u16,
-    rc: RECT,
+pub const MCI_OVLY_LOAD_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpfilename: ?[*:0]const u16 align(1),
+    rc: RECT align(1),
 };
 
-pub const DRVCONFIGINFOEX = packed struct {
-    dwDCISize: u32,
-    lpszDCISectionName: ?[*:0]const u16,
-    lpszDCIAliasName: ?[*:0]const u16,
-    dnDevNode: u32,
+pub const DRVCONFIGINFOEX = extern struct {
+    dwDCISize: u32 align(1),
+    lpszDCISectionName: ?[*:0]const u16 align(1),
+    lpszDCIAliasName: ?[*:0]const u16 align(1),
+    dnDevNode: u32 align(1),
 };
 
-pub const DRVCONFIGINFO = packed struct {
-    dwDCISize: u32,
-    lpszDCISectionName: ?[*:0]const u16,
-    lpszDCIAliasName: ?[*:0]const u16,
+pub const DRVCONFIGINFO = extern struct {
+    dwDCISize: u32 align(1),
+    lpszDCISectionName: ?[*:0]const u16 align(1),
+    lpszDCIAliasName: ?[*:0]const u16 align(1),
 };
 
 pub const DRIVERPROC = switch (@import("builtin").zig_backend) {
@@ -5262,440 +5262,440 @@ pub const LPMMIOPROC = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) LRESULT,
 } ;
 
-pub const MMIOINFO = packed struct {
-    dwFlags: u32,
-    fccIOProc: u32,
-    pIOProc: ?LPMMIOPROC,
-    wErrorRet: u32,
-    htask: ?HTASK,
-    cchBuffer: i32,
-    pchBuffer: ?*i8,
-    pchNext: ?*i8,
-    pchEndRead: ?*i8,
-    pchEndWrite: ?*i8,
-    lBufOffset: i32,
-    lDiskOffset: i32,
-    adwInfo: [3]u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-    hmmio: ?HMMIO,
+pub const MMIOINFO = extern struct {
+    dwFlags: u32 align(1),
+    fccIOProc: u32 align(1),
+    pIOProc: ?LPMMIOPROC align(1),
+    wErrorRet: u32 align(1),
+    htask: ?HTASK align(1),
+    cchBuffer: i32 align(1),
+    pchBuffer: ?*i8 align(1),
+    pchNext: ?*i8 align(1),
+    pchEndRead: ?*i8 align(1),
+    pchEndWrite: ?*i8 align(1),
+    lBufOffset: i32 align(1),
+    lDiskOffset: i32 align(1),
+    adwInfo: [3]u32 align(1),
+    dwReserved1: u32 align(1),
+    dwReserved2: u32 align(1),
+    hmmio: ?HMMIO align(1),
 };
 
-pub const MMCKINFO = packed struct {
-    ckid: u32,
-    cksize: u32,
-    fccType: u32,
-    dwDataOffset: u32,
-    dwFlags: u32,
+pub const MMCKINFO = extern struct {
+    ckid: u32 align(1),
+    cksize: u32 align(1),
+    fccType: u32 align(1),
+    dwDataOffset: u32 align(1),
+    dwFlags: u32 align(1),
 };
 
-pub const JOYCAPSA = packed struct {
-    wMid: u16,
-    wPid: u16,
-    szPname: [32]CHAR,
-    wXmin: u32,
-    wXmax: u32,
-    wYmin: u32,
-    wYmax: u32,
-    wZmin: u32,
-    wZmax: u32,
-    wNumButtons: u32,
-    wPeriodMin: u32,
-    wPeriodMax: u32,
-    wRmin: u32,
-    wRmax: u32,
-    wUmin: u32,
-    wUmax: u32,
-    wVmin: u32,
-    wVmax: u32,
-    wCaps: u32,
-    wMaxAxes: u32,
-    wNumAxes: u32,
-    wMaxButtons: u32,
-    szRegKey: [32]CHAR,
-    szOEMVxD: [260]CHAR,
+pub const JOYCAPSA = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    szPname: [32]CHAR align(1),
+    wXmin: u32 align(1),
+    wXmax: u32 align(1),
+    wYmin: u32 align(1),
+    wYmax: u32 align(1),
+    wZmin: u32 align(1),
+    wZmax: u32 align(1),
+    wNumButtons: u32 align(1),
+    wPeriodMin: u32 align(1),
+    wPeriodMax: u32 align(1),
+    wRmin: u32 align(1),
+    wRmax: u32 align(1),
+    wUmin: u32 align(1),
+    wUmax: u32 align(1),
+    wVmin: u32 align(1),
+    wVmax: u32 align(1),
+    wCaps: u32 align(1),
+    wMaxAxes: u32 align(1),
+    wNumAxes: u32 align(1),
+    wMaxButtons: u32 align(1),
+    szRegKey: [32]CHAR align(1),
+    szOEMVxD: [260]CHAR align(1),
 };
 
-pub const JOYCAPSW = packed struct {
-    wMid: u16,
-    wPid: u16,
-    szPname: [32]u16,
-    wXmin: u32,
-    wXmax: u32,
-    wYmin: u32,
-    wYmax: u32,
-    wZmin: u32,
-    wZmax: u32,
-    wNumButtons: u32,
-    wPeriodMin: u32,
-    wPeriodMax: u32,
-    wRmin: u32,
-    wRmax: u32,
-    wUmin: u32,
-    wUmax: u32,
-    wVmin: u32,
-    wVmax: u32,
-    wCaps: u32,
-    wMaxAxes: u32,
-    wNumAxes: u32,
-    wMaxButtons: u32,
-    szRegKey: [32]u16,
-    szOEMVxD: [260]u16,
+pub const JOYCAPSW = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    szPname: [32]u16 align(1),
+    wXmin: u32 align(1),
+    wXmax: u32 align(1),
+    wYmin: u32 align(1),
+    wYmax: u32 align(1),
+    wZmin: u32 align(1),
+    wZmax: u32 align(1),
+    wNumButtons: u32 align(1),
+    wPeriodMin: u32 align(1),
+    wPeriodMax: u32 align(1),
+    wRmin: u32 align(1),
+    wRmax: u32 align(1),
+    wUmin: u32 align(1),
+    wUmax: u32 align(1),
+    wVmin: u32 align(1),
+    wVmax: u32 align(1),
+    wCaps: u32 align(1),
+    wMaxAxes: u32 align(1),
+    wNumAxes: u32 align(1),
+    wMaxButtons: u32 align(1),
+    szRegKey: [32]u16 align(1),
+    szOEMVxD: [260]u16 align(1),
 };
 
-pub const JOYCAPS2A = packed struct {
-    wMid: u16,
-    wPid: u16,
-    szPname: [32]CHAR,
-    wXmin: u32,
-    wXmax: u32,
-    wYmin: u32,
-    wYmax: u32,
-    wZmin: u32,
-    wZmax: u32,
-    wNumButtons: u32,
-    wPeriodMin: u32,
-    wPeriodMax: u32,
-    wRmin: u32,
-    wRmax: u32,
-    wUmin: u32,
-    wUmax: u32,
-    wVmin: u32,
-    wVmax: u32,
-    wCaps: u32,
-    wMaxAxes: u32,
-    wNumAxes: u32,
-    wMaxButtons: u32,
-    szRegKey: [32]CHAR,
-    szOEMVxD: [260]CHAR,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const JOYCAPS2A = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    szPname: [32]CHAR align(1),
+    wXmin: u32 align(1),
+    wXmax: u32 align(1),
+    wYmin: u32 align(1),
+    wYmax: u32 align(1),
+    wZmin: u32 align(1),
+    wZmax: u32 align(1),
+    wNumButtons: u32 align(1),
+    wPeriodMin: u32 align(1),
+    wPeriodMax: u32 align(1),
+    wRmin: u32 align(1),
+    wRmax: u32 align(1),
+    wUmin: u32 align(1),
+    wUmax: u32 align(1),
+    wVmin: u32 align(1),
+    wVmax: u32 align(1),
+    wCaps: u32 align(1),
+    wMaxAxes: u32 align(1),
+    wNumAxes: u32 align(1),
+    wMaxButtons: u32 align(1),
+    szRegKey: [32]CHAR align(1),
+    szOEMVxD: [260]CHAR align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const JOYCAPS2W = packed struct {
-    wMid: u16,
-    wPid: u16,
-    szPname: [32]u16,
-    wXmin: u32,
-    wXmax: u32,
-    wYmin: u32,
-    wYmax: u32,
-    wZmin: u32,
-    wZmax: u32,
-    wNumButtons: u32,
-    wPeriodMin: u32,
-    wPeriodMax: u32,
-    wRmin: u32,
-    wRmax: u32,
-    wUmin: u32,
-    wUmax: u32,
-    wVmin: u32,
-    wVmax: u32,
-    wCaps: u32,
-    wMaxAxes: u32,
-    wNumAxes: u32,
-    wMaxButtons: u32,
-    szRegKey: [32]u16,
-    szOEMVxD: [260]u16,
-    ManufacturerGuid: Guid,
-    ProductGuid: Guid,
-    NameGuid: Guid,
+pub const JOYCAPS2W = extern struct {
+    wMid: u16 align(1),
+    wPid: u16 align(1),
+    szPname: [32]u16 align(1),
+    wXmin: u32 align(1),
+    wXmax: u32 align(1),
+    wYmin: u32 align(1),
+    wYmax: u32 align(1),
+    wZmin: u32 align(1),
+    wZmax: u32 align(1),
+    wNumButtons: u32 align(1),
+    wPeriodMin: u32 align(1),
+    wPeriodMax: u32 align(1),
+    wRmin: u32 align(1),
+    wRmax: u32 align(1),
+    wUmin: u32 align(1),
+    wUmax: u32 align(1),
+    wVmin: u32 align(1),
+    wVmax: u32 align(1),
+    wCaps: u32 align(1),
+    wMaxAxes: u32 align(1),
+    wNumAxes: u32 align(1),
+    wMaxButtons: u32 align(1),
+    szRegKey: [32]u16 align(1),
+    szOEMVxD: [260]u16 align(1),
+    ManufacturerGuid: Guid align(1),
+    ProductGuid: Guid align(1),
+    NameGuid: Guid align(1),
 };
 
-pub const JOYINFO = packed struct {
-    wXpos: u32,
-    wYpos: u32,
-    wZpos: u32,
-    wButtons: u32,
+pub const JOYINFO = extern struct {
+    wXpos: u32 align(1),
+    wYpos: u32 align(1),
+    wZpos: u32 align(1),
+    wButtons: u32 align(1),
 };
 
-pub const JOYINFOEX = packed struct {
-    dwSize: u32,
-    dwFlags: u32,
-    dwXpos: u32,
-    dwYpos: u32,
-    dwZpos: u32,
-    dwRpos: u32,
-    dwUpos: u32,
-    dwVpos: u32,
-    dwButtons: u32,
-    dwButtonNumber: u32,
-    dwPOV: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
+pub const JOYINFOEX = extern struct {
+    dwSize: u32 align(1),
+    dwFlags: u32 align(1),
+    dwXpos: u32 align(1),
+    dwYpos: u32 align(1),
+    dwZpos: u32 align(1),
+    dwRpos: u32 align(1),
+    dwUpos: u32 align(1),
+    dwVpos: u32 align(1),
+    dwButtons: u32 align(1),
+    dwButtonNumber: u32 align(1),
+    dwPOV: u32 align(1),
+    dwReserved1: u32 align(1),
+    dwReserved2: u32 align(1),
 };
 
-pub const MCI_DGV_RECT_PARMS = packed struct {
-    dwCallback: usize,
-    rc: RECT,
+pub const MCI_DGV_RECT_PARMS = extern struct {
+    dwCallback: usize align(1),
+    rc: RECT align(1),
 };
 
-pub const MCI_DGV_CAPTURE_PARMSA = packed struct {
-    dwCallback: usize,
-    lpstrFileName: ?PSTR,
-    rc: RECT,
+pub const MCI_DGV_CAPTURE_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpstrFileName: ?PSTR align(1),
+    rc: RECT align(1),
 };
 
-pub const MCI_DGV_CAPTURE_PARMSW = packed struct {
-    dwCallback: usize,
-    lpstrFileName: ?PWSTR,
-    rc: RECT,
+pub const MCI_DGV_CAPTURE_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpstrFileName: ?PWSTR align(1),
+    rc: RECT align(1),
 };
 
-pub const MCI_DGV_COPY_PARMS = packed struct {
-    dwCallback: usize,
-    dwFrom: u32,
-    dwTo: u32,
-    rc: RECT,
-    dwAudioStream: u32,
-    dwVideoStream: u32,
+pub const MCI_DGV_COPY_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwFrom: u32 align(1),
+    dwTo: u32 align(1),
+    rc: RECT align(1),
+    dwAudioStream: u32 align(1),
+    dwVideoStream: u32 align(1),
 };
 
-pub const MCI_DGV_CUE_PARMS = packed struct {
-    dwCallback: usize,
-    dwTo: u32,
+pub const MCI_DGV_CUE_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwTo: u32 align(1),
 };
 
-pub const MCI_DGV_CUT_PARMS = packed struct {
-    dwCallback: usize,
-    dwFrom: u32,
-    dwTo: u32,
-    rc: RECT,
-    dwAudioStream: u32,
-    dwVideoStream: u32,
+pub const MCI_DGV_CUT_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwFrom: u32 align(1),
+    dwTo: u32 align(1),
+    rc: RECT align(1),
+    dwAudioStream: u32 align(1),
+    dwVideoStream: u32 align(1),
 };
 
-pub const MCI_DGV_DELETE_PARMS = packed struct {
-    dwCallback: usize,
-    dwFrom: u32,
-    dwTo: u32,
-    rc: RECT,
-    dwAudioStream: u32,
-    dwVideoStream: u32,
+pub const MCI_DGV_DELETE_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwFrom: u32 align(1),
+    dwTo: u32 align(1),
+    rc: RECT align(1),
+    dwAudioStream: u32 align(1),
+    dwVideoStream: u32 align(1),
 };
 
-pub const MCI_DGV_INFO_PARMSA = packed struct {
-    dwCallback: usize,
-    lpstrReturn: ?PSTR,
-    dwRetSize: u32,
-    dwItem: u32,
+pub const MCI_DGV_INFO_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpstrReturn: ?PSTR align(1),
+    dwRetSize: u32 align(1),
+    dwItem: u32 align(1),
 };
 
-pub const MCI_DGV_INFO_PARMSW = packed struct {
-    dwCallback: usize,
-    lpstrReturn: ?PWSTR,
-    dwRetSize: u32,
-    dwItem: u32,
+pub const MCI_DGV_INFO_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpstrReturn: ?PWSTR align(1),
+    dwRetSize: u32 align(1),
+    dwItem: u32 align(1),
 };
 
-pub const MCI_DGV_LIST_PARMSA = packed struct {
-    dwCallback: usize,
-    lpstrReturn: ?PSTR,
-    dwLength: u32,
-    dwNumber: u32,
-    dwItem: u32,
-    lpstrAlgorithm: ?PSTR,
+pub const MCI_DGV_LIST_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpstrReturn: ?PSTR align(1),
+    dwLength: u32 align(1),
+    dwNumber: u32 align(1),
+    dwItem: u32 align(1),
+    lpstrAlgorithm: ?PSTR align(1),
 };
 
-pub const MCI_DGV_LIST_PARMSW = packed struct {
-    dwCallback: usize,
-    lpstrReturn: ?PWSTR,
-    dwLength: u32,
-    dwNumber: u32,
-    dwItem: u32,
-    lpstrAlgorithm: ?PWSTR,
+pub const MCI_DGV_LIST_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpstrReturn: ?PWSTR align(1),
+    dwLength: u32 align(1),
+    dwNumber: u32 align(1),
+    dwItem: u32 align(1),
+    lpstrAlgorithm: ?PWSTR align(1),
 };
 
-pub const MCI_DGV_MONITOR_PARMS = packed struct {
-    dwCallback: usize,
-    dwSource: u32,
-    dwMethod: u32,
+pub const MCI_DGV_MONITOR_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwSource: u32 align(1),
+    dwMethod: u32 align(1),
 };
 
-pub const MCI_DGV_OPEN_PARMSA = packed struct {
-    dwCallback: usize,
-    wDeviceID: u32,
-    lpstrDeviceType: ?PSTR,
-    lpstrElementName: ?PSTR,
-    lpstrAlias: ?PSTR,
-    dwStyle: u32,
-    hWndParent: ?HWND,
+pub const MCI_DGV_OPEN_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    wDeviceID: u32 align(1),
+    lpstrDeviceType: ?PSTR align(1),
+    lpstrElementName: ?PSTR align(1),
+    lpstrAlias: ?PSTR align(1),
+    dwStyle: u32 align(1),
+    hWndParent: ?HWND align(1),
 };
 
-pub const MCI_DGV_OPEN_PARMSW = packed struct {
-    dwCallback: usize,
-    wDeviceID: u32,
-    lpstrDeviceType: ?PWSTR,
-    lpstrElementName: ?PWSTR,
-    lpstrAlias: ?PWSTR,
-    dwStyle: u32,
-    hWndParent: ?HWND,
+pub const MCI_DGV_OPEN_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    wDeviceID: u32 align(1),
+    lpstrDeviceType: ?PWSTR align(1),
+    lpstrElementName: ?PWSTR align(1),
+    lpstrAlias: ?PWSTR align(1),
+    dwStyle: u32 align(1),
+    hWndParent: ?HWND align(1),
 };
 
-pub const MCI_DGV_PASTE_PARMS = packed struct {
-    dwCallback: usize,
-    dwTo: u32,
-    rc: RECT,
-    dwAudioStream: u32,
-    dwVideoStream: u32,
+pub const MCI_DGV_PASTE_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwTo: u32 align(1),
+    rc: RECT align(1),
+    dwAudioStream: u32 align(1),
+    dwVideoStream: u32 align(1),
 };
 
-pub const MCI_DGV_QUALITY_PARMSA = packed struct {
-    dwCallback: usize,
-    dwItem: u32,
-    lpstrName: ?PSTR,
-    lpstrAlgorithm: u32,
-    dwHandle: u32,
+pub const MCI_DGV_QUALITY_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    dwItem: u32 align(1),
+    lpstrName: ?PSTR align(1),
+    lpstrAlgorithm: u32 align(1),
+    dwHandle: u32 align(1),
 };
 
-pub const MCI_DGV_QUALITY_PARMSW = packed struct {
-    dwCallback: usize,
-    dwItem: u32,
-    lpstrName: ?PWSTR,
-    lpstrAlgorithm: u32,
-    dwHandle: u32,
+pub const MCI_DGV_QUALITY_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    dwItem: u32 align(1),
+    lpstrName: ?PWSTR align(1),
+    lpstrAlgorithm: u32 align(1),
+    dwHandle: u32 align(1),
 };
 
-pub const MCI_DGV_RECORD_PARMS = packed struct {
-    dwCallback: usize,
-    dwFrom: u32,
-    dwTo: u32,
-    rc: RECT,
-    dwAudioStream: u32,
-    dwVideoStream: u32,
+pub const MCI_DGV_RECORD_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwFrom: u32 align(1),
+    dwTo: u32 align(1),
+    rc: RECT align(1),
+    dwAudioStream: u32 align(1),
+    dwVideoStream: u32 align(1),
 };
 
-pub const MCI_DGV_RESERVE_PARMSA = packed struct {
-    dwCallback: usize,
-    lpstrPath: ?PSTR,
-    dwSize: u32,
+pub const MCI_DGV_RESERVE_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpstrPath: ?PSTR align(1),
+    dwSize: u32 align(1),
 };
 
-pub const MCI_DGV_RESERVE_PARMSW = packed struct {
-    dwCallback: usize,
-    lpstrPath: ?PWSTR,
-    dwSize: u32,
+pub const MCI_DGV_RESERVE_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpstrPath: ?PWSTR align(1),
+    dwSize: u32 align(1),
 };
 
-pub const MCI_DGV_RESTORE_PARMSA = packed struct {
-    dwCallback: usize,
-    lpstrFileName: ?PSTR,
-    rc: RECT,
+pub const MCI_DGV_RESTORE_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpstrFileName: ?PSTR align(1),
+    rc: RECT align(1),
 };
 
-pub const MCI_DGV_RESTORE_PARMSW = packed struct {
-    dwCallback: usize,
-    lpstrFileName: ?PWSTR,
-    rc: RECT,
+pub const MCI_DGV_RESTORE_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpstrFileName: ?PWSTR align(1),
+    rc: RECT align(1),
 };
 
-pub const MCI_DGV_SAVE_PARMSA = packed struct {
-    dwCallback: usize,
-    lpstrFileName: ?PSTR,
-    rc: RECT,
+pub const MCI_DGV_SAVE_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    lpstrFileName: ?PSTR align(1),
+    rc: RECT align(1),
 };
 
-pub const MCI_DGV_SAVE_PARMSW = packed struct {
-    dwCallback: usize,
-    lpstrFileName: ?PWSTR,
-    rc: RECT,
+pub const MCI_DGV_SAVE_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    lpstrFileName: ?PWSTR align(1),
+    rc: RECT align(1),
 };
 
-pub const MCI_DGV_SET_PARMS = packed struct {
-    dwCallback: usize,
-    dwTimeFormat: u32,
-    dwAudio: u32,
-    dwFileFormat: u32,
-    dwSpeed: u32,
+pub const MCI_DGV_SET_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwTimeFormat: u32 align(1),
+    dwAudio: u32 align(1),
+    dwFileFormat: u32 align(1),
+    dwSpeed: u32 align(1),
 };
 
-pub const MCI_DGV_SETAUDIO_PARMSA = packed struct {
-    dwCallback: usize,
-    dwItem: u32,
-    dwValue: u32,
-    dwOver: u32,
-    lpstrAlgorithm: ?PSTR,
-    lpstrQuality: ?PSTR,
+pub const MCI_DGV_SETAUDIO_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    dwItem: u32 align(1),
+    dwValue: u32 align(1),
+    dwOver: u32 align(1),
+    lpstrAlgorithm: ?PSTR align(1),
+    lpstrQuality: ?PSTR align(1),
 };
 
-pub const MCI_DGV_SETAUDIO_PARMSW = packed struct {
-    dwCallback: usize,
-    dwItem: u32,
-    dwValue: u32,
-    dwOver: u32,
-    lpstrAlgorithm: ?PWSTR,
-    lpstrQuality: ?PWSTR,
+pub const MCI_DGV_SETAUDIO_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    dwItem: u32 align(1),
+    dwValue: u32 align(1),
+    dwOver: u32 align(1),
+    lpstrAlgorithm: ?PWSTR align(1),
+    lpstrQuality: ?PWSTR align(1),
 };
 
-pub const MCI_DGV_SIGNAL_PARMS = packed struct {
-    dwCallback: usize,
-    dwPosition: u32,
-    dwPeriod: u32,
-    dwUserParm: u32,
+pub const MCI_DGV_SIGNAL_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwPosition: u32 align(1),
+    dwPeriod: u32 align(1),
+    dwUserParm: u32 align(1),
 };
 
-pub const MCI_DGV_SETVIDEO_PARMSA = packed struct {
-    dwCallback: usize,
-    dwItem: u32,
-    dwValue: u32,
-    dwOver: u32,
-    lpstrAlgorithm: ?PSTR,
-    lpstrQuality: ?PSTR,
-    dwSourceNumber: u32,
+pub const MCI_DGV_SETVIDEO_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    dwItem: u32 align(1),
+    dwValue: u32 align(1),
+    dwOver: u32 align(1),
+    lpstrAlgorithm: ?PSTR align(1),
+    lpstrQuality: ?PSTR align(1),
+    dwSourceNumber: u32 align(1),
 };
 
-pub const MCI_DGV_SETVIDEO_PARMSW = packed struct {
-    dwCallback: usize,
-    dwItem: u32,
-    dwValue: u32,
-    dwOver: u32,
-    lpstrAlgorithm: ?PWSTR,
-    lpstrQuality: ?PWSTR,
-    dwSourceNumber: u32,
+pub const MCI_DGV_SETVIDEO_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    dwItem: u32 align(1),
+    dwValue: u32 align(1),
+    dwOver: u32 align(1),
+    lpstrAlgorithm: ?PWSTR align(1),
+    lpstrQuality: ?PWSTR align(1),
+    dwSourceNumber: u32 align(1),
 };
 
-pub const MCI_DGV_STATUS_PARMSA = packed struct {
-    dwCallback: usize,
-    dwReturn: usize,
-    dwItem: u32,
-    dwTrack: u32,
-    lpstrDrive: ?PSTR,
-    dwReference: u32,
+pub const MCI_DGV_STATUS_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    dwReturn: usize align(1),
+    dwItem: u32 align(1),
+    dwTrack: u32 align(1),
+    lpstrDrive: ?PSTR align(1),
+    dwReference: u32 align(1),
 };
 
-pub const MCI_DGV_STATUS_PARMSW = packed struct {
-    dwCallback: usize,
-    dwReturn: usize,
-    dwItem: u32,
-    dwTrack: u32,
-    lpstrDrive: ?PWSTR,
-    dwReference: u32,
+pub const MCI_DGV_STATUS_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    dwReturn: usize align(1),
+    dwItem: u32 align(1),
+    dwTrack: u32 align(1),
+    lpstrDrive: ?PWSTR align(1),
+    dwReference: u32 align(1),
 };
 
-pub const MCI_DGV_STEP_PARMS = packed struct {
-    dwCallback: usize,
-    dwFrames: u32,
+pub const MCI_DGV_STEP_PARMS = extern struct {
+    dwCallback: usize align(1),
+    dwFrames: u32 align(1),
 };
 
-pub const MCI_DGV_UPDATE_PARMS = packed struct {
-    dwCallback: usize,
-    rc: RECT,
-    hDC: ?HDC,
+pub const MCI_DGV_UPDATE_PARMS = extern struct {
+    dwCallback: usize align(1),
+    rc: RECT align(1),
+    hDC: ?HDC align(1),
 };
 
-pub const MCI_DGV_WINDOW_PARMSA = packed struct {
-    dwCallback: usize,
-    hWnd: ?HWND,
-    nCmdShow: u32,
-    lpstrText: ?PSTR,
+pub const MCI_DGV_WINDOW_PARMSA = extern struct {
+    dwCallback: usize align(1),
+    hWnd: ?HWND align(1),
+    nCmdShow: u32 align(1),
+    lpstrText: ?PSTR align(1),
 };
 
-pub const MCI_DGV_WINDOW_PARMSW = packed struct {
-    dwCallback: usize,
-    hWnd: ?HWND,
-    nCmdShow: u32,
-    lpstrText: ?PWSTR,
+pub const MCI_DGV_WINDOW_PARMSW = extern struct {
+    dwCallback: usize align(1),
+    hWnd: ?HWND align(1),
+    nCmdShow: u32 align(1),
+    lpstrText: ?PWSTR align(1),
 };
 
 pub const ICOPEN = extern struct {
@@ -6759,47 +6759,47 @@ pub const CAPCONTROLCALLBACK = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) LRESULT,
 } ;
 
-pub const DRVM_IOCTL_DATA = packed struct {
-    dwSize: u32,
-    dwCmd: u32,
+pub const DRVM_IOCTL_DATA = extern struct {
+    dwSize: u32 align(1),
+    dwCmd: u32 align(1),
 };
 
-pub const WAVEOPENDESC = packed struct {
-    hWave: ?HWAVE,
-    lpFormat: ?*WAVEFORMAT,
-    dwCallback: usize,
-    dwInstance: usize,
-    uMappedDeviceID: u32,
-    dnDevNode: usize,
+pub const WAVEOPENDESC = extern struct {
+    hWave: ?HWAVE align(1),
+    lpFormat: ?*WAVEFORMAT align(1),
+    dwCallback: usize align(1),
+    dwInstance: usize align(1),
+    uMappedDeviceID: u32 align(1),
+    dnDevNode: usize align(1),
 };
 
-pub const MIDIOPENSTRMID = packed struct {
-    dwStreamID: u32,
-    uDeviceID: u32,
+pub const MIDIOPENSTRMID = extern struct {
+    dwStreamID: u32 align(1),
+    uDeviceID: u32 align(1),
 };
 
-pub const MIXEROPENDESC = packed struct {
-    hmx: ?HMIXER,
-    pReserved0: ?*anyopaque,
-    dwCallback: usize,
-    dwInstance: usize,
-    dnDevNode: usize,
+pub const MIXEROPENDESC = extern struct {
+    hmx: ?HMIXER align(1),
+    pReserved0: ?*anyopaque align(1),
+    dwCallback: usize align(1),
+    dwInstance: usize align(1),
+    dnDevNode: usize align(1),
 };
 
-pub const TIMEREVENT = packed struct {
-    wDelay: u16,
-    wResolution: u16,
-    lpFunction: ?LPTIMECALLBACK,
-    dwUser: u32,
-    wFlags: u16,
-    wReserved1: u16,
+pub const TIMEREVENT = extern struct {
+    wDelay: u16 align(1),
+    wResolution: u16 align(1),
+    lpFunction: ?LPTIMECALLBACK align(1),
+    dwUser: u32 align(1),
+    wFlags: u16 align(1),
+    wReserved1: u16 align(1),
 };
 
-pub const MCI_OPEN_DRIVER_PARMS = packed struct {
-    wDeviceID: u32,
-    lpstrParams: ?[*:0]const u16,
-    wCustomCommandTable: u32,
-    wType: u32,
+pub const MCI_OPEN_DRIVER_PARMS = extern struct {
+    wDeviceID: u32 align(1),
+    lpstrParams: ?[*:0]const u16 align(1),
+    wCustomCommandTable: u32 align(1),
+    wType: u32 align(1),
 };
 
 pub const LPTASKCALLBACK = switch (@import("builtin").zig_backend) {

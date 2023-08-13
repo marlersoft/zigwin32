@@ -15476,18 +15476,18 @@ pub const IWMPDownloadManager = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const WMP_WMDM_METADATA_ROUND_TRIP_PC2DEVICE = packed struct {
-    dwChangesSinceTransactionID: u32,
-    dwResultSetStartingIndex: u32,
+pub const WMP_WMDM_METADATA_ROUND_TRIP_PC2DEVICE = extern struct {
+    dwChangesSinceTransactionID: u32 align(1),
+    dwResultSetStartingIndex: u32 align(1),
 };
 
-pub const WMP_WMDM_METADATA_ROUND_TRIP_DEVICE2PC = packed struct {
-    dwCurrentTransactionID: u32,
-    dwReturnedObjectCount: u32,
-    dwUnretrievedObjectCount: u32,
-    dwDeletedObjectStartingOffset: u32,
-    dwFlags: u32,
-    wsObjectPathnameList: [1]u16,
+pub const WMP_WMDM_METADATA_ROUND_TRIP_DEVICE2PC = extern struct {
+    dwCurrentTransactionID: u32 align(1),
+    dwReturnedObjectCount: u32 align(1),
+    dwUnretrievedObjectCount: u32 align(1),
+    dwDeletedObjectStartingOffset: u32 align(1),
+    dwFlags: u32 align(1),
+    wsObjectPathnameList: [1]u16 align(1),
 };
 
 

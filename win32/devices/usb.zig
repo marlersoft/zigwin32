@@ -575,47 +575,47 @@ pub const BM_REQUEST_TYPE = extern union {
     B: u8,
 };
 
-pub const USB_DEFAULT_PIPE_SETUP_PACKET = packed struct {
-    pub const _wIndex = packed union {
+pub const USB_DEFAULT_PIPE_SETUP_PACKET = extern struct {
+    pub const _wIndex = extern union {
         Anonymous: extern struct {
             LowByte: u8,
             HiByte: u8,
-        },
-        W: u16,
+        } align(1),
+        W: u16 align(1),
     };
-    pub const _wValue = packed union {
+    pub const _wValue = extern union {
         Anonymous: extern struct {
             LowByte: u8,
             HiByte: u8,
-        },
-        W: u16,
+        } align(1),
+        W: u16 align(1),
     };
-    bmRequestType: BM_REQUEST_TYPE,
-    bRequest: u8,
-    wValue: _wValue,
-    wIndex: _wIndex,
-    wLength: u16,
+    bmRequestType: BM_REQUEST_TYPE align(1),
+    bRequest: u8 align(1),
+    wValue: _wValue align(1),
+    wIndex: _wIndex align(1),
+    wLength: u16 align(1),
 };
 
-pub const USB_DEVICE_STATUS = packed union {
-    AsUshort16: u16,
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
+pub const USB_DEVICE_STATUS = extern union {
+    AsUshort16: u16 align(1),
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
 };
 
-pub const USB_INTERFACE_STATUS = packed union {
-    AsUshort16: u16,
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
+pub const USB_INTERFACE_STATUS = extern union {
+    AsUshort16: u16 align(1),
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
 };
 
-pub const USB_ENDPOINT_STATUS = packed union {
-    AsUshort16: u16,
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
+pub const USB_ENDPOINT_STATUS = extern union {
+    AsUshort16: u16 align(1),
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
 };
 
 pub const USB_COMMON_DESCRIPTOR = extern struct {
@@ -623,128 +623,128 @@ pub const USB_COMMON_DESCRIPTOR = extern struct {
     bDescriptorType: u8,
 };
 
-pub const USB_DEVICE_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bcdUSB: u16,
-    bDeviceClass: u8,
-    bDeviceSubClass: u8,
-    bDeviceProtocol: u8,
-    bMaxPacketSize0: u8,
-    idVendor: u16,
-    idProduct: u16,
-    bcdDevice: u16,
-    iManufacturer: u8,
-    iProduct: u8,
-    iSerialNumber: u8,
-    bNumConfigurations: u8,
+pub const USB_DEVICE_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bcdUSB: u16 align(1),
+    bDeviceClass: u8 align(1),
+    bDeviceSubClass: u8 align(1),
+    bDeviceProtocol: u8 align(1),
+    bMaxPacketSize0: u8 align(1),
+    idVendor: u16 align(1),
+    idProduct: u16 align(1),
+    bcdDevice: u16 align(1),
+    iManufacturer: u8 align(1),
+    iProduct: u8 align(1),
+    iSerialNumber: u8 align(1),
+    bNumConfigurations: u8 align(1),
 };
 
-pub const USB_DEVICE_QUALIFIER_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bcdUSB: u16,
-    bDeviceClass: u8,
-    bDeviceSubClass: u8,
-    bDeviceProtocol: u8,
-    bMaxPacketSize0: u8,
-    bNumConfigurations: u8,
-    bReserved: u8,
+pub const USB_DEVICE_QUALIFIER_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bcdUSB: u16 align(1),
+    bDeviceClass: u8 align(1),
+    bDeviceSubClass: u8 align(1),
+    bDeviceProtocol: u8 align(1),
+    bMaxPacketSize0: u8 align(1),
+    bNumConfigurations: u8 align(1),
+    bReserved: u8 align(1),
 };
 
-pub const USB_BOS_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    wTotalLength: u16,
-    bNumDeviceCaps: u8,
+pub const USB_BOS_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    wTotalLength: u16 align(1),
+    bNumDeviceCaps: u8 align(1),
 };
 
 pub const USB_DEVICE_CAPABILITY_USB20_EXTENSION_DESCRIPTOR = extern struct {
     bLength: u8,
     bDescriptorType: u8,
     bDevCapabilityType: u8,
-    bmAttributes: packed union {
-        AsUlong: u32,
-        Anonymous: packed struct {
-            _bitfield: u32,
-        },
+    bmAttributes: extern union {
+        AsUlong: u32 align(1),
+        Anonymous: extern struct {
+            _bitfield: u32 align(1),
+        } align(1),
     },
 };
 
-pub const USB_DEVICE_CAPABILITY_POWER_DELIVERY_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bDevCapabilityType: u8,
-    bReserved: u8,
-    bmAttributes: packed union {
-        AsUlong: u32,
-        Anonymous: packed struct {
-            _bitfield: u32,
-        },
-    },
-    bmProviderPorts: u16,
-    bmConsumerPorts: u16,
-    bcdBCVersion: u16,
-    bcdPDVersion: u16,
-    bcdUSBTypeCVersion: u16,
+pub const USB_DEVICE_CAPABILITY_POWER_DELIVERY_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bDevCapabilityType: u8 align(1),
+    bReserved: u8 align(1),
+    bmAttributes: extern union {
+        AsUlong: u32 align(1),
+        Anonymous: extern struct {
+            _bitfield: u32 align(1),
+        } align(1),
+    } align(1),
+    bmProviderPorts: u16 align(1),
+    bmConsumerPorts: u16 align(1),
+    bcdBCVersion: u16 align(1),
+    bcdPDVersion: u16 align(1),
+    bcdUSBTypeCVersion: u16 align(1),
 };
 
-pub const USB_DEVICE_CAPABILITY_PD_CONSUMER_PORT_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bDevCapabilityType: u8,
-    bReserved: u8,
-    bmCapabilities: packed union {
-        AsUshort: u16,
-        Anonymous: packed struct {
-            _bitfield: u16,
-        },
-    },
-    wMinVoltage: u16,
-    wMaxVoltage: u16,
-    wReserved: u16,
-    dwMaxOperatingPower: u32,
-    dwMaxPeakPower: u32,
-    dwMaxPeakPowerTime: u32,
+pub const USB_DEVICE_CAPABILITY_PD_CONSUMER_PORT_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bDevCapabilityType: u8 align(1),
+    bReserved: u8 align(1),
+    bmCapabilities: extern union {
+        AsUshort: u16 align(1),
+        Anonymous: extern struct {
+            _bitfield: u16 align(1),
+        } align(1),
+    } align(1),
+    wMinVoltage: u16 align(1),
+    wMaxVoltage: u16 align(1),
+    wReserved: u16 align(1),
+    dwMaxOperatingPower: u32 align(1),
+    dwMaxPeakPower: u32 align(1),
+    dwMaxPeakPowerTime: u32 align(1),
 };
 
-pub const USB_DEVICE_CAPABILITY_SUPERSPEED_USB_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bDevCapabilityType: u8,
-    bmAttributes: u8,
-    wSpeedsSupported: u16,
-    bFunctionalitySupport: u8,
-    bU1DevExitLat: u8,
-    wU2DevExitLat: u16,
+pub const USB_DEVICE_CAPABILITY_SUPERSPEED_USB_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bDevCapabilityType: u8 align(1),
+    bmAttributes: u8 align(1),
+    wSpeedsSupported: u16 align(1),
+    bFunctionalitySupport: u8 align(1),
+    bU1DevExitLat: u8 align(1),
+    wU2DevExitLat: u16 align(1),
 };
 
-pub const USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_SPEED = packed union {
-    AsUlong32: u32,
-    Anonymous: packed struct {
-        _bitfield: u32,
-    },
+pub const USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_SPEED = extern union {
+    AsUlong32: u32 align(1),
+    Anonymous: extern struct {
+        _bitfield: u32 align(1),
+    } align(1),
 };
 
-pub const USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_USB_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bDevCapabilityType: u8,
-    bReserved: u8,
-    bmAttributes: packed union {
-        AsUlong: u32,
-        Anonymous: packed struct {
-            _bitfield: u32,
-        },
-    },
-    wFunctionalitySupport: packed union {
-        AsUshort: u16,
-        Anonymous: packed struct {
-            _bitfield: u16,
-        },
-    },
-    wReserved: u16,
-    bmSublinkSpeedAttr: [1]USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_SPEED,
+pub const USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_USB_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bDevCapabilityType: u8 align(1),
+    bReserved: u8 align(1),
+    bmAttributes: extern union {
+        AsUlong: u32 align(1),
+        Anonymous: extern struct {
+            _bitfield: u32 align(1),
+        } align(1),
+    } align(1),
+    wFunctionalitySupport: extern union {
+        AsUshort: u16 align(1),
+        Anonymous: extern struct {
+            _bitfield: u16 align(1),
+        } align(1),
+    } align(1),
+    wReserved: u16 align(1),
+    bmSublinkSpeedAttr: [1]USB_DEVICE_CAPABILITY_SUPERSPEEDPLUS_SPEED align(1),
 };
 
 pub const USB_DEVICE_CAPABILITY_CONTAINER_ID_DESCRIPTOR = extern struct {
@@ -755,35 +755,35 @@ pub const USB_DEVICE_CAPABILITY_CONTAINER_ID_DESCRIPTOR = extern struct {
     ContainerID: [16]u8,
 };
 
-pub const USB_DEVICE_CAPABILITY_PLATFORM_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bDevCapabilityType: u8,
-    bReserved: u8,
-    PlatformCapabilityUuid: Guid,
-    CapabililityData: [1]u8,
+pub const USB_DEVICE_CAPABILITY_PLATFORM_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bDevCapabilityType: u8 align(1),
+    bReserved: u8 align(1),
+    PlatformCapabilityUuid: Guid align(1),
+    CapabililityData: [1]u8 align(1),
 };
 
-pub const USB_DEVICE_CAPABILITY_BILLBOARD_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bDevCapabilityType: u8,
-    iAddtionalInfoURL: u8,
-    bNumberOfAlternateModes: u8,
-    bPreferredAlternateMode: u8,
-    VconnPower: packed union {
-        AsUshort: u16,
-        Anonymous: packed struct {
-            _bitfield: u16,
-        },
-    },
-    bmConfigured: [32]u8,
-    bReserved: u32,
-    AlternateMode: [1]packed struct {
-        wSVID: u16,
-        bAlternateMode: u8,
-        iAlternateModeSetting: u8,
-    },
+pub const USB_DEVICE_CAPABILITY_BILLBOARD_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bDevCapabilityType: u8 align(1),
+    iAddtionalInfoURL: u8 align(1),
+    bNumberOfAlternateModes: u8 align(1),
+    bPreferredAlternateMode: u8 align(1),
+    VconnPower: extern union {
+        AsUshort: u16 align(1),
+        Anonymous: extern struct {
+            _bitfield: u16 align(1),
+        } align(1),
+    } align(1),
+    bmConfigured: [32]u8 align(1),
+    bReserved: u32 align(1),
+    AlternateMode: [1]extern struct {
+        wSVID: u16 align(1),
+        bAlternateMode: u8 align(1),
+        iAlternateModeSetting: u8 align(1),
+    } align(1),
 };
 
 pub const USB_DEVICE_CAPABILITY_FIRMWARE_STATUS_DESCRIPTOR = extern struct {
@@ -791,11 +791,11 @@ pub const USB_DEVICE_CAPABILITY_FIRMWARE_STATUS_DESCRIPTOR = extern struct {
     bDescriptorType: u8,
     bDevCapabilityType: u8,
     bcdDescriptorVersion: u8,
-    bmAttributes: packed union {
-        AsUlong: u32,
-        Anonymous: packed struct {
-            _bitfield: u32,
-        },
+    bmAttributes: extern union {
+        AsUlong: u32 align(1),
+        Anonymous: extern struct {
+            _bitfield: u32 align(1),
+        } align(1),
     },
 };
 
@@ -805,15 +805,15 @@ pub const USB_DEVICE_CAPABILITY_DESCRIPTOR = extern struct {
     bDevCapabilityType: u8,
 };
 
-pub const USB_CONFIGURATION_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    wTotalLength: u16,
-    bNumInterfaces: u8,
-    bConfigurationValue: u8,
-    iConfiguration: u8,
-    bmAttributes: u8,
-    MaxPower: u8,
+pub const USB_CONFIGURATION_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    wTotalLength: u16 align(1),
+    bNumInterfaces: u8 align(1),
+    bConfigurationValue: u8 align(1),
+    iConfiguration: u8 align(1),
+    bmAttributes: u8 align(1),
+    MaxPower: u8 align(1),
 };
 
 pub const USB_INTERFACE_ASSOCIATION_DESCRIPTOR = extern struct {
@@ -839,32 +839,32 @@ pub const USB_INTERFACE_DESCRIPTOR = extern struct {
     iInterface: u8,
 };
 
-pub const USB_ENDPOINT_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bEndpointAddress: u8,
-    bmAttributes: u8,
-    wMaxPacketSize: u16,
-    bInterval: u8,
+pub const USB_ENDPOINT_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bEndpointAddress: u8 align(1),
+    bmAttributes: u8 align(1),
+    wMaxPacketSize: u16 align(1),
+    bInterval: u8 align(1),
 };
 
-pub const USB_HIGH_SPEED_MAXPACKET = packed union {
-    pub const _MP = packed struct {
-        _bitfield: u16,
+pub const USB_HIGH_SPEED_MAXPACKET = extern union {
+    pub const _MP = extern struct {
+        _bitfield: u16 align(1),
     };
-    us: u16,
+    us: u16 align(1),
 };
 
-pub const USB_STRING_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bString: [1]u16,
+pub const USB_STRING_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bString: [1]u16 align(1),
 };
 
-pub const USB_SUPERSPEED_ENDPOINT_COMPANION_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bMaxBurst: u8,
+pub const USB_SUPERSPEED_ENDPOINT_COMPANION_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bMaxBurst: u8 align(1),
     bmAttributes: extern union {
         AsUchar: u8,
         Bulk: extern struct {
@@ -873,122 +873,122 @@ pub const USB_SUPERSPEED_ENDPOINT_COMPANION_DESCRIPTOR = packed struct {
         Isochronous: extern struct {
             _bitfield: u8,
         },
-    },
-    wBytesPerInterval: u16,
+    } align(1),
+    wBytesPerInterval: u16 align(1),
 };
 
-pub const USB_SUPERSPEEDPLUS_ISOCH_ENDPOINT_COMPANION_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    wReserved: u16,
-    dwBytesPerInterval: u32,
+pub const USB_SUPERSPEEDPLUS_ISOCH_ENDPOINT_COMPANION_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    wReserved: u16 align(1),
+    dwBytesPerInterval: u32 align(1),
 };
 
-pub const USB_HUB_DESCRIPTOR = packed struct {
-    bDescriptorLength: u8,
-    bDescriptorType: u8,
-    bNumberOfPorts: u8,
-    wHubCharacteristics: u16,
-    bPowerOnToPowerGood: u8,
-    bHubControlCurrent: u8,
-    bRemoveAndPowerMask: [64]u8,
+pub const USB_HUB_DESCRIPTOR = extern struct {
+    bDescriptorLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bNumberOfPorts: u8 align(1),
+    wHubCharacteristics: u16 align(1),
+    bPowerOnToPowerGood: u8 align(1),
+    bHubControlCurrent: u8 align(1),
+    bRemoveAndPowerMask: [64]u8 align(1),
 };
 
-pub const USB_30_HUB_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bNumberOfPorts: u8,
-    wHubCharacteristics: u16,
-    bPowerOnToPowerGood: u8,
-    bHubControlCurrent: u8,
-    bHubHdrDecLat: u8,
-    wHubDelay: u16,
-    DeviceRemovable: u16,
+pub const USB_30_HUB_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bNumberOfPorts: u8 align(1),
+    wHubCharacteristics: u16 align(1),
+    bPowerOnToPowerGood: u8 align(1),
+    bHubControlCurrent: u8 align(1),
+    bHubHdrDecLat: u8 align(1),
+    wHubDelay: u16 align(1),
+    DeviceRemovable: u16 align(1),
 };
 
-pub const USB_HUB_STATUS = packed union {
-    AsUshort16: u16,
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
+pub const USB_HUB_STATUS = extern union {
+    AsUshort16: u16 align(1),
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
 };
 
-pub const USB_HUB_CHANGE = packed union {
-    AsUshort16: u16,
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
+pub const USB_HUB_CHANGE = extern union {
+    AsUshort16: u16 align(1),
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
 };
 
-pub const USB_HUB_STATUS_AND_CHANGE = packed union {
-    AsUlong32: u32,
+pub const USB_HUB_STATUS_AND_CHANGE = extern union {
+    AsUlong32: u32 align(1),
     Anonymous: extern struct {
         HubStatus: USB_HUB_STATUS,
         HubChange: USB_HUB_CHANGE,
-    },
+    } align(1),
 };
 
-pub const USB_20_PORT_STATUS = packed union {
-    AsUshort16: u16,
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
+pub const USB_20_PORT_STATUS = extern union {
+    AsUshort16: u16 align(1),
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
 };
 
-pub const USB_20_PORT_CHANGE = packed union {
-    AsUshort16: u16,
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
+pub const USB_20_PORT_CHANGE = extern union {
+    AsUshort16: u16 align(1),
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
 };
 
-pub const USB_30_PORT_STATUS = packed union {
-    AsUshort16: u16,
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
+pub const USB_30_PORT_STATUS = extern union {
+    AsUshort16: u16 align(1),
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
 };
 
-pub const USB_30_PORT_CHANGE = packed union {
-    AsUshort16: u16,
-    Anonymous: packed struct {
-        _bitfield: u16,
-    },
+pub const USB_30_PORT_CHANGE = extern union {
+    AsUshort16: u16 align(1),
+    Anonymous: extern struct {
+        _bitfield: u16 align(1),
+    } align(1),
 };
 
-pub const USB_PORT_STATUS = packed union {
-    AsUshort16: u16,
-    Usb20PortStatus: USB_20_PORT_STATUS,
-    Usb30PortStatus: USB_30_PORT_STATUS,
+pub const USB_PORT_STATUS = extern union {
+    AsUshort16: u16 align(1),
+    Usb20PortStatus: USB_20_PORT_STATUS align(1),
+    Usb30PortStatus: USB_30_PORT_STATUS align(1),
 };
 
-pub const USB_PORT_CHANGE = packed union {
-    AsUshort16: u16,
-    Usb20PortChange: USB_20_PORT_CHANGE,
-    Usb30PortChange: USB_30_PORT_CHANGE,
+pub const USB_PORT_CHANGE = extern union {
+    AsUshort16: u16 align(1),
+    Usb20PortChange: USB_20_PORT_CHANGE align(1),
+    Usb30PortChange: USB_30_PORT_CHANGE align(1),
 };
 
-pub const USB_PORT_EXT_STATUS = packed union {
-    AsUlong32: u32,
-    Anonymous: packed struct {
-        _bitfield: u32,
-    },
+pub const USB_PORT_EXT_STATUS = extern union {
+    AsUlong32: u32 align(1),
+    Anonymous: extern struct {
+        _bitfield: u32 align(1),
+    } align(1),
 };
 
-pub const USB_PORT_STATUS_AND_CHANGE = packed union {
-    AsUlong32: u32,
+pub const USB_PORT_STATUS_AND_CHANGE = extern union {
+    AsUlong32: u32 align(1),
     Anonymous: extern struct {
         PortStatus: USB_PORT_STATUS,
         PortChange: USB_PORT_CHANGE,
-    },
+    } align(1),
 };
 
-pub const USB_PORT_EXT_STATUS_AND_CHANGE = packed union {
-    AsUlong64: u64,
+pub const USB_PORT_EXT_STATUS_AND_CHANGE = extern union {
+    AsUlong64: u64 align(1),
     Anonymous: extern struct {
         PortStatusChange: USB_PORT_STATUS_AND_CHANGE,
         PortExtStatus: USB_PORT_EXT_STATUS,
-    },
+    } align(1),
 };
 
 pub const USB_HUB_30_PORT_REMOTE_WAKE_MASK = extern union {
@@ -1005,35 +1005,35 @@ pub const USB_FUNCTION_SUSPEND_OPTIONS = extern union {
     },
 };
 
-pub const USB_CONFIGURATION_POWER_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    SelfPowerConsumedD0: [3]u8,
-    bPowerSummaryId: u8,
-    bBusPowerSavingD1: u8,
-    bSelfPowerSavingD1: u8,
-    bBusPowerSavingD2: u8,
-    bSelfPowerSavingD2: u8,
-    bBusPowerSavingD3: u8,
-    bSelfPowerSavingD3: u8,
-    TransitionTimeFromD1: u16,
-    TransitionTimeFromD2: u16,
-    TransitionTimeFromD3: u16,
+pub const USB_CONFIGURATION_POWER_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    SelfPowerConsumedD0: [3]u8 align(1),
+    bPowerSummaryId: u8 align(1),
+    bBusPowerSavingD1: u8 align(1),
+    bSelfPowerSavingD1: u8 align(1),
+    bBusPowerSavingD2: u8 align(1),
+    bSelfPowerSavingD2: u8 align(1),
+    bBusPowerSavingD3: u8 align(1),
+    bSelfPowerSavingD3: u8 align(1),
+    TransitionTimeFromD1: u16 align(1),
+    TransitionTimeFromD2: u16 align(1),
+    TransitionTimeFromD3: u16 align(1),
 };
 
-pub const USB_INTERFACE_POWER_DESCRIPTOR = packed struct {
-    bLength: u8,
-    bDescriptorType: u8,
-    bmCapabilitiesFlags: u8,
-    bBusPowerSavingD1: u8,
-    bSelfPowerSavingD1: u8,
-    bBusPowerSavingD2: u8,
-    bSelfPowerSavingD2: u8,
-    bBusPowerSavingD3: u8,
-    bSelfPowerSavingD3: u8,
-    TransitionTimeFromD1: u16,
-    TransitionTimeFromD2: u16,
-    TransitionTimeFromD3: u16,
+pub const USB_INTERFACE_POWER_DESCRIPTOR = extern struct {
+    bLength: u8 align(1),
+    bDescriptorType: u8 align(1),
+    bmCapabilitiesFlags: u8 align(1),
+    bBusPowerSavingD1: u8 align(1),
+    bSelfPowerSavingD1: u8 align(1),
+    bBusPowerSavingD2: u8 align(1),
+    bSelfPowerSavingD2: u8 align(1),
+    bBusPowerSavingD3: u8 align(1),
+    bSelfPowerSavingD3: u8 align(1),
+    TransitionTimeFromD1: u16 align(1),
+    TransitionTimeFromD2: u16 align(1),
+    TransitionTimeFromD3: u16 align(1),
 };
 
 pub const USB_CONTROLLER_FLAVOR = enum(i32) {
@@ -1134,22 +1134,22 @@ pub const UsbdEndpointOffloadModeNotSupported = USBD_ENDPOINT_OFFLOAD_MODE.ModeN
 pub const UsbdEndpointOffloadSoftwareAssisted = USBD_ENDPOINT_OFFLOAD_MODE.SoftwareAssisted;
 pub const UsbdEndpointOffloadHardwareAssisted = USBD_ENDPOINT_OFFLOAD_MODE.HardwareAssisted;
 
-pub const USBD_ENDPOINT_OFFLOAD_INFORMATION = packed struct {
-    Size: u32,
-    EndpointAddress: u16,
-    ResourceId: u32,
-    Mode: USBD_ENDPOINT_OFFLOAD_MODE,
-    _bitfield1: u32,
-    _bitfield2: u32,
-    TransferSegmentLA: LARGE_INTEGER,
-    TransferSegmentVA: ?*anyopaque,
-    TransferRingSize: usize,
-    TransferRingInitialCycleBit: u32,
-    MessageNumber: u32,
-    EventRingSegmentLA: LARGE_INTEGER,
-    EventRingSegmentVA: ?*anyopaque,
-    EventRingSize: usize,
-    EventRingInitialCycleBit: u32,
+pub const USBD_ENDPOINT_OFFLOAD_INFORMATION = extern struct {
+    Size: u32 align(1),
+    EndpointAddress: u16 align(1),
+    ResourceId: u32 align(1),
+    Mode: USBD_ENDPOINT_OFFLOAD_MODE align(1),
+    _bitfield1: u32 align(1),
+    _bitfield2: u32 align(1),
+    TransferSegmentLA: LARGE_INTEGER align(1),
+    TransferSegmentVA: ?*anyopaque align(1),
+    TransferRingSize: usize align(1),
+    TransferRingInitialCycleBit: u32 align(1),
+    MessageNumber: u32 align(1),
+    EventRingSegmentLA: LARGE_INTEGER align(1),
+    EventRingSegmentVA: ?*anyopaque align(1),
+    EventRingSize: usize align(1),
+    EventRingInitialCycleBit: u32 align(1),
 };
 
 pub const USBD_INTERFACE_INFORMATION = extern struct {
@@ -1475,26 +1475,26 @@ pub const UsbUserErrorNotMapped = USB_USER_ERROR_CODE.ErrorNotMapped;
 pub const UsbUserDeviceNotStarted = USB_USER_ERROR_CODE.DeviceNotStarted;
 pub const UsbUserNoDeviceConnected = USB_USER_ERROR_CODE.NoDeviceConnected;
 
-pub const USBUSER_REQUEST_HEADER = packed struct {
-    UsbUserRequest: u32,
-    UsbUserStatusCode: USB_USER_ERROR_CODE,
-    RequestBufferLength: u32,
-    ActualBufferLength: u32,
+pub const USBUSER_REQUEST_HEADER = extern struct {
+    UsbUserRequest: u32 align(1),
+    UsbUserStatusCode: USB_USER_ERROR_CODE align(1),
+    RequestBufferLength: u32 align(1),
+    ActualBufferLength: u32 align(1),
 };
 
-pub const PACKET_PARAMETERS = packed struct {
-    DeviceAddress: u8,
-    EndpointAddress: u8,
-    MaximumPacketSize: u16,
-    Timeout: u32,
-    Flags: u32,
-    DataLength: u32,
-    HubDeviceAddress: u16,
-    PortTTNumber: u16,
-    ErrorCount: u8,
-    Pad: [3]u8,
-    UsbdStatusCode: i32,
-    Data: [4]u8,
+pub const PACKET_PARAMETERS = extern struct {
+    DeviceAddress: u8 align(1),
+    EndpointAddress: u8 align(1),
+    MaximumPacketSize: u16 align(1),
+    Timeout: u32 align(1),
+    Flags: u32 align(1),
+    DataLength: u32 align(1),
+    HubDeviceAddress: u16 align(1),
+    PortTTNumber: u16 align(1),
+    ErrorCount: u8 align(1),
+    Pad: [3]u8 align(1),
+    UsbdStatusCode: i32 align(1),
+    Data: [4]u8 align(1),
 };
 
 pub const USBUSER_SEND_ONE_PACKET = extern struct {
@@ -1502,9 +1502,9 @@ pub const USBUSER_SEND_ONE_PACKET = extern struct {
     PacketParameters: PACKET_PARAMETERS,
 };
 
-pub const RAW_RESET_PORT_PARAMETERS = packed struct {
-    PortNumber: u16,
-    PortStatus: u16,
+pub const RAW_RESET_PORT_PARAMETERS = extern struct {
+    PortNumber: u16 align(1),
+    PortStatus: u16 align(1),
 };
 
 pub const USBUSER_RAW_RESET_ROOT_PORT = extern struct {
@@ -1512,10 +1512,10 @@ pub const USBUSER_RAW_RESET_ROOT_PORT = extern struct {
     Parameters: RAW_RESET_PORT_PARAMETERS,
 };
 
-pub const RAW_ROOTPORT_FEATURE = packed struct {
-    PortNumber: u16,
-    PortFeature: u16,
-    PortStatus: u16,
+pub const RAW_ROOTPORT_FEATURE = extern struct {
+    PortNumber: u16 align(1),
+    PortFeature: u16 align(1),
+    PortStatus: u16 align(1),
 };
 
 pub const USBUSER_ROOTPORT_FEATURE_REQUEST = extern struct {
@@ -1523,9 +1523,9 @@ pub const USBUSER_ROOTPORT_FEATURE_REQUEST = extern struct {
     Parameters: RAW_ROOTPORT_FEATURE,
 };
 
-pub const RAW_ROOTPORT_PARAMETERS = packed struct {
-    PortNumber: u16,
-    PortStatus: u16,
+pub const RAW_ROOTPORT_PARAMETERS = extern struct {
+    PortNumber: u16 align(1),
+    PortStatus: u16 align(1),
 };
 
 pub const USBUSER_ROOTPORT_PARAMETERS = extern struct {
@@ -1533,13 +1533,13 @@ pub const USBUSER_ROOTPORT_PARAMETERS = extern struct {
     Parameters: RAW_ROOTPORT_PARAMETERS,
 };
 
-pub const USB_CONTROLLER_INFO_0 = packed struct {
-    PciVendorId: u32,
-    PciDeviceId: u32,
-    PciRevision: u32,
-    NumberOfRootPorts: u32,
-    ControllerFlavor: USB_CONTROLLER_FLAVOR,
-    HcFeatureFlags: u32,
+pub const USB_CONTROLLER_INFO_0 = extern struct {
+    PciVendorId: u32 align(1),
+    PciDeviceId: u32 align(1),
+    PciRevision: u32 align(1),
+    NumberOfRootPorts: u32 align(1),
+    ControllerFlavor: USB_CONTROLLER_FLAVOR align(1),
+    HcFeatureFlags: u32 align(1),
 };
 
 pub const USBUSER_CONTROLLER_INFO_0 = extern struct {
@@ -1547,9 +1547,9 @@ pub const USBUSER_CONTROLLER_INFO_0 = extern struct {
     Info0: USB_CONTROLLER_INFO_0,
 };
 
-pub const USB_UNICODE_NAME = packed struct {
-    Length: u32,
-    String: [1]u16,
+pub const USB_UNICODE_NAME = extern struct {
+    Length: u32 align(1),
+    String: [1]u16 align(1),
 };
 
 pub const USBUSER_CONTROLLER_UNICODE_NAME = extern struct {
@@ -1557,10 +1557,10 @@ pub const USBUSER_CONTROLLER_UNICODE_NAME = extern struct {
     UnicodeName: USB_UNICODE_NAME,
 };
 
-pub const USB_PASS_THRU_PARAMETERS = packed struct {
-    FunctionGUID: Guid,
-    ParameterLength: u32,
-    Parameters: [4]u8,
+pub const USB_PASS_THRU_PARAMETERS = extern struct {
+    FunctionGUID: Guid align(1),
+    ParameterLength: u32 align(1),
+    Parameters: [4]u8 align(1),
 };
 
 pub const USBUSER_PASS_THRU_REQUEST = extern struct {
@@ -1597,17 +1597,17 @@ pub const WdmUsbPowerDeviceD1 = WDMUSB_POWER_STATE.DeviceD1;
 pub const WdmUsbPowerDeviceD2 = WDMUSB_POWER_STATE.DeviceD2;
 pub const WdmUsbPowerDeviceD3 = WDMUSB_POWER_STATE.DeviceD3;
 
-pub const USB_POWER_INFO = packed struct {
-    SystemState: WDMUSB_POWER_STATE,
-    HcDevicePowerState: WDMUSB_POWER_STATE,
-    HcDeviceWake: WDMUSB_POWER_STATE,
-    HcSystemWake: WDMUSB_POWER_STATE,
-    RhDevicePowerState: WDMUSB_POWER_STATE,
-    RhDeviceWake: WDMUSB_POWER_STATE,
-    RhSystemWake: WDMUSB_POWER_STATE,
-    LastSystemSleepState: WDMUSB_POWER_STATE,
-    CanWakeup: BOOLEAN,
-    IsPowered: BOOLEAN,
+pub const USB_POWER_INFO = extern struct {
+    SystemState: WDMUSB_POWER_STATE align(1),
+    HcDevicePowerState: WDMUSB_POWER_STATE align(1),
+    HcDeviceWake: WDMUSB_POWER_STATE align(1),
+    HcSystemWake: WDMUSB_POWER_STATE align(1),
+    RhDevicePowerState: WDMUSB_POWER_STATE align(1),
+    RhDeviceWake: WDMUSB_POWER_STATE align(1),
+    RhSystemWake: WDMUSB_POWER_STATE align(1),
+    LastSystemSleepState: WDMUSB_POWER_STATE align(1),
+    CanWakeup: BOOLEAN align(1),
+    IsPowered: BOOLEAN align(1),
 };
 
 pub const USBUSER_POWER_INFO_REQUEST = extern struct {
@@ -1615,9 +1615,9 @@ pub const USBUSER_POWER_INFO_REQUEST = extern struct {
     PowerInformation: USB_POWER_INFO,
 };
 
-pub const USB_OPEN_RAW_DEVICE_PARAMETERS = packed struct {
-    PortStatus: u16,
-    MaxPacketEp0: u16,
+pub const USB_OPEN_RAW_DEVICE_PARAMETERS = extern struct {
+    PortStatus: u16 align(1),
+    MaxPacketEp0: u16 align(1),
 };
 
 pub const USBUSER_OPEN_RAW_DEVICE = extern struct {
@@ -1625,8 +1625,8 @@ pub const USBUSER_OPEN_RAW_DEVICE = extern struct {
     Parameters: USB_OPEN_RAW_DEVICE_PARAMETERS,
 };
 
-pub const USB_CLOSE_RAW_DEVICE_PARAMETERS = packed struct {
-    xxx: u32,
+pub const USB_CLOSE_RAW_DEVICE_PARAMETERS = extern struct {
+    xxx: u32 align(1),
 };
 
 pub const USBUSER_CLOSE_RAW_DEVICE = extern struct {
@@ -1634,18 +1634,18 @@ pub const USBUSER_CLOSE_RAW_DEVICE = extern struct {
     Parameters: USB_CLOSE_RAW_DEVICE_PARAMETERS,
 };
 
-pub const USB_SEND_RAW_COMMAND_PARAMETERS = packed struct {
-    Usb_bmRequest: u8,
-    Usb_bRequest: u8,
-    Usb_wVlaue: u16,
-    Usb_wIndex: u16,
-    Usb_wLength: u16,
-    DeviceAddress: u16,
-    MaximumPacketSize: u16,
-    Timeout: u32,
-    DataLength: u32,
-    UsbdStatusCode: i32,
-    Data: [4]u8,
+pub const USB_SEND_RAW_COMMAND_PARAMETERS = extern struct {
+    Usb_bmRequest: u8 align(1),
+    Usb_bRequest: u8 align(1),
+    Usb_wVlaue: u16 align(1),
+    Usb_wIndex: u16 align(1),
+    Usb_wLength: u16 align(1),
+    DeviceAddress: u16 align(1),
+    MaximumPacketSize: u16 align(1),
+    Timeout: u32 align(1),
+    DataLength: u32 align(1),
+    UsbdStatusCode: i32 align(1),
+    Data: [4]u8 align(1),
 };
 
 pub const USBUSER_SEND_RAW_COMMAND = extern struct {
@@ -1653,18 +1653,18 @@ pub const USBUSER_SEND_RAW_COMMAND = extern struct {
     Parameters: USB_SEND_RAW_COMMAND_PARAMETERS,
 };
 
-pub const USB_BANDWIDTH_INFO = packed struct {
-    DeviceCount: u32,
-    TotalBusBandwidth: u32,
-    Total32secBandwidth: u32,
-    AllocedBulkAndControl: u32,
-    AllocedIso: u32,
-    AllocedInterrupt_1ms: u32,
-    AllocedInterrupt_2ms: u32,
-    AllocedInterrupt_4ms: u32,
-    AllocedInterrupt_8ms: u32,
-    AllocedInterrupt_16ms: u32,
-    AllocedInterrupt_32ms: u32,
+pub const USB_BANDWIDTH_INFO = extern struct {
+    DeviceCount: u32 align(1),
+    TotalBusBandwidth: u32 align(1),
+    Total32secBandwidth: u32 align(1),
+    AllocedBulkAndControl: u32 align(1),
+    AllocedIso: u32 align(1),
+    AllocedInterrupt_1ms: u32 align(1),
+    AllocedInterrupt_2ms: u32 align(1),
+    AllocedInterrupt_4ms: u32 align(1),
+    AllocedInterrupt_8ms: u32 align(1),
+    AllocedInterrupt_16ms: u32 align(1),
+    AllocedInterrupt_32ms: u32 align(1),
 };
 
 pub const USBUSER_BANDWIDTH_INFO_REQUEST = extern struct {
@@ -1672,23 +1672,23 @@ pub const USBUSER_BANDWIDTH_INFO_REQUEST = extern struct {
     BandwidthInformation: USB_BANDWIDTH_INFO,
 };
 
-pub const USB_BUS_STATISTICS_0 = packed struct {
-    DeviceCount: u32,
-    CurrentSystemTime: LARGE_INTEGER,
-    CurrentUsbFrame: u32,
-    BulkBytes: u32,
-    IsoBytes: u32,
-    InterruptBytes: u32,
-    ControlDataBytes: u32,
-    PciInterruptCount: u32,
-    HardResetCount: u32,
-    WorkerSignalCount: u32,
-    CommonBufferBytes: u32,
-    WorkerIdleTimeMs: u32,
-    RootHubEnabled: BOOLEAN,
-    RootHubDevicePowerState: u8,
-    Unused: u8,
-    NameIndex: u8,
+pub const USB_BUS_STATISTICS_0 = extern struct {
+    DeviceCount: u32 align(1),
+    CurrentSystemTime: LARGE_INTEGER align(1),
+    CurrentUsbFrame: u32 align(1),
+    BulkBytes: u32 align(1),
+    IsoBytes: u32 align(1),
+    InterruptBytes: u32 align(1),
+    ControlDataBytes: u32 align(1),
+    PciInterruptCount: u32 align(1),
+    HardResetCount: u32 align(1),
+    WorkerSignalCount: u32 align(1),
+    CommonBufferBytes: u32 align(1),
+    WorkerIdleTimeMs: u32 align(1),
+    RootHubEnabled: BOOLEAN align(1),
+    RootHubDevicePowerState: u8 align(1),
+    Unused: u8 align(1),
+    NameIndex: u8 align(1),
 };
 
 pub const USBUSER_BUS_STATISTICS_0_REQUEST = extern struct {
@@ -1696,13 +1696,13 @@ pub const USBUSER_BUS_STATISTICS_0_REQUEST = extern struct {
     BusStatistics0: USB_BUS_STATISTICS_0,
 };
 
-pub const USB_DRIVER_VERSION_PARAMETERS = packed struct {
-    DriverTrackingCode: u32,
-    USBDI_Version: u32,
-    USBUSER_Version: u32,
-    CheckedPortDriver: BOOLEAN,
-    CheckedMiniportDriver: BOOLEAN,
-    USB_Version: u16,
+pub const USB_DRIVER_VERSION_PARAMETERS = extern struct {
+    DriverTrackingCode: u32 align(1),
+    USBDI_Version: u32 align(1),
+    USBUSER_Version: u32 align(1),
+    CheckedPortDriver: BOOLEAN align(1),
+    CheckedMiniportDriver: BOOLEAN align(1),
+    USB_Version: u16 align(1),
 };
 
 pub const USBUSER_GET_DRIVER_VERSION = extern struct {
@@ -1719,9 +1719,9 @@ pub const USBUSER_GET_USB2HW_VERSION = extern struct {
     Parameters: USB_USB2HW_VERSION_PARAMETERS,
 };
 
-pub const USBUSER_REFRESH_HCT_REG = packed struct {
-    Header: USBUSER_REQUEST_HEADER,
-    Flags: u32,
+pub const USBUSER_REFRESH_HCT_REG = extern struct {
+    Header: USBUSER_REQUEST_HEADER align(1),
+    Flags: u32 align(1),
 };
 
 pub const WINUSB_PIPE_INFORMATION = extern struct {
@@ -1739,35 +1739,35 @@ pub const WINUSB_PIPE_INFORMATION_EX = extern struct {
     MaximumBytesPerInterval: u32,
 };
 
-pub const WINUSB_SETUP_PACKET = packed struct {
-    RequestType: u8,
-    Request: u8,
-    Value: u16,
-    Index: u16,
-    Length: u16,
+pub const WINUSB_SETUP_PACKET = extern struct {
+    RequestType: u8 align(1),
+    Request: u8 align(1),
+    Value: u16 align(1),
+    Index: u16 align(1),
+    Length: u16 align(1),
 };
 
-pub const USB_START_TRACKING_FOR_TIME_SYNC_INFORMATION = packed struct {
-    TimeTrackingHandle: ?HANDLE,
-    IsStartupDelayTolerable: BOOLEAN,
+pub const USB_START_TRACKING_FOR_TIME_SYNC_INFORMATION = extern struct {
+    TimeTrackingHandle: ?HANDLE align(1),
+    IsStartupDelayTolerable: BOOLEAN align(1),
 };
 
-pub const USB_STOP_TRACKING_FOR_TIME_SYNC_INFORMATION = packed struct {
-    TimeTrackingHandle: ?HANDLE,
+pub const USB_STOP_TRACKING_FOR_TIME_SYNC_INFORMATION = extern struct {
+    TimeTrackingHandle: ?HANDLE align(1),
 };
 
-pub const USB_FRAME_NUMBER_AND_QPC_FOR_TIME_SYNC_INFORMATION = packed struct {
-    TimeTrackingHandle: ?HANDLE,
-    InputFrameNumber: u32,
-    InputMicroFrameNumber: u32,
-    QueryPerformanceCounterAtInputFrameOrMicroFrame: LARGE_INTEGER,
-    QueryPerformanceCounterFrequency: LARGE_INTEGER,
-    PredictedAccuracyInMicroSeconds: u32,
-    CurrentGenerationID: u32,
-    CurrentQueryPerformanceCounter: LARGE_INTEGER,
-    CurrentHardwareFrameNumber: u32,
-    CurrentHardwareMicroFrameNumber: u32,
-    CurrentUSBFrameNumber: u32,
+pub const USB_FRAME_NUMBER_AND_QPC_FOR_TIME_SYNC_INFORMATION = extern struct {
+    TimeTrackingHandle: ?HANDLE align(1),
+    InputFrameNumber: u32 align(1),
+    InputMicroFrameNumber: u32 align(1),
+    QueryPerformanceCounterAtInputFrameOrMicroFrame: LARGE_INTEGER align(1),
+    QueryPerformanceCounterFrequency: LARGE_INTEGER align(1),
+    PredictedAccuracyInMicroSeconds: u32 align(1),
+    CurrentGenerationID: u32 align(1),
+    CurrentQueryPerformanceCounter: LARGE_INTEGER align(1),
+    CurrentHardwareFrameNumber: u32 align(1),
+    CurrentHardwareMicroFrameNumber: u32 align(1),
+    CurrentUSBFrameNumber: u32 align(1),
 };
 
 pub const USBFN_EVENT = enum(i32) {

@@ -527,10 +527,10 @@ pub const WCN_VALUE_SS_RESERVED00 = WCN_VALUE_TYPE_WI_FI_PROTECTED_SETUP_STATE.R
 pub const WCN_VALUE_SS_NOT_CONFIGURED = WCN_VALUE_TYPE_WI_FI_PROTECTED_SETUP_STATE.NOT_CONFIGURED;
 pub const WCN_VALUE_SS_CONFIGURED = WCN_VALUE_TYPE_WI_FI_PROTECTED_SETUP_STATE.CONFIGURED;
 
-pub const WCN_VALUE_TYPE_PRIMARY_DEVICE_TYPE = packed struct {
-    Category: u16,
-    SubCategoryOUI: u32,
-    SubCategory: u16,
+pub const WCN_VALUE_TYPE_PRIMARY_DEVICE_TYPE = extern struct {
+    Category: u16 align(1),
+    SubCategoryOUI: u32 align(1),
+    SubCategory: u16 align(1),
 };
 
 const CLSID_WCNDeviceObject_Value = Guid.initString("c100bea7-d33a-4a4b-bf23-bbef4663d017");

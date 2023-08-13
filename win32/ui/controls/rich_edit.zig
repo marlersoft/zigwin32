@@ -1114,19 +1114,17 @@ pub const AutoCorrectProc = switch (@import("builtin").zig_backend) {
 } ;
 
 pub const RICHEDIT_IMAGE_PARAMETERS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    xWidth: i32,
-    yHeight: i32,
-    Ascent: i32,
-    Type: TEXT_ALIGN_OPTIONS,
-    pwszAlternateText: ?[*:0]const u16,
-    pIStream: ?*IStream,
+    xWidth: i32 align(4),
+    yHeight: i32 align(4),
+    Ascent: i32 align(4),
+    Type: TEXT_ALIGN_OPTIONS align(4),
+    pwszAlternateText: ?[*:0]const u16 align(4),
+    pIStream: ?*IStream align(4),
 };
 
 pub const ENDCOMPOSITIONNOTIFY = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    dwCode: ENDCOMPOSITIONNOTIFY_CODE,
+    nmhdr: NMHDR align(4),
+    dwCode: ENDCOMPOSITIONNOTIFY_CODE align(4),
 };
 
 pub const EDITWORDBREAKPROCEX = switch (@import("builtin").zig_backend) {
@@ -1210,15 +1208,13 @@ pub const CHARRANGE = extern struct {
 };
 
 pub const TEXTRANGEA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    lpstrText: ?PSTR,
+    chrg: CHARRANGE align(4),
+    lpstrText: ?PSTR align(4),
 };
 
 pub const TEXTRANGEW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    lpstrText: ?PWSTR,
+    chrg: CHARRANGE align(4),
+    lpstrText: ?PWSTR align(4),
 };
 
 pub const EDITSTREAMCALLBACK = switch (@import("builtin").zig_backend) {
@@ -1237,45 +1233,39 @@ pub const EDITSTREAMCALLBACK = switch (@import("builtin").zig_backend) {
 } ;
 
 pub const EDITSTREAM = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwCookie: usize,
-    dwError: u32,
-    pfnCallback: ?EDITSTREAMCALLBACK,
+    dwCookie: usize align(4),
+    dwError: u32 align(4),
+    pfnCallback: ?EDITSTREAMCALLBACK align(4),
 };
 
 pub const FINDTEXTA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    lpstrText: ?[*:0]const u8,
+    chrg: CHARRANGE align(4),
+    lpstrText: ?[*:0]const u8 align(4),
 };
 
 pub const FINDTEXTW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    lpstrText: ?[*:0]const u16,
+    chrg: CHARRANGE align(4),
+    lpstrText: ?[*:0]const u16 align(4),
 };
 
 pub const FINDTEXTEXA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    lpstrText: ?[*:0]const u8,
-    chrgText: CHARRANGE,
+    chrg: CHARRANGE align(4),
+    lpstrText: ?[*:0]const u8 align(4),
+    chrgText: CHARRANGE align(4),
 };
 
 pub const FINDTEXTEXW = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    lpstrText: ?[*:0]const u16,
-    chrgText: CHARRANGE,
+    chrg: CHARRANGE align(4),
+    lpstrText: ?[*:0]const u16 align(4),
+    chrgText: CHARRANGE align(4),
 };
 
 pub const FORMATRANGE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    hdc: ?HDC,
-    hdcTarget: ?HDC,
-    rc: RECT,
-    rcPage: RECT,
-    chrg: CHARRANGE,
+    hdc: ?HDC align(4),
+    hdcTarget: ?HDC align(4),
+    rc: RECT align(4),
+    rcPage: RECT align(4),
+    chrg: CHARRANGE align(4),
 };
 
 pub const PARAFORMAT = extern struct {
@@ -1313,111 +1303,96 @@ pub const PARAFORMAT2 = extern struct {
 };
 
 pub const MSGFILTER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
+    nmhdr: NMHDR align(4),
+    msg: u32 align(4),
+    wParam: WPARAM align(4),
+    lParam: LPARAM align(4),
 };
 
 pub const REQRESIZE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    rc: RECT,
+    nmhdr: NMHDR align(4),
+    rc: RECT align(4),
 };
 
 pub const SELCHANGE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    chrg: CHARRANGE,
-    seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
+    nmhdr: NMHDR align(4),
+    chrg: CHARRANGE align(4),
+    seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE align(4),
 };
 
 pub const _grouptypingchange = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    fGroupTyping: BOOL,
+    nmhdr: NMHDR align(4),
+    fGroupTyping: BOOL align(4),
 };
 
 pub const CLIPBOARDFORMAT = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    cf: u16,
+    nmhdr: NMHDR align(4),
+    cf: u16 align(4),
 };
 
 pub const GETCONTEXTMENUEX = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    chrg: CHARRANGE,
-    dwFlags: u32,
-    pt: POINT,
-    pvReserved: ?*anyopaque,
+    chrg: CHARRANGE align(4),
+    dwFlags: u32 align(4),
+    pt: POINT align(4),
+    pvReserved: ?*anyopaque align(4),
 };
 
 pub const ENDROPFILES = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    hDrop: ?HANDLE,
-    cp: i32,
-    fProtected: BOOL,
+    nmhdr: NMHDR align(4),
+    hDrop: ?HANDLE align(4),
+    cp: i32 align(4),
+    fProtected: BOOL align(4),
 };
 
 pub const ENPROTECTED = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    chrg: CHARRANGE,
+    nmhdr: NMHDR align(4),
+    msg: u32 align(4),
+    wParam: WPARAM align(4),
+    lParam: LPARAM align(4),
+    chrg: CHARRANGE align(4),
 };
 
 pub const ENSAVECLIPBOARD = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    cObjectCount: i32,
-    cch: i32,
+    nmhdr: NMHDR align(4),
+    cObjectCount: i32 align(4),
+    cch: i32 align(4),
 };
 
 pub const ENOLEOPFAILED = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    iob: i32,
-    lOper: i32,
-    hr: HRESULT,
+    nmhdr: NMHDR align(4),
+    iob: i32 align(4),
+    lOper: i32 align(4),
+    hr: HRESULT align(4),
 };
 
 pub const OBJECTPOSITIONS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    cObjectCount: i32,
-    pcpPositions: ?*i32,
+    nmhdr: NMHDR align(4),
+    cObjectCount: i32 align(4),
+    pcpPositions: ?*i32 align(4),
 };
 
 pub const ENLINK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    msg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    chrg: CHARRANGE,
+    nmhdr: NMHDR align(4),
+    msg: u32 align(4),
+    wParam: WPARAM align(4),
+    lParam: LPARAM align(4),
+    chrg: CHARRANGE align(4),
 };
 
 pub const ENLOWFIRTF = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    szControl: ?PSTR,
+    nmhdr: NMHDR align(4),
+    szControl: ?PSTR align(4),
 };
 
 pub const ENCORRECTTEXT = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    nmhdr: NMHDR,
-    chrg: CHARRANGE,
-    seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
+    nmhdr: NMHDR align(4),
+    chrg: CHARRANGE align(4),
+    seltyp: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE align(4),
 };
 
 pub const PUNCTUATION = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    iSize: u32,
-    szPunctuation: ?PSTR,
+    iSize: u32 align(4),
+    szPunctuation: ?PSTR align(4),
 };
 
 pub const COMPCOLOR = extern struct {
@@ -1427,9 +1402,8 @@ pub const COMPCOLOR = extern struct {
 };
 
 pub const REPASTESPECIAL = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwAspect: DVASPECT,
-    dwParam: usize,
+    dwAspect: DVASPECT align(4),
+    dwParam: usize align(4),
 };
 
 pub const UNDONAMEID = enum(i32) {
@@ -1455,12 +1429,11 @@ pub const SETTEXTEX = extern struct {
 };
 
 pub const GETTEXTEX = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cb: u32,
-    flags: GETTEXTEX_FLAGS,
-    codepage: u32,
-    lpDefaultChar: ?[*:0]const u8,
-    lpUsedDefChar: ?*i32,
+    cb: u32 align(4),
+    flags: GETTEXTEX_FLAGS align(4),
+    codepage: u32 align(4),
+    lpDefaultChar: ?[*:0]const u8 align(4),
+    lpUsedDefChar: ?*i32 align(4),
 };
 
 pub const GETTEXTLENGTHEX = extern struct {
@@ -1498,10 +1471,9 @@ pub const hyphresult = extern struct {
 };
 
 pub const HYPHENATEINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbSize: i16,
-    dxHyphenateZone: i16,
-    pfnHyphenate: isize,
+    cbSize: i16 align(4),
+    dxHyphenateZone: i16 align(4),
+    pfnHyphenate: isize align(4),
 };
 
 pub const TXTBACKSTYLE = enum(i32) {

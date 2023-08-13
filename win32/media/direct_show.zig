@@ -16452,19 +16452,19 @@ pub const ISDBCAS_REQUEST_ID = enum(i32) {
 pub const ISDBCAS_REQUEST_ID_EMG = ISDBCAS_REQUEST_ID.G;
 pub const ISDBCAS_REQUEST_ID_EMD = ISDBCAS_REQUEST_ID.D;
 
-pub const BDA_ISDBCAS_REQUESTHEADER = packed struct {
-    bInstruction: u8,
-    bReserved: [3]u8,
-    ulDataLength: u32,
-    argbIsdbCommand: [1]u8,
+pub const BDA_ISDBCAS_REQUESTHEADER = extern struct {
+    bInstruction: u8 align(1),
+    bReserved: [3]u8 align(1),
+    ulDataLength: u32 align(1),
+    argbIsdbCommand: [1]u8 align(1),
 };
 
-pub const BDA_ISDBCAS_RESPONSEDATA = packed struct {
-    lResult: i32,
-    ulRequestID: u32,
-    ulIsdbStatus: u32,
-    ulIsdbDataSize: u32,
-    argbIsdbCommandData: [1]u8,
+pub const BDA_ISDBCAS_RESPONSEDATA = extern struct {
+    lResult: i32 align(1),
+    ulRequestID: u32 align(1),
+    ulIsdbStatus: u32 align(1),
+    ulIsdbDataSize: u32 align(1),
+    argbIsdbCommandData: [1]u8 align(1),
 };
 
 pub const BDA_ISDBCAS_EMG_REQ = extern struct {
@@ -16490,18 +16490,17 @@ pub const PID_ELEMENTARY_STREAM = MUX_PID_TYPE.ELEMENTARY_STREAM;
 pub const PID_MPEG2_SECTION_PSI_SI = MUX_PID_TYPE.MPEG2_SECTION_PSI_SI;
 
 pub const BDA_MUX_PIDLISTITEM = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    usPIDNumber: u16,
-    usProgramNumber: u16,
-    ePIDType: MUX_PID_TYPE,
+    usPIDNumber: u16 align(2),
+    usProgramNumber: u16 align(2),
+    ePIDType: MUX_PID_TYPE align(2),
 };
 
-pub const BDA_TS_SELECTORINFO = packed struct {
-    bTSInfolength: u8,
-    bReserved: [2]u8,
-    guidNetworkType: Guid,
-    bTSIDCount: u8,
-    usTSID: [1]u16,
+pub const BDA_TS_SELECTORINFO = extern struct {
+    bTSInfolength: u8 align(1),
+    bReserved: [2]u8 align(1),
+    guidNetworkType: Guid align(1),
+    bTSIDCount: u8 align(1),
+    usTSID: [1]u16 align(1),
 };
 
 pub const BDA_TS_SELECTORINFO_ISDBS_EXT = extern struct {
@@ -34210,217 +34209,197 @@ pub const IVPVBINotify = extern struct {
 };
 
 pub const RIFFCHUNK = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
+    fcc: u32 align(2),
+    cb: u32 align(2),
 };
 
 pub const RIFFLIST = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
-    fccListType: u32,
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    fccListType: u32 align(2),
 };
 
 pub const AVIMAINHEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
-    dwMicroSecPerFrame: u32,
-    dwMaxBytesPerSec: u32,
-    dwPaddingGranularity: u32,
-    dwFlags: u32,
-    dwTotalFrames: u32,
-    dwInitialFrames: u32,
-    dwStreams: u32,
-    dwSuggestedBufferSize: u32,
-    dwWidth: u32,
-    dwHeight: u32,
-    dwReserved: [4]u32,
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    dwMicroSecPerFrame: u32 align(2),
+    dwMaxBytesPerSec: u32 align(2),
+    dwPaddingGranularity: u32 align(2),
+    dwFlags: u32 align(2),
+    dwTotalFrames: u32 align(2),
+    dwInitialFrames: u32 align(2),
+    dwStreams: u32 align(2),
+    dwSuggestedBufferSize: u32 align(2),
+    dwWidth: u32 align(2),
+    dwHeight: u32 align(2),
+    dwReserved: [4]u32 align(2),
 };
 
 pub const AVIEXTHEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
-    dwGrandFrames: u32,
-    dwFuture: [61]u32,
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    dwGrandFrames: u32 align(2),
+    dwFuture: [61]u32 align(2),
 };
 
 pub const AVISTREAMHEADER = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
-    fccType: u32,
-    fccHandler: u32,
-    dwFlags: u32,
-    wPriority: u16,
-    wLanguage: u16,
-    dwInitialFrames: u32,
-    dwScale: u32,
-    dwRate: u32,
-    dwStart: u32,
-    dwLength: u32,
-    dwSuggestedBufferSize: u32,
-    dwQuality: u32,
-    dwSampleSize: u32,
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    fccType: u32 align(2),
+    fccHandler: u32 align(2),
+    dwFlags: u32 align(2),
+    wPriority: u16 align(2),
+    wLanguage: u16 align(2),
+    dwInitialFrames: u32 align(2),
+    dwScale: u32 align(2),
+    dwRate: u32 align(2),
+    dwStart: u32 align(2),
+    dwLength: u32 align(2),
+    dwSuggestedBufferSize: u32 align(2),
+    dwQuality: u32 align(2),
+    dwSampleSize: u32 align(2),
     rcFrame: extern struct {
         left: i16,
         top: i16,
         right: i16,
         bottom: i16,
-    },
+    } align(2),
 };
 
 pub const AVIOLDINDEX = extern struct {
     pub const _avioldindex_entry = extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        dwChunkId: u32,
-        dwFlags: u32,
-        dwOffset: u32,
-        dwSize: u32,
+        dwChunkId: u32 align(2),
+        dwFlags: u32 align(2),
+        dwOffset: u32 align(2),
+        dwSize: u32 align(2),
     };
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
-    aIndex: [1]_avioldindex_entry,
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    aIndex: [1]_avioldindex_entry align(2),
 };
 
 pub const TIMECODEDATA = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    time: TIMECODE,
-    dwSMPTEflags: u32,
-    dwUser: u32,
+    time: TIMECODE align(2),
+    dwSMPTEflags: u32 align(2),
+    dwUser: u32 align(2),
 };
 
 pub const AVIMETAINDEX = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
-    wLongsPerEntry: u16,
-    bIndexSubType: u8,
-    bIndexType: u8,
-    nEntriesInUse: u32,
-    dwChunkId: u32,
-    dwReserved: [3]u32,
-    adwIndex: [1]u32,
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    wLongsPerEntry: u16 align(2),
+    bIndexSubType: u8 align(2),
+    bIndexType: u8 align(2),
+    nEntriesInUse: u32 align(2),
+    dwChunkId: u32 align(2),
+    dwReserved: [3]u32 align(2),
+    adwIndex: [1]u32 align(2),
 };
 
 pub const AVISUPERINDEX = extern struct {
     pub const _avisuperindex_entry = extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        qwOffset: u64,
-        dwSize: u32,
-        dwDuration: u32,
+        qwOffset: u64 align(2),
+        dwSize: u32 align(2),
+        dwDuration: u32 align(2),
     };
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
-    wLongsPerEntry: u16,
-    bIndexSubType: u8,
-    bIndexType: u8,
-    nEntriesInUse: u32,
-    dwChunkId: u32,
-    dwReserved: [3]u32,
-    aIndex: [1022]_avisuperindex_entry,
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    wLongsPerEntry: u16 align(2),
+    bIndexSubType: u8 align(2),
+    bIndexType: u8 align(2),
+    nEntriesInUse: u32 align(2),
+    dwChunkId: u32 align(2),
+    dwReserved: [3]u32 align(2),
+    aIndex: [1022]_avisuperindex_entry align(2),
 };
 
 pub const AVISTDINDEX_ENTRY = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwOffset: u32,
-    dwSize: u32,
+    dwOffset: u32 align(2),
+    dwSize: u32 align(2),
 };
 
 pub const AVISTDINDEX = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
-    wLongsPerEntry: u16,
-    bIndexSubType: u8,
-    bIndexType: u8,
-    nEntriesInUse: u32,
-    dwChunkId: u32,
-    qwBaseOffset: u64,
-    dwReserved_3: u32,
-    aIndex: [2044]AVISTDINDEX_ENTRY,
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    wLongsPerEntry: u16 align(2),
+    bIndexSubType: u8 align(2),
+    bIndexType: u8 align(2),
+    nEntriesInUse: u32 align(2),
+    dwChunkId: u32 align(2),
+    qwBaseOffset: u64 align(2),
+    dwReserved_3: u32 align(2),
+    aIndex: [2044]AVISTDINDEX_ENTRY align(2),
 };
 
 pub const AVITIMEDINDEX_ENTRY = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwOffset: u32,
-    dwSize: u32,
-    dwDuration: u32,
+    dwOffset: u32 align(2),
+    dwSize: u32 align(2),
+    dwDuration: u32 align(2),
 };
 
 pub const _avitimedindex = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
-    wLongsPerEntry: u16,
-    bIndexSubType: u8,
-    bIndexType: u8,
-    nEntriesInUse: u32,
-    dwChunkId: u32,
-    qwBaseOffset: u64,
-    dwReserved_3: u32,
-    aIndex: [1362]AVITIMEDINDEX_ENTRY,
-    adwTrailingFill: [2734]u32,
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    wLongsPerEntry: u16 align(2),
+    bIndexSubType: u8 align(2),
+    bIndexType: u8 align(2),
+    nEntriesInUse: u32 align(2),
+    dwChunkId: u32 align(2),
+    qwBaseOffset: u64 align(2),
+    dwReserved_3: u32 align(2),
+    aIndex: [1362]AVITIMEDINDEX_ENTRY align(2),
+    adwTrailingFill: [2734]u32 align(2),
 };
 
 pub const AVITIMECODEINDEX = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
-    wLongsPerEntry: u16,
-    bIndexSubType: u8,
-    bIndexType: u8,
-    nEntriesInUse: u32,
-    dwChunkId: u32,
-    dwReserved: [3]u32,
-    aIndex: [1022]TIMECODEDATA,
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    wLongsPerEntry: u16 align(2),
+    bIndexSubType: u8 align(2),
+    bIndexType: u8 align(2),
+    nEntriesInUse: u32 align(2),
+    dwChunkId: u32 align(2),
+    dwReserved: [3]u32 align(2),
+    aIndex: [1022]TIMECODEDATA align(2),
 };
 
 pub const AVITCDLINDEX_ENTRY = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    dwTick: u32,
-    time: TIMECODE,
-    dwSMPTEflags: u32,
-    dwUser: u32,
-    szReelId: [12]i8,
+    dwTick: u32 align(2),
+    time: TIMECODE align(2),
+    dwSMPTEflags: u32 align(2),
+    dwUser: u32 align(2),
+    szReelId: [12]i8 align(2),
 };
 
 pub const _avitcdlindex = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
-    wLongsPerEntry: u16,
-    bIndexSubType: u8,
-    bIndexType: u8,
-    nEntriesInUse: u32,
-    dwChunkId: u32,
-    dwReserved: [3]u32,
-    aIndex: [584]AVITCDLINDEX_ENTRY,
-    adwTrailingFill: [3512]u32,
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    wLongsPerEntry: u16 align(2),
+    bIndexSubType: u8 align(2),
+    bIndexType: u8 align(2),
+    nEntriesInUse: u32 align(2),
+    dwChunkId: u32 align(2),
+    dwReserved: [3]u32 align(2),
+    aIndex: [584]AVITCDLINDEX_ENTRY align(2),
+    adwTrailingFill: [3512]u32 align(2),
 };
 
 pub const AVIFIELDINDEX = extern struct {
     pub const _avifieldindex_entry = extern struct {
-        // WARNING: unable to add field alignment because it's causing a compiler bug
-        dwOffset: u32,
-        dwSize: u32,
-        dwOffsetField2: u32,
+        dwOffset: u32 align(2),
+        dwSize: u32 align(2),
+        dwOffsetField2: u32 align(2),
     };
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    fcc: u32,
-    cb: u32,
-    wLongsPerEntry: u16,
-    bIndexSubType: u8,
-    bIndexType: u8,
-    nEntriesInUse: u32,
-    dwChunkId: u32,
-    qwBaseOffset: u64,
-    dwReserved3: u32,
-    aIndex: [1]_avifieldindex_entry,
+    fcc: u32 align(2),
+    cb: u32 align(2),
+    wLongsPerEntry: u16 align(2),
+    bIndexSubType: u8 align(2),
+    bIndexType: u8 align(2),
+    nEntriesInUse: u32 align(2),
+    dwChunkId: u32 align(2),
+    qwBaseOffset: u64 align(2),
+    dwReserved3: u32 align(2),
+    aIndex: [1]_avifieldindex_entry align(2),
 };
 
 pub const MainAVIHeader = extern struct {
@@ -42815,15 +42794,15 @@ pub const FormatNotSupportedEvents = enum(i32) {
 pub const FORMATNOTSUPPORTED_CLEAR = FormatNotSupportedEvents.CLEAR;
 pub const FORMATNOTSUPPORTED_NOTSUPPORTED = FormatNotSupportedEvents.NOTSUPPORTED;
 
-pub const WMDRMProtectionInfo = packed struct {
-    wszKID: [25]u16,
-    qwCounter: u64,
-    qwIndex: u64,
-    bOffset: u8,
+pub const WMDRMProtectionInfo = extern struct {
+    wszKID: [25]u16 align(1),
+    qwCounter: u64 align(1),
+    qwIndex: u64 align(1),
+    bOffset: u8 align(1),
 };
 
-pub const BadSampleInfo = packed struct {
-    hrReason: HRESULT,
+pub const BadSampleInfo = extern struct {
+    hrReason: HRESULT align(1),
 };
 
 pub const ProtType = enum(i32) {
@@ -54939,12 +54918,12 @@ pub const CLSID_Mpeg2Stream = &CLSID_Mpeg2Stream_Value;
 const CLSID_Mpeg2Data_Value = Guid.initString("c666e115-bb62-4027-a113-82d643fe2d99");
 pub const CLSID_Mpeg2Data = &CLSID_Mpeg2Data_Value;
 
-pub const PID_BITS_MIDL = packed struct {
-    Bits: u16,
+pub const PID_BITS_MIDL = extern struct {
+    Bits: u16 align(1),
 };
 
-pub const MPEG_HEADER_BITS_MIDL = packed struct {
-    Bits: u16,
+pub const MPEG_HEADER_BITS_MIDL = extern struct {
+    Bits: u16 align(1),
 };
 
 pub const MPEG_HEADER_VERSION_BITS_MIDL = extern struct {
@@ -54958,149 +54937,149 @@ pub const MPEG_CURRENT_NEXT_BIT = enum(i32) {
 pub const MPEG_SECTION_IS_NEXT = MPEG_CURRENT_NEXT_BIT.NEXT;
 pub const MPEG_SECTION_IS_CURRENT = MPEG_CURRENT_NEXT_BIT.CURRENT;
 
-pub const TID_EXTENSION = packed struct {
-    wTidExt: u16,
-    wCount: u16,
+pub const TID_EXTENSION = extern struct {
+    wTidExt: u16 align(1),
+    wCount: u16 align(1),
 };
 
 pub const SECTION = extern struct {
     TableId: u8,
-    Header: packed union {
-        S: MPEG_HEADER_BITS_MIDL,
-        W: u16,
+    Header: extern union {
+        S: MPEG_HEADER_BITS_MIDL align(1),
+        W: u16 align(1),
     },
     SectionData: [1]u8,
 };
 
-pub const LONG_SECTION = packed struct {
-    TableId: u8,
-    Header: packed union {
-        S: MPEG_HEADER_BITS_MIDL,
-        W: u16,
-    },
-    TableIdExtension: u16,
+pub const LONG_SECTION = extern struct {
+    TableId: u8 align(1),
+    Header: extern union {
+        S: MPEG_HEADER_BITS_MIDL align(1),
+        W: u16 align(1),
+    } align(1),
+    TableIdExtension: u16 align(1),
     Version: extern union {
         S: MPEG_HEADER_VERSION_BITS_MIDL,
         B: u8,
-    },
-    SectionNumber: u8,
-    LastSectionNumber: u8,
-    RemainingData: [1]u8,
+    } align(1),
+    SectionNumber: u8 align(1),
+    LastSectionNumber: u8 align(1),
+    RemainingData: [1]u8 align(1),
 };
 
-pub const DSMCC_SECTION = packed struct {
-    TableId: u8,
-    Header: packed union {
-        S: MPEG_HEADER_BITS_MIDL,
-        W: u16,
-    },
-    TableIdExtension: u16,
+pub const DSMCC_SECTION = extern struct {
+    TableId: u8 align(1),
+    Header: extern union {
+        S: MPEG_HEADER_BITS_MIDL align(1),
+        W: u16 align(1),
+    } align(1),
+    TableIdExtension: u16 align(1),
     Version: extern union {
         S: MPEG_HEADER_VERSION_BITS_MIDL,
         B: u8,
-    },
-    SectionNumber: u8,
-    LastSectionNumber: u8,
-    ProtocolDiscriminator: u8,
-    DsmccType: u8,
-    MessageId: u16,
-    TransactionId: u32,
-    Reserved: u8,
-    AdaptationLength: u8,
-    MessageLength: u16,
-    RemainingData: [1]u8,
+    } align(1),
+    SectionNumber: u8 align(1),
+    LastSectionNumber: u8 align(1),
+    ProtocolDiscriminator: u8 align(1),
+    DsmccType: u8 align(1),
+    MessageId: u16 align(1),
+    TransactionId: u32 align(1),
+    Reserved: u8 align(1),
+    AdaptationLength: u8 align(1),
+    MessageLength: u16 align(1),
+    RemainingData: [1]u8 align(1),
 };
 
-pub const MPEG_RQST_PACKET = packed struct {
-    dwLength: u32,
-    pSection: ?*SECTION,
+pub const MPEG_RQST_PACKET = extern struct {
+    dwLength: u32 align(1),
+    pSection: ?*SECTION align(1),
 };
 
-pub const MPEG_PACKET_LIST = packed struct {
-    wPacketCount: u16,
-    PacketList: [1]?*MPEG_RQST_PACKET,
+pub const MPEG_PACKET_LIST = extern struct {
+    wPacketCount: u16 align(1),
+    PacketList: [1]?*MPEG_RQST_PACKET align(1),
 };
 
-pub const DSMCC_FILTER_OPTIONS = packed struct {
-    fSpecifyProtocol: BOOL,
-    Protocol: u8,
-    fSpecifyType: BOOL,
-    Type: u8,
-    fSpecifyMessageId: BOOL,
-    MessageId: u16,
-    fSpecifyTransactionId: BOOL,
-    fUseTrxIdMessageIdMask: BOOL,
-    TransactionId: u32,
-    fSpecifyModuleVersion: BOOL,
-    ModuleVersion: u8,
-    fSpecifyBlockNumber: BOOL,
-    BlockNumber: u16,
-    fGetModuleCall: BOOL,
-    NumberOfBlocksInModule: u16,
+pub const DSMCC_FILTER_OPTIONS = extern struct {
+    fSpecifyProtocol: BOOL align(1),
+    Protocol: u8 align(1),
+    fSpecifyType: BOOL align(1),
+    Type: u8 align(1),
+    fSpecifyMessageId: BOOL align(1),
+    MessageId: u16 align(1),
+    fSpecifyTransactionId: BOOL align(1),
+    fUseTrxIdMessageIdMask: BOOL align(1),
+    TransactionId: u32 align(1),
+    fSpecifyModuleVersion: BOOL align(1),
+    ModuleVersion: u8 align(1),
+    fSpecifyBlockNumber: BOOL align(1),
+    BlockNumber: u16 align(1),
+    fGetModuleCall: BOOL align(1),
+    NumberOfBlocksInModule: u16 align(1),
 };
 
-pub const ATSC_FILTER_OPTIONS = packed struct {
-    fSpecifyEtmId: BOOL,
-    EtmId: u32,
+pub const ATSC_FILTER_OPTIONS = extern struct {
+    fSpecifyEtmId: BOOL align(1),
+    EtmId: u32 align(1),
 };
 
-pub const DVB_EIT_FILTER_OPTIONS = packed struct {
-    fSpecifySegment: BOOL,
-    bSegment: u8,
+pub const DVB_EIT_FILTER_OPTIONS = extern struct {
+    fSpecifySegment: BOOL align(1),
+    bSegment: u8 align(1),
 };
 
-pub const MPEG2_FILTER = packed struct {
-    bVersionNumber: u8,
-    wFilterSize: u16,
-    fUseRawFilteringBits: BOOL,
-    Filter: [16]u8,
-    Mask: [16]u8,
-    fSpecifyTableIdExtension: BOOL,
-    TableIdExtension: u16,
-    fSpecifyVersion: BOOL,
-    Version: u8,
-    fSpecifySectionNumber: BOOL,
-    SectionNumber: u8,
-    fSpecifyCurrentNext: BOOL,
-    fNext: BOOL,
-    fSpecifyDsmccOptions: BOOL,
-    Dsmcc: DSMCC_FILTER_OPTIONS,
-    fSpecifyAtscOptions: BOOL,
-    Atsc: ATSC_FILTER_OPTIONS,
+pub const MPEG2_FILTER = extern struct {
+    bVersionNumber: u8 align(1),
+    wFilterSize: u16 align(1),
+    fUseRawFilteringBits: BOOL align(1),
+    Filter: [16]u8 align(1),
+    Mask: [16]u8 align(1),
+    fSpecifyTableIdExtension: BOOL align(1),
+    TableIdExtension: u16 align(1),
+    fSpecifyVersion: BOOL align(1),
+    Version: u8 align(1),
+    fSpecifySectionNumber: BOOL align(1),
+    SectionNumber: u8 align(1),
+    fSpecifyCurrentNext: BOOL align(1),
+    fNext: BOOL align(1),
+    fSpecifyDsmccOptions: BOOL align(1),
+    Dsmcc: DSMCC_FILTER_OPTIONS align(1),
+    fSpecifyAtscOptions: BOOL align(1),
+    Atsc: ATSC_FILTER_OPTIONS align(1),
 };
 
-pub const MPEG2_FILTER2 = packed struct {
+pub const MPEG2_FILTER2 = extern struct {
     Anonymous: extern union {
-        Anonymous: packed struct {
-            bVersionNumber: u8,
-            wFilterSize: u16,
-            fUseRawFilteringBits: BOOL,
-            Filter: [16]u8,
-            Mask: [16]u8,
-            fSpecifyTableIdExtension: BOOL,
-            TableIdExtension: u16,
-            fSpecifyVersion: BOOL,
-            Version: u8,
-            fSpecifySectionNumber: BOOL,
-            SectionNumber: u8,
-            fSpecifyCurrentNext: BOOL,
-            fNext: BOOL,
-            fSpecifyDsmccOptions: BOOL,
-            Dsmcc: DSMCC_FILTER_OPTIONS,
-            fSpecifyAtscOptions: BOOL,
-            Atsc: ATSC_FILTER_OPTIONS,
+        Anonymous: extern struct {
+            bVersionNumber: u8 align(1),
+            wFilterSize: u16 align(1),
+            fUseRawFilteringBits: BOOL align(1),
+            Filter: [16]u8 align(1),
+            Mask: [16]u8 align(1),
+            fSpecifyTableIdExtension: BOOL align(1),
+            TableIdExtension: u16 align(1),
+            fSpecifyVersion: BOOL align(1),
+            Version: u8 align(1),
+            fSpecifySectionNumber: BOOL align(1),
+            SectionNumber: u8 align(1),
+            fSpecifyCurrentNext: BOOL align(1),
+            fNext: BOOL align(1),
+            fSpecifyDsmccOptions: BOOL align(1),
+            Dsmcc: DSMCC_FILTER_OPTIONS align(1),
+            fSpecifyAtscOptions: BOOL align(1),
+            Atsc: ATSC_FILTER_OPTIONS align(1),
         },
         bVersion1Bytes: [124]u8,
-    },
-    fSpecifyDvbEitOptions: BOOL,
-    DvbEit: DVB_EIT_FILTER_OPTIONS,
+    } align(1),
+    fSpecifyDvbEitOptions: BOOL align(1),
+    DvbEit: DVB_EIT_FILTER_OPTIONS align(1),
 };
 
-pub const MPEG_STREAM_BUFFER = packed struct {
-    hr: HRESULT,
-    dwDataBufferSize: u32,
-    dwSizeOfDataRead: u32,
-    pDataBuffer: ?*u8,
+pub const MPEG_STREAM_BUFFER = extern struct {
+    hr: HRESULT align(1),
+    dwDataBufferSize: u32 align(1),
+    dwSizeOfDataRead: u32 align(1),
+    pDataBuffer: ?*u8 align(1),
 };
 
 pub const MPEG_TIME = extern struct {
@@ -55109,10 +55088,10 @@ pub const MPEG_TIME = extern struct {
     Seconds: u8,
 };
 
-pub const MPEG_DATE = packed struct {
-    Date: u8,
-    Month: u8,
-    Year: u16,
+pub const MPEG_DATE = extern struct {
+    Date: u8 align(1),
+    Month: u8 align(1),
+    Year: u16 align(1),
 };
 
 pub const MPEG_DATE_AND_TIME = extern struct {
@@ -55127,20 +55106,20 @@ pub const MPEG_CONTEXT_TYPE = enum(i32) {
 pub const MPEG_CONTEXT_BCS_DEMUX = MPEG_CONTEXT_TYPE.BCS_DEMUX;
 pub const MPEG_CONTEXT_WINSOCK = MPEG_CONTEXT_TYPE.WINSOCK;
 
-pub const MPEG_BCS_DEMUX = packed struct {
-    AVMGraphId: u32,
+pub const MPEG_BCS_DEMUX = extern struct {
+    AVMGraphId: u32 align(1),
 };
 
-pub const MPEG_WINSOCK = packed struct {
-    AVMGraphId: u32,
+pub const MPEG_WINSOCK = extern struct {
+    AVMGraphId: u32 align(1),
 };
 
-pub const MPEG_CONTEXT = packed struct {
-    Type: MPEG_CONTEXT_TYPE,
+pub const MPEG_CONTEXT = extern struct {
+    Type: MPEG_CONTEXT_TYPE align(1),
     U: extern union {
         Demux: MPEG_BCS_DEMUX,
         Winsock: MPEG_WINSOCK,
-    },
+    } align(1),
 };
 
 pub const MPEG_REQUEST_TYPE = enum(i32) {
@@ -55164,40 +55143,40 @@ pub const MPEG_RQST_GET_PES_STREAM = MPEG_REQUEST_TYPE.GET_PES_STREAM;
 pub const MPEG_RQST_GET_TS_STREAM = MPEG_REQUEST_TYPE.GET_TS_STREAM;
 pub const MPEG_RQST_START_MPE_STREAM = MPEG_REQUEST_TYPE.START_MPE_STREAM;
 
-pub const MPEG_SERVICE_REQUEST = packed struct {
-    Type: MPEG_REQUEST_TYPE,
-    Context: MPEG_CONTEXT,
-    Pid: u16,
-    TableId: u8,
-    Filter: MPEG2_FILTER,
-    Flags: u32,
+pub const MPEG_SERVICE_REQUEST = extern struct {
+    Type: MPEG_REQUEST_TYPE align(1),
+    Context: MPEG_CONTEXT align(1),
+    Pid: u16 align(1),
+    TableId: u8 align(1),
+    Filter: MPEG2_FILTER align(1),
+    Flags: u32 align(1),
 };
 
-pub const MPEG_SERVICE_RESPONSE = packed struct {
-    IPAddress: u32,
-    Port: u16,
+pub const MPEG_SERVICE_RESPONSE = extern struct {
+    IPAddress: u32 align(1),
+    Port: u16 align(1),
 };
 
-pub const DSMCC_ELEMENT = packed struct {
-    pid: u16,
-    bComponentTag: u8,
-    dwCarouselId: u32,
-    dwTransactionId: u32,
-    pNext: ?*DSMCC_ELEMENT,
+pub const DSMCC_ELEMENT = extern struct {
+    pid: u16 align(1),
+    bComponentTag: u8 align(1),
+    dwCarouselId: u32 align(1),
+    dwTransactionId: u32 align(1),
+    pNext: ?*DSMCC_ELEMENT align(1),
 };
 
-pub const MPE_ELEMENT = packed struct {
-    pid: u16,
-    bComponentTag: u8,
-    pNext: ?*MPE_ELEMENT,
+pub const MPE_ELEMENT = extern struct {
+    pid: u16 align(1),
+    bComponentTag: u8 align(1),
+    pNext: ?*MPE_ELEMENT align(1),
 };
 
-pub const MPEG_STREAM_FILTER = packed struct {
-    wPidValue: u16,
-    dwFilterSize: u32,
-    fCrcEnabled: BOOL,
-    rgchFilter: [16]u8,
-    rgchMask: [16]u8,
+pub const MPEG_STREAM_FILTER = extern struct {
+    wPidValue: u16 align(1),
+    dwFilterSize: u32 align(1),
+    fCrcEnabled: BOOL align(1),
+    rgchFilter: [16]u8 align(1),
+    rgchMask: [16]u8 align(1),
 };
 
 const IID_IMpeg2TableFilter_Value = Guid.initString("bdcdd913-9ecd-4fb2-81ae-adf747ea75a5");
@@ -55309,10 +55288,10 @@ pub const IMpeg2TableFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const Mpeg2TableSampleHdr = packed struct {
-    SectionCount: u8,
-    Reserved: [3]u8,
-    SectionOffsets: [1]i32,
+pub const Mpeg2TableSampleHdr = extern struct {
+    SectionCount: u8 align(1),
+    Reserved: [3]u8 align(1),
+    SectionOffsets: [1]i32 align(1),
 };
 
 const CLSID_Mpeg2DataLib_Value = Guid.initString("dbaf6c1b-b6a4-4898-ae65-204f0d9509a1");
@@ -69235,27 +69214,27 @@ pub const CLSID_EVENTID_StreamIDSpanningEvent = &CLSID_EVENTID_StreamIDSpanningE
 const CLSID_EVENTID_PBDAParentalControlEvent_Value = Guid.initString("f947aa85-fb52-48e8-b9c5-e1e1f411a51a");
 pub const CLSID_EVENTID_PBDAParentalControlEvent = &CLSID_EVENTID_PBDAParentalControlEvent_Value;
 
-pub const RATING_ATTRIBUTE = packed struct {
-    rating_attribute_id: u32,
-    rating_attribute_value: u32,
+pub const RATING_ATTRIBUTE = extern struct {
+    rating_attribute_id: u32 align(1),
+    rating_attribute_value: u32 align(1),
 };
 
-pub const RATING_SYSTEM = packed struct {
-    rating_system_id: Guid,
-    _bitfield: u8,
-    country_code: [3]u8,
-    rating_attribute_count: u32,
-    lpratingattrib: ?*RATING_ATTRIBUTE,
+pub const RATING_SYSTEM = extern struct {
+    rating_system_id: Guid align(1),
+    _bitfield: u8 align(1),
+    country_code: [3]u8 align(1),
+    rating_attribute_count: u32 align(1),
+    lpratingattrib: ?*RATING_ATTRIBUTE align(1),
 };
 
-pub const RATING_INFO = packed struct {
-    rating_system_count: u32,
-    lpratingsystem: ?*RATING_SYSTEM,
+pub const RATING_INFO = extern struct {
+    rating_system_count: u32 align(1),
+    lpratingsystem: ?*RATING_SYSTEM align(1),
 };
 
-pub const PBDAParentalControl = packed struct {
-    rating_system_count: u32,
-    rating_systems: ?*RATING_SYSTEM,
+pub const PBDAParentalControl = extern struct {
+    rating_system_count: u32 align(1),
+    rating_systems: ?*RATING_SYSTEM align(1),
 };
 
 const CLSID_EVENTID_TuneFailureEvent_Value = Guid.initString("d97287b2-2dfd-436a-9485-99d7d4ab5a69");
@@ -70149,12 +70128,12 @@ pub const CLSID_EVENTID_BDA_RatingPinReset = &CLSID_EVENTID_BDA_RatingPinReset_V
 const CLSID_PBDA_ALWAYS_TUNE_IN_MUX_Value = Guid.initString("1e1d7141-583f-4ac2-b019-1f430eda0f4c");
 pub const CLSID_PBDA_ALWAYS_TUNE_IN_MUX = &CLSID_PBDA_ALWAYS_TUNE_IN_MUX_Value;
 
-pub const PID_BITS = packed struct {
-    _bitfield: u16,
+pub const PID_BITS = extern struct {
+    _bitfield: u16 align(1),
 };
 
-pub const MPEG_HEADER_BITS = packed struct {
-    _bitfield: u16,
+pub const MPEG_HEADER_BITS = extern struct {
+    _bitfield: u16 align(1),
 };
 
 pub const MPEG_HEADER_VERSION_BITS = extern struct {
@@ -70164,34 +70143,34 @@ pub const MPEG_HEADER_VERSION_BITS = extern struct {
 const CLSID_BDANETWORKTYPE_ATSC_Value = Guid.initString("71985f51-1ca1-11d3-9cc8-00c04f7971e0");
 pub const CLSID_BDANETWORKTYPE_ATSC = &CLSID_BDANETWORKTYPE_ATSC_Value;
 
-pub const MPEG1WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    fwHeadLayer: u16,
-    dwHeadBitrate: u32,
-    fwHeadMode: u16,
-    fwHeadModeExt: u16,
-    wHeadEmphasis: u16,
-    fwHeadFlags: u16,
-    dwPTSLow: u32,
-    dwPTSHigh: u32,
+pub const MPEG1WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    fwHeadLayer: u16 align(1),
+    dwHeadBitrate: u32 align(1),
+    fwHeadMode: u16 align(1),
+    fwHeadModeExt: u16 align(1),
+    wHeadEmphasis: u16 align(1),
+    fwHeadFlags: u16 align(1),
+    dwPTSLow: u32 align(1),
+    dwPTSHigh: u32 align(1),
 };
 
-pub const MPEGLAYER3WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wID: u16,
-    fdwFlags: MPEGLAYER3WAVEFORMAT_FLAGS,
-    nBlockSize: u16,
-    nFramesPerBlock: u16,
-    nCodecDelay: u16,
+pub const MPEGLAYER3WAVEFORMAT = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wID: u16 align(1),
+    fdwFlags: MPEGLAYER3WAVEFORMAT_FLAGS align(1),
+    nBlockSize: u16 align(1),
+    nFramesPerBlock: u16 align(1),
+    nCodecDelay: u16 align(1),
 };
 
-pub const HEAACWAVEINFO = packed struct {
-    wfx: WAVEFORMATEX,
-    wPayloadType: u16,
-    wAudioProfileLevelIndication: u16,
-    wStructType: u16,
-    wReserved1: u16,
-    dwReserved2: u32,
+pub const HEAACWAVEINFO = extern struct {
+    wfx: WAVEFORMATEX align(1),
+    wPayloadType: u16 align(1),
+    wAudioProfileLevelIndication: u16 align(1),
+    wStructType: u16 align(1),
+    wReserved1: u16 align(1),
+    dwReserved2: u32 align(1),
 };
 
 pub const HEAACWAVEFORMAT = extern struct {
