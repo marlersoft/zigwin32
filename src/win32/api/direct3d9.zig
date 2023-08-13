@@ -2,7 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (314)
 //--------------------------------------------------------------------------------
-pub const D3DRTYPECOUNT = @as(u32, 8);
 pub const D3DCS_LEFT = @as(i32, 1);
 pub const D3DCS_RIGHT = @as(i32, 2);
 pub const D3DCS_TOP = @as(i32, 4);
@@ -316,6 +315,7 @@ pub const D3DPRESENT_UPDATEOVERLAYONLY = @as(i32, 32);
 pub const D3DPRESENT_HIDEOVERLAY = @as(i32, 64);
 pub const D3DPRESENT_UPDATECOLORKEY = @as(i32, 128);
 pub const D3DPRESENT_FORCEIMMEDIATE = @as(i32, 256);
+pub const D3DRTYPECOUNT = @as(u32, 8);
 
 //--------------------------------------------------------------------------------
 // Section: Types (148)

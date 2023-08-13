@@ -74,13 +74,6 @@ pub const DDC_DISABLE_CONTROL_RELAYOUT = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONT
 //--------------------------------------------------------------------------------
 // Section: Functions (28)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows10.0.15063'
-pub extern "UxTheme" fn OpenThemeDataForDpi(
-    hwnd: HWND,
-    pszClassList: [*:0]const u16,
-    dpi: u32,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-scaling-l1-1-1" fn SetProcessDpiAwareness(
     value: PROCESS_DPI_AWARENESS,
@@ -99,6 +92,13 @@ pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetDpiForMonitor(
     dpiX: *u32,
     dpiY: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+pub extern "UxTheme" fn OpenThemeDataForDpi(
+    hwnd: HWND,
+    pszClassList: [*:0]const u16,
+    dpi: u32,
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 pub extern "USER32" fn SetDialogControlDpiChangeBehavior(

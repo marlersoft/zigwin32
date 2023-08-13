@@ -1255,7 +1255,7 @@ pub const E_EXCEPTIONINDECOMPRESSION = @as(i32, 521);
 pub const E_EXCEPTIONINCOMPRESSION = @as(i32, 522);
 
 //--------------------------------------------------------------------------------
-// Section: Types (248)
+// Section: Types (250)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'ReleaseDC', what can Zig do with this information?
 pub const HDC = ?*opaque{};
@@ -1307,7 +1307,10 @@ pub const HENHMETAFILE = ?*opaque{};
 pub const HMONITOR = ?*opaque{};
 
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
-pub const HPALETTE = ?*opaque{};
+//TODO: type 'HPALETTE' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
+//      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const HPALETTE = HGDIOBJ;
 
 // TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
 pub const HdcMetdataFileHandle = isize;
@@ -1804,6 +1807,40 @@ pub const LOGPALETTE = extern struct {
     palVersion: u16,
     palNumEntries: u16,
     palPalEntry: [1]PALETTEENTRY,
+};
+
+pub const LOGFONTA = extern struct {
+    lfHeight: i32,
+    lfWidth: i32,
+    lfEscapement: i32,
+    lfOrientation: i32,
+    lfWeight: i32,
+    lfItalic: u8,
+    lfUnderline: u8,
+    lfStrikeOut: u8,
+    lfCharSet: u8,
+    lfOutPrecision: u8,
+    lfClipPrecision: u8,
+    lfQuality: u8,
+    lfPitchAndFamily: u8,
+    lfFaceName: [32]CHAR,
+};
+
+pub const LOGFONTW = extern struct {
+    lfHeight: i32,
+    lfWidth: i32,
+    lfEscapement: i32,
+    lfOrientation: i32,
+    lfWeight: i32,
+    lfItalic: u8,
+    lfUnderline: u8,
+    lfStrikeOut: u8,
+    lfCharSet: u8,
+    lfOutPrecision: u8,
+    lfClipPrecision: u8,
+    lfQuality: u8,
+    lfPitchAndFamily: u8,
+    lfFaceName: [32]u16,
 };
 
 pub const ENUMLOGFONTA = extern struct {
@@ -3876,7 +3913,7 @@ pub const MONITORENUMPROC = fn(
 // Section: Functions (395)
 //--------------------------------------------------------------------------------
 pub extern "GDI32" fn GetObjectA(
-    h: HANDLE,
+    h: HGDIOBJ,
     c: i32,
     // TODO: what to do with BytesParamIndex 1?
     pv: ?*c_void,
@@ -5856,7 +5893,7 @@ pub extern "GDI32" fn GetArcDirection(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn GetObjectW(
-    h: HANDLE,
+    h: HGDIOBJ,
     c: i32,
     // TODO: what to do with BytesParamIndex 1?
     pv: ?*c_void,
@@ -6846,13 +6883,14 @@ pub extern "USER32" fn EnumDisplayMonitors(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (69)
+// Section: Unicode Aliases (70)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
         pub const TEXTMETRIC = TEXTMETRICA;
         pub const NEWTEXTMETRIC = NEWTEXTMETRICA;
         pub const NEWTEXTMETRICEX = NEWTEXTMETRICEXA;
+        pub const LOGFONT = LOGFONTA;
         pub const ENUMLOGFONT = ENUMLOGFONTA;
         pub const ENUMLOGFONTEX = ENUMLOGFONTEXA;
         pub const EXTLOGFONT = EXTLOGFONTA;
@@ -6924,6 +6962,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const TEXTMETRIC = TEXTMETRICW;
         pub const NEWTEXTMETRIC = NEWTEXTMETRICW;
         pub const NEWTEXTMETRICEX = NEWTEXTMETRICEXW;
+        pub const LOGFONT = LOGFONTW;
         pub const ENUMLOGFONT = ENUMLOGFONTW;
         pub const ENUMLOGFONTEX = ENUMLOGFONTEXW;
         pub const EXTLOGFONT = EXTLOGFONTW;
@@ -6995,6 +7034,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const TEXTMETRIC = *opaque{};
         pub const NEWTEXTMETRIC = *opaque{};
         pub const NEWTEXTMETRICEX = *opaque{};
+        pub const LOGFONT = *opaque{};
         pub const ENUMLOGFONT = *opaque{};
         pub const ENUMLOGFONTEX = *opaque{};
         pub const EXTLOGFONT = *opaque{};
@@ -7065,6 +7105,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const TEXTMETRIC = @compileError("'TEXTMETRIC' requires that UNICODE be set to true or false in the root module");
         pub const NEWTEXTMETRIC = @compileError("'NEWTEXTMETRIC' requires that UNICODE be set to true or false in the root module");
         pub const NEWTEXTMETRICEX = @compileError("'NEWTEXTMETRICEX' requires that UNICODE be set to true or false in the root module");
+        pub const LOGFONT = @compileError("'LOGFONT' requires that UNICODE be set to true or false in the root module");
         pub const ENUMLOGFONT = @compileError("'ENUMLOGFONT' requires that UNICODE be set to true or false in the root module");
         pub const ENUMLOGFONTEX = @compileError("'ENUMLOGFONTEX' requires that UNICODE be set to true or false in the root module");
         pub const EXTLOGFONT = @compileError("'EXTLOGFONT' requires that UNICODE be set to true or false in the root module");
@@ -7134,7 +7175,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (28)
+// Section: Imports (26)
 //--------------------------------------------------------------------------------
 const LPARAM = @import("windows_and_messaging.zig").LPARAM;
 const PIXELFORMATDESCRIPTOR = @import("open_gl.zig").PIXELFORMATDESCRIPTOR;
@@ -7142,7 +7183,6 @@ const LOGCOLORSPACEW = @import("windows_color_system.zig").LOGCOLORSPACEW;
 const POINTL = @import("display_devices.zig").POINTL;
 const CHAR = @import("system_services.zig").CHAR;
 const HINSTANCE = @import("system_services.zig").HINSTANCE;
-const LOGFONTW = @import("shell.zig").LOGFONTW;
 const POINTS = @import("display_devices.zig").POINTS;
 const DEVMODEA = @import("xps.zig").DEVMODEA;
 const BOOL = @import("system_services.zig").BOOL;
@@ -7154,15 +7194,14 @@ const FONTSIGNATURE = @import("intl.zig").FONTSIGNATURE;
 const DEVMODEW = @import("display_devices.zig").DEVMODEW;
 const DISPLAYCONFIG_DEVICE_INFO_HEADER = @import("display_devices.zig").DISPLAYCONFIG_DEVICE_INFO_HEADER;
 const METAFILEPICT = @import("data_exchange.zig").METAFILEPICT;
-const PSTR = @import("system_services.zig").PSTR;
 const RECT = @import("display_devices.zig").RECT;
+const PSTR = @import("system_services.zig").PSTR;
 const TEXT_ALIGN_OPTIONS = @import("controls.zig").TEXT_ALIGN_OPTIONS;
 const HWND = @import("windows_and_messaging.zig").HWND;
 const LOGCOLORSPACEA = @import("windows_color_system.zig").LOGCOLORSPACEA;
 const POINT = @import("display_devices.zig").POINT;
 const RECTL = @import("display_devices.zig").RECTL;
 const SIZE = @import("display_devices.zig").SIZE;
-const LOGFONTA = @import("shell.zig").LOGFONTA;
 const HANDLE = @import("system_services.zig").HANDLE;
 
 test {
@@ -7185,13 +7224,13 @@ test {
     _ = MONITORENUMPROC;
 
     const constant_export_count = 1251;
-    const type_export_count = 248;
+    const type_export_count = 250;
     const enum_value_export_count = 406;
     const com_iface_id_export_count = 0;
     const com_class_id_export_count = 0;
     const func_export_count = 395;
-    const unicode_alias_count = 69;
-    const import_count = 28;
+    const unicode_alias_count = 70;
+    const import_count = 26;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

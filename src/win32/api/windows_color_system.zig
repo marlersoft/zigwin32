@@ -89,9 +89,6 @@ pub const COLORADAPTER_PROFILE_NAME_MAX_LENGTH = @as(u32, 80);
 //--------------------------------------------------------------------------------
 // Section: Types (51)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
-pub const HCOLORSPACE = ?*opaque{};
-
 pub const ICM_COMMAND = extern enum(u32) {
     ADDPROFILE = 1,
     DELETEPROFILE = 2,
@@ -117,6 +114,9 @@ pub const COLOR_MATCH_TO_TARGET_ACTION = extern enum(i32) {
 pub const CS_ENABLE = COLOR_MATCH_TO_TARGET_ACTION.ENABLE;
 pub const CS_DISABLE = COLOR_MATCH_TO_TARGET_ACTION.DISABLE;
 pub const CS_DELETE_TRANSFORM = COLOR_MATCH_TO_TARGET_ACTION.DELETE_TRANSFORM;
+
+// TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
+pub const HCOLORSPACE = ?*opaque{};
 
 pub const CIEXYZ = extern struct {
     ciexyzX: i32,

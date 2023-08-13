@@ -456,9 +456,6 @@ pub const ADS_EXT_INITIALIZE_COMPLETE = @as(u32, 2);
 //--------------------------------------------------------------------------------
 // Section: Types (265)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'DsGetDcCloseW', what can Zig do with this information?
-pub const GetDcContextHandle = isize;
-
 pub const CQFORM = extern struct {
     cbStruct: u32,
     dwFlags: u32,
@@ -9284,6 +9281,9 @@ pub const DS_DOMAIN_TRUSTSA = extern struct {
     DomainSid: PSID,
     DomainGuid: Guid,
 };
+
+// TODO: this type has a FreeFunc 'DsGetDcCloseW', what can Zig do with this information?
+pub const GetDcContextHandle = isize;
 
 pub const BFFCALLBACK = fn(
     hwnd: HWND,

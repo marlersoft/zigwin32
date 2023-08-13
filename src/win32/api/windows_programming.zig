@@ -916,9 +916,6 @@ pub const SNAPSHOT_POLICY_NEVER = @as(u32, 0);
 pub const SNAPSHOT_POLICY_ALWAYS = @as(u32, 1);
 pub const SNAPSHOT_POLICY_UNPLANNED = @as(u32, 2);
 pub const MAX_NUM_REASONS = @as(u32, 256);
-pub const _IID_IXmlReader = Guid.initString("7279fc81-709d-4095-b63d-69fe4b0d9030");
-pub const _IID_IXmlWriter = Guid.initString("7279fc88-709d-4095-b63d-69fe4b0d9030");
-pub const _IID_IXmlResolver = Guid.initString("7279fc82-709d-4095-b63d-69fe4b0d9030");
 pub const HKEY_CLASSES_ROOT = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483648));
 pub const HKEY_CURRENT_USER = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483647));
 pub const HKEY_LOCAL_MACHINE = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483646));
@@ -929,182 +926,13 @@ pub const HKEY_PERFORMANCE_NLSTEXT = @import("../zig.zig").typedConst(HKEY, @as(
 pub const HKEY_CURRENT_CONFIG = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483643));
 pub const HKEY_DYN_DATA = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483642));
 pub const HKEY_CURRENT_USER_LOCAL_SETTINGS = @import("../zig.zig").typedConst(HKEY, @as(i32, -2147483641));
+pub const _IID_IXmlReader = Guid.initString("7279fc81-709d-4095-b63d-69fe4b0d9030");
+pub const _IID_IXmlWriter = Guid.initString("7279fc88-709d-4095-b63d-69fe4b0d9030");
+pub const _IID_IXmlResolver = Guid.initString("7279fc82-709d-4095-b63d-69fe4b0d9030");
 
 //--------------------------------------------------------------------------------
 // Section: Types (594)
 //--------------------------------------------------------------------------------
-pub const NETLOGON_INFO_1 = extern struct {
-    netlog1_flags: u32,
-    netlog1_pdc_connection_status: u32,
-};
-
-pub const NETLOGON_INFO_2 = extern struct {
-    netlog2_flags: u32,
-    netlog2_pdc_connection_status: u32,
-    netlog2_trusted_dc_name: PWSTR,
-    netlog2_tc_connection_status: u32,
-};
-
-pub const NETLOGON_INFO_3 = extern struct {
-    netlog3_flags: u32,
-    netlog3_logon_attempts: u32,
-    netlog3_reserved1: u32,
-    netlog3_reserved2: u32,
-    netlog3_reserved3: u32,
-    netlog3_reserved4: u32,
-    netlog3_reserved5: u32,
-};
-
-pub const NETLOGON_INFO_4 = extern struct {
-    netlog4_trusted_dc_name: PWSTR,
-    netlog4_trusted_domain_name: PWSTR,
-};
-
-// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
-pub const HKEY = ?*opaque{};
-
-pub const HWINWATCH = ?*opaque{};
-
-pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = isize;
-
-pub const FH_SERVICE_PIPE_HANDLE = isize;
-
-pub const FIRMWARE_TYPE = extern enum(i32) {
-    Unknown = 0,
-    Bios = 1,
-    Uefi = 2,
-    Max = 3,
-};
-pub const FirmwareTypeUnknown = FIRMWARE_TYPE.Unknown;
-pub const FirmwareTypeBios = FIRMWARE_TYPE.Bios;
-pub const FirmwareTypeUefi = FIRMWARE_TYPE.Uefi;
-pub const FirmwareTypeMax = FIRMWARE_TYPE.Max;
-
-pub const OSVERSIONINFOA = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]CHAR,
-};
-
-pub const OSVERSIONINFOW = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]u16,
-};
-
-pub const OSVERSIONINFOEXA = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]CHAR,
-    wServicePackMajor: u16,
-    wServicePackMinor: u16,
-    wSuiteMask: u16,
-    wProductType: u8,
-    wReserved: u8,
-};
-
-pub const OSVERSIONINFOEXW = extern struct {
-    dwOSVersionInfoSize: u32,
-    dwMajorVersion: u32,
-    dwMinorVersion: u32,
-    dwBuildNumber: u32,
-    dwPlatformId: u32,
-    szCSDVersion: [128]u16,
-    wServicePackMajor: u16,
-    wServicePackMinor: u16,
-    wSuiteMask: u16,
-    wProductType: u8,
-    wReserved: u8,
-};
-
-pub const FILETIME = extern struct {
-    dwLowDateTime: u32,
-    dwHighDateTime: u32,
-};
-
-pub const SYSTEMTIME = extern struct {
-    wYear: u16,
-    wMonth: u16,
-    wDayOfWeek: u16,
-    wDay: u16,
-    wHour: u16,
-    wMinute: u16,
-    wSecond: u16,
-    wMilliseconds: u16,
-};
-
-pub const UpdateImpactLevel = extern enum(i32) {
-    None = 0,
-    Low = 1,
-    Medium = 2,
-    High = 3,
-};
-pub const UpdateImpactLevel_None = UpdateImpactLevel.None;
-pub const UpdateImpactLevel_Low = UpdateImpactLevel.Low;
-pub const UpdateImpactLevel_Medium = UpdateImpactLevel.Medium;
-pub const UpdateImpactLevel_High = UpdateImpactLevel.High;
-
-pub const UpdateAssessmentStatus = extern enum(i32) {
-    Latest = 0,
-    NotLatestSoftRestriction = 1,
-    NotLatestHardRestriction = 2,
-    NotLatestEndOfSupport = 3,
-    NotLatestServicingTrain = 4,
-    NotLatestDeferredFeature = 5,
-    NotLatestDeferredQuality = 6,
-    NotLatestPausedFeature = 7,
-    NotLatestPausedQuality = 8,
-    NotLatestManaged = 9,
-    NotLatestUnknown = 10,
-    NotLatestTargetedVersion = 11,
-};
-pub const UpdateAssessmentStatus_Latest = UpdateAssessmentStatus.Latest;
-pub const UpdateAssessmentStatus_NotLatestSoftRestriction = UpdateAssessmentStatus.NotLatestSoftRestriction;
-pub const UpdateAssessmentStatus_NotLatestHardRestriction = UpdateAssessmentStatus.NotLatestHardRestriction;
-pub const UpdateAssessmentStatus_NotLatestEndOfSupport = UpdateAssessmentStatus.NotLatestEndOfSupport;
-pub const UpdateAssessmentStatus_NotLatestServicingTrain = UpdateAssessmentStatus.NotLatestServicingTrain;
-pub const UpdateAssessmentStatus_NotLatestDeferredFeature = UpdateAssessmentStatus.NotLatestDeferredFeature;
-pub const UpdateAssessmentStatus_NotLatestDeferredQuality = UpdateAssessmentStatus.NotLatestDeferredQuality;
-pub const UpdateAssessmentStatus_NotLatestPausedFeature = UpdateAssessmentStatus.NotLatestPausedFeature;
-pub const UpdateAssessmentStatus_NotLatestPausedQuality = UpdateAssessmentStatus.NotLatestPausedQuality;
-pub const UpdateAssessmentStatus_NotLatestManaged = UpdateAssessmentStatus.NotLatestManaged;
-pub const UpdateAssessmentStatus_NotLatestUnknown = UpdateAssessmentStatus.NotLatestUnknown;
-pub const UpdateAssessmentStatus_NotLatestTargetedVersion = UpdateAssessmentStatus.NotLatestTargetedVersion;
-
-pub const UpdateAssessment = extern struct {
-    status: UpdateAssessmentStatus,
-    impact: UpdateImpactLevel,
-    daysOutOfDate: u32,
-};
-
-pub const OSUpdateAssessment = extern struct {
-    isEndOfSupport: BOOL,
-    assessmentForCurrent: UpdateAssessment,
-    assessmentForUpToDate: UpdateAssessment,
-    securityStatus: UpdateAssessmentStatus,
-    assessmentTime: FILETIME,
-    releaseInfoTime: FILETIME,
-    currentOSBuild: PWSTR,
-    currentOSReleaseTime: FILETIME,
-    upToDateOSBuild: PWSTR,
-    upToDateOSReleaseTime: FILETIME,
-};
-
-pub const PSYMBOLSERVERCALLBACKPROC = fn(
-    action: usize,
-    data: u64,
-    context: u64,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 pub const REG_SAVE_FORMAT = extern enum(u32) {
     STANDARD_FORMAT = 1,
     LATEST_FORMAT = 2,
@@ -1473,6 +1301,371 @@ pub const CL_TL_ENTITY = TDIENTITY_ENTITY_TYPE.CL_TL_ENTITY;
 pub const CO_TL_ENTITY = TDIENTITY_ENTITY_TYPE.CO_TL_ENTITY;
 pub const ER_ENTITY = TDIENTITY_ENTITY_TYPE.ER_ENTITY;
 pub const IF_ENTITY = TDIENTITY_ENTITY_TYPE.IF_ENTITY;
+
+// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
+pub const HKEY = ?*opaque{};
+
+pub const HWINWATCH = ?*opaque{};
+
+pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = isize;
+
+pub const FH_SERVICE_PIPE_HANDLE = isize;
+
+pub const FIRMWARE_TYPE = extern enum(i32) {
+    Unknown = 0,
+    Bios = 1,
+    Uefi = 2,
+    Max = 3,
+};
+pub const FirmwareTypeUnknown = FIRMWARE_TYPE.Unknown;
+pub const FirmwareTypeBios = FIRMWARE_TYPE.Bios;
+pub const FirmwareTypeUefi = FIRMWARE_TYPE.Uefi;
+pub const FirmwareTypeMax = FIRMWARE_TYPE.Max;
+
+pub const OSVERSIONINFOA = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]CHAR,
+};
+
+pub const OSVERSIONINFOW = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]u16,
+};
+
+pub const OSVERSIONINFOEXA = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]CHAR,
+    wServicePackMajor: u16,
+    wServicePackMinor: u16,
+    wSuiteMask: u16,
+    wProductType: u8,
+    wReserved: u8,
+};
+
+pub const OSVERSIONINFOEXW = extern struct {
+    dwOSVersionInfoSize: u32,
+    dwMajorVersion: u32,
+    dwMinorVersion: u32,
+    dwBuildNumber: u32,
+    dwPlatformId: u32,
+    szCSDVersion: [128]u16,
+    wServicePackMajor: u16,
+    wServicePackMinor: u16,
+    wSuiteMask: u16,
+    wProductType: u8,
+    wReserved: u8,
+};
+
+pub const FILETIME = extern struct {
+    dwLowDateTime: u32,
+    dwHighDateTime: u32,
+};
+
+pub const SYSTEMTIME = extern struct {
+    wYear: u16,
+    wMonth: u16,
+    wDayOfWeek: u16,
+    wDay: u16,
+    wHour: u16,
+    wMinute: u16,
+    wSecond: u16,
+    wMilliseconds: u16,
+};
+
+pub const UpdateImpactLevel = extern enum(i32) {
+    None = 0,
+    Low = 1,
+    Medium = 2,
+    High = 3,
+};
+pub const UpdateImpactLevel_None = UpdateImpactLevel.None;
+pub const UpdateImpactLevel_Low = UpdateImpactLevel.Low;
+pub const UpdateImpactLevel_Medium = UpdateImpactLevel.Medium;
+pub const UpdateImpactLevel_High = UpdateImpactLevel.High;
+
+pub const UpdateAssessmentStatus = extern enum(i32) {
+    Latest = 0,
+    NotLatestSoftRestriction = 1,
+    NotLatestHardRestriction = 2,
+    NotLatestEndOfSupport = 3,
+    NotLatestServicingTrain = 4,
+    NotLatestDeferredFeature = 5,
+    NotLatestDeferredQuality = 6,
+    NotLatestPausedFeature = 7,
+    NotLatestPausedQuality = 8,
+    NotLatestManaged = 9,
+    NotLatestUnknown = 10,
+    NotLatestTargetedVersion = 11,
+};
+pub const UpdateAssessmentStatus_Latest = UpdateAssessmentStatus.Latest;
+pub const UpdateAssessmentStatus_NotLatestSoftRestriction = UpdateAssessmentStatus.NotLatestSoftRestriction;
+pub const UpdateAssessmentStatus_NotLatestHardRestriction = UpdateAssessmentStatus.NotLatestHardRestriction;
+pub const UpdateAssessmentStatus_NotLatestEndOfSupport = UpdateAssessmentStatus.NotLatestEndOfSupport;
+pub const UpdateAssessmentStatus_NotLatestServicingTrain = UpdateAssessmentStatus.NotLatestServicingTrain;
+pub const UpdateAssessmentStatus_NotLatestDeferredFeature = UpdateAssessmentStatus.NotLatestDeferredFeature;
+pub const UpdateAssessmentStatus_NotLatestDeferredQuality = UpdateAssessmentStatus.NotLatestDeferredQuality;
+pub const UpdateAssessmentStatus_NotLatestPausedFeature = UpdateAssessmentStatus.NotLatestPausedFeature;
+pub const UpdateAssessmentStatus_NotLatestPausedQuality = UpdateAssessmentStatus.NotLatestPausedQuality;
+pub const UpdateAssessmentStatus_NotLatestManaged = UpdateAssessmentStatus.NotLatestManaged;
+pub const UpdateAssessmentStatus_NotLatestUnknown = UpdateAssessmentStatus.NotLatestUnknown;
+pub const UpdateAssessmentStatus_NotLatestTargetedVersion = UpdateAssessmentStatus.NotLatestTargetedVersion;
+
+pub const UpdateAssessment = extern struct {
+    status: UpdateAssessmentStatus,
+    impact: UpdateImpactLevel,
+    daysOutOfDate: u32,
+};
+
+pub const OSUpdateAssessment = extern struct {
+    isEndOfSupport: BOOL,
+    assessmentForCurrent: UpdateAssessment,
+    assessmentForUpToDate: UpdateAssessment,
+    securityStatus: UpdateAssessmentStatus,
+    assessmentTime: FILETIME,
+    releaseInfoTime: FILETIME,
+    currentOSBuild: PWSTR,
+    currentOSReleaseTime: FILETIME,
+    upToDateOSBuild: PWSTR,
+    upToDateOSReleaseTime: FILETIME,
+};
+
+pub const NETLOGON_INFO_1 = extern struct {
+    netlog1_flags: u32,
+    netlog1_pdc_connection_status: u32,
+};
+
+pub const NETLOGON_INFO_2 = extern struct {
+    netlog2_flags: u32,
+    netlog2_pdc_connection_status: u32,
+    netlog2_trusted_dc_name: PWSTR,
+    netlog2_tc_connection_status: u32,
+};
+
+pub const NETLOGON_INFO_3 = extern struct {
+    netlog3_flags: u32,
+    netlog3_logon_attempts: u32,
+    netlog3_reserved1: u32,
+    netlog3_reserved2: u32,
+    netlog3_reserved3: u32,
+    netlog3_reserved4: u32,
+    netlog3_reserved5: u32,
+};
+
+pub const NETLOGON_INFO_4 = extern struct {
+    netlog4_trusted_dc_name: PWSTR,
+    netlog4_trusted_domain_name: PWSTR,
+};
+
+pub const PSYMBOLSERVERCALLBACKPROC = fn(
+    action: usize,
+    data: u64,
+    context: u64,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PROCESS_CREATION_FLAGS = extern enum(u32) {
+    DEBUG_PROCESS = 1,
+    DEBUG_ONLY_THIS_PROCESS = 2,
+    CREATE_SUSPENDED = 4,
+    DETACHED_PROCESS = 8,
+    CREATE_NEW_CONSOLE = 16,
+    NORMAL_PRIORITY_CLASS = 32,
+    IDLE_PRIORITY_CLASS = 64,
+    HIGH_PRIORITY_CLASS = 128,
+    REALTIME_PRIORITY_CLASS = 256,
+    CREATE_NEW_PROCESS_GROUP = 512,
+    CREATE_UNICODE_ENVIRONMENT = 1024,
+    CREATE_SEPARATE_WOW_VDM = 2048,
+    CREATE_SHARED_WOW_VDM = 4096,
+    CREATE_FORCEDOS = 8192,
+    BELOW_NORMAL_PRIORITY_CLASS = 16384,
+    ABOVE_NORMAL_PRIORITY_CLASS = 32768,
+    INHERIT_PARENT_AFFINITY = 65536,
+    INHERIT_CALLER_PRIORITY = 131072,
+    CREATE_PROTECTED_PROCESS = 262144,
+    EXTENDED_STARTUPINFO_PRESENT = 524288,
+    PROCESS_MODE_BACKGROUND_BEGIN = 1048576,
+    PROCESS_MODE_BACKGROUND_END = 2097152,
+    CREATE_SECURE_PROCESS = 4194304,
+    CREATE_BREAKAWAY_FROM_JOB = 16777216,
+    CREATE_PRESERVE_CODE_AUTHZ_LEVEL = 33554432,
+    CREATE_DEFAULT_ERROR_MODE = 67108864,
+    CREATE_NO_WINDOW = 134217728,
+    PROFILE_USER = 268435456,
+    PROFILE_KERNEL = 536870912,
+    PROFILE_SERVER = 1073741824,
+    CREATE_IGNORE_SYSTEM_DEFAULT = 2147483648,
+    _,
+};
+pub const DEBUG_PROCESS = PROCESS_CREATION_FLAGS.DEBUG_PROCESS;
+pub const DEBUG_ONLY_THIS_PROCESS = PROCESS_CREATION_FLAGS.DEBUG_ONLY_THIS_PROCESS;
+pub const CREATE_SUSPENDED = PROCESS_CREATION_FLAGS.CREATE_SUSPENDED;
+pub const DETACHED_PROCESS = PROCESS_CREATION_FLAGS.DETACHED_PROCESS;
+pub const CREATE_NEW_CONSOLE = PROCESS_CREATION_FLAGS.CREATE_NEW_CONSOLE;
+pub const NORMAL_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.NORMAL_PRIORITY_CLASS;
+pub const IDLE_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.IDLE_PRIORITY_CLASS;
+pub const HIGH_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.HIGH_PRIORITY_CLASS;
+pub const REALTIME_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.REALTIME_PRIORITY_CLASS;
+pub const CREATE_NEW_PROCESS_GROUP = PROCESS_CREATION_FLAGS.CREATE_NEW_PROCESS_GROUP;
+pub const CREATE_UNICODE_ENVIRONMENT = PROCESS_CREATION_FLAGS.CREATE_UNICODE_ENVIRONMENT;
+pub const CREATE_SEPARATE_WOW_VDM = PROCESS_CREATION_FLAGS.CREATE_SEPARATE_WOW_VDM;
+pub const CREATE_SHARED_WOW_VDM = PROCESS_CREATION_FLAGS.CREATE_SHARED_WOW_VDM;
+pub const CREATE_FORCEDOS = PROCESS_CREATION_FLAGS.CREATE_FORCEDOS;
+pub const BELOW_NORMAL_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.BELOW_NORMAL_PRIORITY_CLASS;
+pub const ABOVE_NORMAL_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.ABOVE_NORMAL_PRIORITY_CLASS;
+pub const INHERIT_PARENT_AFFINITY = PROCESS_CREATION_FLAGS.INHERIT_PARENT_AFFINITY;
+pub const INHERIT_CALLER_PRIORITY = PROCESS_CREATION_FLAGS.INHERIT_CALLER_PRIORITY;
+pub const CREATE_PROTECTED_PROCESS = PROCESS_CREATION_FLAGS.CREATE_PROTECTED_PROCESS;
+pub const EXTENDED_STARTUPINFO_PRESENT = PROCESS_CREATION_FLAGS.EXTENDED_STARTUPINFO_PRESENT;
+pub const PROCESS_MODE_BACKGROUND_BEGIN = PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_BEGIN;
+pub const PROCESS_MODE_BACKGROUND_END = PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_END;
+pub const CREATE_SECURE_PROCESS = PROCESS_CREATION_FLAGS.CREATE_SECURE_PROCESS;
+pub const CREATE_BREAKAWAY_FROM_JOB = PROCESS_CREATION_FLAGS.CREATE_BREAKAWAY_FROM_JOB;
+pub const CREATE_PRESERVE_CODE_AUTHZ_LEVEL = PROCESS_CREATION_FLAGS.CREATE_PRESERVE_CODE_AUTHZ_LEVEL;
+pub const CREATE_DEFAULT_ERROR_MODE = PROCESS_CREATION_FLAGS.CREATE_DEFAULT_ERROR_MODE;
+pub const CREATE_NO_WINDOW = PROCESS_CREATION_FLAGS.CREATE_NO_WINDOW;
+pub const PROFILE_USER = PROCESS_CREATION_FLAGS.PROFILE_USER;
+pub const PROFILE_KERNEL = PROCESS_CREATION_FLAGS.PROFILE_KERNEL;
+pub const PROFILE_SERVER = PROCESS_CREATION_FLAGS.PROFILE_SERVER;
+pub const CREATE_IGNORE_SYSTEM_DEFAULT = PROCESS_CREATION_FLAGS.CREATE_IGNORE_SYSTEM_DEFAULT;
+
+pub const HANDLE_FLAG_OPTIONS = extern enum(i32) {
+    INHERIT = 1,
+    PROTECT_FROM_CLOSE = 2,
+};
+pub const HANDLE_FLAG_INHERIT = HANDLE_FLAG_OPTIONS.INHERIT;
+pub const HANDLE_FLAG_PROTECT_FROM_CLOSE = HANDLE_FLAG_OPTIONS.PROTECT_FROM_CLOSE;
+
+pub const DUPLICATE_HANDLE_OPTIONS = extern enum(i32) {
+    CLOSE_SOURCE = 1,
+    SAME_ACCESS = 2,
+};
+pub const DUPLICATE_CLOSE_SOURCE = DUPLICATE_HANDLE_OPTIONS.CLOSE_SOURCE;
+pub const DUPLICATE_SAME_ACCESS = DUPLICATE_HANDLE_OPTIONS.SAME_ACCESS;
+
+pub const STD_HANDLE_TYPE = extern enum(u32) {
+    INPUT_HANDLE = 4294967286,
+    OUTPUT_HANDLE = 4294967285,
+    ERROR_HANDLE = 4294967284,
+};
+pub const STD_INPUT_HANDLE = STD_HANDLE_TYPE.INPUT_HANDLE;
+pub const STD_OUTPUT_HANDLE = STD_HANDLE_TYPE.OUTPUT_HANDLE;
+pub const STD_ERROR_HANDLE = STD_HANDLE_TYPE.ERROR_HANDLE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const VER_FLAGS = extern enum(u32) {
+    MINORVERSION = 1,
+    MAJORVERSION = 2,
+    BUILDNUMBER = 4,
+    PLATFORMID = 8,
+    SERVICEPACKMINOR = 16,
+    SERVICEPACKMAJOR = 32,
+    SUITENAME = 64,
+    PRODUCT_TYPE = 128,
+    _,
+};
+pub const VER_MINORVERSION = VER_FLAGS.MINORVERSION;
+pub const VER_MAJORVERSION = VER_FLAGS.MAJORVERSION;
+pub const VER_BUILDNUMBER = VER_FLAGS.BUILDNUMBER;
+pub const VER_PLATFORMID = VER_FLAGS.PLATFORMID;
+pub const VER_SERVICEPACKMINOR = VER_FLAGS.SERVICEPACKMINOR;
+pub const VER_SERVICEPACKMAJOR = VER_FLAGS.SERVICEPACKMAJOR;
+pub const VER_SUITENAME = VER_FLAGS.SUITENAME;
+pub const VER_PRODUCT_TYPE = VER_FLAGS.PRODUCT_TYPE;
+
+pub const REG_VALUE_TYPE = extern enum(u32) {
+    NONE = 0,
+    SZ = 1,
+    EXPAND_SZ = 2,
+    BINARY = 3,
+    DWORD = 4,
+    DWORD_LITTLE_ENDIAN = 4,
+    DWORD_BIG_ENDIAN = 5,
+    LINK = 6,
+    MULTI_SZ = 7,
+    RESOURCE_LIST = 8,
+    FULL_RESOURCE_DESCRIPTOR = 9,
+    RESOURCE_REQUIREMENTS_LIST = 10,
+    QWORD = 11,
+    QWORD_LITTLE_ENDIAN = 11,
+};
+pub const REG_NONE = REG_VALUE_TYPE.NONE;
+pub const REG_SZ = REG_VALUE_TYPE.SZ;
+pub const REG_EXPAND_SZ = REG_VALUE_TYPE.EXPAND_SZ;
+pub const REG_BINARY = REG_VALUE_TYPE.BINARY;
+pub const REG_DWORD = REG_VALUE_TYPE.DWORD;
+pub const REG_DWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.DWORD_LITTLE_ENDIAN;
+pub const REG_DWORD_BIG_ENDIAN = REG_VALUE_TYPE.DWORD_BIG_ENDIAN;
+pub const REG_LINK = REG_VALUE_TYPE.LINK;
+pub const REG_MULTI_SZ = REG_VALUE_TYPE.MULTI_SZ;
+pub const REG_RESOURCE_LIST = REG_VALUE_TYPE.RESOURCE_LIST;
+pub const REG_FULL_RESOURCE_DESCRIPTOR = REG_VALUE_TYPE.FULL_RESOURCE_DESCRIPTOR;
+pub const REG_RESOURCE_REQUIREMENTS_LIST = REG_VALUE_TYPE.RESOURCE_REQUIREMENTS_LIST;
+pub const REG_QWORD = REG_VALUE_TYPE.QWORD;
+pub const REG_QWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.QWORD_LITTLE_ENDIAN;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const REG_SAM_FLAGS = extern enum(u32) {
+    QUERY_VALUE = 1,
+    SET_VALUE = 2,
+    CREATE_SUB_KEY = 4,
+    ENUMERATE_SUB_KEYS = 8,
+    NOTIFY = 16,
+    CREATE_LINK = 32,
+    WOW64_32KEY = 512,
+    WOW64_64KEY = 256,
+    WOW64_RES = 768,
+    READ = 131097,
+    WRITE = 131078,
+    EXECUTE = 131097,
+    ALL_ACCESS = 983103,
+    _,
+};
+pub const KEY_QUERY_VALUE = REG_SAM_FLAGS.QUERY_VALUE;
+pub const KEY_SET_VALUE = REG_SAM_FLAGS.SET_VALUE;
+pub const KEY_CREATE_SUB_KEY = REG_SAM_FLAGS.CREATE_SUB_KEY;
+pub const KEY_ENUMERATE_SUB_KEYS = REG_SAM_FLAGS.ENUMERATE_SUB_KEYS;
+pub const KEY_NOTIFY = REG_SAM_FLAGS.NOTIFY;
+pub const KEY_CREATE_LINK = REG_SAM_FLAGS.CREATE_LINK;
+pub const KEY_WOW64_32KEY = REG_SAM_FLAGS.WOW64_32KEY;
+pub const KEY_WOW64_64KEY = REG_SAM_FLAGS.WOW64_64KEY;
+pub const KEY_WOW64_RES = REG_SAM_FLAGS.WOW64_RES;
+pub const KEY_READ = REG_SAM_FLAGS.READ;
+pub const KEY_WRITE = REG_SAM_FLAGS.WRITE;
+pub const KEY_EXECUTE = REG_SAM_FLAGS.EXECUTE;
+pub const KEY_ALL_ACCESS = REG_SAM_FLAGS.ALL_ACCESS;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const REG_OPEN_CREATE_OPTIONS = extern enum(u32) {
+    RESERVED = 0,
+    NON_VOLATILE = 0,
+    VOLATILE = 1,
+    CREATE_LINK = 2,
+    BACKUP_RESTORE = 4,
+    OPEN_LINK = 8,
+    DONT_VIRTUALIZE = 16,
+    _,
+};
+// TODO: enum 'REG_OPEN_CREATE_OPTIONS' has known issues with its value aliases
+
+pub const REG_CREATE_KEY_DISPOSITION = extern enum(u32) {
+    CREATED_NEW_KEY = 1,
+    OPENED_EXISTING_KEY = 2,
+};
+pub const REG_CREATED_NEW_KEY = REG_CREATE_KEY_DISPOSITION.CREATED_NEW_KEY;
+pub const REG_OPENED_EXISTING_KEY = REG_CREATE_KEY_DISPOSITION.OPENED_EXISTING_KEY;
 
 pub const THREAD_INFORMATION_CLASS = extern enum(i32) {
     MemoryPriority = 0,
@@ -11707,6 +11900,12 @@ pub const PFLOGFRAME = extern struct {
     bPacketData: [1]u8,
 };
 
+pub const STRING = extern struct {
+    Length: u16,
+    MaximumLength: u16,
+    Buffer: [*]u8,
+};
+
 pub const EXTENDED_NAME_FORMAT = extern enum(i32) {
     Unknown = 0,
     FullyQualifiedDN = 1,
@@ -11734,209 +11933,14 @@ pub const NameDnsDomain = EXTENDED_NAME_FORMAT.DnsDomain;
 pub const NameGivenName = EXTENDED_NAME_FORMAT.GivenName;
 pub const NameSurname = EXTENDED_NAME_FORMAT.Surname;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PROCESS_CREATION_FLAGS = extern enum(u32) {
-    DEBUG_PROCESS = 1,
-    DEBUG_ONLY_THIS_PROCESS = 2,
-    CREATE_SUSPENDED = 4,
-    DETACHED_PROCESS = 8,
-    CREATE_NEW_CONSOLE = 16,
-    NORMAL_PRIORITY_CLASS = 32,
-    IDLE_PRIORITY_CLASS = 64,
-    HIGH_PRIORITY_CLASS = 128,
-    REALTIME_PRIORITY_CLASS = 256,
-    CREATE_NEW_PROCESS_GROUP = 512,
-    CREATE_UNICODE_ENVIRONMENT = 1024,
-    CREATE_SEPARATE_WOW_VDM = 2048,
-    CREATE_SHARED_WOW_VDM = 4096,
-    CREATE_FORCEDOS = 8192,
-    BELOW_NORMAL_PRIORITY_CLASS = 16384,
-    ABOVE_NORMAL_PRIORITY_CLASS = 32768,
-    INHERIT_PARENT_AFFINITY = 65536,
-    INHERIT_CALLER_PRIORITY = 131072,
-    CREATE_PROTECTED_PROCESS = 262144,
-    EXTENDED_STARTUPINFO_PRESENT = 524288,
-    PROCESS_MODE_BACKGROUND_BEGIN = 1048576,
-    PROCESS_MODE_BACKGROUND_END = 2097152,
-    CREATE_SECURE_PROCESS = 4194304,
-    CREATE_BREAKAWAY_FROM_JOB = 16777216,
-    CREATE_PRESERVE_CODE_AUTHZ_LEVEL = 33554432,
-    CREATE_DEFAULT_ERROR_MODE = 67108864,
-    CREATE_NO_WINDOW = 134217728,
-    PROFILE_USER = 268435456,
-    PROFILE_KERNEL = 536870912,
-    PROFILE_SERVER = 1073741824,
-    CREATE_IGNORE_SYSTEM_DEFAULT = 2147483648,
-    _,
-};
-pub const DEBUG_PROCESS = PROCESS_CREATION_FLAGS.DEBUG_PROCESS;
-pub const DEBUG_ONLY_THIS_PROCESS = PROCESS_CREATION_FLAGS.DEBUG_ONLY_THIS_PROCESS;
-pub const CREATE_SUSPENDED = PROCESS_CREATION_FLAGS.CREATE_SUSPENDED;
-pub const DETACHED_PROCESS = PROCESS_CREATION_FLAGS.DETACHED_PROCESS;
-pub const CREATE_NEW_CONSOLE = PROCESS_CREATION_FLAGS.CREATE_NEW_CONSOLE;
-pub const NORMAL_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.NORMAL_PRIORITY_CLASS;
-pub const IDLE_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.IDLE_PRIORITY_CLASS;
-pub const HIGH_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.HIGH_PRIORITY_CLASS;
-pub const REALTIME_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.REALTIME_PRIORITY_CLASS;
-pub const CREATE_NEW_PROCESS_GROUP = PROCESS_CREATION_FLAGS.CREATE_NEW_PROCESS_GROUP;
-pub const CREATE_UNICODE_ENVIRONMENT = PROCESS_CREATION_FLAGS.CREATE_UNICODE_ENVIRONMENT;
-pub const CREATE_SEPARATE_WOW_VDM = PROCESS_CREATION_FLAGS.CREATE_SEPARATE_WOW_VDM;
-pub const CREATE_SHARED_WOW_VDM = PROCESS_CREATION_FLAGS.CREATE_SHARED_WOW_VDM;
-pub const CREATE_FORCEDOS = PROCESS_CREATION_FLAGS.CREATE_FORCEDOS;
-pub const BELOW_NORMAL_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.BELOW_NORMAL_PRIORITY_CLASS;
-pub const ABOVE_NORMAL_PRIORITY_CLASS = PROCESS_CREATION_FLAGS.ABOVE_NORMAL_PRIORITY_CLASS;
-pub const INHERIT_PARENT_AFFINITY = PROCESS_CREATION_FLAGS.INHERIT_PARENT_AFFINITY;
-pub const INHERIT_CALLER_PRIORITY = PROCESS_CREATION_FLAGS.INHERIT_CALLER_PRIORITY;
-pub const CREATE_PROTECTED_PROCESS = PROCESS_CREATION_FLAGS.CREATE_PROTECTED_PROCESS;
-pub const EXTENDED_STARTUPINFO_PRESENT = PROCESS_CREATION_FLAGS.EXTENDED_STARTUPINFO_PRESENT;
-pub const PROCESS_MODE_BACKGROUND_BEGIN = PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_BEGIN;
-pub const PROCESS_MODE_BACKGROUND_END = PROCESS_CREATION_FLAGS.PROCESS_MODE_BACKGROUND_END;
-pub const CREATE_SECURE_PROCESS = PROCESS_CREATION_FLAGS.CREATE_SECURE_PROCESS;
-pub const CREATE_BREAKAWAY_FROM_JOB = PROCESS_CREATION_FLAGS.CREATE_BREAKAWAY_FROM_JOB;
-pub const CREATE_PRESERVE_CODE_AUTHZ_LEVEL = PROCESS_CREATION_FLAGS.CREATE_PRESERVE_CODE_AUTHZ_LEVEL;
-pub const CREATE_DEFAULT_ERROR_MODE = PROCESS_CREATION_FLAGS.CREATE_DEFAULT_ERROR_MODE;
-pub const CREATE_NO_WINDOW = PROCESS_CREATION_FLAGS.CREATE_NO_WINDOW;
-pub const PROFILE_USER = PROCESS_CREATION_FLAGS.PROFILE_USER;
-pub const PROFILE_KERNEL = PROCESS_CREATION_FLAGS.PROFILE_KERNEL;
-pub const PROFILE_SERVER = PROCESS_CREATION_FLAGS.PROFILE_SERVER;
-pub const CREATE_IGNORE_SYSTEM_DEFAULT = PROCESS_CREATION_FLAGS.CREATE_IGNORE_SYSTEM_DEFAULT;
-
-pub const HANDLE_FLAG_OPTIONS = extern enum(i32) {
-    INHERIT = 1,
-    PROTECT_FROM_CLOSE = 2,
-};
-pub const HANDLE_FLAG_INHERIT = HANDLE_FLAG_OPTIONS.INHERIT;
-pub const HANDLE_FLAG_PROTECT_FROM_CLOSE = HANDLE_FLAG_OPTIONS.PROTECT_FROM_CLOSE;
-
-pub const DUPLICATE_HANDLE_OPTIONS = extern enum(i32) {
-    CLOSE_SOURCE = 1,
-    SAME_ACCESS = 2,
-};
-pub const DUPLICATE_CLOSE_SOURCE = DUPLICATE_HANDLE_OPTIONS.CLOSE_SOURCE;
-pub const DUPLICATE_SAME_ACCESS = DUPLICATE_HANDLE_OPTIONS.SAME_ACCESS;
-
-pub const STD_HANDLE_TYPE = extern enum(u32) {
-    INPUT_HANDLE = 4294967286,
-    OUTPUT_HANDLE = 4294967285,
-    ERROR_HANDLE = 4294967284,
-};
-pub const STD_INPUT_HANDLE = STD_HANDLE_TYPE.INPUT_HANDLE;
-pub const STD_OUTPUT_HANDLE = STD_HANDLE_TYPE.OUTPUT_HANDLE;
-pub const STD_ERROR_HANDLE = STD_HANDLE_TYPE.ERROR_HANDLE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const VER_FLAGS = extern enum(u32) {
-    MINORVERSION = 1,
-    MAJORVERSION = 2,
-    BUILDNUMBER = 4,
-    PLATFORMID = 8,
-    SERVICEPACKMINOR = 16,
-    SERVICEPACKMAJOR = 32,
-    SUITENAME = 64,
-    PRODUCT_TYPE = 128,
-    _,
-};
-pub const VER_MINORVERSION = VER_FLAGS.MINORVERSION;
-pub const VER_MAJORVERSION = VER_FLAGS.MAJORVERSION;
-pub const VER_BUILDNUMBER = VER_FLAGS.BUILDNUMBER;
-pub const VER_PLATFORMID = VER_FLAGS.PLATFORMID;
-pub const VER_SERVICEPACKMINOR = VER_FLAGS.SERVICEPACKMINOR;
-pub const VER_SERVICEPACKMAJOR = VER_FLAGS.SERVICEPACKMAJOR;
-pub const VER_SUITENAME = VER_FLAGS.SUITENAME;
-pub const VER_PRODUCT_TYPE = VER_FLAGS.PRODUCT_TYPE;
-
-pub const REG_VALUE_TYPE = extern enum(u32) {
-    NONE = 0,
-    SZ = 1,
-    EXPAND_SZ = 2,
-    BINARY = 3,
-    DWORD = 4,
-    DWORD_LITTLE_ENDIAN = 4,
-    DWORD_BIG_ENDIAN = 5,
-    LINK = 6,
-    MULTI_SZ = 7,
-    RESOURCE_LIST = 8,
-    FULL_RESOURCE_DESCRIPTOR = 9,
-    RESOURCE_REQUIREMENTS_LIST = 10,
-    QWORD = 11,
-    QWORD_LITTLE_ENDIAN = 11,
-};
-pub const REG_NONE = REG_VALUE_TYPE.NONE;
-pub const REG_SZ = REG_VALUE_TYPE.SZ;
-pub const REG_EXPAND_SZ = REG_VALUE_TYPE.EXPAND_SZ;
-pub const REG_BINARY = REG_VALUE_TYPE.BINARY;
-pub const REG_DWORD = REG_VALUE_TYPE.DWORD;
-pub const REG_DWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.DWORD_LITTLE_ENDIAN;
-pub const REG_DWORD_BIG_ENDIAN = REG_VALUE_TYPE.DWORD_BIG_ENDIAN;
-pub const REG_LINK = REG_VALUE_TYPE.LINK;
-pub const REG_MULTI_SZ = REG_VALUE_TYPE.MULTI_SZ;
-pub const REG_RESOURCE_LIST = REG_VALUE_TYPE.RESOURCE_LIST;
-pub const REG_FULL_RESOURCE_DESCRIPTOR = REG_VALUE_TYPE.FULL_RESOURCE_DESCRIPTOR;
-pub const REG_RESOURCE_REQUIREMENTS_LIST = REG_VALUE_TYPE.RESOURCE_REQUIREMENTS_LIST;
-pub const REG_QWORD = REG_VALUE_TYPE.QWORD;
-pub const REG_QWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.QWORD_LITTLE_ENDIAN;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const REG_SAM_FLAGS = extern enum(u32) {
-    QUERY_VALUE = 1,
-    SET_VALUE = 2,
-    CREATE_SUB_KEY = 4,
-    ENUMERATE_SUB_KEYS = 8,
-    NOTIFY = 16,
-    CREATE_LINK = 32,
-    WOW64_32KEY = 512,
-    WOW64_64KEY = 256,
-    WOW64_RES = 768,
-    READ = 131097,
-    WRITE = 131078,
-    EXECUTE = 131097,
-    ALL_ACCESS = 983103,
-    _,
-};
-pub const KEY_QUERY_VALUE = REG_SAM_FLAGS.QUERY_VALUE;
-pub const KEY_SET_VALUE = REG_SAM_FLAGS.SET_VALUE;
-pub const KEY_CREATE_SUB_KEY = REG_SAM_FLAGS.CREATE_SUB_KEY;
-pub const KEY_ENUMERATE_SUB_KEYS = REG_SAM_FLAGS.ENUMERATE_SUB_KEYS;
-pub const KEY_NOTIFY = REG_SAM_FLAGS.NOTIFY;
-pub const KEY_CREATE_LINK = REG_SAM_FLAGS.CREATE_LINK;
-pub const KEY_WOW64_32KEY = REG_SAM_FLAGS.WOW64_32KEY;
-pub const KEY_WOW64_64KEY = REG_SAM_FLAGS.WOW64_64KEY;
-pub const KEY_WOW64_RES = REG_SAM_FLAGS.WOW64_RES;
-pub const KEY_READ = REG_SAM_FLAGS.READ;
-pub const KEY_WRITE = REG_SAM_FLAGS.WRITE;
-pub const KEY_EXECUTE = REG_SAM_FLAGS.EXECUTE;
-pub const KEY_ALL_ACCESS = REG_SAM_FLAGS.ALL_ACCESS;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const REG_OPEN_CREATE_OPTIONS = extern enum(u32) {
-    RESERVED = 0,
-    NON_VOLATILE = 0,
-    VOLATILE = 1,
-    CREATE_LINK = 2,
-    BACKUP_RESTORE = 4,
-    OPEN_LINK = 8,
-    DONT_VIRTUALIZE = 16,
-    _,
-};
-// TODO: enum 'REG_OPEN_CREATE_OPTIONS' has known issues with its value aliases
-
-pub const REG_CREATE_KEY_DISPOSITION = extern enum(u32) {
-    CREATED_NEW_KEY = 1,
-    OPENED_EXISTING_KEY = 2,
-};
-pub const REG_CREATED_NEW_KEY = REG_CREATE_KEY_DISPOSITION.CREATED_NEW_KEY;
-pub const REG_OPENED_EXISTING_KEY = REG_CREATE_KEY_DISPOSITION.OPENED_EXISTING_KEY;
-
-pub const STRING = extern struct {
-    Length: u16,
-    MaximumLength: u16,
-    Buffer: [*]u8,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (483)
 //--------------------------------------------------------------------------------
+pub extern "KERNEL32" fn RtlRaiseException(
+    ExceptionRecord: *EXCEPTION_RECORD,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub extern "NETAPI32" fn I_NetLogonControl2(
     ServerName: ?[*:0]const u16,
     FunctionCode: u32,
@@ -11944,116 +11948,6 @@ pub extern "NETAPI32" fn I_NetLogonControl2(
     Data: *u8,
     Buffer: **u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "KERNEL32" fn RtlRaiseException(
-    ExceptionRecord: *EXCEPTION_RECORD,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "loadperf" fn InstallPerfDllW(
-    szComputerName: ?[*:0]const u16,
-    lpIniFile: [*:0]const u16,
-    dwFlags: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "loadperf" fn InstallPerfDllA(
-    szComputerName: ?[*:0]const u8,
-    lpIniFile: [*:0]const u8,
-    dwFlags: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrSimpleStructMarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrComplexStructMarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "RPCRT4" fn NdrConformantArrayMarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrComplexArrayMarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrSimpleStructUnmarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    ppMemory: **u8,
-    pFormat: *u8,
-    fMustAlloc: u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrComplexStructUnmarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    ppMemory: **u8,
-    pFormat: *u8,
-    fMustAlloc: u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrComplexArrayUnmarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    ppMemory: **u8,
-    pFormat: *u8,
-    fMustAlloc: u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrUserMarshalUnmarshall(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    ppMemory: **u8,
-    pFormat: *u8,
-    fMustAlloc: u8,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrSimpleStructBufferSize(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrComplexStructBufferSize(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "RPCRT4" fn NdrConformantArrayBufferSize(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "RPCRT4" fn NdrComplexArrayBufferSize(
-    pStubMsg: *MIDL_STUB_MESSAGE,
-    pMemory: *u8,
-    pFormat: *u8,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "ole32" fn CoInstall(
-    pbc: *IBindCtx,
-    dwFlags: u32,
-    pClassSpec: *uCLSSPEC,
-    pQuery: *QUERYCONTEXT,
-    pszCodeBase: PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "api-ms-win-core-apiquery-l2-1-0" fn IsApiSetImplemented(
     Contract: [*:0]const u8,
@@ -15181,6 +15075,112 @@ pub extern "api-ms-win-core-state-helpers-l1-1-0" fn GetRegistryValueWithFallbac
     pcbDataOut: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+pub extern "loadperf" fn InstallPerfDllW(
+    szComputerName: ?[*:0]const u16,
+    lpIniFile: [*:0]const u16,
+    dwFlags: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "loadperf" fn InstallPerfDllA(
+    szComputerName: ?[*:0]const u8,
+    lpIniFile: [*:0]const u8,
+    dwFlags: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrSimpleStructMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexStructMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "RPCRT4" fn NdrConformantArrayMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexArrayMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrSimpleStructUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexStructUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexArrayUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrUserMarshalUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrSimpleStructBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexStructBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "RPCRT4" fn NdrConformantArrayBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexArrayBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "ole32" fn CoInstall(
+    pbc: *IBindCtx,
+    dwFlags: u32,
+    pClassSpec: *uCLSSPEC,
+    pQuery: *QUERYCONTEXT,
+    pszCodeBase: PWSTR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn CompareFileTime(
     lpFileTime1: *const FILETIME,
@@ -15247,6 +15247,10 @@ pub extern "KERNEL32" fn IsWow64GuestMachineSupported(
     MachineIsSupported: *BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn DisableProcessWindowsGhosting(
+) callconv(@import("std").os.windows.WINAPI) void;
+
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SspiCli" fn GetUserNameExA(
     NameFormat: EXTENDED_NAME_FORMAT,
@@ -15293,10 +15297,6 @@ pub extern "SECUR32" fn TranslateNameW(
     nSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn DisableProcessWindowsGhosting(
-) callconv(@import("std").os.windows.WINAPI) void;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (109)
@@ -15314,7 +15314,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CABINFO = CABINFOA;
         pub const PERUSERSECTION = PERUSERSECTIONA;
         pub const IMEPRO = IMEPROA;
-        pub const InstallPerfDll = InstallPerfDllA;
         pub const SetEnvironmentStrings = SetEnvironmentStringsA;
         pub const ExpandEnvironmentStrings = ExpandEnvironmentStringsA;
         pub const SetCurrentDirectory = SetCurrentDirectoryA;
@@ -15407,6 +15406,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = IMPGetIMEA;
         pub const IMPQueryIME = IMPQueryIMEA;
         pub const IMPSetIME = IMPSetIMEA;
+        pub const InstallPerfDll = InstallPerfDllA;
         pub const GetSystemWow64Directory = GetSystemWow64DirectoryA;
         pub const GetSystemWow64Directory2 = GetSystemWow64Directory2A;
         pub const GetUserNameEx = GetUserNameExA;
@@ -15425,7 +15425,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CABINFO = CABINFOW;
         pub const PERUSERSECTION = PERUSERSECTIONW;
         pub const IMEPRO = IMEPROW;
-        pub const InstallPerfDll = InstallPerfDllW;
         pub const SetEnvironmentStrings = SetEnvironmentStringsW;
         pub const ExpandEnvironmentStrings = ExpandEnvironmentStringsW;
         pub const SetCurrentDirectory = SetCurrentDirectoryW;
@@ -15518,6 +15517,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = IMPGetIMEW;
         pub const IMPQueryIME = IMPQueryIMEW;
         pub const IMPSetIME = IMPSetIMEW;
+        pub const InstallPerfDll = InstallPerfDllW;
         pub const GetSystemWow64Directory = GetSystemWow64DirectoryW;
         pub const GetSystemWow64Directory2 = GetSystemWow64Directory2W;
         pub const GetUserNameEx = GetUserNameExW;
@@ -15536,7 +15536,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CABINFO = *opaque{};
         pub const PERUSERSECTION = *opaque{};
         pub const IMEPRO = *opaque{};
-        pub const InstallPerfDll = *opaque{};
         pub const SetEnvironmentStrings = *opaque{};
         pub const ExpandEnvironmentStrings = *opaque{};
         pub const SetCurrentDirectory = *opaque{};
@@ -15629,6 +15628,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = *opaque{};
         pub const IMPQueryIME = *opaque{};
         pub const IMPSetIME = *opaque{};
+        pub const InstallPerfDll = *opaque{};
         pub const GetSystemWow64Directory = *opaque{};
         pub const GetSystemWow64Directory2 = *opaque{};
         pub const GetUserNameEx = *opaque{};
@@ -15646,7 +15646,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CABINFO = @compileError("'CABINFO' requires that UNICODE be set to true or false in the root module");
         pub const PERUSERSECTION = @compileError("'PERUSERSECTION' requires that UNICODE be set to true or false in the root module");
         pub const IMEPRO = @compileError("'IMEPRO' requires that UNICODE be set to true or false in the root module");
-        pub const InstallPerfDll = @compileError("'InstallPerfDll' requires that UNICODE be set to true or false in the root module");
         pub const SetEnvironmentStrings = @compileError("'SetEnvironmentStrings' requires that UNICODE be set to true or false in the root module");
         pub const ExpandEnvironmentStrings = @compileError("'ExpandEnvironmentStrings' requires that UNICODE be set to true or false in the root module");
         pub const SetCurrentDirectory = @compileError("'SetCurrentDirectory' requires that UNICODE be set to true or false in the root module");
@@ -15739,6 +15738,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const IMPGetIME = @compileError("'IMPGetIME' requires that UNICODE be set to true or false in the root module");
         pub const IMPQueryIME = @compileError("'IMPQueryIME' requires that UNICODE be set to true or false in the root module");
         pub const IMPSetIME = @compileError("'IMPSetIME' requires that UNICODE be set to true or false in the root module");
+        pub const InstallPerfDll = @compileError("'InstallPerfDll' requires that UNICODE be set to true or false in the root module");
         pub const GetSystemWow64Directory = @compileError("'GetSystemWow64Directory' requires that UNICODE be set to true or false in the root module");
         pub const GetSystemWow64Directory2 = @compileError("'GetSystemWow64Directory2' requires that UNICODE be set to true or false in the root module");
         pub const GetUserNameEx = @compileError("'GetUserNameEx' requires that UNICODE be set to true or false in the root module");
@@ -15756,8 +15756,8 @@ const DDSCAPSEX = @import("direct_draw.zig").DDSCAPSEX;
 const OLECMDF = @import("com.zig").OLECMDF;
 const OLECMDEXECOPT = @import("com.zig").OLECMDEXECOPT;
 const DEVPROPERTY = @import("system_services.zig").DEVPROPERTY;
-const MIDL_STUB_MESSAGE = @import("rpc.zig").MIDL_STUB_MESSAGE;
 const NTSTATUS = @import("system_services.zig").NTSTATUS;
+const MIDL_STUB_MESSAGE = @import("rpc.zig").MIDL_STUB_MESSAGE;
 const CONTEXT = @import("debug.zig").CONTEXT;
 const WPARAM = @import("windows_and_messaging.zig").WPARAM;
 const LRESULT = @import("system_services.zig").LRESULT;
@@ -15769,8 +15769,8 @@ const UNICODE_STRING = @import("security.zig").UNICODE_STRING;
 const DDVIDEOPORTCONNECT = @import("core_audio.zig").DDVIDEOPORTCONNECT;
 const SECURITY_DESCRIPTOR = @import("security.zig").SECURITY_DESCRIPTOR;
 const PWSTR = @import("system_services.zig").PWSTR;
-const IBindCtx = @import("com.zig").IBindCtx;
 const LSTATUS = @import("system_services.zig").LSTATUS;
+const IBindCtx = @import("com.zig").IBindCtx;
 const DDCORECAPS = @import("display_devices.zig").DDCORECAPS;
 const DDVIDEOPORTINFO = @import("display_devices.zig").DDVIDEOPORTINFO;
 const SECURITY_ATTRIBUTES = @import("system_services.zig").SECURITY_ATTRIBUTES;

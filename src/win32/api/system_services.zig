@@ -26268,6 +26268,463 @@ pub const MIPI_DSI_RESET = extern struct {
     const _Anonymous_e__Union = u32; // TODO: generate this nested type!
 };
 
+pub const PUMS_SCHEDULER_ENTRY_POINT = fn(
+    Reason: RTL_UMS_SCHEDULER_REASON,
+    ActivationPayload: usize,
+    SchedulerParam: *c_void,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const CONSOLE_MODE = extern enum(u32) {
+    ENABLE_ECHO_INPUT = 4,
+    ENABLE_INSERT_MODE = 32,
+    ENABLE_LINE_INPUT = 2,
+    ENABLE_MOUSE_INPUT = 16,
+    ENABLE_PROCESSED_INPUT = 1,
+    ENABLE_QUICK_EDIT_MODE = 64,
+    ENABLE_WINDOW_INPUT = 8,
+    ENABLE_VIRTUAL_TERMINAL_INPUT = 512,
+    ENABLE_PROCESSED_OUTPUT = 1,
+    ENABLE_WRAP_AT_EOL_OUTPUT = 2,
+    ENABLE_VIRTUAL_TERMINAL_PROCESSING = 4,
+    DISABLE_NEWLINE_AUTO_RETURN = 8,
+    ENABLE_LVB_GRID_WORLDWIDE = 16,
+    _,
+};
+pub const ENABLE_ECHO_INPUT = CONSOLE_MODE.ENABLE_ECHO_INPUT;
+pub const ENABLE_INSERT_MODE = CONSOLE_MODE.ENABLE_INSERT_MODE;
+pub const ENABLE_LINE_INPUT = CONSOLE_MODE.ENABLE_LINE_INPUT;
+pub const ENABLE_MOUSE_INPUT = CONSOLE_MODE.ENABLE_MOUSE_INPUT;
+pub const ENABLE_PROCESSED_INPUT = CONSOLE_MODE.ENABLE_PROCESSED_INPUT;
+pub const ENABLE_QUICK_EDIT_MODE = CONSOLE_MODE.ENABLE_QUICK_EDIT_MODE;
+pub const ENABLE_WINDOW_INPUT = CONSOLE_MODE.ENABLE_WINDOW_INPUT;
+pub const ENABLE_VIRTUAL_TERMINAL_INPUT = CONSOLE_MODE.ENABLE_VIRTUAL_TERMINAL_INPUT;
+pub const ENABLE_PROCESSED_OUTPUT = CONSOLE_MODE.ENABLE_PROCESSED_OUTPUT;
+pub const ENABLE_WRAP_AT_EOL_OUTPUT = CONSOLE_MODE.ENABLE_WRAP_AT_EOL_OUTPUT;
+pub const ENABLE_VIRTUAL_TERMINAL_PROCESSING = CONSOLE_MODE.ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+pub const DISABLE_NEWLINE_AUTO_RETURN = CONSOLE_MODE.DISABLE_NEWLINE_AUTO_RETURN;
+pub const ENABLE_LVB_GRID_WORLDWIDE = CONSOLE_MODE.ENABLE_LVB_GRID_WORLDWIDE;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const PROCESS_ACCESS_RIGHTS = extern enum(u32) {
+    PROCESS_TERMINATE = 1,
+    PROCESS_CREATE_THREAD = 2,
+    PROCESS_SET_SESSIONID = 4,
+    PROCESS_VM_OPERATION = 8,
+    PROCESS_VM_READ = 16,
+    PROCESS_VM_WRITE = 32,
+    PROCESS_DUP_HANDLE = 64,
+    PROCESS_CREATE_PROCESS = 128,
+    PROCESS_SET_QUOTA = 256,
+    PROCESS_SET_INFORMATION = 512,
+    PROCESS_QUERY_INFORMATION = 1024,
+    PROCESS_SUSPEND_RESUME = 2048,
+    PROCESS_QUERY_LIMITED_INFORMATION = 4096,
+    PROCESS_SET_LIMITED_INFORMATION = 8192,
+    PROCESS_ALL_ACCESS = 2097151,
+    DELETE = 65536,
+    READ_CONTROL = 131072,
+    WRITE_DAC = 262144,
+    WRITE_OWNER = 524288,
+    SYNCHRONIZE = 1048576,
+    STANDARD_RIGHTS_REQUIRED = 983040,
+    _,
+};
+pub const PROCESS_TERMINATE = PROCESS_ACCESS_RIGHTS.PROCESS_TERMINATE;
+pub const PROCESS_CREATE_THREAD = PROCESS_ACCESS_RIGHTS.PROCESS_CREATE_THREAD;
+pub const PROCESS_SET_SESSIONID = PROCESS_ACCESS_RIGHTS.PROCESS_SET_SESSIONID;
+pub const PROCESS_VM_OPERATION = PROCESS_ACCESS_RIGHTS.PROCESS_VM_OPERATION;
+pub const PROCESS_VM_READ = PROCESS_ACCESS_RIGHTS.PROCESS_VM_READ;
+pub const PROCESS_VM_WRITE = PROCESS_ACCESS_RIGHTS.PROCESS_VM_WRITE;
+pub const PROCESS_DUP_HANDLE = PROCESS_ACCESS_RIGHTS.PROCESS_DUP_HANDLE;
+pub const PROCESS_CREATE_PROCESS = PROCESS_ACCESS_RIGHTS.PROCESS_CREATE_PROCESS;
+pub const PROCESS_SET_QUOTA = PROCESS_ACCESS_RIGHTS.PROCESS_SET_QUOTA;
+pub const PROCESS_SET_INFORMATION = PROCESS_ACCESS_RIGHTS.PROCESS_SET_INFORMATION;
+pub const PROCESS_QUERY_INFORMATION = PROCESS_ACCESS_RIGHTS.PROCESS_QUERY_INFORMATION;
+pub const PROCESS_SUSPEND_RESUME = PROCESS_ACCESS_RIGHTS.PROCESS_SUSPEND_RESUME;
+pub const PROCESS_QUERY_LIMITED_INFORMATION = PROCESS_ACCESS_RIGHTS.PROCESS_QUERY_LIMITED_INFORMATION;
+pub const PROCESS_SET_LIMITED_INFORMATION = PROCESS_ACCESS_RIGHTS.PROCESS_SET_LIMITED_INFORMATION;
+pub const PROCESS_ALL_ACCESS = PROCESS_ACCESS_RIGHTS.PROCESS_ALL_ACCESS;
+pub const DELETE = PROCESS_ACCESS_RIGHTS.DELETE;
+pub const READ_CONTROL = PROCESS_ACCESS_RIGHTS.READ_CONTROL;
+pub const WRITE_DAC = PROCESS_ACCESS_RIGHTS.WRITE_DAC;
+pub const WRITE_OWNER = PROCESS_ACCESS_RIGHTS.WRITE_OWNER;
+pub const SYNCHRONIZE = PROCESS_ACCESS_RIGHTS.SYNCHRONIZE;
+pub const STANDARD_RIGHTS_REQUIRED = PROCESS_ACCESS_RIGHTS.STANDARD_RIGHTS_REQUIRED;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const JOB_OBJECT_LIMIT = extern enum(u32) {
+    LIMIT_WORKINGSET = 1,
+    LIMIT_PROCESS_TIME = 2,
+    LIMIT_JOB_TIME = 4,
+    LIMIT_ACTIVE_PROCESS = 8,
+    LIMIT_AFFINITY = 16,
+    LIMIT_PRIORITY_CLASS = 32,
+    LIMIT_PRESERVE_JOB_TIME = 64,
+    LIMIT_SCHEDULING_CLASS = 128,
+    LIMIT_PROCESS_MEMORY = 256,
+    LIMIT_JOB_MEMORY = 512,
+    LIMIT_JOB_MEMORY_HIGH = 512,
+    LIMIT_DIE_ON_UNHANDLED_EXCEPTION = 1024,
+    LIMIT_BREAKAWAY_OK = 2048,
+    LIMIT_SILENT_BREAKAWAY_OK = 4096,
+    LIMIT_KILL_ON_JOB_CLOSE = 8192,
+    LIMIT_SUBSET_AFFINITY = 16384,
+    LIMIT_JOB_MEMORY_LOW = 32768,
+    LIMIT_JOB_READ_BYTES = 65536,
+    LIMIT_JOB_WRITE_BYTES = 131072,
+    LIMIT_RATE_CONTROL = 262144,
+    LIMIT_CPU_RATE_CONTROL = 262144,
+    LIMIT_IO_RATE_CONTROL = 524288,
+    LIMIT_NET_RATE_CONTROL = 1048576,
+    LIMIT_VALID_FLAGS = 524287,
+    BASIC_LIMIT_VALID_FLAGS = 255,
+    EXTENDED_LIMIT_VALID_FLAGS = 32767,
+    NOTIFICATION_LIMIT_VALID_FLAGS = 2064900,
+    _,
+};
+pub const JOB_OBJECT_LIMIT_WORKINGSET = JOB_OBJECT_LIMIT.LIMIT_WORKINGSET;
+pub const JOB_OBJECT_LIMIT_PROCESS_TIME = JOB_OBJECT_LIMIT.LIMIT_PROCESS_TIME;
+pub const JOB_OBJECT_LIMIT_JOB_TIME = JOB_OBJECT_LIMIT.LIMIT_JOB_TIME;
+pub const JOB_OBJECT_LIMIT_ACTIVE_PROCESS = JOB_OBJECT_LIMIT.LIMIT_ACTIVE_PROCESS;
+pub const JOB_OBJECT_LIMIT_AFFINITY = JOB_OBJECT_LIMIT.LIMIT_AFFINITY;
+pub const JOB_OBJECT_LIMIT_PRIORITY_CLASS = JOB_OBJECT_LIMIT.LIMIT_PRIORITY_CLASS;
+pub const JOB_OBJECT_LIMIT_PRESERVE_JOB_TIME = JOB_OBJECT_LIMIT.LIMIT_PRESERVE_JOB_TIME;
+pub const JOB_OBJECT_LIMIT_SCHEDULING_CLASS = JOB_OBJECT_LIMIT.LIMIT_SCHEDULING_CLASS;
+pub const JOB_OBJECT_LIMIT_PROCESS_MEMORY = JOB_OBJECT_LIMIT.LIMIT_PROCESS_MEMORY;
+pub const JOB_OBJECT_LIMIT_JOB_MEMORY = JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY;
+pub const JOB_OBJECT_LIMIT_JOB_MEMORY_HIGH = JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY_HIGH;
+pub const JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION = JOB_OBJECT_LIMIT.LIMIT_DIE_ON_UNHANDLED_EXCEPTION;
+pub const JOB_OBJECT_LIMIT_BREAKAWAY_OK = JOB_OBJECT_LIMIT.LIMIT_BREAKAWAY_OK;
+pub const JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK = JOB_OBJECT_LIMIT.LIMIT_SILENT_BREAKAWAY_OK;
+pub const JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = JOB_OBJECT_LIMIT.LIMIT_KILL_ON_JOB_CLOSE;
+pub const JOB_OBJECT_LIMIT_SUBSET_AFFINITY = JOB_OBJECT_LIMIT.LIMIT_SUBSET_AFFINITY;
+pub const JOB_OBJECT_LIMIT_JOB_MEMORY_LOW = JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY_LOW;
+pub const JOB_OBJECT_LIMIT_JOB_READ_BYTES = JOB_OBJECT_LIMIT.LIMIT_JOB_READ_BYTES;
+pub const JOB_OBJECT_LIMIT_JOB_WRITE_BYTES = JOB_OBJECT_LIMIT.LIMIT_JOB_WRITE_BYTES;
+pub const JOB_OBJECT_LIMIT_RATE_CONTROL = JOB_OBJECT_LIMIT.LIMIT_RATE_CONTROL;
+pub const JOB_OBJECT_LIMIT_CPU_RATE_CONTROL = JOB_OBJECT_LIMIT.LIMIT_CPU_RATE_CONTROL;
+pub const JOB_OBJECT_LIMIT_IO_RATE_CONTROL = JOB_OBJECT_LIMIT.LIMIT_IO_RATE_CONTROL;
+pub const JOB_OBJECT_LIMIT_NET_RATE_CONTROL = JOB_OBJECT_LIMIT.LIMIT_NET_RATE_CONTROL;
+pub const JOB_OBJECT_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.LIMIT_VALID_FLAGS;
+pub const JOB_OBJECT_BASIC_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.BASIC_LIMIT_VALID_FLAGS;
+pub const JOB_OBJECT_EXTENDED_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.EXTENDED_LIMIT_VALID_FLAGS;
+pub const JOB_OBJECT_NOTIFICATION_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.NOTIFICATION_LIMIT_VALID_FLAGS;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const JOB_OBJECT_UILIMIT = extern enum(u32) {
+    NONE = 0,
+    HANDLES = 1,
+    READCLIPBOARD = 2,
+    WRITECLIPBOARD = 4,
+    SYSTEMPARAMETERS = 8,
+    DISPLAYSETTINGS = 16,
+    GLOBALATOMS = 32,
+    DESKTOP = 64,
+    EXITWINDOWS = 128,
+    _,
+};
+pub const JOB_OBJECT_UILIMIT_NONE = JOB_OBJECT_UILIMIT.NONE;
+pub const JOB_OBJECT_UILIMIT_HANDLES = JOB_OBJECT_UILIMIT.HANDLES;
+pub const JOB_OBJECT_UILIMIT_READCLIPBOARD = JOB_OBJECT_UILIMIT.READCLIPBOARD;
+pub const JOB_OBJECT_UILIMIT_WRITECLIPBOARD = JOB_OBJECT_UILIMIT.WRITECLIPBOARD;
+pub const JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS = JOB_OBJECT_UILIMIT.SYSTEMPARAMETERS;
+pub const JOB_OBJECT_UILIMIT_DISPLAYSETTINGS = JOB_OBJECT_UILIMIT.DISPLAYSETTINGS;
+pub const JOB_OBJECT_UILIMIT_GLOBALATOMS = JOB_OBJECT_UILIMIT.GLOBALATOMS;
+pub const JOB_OBJECT_UILIMIT_DESKTOP = JOB_OBJECT_UILIMIT.DESKTOP;
+pub const JOB_OBJECT_UILIMIT_EXITWINDOWS = JOB_OBJECT_UILIMIT.EXITWINDOWS;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const JOB_OBJECT_SECURITY = extern enum(u32) {
+    NO_ADMIN = 1,
+    RESTRICTED_TOKEN = 2,
+    ONLY_TOKEN = 4,
+    FILTER_TOKENS = 8,
+    VALID_FLAGS = 15,
+    _,
+};
+pub const JOB_OBJECT_SECURITY_NO_ADMIN = JOB_OBJECT_SECURITY.NO_ADMIN;
+pub const JOB_OBJECT_SECURITY_RESTRICTED_TOKEN = JOB_OBJECT_SECURITY.RESTRICTED_TOKEN;
+pub const JOB_OBJECT_SECURITY_ONLY_TOKEN = JOB_OBJECT_SECURITY.ONLY_TOKEN;
+pub const JOB_OBJECT_SECURITY_FILTER_TOKENS = JOB_OBJECT_SECURITY.FILTER_TOKENS;
+pub const JOB_OBJECT_SECURITY_VALID_FLAGS = JOB_OBJECT_SECURITY.VALID_FLAGS;
+
+pub const WAIT_RETURN_CAUSE = extern enum(u32) {
+    OBJECT_0 = 0,
+    ABANDONED = 128,
+    ABANDONED_0 = 128,
+    IO_COMPLETION = 192,
+    TIMEOUT = 258,
+    FAILED = 4294967295,
+};
+pub const WAIT_OBJECT_0 = WAIT_RETURN_CAUSE.OBJECT_0;
+pub const WAIT_ABANDONED = WAIT_RETURN_CAUSE.ABANDONED;
+pub const WAIT_ABANDONED_0 = WAIT_RETURN_CAUSE.ABANDONED_0;
+pub const WAIT_IO_COMPLETION = WAIT_RETURN_CAUSE.IO_COMPLETION;
+pub const WAIT_TIMEOUT = WAIT_RETURN_CAUSE.TIMEOUT;
+pub const WAIT_FAILED = WAIT_RETURN_CAUSE.FAILED;
+
+pub const PROCESS_INFORMATION = extern struct {
+    hProcess: HANDLE,
+    hThread: HANDLE,
+    dwProcessId: u32,
+    dwThreadId: u32,
+};
+
+pub const STARTUPINFOA = extern struct {
+    cb: u32,
+    lpReserved: PSTR,
+    lpDesktop: PSTR,
+    lpTitle: PSTR,
+    dwX: u32,
+    dwY: u32,
+    dwXSize: u32,
+    dwYSize: u32,
+    dwXCountChars: u32,
+    dwYCountChars: u32,
+    dwFillAttribute: u32,
+    dwFlags: STARTUPINFOW_FLAGS,
+    wShowWindow: u16,
+    cbReserved2: u16,
+    lpReserved2: *u8,
+    hStdInput: HANDLE,
+    hStdOutput: HANDLE,
+    hStdError: HANDLE,
+};
+
+pub const STARTUPINFOW = extern struct {
+    cb: u32,
+    lpReserved: PWSTR,
+    lpDesktop: PWSTR,
+    lpTitle: PWSTR,
+    dwX: u32,
+    dwY: u32,
+    dwXSize: u32,
+    dwYSize: u32,
+    dwXCountChars: u32,
+    dwYCountChars: u32,
+    dwFillAttribute: u32,
+    dwFlags: STARTUPINFOW_FLAGS,
+    wShowWindow: u16,
+    cbReserved2: u16,
+    lpReserved2: *u8,
+    hStdInput: HANDLE,
+    hStdOutput: HANDLE,
+    hStdError: HANDLE,
+};
+
+pub const MEMORY_PRIORITY_INFORMATION = extern struct {
+    MemoryPriority: MEMORY_PRIORITY,
+};
+
+pub const THREAD_POWER_THROTTLING_STATE = extern struct {
+    Version: u32,
+    ControlMask: u32,
+    StateMask: u32,
+};
+
+pub const APP_MEMORY_INFORMATION = extern struct {
+    AvailableCommit: u64,
+    PrivateCommitUsage: u64,
+    PeakPrivateCommitUsage: u64,
+    TotalCommitUsage: u64,
+};
+
+pub const PROCESS_MEMORY_EXHAUSTION_TYPE = extern enum(i32) {
+    FailFastOnCommitFailure = 0,
+    Max = 1,
+};
+pub const PMETypeFailFastOnCommitFailure = PROCESS_MEMORY_EXHAUSTION_TYPE.FailFastOnCommitFailure;
+pub const PMETypeMax = PROCESS_MEMORY_EXHAUSTION_TYPE.Max;
+
+pub const PROCESS_MEMORY_EXHAUSTION_INFO = extern struct {
+    Version: u16,
+    Reserved: u16,
+    Type: PROCESS_MEMORY_EXHAUSTION_TYPE,
+    Value: usize,
+};
+
+pub const PROCESS_POWER_THROTTLING_STATE = extern struct {
+    Version: u32,
+    ControlMask: u32,
+    StateMask: u32,
+};
+
+pub const PROCESS_PROTECTION_LEVEL_INFORMATION = extern struct {
+    ProtectionLevel: PROCESS_PROTECTION_LEVEL,
+};
+
+pub const PROCESS_LEAP_SECOND_INFO = extern struct {
+    Flags: u32,
+    Reserved: u32,
+};
+
+pub const MEMORYSTATUSEX = extern struct {
+    dwLength: u32,
+    dwMemoryLoad: u32,
+    ullTotalPhys: u64,
+    ullAvailPhys: u64,
+    ullTotalPageFile: u64,
+    ullAvailPageFile: u64,
+    ullTotalVirtual: u64,
+    ullAvailVirtual: u64,
+    ullAvailExtendedVirtual: u64,
+};
+
+pub const COMMPROP = extern struct {
+    wPacketLength: u16,
+    wPacketVersion: u16,
+    dwServiceMask: u32,
+    dwReserved1: u32,
+    dwMaxTxQueue: u32,
+    dwMaxRxQueue: u32,
+    dwMaxBaud: u32,
+    dwProvSubType: u32,
+    dwProvCapabilities: u32,
+    dwSettableParams: u32,
+    dwSettableBaud: u32,
+    wSettableData: u16,
+    wSettableStopParity: COMMPROP_STOP_PARITY,
+    dwCurrentTxQueue: u32,
+    dwCurrentRxQueue: u32,
+    dwProvSpec1: u32,
+    dwProvSpec2: u32,
+    wcProvChar: [1]u16,
+};
+
+pub const COMSTAT = extern struct {
+    _bitfield: u32,
+    cbInQue: u32,
+    cbOutQue: u32,
+};
+
+pub const DCB = extern struct {
+    DCBlength: u32,
+    BaudRate: u32,
+    _bitfield: u32,
+    wReserved: u16,
+    XonLim: u16,
+    XoffLim: u16,
+    ByteSize: u8,
+    Parity: u8,
+    StopBits: u8,
+    XonChar: CHAR,
+    XoffChar: CHAR,
+    ErrorChar: CHAR,
+    EofChar: CHAR,
+    EvtChar: CHAR,
+    wReserved1: u16,
+};
+
+pub const COMMTIMEOUTS = extern struct {
+    ReadIntervalTimeout: u32,
+    ReadTotalTimeoutMultiplier: u32,
+    ReadTotalTimeoutConstant: u32,
+    WriteTotalTimeoutMultiplier: u32,
+    WriteTotalTimeoutConstant: u32,
+};
+
+pub const COMMCONFIG = extern struct {
+    dwSize: u32,
+    wVersion: u16,
+    wReserved: u16,
+    dcb: DCB,
+    dwProviderSubType: u32,
+    dwProviderOffset: u32,
+    dwProviderSize: u32,
+    wcProviderData: [1]u16,
+};
+
+pub const MEMORYSTATUS = extern struct {
+    dwLength: u32,
+    dwMemoryLoad: u32,
+    dwTotalPhys: usize,
+    dwAvailPhys: usize,
+    dwTotalPageFile: usize,
+    dwAvailPageFile: usize,
+    dwTotalVirtual: usize,
+    dwAvailVirtual: usize,
+};
+
+pub const UMS_SCHEDULER_STARTUP_INFO = extern struct {
+    UmsVersion: u32,
+    CompletionList: *c_void,
+    SchedulerProc: PRTL_UMS_SCHEDULER_ENTRY_POINT,
+    SchedulerParam: *c_void,
+};
+
+pub const UMS_SYSTEM_THREAD_INFORMATION = extern struct {
+    UmsVersion: u32,
+    Anonymous: UMS_SYSTEM_THREAD_INFORMATION._Anonymous_e__Union,
+    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
+};
+
+pub const WIN32_STREAM_ID = extern struct {
+    dwStreamId: WIN_STREAM_ID,
+    dwStreamAttributes: u32,
+    Size: LARGE_INTEGER,
+    dwStreamNameSize: u32,
+    cStreamName: [1]u16,
+};
+
+pub const STARTUPINFOEXA = extern struct {
+    StartupInfo: STARTUPINFOA,
+    lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST,
+};
+
+pub const STARTUPINFOEXW = extern struct {
+    StartupInfo: STARTUPINFOW,
+    lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST,
+};
+
+pub const EVENTLOG_FULL_INFORMATION = extern struct {
+    dwFull: u32,
+};
+
+pub const SYSTEM_POWER_STATUS = extern struct {
+    ACLineStatus: u8,
+    BatteryFlag: u8,
+    BatteryLifePercent: u8,
+    SystemStatusFlag: u8,
+    BatteryLifeTime: u32,
+    BatteryFullLifeTime: u32,
+};
+
+pub const PEB_LDR_DATA = extern struct {
+    Reserved1: [8]u8,
+    Reserved2: [3]*c_void,
+    InMemoryOrderModuleList: LIST_ENTRY,
+};
+
+pub const RTL_USER_PROCESS_PARAMETERS = extern struct {
+    Reserved1: [16]u8,
+    Reserved2: [10]*c_void,
+    ImagePathName: UNICODE_STRING,
+    CommandLine: UNICODE_STRING,
+};
+
+pub const PEB = extern struct {
+    Reserved1: [2]u8,
+    BeingDebugged: u8,
+    Reserved2: [1]u8,
+    Reserved3: [2]*c_void,
+    Ldr: *PEB_LDR_DATA,
+    ProcessParameters: *RTL_USER_PROCESS_PARAMETERS,
+    Reserved4: [3]*c_void,
+    AtlThunkSListPtr: *c_void,
+    Reserved5: *c_void,
+    Reserved6: u32,
+    Reserved7: *c_void,
+    Reserved8: u32,
+    AtlThunkSListPtr32: u32,
+    Reserved9: [45]*c_void,
+    Reserved10: [96]u8,
+    PostProcessInitRoutine: PPS_POST_PROCESS_INIT_ROUTINE,
+    Reserved11: [128]u8,
+    Reserved12: [1]*c_void,
+    SessionId: u32,
+};
+
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const THREAD_CREATION_FLAGS = extern enum(u32) {
     CREATE_RUN_IMMEDIATELY = 0,
@@ -28277,462 +28734,17 @@ pub const POWER_REQUEST_CONTEXT_FLAGS = extern enum(u32) {
 pub const POWER_REQUEST_CONTEXT_DETAILED_STRING = POWER_REQUEST_CONTEXT_FLAGS.DETAILED_STRING;
 pub const POWER_REQUEST_CONTEXT_SIMPLE_STRING = POWER_REQUEST_CONTEXT_FLAGS.SIMPLE_STRING;
 
-pub const PROCESS_INFORMATION = extern struct {
-    hProcess: HANDLE,
-    hThread: HANDLE,
-    dwProcessId: u32,
-    dwThreadId: u32,
+pub const PROCESSOR_NUMBER = extern struct {
+    Group: u16,
+    Number: u8,
+    Reserved: u8,
 };
 
-pub const STARTUPINFOA = extern struct {
-    cb: u32,
-    lpReserved: PSTR,
-    lpDesktop: PSTR,
-    lpTitle: PSTR,
-    dwX: u32,
-    dwY: u32,
-    dwXSize: u32,
-    dwYSize: u32,
-    dwXCountChars: u32,
-    dwYCountChars: u32,
-    dwFillAttribute: u32,
-    dwFlags: STARTUPINFOW_FLAGS,
-    wShowWindow: u16,
-    cbReserved2: u16,
-    lpReserved2: *u8,
-    hStdInput: HANDLE,
-    hStdOutput: HANDLE,
-    hStdError: HANDLE,
+pub const GROUP_AFFINITY = extern struct {
+    Mask: usize,
+    Group: u16,
+    Reserved: [3]u16,
 };
-
-pub const STARTUPINFOW = extern struct {
-    cb: u32,
-    lpReserved: PWSTR,
-    lpDesktop: PWSTR,
-    lpTitle: PWSTR,
-    dwX: u32,
-    dwY: u32,
-    dwXSize: u32,
-    dwYSize: u32,
-    dwXCountChars: u32,
-    dwYCountChars: u32,
-    dwFillAttribute: u32,
-    dwFlags: STARTUPINFOW_FLAGS,
-    wShowWindow: u16,
-    cbReserved2: u16,
-    lpReserved2: *u8,
-    hStdInput: HANDLE,
-    hStdOutput: HANDLE,
-    hStdError: HANDLE,
-};
-
-pub const MEMORY_PRIORITY_INFORMATION = extern struct {
-    MemoryPriority: MEMORY_PRIORITY,
-};
-
-pub const THREAD_POWER_THROTTLING_STATE = extern struct {
-    Version: u32,
-    ControlMask: u32,
-    StateMask: u32,
-};
-
-pub const APP_MEMORY_INFORMATION = extern struct {
-    AvailableCommit: u64,
-    PrivateCommitUsage: u64,
-    PeakPrivateCommitUsage: u64,
-    TotalCommitUsage: u64,
-};
-
-pub const PROCESS_MEMORY_EXHAUSTION_TYPE = extern enum(i32) {
-    FailFastOnCommitFailure = 0,
-    Max = 1,
-};
-pub const PMETypeFailFastOnCommitFailure = PROCESS_MEMORY_EXHAUSTION_TYPE.FailFastOnCommitFailure;
-pub const PMETypeMax = PROCESS_MEMORY_EXHAUSTION_TYPE.Max;
-
-pub const PROCESS_MEMORY_EXHAUSTION_INFO = extern struct {
-    Version: u16,
-    Reserved: u16,
-    Type: PROCESS_MEMORY_EXHAUSTION_TYPE,
-    Value: usize,
-};
-
-pub const PROCESS_POWER_THROTTLING_STATE = extern struct {
-    Version: u32,
-    ControlMask: u32,
-    StateMask: u32,
-};
-
-pub const PROCESS_PROTECTION_LEVEL_INFORMATION = extern struct {
-    ProtectionLevel: PROCESS_PROTECTION_LEVEL,
-};
-
-pub const PROCESS_LEAP_SECOND_INFO = extern struct {
-    Flags: u32,
-    Reserved: u32,
-};
-
-pub const MEMORYSTATUSEX = extern struct {
-    dwLength: u32,
-    dwMemoryLoad: u32,
-    ullTotalPhys: u64,
-    ullAvailPhys: u64,
-    ullTotalPageFile: u64,
-    ullAvailPageFile: u64,
-    ullTotalVirtual: u64,
-    ullAvailVirtual: u64,
-    ullAvailExtendedVirtual: u64,
-};
-
-pub const COMMPROP = extern struct {
-    wPacketLength: u16,
-    wPacketVersion: u16,
-    dwServiceMask: u32,
-    dwReserved1: u32,
-    dwMaxTxQueue: u32,
-    dwMaxRxQueue: u32,
-    dwMaxBaud: u32,
-    dwProvSubType: u32,
-    dwProvCapabilities: u32,
-    dwSettableParams: u32,
-    dwSettableBaud: u32,
-    wSettableData: u16,
-    wSettableStopParity: COMMPROP_STOP_PARITY,
-    dwCurrentTxQueue: u32,
-    dwCurrentRxQueue: u32,
-    dwProvSpec1: u32,
-    dwProvSpec2: u32,
-    wcProvChar: [1]u16,
-};
-
-pub const COMSTAT = extern struct {
-    _bitfield: u32,
-    cbInQue: u32,
-    cbOutQue: u32,
-};
-
-pub const DCB = extern struct {
-    DCBlength: u32,
-    BaudRate: u32,
-    _bitfield: u32,
-    wReserved: u16,
-    XonLim: u16,
-    XoffLim: u16,
-    ByteSize: u8,
-    Parity: u8,
-    StopBits: u8,
-    XonChar: CHAR,
-    XoffChar: CHAR,
-    ErrorChar: CHAR,
-    EofChar: CHAR,
-    EvtChar: CHAR,
-    wReserved1: u16,
-};
-
-pub const COMMTIMEOUTS = extern struct {
-    ReadIntervalTimeout: u32,
-    ReadTotalTimeoutMultiplier: u32,
-    ReadTotalTimeoutConstant: u32,
-    WriteTotalTimeoutMultiplier: u32,
-    WriteTotalTimeoutConstant: u32,
-};
-
-pub const COMMCONFIG = extern struct {
-    dwSize: u32,
-    wVersion: u16,
-    wReserved: u16,
-    dcb: DCB,
-    dwProviderSubType: u32,
-    dwProviderOffset: u32,
-    dwProviderSize: u32,
-    wcProviderData: [1]u16,
-};
-
-pub const MEMORYSTATUS = extern struct {
-    dwLength: u32,
-    dwMemoryLoad: u32,
-    dwTotalPhys: usize,
-    dwAvailPhys: usize,
-    dwTotalPageFile: usize,
-    dwAvailPageFile: usize,
-    dwTotalVirtual: usize,
-    dwAvailVirtual: usize,
-};
-
-pub const UMS_SCHEDULER_STARTUP_INFO = extern struct {
-    UmsVersion: u32,
-    CompletionList: *c_void,
-    SchedulerProc: PRTL_UMS_SCHEDULER_ENTRY_POINT,
-    SchedulerParam: *c_void,
-};
-
-pub const UMS_SYSTEM_THREAD_INFORMATION = extern struct {
-    UmsVersion: u32,
-    Anonymous: UMS_SYSTEM_THREAD_INFORMATION._Anonymous_e__Union,
-    const _Anonymous_e__Union = u32; // TODO: generate this nested type!
-};
-
-pub const WIN32_STREAM_ID = extern struct {
-    dwStreamId: WIN_STREAM_ID,
-    dwStreamAttributes: u32,
-    Size: LARGE_INTEGER,
-    dwStreamNameSize: u32,
-    cStreamName: [1]u16,
-};
-
-pub const STARTUPINFOEXA = extern struct {
-    StartupInfo: STARTUPINFOA,
-    lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST,
-};
-
-pub const STARTUPINFOEXW = extern struct {
-    StartupInfo: STARTUPINFOW,
-    lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST,
-};
-
-pub const EVENTLOG_FULL_INFORMATION = extern struct {
-    dwFull: u32,
-};
-
-pub const SYSTEM_POWER_STATUS = extern struct {
-    ACLineStatus: u8,
-    BatteryFlag: u8,
-    BatteryLifePercent: u8,
-    SystemStatusFlag: u8,
-    BatteryLifeTime: u32,
-    BatteryFullLifeTime: u32,
-};
-
-pub const PEB_LDR_DATA = extern struct {
-    Reserved1: [8]u8,
-    Reserved2: [3]*c_void,
-    InMemoryOrderModuleList: LIST_ENTRY,
-};
-
-pub const RTL_USER_PROCESS_PARAMETERS = extern struct {
-    Reserved1: [16]u8,
-    Reserved2: [10]*c_void,
-    ImagePathName: UNICODE_STRING,
-    CommandLine: UNICODE_STRING,
-};
-
-pub const PEB = extern struct {
-    Reserved1: [2]u8,
-    BeingDebugged: u8,
-    Reserved2: [1]u8,
-    Reserved3: [2]*c_void,
-    Ldr: *PEB_LDR_DATA,
-    ProcessParameters: *RTL_USER_PROCESS_PARAMETERS,
-    Reserved4: [3]*c_void,
-    AtlThunkSListPtr: *c_void,
-    Reserved5: *c_void,
-    Reserved6: u32,
-    Reserved7: *c_void,
-    Reserved8: u32,
-    AtlThunkSListPtr32: u32,
-    Reserved9: [45]*c_void,
-    Reserved10: [96]u8,
-    PostProcessInitRoutine: PPS_POST_PROCESS_INIT_ROUTINE,
-    Reserved11: [128]u8,
-    Reserved12: [1]*c_void,
-    SessionId: u32,
-};
-
-pub const PUMS_SCHEDULER_ENTRY_POINT = fn(
-    Reason: RTL_UMS_SCHEDULER_REASON,
-    ActivationPayload: usize,
-    SchedulerParam: *c_void,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const CONSOLE_MODE = extern enum(u32) {
-    ENABLE_ECHO_INPUT = 4,
-    ENABLE_INSERT_MODE = 32,
-    ENABLE_LINE_INPUT = 2,
-    ENABLE_MOUSE_INPUT = 16,
-    ENABLE_PROCESSED_INPUT = 1,
-    ENABLE_QUICK_EDIT_MODE = 64,
-    ENABLE_WINDOW_INPUT = 8,
-    ENABLE_VIRTUAL_TERMINAL_INPUT = 512,
-    ENABLE_PROCESSED_OUTPUT = 1,
-    ENABLE_WRAP_AT_EOL_OUTPUT = 2,
-    ENABLE_VIRTUAL_TERMINAL_PROCESSING = 4,
-    DISABLE_NEWLINE_AUTO_RETURN = 8,
-    ENABLE_LVB_GRID_WORLDWIDE = 16,
-    _,
-};
-pub const ENABLE_ECHO_INPUT = CONSOLE_MODE.ENABLE_ECHO_INPUT;
-pub const ENABLE_INSERT_MODE = CONSOLE_MODE.ENABLE_INSERT_MODE;
-pub const ENABLE_LINE_INPUT = CONSOLE_MODE.ENABLE_LINE_INPUT;
-pub const ENABLE_MOUSE_INPUT = CONSOLE_MODE.ENABLE_MOUSE_INPUT;
-pub const ENABLE_PROCESSED_INPUT = CONSOLE_MODE.ENABLE_PROCESSED_INPUT;
-pub const ENABLE_QUICK_EDIT_MODE = CONSOLE_MODE.ENABLE_QUICK_EDIT_MODE;
-pub const ENABLE_WINDOW_INPUT = CONSOLE_MODE.ENABLE_WINDOW_INPUT;
-pub const ENABLE_VIRTUAL_TERMINAL_INPUT = CONSOLE_MODE.ENABLE_VIRTUAL_TERMINAL_INPUT;
-pub const ENABLE_PROCESSED_OUTPUT = CONSOLE_MODE.ENABLE_PROCESSED_OUTPUT;
-pub const ENABLE_WRAP_AT_EOL_OUTPUT = CONSOLE_MODE.ENABLE_WRAP_AT_EOL_OUTPUT;
-pub const ENABLE_VIRTUAL_TERMINAL_PROCESSING = CONSOLE_MODE.ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-pub const DISABLE_NEWLINE_AUTO_RETURN = CONSOLE_MODE.DISABLE_NEWLINE_AUTO_RETURN;
-pub const ENABLE_LVB_GRID_WORLDWIDE = CONSOLE_MODE.ENABLE_LVB_GRID_WORLDWIDE;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const PROCESS_ACCESS_RIGHTS = extern enum(u32) {
-    PROCESS_TERMINATE = 1,
-    PROCESS_CREATE_THREAD = 2,
-    PROCESS_SET_SESSIONID = 4,
-    PROCESS_VM_OPERATION = 8,
-    PROCESS_VM_READ = 16,
-    PROCESS_VM_WRITE = 32,
-    PROCESS_DUP_HANDLE = 64,
-    PROCESS_CREATE_PROCESS = 128,
-    PROCESS_SET_QUOTA = 256,
-    PROCESS_SET_INFORMATION = 512,
-    PROCESS_QUERY_INFORMATION = 1024,
-    PROCESS_SUSPEND_RESUME = 2048,
-    PROCESS_QUERY_LIMITED_INFORMATION = 4096,
-    PROCESS_SET_LIMITED_INFORMATION = 8192,
-    PROCESS_ALL_ACCESS = 2097151,
-    DELETE = 65536,
-    READ_CONTROL = 131072,
-    WRITE_DAC = 262144,
-    WRITE_OWNER = 524288,
-    SYNCHRONIZE = 1048576,
-    STANDARD_RIGHTS_REQUIRED = 983040,
-    _,
-};
-pub const PROCESS_TERMINATE = PROCESS_ACCESS_RIGHTS.PROCESS_TERMINATE;
-pub const PROCESS_CREATE_THREAD = PROCESS_ACCESS_RIGHTS.PROCESS_CREATE_THREAD;
-pub const PROCESS_SET_SESSIONID = PROCESS_ACCESS_RIGHTS.PROCESS_SET_SESSIONID;
-pub const PROCESS_VM_OPERATION = PROCESS_ACCESS_RIGHTS.PROCESS_VM_OPERATION;
-pub const PROCESS_VM_READ = PROCESS_ACCESS_RIGHTS.PROCESS_VM_READ;
-pub const PROCESS_VM_WRITE = PROCESS_ACCESS_RIGHTS.PROCESS_VM_WRITE;
-pub const PROCESS_DUP_HANDLE = PROCESS_ACCESS_RIGHTS.PROCESS_DUP_HANDLE;
-pub const PROCESS_CREATE_PROCESS = PROCESS_ACCESS_RIGHTS.PROCESS_CREATE_PROCESS;
-pub const PROCESS_SET_QUOTA = PROCESS_ACCESS_RIGHTS.PROCESS_SET_QUOTA;
-pub const PROCESS_SET_INFORMATION = PROCESS_ACCESS_RIGHTS.PROCESS_SET_INFORMATION;
-pub const PROCESS_QUERY_INFORMATION = PROCESS_ACCESS_RIGHTS.PROCESS_QUERY_INFORMATION;
-pub const PROCESS_SUSPEND_RESUME = PROCESS_ACCESS_RIGHTS.PROCESS_SUSPEND_RESUME;
-pub const PROCESS_QUERY_LIMITED_INFORMATION = PROCESS_ACCESS_RIGHTS.PROCESS_QUERY_LIMITED_INFORMATION;
-pub const PROCESS_SET_LIMITED_INFORMATION = PROCESS_ACCESS_RIGHTS.PROCESS_SET_LIMITED_INFORMATION;
-pub const PROCESS_ALL_ACCESS = PROCESS_ACCESS_RIGHTS.PROCESS_ALL_ACCESS;
-pub const DELETE = PROCESS_ACCESS_RIGHTS.DELETE;
-pub const READ_CONTROL = PROCESS_ACCESS_RIGHTS.READ_CONTROL;
-pub const WRITE_DAC = PROCESS_ACCESS_RIGHTS.WRITE_DAC;
-pub const WRITE_OWNER = PROCESS_ACCESS_RIGHTS.WRITE_OWNER;
-pub const SYNCHRONIZE = PROCESS_ACCESS_RIGHTS.SYNCHRONIZE;
-pub const STANDARD_RIGHTS_REQUIRED = PROCESS_ACCESS_RIGHTS.STANDARD_RIGHTS_REQUIRED;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const JOB_OBJECT_LIMIT = extern enum(u32) {
-    LIMIT_WORKINGSET = 1,
-    LIMIT_PROCESS_TIME = 2,
-    LIMIT_JOB_TIME = 4,
-    LIMIT_ACTIVE_PROCESS = 8,
-    LIMIT_AFFINITY = 16,
-    LIMIT_PRIORITY_CLASS = 32,
-    LIMIT_PRESERVE_JOB_TIME = 64,
-    LIMIT_SCHEDULING_CLASS = 128,
-    LIMIT_PROCESS_MEMORY = 256,
-    LIMIT_JOB_MEMORY = 512,
-    LIMIT_JOB_MEMORY_HIGH = 512,
-    LIMIT_DIE_ON_UNHANDLED_EXCEPTION = 1024,
-    LIMIT_BREAKAWAY_OK = 2048,
-    LIMIT_SILENT_BREAKAWAY_OK = 4096,
-    LIMIT_KILL_ON_JOB_CLOSE = 8192,
-    LIMIT_SUBSET_AFFINITY = 16384,
-    LIMIT_JOB_MEMORY_LOW = 32768,
-    LIMIT_JOB_READ_BYTES = 65536,
-    LIMIT_JOB_WRITE_BYTES = 131072,
-    LIMIT_RATE_CONTROL = 262144,
-    LIMIT_CPU_RATE_CONTROL = 262144,
-    LIMIT_IO_RATE_CONTROL = 524288,
-    LIMIT_NET_RATE_CONTROL = 1048576,
-    LIMIT_VALID_FLAGS = 524287,
-    BASIC_LIMIT_VALID_FLAGS = 255,
-    EXTENDED_LIMIT_VALID_FLAGS = 32767,
-    NOTIFICATION_LIMIT_VALID_FLAGS = 2064900,
-    _,
-};
-pub const JOB_OBJECT_LIMIT_WORKINGSET = JOB_OBJECT_LIMIT.LIMIT_WORKINGSET;
-pub const JOB_OBJECT_LIMIT_PROCESS_TIME = JOB_OBJECT_LIMIT.LIMIT_PROCESS_TIME;
-pub const JOB_OBJECT_LIMIT_JOB_TIME = JOB_OBJECT_LIMIT.LIMIT_JOB_TIME;
-pub const JOB_OBJECT_LIMIT_ACTIVE_PROCESS = JOB_OBJECT_LIMIT.LIMIT_ACTIVE_PROCESS;
-pub const JOB_OBJECT_LIMIT_AFFINITY = JOB_OBJECT_LIMIT.LIMIT_AFFINITY;
-pub const JOB_OBJECT_LIMIT_PRIORITY_CLASS = JOB_OBJECT_LIMIT.LIMIT_PRIORITY_CLASS;
-pub const JOB_OBJECT_LIMIT_PRESERVE_JOB_TIME = JOB_OBJECT_LIMIT.LIMIT_PRESERVE_JOB_TIME;
-pub const JOB_OBJECT_LIMIT_SCHEDULING_CLASS = JOB_OBJECT_LIMIT.LIMIT_SCHEDULING_CLASS;
-pub const JOB_OBJECT_LIMIT_PROCESS_MEMORY = JOB_OBJECT_LIMIT.LIMIT_PROCESS_MEMORY;
-pub const JOB_OBJECT_LIMIT_JOB_MEMORY = JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY;
-pub const JOB_OBJECT_LIMIT_JOB_MEMORY_HIGH = JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY_HIGH;
-pub const JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION = JOB_OBJECT_LIMIT.LIMIT_DIE_ON_UNHANDLED_EXCEPTION;
-pub const JOB_OBJECT_LIMIT_BREAKAWAY_OK = JOB_OBJECT_LIMIT.LIMIT_BREAKAWAY_OK;
-pub const JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK = JOB_OBJECT_LIMIT.LIMIT_SILENT_BREAKAWAY_OK;
-pub const JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = JOB_OBJECT_LIMIT.LIMIT_KILL_ON_JOB_CLOSE;
-pub const JOB_OBJECT_LIMIT_SUBSET_AFFINITY = JOB_OBJECT_LIMIT.LIMIT_SUBSET_AFFINITY;
-pub const JOB_OBJECT_LIMIT_JOB_MEMORY_LOW = JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY_LOW;
-pub const JOB_OBJECT_LIMIT_JOB_READ_BYTES = JOB_OBJECT_LIMIT.LIMIT_JOB_READ_BYTES;
-pub const JOB_OBJECT_LIMIT_JOB_WRITE_BYTES = JOB_OBJECT_LIMIT.LIMIT_JOB_WRITE_BYTES;
-pub const JOB_OBJECT_LIMIT_RATE_CONTROL = JOB_OBJECT_LIMIT.LIMIT_RATE_CONTROL;
-pub const JOB_OBJECT_LIMIT_CPU_RATE_CONTROL = JOB_OBJECT_LIMIT.LIMIT_CPU_RATE_CONTROL;
-pub const JOB_OBJECT_LIMIT_IO_RATE_CONTROL = JOB_OBJECT_LIMIT.LIMIT_IO_RATE_CONTROL;
-pub const JOB_OBJECT_LIMIT_NET_RATE_CONTROL = JOB_OBJECT_LIMIT.LIMIT_NET_RATE_CONTROL;
-pub const JOB_OBJECT_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.LIMIT_VALID_FLAGS;
-pub const JOB_OBJECT_BASIC_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.BASIC_LIMIT_VALID_FLAGS;
-pub const JOB_OBJECT_EXTENDED_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.EXTENDED_LIMIT_VALID_FLAGS;
-pub const JOB_OBJECT_NOTIFICATION_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.NOTIFICATION_LIMIT_VALID_FLAGS;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const JOB_OBJECT_UILIMIT = extern enum(u32) {
-    NONE = 0,
-    HANDLES = 1,
-    READCLIPBOARD = 2,
-    WRITECLIPBOARD = 4,
-    SYSTEMPARAMETERS = 8,
-    DISPLAYSETTINGS = 16,
-    GLOBALATOMS = 32,
-    DESKTOP = 64,
-    EXITWINDOWS = 128,
-    _,
-};
-pub const JOB_OBJECT_UILIMIT_NONE = JOB_OBJECT_UILIMIT.NONE;
-pub const JOB_OBJECT_UILIMIT_HANDLES = JOB_OBJECT_UILIMIT.HANDLES;
-pub const JOB_OBJECT_UILIMIT_READCLIPBOARD = JOB_OBJECT_UILIMIT.READCLIPBOARD;
-pub const JOB_OBJECT_UILIMIT_WRITECLIPBOARD = JOB_OBJECT_UILIMIT.WRITECLIPBOARD;
-pub const JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS = JOB_OBJECT_UILIMIT.SYSTEMPARAMETERS;
-pub const JOB_OBJECT_UILIMIT_DISPLAYSETTINGS = JOB_OBJECT_UILIMIT.DISPLAYSETTINGS;
-pub const JOB_OBJECT_UILIMIT_GLOBALATOMS = JOB_OBJECT_UILIMIT.GLOBALATOMS;
-pub const JOB_OBJECT_UILIMIT_DESKTOP = JOB_OBJECT_UILIMIT.DESKTOP;
-pub const JOB_OBJECT_UILIMIT_EXITWINDOWS = JOB_OBJECT_UILIMIT.EXITWINDOWS;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const JOB_OBJECT_SECURITY = extern enum(u32) {
-    NO_ADMIN = 1,
-    RESTRICTED_TOKEN = 2,
-    ONLY_TOKEN = 4,
-    FILTER_TOKENS = 8,
-    VALID_FLAGS = 15,
-    _,
-};
-pub const JOB_OBJECT_SECURITY_NO_ADMIN = JOB_OBJECT_SECURITY.NO_ADMIN;
-pub const JOB_OBJECT_SECURITY_RESTRICTED_TOKEN = JOB_OBJECT_SECURITY.RESTRICTED_TOKEN;
-pub const JOB_OBJECT_SECURITY_ONLY_TOKEN = JOB_OBJECT_SECURITY.ONLY_TOKEN;
-pub const JOB_OBJECT_SECURITY_FILTER_TOKENS = JOB_OBJECT_SECURITY.FILTER_TOKENS;
-pub const JOB_OBJECT_SECURITY_VALID_FLAGS = JOB_OBJECT_SECURITY.VALID_FLAGS;
-
-pub const WAIT_RETURN_CAUSE = extern enum(u32) {
-    OBJECT_0 = 0,
-    ABANDONED = 128,
-    ABANDONED_0 = 128,
-    IO_COMPLETION = 192,
-    TIMEOUT = 258,
-    FAILED = 4294967295,
-};
-pub const WAIT_OBJECT_0 = WAIT_RETURN_CAUSE.OBJECT_0;
-pub const WAIT_ABANDONED = WAIT_RETURN_CAUSE.ABANDONED;
-pub const WAIT_ABANDONED_0 = WAIT_RETURN_CAUSE.ABANDONED_0;
-pub const WAIT_IO_COMPLETION = WAIT_RETURN_CAUSE.IO_COMPLETION;
-pub const WAIT_TIMEOUT = WAIT_RETURN_CAUSE.TIMEOUT;
-pub const WAIT_FAILED = WAIT_RETURN_CAUSE.FAILED;
 
 pub const POWERBROADCAST_SETTING = extern struct {
     PowerSetting: Guid,
@@ -28773,18 +28785,6 @@ pub const ORIENTATION_PREFERENCE_LANDSCAPE = ORIENTATION_PREFERENCE.LANDSCAPE;
 pub const ORIENTATION_PREFERENCE_PORTRAIT = ORIENTATION_PREFERENCE.PORTRAIT;
 pub const ORIENTATION_PREFERENCE_LANDSCAPE_FLIPPED = ORIENTATION_PREFERENCE.LANDSCAPE_FLIPPED;
 pub const ORIENTATION_PREFERENCE_PORTRAIT_FLIPPED = ORIENTATION_PREFERENCE.PORTRAIT_FLIPPED;
-
-pub const PROCESSOR_NUMBER = extern struct {
-    Group: u16,
-    Number: u8,
-    Reserved: u8,
-};
-
-pub const GROUP_AFFINITY = extern struct {
-    Mask: usize,
-    Group: u16,
-    Reserved: [3]u16,
-};
 
 
 //--------------------------------------------------------------------------------
@@ -34930,70 +34930,6 @@ pub extern "KERNEL32" fn IsWow64Process2(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ChangeServiceConfigA(
-    hService: SC_HANDLE,
-    dwServiceType: u32,
-    dwStartType: SERVICE_START_TYPE,
-    dwErrorControl: SERVICE_ERROR,
-    lpBinaryPathName: ?[*:0]const u8,
-    lpLoadOrderGroup: ?[*:0]const u8,
-    lpdwTagId: ?*u32,
-    lpDependencies: ?[*:0]const u8,
-    lpServiceStartName: ?[*:0]const u8,
-    lpPassword: ?[*:0]const u8,
-    lpDisplayName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ChangeServiceConfigW(
-    hService: SC_HANDLE,
-    dwServiceType: u32,
-    dwStartType: SERVICE_START_TYPE,
-    dwErrorControl: SERVICE_ERROR,
-    lpBinaryPathName: ?[*:0]const u16,
-    lpLoadOrderGroup: ?[*:0]const u16,
-    lpdwTagId: ?*u32,
-    lpDependencies: ?[*:0]const u16,
-    lpServiceStartName: ?[*:0]const u16,
-    lpPassword: ?[*:0]const u16,
-    lpDisplayName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreateServiceA(
-    hSCManager: SC_HANDLE,
-    lpServiceName: [*:0]const u8,
-    lpDisplayName: ?[*:0]const u8,
-    dwDesiredAccess: u32,
-    dwServiceType: ENUM_SERVICE_TYPE,
-    dwStartType: SERVICE_START_TYPE,
-    dwErrorControl: SERVICE_ERROR,
-    lpBinaryPathName: ?[*:0]const u8,
-    lpLoadOrderGroup: ?[*:0]const u8,
-    lpdwTagId: ?*u32,
-    lpDependencies: ?[*:0]const u8,
-    lpServiceStartName: ?[*:0]const u8,
-    lpPassword: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) SC_HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn CreateServiceW(
-    hSCManager: SC_HANDLE,
-    lpServiceName: [*:0]const u16,
-    lpDisplayName: ?[*:0]const u16,
-    dwDesiredAccess: u32,
-    dwServiceType: ENUM_SERVICE_TYPE,
-    dwStartType: SERVICE_START_TYPE,
-    dwErrorControl: SERVICE_ERROR,
-    lpBinaryPathName: ?[*:0]const u16,
-    lpLoadOrderGroup: ?[*:0]const u16,
-    lpdwTagId: ?*u32,
-    lpDependencies: ?[*:0]const u16,
-    lpServiceStartName: ?[*:0]const u16,
-    lpPassword: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) SC_HANDLE;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn ExitWindowsEx(
     uFlags: EXIT_WINDOWS_FLAGS,
     dwReason: u32,
@@ -35132,6 +35068,70 @@ pub extern "USER32" fn IsImmersiveProcess(
 pub extern "USER32" fn SetProcessRestrictionExemption(
     fEnableExemption: BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn ChangeServiceConfigA(
+    hService: SC_HANDLE,
+    dwServiceType: u32,
+    dwStartType: SERVICE_START_TYPE,
+    dwErrorControl: SERVICE_ERROR,
+    lpBinaryPathName: ?[*:0]const u8,
+    lpLoadOrderGroup: ?[*:0]const u8,
+    lpdwTagId: ?*u32,
+    lpDependencies: ?[*:0]const u8,
+    lpServiceStartName: ?[*:0]const u8,
+    lpPassword: ?[*:0]const u8,
+    lpDisplayName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn ChangeServiceConfigW(
+    hService: SC_HANDLE,
+    dwServiceType: u32,
+    dwStartType: SERVICE_START_TYPE,
+    dwErrorControl: SERVICE_ERROR,
+    lpBinaryPathName: ?[*:0]const u16,
+    lpLoadOrderGroup: ?[*:0]const u16,
+    lpdwTagId: ?*u32,
+    lpDependencies: ?[*:0]const u16,
+    lpServiceStartName: ?[*:0]const u16,
+    lpPassword: ?[*:0]const u16,
+    lpDisplayName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn CreateServiceA(
+    hSCManager: SC_HANDLE,
+    lpServiceName: [*:0]const u8,
+    lpDisplayName: ?[*:0]const u8,
+    dwDesiredAccess: u32,
+    dwServiceType: ENUM_SERVICE_TYPE,
+    dwStartType: SERVICE_START_TYPE,
+    dwErrorControl: SERVICE_ERROR,
+    lpBinaryPathName: ?[*:0]const u8,
+    lpLoadOrderGroup: ?[*:0]const u8,
+    lpdwTagId: ?*u32,
+    lpDependencies: ?[*:0]const u8,
+    lpServiceStartName: ?[*:0]const u8,
+    lpPassword: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) SC_HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn CreateServiceW(
+    hSCManager: SC_HANDLE,
+    lpServiceName: [*:0]const u16,
+    lpDisplayName: ?[*:0]const u16,
+    dwDesiredAccess: u32,
+    dwServiceType: ENUM_SERVICE_TYPE,
+    dwStartType: SERVICE_START_TYPE,
+    dwErrorControl: SERVICE_ERROR,
+    lpBinaryPathName: ?[*:0]const u16,
+    lpLoadOrderGroup: ?[*:0]const u16,
+    lpdwTagId: ?*u32,
+    lpDependencies: ?[*:0]const u16,
+    lpServiceStartName: ?[*:0]const u16,
+    lpPassword: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) SC_HANDLE;
 
 
 //--------------------------------------------------------------------------------
@@ -35323,9 +35323,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AbortSystemShutdown = AbortSystemShutdownA;
         pub const InitiateSystemShutdownEx = InitiateSystemShutdownExA;
         pub const InitiateShutdown = InitiateShutdownA;
+        pub const RegisterDeviceNotification = RegisterDeviceNotificationA;
         pub const ChangeServiceConfig = ChangeServiceConfigA;
         pub const CreateService = CreateServiceA;
-        pub const RegisterDeviceNotification = RegisterDeviceNotificationA;
     },
     .wide => struct {
         pub const ENUMRESLANGPROC = ENUMRESLANGPROCW;
@@ -35512,9 +35512,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AbortSystemShutdown = AbortSystemShutdownW;
         pub const InitiateSystemShutdownEx = InitiateSystemShutdownExW;
         pub const InitiateShutdown = InitiateShutdownW;
+        pub const RegisterDeviceNotification = RegisterDeviceNotificationW;
         pub const ChangeServiceConfig = ChangeServiceConfigW;
         pub const CreateService = CreateServiceW;
-        pub const RegisterDeviceNotification = RegisterDeviceNotificationW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const ENUMRESLANGPROC = *opaque{};
@@ -35701,9 +35701,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AbortSystemShutdown = *opaque{};
         pub const InitiateSystemShutdownEx = *opaque{};
         pub const InitiateShutdown = *opaque{};
+        pub const RegisterDeviceNotification = *opaque{};
         pub const ChangeServiceConfig = *opaque{};
         pub const CreateService = *opaque{};
-        pub const RegisterDeviceNotification = *opaque{};
     } else struct {
         pub const ENUMRESLANGPROC = @compileError("'ENUMRESLANGPROC' requires that UNICODE be set to true or false in the root module");
         pub const PGET_MODULE_HANDLE_EX = @compileError("'PGET_MODULE_HANDLE_EX' requires that UNICODE be set to true or false in the root module");
@@ -35889,9 +35889,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const AbortSystemShutdown = @compileError("'AbortSystemShutdown' requires that UNICODE be set to true or false in the root module");
         pub const InitiateSystemShutdownEx = @compileError("'InitiateSystemShutdownEx' requires that UNICODE be set to true or false in the root module");
         pub const InitiateShutdown = @compileError("'InitiateShutdown' requires that UNICODE be set to true or false in the root module");
+        pub const RegisterDeviceNotification = @compileError("'RegisterDeviceNotification' requires that UNICODE be set to true or false in the root module");
         pub const ChangeServiceConfig = @compileError("'ChangeServiceConfig' requires that UNICODE be set to true or false in the root module");
         pub const CreateService = @compileError("'CreateService' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterDeviceNotification = @compileError("'RegisterDeviceNotification' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------

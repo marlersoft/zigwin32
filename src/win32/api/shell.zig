@@ -1429,7 +1429,7 @@ pub const HLINK_E_FIRST = @import("../zig.zig").typedConst(HRESULT, @as(i32, -21
 pub const HLINK_S_FIRST = @import("../zig.zig").typedConst(HRESULT, @as(i32, 262400));
 
 //--------------------------------------------------------------------------------
-// Section: Types (926)
+// Section: Types (924)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'SHChangeNotification_Unlock', what can Zig do with this information?
 pub const ShFindChangeNotificationHandle = isize;
@@ -1437,436 +1437,6 @@ pub const ShFindChangeNotificationHandle = isize;
 pub const HDROP = ?*opaque{};
 
 pub const HPSXA = ?*opaque{};
-
-pub const SUBCLASSPROC = fn(
-    hWnd: HWND,
-    uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    uIdSubclass: usize,
-    dwRefData: usize,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
-
-pub const SOFTDISTINFO = extern struct {
-    cbSize: u32,
-    dwFlags: u32,
-    dwAdState: u32,
-    szTitle: PWSTR,
-    szAbstract: PWSTR,
-    szHREF: PWSTR,
-    dwInstalledVersionMS: u32,
-    dwInstalledVersionLS: u32,
-    dwUpdateVersionMS: u32,
-    dwUpdateVersionLS: u32,
-    dwAdvertisedVersionMS: u32,
-    dwAdvertisedVersionLS: u32,
-    dwReserved: u32,
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IInitializeWithFile_Value = @import("../zig.zig").Guid.initString("b7d14566-0509-4cce-a71f-0a554233bd9b");
-pub const IID_IInitializeWithFile = &IID_IInitializeWithFile_Value;
-pub const IInitializeWithFile = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IInitializeWithFile,
-            pszFilePath: [*:0]const u16,
-            grfMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInitializeWithFile_Initialize(self: *const T, pszFilePath: [*:0]const u16, grfMode: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInitializeWithFile.VTable, self.vtable).Initialize(@ptrCast(*const IInitializeWithFile, self), pszFilePath, grfMode);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IInitializeWithStream_Value = @import("../zig.zig").Guid.initString("b824b49d-22ac-4161-ac8a-9916e8fa3f7f");
-pub const IID_IInitializeWithStream = &IID_IInitializeWithStream_Value;
-pub const IInitializeWithStream = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Initialize: fn(
-            self: *const IInitializeWithStream,
-            pstream: *IStream,
-            grfMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInitializeWithStream_Initialize(self: *const T, pstream: *IStream, grfMode: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInitializeWithStream.VTable, self.vtable).Initialize(@ptrCast(*const IInitializeWithStream, self), pstream, grfMode);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_INamedPropertyStore_Value = @import("../zig.zig").Guid.initString("71604b0f-97b0-4764-8577-2f13e98a1422");
-pub const IID_INamedPropertyStore = &IID_INamedPropertyStore_Value;
-pub const INamedPropertyStore = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetNamedValue: fn(
-            self: *const INamedPropertyStore,
-            pszName: [*:0]const u16,
-            ppropvar: *PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetNamedValue: fn(
-            self: *const INamedPropertyStore,
-            pszName: [*:0]const u16,
-            propvar: *const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNameCount: fn(
-            self: *const INamedPropertyStore,
-            pdwCount: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetNameAt: fn(
-            self: *const INamedPropertyStore,
-            iProp: u32,
-            pbstrName: *BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INamedPropertyStore_GetNamedValue(self: *const T, pszName: [*:0]const u16, ppropvar: *PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNamedValue(@ptrCast(*const INamedPropertyStore, self), pszName, ppropvar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INamedPropertyStore_SetNamedValue(self: *const T, pszName: [*:0]const u16, propvar: *const PROPVARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).SetNamedValue(@ptrCast(*const INamedPropertyStore, self), pszName, propvar);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INamedPropertyStore_GetNameCount(self: *const T, pdwCount: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNameCount(@ptrCast(*const INamedPropertyStore, self), pdwCount);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INamedPropertyStore_GetNameAt(self: *const T, iProp: u32, pbstrName: *BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNameAt(@ptrCast(*const INamedPropertyStore, self), iProp, pbstrName);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IObjectWithPropertyKey_Value = @import("../zig.zig").Guid.initString("fc0ca0a7-c316-4fd2-9031-3e628e6d4f23");
-pub const IID_IObjectWithPropertyKey = &IID_IObjectWithPropertyKey_Value;
-pub const IObjectWithPropertyKey = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetPropertyKey: fn(
-            self: *const IObjectWithPropertyKey,
-            key: *const PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyKey: fn(
-            self: *const IObjectWithPropertyKey,
-            pkey: *PROPERTYKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectWithPropertyKey_SetPropertyKey(self: *const T, key: *const PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IObjectWithPropertyKey.VTable, self.vtable).SetPropertyKey(@ptrCast(*const IObjectWithPropertyKey, self), key);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IObjectWithPropertyKey_GetPropertyKey(self: *const T, pkey: *PROPERTYKEY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IObjectWithPropertyKey.VTable, self.vtable).GetPropertyKey(@ptrCast(*const IObjectWithPropertyKey, self), pkey);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IDelayedPropertyStoreFactory_Value = @import("../zig.zig").Guid.initString("40d4577f-e237-4bdb-bd69-58f089431b6a");
-pub const IID_IDelayedPropertyStoreFactory = &IID_IDelayedPropertyStoreFactory_Value;
-pub const IDelayedPropertyStoreFactory = extern struct {
-    pub const VTable = extern struct {
-        base: IPropertyStoreFactory.VTable,
-        GetDelayedPropertyStore: fn(
-            self: *const IDelayedPropertyStoreFactory,
-            flags: GETPROPERTYSTOREFLAGS,
-            dwStoreId: u32,
-            riid: *const Guid,
-            ppv: **c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPropertyStoreFactory.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDelayedPropertyStoreFactory_GetDelayedPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, dwStoreId: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDelayedPropertyStoreFactory.VTable, self.vtable).GetDelayedPropertyStore(@ptrCast(*const IDelayedPropertyStoreFactory, self), flags, dwStoreId, riid, ppv);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_IPersistSerializedPropStorage_Value = @import("../zig.zig").Guid.initString("e318ad57-0aa0-450f-aca5-6fab7103d917");
-pub const IID_IPersistSerializedPropStorage = &IID_IPersistSerializedPropStorage_Value;
-pub const IPersistSerializedPropStorage = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetFlags: fn(
-            self: *const IPersistSerializedPropStorage,
-            flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPropertyStorage: fn(
-            self: *const IPersistSerializedPropStorage,
-            // TODO: what to do with BytesParamIndex 1?
-            psps: *SERIALIZEDPROPSTORAGE,
-            cb: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyStorage: fn(
-            self: *const IPersistSerializedPropStorage,
-            ppsps: **SERIALIZEDPROPSTORAGE,
-            pcb: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistSerializedPropStorage_SetFlags(self: *const T, flags: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).SetFlags(@ptrCast(*const IPersistSerializedPropStorage, self), flags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistSerializedPropStorage_SetPropertyStorage(self: *const T, psps: *SERIALIZEDPROPSTORAGE, cb: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).SetPropertyStorage(@ptrCast(*const IPersistSerializedPropStorage, self), psps, cb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistSerializedPropStorage_GetPropertyStorage(self: *const T, ppsps: **SERIALIZEDPROPSTORAGE, pcb: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).GetPropertyStorage(@ptrCast(*const IPersistSerializedPropStorage, self), ppsps, pcb);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IPersistSerializedPropStorage2_Value = @import("../zig.zig").Guid.initString("77effa68-4f98-4366-ba72-573b3d880571");
-pub const IID_IPersistSerializedPropStorage2 = &IID_IPersistSerializedPropStorage2_Value;
-pub const IPersistSerializedPropStorage2 = extern struct {
-    pub const VTable = extern struct {
-        base: IPersistSerializedPropStorage.VTable,
-        GetPropertyStorageSize: fn(
-            self: *const IPersistSerializedPropStorage2,
-            pcb: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetPropertyStorageBuffer: fn(
-            self: *const IPersistSerializedPropStorage2,
-            // TODO: what to do with BytesParamIndex 1?
-            psps: *SERIALIZEDPROPSTORAGE,
-            cb: u32,
-            pcbWritten: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IPersistSerializedPropStorage.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistSerializedPropStorage2_GetPropertyStorageSize(self: *const T, pcb: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistSerializedPropStorage2.VTable, self.vtable).GetPropertyStorageSize(@ptrCast(*const IPersistSerializedPropStorage2, self), pcb);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPersistSerializedPropStorage2_GetPropertyStorageBuffer(self: *const T, psps: *SERIALIZEDPROPSTORAGE, cb: u32, pcbWritten: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPersistSerializedPropStorage2.VTable, self.vtable).GetPropertyStorageBuffer(@ptrCast(*const IPersistSerializedPropStorage2, self), psps, cb, pcbWritten);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-const IID_ICreateObject_Value = @import("../zig.zig").Guid.initString("75121952-e0d0-43e5-9380-1d80483acf72");
-pub const IID_ICreateObject = &IID_ICreateObject_Value;
-pub const ICreateObject = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        CreateObject: fn(
-            self: *const ICreateObject,
-            clsid: *const Guid,
-            pUnkOuter: *IUnknown,
-            riid: *const Guid,
-            ppv: **c_void,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ICreateObject_CreateObject(self: *const T, clsid: *const Guid, pUnkOuter: *IUnknown, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICreateObject.VTable, self.vtable).CreateObject(@ptrCast(*const ICreateObject, self), clsid, pUnkOuter, riid, ppv);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const SERIALIZEDPROPERTYVALUE = extern struct {
-    dwType: u32,
-    rgb: [1]u8,
-};
-
-pub const ShellWindowTypeConstants = extern enum(i32) {
-    EXPLORER = 0,
-    BROWSER = 1,
-    @"3RDPARTY" = 2,
-    CALLBACK = 4,
-    DESKTOP = 8,
-};
-pub const SWC_EXPLORER = ShellWindowTypeConstants.EXPLORER;
-pub const SWC_BROWSER = ShellWindowTypeConstants.BROWSER;
-pub const SWC_3RDPARTY = ShellWindowTypeConstants.@"3RDPARTY";
-pub const SWC_CALLBACK = ShellWindowTypeConstants.CALLBACK;
-pub const SWC_DESKTOP = ShellWindowTypeConstants.DESKTOP;
-
-pub const ShellWindowFindWindowOptions = extern enum(i32) {
-    NEEDDISPATCH = 1,
-    INCLUDEPENDING = 2,
-    COOKIEPASSED = 4,
-};
-pub const SWFO_NEEDDISPATCH = ShellWindowFindWindowOptions.NEEDDISPATCH;
-pub const SWFO_INCLUDEPENDING = ShellWindowFindWindowOptions.INCLUDEPENDING;
-pub const SWFO_COOKIEPASSED = ShellWindowFindWindowOptions.COOKIEPASSED;
-
-const IID_IShellWindows_Value = @import("../zig.zig").Guid.initString("85cb6900-4d95-11cf-960c-0080c7f4ee85");
-pub const IID_IShellWindows = &IID_IShellWindows_Value;
-pub const IShellWindows = extern struct {
-    pub const VTable = extern struct {
-        base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: fn(
-            self: *const IShellWindows,
-            Count: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Item: fn(
-            self: *const IShellWindows,
-            index: VARIANT,
-            Folder: **IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        _NewEnum: fn(
-            self: *const IShellWindows,
-            ppunk: **IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Register: fn(
-            self: *const IShellWindows,
-            pid: *IDispatch,
-            hwnd: i32,
-            swClass: i32,
-            plCookie: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        RegisterPending: fn(
-            self: *const IShellWindows,
-            lThreadId: i32,
-            pvarloc: *VARIANT,
-            pvarlocRoot: *VARIANT,
-            swClass: i32,
-            plCookie: *i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Revoke: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnNavigate: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-            pvarLoc: *VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnActivated: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-            fActive: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        FindWindowSW: fn(
-            self: *const IShellWindows,
-            pvarLoc: *VARIANT,
-            pvarLocRoot: *VARIANT,
-            swClass: i32,
-            phwnd: *i32,
-            swfwOptions: i32,
-            ppdispOut: **IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        OnCreated: fn(
-            self: *const IShellWindows,
-            lCookie: i32,
-            punk: *IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        ProcessAttachDetach: fn(
-            self: *const IShellWindows,
-            fAttach: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IDispatch.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).get_Count(@ptrCast(*const IShellWindows, self), Count);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_Item(self: *const T, index: VARIANT, Folder: **IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).Item(@ptrCast(*const IShellWindows, self), index, Folder);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows__NewEnum(self: *const T, ppunk: **IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable)._NewEnum(@ptrCast(*const IShellWindows, self), ppunk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_Register(self: *const T, pid: *IDispatch, hwnd: i32, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).Register(@ptrCast(*const IShellWindows, self), pid, hwnd, swClass, plCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_RegisterPending(self: *const T, lThreadId: i32, pvarloc: *VARIANT, pvarlocRoot: *VARIANT, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).RegisterPending(@ptrCast(*const IShellWindows, self), lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_Revoke(self: *const T, lCookie: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).Revoke(@ptrCast(*const IShellWindows, self), lCookie);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_OnNavigate(self: *const T, lCookie: i32, pvarLoc: *VARIANT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnNavigate(@ptrCast(*const IShellWindows, self), lCookie, pvarLoc);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_OnActivated(self: *const T, lCookie: i32, fActive: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnActivated(@ptrCast(*const IShellWindows, self), lCookie, fActive);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_FindWindowSW(self: *const T, pvarLoc: *VARIANT, pvarLocRoot: *VARIANT, swClass: i32, phwnd: *i32, swfwOptions: i32, ppdispOut: **IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).FindWindowSW(@ptrCast(*const IShellWindows, self), pvarLoc, pvarLocRoot, swClass, phwnd, swfwOptions, ppdispOut);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_OnCreated(self: *const T, lCookie: i32, punk: *IUnknown) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnCreated(@ptrCast(*const IShellWindows, self), lCookie, punk);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellWindows_ProcessAttachDetach(self: *const T, fAttach: i16) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IShellWindows.VTable, self.vtable).ProcessAttachDetach(@ptrCast(*const IShellWindows, self), fAttach);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const APPCATEGORYINFO = extern struct {
-    Locale: u32,
-    pszDescription: PWSTR,
-    AppCategoryId: Guid,
-};
-
-pub const APPCATEGORYINFOLIST = extern struct {
-    cCategory: u32,
-    pCategoryInfo: *APPCATEGORYINFO,
-};
 
 const CLSID_QueryCancelAutoPlay_Value = @import("../zig.zig").Guid.initString("331f1768-05a9-4ddd-b86e-dae34ddc998a");
 pub const CLSID_QueryCancelAutoPlay = &CLSID_QueryCancelAutoPlay_Value;
@@ -27960,6 +27530,22 @@ pub const NC_ADDRESS = extern struct {
     PrefixLength: u8,
 };
 
+pub const SOFTDISTINFO = extern struct {
+    cbSize: u32,
+    dwFlags: u32,
+    dwAdState: u32,
+    szTitle: PWSTR,
+    szAbstract: PWSTR,
+    szHREF: PWSTR,
+    dwInstalledVersionMS: u32,
+    dwInstalledVersionLS: u32,
+    dwUpdateVersionMS: u32,
+    dwUpdateVersionLS: u32,
+    dwAdvertisedVersionMS: u32,
+    dwAdvertisedVersionLS: u32,
+    dwReserved: u32,
+};
+
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const SHGFI_FLAGS = extern enum(i32) {
     ADDOVERLAYS = 32,
@@ -28563,38 +28149,441 @@ pub const SSF_ICONSONLY = SSF_MASK.ICONSONLY;
 pub const SSF_SHOWTYPEOVERLAY = SSF_MASK.SHOWTYPEOVERLAY;
 pub const SSF_SHOWSTATUSBAR = SSF_MASK.SHOWSTATUSBAR;
 
-pub const LOGFONTA = extern struct {
-    lfHeight: i32,
-    lfWidth: i32,
-    lfEscapement: i32,
-    lfOrientation: i32,
-    lfWeight: i32,
-    lfItalic: u8,
-    lfUnderline: u8,
-    lfStrikeOut: u8,
-    lfCharSet: u8,
-    lfOutPrecision: u8,
-    lfClipPrecision: u8,
-    lfQuality: u8,
-    lfPitchAndFamily: u8,
-    lfFaceName: [32]CHAR,
+pub const SUBCLASSPROC = fn(
+    hWnd: HWND,
+    uMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    uIdSubclass: usize,
+    dwRefData: usize,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
+
+pub const ShellWindowTypeConstants = extern enum(i32) {
+    EXPLORER = 0,
+    BROWSER = 1,
+    @"3RDPARTY" = 2,
+    CALLBACK = 4,
+    DESKTOP = 8,
+};
+pub const SWC_EXPLORER = ShellWindowTypeConstants.EXPLORER;
+pub const SWC_BROWSER = ShellWindowTypeConstants.BROWSER;
+pub const SWC_3RDPARTY = ShellWindowTypeConstants.@"3RDPARTY";
+pub const SWC_CALLBACK = ShellWindowTypeConstants.CALLBACK;
+pub const SWC_DESKTOP = ShellWindowTypeConstants.DESKTOP;
+
+pub const ShellWindowFindWindowOptions = extern enum(i32) {
+    NEEDDISPATCH = 1,
+    INCLUDEPENDING = 2,
+    COOKIEPASSED = 4,
+};
+pub const SWFO_NEEDDISPATCH = ShellWindowFindWindowOptions.NEEDDISPATCH;
+pub const SWFO_INCLUDEPENDING = ShellWindowFindWindowOptions.INCLUDEPENDING;
+pub const SWFO_COOKIEPASSED = ShellWindowFindWindowOptions.COOKIEPASSED;
+
+const IID_IShellWindows_Value = @import("../zig.zig").Guid.initString("85cb6900-4d95-11cf-960c-0080c7f4ee85");
+pub const IID_IShellWindows = &IID_IShellWindows_Value;
+pub const IShellWindows = extern struct {
+    pub const VTable = extern struct {
+        base: IDispatch.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_Count: fn(
+            self: *const IShellWindows,
+            Count: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Item: fn(
+            self: *const IShellWindows,
+            index: VARIANT,
+            Folder: **IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        _NewEnum: fn(
+            self: *const IShellWindows,
+            ppunk: **IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Register: fn(
+            self: *const IShellWindows,
+            pid: *IDispatch,
+            hwnd: i32,
+            swClass: i32,
+            plCookie: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterPending: fn(
+            self: *const IShellWindows,
+            lThreadId: i32,
+            pvarloc: *VARIANT,
+            pvarlocRoot: *VARIANT,
+            swClass: i32,
+            plCookie: *i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Revoke: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnNavigate: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+            pvarLoc: *VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnActivated: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+            fActive: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindWindowSW: fn(
+            self: *const IShellWindows,
+            pvarLoc: *VARIANT,
+            pvarLocRoot: *VARIANT,
+            swClass: i32,
+            phwnd: *i32,
+            swfwOptions: i32,
+            ppdispOut: **IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnCreated: fn(
+            self: *const IShellWindows,
+            lCookie: i32,
+            punk: *IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessAttachDetach: fn(
+            self: *const IShellWindows,
+            fAttach: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IDispatch.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_get_Count(self: *const T, Count: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).get_Count(@ptrCast(*const IShellWindows, self), Count);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_Item(self: *const T, index: VARIANT, Folder: **IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).Item(@ptrCast(*const IShellWindows, self), index, Folder);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows__NewEnum(self: *const T, ppunk: **IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable)._NewEnum(@ptrCast(*const IShellWindows, self), ppunk);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_Register(self: *const T, pid: *IDispatch, hwnd: i32, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).Register(@ptrCast(*const IShellWindows, self), pid, hwnd, swClass, plCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_RegisterPending(self: *const T, lThreadId: i32, pvarloc: *VARIANT, pvarlocRoot: *VARIANT, swClass: i32, plCookie: *i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).RegisterPending(@ptrCast(*const IShellWindows, self), lThreadId, pvarloc, pvarlocRoot, swClass, plCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_Revoke(self: *const T, lCookie: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).Revoke(@ptrCast(*const IShellWindows, self), lCookie);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_OnNavigate(self: *const T, lCookie: i32, pvarLoc: *VARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnNavigate(@ptrCast(*const IShellWindows, self), lCookie, pvarLoc);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_OnActivated(self: *const T, lCookie: i32, fActive: i16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnActivated(@ptrCast(*const IShellWindows, self), lCookie, fActive);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_FindWindowSW(self: *const T, pvarLoc: *VARIANT, pvarLocRoot: *VARIANT, swClass: i32, phwnd: *i32, swfwOptions: i32, ppdispOut: **IDispatch) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).FindWindowSW(@ptrCast(*const IShellWindows, self), pvarLoc, pvarLocRoot, swClass, phwnd, swfwOptions, ppdispOut);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_OnCreated(self: *const T, lCookie: i32, punk: *IUnknown) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).OnCreated(@ptrCast(*const IShellWindows, self), lCookie, punk);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IShellWindows_ProcessAttachDetach(self: *const T, fAttach: i16) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IShellWindows.VTable, self.vtable).ProcessAttachDetach(@ptrCast(*const IShellWindows, self), fAttach);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
 
-pub const LOGFONTW = extern struct {
-    lfHeight: i32,
-    lfWidth: i32,
-    lfEscapement: i32,
-    lfOrientation: i32,
-    lfWeight: i32,
-    lfItalic: u8,
-    lfUnderline: u8,
-    lfStrikeOut: u8,
-    lfCharSet: u8,
-    lfOutPrecision: u8,
-    lfClipPrecision: u8,
-    lfQuality: u8,
-    lfPitchAndFamily: u8,
-    lfFaceName: [32]u16,
+pub const APPCATEGORYINFO = extern struct {
+    Locale: u32,
+    pszDescription: PWSTR,
+    AppCategoryId: Guid,
+};
+
+pub const APPCATEGORYINFOLIST = extern struct {
+    cCategory: u32,
+    pCategoryInfo: *APPCATEGORYINFO,
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IInitializeWithFile_Value = @import("../zig.zig").Guid.initString("b7d14566-0509-4cce-a71f-0a554233bd9b");
+pub const IID_IInitializeWithFile = &IID_IInitializeWithFile_Value;
+pub const IInitializeWithFile = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: fn(
+            self: *const IInitializeWithFile,
+            pszFilePath: [*:0]const u16,
+            grfMode: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IInitializeWithFile_Initialize(self: *const T, pszFilePath: [*:0]const u16, grfMode: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IInitializeWithFile.VTable, self.vtable).Initialize(@ptrCast(*const IInitializeWithFile, self), pszFilePath, grfMode);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IInitializeWithStream_Value = @import("../zig.zig").Guid.initString("b824b49d-22ac-4161-ac8a-9916e8fa3f7f");
+pub const IID_IInitializeWithStream = &IID_IInitializeWithStream_Value;
+pub const IInitializeWithStream = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Initialize: fn(
+            self: *const IInitializeWithStream,
+            pstream: *IStream,
+            grfMode: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IInitializeWithStream_Initialize(self: *const T, pstream: *IStream, grfMode: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IInitializeWithStream.VTable, self.vtable).Initialize(@ptrCast(*const IInitializeWithStream, self), pstream, grfMode);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_INamedPropertyStore_Value = @import("../zig.zig").Guid.initString("71604b0f-97b0-4764-8577-2f13e98a1422");
+pub const IID_INamedPropertyStore = &IID_INamedPropertyStore_Value;
+pub const INamedPropertyStore = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetNamedValue: fn(
+            self: *const INamedPropertyStore,
+            pszName: [*:0]const u16,
+            ppropvar: *PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNamedValue: fn(
+            self: *const INamedPropertyStore,
+            pszName: [*:0]const u16,
+            propvar: *const PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNameCount: fn(
+            self: *const INamedPropertyStore,
+            pdwCount: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNameAt: fn(
+            self: *const INamedPropertyStore,
+            iProp: u32,
+            pbstrName: *BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INamedPropertyStore_GetNamedValue(self: *const T, pszName: [*:0]const u16, ppropvar: *PROPVARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNamedValue(@ptrCast(*const INamedPropertyStore, self), pszName, ppropvar);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INamedPropertyStore_SetNamedValue(self: *const T, pszName: [*:0]const u16, propvar: *const PROPVARIANT) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).SetNamedValue(@ptrCast(*const INamedPropertyStore, self), pszName, propvar);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INamedPropertyStore_GetNameCount(self: *const T, pdwCount: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNameCount(@ptrCast(*const INamedPropertyStore, self), pdwCount);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INamedPropertyStore_GetNameAt(self: *const T, iProp: u32, pbstrName: *BSTR) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INamedPropertyStore.VTable, self.vtable).GetNameAt(@ptrCast(*const INamedPropertyStore, self), iProp, pbstrName);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IObjectWithPropertyKey_Value = @import("../zig.zig").Guid.initString("fc0ca0a7-c316-4fd2-9031-3e628e6d4f23");
+pub const IID_IObjectWithPropertyKey = &IID_IObjectWithPropertyKey_Value;
+pub const IObjectWithPropertyKey = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetPropertyKey: fn(
+            self: *const IObjectWithPropertyKey,
+            key: *const PROPERTYKEY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyKey: fn(
+            self: *const IObjectWithPropertyKey,
+            pkey: *PROPERTYKEY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IObjectWithPropertyKey_SetPropertyKey(self: *const T, key: *const PROPERTYKEY) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IObjectWithPropertyKey.VTable, self.vtable).SetPropertyKey(@ptrCast(*const IObjectWithPropertyKey, self), key);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IObjectWithPropertyKey_GetPropertyKey(self: *const T, pkey: *PROPERTYKEY) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IObjectWithPropertyKey.VTable, self.vtable).GetPropertyKey(@ptrCast(*const IObjectWithPropertyKey, self), pkey);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IDelayedPropertyStoreFactory_Value = @import("../zig.zig").Guid.initString("40d4577f-e237-4bdb-bd69-58f089431b6a");
+pub const IID_IDelayedPropertyStoreFactory = &IID_IDelayedPropertyStoreFactory_Value;
+pub const IDelayedPropertyStoreFactory = extern struct {
+    pub const VTable = extern struct {
+        base: IPropertyStoreFactory.VTable,
+        GetDelayedPropertyStore: fn(
+            self: *const IDelayedPropertyStoreFactory,
+            flags: GETPROPERTYSTOREFLAGS,
+            dwStoreId: u32,
+            riid: *const Guid,
+            ppv: **c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IPropertyStoreFactory.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IDelayedPropertyStoreFactory_GetDelayedPropertyStore(self: *const T, flags: GETPROPERTYSTOREFLAGS, dwStoreId: u32, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IDelayedPropertyStoreFactory.VTable, self.vtable).GetDelayedPropertyStore(@ptrCast(*const IDelayedPropertyStoreFactory, self), flags, dwStoreId, riid, ppv);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_IPersistSerializedPropStorage_Value = @import("../zig.zig").Guid.initString("e318ad57-0aa0-450f-aca5-6fab7103d917");
+pub const IID_IPersistSerializedPropStorage = &IID_IPersistSerializedPropStorage_Value;
+pub const IPersistSerializedPropStorage = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetFlags: fn(
+            self: *const IPersistSerializedPropStorage,
+            flags: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPropertyStorage: fn(
+            self: *const IPersistSerializedPropStorage,
+            // TODO: what to do with BytesParamIndex 1?
+            psps: *SERIALIZEDPROPSTORAGE,
+            cb: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyStorage: fn(
+            self: *const IPersistSerializedPropStorage,
+            ppsps: **SERIALIZEDPROPSTORAGE,
+            pcb: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPersistSerializedPropStorage_SetFlags(self: *const T, flags: i32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).SetFlags(@ptrCast(*const IPersistSerializedPropStorage, self), flags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPersistSerializedPropStorage_SetPropertyStorage(self: *const T, psps: *SERIALIZEDPROPSTORAGE, cb: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).SetPropertyStorage(@ptrCast(*const IPersistSerializedPropStorage, self), psps, cb);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPersistSerializedPropStorage_GetPropertyStorage(self: *const T, ppsps: **SERIALIZEDPROPSTORAGE, pcb: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPersistSerializedPropStorage.VTable, self.vtable).GetPropertyStorage(@ptrCast(*const IPersistSerializedPropStorage, self), ppsps, pcb);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IPersistSerializedPropStorage2_Value = @import("../zig.zig").Guid.initString("77effa68-4f98-4366-ba72-573b3d880571");
+pub const IID_IPersistSerializedPropStorage2 = &IID_IPersistSerializedPropStorage2_Value;
+pub const IPersistSerializedPropStorage2 = extern struct {
+    pub const VTable = extern struct {
+        base: IPersistSerializedPropStorage.VTable,
+        GetPropertyStorageSize: fn(
+            self: *const IPersistSerializedPropStorage2,
+            pcb: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyStorageBuffer: fn(
+            self: *const IPersistSerializedPropStorage2,
+            // TODO: what to do with BytesParamIndex 1?
+            psps: *SERIALIZEDPROPSTORAGE,
+            cb: u32,
+            pcbWritten: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IPersistSerializedPropStorage.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPersistSerializedPropStorage2_GetPropertyStorageSize(self: *const T, pcb: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPersistSerializedPropStorage2.VTable, self.vtable).GetPropertyStorageSize(@ptrCast(*const IPersistSerializedPropStorage2, self), pcb);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IPersistSerializedPropStorage2_GetPropertyStorageBuffer(self: *const T, psps: *SERIALIZEDPROPSTORAGE, cb: u32, pcbWritten: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IPersistSerializedPropStorage2.VTable, self.vtable).GetPropertyStorageBuffer(@ptrCast(*const IPersistSerializedPropStorage2, self), psps, cb, pcbWritten);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+const IID_ICreateObject_Value = @import("../zig.zig").Guid.initString("75121952-e0d0-43e5-9380-1d80483acf72");
+pub const IID_ICreateObject = &IID_ICreateObject_Value;
+pub const ICreateObject = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        CreateObject: fn(
+            self: *const ICreateObject,
+            clsid: *const Guid,
+            pUnkOuter: *IUnknown,
+            riid: *const Guid,
+            ppv: **c_void,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICreateObject_CreateObject(self: *const T, clsid: *const Guid, pUnkOuter: *IUnknown, riid: *const Guid, ppv: **c_void) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ICreateObject.VTable, self.vtable).CreateObject(@ptrCast(*const ICreateObject, self), clsid, pUnkOuter, riid, ppv);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+pub const SERIALIZEDPROPERTYVALUE = extern struct {
+    dwType: u32,
+    rgb: [1]u8,
+};
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+const IID_INotifyReplica_Value = @import("../zig.zig").Guid.initString("99180163-da16-101a-935c-444553540000");
+pub const IID_INotifyReplica = &IID_INotifyReplica_Value;
+pub const INotifyReplica = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        YouAreAReplica: fn(
+            self: *const INotifyReplica,
+            ulcOtherReplicas: u32,
+            rgpmkOtherReplicas: [*]*IMoniker,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn INotifyReplica_YouAreAReplica(self: *const T, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]*IMoniker) callconv(.Inline) HRESULT {
+            return @ptrCast(*const INotifyReplica.VTable, self.vtable).YouAreAReplica(@ptrCast(*const INotifyReplica, self), ulcOtherReplicas, rgpmkOtherReplicas);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
 
 pub const HELPINFO = extern struct {
@@ -28638,227 +28627,10 @@ pub const HELPWININFOW = extern struct {
     rgchMember: [2]u16,
 };
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-const IID_INotifyReplica_Value = @import("../zig.zig").Guid.initString("99180163-da16-101a-935c-444553540000");
-pub const IID_INotifyReplica = &IID_INotifyReplica_Value;
-pub const INotifyReplica = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        YouAreAReplica: fn(
-            self: *const INotifyReplica,
-            ulcOtherReplicas: u32,
-            rgpmkOtherReplicas: [*]*IMoniker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INotifyReplica_YouAreAReplica(self: *const T, ulcOtherReplicas: u32, rgpmkOtherReplicas: [*]*IMoniker) callconv(.Inline) HRESULT {
-            return @ptrCast(*const INotifyReplica.VTable, self.vtable).YouAreAReplica(@ptrCast(*const INotifyReplica, self), ulcOtherReplicas, rgpmkOtherReplicas);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (699)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn SetWindowSubclass(
-    hWnd: HWND,
-    pfnSubclass: SUBCLASSPROC,
-    uIdSubclass: usize,
-    dwRefData: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn GetWindowSubclass(
-    hWnd: HWND,
-    pfnSubclass: SUBCLASSPROC,
-    uIdSubclass: usize,
-    pdwRefData: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn RemoveWindowSubclass(
-    hWnd: HWND,
-    pfnSubclass: SUBCLASSPROC,
-    uIdSubclass: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "COMCTL32" fn DefSubclassProc(
-    hWnd: HWND,
-    uMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn LoadUserProfileA(
-    hToken: HANDLE,
-    lpProfileInfo: *PROFILEINFOA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn LoadUserProfileW(
-    hToken: HANDLE,
-    lpProfileInfo: *PROFILEINFOW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn UnloadUserProfile(
-    hToken: HANDLE,
-    hProfile: HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetProfilesDirectoryA(
-    lpProfileDir: ?[*:0]u8,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetProfilesDirectoryW(
-    lpProfileDir: ?[*:0]u16,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetProfileType(
-    dwFlags: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn DeleteProfileA(
-    lpSidString: [*:0]const u8,
-    lpProfilePath: ?[*:0]const u8,
-    lpComputerName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn DeleteProfileW(
-    lpSidString: [*:0]const u16,
-    lpProfilePath: ?[*:0]const u16,
-    lpComputerName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USERENV" fn CreateProfile(
-    pszUserSid: [*:0]const u16,
-    pszUserName: [*:0]const u16,
-    pszProfilePath: [*:0]u16,
-    cchProfilePath: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetDefaultUserProfileDirectoryA(
-    lpProfileDir: ?[*:0]u8,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetDefaultUserProfileDirectoryW(
-    lpProfileDir: ?[*:0]u16,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetAllUsersProfileDirectoryA(
-    lpProfileDir: ?[*:0]u8,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetAllUsersProfileDirectoryW(
-    lpProfileDir: ?[*:0]u16,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetUserProfileDirectoryA(
-    hToken: HANDLE,
-    lpProfileDir: ?[*:0]u8,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn GetUserProfileDirectoryW(
-    hToken: HANDLE,
-    lpProfileDir: ?[*:0]u16,
-    lpcchSize: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn CreateEnvironmentBlock(
-    lpEnvironment: **c_void,
-    hToken: HANDLE,
-    bInherit: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn DestroyEnvironmentBlock(
-    lpEnvironment: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn ExpandEnvironmentStringsForUserA(
-    hToken: HANDLE,
-    lpSrc: [*:0]const u8,
-    lpDest: [*:0]u8,
-    dwSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USERENV" fn ExpandEnvironmentStringsForUserW(
-    hToken: HANDLE,
-    lpSrc: [*:0]const u16,
-    lpDest: [*:0]u16,
-    dwSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn CreateAppContainerProfile(
-    pszAppContainerName: [*:0]const u16,
-    pszDisplayName: [*:0]const u16,
-    pszDescription: [*:0]const u16,
-    pCapabilities: ?[*]SID_AND_ATTRIBUTES,
-    dwCapabilityCount: u32,
-    ppSidAppContainerSid: *PSID,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn DeleteAppContainerProfile(
-    pszAppContainerName: [*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn GetAppContainerRegistryLocation(
-    desiredAccess: u32,
-    phAppContainerKey: *HKEY,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn GetAppContainerFolderPath(
-    pszAppContainerSid: [*:0]const u16,
-    ppszPath: *PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "USERENV" fn DeriveAppContainerSidFromAppContainerName(
-    pszAppContainerName: [*:0]const u16,
-    ppsidAppContainerSid: *PSID,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "USERENV" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(
-    psidAppContainerSid: PSID,
-    pszRestrictedAppContainerName: [*:0]const u16,
-    ppsidRestrictedAppContainerSid: *PSID,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "SHELL32" fn SHSimpleIDListFromPath(
     pszPath: [*:0]const u16,
@@ -33446,6 +33218,200 @@ pub extern "api-ms-win-core-psm-appnotify-l1-1-1" fn UnregisterAppConstrainedCha
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn SetWindowSubclass(
+    hWnd: HWND,
+    pfnSubclass: SUBCLASSPROC,
+    uIdSubclass: usize,
+    dwRefData: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn GetWindowSubclass(
+    hWnd: HWND,
+    pfnSubclass: SUBCLASSPROC,
+    uIdSubclass: usize,
+    pdwRefData: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn RemoveWindowSubclass(
+    hWnd: HWND,
+    pfnSubclass: SUBCLASSPROC,
+    uIdSubclass: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "COMCTL32" fn DefSubclassProc(
+    hWnd: HWND,
+    uMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn LoadUserProfileA(
+    hToken: HANDLE,
+    lpProfileInfo: *PROFILEINFOA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn LoadUserProfileW(
+    hToken: HANDLE,
+    lpProfileInfo: *PROFILEINFOW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn UnloadUserProfile(
+    hToken: HANDLE,
+    hProfile: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetProfilesDirectoryA(
+    lpProfileDir: ?[*:0]u8,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetProfilesDirectoryW(
+    lpProfileDir: ?[*:0]u16,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetProfileType(
+    dwFlags: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn DeleteProfileA(
+    lpSidString: [*:0]const u8,
+    lpProfilePath: ?[*:0]const u8,
+    lpComputerName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn DeleteProfileW(
+    lpSidString: [*:0]const u16,
+    lpProfilePath: ?[*:0]const u16,
+    lpComputerName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "USERENV" fn CreateProfile(
+    pszUserSid: [*:0]const u16,
+    pszUserName: [*:0]const u16,
+    pszProfilePath: [*:0]u16,
+    cchProfilePath: u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetDefaultUserProfileDirectoryA(
+    lpProfileDir: ?[*:0]u8,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetDefaultUserProfileDirectoryW(
+    lpProfileDir: ?[*:0]u16,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetAllUsersProfileDirectoryA(
+    lpProfileDir: ?[*:0]u8,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetAllUsersProfileDirectoryW(
+    lpProfileDir: ?[*:0]u16,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetUserProfileDirectoryA(
+    hToken: HANDLE,
+    lpProfileDir: ?[*:0]u8,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn GetUserProfileDirectoryW(
+    hToken: HANDLE,
+    lpProfileDir: ?[*:0]u16,
+    lpcchSize: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn CreateEnvironmentBlock(
+    lpEnvironment: **c_void,
+    hToken: HANDLE,
+    bInherit: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn DestroyEnvironmentBlock(
+    lpEnvironment: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn ExpandEnvironmentStringsForUserA(
+    hToken: HANDLE,
+    lpSrc: [*:0]const u8,
+    lpDest: [*:0]u8,
+    dwSize: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "USERENV" fn ExpandEnvironmentStringsForUserW(
+    hToken: HANDLE,
+    lpSrc: [*:0]const u16,
+    lpDest: [*:0]u16,
+    dwSize: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn CreateAppContainerProfile(
+    pszAppContainerName: [*:0]const u16,
+    pszDisplayName: [*:0]const u16,
+    pszDescription: [*:0]const u16,
+    pCapabilities: ?[*]SID_AND_ATTRIBUTES,
+    dwCapabilityCount: u32,
+    ppSidAppContainerSid: *PSID,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn DeleteAppContainerProfile(
+    pszAppContainerName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn GetAppContainerRegistryLocation(
+    desiredAccess: u32,
+    phAppContainerKey: *HKEY,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn GetAppContainerFolderPath(
+    pszAppContainerSid: [*:0]const u16,
+    ppszPath: *PWSTR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "USERENV" fn DeriveAppContainerSidFromAppContainerName(
+    pszAppContainerName: [*:0]const u16,
+    ppsidAppContainerSid: *PSID,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "USERENV" fn DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(
+    psidAppContainerSid: PSID,
+    pszRestrictedAppContainerName: [*:0]const u16,
+    ppsidRestrictedAppContainerSid: *PSID,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "USER32" fn SetWindowContextHelpId(
     param0: HWND,
     param1: u32,
@@ -33485,7 +33451,7 @@ pub extern "USER32" fn WinHelpW(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (207)
+// Section: Unicode Aliases (206)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
@@ -33509,16 +33475,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PROFILEINFO = PROFILEINFOA;
         pub const urlinvokecommandinfo = urlinvokecommandinfoA;
         pub const IUniformResourceLocator = IUniformResourceLocatorA;
-        pub const LOGFONT = LOGFONTA;
         pub const MULTIKEYHELP = MULTIKEYHELPA;
         pub const HELPWININFO = HELPWININFOA;
-        pub const LoadUserProfile = LoadUserProfileA;
-        pub const GetProfilesDirectory = GetProfilesDirectoryA;
-        pub const DeleteProfile = DeleteProfileA;
-        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryA;
-        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryA;
-        pub const GetUserProfileDirectory = GetUserProfileDirectoryA;
-        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserA;
         pub const SHGetIconOverlayIndex = SHGetIconOverlayIndexA;
         pub const ILCreateFromPath = ILCreateFromPathA;
         pub const SHGetPathFromIDList = SHGetPathFromIDListA;
@@ -33695,6 +33653,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = SHMessageBoxCheckA;
         pub const SHSendMessageBroadcast = SHSendMessageBroadcastA;
         pub const SHStripMneumonic = SHStripMneumonicA;
+        pub const LoadUserProfile = LoadUserProfileA;
+        pub const GetProfilesDirectory = GetProfilesDirectoryA;
+        pub const DeleteProfile = DeleteProfileA;
+        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryA;
+        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryA;
+        pub const GetUserProfileDirectory = GetUserProfileDirectoryA;
+        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserA;
         pub const WinHelp = WinHelpA;
     },
     .wide => struct {
@@ -33718,16 +33683,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PROFILEINFO = PROFILEINFOW;
         pub const urlinvokecommandinfo = urlinvokecommandinfoW;
         pub const IUniformResourceLocator = IUniformResourceLocatorW;
-        pub const LOGFONT = LOGFONTW;
         pub const MULTIKEYHELP = MULTIKEYHELPW;
         pub const HELPWININFO = HELPWININFOW;
-        pub const LoadUserProfile = LoadUserProfileW;
-        pub const GetProfilesDirectory = GetProfilesDirectoryW;
-        pub const DeleteProfile = DeleteProfileW;
-        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryW;
-        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryW;
-        pub const GetUserProfileDirectory = GetUserProfileDirectoryW;
-        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserW;
         pub const SHGetIconOverlayIndex = SHGetIconOverlayIndexW;
         pub const ILCreateFromPath = ILCreateFromPathW;
         pub const SHGetPathFromIDList = SHGetPathFromIDListW;
@@ -33904,6 +33861,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = SHMessageBoxCheckW;
         pub const SHSendMessageBroadcast = SHSendMessageBroadcastW;
         pub const SHStripMneumonic = SHStripMneumonicW;
+        pub const LoadUserProfile = LoadUserProfileW;
+        pub const GetProfilesDirectory = GetProfilesDirectoryW;
+        pub const DeleteProfile = DeleteProfileW;
+        pub const GetDefaultUserProfileDirectory = GetDefaultUserProfileDirectoryW;
+        pub const GetAllUsersProfileDirectory = GetAllUsersProfileDirectoryW;
+        pub const GetUserProfileDirectory = GetUserProfileDirectoryW;
+        pub const ExpandEnvironmentStringsForUser = ExpandEnvironmentStringsForUserW;
         pub const WinHelp = WinHelpW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
@@ -33927,16 +33891,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PROFILEINFO = *opaque{};
         pub const urlinvokecommandinfo = *opaque{};
         pub const IUniformResourceLocator = *opaque{};
-        pub const LOGFONT = *opaque{};
         pub const MULTIKEYHELP = *opaque{};
         pub const HELPWININFO = *opaque{};
-        pub const LoadUserProfile = *opaque{};
-        pub const GetProfilesDirectory = *opaque{};
-        pub const DeleteProfile = *opaque{};
-        pub const GetDefaultUserProfileDirectory = *opaque{};
-        pub const GetAllUsersProfileDirectory = *opaque{};
-        pub const GetUserProfileDirectory = *opaque{};
-        pub const ExpandEnvironmentStringsForUser = *opaque{};
         pub const SHGetIconOverlayIndex = *opaque{};
         pub const ILCreateFromPath = *opaque{};
         pub const SHGetPathFromIDList = *opaque{};
@@ -34113,6 +34069,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = *opaque{};
         pub const SHSendMessageBroadcast = *opaque{};
         pub const SHStripMneumonic = *opaque{};
+        pub const LoadUserProfile = *opaque{};
+        pub const GetProfilesDirectory = *opaque{};
+        pub const DeleteProfile = *opaque{};
+        pub const GetDefaultUserProfileDirectory = *opaque{};
+        pub const GetAllUsersProfileDirectory = *opaque{};
+        pub const GetUserProfileDirectory = *opaque{};
+        pub const ExpandEnvironmentStringsForUser = *opaque{};
         pub const WinHelp = *opaque{};
     } else struct {
         pub const IShellLink = @compileError("'IShellLink' requires that UNICODE be set to true or false in the root module");
@@ -34135,16 +34098,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PROFILEINFO = @compileError("'PROFILEINFO' requires that UNICODE be set to true or false in the root module");
         pub const urlinvokecommandinfo = @compileError("'urlinvokecommandinfo' requires that UNICODE be set to true or false in the root module");
         pub const IUniformResourceLocator = @compileError("'IUniformResourceLocator' requires that UNICODE be set to true or false in the root module");
-        pub const LOGFONT = @compileError("'LOGFONT' requires that UNICODE be set to true or false in the root module");
         pub const MULTIKEYHELP = @compileError("'MULTIKEYHELP' requires that UNICODE be set to true or false in the root module");
         pub const HELPWININFO = @compileError("'HELPWININFO' requires that UNICODE be set to true or false in the root module");
-        pub const LoadUserProfile = @compileError("'LoadUserProfile' requires that UNICODE be set to true or false in the root module");
-        pub const GetProfilesDirectory = @compileError("'GetProfilesDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const DeleteProfile = @compileError("'DeleteProfile' requires that UNICODE be set to true or false in the root module");
-        pub const GetDefaultUserProfileDirectory = @compileError("'GetDefaultUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetAllUsersProfileDirectory = @compileError("'GetAllUsersProfileDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetUserProfileDirectory = @compileError("'GetUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const ExpandEnvironmentStringsForUser = @compileError("'ExpandEnvironmentStringsForUser' requires that UNICODE be set to true or false in the root module");
         pub const SHGetIconOverlayIndex = @compileError("'SHGetIconOverlayIndex' requires that UNICODE be set to true or false in the root module");
         pub const ILCreateFromPath = @compileError("'ILCreateFromPath' requires that UNICODE be set to true or false in the root module");
         pub const SHGetPathFromIDList = @compileError("'SHGetPathFromIDList' requires that UNICODE be set to true or false in the root module");
@@ -34321,20 +34276,28 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const SHMessageBoxCheck = @compileError("'SHMessageBoxCheck' requires that UNICODE be set to true or false in the root module");
         pub const SHSendMessageBroadcast = @compileError("'SHSendMessageBroadcast' requires that UNICODE be set to true or false in the root module");
         pub const SHStripMneumonic = @compileError("'SHStripMneumonic' requires that UNICODE be set to true or false in the root module");
+        pub const LoadUserProfile = @compileError("'LoadUserProfile' requires that UNICODE be set to true or false in the root module");
+        pub const GetProfilesDirectory = @compileError("'GetProfilesDirectory' requires that UNICODE be set to true or false in the root module");
+        pub const DeleteProfile = @compileError("'DeleteProfile' requires that UNICODE be set to true or false in the root module");
+        pub const GetDefaultUserProfileDirectory = @compileError("'GetDefaultUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
+        pub const GetAllUsersProfileDirectory = @compileError("'GetAllUsersProfileDirectory' requires that UNICODE be set to true or false in the root module");
+        pub const GetUserProfileDirectory = @compileError("'GetUserProfileDirectory' requires that UNICODE be set to true or false in the root module");
+        pub const ExpandEnvironmentStringsForUser = @compileError("'ExpandEnvironmentStringsForUser' requires that UNICODE be set to true or false in the root module");
         pub const WinHelp = @compileError("'WinHelp' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (96)
+// Section: Imports (97)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("automation.zig").IDispatch;
 const NTSTATUS = @import("system_services.zig").NTSTATUS;
 const FILETIME = @import("windows_programming.zig").FILETIME;
 const IXMLDOMDocument = @import("windows_programming.zig").IXMLDOMDocument;
-const SID_AND_ATTRIBUTES = @import("security.zig").SID_AND_ATTRIBUTES;
 const ULARGE_INTEGER = @import("system_services.zig").ULARGE_INTEGER;
+const SID_AND_ATTRIBUTES = @import("security.zig").SID_AND_ATTRIBUTES;
 const IOleCommandTarget = @import("com.zig").IOleCommandTarget;
+const LOGFONTW = @import("gdi.zig").LOGFONTW;
 const IEnumUnknown = @import("com.zig").IEnumUnknown;
 const CREATESTRUCTW = @import("windows_and_messaging.zig").CREATESTRUCTW;
 const IPropertyStoreFactory = @import("windows_properties_system.zig").IPropertyStoreFactory;
@@ -34426,7 +34389,6 @@ const IServiceProvider = @import("system_services.zig").IServiceProvider;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    _ = SUBCLASSPROC;
     _ = LPFNDFMCALLBACK;
     _ = LPFNVIEWCALLBACK;
     _ = PFNCANSHAREFOLDERW;
@@ -34435,15 +34397,16 @@ test {
     _ = APPLET_PROC;
     _ = PAPPSTATE_CHANGE_ROUTINE;
     _ = PAPPCONSTRAIN_CHANGE_ROUTINE;
+    _ = SUBCLASSPROC;
 
     const constant_export_count = 1425;
-    const type_export_count = 817;
+    const type_export_count = 815;
     const enum_value_export_count = 2001;
     const com_iface_id_export_count = 401;
     const com_class_id_export_count = 109;
     const func_export_count = 699;
-    const unicode_alias_count = 207;
-    const import_count = 96;
+    const unicode_alias_count = 206;
+    const import_count = 97;
     @setEvalBranchQuota(
         constant_export_count +
         type_export_count +

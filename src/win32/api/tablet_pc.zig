@@ -93,6 +93,10 @@ pub const IECN__BASE = @as(u32, 2048);
 pub const IECN_STROKE = @as(u32, 2049);
 pub const IECN_GESTURE = @as(u32, 2050);
 pub const IECN_RECOGNITIONRESULT = @as(u32, 2051);
+pub const MICROSOFT_URL_EXPERIENCE_PROPERTY = "Microsoft TIP URL Experience";
+pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY = "Microsoft TIP No Insert Option";
+pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY = "Microsoft TIP ComboBox List Window Identifier";
+pub const MICROSOFT_TIP_OPENING_MSG = "TabletInputPanelOpening";
 pub const GUID_PACKETPROPERTY_GUID_X = Guid.initString("598a6a8f-52c0-4ba0-93af-af357411a561");
 pub const GUID_PACKETPROPERTY_GUID_Y = Guid.initString("b53f9f75-04e0-4498-a7ee-c30dbb5a9011");
 pub const GUID_PACKETPROPERTY_GUID_Z = Guid.initString("735adb30-0ebb-4788-a0e4-0f316490055d");
@@ -120,10 +124,6 @@ pub const InkCollectorClipInkToMargin = @as(i32, 0);
 pub const InkCollectorDefaultMargin = @as(i32, -2147483648);
 pub const GUID_GESTURE_DATA = Guid.initString("41e4ec0f-26aa-455a-9aa5-2cd36cf63fb9");
 pub const GUID_DYNAMIC_RENDERER_CACHED_DATA = Guid.initString("bf531b92-25bf-4a95-89ad-0e476b34b4f5");
-pub const MICROSOFT_URL_EXPERIENCE_PROPERTY = "Microsoft TIP URL Experience";
-pub const MICROSOFT_TIP_NO_INSERT_BUTTON_PROPERTY = "Microsoft TIP No Insert Option";
-pub const MICROSOFT_TIP_COMBOBOXLIST_PROPERTY = "Microsoft TIP ComboBox List Window Identifier";
-pub const MICROSOFT_TIP_OPENING_MSG = "TabletInputPanelOpening";
 
 //--------------------------------------------------------------------------------
 // Section: Types (240)
@@ -137,6 +137,12 @@ pub const HRECOGNIZER = ?*opaque{};
 pub const HRECOLATTICE = ?*opaque{};
 
 pub const HRECOWORDLIST = ?*opaque{};
+
+pub const PfnRecoCallback = fn(
+    param0: u32,
+    param1: *u8,
+    param2: HRECOCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 const CLSID_InkDisp_Value = @import("../zig.zig").Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
 pub const CLSID_InkDisp = &CLSID_InkDisp_Value;
@@ -9627,12 +9633,6 @@ pub const ITipAutoCompleteClient = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const PfnRecoCallback = fn(
-    param0: u32,
-    param1: *u8,
-    param2: HRECOCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 
 //--------------------------------------------------------------------------------

@@ -812,99 +812,111 @@ pub const CO_MTA_USAGE_COOKIE = isize;
 
 pub const CO_DEVICE_CATALOG_COOKIE = isize;
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const UPDFCACHE_FLAGS = extern enum(u32) {
-    ALL = 2147483647,
-    ALLBUTNODATACACHE = 2147483646,
-    NORMALCACHE = 8,
-    IFBLANK = 16,
-    ONLYIFBLANK = 2147483648,
-    NODATACACHE = 1,
-    ONSAVECACHE = 2,
-    ONSTOPCACHE = 4,
-    IFBLANKORONSAVECACHE = 18,
-    _,
+pub const DVASPECT = extern enum(i32) {
+    CONTENT = 1,
+    THUMBNAIL = 2,
+    ICON = 4,
+    DOCPRINT = 8,
 };
-pub const UPDFCACHE_ALL = UPDFCACHE_FLAGS.ALL;
-pub const UPDFCACHE_ALLBUTNODATACACHE = UPDFCACHE_FLAGS.ALLBUTNODATACACHE;
-pub const UPDFCACHE_NORMALCACHE = UPDFCACHE_FLAGS.NORMALCACHE;
-pub const UPDFCACHE_IFBLANK = UPDFCACHE_FLAGS.IFBLANK;
-pub const UPDFCACHE_ONLYIFBLANK = UPDFCACHE_FLAGS.ONLYIFBLANK;
-pub const UPDFCACHE_NODATACACHE = UPDFCACHE_FLAGS.NODATACACHE;
-pub const UPDFCACHE_ONSAVECACHE = UPDFCACHE_FLAGS.ONSAVECACHE;
-pub const UPDFCACHE_ONSTOPCACHE = UPDFCACHE_FLAGS.ONSTOPCACHE;
-pub const UPDFCACHE_IFBLANKORONSAVECACHE = UPDFCACHE_FLAGS.IFBLANKORONSAVECACHE;
+pub const DVASPECT_CONTENT = DVASPECT.CONTENT;
+pub const DVASPECT_THUMBNAIL = DVASPECT.THUMBNAIL;
+pub const DVASPECT_ICON = DVASPECT.ICON;
+pub const DVASPECT_DOCPRINT = DVASPECT.DOCPRINT;
 
-pub const RPC_C_AUTHN_LEVEL = extern enum(u32) {
-    DEFAULT = 0,
-    NONE = 1,
-    CONNECT = 2,
-    CALL = 3,
-    PKT = 4,
-    PKT_INTEGRITY = 5,
-    PKT_PRIVACY = 6,
+pub const CSPLATFORM = extern struct {
+    dwPlatformId: u32,
+    dwVersionHi: u32,
+    dwVersionLo: u32,
+    dwProcessorArch: u32,
 };
-pub const RPC_C_AUTHN_LEVEL_DEFAULT = RPC_C_AUTHN_LEVEL.DEFAULT;
-pub const RPC_C_AUTHN_LEVEL_NONE = RPC_C_AUTHN_LEVEL.NONE;
-pub const RPC_C_AUTHN_LEVEL_CONNECT = RPC_C_AUTHN_LEVEL.CONNECT;
-pub const RPC_C_AUTHN_LEVEL_CALL = RPC_C_AUTHN_LEVEL.CALL;
-pub const RPC_C_AUTHN_LEVEL_PKT = RPC_C_AUTHN_LEVEL.PKT;
-pub const RPC_C_AUTHN_LEVEL_PKT_INTEGRITY = RPC_C_AUTHN_LEVEL.PKT_INTEGRITY;
-pub const RPC_C_AUTHN_LEVEL_PKT_PRIVACY = RPC_C_AUTHN_LEVEL.PKT_PRIVACY;
 
-pub const RPC_C_IMP_LEVEL = extern enum(u32) {
-    DEFAULT = 0,
-    ANONYMOUS = 1,
-    IDENTIFY = 2,
-    IMPERSONATE = 3,
-    DELEGATE = 4,
+pub const QUERYCONTEXT = extern struct {
+    dwContext: u32,
+    Platform: CSPLATFORM,
+    Locale: u32,
+    dwVersionHi: u32,
+    dwVersionLo: u32,
 };
-pub const RPC_C_IMP_LEVEL_DEFAULT = RPC_C_IMP_LEVEL.DEFAULT;
-pub const RPC_C_IMP_LEVEL_ANONYMOUS = RPC_C_IMP_LEVEL.ANONYMOUS;
-pub const RPC_C_IMP_LEVEL_IDENTIFY = RPC_C_IMP_LEVEL.IDENTIFY;
-pub const RPC_C_IMP_LEVEL_IMPERSONATE = RPC_C_IMP_LEVEL.IMPERSONATE;
-pub const RPC_C_IMP_LEVEL_DELEGATE = RPC_C_IMP_LEVEL.DELEGATE;
 
-pub const ENUM_CONTROLS_WHICH_FLAGS = extern enum(u32) {
-    W_WCH_SIBLING = 1,
-    _WCH_CONTAINER = 2,
-    _WCH_CONTAINED = 3,
-    _WCH_ALL = 4,
-    _WCH_FREVERSEDIR = 134217728,
-    _WCH_FONLYAFTER = 268435456,
-    _WCH_FONLYBEFORE = 536870912,
-    _WCH_FSELECTED = 1073741824,
+pub const TYSPEC = extern enum(i32) {
+    CLSID = 0,
+    FILEEXT = 1,
+    MIMETYPE = 2,
+    FILENAME = 3,
+    PROGID = 4,
+    PACKAGENAME = 5,
+    OBJECTID = 6,
 };
-pub const GCW_WCH_SIBLING = ENUM_CONTROLS_WHICH_FLAGS.W_WCH_SIBLING;
-pub const GC_WCH_CONTAINER = ENUM_CONTROLS_WHICH_FLAGS._WCH_CONTAINER;
-pub const GC_WCH_CONTAINED = ENUM_CONTROLS_WHICH_FLAGS._WCH_CONTAINED;
-pub const GC_WCH_ALL = ENUM_CONTROLS_WHICH_FLAGS._WCH_ALL;
-pub const GC_WCH_FREVERSEDIR = ENUM_CONTROLS_WHICH_FLAGS._WCH_FREVERSEDIR;
-pub const GC_WCH_FONLYAFTER = ENUM_CONTROLS_WHICH_FLAGS._WCH_FONLYAFTER;
-pub const GC_WCH_FONLYBEFORE = ENUM_CONTROLS_WHICH_FLAGS._WCH_FONLYBEFORE;
-pub const GC_WCH_FSELECTED = ENUM_CONTROLS_WHICH_FLAGS._WCH_FSELECTED;
+pub const TYSPEC_CLSID = TYSPEC.CLSID;
+pub const TYSPEC_FILEEXT = TYSPEC.FILEEXT;
+pub const TYSPEC_MIMETYPE = TYSPEC.MIMETYPE;
+pub const TYSPEC_FILENAME = TYSPEC.FILENAME;
+pub const TYSPEC_PROGID = TYSPEC.PROGID;
+pub const TYSPEC_PACKAGENAME = TYSPEC.PACKAGENAME;
+pub const TYSPEC_OBJECTID = TYSPEC.OBJECTID;
 
-pub const MULTICLASSINFO_FLAGS = extern enum(u32) {
-    TYPEINFO = 1,
-    NUMRESERVEDDISPIDS = 2,
-    IIDPRIMARY = 4,
-    IIDSOURCE = 8,
+const IID_IAccessibilityDockingServiceCallback_Value = @import("../zig.zig").Guid.initString("157733fd-a592-42e5-b594-248468c5a81b");
+pub const IID_IAccessibilityDockingServiceCallback = &IID_IAccessibilityDockingServiceCallback_Value;
+pub const IAccessibilityDockingServiceCallback = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Undocked: fn(
+            self: *const IAccessibilityDockingServiceCallback,
+            undockReason: UNDOCK_REASON,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccessibilityDockingServiceCallback_Undocked(self: *const T, undockReason: UNDOCK_REASON) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccessibilityDockingServiceCallback.VTable, self.vtable).Undocked(@ptrCast(*const IAccessibilityDockingServiceCallback, self), undockReason);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
-pub const MULTICLASSINFO_GETTYPEINFO = MULTICLASSINFO_FLAGS.TYPEINFO;
-pub const MULTICLASSINFO_GETNUMRESERVEDDISPIDS = MULTICLASSINFO_FLAGS.NUMRESERVEDDISPIDS;
-pub const MULTICLASSINFO_GETIIDPRIMARY = MULTICLASSINFO_FLAGS.IIDPRIMARY;
-pub const MULTICLASSINFO_GETIIDSOURCE = MULTICLASSINFO_FLAGS.IIDSOURCE;
 
-pub const ACTRL_ACCESS_ENTRY_ACCESS_FLAGS = extern enum(u32) {
-    CCESS_ALLOWED = 1,
-    CCESS_DENIED = 2,
-    UDIT_SUCCESS = 4,
-    UDIT_FAILURE = 8,
+const IID_IAccessibilityDockingService_Value = @import("../zig.zig").Guid.initString("8849dc22-cedf-4c95-998d-051419dd3f76");
+pub const IID_IAccessibilityDockingService = &IID_IAccessibilityDockingService_Value;
+pub const IAccessibilityDockingService = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetAvailableSize: fn(
+            self: *const IAccessibilityDockingService,
+            hMonitor: HMONITOR,
+            pcxFixed: *u32,
+            pcyMax: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DockWindow: fn(
+            self: *const IAccessibilityDockingService,
+            hwnd: HWND,
+            hMonitor: HMONITOR,
+            cyRequested: u32,
+            pCallback: *IAccessibilityDockingServiceCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UndockWindow: fn(
+            self: *const IAccessibilityDockingService,
+            hwnd: HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccessibilityDockingService_GetAvailableSize(self: *const T, hMonitor: HMONITOR, pcxFixed: *u32, pcyMax: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccessibilityDockingService.VTable, self.vtable).GetAvailableSize(@ptrCast(*const IAccessibilityDockingService, self), hMonitor, pcxFixed, pcyMax);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccessibilityDockingService_DockWindow(self: *const T, hwnd: HWND, hMonitor: HMONITOR, cyRequested: u32, pCallback: *IAccessibilityDockingServiceCallback) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccessibilityDockingService.VTable, self.vtable).DockWindow(@ptrCast(*const IAccessibilityDockingService, self), hwnd, hMonitor, cyRequested, pCallback);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAccessibilityDockingService_UndockWindow(self: *const T, hwnd: HWND) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAccessibilityDockingService.VTable, self.vtable).UndockWindow(@ptrCast(*const IAccessibilityDockingService, self), hwnd);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
-pub const ACTRL_ACCESS_ALLOWED = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.CCESS_ALLOWED;
-pub const ACTRL_ACCESS_DENIED = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.CCESS_DENIED;
-pub const ACTRL_AUDIT_SUCCESS = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.UDIT_SUCCESS;
-pub const ACTRL_AUDIT_FAILURE = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.UDIT_FAILURE;
 
 pub const REGCLS = extern enum(i32) {
     SINGLEUSE = 0,
@@ -15184,48 +15196,99 @@ pub const IMessageDispatcher = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DVASPECT = extern enum(i32) {
-    CONTENT = 1,
-    THUMBNAIL = 2,
-    ICON = 4,
-    DOCPRINT = 8,
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const UPDFCACHE_FLAGS = extern enum(u32) {
+    ALL = 2147483647,
+    ALLBUTNODATACACHE = 2147483646,
+    NORMALCACHE = 8,
+    IFBLANK = 16,
+    ONLYIFBLANK = 2147483648,
+    NODATACACHE = 1,
+    ONSAVECACHE = 2,
+    ONSTOPCACHE = 4,
+    IFBLANKORONSAVECACHE = 18,
+    _,
 };
-pub const DVASPECT_CONTENT = DVASPECT.CONTENT;
-pub const DVASPECT_THUMBNAIL = DVASPECT.THUMBNAIL;
-pub const DVASPECT_ICON = DVASPECT.ICON;
-pub const DVASPECT_DOCPRINT = DVASPECT.DOCPRINT;
+pub const UPDFCACHE_ALL = UPDFCACHE_FLAGS.ALL;
+pub const UPDFCACHE_ALLBUTNODATACACHE = UPDFCACHE_FLAGS.ALLBUTNODATACACHE;
+pub const UPDFCACHE_NORMALCACHE = UPDFCACHE_FLAGS.NORMALCACHE;
+pub const UPDFCACHE_IFBLANK = UPDFCACHE_FLAGS.IFBLANK;
+pub const UPDFCACHE_ONLYIFBLANK = UPDFCACHE_FLAGS.ONLYIFBLANK;
+pub const UPDFCACHE_NODATACACHE = UPDFCACHE_FLAGS.NODATACACHE;
+pub const UPDFCACHE_ONSAVECACHE = UPDFCACHE_FLAGS.ONSAVECACHE;
+pub const UPDFCACHE_ONSTOPCACHE = UPDFCACHE_FLAGS.ONSTOPCACHE;
+pub const UPDFCACHE_IFBLANKORONSAVECACHE = UPDFCACHE_FLAGS.IFBLANKORONSAVECACHE;
 
-pub const CSPLATFORM = extern struct {
-    dwPlatformId: u32,
-    dwVersionHi: u32,
-    dwVersionLo: u32,
-    dwProcessorArch: u32,
+pub const RPC_C_AUTHN_LEVEL = extern enum(u32) {
+    DEFAULT = 0,
+    NONE = 1,
+    CONNECT = 2,
+    CALL = 3,
+    PKT = 4,
+    PKT_INTEGRITY = 5,
+    PKT_PRIVACY = 6,
 };
+pub const RPC_C_AUTHN_LEVEL_DEFAULT = RPC_C_AUTHN_LEVEL.DEFAULT;
+pub const RPC_C_AUTHN_LEVEL_NONE = RPC_C_AUTHN_LEVEL.NONE;
+pub const RPC_C_AUTHN_LEVEL_CONNECT = RPC_C_AUTHN_LEVEL.CONNECT;
+pub const RPC_C_AUTHN_LEVEL_CALL = RPC_C_AUTHN_LEVEL.CALL;
+pub const RPC_C_AUTHN_LEVEL_PKT = RPC_C_AUTHN_LEVEL.PKT;
+pub const RPC_C_AUTHN_LEVEL_PKT_INTEGRITY = RPC_C_AUTHN_LEVEL.PKT_INTEGRITY;
+pub const RPC_C_AUTHN_LEVEL_PKT_PRIVACY = RPC_C_AUTHN_LEVEL.PKT_PRIVACY;
 
-pub const QUERYCONTEXT = extern struct {
-    dwContext: u32,
-    Platform: CSPLATFORM,
-    Locale: u32,
-    dwVersionHi: u32,
-    dwVersionLo: u32,
+pub const RPC_C_IMP_LEVEL = extern enum(u32) {
+    DEFAULT = 0,
+    ANONYMOUS = 1,
+    IDENTIFY = 2,
+    IMPERSONATE = 3,
+    DELEGATE = 4,
 };
+pub const RPC_C_IMP_LEVEL_DEFAULT = RPC_C_IMP_LEVEL.DEFAULT;
+pub const RPC_C_IMP_LEVEL_ANONYMOUS = RPC_C_IMP_LEVEL.ANONYMOUS;
+pub const RPC_C_IMP_LEVEL_IDENTIFY = RPC_C_IMP_LEVEL.IDENTIFY;
+pub const RPC_C_IMP_LEVEL_IMPERSONATE = RPC_C_IMP_LEVEL.IMPERSONATE;
+pub const RPC_C_IMP_LEVEL_DELEGATE = RPC_C_IMP_LEVEL.DELEGATE;
 
-pub const TYSPEC = extern enum(i32) {
-    CLSID = 0,
-    FILEEXT = 1,
-    MIMETYPE = 2,
-    FILENAME = 3,
-    PROGID = 4,
-    PACKAGENAME = 5,
-    OBJECTID = 6,
+pub const ENUM_CONTROLS_WHICH_FLAGS = extern enum(u32) {
+    W_WCH_SIBLING = 1,
+    _WCH_CONTAINER = 2,
+    _WCH_CONTAINED = 3,
+    _WCH_ALL = 4,
+    _WCH_FREVERSEDIR = 134217728,
+    _WCH_FONLYAFTER = 268435456,
+    _WCH_FONLYBEFORE = 536870912,
+    _WCH_FSELECTED = 1073741824,
 };
-pub const TYSPEC_CLSID = TYSPEC.CLSID;
-pub const TYSPEC_FILEEXT = TYSPEC.FILEEXT;
-pub const TYSPEC_MIMETYPE = TYSPEC.MIMETYPE;
-pub const TYSPEC_FILENAME = TYSPEC.FILENAME;
-pub const TYSPEC_PROGID = TYSPEC.PROGID;
-pub const TYSPEC_PACKAGENAME = TYSPEC.PACKAGENAME;
-pub const TYSPEC_OBJECTID = TYSPEC.OBJECTID;
+pub const GCW_WCH_SIBLING = ENUM_CONTROLS_WHICH_FLAGS.W_WCH_SIBLING;
+pub const GC_WCH_CONTAINER = ENUM_CONTROLS_WHICH_FLAGS._WCH_CONTAINER;
+pub const GC_WCH_CONTAINED = ENUM_CONTROLS_WHICH_FLAGS._WCH_CONTAINED;
+pub const GC_WCH_ALL = ENUM_CONTROLS_WHICH_FLAGS._WCH_ALL;
+pub const GC_WCH_FREVERSEDIR = ENUM_CONTROLS_WHICH_FLAGS._WCH_FREVERSEDIR;
+pub const GC_WCH_FONLYAFTER = ENUM_CONTROLS_WHICH_FLAGS._WCH_FONLYAFTER;
+pub const GC_WCH_FONLYBEFORE = ENUM_CONTROLS_WHICH_FLAGS._WCH_FONLYBEFORE;
+pub const GC_WCH_FSELECTED = ENUM_CONTROLS_WHICH_FLAGS._WCH_FSELECTED;
+
+pub const MULTICLASSINFO_FLAGS = extern enum(u32) {
+    TYPEINFO = 1,
+    NUMRESERVEDDISPIDS = 2,
+    IIDPRIMARY = 4,
+    IIDSOURCE = 8,
+};
+pub const MULTICLASSINFO_GETTYPEINFO = MULTICLASSINFO_FLAGS.TYPEINFO;
+pub const MULTICLASSINFO_GETNUMRESERVEDDISPIDS = MULTICLASSINFO_FLAGS.NUMRESERVEDDISPIDS;
+pub const MULTICLASSINFO_GETIIDPRIMARY = MULTICLASSINFO_FLAGS.IIDPRIMARY;
+pub const MULTICLASSINFO_GETIIDSOURCE = MULTICLASSINFO_FLAGS.IIDSOURCE;
+
+pub const ACTRL_ACCESS_ENTRY_ACCESS_FLAGS = extern enum(u32) {
+    CCESS_ALLOWED = 1,
+    CCESS_DENIED = 2,
+    UDIT_SUCCESS = 4,
+    UDIT_FAILURE = 8,
+};
+pub const ACTRL_ACCESS_ALLOWED = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.CCESS_ALLOWED;
+pub const ACTRL_ACCESS_DENIED = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.CCESS_DENIED;
+pub const ACTRL_AUDIT_SUCCESS = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.UDIT_SUCCESS;
+pub const ACTRL_AUDIT_FAILURE = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.UDIT_FAILURE;
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IEventPublisher_Value = @import("../zig.zig").Guid.initString("e341516b-2e32-11d1-9964-00c04fbbb345");
@@ -15498,96 +15561,10 @@ pub const ACTRL_ACCESSW = extern struct {
     pPropertyAccessList: *ACTRL_PROPERTY_ENTRYW,
 };
 
-const IID_IAccessibilityDockingServiceCallback_Value = @import("../zig.zig").Guid.initString("157733fd-a592-42e5-b594-248468c5a81b");
-pub const IID_IAccessibilityDockingServiceCallback = &IID_IAccessibilityDockingServiceCallback_Value;
-pub const IAccessibilityDockingServiceCallback = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Undocked: fn(
-            self: *const IAccessibilityDockingServiceCallback,
-            undockReason: UNDOCK_REASON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibilityDockingServiceCallback_Undocked(self: *const T, undockReason: UNDOCK_REASON) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccessibilityDockingServiceCallback.VTable, self.vtable).Undocked(@ptrCast(*const IAccessibilityDockingServiceCallback, self), undockReason);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IAccessibilityDockingService_Value = @import("../zig.zig").Guid.initString("8849dc22-cedf-4c95-998d-051419dd3f76");
-pub const IID_IAccessibilityDockingService = &IID_IAccessibilityDockingService_Value;
-pub const IAccessibilityDockingService = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetAvailableSize: fn(
-            self: *const IAccessibilityDockingService,
-            hMonitor: HMONITOR,
-            pcxFixed: *u32,
-            pcyMax: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        DockWindow: fn(
-            self: *const IAccessibilityDockingService,
-            hwnd: HWND,
-            hMonitor: HMONITOR,
-            cyRequested: u32,
-            pCallback: *IAccessibilityDockingServiceCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        UndockWindow: fn(
-            self: *const IAccessibilityDockingService,
-            hwnd: HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibilityDockingService_GetAvailableSize(self: *const T, hMonitor: HMONITOR, pcxFixed: *u32, pcyMax: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccessibilityDockingService.VTable, self.vtable).GetAvailableSize(@ptrCast(*const IAccessibilityDockingService, self), hMonitor, pcxFixed, pcyMax);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibilityDockingService_DockWindow(self: *const T, hwnd: HWND, hMonitor: HMONITOR, cyRequested: u32, pCallback: *IAccessibilityDockingServiceCallback) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccessibilityDockingService.VTable, self.vtable).DockWindow(@ptrCast(*const IAccessibilityDockingService, self), hwnd, hMonitor, cyRequested, pCallback);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAccessibilityDockingService_UndockWindow(self: *const T, hwnd: HWND) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAccessibilityDockingService.VTable, self.vtable).UndockWindow(@ptrCast(*const IAccessibilityDockingService, self), hwnd);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (358)
 //--------------------------------------------------------------------------------
-pub extern "OLE32" fn CLIPFORMAT_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: *u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn CLIPFORMAT_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *u16,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn CLIPFORMAT_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *u16,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn CLIPFORMAT_UserFree(
-    param0: *u32,
-    param1: *u16,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 pub extern "OLE32" fn HBITMAP_UserSize(
     param0: *u32,
     param1: u32,
@@ -15609,98 +15586,6 @@ pub extern "OLE32" fn HBITMAP_UserUnmarshal(
 pub extern "OLE32" fn HBITMAP_UserFree(
     param0: *u32,
     param1: *HBITMAP,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HDC_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: *HDC,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HDC_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *HDC,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HDC_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HDC,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HDC_UserFree(
-    param0: *u32,
-    param1: *HDC,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HICON_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: *HICON,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HICON_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: *HICON,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HICON_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HICON,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HICON_UserFree(
-    param0: *u32,
-    param1: *HICON,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "ole32" fn SNB_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: ***u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ole32" fn SNB_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: ***u16,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "ole32" fn SNB_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: ***u16,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "ole32" fn SNB_UserFree(
-    param0: *u32,
-    param1: ***u16,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn CLIPFORMAT_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: *u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn CLIPFORMAT_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *u16,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn CLIPFORMAT_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *u16,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn CLIPFORMAT_UserFree64(
-    param0: *u32,
-    param1: *u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn HBITMAP_UserSize64(
@@ -15726,6 +15611,75 @@ pub extern "OLE32" fn HBITMAP_UserFree64(
     param1: *HBITMAP,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+pub extern "OLE32" fn HMENU_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *HMENU,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HMENU_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *HMENU,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HMENU_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HMENU,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HMENU_UserFree(
+    param0: *u32,
+    param1: *HMENU,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HMENU_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: *HMENU,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HMENU_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: *HMENU,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HMENU_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HMENU,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HMENU_UserFree64(
+    param0: *u32,
+    param1: *HMENU,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn HDC_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *HDC,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn HDC_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *HDC,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HDC_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *HDC,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn HDC_UserFree(
+    param0: *u32,
+    param1: *HDC,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub extern "OLE32" fn HDC_UserSize64(
     param0: *u32,
     param1: u32,
@@ -15747,52 +15701,6 @@ pub extern "OLE32" fn HDC_UserUnmarshal64(
 pub extern "OLE32" fn HDC_UserFree64(
     param0: *u32,
     param1: *HDC,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn HICON_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: *HICON,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLE32" fn HICON_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: *HICON,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HICON_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: *HICON,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLE32" fn HICON_UserFree64(
-    param0: *u32,
-    param1: *HICON,
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "ole32" fn SNB_UserSize64(
-    param0: *u32,
-    param1: u32,
-    param2: ***u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "ole32" fn SNB_UserMarshal64(
-    param0: *u32,
-    param1: *u8,
-    param2: ***u16,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "ole32" fn SNB_UserUnmarshal64(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: ***u16,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "ole32" fn SNB_UserFree64(
-    param0: *u32,
-    param1: ***u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn HACCEL_UserSize(
@@ -15841,27 +15749,27 @@ pub extern "OLE32" fn HGLOBAL_UserFree(
     param1: *isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLE32" fn HMENU_UserSize(
+pub extern "OLE32" fn HICON_UserSize(
     param0: *u32,
     param1: u32,
-    param2: *HMENU,
+    param2: *HICON,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLE32" fn HMENU_UserMarshal(
+pub extern "OLE32" fn HICON_UserMarshal(
     param0: *u32,
     param1: *u8,
-    param2: *HMENU,
+    param2: *HICON,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
-pub extern "OLE32" fn HMENU_UserUnmarshal(
+pub extern "OLE32" fn HICON_UserUnmarshal(
     param0: *u32,
     param1: [*:0]u8,
-    param2: *HMENU,
+    param2: *HICON,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
-pub extern "OLE32" fn HMENU_UserFree(
+pub extern "OLE32" fn HICON_UserFree(
     param0: *u32,
-    param1: *HMENU,
+    param1: *HICON,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "OLE32" fn HACCEL_UserSize64(
@@ -15910,27 +15818,119 @@ pub extern "OLE32" fn HGLOBAL_UserFree64(
     param1: *isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLE32" fn HMENU_UserSize64(
+pub extern "OLE32" fn HICON_UserSize64(
     param0: *u32,
     param1: u32,
-    param2: *HMENU,
+    param2: *HICON,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub extern "OLE32" fn HMENU_UserMarshal64(
+pub extern "OLE32" fn HICON_UserMarshal64(
     param0: *u32,
     param1: *u8,
-    param2: *HMENU,
+    param2: *HICON,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
-pub extern "OLE32" fn HMENU_UserUnmarshal64(
+pub extern "OLE32" fn HICON_UserUnmarshal64(
     param0: *u32,
     param1: [*:0]u8,
-    param2: *HMENU,
+    param2: *HICON,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
-pub extern "OLE32" fn HMENU_UserFree64(
+pub extern "OLE32" fn HICON_UserFree64(
     param0: *u32,
-    param1: *HMENU,
+    param1: *HICON,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn CLIPFORMAT_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: *u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn CLIPFORMAT_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: *u16,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn CLIPFORMAT_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *u16,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn CLIPFORMAT_UserFree(
+    param0: *u32,
+    param1: *u16,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "ole32" fn SNB_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: ***u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ole32" fn SNB_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: ***u16,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "ole32" fn SNB_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: ***u16,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "ole32" fn SNB_UserFree(
+    param0: *u32,
+    param1: ***u16,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLE32" fn CLIPFORMAT_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: *u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLE32" fn CLIPFORMAT_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: *u16,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn CLIPFORMAT_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: *u16,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLE32" fn CLIPFORMAT_UserFree64(
+    param0: *u32,
+    param1: *u16,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "ole32" fn SNB_UserSize64(
+    param0: *u32,
+    param1: u32,
+    param2: ***u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "ole32" fn SNB_UserMarshal64(
+    param0: *u32,
+    param1: *u8,
+    param2: ***u16,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "ole32" fn SNB_UserUnmarshal64(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: ***u16,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "ole32" fn SNB_UserFree64(
+    param0: *u32,
+    param1: ***u16,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "urlmon" fn CreateURLMoniker(

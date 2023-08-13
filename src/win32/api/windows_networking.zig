@@ -34,9 +34,6 @@ pub const WNCON_DYNAMIC = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (13)
 //--------------------------------------------------------------------------------
-// TODO: this type has a FreeFunc 'WNetCloseEnum', what can Zig do with this information?
-pub const NetEnumHandle = isize;
-
 // TODO: This Enum is marked as [Flags], what do I do with this?
 pub const WNET_OPEN_ENUM_USAGE = extern enum(u32) {
     None = 0,
@@ -134,6 +131,9 @@ pub const DISCDLGSTRUCT_FLAGS = extern enum(u32) {
 };
 pub const DISC_UPDATE_PROFILE = DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE;
 pub const DISC_NO_FORCE = DISCDLGSTRUCT_FLAGS.NO_FORCE;
+
+// TODO: this type has a FreeFunc 'WNetCloseEnum', what can Zig do with this information?
+pub const NetEnumHandle = isize;
 
 pub const CONNECTDLGSTRUCTA = extern struct {
     cbStructure: u32,

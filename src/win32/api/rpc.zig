@@ -224,6 +224,11 @@ pub const MidlWinrtTypeSerializationInfoVersionOne = @as(i32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (168)
 //--------------------------------------------------------------------------------
+pub const NDR_SCONTEXT_1 = extern struct {
+    pad: [2]*c_void,
+    userContext: *c_void,
+};
+
 pub const RPC_BINDING_VECTOR = extern struct {
     Count: u32,
     BindingH: [1]*c_void,
@@ -1881,11 +1886,6 @@ pub const RPC_BINDING_HANDLE_OPTIONS_FLAGS = extern enum(u32) {
 };
 pub const RPC_BHO_NONCAUSAL = RPC_BINDING_HANDLE_OPTIONS_FLAGS.NONCAUSAL;
 pub const RPC_BHO_DONTLINGER = RPC_BINDING_HANDLE_OPTIONS_FLAGS.DONTLINGER;
-
-pub const NDR_SCONTEXT_1 = extern struct {
-    pad: [2]*c_void,
-    userContext: *c_void,
-};
 
 
 //--------------------------------------------------------------------------------

@@ -84,6 +84,13 @@ pub const DXGI_CREATE_FACTORY_DEBUG = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (119)
 //--------------------------------------------------------------------------------
+pub const DXGI_RGBA = extern struct {
+    r: f32,
+    g: f32,
+    b: f32,
+    a: f32,
+};
+
 pub const DXGI_RATIONAL = extern struct {
     Numerator: u32,
     Denominator: u32,
@@ -3342,13 +3349,6 @@ pub const DXGI_RESOURCE_PRIORITY_LOW = DXGI_RESOURCE_PRIORITY.LOW;
 pub const DXGI_RESOURCE_PRIORITY_NORMAL = DXGI_RESOURCE_PRIORITY.NORMAL;
 pub const DXGI_RESOURCE_PRIORITY_HIGH = DXGI_RESOURCE_PRIORITY.HIGH;
 pub const DXGI_RESOURCE_PRIORITY_MAXIMUM = DXGI_RESOURCE_PRIORITY.MAXIMUM;
-
-pub const DXGI_RGBA = extern struct {
-    r: f32,
-    g: f32,
-    b: f32,
-    a: f32,
-};
 
 
 //--------------------------------------------------------------------------------

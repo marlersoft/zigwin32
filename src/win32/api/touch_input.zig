@@ -13,66 +13,6 @@ pub const HGESTUREINFO = ?*opaque{};
 
 pub const HTOUCHINPUT = ?*opaque{};
 
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const GESTURECONFIG_ID = extern enum(u32) {
-    BEGIN = 1,
-    END = 2,
-    ZOOM = 3,
-    PAN = 4,
-    ROTATE = 5,
-    TWOFINGERTAP = 6,
-    PRESSANDTAP = 7,
-    ROLLOVER = 7,
-    _,
-};
-pub const GID_BEGIN = GESTURECONFIG_ID.BEGIN;
-pub const GID_END = GESTURECONFIG_ID.END;
-pub const GID_ZOOM = GESTURECONFIG_ID.ZOOM;
-pub const GID_PAN = GESTURECONFIG_ID.PAN;
-pub const GID_ROTATE = GESTURECONFIG_ID.ROTATE;
-pub const GID_TWOFINGERTAP = GESTURECONFIG_ID.TWOFINGERTAP;
-pub const GID_PRESSANDTAP = GESTURECONFIG_ID.PRESSANDTAP;
-pub const GID_ROLLOVER = GESTURECONFIG_ID.ROLLOVER;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const TOUCHEVENTF_FLAGS = extern enum(u32) {
-    MOVE = 1,
-    DOWN = 2,
-    UP = 4,
-    INRANGE = 8,
-    PRIMARY = 16,
-    NOCOALESCE = 32,
-    PEN = 64,
-    PALM = 128,
-    _,
-};
-pub const TOUCHEVENTF_MOVE = TOUCHEVENTF_FLAGS.MOVE;
-pub const TOUCHEVENTF_DOWN = TOUCHEVENTF_FLAGS.DOWN;
-pub const TOUCHEVENTF_UP = TOUCHEVENTF_FLAGS.UP;
-pub const TOUCHEVENTF_INRANGE = TOUCHEVENTF_FLAGS.INRANGE;
-pub const TOUCHEVENTF_PRIMARY = TOUCHEVENTF_FLAGS.PRIMARY;
-pub const TOUCHEVENTF_NOCOALESCE = TOUCHEVENTF_FLAGS.NOCOALESCE;
-pub const TOUCHEVENTF_PEN = TOUCHEVENTF_FLAGS.PEN;
-pub const TOUCHEVENTF_PALM = TOUCHEVENTF_FLAGS.PALM;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const TOUCHINPUTMASKF_MASK = extern enum(u32) {
-    TIMEFROMSYSTEM = 1,
-    EXTRAINFO = 2,
-    CONTACTAREA = 4,
-    _,
-};
-pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM;
-pub const TOUCHINPUTMASKF_EXTRAINFO = TOUCHINPUTMASKF_MASK.EXTRAINFO;
-pub const TOUCHINPUTMASKF_CONTACTAREA = TOUCHINPUTMASKF_MASK.CONTACTAREA;
-
-pub const REGISTER_TOUCH_WINDOW_FLAGS = extern enum(u32) {
-    FINETOUCH = 1,
-    WANTPALM = 2,
-};
-pub const TWF_FINETOUCH = REGISTER_TOUCH_WINDOW_FLAGS.FINETOUCH;
-pub const TWF_WANTPALM = REGISTER_TOUCH_WINDOW_FLAGS.WANTPALM;
-
 const CLSID_InertiaProcessor_Value = @import("../zig.zig").Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");
 pub const CLSID_InertiaProcessor = &CLSID_InertiaProcessor_Value;
 
@@ -804,6 +744,66 @@ pub const IManipulationProcessor = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const GESTURECONFIG_ID = extern enum(u32) {
+    BEGIN = 1,
+    END = 2,
+    ZOOM = 3,
+    PAN = 4,
+    ROTATE = 5,
+    TWOFINGERTAP = 6,
+    PRESSANDTAP = 7,
+    ROLLOVER = 7,
+    _,
+};
+pub const GID_BEGIN = GESTURECONFIG_ID.BEGIN;
+pub const GID_END = GESTURECONFIG_ID.END;
+pub const GID_ZOOM = GESTURECONFIG_ID.ZOOM;
+pub const GID_PAN = GESTURECONFIG_ID.PAN;
+pub const GID_ROTATE = GESTURECONFIG_ID.ROTATE;
+pub const GID_TWOFINGERTAP = GESTURECONFIG_ID.TWOFINGERTAP;
+pub const GID_PRESSANDTAP = GESTURECONFIG_ID.PRESSANDTAP;
+pub const GID_ROLLOVER = GESTURECONFIG_ID.ROLLOVER;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const TOUCHEVENTF_FLAGS = extern enum(u32) {
+    MOVE = 1,
+    DOWN = 2,
+    UP = 4,
+    INRANGE = 8,
+    PRIMARY = 16,
+    NOCOALESCE = 32,
+    PEN = 64,
+    PALM = 128,
+    _,
+};
+pub const TOUCHEVENTF_MOVE = TOUCHEVENTF_FLAGS.MOVE;
+pub const TOUCHEVENTF_DOWN = TOUCHEVENTF_FLAGS.DOWN;
+pub const TOUCHEVENTF_UP = TOUCHEVENTF_FLAGS.UP;
+pub const TOUCHEVENTF_INRANGE = TOUCHEVENTF_FLAGS.INRANGE;
+pub const TOUCHEVENTF_PRIMARY = TOUCHEVENTF_FLAGS.PRIMARY;
+pub const TOUCHEVENTF_NOCOALESCE = TOUCHEVENTF_FLAGS.NOCOALESCE;
+pub const TOUCHEVENTF_PEN = TOUCHEVENTF_FLAGS.PEN;
+pub const TOUCHEVENTF_PALM = TOUCHEVENTF_FLAGS.PALM;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const TOUCHINPUTMASKF_MASK = extern enum(u32) {
+    TIMEFROMSYSTEM = 1,
+    EXTRAINFO = 2,
+    CONTACTAREA = 4,
+    _,
+};
+pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM;
+pub const TOUCHINPUTMASKF_EXTRAINFO = TOUCHINPUTMASKF_MASK.EXTRAINFO;
+pub const TOUCHINPUTMASKF_CONTACTAREA = TOUCHINPUTMASKF_MASK.CONTACTAREA;
+
+pub const REGISTER_TOUCH_WINDOW_FLAGS = extern enum(u32) {
+    FINETOUCH = 1,
+    WANTPALM = 2,
+};
+pub const TWF_FINETOUCH = REGISTER_TOUCH_WINDOW_FLAGS.FINETOUCH;
+pub const TWF_WANTPALM = REGISTER_TOUCH_WINDOW_FLAGS.WANTPALM;
 
 pub const TOUCHINPUT = extern struct {
     x: i32,

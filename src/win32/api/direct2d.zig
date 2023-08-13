@@ -74,6 +74,20 @@ pub const D2D1_APPEND_ALIGNED_ELEMENT = @as(u32, 4294967295);
 //--------------------------------------------------------------------------------
 // Section: Types (359)
 //--------------------------------------------------------------------------------
+pub const D2D_COLOR_F = extern struct {
+    r: f32,
+    g: f32,
+    b: f32,
+    a: f32,
+};
+
+pub const D2D1_COLOR_F = extern struct {
+    r: f32,
+    g: f32,
+    b: f32,
+    a: f32,
+};
+
 pub const D2D1_ALPHA_MODE = extern enum(u32) {
     UNKNOWN = 0,
     PREMULTIPLIED = 1,
@@ -9228,20 +9242,6 @@ pub const ID2D1EffectContext2 = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
-};
-
-pub const D2D_COLOR_F = extern struct {
-    r: f32,
-    g: f32,
-    b: f32,
-    a: f32,
-};
-
-pub const D2D1_COLOR_F = extern struct {
-    r: f32,
-    g: f32,
-    b: f32,
-    a: f32,
 };
 
 

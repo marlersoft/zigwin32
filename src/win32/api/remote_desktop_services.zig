@@ -527,6 +527,11 @@ pub const IAudioEndpointControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const WTSSESSION_NOTIFICATION = extern struct {
+    cbSize: u32,
+    dwSessionId: u32,
+};
+
 const CLSID_TSUserExInterfaces_Value = @import("../zig.zig").Guid.initString("0910dd01-df8c-11d1-ae27-00c04fa35813");
 pub const CLSID_TSUserExInterfaces = &CLSID_TSUserExInterfaces_Value;
 
@@ -7271,11 +7276,6 @@ pub const IRemoteDesktopClient = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
-};
-
-pub const WTSSESSION_NOTIFICATION = extern struct {
-    cbSize: u32,
-    dwSessionId: u32,
 };
 
 

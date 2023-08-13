@@ -3222,6 +3222,7 @@ pub const SL_REARM_REBOOT_REQUIRED = @as(u32, 1);
 pub const SPP_MIGRATION_GATHER_MIGRATABLE_APPS = @as(u32, 1);
 pub const SPP_MIGRATION_GATHER_ACTIVATED_WINDOWS_STATE = @as(u32, 2);
 pub const SPP_MIGRATION_GATHER_ALL = @as(u32, 4294967295);
+pub const CERT_COMPARE_SHIFT = @as(i32, 16);
 pub const wszCMM_PROP_NAME = "Name";
 pub const wszCMM_PROP_DESCRIPTION = "Description";
 pub const wszCMM_PROP_COPYRIGHT = "Copyright";
@@ -3229,35 +3230,10 @@ pub const wszCMM_PROP_FILEVER = "File Version";
 pub const wszCMM_PROP_PRODUCTVER = "Product Version";
 pub const wszCMM_PROP_DISPLAY_HWND = "HWND";
 pub const wszCMM_PROP_ISMULTITHREADED = "IsMultiThreaded";
-pub const CERT_COMPARE_SHIFT = @as(i32, 16);
 
 //--------------------------------------------------------------------------------
 // Section: Types (2121)
 //--------------------------------------------------------------------------------
-pub const MSA_INFO_LEVEL = extern enum(i32) {
-    @"0" = 0,
-    Max = 1,
-};
-pub const MsaInfoLevel0 = MSA_INFO_LEVEL.@"0";
-pub const MsaInfoLevelMax = MSA_INFO_LEVEL.Max;
-
-pub const MSA_INFO_STATE = extern enum(i32) {
-    NotExist = 1,
-    NotService = 2,
-    CannotInstall = 3,
-    CanInstall = 4,
-    Installed = 5,
-};
-pub const MsaInfoNotExist = MSA_INFO_STATE.NotExist;
-pub const MsaInfoNotService = MSA_INFO_STATE.NotService;
-pub const MsaInfoCannotInstall = MSA_INFO_STATE.CannotInstall;
-pub const MsaInfoCanInstall = MSA_INFO_STATE.CanInstall;
-pub const MsaInfoInstalled = MSA_INFO_STATE.Installed;
-
-pub const MSA_INFO_0 = extern struct {
-    State: MSA_INFO_STATE,
-};
-
 // TODO: this type has a FreeFunc 'CryptCloseAsyncHandle', what can Zig do with this information?
 pub const HCRYPTASYNC = ?*opaque{};
 
@@ -4125,25 +4101,79 @@ pub const QUOTA_LIMITS = extern struct {
     TimeLimit: LARGE_INTEGER,
 };
 
-pub const SEC_WINNT_AUTH_IDENTITY_W = extern struct {
-    User: *u16,
-    UserLength: u32,
-    Domain: *u16,
-    DomainLength: u32,
-    Password: *u16,
-    PasswordLength: u32,
-    Flags: SEC_WINNT_AUTH_IDENTITY,
+pub const MSA_INFO_LEVEL = extern enum(i32) {
+    @"0" = 0,
+    Max = 1,
+};
+pub const MsaInfoLevel0 = MSA_INFO_LEVEL.@"0";
+pub const MsaInfoLevelMax = MSA_INFO_LEVEL.Max;
+
+pub const MSA_INFO_STATE = extern enum(i32) {
+    NotExist = 1,
+    NotService = 2,
+    CannotInstall = 3,
+    CanInstall = 4,
+    Installed = 5,
+};
+pub const MsaInfoNotExist = MSA_INFO_STATE.NotExist;
+pub const MsaInfoNotService = MSA_INFO_STATE.NotService;
+pub const MsaInfoCannotInstall = MSA_INFO_STATE.CannotInstall;
+pub const MsaInfoCanInstall = MSA_INFO_STATE.CanInstall;
+pub const MsaInfoInstalled = MSA_INFO_STATE.Installed;
+
+pub const MSA_INFO_0 = extern struct {
+    State: MSA_INFO_STATE,
 };
 
-pub const SEC_WINNT_AUTH_IDENTITY_A = extern struct {
-    User: *u8,
-    UserLength: u32,
-    Domain: *u8,
-    DomainLength: u32,
-    Password: *u8,
-    PasswordLength: u32,
-    Flags: SEC_WINNT_AUTH_IDENTITY,
+pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = fn(
+    ClientRequest: **c_void,
+    // TODO: what to do with BytesParamIndex 3?
+    ProtocolSubmitBuffer: *c_void,
+    ClientBufferBase: *c_void,
+    SubmitBufferLength: u32,
+    ProtocolReturnBuffer: **c_void,
+    ReturnBufferLength: *u32,
+    ProtocolStatus: *i32,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
+pub const SEC_THREAD_START = fn(
+    lpThreadParameter: *c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: This Enum is marked as [Flags], what do I do with this?
+pub const TOKEN_ACCESS_MASK = extern enum(u32) {
+    DELETE = 65536,
+    READ_CONTROL = 131072,
+    WRITE_DAC = 262144,
+    WRITE_OWNER = 524288,
+    ACCESS_SYSTEM_SECURITY = 16777216,
+    TOKEN_ASSIGN_PRIMARY = 1,
+    TOKEN_DUPLICATE = 2,
+    TOKEN_IMPERSONATE = 4,
+    TOKEN_QUERY = 8,
+    TOKEN_QUERY_SOURCE = 16,
+    TOKEN_ADJUST_PRIVILEGES = 32,
+    TOKEN_ADJUST_GROUPS = 64,
+    TOKEN_ADJUST_DEFAULT = 128,
+    TOKEN_ADJUST_SESSIONID = 256,
+    TOKEN_ALL_ACCESS = 983295,
+    _,
 };
+pub const DELETE = TOKEN_ACCESS_MASK.DELETE;
+pub const READ_CONTROL = TOKEN_ACCESS_MASK.READ_CONTROL;
+pub const WRITE_DAC = TOKEN_ACCESS_MASK.WRITE_DAC;
+pub const WRITE_OWNER = TOKEN_ACCESS_MASK.WRITE_OWNER;
+pub const ACCESS_SYSTEM_SECURITY = TOKEN_ACCESS_MASK.ACCESS_SYSTEM_SECURITY;
+pub const TOKEN_ASSIGN_PRIMARY = TOKEN_ACCESS_MASK.TOKEN_ASSIGN_PRIMARY;
+pub const TOKEN_DUPLICATE = TOKEN_ACCESS_MASK.TOKEN_DUPLICATE;
+pub const TOKEN_IMPERSONATE = TOKEN_ACCESS_MASK.TOKEN_IMPERSONATE;
+pub const TOKEN_QUERY = TOKEN_ACCESS_MASK.TOKEN_QUERY;
+pub const TOKEN_QUERY_SOURCE = TOKEN_ACCESS_MASK.TOKEN_QUERY_SOURCE;
+pub const TOKEN_ADJUST_PRIVILEGES = TOKEN_ACCESS_MASK.TOKEN_ADJUST_PRIVILEGES;
+pub const TOKEN_ADJUST_GROUPS = TOKEN_ACCESS_MASK.TOKEN_ADJUST_GROUPS;
+pub const TOKEN_ADJUST_DEFAULT = TOKEN_ACCESS_MASK.TOKEN_ADJUST_DEFAULT;
+pub const TOKEN_ADJUST_SESSIONID = TOKEN_ACCESS_MASK.TOKEN_ADJUST_SESSIONID;
+pub const TOKEN_ALL_ACCESS = TOKEN_ACCESS_MASK.TOKEN_ALL_ACCESS;
 
 pub const PROCESS_INFORMATION_CLASS = extern enum(i32) {
     MemoryPriority = 0,
@@ -4167,6 +4197,82 @@ pub const ProcessTelemetryCoverageInfo = PROCESS_INFORMATION_CLASS.TelemetryCove
 pub const ProcessProtectionLevelInfo = PROCESS_INFORMATION_CLASS.ProtectionLevelInfo;
 pub const ProcessLeapSecondInfo = PROCESS_INFORMATION_CLASS.LeapSecondInfo;
 pub const ProcessInformationClassMax = PROCESS_INFORMATION_CLASS.InformationClassMax;
+
+pub const SEC_WINNT_AUTH_IDENTITY_W = extern struct {
+    User: *u16,
+    UserLength: u32,
+    Domain: *u16,
+    DomainLength: u32,
+    Password: *u16,
+    PasswordLength: u32,
+    Flags: SEC_WINNT_AUTH_IDENTITY,
+};
+
+pub const SEC_WINNT_AUTH_IDENTITY_A = extern struct {
+    User: *u8,
+    UserLength: u32,
+    Domain: *u8,
+    DomainLength: u32,
+    Password: *u8,
+    PasswordLength: u32,
+    Flags: SEC_WINNT_AUTH_IDENTITY,
+};
+
+pub const NETRESOURCEA = extern struct {
+    dwScope: NET_RESOURCE_SCOPE,
+    dwType: NET_RESOURCE_TYPE,
+    dwDisplayType: u32,
+    dwUsage: u32,
+    lpLocalName: PSTR,
+    lpRemoteName: PSTR,
+    lpComment: PSTR,
+    lpProvider: PSTR,
+};
+
+pub const NETRESOURCEW = extern struct {
+    dwScope: NET_RESOURCE_SCOPE,
+    dwType: NET_RESOURCE_TYPE,
+    dwDisplayType: u32,
+    dwUsage: u32,
+    lpLocalName: PWSTR,
+    lpRemoteName: PWSTR,
+    lpComment: PWSTR,
+    lpProvider: PWSTR,
+};
+
+pub const UNIVERSAL_NAME_INFOA = extern struct {
+    lpUniversalName: PSTR,
+};
+
+pub const UNIVERSAL_NAME_INFOW = extern struct {
+    lpUniversalName: PWSTR,
+};
+
+pub const REMOTE_NAME_INFOA = extern struct {
+    lpUniversalName: PSTR,
+    lpConnectionName: PSTR,
+    lpRemainingPath: PSTR,
+};
+
+pub const REMOTE_NAME_INFOW = extern struct {
+    lpUniversalName: PWSTR,
+    lpConnectionName: PWSTR,
+    lpRemainingPath: PWSTR,
+};
+
+pub const NETCONNECTINFOSTRUCT = extern struct {
+    cbStructure: u32,
+    dwFlags: u32,
+    dwSpeed: u32,
+    dwDelay: u32,
+    dwOptDataSize: u32,
+};
+
+pub const UNICODE_STRING = extern struct {
+    Length: u16,
+    MaximumLength: u16,
+    Buffer: [*]u16,
+};
 
 pub const SERVICE_TRIGGER_CUSTOM_STATE_ID = extern struct {
     Data: [2]u32,
@@ -39962,116 +40068,15 @@ pub const TRUST_ATTRIBUTE_CROSS_ORGANIZATION = TRUSTED_DOMAIN_TRUST_ATTRIBUTES.C
 pub const TRUST_ATTRIBUTE_TREAT_AS_EXTERNAL = TRUSTED_DOMAIN_TRUST_ATTRIBUTES.TREAT_AS_EXTERNAL;
 pub const TRUST_ATTRIBUTE_WITHIN_FOREST = TRUSTED_DOMAIN_TRUST_ATTRIBUTES.WITHIN_FOREST;
 
-pub const PLSA_AP_CALL_PACKAGE_UNTRUSTED = fn(
-    ClientRequest: **c_void,
-    // TODO: what to do with BytesParamIndex 3?
-    ProtocolSubmitBuffer: *c_void,
-    ClientBufferBase: *c_void,
-    SubmitBufferLength: u32,
-    ProtocolReturnBuffer: **c_void,
-    ReturnBufferLength: *u32,
-    ProtocolStatus: *i32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
-
-pub const SEC_THREAD_START = fn(
-    lpThreadParameter: *c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: This Enum is marked as [Flags], what do I do with this?
-pub const TOKEN_ACCESS_MASK = extern enum(u32) {
-    DELETE = 65536,
-    READ_CONTROL = 131072,
-    WRITE_DAC = 262144,
-    WRITE_OWNER = 524288,
-    ACCESS_SYSTEM_SECURITY = 16777216,
-    TOKEN_ASSIGN_PRIMARY = 1,
-    TOKEN_DUPLICATE = 2,
-    TOKEN_IMPERSONATE = 4,
-    TOKEN_QUERY = 8,
-    TOKEN_QUERY_SOURCE = 16,
-    TOKEN_ADJUST_PRIVILEGES = 32,
-    TOKEN_ADJUST_GROUPS = 64,
-    TOKEN_ADJUST_DEFAULT = 128,
-    TOKEN_ADJUST_SESSIONID = 256,
-    TOKEN_ALL_ACCESS = 983295,
-    _,
-};
-pub const DELETE = TOKEN_ACCESS_MASK.DELETE;
-pub const READ_CONTROL = TOKEN_ACCESS_MASK.READ_CONTROL;
-pub const WRITE_DAC = TOKEN_ACCESS_MASK.WRITE_DAC;
-pub const WRITE_OWNER = TOKEN_ACCESS_MASK.WRITE_OWNER;
-pub const ACCESS_SYSTEM_SECURITY = TOKEN_ACCESS_MASK.ACCESS_SYSTEM_SECURITY;
-pub const TOKEN_ASSIGN_PRIMARY = TOKEN_ACCESS_MASK.TOKEN_ASSIGN_PRIMARY;
-pub const TOKEN_DUPLICATE = TOKEN_ACCESS_MASK.TOKEN_DUPLICATE;
-pub const TOKEN_IMPERSONATE = TOKEN_ACCESS_MASK.TOKEN_IMPERSONATE;
-pub const TOKEN_QUERY = TOKEN_ACCESS_MASK.TOKEN_QUERY;
-pub const TOKEN_QUERY_SOURCE = TOKEN_ACCESS_MASK.TOKEN_QUERY_SOURCE;
-pub const TOKEN_ADJUST_PRIVILEGES = TOKEN_ACCESS_MASK.TOKEN_ADJUST_PRIVILEGES;
-pub const TOKEN_ADJUST_GROUPS = TOKEN_ACCESS_MASK.TOKEN_ADJUST_GROUPS;
-pub const TOKEN_ADJUST_DEFAULT = TOKEN_ACCESS_MASK.TOKEN_ADJUST_DEFAULT;
-pub const TOKEN_ADJUST_SESSIONID = TOKEN_ACCESS_MASK.TOKEN_ADJUST_SESSIONID;
-pub const TOKEN_ALL_ACCESS = TOKEN_ACCESS_MASK.TOKEN_ALL_ACCESS;
-
-pub const NETRESOURCEA = extern struct {
-    dwScope: NET_RESOURCE_SCOPE,
-    dwType: NET_RESOURCE_TYPE,
-    dwDisplayType: u32,
-    dwUsage: u32,
-    lpLocalName: PSTR,
-    lpRemoteName: PSTR,
-    lpComment: PSTR,
-    lpProvider: PSTR,
-};
-
-pub const NETRESOURCEW = extern struct {
-    dwScope: NET_RESOURCE_SCOPE,
-    dwType: NET_RESOURCE_TYPE,
-    dwDisplayType: u32,
-    dwUsage: u32,
-    lpLocalName: PWSTR,
-    lpRemoteName: PWSTR,
-    lpComment: PWSTR,
-    lpProvider: PWSTR,
-};
-
-pub const UNIVERSAL_NAME_INFOA = extern struct {
-    lpUniversalName: PSTR,
-};
-
-pub const UNIVERSAL_NAME_INFOW = extern struct {
-    lpUniversalName: PWSTR,
-};
-
-pub const REMOTE_NAME_INFOA = extern struct {
-    lpUniversalName: PSTR,
-    lpConnectionName: PSTR,
-    lpRemainingPath: PSTR,
-};
-
-pub const REMOTE_NAME_INFOW = extern struct {
-    lpUniversalName: PWSTR,
-    lpConnectionName: PWSTR,
-    lpRemainingPath: PWSTR,
-};
-
-pub const NETCONNECTINFOSTRUCT = extern struct {
-    cbStructure: u32,
-    dwFlags: u32,
-    dwSpeed: u32,
-    dwDelay: u32,
-    dwOptDataSize: u32,
-};
-
-pub const UNICODE_STRING = extern struct {
-    Length: u16,
-    MaximumLength: u16,
-    Buffer: [*]u16,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1169)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "ADVAPI32" fn ImpersonateNamedPipeClient(
+    hNamedPipe: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "logoncli" fn NetAddServiceAccount(
     ServerName: ?PWSTR,
@@ -40116,11 +40121,6 @@ pub extern "ADVAPI32" fn SetServiceBits(
     dwServiceBits: u32,
     bSetBitsOn: BOOL,
     bUpdateImmediately: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "ADVAPI32" fn ImpersonateNamedPipeClient(
-    hNamedPipe: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -40469,6 +40469,23 @@ pub extern "ntdll" fn RtlConvertSidToUnicodeString(
     Sid: PSID,
     AllocateDestinationString: u8,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn SetUserObjectSecurity(
+    hObj: HANDLE,
+    pSIRequested: *OBJECT_SECURITY_INFORMATION,
+    pSID: *SECURITY_DESCRIPTOR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn GetUserObjectSecurity(
+    hObj: HANDLE,
+    pSIRequested: *u32,
+    // TODO: what to do with BytesParamIndex 3?
+    pSID: ?*SECURITY_DESCRIPTOR,
+    nLength: u32,
+    lpnLengthNeeded: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ADVAPI32" fn AccessCheck(
@@ -49723,23 +49740,6 @@ pub extern "DiagnosticDataQuery" fn DdqGetTranscriptConfiguration(
     currentConfig: *DIAGNOSTIC_DATA_EVENT_TRANSCRIPT_CONFIGURATION,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn SetUserObjectSecurity(
-    hObj: HANDLE,
-    pSIRequested: *OBJECT_SECURITY_INFORMATION,
-    pSID: *SECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn GetUserObjectSecurity(
-    hObj: HANDLE,
-    pSIRequested: *u32,
-    // TODO: what to do with BytesParamIndex 3?
-    pSID: ?*SECURITY_DESCRIPTOR,
-    nLength: u32,
-    lpnLengthNeeded: *u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (221)
@@ -49747,6 +49747,9 @@ pub extern "USER32" fn GetUserObjectSecurity(
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
         pub const SEC_WINNT_AUTH_IDENTITY_ = SEC_WINNT_AUTH_IDENTITY_A;
+        pub const NETRESOURCE = NETRESOURCEA;
+        pub const UNIVERSAL_NAME_INFO = UNIVERSAL_NAME_INFOA;
+        pub const REMOTE_NAME_INFO = REMOTE_NAME_INFOA;
         pub const SERVICE_DESCRIPTION = SERVICE_DESCRIPTIONA;
         pub const SERVICE_FAILURE_ACTIONS = SERVICE_FAILURE_ACTIONSA;
         pub const SERVICE_REQUIRED_PRIVILEGES_INFO = SERVICE_REQUIRED_PRIVILEGES_INFOA;
@@ -49807,9 +49810,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CERT_SELECT_STRUCT_ = CERT_SELECT_STRUCT_A;
         pub const CERT_VIEWPROPERTIES_STRUCT_ = CERT_VIEWPROPERTIES_STRUCT_A;
         pub const CRYPTUI_VIEWCERTIFICATE_STRUCT = CRYPTUI_VIEWCERTIFICATE_STRUCTA;
-        pub const NETRESOURCE = NETRESOURCEA;
-        pub const UNIVERSAL_NAME_INFO = UNIVERSAL_NAME_INFOA;
-        pub const REMOTE_NAME_INFO = REMOTE_NAME_INFOA;
         pub const AccessCheckAndAuditAlarm = AccessCheckAndAuditAlarmA;
         pub const AccessCheckByTypeAndAuditAlarm = AccessCheckByTypeAndAuditAlarmA;
         pub const AccessCheckByTypeResultListAndAuditAlarm = AccessCheckByTypeResultListAndAuditAlarmA;
@@ -49970,6 +49970,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
     .wide => struct {
         pub const SEC_WINNT_AUTH_IDENTITY_ = SEC_WINNT_AUTH_IDENTITY_W;
+        pub const NETRESOURCE = NETRESOURCEW;
+        pub const UNIVERSAL_NAME_INFO = UNIVERSAL_NAME_INFOW;
+        pub const REMOTE_NAME_INFO = REMOTE_NAME_INFOW;
         pub const SERVICE_DESCRIPTION = SERVICE_DESCRIPTIONW;
         pub const SERVICE_FAILURE_ACTIONS = SERVICE_FAILURE_ACTIONSW;
         pub const SERVICE_REQUIRED_PRIVILEGES_INFO = SERVICE_REQUIRED_PRIVILEGES_INFOW;
@@ -50030,9 +50033,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CERT_SELECT_STRUCT_ = CERT_SELECT_STRUCT_W;
         pub const CERT_VIEWPROPERTIES_STRUCT_ = CERT_VIEWPROPERTIES_STRUCT_W;
         pub const CRYPTUI_VIEWCERTIFICATE_STRUCT = CRYPTUI_VIEWCERTIFICATE_STRUCTW;
-        pub const NETRESOURCE = NETRESOURCEW;
-        pub const UNIVERSAL_NAME_INFO = UNIVERSAL_NAME_INFOW;
-        pub const REMOTE_NAME_INFO = REMOTE_NAME_INFOW;
         pub const AccessCheckAndAuditAlarm = AccessCheckAndAuditAlarmW;
         pub const AccessCheckByTypeAndAuditAlarm = AccessCheckByTypeAndAuditAlarmW;
         pub const AccessCheckByTypeResultListAndAuditAlarm = AccessCheckByTypeResultListAndAuditAlarmW;
@@ -50193,6 +50193,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
     .unspecified => if (@import("builtin").is_test) struct {
         pub const SEC_WINNT_AUTH_IDENTITY_ = *opaque{};
+        pub const NETRESOURCE = *opaque{};
+        pub const UNIVERSAL_NAME_INFO = *opaque{};
+        pub const REMOTE_NAME_INFO = *opaque{};
         pub const SERVICE_DESCRIPTION = *opaque{};
         pub const SERVICE_FAILURE_ACTIONS = *opaque{};
         pub const SERVICE_REQUIRED_PRIVILEGES_INFO = *opaque{};
@@ -50253,9 +50256,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CERT_SELECT_STRUCT_ = *opaque{};
         pub const CERT_VIEWPROPERTIES_STRUCT_ = *opaque{};
         pub const CRYPTUI_VIEWCERTIFICATE_STRUCT = *opaque{};
-        pub const NETRESOURCE = *opaque{};
-        pub const UNIVERSAL_NAME_INFO = *opaque{};
-        pub const REMOTE_NAME_INFO = *opaque{};
         pub const AccessCheckAndAuditAlarm = *opaque{};
         pub const AccessCheckByTypeAndAuditAlarm = *opaque{};
         pub const AccessCheckByTypeResultListAndAuditAlarm = *opaque{};
@@ -50415,6 +50415,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CryptUIDlgViewCertificate = *opaque{};
     } else struct {
         pub const SEC_WINNT_AUTH_IDENTITY_ = @compileError("'SEC_WINNT_AUTH_IDENTITY_' requires that UNICODE be set to true or false in the root module");
+        pub const NETRESOURCE = @compileError("'NETRESOURCE' requires that UNICODE be set to true or false in the root module");
+        pub const UNIVERSAL_NAME_INFO = @compileError("'UNIVERSAL_NAME_INFO' requires that UNICODE be set to true or false in the root module");
+        pub const REMOTE_NAME_INFO = @compileError("'REMOTE_NAME_INFO' requires that UNICODE be set to true or false in the root module");
         pub const SERVICE_DESCRIPTION = @compileError("'SERVICE_DESCRIPTION' requires that UNICODE be set to true or false in the root module");
         pub const SERVICE_FAILURE_ACTIONS = @compileError("'SERVICE_FAILURE_ACTIONS' requires that UNICODE be set to true or false in the root module");
         pub const SERVICE_REQUIRED_PRIVILEGES_INFO = @compileError("'SERVICE_REQUIRED_PRIVILEGES_INFO' requires that UNICODE be set to true or false in the root module");
@@ -50475,9 +50478,6 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const CERT_SELECT_STRUCT_ = @compileError("'CERT_SELECT_STRUCT_' requires that UNICODE be set to true or false in the root module");
         pub const CERT_VIEWPROPERTIES_STRUCT_ = @compileError("'CERT_VIEWPROPERTIES_STRUCT_' requires that UNICODE be set to true or false in the root module");
         pub const CRYPTUI_VIEWCERTIFICATE_STRUCT = @compileError("'CRYPTUI_VIEWCERTIFICATE_STRUCT' requires that UNICODE be set to true or false in the root module");
-        pub const NETRESOURCE = @compileError("'NETRESOURCE' requires that UNICODE be set to true or false in the root module");
-        pub const UNIVERSAL_NAME_INFO = @compileError("'UNIVERSAL_NAME_INFO' requires that UNICODE be set to true or false in the root module");
-        pub const REMOTE_NAME_INFO = @compileError("'REMOTE_NAME_INFO' requires that UNICODE be set to true or false in the root module");
         pub const AccessCheckAndAuditAlarm = @compileError("'AccessCheckAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const AccessCheckByTypeAndAuditAlarm = @compileError("'AccessCheckByTypeAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
         pub const AccessCheckByTypeResultListAndAuditAlarm = @compileError("'AccessCheckByTypeResultListAndAuditAlarm' requires that UNICODE be set to true or false in the root module");
@@ -50652,9 +50652,9 @@ const HRESULT = @import("com.zig").HRESULT;
 const OBJECT_ATTRIBUTES = @import("windows_programming.zig").OBJECT_ATTRIBUTES;
 const IEnumUnknown = @import("com.zig").IEnumUnknown;
 const SCARD_IO_REQUEST = @import("system_services.zig").SCARD_IO_REQUEST;
-const SERVICE_ERROR = @import("system_services.zig").SERVICE_ERROR;
 const BOOL = @import("system_services.zig").BOOL;
 const LUID = @import("kernel.zig").LUID;
+const SERVICE_ERROR = @import("system_services.zig").SERVICE_ERROR;
 const WPARAM = @import("windows_and_messaging.zig").WPARAM;
 const DLGPROC = @import("windows_and_messaging.zig").DLGPROC;
 const CERT_VIEWPROPERTIES_STRUCT_FLAGS = @import("system_services.zig").CERT_VIEWPROPERTIES_STRUCT_FLAGS;
@@ -50662,10 +50662,10 @@ const PROPSHEETPAGEW = @import("controls.zig").PROPSHEETPAGEW;
 const PSPCB_MESSAGE = @import("controls.zig").PSPCB_MESSAGE;
 const LIST_ENTRY = @import("kernel.zig").LIST_ENTRY;
 const PROPERTYKEY = @import("windows_properties_system.zig").PROPERTYKEY;
-const NET_USE_CONNECT_FLAGS = @import("windows_networking.zig").NET_USE_CONNECT_FLAGS;
 const NET_RESOURCE_SCOPE = @import("windows_networking.zig").NET_RESOURCE_SCOPE;
-const IPropertyStore = @import("audio.zig").IPropertyStore;
+const NET_USE_CONNECT_FLAGS = @import("windows_networking.zig").NET_USE_CONNECT_FLAGS;
 const NET_RESOURCE_TYPE = @import("windows_networking.zig").NET_RESOURCE_TYPE;
+const IPropertyStore = @import("audio.zig").IPropertyStore;
 const HICON = @import("menus_and_resources.zig").HICON;
 const PWSTR = @import("system_services.zig").PWSTR;
 const IBindCtx = @import("com.zig").IBindCtx;
@@ -50695,6 +50695,8 @@ const NTSTATUS = @import("system_services.zig").NTSTATUS;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    _ = PLSA_AP_CALL_PACKAGE_UNTRUSTED;
+    _ = SEC_THREAD_START;
     _ = SERVICE_MAIN_FUNCTIONW;
     _ = SERVICE_MAIN_FUNCTIONA;
     _ = LPSERVICE_MAIN_FUNCTIONW;
@@ -51128,8 +51130,6 @@ test {
     _ = PFSCE_LOG_INFO;
     _ = PF_ConfigAnalyzeService;
     _ = PF_UpdateService;
-    _ = PLSA_AP_CALL_PACKAGE_UNTRUSTED;
-    _ = SEC_THREAD_START;
 
     const constant_export_count = 3228;
     const type_export_count = 2015;

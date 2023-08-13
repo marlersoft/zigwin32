@@ -2644,8 +2644,8 @@ pub const DS3DVECTOR = extern struct {
     Anonymous2: DS3DVECTOR._Anonymous2_e__Union,
     Anonymous3: DS3DVECTOR._Anonymous3_e__Union,
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous3_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 const CLSID_KSPROPSETID_DirectSound3DListener_Value = @import("../zig.zig").Guid.initString("437b3414-d060-11d0-8583-00c04fd9baf3");

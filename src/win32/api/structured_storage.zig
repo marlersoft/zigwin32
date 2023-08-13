@@ -1026,6 +1026,37 @@ pub const JET_bitDumpCacheNoDecommit = @as(u32, 128);
 //--------------------------------------------------------------------------------
 // Section: Types (136)
 //--------------------------------------------------------------------------------
+pub const STGC = extern enum(i32) {
+    DEFAULT = 0,
+    OVERWRITE = 1,
+    ONLYIFCURRENT = 2,
+    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
+    CONSOLIDATE = 8,
+};
+pub const STGC_DEFAULT = STGC.DEFAULT;
+pub const STGC_OVERWRITE = STGC.OVERWRITE;
+pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
+pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
+pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
+
+pub const STGMOVE = extern enum(i32) {
+    MOVE = 0,
+    COPY = 1,
+    SHALLOWCOPY = 2,
+};
+pub const STGMOVE_MOVE = STGMOVE.MOVE;
+pub const STGMOVE_COPY = STGMOVE.COPY;
+pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
+
+pub const STATFLAG = extern enum(i32) {
+    DEFAULT = 0,
+    NONAME = 1,
+    NOOPEN = 2,
+};
+pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
+pub const STATFLAG_NONAME = STATFLAG.NONAME;
+pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
+
 // TODO: this type is limited to platform 'windows5.0'
 const IID_ISequentialStream_Value = @import("../zig.zig").Guid.initString("0c733a30-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ISequentialStream = &IID_ISequentialStream_Value;
@@ -1671,37 +1702,6 @@ pub const IDirectWriterLock = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
-
-pub const STGC = extern enum(i32) {
-    DEFAULT = 0,
-    OVERWRITE = 1,
-    ONLYIFCURRENT = 2,
-    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
-    CONSOLIDATE = 8,
-};
-pub const STGC_DEFAULT = STGC.DEFAULT;
-pub const STGC_OVERWRITE = STGC.OVERWRITE;
-pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
-pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
-pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
-
-pub const STGMOVE = extern enum(i32) {
-    MOVE = 0,
-    COPY = 1,
-    SHALLOWCOPY = 2,
-};
-pub const STGMOVE_MOVE = STGMOVE.MOVE;
-pub const STGMOVE_COPY = STGMOVE.COPY;
-pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
-
-pub const STATFLAG = extern enum(i32) {
-    DEFAULT = 0,
-    NONAME = 1,
-    NOOPEN = 2,
-};
-pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
-pub const STATFLAG_NONAME = STATFLAG.NONAME;
-pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
 
 pub const VERSIONEDSTREAM = extern struct {
     guidVersion: Guid,

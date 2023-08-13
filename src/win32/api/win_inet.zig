@@ -851,8 +851,6 @@ pub const HTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE = @as(u32, 10000);
 //--------------------------------------------------------------------------------
 // Section: Types (117)
 //--------------------------------------------------------------------------------
-pub const HTTP_PUSH_WAIT_HANDLE = isize;
-
 pub const INTERNET_SCHEME = extern enum(i32) {
     PARTIAL = -2,
     UNKNOWN = -1,
@@ -2061,6 +2059,8 @@ pub const INTERNET_STATE_DISCONNECTED = INTERNET_STATE.DISCONNECTED;
 pub const INTERNET_STATE_DISCONNECTED_BY_USER = INTERNET_STATE.DISCONNECTED_BY_USER;
 pub const INTERNET_STATE_IDLE = INTERNET_STATE.IDLE;
 pub const INTERNET_STATE_BUSY = INTERNET_STATE.BUSY;
+
+pub const HTTP_PUSH_WAIT_HANDLE = isize;
 
 pub const HTTP_VERSION_INFO = extern struct {
     dwMajorVersion: u32,

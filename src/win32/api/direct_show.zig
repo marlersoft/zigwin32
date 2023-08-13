@@ -2,73 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (717)
 //--------------------------------------------------------------------------------
-pub const g_wszStreamBufferRecordingDuration = "Duration";
-pub const g_wszStreamBufferRecordingBitrate = "Bitrate";
-pub const g_wszStreamBufferRecordingSeekable = "Seekable";
-pub const g_wszStreamBufferRecordingStridable = "Stridable";
-pub const g_wszStreamBufferRecordingBroadcast = "Broadcast";
-pub const g_wszStreamBufferRecordingProtected = "Is_Protected";
-pub const g_wszStreamBufferRecordingTrusted = "Is_Trusted";
-pub const g_wszStreamBufferRecordingSignature_Name = "Signature_Name";
-pub const g_wszStreamBufferRecordingHasAudio = "HasAudio";
-pub const g_wszStreamBufferRecordingHasImage = "HasImage";
-pub const g_wszStreamBufferRecordingHasScript = "HasScript";
-pub const g_wszStreamBufferRecordingHasVideo = "HasVideo";
-pub const g_wszStreamBufferRecordingCurrentBitrate = "CurrentBitrate";
-pub const g_wszStreamBufferRecordingOptimalBitrate = "OptimalBitrate";
-pub const g_wszStreamBufferRecordingHasAttachedImages = "HasAttachedImages";
-pub const g_wszStreamBufferRecordingSkipBackward = "Can_Skip_Backward";
-pub const g_wszStreamBufferRecordingSkipForward = "Can_Skip_Forward";
-pub const g_wszStreamBufferRecordingNumberOfFrames = "NumberOfFrames";
-pub const g_wszStreamBufferRecordingFileSize = "FileSize";
-pub const g_wszStreamBufferRecordingHasArbitraryDataStream = "HasArbitraryDataStream";
-pub const g_wszStreamBufferRecordingHasFileTransferStream = "HasFileTransferStream";
-pub const g_wszStreamBufferRecordingTitle = "Title";
-pub const g_wszStreamBufferRecordingAuthor = "Author";
-pub const g_wszStreamBufferRecordingDescription = "Description";
-pub const g_wszStreamBufferRecordingRating = "Rating";
-pub const g_wszStreamBufferRecordingCopyright = "Copyright";
-pub const g_wszStreamBufferRecordingUse_DRM = "Use_DRM";
-pub const g_wszStreamBufferRecordingDRM_Flags = "DRM_Flags";
-pub const g_wszStreamBufferRecordingDRM_Level = "DRM_Level";
-pub const g_wszStreamBufferRecordingAlbumTitle = "WM/AlbumTitle";
-pub const g_wszStreamBufferRecordingTrack = "WM/Track";
-pub const g_wszStreamBufferRecordingPromotionURL = "WM/PromotionURL";
-pub const g_wszStreamBufferRecordingAlbumCoverURL = "WM/AlbumCoverURL";
-pub const g_wszStreamBufferRecordingGenre = "WM/Genre";
-pub const g_wszStreamBufferRecordingYear = "WM/Year";
-pub const g_wszStreamBufferRecordingGenreID = "WM/GenreID";
-pub const g_wszStreamBufferRecordingMCDI = "WM/MCDI";
-pub const g_wszStreamBufferRecordingComposer = "WM/Composer";
-pub const g_wszStreamBufferRecordingLyrics = "WM/Lyrics";
-pub const g_wszStreamBufferRecordingTrackNumber = "WM/TrackNumber";
-pub const g_wszStreamBufferRecordingToolName = "WM/ToolName";
-pub const g_wszStreamBufferRecordingToolVersion = "WM/ToolVersion";
-pub const g_wszStreamBufferRecordingIsVBR = "IsVBR";
-pub const g_wszStreamBufferRecordingAlbumArtist = "WM/AlbumArtist";
-pub const g_wszStreamBufferRecordingBannerImageType = "BannerImageType";
-pub const g_wszStreamBufferRecordingBannerImageData = "BannerImageData";
-pub const g_wszStreamBufferRecordingBannerImageURL = "BannerImageURL";
-pub const g_wszStreamBufferRecordingCopyrightURL = "CopyrightURL";
-pub const g_wszStreamBufferRecordingAspectRatioX = "AspectRatioX";
-pub const g_wszStreamBufferRecordingAspectRatioY = "AspectRatioY";
-pub const g_wszStreamBufferRecordingNSCName = "NSC_Name";
-pub const g_wszStreamBufferRecordingNSCAddress = "NSC_Address";
-pub const g_wszStreamBufferRecordingNSCPhone = "NSC_Phone";
-pub const g_wszStreamBufferRecordingNSCEmail = "NSC_Email";
-pub const g_wszStreamBufferRecordingNSCDescription = "NSC_Description";
-pub const STREAMBUFFER_EC_TIMEHOLE = @as(i32, 806);
-pub const STREAMBUFFER_EC_STALE_DATA_READ = @as(i32, 807);
-pub const STREAMBUFFER_EC_STALE_FILE_DELETED = @as(i32, 808);
-pub const STREAMBUFFER_EC_CONTENT_BECOMING_STALE = @as(i32, 809);
-pub const STREAMBUFFER_EC_WRITE_FAILURE = @as(i32, 810);
-pub const STREAMBUFFER_EC_WRITE_FAILURE_CLEAR = @as(i32, 811);
-pub const STREAMBUFFER_EC_READ_FAILURE = @as(i32, 812);
-pub const STREAMBUFFER_EC_RATE_CHANGED = @as(i32, 813);
-pub const STREAMBUFFER_EC_PRIMARY_AUDIO = @as(i32, 814);
-pub const STREAMBUFFER_EC_RATE_CHANGING_FOR_SETPOSITIONS = @as(i32, 815);
-pub const STREAMBUFFER_EC_SETPOSITIONS_EVENTS_DONE = @as(i32, 816);
-pub const g_wszExcludeScriptStreamDeliverySynchronization = "ExcludeScriptStreamDeliverySynchronization";
 pub const EC_SND_DEVICE_ERROR_BASE = @as(u32, 512);
 pub const EC_SNDDEV_IN_ERROR = @as(u32, 512);
 pub const EC_SNDDEV_OUT_ERROR = @as(u32, 513);
@@ -719,48 +652,77 @@ pub const COMPONENT_TAG_CAPTION_MIN = @as(u32, 48);
 pub const COMPONENT_TAG_CAPTION_MAX = @as(u32, 55);
 pub const COMPONENT_TAG_SUPERIMPOSE_MIN = @as(u32, 56);
 pub const COMPONENT_TAG_SUPERIMPOSE_MAX = @as(u32, 63);
+pub const g_wszStreamBufferRecordingDuration = "Duration";
+pub const g_wszStreamBufferRecordingBitrate = "Bitrate";
+pub const g_wszStreamBufferRecordingSeekable = "Seekable";
+pub const g_wszStreamBufferRecordingStridable = "Stridable";
+pub const g_wszStreamBufferRecordingBroadcast = "Broadcast";
+pub const g_wszStreamBufferRecordingProtected = "Is_Protected";
+pub const g_wszStreamBufferRecordingTrusted = "Is_Trusted";
+pub const g_wszStreamBufferRecordingSignature_Name = "Signature_Name";
+pub const g_wszStreamBufferRecordingHasAudio = "HasAudio";
+pub const g_wszStreamBufferRecordingHasImage = "HasImage";
+pub const g_wszStreamBufferRecordingHasScript = "HasScript";
+pub const g_wszStreamBufferRecordingHasVideo = "HasVideo";
+pub const g_wszStreamBufferRecordingCurrentBitrate = "CurrentBitrate";
+pub const g_wszStreamBufferRecordingOptimalBitrate = "OptimalBitrate";
+pub const g_wszStreamBufferRecordingHasAttachedImages = "HasAttachedImages";
+pub const g_wszStreamBufferRecordingSkipBackward = "Can_Skip_Backward";
+pub const g_wszStreamBufferRecordingSkipForward = "Can_Skip_Forward";
+pub const g_wszStreamBufferRecordingNumberOfFrames = "NumberOfFrames";
+pub const g_wszStreamBufferRecordingFileSize = "FileSize";
+pub const g_wszStreamBufferRecordingHasArbitraryDataStream = "HasArbitraryDataStream";
+pub const g_wszStreamBufferRecordingHasFileTransferStream = "HasFileTransferStream";
+pub const g_wszStreamBufferRecordingTitle = "Title";
+pub const g_wszStreamBufferRecordingAuthor = "Author";
+pub const g_wszStreamBufferRecordingDescription = "Description";
+pub const g_wszStreamBufferRecordingRating = "Rating";
+pub const g_wszStreamBufferRecordingCopyright = "Copyright";
+pub const g_wszStreamBufferRecordingUse_DRM = "Use_DRM";
+pub const g_wszStreamBufferRecordingDRM_Flags = "DRM_Flags";
+pub const g_wszStreamBufferRecordingDRM_Level = "DRM_Level";
+pub const g_wszStreamBufferRecordingAlbumTitle = "WM/AlbumTitle";
+pub const g_wszStreamBufferRecordingTrack = "WM/Track";
+pub const g_wszStreamBufferRecordingPromotionURL = "WM/PromotionURL";
+pub const g_wszStreamBufferRecordingAlbumCoverURL = "WM/AlbumCoverURL";
+pub const g_wszStreamBufferRecordingGenre = "WM/Genre";
+pub const g_wszStreamBufferRecordingYear = "WM/Year";
+pub const g_wszStreamBufferRecordingGenreID = "WM/GenreID";
+pub const g_wszStreamBufferRecordingMCDI = "WM/MCDI";
+pub const g_wszStreamBufferRecordingComposer = "WM/Composer";
+pub const g_wszStreamBufferRecordingLyrics = "WM/Lyrics";
+pub const g_wszStreamBufferRecordingTrackNumber = "WM/TrackNumber";
+pub const g_wszStreamBufferRecordingToolName = "WM/ToolName";
+pub const g_wszStreamBufferRecordingToolVersion = "WM/ToolVersion";
+pub const g_wszStreamBufferRecordingIsVBR = "IsVBR";
+pub const g_wszStreamBufferRecordingAlbumArtist = "WM/AlbumArtist";
+pub const g_wszStreamBufferRecordingBannerImageType = "BannerImageType";
+pub const g_wszStreamBufferRecordingBannerImageData = "BannerImageData";
+pub const g_wszStreamBufferRecordingBannerImageURL = "BannerImageURL";
+pub const g_wszStreamBufferRecordingCopyrightURL = "CopyrightURL";
+pub const g_wszStreamBufferRecordingAspectRatioX = "AspectRatioX";
+pub const g_wszStreamBufferRecordingAspectRatioY = "AspectRatioY";
+pub const g_wszStreamBufferRecordingNSCName = "NSC_Name";
+pub const g_wszStreamBufferRecordingNSCAddress = "NSC_Address";
+pub const g_wszStreamBufferRecordingNSCPhone = "NSC_Phone";
+pub const g_wszStreamBufferRecordingNSCEmail = "NSC_Email";
+pub const g_wszStreamBufferRecordingNSCDescription = "NSC_Description";
+pub const STREAMBUFFER_EC_TIMEHOLE = @as(i32, 806);
+pub const STREAMBUFFER_EC_STALE_DATA_READ = @as(i32, 807);
+pub const STREAMBUFFER_EC_STALE_FILE_DELETED = @as(i32, 808);
+pub const STREAMBUFFER_EC_CONTENT_BECOMING_STALE = @as(i32, 809);
+pub const STREAMBUFFER_EC_WRITE_FAILURE = @as(i32, 810);
+pub const STREAMBUFFER_EC_WRITE_FAILURE_CLEAR = @as(i32, 811);
+pub const STREAMBUFFER_EC_READ_FAILURE = @as(i32, 812);
+pub const STREAMBUFFER_EC_RATE_CHANGED = @as(i32, 813);
+pub const STREAMBUFFER_EC_PRIMARY_AUDIO = @as(i32, 814);
+pub const STREAMBUFFER_EC_RATE_CHANGING_FOR_SETPOSITIONS = @as(i32, 815);
+pub const STREAMBUFFER_EC_SETPOSITIONS_EVENTS_DONE = @as(i32, 816);
+pub const g_wszExcludeScriptStreamDeliverySynchronization = "ExcludeScriptStreamDeliverySynchronization";
 
 //--------------------------------------------------------------------------------
 // Section: Types (1477)
 //--------------------------------------------------------------------------------
-pub const READYSTATE = extern enum(i32) {
-    UNINITIALIZED = 0,
-    LOADING = 1,
-    LOADED = 2,
-    INTERACTIVE = 3,
-    COMPLETE = 4,
-};
-pub const READYSTATE_UNINITIALIZED = READYSTATE.UNINITIALIZED;
-pub const READYSTATE_LOADING = READYSTATE.LOADING;
-pub const READYSTATE_LOADED = READYSTATE.LOADED;
-pub const READYSTATE_INTERACTIVE = READYSTATE.INTERACTIVE;
-pub const READYSTATE_COMPLETE = READYSTATE.COMPLETE;
-
-pub const KSTOPOLOGY_CONNECTION = extern struct {
-    FromNode: u32,
-    FromNodePin: u32,
-    ToNode: u32,
-    ToNodePin: u32,
-};
-
-pub const TIMECODE = u32; // TODO: implement StructOrUnion types?
-
-pub const TIMECODE_SAMPLE = extern struct {
-    qwTick: i64,
-    timecode: TIMECODE,
-    dwUser: u32,
-    dwFlags: u32,
-};
-
-pub const VIDEOENCODER_BITRATE_MODE = extern enum(i32) {
-    ConstantBitRate = 0,
-    VariableBitRateAverage = 1,
-    VariableBitRatePeak = 2,
-};
-pub const ConstantBitRate = VIDEOENCODER_BITRATE_MODE.ConstantBitRate;
-pub const VariableBitRateAverage = VIDEOENCODER_BITRATE_MODE.VariableBitRateAverage;
-pub const VariableBitRatePeak = VIDEOENCODER_BITRATE_MODE.VariableBitRatePeak;
-
 const CLSID_SystemTuningSpaces_Value = @import("../zig.zig").Guid.initString("d02aac50-027e-11d3-9d8e-00c04f72d980");
 pub const CLSID_SystemTuningSpaces = &CLSID_SystemTuningSpaces_Value;
 
@@ -23049,10 +23011,30 @@ pub const MPEG_HEADER_VERSION_BITS = extern struct {
     _bitfield: u8,
 };
 
-pub const DDCOLORKEY = extern struct {
-    dwColorSpaceLowValue: u32,
-    dwColorSpaceHighValue: u32,
+pub const KSTOPOLOGY_CONNECTION = extern struct {
+    FromNode: u32,
+    FromNodePin: u32,
+    ToNode: u32,
+    ToNodePin: u32,
 };
+
+pub const TIMECODE = u32; // TODO: implement StructOrUnion types?
+
+pub const TIMECODE_SAMPLE = extern struct {
+    qwTick: i64,
+    timecode: TIMECODE,
+    dwUser: u32,
+    dwFlags: u32,
+};
+
+pub const VIDEOENCODER_BITRATE_MODE = extern enum(i32) {
+    ConstantBitRate = 0,
+    VariableBitRateAverage = 1,
+    VariableBitRatePeak = 2,
+};
+pub const ConstantBitRate = VIDEOENCODER_BITRATE_MODE.ConstantBitRate;
+pub const VariableBitRateAverage = VIDEOENCODER_BITRATE_MODE.VariableBitRateAverage;
+pub const VariableBitRatePeak = VIDEOENCODER_BITRATE_MODE.VariableBitRatePeak;
 
 pub const MPEG1WAVEFORMAT = extern struct {
     wfx: WAVEFORMATEX,
@@ -23087,6 +23069,24 @@ pub const HEAACWAVEINFO = extern struct {
 pub const HEAACWAVEFORMAT = extern struct {
     wfInfo: HEAACWAVEINFO,
     pbAudioSpecificConfig: [1]u8,
+};
+
+pub const READYSTATE = extern enum(i32) {
+    UNINITIALIZED = 0,
+    LOADING = 1,
+    LOADED = 2,
+    INTERACTIVE = 3,
+    COMPLETE = 4,
+};
+pub const READYSTATE_UNINITIALIZED = READYSTATE.UNINITIALIZED;
+pub const READYSTATE_LOADING = READYSTATE.LOADING;
+pub const READYSTATE_LOADED = READYSTATE.LOADED;
+pub const READYSTATE_INTERACTIVE = READYSTATE.INTERACTIVE;
+pub const READYSTATE_COMPLETE = READYSTATE.COMPLETE;
+
+pub const DDCOLORKEY = extern struct {
+    dwColorSpaceLowValue: u32,
+    dwColorSpaceHighValue: u32,
 };
 
 pub const OA_BOOL = extern enum(i32) {

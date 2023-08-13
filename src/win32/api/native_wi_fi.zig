@@ -3349,26 +3349,26 @@ pub const NDIS_TCP_IP_CHECKSUM_OFFLOAD = extern struct {
     IPv4Receive: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv4Receive_e__Struct,
     IPv6Transmit: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv6Transmit_e__Struct,
     IPv6Receive: NDIS_TCP_IP_CHECKSUM_OFFLOAD._IPv6Receive_e__Struct,
-    const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
     const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_IPSEC_OFFLOAD_V1 = extern struct {
     Supported: NDIS_IPSEC_OFFLOAD_V1._Supported_e__Struct,
     IPv4AH: NDIS_IPSEC_OFFLOAD_V1._IPv4AH_e__Struct,
     IPv4ESP: NDIS_IPSEC_OFFLOAD_V1._IPv4ESP_e__Struct,
-    const _IPv4ESP_e__Struct = u32; // TODO: generate this nested type!
-    const _Supported_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
+    const _Supported_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4ESP_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_TCP_LARGE_SEND_OFFLOAD_V2 = extern struct {
     IPv4: NDIS_TCP_LARGE_SEND_OFFLOAD_V2._IPv4_e__Struct,
     IPv6: NDIS_TCP_LARGE_SEND_OFFLOAD_V2._IPv6_e__Struct,
-    const _IPv6_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv6_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_OFFLOAD = extern struct {
@@ -3390,26 +3390,26 @@ pub const NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD = extern struct {
     IPv4Receive: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv4Receive_e__Struct,
     IPv6Transmit: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv6Transmit_e__Struct,
     IPv6Receive: NDIS_WMI_TCP_IP_CHECKSUM_OFFLOAD._IPv6Receive_e__Struct,
-    const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
     const _IPv6Receive_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4Receive_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv6Transmit_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv4Transmit_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_IPSEC_OFFLOAD_V1 = extern struct {
     Supported: NDIS_WMI_IPSEC_OFFLOAD_V1._Supported_e__Struct,
     IPv4AH: NDIS_WMI_IPSEC_OFFLOAD_V1._IPv4AH_e__Struct,
     IPv4ESP: NDIS_WMI_IPSEC_OFFLOAD_V1._IPv4ESP_e__Struct,
+    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4ESP_e__Struct = u32; // TODO: generate this nested type!
     const _Supported_e__Struct = u32; // TODO: generate this nested type!
-    const _IPv4AH_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V2 = extern struct {
     IPv4: NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V2._IPv4_e__Struct,
     IPv6: NDIS_WMI_TCP_LARGE_SEND_OFFLOAD_V2._IPv6_e__Struct,
-    const _IPv6_e__Struct = u32; // TODO: generate this nested type!
     const _IPv4_e__Struct = u32; // TODO: generate this nested type!
+    const _IPv6_e__Struct = u32; // TODO: generate this nested type!
 };
 
 pub const NDIS_WMI_OFFLOAD = extern struct {

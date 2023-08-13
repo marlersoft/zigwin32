@@ -12,7 +12,7 @@ pub const CLSID_AudioFrameNativeFactory = Guid.initString("16a0a3b9-9f65-4102-93
 pub const CLSID_VideoFrameNativeFactory = Guid.initString("d194386a-04e3-4814-8100-b2b0ae6d78c7");
 
 //--------------------------------------------------------------------------------
-// Section: Types (83)
+// Section: Types (84)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'WindowsDeleteString', what can Zig do with this information?
 pub const HSTRING = ?*opaque{};
@@ -95,6 +95,10 @@ pub const AgileReferenceOptions = extern enum(i32) {
 };
 pub const AGILEREFERENCE_DEFAULT = AgileReferenceOptions.FAULT;
 pub const AGILEREFERENCE_DELAYEDMARSHAL = AgileReferenceOptions.LAYEDMARSHAL;
+
+pub const EventRegistrationToken = extern struct {
+    value: i64,
+};
 
 pub const HSTRING_HEADER = extern struct {
     Reserved: HSTRING_HEADER._Reserved_e__Union,
@@ -1892,6 +1896,28 @@ pub const ILanguageExceptionErrorInfo2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// TODO: this type is limited to platform 'windows8.0'
+const IID_IActivationFactory_Value = @import("../zig.zig").Guid.initString("00000035-0000-0000-c000-000000000046");
+pub const IID_IActivationFactory = &IID_IActivationFactory_Value;
+pub const IActivationFactory = extern struct {
+    pub const VTable = extern struct {
+        base: IInspectable.VTable,
+        ActivateInstance: fn(
+            self: *const IActivationFactory,
+            instance: ?*?*IInspectable,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IInspectable.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IActivationFactory_ActivateInstance(self: *const T, instance: ?*?*IInspectable) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IActivationFactory.VTable, self.vtable).ActivateInstance(@ptrCast(*const IActivationFactory, self), instance);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
 pub const RO_INIT_TYPE = extern enum(i32) {
     SINGLETHREADED = 0,
     MULTITHREADED = 1,
@@ -2095,14 +2121,24 @@ pub const IMemoryBufferByteAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const EventRegistrationToken = extern struct {
-    value: i64,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (70)
 //--------------------------------------------------------------------------------
+pub extern "OLE32" fn CoDecodeProxy(
+    dwClientPid: u32,
+    ui64ProxyAddress: u64,
+    pServerInformation: *ServerInformation,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows8.0'
+pub extern "OLE32" fn RoGetAgileReference(
+    options: AgileReferenceOptions,
+    riid: *const Guid,
+    pUnk: *IUnknown,
+    ppAgileReference: **IAgileReference,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserSize(
     param0: *u32,
@@ -2156,20 +2192,6 @@ pub extern "api-ms-win-core-winrt-string-l1-1-0" fn HSTRING_UserFree64(
     param0: *u32,
     param1: *HSTRING,
 ) callconv(@import("std").os.windows.WINAPI) void;
-
-pub extern "OLE32" fn CoDecodeProxy(
-    dwClientPid: u32,
-    ui64ProxyAddress: u64,
-    pServerInformation: *ServerInformation,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows8.0'
-pub extern "OLE32" fn RoGetAgileReference(
-    options: AgileReferenceOptions,
-    riid: *const Guid,
-    pUnk: *IUnknown,
-    ppAgileReference: **IAgileReference,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "Windows.Data.Pdf" fn PdfCreateRenderer(
     pDevice: *IDXGIDevice,
@@ -2604,9 +2626,9 @@ test {
     _ = PINSPECT_MEMORY_CALLBACK;
 
     const constant_export_count = 8;
-    const type_export_count = 83;
+    const type_export_count = 84;
     const enum_value_export_count = 43;
-    const com_iface_id_export_count = 59;
+    const com_iface_id_export_count = 60;
     const com_class_id_export_count = 0;
     const func_export_count = 70;
     const unicode_alias_count = 0;

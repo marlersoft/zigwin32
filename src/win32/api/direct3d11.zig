@@ -2543,8 +2543,8 @@ pub const ID3D11View = extern struct {
 pub const D3D11_BUFFER_SRV = extern struct {
     Anonymous1: D3D11_BUFFER_SRV._Anonymous1_e__Union,
     Anonymous2: D3D11_BUFFER_SRV._Anonymous2_e__Union,
-    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3D11_BUFFEREX_SRV_FLAG = extern enum(i32) {
@@ -2640,8 +2640,8 @@ pub const ID3D11ShaderResourceView = extern struct {
 pub const D3D11_BUFFER_RTV = extern struct {
     Anonymous1: D3D11_BUFFER_RTV._Anonymous1_e__Union,
     Anonymous2: D3D11_BUFFER_RTV._Anonymous2_e__Union,
-    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
     const _Anonymous1_e__Union = u32; // TODO: generate this nested type!
+    const _Anonymous2_e__Union = u32; // TODO: generate this nested type!
 };
 
 pub const D3D11_TEX1D_RTV = extern struct {

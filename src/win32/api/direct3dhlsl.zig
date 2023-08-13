@@ -2,9 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (47)
 //--------------------------------------------------------------------------------
-pub const D3DCOMPILER_DLL = "d3dcompiler_47.dll";
-pub const D3DCOMPILE_OPTIMIZATION_LEVEL2 = @as(u32, 49152);
-pub const D3D_COMPILE_STANDARD_FILE_INCLUDE = @as(u32, 1);
 pub const D3D_COMPILER_VERSION = @as(u32, 47);
 pub const D3DCOMPILE_DEBUG = @as(u32, 1);
 pub const D3DCOMPILE_SKIP_VALIDATION = @as(u32, 2);
@@ -49,6 +46,9 @@ pub const D3D_DISASM_INSTRUCTION_ONLY = @as(u32, 64);
 pub const D3D_DISASM_PRINT_HEX_LITERALS = @as(u32, 128);
 pub const D3D_GET_INST_OFFSETS_INCLUDE_NON_EXECUTABLE = @as(u32, 1);
 pub const D3D_COMPRESS_SHADER_KEEP_ALL_PARTS = @as(u32, 1);
+pub const D3DCOMPILER_DLL = "d3dcompiler_47.dll";
+pub const D3DCOMPILE_OPTIMIZATION_LEVEL2 = @as(u32, 49152);
+pub const D3D_COMPILE_STANDARD_FILE_INCLUDE = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)

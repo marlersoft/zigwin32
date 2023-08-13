@@ -9,6 +9,26 @@ pub const DWRITE_ERR_BASE = @as(u32, 20480);
 //--------------------------------------------------------------------------------
 // Section: Types (193)
 //--------------------------------------------------------------------------------
+pub const DWRITE_FONT_AXIS_TAG = extern enum(u32) {
+    WEIGHT = 1952999287,
+    WIDTH = 1752458359,
+    SLANT = 1953393779,
+    OPTICAL_SIZE = 2054385775,
+    ITALIC = 1818326121,
+};
+pub const DWRITE_FONT_AXIS_TAG_WEIGHT = DWRITE_FONT_AXIS_TAG.WEIGHT;
+pub const DWRITE_FONT_AXIS_TAG_WIDTH = DWRITE_FONT_AXIS_TAG.WIDTH;
+pub const DWRITE_FONT_AXIS_TAG_SLANT = DWRITE_FONT_AXIS_TAG.SLANT;
+pub const DWRITE_FONT_AXIS_TAG_OPTICAL_SIZE = DWRITE_FONT_AXIS_TAG.OPTICAL_SIZE;
+pub const DWRITE_FONT_AXIS_TAG_ITALIC = DWRITE_FONT_AXIS_TAG.ITALIC;
+
+pub const DWRITE_COLOR_F = extern struct {
+    r: f32,
+    g: f32,
+    b: f32,
+    a: f32,
+};
+
 pub const DWRITE_MEASURING_MODE = extern enum(i32) {
     NATURAL = 0,
     GDI_CLASSIC = 1,
@@ -7136,26 +7156,6 @@ pub const IDWriteFontSet3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DWRITE_FONT_AXIS_TAG = extern enum(u32) {
-    WEIGHT = 1952999287,
-    WIDTH = 1752458359,
-    SLANT = 1953393779,
-    OPTICAL_SIZE = 2054385775,
-    ITALIC = 1818326121,
-};
-pub const DWRITE_FONT_AXIS_TAG_WEIGHT = DWRITE_FONT_AXIS_TAG.WEIGHT;
-pub const DWRITE_FONT_AXIS_TAG_WIDTH = DWRITE_FONT_AXIS_TAG.WIDTH;
-pub const DWRITE_FONT_AXIS_TAG_SLANT = DWRITE_FONT_AXIS_TAG.SLANT;
-pub const DWRITE_FONT_AXIS_TAG_OPTICAL_SIZE = DWRITE_FONT_AXIS_TAG.OPTICAL_SIZE;
-pub const DWRITE_FONT_AXIS_TAG_ITALIC = DWRITE_FONT_AXIS_TAG.ITALIC;
-
-pub const DWRITE_COLOR_F = extern struct {
-    r: f32,
-    g: f32,
-    b: f32,
-    a: f32,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
@@ -7191,7 +7191,7 @@ const PWSTR = @import("system_services.zig").PWSTR;
 const FONTSIGNATURE = @import("intl.zig").FONTSIGNATURE;
 const IUnknown = @import("com.zig").IUnknown;
 const HRESULT = @import("com.zig").HRESULT;
-const LOGFONTW = @import("shell.zig").LOGFONTW;
+const LOGFONTW = @import("gdi.zig").LOGFONTW;
 const RECT = @import("display_devices.zig").RECT;
 const ID2D1SimplifiedGeometrySink = @import("direct2d.zig").ID2D1SimplifiedGeometrySink;
 const BOOL = @import("system_services.zig").BOOL;
@@ -7199,7 +7199,7 @@ const D2D_SIZE_U = @import("direct2d.zig").D2D_SIZE_U;
 const D2D_POINT_2F = @import("direct2d.zig").D2D_POINT_2F;
 const POINT = @import("display_devices.zig").POINT;
 const SIZE = @import("display_devices.zig").SIZE;
-const LOGFONTA = @import("shell.zig").LOGFONTA;
+const LOGFONTA = @import("gdi.zig").LOGFONTA;
 const HANDLE = @import("system_services.zig").HANDLE;
 
 test {

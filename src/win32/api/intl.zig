@@ -18258,7 +18258,7 @@ const HDC = @import("gdi.zig").HDC;
 const CHAR = @import("system_services.zig").CHAR;
 const IEnumString = @import("com.zig").IEnumString;
 const HRESULT = @import("com.zig").HRESULT;
-const LOGFONTW = @import("shell.zig").LOGFONTW;
+const LOGFONTW = @import("gdi.zig").LOGFONTW;
 const BOOL = @import("system_services.zig").BOOL;
 const WPARAM = @import("windows_and_messaging.zig").WPARAM;
 const LRESULT = @import("system_services.zig").LRESULT;
@@ -18278,7 +18278,7 @@ const IClassFactory = @import("com.zig").IClassFactory;
 const SYSTEMTIME = @import("windows_programming.zig").SYSTEMTIME;
 const POINT = @import("display_devices.zig").POINT;
 const SIZE = @import("display_devices.zig").SIZE;
-const LOGFONTA = @import("shell.zig").LOGFONTA;
+const LOGFONTA = @import("gdi.zig").LOGFONTA;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
