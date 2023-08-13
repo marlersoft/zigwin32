@@ -3718,7 +3718,7 @@ pub const WS_RAW_SYMMETRIC_SECURITY_KEY_HANDLE = extern struct {
 
 pub const WS_NCRYPT_ASYMMETRIC_SECURITY_KEY_HANDLE = extern struct {
     keyHandle: WS_SECURITY_KEY_HANDLE,
-    asymmetricKey: usize,
+    asymmetricKey: NCRYPT_KEY_HANDLE,
 };
 
 pub const WS_CAPI_ASYMMETRIC_SECURITY_KEY_HANDLE = extern struct {
@@ -6592,7 +6592,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -6603,6 +6603,7 @@ const FILETIME = @import("../foundation.zig").FILETIME;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
+const NCRYPT_KEY_HANDLE = @import("../security/cryptography.zig").NCRYPT_KEY_HANDLE;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SecPkgContext_IssuerListInfoEx = @import("../security/authentication/identity.zig").SecPkgContext_IssuerListInfoEx;
 

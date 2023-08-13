@@ -9819,7 +9819,7 @@ pub const IXpsSignatureManager = extern struct {
 // Section: Functions (12)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "winspool" fn DeviceCapabilitiesA(
+pub extern "winspool.drv" fn DeviceCapabilitiesA(
     pDevice: ?[*:0]const u8,
     pPort: ?[*:0]const u8,
     fwCapability: DEVICE_CAPABILITIES,
@@ -9828,7 +9828,7 @@ pub extern "winspool" fn DeviceCapabilitiesA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "winspool" fn DeviceCapabilitiesW(
+pub extern "winspool.drv" fn DeviceCapabilitiesW(
     pDevice: ?[*:0]const u16,
     pPort: ?[*:0]const u16,
     fwCapability: DEVICE_CAPABILITIES,

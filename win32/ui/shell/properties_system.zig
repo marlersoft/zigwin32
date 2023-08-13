@@ -848,7 +848,7 @@ pub const IPropertyEnumTypeList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROPDESC_TYPE_FLAGS = enum(i32) {
+pub const PROPDESC_TYPE_FLAGS = enum(u32) {
     DEFAULT = 0,
     MULTIPLEVALUES = 1,
     ISINNATE = 2,
@@ -863,8 +863,46 @@ pub const PROPDESC_TYPE_FLAGS = enum(i32) {
     SEARCHRAWVALUE = 1024,
     DONTCOERCEEMPTYSTRINGS = 2048,
     ALWAYSINSUPPLEMENTALSTORE = 4096,
-    ISSYSTEMPROPERTY = -2147483648,
-    MASK_ALL = -2147475457,
+    ISSYSTEMPROPERTY = 2147483648,
+    MASK_ALL = 2147491839,
+    _,
+    pub fn initFlags(o: struct {
+        DEFAULT: u1 = 0,
+        MULTIPLEVALUES: u1 = 0,
+        ISINNATE: u1 = 0,
+        ISGROUP: u1 = 0,
+        CANGROUPBY: u1 = 0,
+        CANSTACKBY: u1 = 0,
+        ISTREEPROPERTY: u1 = 0,
+        INCLUDEINFULLTEXTQUERY: u1 = 0,
+        ISVIEWABLE: u1 = 0,
+        ISQUERYABLE: u1 = 0,
+        CANBEPURGED: u1 = 0,
+        SEARCHRAWVALUE: u1 = 0,
+        DONTCOERCEEMPTYSTRINGS: u1 = 0,
+        ALWAYSINSUPPLEMENTALSTORE: u1 = 0,
+        ISSYSTEMPROPERTY: u1 = 0,
+        MASK_ALL: u1 = 0,
+    }) PROPDESC_TYPE_FLAGS {
+        return @as(PROPDESC_TYPE_FLAGS, @enumFromInt(
+              (if (o.DEFAULT == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.DEFAULT) else 0)
+            | (if (o.MULTIPLEVALUES == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.MULTIPLEVALUES) else 0)
+            | (if (o.ISINNATE == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ISINNATE) else 0)
+            | (if (o.ISGROUP == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ISGROUP) else 0)
+            | (if (o.CANGROUPBY == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.CANGROUPBY) else 0)
+            | (if (o.CANSTACKBY == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.CANSTACKBY) else 0)
+            | (if (o.ISTREEPROPERTY == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ISTREEPROPERTY) else 0)
+            | (if (o.INCLUDEINFULLTEXTQUERY == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.INCLUDEINFULLTEXTQUERY) else 0)
+            | (if (o.ISVIEWABLE == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ISVIEWABLE) else 0)
+            | (if (o.ISQUERYABLE == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ISQUERYABLE) else 0)
+            | (if (o.CANBEPURGED == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.CANBEPURGED) else 0)
+            | (if (o.SEARCHRAWVALUE == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.SEARCHRAWVALUE) else 0)
+            | (if (o.DONTCOERCEEMPTYSTRINGS == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.DONTCOERCEEMPTYSTRINGS) else 0)
+            | (if (o.ALWAYSINSUPPLEMENTALSTORE == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ALWAYSINSUPPLEMENTALSTORE) else 0)
+            | (if (o.ISSYSTEMPROPERTY == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ISSYSTEMPROPERTY) else 0)
+            | (if (o.MASK_ALL == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.MASK_ALL) else 0)
+        ));
+    }
 };
 pub const PDTF_DEFAULT = PROPDESC_TYPE_FLAGS.DEFAULT;
 pub const PDTF_MULTIPLEVALUES = PROPDESC_TYPE_FLAGS.MULTIPLEVALUES;

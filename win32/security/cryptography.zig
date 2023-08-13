@@ -2853,7 +2853,7 @@ pub const AUDIT_STORE_DELETE = @import("../zig.zig").typedConst(HRESULT, @as(i32
 pub const AUDIT_SERVICE_IDLE_STOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, 1074070022));
 
 //--------------------------------------------------------------------------------
-// Section: Types (574)
+// Section: Types (583)
 //--------------------------------------------------------------------------------
 pub const BCRYPT_OPERATION = enum(u32) {
     CIPHER_OPERATION = 1,
@@ -4277,6 +4277,26 @@ pub const BCRYPT_ALG_HANDLE = isize;
 
 // TODO: this type has a FreeFunc 'BCryptDestroyKey', what can Zig do with this information?
 pub const BCRYPT_KEY_HANDLE = isize;
+
+pub const NCRYPT_HANDLE = usize;
+
+// TODO: this type has a FreeFunc 'NCryptFreeObject', what can Zig do with this information?
+pub const NCRYPT_PROV_HANDLE = usize;
+
+// TODO: this type has a FreeFunc 'NCryptFreeObject', what can Zig do with this information?
+pub const NCRYPT_KEY_HANDLE = usize;
+
+pub const NCRYPT_HASH_HANDLE = usize;
+
+pub const NCRYPT_SECRET_HANDLE = usize;
+
+pub const HCRYPTPROV_LEGACY = usize;
+
+pub const HCRYPTPROV_OR_NCRYPT_KEY_HANDLE = usize;
+
+pub const HCERTSTORE = *anyopaque;
+
+pub const HCERTSTOREPROV = *anyopaque;
 
 pub const CMS_KEY_INFO = extern struct {
     dwVersion: u32,
@@ -5848,7 +5868,7 @@ pub const CMSG_SIGNER_ENCODE_INFO = extern struct {
     pCertInfo: ?*CERT_INFO,
     Anonymous: extern union {
         hCryptProv: usize,
-        hNCryptKey: usize,
+        hNCryptKey: NCRYPT_KEY_HANDLE,
     },
     dwKeySpec: u32,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
@@ -5871,7 +5891,7 @@ pub const CMSG_SIGNED_ENCODE_INFO = extern struct {
 
 pub const CMSG_ENVELOPED_ENCODE_INFO = extern struct {
     cbSize: u32,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     ContentEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     pvEncryptionAuxInfo: ?*anyopaque,
     cRecipients: u32,
@@ -5882,7 +5902,7 @@ pub const CMSG_KEY_TRANS_RECIPIENT_ENCODE_INFO = extern struct {
     cbSize: u32,
     KeyEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     pvKeyEncryptionAuxInfo: ?*anyopaque,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     RecipientPublicKey: CRYPT_BIT_BLOB,
     RecipientId: CERT_ID,
 };
@@ -5901,7 +5921,7 @@ pub const CMSG_KEY_AGREE_RECIPIENT_ENCODE_INFO = extern struct {
     pvKeyEncryptionAuxInfo: ?*anyopaque,
     KeyWrapAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     pvKeyWrapAuxInfo: ?*anyopaque,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     dwKeySpec: u32,
     dwKeyChoice: CMSG_KEY_AGREE_OPTION,
     Anonymous: extern union {
@@ -5960,7 +5980,7 @@ pub const CMSG_SIGNED_AND_ENVELOPED_ENCODE_INFO = extern struct {
 
 pub const CMSG_HASHED_ENCODE_INFO = extern struct {
     cbSize: u32,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     pvHashAuxInfo: ?*anyopaque,
 };
@@ -6062,7 +6082,7 @@ pub const CMSG_CMS_RECIPIENT_INFO = extern struct {
 
 pub const CMSG_CTRL_VERIFY_SIGNATURE_EX_PARA = extern struct {
     cbSize: u32,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     dwSignerIndex: u32,
     dwSignerType: u32,
     pvSigner: ?*anyopaque,
@@ -6072,7 +6092,7 @@ pub const CMSG_CTRL_DECRYPT_PARA = extern struct {
     cbSize: u32,
     Anonymous: extern union {
         hCryptProv: usize,
-        hNCryptKey: usize,
+        hNCryptKey: NCRYPT_KEY_HANDLE,
     },
     dwKeySpec: u32,
     dwRecipientIndex: u32,
@@ -6082,7 +6102,7 @@ pub const CMSG_CTRL_KEY_TRANS_DECRYPT_PARA = extern struct {
     cbSize: u32,
     Anonymous: extern union {
         hCryptProv: usize,
-        hNCryptKey: usize,
+        hNCryptKey: NCRYPT_KEY_HANDLE,
     },
     dwKeySpec: u32,
     pKeyTrans: ?*CMSG_KEY_TRANS_RECIPIENT_INFO,
@@ -6093,7 +6113,7 @@ pub const CMSG_CTRL_KEY_AGREE_DECRYPT_PARA = extern struct {
     cbSize: u32,
     Anonymous: extern union {
         hCryptProv: usize,
-        hNCryptKey: usize,
+        hNCryptKey: NCRYPT_KEY_HANDLE,
     },
     dwKeySpec: u32,
     pKeyAgree: ?*CMSG_KEY_AGREE_RECIPIENT_INFO,
@@ -6211,7 +6231,7 @@ pub const PFN_CMSG_IMPORT_ENCRYPT_KEY = switch (@import("builtin").zig_backend) 
 
 pub const CMSG_CONTENT_ENCRYPT_INFO = extern struct {
     cbSize: u32,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     ContentEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     pvEncryptionAuxInfo: ?*anyopaque,
     cRecipients: u32,
@@ -6386,7 +6406,7 @@ pub const CMSG_CNG_CONTENT_DECRYPT_INFO = extern struct {
     ContentEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     pfnAlloc: ?PFN_CMSG_ALLOC,
     pfnFree: ?PFN_CMSG_FREE,
-    hNCryptKey: usize,
+    hNCryptKey: NCRYPT_KEY_HANDLE,
     pbContentEncryptKey: ?*u8,
     cbContentEncryptKey: u32,
     hCNGContentEncryptKey: BCRYPT_KEY_HANDLE,
@@ -6441,7 +6461,7 @@ pub const CERT_CONTEXT = extern struct {
     pbCertEncoded: ?*u8,
     cbCertEncoded: u32,
     pCertInfo: ?*CERT_INFO,
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
 };
 
 pub const CRL_CONTEXT = extern struct {
@@ -6449,7 +6469,7 @@ pub const CRL_CONTEXT = extern struct {
     pbCrlEncoded: ?*u8,
     cbCrlEncoded: u32,
     pCrlInfo: ?*CRL_INFO,
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
 };
 
 pub const CTL_CONTEXT = extern struct {
@@ -6457,7 +6477,7 @@ pub const CTL_CONTEXT = extern struct {
     pbCtlEncoded: ?*u8,
     cbCtlEncoded: u32,
     pCtlInfo: ?*CTL_INFO,
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     hCryptMsg: ?*anyopaque,
     pbCtlContent: ?*u8,
     cbCtlContent: u32,
@@ -6505,7 +6525,7 @@ pub const CERT_KEY_CONTEXT = extern struct {
     cbSize: u32,
     Anonymous: extern union {
         hCryptProv: usize,
-        hNCryptKey: usize,
+        hNCryptKey: NCRYPT_KEY_HANDLE,
     },
     dwKeySpec: u32,
 };
@@ -6551,7 +6571,7 @@ pub const CERT_STORE_PROV_INFO = extern struct {
     cbSize: u32,
     cStoreProvFunc: u32,
     rgpvStoreProvFunc: ?*?*anyopaque,
-    hStoreProv: ?*anyopaque,
+    hStoreProv: ?HCERTSTOREPROV,
     dwStoreProvFlags: CERT_STORE_PROV_FLAGS,
     hStoreProvFuncAddr2: ?*anyopaque,
 };
@@ -6560,43 +6580,43 @@ pub const PFN_CERT_DLL_OPEN_STORE_PROV_FUNC = switch (@import("builtin").zig_bac
     .stage1 => fn(
         lpszStoreProvider: ?[*:0]const u8,
         dwEncodingType: CERT_QUERY_ENCODING_TYPE,
-        hCryptProv: usize,
+        hCryptProv: HCRYPTPROV_LEGACY,
         dwFlags: CERT_OPEN_STORE_FLAGS,
         pvPara: ?*const anyopaque,
-        hCertStore: ?*anyopaque,
+        hCertStore: ?HCERTSTORE,
         pStoreProvInfo: ?*CERT_STORE_PROV_INFO,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
         lpszStoreProvider: ?[*:0]const u8,
         dwEncodingType: CERT_QUERY_ENCODING_TYPE,
-        hCryptProv: usize,
+        hCryptProv: HCRYPTPROV_LEGACY,
         dwFlags: CERT_OPEN_STORE_FLAGS,
         pvPara: ?*const anyopaque,
-        hCertStore: ?*anyopaque,
+        hCertStore: ?HCERTSTORE,
         pStoreProvInfo: ?*CERT_STORE_PROV_INFO,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
 } ;
 
 pub const PFN_CERT_STORE_PROV_CLOSE = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) void,
 } ;
 
 pub const PFN_CERT_STORE_PROV_READ_CERT = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pStoreCertContext: ?*const CERT_CONTEXT,
         dwFlags: u32,
         ppProvCertContext: ?*?*CERT_CONTEXT,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pStoreCertContext: ?*const CERT_CONTEXT,
         dwFlags: u32,
         ppProvCertContext: ?*?*CERT_CONTEXT,
@@ -6605,12 +6625,12 @@ pub const PFN_CERT_STORE_PROV_READ_CERT = switch (@import("builtin").zig_backend
 
 pub const PFN_CERT_STORE_PROV_WRITE_CERT = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCertContext: ?*const CERT_CONTEXT,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCertContext: ?*const CERT_CONTEXT,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
@@ -6618,12 +6638,12 @@ pub const PFN_CERT_STORE_PROV_WRITE_CERT = switch (@import("builtin").zig_backen
 
 pub const PFN_CERT_STORE_PROV_DELETE_CERT = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCertContext: ?*const CERT_CONTEXT,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCertContext: ?*const CERT_CONTEXT,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
@@ -6631,14 +6651,14 @@ pub const PFN_CERT_STORE_PROV_DELETE_CERT = switch (@import("builtin").zig_backe
 
 pub const PFN_CERT_STORE_PROV_SET_CERT_PROPERTY = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCertContext: ?*const CERT_CONTEXT,
         dwPropId: u32,
         dwFlags: u32,
         pvData: ?*const anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCertContext: ?*const CERT_CONTEXT,
         dwPropId: u32,
         dwFlags: u32,
@@ -6648,13 +6668,13 @@ pub const PFN_CERT_STORE_PROV_SET_CERT_PROPERTY = switch (@import("builtin").zig
 
 pub const PFN_CERT_STORE_PROV_READ_CRL = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pStoreCrlContext: ?*CRL_CONTEXT,
         dwFlags: u32,
         ppProvCrlContext: ?*?*CRL_CONTEXT,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pStoreCrlContext: ?*CRL_CONTEXT,
         dwFlags: u32,
         ppProvCrlContext: ?*?*CRL_CONTEXT,
@@ -6663,12 +6683,12 @@ pub const PFN_CERT_STORE_PROV_READ_CRL = switch (@import("builtin").zig_backend)
 
 pub const PFN_CERT_STORE_PROV_WRITE_CRL = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCrlContext: ?*CRL_CONTEXT,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCrlContext: ?*CRL_CONTEXT,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
@@ -6676,12 +6696,12 @@ pub const PFN_CERT_STORE_PROV_WRITE_CRL = switch (@import("builtin").zig_backend
 
 pub const PFN_CERT_STORE_PROV_DELETE_CRL = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCrlContext: ?*CRL_CONTEXT,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCrlContext: ?*CRL_CONTEXT,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
@@ -6689,14 +6709,14 @@ pub const PFN_CERT_STORE_PROV_DELETE_CRL = switch (@import("builtin").zig_backen
 
 pub const PFN_CERT_STORE_PROV_SET_CRL_PROPERTY = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCrlContext: ?*CRL_CONTEXT,
         dwPropId: u32,
         dwFlags: u32,
         pvData: ?*const anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCrlContext: ?*CRL_CONTEXT,
         dwPropId: u32,
         dwFlags: u32,
@@ -6706,13 +6726,13 @@ pub const PFN_CERT_STORE_PROV_SET_CRL_PROPERTY = switch (@import("builtin").zig_
 
 pub const PFN_CERT_STORE_PROV_READ_CTL = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pStoreCtlContext: ?*CTL_CONTEXT,
         dwFlags: u32,
         ppProvCtlContext: ?*?*CTL_CONTEXT,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pStoreCtlContext: ?*CTL_CONTEXT,
         dwFlags: u32,
         ppProvCtlContext: ?*?*CTL_CONTEXT,
@@ -6721,12 +6741,12 @@ pub const PFN_CERT_STORE_PROV_READ_CTL = switch (@import("builtin").zig_backend)
 
 pub const PFN_CERT_STORE_PROV_WRITE_CTL = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCtlContext: ?*CTL_CONTEXT,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCtlContext: ?*CTL_CONTEXT,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
@@ -6734,12 +6754,12 @@ pub const PFN_CERT_STORE_PROV_WRITE_CTL = switch (@import("builtin").zig_backend
 
 pub const PFN_CERT_STORE_PROV_DELETE_CTL = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCtlContext: ?*CTL_CONTEXT,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCtlContext: ?*CTL_CONTEXT,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
@@ -6747,14 +6767,14 @@ pub const PFN_CERT_STORE_PROV_DELETE_CTL = switch (@import("builtin").zig_backen
 
 pub const PFN_CERT_STORE_PROV_SET_CTL_PROPERTY = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCtlContext: ?*CTL_CONTEXT,
         dwPropId: u32,
         dwFlags: u32,
         pvData: ?*const anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCtlContext: ?*CTL_CONTEXT,
         dwPropId: u32,
         dwFlags: u32,
@@ -6764,13 +6784,13 @@ pub const PFN_CERT_STORE_PROV_SET_CTL_PROPERTY = switch (@import("builtin").zig_
 
 pub const PFN_CERT_STORE_PROV_CONTROL = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         dwFlags: u32,
         dwCtrlType: u32,
         pvCtrlPara: ?*const anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         dwFlags: u32,
         dwCtrlType: u32,
         pvCtrlPara: ?*const anyopaque,
@@ -6787,7 +6807,7 @@ pub const CERT_STORE_PROV_FIND_INFO = extern struct {
 
 pub const PFN_CERT_STORE_PROV_FIND_CERT = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pFindInfo: ?*CERT_STORE_PROV_FIND_INFO,
         pPrevCertContext: ?*const CERT_CONTEXT,
         dwFlags: u32,
@@ -6795,7 +6815,7 @@ pub const PFN_CERT_STORE_PROV_FIND_CERT = switch (@import("builtin").zig_backend
         ppProvCertContext: ?*?*CERT_CONTEXT,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pFindInfo: ?*CERT_STORE_PROV_FIND_INFO,
         pPrevCertContext: ?*const CERT_CONTEXT,
         dwFlags: u32,
@@ -6806,13 +6826,13 @@ pub const PFN_CERT_STORE_PROV_FIND_CERT = switch (@import("builtin").zig_backend
 
 pub const PFN_CERT_STORE_PROV_FREE_FIND_CERT = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCertContext: ?*const CERT_CONTEXT,
         pvStoreProvFindInfo: ?*anyopaque,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCertContext: ?*const CERT_CONTEXT,
         pvStoreProvFindInfo: ?*anyopaque,
         dwFlags: u32,
@@ -6821,7 +6841,7 @@ pub const PFN_CERT_STORE_PROV_FREE_FIND_CERT = switch (@import("builtin").zig_ba
 
 pub const PFN_CERT_STORE_PROV_GET_CERT_PROPERTY = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCertContext: ?*const CERT_CONTEXT,
         dwPropId: u32,
         dwFlags: u32,
@@ -6830,7 +6850,7 @@ pub const PFN_CERT_STORE_PROV_GET_CERT_PROPERTY = switch (@import("builtin").zig
         pcbData: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCertContext: ?*const CERT_CONTEXT,
         dwPropId: u32,
         dwFlags: u32,
@@ -6842,7 +6862,7 @@ pub const PFN_CERT_STORE_PROV_GET_CERT_PROPERTY = switch (@import("builtin").zig
 
 pub const PFN_CERT_STORE_PROV_FIND_CRL = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pFindInfo: ?*CERT_STORE_PROV_FIND_INFO,
         pPrevCrlContext: ?*CRL_CONTEXT,
         dwFlags: u32,
@@ -6850,7 +6870,7 @@ pub const PFN_CERT_STORE_PROV_FIND_CRL = switch (@import("builtin").zig_backend)
         ppProvCrlContext: ?*?*CRL_CONTEXT,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pFindInfo: ?*CERT_STORE_PROV_FIND_INFO,
         pPrevCrlContext: ?*CRL_CONTEXT,
         dwFlags: u32,
@@ -6861,13 +6881,13 @@ pub const PFN_CERT_STORE_PROV_FIND_CRL = switch (@import("builtin").zig_backend)
 
 pub const PFN_CERT_STORE_PROV_FREE_FIND_CRL = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCrlContext: ?*CRL_CONTEXT,
         pvStoreProvFindInfo: ?*anyopaque,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCrlContext: ?*CRL_CONTEXT,
         pvStoreProvFindInfo: ?*anyopaque,
         dwFlags: u32,
@@ -6876,7 +6896,7 @@ pub const PFN_CERT_STORE_PROV_FREE_FIND_CRL = switch (@import("builtin").zig_bac
 
 pub const PFN_CERT_STORE_PROV_GET_CRL_PROPERTY = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCrlContext: ?*CRL_CONTEXT,
         dwPropId: u32,
         dwFlags: u32,
@@ -6885,7 +6905,7 @@ pub const PFN_CERT_STORE_PROV_GET_CRL_PROPERTY = switch (@import("builtin").zig_
         pcbData: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCrlContext: ?*CRL_CONTEXT,
         dwPropId: u32,
         dwFlags: u32,
@@ -6897,7 +6917,7 @@ pub const PFN_CERT_STORE_PROV_GET_CRL_PROPERTY = switch (@import("builtin").zig_
 
 pub const PFN_CERT_STORE_PROV_FIND_CTL = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pFindInfo: ?*CERT_STORE_PROV_FIND_INFO,
         pPrevCtlContext: ?*CTL_CONTEXT,
         dwFlags: u32,
@@ -6905,7 +6925,7 @@ pub const PFN_CERT_STORE_PROV_FIND_CTL = switch (@import("builtin").zig_backend)
         ppProvCtlContext: ?*?*CTL_CONTEXT,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pFindInfo: ?*CERT_STORE_PROV_FIND_INFO,
         pPrevCtlContext: ?*CTL_CONTEXT,
         dwFlags: u32,
@@ -6916,13 +6936,13 @@ pub const PFN_CERT_STORE_PROV_FIND_CTL = switch (@import("builtin").zig_backend)
 
 pub const PFN_CERT_STORE_PROV_FREE_FIND_CTL = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCtlContext: ?*CTL_CONTEXT,
         pvStoreProvFindInfo: ?*anyopaque,
         dwFlags: u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCtlContext: ?*CTL_CONTEXT,
         pvStoreProvFindInfo: ?*anyopaque,
         dwFlags: u32,
@@ -6931,7 +6951,7 @@ pub const PFN_CERT_STORE_PROV_FREE_FIND_CTL = switch (@import("builtin").zig_bac
 
 pub const PFN_CERT_STORE_PROV_GET_CTL_PROPERTY = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCtlContext: ?*CTL_CONTEXT,
         dwPropId: u32,
         dwFlags: u32,
@@ -6940,7 +6960,7 @@ pub const PFN_CERT_STORE_PROV_GET_CTL_PROPERTY = switch (@import("builtin").zig_
         pcbData: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hStoreProv: ?*anyopaque,
+        hStoreProv: ?HCERTSTOREPROV,
         pCtlContext: ?*CTL_CONTEXT,
         dwPropId: u32,
         dwFlags: u32,
@@ -7066,9 +7086,9 @@ pub const CTL_VERIFY_USAGE_PARA = extern struct {
     cbSize: u32,
     ListIdentifier: CRYPTOAPI_BLOB,
     cCtlStore: u32,
-    rghCtlStore: ?*?*anyopaque,
+    rghCtlStore: ?*?HCERTSTORE,
     cSignerStore: u32,
-    rghSignerStore: ?*?*anyopaque,
+    rghSignerStore: ?*?HCERTSTORE,
 };
 
 pub const CTL_VERIFY_USAGE_STATUS = extern struct {
@@ -7093,8 +7113,8 @@ pub const CERT_REVOCATION_PARA = extern struct {
     cbSize: u32,
     pIssuerCert: ?*const CERT_CONTEXT,
     cCertStore: u32,
-    rgCertStore: ?*?*anyopaque,
-    hCrlStore: ?*anyopaque,
+    rgCertStore: ?*?HCERTSTORE,
+    hCrlStore: ?HCERTSTORE,
     pftTimeToUse: ?*FILETIME,
 };
 
@@ -7135,7 +7155,7 @@ pub const PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC = switch (@import(
 
 pub const PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hKey: usize,
+        hKey: NCRYPT_KEY_HANDLE,
         dwCertEncodingType: u32,
         pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
         pvDecodedSignPara: ?*anyopaque,
@@ -7149,7 +7169,7 @@ pub const PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC = switch (@import("builtin").zig_b
         pcbSignature: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hKey: usize,
+        hKey: NCRYPT_KEY_HANDLE,
         dwCertEncodingType: u32,
         pSignatureAlgorithm: ?*CRYPT_ALGORITHM_IDENTIFIER,
         pvDecodedSignPara: ?*anyopaque,
@@ -7202,7 +7222,7 @@ pub const CRYPT_DEFAULT_CONTEXT_MULTI_OID_PARA = extern struct {
 
 pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hNCryptKey: usize,
+        hNCryptKey: NCRYPT_KEY_HANDLE,
         dwCertEncodingType: u32,
         pszPublicKeyObjId: ?PSTR,
         dwFlags: u32,
@@ -7212,7 +7232,7 @@ pub const PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC = switch (@import("builtin")
         pcbInfo: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        hNCryptKey: usize,
+        hNCryptKey: NCRYPT_KEY_HANDLE,
         dwCertEncodingType: u32,
         pszPublicKeyObjId: ?PSTR,
         dwFlags: u32,
@@ -7306,13 +7326,13 @@ pub const PFN_CRYPT_GET_SIGNER_CERTIFICATE = switch (@import("builtin").zig_back
         pvGetArg: ?*anyopaque,
         dwCertEncodingType: u32,
         pSignerId: ?*CERT_INFO,
-        hMsgCertStore: ?*anyopaque,
+        hMsgCertStore: ?HCERTSTORE,
     ) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT,
     else => *const fn(
         pvGetArg: ?*anyopaque,
         dwCertEncodingType: u32,
         pSignerId: ?*CERT_INFO,
-        hMsgCertStore: ?*anyopaque,
+        hMsgCertStore: ?HCERTSTORE,
     ) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT,
 } ;
 
@@ -7337,7 +7357,7 @@ pub const CRYPT_SIGN_MESSAGE_PARA = extern struct {
 pub const CRYPT_VERIFY_MESSAGE_PARA = extern struct {
     cbSize: u32,
     dwMsgAndCertEncodingType: u32,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     pfnGetSignerCertificate: ?PFN_CRYPT_GET_SIGNER_CERTIFICATE,
     pvGetArg: ?*anyopaque,
 };
@@ -7345,7 +7365,7 @@ pub const CRYPT_VERIFY_MESSAGE_PARA = extern struct {
 pub const CRYPT_ENCRYPT_MESSAGE_PARA = extern struct {
     cbSize: u32,
     dwMsgEncodingType: u32,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     ContentEncryptionAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     pvEncryptionAuxInfo: ?*anyopaque,
     dwFlags: u32,
@@ -7356,13 +7376,13 @@ pub const CRYPT_DECRYPT_MESSAGE_PARA = extern struct {
     cbSize: u32,
     dwMsgAndCertEncodingType: u32,
     cCertStore: u32,
-    rghCertStore: ?*?*anyopaque,
+    rghCertStore: ?*?HCERTSTORE,
 };
 
 pub const CRYPT_HASH_MESSAGE_PARA = extern struct {
     cbSize: u32,
     dwMsgEncodingType: u32,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
     pvHashAuxInfo: ?*anyopaque,
 };
@@ -7372,7 +7392,7 @@ pub const CRYPT_KEY_SIGN_MESSAGE_PARA = extern struct {
     dwMsgAndCertEncodingType: CERT_QUERY_ENCODING_TYPE,
     Anonymous: extern union {
         hCryptProv: usize,
-        hNCryptKey: usize,
+        hNCryptKey: NCRYPT_KEY_HANDLE,
     },
     dwKeySpec: CERT_KEY_SPEC,
     HashAlgorithm: CRYPT_ALGORITHM_IDENTIFIER,
@@ -7383,7 +7403,7 @@ pub const CRYPT_KEY_SIGN_MESSAGE_PARA = extern struct {
 pub const CRYPT_KEY_VERIFY_MESSAGE_PARA = extern struct {
     cbSize: u32,
     dwMsgEncodingType: u32,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
 };
 
 pub const CERT_CHAIN = extern struct {
@@ -7574,17 +7594,17 @@ pub const PFN_CRYPT_ENUM_KEYID_PROP = switch (@import("builtin").zig_backend) {
 
 pub const CERT_CHAIN_ENGINE_CONFIG = extern struct {
     cbSize: u32,
-    hRestrictedRoot: ?*anyopaque,
-    hRestrictedTrust: ?*anyopaque,
-    hRestrictedOther: ?*anyopaque,
+    hRestrictedRoot: ?HCERTSTORE,
+    hRestrictedTrust: ?HCERTSTORE,
+    hRestrictedOther: ?HCERTSTORE,
     cAdditionalStore: u32,
-    rghAdditionalStore: ?*?*anyopaque,
+    rghAdditionalStore: ?*?HCERTSTORE,
     dwFlags: u32,
     dwUrlRetrievalTimeout: u32,
     MaximumCachedCertificates: u32,
     CycleDetectionModulus: u32,
-    hExclusiveRoot: ?*anyopaque,
-    hExclusiveTrustedPeople: ?*anyopaque,
+    hExclusiveRoot: ?HCERTSTORE,
+    hExclusiveTrustedPeople: ?HCERTSTORE,
     dwExclusiveFlags: u32,
 };
 
@@ -7660,7 +7680,7 @@ pub const CERT_CHAIN_PARA = extern struct {
 pub const CERT_REVOCATION_CHAIN_PARA = extern struct {
     cbSize: u32,
     hChainEngine: ?HCERTCHAINENGINE,
-    hAdditionalStore: ?*anyopaque,
+    hAdditionalStore: ?HCERTSTORE,
     dwChainFlags: u32,
     dwUrlRetrievalTimeout: u32,
     pftCurrentTime: ?*FILETIME,
@@ -7823,7 +7843,7 @@ pub const CERT_SERVER_OCSP_RESPONSE_OPEN_PARA = extern struct {
 pub const CERT_SELECT_CHAIN_PARA = extern struct {
     hChainEngine: ?HCERTCHAINENGINE,
     pTime: ?*FILETIME,
-    hAdditionalStore: ?*anyopaque,
+    hAdditionalStore: ?HCERTSTORE,
     pChainPara: ?*CERT_CHAIN_PARA,
     dwFlags: u32,
 };
@@ -8450,7 +8470,7 @@ pub const CryptXmlDllCloseDigest = switch (@import("builtin").zig_backend) {
 pub const CryptXmlDllSignData = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         pSignatureMethod: ?*const CRYPT_XML_ALGORITHM,
-        hCryptProvOrNCryptKey: usize,
+        hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
         dwKeySpec: u32,
         // TODO: what to do with BytesParamIndex 4?
         pbInput: ?*const u8,
@@ -8462,7 +8482,7 @@ pub const CryptXmlDllSignData = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         pSignatureMethod: ?*const CRYPT_XML_ALGORITHM,
-        hCryptProvOrNCryptKey: usize,
+        hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
         dwKeySpec: u32,
         // TODO: what to do with BytesParamIndex 4?
         pbInput: ?*const u8,
@@ -8522,13 +8542,13 @@ pub const CRYPT_XML_CRYPTOGRAPHIC_INTERFACE = extern struct {
 
 pub const CryptXmlDllEncodeKeyValue = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        hKey: usize,
+        hKey: NCRYPT_KEY_HANDLE,
         dwCharset: CRYPT_XML_CHARSET,
         pvCallbackState: ?*anyopaque,
         pfnWrite: ?PFN_CRYPT_XML_WRITE_CALLBACK,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
-        hKey: usize,
+        hKey: NCRYPT_KEY_HANDLE,
         dwCharset: CRYPT_XML_CHARSET,
         pvCallbackState: ?*anyopaque,
         pfnWrite: ?PFN_CRYPT_XML_WRITE_CALLBACK,
@@ -10676,14 +10696,14 @@ pub extern "bcrypt" fn BCryptGetFipsAlgorithmMode(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptOpenStorageProvider(
-    phProvider: ?*usize,
+    phProvider: ?*NCRYPT_PROV_HANDLE,
     pszProviderName: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptEnumAlgorithms(
-    hProvider: usize,
+    hProvider: NCRYPT_PROV_HANDLE,
     dwAlgOperations: NCRYPT_OPERATION,
     pdwAlgCount: ?*u32,
     ppAlgList: ?*?*NCryptAlgorithmName,
@@ -10692,14 +10712,14 @@ pub extern "ncrypt" fn NCryptEnumAlgorithms(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptIsAlgSupported(
-    hProvider: usize,
+    hProvider: NCRYPT_PROV_HANDLE,
     pszAlgId: ?[*:0]const u16,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptEnumKeys(
-    hProvider: usize,
+    hProvider: NCRYPT_PROV_HANDLE,
     pszScope: ?[*:0]const u16,
     ppKeyName: ?*?*NCryptKeyName,
     ppEnumState: ?*?*anyopaque,
@@ -10724,8 +10744,8 @@ pub fn NCryptOpenKey() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptCreatePersistedKey(
-    hProvider: usize,
-    phKey: ?*usize,
+    hProvider: NCRYPT_PROV_HANDLE,
+    phKey: ?*NCRYPT_KEY_HANDLE,
     pszAlgId: ?[*:0]const u16,
     pszKeyName: ?[*:0]const u16,
     dwLegacyKeySpec: CERT_KEY_SPEC,
@@ -10734,7 +10754,7 @@ pub extern "ncrypt" fn NCryptCreatePersistedKey(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptGetProperty(
-    hObject: usize,
+    hObject: NCRYPT_HANDLE,
     pszProperty: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     pbOutput: ?*u8,
@@ -10745,7 +10765,7 @@ pub extern "ncrypt" fn NCryptGetProperty(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptSetProperty(
-    hObject: usize,
+    hObject: NCRYPT_HANDLE,
     pszProperty: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     pbInput: ?*u8,
@@ -10755,13 +10775,13 @@ pub extern "ncrypt" fn NCryptSetProperty(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptFinalizeKey(
-    hKey: usize,
+    hKey: NCRYPT_KEY_HANDLE,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptEncrypt(
-    hKey: usize,
+    hKey: NCRYPT_KEY_HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     pbInput: ?*u8,
     cbInput: u32,
@@ -10775,7 +10795,7 @@ pub extern "ncrypt" fn NCryptEncrypt(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptDecrypt(
-    hKey: usize,
+    hKey: NCRYPT_KEY_HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     pbInput: ?*u8,
     cbInput: u32,
@@ -10789,11 +10809,11 @@ pub extern "ncrypt" fn NCryptDecrypt(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptImportKey(
-    hProvider: usize,
-    hImportKey: usize,
+    hProvider: NCRYPT_PROV_HANDLE,
+    hImportKey: NCRYPT_KEY_HANDLE,
     pszBlobType: ?[*:0]const u16,
     pParameterList: ?*BCryptBufferDesc,
-    phKey: ?*usize,
+    phKey: ?*NCRYPT_KEY_HANDLE,
     // TODO: what to do with BytesParamIndex 6?
     pbData: ?*u8,
     cbData: u32,
@@ -10802,8 +10822,8 @@ pub extern "ncrypt" fn NCryptImportKey(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptExportKey(
-    hKey: usize,
-    hExportKey: usize,
+    hKey: NCRYPT_KEY_HANDLE,
+    hExportKey: NCRYPT_KEY_HANDLE,
     pszBlobType: ?[*:0]const u16,
     pParameterList: ?*BCryptBufferDesc,
     // TODO: what to do with BytesParamIndex 5?
@@ -10815,7 +10835,7 @@ pub extern "ncrypt" fn NCryptExportKey(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptSignHash(
-    hKey: usize,
+    hKey: NCRYPT_KEY_HANDLE,
     pPaddingInfo: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
     pbHashValue: ?*u8,
@@ -10829,7 +10849,7 @@ pub extern "ncrypt" fn NCryptSignHash(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptVerifySignature(
-    hKey: usize,
+    hKey: NCRYPT_KEY_HANDLE,
     pPaddingInfo: ?*anyopaque,
     // TODO: what to do with BytesParamIndex 3?
     pbHashValue: ?*u8,
@@ -10842,18 +10862,18 @@ pub extern "ncrypt" fn NCryptVerifySignature(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptDeleteKey(
-    hKey: usize,
+    hKey: NCRYPT_KEY_HANDLE,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptFreeObject(
-    hObject: usize,
+    hObject: NCRYPT_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptIsKeyHandle(
-    hKey: usize,
+    hKey: NCRYPT_KEY_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -10862,22 +10882,22 @@ pub fn NCryptTranslateHandle() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptNotifyChangeKey(
-    hProvider: usize,
+    hProvider: NCRYPT_PROV_HANDLE,
     phEvent: ?*?HANDLE,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptSecretAgreement(
-    hPrivKey: usize,
-    hPubKey: usize,
-    phAgreedSecret: ?*usize,
+    hPrivKey: NCRYPT_KEY_HANDLE,
+    hPubKey: NCRYPT_KEY_HANDLE,
+    phAgreedSecret: ?*NCRYPT_SECRET_HANDLE,
     dwFlags: NCRYPT_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptDeriveKey(
-    hSharedSecret: usize,
+    hSharedSecret: NCRYPT_SECRET_HANDLE,
     pwszKDF: ?[*:0]const u16,
     pParameterList: ?*BCryptBufferDesc,
     // TODO: what to do with BytesParamIndex 4?
@@ -10889,7 +10909,7 @@ pub extern "ncrypt" fn NCryptDeriveKey(
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptKeyDerivation(
-    hKey: usize,
+    hKey: NCRYPT_KEY_HANDLE,
     pParameterList: ?*BCryptBufferDesc,
     // TODO: what to do with BytesParamIndex 3?
     pbDerivedKey: ?*u8,
@@ -10900,8 +10920,8 @@ pub extern "ncrypt" fn NCryptKeyDerivation(
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "ncrypt" fn NCryptCreateClaim(
-    hSubjectKey: usize,
-    hAuthorityKey: usize,
+    hSubjectKey: NCRYPT_KEY_HANDLE,
+    hAuthorityKey: NCRYPT_KEY_HANDLE,
     dwClaimType: u32,
     pParameterList: ?*BCryptBufferDesc,
     // TODO: what to do with BytesParamIndex 5?
@@ -10913,8 +10933,8 @@ pub extern "ncrypt" fn NCryptCreateClaim(
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "ncrypt" fn NCryptVerifyClaim(
-    hSubjectKey: usize,
-    hAuthorityKey: usize,
+    hSubjectKey: NCRYPT_KEY_HANDLE,
+    hAuthorityKey: NCRYPT_KEY_HANDLE,
     dwClaimType: u32,
     pParameterList: ?*BCryptBufferDesc,
     // TODO: what to do with BytesParamIndex 5?
@@ -11157,7 +11177,7 @@ pub extern "crypt32" fn CryptMsgOpenToDecode(
     dwMsgEncodingType: u32,
     dwFlags: u32,
     dwMsgType: u32,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     pRecipientInfo: ?*CERT_INFO,
     pStreamInfo: ?*CMSG_STREAM_INFO,
 ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
@@ -11201,7 +11221,7 @@ pub extern "crypt32" fn CryptMsgControl(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptMsgVerifyCountersignatureEncoded(
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     dwEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbSignerInfo: ?*u8,
@@ -11214,7 +11234,7 @@ pub extern "crypt32" fn CryptMsgVerifyCountersignatureEncoded(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptMsgVerifyCountersignatureEncodedEx(
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     dwEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbSignerInfo: ?*u8,
@@ -11253,19 +11273,19 @@ pub extern "crypt32" fn CryptMsgCountersignEncoded(
 pub extern "crypt32" fn CertOpenStore(
     lpszStoreProvider: ?[*:0]const u8,
     dwEncodingType: CERT_QUERY_ENCODING_TYPE,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     dwFlags: CERT_OPEN_STORE_FLAGS,
     pvPara: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(@import("std").os.windows.WINAPI) ?HCERTSTORE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertDuplicateStore(
-    hCertStore: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+    hCertStore: ?HCERTSTORE,
+) callconv(@import("std").os.windows.WINAPI) ?HCERTSTORE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertSaveStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwEncodingType: CERT_QUERY_ENCODING_TYPE,
     dwSaveAs: CERT_STORE_SAVE_AS,
     dwSaveTo: CERT_STORE_SAVE_TO,
@@ -11275,26 +11295,26 @@ pub extern "crypt32" fn CertSaveStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertCloseStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertGetSubjectCertificateFromStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwCertEncodingType: u32,
     pCertId: ?*CERT_INFO,
 ) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertEnumCertificatesInStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     pPrevCertContext: ?*const CERT_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertFindCertificateInStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwCertEncodingType: u32,
     dwFindFlags: u32,
     dwFindType: CERT_FIND_FLAGS,
@@ -11304,7 +11324,7 @@ pub extern "crypt32" fn CertFindCertificateInStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertGetIssuerCertificateFromStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     pSubjectContext: ?*const CERT_CONTEXT,
     pPrevIssuerContext: ?*const CERT_CONTEXT,
     pdwFlags: ?*u32,
@@ -11379,7 +11399,7 @@ pub extern "crypt32" fn CertSetCertificateContextPropertiesFromCTLEntry(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertGetCRLFromStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     pIssuerContext: ?*const CERT_CONTEXT,
     pPrevCrlContext: ?*CRL_CONTEXT,
     pdwFlags: ?*u32,
@@ -11387,13 +11407,13 @@ pub extern "crypt32" fn CertGetCRLFromStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertEnumCRLsInStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     pPrevCrlContext: ?*CRL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) ?*CRL_CONTEXT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertFindCRLInStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwCertEncodingType: u32,
     dwFindFlags: u32,
     dwFindType: u32,
@@ -11461,7 +11481,7 @@ pub extern "crypt32" fn CertIsValidCRLForCertificate(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddEncodedCertificateToStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbCertEncoded: ?*const u8,
@@ -11472,7 +11492,7 @@ pub extern "crypt32" fn CertAddEncodedCertificateToStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddCertificateContextToStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     pCertContext: ?*const CERT_CONTEXT,
     dwAddDisposition: u32,
     ppStoreContext: ?*?*CERT_CONTEXT,
@@ -11480,7 +11500,7 @@ pub extern "crypt32" fn CertAddCertificateContextToStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddSerializedElementToStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     // TODO: what to do with BytesParamIndex 2?
     pbElement: ?*const u8,
     cbElement: u32,
@@ -11498,7 +11518,7 @@ pub extern "crypt32" fn CertDeleteCertificateFromStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddEncodedCRLToStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbCrlEncoded: ?*const u8,
@@ -11509,7 +11529,7 @@ pub extern "crypt32" fn CertAddEncodedCRLToStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddCRLContextToStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     pCrlContext: ?*CRL_CONTEXT,
     dwAddDisposition: u32,
     ppStoreContext: ?*?*CRL_CONTEXT,
@@ -11581,7 +11601,7 @@ pub extern "crypt32" fn CertEnumCTLContextProperties(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertEnumCTLsInStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     pPrevCtlContext: ?*CTL_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) ?*CTL_CONTEXT;
 
@@ -11596,7 +11616,7 @@ pub extern "crypt32" fn CertFindSubjectInCTL(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertFindCTLInStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwMsgAndCertEncodingType: u32,
     dwFindFlags: u32,
     dwFindType: CERT_FIND_TYPE,
@@ -11606,7 +11626,7 @@ pub extern "crypt32" fn CertFindCTLInStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddEncodedCTLToStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwMsgAndCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbCtlEncoded: ?*const u8,
@@ -11617,7 +11637,7 @@ pub extern "crypt32" fn CertAddEncodedCTLToStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddCTLContextToStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     pCtlContext: ?*CTL_CONTEXT,
     dwAddDisposition: u32,
     ppStoreContext: ?*?*CTL_CONTEXT,
@@ -11639,7 +11659,7 @@ pub extern "crypt32" fn CertDeleteCTLFromStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddCertificateLinkToStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     pCertContext: ?*const CERT_CONTEXT,
     dwAddDisposition: u32,
     ppStoreContext: ?*?*CERT_CONTEXT,
@@ -11647,7 +11667,7 @@ pub extern "crypt32" fn CertAddCertificateLinkToStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddCRLLinkToStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     pCrlContext: ?*CRL_CONTEXT,
     dwAddDisposition: u32,
     ppStoreContext: ?*?*CRL_CONTEXT,
@@ -11655,7 +11675,7 @@ pub extern "crypt32" fn CertAddCRLLinkToStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddCTLLinkToStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     pCtlContext: ?*CTL_CONTEXT,
     dwAddDisposition: u32,
     ppStoreContext: ?*?*CTL_CONTEXT,
@@ -11663,21 +11683,21 @@ pub extern "crypt32" fn CertAddCTLLinkToStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddStoreToCollection(
-    hCollectionStore: ?*anyopaque,
-    hSiblingStore: ?*anyopaque,
+    hCollectionStore: ?HCERTSTORE,
+    hSiblingStore: ?HCERTSTORE,
     dwUpdateFlags: u32,
     dwPriority: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertRemoveStoreFromCollection(
-    hCollectionStore: ?*anyopaque,
-    hSiblingStore: ?*anyopaque,
+    hCollectionStore: ?HCERTSTORE,
+    hSiblingStore: ?HCERTSTORE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertControlStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwFlags: CERT_CONTROL_STORE_FLAGS,
     dwCtrlType: u32,
     pvCtrlPara: ?*const anyopaque,
@@ -11685,7 +11705,7 @@ pub extern "crypt32" fn CertControlStore(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertSetStoreProperty(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwPropId: u32,
     dwFlags: u32,
     pvData: ?*const anyopaque,
@@ -11693,7 +11713,7 @@ pub extern "crypt32" fn CertSetStoreProperty(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertGetStoreProperty(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwPropId: u32,
     // TODO: what to do with BytesParamIndex 3?
     pvData: ?*anyopaque,
@@ -11805,7 +11825,7 @@ pub extern "crypt32" fn CertGetValidUsages(
 pub extern "crypt32" fn CryptMsgGetAndVerifySigner(
     hCryptMsg: ?*anyopaque,
     cSignerStore: u32,
-    rghSignerStore: ?[*]?*anyopaque,
+    rghSignerStore: ?[*]?HCERTSTORE,
     dwFlags: u32,
     ppSigner: ?*?*CERT_CONTEXT,
     pdwSignerIndex: ?*u32,
@@ -11917,7 +11937,7 @@ pub extern "crypt32" fn CertGetPublicKeyLength(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptVerifyCertificateSignature(
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbEncoded: ?*const u8,
@@ -11927,7 +11947,7 @@ pub extern "crypt32" fn CryptVerifyCertificateSignature(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptVerifyCertificateSignatureEx(
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     dwCertEncodingType: u32,
     dwSubjectType: u32,
     pvSubject: ?*anyopaque,
@@ -11946,7 +11966,7 @@ pub extern "crypt32" fn CertIsStrongHashToSign(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptHashToBeSigned(
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 3?
     pbEncoded: ?*const u8,
@@ -11958,7 +11978,7 @@ pub extern "crypt32" fn CryptHashToBeSigned(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptHashCertificate(
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     Algid: u32,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -11984,7 +12004,7 @@ pub extern "crypt32" fn CryptHashCertificate2(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptSignCertificate(
-    hCryptProvOrNCryptKey: usize,
+    hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     dwKeySpec: u32,
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -12084,7 +12104,7 @@ pub extern "crypt32" fn CryptUninstallDefaultContext(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptExportPublicKeyInfo(
-    hCryptProvOrNCryptKey: usize,
+    hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     dwKeySpec: u32,
     dwCertEncodingType: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -12094,7 +12114,7 @@ pub extern "crypt32" fn CryptExportPublicKeyInfo(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptExportPublicKeyInfoEx(
-    hCryptProvOrNCryptKey: usize,
+    hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     dwKeySpec: u32,
     dwCertEncodingType: u32,
     pszPublicKeyObjId: ?PSTR,
@@ -12150,7 +12170,7 @@ pub extern "crypt32" fn CryptAcquireCertificatePrivateKey(
     pCert: ?*const CERT_CONTEXT,
     dwFlags: CRYPT_ACQUIRE_FLAGS,
     pvParameters: ?*anyopaque,
-    phCryptProvOrNCryptKey: ?*usize,
+    phCryptProvOrNCryptKey: ?*HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     pdwKeySpec: ?*CERT_KEY_SPEC,
     pfCallerFreeProvOrNCryptKey: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -12184,7 +12204,7 @@ pub extern "crypt32" fn CryptExportPKCS8(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptHashPublicKeyInfo(
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     Algid: u32,
     dwFlags: u32,
     dwCertEncodingType: u32,
@@ -12308,12 +12328,12 @@ pub extern "crypt32" fn CryptGetMessageSignerCount(
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptGetMessageCertificates(
     dwMsgAndCertEncodingType: u32,
-    hCryptProv: usize,
+    hCryptProv: HCRYPTPROV_LEGACY,
     dwFlags: u32,
     // TODO: what to do with BytesParamIndex 4?
     pbSignedBlob: ?*const u8,
     cbSignedBlob: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(@import("std").os.windows.WINAPI) ?HCERTSTORE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptVerifyDetachedMessageSignature(
@@ -12469,15 +12489,15 @@ pub extern "crypt32" fn CryptVerifyMessageSignatureWithKey(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertOpenSystemStoreA(
-    hProv: usize,
+    hProv: HCRYPTPROV_LEGACY,
     szSubsystemProtocol: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(@import("std").os.windows.WINAPI) ?HCERTSTORE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertOpenSystemStoreW(
-    hProv: usize,
+    hProv: HCRYPTPROV_LEGACY,
     szSubsystemProtocol: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(@import("std").os.windows.WINAPI) ?HCERTSTORE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertAddEncodedCertificateToSystemStoreA(
@@ -12517,7 +12537,7 @@ pub extern "crypt32" fn CryptQueryObject(
     pdwMsgAndCertEncodingType: ?*CERT_QUERY_ENCODING_TYPE,
     pdwContentType: ?*CERT_QUERY_CONTENT_TYPE,
     pdwFormatType: ?*CERT_QUERY_FORMAT_TYPE,
-    phCertStore: ?*?*anyopaque,
+    phCertStore: ?*?HCERTSTORE,
     phMsg: ?*?*anyopaque,
     ppvContext: ?*const ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -12615,7 +12635,7 @@ pub extern "cryptnet" fn CryptGetObjectUrl(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertCreateSelfSignCertificate(
-    hCryptProvOrNCryptKey: usize,
+    hCryptProvOrNCryptKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     pSubjectIssuerBlob: ?*CRYPTOAPI_BLOB,
     dwFlags: CERT_CREATE_SELFSIGN_FLAGS,
     pKeyProvInfo: ?*CRYPT_KEY_PROV_INFO,
@@ -12693,7 +12713,7 @@ pub extern "crypt32" fn CertGetCertificateChain(
     hChainEngine: ?HCERTCHAINENGINE,
     pCertContext: ?*const CERT_CONTEXT,
     pTime: ?*FILETIME,
-    hAdditionalStore: ?*anyopaque,
+    hAdditionalStore: ?HCERTSTORE,
     pChainPara: ?*CERT_CHAIN_PARA,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
@@ -12712,7 +12732,7 @@ pub extern "crypt32" fn CertDuplicateCertificateChain(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CertFindChainInStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     dwCertEncodingType: u32,
     dwFindFlags: CERT_FIND_CHAIN_IN_STORE_FLAGS,
     dwFindType: u32,
@@ -12777,7 +12797,7 @@ pub extern "crypt32" fn PFXImportCertStore(
     pPFX: ?*CRYPTOAPI_BLOB,
     szPassword: ?[*:0]const u16,
     dwFlags: CRYPT_KEY_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(@import("std").os.windows.WINAPI) ?HCERTSTORE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn PFXIsPFXBlob(
@@ -12793,7 +12813,7 @@ pub extern "crypt32" fn PFXVerifyPassword(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn PFXExportCertStoreEx(
-    hStore: ?*anyopaque,
+    hStore: ?HCERTSTORE,
     pPFX: ?*CRYPTOAPI_BLOB,
     szPassword: ?[*:0]const u16,
     pvPara: ?*anyopaque,
@@ -12802,7 +12822,7 @@ pub extern "crypt32" fn PFXExportCertStoreEx(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn PFXExportCertStore(
-    hStore: ?*anyopaque,
+    hStore: ?HCERTSTORE,
     pPFX: ?*CRYPTOAPI_BLOB,
     szPassword: ?[*:0]const u16,
     dwFlags: u32,
@@ -12863,7 +12883,7 @@ pub extern "crypt32" fn CertSelectCertificateChains(
     pChainParameters: ?*CERT_SELECT_CHAIN_PARA,
     cCriteria: u32,
     rgpCriteria: ?[*]CERT_SELECT_CRITERIA,
-    hStore: ?*anyopaque,
+    hStore: ?HCERTSTORE,
     pcSelection: ?*u32,
     pprgpSelection: ?*?*?*CERT_CHAIN_CONTEXT,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -12885,7 +12905,7 @@ pub extern "crypt32" fn CryptRetrieveTimeStamp(
     cbData: u32,
     ppTsContext: ?*?*CRYPT_TIMESTAMP_CONTEXT,
     ppTsSigner: ?*?*CERT_CONTEXT,
-    phStore: ?*?*anyopaque,
+    phStore: ?*?HCERTSTORE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -12896,10 +12916,10 @@ pub extern "crypt32" fn CryptVerifyTimeStampSignature(
     // TODO: what to do with BytesParamIndex 3?
     pbData: ?*const u8,
     cbData: u32,
-    hAdditionalStore: ?*anyopaque,
+    hAdditionalStore: ?HCERTSTORE,
     ppTsContext: ?*?*CRYPT_TIMESTAMP_CONTEXT,
     ppTsSigner: ?*?*CERT_CONTEXT,
-    phStore: ?*?*anyopaque,
+    phStore: ?*?HCERTSTORE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "crypt32" fn CertIsWeakHash(
@@ -13127,7 +13147,7 @@ pub extern "cryptxml" fn CryptXmlSetHMACSecret(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "cryptxml" fn CryptXmlSign(
     hSignature: ?*anyopaque,
-    hKey: usize,
+    hKey: HCRYPTPROV_OR_NCRYPT_KEY_HANDLE,
     dwKeySpec: CERT_KEY_SPEC,
     dwFlags: CRYPT_XML_FLAGS,
     dwKeyInfoSpec: CRYPT_XML_KEYINFO_SPEC,

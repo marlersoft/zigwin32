@@ -414,7 +414,7 @@ pub const WINTRUST_SGNR_INFO = extern struct {
     pcwszDisplayName: ?[*:0]const u16,
     psSignerInfo: ?*CMSG_SIGNER_INFO,
     chStores: u32,
-    pahStores: ?*?*anyopaque,
+    pahStores: ?*?HCERTSTORE,
 };
 
 pub const WINTRUST_CERT_INFO = extern struct {
@@ -422,7 +422,7 @@ pub const WINTRUST_CERT_INFO = extern struct {
     pcwszDisplayName: ?[*:0]const u16,
     psCertContext: ?*CERT_CONTEXT,
     chStores: u32,
-    pahStores: ?*?*anyopaque,
+    pahStores: ?*?HCERTSTORE,
     dwFlags: u32,
     psftVerifyAsOf: ?*FILETIME,
 };
@@ -483,7 +483,7 @@ pub const CRYPT_PROVIDER_DATA = extern struct {
     cdwTrustStepErrors: u32,
     padwTrustStepErrors: ?*u32,
     chStores: u32,
-    pahStores: ?*?*anyopaque,
+    pahStores: ?*?HCERTSTORE,
     dwEncoding: u32,
     hMsg: ?*anyopaque,
     csSigners: u32,
@@ -1018,7 +1018,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (26)
+// Section: Imports (27)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1039,6 +1039,7 @@ const CTL_CONTEXT = @import("../security/cryptography.zig").CTL_CONTEXT;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HCERTCHAINENGINE = @import("../security/cryptography.zig").HCERTCHAINENGINE;
+const HCERTSTORE = @import("../security/cryptography.zig").HCERTSTORE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const PSTR = @import("../foundation.zig").PSTR;

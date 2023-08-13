@@ -5263,7 +5263,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
-const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE = @import("../graphics.zig").D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE;
+const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE = @import("../graphics/direct2d/common.zig").D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE;
 const D2D1_BLEND_MODE = @import("../graphics/direct2d/common.zig").D2D1_BLEND_MODE;
 const D2D1_BORDER_MODE = @import("../graphics/direct2d/common.zig").D2D1_BORDER_MODE;
 const D2D1_COLOR_F = @import("../graphics/direct2d/common.zig").D2D1_COLOR_F;

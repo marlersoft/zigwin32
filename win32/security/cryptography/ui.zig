@@ -442,7 +442,7 @@ pub const CERT_SELECT_STRUCT_A = extern struct {
     dwFlags: CERT_SELECT_STRUCT_FLAGS,
     szTitle: ?[*:0]const u8,
     cCertStore: u32,
-    arrayCertStore: ?*?*anyopaque,
+    arrayCertStore: ?*?HCERTSTORE,
     szPurposeOid: ?[*:0]const u8,
     cCertContext: u32,
     arrayCertContext: ?*?*CERT_CONTEXT,
@@ -462,7 +462,7 @@ pub const CERT_SELECT_STRUCT_W = extern struct {
     dwFlags: CERT_SELECT_STRUCT_FLAGS,
     szTitle: ?[*:0]const u16,
     cCertStore: u32,
-    arrayCertStore: ?*?*anyopaque,
+    arrayCertStore: ?*?HCERTSTORE,
     szPurposeOid: ?[*:0]const u8,
     cCertContext: u32,
     arrayCertContext: ?*?*CERT_CONTEXT,
@@ -484,11 +484,11 @@ pub const CERT_VIEWPROPERTIES_STRUCT_A = extern struct {
     arrayPurposes: ?*?PSTR,
     cArrayPurposes: u32,
     cRootStores: u32,
-    rghstoreRoots: ?*?*anyopaque,
+    rghstoreRoots: ?*?HCERTSTORE,
     cStores: u32,
-    rghstoreCAs: ?*?*anyopaque,
+    rghstoreCAs: ?*?HCERTSTORE,
     cTrustStores: u32,
-    rghstoreTrust: ?*?*anyopaque,
+    rghstoreTrust: ?*?HCERTSTORE,
     hprov: usize,
     lCustData: LPARAM,
     dwPad: u32,
@@ -509,11 +509,11 @@ pub const CERT_VIEWPROPERTIES_STRUCT_W = extern struct {
     arrayPurposes: ?*?PSTR,
     cArrayPurposes: u32,
     cRootStores: u32,
-    rghstoreRoots: ?*?*anyopaque,
+    rghstoreRoots: ?*?HCERTSTORE,
     cStores: u32,
-    rghstoreCAs: ?*?*anyopaque,
+    rghstoreCAs: ?*?HCERTSTORE,
     cTrustStores: u32,
-    rghstoreTrust: ?*?*anyopaque,
+    rghstoreTrust: ?*?HCERTSTORE,
     hprov: usize,
     lCustData: LPARAM,
     dwPad: u32,
@@ -562,11 +562,11 @@ pub const CERT_VERIFY_CERTIFICATE_TRUST = extern struct {
     pszUsageOid: ?PSTR,
     hprov: usize,
     cRootStores: u32,
-    rghstoreRoots: ?*?*anyopaque,
+    rghstoreRoots: ?*?HCERTSTORE,
     cStores: u32,
-    rghstoreCAs: ?*?*anyopaque,
+    rghstoreCAs: ?*?HCERTSTORE,
     cTrustStores: u32,
-    rghstoreTrust: ?*?*anyopaque,
+    rghstoreTrust: ?*?HCERTSTORE,
     lCustData: LPARAM,
     pfnTrustHelper: ?PFNTRUSTHELPER,
     pcChain: ?*u32,
@@ -595,7 +595,7 @@ pub const PFNCFILTERPROC = switch (@import("builtin").zig_backend) {
 } ;
 
 pub const CERT_SELECTUI_INPUT = extern struct {
-    hStore: ?*anyopaque,
+    hStore: ?HCERTSTORE,
     prgpChain: ?*?*CERT_CHAIN_CONTEXT,
     cChain: u32,
 };
@@ -619,7 +619,7 @@ pub const CRYPTUI_WIZ_DIGITAL_SIGN_BLOB_INFO = extern struct {
 pub const CRYPTUI_WIZ_DIGITAL_SIGN_STORE_INFO = extern struct {
     dwSize: u32,
     cCertStore: u32,
-    rghCertStore: ?*?*anyopaque,
+    rghCertStore: ?*?HCERTSTORE,
     pFilterCallback: ?PFNCFILTERPROC,
     pvCallbackData: ?*anyopaque,
 };
@@ -648,7 +648,7 @@ pub const CRYPTUI_WIZ_DIGITAL_SIGN_EXTENDED_INFO = extern struct {
     pwszMoreInfoLocation: ?[*:0]const u16,
     pszHashAlg: ?[*:0]const u8,
     pwszSigningCertDisplayString: ?[*:0]const u16,
-    hAdditionalCertStore: ?*anyopaque,
+    hAdditionalCertStore: ?HCERTSTORE,
     psAuthenticated: ?*CRYPT_ATTRIBUTES,
     psUnauthenticated: ?*CRYPT_ATTRIBUTES,
 };
@@ -700,7 +700,7 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTW = extern struct {
     fCounterSigner: BOOL,
     idxCounterSigner: u32,
     cStores: u32,
-    rghStores: ?*?*anyopaque,
+    rghStores: ?*?HCERTSTORE,
     cPropSheetPages: u32,
     rgPropSheetPages: ?*PROPSHEETPAGEW,
     nStartPage: u32,
@@ -724,7 +724,7 @@ pub const CRYPTUI_VIEWCERTIFICATE_STRUCTA = extern struct {
     fCounterSigner: BOOL,
     idxCounterSigner: u32,
     cStores: u32,
-    rghStores: ?*?*anyopaque,
+    rghStores: ?*?HCERTSTORE,
     cPropSheetPages: u32,
     rgPropSheetPages: ?*PROPSHEETPAGEA,
     nStartPage: u32,
@@ -738,10 +738,10 @@ pub const CRYPTUI_WIZ_EXPORT_INFO = extern struct {
         pCertContext: ?*const CERT_CONTEXT,
         pCTLContext: ?*CTL_CONTEXT,
         pCRLContext: ?*CRL_CONTEXT,
-        hCertStore: ?*anyopaque,
+        hCertStore: ?HCERTSTORE,
     },
     cStores: u32,
-    rghStores: ?*?*anyopaque,
+    rghStores: ?*?HCERTSTORE,
 };
 
 pub const CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO = extern struct {
@@ -761,7 +761,7 @@ pub const CRYPTUI_WIZ_IMPORT_SRC_INFO = extern struct {
         pCertContext: ?*const CERT_CONTEXT,
         pCTLContext: ?*CTL_CONTEXT,
         pCRLContext: ?*CRL_CONTEXT,
-        hCertStore: ?*anyopaque,
+        hCertStore: ?HCERTSTORE,
     },
     dwFlags: CRYPT_KEY_FLAGS,
     pwszPassword: ?[*:0]const u16,
@@ -783,7 +783,7 @@ pub extern "cryptui" fn CryptUIDlgViewContext(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "cryptui" fn CryptUIDlgSelectCertificateFromStore(
-    hCertStore: ?*anyopaque,
+    hCertStore: ?HCERTSTORE,
     hwnd: ?HWND,
     pwszTitle: ?[*:0]const u16,
     pwszDisplayString: ?[*:0]const u16,
@@ -845,7 +845,7 @@ pub extern "cryptui" fn CryptUIWizImport(
     hwndParent: ?HWND,
     pwszWizardTitle: ?[*:0]const u16,
     pImportSrc: ?*CRYPTUI_WIZ_IMPORT_SRC_INFO,
-    hDestCertStore: ?*anyopaque,
+    hDestCertStore: ?HCERTSTORE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 
@@ -879,7 +879,7 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (21)
+// Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -893,6 +893,7 @@ const CRYPT_PROVIDER_DATA = @import("../../security/win_trust.zig").CRYPT_PROVID
 const CRYPTOAPI_BLOB = @import("../../security/cryptography.zig").CRYPTOAPI_BLOB;
 const CTL_CONTEXT = @import("../../security/cryptography.zig").CTL_CONTEXT;
 const HANDLE = @import("../../foundation.zig").HANDLE;
+const HCERTSTORE = @import("../../security/cryptography.zig").HCERTSTORE;
 const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;

@@ -61,16 +61,16 @@ pub const WSD_CONFIG_PARAM = extern struct {
 pub const WSD_SECURITY_CERT_VALIDATION_V1 = extern struct {
     certMatchArray: ?*?*CERT_CONTEXT,
     dwCertMatchArrayCount: u32,
-    hCertMatchStore: ?*anyopaque,
-    hCertIssuerStore: ?*anyopaque,
+    hCertMatchStore: ?HCERTSTORE,
+    hCertIssuerStore: ?HCERTSTORE,
     dwCertCheckOptions: u32,
 };
 
 pub const WSD_SECURITY_CERT_VALIDATION = extern struct {
     certMatchArray: ?*?*CERT_CONTEXT,
     dwCertMatchArrayCount: u32,
-    hCertMatchStore: ?*anyopaque,
-    hCertIssuerStore: ?*anyopaque,
+    hCertMatchStore: ?HCERTSTORE,
+    hCertIssuerStore: ?HCERTSTORE,
     dwCertCheckOptions: u32,
     pszCNGHashAlgId: ?[*:0]const u16,
     pbCertHash: ?*u8,
@@ -80,7 +80,7 @@ pub const WSD_SECURITY_CERT_VALIDATION = extern struct {
 pub const WSD_SECURITY_SIGNATURE_VALIDATION = extern struct {
     signingCertArray: ?*?*CERT_CONTEXT,
     dwSigningCertArrayCount: u32,
-    hSigningCertStore: ?*anyopaque,
+    hSigningCertStore: ?HCERTSTORE,
     dwFlags: u32,
 };
 
@@ -3892,12 +3892,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const CERT_CONTEXT = @import("../security/cryptography.zig").CERT_CONTEXT;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HCERTSTORE = @import("../security/cryptography.zig").HCERTSTORE;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;

@@ -9,7 +9,7 @@ pub const FILE_CACHE_MIN_HARD_DISABLE = @as(u32, 8);
 pub const MEHC_PATROL_SCRUBBER_PRESENT = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (29)
+// Section: Types (30)
 //--------------------------------------------------------------------------------
 pub const FILE_MAP = enum(u32) {
     WRITE = 2,
@@ -548,6 +548,12 @@ pub const MEMORY_BASIC_INFORMATION64 = extern struct {
 pub const CFG_CALL_TARGET_INFO = extern struct {
     Offset: usize,
     Flags: usize,
+};
+
+pub const MEM_ADDRESS_REQUIREMENTS = extern struct {
+    LowestStartingAddress: ?*anyopaque,
+    HighestEndingAddress: ?*anyopaque,
+    Alignment: usize,
 };
 
 pub const MEM_EXTENDED_PARAMETER_TYPE = enum(i32) {

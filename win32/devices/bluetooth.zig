@@ -1322,23 +1322,23 @@ pub extern "bluetoothapis" fn BluetoothRemoveDevice(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "bthprops" fn BluetoothSelectDevices(
+pub extern "bthprops.cpl" fn BluetoothSelectDevices(
     pbtsdp: ?*BLUETOOTH_SELECT_DEVICE_PARAMS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "bthprops" fn BluetoothSelectDevicesFree(
+pub extern "bthprops.cpl" fn BluetoothSelectDevicesFree(
     pbtsdp: ?*BLUETOOTH_SELECT_DEVICE_PARAMS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "bthprops" fn BluetoothDisplayDeviceProperties(
+pub extern "bthprops.cpl" fn BluetoothDisplayDeviceProperties(
     hwndParent: ?HWND,
     pbtdi: ?*BLUETOOTH_DEVICE_INFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "bthprops" fn BluetoothAuthenticateDevice(
+pub extern "bthprops.cpl" fn BluetoothAuthenticateDevice(
     hwndParent: ?HWND,
     hRadio: ?HANDLE,
     pbtbi: ?*BLUETOOTH_DEVICE_INFO,
@@ -1347,7 +1347,7 @@ pub extern "bthprops" fn BluetoothAuthenticateDevice(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "bthprops" fn BluetoothAuthenticateDeviceEx(
+pub extern "bthprops.cpl" fn BluetoothAuthenticateDeviceEx(
     hwndParentIn: ?HWND,
     hRadioIn: ?HANDLE,
     pbtdiInout: ?*BLUETOOTH_DEVICE_INFO,
@@ -1356,7 +1356,7 @@ pub extern "bthprops" fn BluetoothAuthenticateDeviceEx(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "bthprops" fn BluetoothAuthenticateMultipleDevices(
+pub extern "bthprops.cpl" fn BluetoothAuthenticateMultipleDevices(
     hwndParent: ?HWND,
     hRadio: ?HANDLE,
     cDevices: u32,
