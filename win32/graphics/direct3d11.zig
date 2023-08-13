@@ -12819,12 +12819,12 @@ test {
     if (@hasDecl(@This(), "PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN")) { _ = PFN_D3D11_CREATE_DEVICE_AND_SWAP_CHAIN; }
 
     @setEvalBranchQuota(
-        @import("std").meta.declarations(@This()).len * 3
+        comptime @import("std").meta.declarations(@This()).len * 3
     );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
-    inline for (@import("std").meta.declarations(@This())) |decl| {
+    inline for (comptime @import("std").meta.declarations(@This())) |decl| {
         if (decl.is_pub) {
             _ = decl;
         }
