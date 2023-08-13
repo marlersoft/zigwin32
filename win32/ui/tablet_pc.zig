@@ -7136,8 +7136,8 @@ pub const ITextInputPanel = extern struct {
             return @ptrCast(*const ITextInputPanel.VTable, self.vtable).SetInPlaceHoverTargetPosition(@ptrCast(*const ITextInputPanel, self), xPosition, yPosition);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ITextInputPanel_Advise(self: *const T, EventSink: ?*ITextInputPanelEventSink, EventMask: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).Advise(@ptrCast(*const ITextInputPanel, self), EventSink, EventMask);
+        pub fn ITextInputPanel_Advise(self: *const T, EventSink: ?*ITextInputPanelEventSink, _param_EventMask: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const ITextInputPanel.VTable, self.vtable).Advise(@ptrCast(*const ITextInputPanel, self), EventSink, _param_EventMask);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ITextInputPanel_Unadvise(self: *const T, EventSink: ?*ITextInputPanelEventSink) callconv(.Inline) HRESULT {
@@ -7962,8 +7962,8 @@ pub const IInkEdit = extern struct {
             return @ptrCast(*const IInkEdit.VTable, self.vtable).get_SelInksDisplayMode(@ptrCast(*const IInkEdit, self), pInkDisplayMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInkEdit_put_SelInksDisplayMode(self: *const T, InkDisplayMode: InkDisplayMode) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelInksDisplayMode(@ptrCast(*const IInkEdit, self), InkDisplayMode);
+        pub fn IInkEdit_put_SelInksDisplayMode(self: *const T, _param_InkDisplayMode: InkDisplayMode) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IInkEdit.VTable, self.vtable).put_SelInksDisplayMode(@ptrCast(*const IInkEdit, self), _param_InkDisplayMode);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IInkEdit_Recognize(self: *const T) callconv(.Inline) HRESULT {
