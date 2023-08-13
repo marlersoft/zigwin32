@@ -4290,6 +4290,7 @@ pub const WINDOW_LONG_PTR_INDEX = enum(i32) {
     // _USERDATA = -21, this enum value conflicts with P_USERDATA
     // _WNDPROC = -4, this enum value conflicts with P_WNDPROC
     // _HWNDPARENT = -8, this enum value conflicts with P_HWNDPARENT
+    _,
 };
 pub const GWL_EXSTYLE = WINDOW_LONG_PTR_INDEX._EXSTYLE;
 pub const GWLP_HINSTANCE = WINDOW_LONG_PTR_INDEX.P_HINSTANCE;
