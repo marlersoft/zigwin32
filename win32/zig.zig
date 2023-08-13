@@ -98,10 +98,10 @@ pub const PropertyKey = extern struct {
     }
 };
 
-pub fn FAILED(hr: @import("system/com.zig").HRESULT) bool {
+pub fn FAILED(hr: @import("foundation.zig").HRESULT) bool {
     return hr < 0;
 }
-pub fn SUCCEEDED(hr: @import("system/com.zig").HRESULT) bool {
+pub fn SUCCEEDED(hr: @import("foundation.zig").HRESULT) bool {
     return hr >= 0;
 }
 

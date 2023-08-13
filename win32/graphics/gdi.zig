@@ -4512,7 +4512,7 @@ pub extern "GDI32" fn CreateFontA(
     iQuality: FONT_QUALITY,
     iPitchAndFamily: FONT_PITCH_AND_FAMILY,
     pszFaceName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HFONT;
+) callconv(@import("std").os.windows.WINAPI) ?HFONT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateFontW(
@@ -4530,7 +4530,7 @@ pub extern "GDI32" fn CreateFontW(
     iQuality: FONT_QUALITY,
     iPitchAndFamily: FONT_PITCH_AND_FAMILY,
     pszFaceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HFONT;
+) callconv(@import("std").os.windows.WINAPI) ?HFONT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "GDI32" fn CreateHatchBrush(
