@@ -49,7 +49,7 @@ pub const IXpsPrintJobStream = extern struct {
         pub usingnamespace ISequentialStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXpsPrintJobStream_Close(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsPrintJobStream.VTable, self.vtable).Close(@ptrCast(*const IXpsPrintJobStream, self));
+            return @as(*const IXpsPrintJobStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IXpsPrintJobStream, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -85,11 +85,11 @@ pub const IXpsPrintJob = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXpsPrintJob_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsPrintJob.VTable, self.vtable).Cancel(@ptrCast(*const IXpsPrintJob, self));
+            return @as(*const IXpsPrintJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IXpsPrintJob, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IXpsPrintJob_GetJobStatus(self: *const T, jobStatus: ?*XPS_JOB_STATUS) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IXpsPrintJob.VTable, self.vtable).GetJobStatus(@ptrCast(*const IXpsPrintJob, self), jobStatus);
+            return @as(*const IXpsPrintJob.VTable, @ptrCast(self.vtable)).GetJobStatus(@as(*const IXpsPrintJob, @ptrCast(self)), jobStatus);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -147,15 +147,15 @@ pub const IPrintDocumentPackageTarget = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPrintDocumentPackageTarget_GetPackageTargetTypes(self: *const T, targetCount: ?*u32, targetTypes: [*]?*Guid) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDocumentPackageTarget.VTable, self.vtable).GetPackageTargetTypes(@ptrCast(*const IPrintDocumentPackageTarget, self), targetCount, targetTypes);
+            return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetPackageTargetTypes(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)), targetCount, targetTypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPrintDocumentPackageTarget_GetPackageTarget(self: *const T, guidTargetType: ?*const Guid, riid: ?*const Guid, ppvTarget: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDocumentPackageTarget.VTable, self.vtable).GetPackageTarget(@ptrCast(*const IPrintDocumentPackageTarget, self), guidTargetType, riid, ppvTarget);
+            return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetPackageTarget(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)), guidTargetType, riid, ppvTarget);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPrintDocumentPackageTarget_Cancel(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDocumentPackageTarget.VTable, self.vtable).Cancel(@ptrCast(*const IPrintDocumentPackageTarget, self));
+            return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -203,7 +203,7 @@ pub const IPrintDocumentPackageStatusEvent = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPrintDocumentPackageStatusEvent_PackageStatusUpdated(self: *const T, packageStatus: ?*PrintDocumentPackageStatus) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDocumentPackageStatusEvent.VTable, self.vtable).PackageStatusUpdated(@ptrCast(*const IPrintDocumentPackageStatusEvent, self), packageStatus);
+            return @as(*const IPrintDocumentPackageStatusEvent.VTable, @ptrCast(self.vtable)).PackageStatusUpdated(@as(*const IPrintDocumentPackageStatusEvent, @ptrCast(self)), packageStatus);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -239,7 +239,7 @@ pub const IPrintDocumentPackageTargetFactory = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPrintDocumentPackageTargetFactory_CreateDocumentPackageTargetForPrintJob(self: *const T, printerName: ?[*:0]const u16, jobName: ?[*:0]const u16, jobOutputStream: ?*IStream, jobPrintTicketStream: ?*IStream, docPackageTarget: ?*?*IPrintDocumentPackageTarget) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDocumentPackageTargetFactory.VTable, self.vtable).CreateDocumentPackageTargetForPrintJob(@ptrCast(*const IPrintDocumentPackageTargetFactory, self), printerName, jobName, jobOutputStream, jobPrintTicketStream, docPackageTarget);
+            return @as(*const IPrintDocumentPackageTargetFactory.VTable, @ptrCast(self.vtable)).CreateDocumentPackageTargetForPrintJob(@as(*const IPrintDocumentPackageTargetFactory, @ptrCast(self)), printerName, jobName, jobOutputStream, jobPrintTicketStream, docPackageTarget);
         }
     };}
     pub usingnamespace MethodMixin(@This());

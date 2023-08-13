@@ -32,13 +32,13 @@ pub const CF_PLACEHOLDER_CREATE_FLAGS = enum(u32) {
         SUPERSEDE: u1 = 0,
         ALWAYS_FULL: u1 = 0,
     }) CF_PLACEHOLDER_CREATE_FLAGS {
-        return @intToEnum(CF_PLACEHOLDER_CREATE_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_PLACEHOLDER_CREATE_FLAGS.NONE) else 0)
-            | (if (o.DISABLE_ON_DEMAND_POPULATION == 1) @enumToInt(CF_PLACEHOLDER_CREATE_FLAGS.DISABLE_ON_DEMAND_POPULATION) else 0)
-            | (if (o.MARK_IN_SYNC == 1) @enumToInt(CF_PLACEHOLDER_CREATE_FLAGS.MARK_IN_SYNC) else 0)
-            | (if (o.SUPERSEDE == 1) @enumToInt(CF_PLACEHOLDER_CREATE_FLAGS.SUPERSEDE) else 0)
-            | (if (o.ALWAYS_FULL == 1) @enumToInt(CF_PLACEHOLDER_CREATE_FLAGS.ALWAYS_FULL) else 0)
-        );
+        return @as(CF_PLACEHOLDER_CREATE_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_PLACEHOLDER_CREATE_FLAGS.NONE) else 0)
+            | (if (o.DISABLE_ON_DEMAND_POPULATION == 1) @intFromEnum(CF_PLACEHOLDER_CREATE_FLAGS.DISABLE_ON_DEMAND_POPULATION) else 0)
+            | (if (o.MARK_IN_SYNC == 1) @intFromEnum(CF_PLACEHOLDER_CREATE_FLAGS.MARK_IN_SYNC) else 0)
+            | (if (o.SUPERSEDE == 1) @intFromEnum(CF_PLACEHOLDER_CREATE_FLAGS.SUPERSEDE) else 0)
+            | (if (o.ALWAYS_FULL == 1) @intFromEnum(CF_PLACEHOLDER_CREATE_FLAGS.ALWAYS_FULL) else 0)
+        ));
     }
 };
 pub const CF_PLACEHOLDER_CREATE_FLAG_NONE = CF_PLACEHOLDER_CREATE_FLAGS.NONE;
@@ -83,19 +83,19 @@ pub const CF_SYNC_PROVIDER_STATUS = enum(u32) {
         TERMINATED: u1 = 0,
         ERROR: u1 = 0,
     }) CF_SYNC_PROVIDER_STATUS {
-        return @intToEnum(CF_SYNC_PROVIDER_STATUS,
-              (if (o.DISCONNECTED == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.DISCONNECTED) else 0)
-            | (if (o.IDLE == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.IDLE) else 0)
-            | (if (o.POPULATE_NAMESPACE == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.POPULATE_NAMESPACE) else 0)
-            | (if (o.POPULATE_METADATA == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.POPULATE_METADATA) else 0)
-            | (if (o.POPULATE_CONTENT == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.POPULATE_CONTENT) else 0)
-            | (if (o.SYNC_INCREMENTAL == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.SYNC_INCREMENTAL) else 0)
-            | (if (o.SYNC_FULL == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.SYNC_FULL) else 0)
-            | (if (o.CONNECTIVITY_LOST == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.CONNECTIVITY_LOST) else 0)
-            | (if (o.CLEAR_FLAGS == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.CLEAR_FLAGS) else 0)
-            | (if (o.TERMINATED == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.TERMINATED) else 0)
-            | (if (o.ERROR == 1) @enumToInt(CF_SYNC_PROVIDER_STATUS.ERROR) else 0)
-        );
+        return @as(CF_SYNC_PROVIDER_STATUS, @enumFromInt(
+              (if (o.DISCONNECTED == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.DISCONNECTED) else 0)
+            | (if (o.IDLE == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.IDLE) else 0)
+            | (if (o.POPULATE_NAMESPACE == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.POPULATE_NAMESPACE) else 0)
+            | (if (o.POPULATE_METADATA == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.POPULATE_METADATA) else 0)
+            | (if (o.POPULATE_CONTENT == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.POPULATE_CONTENT) else 0)
+            | (if (o.SYNC_INCREMENTAL == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.SYNC_INCREMENTAL) else 0)
+            | (if (o.SYNC_FULL == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.SYNC_FULL) else 0)
+            | (if (o.CONNECTIVITY_LOST == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.CONNECTIVITY_LOST) else 0)
+            | (if (o.CLEAR_FLAGS == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.CLEAR_FLAGS) else 0)
+            | (if (o.TERMINATED == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.TERMINATED) else 0)
+            | (if (o.ERROR == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.ERROR) else 0)
+        ));
     }
 };
 pub const CF_PROVIDER_STATUS_DISCONNECTED = CF_SYNC_PROVIDER_STATUS.DISCONNECTED;
@@ -138,12 +138,12 @@ pub const CF_REGISTER_FLAGS = enum(u32) {
         DISABLE_ON_DEMAND_POPULATION_ON_ROOT: u1 = 0,
         MARK_IN_SYNC_ON_ROOT: u1 = 0,
     }) CF_REGISTER_FLAGS {
-        return @intToEnum(CF_REGISTER_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_REGISTER_FLAGS.NONE) else 0)
-            | (if (o.UPDATE == 1) @enumToInt(CF_REGISTER_FLAGS.UPDATE) else 0)
-            | (if (o.DISABLE_ON_DEMAND_POPULATION_ON_ROOT == 1) @enumToInt(CF_REGISTER_FLAGS.DISABLE_ON_DEMAND_POPULATION_ON_ROOT) else 0)
-            | (if (o.MARK_IN_SYNC_ON_ROOT == 1) @enumToInt(CF_REGISTER_FLAGS.MARK_IN_SYNC_ON_ROOT) else 0)
-        );
+        return @as(CF_REGISTER_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_REGISTER_FLAGS.NONE) else 0)
+            | (if (o.UPDATE == 1) @intFromEnum(CF_REGISTER_FLAGS.UPDATE) else 0)
+            | (if (o.DISABLE_ON_DEMAND_POPULATION_ON_ROOT == 1) @intFromEnum(CF_REGISTER_FLAGS.DISABLE_ON_DEMAND_POPULATION_ON_ROOT) else 0)
+            | (if (o.MARK_IN_SYNC_ON_ROOT == 1) @intFromEnum(CF_REGISTER_FLAGS.MARK_IN_SYNC_ON_ROOT) else 0)
+        ));
     }
 };
 pub const CF_REGISTER_FLAG_NONE = CF_REGISTER_FLAGS.NONE;
@@ -180,13 +180,13 @@ pub const CF_HYDRATION_POLICY_MODIFIER = enum(u16) {
         AUTO_DEHYDRATION_ALLOWED: u1 = 0,
         ALLOW_FULL_RESTART_HYDRATION: u1 = 0,
     }) CF_HYDRATION_POLICY_MODIFIER {
-        return @intToEnum(CF_HYDRATION_POLICY_MODIFIER,
-              (if (o.NONE == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.NONE) else 0)
-            | (if (o.VALIDATION_REQUIRED == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.VALIDATION_REQUIRED) else 0)
-            | (if (o.STREAMING_ALLOWED == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.STREAMING_ALLOWED) else 0)
-            | (if (o.AUTO_DEHYDRATION_ALLOWED == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.AUTO_DEHYDRATION_ALLOWED) else 0)
-            | (if (o.ALLOW_FULL_RESTART_HYDRATION == 1) @enumToInt(CF_HYDRATION_POLICY_MODIFIER.ALLOW_FULL_RESTART_HYDRATION) else 0)
-        );
+        return @as(CF_HYDRATION_POLICY_MODIFIER, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_HYDRATION_POLICY_MODIFIER.NONE) else 0)
+            | (if (o.VALIDATION_REQUIRED == 1) @intFromEnum(CF_HYDRATION_POLICY_MODIFIER.VALIDATION_REQUIRED) else 0)
+            | (if (o.STREAMING_ALLOWED == 1) @intFromEnum(CF_HYDRATION_POLICY_MODIFIER.STREAMING_ALLOWED) else 0)
+            | (if (o.AUTO_DEHYDRATION_ALLOWED == 1) @intFromEnum(CF_HYDRATION_POLICY_MODIFIER.AUTO_DEHYDRATION_ALLOWED) else 0)
+            | (if (o.ALLOW_FULL_RESTART_HYDRATION == 1) @intFromEnum(CF_HYDRATION_POLICY_MODIFIER.ALLOW_FULL_RESTART_HYDRATION) else 0)
+        ));
     }
 };
 pub const CF_HYDRATION_POLICY_MODIFIER_NONE = CF_HYDRATION_POLICY_MODIFIER.NONE;
@@ -223,9 +223,9 @@ pub const CF_POPULATION_POLICY_MODIFIER = enum(u16) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_POPULATION_POLICY_MODIFIER {
-        return @intToEnum(CF_POPULATION_POLICY_MODIFIER,
-              (if (o.E == 1) @enumToInt(CF_POPULATION_POLICY_MODIFIER.E) else 0)
-        );
+        return @as(CF_POPULATION_POLICY_MODIFIER, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_POPULATION_POLICY_MODIFIER.E) else 0)
+        ));
     }
 };
 pub const CF_POPULATION_POLICY_MODIFIER_NONE = CF_POPULATION_POLICY_MODIFIER.E;
@@ -284,23 +284,23 @@ pub const CF_INSYNC_POLICY = enum(u32) {
         TRACK_ALL: u1 = 0,
         PRESERVE_INSYNC_FOR_SYNC_ENGINE: u1 = 0,
     }) CF_INSYNC_POLICY {
-        return @intToEnum(CF_INSYNC_POLICY,
-              (if (o.NONE == 1) @enumToInt(CF_INSYNC_POLICY.NONE) else 0)
-            | (if (o.TRACK_FILE_CREATION_TIME == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_FILE_CREATION_TIME) else 0)
-            | (if (o.TRACK_FILE_READONLY_ATTRIBUTE == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_FILE_READONLY_ATTRIBUTE) else 0)
-            | (if (o.TRACK_FILE_HIDDEN_ATTRIBUTE == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_FILE_HIDDEN_ATTRIBUTE) else 0)
-            | (if (o.TRACK_FILE_SYSTEM_ATTRIBUTE == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_FILE_SYSTEM_ATTRIBUTE) else 0)
-            | (if (o.TRACK_DIRECTORY_CREATION_TIME == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_DIRECTORY_CREATION_TIME) else 0)
-            | (if (o.TRACK_DIRECTORY_READONLY_ATTRIBUTE == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_DIRECTORY_READONLY_ATTRIBUTE) else 0)
-            | (if (o.TRACK_DIRECTORY_HIDDEN_ATTRIBUTE == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_DIRECTORY_HIDDEN_ATTRIBUTE) else 0)
-            | (if (o.TRACK_DIRECTORY_SYSTEM_ATTRIBUTE == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_DIRECTORY_SYSTEM_ATTRIBUTE) else 0)
-            | (if (o.TRACK_FILE_LAST_WRITE_TIME == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_FILE_LAST_WRITE_TIME) else 0)
-            | (if (o.TRACK_DIRECTORY_LAST_WRITE_TIME == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_DIRECTORY_LAST_WRITE_TIME) else 0)
-            | (if (o.TRACK_FILE_ALL == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_FILE_ALL) else 0)
-            | (if (o.TRACK_DIRECTORY_ALL == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_DIRECTORY_ALL) else 0)
-            | (if (o.TRACK_ALL == 1) @enumToInt(CF_INSYNC_POLICY.TRACK_ALL) else 0)
-            | (if (o.PRESERVE_INSYNC_FOR_SYNC_ENGINE == 1) @enumToInt(CF_INSYNC_POLICY.PRESERVE_INSYNC_FOR_SYNC_ENGINE) else 0)
-        );
+        return @as(CF_INSYNC_POLICY, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_INSYNC_POLICY.NONE) else 0)
+            | (if (o.TRACK_FILE_CREATION_TIME == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_FILE_CREATION_TIME) else 0)
+            | (if (o.TRACK_FILE_READONLY_ATTRIBUTE == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_FILE_READONLY_ATTRIBUTE) else 0)
+            | (if (o.TRACK_FILE_HIDDEN_ATTRIBUTE == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_FILE_HIDDEN_ATTRIBUTE) else 0)
+            | (if (o.TRACK_FILE_SYSTEM_ATTRIBUTE == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_FILE_SYSTEM_ATTRIBUTE) else 0)
+            | (if (o.TRACK_DIRECTORY_CREATION_TIME == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_DIRECTORY_CREATION_TIME) else 0)
+            | (if (o.TRACK_DIRECTORY_READONLY_ATTRIBUTE == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_DIRECTORY_READONLY_ATTRIBUTE) else 0)
+            | (if (o.TRACK_DIRECTORY_HIDDEN_ATTRIBUTE == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_DIRECTORY_HIDDEN_ATTRIBUTE) else 0)
+            | (if (o.TRACK_DIRECTORY_SYSTEM_ATTRIBUTE == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_DIRECTORY_SYSTEM_ATTRIBUTE) else 0)
+            | (if (o.TRACK_FILE_LAST_WRITE_TIME == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_FILE_LAST_WRITE_TIME) else 0)
+            | (if (o.TRACK_DIRECTORY_LAST_WRITE_TIME == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_DIRECTORY_LAST_WRITE_TIME) else 0)
+            | (if (o.TRACK_FILE_ALL == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_FILE_ALL) else 0)
+            | (if (o.TRACK_DIRECTORY_ALL == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_DIRECTORY_ALL) else 0)
+            | (if (o.TRACK_ALL == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_ALL) else 0)
+            | (if (o.PRESERVE_INSYNC_FOR_SYNC_ENGINE == 1) @intFromEnum(CF_INSYNC_POLICY.PRESERVE_INSYNC_FOR_SYNC_ENGINE) else 0)
+        ));
     }
 };
 pub const CF_INSYNC_POLICY_NONE = CF_INSYNC_POLICY.NONE;
@@ -327,10 +327,10 @@ pub const CF_HARDLINK_POLICY = enum(u32) {
         NONE: u1 = 0,
         ALLOWED: u1 = 0,
     }) CF_HARDLINK_POLICY {
-        return @intToEnum(CF_HARDLINK_POLICY,
-              (if (o.NONE == 1) @enumToInt(CF_HARDLINK_POLICY.NONE) else 0)
-            | (if (o.ALLOWED == 1) @enumToInt(CF_HARDLINK_POLICY.ALLOWED) else 0)
-        );
+        return @as(CF_HARDLINK_POLICY, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_HARDLINK_POLICY.NONE) else 0)
+            | (if (o.ALLOWED == 1) @intFromEnum(CF_HARDLINK_POLICY.ALLOWED) else 0)
+        ));
     }
 };
 pub const CF_HARDLINK_POLICY_NONE = CF_HARDLINK_POLICY.NONE;
@@ -388,11 +388,11 @@ pub const CF_CALLBACK_CANCEL_FLAGS = enum(u32) {
         IO_TIMEOUT: u1 = 0,
         IO_ABORTED: u1 = 0,
     }) CF_CALLBACK_CANCEL_FLAGS {
-        return @intToEnum(CF_CALLBACK_CANCEL_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_CANCEL_FLAGS.NONE) else 0)
-            | (if (o.IO_TIMEOUT == 1) @enumToInt(CF_CALLBACK_CANCEL_FLAGS.IO_TIMEOUT) else 0)
-            | (if (o.IO_ABORTED == 1) @enumToInt(CF_CALLBACK_CANCEL_FLAGS.IO_ABORTED) else 0)
-        );
+        return @as(CF_CALLBACK_CANCEL_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_CALLBACK_CANCEL_FLAGS.NONE) else 0)
+            | (if (o.IO_TIMEOUT == 1) @intFromEnum(CF_CALLBACK_CANCEL_FLAGS.IO_TIMEOUT) else 0)
+            | (if (o.IO_ABORTED == 1) @intFromEnum(CF_CALLBACK_CANCEL_FLAGS.IO_ABORTED) else 0)
+        ));
     }
 };
 pub const CF_CALLBACK_CANCEL_FLAG_NONE = CF_CALLBACK_CANCEL_FLAGS.NONE;
@@ -409,11 +409,11 @@ pub const CF_CALLBACK_FETCH_DATA_FLAGS = enum(u32) {
         RECOVERY: u1 = 0,
         EXPLICIT_HYDRATION: u1 = 0,
     }) CF_CALLBACK_FETCH_DATA_FLAGS {
-        return @intToEnum(CF_CALLBACK_FETCH_DATA_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_FETCH_DATA_FLAGS.NONE) else 0)
-            | (if (o.RECOVERY == 1) @enumToInt(CF_CALLBACK_FETCH_DATA_FLAGS.RECOVERY) else 0)
-            | (if (o.EXPLICIT_HYDRATION == 1) @enumToInt(CF_CALLBACK_FETCH_DATA_FLAGS.EXPLICIT_HYDRATION) else 0)
-        );
+        return @as(CF_CALLBACK_FETCH_DATA_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_CALLBACK_FETCH_DATA_FLAGS.NONE) else 0)
+            | (if (o.RECOVERY == 1) @intFromEnum(CF_CALLBACK_FETCH_DATA_FLAGS.RECOVERY) else 0)
+            | (if (o.EXPLICIT_HYDRATION == 1) @intFromEnum(CF_CALLBACK_FETCH_DATA_FLAGS.EXPLICIT_HYDRATION) else 0)
+        ));
     }
 };
 pub const CF_CALLBACK_FETCH_DATA_FLAG_NONE = CF_CALLBACK_FETCH_DATA_FLAGS.NONE;
@@ -428,10 +428,10 @@ pub const CF_CALLBACK_VALIDATE_DATA_FLAGS = enum(u32) {
         NONE: u1 = 0,
         EXPLICIT_HYDRATION: u1 = 0,
     }) CF_CALLBACK_VALIDATE_DATA_FLAGS {
-        return @intToEnum(CF_CALLBACK_VALIDATE_DATA_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_VALIDATE_DATA_FLAGS.NONE) else 0)
-            | (if (o.EXPLICIT_HYDRATION == 1) @enumToInt(CF_CALLBACK_VALIDATE_DATA_FLAGS.EXPLICIT_HYDRATION) else 0)
-        );
+        return @as(CF_CALLBACK_VALIDATE_DATA_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_CALLBACK_VALIDATE_DATA_FLAGS.NONE) else 0)
+            | (if (o.EXPLICIT_HYDRATION == 1) @intFromEnum(CF_CALLBACK_VALIDATE_DATA_FLAGS.EXPLICIT_HYDRATION) else 0)
+        ));
     }
 };
 pub const CF_CALLBACK_VALIDATE_DATA_FLAG_NONE = CF_CALLBACK_VALIDATE_DATA_FLAGS.NONE;
@@ -443,9 +443,9 @@ pub const CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS {
-        return @intToEnum(CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS,
-              (if (o.E == 1) @enumToInt(CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS.E) else 0)
-        );
+        return @as(CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS.E) else 0)
+        ));
     }
 };
 pub const CF_CALLBACK_FETCH_PLACEHOLDERS_FLAG_NONE = CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS.E;
@@ -460,11 +460,11 @@ pub const CF_CALLBACK_OPEN_COMPLETION_FLAGS = enum(u32) {
         PLACEHOLDER_UNKNOWN: u1 = 0,
         PLACEHOLDER_UNSUPPORTED: u1 = 0,
     }) CF_CALLBACK_OPEN_COMPLETION_FLAGS {
-        return @intToEnum(CF_CALLBACK_OPEN_COMPLETION_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_OPEN_COMPLETION_FLAGS.NONE) else 0)
-            | (if (o.PLACEHOLDER_UNKNOWN == 1) @enumToInt(CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNKNOWN) else 0)
-            | (if (o.PLACEHOLDER_UNSUPPORTED == 1) @enumToInt(CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNSUPPORTED) else 0)
-        );
+        return @as(CF_CALLBACK_OPEN_COMPLETION_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_CALLBACK_OPEN_COMPLETION_FLAGS.NONE) else 0)
+            | (if (o.PLACEHOLDER_UNKNOWN == 1) @intFromEnum(CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNKNOWN) else 0)
+            | (if (o.PLACEHOLDER_UNSUPPORTED == 1) @intFromEnum(CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNSUPPORTED) else 0)
+        ));
     }
 };
 pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_NONE = CF_CALLBACK_OPEN_COMPLETION_FLAGS.NONE;
@@ -479,10 +479,10 @@ pub const CF_CALLBACK_CLOSE_COMPLETION_FLAGS = enum(u32) {
         NONE: u1 = 0,
         DELETED: u1 = 0,
     }) CF_CALLBACK_CLOSE_COMPLETION_FLAGS {
-        return @intToEnum(CF_CALLBACK_CLOSE_COMPLETION_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_CLOSE_COMPLETION_FLAGS.NONE) else 0)
-            | (if (o.DELETED == 1) @enumToInt(CF_CALLBACK_CLOSE_COMPLETION_FLAGS.DELETED) else 0)
-        );
+        return @as(CF_CALLBACK_CLOSE_COMPLETION_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_CALLBACK_CLOSE_COMPLETION_FLAGS.NONE) else 0)
+            | (if (o.DELETED == 1) @intFromEnum(CF_CALLBACK_CLOSE_COMPLETION_FLAGS.DELETED) else 0)
+        ));
     }
 };
 pub const CF_CALLBACK_CLOSE_COMPLETION_FLAG_NONE = CF_CALLBACK_CLOSE_COMPLETION_FLAGS.NONE;
@@ -496,10 +496,10 @@ pub const CF_CALLBACK_DEHYDRATE_FLAGS = enum(u32) {
         NONE: u1 = 0,
         BACKGROUND: u1 = 0,
     }) CF_CALLBACK_DEHYDRATE_FLAGS {
-        return @intToEnum(CF_CALLBACK_DEHYDRATE_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_DEHYDRATE_FLAGS.NONE) else 0)
-            | (if (o.BACKGROUND == 1) @enumToInt(CF_CALLBACK_DEHYDRATE_FLAGS.BACKGROUND) else 0)
-        );
+        return @as(CF_CALLBACK_DEHYDRATE_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_CALLBACK_DEHYDRATE_FLAGS.NONE) else 0)
+            | (if (o.BACKGROUND == 1) @intFromEnum(CF_CALLBACK_DEHYDRATE_FLAGS.BACKGROUND) else 0)
+        ));
     }
 };
 pub const CF_CALLBACK_DEHYDRATE_FLAG_NONE = CF_CALLBACK_DEHYDRATE_FLAGS.NONE;
@@ -515,11 +515,11 @@ pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS = enum(u32) {
         BACKGROUND: u1 = 0,
         DEHYDRATED: u1 = 0,
     }) CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS {
-        return @intToEnum(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.NONE) else 0)
-            | (if (o.BACKGROUND == 1) @enumToInt(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.BACKGROUND) else 0)
-            | (if (o.DEHYDRATED == 1) @enumToInt(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.DEHYDRATED) else 0)
-        );
+        return @as(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.NONE) else 0)
+            | (if (o.BACKGROUND == 1) @intFromEnum(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.BACKGROUND) else 0)
+            | (if (o.DEHYDRATED == 1) @intFromEnum(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.DEHYDRATED) else 0)
+        ));
     }
 };
 pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_NONE = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.NONE;
@@ -536,11 +536,11 @@ pub const CF_CALLBACK_DELETE_FLAGS = enum(u32) {
         IS_DIRECTORY: u1 = 0,
         IS_UNDELETE: u1 = 0,
     }) CF_CALLBACK_DELETE_FLAGS {
-        return @intToEnum(CF_CALLBACK_DELETE_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_DELETE_FLAGS.NONE) else 0)
-            | (if (o.IS_DIRECTORY == 1) @enumToInt(CF_CALLBACK_DELETE_FLAGS.IS_DIRECTORY) else 0)
-            | (if (o.IS_UNDELETE == 1) @enumToInt(CF_CALLBACK_DELETE_FLAGS.IS_UNDELETE) else 0)
-        );
+        return @as(CF_CALLBACK_DELETE_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_CALLBACK_DELETE_FLAGS.NONE) else 0)
+            | (if (o.IS_DIRECTORY == 1) @intFromEnum(CF_CALLBACK_DELETE_FLAGS.IS_DIRECTORY) else 0)
+            | (if (o.IS_UNDELETE == 1) @intFromEnum(CF_CALLBACK_DELETE_FLAGS.IS_UNDELETE) else 0)
+        ));
     }
 };
 pub const CF_CALLBACK_DELETE_FLAG_NONE = CF_CALLBACK_DELETE_FLAGS.NONE;
@@ -553,9 +553,9 @@ pub const CF_CALLBACK_DELETE_COMPLETION_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_CALLBACK_DELETE_COMPLETION_FLAGS {
-        return @intToEnum(CF_CALLBACK_DELETE_COMPLETION_FLAGS,
-              (if (o.E == 1) @enumToInt(CF_CALLBACK_DELETE_COMPLETION_FLAGS.E) else 0)
-        );
+        return @as(CF_CALLBACK_DELETE_COMPLETION_FLAGS, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_CALLBACK_DELETE_COMPLETION_FLAGS.E) else 0)
+        ));
     }
 };
 pub const CF_CALLBACK_DELETE_COMPLETION_FLAG_NONE = CF_CALLBACK_DELETE_COMPLETION_FLAGS.E;
@@ -572,12 +572,12 @@ pub const CF_CALLBACK_RENAME_FLAGS = enum(u32) {
         SOURCE_IN_SCOPE: u1 = 0,
         TARGET_IN_SCOPE: u1 = 0,
     }) CF_CALLBACK_RENAME_FLAGS {
-        return @intToEnum(CF_CALLBACK_RENAME_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_CALLBACK_RENAME_FLAGS.NONE) else 0)
-            | (if (o.IS_DIRECTORY == 1) @enumToInt(CF_CALLBACK_RENAME_FLAGS.IS_DIRECTORY) else 0)
-            | (if (o.SOURCE_IN_SCOPE == 1) @enumToInt(CF_CALLBACK_RENAME_FLAGS.SOURCE_IN_SCOPE) else 0)
-            | (if (o.TARGET_IN_SCOPE == 1) @enumToInt(CF_CALLBACK_RENAME_FLAGS.TARGET_IN_SCOPE) else 0)
-        );
+        return @as(CF_CALLBACK_RENAME_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_CALLBACK_RENAME_FLAGS.NONE) else 0)
+            | (if (o.IS_DIRECTORY == 1) @intFromEnum(CF_CALLBACK_RENAME_FLAGS.IS_DIRECTORY) else 0)
+            | (if (o.SOURCE_IN_SCOPE == 1) @intFromEnum(CF_CALLBACK_RENAME_FLAGS.SOURCE_IN_SCOPE) else 0)
+            | (if (o.TARGET_IN_SCOPE == 1) @intFromEnum(CF_CALLBACK_RENAME_FLAGS.TARGET_IN_SCOPE) else 0)
+        ));
     }
 };
 pub const CF_CALLBACK_RENAME_FLAG_NONE = CF_CALLBACK_RENAME_FLAGS.NONE;
@@ -591,9 +591,9 @@ pub const CF_CALLBACK_RENAME_COMPLETION_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_CALLBACK_RENAME_COMPLETION_FLAGS {
-        return @intToEnum(CF_CALLBACK_RENAME_COMPLETION_FLAGS,
-              (if (o.E == 1) @enumToInt(CF_CALLBACK_RENAME_COMPLETION_FLAGS.E) else 0)
-        );
+        return @as(CF_CALLBACK_RENAME_COMPLETION_FLAGS, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_CALLBACK_RENAME_COMPLETION_FLAGS.E) else 0)
+        ));
     }
 };
 pub const CF_CALLBACK_RENAME_COMPLETION_FLAG_NONE = CF_CALLBACK_RENAME_COMPLETION_FLAGS.E;
@@ -731,12 +731,12 @@ pub const CF_CONNECT_FLAGS = enum(u32) {
         REQUIRE_FULL_FILE_PATH: u1 = 0,
         BLOCK_SELF_IMPLICIT_HYDRATION: u1 = 0,
     }) CF_CONNECT_FLAGS {
-        return @intToEnum(CF_CONNECT_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_CONNECT_FLAGS.NONE) else 0)
-            | (if (o.REQUIRE_PROCESS_INFO == 1) @enumToInt(CF_CONNECT_FLAGS.REQUIRE_PROCESS_INFO) else 0)
-            | (if (o.REQUIRE_FULL_FILE_PATH == 1) @enumToInt(CF_CONNECT_FLAGS.REQUIRE_FULL_FILE_PATH) else 0)
-            | (if (o.BLOCK_SELF_IMPLICIT_HYDRATION == 1) @enumToInt(CF_CONNECT_FLAGS.BLOCK_SELF_IMPLICIT_HYDRATION) else 0)
-        );
+        return @as(CF_CONNECT_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_CONNECT_FLAGS.NONE) else 0)
+            | (if (o.REQUIRE_PROCESS_INFO == 1) @intFromEnum(CF_CONNECT_FLAGS.REQUIRE_PROCESS_INFO) else 0)
+            | (if (o.REQUIRE_FULL_FILE_PATH == 1) @intFromEnum(CF_CONNECT_FLAGS.REQUIRE_FULL_FILE_PATH) else 0)
+            | (if (o.BLOCK_SELF_IMPLICIT_HYDRATION == 1) @intFromEnum(CF_CONNECT_FLAGS.BLOCK_SELF_IMPLICIT_HYDRATION) else 0)
+        ));
     }
 };
 pub const CF_CONNECT_FLAG_NONE = CF_CONNECT_FLAGS.NONE;
@@ -788,9 +788,9 @@ pub const CF_OPERATION_TRANSFER_DATA_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_OPERATION_TRANSFER_DATA_FLAGS {
-        return @intToEnum(CF_OPERATION_TRANSFER_DATA_FLAGS,
-              (if (o.E == 1) @enumToInt(CF_OPERATION_TRANSFER_DATA_FLAGS.E) else 0)
-        );
+        return @as(CF_OPERATION_TRANSFER_DATA_FLAGS, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_OPERATION_TRANSFER_DATA_FLAGS.E) else 0)
+        ));
     }
 };
 pub const CF_OPERATION_TRANSFER_DATA_FLAG_NONE = CF_OPERATION_TRANSFER_DATA_FLAGS.E;
@@ -801,9 +801,9 @@ pub const CF_OPERATION_RETRIEVE_DATA_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_OPERATION_RETRIEVE_DATA_FLAGS {
-        return @intToEnum(CF_OPERATION_RETRIEVE_DATA_FLAGS,
-              (if (o.E == 1) @enumToInt(CF_OPERATION_RETRIEVE_DATA_FLAGS.E) else 0)
-        );
+        return @as(CF_OPERATION_RETRIEVE_DATA_FLAGS, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_OPERATION_RETRIEVE_DATA_FLAGS.E) else 0)
+        ));
     }
 };
 pub const CF_OPERATION_RETRIEVE_DATA_FLAG_NONE = CF_OPERATION_RETRIEVE_DATA_FLAGS.E;
@@ -814,9 +814,9 @@ pub const CF_OPERATION_ACK_DATA_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_OPERATION_ACK_DATA_FLAGS {
-        return @intToEnum(CF_OPERATION_ACK_DATA_FLAGS,
-              (if (o.E == 1) @enumToInt(CF_OPERATION_ACK_DATA_FLAGS.E) else 0)
-        );
+        return @as(CF_OPERATION_ACK_DATA_FLAGS, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_OPERATION_ACK_DATA_FLAGS.E) else 0)
+        ));
     }
 };
 pub const CF_OPERATION_ACK_DATA_FLAG_NONE = CF_OPERATION_ACK_DATA_FLAGS.E;
@@ -829,10 +829,10 @@ pub const CF_OPERATION_RESTART_HYDRATION_FLAGS = enum(u32) {
         NONE: u1 = 0,
         MARK_IN_SYNC: u1 = 0,
     }) CF_OPERATION_RESTART_HYDRATION_FLAGS {
-        return @intToEnum(CF_OPERATION_RESTART_HYDRATION_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_OPERATION_RESTART_HYDRATION_FLAGS.NONE) else 0)
-            | (if (o.MARK_IN_SYNC == 1) @enumToInt(CF_OPERATION_RESTART_HYDRATION_FLAGS.MARK_IN_SYNC) else 0)
-        );
+        return @as(CF_OPERATION_RESTART_HYDRATION_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_OPERATION_RESTART_HYDRATION_FLAGS.NONE) else 0)
+            | (if (o.MARK_IN_SYNC == 1) @intFromEnum(CF_OPERATION_RESTART_HYDRATION_FLAGS.MARK_IN_SYNC) else 0)
+        ));
     }
 };
 pub const CF_OPERATION_RESTART_HYDRATION_FLAG_NONE = CF_OPERATION_RESTART_HYDRATION_FLAGS.NONE;
@@ -848,11 +848,11 @@ pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS = enum(u32) {
         STOP_ON_ERROR: u1 = 0,
         DISABLE_ON_DEMAND_POPULATION: u1 = 0,
     }) CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS {
-        return @intToEnum(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.NONE) else 0)
-            | (if (o.STOP_ON_ERROR == 1) @enumToInt(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.STOP_ON_ERROR) else 0)
-            | (if (o.DISABLE_ON_DEMAND_POPULATION == 1) @enumToInt(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.DISABLE_ON_DEMAND_POPULATION) else 0)
-        );
+        return @as(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.NONE) else 0)
+            | (if (o.STOP_ON_ERROR == 1) @intFromEnum(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.STOP_ON_ERROR) else 0)
+            | (if (o.DISABLE_ON_DEMAND_POPULATION == 1) @intFromEnum(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.DISABLE_ON_DEMAND_POPULATION) else 0)
+        ));
     }
 };
 pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_NONE = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.NONE;
@@ -865,9 +865,9 @@ pub const CF_OPERATION_ACK_DEHYDRATE_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_OPERATION_ACK_DEHYDRATE_FLAGS {
-        return @intToEnum(CF_OPERATION_ACK_DEHYDRATE_FLAGS,
-              (if (o.E == 1) @enumToInt(CF_OPERATION_ACK_DEHYDRATE_FLAGS.E) else 0)
-        );
+        return @as(CF_OPERATION_ACK_DEHYDRATE_FLAGS, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_OPERATION_ACK_DEHYDRATE_FLAGS.E) else 0)
+        ));
     }
 };
 pub const CF_OPERATION_ACK_DEHYDRATE_FLAG_NONE = CF_OPERATION_ACK_DEHYDRATE_FLAGS.E;
@@ -878,9 +878,9 @@ pub const CF_OPERATION_ACK_RENAME_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_OPERATION_ACK_RENAME_FLAGS {
-        return @intToEnum(CF_OPERATION_ACK_RENAME_FLAGS,
-              (if (o.E == 1) @enumToInt(CF_OPERATION_ACK_RENAME_FLAGS.E) else 0)
-        );
+        return @as(CF_OPERATION_ACK_RENAME_FLAGS, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_OPERATION_ACK_RENAME_FLAGS.E) else 0)
+        ));
     }
 };
 pub const CF_OPERATION_ACK_RENAME_FLAG_NONE = CF_OPERATION_ACK_RENAME_FLAGS.E;
@@ -891,9 +891,9 @@ pub const CF_OPERATION_ACK_DELETE_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_OPERATION_ACK_DELETE_FLAGS {
-        return @intToEnum(CF_OPERATION_ACK_DELETE_FLAGS,
-              (if (o.E == 1) @enumToInt(CF_OPERATION_ACK_DELETE_FLAGS.E) else 0)
-        );
+        return @as(CF_OPERATION_ACK_DELETE_FLAGS, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_OPERATION_ACK_DELETE_FLAGS.E) else 0)
+        ));
     }
 };
 pub const CF_OPERATION_ACK_DELETE_FLAG_NONE = CF_OPERATION_ACK_DELETE_FLAGS.E;
@@ -960,10 +960,10 @@ pub const CF_CREATE_FLAGS = enum(u32) {
         NONE: u1 = 0,
         STOP_ON_ERROR: u1 = 0,
     }) CF_CREATE_FLAGS {
-        return @intToEnum(CF_CREATE_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_CREATE_FLAGS.NONE) else 0)
-            | (if (o.STOP_ON_ERROR == 1) @enumToInt(CF_CREATE_FLAGS.STOP_ON_ERROR) else 0)
-        );
+        return @as(CF_CREATE_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_CREATE_FLAGS.NONE) else 0)
+            | (if (o.STOP_ON_ERROR == 1) @intFromEnum(CF_CREATE_FLAGS.STOP_ON_ERROR) else 0)
+        ));
     }
 };
 pub const CF_CREATE_FLAG_NONE = CF_CREATE_FLAGS.NONE;
@@ -983,13 +983,13 @@ pub const CF_OPEN_FILE_FLAGS = enum(u32) {
         DELETE_ACCESS: u1 = 0,
         FOREGROUND: u1 = 0,
     }) CF_OPEN_FILE_FLAGS {
-        return @intToEnum(CF_OPEN_FILE_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_OPEN_FILE_FLAGS.NONE) else 0)
-            | (if (o.EXCLUSIVE == 1) @enumToInt(CF_OPEN_FILE_FLAGS.EXCLUSIVE) else 0)
-            | (if (o.WRITE_ACCESS == 1) @enumToInt(CF_OPEN_FILE_FLAGS.WRITE_ACCESS) else 0)
-            | (if (o.DELETE_ACCESS == 1) @enumToInt(CF_OPEN_FILE_FLAGS.DELETE_ACCESS) else 0)
-            | (if (o.FOREGROUND == 1) @enumToInt(CF_OPEN_FILE_FLAGS.FOREGROUND) else 0)
-        );
+        return @as(CF_OPEN_FILE_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_OPEN_FILE_FLAGS.NONE) else 0)
+            | (if (o.EXCLUSIVE == 1) @intFromEnum(CF_OPEN_FILE_FLAGS.EXCLUSIVE) else 0)
+            | (if (o.WRITE_ACCESS == 1) @intFromEnum(CF_OPEN_FILE_FLAGS.WRITE_ACCESS) else 0)
+            | (if (o.DELETE_ACCESS == 1) @intFromEnum(CF_OPEN_FILE_FLAGS.DELETE_ACCESS) else 0)
+            | (if (o.FOREGROUND == 1) @intFromEnum(CF_OPEN_FILE_FLAGS.FOREGROUND) else 0)
+        ));
     }
 };
 pub const CF_OPEN_FILE_FLAG_NONE = CF_OPEN_FILE_FLAGS.NONE;
@@ -1019,14 +1019,14 @@ pub const CF_CONVERT_FLAGS = enum(u32) {
         ALWAYS_FULL: u1 = 0,
         FORCE_CONVERT_TO_CLOUD_FILE: u1 = 0,
     }) CF_CONVERT_FLAGS {
-        return @intToEnum(CF_CONVERT_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_CONVERT_FLAGS.NONE) else 0)
-            | (if (o.MARK_IN_SYNC == 1) @enumToInt(CF_CONVERT_FLAGS.MARK_IN_SYNC) else 0)
-            | (if (o.DEHYDRATE == 1) @enumToInt(CF_CONVERT_FLAGS.DEHYDRATE) else 0)
-            | (if (o.ENABLE_ON_DEMAND_POPULATION == 1) @enumToInt(CF_CONVERT_FLAGS.ENABLE_ON_DEMAND_POPULATION) else 0)
-            | (if (o.ALWAYS_FULL == 1) @enumToInt(CF_CONVERT_FLAGS.ALWAYS_FULL) else 0)
-            | (if (o.FORCE_CONVERT_TO_CLOUD_FILE == 1) @enumToInt(CF_CONVERT_FLAGS.FORCE_CONVERT_TO_CLOUD_FILE) else 0)
-        );
+        return @as(CF_CONVERT_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_CONVERT_FLAGS.NONE) else 0)
+            | (if (o.MARK_IN_SYNC == 1) @intFromEnum(CF_CONVERT_FLAGS.MARK_IN_SYNC) else 0)
+            | (if (o.DEHYDRATE == 1) @intFromEnum(CF_CONVERT_FLAGS.DEHYDRATE) else 0)
+            | (if (o.ENABLE_ON_DEMAND_POPULATION == 1) @intFromEnum(CF_CONVERT_FLAGS.ENABLE_ON_DEMAND_POPULATION) else 0)
+            | (if (o.ALWAYS_FULL == 1) @intFromEnum(CF_CONVERT_FLAGS.ALWAYS_FULL) else 0)
+            | (if (o.FORCE_CONVERT_TO_CLOUD_FILE == 1) @intFromEnum(CF_CONVERT_FLAGS.FORCE_CONVERT_TO_CLOUD_FILE) else 0)
+        ));
     }
 };
 pub const CF_CONVERT_FLAG_NONE = CF_CONVERT_FLAGS.NONE;
@@ -1064,20 +1064,20 @@ pub const CF_UPDATE_FLAGS = enum(u32) {
         ALWAYS_FULL: u1 = 0,
         ALLOW_PARTIAL: u1 = 0,
     }) CF_UPDATE_FLAGS {
-        return @intToEnum(CF_UPDATE_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_UPDATE_FLAGS.NONE) else 0)
-            | (if (o.VERIFY_IN_SYNC == 1) @enumToInt(CF_UPDATE_FLAGS.VERIFY_IN_SYNC) else 0)
-            | (if (o.MARK_IN_SYNC == 1) @enumToInt(CF_UPDATE_FLAGS.MARK_IN_SYNC) else 0)
-            | (if (o.DEHYDRATE == 1) @enumToInt(CF_UPDATE_FLAGS.DEHYDRATE) else 0)
-            | (if (o.ENABLE_ON_DEMAND_POPULATION == 1) @enumToInt(CF_UPDATE_FLAGS.ENABLE_ON_DEMAND_POPULATION) else 0)
-            | (if (o.DISABLE_ON_DEMAND_POPULATION == 1) @enumToInt(CF_UPDATE_FLAGS.DISABLE_ON_DEMAND_POPULATION) else 0)
-            | (if (o.REMOVE_FILE_IDENTITY == 1) @enumToInt(CF_UPDATE_FLAGS.REMOVE_FILE_IDENTITY) else 0)
-            | (if (o.CLEAR_IN_SYNC == 1) @enumToInt(CF_UPDATE_FLAGS.CLEAR_IN_SYNC) else 0)
-            | (if (o.REMOVE_PROPERTY == 1) @enumToInt(CF_UPDATE_FLAGS.REMOVE_PROPERTY) else 0)
-            | (if (o.PASSTHROUGH_FS_METADATA == 1) @enumToInt(CF_UPDATE_FLAGS.PASSTHROUGH_FS_METADATA) else 0)
-            | (if (o.ALWAYS_FULL == 1) @enumToInt(CF_UPDATE_FLAGS.ALWAYS_FULL) else 0)
-            | (if (o.ALLOW_PARTIAL == 1) @enumToInt(CF_UPDATE_FLAGS.ALLOW_PARTIAL) else 0)
-        );
+        return @as(CF_UPDATE_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_UPDATE_FLAGS.NONE) else 0)
+            | (if (o.VERIFY_IN_SYNC == 1) @intFromEnum(CF_UPDATE_FLAGS.VERIFY_IN_SYNC) else 0)
+            | (if (o.MARK_IN_SYNC == 1) @intFromEnum(CF_UPDATE_FLAGS.MARK_IN_SYNC) else 0)
+            | (if (o.DEHYDRATE == 1) @intFromEnum(CF_UPDATE_FLAGS.DEHYDRATE) else 0)
+            | (if (o.ENABLE_ON_DEMAND_POPULATION == 1) @intFromEnum(CF_UPDATE_FLAGS.ENABLE_ON_DEMAND_POPULATION) else 0)
+            | (if (o.DISABLE_ON_DEMAND_POPULATION == 1) @intFromEnum(CF_UPDATE_FLAGS.DISABLE_ON_DEMAND_POPULATION) else 0)
+            | (if (o.REMOVE_FILE_IDENTITY == 1) @intFromEnum(CF_UPDATE_FLAGS.REMOVE_FILE_IDENTITY) else 0)
+            | (if (o.CLEAR_IN_SYNC == 1) @intFromEnum(CF_UPDATE_FLAGS.CLEAR_IN_SYNC) else 0)
+            | (if (o.REMOVE_PROPERTY == 1) @intFromEnum(CF_UPDATE_FLAGS.REMOVE_PROPERTY) else 0)
+            | (if (o.PASSTHROUGH_FS_METADATA == 1) @intFromEnum(CF_UPDATE_FLAGS.PASSTHROUGH_FS_METADATA) else 0)
+            | (if (o.ALWAYS_FULL == 1) @intFromEnum(CF_UPDATE_FLAGS.ALWAYS_FULL) else 0)
+            | (if (o.ALLOW_PARTIAL == 1) @intFromEnum(CF_UPDATE_FLAGS.ALLOW_PARTIAL) else 0)
+        ));
     }
 };
 pub const CF_UPDATE_FLAG_NONE = CF_UPDATE_FLAGS.NONE;
@@ -1099,9 +1099,9 @@ pub const CF_REVERT_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_REVERT_FLAGS {
-        return @intToEnum(CF_REVERT_FLAGS,
-              (if (o.E == 1) @enumToInt(CF_REVERT_FLAGS.E) else 0)
-        );
+        return @as(CF_REVERT_FLAGS, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_REVERT_FLAGS.E) else 0)
+        ));
     }
 };
 pub const CF_REVERT_FLAG_NONE = CF_REVERT_FLAGS.E;
@@ -1112,9 +1112,9 @@ pub const CF_HYDRATE_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_HYDRATE_FLAGS {
-        return @intToEnum(CF_HYDRATE_FLAGS,
-              (if (o.E == 1) @enumToInt(CF_HYDRATE_FLAGS.E) else 0)
-        );
+        return @as(CF_HYDRATE_FLAGS, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_HYDRATE_FLAGS.E) else 0)
+        ));
     }
 };
 pub const CF_HYDRATE_FLAG_NONE = CF_HYDRATE_FLAGS.E;
@@ -1127,10 +1127,10 @@ pub const CF_DEHYDRATE_FLAGS = enum(u32) {
         NONE: u1 = 0,
         BACKGROUND: u1 = 0,
     }) CF_DEHYDRATE_FLAGS {
-        return @intToEnum(CF_DEHYDRATE_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_DEHYDRATE_FLAGS.NONE) else 0)
-            | (if (o.BACKGROUND == 1) @enumToInt(CF_DEHYDRATE_FLAGS.BACKGROUND) else 0)
-        );
+        return @as(CF_DEHYDRATE_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_DEHYDRATE_FLAGS.NONE) else 0)
+            | (if (o.BACKGROUND == 1) @intFromEnum(CF_DEHYDRATE_FLAGS.BACKGROUND) else 0)
+        ));
     }
 };
 pub const CF_DEHYDRATE_FLAG_NONE = CF_DEHYDRATE_FLAGS.NONE;
@@ -1161,12 +1161,12 @@ pub const CF_SET_PIN_FLAGS = enum(u32) {
         RECURSE_ONLY: u1 = 0,
         RECURSE_STOP_ON_ERROR: u1 = 0,
     }) CF_SET_PIN_FLAGS {
-        return @intToEnum(CF_SET_PIN_FLAGS,
-              (if (o.NONE == 1) @enumToInt(CF_SET_PIN_FLAGS.NONE) else 0)
-            | (if (o.RECURSE == 1) @enumToInt(CF_SET_PIN_FLAGS.RECURSE) else 0)
-            | (if (o.RECURSE_ONLY == 1) @enumToInt(CF_SET_PIN_FLAGS.RECURSE_ONLY) else 0)
-            | (if (o.RECURSE_STOP_ON_ERROR == 1) @enumToInt(CF_SET_PIN_FLAGS.RECURSE_STOP_ON_ERROR) else 0)
-        );
+        return @as(CF_SET_PIN_FLAGS, @enumFromInt(
+              (if (o.NONE == 1) @intFromEnum(CF_SET_PIN_FLAGS.NONE) else 0)
+            | (if (o.RECURSE == 1) @intFromEnum(CF_SET_PIN_FLAGS.RECURSE) else 0)
+            | (if (o.RECURSE_ONLY == 1) @intFromEnum(CF_SET_PIN_FLAGS.RECURSE_ONLY) else 0)
+            | (if (o.RECURSE_STOP_ON_ERROR == 1) @intFromEnum(CF_SET_PIN_FLAGS.RECURSE_STOP_ON_ERROR) else 0)
+        ));
     }
 };
 pub const CF_SET_PIN_FLAG_NONE = CF_SET_PIN_FLAGS.NONE;
@@ -1187,9 +1187,9 @@ pub const CF_SET_IN_SYNC_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         E: u1 = 0,
     }) CF_SET_IN_SYNC_FLAGS {
-        return @intToEnum(CF_SET_IN_SYNC_FLAGS,
-              (if (o.E == 1) @enumToInt(CF_SET_IN_SYNC_FLAGS.E) else 0)
-        );
+        return @as(CF_SET_IN_SYNC_FLAGS, @enumFromInt(
+              (if (o.E == 1) @intFromEnum(CF_SET_IN_SYNC_FLAGS.E) else 0)
+        ));
     }
 };
 pub const CF_SET_IN_SYNC_FLAG_NONE = CF_SET_IN_SYNC_FLAGS.E;
@@ -1214,16 +1214,16 @@ pub const CF_PLACEHOLDER_STATE = enum(u32) {
         PARTIALLY_ON_DISK: u1 = 0,
         INVALID: u1 = 0,
     }) CF_PLACEHOLDER_STATE {
-        return @intToEnum(CF_PLACEHOLDER_STATE,
-              (if (o.NO_STATES == 1) @enumToInt(CF_PLACEHOLDER_STATE.NO_STATES) else 0)
-            | (if (o.PLACEHOLDER == 1) @enumToInt(CF_PLACEHOLDER_STATE.PLACEHOLDER) else 0)
-            | (if (o.SYNC_ROOT == 1) @enumToInt(CF_PLACEHOLDER_STATE.SYNC_ROOT) else 0)
-            | (if (o.ESSENTIAL_PROP_PRESENT == 1) @enumToInt(CF_PLACEHOLDER_STATE.ESSENTIAL_PROP_PRESENT) else 0)
-            | (if (o.IN_SYNC == 1) @enumToInt(CF_PLACEHOLDER_STATE.IN_SYNC) else 0)
-            | (if (o.PARTIAL == 1) @enumToInt(CF_PLACEHOLDER_STATE.PARTIAL) else 0)
-            | (if (o.PARTIALLY_ON_DISK == 1) @enumToInt(CF_PLACEHOLDER_STATE.PARTIALLY_ON_DISK) else 0)
-            | (if (o.INVALID == 1) @enumToInt(CF_PLACEHOLDER_STATE.INVALID) else 0)
-        );
+        return @as(CF_PLACEHOLDER_STATE, @enumFromInt(
+              (if (o.NO_STATES == 1) @intFromEnum(CF_PLACEHOLDER_STATE.NO_STATES) else 0)
+            | (if (o.PLACEHOLDER == 1) @intFromEnum(CF_PLACEHOLDER_STATE.PLACEHOLDER) else 0)
+            | (if (o.SYNC_ROOT == 1) @intFromEnum(CF_PLACEHOLDER_STATE.SYNC_ROOT) else 0)
+            | (if (o.ESSENTIAL_PROP_PRESENT == 1) @intFromEnum(CF_PLACEHOLDER_STATE.ESSENTIAL_PROP_PRESENT) else 0)
+            | (if (o.IN_SYNC == 1) @intFromEnum(CF_PLACEHOLDER_STATE.IN_SYNC) else 0)
+            | (if (o.PARTIAL == 1) @intFromEnum(CF_PLACEHOLDER_STATE.PARTIAL) else 0)
+            | (if (o.PARTIALLY_ON_DISK == 1) @intFromEnum(CF_PLACEHOLDER_STATE.PARTIALLY_ON_DISK) else 0)
+            | (if (o.INVALID == 1) @intFromEnum(CF_PLACEHOLDER_STATE.INVALID) else 0)
+        ));
     }
 };
 pub const CF_PLACEHOLDER_STATE_NO_STATES = CF_PLACEHOLDER_STATE.NO_STATES;

@@ -29,7 +29,7 @@ pub const IDirect3DDxgiInterfaceAccess = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDirect3DDxgiInterfaceAccess_GetInterface(self: *const T, iid: ?*const Guid, p: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IDirect3DDxgiInterfaceAccess.VTable, self.vtable).GetInterface(@ptrCast(*const IDirect3DDxgiInterfaceAccess, self), iid, p);
+            return @as(*const IDirect3DDxgiInterfaceAccess.VTable, @ptrCast(self.vtable)).GetInterface(@as(*const IDirect3DDxgiInterfaceAccess, @ptrCast(self)), iid, p);
         }
     };}
     pub usingnamespace MethodMixin(@This());

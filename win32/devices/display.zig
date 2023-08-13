@@ -1316,19 +1316,19 @@ pub const ICloneViewHelper = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ICloneViewHelper_GetConnectedIDs(self: *const T, wszAdaptorName: ?[*:0]const u16, pulCount: ?*u32, pulID: ?*u32, ulFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICloneViewHelper.VTable, self.vtable).GetConnectedIDs(@ptrCast(*const ICloneViewHelper, self), wszAdaptorName, pulCount, pulID, ulFlags);
+            return @as(*const ICloneViewHelper.VTable, @ptrCast(self.vtable)).GetConnectedIDs(@as(*const ICloneViewHelper, @ptrCast(self)), wszAdaptorName, pulCount, pulID, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ICloneViewHelper_GetActiveTopology(self: *const T, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, pulCount: ?*u32, pulTargetID: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICloneViewHelper.VTable, self.vtable).GetActiveTopology(@ptrCast(*const ICloneViewHelper, self), wszAdaptorName, ulSourceID, pulCount, pulTargetID);
+            return @as(*const ICloneViewHelper.VTable, @ptrCast(self.vtable)).GetActiveTopology(@as(*const ICloneViewHelper, @ptrCast(self)), wszAdaptorName, ulSourceID, pulCount, pulTargetID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ICloneViewHelper_SetActiveTopology(self: *const T, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, ulCount: u32, pulTargetID: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICloneViewHelper.VTable, self.vtable).SetActiveTopology(@ptrCast(*const ICloneViewHelper, self), wszAdaptorName, ulSourceID, ulCount, pulTargetID);
+            return @as(*const ICloneViewHelper.VTable, @ptrCast(self.vtable)).SetActiveTopology(@as(*const ICloneViewHelper, @ptrCast(self)), wszAdaptorName, ulSourceID, ulCount, pulTargetID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ICloneViewHelper_Commit(self: *const T, fFinalCall: BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICloneViewHelper.VTable, self.vtable).Commit(@ptrCast(*const ICloneViewHelper, self), fFinalCall);
+            return @as(*const ICloneViewHelper.VTable, @ptrCast(self.vtable)).Commit(@as(*const ICloneViewHelper, @ptrCast(self)), fFinalCall);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -1421,27 +1421,27 @@ pub const IViewHelper = extern struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IViewHelper_GetConnectedIDs(self: *const T, wszAdaptorName: ?[*:0]const u16, pulCount: ?*u32, pulID: ?*u32, ulFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IViewHelper.VTable, self.vtable).GetConnectedIDs(@ptrCast(*const IViewHelper, self), wszAdaptorName, pulCount, pulID, ulFlags);
+            return @as(*const IViewHelper.VTable, @ptrCast(self.vtable)).GetConnectedIDs(@as(*const IViewHelper, @ptrCast(self)), wszAdaptorName, pulCount, pulID, ulFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IViewHelper_GetActiveTopology(self: *const T, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, pulCount: ?*u32, pulTargetID: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IViewHelper.VTable, self.vtable).GetActiveTopology(@ptrCast(*const IViewHelper, self), wszAdaptorName, ulSourceID, pulCount, pulTargetID);
+            return @as(*const IViewHelper.VTable, @ptrCast(self.vtable)).GetActiveTopology(@as(*const IViewHelper, @ptrCast(self)), wszAdaptorName, ulSourceID, pulCount, pulTargetID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IViewHelper_SetActiveTopology(self: *const T, wszAdaptorName: ?[*:0]const u16, ulSourceID: u32, ulCount: u32, pulTargetID: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IViewHelper.VTable, self.vtable).SetActiveTopology(@ptrCast(*const IViewHelper, self), wszAdaptorName, ulSourceID, ulCount, pulTargetID);
+            return @as(*const IViewHelper.VTable, @ptrCast(self.vtable)).SetActiveTopology(@as(*const IViewHelper, @ptrCast(self)), wszAdaptorName, ulSourceID, ulCount, pulTargetID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IViewHelper_Commit(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IViewHelper.VTable, self.vtable).Commit(@ptrCast(*const IViewHelper, self));
+            return @as(*const IViewHelper.VTable, @ptrCast(self.vtable)).Commit(@as(*const IViewHelper, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IViewHelper_SetConfiguration(self: *const T, pIStream: ?*IStream, pulStatus: ?*u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IViewHelper.VTable, self.vtable).SetConfiguration(@ptrCast(*const IViewHelper, self), pIStream, pulStatus);
+            return @as(*const IViewHelper.VTable, @ptrCast(self.vtable)).SetConfiguration(@as(*const IViewHelper, @ptrCast(self)), pIStream, pulStatus);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IViewHelper_GetProceedOnNewConfiguration(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IViewHelper.VTable, self.vtable).GetProceedOnNewConfiguration(@ptrCast(*const IViewHelper, self));
+            return @as(*const IViewHelper.VTable, @ptrCast(self.vtable)).GetProceedOnNewConfiguration(@as(*const IViewHelper, @ptrCast(self)));
         }
     };}
     pub usingnamespace MethodMixin(@This());

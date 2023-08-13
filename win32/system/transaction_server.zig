@@ -88,19 +88,19 @@ pub const ICatalog = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ICatalog_GetCollection(self: *const T, bstrCollName: ?BSTR, ppCatalogCollection: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICatalog.VTable, self.vtable).GetCollection(@ptrCast(*const ICatalog, self), bstrCollName, ppCatalogCollection);
+            return @as(*const ICatalog.VTable, @ptrCast(self.vtable)).GetCollection(@as(*const ICatalog, @ptrCast(self)), bstrCollName, ppCatalogCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ICatalog_Connect(self: *const T, bstrConnectString: ?BSTR, ppCatalogCollection: ?*?*IDispatch) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICatalog.VTable, self.vtable).Connect(@ptrCast(*const ICatalog, self), bstrConnectString, ppCatalogCollection);
+            return @as(*const ICatalog.VTable, @ptrCast(self.vtable)).Connect(@as(*const ICatalog, @ptrCast(self)), bstrConnectString, ppCatalogCollection);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ICatalog_get_MajorVersion(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICatalog.VTable, self.vtable).get_MajorVersion(@ptrCast(*const ICatalog, self), retval);
+            return @as(*const ICatalog.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const ICatalog, @ptrCast(self)), retval);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ICatalog_get_MinorVersion(self: *const T, retval: ?*i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const ICatalog.VTable, self.vtable).get_MinorVersion(@ptrCast(*const ICatalog, self), retval);
+            return @as(*const ICatalog.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const ICatalog, @ptrCast(self)), retval);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -165,19 +165,19 @@ pub const IComponentUtil = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IComponentUtil_InstallComponent(self: *const T, bstrDLLFile: ?BSTR, bstrTypelibFile: ?BSTR, bstrProxyStubDLLFile: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IComponentUtil.VTable, self.vtable).InstallComponent(@ptrCast(*const IComponentUtil, self), bstrDLLFile, bstrTypelibFile, bstrProxyStubDLLFile);
+            return @as(*const IComponentUtil.VTable, @ptrCast(self.vtable)).InstallComponent(@as(*const IComponentUtil, @ptrCast(self)), bstrDLLFile, bstrTypelibFile, bstrProxyStubDLLFile);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IComponentUtil_ImportComponent(self: *const T, bstrCLSID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IComponentUtil.VTable, self.vtable).ImportComponent(@ptrCast(*const IComponentUtil, self), bstrCLSID);
+            return @as(*const IComponentUtil.VTable, @ptrCast(self.vtable)).ImportComponent(@as(*const IComponentUtil, @ptrCast(self)), bstrCLSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IComponentUtil_ImportComponentByName(self: *const T, bstrProgID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IComponentUtil.VTable, self.vtable).ImportComponentByName(@ptrCast(*const IComponentUtil, self), bstrProgID);
+            return @as(*const IComponentUtil.VTable, @ptrCast(self.vtable)).ImportComponentByName(@as(*const IComponentUtil, @ptrCast(self)), bstrProgID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IComponentUtil_GetCLSIDs(self: *const T, bstrDLLFile: ?BSTR, bstrTypelibFile: ?BSTR, aCLSIDs: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IComponentUtil.VTable, self.vtable).GetCLSIDs(@ptrCast(*const IComponentUtil, self), bstrDLLFile, bstrTypelibFile, aCLSIDs);
+            return @as(*const IComponentUtil.VTable, @ptrCast(self.vtable)).GetCLSIDs(@as(*const IComponentUtil, @ptrCast(self)), bstrDLLFile, bstrTypelibFile, aCLSIDs);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -232,15 +232,15 @@ pub const IPackageUtil = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPackageUtil_InstallPackage(self: *const T, bstrPackageFile: ?BSTR, bstrInstallPath: ?BSTR, lOptions: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPackageUtil.VTable, self.vtable).InstallPackage(@ptrCast(*const IPackageUtil, self), bstrPackageFile, bstrInstallPath, lOptions);
+            return @as(*const IPackageUtil.VTable, @ptrCast(self.vtable)).InstallPackage(@as(*const IPackageUtil, @ptrCast(self)), bstrPackageFile, bstrInstallPath, lOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPackageUtil_ExportPackage(self: *const T, bstrPackageID: ?BSTR, bstrPackageFile: ?BSTR, lOptions: i32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPackageUtil.VTable, self.vtable).ExportPackage(@ptrCast(*const IPackageUtil, self), bstrPackageID, bstrPackageFile, lOptions);
+            return @as(*const IPackageUtil.VTable, @ptrCast(self.vtable)).ExportPackage(@as(*const IPackageUtil, @ptrCast(self)), bstrPackageID, bstrPackageFile, lOptions);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IPackageUtil_ShutdownPackage(self: *const T, bstrPackageID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPackageUtil.VTable, self.vtable).ShutdownPackage(@ptrCast(*const IPackageUtil, self), bstrPackageID);
+            return @as(*const IPackageUtil.VTable, @ptrCast(self.vtable)).ShutdownPackage(@as(*const IPackageUtil, @ptrCast(self)), bstrPackageID);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -285,11 +285,11 @@ pub const IRemoteComponentUtil = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRemoteComponentUtil_InstallRemoteComponent(self: *const T, bstrServer: ?BSTR, bstrPackageID: ?BSTR, bstrCLSID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteComponentUtil.VTable, self.vtable).InstallRemoteComponent(@ptrCast(*const IRemoteComponentUtil, self), bstrServer, bstrPackageID, bstrCLSID);
+            return @as(*const IRemoteComponentUtil.VTable, @ptrCast(self.vtable)).InstallRemoteComponent(@as(*const IRemoteComponentUtil, @ptrCast(self)), bstrServer, bstrPackageID, bstrCLSID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRemoteComponentUtil_InstallRemoteComponentByName(self: *const T, bstrServer: ?BSTR, bstrPackageName: ?BSTR, bstrProgID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRemoteComponentUtil.VTable, self.vtable).InstallRemoteComponentByName(@ptrCast(*const IRemoteComponentUtil, self), bstrServer, bstrPackageName, bstrProgID);
+            return @as(*const IRemoteComponentUtil.VTable, @ptrCast(self.vtable)).InstallRemoteComponentByName(@as(*const IRemoteComponentUtil, @ptrCast(self)), bstrServer, bstrPackageName, bstrProgID);
         }
     };}
     pub usingnamespace MethodMixin(@This());
@@ -326,11 +326,11 @@ pub const IRoleAssociationUtil = extern struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRoleAssociationUtil_AssociateRole(self: *const T, bstrRoleID: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRoleAssociationUtil.VTable, self.vtable).AssociateRole(@ptrCast(*const IRoleAssociationUtil, self), bstrRoleID);
+            return @as(*const IRoleAssociationUtil.VTable, @ptrCast(self.vtable)).AssociateRole(@as(*const IRoleAssociationUtil, @ptrCast(self)), bstrRoleID);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IRoleAssociationUtil_AssociateRoleByName(self: *const T, bstrRoleName: ?BSTR) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IRoleAssociationUtil.VTable, self.vtable).AssociateRoleByName(@ptrCast(*const IRoleAssociationUtil, self), bstrRoleName);
+            return @as(*const IRoleAssociationUtil.VTable, @ptrCast(self.vtable)).AssociateRoleByName(@as(*const IRoleAssociationUtil, @ptrCast(self)), bstrRoleName);
         }
     };}
     pub usingnamespace MethodMixin(@This());

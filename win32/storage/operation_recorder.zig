@@ -12,9 +12,9 @@ pub const OPERATION_START_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         D: u1 = 0,
     }) OPERATION_START_FLAGS {
-        return @intToEnum(OPERATION_START_FLAGS,
-              (if (o.D == 1) @enumToInt(OPERATION_START_FLAGS.D) else 0)
-        );
+        return @as(OPERATION_START_FLAGS, @enumFromInt(
+              (if (o.D == 1) @intFromEnum(OPERATION_START_FLAGS.D) else 0)
+        ));
     }
 };
 pub const OPERATION_START_TRACE_CURRENT_THREAD = OPERATION_START_FLAGS.D;
@@ -25,9 +25,9 @@ pub const OPERATION_END_PARAMETERS_FLAGS = enum(u32) {
     pub fn initFlags(o: struct {
         D: u1 = 0,
     }) OPERATION_END_PARAMETERS_FLAGS {
-        return @intToEnum(OPERATION_END_PARAMETERS_FLAGS,
-              (if (o.D == 1) @enumToInt(OPERATION_END_PARAMETERS_FLAGS.D) else 0)
-        );
+        return @as(OPERATION_END_PARAMETERS_FLAGS, @enumFromInt(
+              (if (o.D == 1) @intFromEnum(OPERATION_END_PARAMETERS_FLAGS.D) else 0)
+        ));
     }
 };
 pub const OPERATION_END_DISCARD = OPERATION_END_PARAMETERS_FLAGS.D;

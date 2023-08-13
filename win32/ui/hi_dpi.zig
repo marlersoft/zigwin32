@@ -43,11 +43,11 @@ pub const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS = enum(u32) {
         ISABLE_FONT_UPDATE: u1 = 0,
         ISABLE_RELAYOUT: u1 = 0,
     }) DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS {
-        return @intToEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS,
-              (if (o.EFAULT == 1) @enumToInt(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT) else 0)
-            | (if (o.ISABLE_FONT_UPDATE == 1) @enumToInt(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_FONT_UPDATE) else 0)
-            | (if (o.ISABLE_RELAYOUT == 1) @enumToInt(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_RELAYOUT) else 0)
-        );
+        return @as(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS, @enumFromInt(
+              (if (o.EFAULT == 1) @intFromEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT) else 0)
+            | (if (o.ISABLE_FONT_UPDATE == 1) @intFromEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_FONT_UPDATE) else 0)
+            | (if (o.ISABLE_RELAYOUT == 1) @intFromEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_RELAYOUT) else 0)
+        ));
     }
 };
 pub const DCDC_DEFAULT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT;
@@ -66,12 +66,12 @@ pub const DIALOG_DPI_CHANGE_BEHAVIORS = enum(u32) {
         ISABLE_RESIZE: u1 = 0,
         ISABLE_CONTROL_RELAYOUT: u1 = 0,
     }) DIALOG_DPI_CHANGE_BEHAVIORS {
-        return @intToEnum(DIALOG_DPI_CHANGE_BEHAVIORS,
-              (if (o.EFAULT == 1) @enumToInt(DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT) else 0)
-            | (if (o.ISABLE_ALL == 1) @enumToInt(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL) else 0)
-            | (if (o.ISABLE_RESIZE == 1) @enumToInt(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_RESIZE) else 0)
-            | (if (o.ISABLE_CONTROL_RELAYOUT == 1) @enumToInt(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONTROL_RELAYOUT) else 0)
-        );
+        return @as(DIALOG_DPI_CHANGE_BEHAVIORS, @enumFromInt(
+              (if (o.EFAULT == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT) else 0)
+            | (if (o.ISABLE_ALL == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL) else 0)
+            | (if (o.ISABLE_RESIZE == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_RESIZE) else 0)
+            | (if (o.ISABLE_CONTROL_RELAYOUT == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONTROL_RELAYOUT) else 0)
+        ));
     }
 };
 pub const DDC_DEFAULT = DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT;
