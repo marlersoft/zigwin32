@@ -3807,7 +3807,7 @@ pub const LPWSCWRITENAMESPACEORDER = fn(
 pub const HWSAEVENT = *opaque{};
 
 // TODO: this type has a FreeFunc 'closesocket', what can Zig do with this information?
-pub const SOCKET = @import("std").os.socket_t;
+pub const SOCKET = @import("std").os.windows.ws2_32.SOCKET;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
