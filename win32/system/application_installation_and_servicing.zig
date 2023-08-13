@@ -5445,13 +5445,13 @@ pub const IPMLiveTileJobInfo = extern struct {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IPMLiveTileJobInfo,
-                pTileXml: ?[*]?*u8,
+                pTileXml: [*]?*u8,
                 pcbTileXml: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IPMLiveTileJobInfo,
-                pTileXml: ?[*]?*u8,
+                pTileXml: [*]?*u8,
                 pcbTileXml: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -5472,13 +5472,13 @@ pub const IPMLiveTileJobInfo = extern struct {
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IPMLiveTileJobInfo,
-                pUrlXML: ?[*]?*u8,
+                pUrlXML: [*]?*u8,
                 pcbUrlXML: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IPMLiveTileJobInfo,
-                pUrlXML: ?[*]?*u8,
+                pUrlXML: [*]?*u8,
                 pcbUrlXML: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -5609,7 +5609,7 @@ pub const IPMLiveTileJobInfo = extern struct {
             return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_RecurrenceType(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), ulRecurrenceType);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPMLiveTileJobInfo_get_TileXML(self: *const T, pTileXml: ?[*]?*u8, pcbTileXml: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IPMLiveTileJobInfo_get_TileXML(self: *const T, pTileXml: [*]?*u8, pcbTileXml: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_TileXML(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pTileXml, pcbTileXml);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5617,7 +5617,7 @@ pub const IPMLiveTileJobInfo = extern struct {
             return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).set_TileXML(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pTileXml, cbTileXml);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPMLiveTileJobInfo_get_UrlXML(self: *const T, pUrlXML: ?[*]?*u8, pcbUrlXML: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IPMLiveTileJobInfo_get_UrlXML(self: *const T, pUrlXML: [*]?*u8, pcbUrlXML: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IPMLiveTileJobInfo.VTable, @ptrCast(self.vtable)).get_UrlXML(@as(*const IPMLiveTileJobInfo, @ptrCast(self)), pUrlXML, pcbUrlXML);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5803,7 +5803,7 @@ pub const IPMDeploymentManager = extern struct {
             .stage1 => fn(
                 self: *const IPMDeploymentManager,
                 PackagePath: ?BSTR,
-                ppbChallenge: ?[*]?*u8,
+                ppbChallenge: [*]?*u8,
                 pcbChallenge: ?*u32,
                 ppbKID: ?[*]?*u8,
                 pcbKID: ?*u32,
@@ -5817,7 +5817,7 @@ pub const IPMDeploymentManager = extern struct {
             else => *const fn(
                 self: *const IPMDeploymentManager,
                 PackagePath: ?BSTR,
-                ppbChallenge: ?[*]?*u8,
+                ppbChallenge: [*]?*u8,
                 pcbChallenge: ?*u32,
                 ppbKID: ?[*]?*u8,
                 pcbKID: ?*u32,
@@ -5833,13 +5833,13 @@ pub const IPMDeploymentManager = extern struct {
             .stage1 => fn(
                 self: *const IPMDeploymentManager,
                 ProductID: Guid,
-                ppbChallenge: ?[*]?*u8,
+                ppbChallenge: [*]?*u8,
                 pcbLicense: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IPMDeploymentManager,
                 ProductID: Guid,
-                ppbChallenge: ?[*]?*u8,
+                ppbChallenge: [*]?*u8,
                 pcbLicense: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -5847,7 +5847,7 @@ pub const IPMDeploymentManager = extern struct {
             .stage1 => fn(
                 self: *const IPMDeploymentManager,
                 ProductID: Guid,
-                ppbChallenge: ?[*]?*u8,
+                ppbChallenge: [*]?*u8,
                 pcbLicense: ?*u32,
                 ppbKID: ?[*]?*u8,
                 pcbKID: ?*u32,
@@ -5861,7 +5861,7 @@ pub const IPMDeploymentManager = extern struct {
             else => *const fn(
                 self: *const IPMDeploymentManager,
                 ProductID: Guid,
-                ppbChallenge: ?[*]?*u8,
+                ppbChallenge: [*]?*u8,
                 pcbLicense: ?*u32,
                 ppbKID: ?[*]?*u8,
                 pcbKID: ?*u32,
@@ -6152,15 +6152,15 @@ pub const IPMDeploymentManager = extern struct {
             return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).BeginUpdateLicense(@as(*const IPMDeploymentManager, @ptrCast(self)), productID, offerID, pbLicense, cbLicense);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPMDeploymentManager_GetLicenseChallenge(self: *const T, PackagePath: ?BSTR, ppbChallenge: ?[*]?*u8, pcbChallenge: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IPMDeploymentManager_GetLicenseChallenge(self: *const T, PackagePath: ?BSTR, ppbChallenge: [*]?*u8, pcbChallenge: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).GetLicenseChallenge(@as(*const IPMDeploymentManager, @ptrCast(self)), PackagePath, ppbChallenge, pcbChallenge, ppbKID, pcbKID, ppbDeviceID, pcbDeviceID, ppbSaltValue, pcbSaltValue, ppbKGVValue, pcbKGVValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPMDeploymentManager_GetLicenseChallengeByProductID(self: *const T, ProductID: Guid, ppbChallenge: ?[*]?*u8, pcbLicense: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IPMDeploymentManager_GetLicenseChallengeByProductID(self: *const T, ProductID: Guid, ppbChallenge: [*]?*u8, pcbLicense: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).GetLicenseChallengeByProductID(@as(*const IPMDeploymentManager, @ptrCast(self)), ProductID, ppbChallenge, pcbLicense);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPMDeploymentManager_GetLicenseChallengeByProductID2(self: *const T, ProductID: Guid, ppbChallenge: ?[*]?*u8, pcbLicense: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IPMDeploymentManager_GetLicenseChallengeByProductID2(self: *const T, ProductID: Guid, ppbChallenge: [*]?*u8, pcbLicense: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IPMDeploymentManager.VTable, @ptrCast(self.vtable)).GetLicenseChallengeByProductID2(@as(*const IPMDeploymentManager, @ptrCast(self)), ProductID, ppbChallenge, pcbLicense, ppbKID, pcbKID, ppbDeviceID, pcbDeviceID, ppbSaltValue, pcbSaltValue, ppbKGVValue, pcbKGVValue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6515,14 +6515,14 @@ pub const IPMEnumerationManager = extern struct {
                 self: *const IPMEnumerationManager,
                 Filter: PM_ENUM_FILTER,
                 pcTiles: ?*u32,
-                ppTileBlobs: ?[*]?*PM_STARTTILEBLOB,
+                ppTileBlobs: [*]?*PM_STARTTILEBLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IPMEnumerationManager,
                 Filter: PM_ENUM_FILTER,
                 pcTiles: ?*u32,
-                ppTileBlobs: ?[*]?*PM_STARTTILEBLOB,
+                ppTileBlobs: [*]?*PM_STARTTILEBLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -6532,14 +6532,14 @@ pub const IPMEnumerationManager = extern struct {
                 self: *const IPMEnumerationManager,
                 Filter: PM_ENUM_FILTER,
                 pcApps: ?*u32,
-                ppAppBlobs: ?[*]?*PM_STARTAPPBLOB,
+                ppAppBlobs: [*]?*PM_STARTAPPBLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IPMEnumerationManager,
                 Filter: PM_ENUM_FILTER,
                 pcApps: ?*u32,
-                ppAppBlobs: ?[*]?*PM_STARTAPPBLOB,
+                ppAppBlobs: [*]?*PM_STARTAPPBLOB,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
@@ -6611,11 +6611,11 @@ pub const IPMEnumerationManager = extern struct {
             return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_ApplicationInfoFromAccessClaims(@as(*const IPMEnumerationManager, @ptrCast(self)), SysAppID0, SysAppID1, ppAppInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPMEnumerationManager_get_StartTileEnumeratorBlob(self: *const T, Filter: PM_ENUM_FILTER, pcTiles: ?*u32, ppTileBlobs: ?[*]?*PM_STARTTILEBLOB) callconv(.Inline) HRESULT {
+        pub fn IPMEnumerationManager_get_StartTileEnumeratorBlob(self: *const T, Filter: PM_ENUM_FILTER, pcTiles: ?*u32, ppTileBlobs: [*]?*PM_STARTTILEBLOB) callconv(.Inline) HRESULT {
             return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_StartTileEnumeratorBlob(@as(*const IPMEnumerationManager, @ptrCast(self)), Filter, pcTiles, ppTileBlobs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPMEnumerationManager_get_StartAppEnumeratorBlob(self: *const T, Filter: PM_ENUM_FILTER, pcApps: ?*u32, ppAppBlobs: ?[*]?*PM_STARTAPPBLOB) callconv(.Inline) HRESULT {
+        pub fn IPMEnumerationManager_get_StartAppEnumeratorBlob(self: *const T, Filter: PM_ENUM_FILTER, pcApps: ?*u32, ppAppBlobs: [*]?*PM_STARTAPPBLOB) callconv(.Inline) HRESULT {
             return @as(*const IPMEnumerationManager.VTable, @ptrCast(self.vtable)).get_StartAppEnumeratorBlob(@as(*const IPMEnumerationManager, @ptrCast(self)), Filter, pcApps, ppAppBlobs);
         }
     };}
@@ -7240,13 +7240,13 @@ pub const IPMExtensionFileExtensionInfo = extern struct {
             .stage1 => fn(
                 self: *const IPMExtensionFileExtensionInfo,
                 pcbTypes: ?*u32,
-                ppTypes: ?[*]?*?BSTR,
+                ppTypes: [*]?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IPMExtensionFileExtensionInfo,
                 pcbTypes: ?*u32,
-                ppTypes: ?[*]?*?BSTR,
+                ppTypes: [*]?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
@@ -7278,7 +7278,7 @@ pub const IPMExtensionFileExtensionInfo = extern struct {
             return @as(*const IPMExtensionFileExtensionInfo.VTable, @ptrCast(self.vtable)).get_InvocationInfo(@as(*const IPMExtensionFileExtensionInfo, @ptrCast(self)), pImageUrn, pParameters);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPMExtensionFileExtensionInfo_get_AllFileTypes(self: *const T, pcbTypes: ?*u32, ppTypes: ?[*]?*?BSTR) callconv(.Inline) HRESULT {
+        pub fn IPMExtensionFileExtensionInfo_get_AllFileTypes(self: *const T, pcbTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
             return @as(*const IPMExtensionFileExtensionInfo.VTable, @ptrCast(self.vtable)).get_AllFileTypes(@as(*const IPMExtensionFileExtensionInfo, @ptrCast(self)), pcbTypes, ppTypes);
         }
     };}
@@ -7345,13 +7345,13 @@ pub const IPMExtensionShareTargetInfo = extern struct {
             .stage1 => fn(
                 self: *const IPMExtensionShareTargetInfo,
                 pcTypes: ?*u32,
-                ppTypes: ?[*]?*?BSTR,
+                ppTypes: [*]?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IPMExtensionShareTargetInfo,
                 pcTypes: ?*u32,
-                ppTypes: ?[*]?*?BSTR,
+                ppTypes: [*]?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -7360,13 +7360,13 @@ pub const IPMExtensionShareTargetInfo = extern struct {
             .stage1 => fn(
                 self: *const IPMExtensionShareTargetInfo,
                 pcDataFormats: ?*u32,
-                ppDataFormats: ?[*]?*?BSTR,
+                ppDataFormats: [*]?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IPMExtensionShareTargetInfo,
                 pcDataFormats: ?*u32,
-                ppDataFormats: ?[*]?*?BSTR,
+                ppDataFormats: [*]?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -7387,11 +7387,11 @@ pub const IPMExtensionShareTargetInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPMExtensionShareTargetInfo_get_AllFileTypes(self: *const T, pcTypes: ?*u32, ppTypes: ?[*]?*?BSTR) callconv(.Inline) HRESULT {
+        pub fn IPMExtensionShareTargetInfo_get_AllFileTypes(self: *const T, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
             return @as(*const IPMExtensionShareTargetInfo.VTable, @ptrCast(self.vtable)).get_AllFileTypes(@as(*const IPMExtensionShareTargetInfo, @ptrCast(self)), pcTypes, ppTypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPMExtensionShareTargetInfo_get_AllDataFormats(self: *const T, pcDataFormats: ?*u32, ppDataFormats: ?[*]?*?BSTR) callconv(.Inline) HRESULT {
+        pub fn IPMExtensionShareTargetInfo_get_AllDataFormats(self: *const T, pcDataFormats: ?*u32, ppDataFormats: [*]?*?BSTR) callconv(.Inline) HRESULT {
             return @as(*const IPMExtensionShareTargetInfo.VTable, @ptrCast(self.vtable)).get_AllDataFormats(@as(*const IPMExtensionShareTargetInfo, @ptrCast(self)), pcDataFormats, ppDataFormats);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7445,13 +7445,13 @@ pub const IPMExtensionFileOpenPickerInfo = extern struct {
             .stage1 => fn(
                 self: *const IPMExtensionFileOpenPickerInfo,
                 pcTypes: ?*u32,
-                ppTypes: ?[*]?*?BSTR,
+                ppTypes: [*]?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IPMExtensionFileOpenPickerInfo,
                 pcTypes: ?*u32,
-                ppTypes: ?[*]?*?BSTR,
+                ppTypes: [*]?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -7472,7 +7472,7 @@ pub const IPMExtensionFileOpenPickerInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPMExtensionFileOpenPickerInfo_get_AllFileTypes(self: *const T, pcTypes: ?*u32, ppTypes: ?[*]?*?BSTR) callconv(.Inline) HRESULT {
+        pub fn IPMExtensionFileOpenPickerInfo_get_AllFileTypes(self: *const T, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
             return @as(*const IPMExtensionFileOpenPickerInfo.VTable, @ptrCast(self.vtable)).get_AllFileTypes(@as(*const IPMExtensionFileOpenPickerInfo, @ptrCast(self)), pcTypes, ppTypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7494,13 +7494,13 @@ pub const IPMExtensionFileSavePickerInfo = extern struct {
             .stage1 => fn(
                 self: *const IPMExtensionFileSavePickerInfo,
                 pcTypes: ?*u32,
-                ppTypes: ?[*]?*?BSTR,
+                ppTypes: [*]?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IPMExtensionFileSavePickerInfo,
                 pcTypes: ?*u32,
-                ppTypes: ?[*]?*?BSTR,
+                ppTypes: [*]?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -7521,7 +7521,7 @@ pub const IPMExtensionFileSavePickerInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPMExtensionFileSavePickerInfo_get_AllFileTypes(self: *const T, pcTypes: ?*u32, ppTypes: ?[*]?*?BSTR) callconv(.Inline) HRESULT {
+        pub fn IPMExtensionFileSavePickerInfo_get_AllFileTypes(self: *const T, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
             return @as(*const IPMExtensionFileSavePickerInfo.VTable, @ptrCast(self.vtable)).get_AllFileTypes(@as(*const IPMExtensionFileSavePickerInfo, @ptrCast(self)), pcTypes, ppTypes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

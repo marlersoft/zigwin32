@@ -2785,7 +2785,7 @@ pub extern "advapi32" fn EventAccessControl(
 pub extern "advapi32" fn EventAccessQuery(
     Guid: ?*Guid,
     // TODO: what to do with BytesParamIndex 2?
-    Buffer: ?*SECURITY_DESCRIPTOR,
+    Buffer: ?PSECURITY_DESCRIPTOR,
     BufferSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -3085,10 +3085,10 @@ const HANDLE = @import("../../foundation.zig").HANDLE;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../../foundation.zig").LARGE_INTEGER;
+const PSECURITY_DESCRIPTOR = @import("../../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../../foundation.zig").PSID;
 const PSTR = @import("../../foundation.zig").PSTR;
 const PWSTR = @import("../../foundation.zig").PWSTR;
-const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
 const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMATION;
 
 test {

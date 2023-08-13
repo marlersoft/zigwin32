@@ -13696,12 +13696,12 @@ pub const IRealTimeStylus = extern struct {
             .stage1 => fn(
                 self: *const IRealTimeStylus,
                 pcTcidCount: ?*u32,
-                ppTcids: ?[*]?*u32,
+                ppTcids: [*]?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IRealTimeStylus,
                 pcTcidCount: ?*u32,
-                ppTcids: ?[*]?*u32,
+                ppTcids: [*]?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStyluses: switch (@import("builtin").zig_backend) {
@@ -13742,12 +13742,12 @@ pub const IRealTimeStylus = extern struct {
             .stage1 => fn(
                 self: *const IRealTimeStylus,
                 pcProperties: ?*u32,
-                ppPropertyGuids: ?[*]?*Guid,
+                ppPropertyGuids: [*]?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IRealTimeStylus,
                 pcProperties: ?*u32,
-                ppPropertyGuids: ?[*]?*Guid,
+                ppPropertyGuids: [*]?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPacketDescriptionData: switch (@import("builtin").zig_backend) {
@@ -13757,7 +13757,7 @@ pub const IRealTimeStylus = extern struct {
                 pfInkToDeviceScaleX: ?*f32,
                 pfInkToDeviceScaleY: ?*f32,
                 pcPacketProperties: ?*u32,
-                ppPacketProperties: ?[*]?*PACKET_PROPERTY,
+                ppPacketProperties: [*]?*PACKET_PROPERTY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IRealTimeStylus,
@@ -13765,7 +13765,7 @@ pub const IRealTimeStylus = extern struct {
                 pfInkToDeviceScaleX: ?*f32,
                 pfInkToDeviceScaleY: ?*f32,
                 pcPacketProperties: ?*u32,
-                ppPacketProperties: ?[*]?*PACKET_PROPERTY,
+                ppPacketProperties: [*]?*PACKET_PROPERTY,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
@@ -13873,7 +13873,7 @@ pub const IRealTimeStylus = extern struct {
             return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetTabletFromTabletContextId(@as(*const IRealTimeStylus, @ptrCast(self)), tcid, ppiTablet);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetAllTabletContextIds(self: *const T, pcTcidCount: ?*u32, ppTcids: ?[*]?*u32) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_GetAllTabletContextIds(self: *const T, pcTcidCount: ?*u32, ppTcids: [*]?*u32) callconv(.Inline) HRESULT {
             return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetAllTabletContextIds(@as(*const IRealTimeStylus, @ptrCast(self)), pcTcidCount, ppTcids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13889,11 +13889,11 @@ pub const IRealTimeStylus = extern struct {
             return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).SetDesiredPacketDescription(@as(*const IRealTimeStylus, @ptrCast(self)), cProperties, pPropertyGuids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetDesiredPacketDescription(self: *const T, pcProperties: ?*u32, ppPropertyGuids: ?[*]?*Guid) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_GetDesiredPacketDescription(self: *const T, pcProperties: ?*u32, ppPropertyGuids: [*]?*Guid) callconv(.Inline) HRESULT {
             return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetDesiredPacketDescription(@as(*const IRealTimeStylus, @ptrCast(self)), pcProperties, ppPropertyGuids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IRealTimeStylus_GetPacketDescriptionData(self: *const T, tcid: u32, pfInkToDeviceScaleX: ?*f32, pfInkToDeviceScaleY: ?*f32, pcPacketProperties: ?*u32, ppPacketProperties: ?[*]?*PACKET_PROPERTY) callconv(.Inline) HRESULT {
+        pub fn IRealTimeStylus_GetPacketDescriptionData(self: *const T, tcid: u32, pfInkToDeviceScaleX: ?*f32, pfInkToDeviceScaleY: ?*f32, pcPacketProperties: ?*u32, ppPacketProperties: [*]?*PACKET_PROPERTY) callconv(.Inline) HRESULT {
             return @as(*const IRealTimeStylus.VTable, @ptrCast(self.vtable)).GetPacketDescriptionData(@as(*const IRealTimeStylus, @ptrCast(self)), tcid, pfInkToDeviceScaleX, pfInkToDeviceScaleY, pcPacketProperties, ppPacketProperties);
         }
     };}

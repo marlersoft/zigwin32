@@ -8047,14 +8047,14 @@ pub const PFNCryptStreamOutputCallback = switch (@import("builtin").zig_backend)
         pbData: ?*const u8,
         cbData: usize,
         fFinal: BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         pvCallbackCtxt: ?*anyopaque,
         // TODO: what to do with BytesParamIndex 2?
         pbData: ?*const u8,
         cbData: usize,
         fFinal: BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const NCRYPT_PROTECT_STREAM_INFO = extern struct {
@@ -8070,7 +8070,7 @@ pub const PFNCryptStreamOutputCallbackEx = switch (@import("builtin").zig_backen
         cbData: usize,
         hDescriptor: NCRYPT_DESCRIPTOR_HANDLE,
         fFinal: BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         pvCallbackCtxt: ?*anyopaque,
         // TODO: what to do with BytesParamIndex 2?
@@ -8078,7 +8078,7 @@ pub const PFNCryptStreamOutputCallbackEx = switch (@import("builtin").zig_backen
         cbData: usize,
         hDescriptor: NCRYPT_DESCRIPTOR_HANDLE,
         fFinal: BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const NCRYPT_PROTECT_STREAM_INFO_EX = extern struct {
@@ -10699,7 +10699,7 @@ pub extern "ncrypt" fn NCryptOpenStorageProvider(
     phProvider: ?*NCRYPT_PROV_HANDLE,
     pszProviderName: ?[*:0]const u16,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptEnumAlgorithms(
@@ -10708,14 +10708,14 @@ pub extern "ncrypt" fn NCryptEnumAlgorithms(
     pdwAlgCount: ?*u32,
     ppAlgList: ?*?*NCryptAlgorithmName,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptIsAlgSupported(
     hProvider: NCRYPT_PROV_HANDLE,
     pszAlgId: ?[*:0]const u16,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptEnumKeys(
@@ -10724,19 +10724,19 @@ pub extern "ncrypt" fn NCryptEnumKeys(
     ppKeyName: ?*?*NCryptKeyName,
     ppEnumState: ?*?*anyopaque,
     dwFlags: NCRYPT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptEnumStorageProviders(
     pdwProviderCount: ?*u32,
     ppProviderList: ?*?*NCryptProviderName,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptFreeBuffer(
     pvInput: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 // This function from dll 'ncrypt' is being skipped because it has some sort of issue
@@ -10750,7 +10750,7 @@ pub extern "ncrypt" fn NCryptCreatePersistedKey(
     pszKeyName: ?[*:0]const u16,
     dwLegacyKeySpec: CERT_KEY_SPEC,
     dwFlags: NCRYPT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptGetProperty(
@@ -10761,7 +10761,7 @@ pub extern "ncrypt" fn NCryptGetProperty(
     cbOutput: u32,
     pcbResult: ?*u32,
     dwFlags: OBJECT_SECURITY_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptSetProperty(
@@ -10771,13 +10771,13 @@ pub extern "ncrypt" fn NCryptSetProperty(
     pbInput: ?*u8,
     cbInput: u32,
     dwFlags: NCRYPT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptFinalizeKey(
     hKey: NCRYPT_KEY_HANDLE,
     dwFlags: NCRYPT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptEncrypt(
@@ -10791,7 +10791,7 @@ pub extern "ncrypt" fn NCryptEncrypt(
     cbOutput: u32,
     pcbResult: ?*u32,
     dwFlags: NCRYPT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptDecrypt(
@@ -10805,7 +10805,7 @@ pub extern "ncrypt" fn NCryptDecrypt(
     cbOutput: u32,
     pcbResult: ?*u32,
     dwFlags: NCRYPT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptImportKey(
@@ -10818,7 +10818,7 @@ pub extern "ncrypt" fn NCryptImportKey(
     pbData: ?*u8,
     cbData: u32,
     dwFlags: NCRYPT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptExportKey(
@@ -10831,7 +10831,7 @@ pub extern "ncrypt" fn NCryptExportKey(
     cbOutput: u32,
     pcbResult: ?*u32,
     dwFlags: NCRYPT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptSignHash(
@@ -10845,7 +10845,7 @@ pub extern "ncrypt" fn NCryptSignHash(
     cbSignature: u32,
     pcbResult: ?*u32,
     dwFlags: NCRYPT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptVerifySignature(
@@ -10858,18 +10858,18 @@ pub extern "ncrypt" fn NCryptVerifySignature(
     pbSignature: ?*u8,
     cbSignature: u32,
     dwFlags: NCRYPT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptDeleteKey(
     hKey: NCRYPT_KEY_HANDLE,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptFreeObject(
     hObject: NCRYPT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptIsKeyHandle(
@@ -10885,7 +10885,7 @@ pub extern "ncrypt" fn NCryptNotifyChangeKey(
     hProvider: NCRYPT_PROV_HANDLE,
     phEvent: ?*?HANDLE,
     dwFlags: NCRYPT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptSecretAgreement(
@@ -10893,7 +10893,7 @@ pub extern "ncrypt" fn NCryptSecretAgreement(
     hPubKey: NCRYPT_KEY_HANDLE,
     phAgreedSecret: ?*NCRYPT_SECRET_HANDLE,
     dwFlags: NCRYPT_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "ncrypt" fn NCryptDeriveKey(
@@ -10905,7 +10905,7 @@ pub extern "ncrypt" fn NCryptDeriveKey(
     cbDerivedKey: u32,
     pcbResult: ?*u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptKeyDerivation(
@@ -10916,7 +10916,7 @@ pub extern "ncrypt" fn NCryptKeyDerivation(
     cbDerivedKey: u32,
     pcbResult: ?*u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "ncrypt" fn NCryptCreateClaim(
@@ -10929,7 +10929,7 @@ pub extern "ncrypt" fn NCryptCreateClaim(
     cbClaimBlob: u32,
     pcbResult: ?*u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "ncrypt" fn NCryptVerifyClaim(
@@ -10942,7 +10942,7 @@ pub extern "ncrypt" fn NCryptVerifyClaim(
     cbClaimBlob: u32,
     pOutput: ?*BCryptBufferDesc,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "crypt32" fn CryptFormatObject(
@@ -12981,7 +12981,7 @@ pub extern "ncrypt" fn NCryptRegisterProtectionDescriptorName(
     pwszName: ?[*:0]const u16,
     pwszDescriptorString: ?[*:0]const u16,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptQueryProtectionDescriptorName(
@@ -12989,19 +12989,19 @@ pub extern "ncrypt" fn NCryptQueryProtectionDescriptorName(
     pwszDescriptorString: ?[*:0]u16,
     pcDescriptorString: ?*usize,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptCreateProtectionDescriptor(
     pwszDescriptorString: ?[*:0]const u16,
     dwFlags: u32,
     phDescriptor: ?*NCRYPT_DESCRIPTOR_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptCloseProtectionDescriptor(
     hDescriptor: NCRYPT_DESCRIPTOR_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptGetProtectionDescriptorInfo(
@@ -13009,7 +13009,7 @@ pub extern "ncrypt" fn NCryptGetProtectionDescriptorInfo(
     pMemPara: ?*const NCRYPT_ALLOC_PARA,
     dwInfoType: u32,
     ppvInfo: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptProtectSecret(
@@ -13022,7 +13022,7 @@ pub extern "ncrypt" fn NCryptProtectSecret(
     hWnd: ?HWND,
     ppbProtectedBlob: ?*?*u8,
     pcbProtectedBlob: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptUnprotectSecret(
@@ -13035,7 +13035,7 @@ pub extern "ncrypt" fn NCryptUnprotectSecret(
     hWnd: ?HWND,
     ppbData: ?*?*u8,
     pcbData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptStreamOpenToProtect(
@@ -13044,7 +13044,7 @@ pub extern "ncrypt" fn NCryptStreamOpenToProtect(
     hWnd: ?HWND,
     pStreamInfo: ?*NCRYPT_PROTECT_STREAM_INFO,
     phStream: ?*NCRYPT_STREAM_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptStreamOpenToUnprotect(
@@ -13052,14 +13052,14 @@ pub extern "ncrypt" fn NCryptStreamOpenToUnprotect(
     dwFlags: u32,
     hWnd: ?HWND,
     phStream: ?*NCRYPT_STREAM_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "ncrypt" fn NCryptStreamOpenToUnprotectEx(
     pStreamInfo: ?*NCRYPT_PROTECT_STREAM_INFO_EX,
     dwFlags: u32,
     hWnd: ?HWND,
     phStream: ?*NCRYPT_STREAM_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptStreamUpdate(
@@ -13068,12 +13068,12 @@ pub extern "ncrypt" fn NCryptStreamUpdate(
     pbData: ?*const u8,
     cbData: usize,
     fFinal: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ncrypt" fn NCryptStreamClose(
     hStream: NCRYPT_STREAM_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "cryptxml" fn CryptXmlClose(

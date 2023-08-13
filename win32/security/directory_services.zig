@@ -17,13 +17,13 @@ pub const PFNREADOBJECTSECURITY = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?[*:0]const u16,
         param1: u32,
-        param2: ?*?*SECURITY_DESCRIPTOR,
+        param2: ?*?PSECURITY_DESCRIPTOR,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?[*:0]const u16,
         param1: u32,
-        param2: ?*?*SECURITY_DESCRIPTOR,
+        param2: ?*?PSECURITY_DESCRIPTOR,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
@@ -32,13 +32,13 @@ pub const PFNWRITEOBJECTSECURITY = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?[*:0]const u16,
         param1: u32,
-        param2: ?*SECURITY_DESCRIPTOR,
+        param2: ?PSECURITY_DESCRIPTOR,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?[*:0]const u16,
         param1: u32,
-        param2: ?*SECURITY_DESCRIPTOR,
+        param2: ?PSECURITY_DESCRIPTOR,
         param3: LPARAM,
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
@@ -209,8 +209,8 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const ISecurityInformation = @import("../security/authorization/ui.zig").ISecurityInformation;
 const LPARAM = @import("../foundation.zig").LPARAM;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

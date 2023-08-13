@@ -992,11 +992,11 @@ pub const VDS_ASYNC_OUTPUT = extern struct {
         pub const _sv = extern struct {
             ullReclaimedBytes: u64,
         };
-        pub const _ct = extern struct {
-            pTargetUnk: ?*IUnknown,
-        };
         pub const _cv = extern struct {
             pVolumeUnk: ?*IUnknown,
+        };
+        pub const _ct = extern struct {
+            pTargetUnk: ?*IUnknown,
         };
         cp: _cp,
         cv: _cv,
@@ -3153,12 +3153,12 @@ pub const IVdsDrive = extern struct {
         QueryExtents: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IVdsDrive,
-                ppExtentArray: ?[*]?*VDS_DRIVE_EXTENT,
+                ppExtentArray: [*]?*VDS_DRIVE_EXTENT,
                 plNumberOfExtents: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IVdsDrive,
-                ppExtentArray: ?[*]?*VDS_DRIVE_EXTENT,
+                ppExtentArray: [*]?*VDS_DRIVE_EXTENT,
                 plNumberOfExtents: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -3205,7 +3205,7 @@ pub const IVdsDrive = extern struct {
             return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).GetSubSystem(@as(*const IVdsDrive, @ptrCast(self)), ppSubSystem);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsDrive_QueryExtents(self: *const T, ppExtentArray: ?[*]?*VDS_DRIVE_EXTENT, plNumberOfExtents: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IVdsDrive_QueryExtents(self: *const T, ppExtentArray: [*]?*VDS_DRIVE_EXTENT, plNumberOfExtents: ?*i32) callconv(.Inline) HRESULT {
             return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).QueryExtents(@as(*const IVdsDrive, @ptrCast(self)), ppExtentArray, plNumberOfExtents);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3679,12 +3679,12 @@ pub const IVdsLunMpio = extern struct {
         GetPathInfo: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IVdsLunMpio,
-                ppPaths: ?[*]?*VDS_PATH_INFO,
+                ppPaths: [*]?*VDS_PATH_INFO,
                 plNumberOfPaths: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IVdsLunMpio,
-                ppPaths: ?[*]?*VDS_PATH_INFO,
+                ppPaths: [*]?*VDS_PATH_INFO,
                 plNumberOfPaths: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -3692,13 +3692,13 @@ pub const IVdsLunMpio = extern struct {
             .stage1 => fn(
                 self: *const IVdsLunMpio,
                 pPolicy: ?*VDS_LOADBALANCE_POLICY_ENUM,
-                ppPaths: ?[*]?*VDS_PATH_POLICY,
+                ppPaths: [*]?*VDS_PATH_POLICY,
                 plNumberOfPaths: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IVdsLunMpio,
                 pPolicy: ?*VDS_LOADBALANCE_POLICY_ENUM,
-                ppPaths: ?[*]?*VDS_PATH_POLICY,
+                ppPaths: [*]?*VDS_PATH_POLICY,
                 plNumberOfPaths: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -3731,11 +3731,11 @@ pub const IVdsLunMpio = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLunMpio_GetPathInfo(self: *const T, ppPaths: ?[*]?*VDS_PATH_INFO, plNumberOfPaths: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IVdsLunMpio_GetPathInfo(self: *const T, ppPaths: [*]?*VDS_PATH_INFO, plNumberOfPaths: ?*i32) callconv(.Inline) HRESULT {
             return @as(*const IVdsLunMpio.VTable, @ptrCast(self.vtable)).GetPathInfo(@as(*const IVdsLunMpio, @ptrCast(self)), ppPaths, plNumberOfPaths);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLunMpio_GetLoadBalancePolicy(self: *const T, pPolicy: ?*VDS_LOADBALANCE_POLICY_ENUM, ppPaths: ?[*]?*VDS_PATH_POLICY, plNumberOfPaths: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IVdsLunMpio_GetLoadBalancePolicy(self: *const T, pPolicy: ?*VDS_LOADBALANCE_POLICY_ENUM, ppPaths: [*]?*VDS_PATH_POLICY, plNumberOfPaths: ?*i32) callconv(.Inline) HRESULT {
             return @as(*const IVdsLunMpio.VTable, @ptrCast(self.vtable)).GetLoadBalancePolicy(@as(*const IVdsLunMpio, @ptrCast(self)), pPolicy, ppPaths, plNumberOfPaths);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3823,12 +3823,12 @@ pub const IVdsLunPlex = extern struct {
         QueryExtents: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IVdsLunPlex,
-                ppExtentArray: ?[*]?*VDS_DRIVE_EXTENT,
+                ppExtentArray: [*]?*VDS_DRIVE_EXTENT,
                 plNumberOfExtents: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IVdsLunPlex,
-                ppExtentArray: ?[*]?*VDS_DRIVE_EXTENT,
+                ppExtentArray: [*]?*VDS_DRIVE_EXTENT,
                 plNumberOfExtents: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -3865,7 +3865,7 @@ pub const IVdsLunPlex = extern struct {
             return @as(*const IVdsLunPlex.VTable, @ptrCast(self.vtable)).GetLun(@as(*const IVdsLunPlex, @ptrCast(self)), ppLun);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsLunPlex_QueryExtents(self: *const T, ppExtentArray: ?[*]?*VDS_DRIVE_EXTENT, plNumberOfExtents: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IVdsLunPlex_QueryExtents(self: *const T, ppExtentArray: [*]?*VDS_DRIVE_EXTENT, plNumberOfExtents: ?*i32) callconv(.Inline) HRESULT {
             return @as(*const IVdsLunPlex.VTable, @ptrCast(self.vtable)).QueryExtents(@as(*const IVdsLunPlex, @ptrCast(self)), ppExtentArray, plNumberOfExtents);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4103,12 +4103,12 @@ pub const IVdsIscsiTarget = extern struct {
         GetConnectedInitiators: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IVdsIscsiTarget,
-                pppwszInitiatorList: ?[*]?*?PWSTR,
+                pppwszInitiatorList: [*]?*?PWSTR,
                 plNumberOfInitiators: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IVdsIscsiTarget,
-                pppwszInitiatorList: ?[*]?*?PWSTR,
+                pppwszInitiatorList: [*]?*?PWSTR,
                 plNumberOfInitiators: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -4153,7 +4153,7 @@ pub const IVdsIscsiTarget = extern struct {
             return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).RememberInitiatorSharedSecret(@as(*const IVdsIscsiTarget, @ptrCast(self)), pwszInitiatorName, pInitiatorSharedSecret);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsIscsiTarget_GetConnectedInitiators(self: *const T, pppwszInitiatorList: ?[*]?*?PWSTR, plNumberOfInitiators: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IVdsIscsiTarget_GetConnectedInitiators(self: *const T, pppwszInitiatorList: [*]?*?PWSTR, plNumberOfInitiators: ?*i32) callconv(.Inline) HRESULT {
             return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).GetConnectedInitiators(@as(*const IVdsIscsiTarget, @ptrCast(self)), pppwszInitiatorList, plNumberOfInitiators);
         }
     };}
@@ -4301,12 +4301,12 @@ pub const IVdsStoragePool = extern struct {
         QueryDriveExtents: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IVdsStoragePool,
-                ppExtentArray: ?[*]?*VDS_STORAGE_POOL_DRIVE_EXTENT,
+                ppExtentArray: [*]?*VDS_STORAGE_POOL_DRIVE_EXTENT,
                 plNumberOfExtents: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IVdsStoragePool,
-                ppExtentArray: ?[*]?*VDS_STORAGE_POOL_DRIVE_EXTENT,
+                ppExtentArray: [*]?*VDS_STORAGE_POOL_DRIVE_EXTENT,
                 plNumberOfExtents: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -4347,7 +4347,7 @@ pub const IVdsStoragePool = extern struct {
             return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IVdsStoragePool, @ptrCast(self)), pStoragePoolAttributes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IVdsStoragePool_QueryDriveExtents(self: *const T, ppExtentArray: ?[*]?*VDS_STORAGE_POOL_DRIVE_EXTENT, plNumberOfExtents: ?*i32) callconv(.Inline) HRESULT {
+        pub fn IVdsStoragePool_QueryDriveExtents(self: *const T, ppExtentArray: [*]?*VDS_STORAGE_POOL_DRIVE_EXTENT, plNumberOfExtents: ?*i32) callconv(.Inline) HRESULT {
             return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).QueryDriveExtents(@as(*const IVdsStoragePool, @ptrCast(self)), ppExtentArray, plNumberOfExtents);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

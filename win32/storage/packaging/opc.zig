@@ -957,12 +957,12 @@ pub const IOpcSignaturePartReference = extern struct {
         GetDigestValue: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IOpcSignaturePartReference,
-                digestValue: ?[*]?*u8,
+                digestValue: [*]?*u8,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IOpcSignaturePartReference,
-                digestValue: ?[*]?*u8,
+                digestValue: [*]?*u8,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -993,7 +993,7 @@ pub const IOpcSignaturePartReference = extern struct {
             return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetDigestMethod(@as(*const IOpcSignaturePartReference, @ptrCast(self)), digestMethod);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOpcSignaturePartReference_GetDigestValue(self: *const T, digestValue: ?[*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IOpcSignaturePartReference_GetDigestValue(self: *const T, digestValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IOpcSignaturePartReference.VTable, @ptrCast(self.vtable)).GetDigestValue(@as(*const IOpcSignaturePartReference, @ptrCast(self)), digestValue, count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1033,12 +1033,12 @@ pub const IOpcSignatureRelationshipReference = extern struct {
         GetDigestValue: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IOpcSignatureRelationshipReference,
-                digestValue: ?[*]?*u8,
+                digestValue: [*]?*u8,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IOpcSignatureRelationshipReference,
-                digestValue: ?[*]?*u8,
+                digestValue: [*]?*u8,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1085,7 +1085,7 @@ pub const IOpcSignatureRelationshipReference = extern struct {
             return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetDigestMethod(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), digestMethod);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOpcSignatureRelationshipReference_GetDigestValue(self: *const T, digestValue: ?[*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IOpcSignatureRelationshipReference_GetDigestValue(self: *const T, digestValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IOpcSignatureRelationshipReference.VTable, @ptrCast(self.vtable)).GetDigestValue(@as(*const IOpcSignatureRelationshipReference, @ptrCast(self)), digestValue, count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1205,12 +1205,12 @@ pub const IOpcSignatureReference = extern struct {
         GetDigestValue: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IOpcSignatureReference,
-                digestValue: ?[*]?*u8,
+                digestValue: [*]?*u8,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IOpcSignatureReference,
-                digestValue: ?[*]?*u8,
+                digestValue: [*]?*u8,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1239,7 +1239,7 @@ pub const IOpcSignatureReference = extern struct {
             return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetDigestMethod(@as(*const IOpcSignatureReference, @ptrCast(self)), digestMethod);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOpcSignatureReference_GetDigestValue(self: *const T, digestValue: ?[*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IOpcSignatureReference_GetDigestValue(self: *const T, digestValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IOpcSignatureReference.VTable, @ptrCast(self.vtable)).GetDigestValue(@as(*const IOpcSignatureReference, @ptrCast(self)), digestValue, count);
         }
     };}
@@ -1255,12 +1255,12 @@ pub const IOpcSignatureCustomObject = extern struct {
         GetXml: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IOpcSignatureCustomObject,
-                xmlMarkup: ?[*]?*u8,
+                xmlMarkup: [*]?*u8,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IOpcSignatureCustomObject,
-                xmlMarkup: ?[*]?*u8,
+                xmlMarkup: [*]?*u8,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1269,7 +1269,7 @@ pub const IOpcSignatureCustomObject = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOpcSignatureCustomObject_GetXml(self: *const T, xmlMarkup: ?[*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IOpcSignatureCustomObject_GetXml(self: *const T, xmlMarkup: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IOpcSignatureCustomObject.VTable, @ptrCast(self.vtable)).GetXml(@as(*const IOpcSignatureCustomObject, @ptrCast(self)), xmlMarkup, count);
         }
     };}
@@ -1285,14 +1285,14 @@ pub const IOpcDigitalSignature = extern struct {
         GetNamespaces: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IOpcDigitalSignature,
-                prefixes: ?[*]?*?PWSTR,
-                namespaces: ?[*]?*?PWSTR,
+                prefixes: [*]?*?PWSTR,
+                namespaces: [*]?*?PWSTR,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IOpcDigitalSignature,
-                prefixes: ?[*]?*?PWSTR,
-                namespaces: ?[*]?*?PWSTR,
+                prefixes: [*]?*?PWSTR,
+                namespaces: [*]?*?PWSTR,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1339,12 +1339,12 @@ pub const IOpcDigitalSignature = extern struct {
         GetSignatureValue: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IOpcDigitalSignature,
-                signatureValue: ?[*]?*u8,
+                signatureValue: [*]?*u8,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IOpcDigitalSignature,
-                signatureValue: ?[*]?*u8,
+                signatureValue: [*]?*u8,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1445,7 +1445,7 @@ pub const IOpcDigitalSignature = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOpcDigitalSignature_GetNamespaces(self: *const T, prefixes: ?[*]?*?PWSTR, namespaces: ?[*]?*?PWSTR, count: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IOpcDigitalSignature_GetNamespaces(self: *const T, prefixes: [*]?*?PWSTR, namespaces: [*]?*?PWSTR, count: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetNamespaces(@as(*const IOpcDigitalSignature, @ptrCast(self)), prefixes, namespaces, count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1465,7 +1465,7 @@ pub const IOpcDigitalSignature = extern struct {
             return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetCanonicalizationMethod(@as(*const IOpcDigitalSignature, @ptrCast(self)), canonicalizationMethod);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IOpcDigitalSignature_GetSignatureValue(self: *const T, signatureValue: ?[*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IOpcDigitalSignature_GetSignatureValue(self: *const T, signatureValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IOpcDigitalSignature.VTable, @ptrCast(self.vtable)).GetSignatureValue(@as(*const IOpcDigitalSignature, @ptrCast(self)), signatureValue, count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

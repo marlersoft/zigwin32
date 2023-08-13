@@ -6209,7 +6209,7 @@ pub const IGetAppTrackerData = extern struct {
                 ApplicationId: ?*const Guid,
                 Flags: u32,
                 NumApplicationProcesses: ?*u32,
-                ApplicationProcesses: ?[*]?*ApplicationProcessSummary,
+                ApplicationProcesses: [*]?*ApplicationProcessSummary,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IGetAppTrackerData,
@@ -6217,7 +6217,7 @@ pub const IGetAppTrackerData = extern struct {
                 ApplicationId: ?*const Guid,
                 Flags: u32,
                 NumApplicationProcesses: ?*u32,
-                ApplicationProcesses: ?[*]?*ApplicationProcessSummary,
+                ApplicationProcesses: [*]?*ApplicationProcessSummary,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetApplicationProcessDetails: switch (@import("builtin").zig_backend) {
@@ -6250,7 +6250,7 @@ pub const IGetAppTrackerData = extern struct {
                 PartitionId: ?*const Guid,
                 Flags: u32,
                 NumApplicationsInProcess: ?*u32,
-                Applications: ?[*]?*ApplicationSummary,
+                Applications: [*]?*ApplicationSummary,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IGetAppTrackerData,
@@ -6259,7 +6259,7 @@ pub const IGetAppTrackerData = extern struct {
                 PartitionId: ?*const Guid,
                 Flags: u32,
                 NumApplicationsInProcess: ?*u32,
-                Applications: ?[*]?*ApplicationSummary,
+                Applications: [*]?*ApplicationSummary,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetComponentsInProcess: switch (@import("builtin").zig_backend) {
@@ -6271,7 +6271,7 @@ pub const IGetAppTrackerData = extern struct {
                 ApplicationId: ?*const Guid,
                 Flags: u32,
                 NumComponentsInProcess: ?*u32,
-                Components: ?[*]?*ComponentSummary,
+                Components: [*]?*ComponentSummary,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IGetAppTrackerData,
@@ -6281,7 +6281,7 @@ pub const IGetAppTrackerData = extern struct {
                 ApplicationId: ?*const Guid,
                 Flags: u32,
                 NumComponentsInProcess: ?*u32,
-                Components: ?[*]?*ComponentSummary,
+                Components: [*]?*ComponentSummary,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetComponentDetails: switch (@import("builtin").zig_backend) {
@@ -6331,7 +6331,7 @@ pub const IGetAppTrackerData = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetAppTrackerData_GetApplicationProcesses(self: *const T, PartitionId: ?*const Guid, ApplicationId: ?*const Guid, Flags: u32, NumApplicationProcesses: ?*u32, ApplicationProcesses: ?[*]?*ApplicationProcessSummary) callconv(.Inline) HRESULT {
+        pub fn IGetAppTrackerData_GetApplicationProcesses(self: *const T, PartitionId: ?*const Guid, ApplicationId: ?*const Guid, Flags: u32, NumApplicationProcesses: ?*u32, ApplicationProcesses: [*]?*ApplicationProcessSummary) callconv(.Inline) HRESULT {
             return @as(*const IGetAppTrackerData.VTable, @ptrCast(self.vtable)).GetApplicationProcesses(@as(*const IGetAppTrackerData, @ptrCast(self)), PartitionId, ApplicationId, Flags, NumApplicationProcesses, ApplicationProcesses);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6339,11 +6339,11 @@ pub const IGetAppTrackerData = extern struct {
             return @as(*const IGetAppTrackerData.VTable, @ptrCast(self.vtable)).GetApplicationProcessDetails(@as(*const IGetAppTrackerData, @ptrCast(self)), ApplicationInstanceId, ProcessId, Flags, Summary, Statistics, RecycleInfo, AnyComponentsHangMonitored);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetAppTrackerData_GetApplicationsInProcess(self: *const T, ApplicationInstanceId: ?*const Guid, ProcessId: u32, PartitionId: ?*const Guid, Flags: u32, NumApplicationsInProcess: ?*u32, Applications: ?[*]?*ApplicationSummary) callconv(.Inline) HRESULT {
+        pub fn IGetAppTrackerData_GetApplicationsInProcess(self: *const T, ApplicationInstanceId: ?*const Guid, ProcessId: u32, PartitionId: ?*const Guid, Flags: u32, NumApplicationsInProcess: ?*u32, Applications: [*]?*ApplicationSummary) callconv(.Inline) HRESULT {
             return @as(*const IGetAppTrackerData.VTable, @ptrCast(self.vtable)).GetApplicationsInProcess(@as(*const IGetAppTrackerData, @ptrCast(self)), ApplicationInstanceId, ProcessId, PartitionId, Flags, NumApplicationsInProcess, Applications);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IGetAppTrackerData_GetComponentsInProcess(self: *const T, ApplicationInstanceId: ?*const Guid, ProcessId: u32, PartitionId: ?*const Guid, ApplicationId: ?*const Guid, Flags: u32, NumComponentsInProcess: ?*u32, Components: ?[*]?*ComponentSummary) callconv(.Inline) HRESULT {
+        pub fn IGetAppTrackerData_GetComponentsInProcess(self: *const T, ApplicationInstanceId: ?*const Guid, ProcessId: u32, PartitionId: ?*const Guid, ApplicationId: ?*const Guid, Flags: u32, NumComponentsInProcess: ?*u32, Components: [*]?*ComponentSummary) callconv(.Inline) HRESULT {
             return @as(*const IGetAppTrackerData.VTable, @ptrCast(self.vtable)).GetComponentsInProcess(@as(*const IGetAppTrackerData, @ptrCast(self)), ApplicationInstanceId, ProcessId, PartitionId, ApplicationId, Flags, NumComponentsInProcess, Components);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

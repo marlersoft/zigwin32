@@ -743,12 +743,12 @@ pub const ISensor = extern struct {
         GetEventInterest: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const ISensor,
-                ppValues: ?[*]?*Guid,
+                ppValues: [*]?*Guid,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const ISensor,
-                ppValues: ?[*]?*Guid,
+                ppValues: [*]?*Guid,
                 pCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -827,7 +827,7 @@ pub const ISensor = extern struct {
             return @as(*const ISensor.VTable, @ptrCast(self.vtable)).SupportsEvent(@as(*const ISensor, @ptrCast(self)), eventGuid, pIsSupported);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISensor_GetEventInterest(self: *const T, ppValues: ?[*]?*Guid, pCount: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ISensor_GetEventInterest(self: *const T, ppValues: [*]?*Guid, pCount: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetEventInterest(@as(*const ISensor, @ptrCast(self)), ppValues, pCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

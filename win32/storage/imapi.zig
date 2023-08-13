@@ -941,7 +941,7 @@ pub const IDiscRecorder2Ex = extern struct {
                 address: u32,
                 layer: u32,
                 agid: u32,
-                data: ?[*]?*u8,
+                data: [*]?*u8,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
@@ -950,7 +950,7 @@ pub const IDiscRecorder2Ex = extern struct {
                 address: u32,
                 layer: u32,
                 agid: u32,
-                data: ?[*]?*u8,
+                data: [*]?*u8,
                 count: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -971,36 +971,36 @@ pub const IDiscRecorder2Ex = extern struct {
         GetAdapterDescriptor: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IDiscRecorder2Ex,
-                data: ?[*]?*u8,
+                data: [*]?*u8,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDiscRecorder2Ex,
-                data: ?[*]?*u8,
+                data: [*]?*u8,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDeviceDescriptor: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IDiscRecorder2Ex,
-                data: ?[*]?*u8,
+                data: [*]?*u8,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDiscRecorder2Ex,
-                data: ?[*]?*u8,
+                data: [*]?*u8,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetDiscInformation: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IDiscRecorder2Ex,
-                discInformation: ?[*]?*u8,
+                discInformation: [*]?*u8,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDiscRecorder2Ex,
-                discInformation: ?[*]?*u8,
+                discInformation: [*]?*u8,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1009,14 +1009,14 @@ pub const IDiscRecorder2Ex = extern struct {
                 self: *const IDiscRecorder2Ex,
                 address: u32,
                 addressType: IMAPI_READ_TRACK_ADDRESS_TYPE,
-                trackInformation: ?[*]?*u8,
+                trackInformation: [*]?*u8,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDiscRecorder2Ex,
                 address: u32,
                 addressType: IMAPI_READ_TRACK_ADDRESS_TYPE,
-                trackInformation: ?[*]?*u8,
+                trackInformation: [*]?*u8,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1025,14 +1025,14 @@ pub const IDiscRecorder2Ex = extern struct {
                 self: *const IDiscRecorder2Ex,
                 requestedFeature: IMAPI_FEATURE_PAGE_TYPE,
                 currentFeatureOnly: BOOLEAN,
-                featureData: ?[*]?*u8,
+                featureData: [*]?*u8,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDiscRecorder2Ex,
                 requestedFeature: IMAPI_FEATURE_PAGE_TYPE,
                 currentFeatureOnly: BOOLEAN,
-                featureData: ?[*]?*u8,
+                featureData: [*]?*u8,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1041,14 +1041,14 @@ pub const IDiscRecorder2Ex = extern struct {
                 self: *const IDiscRecorder2Ex,
                 requestedModePage: IMAPI_MODE_PAGE_TYPE,
                 requestType: IMAPI_MODE_PAGE_REQUEST_TYPE,
-                modePageData: ?[*]?*u8,
+                modePageData: [*]?*u8,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDiscRecorder2Ex,
                 requestedModePage: IMAPI_MODE_PAGE_TYPE,
                 requestType: IMAPI_MODE_PAGE_REQUEST_TYPE,
-                modePageData: ?[*]?*u8,
+                modePageData: [*]?*u8,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1070,13 +1070,13 @@ pub const IDiscRecorder2Ex = extern struct {
             .stage1 => fn(
                 self: *const IDiscRecorder2Ex,
                 currentFeatureOnly: BOOLEAN,
-                featureData: ?[*]?*IMAPI_FEATURE_PAGE_TYPE,
+                featureData: [*]?*IMAPI_FEATURE_PAGE_TYPE,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDiscRecorder2Ex,
                 currentFeatureOnly: BOOLEAN,
-                featureData: ?[*]?*IMAPI_FEATURE_PAGE_TYPE,
+                featureData: [*]?*IMAPI_FEATURE_PAGE_TYPE,
                 byteSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1084,13 +1084,13 @@ pub const IDiscRecorder2Ex = extern struct {
             .stage1 => fn(
                 self: *const IDiscRecorder2Ex,
                 currentOnly: BOOLEAN,
-                profileTypes: ?[*]?*IMAPI_PROFILE_TYPE,
+                profileTypes: [*]?*IMAPI_PROFILE_TYPE,
                 validProfiles: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDiscRecorder2Ex,
                 currentOnly: BOOLEAN,
-                profileTypes: ?[*]?*IMAPI_PROFILE_TYPE,
+                profileTypes: [*]?*IMAPI_PROFILE_TYPE,
                 validProfiles: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1098,13 +1098,13 @@ pub const IDiscRecorder2Ex = extern struct {
             .stage1 => fn(
                 self: *const IDiscRecorder2Ex,
                 requestType: IMAPI_MODE_PAGE_REQUEST_TYPE,
-                modePageTypes: ?[*]?*IMAPI_MODE_PAGE_TYPE,
+                modePageTypes: [*]?*IMAPI_MODE_PAGE_TYPE,
                 validPages: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDiscRecorder2Ex,
                 requestType: IMAPI_MODE_PAGE_REQUEST_TYPE,
-                modePageTypes: ?[*]?*IMAPI_MODE_PAGE_TYPE,
+                modePageTypes: [*]?*IMAPI_MODE_PAGE_TYPE,
                 validPages: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1155,7 +1155,7 @@ pub const IDiscRecorder2Ex = extern struct {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SendCommandGetDataFromDevice(@as(*const IDiscRecorder2Ex, @ptrCast(self)), Cdb, CdbSize, SenseBuffer, Timeout, Buffer, BufferSize, BufferFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_ReadDvdStructure(self: *const T, format: u32, address: u32, layer: u32, agid: u32, data: ?[*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_ReadDvdStructure(self: *const T, format: u32, address: u32, layer: u32, agid: u32, data: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).ReadDvdStructure(@as(*const IDiscRecorder2Ex, @ptrCast(self)), format, address, layer, agid, data, count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1163,27 +1163,27 @@ pub const IDiscRecorder2Ex = extern struct {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SendDvdStructure(@as(*const IDiscRecorder2Ex, @ptrCast(self)), format, data, count);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetAdapterDescriptor(self: *const T, data: ?[*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetAdapterDescriptor(self: *const T, data: [*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetAdapterDescriptor(@as(*const IDiscRecorder2Ex, @ptrCast(self)), data, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetDeviceDescriptor(self: *const T, data: ?[*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetDeviceDescriptor(self: *const T, data: [*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetDeviceDescriptor(@as(*const IDiscRecorder2Ex, @ptrCast(self)), data, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetDiscInformation(self: *const T, discInformation: ?[*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetDiscInformation(self: *const T, discInformation: [*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetDiscInformation(@as(*const IDiscRecorder2Ex, @ptrCast(self)), discInformation, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetTrackInformation(self: *const T, address: u32, addressType: IMAPI_READ_TRACK_ADDRESS_TYPE, trackInformation: ?[*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetTrackInformation(self: *const T, address: u32, addressType: IMAPI_READ_TRACK_ADDRESS_TYPE, trackInformation: [*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetTrackInformation(@as(*const IDiscRecorder2Ex, @ptrCast(self)), address, addressType, trackInformation, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetFeaturePage(self: *const T, requestedFeature: IMAPI_FEATURE_PAGE_TYPE, currentFeatureOnly: BOOLEAN, featureData: ?[*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetFeaturePage(self: *const T, requestedFeature: IMAPI_FEATURE_PAGE_TYPE, currentFeatureOnly: BOOLEAN, featureData: [*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetFeaturePage(@as(*const IDiscRecorder2Ex, @ptrCast(self)), requestedFeature, currentFeatureOnly, featureData, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetModePage(self: *const T, requestedModePage: IMAPI_MODE_PAGE_TYPE, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, modePageData: ?[*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetModePage(self: *const T, requestedModePage: IMAPI_MODE_PAGE_TYPE, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, modePageData: [*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetModePage(@as(*const IDiscRecorder2Ex, @ptrCast(self)), requestedModePage, requestType, modePageData, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1191,15 +1191,15 @@ pub const IDiscRecorder2Ex = extern struct {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SetModePage(@as(*const IDiscRecorder2Ex, @ptrCast(self)), requestType, data, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetSupportedFeaturePages(self: *const T, currentFeatureOnly: BOOLEAN, featureData: ?[*]?*IMAPI_FEATURE_PAGE_TYPE, byteSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetSupportedFeaturePages(self: *const T, currentFeatureOnly: BOOLEAN, featureData: [*]?*IMAPI_FEATURE_PAGE_TYPE, byteSize: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetSupportedFeaturePages(@as(*const IDiscRecorder2Ex, @ptrCast(self)), currentFeatureOnly, featureData, byteSize);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetSupportedProfiles(self: *const T, currentOnly: BOOLEAN, profileTypes: ?[*]?*IMAPI_PROFILE_TYPE, validProfiles: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetSupportedProfiles(self: *const T, currentOnly: BOOLEAN, profileTypes: [*]?*IMAPI_PROFILE_TYPE, validProfiles: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetSupportedProfiles(@as(*const IDiscRecorder2Ex, @ptrCast(self)), currentOnly, profileTypes, validProfiles);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDiscRecorder2Ex_GetSupportedModePages(self: *const T, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, modePageTypes: ?[*]?*IMAPI_MODE_PAGE_TYPE, validPages: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IDiscRecorder2Ex_GetSupportedModePages(self: *const T, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, modePageTypes: [*]?*IMAPI_MODE_PAGE_TYPE, validPages: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetSupportedModePages(@as(*const IDiscRecorder2Ex, @ptrCast(self)), requestType, modePageTypes, validPages);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

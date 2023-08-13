@@ -196,13 +196,13 @@ pub const ISecurityInformation = extern struct {
             .stage1 => fn(
                 self: *const ISecurityInformation,
                 RequestedInformation: OBJECT_SECURITY_INFORMATION,
-                ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+                ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
                 fDefault: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const ISecurityInformation,
                 RequestedInformation: OBJECT_SECURITY_INFORMATION,
-                ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+                ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
                 fDefault: BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -210,12 +210,12 @@ pub const ISecurityInformation = extern struct {
             .stage1 => fn(
                 self: *const ISecurityInformation,
                 SecurityInformation: OBJECT_SECURITY_INFORMATION,
-                pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+                pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const ISecurityInformation,
                 SecurityInformation: OBJECT_SECURITY_INFORMATION,
-                pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+                pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAccessRights: switch (@import("builtin").zig_backend) {
@@ -285,11 +285,11 @@ pub const ISecurityInformation = extern struct {
             return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).GetObjectInformation(@as(*const ISecurityInformation, @ptrCast(self)), pObjectInfo);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_GetSecurity(self: *const T, RequestedInformation: OBJECT_SECURITY_INFORMATION, ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR, fDefault: BOOL) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation_GetSecurity(self: *const T, RequestedInformation: OBJECT_SECURITY_INFORMATION, ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR, fDefault: BOOL) callconv(.Inline) HRESULT {
             return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).GetSecurity(@as(*const ISecurityInformation, @ptrCast(self)), RequestedInformation, ppSecurityDescriptor, fDefault);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISecurityInformation_SetSecurity(self: *const T, SecurityInformation: OBJECT_SECURITY_INFORMATION, pSecurityDescriptor: ?*SECURITY_DESCRIPTOR) callconv(.Inline) HRESULT {
+        pub fn ISecurityInformation_SetSecurity(self: *const T, SecurityInformation: OBJECT_SECURITY_INFORMATION, pSecurityDescriptor: ?PSECURITY_DESCRIPTOR) callconv(.Inline) HRESULT {
             return @as(*const ISecurityInformation.VTable, @ptrCast(self.vtable)).SetSecurity(@as(*const ISecurityInformation, @ptrCast(self)), SecurityInformation, pSecurityDescriptor);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -382,7 +382,7 @@ pub const IEffectivePermission = extern struct {
                 pguidObjectType: ?*const Guid,
                 pUserSid: ?PSID,
                 pszServerName: ?[*:0]const u16,
-                pSD: ?*SECURITY_DESCRIPTOR,
+                pSD: ?PSECURITY_DESCRIPTOR,
                 ppObjectTypeList: ?*?*OBJECT_TYPE_LIST,
                 pcObjectTypeListLength: ?*u32,
                 ppGrantedAccessList: ?*?*u32,
@@ -393,7 +393,7 @@ pub const IEffectivePermission = extern struct {
                 pguidObjectType: ?*const Guid,
                 pUserSid: ?PSID,
                 pszServerName: ?[*:0]const u16,
-                pSD: ?*SECURITY_DESCRIPTOR,
+                pSD: ?PSECURITY_DESCRIPTOR,
                 ppObjectTypeList: ?*?*OBJECT_TYPE_LIST,
                 pcObjectTypeListLength: ?*u32,
                 ppGrantedAccessList: ?*?*u32,
@@ -405,7 +405,7 @@ pub const IEffectivePermission = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEffectivePermission_GetEffectivePermission(self: *const T, pguidObjectType: ?*const Guid, pUserSid: ?PSID, pszServerName: ?[*:0]const u16, pSD: ?*SECURITY_DESCRIPTOR, ppObjectTypeList: ?*?*OBJECT_TYPE_LIST, pcObjectTypeListLength: ?*u32, ppGrantedAccessList: ?*?*u32, pcGrantedAccessListLength: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IEffectivePermission_GetEffectivePermission(self: *const T, pguidObjectType: ?*const Guid, pUserSid: ?PSID, pszServerName: ?[*:0]const u16, pSD: ?PSECURITY_DESCRIPTOR, ppObjectTypeList: ?*?*OBJECT_TYPE_LIST, pcObjectTypeListLength: ?*u32, ppGrantedAccessList: ?*?*u32, pcGrantedAccessListLength: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IEffectivePermission.VTable, @ptrCast(self.vtable)).GetEffectivePermission(@as(*const IEffectivePermission, @ptrCast(self)), pguidObjectType, pUserSid, pszServerName, pSD, ppObjectTypeList, pcObjectTypeListLength, ppGrantedAccessList, pcGrantedAccessListLength);
         }
     };}
@@ -645,10 +645,10 @@ const INHERITED_FROMA = @import("../../security/authorization.zig").INHERITED_FR
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const OBJECT_SECURITY_INFORMATION = @import("../../security.zig").OBJECT_SECURITY_INFORMATION;
 const OBJECT_TYPE_LIST = @import("../../security.zig").OBJECT_TYPE_LIST;
+const PSECURITY_DESCRIPTOR = @import("../../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../../foundation.zig").PSID;
 const PSPCB_MESSAGE = @import("../../ui/controls.zig").PSPCB_MESSAGE;
 const PWSTR = @import("../../foundation.zig").PWSTR;
-const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
 const TOKEN_GROUPS = @import("../../security.zig").TOKEN_GROUPS;
 
 test {

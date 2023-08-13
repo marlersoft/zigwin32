@@ -418,13 +418,13 @@ pub const ISideShowContent = extern struct {
                 self: *const ISideShowContent,
                 in_pICapabilities: ?*ISideShowCapabilities,
                 out_pdwSize: ?*u32,
-                out_ppbData: ?[*]?*u8,
+                out_ppbData: [*]?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const ISideShowContent,
                 in_pICapabilities: ?*ISideShowCapabilities,
                 out_pdwSize: ?*u32,
-                out_ppbData: ?[*]?*u8,
+                out_ppbData: [*]?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -458,7 +458,7 @@ pub const ISideShowContent = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISideShowContent_GetContent(self: *const T, in_pICapabilities: ?*ISideShowCapabilities, out_pdwSize: ?*u32, out_ppbData: ?[*]?*u8) callconv(.Inline) HRESULT {
+        pub fn ISideShowContent_GetContent(self: *const T, in_pICapabilities: ?*ISideShowCapabilities, out_pdwSize: ?*u32, out_ppbData: [*]?*u8) callconv(.Inline) HRESULT {
             return @as(*const ISideShowContent.VTable, @ptrCast(self.vtable)).GetContent(@as(*const ISideShowContent, @ptrCast(self)), in_pICapabilities, out_pdwSize, out_ppbData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

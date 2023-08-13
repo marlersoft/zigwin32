@@ -42,6 +42,30 @@ pub const RAWINPUTDEVICE_FLAGS = enum(u32) {
     APPKEYS = 1024,
     EXINPUTSINK = 4096,
     DEVNOTIFY = 8192,
+    _,
+    pub fn initFlags(o: struct {
+        REMOVE: u1 = 0,
+        EXCLUDE: u1 = 0,
+        PAGEONLY: u1 = 0,
+        NOLEGACY: u1 = 0,
+        INPUTSINK: u1 = 0,
+        CAPTUREMOUSE: u1 = 0,
+        APPKEYS: u1 = 0,
+        EXINPUTSINK: u1 = 0,
+        DEVNOTIFY: u1 = 0,
+    }) RAWINPUTDEVICE_FLAGS {
+        return @as(RAWINPUTDEVICE_FLAGS, @enumFromInt(
+              (if (o.REMOVE == 1) @intFromEnum(RAWINPUTDEVICE_FLAGS.REMOVE) else 0)
+            | (if (o.EXCLUDE == 1) @intFromEnum(RAWINPUTDEVICE_FLAGS.EXCLUDE) else 0)
+            | (if (o.PAGEONLY == 1) @intFromEnum(RAWINPUTDEVICE_FLAGS.PAGEONLY) else 0)
+            | (if (o.NOLEGACY == 1) @intFromEnum(RAWINPUTDEVICE_FLAGS.NOLEGACY) else 0)
+            | (if (o.INPUTSINK == 1) @intFromEnum(RAWINPUTDEVICE_FLAGS.INPUTSINK) else 0)
+            | (if (o.CAPTUREMOUSE == 1) @intFromEnum(RAWINPUTDEVICE_FLAGS.CAPTUREMOUSE) else 0)
+            | (if (o.APPKEYS == 1) @intFromEnum(RAWINPUTDEVICE_FLAGS.APPKEYS) else 0)
+            | (if (o.EXINPUTSINK == 1) @intFromEnum(RAWINPUTDEVICE_FLAGS.EXINPUTSINK) else 0)
+            | (if (o.DEVNOTIFY == 1) @intFromEnum(RAWINPUTDEVICE_FLAGS.DEVNOTIFY) else 0)
+        ));
+    }
 };
 pub const RIDEV_REMOVE = RAWINPUTDEVICE_FLAGS.REMOVE;
 pub const RIDEV_EXCLUDE = RAWINPUTDEVICE_FLAGS.EXCLUDE;

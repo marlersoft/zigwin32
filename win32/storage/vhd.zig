@@ -1061,37 +1061,37 @@ pub extern "virtdisk" fn OpenVirtualDisk(
     Flags: OPEN_VIRTUAL_DISK_FLAG,
     Parameters: ?*OPEN_VIRTUAL_DISK_PARAMETERS,
     Handle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "virtdisk" fn CreateVirtualDisk(
     VirtualStorageType: ?*VIRTUAL_STORAGE_TYPE,
     Path: ?[*:0]const u16,
     VirtualDiskAccessMask: VIRTUAL_DISK_ACCESS_MASK,
-    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Flags: CREATE_VIRTUAL_DISK_FLAG,
     ProviderSpecificFlags: u32,
     Parameters: ?*CREATE_VIRTUAL_DISK_PARAMETERS,
     Overlapped: ?*OVERLAPPED,
     Handle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "virtdisk" fn AttachVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
-    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Flags: ATTACH_VIRTUAL_DISK_FLAG,
     ProviderSpecificFlags: u32,
     Parameters: ?*ATTACH_VIRTUAL_DISK_PARAMETERS,
     Overlapped: ?*OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "virtdisk" fn DetachVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
     Flags: DETACH_VIRTUAL_DISK_FLAG,
     ProviderSpecificFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "virtdisk" fn GetVirtualDiskPhysicalPath(
@@ -1099,13 +1099,13 @@ pub extern "virtdisk" fn GetVirtualDiskPhysicalPath(
     DiskPathSizeInBytes: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
     DiskPath: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "virtdisk" fn GetAllAttachedVirtualDiskPhysicalPaths(
     PathsBufferSizeInBytes: ?*u32,
     // TODO: what to do with BytesParamIndex 0?
     PathsBuffer: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "virtdisk" fn GetStorageDependencyInformation(
@@ -1114,7 +1114,7 @@ pub extern "virtdisk" fn GetStorageDependencyInformation(
     StorageDependencyInfoSize: u32,
     StorageDependencyInfo: ?*STORAGE_DEPENDENCY_INFO,
     SizeUsed: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "virtdisk" fn GetVirtualDiskInformation(
@@ -1123,20 +1123,20 @@ pub extern "virtdisk" fn GetVirtualDiskInformation(
     // TODO: what to do with BytesParamIndex 1?
     VirtualDiskInfo: ?*GET_VIRTUAL_DISK_INFO,
     SizeUsed: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "virtdisk" fn SetVirtualDiskInformation(
     VirtualDiskHandle: ?HANDLE,
     VirtualDiskInfo: ?*SET_VIRTUAL_DISK_INFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "virtdisk" fn EnumerateVirtualDiskMetadata(
     VirtualDiskHandle: ?HANDLE,
     NumberOfItems: ?*u32,
     Items: [*]Guid,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "virtdisk" fn GetVirtualDiskMetadata(
@@ -1145,7 +1145,7 @@ pub extern "virtdisk" fn GetVirtualDiskMetadata(
     MetaDataSize: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
     MetaData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "virtdisk" fn SetVirtualDiskMetadata(
@@ -1154,20 +1154,20 @@ pub extern "virtdisk" fn SetVirtualDiskMetadata(
     MetaDataSize: u32,
     // TODO: what to do with BytesParamIndex 2?
     MetaData: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "virtdisk" fn DeleteVirtualDiskMetadata(
     VirtualDiskHandle: ?HANDLE,
     Item: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "virtdisk" fn GetVirtualDiskOperationProgress(
     VirtualDiskHandle: ?HANDLE,
     Overlapped: ?*OVERLAPPED,
     Progress: ?*VIRTUAL_DISK_PROGRESS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "virtdisk" fn CompactVirtualDisk(
@@ -1175,7 +1175,7 @@ pub extern "virtdisk" fn CompactVirtualDisk(
     Flags: COMPACT_VIRTUAL_DISK_FLAG,
     Parameters: ?*COMPACT_VIRTUAL_DISK_PARAMETERS,
     Overlapped: ?*OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "virtdisk" fn MergeVirtualDisk(
@@ -1183,7 +1183,7 @@ pub extern "virtdisk" fn MergeVirtualDisk(
     Flags: MERGE_VIRTUAL_DISK_FLAG,
     Parameters: ?*MERGE_VIRTUAL_DISK_PARAMETERS,
     Overlapped: ?*OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "virtdisk" fn ExpandVirtualDisk(
@@ -1191,7 +1191,7 @@ pub extern "virtdisk" fn ExpandVirtualDisk(
     Flags: EXPAND_VIRTUAL_DISK_FLAG,
     Parameters: ?*EXPAND_VIRTUAL_DISK_PARAMETERS,
     Overlapped: ?*OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "virtdisk" fn ResizeVirtualDisk(
@@ -1199,7 +1199,7 @@ pub extern "virtdisk" fn ResizeVirtualDisk(
     Flags: RESIZE_VIRTUAL_DISK_FLAG,
     Parameters: ?*RESIZE_VIRTUAL_DISK_PARAMETERS,
     Overlapped: ?*OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "virtdisk" fn MirrorVirtualDisk(
@@ -1207,18 +1207,18 @@ pub extern "virtdisk" fn MirrorVirtualDisk(
     Flags: MIRROR_VIRTUAL_DISK_FLAG,
     Parameters: ?*MIRROR_VIRTUAL_DISK_PARAMETERS,
     Overlapped: ?*OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "virtdisk" fn BreakMirrorVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "virtdisk" fn AddVirtualDiskParent(
     VirtualDiskHandle: ?HANDLE,
     ParentPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "virtdisk" fn QueryChangesVirtualDisk(
@@ -1230,35 +1230,35 @@ pub extern "virtdisk" fn QueryChangesVirtualDisk(
     Ranges: [*]QUERY_CHANGES_VIRTUAL_DISK_RANGE,
     RangeCount: ?*u32,
     ProcessedLength: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "virtdisk" fn TakeSnapshotVhdSet(
     VirtualDiskHandle: ?HANDLE,
     Parameters: ?*const TAKE_SNAPSHOT_VHDSET_PARAMETERS,
     Flags: TAKE_SNAPSHOT_VHDSET_FLAG,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "virtdisk" fn DeleteSnapshotVhdSet(
     VirtualDiskHandle: ?HANDLE,
     Parameters: ?*const DELETE_SNAPSHOT_VHDSET_PARAMETERS,
     Flags: DELETE_SNAPSHOT_VHDSET_FLAG,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "virtdisk" fn ModifyVhdSet(
     VirtualDiskHandle: ?HANDLE,
     Parameters: ?*const MODIFY_VHDSET_PARAMETERS,
     Flags: MODIFY_VHDSET_FLAG,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "virtdisk" fn ApplySnapshotVhdSet(
     VirtualDiskHandle: ?HANDLE,
     Parameters: ?*const APPLY_SNAPSHOT_VHDSET_PARAMETERS,
     Flags: APPLY_SNAPSHOT_VHDSET_FLAG,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "virtdisk" fn RawSCSIVirtualDisk(
@@ -1266,18 +1266,18 @@ pub extern "virtdisk" fn RawSCSIVirtualDisk(
     Parameters: ?*const RAW_SCSI_VIRTUAL_DISK_PARAMETERS,
     Flags: RAW_SCSI_VIRTUAL_DISK_FLAG,
     Response: ?*RAW_SCSI_VIRTUAL_DISK_RESPONSE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "virtdisk" fn ForkVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
     Flags: FORK_VIRTUAL_DISK_FLAG,
     Parameters: ?*const FORK_VIRTUAL_DISK_PARAMETERS,
     Overlapped: ?*OVERLAPPED,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "virtdisk" fn CompleteForkVirtualDisk(
     VirtualDiskHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 
 //--------------------------------------------------------------------------------
@@ -1294,14 +1294,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
+const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {
     @setEvalBranchQuota(

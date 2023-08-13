@@ -2100,7 +2100,7 @@ pub extern "ole32" fn StgCreateStorageEx(
     stgfmt: STGFMT,
     grfAttrs: u32,
     pStgOptions: ?*STGOPTIONS,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     riid: ?*const Guid,
     ppObjectOpen: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2112,7 +2112,7 @@ pub extern "ole32" fn StgOpenStorageEx(
     stgfmt: STGFMT,
     grfAttrs: u32,
     pStgOptions: ?*STGOPTIONS,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     riid: ?*const Guid,
     ppObjectOpen: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -2332,10 +2332,10 @@ const IStream = @import("../../system/com.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../../foundation.zig").LARGE_INTEGER;
 const MULTI_QI = @import("../../system/com.zig").MULTI_QI;
+const PSECURITY_DESCRIPTOR = @import("../../security.zig").PSECURITY_DESCRIPTOR;
 const PSTR = @import("../../foundation.zig").PSTR;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../../system/com.zig").SAFEARRAY;
-const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
 const STATSTG = @import("../../system/com.zig").STATSTG;
 const STGMEDIUM = @import("../../system/com.zig").STGMEDIUM;
 const StorageLayout = @import("../../system/com.zig").StorageLayout;

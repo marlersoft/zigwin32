@@ -14419,12 +14419,12 @@ pub const IWMPContentPartnerCallback = extern struct {
             .stage1 => fn(
                 self: *const IWMPContentPartnerCallback,
                 pcContentIDs: ?*u32,
-                pprgIDs: ?[*]?*u32,
+                pprgIDs: [*]?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMPContentPartnerCallback,
                 pcContentIDs: ?*u32,
-                pprgIDs: ?[*]?*u32,
+                pprgIDs: [*]?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         RefreshLicenseComplete: switch (@import("builtin").zig_backend) {
@@ -14508,7 +14508,7 @@ pub const IWMPContentPartnerCallback = extern struct {
             return @as(*const IWMPContentPartnerCallback.VTable, @ptrCast(self.vtable)).SendMessageComplete(@as(*const IWMPContentPartnerCallback, @ptrCast(self)), bstrMsg, bstrParam, bstrResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPContentPartnerCallback_GetContentIDsInLibrary(self: *const T, pcContentIDs: ?*u32, pprgIDs: ?[*]?*u32) callconv(.Inline) HRESULT {
+        pub fn IWMPContentPartnerCallback_GetContentIDsInLibrary(self: *const T, pcContentIDs: ?*u32, pprgIDs: [*]?*u32) callconv(.Inline) HRESULT {
             return @as(*const IWMPContentPartnerCallback.VTable, @ptrCast(self.vtable)).GetContentIDsInLibrary(@as(*const IWMPContentPartnerCallback, @ptrCast(self)), pcContentIDs, pprgIDs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14589,7 +14589,7 @@ pub const IWMPContentPartner = extern struct {
                 cItemIDs: u32,
                 prgItemIDs: [*]u32,
                 pcItemIDs: ?*u32,
-                pprgItems: ?[*]?*WMPContextMenuInfo,
+                pprgItems: [*]?*WMPContextMenuInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMPContentPartner,
@@ -14599,7 +14599,7 @@ pub const IWMPContentPartner = extern struct {
                 cItemIDs: u32,
                 prgItemIDs: [*]u32,
                 pcItemIDs: ?*u32,
-                pprgItems: ?[*]?*WMPContextMenuInfo,
+                pprgItems: [*]?*WMPContextMenuInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         InvokeCommand: switch (@import("builtin").zig_backend) {
@@ -14899,7 +14899,7 @@ pub const IWMPContentPartner = extern struct {
             return @as(*const IWMPContentPartner.VTable, @ptrCast(self.vtable)).GetContentPartnerInfo(@as(*const IWMPContentPartner, @ptrCast(self)), bstrInfoName, pData);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMPContentPartner_GetCommands(self: *const T, location: ?BSTR, pLocationContext: ?*VARIANT, itemLocation: ?BSTR, cItemIDs: u32, prgItemIDs: [*]u32, pcItemIDs: ?*u32, pprgItems: ?[*]?*WMPContextMenuInfo) callconv(.Inline) HRESULT {
+        pub fn IWMPContentPartner_GetCommands(self: *const T, location: ?BSTR, pLocationContext: ?*VARIANT, itemLocation: ?BSTR, cItemIDs: u32, prgItemIDs: [*]u32, pcItemIDs: ?*u32, pprgItems: [*]?*WMPContextMenuInfo) callconv(.Inline) HRESULT {
             return @as(*const IWMPContentPartner.VTable, @ptrCast(self.vtable)).GetCommands(@as(*const IWMPContentPartner, @ptrCast(self)), location, pLocationContext, itemLocation, cItemIDs, prgItemIDs, pcItemIDs, pprgItems);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -4939,25 +4939,25 @@ pub extern "kernel32" fn GetCurrentPackageId(
     bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 0?
     buffer: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetCurrentPackageFullName(
     packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetCurrentPackageFamilyName(
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetCurrentPackagePath(
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackageId(
@@ -4965,35 +4965,35 @@ pub extern "kernel32" fn GetPackageId(
     bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
     buffer: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackageFullName(
     hProcess: ?HANDLE,
     packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFullNameFromToken(
     token: ?HANDLE,
     packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackageFamilyName(
     hProcess: ?HANDLE,
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFamilyNameFromToken(
     token: ?HANDLE,
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackagePath(
@@ -5001,21 +5001,21 @@ pub extern "kernel32" fn GetPackagePath(
     reserved: u32,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn GetPackagePathByFullName(
     packageFullName: ?[*:0]const u16,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn GetStagedPackagePathByFullName(
     packageFullName: ?[*:0]const u16,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackagePathByFullName2(
@@ -5023,7 +5023,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackagePathByFullName2(
     packagePathType: PackagePathType,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetStagedPackagePathByFullName2(
@@ -5031,7 +5031,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetStagedPackagePathByFullNam
     packagePathType: PackagePathType,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackageInfo2(
@@ -5041,51 +5041,51 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackageInfo2(
     // TODO: what to do with BytesParamIndex 2?
     buffer: ?*u8,
     count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackagePath2(
     packagePathType: PackagePathType,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "kernel32" fn GetCurrentApplicationUserModelId(
     applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "kernel32" fn GetApplicationUserModelId(
     hProcess: ?HANDLE,
     applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetApplicationUserModelIdFromToken(
     token: ?HANDLE,
     applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageFullName(
     packageFullName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageFamilyName(
     packageFamilyName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageId(
     packageId: ?*const PACKAGE_ID,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyApplicationUserModelId(
     applicationUserModelId: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageRelativeApplicationId(
     packageRelativeApplicationId: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn PackageIdFromFullName(
@@ -5094,28 +5094,28 @@ pub extern "kernel32" fn PackageIdFromFullName(
     bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
     buffer: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn PackageFullNameFromId(
     packageId: ?*const PACKAGE_ID,
     packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn PackageFamilyNameFromId(
     packageId: ?*const PACKAGE_ID,
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn PackageFamilyNameFromFullName(
     packageFullName: ?[*:0]const u16,
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn PackageNameAndPublisherIdFromFamilyName(
@@ -5124,7 +5124,7 @@ pub extern "kernel32" fn PackageNameAndPublisherIdFromFamilyName(
     packageName: ?[*:0]u16,
     packagePublisherIdLength: ?*u32,
     packagePublisherId: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn FormatApplicationUserModelId(
@@ -5132,7 +5132,7 @@ pub extern "kernel32" fn FormatApplicationUserModelId(
     packageRelativeApplicationId: ?[*:0]const u16,
     applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn ParseApplicationUserModelId(
@@ -5141,7 +5141,7 @@ pub extern "kernel32" fn ParseApplicationUserModelId(
     packageFamilyName: ?[*:0]u16,
     packageRelativeApplicationIdLength: ?*u32,
     packageRelativeApplicationId: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackagesByPackageFamily(
@@ -5150,7 +5150,7 @@ pub extern "kernel32" fn GetPackagesByPackageFamily(
     packageFullNames: ?[*]?PWSTR,
     bufferLength: ?*u32,
     buffer: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn FindPackagesByPackageFamily(
@@ -5161,13 +5161,13 @@ pub extern "kernel32" fn FindPackagesByPackageFamily(
     bufferLength: ?*u32,
     buffer: ?[*:0]u16,
     packageProperties: ?[*]u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetStagedPackageOrigin(
     packageFullName: ?[*:0]const u16,
     origin: ?*PackageOrigin,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetCurrentPackageInfo(
@@ -5176,26 +5176,26 @@ pub extern "kernel32" fn GetCurrentPackageInfo(
     // TODO: what to do with BytesParamIndex 1?
     buffer: ?*u8,
     count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn OpenPackageInfoByFullName(
     packageFullName: ?[*:0]const u16,
     reserved: u32,
     packageInfoReference: ?*?*_PACKAGE_INFO_REFERENCE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn OpenPackageInfoByFullNameForUser(
     userSid: ?PSID,
     packageFullName: ?[*:0]const u16,
     reserved: u32,
     packageInfoReference: ?*?*_PACKAGE_INFO_REFERENCE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn ClosePackageInfo(
     packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackageInfo(
@@ -5205,7 +5205,7 @@ pub extern "kernel32" fn GetPackageInfo(
     // TODO: what to do with BytesParamIndex 2?
     buffer: ?*u8,
     count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn GetPackageApplicationIds(
@@ -5214,7 +5214,7 @@ pub extern "kernel32" fn GetPackageApplicationIds(
     // TODO: what to do with BytesParamIndex 1?
     buffer: ?*u8,
     count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackageInfo2(
@@ -5225,14 +5225,14 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackageInfo2(
     // TODO: what to do with BytesParamIndex 3?
     buffer: ?*u8,
     count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "kernel32" fn CheckIsMSIXPackage(
     packageFullName: ?[*:0]const u16,
     isMSIXPackage: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "kernel32" fn TryCreatePackageDependency(
+pub extern "kernelbase" fn TryCreatePackageDependency(
     user: ?PSID,
     packageFamilyName: ?[*:0]const u16,
     minVersion: PACKAGE_VERSION,
@@ -5243,11 +5243,11 @@ pub extern "kernel32" fn TryCreatePackageDependency(
     packageDependencyId: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "kernel32" fn DeletePackageDependency(
+pub extern "kernelbase" fn DeletePackageDependency(
     packageDependencyId: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "kernel32" fn AddPackageDependency(
+pub extern "kernelbase" fn AddPackageDependency(
     packageDependencyId: ?[*:0]const u16,
     rank: i32,
     options: AddPackageDependencyOptions,
@@ -5255,16 +5255,16 @@ pub extern "kernel32" fn AddPackageDependency(
     packageFullName: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "kernel32" fn RemovePackageDependency(
+pub extern "kernelbase" fn RemovePackageDependency(
     packageDependencyContext: ?*PACKAGEDEPENDENCY_CONTEXT__,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "kernel32" fn GetResolvedPackageFullNameForPackageDependency(
+pub extern "kernelbase" fn GetResolvedPackageFullNameForPackageDependency(
     packageDependencyId: ?[*:0]const u16,
     packageFullName: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "kernel32" fn GetIdForPackageDependencyContext(
+pub extern "kernelbase" fn GetIdForPackageDependencyContext(
     packageDependencyContext: ?*PACKAGEDEPENDENCY_CONTEXT__,
     packageDependencyId: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -5272,42 +5272,42 @@ pub extern "kernel32" fn GetIdForPackageDependencyContext(
 pub extern "kernel32" fn AppPolicyGetLifecycleManagement(
     processToken: ?HANDLE,
     policy: ?*AppPolicyLifecycleManagement,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetWindowingModel(
     processToken: ?HANDLE,
     policy: ?*AppPolicyWindowingModel,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetMediaFoundationCodecLoading(
     processToken: ?HANDLE,
     policy: ?*AppPolicyMediaFoundationCodecLoading,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetClrCompat(
     processToken: ?HANDLE,
     policy: ?*AppPolicyClrCompat,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetThreadInitializationType(
     processToken: ?HANDLE,
     policy: ?*AppPolicyThreadInitializationType,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetShowDeveloperDiagnostic(
     processToken: ?HANDLE,
     policy: ?*AppPolicyShowDeveloperDiagnostic,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetProcessTerminationMethod(
     processToken: ?HANDLE,
     policy: ?*AppPolicyProcessTerminationMethod,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetCreateFileAccess(
     processToken: ?HANDLE,
     policy: ?*AppPolicyCreateFileAccess,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 pub extern "kernel32" fn CreatePackageVirtualizationContext(
     packageFamilyName: ?[*:0]const u16,
@@ -5356,7 +5356,7 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -5368,6 +5368,7 @@ const IUri = @import("../../system/com.zig").IUri;
 const PSID = @import("../../foundation.zig").PSID;
 const PSTR = @import("../../foundation.zig").PSTR;
 const PWSTR = @import("../../foundation.zig").PWSTR;
+const WIN32_ERROR = @import("../../foundation.zig").WIN32_ERROR;
 
 test {
     @setEvalBranchQuota(

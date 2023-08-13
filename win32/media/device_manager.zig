@@ -704,14 +704,14 @@ pub const IWMDMMetaData = extern struct {
                 self: *const IWMDMMetaData,
                 pwszTagName: ?[*:0]const u16,
                 pType: ?*WMDM_TAG_DATATYPE,
-                pValue: ?[*]?*u8,
+                pValue: [*]?*u8,
                 pcbLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMMetaData,
                 pwszTagName: ?[*:0]const u16,
                 pType: ?*WMDM_TAG_DATATYPE,
-                pValue: ?[*]?*u8,
+                pValue: [*]?*u8,
                 pcbLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -721,7 +721,7 @@ pub const IWMDMMetaData = extern struct {
                 iIndex: u32,
                 ppwszName: ?*?*u16,
                 pType: ?*WMDM_TAG_DATATYPE,
-                ppValue: ?[*]?*u8,
+                ppValue: [*]?*u8,
                 pcbLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
@@ -729,7 +729,7 @@ pub const IWMDMMetaData = extern struct {
                 iIndex: u32,
                 ppwszName: ?*?*u16,
                 pType: ?*WMDM_TAG_DATATYPE,
-                ppValue: ?[*]?*u8,
+                ppValue: [*]?*u8,
                 pcbLength: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -752,11 +752,11 @@ pub const IWMDMMetaData = extern struct {
             return @as(*const IWMDMMetaData.VTable, @ptrCast(self.vtable)).AddItem(@as(*const IWMDMMetaData, @ptrCast(self)), Type, pwszTagName, pValue, iLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMMetaData_QueryByName(self: *const T, pwszTagName: ?[*:0]const u16, pType: ?*WMDM_TAG_DATATYPE, pValue: ?[*]?*u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWMDMMetaData_QueryByName(self: *const T, pwszTagName: ?[*:0]const u16, pType: ?*WMDM_TAG_DATATYPE, pValue: [*]?*u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IWMDMMetaData.VTable, @ptrCast(self.vtable)).QueryByName(@as(*const IWMDMMetaData, @ptrCast(self)), pwszTagName, pType, pValue, pcbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMMetaData_QueryByIndex(self: *const T, iIndex: u32, ppwszName: ?*?*u16, pType: ?*WMDM_TAG_DATATYPE, ppValue: ?[*]?*u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWMDMMetaData_QueryByIndex(self: *const T, iIndex: u32, ppwszName: ?*?*u16, pType: ?*WMDM_TAG_DATATYPE, ppValue: [*]?*u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IWMDMMetaData.VTable, @ptrCast(self.vtable)).QueryByIndex(@as(*const IWMDMMetaData, @ptrCast(self)), iIndex, ppwszName, pType, ppValue, pcbLength);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1101,13 +1101,13 @@ pub const IWMDMStorage = extern struct {
         GetRights: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IWMDMStorage,
-                ppRights: ?[*]?*WMDMRIGHTS,
+                ppRights: [*]?*WMDMRIGHTS,
                 pnRightsCount: ?*u32,
                 abMac: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMStorage,
-                ppRights: ?[*]?*WMDMRIGHTS,
+                ppRights: [*]?*WMDMRIGHTS,
                 pnRightsCount: ?*u32,
                 abMac: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -1161,7 +1161,7 @@ pub const IWMDMStorage = extern struct {
             return @as(*const IWMDMStorage.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IWMDMStorage, @ptrCast(self)), pdwSizeLow, pdwSizeHigh);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage_GetRights(self: *const T, ppRights: ?[*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage_GetRights(self: *const T, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
             return @as(*const IWMDMStorage.VTable, @ptrCast(self.vtable)).GetRights(@as(*const IWMDMStorage, @ptrCast(self)), ppRights, pnRightsCount, abMac);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1339,25 +1339,25 @@ pub const IWMDMStorage4 = extern struct {
             .stage1 => fn(
                 self: *const IWMDMStorage4,
                 pdwRefs: ?*u32,
-                pppIWMDMStorage: ?[*]?*?*IWMDMStorage,
+                pppIWMDMStorage: [*]?*?*IWMDMStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMStorage4,
                 pdwRefs: ?*u32,
-                pppIWMDMStorage: ?[*]?*?*IWMDMStorage,
+                pppIWMDMStorage: [*]?*?*IWMDMStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetRightsWithProgress: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IWMDMStorage4,
                 pIProgressCallback: ?*IWMDMProgress3,
-                ppRights: ?[*]?*WMDMRIGHTS,
+                ppRights: [*]?*WMDMRIGHTS,
                 pnRightsCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMStorage4,
                 pIProgressCallback: ?*IWMDMProgress3,
-                ppRights: ?[*]?*WMDMRIGHTS,
+                ppRights: [*]?*WMDMRIGHTS,
                 pnRightsCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1408,11 +1408,11 @@ pub const IWMDMStorage4 = extern struct {
             return @as(*const IWMDMStorage4.VTable, @ptrCast(self.vtable)).SetReferences(@as(*const IWMDMStorage4, @ptrCast(self)), dwRefs, ppIWMDMStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage4_GetReferences(self: *const T, pdwRefs: ?*u32, pppIWMDMStorage: ?[*]?*?*IWMDMStorage) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage4_GetReferences(self: *const T, pdwRefs: ?*u32, pppIWMDMStorage: [*]?*?*IWMDMStorage) callconv(.Inline) HRESULT {
             return @as(*const IWMDMStorage4.VTable, @ptrCast(self.vtable)).GetReferences(@as(*const IWMDMStorage4, @ptrCast(self)), pdwRefs, pppIWMDMStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage4_GetRightsWithProgress(self: *const T, pIProgressCallback: ?*IWMDMProgress3, ppRights: ?[*]?*WMDMRIGHTS, pnRightsCount: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage4_GetRightsWithProgress(self: *const T, pIProgressCallback: ?*IWMDMProgress3, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IWMDMStorage4.VTable, @ptrCast(self.vtable)).GetRightsWithProgress(@as(*const IWMDMStorage4, @ptrCast(self)), pIProgressCallback, ppRights, pnRightsCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1933,16 +1933,16 @@ pub const IWMDMDevice = extern struct {
         GetFormatSupport: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IWMDMDevice,
-                ppFormatEx: ?[*]?*_WAVEFORMATEX,
+                ppFormatEx: [*]?*_WAVEFORMATEX,
                 pnFormatCount: ?*u32,
-                pppwszMimeType: ?[*]?*?PWSTR,
+                pppwszMimeType: [*]?*?PWSTR,
                 pnMimeTypeCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMDevice,
-                ppFormatEx: ?[*]?*_WAVEFORMATEX,
+                ppFormatEx: [*]?*_WAVEFORMATEX,
                 pnFormatCount: ?*u32,
-                pppwszMimeType: ?[*]?*?PWSTR,
+                pppwszMimeType: [*]?*?PWSTR,
                 pnMimeTypeCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1997,7 +1997,7 @@ pub const IWMDMDevice = extern struct {
             return @as(*const IWMDMDevice.VTable, @ptrCast(self.vtable)).EnumStorage(@as(*const IWMDMDevice, @ptrCast(self)), ppEnumStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMDevice_GetFormatSupport(self: *const T, ppFormatEx: ?[*]?*_WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: ?[*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWMDMDevice_GetFormatSupport(self: *const T, ppFormatEx: [*]?*_WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IWMDMDevice.VTable, @ptrCast(self.vtable)).GetFormatSupport(@as(*const IWMDMDevice, @ptrCast(self)), ppFormatEx, pnFormatCount, pppwszMimeType, pnMimeTypeCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2029,21 +2029,21 @@ pub const IWMDMDevice2 = extern struct {
             .stage1 => fn(
                 self: *const IWMDMDevice2,
                 dwFlags: u32,
-                ppAudioFormatEx: ?[*]?*_WAVEFORMATEX,
+                ppAudioFormatEx: [*]?*_WAVEFORMATEX,
                 pnAudioFormatCount: ?*u32,
-                ppVideoFormatEx: ?[*]?*_VIDEOINFOHEADER,
+                ppVideoFormatEx: [*]?*_VIDEOINFOHEADER,
                 pnVideoFormatCount: ?*u32,
-                ppFileType: ?[*]?*WMFILECAPABILITIES,
+                ppFileType: [*]?*WMFILECAPABILITIES,
                 pnFileTypeCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMDevice2,
                 dwFlags: u32,
-                ppAudioFormatEx: ?[*]?*_WAVEFORMATEX,
+                ppAudioFormatEx: [*]?*_WAVEFORMATEX,
                 pnAudioFormatCount: ?*u32,
-                ppVideoFormatEx: ?[*]?*_VIDEOINFOHEADER,
+                ppVideoFormatEx: [*]?*_VIDEOINFOHEADER,
                 pnVideoFormatCount: ?*u32,
-                ppFileType: ?[*]?*WMFILECAPABILITIES,
+                ppFileType: [*]?*WMFILECAPABILITIES,
                 pnFileTypeCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -2051,13 +2051,13 @@ pub const IWMDMDevice2 = extern struct {
             .stage1 => fn(
                 self: *const IWMDMDevice2,
                 ppSpecifyPropPages: ?*?*ISpecifyPropertyPages,
-                pppUnknowns: ?[*]?*?*IUnknown,
+                pppUnknowns: [*]?*?*IUnknown,
                 pcUnks: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMDevice2,
                 ppSpecifyPropPages: ?*?*ISpecifyPropertyPages,
-                pppUnknowns: ?[*]?*?*IUnknown,
+                pppUnknowns: [*]?*?*IUnknown,
                 pcUnks: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -2082,11 +2082,11 @@ pub const IWMDMDevice2 = extern struct {
             return @as(*const IWMDMDevice2.VTable, @ptrCast(self.vtable)).GetStorage(@as(*const IWMDMDevice2, @ptrCast(self)), pszStorageName, ppStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMDevice2_GetFormatSupport2(self: *const T, dwFlags: u32, ppAudioFormatEx: ?[*]?*_WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: ?[*]?*_VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: ?[*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWMDMDevice2_GetFormatSupport2(self: *const T, dwFlags: u32, ppAudioFormatEx: [*]?*_WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: [*]?*_VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: [*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IWMDMDevice2.VTable, @ptrCast(self.vtable)).GetFormatSupport2(@as(*const IWMDMDevice2, @ptrCast(self)), dwFlags, ppAudioFormatEx, pnAudioFormatCount, ppVideoFormatEx, pnVideoFormatCount, ppFileType, pnFileTypeCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMDevice2_GetSpecifyPropertyPages(self: *const T, ppSpecifyPropPages: ?*?*ISpecifyPropertyPages, pppUnknowns: ?[*]?*?*IUnknown, pcUnks: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWMDMDevice2_GetSpecifyPropertyPages(self: *const T, ppSpecifyPropPages: ?*?*ISpecifyPropertyPages, pppUnknowns: [*]?*?*IUnknown, pcUnks: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IWMDMDevice2.VTable, @ptrCast(self.vtable)).GetSpecifyPropertyPages(@as(*const IWMDMDevice2, @ptrCast(self)), ppSpecifyPropPages, pppUnknowns, pcUnks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2820,13 +2820,13 @@ pub const IWMDMRevoked = extern struct {
         GetRevocationURL: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IWMDMRevoked,
-                ppwszRevocationURL: ?[*]?PWSTR,
+                ppwszRevocationURL: [*]?PWSTR,
                 pdwBufferLen: ?*u32,
                 pdwRevokedBitFlag: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMRevoked,
-                ppwszRevocationURL: ?[*]?PWSTR,
+                ppwszRevocationURL: [*]?PWSTR,
                 pdwBufferLen: ?*u32,
                 pdwRevokedBitFlag: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -2836,7 +2836,7 @@ pub const IWMDMRevoked = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMRevoked_GetRevocationURL(self: *const T, ppwszRevocationURL: ?[*]?PWSTR, pdwBufferLen: ?*u32, pdwRevokedBitFlag: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWMDMRevoked_GetRevocationURL(self: *const T, ppwszRevocationURL: [*]?PWSTR, pdwBufferLen: ?*u32, pdwRevokedBitFlag: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IWMDMRevoked.VTable, @ptrCast(self.vtable)).GetRevocationURL(@as(*const IWMDMRevoked, @ptrCast(self)), ppwszRevocationURL, pdwBufferLen, pdwRevokedBitFlag);
         }
     };}
@@ -3008,13 +3008,13 @@ pub const IMDServiceProvider2 = extern struct {
                 self: *const IMDServiceProvider2,
                 pwszDevicePath: ?[*:0]const u16,
                 pdwCount: ?*u32,
-                pppDeviceArray: ?[*]?*?*IMDSPDevice,
+                pppDeviceArray: [*]?*?*IMDSPDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDServiceProvider2,
                 pwszDevicePath: ?[*:0]const u16,
                 pdwCount: ?*u32,
-                pppDeviceArray: ?[*]?*?*IMDSPDevice,
+                pppDeviceArray: [*]?*?*IMDSPDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
@@ -3022,7 +3022,7 @@ pub const IMDServiceProvider2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMDServiceProvider.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDServiceProvider2_CreateDevice(self: *const T, pwszDevicePath: ?[*:0]const u16, pdwCount: ?*u32, pppDeviceArray: ?[*]?*?*IMDSPDevice) callconv(.Inline) HRESULT {
+        pub fn IMDServiceProvider2_CreateDevice(self: *const T, pwszDevicePath: ?[*:0]const u16, pdwCount: ?*u32, pppDeviceArray: [*]?*?*IMDSPDevice) callconv(.Inline) HRESULT {
             return @as(*const IMDServiceProvider2.VTable, @ptrCast(self.vtable)).CreateDevice(@as(*const IMDServiceProvider2, @ptrCast(self)), pwszDevicePath, pdwCount, pppDeviceArray);
         }
     };}
@@ -3235,16 +3235,16 @@ pub const IMDSPDevice = extern struct {
         GetFormatSupport: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IMDSPDevice,
-                pFormatEx: ?[*]?*_WAVEFORMATEX,
+                pFormatEx: [*]?*_WAVEFORMATEX,
                 pnFormatCount: ?*u32,
-                pppwszMimeType: ?[*]?*?PWSTR,
+                pppwszMimeType: [*]?*?PWSTR,
                 pnMimeTypeCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPDevice,
-                pFormatEx: ?[*]?*_WAVEFORMATEX,
+                pFormatEx: [*]?*_WAVEFORMATEX,
                 pnFormatCount: ?*u32,
-                pppwszMimeType: ?[*]?*?PWSTR,
+                pppwszMimeType: [*]?*?PWSTR,
                 pnMimeTypeCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -3299,7 +3299,7 @@ pub const IMDSPDevice = extern struct {
             return @as(*const IMDSPDevice.VTable, @ptrCast(self.vtable)).EnumStorage(@as(*const IMDSPDevice, @ptrCast(self)), ppEnumStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPDevice_GetFormatSupport(self: *const T, pFormatEx: ?[*]?*_WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: ?[*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IMDSPDevice_GetFormatSupport(self: *const T, pFormatEx: [*]?*_WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IMDSPDevice.VTable, @ptrCast(self.vtable)).GetFormatSupport(@as(*const IMDSPDevice, @ptrCast(self)), pFormatEx, pnFormatCount, pppwszMimeType, pnMimeTypeCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3331,21 +3331,21 @@ pub const IMDSPDevice2 = extern struct {
             .stage1 => fn(
                 self: *const IMDSPDevice2,
                 dwFlags: u32,
-                ppAudioFormatEx: ?[*]?*_WAVEFORMATEX,
+                ppAudioFormatEx: [*]?*_WAVEFORMATEX,
                 pnAudioFormatCount: ?*u32,
-                ppVideoFormatEx: ?[*]?*_VIDEOINFOHEADER,
+                ppVideoFormatEx: [*]?*_VIDEOINFOHEADER,
                 pnVideoFormatCount: ?*u32,
-                ppFileType: ?[*]?*WMFILECAPABILITIES,
+                ppFileType: [*]?*WMFILECAPABILITIES,
                 pnFileTypeCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPDevice2,
                 dwFlags: u32,
-                ppAudioFormatEx: ?[*]?*_WAVEFORMATEX,
+                ppAudioFormatEx: [*]?*_WAVEFORMATEX,
                 pnAudioFormatCount: ?*u32,
-                ppVideoFormatEx: ?[*]?*_VIDEOINFOHEADER,
+                ppVideoFormatEx: [*]?*_VIDEOINFOHEADER,
                 pnVideoFormatCount: ?*u32,
-                ppFileType: ?[*]?*WMFILECAPABILITIES,
+                ppFileType: [*]?*WMFILECAPABILITIES,
                 pnFileTypeCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -3353,13 +3353,13 @@ pub const IMDSPDevice2 = extern struct {
             .stage1 => fn(
                 self: *const IMDSPDevice2,
                 ppSpecifyPropPages: ?*?*ISpecifyPropertyPages,
-                pppUnknowns: ?[*]?*?*IUnknown,
+                pppUnknowns: [*]?*?*IUnknown,
                 pcUnks: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPDevice2,
                 ppSpecifyPropPages: ?*?*ISpecifyPropertyPages,
-                pppUnknowns: ?[*]?*?*IUnknown,
+                pppUnknowns: [*]?*?*IUnknown,
                 pcUnks: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -3384,11 +3384,11 @@ pub const IMDSPDevice2 = extern struct {
             return @as(*const IMDSPDevice2.VTable, @ptrCast(self.vtable)).GetStorage(@as(*const IMDSPDevice2, @ptrCast(self)), pszStorageName, ppStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPDevice2_GetFormatSupport2(self: *const T, dwFlags: u32, ppAudioFormatEx: ?[*]?*_WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: ?[*]?*_VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: ?[*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IMDSPDevice2_GetFormatSupport2(self: *const T, dwFlags: u32, ppAudioFormatEx: [*]?*_WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: [*]?*_VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: [*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IMDSPDevice2.VTable, @ptrCast(self.vtable)).GetFormatSupport2(@as(*const IMDSPDevice2, @ptrCast(self)), dwFlags, ppAudioFormatEx, pnAudioFormatCount, ppVideoFormatEx, pnVideoFormatCount, ppFileType, pnFileTypeCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPDevice2_GetSpecifyPropertyPages(self: *const T, ppSpecifyPropPages: ?*?*ISpecifyPropertyPages, pppUnknowns: ?[*]?*?*IUnknown, pcUnks: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IMDSPDevice2_GetSpecifyPropertyPages(self: *const T, ppSpecifyPropPages: ?*?*ISpecifyPropertyPages, pppUnknowns: [*]?*?*IUnknown, pcUnks: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IMDSPDevice2.VTable, @ptrCast(self.vtable)).GetSpecifyPropertyPages(@as(*const IMDSPDevice2, @ptrCast(self)), ppSpecifyPropPages, pppUnknowns, pcUnks);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3768,13 +3768,13 @@ pub const IMDSPStorage = extern struct {
         GetRights: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IMDSPStorage,
-                ppRights: ?[*]?*WMDMRIGHTS,
+                ppRights: [*]?*WMDMRIGHTS,
                 pnRightsCount: ?*u32,
                 abMac: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPStorage,
-                ppRights: ?[*]?*WMDMRIGHTS,
+                ppRights: [*]?*WMDMRIGHTS,
                 pnRightsCount: ?*u32,
                 abMac: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3844,7 +3844,7 @@ pub const IMDSPStorage = extern struct {
             return @as(*const IMDSPStorage.VTable, @ptrCast(self.vtable)).GetSize(@as(*const IMDSPStorage, @ptrCast(self)), pdwSizeLow, pdwSizeHigh);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage_GetRights(self: *const T, ppRights: ?[*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage_GetRights(self: *const T, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
             return @as(*const IMDSPStorage.VTable, @ptrCast(self.vtable)).GetRights(@as(*const IMDSPStorage, @ptrCast(self)), ppRights, pnRightsCount, abMac);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4020,12 +4020,12 @@ pub const IMDSPStorage4 = extern struct {
             .stage1 => fn(
                 self: *const IMDSPStorage4,
                 pdwRefs: ?*u32,
-                pppISPStorage: ?[*]?*?*IMDSPStorage,
+                pppISPStorage: [*]?*?*IMDSPStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPStorage4,
                 pdwRefs: ?*u32,
-                pppISPStorage: ?[*]?*?*IMDSPStorage,
+                pppISPStorage: [*]?*?*IMDSPStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         CreateStorageWithMetadata: switch (@import("builtin").zig_backend) {
@@ -4093,7 +4093,7 @@ pub const IMDSPStorage4 = extern struct {
             return @as(*const IMDSPStorage4.VTable, @ptrCast(self.vtable)).SetReferences(@as(*const IMDSPStorage4, @ptrCast(self)), dwRefs, ppISPStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage4_GetReferences(self: *const T, pdwRefs: ?*u32, pppISPStorage: ?[*]?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage4_GetReferences(self: *const T, pdwRefs: ?*u32, pppISPStorage: [*]?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @as(*const IMDSPStorage4.VTable, @ptrCast(self.vtable)).GetReferences(@as(*const IMDSPStorage4, @ptrCast(self)), pdwRefs, pppISPStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4609,12 +4609,12 @@ pub const IMDSPRevoked = extern struct {
         GetRevocationURL: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IMDSPRevoked,
-                ppwszRevocationURL: ?[*]?PWSTR,
+                ppwszRevocationURL: [*]?PWSTR,
                 pdwBufferLen: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPRevoked,
-                ppwszRevocationURL: ?[*]?PWSTR,
+                ppwszRevocationURL: [*]?PWSTR,
                 pdwBufferLen: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -4623,7 +4623,7 @@ pub const IMDSPRevoked = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPRevoked_GetRevocationURL(self: *const T, ppwszRevocationURL: ?[*]?PWSTR, pdwBufferLen: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IMDSPRevoked_GetRevocationURL(self: *const T, ppwszRevocationURL: [*]?PWSTR, pdwBufferLen: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IMDSPRevoked.VTable, @ptrCast(self.vtable)).GetRevocationURL(@as(*const IMDSPRevoked, @ptrCast(self)), ppwszRevocationURL, pdwBufferLen);
         }
     };}
@@ -4759,7 +4759,7 @@ pub const ISCPSecureQuery = extern struct {
                 pbSPSessionKey: [*:0]u8,
                 dwSessionKeyLen: u32,
                 pStgGlobals: ?*IMDSPStorageGlobals,
-                ppRights: ?[*]?*WMDMRIGHTS,
+                ppRights: [*]?*WMDMRIGHTS,
                 pnRightsCount: ?*u32,
                 abMac: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4770,7 +4770,7 @@ pub const ISCPSecureQuery = extern struct {
                 pbSPSessionKey: [*:0]u8,
                 dwSessionKeyLen: u32,
                 pStgGlobals: ?*IMDSPStorageGlobals,
-                ppRights: ?[*]?*WMDMRIGHTS,
+                ppRights: [*]?*WMDMRIGHTS,
                 pnRightsCount: ?*u32,
                 abMac: ?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -4792,7 +4792,7 @@ pub const ISCPSecureQuery = extern struct {
             return @as(*const ISCPSecureQuery.VTable, @ptrCast(self.vtable)).MakeDecision(@as(*const ISCPSecureQuery, @ptrCast(self)), fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, ppExchange, abMac);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCPSecureQuery_GetRights(self: *const T, pData: [*:0]u8, dwSize: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStgGlobals: ?*IMDSPStorageGlobals, ppRights: ?[*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+        pub fn ISCPSecureQuery_GetRights(self: *const T, pData: [*:0]u8, dwSize: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStgGlobals: ?*IMDSPStorageGlobals, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
             return @as(*const ISCPSecureQuery.VTable, @ptrCast(self.vtable)).GetRights(@as(*const ISCPSecureQuery, @ptrCast(self)), pData, dwSize, pbSPSessionKey, dwSessionKeyLen, pStgGlobals, ppRights, pnRightsCount, abMac);
         }
     };}
@@ -4818,7 +4818,7 @@ pub const ISCPSecureQuery2 = extern struct {
                 dwAppCertAppLen: u32,
                 pAppCertSP: [*:0]u8,
                 dwAppCertSPLen: u32,
-                pszRevocationURL: ?[*]?PWSTR,
+                pszRevocationURL: [*]?PWSTR,
                 pdwRevocationURLLen: ?*u32,
                 pdwRevocationBitFlag: ?*u32,
                 pqwFileSize: ?*u64,
@@ -4839,7 +4839,7 @@ pub const ISCPSecureQuery2 = extern struct {
                 dwAppCertAppLen: u32,
                 pAppCertSP: [*:0]u8,
                 dwAppCertSPLen: u32,
-                pszRevocationURL: ?[*]?PWSTR,
+                pszRevocationURL: [*]?PWSTR,
                 pdwRevocationURLLen: ?*u32,
                 pdwRevocationBitFlag: ?*u32,
                 pqwFileSize: ?*u64,
@@ -4853,7 +4853,7 @@ pub const ISCPSecureQuery2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISCPSecureQuery.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCPSecureQuery2_MakeDecision2(self: *const T, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: ?[*]?PWSTR, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) callconv(.Inline) HRESULT {
+        pub fn ISCPSecureQuery2_MakeDecision2(self: *const T, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: [*]?PWSTR, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) callconv(.Inline) HRESULT {
             return @as(*const ISCPSecureQuery2.VTable, @ptrCast(self.vtable)).MakeDecision2(@as(*const ISCPSecureQuery2, @ptrCast(self)), fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, pAppCertApp, dwAppCertAppLen, pAppCertSP, dwAppCertSPLen, pszRevocationURL, pdwRevocationURLLen, pdwRevocationBitFlag, pqwFileSize, pUnknown, ppExchange, abMac);
         }
     };}
@@ -5100,7 +5100,7 @@ pub const ISCPSecureQuery3 = extern struct {
                 dwSessionKeyLen: u32,
                 pStgGlobals: ?*IMDSPStorageGlobals,
                 pProgressCallback: ?*IWMDMProgress3,
-                ppRights: ?[*]?*WMDMRIGHTS,
+                ppRights: [*]?*WMDMRIGHTS,
                 pnRightsCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
@@ -5111,7 +5111,7 @@ pub const ISCPSecureQuery3 = extern struct {
                 dwSessionKeyLen: u32,
                 pStgGlobals: ?*IMDSPStorageGlobals,
                 pProgressCallback: ?*IWMDMProgress3,
-                ppRights: ?[*]?*WMDMRIGHTS,
+                ppRights: [*]?*WMDMRIGHTS,
                 pnRightsCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -5130,7 +5130,7 @@ pub const ISCPSecureQuery3 = extern struct {
                 dwAppCertAppLen: u32,
                 pAppCertSP: [*:0]u8,
                 dwAppCertSPLen: u32,
-                pszRevocationURL: ?[*]?PWSTR,
+                pszRevocationURL: [*]?PWSTR,
                 pdwRevocationURLLen: ?*u32,
                 pdwRevocationBitFlag: ?*u32,
                 pqwFileSize: ?*u64,
@@ -5151,7 +5151,7 @@ pub const ISCPSecureQuery3 = extern struct {
                 dwAppCertAppLen: u32,
                 pAppCertSP: [*:0]u8,
                 dwAppCertSPLen: u32,
-                pszRevocationURL: ?[*]?PWSTR,
+                pszRevocationURL: [*]?PWSTR,
                 pdwRevocationURLLen: ?*u32,
                 pdwRevocationBitFlag: ?*u32,
                 pqwFileSize: ?*u64,
@@ -5164,11 +5164,11 @@ pub const ISCPSecureQuery3 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISCPSecureQuery2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCPSecureQuery3_GetRightsOnClearChannel(self: *const T, pData: [*:0]u8, dwSize: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStgGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, ppRights: ?[*]?*WMDMRIGHTS, pnRightsCount: ?*u32) callconv(.Inline) HRESULT {
+        pub fn ISCPSecureQuery3_GetRightsOnClearChannel(self: *const T, pData: [*:0]u8, dwSize: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStgGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const ISCPSecureQuery3.VTable, @ptrCast(self.vtable)).GetRightsOnClearChannel(@as(*const ISCPSecureQuery3, @ptrCast(self)), pData, dwSize, pbSPSessionKey, dwSessionKeyLen, pStgGlobals, pProgressCallback, ppRights, pnRightsCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ISCPSecureQuery3_MakeDecisionOnClearChannel(self: *const T, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: ?[*]?PWSTR, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange) callconv(.Inline) HRESULT {
+        pub fn ISCPSecureQuery3_MakeDecisionOnClearChannel(self: *const T, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: [*]?PWSTR, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange) callconv(.Inline) HRESULT {
             return @as(*const ISCPSecureQuery3.VTable, @ptrCast(self.vtable)).MakeDecisionOnClearChannel(@as(*const ISCPSecureQuery3, @ptrCast(self)), fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, pProgressCallback, pAppCertApp, dwAppCertAppLen, pAppCertSP, dwAppCertSPLen, pszRevocationURL, pdwRevocationURLLen, pdwRevocationBitFlag, pqwFileSize, pUnknown, ppExchange);
         }
     };}
@@ -5187,7 +5187,7 @@ pub const IComponentAuthenticate = extern struct {
                 dwPass: u32,
                 pbDataIn: [*:0]u8,
                 dwDataInLen: u32,
-                ppbDataOut: ?[*]?*u8,
+                ppbDataOut: [*]?*u8,
                 pdwDataOutLen: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
@@ -5196,19 +5196,19 @@ pub const IComponentAuthenticate = extern struct {
                 dwPass: u32,
                 pbDataIn: [*:0]u8,
                 dwDataInLen: u32,
-                ppbDataOut: ?[*]?*u8,
+                ppbDataOut: [*]?*u8,
                 pdwDataOutLen: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SACGetProtocols: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IComponentAuthenticate,
-                ppdwProtocols: ?[*]?*u32,
+                ppdwProtocols: [*]?*u32,
                 pdwProtocolCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IComponentAuthenticate,
-                ppdwProtocols: ?[*]?*u32,
+                ppdwProtocols: [*]?*u32,
                 pdwProtocolCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -5217,11 +5217,11 @@ pub const IComponentAuthenticate = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentAuthenticate_SACAuth(self: *const T, dwProtocolID: u32, dwPass: u32, pbDataIn: [*:0]u8, dwDataInLen: u32, ppbDataOut: ?[*]?*u8, pdwDataOutLen: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IComponentAuthenticate_SACAuth(self: *const T, dwProtocolID: u32, dwPass: u32, pbDataIn: [*:0]u8, dwDataInLen: u32, ppbDataOut: [*]?*u8, pdwDataOutLen: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IComponentAuthenticate.VTable, @ptrCast(self.vtable)).SACAuth(@as(*const IComponentAuthenticate, @ptrCast(self)), dwProtocolID, dwPass, pbDataIn, dwDataInLen, ppbDataOut, pdwDataOutLen);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IComponentAuthenticate_SACGetProtocols(self: *const T, ppdwProtocols: ?[*]?*u32, pdwProtocolCount: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IComponentAuthenticate_SACGetProtocols(self: *const T, ppdwProtocols: [*]?*u32, pdwProtocolCount: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IComponentAuthenticate.VTable, @ptrCast(self.vtable)).SACGetProtocols(@as(*const IComponentAuthenticate, @ptrCast(self)), ppdwProtocols, pdwProtocolCount);
         }
     };}

@@ -2072,7 +2072,7 @@ pub const MAX_PROTOCOL_NAME_LEN = @as(u32, 40);
 pub const MAX_PROTOCOL_DLL_LEN = @as(u32, 48);
 
 //--------------------------------------------------------------------------------
-// Section: Types (359)
+// Section: Types (358)
 //--------------------------------------------------------------------------------
 pub const NET_REQUEST_PROVISION_OPTIONS = enum(u32) {
     R = 1073741824,
@@ -6140,67 +6140,6 @@ pub const INetCfgComponentNotifyGlobal = extern struct {
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn INetCfgComponentNotifyGlobal_SysNotifyComponent(self: *const T, dwChangeFlag: u32, pIComp: ?*INetCfgComponent) callconv(.Inline) HRESULT {
             return @as(*const INetCfgComponentNotifyGlobal.VTable, @ptrCast(self.vtable)).SysNotifyComponent(@as(*const INetCfgComponentNotifyGlobal, @ptrCast(self)), dwChangeFlag, pIComp);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_INetCfgComponentUpperEdge_Value = Guid.initString("932238e4-bea1-11d0-9298-00c04fc99dcf");
-pub const IID_INetCfgComponentUpperEdge = &IID_INetCfgComponentUpperEdge_Value;
-pub const INetCfgComponentUpperEdge = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetInterfaceIdsForAdapter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentUpperEdge,
-                pAdapter: ?*INetCfgComponent,
-                pdwNumInterfaces: ?*u32,
-                ppguidInterfaceIds: ?[*]?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentUpperEdge,
-                pAdapter: ?*INetCfgComponent,
-                pdwNumInterfaces: ?*u32,
-                ppguidInterfaceIds: ?[*]?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddInterfacesToAdapter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentUpperEdge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentUpperEdge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveInterfacesFromAdapter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentUpperEdge,
-                pAdapter: ?*INetCfgComponent,
-                dwNumInterfaces: u32,
-                pguidInterfaceIds: [*]const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentUpperEdge,
-                pAdapter: ?*INetCfgComponent,
-                dwNumInterfaces: u32,
-                pguidInterfaceIds: [*]const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentUpperEdge_GetInterfaceIdsForAdapter(self: *const T, pAdapter: ?*INetCfgComponent, pdwNumInterfaces: ?*u32, ppguidInterfaceIds: ?[*]?*Guid) callconv(.Inline) HRESULT {
-            return @as(*const INetCfgComponentUpperEdge.VTable, @ptrCast(self.vtable)).GetInterfaceIdsForAdapter(@as(*const INetCfgComponentUpperEdge, @ptrCast(self)), pAdapter, pdwNumInterfaces, ppguidInterfaceIds);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentUpperEdge_AddInterfacesToAdapter(self: *const T) callconv(.Inline) HRESULT {
-            return @as(*const INetCfgComponentUpperEdge.VTable, @ptrCast(self.vtable)).AddInterfacesToAdapter(@as(*const INetCfgComponentUpperEdge, @ptrCast(self)));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn INetCfgComponentUpperEdge_RemoveInterfacesFromAdapter(self: *const T, pAdapter: ?*INetCfgComponent, dwNumInterfaces: u32, pguidInterfaceIds: [*]const Guid) callconv(.Inline) HRESULT {
-            return @as(*const INetCfgComponentUpperEdge.VTable, @ptrCast(self.vtable)).RemoveInterfacesFromAdapter(@as(*const INetCfgComponentUpperEdge, @ptrCast(self)), pAdapter, dwNumInterfaces, pguidInterfaceIds);
         }
     };}
     pub usingnamespace MethodMixin(@This());

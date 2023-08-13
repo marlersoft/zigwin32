@@ -367,7 +367,7 @@ pub const HTTP_LOGGING_INFO = extern struct {
     MaxRecordSize: u16,
     RolloverType: HTTP_LOGGING_ROLLOVER_TYPE,
     RolloverSize: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 };
 
 pub const HTTP_BINDING_INFO = extern struct {
@@ -893,7 +893,7 @@ pub const HTTP_REQUEST_INFO = extern struct {
 
 pub const HTTP_REQUEST_AUTH_INFO = extern struct {
     AuthStatus: HTTP_AUTH_STATUS,
-    SecStatus: i32,
+    SecStatus: HRESULT,
     Flags: u32,
     AuthType: HTTP_REQUEST_AUTH_TYPE,
     AccessToken: ?HANDLE,
@@ -1754,17 +1754,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;

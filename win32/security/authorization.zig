@@ -7886,8 +7886,8 @@ pub extern "authz" fn AuthzAccessCheck(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pRequest: ?*AUTHZ_ACCESS_REQUEST,
     hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    OptionalSecurityDescriptorArray: ?[*]?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    OptionalSecurityDescriptorArray: ?[*]?PSECURITY_DESCRIPTOR,
     OptionalSecurityDescriptorCount: u32,
     pReply: ?*AUTHZ_ACCESS_REPLY,
     phAccessCheckResults: ?*isize,
@@ -7908,8 +7908,8 @@ pub extern "authz" fn AuthzOpenObjectAudit(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pRequest: ?*AUTHZ_ACCESS_REQUEST,
     hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
-    OptionalSecurityDescriptorArray: ?[*]?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    OptionalSecurityDescriptorArray: ?[*]?PSECURITY_DESCRIPTOR,
     OptionalSecurityDescriptorCount: u32,
     pReply: ?*AUTHZ_ACCESS_REPLY,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -8213,7 +8213,7 @@ pub extern "advapi32" fn GetNamedSecurityInfoA(
     ppsidGroup: ?*?PSID,
     ppDacl: ?*?*ACL,
     ppSacl: ?*?*ACL,
-    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8225,7 +8225,7 @@ pub extern "advapi32" fn GetNamedSecurityInfoW(
     ppsidGroup: ?*?PSID,
     ppDacl: ?*?*ACL,
     ppSacl: ?*?*ACL,
-    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8237,7 +8237,7 @@ pub extern "advapi32" fn GetSecurityInfo(
     ppsidGroup: ?*?PSID,
     ppDacl: ?*?*ACL,
     ppSacl: ?*?*ACL,
-    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8376,9 +8376,9 @@ pub extern "advapi32" fn BuildSecurityDescriptorA(
     pListOfAccessEntries: ?[*]EXPLICIT_ACCESS_A,
     cCountOfAuditEntries: u32,
     pListOfAuditEntries: ?[*]EXPLICIT_ACCESS_A,
-    pOldSD: ?*SECURITY_DESCRIPTOR,
+    pOldSD: ?PSECURITY_DESCRIPTOR,
     pSizeNewSD: ?*u32,
-    pNewSD: ?*?*SECURITY_DESCRIPTOR,
+    pNewSD: ?*?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8389,9 +8389,9 @@ pub extern "advapi32" fn BuildSecurityDescriptorW(
     pListOfAccessEntries: ?[*]EXPLICIT_ACCESS_W,
     cCountOfAuditEntries: u32,
     pListOfAuditEntries: ?[*]EXPLICIT_ACCESS_W,
-    pOldSD: ?*SECURITY_DESCRIPTOR,
+    pOldSD: ?PSECURITY_DESCRIPTOR,
     pSizeNewSD: ?*u32,
-    pNewSD: ?*?*SECURITY_DESCRIPTOR,
+    pNewSD: ?*?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8402,7 +8402,7 @@ pub extern "advapi32" fn LookupSecurityDescriptorPartsA(
     ppListOfAccessEntries: ?*?*EXPLICIT_ACCESS_A,
     pcCountOfAuditEntries: ?*u32,
     ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_A,
-    pSD: ?*SECURITY_DESCRIPTOR,
+    pSD: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8413,7 +8413,7 @@ pub extern "advapi32" fn LookupSecurityDescriptorPartsW(
     ppListOfAccessEntries: ?*?*EXPLICIT_ACCESS_W,
     pcCountOfAuditEntries: ?*u32,
     ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_W,
-    pSD: ?*SECURITY_DESCRIPTOR,
+    pSD: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8586,7 +8586,7 @@ pub extern "advapi32" fn ConvertStringSidToSidW(
 pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorA(
     StringSecurityDescriptor: ?[*:0]const u8,
     StringSDRevision: u32,
-    SecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     SecurityDescriptorSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -8594,13 +8594,13 @@ pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorA(
 pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorW(
     StringSecurityDescriptor: ?[*:0]const u16,
     StringSDRevision: u32,
-    SecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     SecurityDescriptorSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
-    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     RequestedStringSDRevision: u32,
     SecurityInformation: u32,
     StringSecurityDescriptor: ?*?PSTR,
@@ -8609,7 +8609,7 @@ pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorW(
-    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     RequestedStringSDRevision: u32,
     SecurityInformation: u32,
     StringSecurityDescriptor: ?*?PWSTR,
@@ -8802,10 +8802,10 @@ const LPTHREAD_START_ROUTINE = @import("../system/threading.zig").LPTHREAD_START
 const LUID = @import("../foundation.zig").LUID;
 const OBJECT_SECURITY_INFORMATION = @import("../security.zig").OBJECT_SECURITY_INFORMATION;
 const OBJECT_TYPE_LIST = @import("../security.zig").OBJECT_TYPE_LIST;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../foundation.zig").PSID;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const SID = @import("../security.zig").SID;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const SYSTEM_AUDIT_OBJECT_ACE_FLAGS = @import("../security.zig").SYSTEM_AUDIT_OBJECT_ACE_FLAGS;

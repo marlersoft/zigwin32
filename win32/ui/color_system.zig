@@ -87,7 +87,7 @@ pub const WCS_DEFAULT = @as(i32, 0);
 pub const WCS_ICCONLY = @as(i32, 65536);
 
 //--------------------------------------------------------------------------------
-// Section: Types (49)
+// Section: Types (50)
 //--------------------------------------------------------------------------------
 pub const ICM_COMMAND = enum(u32) {
     ADDPROFILE = 1,
@@ -105,6 +105,17 @@ pub const ICM_SETDEFAULTPROFILE = ICM_COMMAND.SETDEFAULTPROFILE;
 pub const ICM_REGISTERICMATCHER = ICM_COMMAND.REGISTERICMATCHER;
 pub const ICM_UNREGISTERICMATCHER = ICM_COMMAND.UNREGISTERICMATCHER;
 pub const ICM_QUERYMATCH = ICM_COMMAND.QUERYMATCH;
+
+pub const ICM_MODE = enum(i32) {
+    OFF = 1,
+    ON = 2,
+    QUERY = 3,
+    DONE_OUTSIDEDC = 4,
+};
+pub const ICM_OFF = ICM_MODE.OFF;
+pub const ICM_ON = ICM_MODE.ON;
+pub const ICM_QUERY = ICM_MODE.QUERY;
+pub const ICM_DONE_OUTSIDEDC = ICM_MODE.DONE_OUTSIDEDC;
 
 pub const COLOR_MATCH_TO_TARGET_ACTION = enum(i32) {
     ENABLE = 1,
@@ -909,7 +920,7 @@ pub const MicrosoftHardwareColorV2 = WCS_DEVICE_CAPABILITIES_TYPE.MicrosoftHardw
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn SetICMMode(
     hdc: ?HDC,
-    mode: i32,
+    mode: ICM_MODE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'

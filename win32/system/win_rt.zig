@@ -8,7 +8,7 @@ pub const CastingSourceInfo_Property_CastingTypes = "CastingTypes";
 pub const CastingSourceInfo_Property_ProtectedMedia = "ProtectedMedia";
 
 //--------------------------------------------------------------------------------
-// Section: Types (59)
+// Section: Types (63)
 //--------------------------------------------------------------------------------
 pub const EventRegistrationToken = extern struct {
     value: i64,
@@ -199,12 +199,12 @@ pub const IInspectable = extern struct {
             .stage1 => fn(
                 self: *const IInspectable,
                 iidCount: ?*u32,
-                iids: ?[*]?*Guid,
+                iids: [*]?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IInspectable,
                 iidCount: ?*u32,
-                iids: ?[*]?*Guid,
+                iids: [*]?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetRuntimeClassName: switch (@import("builtin").zig_backend) {
@@ -232,7 +232,7 @@ pub const IInspectable = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInspectable_GetIids(self: *const T, iidCount: ?*u32, iids: ?[*]?*Guid) callconv(.Inline) HRESULT {
+        pub fn IInspectable_GetIids(self: *const T, iidCount: ?*u32, iids: [*]?*Guid) callconv(.Inline) HRESULT {
             return @as(*const IInspectable.VTable, @ptrCast(self.vtable)).GetIids(@as(*const IInspectable, @ptrCast(self)), iidCount, iids);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1713,9 +1713,291 @@ pub const IMessageDispatcher = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+const IID_ICoreWindowInterop_Value = Guid.initString("45d64a29-a63e-4cb6-b498-5781d298cb4f");
+pub const IID_ICoreWindowInterop = &IID_ICoreWindowInterop_Value;
+pub const ICoreWindowInterop = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_WindowHandle: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ICoreWindowInterop,
+                hwnd: ?*?HWND,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ICoreWindowInterop,
+                hwnd: ?*?HWND,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MessageHandled: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ICoreWindowInterop,
+                value: u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ICoreWindowInterop,
+                value: u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreWindowInterop_get_WindowHandle(self: *const T, hwnd: ?*?HWND) callconv(.Inline) HRESULT {
+            return @as(*const ICoreWindowInterop.VTable, @ptrCast(self.vtable)).get_WindowHandle(@as(*const ICoreWindowInterop, @ptrCast(self)), hwnd);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreWindowInterop_put_MessageHandled(self: *const T, value: u8) callconv(.Inline) HRESULT {
+            return @as(*const ICoreWindowInterop.VTable, @ptrCast(self.vtable)).put_MessageHandled(@as(*const ICoreWindowInterop, @ptrCast(self)), value);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_ICoreInputInterop_Value = Guid.initString("40bfe3e3-b75a-4479-ac96-475365749bb8");
+pub const IID_ICoreInputInterop = &IID_ICoreInputInterop_Value;
+pub const ICoreInputInterop = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetInputSource: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICoreInputInterop,
+                value: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICoreInputInterop,
+                value: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        put_MessageHandled: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ICoreInputInterop,
+                value: u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ICoreInputInterop,
+                value: u8,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreInputInterop_SetInputSource(self: *const T, value: ?*IUnknown) callconv(.Inline) HRESULT {
+            return @as(*const ICoreInputInterop.VTable, @ptrCast(self.vtable)).SetInputSource(@as(*const ICoreInputInterop, @ptrCast(self)), value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreInputInterop_put_MessageHandled(self: *const T, value: u8) callconv(.Inline) HRESULT {
+            return @as(*const ICoreInputInterop.VTable, @ptrCast(self.vtable)).put_MessageHandled(@as(*const ICoreInputInterop, @ptrCast(self)), value);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_ICoreWindowComponentInterop_Value = Guid.initString("0576ab31-a310-4c40-ba31-fd37e0298dfa");
+pub const IID_ICoreWindowComponentInterop = &IID_ICoreWindowComponentInterop_Value;
+pub const ICoreWindowComponentInterop = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        ConfigureComponentInput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICoreWindowComponentInterop,
+                hostViewInstanceId: u32,
+                hwndHost: ?HWND,
+                inputSourceVisual: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICoreWindowComponentInterop,
+                hostViewInstanceId: u32,
+                hwndHost: ?HWND,
+                inputSourceVisual: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetViewInstanceId: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICoreWindowComponentInterop,
+                componentViewInstanceId: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICoreWindowComponentInterop,
+                componentViewInstanceId: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreWindowComponentInterop_ConfigureComponentInput(self: *const T, hostViewInstanceId: u32, hwndHost: ?HWND, inputSourceVisual: ?*IUnknown) callconv(.Inline) HRESULT {
+            return @as(*const ICoreWindowComponentInterop.VTable, @ptrCast(self.vtable)).ConfigureComponentInput(@as(*const ICoreWindowComponentInterop, @ptrCast(self)), hostViewInstanceId, hwndHost, inputSourceVisual);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreWindowComponentInterop_GetViewInstanceId(self: *const T, componentViewInstanceId: ?*u32) callconv(.Inline) HRESULT {
+            return @as(*const ICoreWindowComponentInterop.VTable, @ptrCast(self.vtable)).GetViewInstanceId(@as(*const ICoreWindowComponentInterop, @ptrCast(self)), componentViewInstanceId);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_ICoreWindowAdapterInterop_Value = Guid.initString("7a5b6fd1-cd73-4b6c-9cf4-2e869eaf470a");
+pub const IID_ICoreWindowAdapterInterop = &IID_ICoreWindowAdapterInterop_Value;
+pub const ICoreWindowAdapterInterop = extern struct {
+    pub const VTable = extern struct {
+        base: IInspectable.VTable,
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_AppActivationClientAdapter: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_ApplicationViewClientAdapter: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_CoreApplicationViewClientAdapter: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_HoloViewClientAdapter: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_PositionerClientAdapter: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_SystemNavigationClientAdapter: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        // TODO: this function has a "SpecialName", should Zig do anything with this?
+        get_TitleBarClientAdapter: switch (@import("builtin").zig_backend) {
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            .stage1 => fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            // TODO: this function has a "SpecialName", should Zig do anything with this?
+            else => *const fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetWindowClientAdapter: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const ICoreWindowAdapterInterop,
+                value: ?*IUnknown,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IInspectable.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreWindowAdapterInterop_get_AppActivationClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_AppActivationClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreWindowAdapterInterop_get_ApplicationViewClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_ApplicationViewClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreWindowAdapterInterop_get_CoreApplicationViewClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_CoreApplicationViewClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreWindowAdapterInterop_get_HoloViewClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_HoloViewClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreWindowAdapterInterop_get_PositionerClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_PositionerClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreWindowAdapterInterop_get_SystemNavigationClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_SystemNavigationClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreWindowAdapterInterop_get_TitleBarClientAdapter(self: *const T, value: ?*?*IUnknown) callconv(.Inline) HRESULT {
+            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).get_TitleBarClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn ICoreWindowAdapterInterop_SetWindowClientAdapter(self: *const T, value: ?*IUnknown) callconv(.Inline) HRESULT {
+            return @as(*const ICoreWindowAdapterInterop.VTable, @ptrCast(self.vtable)).SetWindowClientAdapter(@as(*const ICoreWindowAdapterInterop, @ptrCast(self)), value);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
 
 //--------------------------------------------------------------------------------
-// Section: Functions (68)
+// Section: Functions (70)
 //--------------------------------------------------------------------------------
 pub extern "ole32" fn CoDecodeProxy(
     dwClientPid: u32,
@@ -2148,6 +2430,17 @@ pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateRandomAccessStreamOv
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-shcore-stream-winrt-l1-1-0" fn CreateStreamOverRandomAccessStream(
     randomAccessStream: ?*IUnknown,
+    riid: ?*const Guid,
+    ppv: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "windows.ui" fn CreateControlInput(
+    riid: ?*const Guid,
+    ppv: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "windows.ui" fn CreateControlInputEx(
+    pCoreWindow: ?*IUnknown,
     riid: ?*const Guid,
     ppv: ?*?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;

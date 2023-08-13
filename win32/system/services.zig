@@ -1085,7 +1085,7 @@ pub extern "advapi32" fn QueryServiceObjectSecurity(
     hService: SC_HANDLE,
     dwSecurityInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
-    lpSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    lpSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     cbBufSize: u32,
     pcbBytesNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1136,7 +1136,7 @@ pub extern "advapi32" fn RegisterServiceCtrlHandlerExW(
 pub extern "advapi32" fn SetServiceObjectSecurity(
     hService: SC_HANDLE,
     dwSecurityInformation: OBJECT_SECURITY_INFORMATION,
-    lpSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    lpSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -1398,10 +1398,10 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const HKEY = @import("../system/registry.zig").HKEY;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const OBJECT_SECURITY_INFORMATION = @import("../security.zig").OBJECT_SECURITY_INFORMATION;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SC_HANDLE = @import("../security.zig").SC_HANDLE;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

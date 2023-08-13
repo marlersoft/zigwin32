@@ -14813,7 +14813,7 @@ pub extern "activeds" fn AdsFreeAdsValues(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "activeds" fn BinarySDToSecurityDescriptor(
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     pVarsec: ?*VARIANT,
     pszServerName: ?[*:0]const u16,
     userName: ?[*:0]const u16,
@@ -14824,7 +14824,7 @@ pub extern "activeds" fn BinarySDToSecurityDescriptor(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "activeds" fn SecurityDescriptorToBinarySD(
     vVarSecDes: VARIANT,
-    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     pdwSDLength: ?*u32,
     pszServerName: ?[*:0]const u16,
     userName: ?[*:0]const u16,
@@ -16262,10 +16262,10 @@ const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const LPFNSVADDPROPSHEETPAGE = @import("../ui/controls.zig").LPFNSVADDPROPSHEETPAGE;
 const LSA_FOREST_TRUST_INFORMATION = @import("../security/authentication/identity.zig").LSA_FOREST_TRUST_INFORMATION;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../foundation.zig").PSID;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const SOCKET_ADDRESS = @import("../networking/win_sock.zig").SOCKET_ADDRESS;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;

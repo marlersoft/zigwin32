@@ -707,16 +707,117 @@ pub const GLU_ERROR = @as(u32, 100103);
 pub const GLU_EDGE_FLAG = @as(u32, 100104);
 
 //--------------------------------------------------------------------------------
-// Section: Types (40)
+// Section: Types (43)
 //--------------------------------------------------------------------------------
+pub const PFD_PIXEL_TYPE = enum(i8) {
+    RGBA = 0,
+    COLORINDEX = 1,
+};
+pub const PFD_TYPE_RGBA = PFD_PIXEL_TYPE.RGBA;
+pub const PFD_TYPE_COLORINDEX = PFD_PIXEL_TYPE.COLORINDEX;
+
+pub const PFD_LAYER_TYPE = enum(i8) {
+    UNDERLAY_PLANE = -1,
+    MAIN_PLANE = 0,
+    OVERLAY_PLANE = 1,
+};
+pub const PFD_UNDERLAY_PLANE = PFD_LAYER_TYPE.UNDERLAY_PLANE;
+pub const PFD_MAIN_PLANE = PFD_LAYER_TYPE.MAIN_PLANE;
+pub const PFD_OVERLAY_PLANE = PFD_LAYER_TYPE.OVERLAY_PLANE;
+
+pub const PFD_FLAGS = enum(u32) {
+    DOUBLEBUFFER = 1,
+    STEREO = 2,
+    DRAW_TO_WINDOW = 4,
+    DRAW_TO_BITMAP = 8,
+    SUPPORT_GDI = 16,
+    SUPPORT_OPENGL = 32,
+    GENERIC_FORMAT = 64,
+    NEED_PALETTE = 128,
+    NEED_SYSTEM_PALETTE = 256,
+    SWAP_EXCHANGE = 512,
+    SWAP_COPY = 1024,
+    SWAP_LAYER_BUFFERS = 2048,
+    GENERIC_ACCELERATED = 4096,
+    SUPPORT_DIRECTDRAW = 8192,
+    DIRECT3D_ACCELERATED = 16384,
+    SUPPORT_COMPOSITION = 32768,
+    DEPTH_DONTCARE = 536870912,
+    DOUBLEBUFFER_DONTCARE = 1073741824,
+    STEREO_DONTCARE = 2147483648,
+    _,
+    pub fn initFlags(o: struct {
+        DOUBLEBUFFER: u1 = 0,
+        STEREO: u1 = 0,
+        DRAW_TO_WINDOW: u1 = 0,
+        DRAW_TO_BITMAP: u1 = 0,
+        SUPPORT_GDI: u1 = 0,
+        SUPPORT_OPENGL: u1 = 0,
+        GENERIC_FORMAT: u1 = 0,
+        NEED_PALETTE: u1 = 0,
+        NEED_SYSTEM_PALETTE: u1 = 0,
+        SWAP_EXCHANGE: u1 = 0,
+        SWAP_COPY: u1 = 0,
+        SWAP_LAYER_BUFFERS: u1 = 0,
+        GENERIC_ACCELERATED: u1 = 0,
+        SUPPORT_DIRECTDRAW: u1 = 0,
+        DIRECT3D_ACCELERATED: u1 = 0,
+        SUPPORT_COMPOSITION: u1 = 0,
+        DEPTH_DONTCARE: u1 = 0,
+        DOUBLEBUFFER_DONTCARE: u1 = 0,
+        STEREO_DONTCARE: u1 = 0,
+    }) PFD_FLAGS {
+        return @as(PFD_FLAGS, @enumFromInt(
+              (if (o.DOUBLEBUFFER == 1) @intFromEnum(PFD_FLAGS.DOUBLEBUFFER) else 0)
+            | (if (o.STEREO == 1) @intFromEnum(PFD_FLAGS.STEREO) else 0)
+            | (if (o.DRAW_TO_WINDOW == 1) @intFromEnum(PFD_FLAGS.DRAW_TO_WINDOW) else 0)
+            | (if (o.DRAW_TO_BITMAP == 1) @intFromEnum(PFD_FLAGS.DRAW_TO_BITMAP) else 0)
+            | (if (o.SUPPORT_GDI == 1) @intFromEnum(PFD_FLAGS.SUPPORT_GDI) else 0)
+            | (if (o.SUPPORT_OPENGL == 1) @intFromEnum(PFD_FLAGS.SUPPORT_OPENGL) else 0)
+            | (if (o.GENERIC_FORMAT == 1) @intFromEnum(PFD_FLAGS.GENERIC_FORMAT) else 0)
+            | (if (o.NEED_PALETTE == 1) @intFromEnum(PFD_FLAGS.NEED_PALETTE) else 0)
+            | (if (o.NEED_SYSTEM_PALETTE == 1) @intFromEnum(PFD_FLAGS.NEED_SYSTEM_PALETTE) else 0)
+            | (if (o.SWAP_EXCHANGE == 1) @intFromEnum(PFD_FLAGS.SWAP_EXCHANGE) else 0)
+            | (if (o.SWAP_COPY == 1) @intFromEnum(PFD_FLAGS.SWAP_COPY) else 0)
+            | (if (o.SWAP_LAYER_BUFFERS == 1) @intFromEnum(PFD_FLAGS.SWAP_LAYER_BUFFERS) else 0)
+            | (if (o.GENERIC_ACCELERATED == 1) @intFromEnum(PFD_FLAGS.GENERIC_ACCELERATED) else 0)
+            | (if (o.SUPPORT_DIRECTDRAW == 1) @intFromEnum(PFD_FLAGS.SUPPORT_DIRECTDRAW) else 0)
+            | (if (o.DIRECT3D_ACCELERATED == 1) @intFromEnum(PFD_FLAGS.DIRECT3D_ACCELERATED) else 0)
+            | (if (o.SUPPORT_COMPOSITION == 1) @intFromEnum(PFD_FLAGS.SUPPORT_COMPOSITION) else 0)
+            | (if (o.DEPTH_DONTCARE == 1) @intFromEnum(PFD_FLAGS.DEPTH_DONTCARE) else 0)
+            | (if (o.DOUBLEBUFFER_DONTCARE == 1) @intFromEnum(PFD_FLAGS.DOUBLEBUFFER_DONTCARE) else 0)
+            | (if (o.STEREO_DONTCARE == 1) @intFromEnum(PFD_FLAGS.STEREO_DONTCARE) else 0)
+        ));
+    }
+};
+pub const PFD_DOUBLEBUFFER = PFD_FLAGS.DOUBLEBUFFER;
+pub const PFD_STEREO = PFD_FLAGS.STEREO;
+pub const PFD_DRAW_TO_WINDOW = PFD_FLAGS.DRAW_TO_WINDOW;
+pub const PFD_DRAW_TO_BITMAP = PFD_FLAGS.DRAW_TO_BITMAP;
+pub const PFD_SUPPORT_GDI = PFD_FLAGS.SUPPORT_GDI;
+pub const PFD_SUPPORT_OPENGL = PFD_FLAGS.SUPPORT_OPENGL;
+pub const PFD_GENERIC_FORMAT = PFD_FLAGS.GENERIC_FORMAT;
+pub const PFD_NEED_PALETTE = PFD_FLAGS.NEED_PALETTE;
+pub const PFD_NEED_SYSTEM_PALETTE = PFD_FLAGS.NEED_SYSTEM_PALETTE;
+pub const PFD_SWAP_EXCHANGE = PFD_FLAGS.SWAP_EXCHANGE;
+pub const PFD_SWAP_COPY = PFD_FLAGS.SWAP_COPY;
+pub const PFD_SWAP_LAYER_BUFFERS = PFD_FLAGS.SWAP_LAYER_BUFFERS;
+pub const PFD_GENERIC_ACCELERATED = PFD_FLAGS.GENERIC_ACCELERATED;
+pub const PFD_SUPPORT_DIRECTDRAW = PFD_FLAGS.SUPPORT_DIRECTDRAW;
+pub const PFD_DIRECT3D_ACCELERATED = PFD_FLAGS.DIRECT3D_ACCELERATED;
+pub const PFD_SUPPORT_COMPOSITION = PFD_FLAGS.SUPPORT_COMPOSITION;
+pub const PFD_DEPTH_DONTCARE = PFD_FLAGS.DEPTH_DONTCARE;
+pub const PFD_DOUBLEBUFFER_DONTCARE = PFD_FLAGS.DOUBLEBUFFER_DONTCARE;
+pub const PFD_STEREO_DONTCARE = PFD_FLAGS.STEREO_DONTCARE;
+
 // TODO: this type has a FreeFunc 'wglDeleteContext', what can Zig do with this information?
 pub const HGLRC = *opaque{};
 
 pub const PIXELFORMATDESCRIPTOR = extern struct {
     nSize: u16,
     nVersion: u16,
-    dwFlags: u32,
-    iPixelType: u8,
+    dwFlags: PFD_FLAGS,
+    iPixelType: PFD_PIXEL_TYPE,
     cColorBits: u8,
     cRedBits: u8,
     cRedShift: u8,
@@ -734,7 +835,7 @@ pub const PIXELFORMATDESCRIPTOR = extern struct {
     cDepthBits: u8,
     cStencilBits: u8,
     cAuxBuffers: u8,
-    iLayerType: u8,
+    iLayerType: PFD_LAYER_TYPE,
     bReserved: u8,
     dwLayerMask: u32,
     dwVisibleMask: u32,
@@ -1210,7 +1311,7 @@ pub extern "gdi32" fn ChoosePixelFormat(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn DescribePixelFormat(
     hdc: ?HDC,
-    iPixelFormat: i32,
+    iPixelFormat: PFD_PIXEL_TYPE,
     nBytes: u32,
     // TODO: what to do with BytesParamIndex 2?
     ppfd: ?*PIXELFORMATDESCRIPTOR,

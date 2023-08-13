@@ -4235,7 +4235,7 @@ pub const SHARE_INFO_502 = extern struct {
     shi502_path: ?PWSTR,
     shi502_passwd: ?PWSTR,
     shi502_reserved: u32,
-    shi502_security_descriptor: ?*SECURITY_DESCRIPTOR,
+    shi502_security_descriptor: ?PSECURITY_DESCRIPTOR,
 };
 
 pub const SHARE_INFO_503 = extern struct {
@@ -4249,7 +4249,7 @@ pub const SHARE_INFO_503 = extern struct {
     shi503_passwd: ?PWSTR,
     shi503_servername: ?PWSTR,
     shi503_reserved: u32,
-    shi503_security_descriptor: ?*SECURITY_DESCRIPTOR,
+    shi503_security_descriptor: ?PSECURITY_DESCRIPTOR,
 };
 
 pub const SHARE_INFO_1004 = extern struct {
@@ -4266,7 +4266,7 @@ pub const SHARE_INFO_1006 = extern struct {
 
 pub const SHARE_INFO_1501 = extern struct {
     shi1501_reserved: u32,
-    shi1501_security_descriptor: ?*SECURITY_DESCRIPTOR,
+    shi1501_security_descriptor: ?PSECURITY_DESCRIPTOR,
 };
 
 pub const SHARE_INFO_1503 = extern struct {
@@ -4544,7 +4544,7 @@ pub const CACHE_DESTROY_CALLBACK = switch (@import("builtin").zig_backend) {
 
 pub const CACHE_ACCESS_CHECK = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+        pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
         hClientToken: ?HANDLE,
         dwDesiredAccess: u32,
         GenericMapping: ?*GENERIC_MAPPING,
@@ -4554,7 +4554,7 @@ pub const CACHE_ACCESS_CHECK = switch (@import("builtin").zig_backend) {
         AccessStatus: ?*i32,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
-        pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+        pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
         hClientToken: ?HANDLE,
         dwDesiredAccess: u32,
         GenericMapping: ?*GENERIC_MAPPING,
@@ -8642,11 +8642,11 @@ const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const OBJECT_ATTRIBUTES = @import("../system/windows_programming.zig").OBJECT_ATTRIBUTES;
 const OVERLAPPED = @import("../system/io.zig").OVERLAPPED;
 const PRIVILEGE_SET = @import("../security.zig").PRIVILEGE_SET;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../foundation.zig").PSID;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const SID = @import("../security.zig").SID;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;

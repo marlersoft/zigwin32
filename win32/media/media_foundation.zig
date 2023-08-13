@@ -7013,7 +7013,7 @@ pub const IValidateBinding = extern struct {
                 guidLicensorID: Guid,
                 pbEphemeron: [*:0]u8,
                 cbEphemeron: u32,
-                ppbBlobValidationID: ?[*]?*u8,
+                ppbBlobValidationID: [*]?*u8,
                 pcbBlobSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
@@ -7021,7 +7021,7 @@ pub const IValidateBinding = extern struct {
                 guidLicensorID: Guid,
                 pbEphemeron: [*:0]u8,
                 cbEphemeron: u32,
-                ppbBlobValidationID: ?[*]?*u8,
+                ppbBlobValidationID: [*]?*u8,
                 pcbBlobSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -7030,7 +7030,7 @@ pub const IValidateBinding = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IValidateBinding_GetIdentifier(self: *const T, guidLicensorID: Guid, pbEphemeron: [*:0]u8, cbEphemeron: u32, ppbBlobValidationID: ?[*]?*u8, pcbBlobSize: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IValidateBinding_GetIdentifier(self: *const T, guidLicensorID: Guid, pbEphemeron: [*:0]u8, cbEphemeron: u32, ppbBlobValidationID: [*]?*u8, pcbBlobSize: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IValidateBinding.VTable, @ptrCast(self.vtable)).GetIdentifier(@as(*const IValidateBinding, @ptrCast(self)), guidLicensorID, pbEphemeron, cbEphemeron, ppbBlobValidationID, pcbBlobSize);
         }
     };}
@@ -39353,12 +39353,12 @@ pub const IMFVideoProcessor = extern struct {
             .stage1 => fn(
                 self: *const IMFVideoProcessor,
                 lpdwNumProcessingModes: ?*u32,
-                ppVideoProcessingModes: ?[*]?*Guid,
+                ppVideoProcessingModes: [*]?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMFVideoProcessor,
                 lpdwNumProcessingModes: ?*u32,
-                ppVideoProcessingModes: ?[*]?*Guid,
+                ppVideoProcessingModes: [*]?*Guid,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetVideoProcessorCaps: switch (@import("builtin").zig_backend) {
@@ -39490,7 +39490,7 @@ pub const IMFVideoProcessor = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMFVideoProcessor_GetAvailableVideoProcessorModes(self: *const T, lpdwNumProcessingModes: ?*u32, ppVideoProcessingModes: ?[*]?*Guid) callconv(.Inline) HRESULT {
+        pub fn IMFVideoProcessor_GetAvailableVideoProcessorModes(self: *const T, lpdwNumProcessingModes: ?*u32, ppVideoProcessingModes: [*]?*Guid) callconv(.Inline) HRESULT {
             return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetAvailableVideoProcessorModes(@as(*const IMFVideoProcessor, @ptrCast(self)), lpdwNumProcessingModes, ppVideoProcessingModes);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

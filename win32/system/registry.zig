@@ -1503,7 +1503,7 @@ pub extern "advapi32" fn RegGetKeySecurity(
     hKey: ?HKEY,
     SecurityInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
@@ -1730,7 +1730,7 @@ pub extern "advapi32" fn RegSaveKeyW(
 pub extern "advapi32" fn RegSetKeySecurity(
     hKey: ?HKEY,
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -2108,10 +2108,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const BOOL = @import("../foundation.zig").BOOL;
 const FILETIME = @import("../foundation.zig").FILETIME;
 const HANDLE = @import("../foundation.zig").HANDLE;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {

@@ -2135,7 +2135,7 @@ pub const SE_ADT_ACCESS_REASON = extern struct {
     AccessReasons: [32]u32,
     ObjectTypeIndex: u32,
     AccessGranted: u32,
-    SecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    SecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 };
 
 pub const SE_ADT_CLAIMS = extern struct {
@@ -2544,9 +2544,9 @@ pub const CENTRAL_ACCESS_POLICY_ENTRY = extern struct {
     LengthAppliesTo: u32,
     AppliesTo: ?*u8,
     LengthSD: u32,
-    SD: ?*SECURITY_DESCRIPTOR,
+    SD: ?PSECURITY_DESCRIPTOR,
     LengthStagedSD: u32,
-    StagedSD: ?*SECURITY_DESCRIPTOR,
+    StagedSD: ?PSECURITY_DESCRIPTOR,
     Flags: u32,
 };
 
@@ -4016,14 +4016,14 @@ pub const SEC_GET_KEY_FN = switch (@import("builtin").zig_backend) {
         Principal: ?*anyopaque,
         KeyVer: u32,
         Key: ?*?*anyopaque,
-        Status: ?*i32,
+        Status: ?*HRESULT,
     ) callconv(@import("std").os.windows.WINAPI) void,
     else => *const fn(
         Arg: ?*anyopaque,
         Principal: ?*anyopaque,
         KeyVer: u32,
         Key: ?*?*anyopaque,
-        Status: ?*i32,
+        Status: ?*HRESULT,
     ) callconv(@import("std").os.windows.WINAPI) void,
 } ;
 
@@ -4038,7 +4038,7 @@ pub const ACQUIRE_CREDENTIALS_HANDLE_FN_W = switch (@import("builtin").zig_backe
         param6: ?*anyopaque,
         param7: ?*SecHandle,
         param8: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*u16,
         param1: ?*u16,
@@ -4049,7 +4049,7 @@ pub const ACQUIRE_CREDENTIALS_HANDLE_FN_W = switch (@import("builtin").zig_backe
         param6: ?*anyopaque,
         param7: ?*SecHandle,
         param8: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const ACQUIRE_CREDENTIALS_HANDLE_FN_A = switch (@import("builtin").zig_backend) {
@@ -4063,7 +4063,7 @@ pub const ACQUIRE_CREDENTIALS_HANDLE_FN_A = switch (@import("builtin").zig_backe
         param6: ?*anyopaque,
         param7: ?*SecHandle,
         param8: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*i8,
         param1: ?*i8,
@@ -4074,16 +4074,16 @@ pub const ACQUIRE_CREDENTIALS_HANDLE_FN_A = switch (@import("builtin").zig_backe
         param6: ?*anyopaque,
         param7: ?*SecHandle,
         param8: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const FREE_CREDENTIALS_HANDLE_FN = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?*SecHandle,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const ADD_CREDENTIALS_FN_W = switch (@import("builtin").zig_backend) {
@@ -4096,7 +4096,7 @@ pub const ADD_CREDENTIALS_FN_W = switch (@import("builtin").zig_backend) {
         param5: ?SEC_GET_KEY_FN,
         param6: ?*anyopaque,
         param7: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: ?*u16,
@@ -4106,7 +4106,7 @@ pub const ADD_CREDENTIALS_FN_W = switch (@import("builtin").zig_backend) {
         param5: ?SEC_GET_KEY_FN,
         param6: ?*anyopaque,
         param7: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const ADD_CREDENTIALS_FN_A = switch (@import("builtin").zig_backend) {
@@ -4119,7 +4119,7 @@ pub const ADD_CREDENTIALS_FN_A = switch (@import("builtin").zig_backend) {
         param5: ?SEC_GET_KEY_FN,
         param6: ?*anyopaque,
         param7: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: ?*i8,
@@ -4129,7 +4129,7 @@ pub const ADD_CREDENTIALS_FN_A = switch (@import("builtin").zig_backend) {
         param5: ?SEC_GET_KEY_FN,
         param6: ?*anyopaque,
         param7: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const CHANGE_PASSWORD_FN_W = switch (@import("builtin").zig_backend) {
@@ -4142,7 +4142,7 @@ pub const CHANGE_PASSWORD_FN_W = switch (@import("builtin").zig_backend) {
         param5: BOOLEAN,
         param6: u32,
         param7: ?*SecBufferDesc,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*u16,
         param1: ?*u16,
@@ -4152,7 +4152,7 @@ pub const CHANGE_PASSWORD_FN_W = switch (@import("builtin").zig_backend) {
         param5: BOOLEAN,
         param6: u32,
         param7: ?*SecBufferDesc,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const CHANGE_PASSWORD_FN_A = switch (@import("builtin").zig_backend) {
@@ -4165,7 +4165,7 @@ pub const CHANGE_PASSWORD_FN_A = switch (@import("builtin").zig_backend) {
         param5: BOOLEAN,
         param6: u32,
         param7: ?*SecBufferDesc,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*i8,
         param1: ?*i8,
@@ -4175,7 +4175,7 @@ pub const CHANGE_PASSWORD_FN_A = switch (@import("builtin").zig_backend) {
         param5: BOOLEAN,
         param6: u32,
         param7: ?*SecBufferDesc,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const INITIALIZE_SECURITY_CONTEXT_FN_W = switch (@import("builtin").zig_backend) {
@@ -4192,7 +4192,7 @@ pub const INITIALIZE_SECURITY_CONTEXT_FN_W = switch (@import("builtin").zig_back
         param9: ?*SecBufferDesc,
         param10: ?*u32,
         param11: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: ?*SecHandle,
@@ -4206,7 +4206,7 @@ pub const INITIALIZE_SECURITY_CONTEXT_FN_W = switch (@import("builtin").zig_back
         param9: ?*SecBufferDesc,
         param10: ?*u32,
         param11: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const INITIALIZE_SECURITY_CONTEXT_FN_A = switch (@import("builtin").zig_backend) {
@@ -4223,7 +4223,7 @@ pub const INITIALIZE_SECURITY_CONTEXT_FN_A = switch (@import("builtin").zig_back
         param9: ?*SecBufferDesc,
         param10: ?*u32,
         param11: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: ?*SecHandle,
@@ -4237,7 +4237,7 @@ pub const INITIALIZE_SECURITY_CONTEXT_FN_A = switch (@import("builtin").zig_back
         param9: ?*SecBufferDesc,
         param10: ?*u32,
         param11: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const ACCEPT_SECURITY_CONTEXT_FN = switch (@import("builtin").zig_backend) {
@@ -4251,7 +4251,7 @@ pub const ACCEPT_SECURITY_CONTEXT_FN = switch (@import("builtin").zig_backend) {
         param6: ?*SecBufferDesc,
         param7: ?*u32,
         param8: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: ?*SecHandle,
@@ -4262,67 +4262,67 @@ pub const ACCEPT_SECURITY_CONTEXT_FN = switch (@import("builtin").zig_backend) {
         param6: ?*SecBufferDesc,
         param7: ?*u32,
         param8: ?*LARGE_INTEGER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const COMPLETE_AUTH_TOKEN_FN = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?*SecHandle,
         param1: ?*SecBufferDesc,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: ?*SecBufferDesc,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const IMPERSONATE_SECURITY_CONTEXT_FN = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?*SecHandle,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const REVERT_SECURITY_CONTEXT_FN = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?*SecHandle,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const QUERY_SECURITY_CONTEXT_TOKEN_FN = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?*SecHandle,
         param1: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const DELETE_SECURITY_CONTEXT_FN = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?*SecHandle,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const APPLY_CONTROL_TOKEN_FN = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?*SecHandle,
         param1: ?*SecBufferDesc,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: ?*SecBufferDesc,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const QUERY_CONTEXT_ATTRIBUTES_FN_W = switch (@import("builtin").zig_backend) {
@@ -4330,12 +4330,12 @@ pub const QUERY_CONTEXT_ATTRIBUTES_FN_W = switch (@import("builtin").zig_backend
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_W = switch (@import("builtin").zig_backend) {
@@ -4344,13 +4344,13 @@ pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_W = switch (@import("builtin").zig_back
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const QUERY_CONTEXT_ATTRIBUTES_FN_A = switch (@import("builtin").zig_backend) {
@@ -4358,12 +4358,12 @@ pub const QUERY_CONTEXT_ATTRIBUTES_FN_A = switch (@import("builtin").zig_backend
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_A = switch (@import("builtin").zig_backend) {
@@ -4372,13 +4372,13 @@ pub const QUERY_CONTEXT_ATTRIBUTES_EX_FN_A = switch (@import("builtin").zig_back
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const SET_CONTEXT_ATTRIBUTES_FN_W = switch (@import("builtin").zig_backend) {
@@ -4387,13 +4387,13 @@ pub const SET_CONTEXT_ATTRIBUTES_FN_W = switch (@import("builtin").zig_backend) 
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const SET_CONTEXT_ATTRIBUTES_FN_A = switch (@import("builtin").zig_backend) {
@@ -4402,13 +4402,13 @@ pub const SET_CONTEXT_ATTRIBUTES_FN_A = switch (@import("builtin").zig_backend) 
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_W = switch (@import("builtin").zig_backend) {
@@ -4416,12 +4416,12 @@ pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_W = switch (@import("builtin").zig_bac
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W = switch (@import("builtin").zig_backend) {
@@ -4430,13 +4430,13 @@ pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_W = switch (@import("builtin").zig_
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_A = switch (@import("builtin").zig_backend) {
@@ -4444,12 +4444,12 @@ pub const QUERY_CREDENTIALS_ATTRIBUTES_FN_A = switch (@import("builtin").zig_bac
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A = switch (@import("builtin").zig_backend) {
@@ -4458,13 +4458,13 @@ pub const QUERY_CREDENTIALS_ATTRIBUTES_EX_FN_A = switch (@import("builtin").zig_
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const SET_CREDENTIALS_ATTRIBUTES_FN_W = switch (@import("builtin").zig_backend) {
@@ -4473,13 +4473,13 @@ pub const SET_CREDENTIALS_ATTRIBUTES_FN_W = switch (@import("builtin").zig_backe
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const SET_CREDENTIALS_ATTRIBUTES_FN_A = switch (@import("builtin").zig_backend) {
@@ -4488,22 +4488,22 @@ pub const SET_CREDENTIALS_ATTRIBUTES_FN_A = switch (@import("builtin").zig_backe
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*anyopaque,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const FREE_CONTEXT_BUFFER_FN = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const MAKE_SIGNATURE_FN = switch (@import("builtin").zig_backend) {
@@ -4512,13 +4512,13 @@ pub const MAKE_SIGNATURE_FN = switch (@import("builtin").zig_backend) {
         param1: u32,
         param2: ?*SecBufferDesc,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*SecBufferDesc,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const VERIFY_SIGNATURE_FN = switch (@import("builtin").zig_backend) {
@@ -4527,13 +4527,13 @@ pub const VERIFY_SIGNATURE_FN = switch (@import("builtin").zig_backend) {
         param1: ?*SecBufferDesc,
         param2: u32,
         param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: ?*SecBufferDesc,
         param2: u32,
         param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const ENCRYPT_MESSAGE_FN = switch (@import("builtin").zig_backend) {
@@ -4542,13 +4542,13 @@ pub const ENCRYPT_MESSAGE_FN = switch (@import("builtin").zig_backend) {
         param1: u32,
         param2: ?*SecBufferDesc,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*SecBufferDesc,
         param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const DECRYPT_MESSAGE_FN = switch (@import("builtin").zig_backend) {
@@ -4557,57 +4557,57 @@ pub const DECRYPT_MESSAGE_FN = switch (@import("builtin").zig_backend) {
         param1: ?*SecBufferDesc,
         param2: u32,
         param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: ?*SecBufferDesc,
         param2: u32,
         param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const ENUMERATE_SECURITY_PACKAGES_FN_W = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?*u32,
         param1: ?*?*SecPkgInfoW,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*u32,
         param1: ?*?*SecPkgInfoW,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const ENUMERATE_SECURITY_PACKAGES_FN_A = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?*u32,
         param1: ?*?*SecPkgInfoA,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*u32,
         param1: ?*?*SecPkgInfoA,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const QUERY_SECURITY_PACKAGE_INFO_FN_W = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?*u16,
         param1: ?*?*SecPkgInfoW,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*u16,
         param1: ?*?*SecPkgInfoW,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const QUERY_SECURITY_PACKAGE_INFO_FN_A = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         param0: ?*i8,
         param1: ?*?*SecPkgInfoA,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*i8,
         param1: ?*?*SecPkgInfoA,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const SecDelegationType = enum(i32) {
@@ -4629,13 +4629,13 @@ pub const EXPORT_SECURITY_CONTEXT_FN = switch (@import("builtin").zig_backend) {
         param1: u32,
         param2: ?*SecBuffer,
         param3: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*SecHandle,
         param1: u32,
         param2: ?*SecBuffer,
         param3: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const IMPORT_SECURITY_CONTEXT_FN_W = switch (@import("builtin").zig_backend) {
@@ -4644,13 +4644,13 @@ pub const IMPORT_SECURITY_CONTEXT_FN_W = switch (@import("builtin").zig_backend)
         param1: ?*SecBuffer,
         param2: ?*anyopaque,
         param3: ?*SecHandle,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*u16,
         param1: ?*SecBuffer,
         param2: ?*anyopaque,
         param3: ?*SecHandle,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const IMPORT_SECURITY_CONTEXT_FN_A = switch (@import("builtin").zig_backend) {
@@ -4659,13 +4659,13 @@ pub const IMPORT_SECURITY_CONTEXT_FN_A = switch (@import("builtin").zig_backend)
         param1: ?*SecBuffer,
         param2: ?*anyopaque,
         param3: ?*SecHandle,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         param0: ?*i8,
         param1: ?*SecBuffer,
         param2: ?*anyopaque,
         param3: ?*SecHandle,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const SecurityFunctionTableW = extern struct {
@@ -8092,7 +8092,7 @@ pub const SslGetServerIdentityFn = switch (@import("builtin").zig_backend) {
         ServerIdentity: ?*?*u8,
         ServerIdentitySize: ?*u32,
         Flags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         // TODO: what to do with BytesParamIndex 1?
         ClientHello: ?*u8,
@@ -8100,7 +8100,7 @@ pub const SslGetServerIdentityFn = switch (@import("builtin").zig_backend) {
         ServerIdentity: ?*?*u8,
         ServerIdentitySize: ?*u32,
         Flags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const SCH_EXTENSION_DATA = extern struct {
@@ -8134,7 +8134,7 @@ pub const SslGetExtensionsFn = switch (@import("builtin").zig_backend) {
         genericExtensionsCount: u8,
         bytesToRead: ?*u32,
         flags: SchGetExtensionsOptions,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     else => *const fn(
         clientHello: [*:0]const u8,
         clientHelloByteSize: u32,
@@ -8142,7 +8142,7 @@ pub const SslGetExtensionsFn = switch (@import("builtin").zig_backend) {
         genericExtensionsCount: u8,
         bytesToRead: ?*u32,
         flags: SchGetExtensionsOptions,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
 pub const LOGON_HOURS = extern struct {
@@ -8937,13 +8937,13 @@ pub extern "advapi32" fn AuditLookupCategoryGuidFromCategoryId(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn AuditSetSecurity(
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn AuditQuerySecurity(
     SecurityInformation: u32,
-    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -8986,7 +8986,7 @@ pub extern "secur32" fn AcquireCredentialsHandleW(
     pvGetKeyArgument: ?*anyopaque,
     phCredential: ?*SecHandle,
     ptsExpiry: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "secur32" fn AcquireCredentialsHandleA(
@@ -8999,12 +8999,12 @@ pub extern "secur32" fn AcquireCredentialsHandleA(
     pvGetKeyArgument: ?*anyopaque,
     phCredential: ?*SecHandle,
     ptsExpiry: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn FreeCredentialsHandle(
     phCredential: ?*SecHandle,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "secur32" fn AddCredentialsW(
     hCredentials: ?*SecHandle,
@@ -9015,7 +9015,7 @@ pub extern "secur32" fn AddCredentialsW(
     pGetKeyFn: ?SEC_GET_KEY_FN,
     pvGetKeyArgument: ?*anyopaque,
     ptsExpiry: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "secur32" fn AddCredentialsA(
     hCredentials: ?*SecHandle,
@@ -9026,7 +9026,7 @@ pub extern "secur32" fn AddCredentialsA(
     pGetKeyFn: ?SEC_GET_KEY_FN,
     pvGetKeyArgument: ?*anyopaque,
     ptsExpiry: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "secur32" fn ChangeAccountPasswordW(
@@ -9038,7 +9038,7 @@ pub extern "secur32" fn ChangeAccountPasswordW(
     bImpersonating: BOOLEAN,
     dwReserved: u32,
     pOutput: ?*SecBufferDesc,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "secur32" fn ChangeAccountPasswordA(
@@ -9050,7 +9050,7 @@ pub extern "secur32" fn ChangeAccountPasswordA(
     bImpersonating: BOOLEAN,
     dwReserved: u32,
     pOutput: ?*SecBufferDesc,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn InitializeSecurityContextW(
@@ -9066,7 +9066,7 @@ pub extern "secur32" fn InitializeSecurityContextW(
     pOutput: ?*SecBufferDesc,
     pfContextAttr: ?*u32,
     ptsExpiry: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn InitializeSecurityContextA(
@@ -9082,7 +9082,7 @@ pub extern "secur32" fn InitializeSecurityContextA(
     pOutput: ?*SecBufferDesc,
     pfContextAttr: ?*u32,
     ptsExpiry: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "secur32" fn AcceptSecurityContext(
@@ -9095,47 +9095,47 @@ pub extern "secur32" fn AcceptSecurityContext(
     pOutput: ?*SecBufferDesc,
     pfContextAttr: ?*u32,
     ptsExpiry: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn CompleteAuthToken(
     phContext: ?*SecHandle,
     pToken: ?*SecBufferDesc,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn ImpersonateSecurityContext(
     phContext: ?*SecHandle,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn RevertSecurityContext(
     phContext: ?*SecHandle,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn QuerySecurityContextToken(
     phContext: ?*SecHandle,
     Token: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn DeleteSecurityContext(
     phContext: ?*SecHandle,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn ApplyControlToken(
     phContext: ?*SecHandle,
     pInput: ?*SecBufferDesc,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "secur32" fn QueryContextAttributesW(
     phContext: ?*SecHandle,
     ulAttribute: SECPKG_ATTR,
     pBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sspicli" fn QueryContextAttributesExW(
@@ -9144,14 +9144,14 @@ pub extern "sspicli" fn QueryContextAttributesExW(
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "secur32" fn QueryContextAttributesA(
     phContext: ?*SecHandle,
     ulAttribute: SECPKG_ATTR,
     pBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sspicli" fn QueryContextAttributesExA(
@@ -9160,7 +9160,7 @@ pub extern "sspicli" fn QueryContextAttributesExA(
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn SetContextAttributesW(
@@ -9169,7 +9169,7 @@ pub extern "secur32" fn SetContextAttributesW(
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn SetContextAttributesA(
@@ -9178,14 +9178,14 @@ pub extern "secur32" fn SetContextAttributesA(
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn QueryCredentialsAttributesW(
     phCredential: ?*SecHandle,
     ulAttribute: u32,
     pBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "sspicli" fn QueryCredentialsAttributesExW(
     phCredential: ?*SecHandle,
@@ -9193,14 +9193,14 @@ pub extern "sspicli" fn QueryCredentialsAttributesExW(
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn QueryCredentialsAttributesA(
     phCredential: ?*SecHandle,
     ulAttribute: u32,
     pBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "sspicli" fn QueryCredentialsAttributesExA(
     phCredential: ?*SecHandle,
@@ -9208,7 +9208,7 @@ pub extern "sspicli" fn QueryCredentialsAttributesExA(
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn SetCredentialsAttributesW(
@@ -9217,7 +9217,7 @@ pub extern "secur32" fn SetCredentialsAttributesW(
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn SetCredentialsAttributesA(
@@ -9226,12 +9226,12 @@ pub extern "secur32" fn SetCredentialsAttributesA(
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*anyopaque,
     cbBuffer: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn FreeContextBuffer(
     pvContextBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn MakeSignature(
@@ -9239,7 +9239,7 @@ pub extern "secur32" fn MakeSignature(
     fQOP: u32,
     pMessage: ?*SecBufferDesc,
     MessageSeqNo: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn VerifySignature(
@@ -9247,7 +9247,7 @@ pub extern "secur32" fn VerifySignature(
     pMessage: ?*SecBufferDesc,
     MessageSeqNo: u32,
     pfQOP: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn EncryptMessage(
@@ -9255,7 +9255,7 @@ pub extern "secur32" fn EncryptMessage(
     fQOP: u32,
     pMessage: ?*SecBufferDesc,
     MessageSeqNo: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn DecryptMessage(
@@ -9263,31 +9263,31 @@ pub extern "secur32" fn DecryptMessage(
     pMessage: ?*SecBufferDesc,
     MessageSeqNo: u32,
     pfQOP: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn EnumerateSecurityPackagesW(
     pcPackages: ?*u32,
     ppPackageInfo: ?*?*SecPkgInfoW,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn EnumerateSecurityPackagesA(
     pcPackages: ?*u32,
     ppPackageInfo: ?*?*SecPkgInfoA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn QuerySecurityPackageInfoW(
     pszPackageName: ?PWSTR,
     ppPackageInfo: ?*?*SecPkgInfoW,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn QuerySecurityPackageInfoA(
     pszPackageName: ?PSTR,
     ppPackageInfo: ?*?*SecPkgInfoA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn ExportSecurityContext(
@@ -9295,7 +9295,7 @@ pub extern "secur32" fn ExportSecurityContext(
     fFlags: EXPORT_SECURITY_CONTEXT_FLAGS,
     pPackedContext: ?*SecBuffer,
     pToken: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn ImportSecurityContextW(
@@ -9303,7 +9303,7 @@ pub extern "secur32" fn ImportSecurityContextW(
     pPackedContext: ?*SecBuffer,
     Token: ?*anyopaque,
     phContext: ?*SecHandle,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn ImportSecurityContextA(
@@ -9311,7 +9311,7 @@ pub extern "secur32" fn ImportSecurityContextA(
     pPackedContext: ?*SecBuffer,
     Token: ?*anyopaque,
     phContext: ?*SecHandle,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "secur32" fn InitSecurityInterfaceA(
@@ -9325,37 +9325,37 @@ pub extern "secur32" fn InitSecurityInterfaceW(
 pub extern "secur32" fn SaslEnumerateProfilesA(
     ProfileList: ?*?PSTR,
     ProfileCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "secur32" fn SaslEnumerateProfilesW(
     ProfileList: ?*?PWSTR,
     ProfileCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "secur32" fn SaslGetProfilePackageA(
     ProfileName: ?PSTR,
     PackageInfo: ?*?*SecPkgInfoA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "secur32" fn SaslGetProfilePackageW(
     ProfileName: ?PWSTR,
     PackageInfo: ?*?*SecPkgInfoW,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "secur32" fn SaslIdentifyPackageA(
     pInput: ?*SecBufferDesc,
     PackageInfo: ?*?*SecPkgInfoA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "secur32" fn SaslIdentifyPackageW(
     pInput: ?*SecBufferDesc,
     PackageInfo: ?*?*SecPkgInfoW,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "secur32" fn SaslInitializeSecurityContextW(
@@ -9371,7 +9371,7 @@ pub extern "secur32" fn SaslInitializeSecurityContextW(
     pOutput: ?*SecBufferDesc,
     pfContextAttr: ?*u32,
     ptsExpiry: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "secur32" fn SaslInitializeSecurityContextA(
@@ -9387,7 +9387,7 @@ pub extern "secur32" fn SaslInitializeSecurityContextA(
     pOutput: ?*SecBufferDesc,
     pfContextAttr: ?*u32,
     ptsExpiry: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "secur32" fn SaslAcceptSecurityContext(
@@ -9400,7 +9400,7 @@ pub extern "secur32" fn SaslAcceptSecurityContext(
     pOutput: ?*SecBufferDesc,
     pfContextAttr: ?*u32,
     ptsExpiry: ?*LARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "secur32" fn SaslSetContextOption(
@@ -9408,7 +9408,7 @@ pub extern "secur32" fn SaslSetContextOption(
     Option: u32,
     Value: ?*anyopaque,
     Size: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "secur32" fn SaslGetContextOption(
@@ -9417,7 +9417,7 @@ pub extern "secur32" fn SaslGetContextOption(
     Value: ?*anyopaque,
     Size: u32,
     Needed: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "credui" fn SspiPromptForCredentialsW(
@@ -9449,7 +9449,7 @@ pub extern "secur32" fn SspiPrepareForCredRead(
     pszTargetName: ?[*:0]const u16,
     pCredmanCredentialType: ?*u32,
     ppszCredmanTargetName: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiPrepareForCredWrite(
@@ -9460,29 +9460,29 @@ pub extern "secur32" fn SspiPrepareForCredWrite(
     ppszCredmanUserName: ?*?PWSTR,
     ppCredentialBlob: ?*?*u8,
     pCredentialBlobSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiEncryptAuthIdentity(
     AuthData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "sspicli" fn SspiEncryptAuthIdentityEx(
     Options: u32,
     AuthData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiDecryptAuthIdentity(
     EncryptedAuthData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "sspicli" fn SspiDecryptAuthIdentityEx(
     Options: u32,
     EncryptedAuthData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiIsAuthIdentityEncrypted(
@@ -9495,18 +9495,18 @@ pub extern "secur32" fn SspiEncodeAuthIdentityAsStrings(
     ppszUserName: ?*?PWSTR,
     ppszDomainName: ?*?PWSTR,
     ppszPackedCredentialsString: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiValidateAuthIdentity(
     AuthData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiCopyAuthIdentity(
     AuthData: ?*anyopaque,
     AuthDataCopy: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiFreeAuthIdentity(
@@ -9529,7 +9529,7 @@ pub extern "secur32" fn SspiEncodeStringsAsAuthIdentity(
     pszDomainName: ?[*:0]const u16,
     pszPackedCredentialsString: ?[*:0]const u16,
     ppAuthIdentity: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiCompareAuthIdentities(
@@ -9537,14 +9537,14 @@ pub extern "secur32" fn SspiCompareAuthIdentities(
     AuthIdentity2: ?*anyopaque,
     SameSuppliedUser: ?*BOOLEAN,
     SameSuppliedIdentity: ?*BOOLEAN,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiMarshalAuthIdentity(
     AuthIdentity: ?*anyopaque,
     AuthIdentityLength: ?*u32,
     AuthIdentityByteArray: ?*?*i8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiUnmarshalAuthIdentity(
@@ -9552,7 +9552,7 @@ pub extern "secur32" fn SspiUnmarshalAuthIdentity(
     // TODO: what to do with BytesParamIndex 0?
     AuthIdentityByteArray: ?PSTR,
     ppAuthIdentity: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "credui" fn SspiIsPromptingNeeded(
@@ -9563,36 +9563,36 @@ pub extern "credui" fn SspiIsPromptingNeeded(
 pub extern "secur32" fn SspiGetTargetHostName(
     pszTargetName: ?[*:0]const u16,
     pszHostName: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn SspiExcludePackage(
     AuthIdentity: ?*anyopaque,
     pszPackageName: ?[*:0]const u16,
     ppNewAuthIdentity: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn AddSecurityPackageA(
     pszPackageName: ?PSTR,
     pOptions: ?*SECURITY_PACKAGE_OPTIONS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn AddSecurityPackageW(
     pszPackageName: ?PWSTR,
     pOptions: ?*SECURITY_PACKAGE_OPTIONS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn DeleteSecurityPackageA(
     pszPackageName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "secur32" fn DeleteSecurityPackageW(
     pszPackageName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "secur32" fn CredMarshalTargetInfo(
@@ -9651,7 +9651,7 @@ pub extern "schannel" fn SslGetServerIdentity(
     ServerIdentity: ?*?*u8,
     ServerIdentitySize: ?*u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "schannel" fn SslGetExtensions(
     clientHello: [*:0]const u8,
@@ -9660,7 +9660,7 @@ pub extern "schannel" fn SslGetExtensions(
     genericExtensionsCount: u8,
     bytesToRead: ?*u32,
     flags: SchGetExtensionsOptions,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "tokenbinding" fn TokenBindingGenerateBinding(
@@ -9675,7 +9675,7 @@ pub extern "tokenbinding" fn TokenBindingGenerateBinding(
     tokenBinding: ?*?*anyopaque,
     tokenBindingSize: ?*u32,
     resultData: ?*?*TOKENBINDING_RESULT_DATA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "tokenbinding" fn TokenBindingGenerateMessage(
@@ -9684,7 +9684,7 @@ pub extern "tokenbinding" fn TokenBindingGenerateMessage(
     tokenBindingsCount: u32,
     tokenBindingMessage: ?*?*anyopaque,
     tokenBindingMessageSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "tokenbinding" fn TokenBindingVerifyMessage(
@@ -9696,26 +9696,26 @@ pub extern "tokenbinding" fn TokenBindingVerifyMessage(
     tlsEKM: ?*const anyopaque,
     tlsEKMSize: u32,
     resultList: ?*?*TOKENBINDING_RESULT_LIST,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "tokenbinding" fn TokenBindingGetKeyTypesClient(
     keyTypes: ?*?*TOKENBINDING_KEY_TYPES,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "tokenbinding" fn TokenBindingGetKeyTypesServer(
     keyTypes: ?*?*TOKENBINDING_KEY_TYPES,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "tokenbinding" fn TokenBindingDeleteBinding(
     targetURL: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "tokenbinding" fn TokenBindingDeleteAllBindings(
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "tokenbinding" fn TokenBindingGenerateID(
@@ -9724,18 +9724,18 @@ pub extern "tokenbinding" fn TokenBindingGenerateID(
     publicKey: ?*const anyopaque,
     publicKeySize: u32,
     resultData: ?*?*TOKENBINDING_RESULT_DATA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "tokenbinding" fn TokenBindingGenerateIDForUri(
     keyType: TOKENBINDING_KEY_PARAMETERS_TYPE,
     targetUri: ?[*:0]const u16,
     resultData: ?*?*TOKENBINDING_RESULT_DATA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "tokenbinding" fn TokenBindingGetHighestSupportedVersion(
     majorVersion: ?*u8,
     minorVersion: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "secur32" fn GetUserNameExA(
@@ -10373,6 +10373,7 @@ const LPTHREAD_START_ROUTINE = @import("../../system/threading.zig").LPTHREAD_ST
 const LUID = @import("../../foundation.zig").LUID;
 const NTSTATUS = @import("../../foundation.zig").NTSTATUS;
 const OBJECT_ATTRIBUTES = @import("../../system/windows_programming.zig").OBJECT_ATTRIBUTES;
+const PSECURITY_DESCRIPTOR = @import("../../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../../foundation.zig").PSID;
 const PSTR = @import("../../foundation.zig").PSTR;
 const PWSTR = @import("../../foundation.zig").PWSTR;
@@ -10381,7 +10382,6 @@ const SEC_WINNT_AUTH_IDENTITY_A = @import("../../system/rpc.zig").SEC_WINNT_AUTH
 const SEC_WINNT_AUTH_IDENTITY_W = @import("../../system/rpc.zig").SEC_WINNT_AUTH_IDENTITY_W;
 const SecHandle = @import("../../security/credentials.zig").SecHandle;
 const SECURITY_ATTRIBUTES = @import("../../security.zig").SECURITY_ATTRIBUTES;
-const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
 const SECURITY_IMPERSONATION_LEVEL = @import("../../security.zig").SECURITY_IMPERSONATION_LEVEL;
 const SID_NAME_USE = @import("../../security.zig").SID_NAME_USE;
 const STRING = @import("../../system/kernel.zig").STRING;

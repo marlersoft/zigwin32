@@ -11037,7 +11037,7 @@ pub extern "wtsapi32" fn WTSSetListenerSecurityW(
     Reserved: u32,
     pListenerName: ?PWSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -11047,7 +11047,7 @@ pub extern "wtsapi32" fn WTSSetListenerSecurityA(
     Reserved: u32,
     pListenerName: ?PSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -11057,7 +11057,7 @@ pub extern "wtsapi32" fn WTSGetListenerSecurityW(
     Reserved: u32,
     pListenerName: ?PWSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -11069,7 +11069,7 @@ pub extern "wtsapi32" fn WTSGetListenerSecurityA(
     Reserved: u32,
     pListenerName: ?PSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     nLength: u32,
     lpnLengthNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -11280,12 +11280,12 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const MESSAGEBOX_RESULT = @import("../ui/windows_and_messaging.zig").MESSAGEBOX_RESULT;
 const MESSAGEBOX_STYLE = @import("../ui/windows_and_messaging.zig").MESSAGEBOX_STYLE;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../foundation.zig").PSID;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;
 

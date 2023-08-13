@@ -1719,14 +1719,14 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
                 self: *const IBackgroundCopyJobHttpOptions,
                 pStoreLocation: ?*BG_CERT_STORE_LOCATION,
                 pStoreName: ?*?PWSTR,
-                ppCertHashBlob: ?*[20]?*u8,
+                ppCertHashBlob: *[20]?*u8,
                 pSubjectName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IBackgroundCopyJobHttpOptions,
                 pStoreLocation: ?*BG_CERT_STORE_LOCATION,
                 pStoreName: ?*?PWSTR,
-                ppCertHashBlob: ?*[20]?*u8,
+                ppCertHashBlob: *[20]?*u8,
                 pSubjectName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -1787,7 +1787,7 @@ pub const IBackgroundCopyJobHttpOptions = extern struct {
             return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).RemoveClientCertificate(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IBackgroundCopyJobHttpOptions_GetClientCertificate(self: *const T, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: ?*[20]?*u8, pSubjectName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        pub fn IBackgroundCopyJobHttpOptions_GetClientCertificate(self: *const T, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: *[20]?*u8, pSubjectName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).GetClientCertificate(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), pStoreLocation, pStoreName, ppCertHashBlob, pSubjectName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

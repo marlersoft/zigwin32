@@ -5810,14 +5810,14 @@ pub const PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY = switch (@import("builtin").zig
         hKey: ?HKEY,
         RequestedInformation: u32,
         // TODO: what to do with BytesParamIndex 3?
-        pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+        pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
         lpcbSecurityDescriptor: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
     else => *const fn(
         hKey: ?HKEY,
         RequestedInformation: u32,
         // TODO: what to do with BytesParamIndex 3?
-        pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+        pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
         lpcbSecurityDescriptor: ?*u32,
     ) callconv(@import("std").os.windows.WINAPI) i32,
 } ;
@@ -5826,12 +5826,12 @@ pub const PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY = switch (@import("builtin").zig
     .stage1 => fn(
         hKey: ?HKEY,
         SecurityInformation: u32,
-        pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+        pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     ) callconv(@import("std").os.windows.WINAPI) i32,
     else => *const fn(
         hKey: ?HKEY,
         SecurityInformation: u32,
-        pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+        pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     ) callconv(@import("std").os.windows.WINAPI) i32,
 } ;
 
@@ -16660,7 +16660,7 @@ pub extern "clusapi" fn ClusterRegGetKeySecurity(
     hKey: ?HKEY,
     RequestedInformation: u32,
     // TODO: what to do with BytesParamIndex 3?
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
@@ -16668,7 +16668,7 @@ pub extern "clusapi" fn ClusterRegGetKeySecurity(
 pub extern "clusapi" fn ClusterRegSetKeySecurity(
     hKey: ?HKEY,
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
@@ -17878,10 +17878,10 @@ const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const NTSTATUS = @import("../foundation.zig").NTSTATUS;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SC_HANDLE = @import("../security.zig").SC_HANDLE;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const SECURITY_DESCRIPTOR_RELATIVE = @import("../system/system_services.zig").SECURITY_DESCRIPTOR_RELATIVE;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;

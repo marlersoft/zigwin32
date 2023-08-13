@@ -765,7 +765,7 @@ pub const ECHOWAVEFILTER = extern struct {
 };
 
 pub const WAVEHDR = extern struct {
-    lpData: ?PSTR align(1),
+    lpData: ?[*]u8 align(1),
     dwBufferLength: u32 align(1),
     dwBytesRecorded: u32 align(1),
     dwUser: usize align(1),

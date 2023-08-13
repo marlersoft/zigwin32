@@ -10200,7 +10200,7 @@ pub extern "ole32" fn CoRevokeInitializeSpy(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn CoGetSystemSecurityPermissions(
     comSDType: COMSD,
-    ppSD: ?*?*SECURITY_DESCRIPTOR,
+    ppSD: ?*?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -10473,7 +10473,7 @@ pub extern "ole32" fn CoRegisterClassObject(
     rclsid: ?*const Guid,
     pUnk: ?*IUnknown,
     dwClsContext: CLSCTX,
-    flags: u32,
+    flags: REGCLS,
     lpdwRegister: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -10556,7 +10556,7 @@ pub extern "ole32" fn CoDisconnectContext(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ole32" fn CoInitializeSecurity(
-    pSecDesc: ?*SECURITY_DESCRIPTOR,
+    pSecDesc: ?PSECURITY_DESCRIPTOR,
     cAuthSvc: i32,
     asAuthSvc: ?[*]SOLE_AUTHENTICATION_SERVICE,
     pReserved1: ?*anyopaque,
@@ -10876,10 +10876,10 @@ const IRecordInfo = @import("../system/ole.zig").IRecordInfo;
 const IStorage = @import("../system/com/structured_storage.zig").IStorage;
 const LARGE_INTEGER = @import("../foundation.zig").LARGE_INTEGER;
 const PARAMDESC = @import("../system/ole.zig").PARAMDESC;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const STGC = @import("../system/com/structured_storage.zig").STGC;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 const userHBITMAP = @import("../system/system_services.zig").userHBITMAP;

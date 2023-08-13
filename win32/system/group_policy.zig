@@ -7454,7 +7454,7 @@ pub extern "userenv" fn ProcessGroupPolicyCompletedEx(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "userenv" fn RsopAccessCheckByType(
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     pPrincipalSelfSid: ?PSID,
     pRsopToken: ?*anyopaque,
     dwDesiredAccessMask: u32,
@@ -7631,11 +7631,11 @@ const IWbemServices = @import("../system/wmi.zig").IWbemServices;
 const LPARAM = @import("../foundation.zig").LPARAM;
 const OBJECT_TYPE_LIST = @import("../security.zig").OBJECT_TYPE_LIST;
 const PRIVILEGE_SET = @import("../security.zig").PRIVILEGE_SET;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSID = @import("../foundation.zig").PSID;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const VARIANT = @import("../system/com.zig").VARIANT;
 

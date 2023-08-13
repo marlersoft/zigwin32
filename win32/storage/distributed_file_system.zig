@@ -143,7 +143,7 @@ pub const DFS_INFO_8 = extern struct {
     PropertyFlags: u32,
     MetadataSize: u32,
     SdLengthReserved: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     NumberOfStorages: u32,
 };
 
@@ -156,7 +156,7 @@ pub const DFS_INFO_9 = extern struct {
     PropertyFlags: u32,
     MetadataSize: u32,
     SdLengthReserved: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     NumberOfStorages: u32,
     Storage: ?*DFS_STORAGE_INFO_1,
 };
@@ -208,12 +208,12 @@ pub const DFS_INFO_107 = extern struct {
     PropertyFlagMask: u32,
     PropertyFlags: u32,
     SdLengthReserved: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 };
 
 pub const DFS_INFO_150 = extern struct {
     SdLengthReserved: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 };
 
 pub const DFS_INFO_200 = extern struct {
@@ -440,7 +440,7 @@ pub extern "netapi32" fn NetDfsRemoveRootTarget(
 pub extern "netapi32" fn NetDfsGetSecurity(
     DfsEntryPath: ?PWSTR,
     SecurityInformation: u32,
-    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -448,14 +448,14 @@ pub extern "netapi32" fn NetDfsGetSecurity(
 pub extern "netapi32" fn NetDfsSetSecurity(
     DfsEntryPath: ?PWSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn NetDfsGetStdContainerSecurity(
     MachineName: ?PWSTR,
     SecurityInformation: u32,
-    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -463,14 +463,14 @@ pub extern "netapi32" fn NetDfsGetStdContainerSecurity(
 pub extern "netapi32" fn NetDfsSetStdContainerSecurity(
     MachineName: ?PWSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn NetDfsGetFtContainerSecurity(
     DomainName: ?PWSTR,
     SecurityInformation: u32,
-    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -478,7 +478,7 @@ pub extern "netapi32" fn NetDfsGetFtContainerSecurity(
 pub extern "netapi32" fn NetDfsSetFtContainerSecurity(
     DomainName: ?PWSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -506,8 +506,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
     @setEvalBranchQuota(

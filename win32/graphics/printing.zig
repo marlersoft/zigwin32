@@ -3420,7 +3420,7 @@ pub const PRINTER_INFO_2A = extern struct {
     pPrintProcessor: ?PSTR,
     pDatatype: ?PSTR,
     pParameters: ?PSTR,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Attributes: u32,
     Priority: u32,
     DefaultPriority: u32,
@@ -3444,7 +3444,7 @@ pub const PRINTER_INFO_2W = extern struct {
     pPrintProcessor: ?PWSTR,
     pDatatype: ?PWSTR,
     pParameters: ?PWSTR,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Attributes: u32,
     Priority: u32,
     DefaultPriority: u32,
@@ -3456,7 +3456,7 @@ pub const PRINTER_INFO_2W = extern struct {
 };
 
 pub const PRINTER_INFO_3 = extern struct {
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 };
 
 pub const PRINTER_INFO_4A = extern struct {
@@ -3562,7 +3562,7 @@ pub const JOB_INFO_2A = extern struct {
     pDriverName: ?PSTR,
     pDevMode: ?*DEVMODEA,
     pStatus: ?PSTR,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Status: u32,
     Priority: u32,
     Position: u32,
@@ -3588,7 +3588,7 @@ pub const JOB_INFO_2W = extern struct {
     pDriverName: ?PWSTR,
     pDevMode: ?*DEVMODEW,
     pStatus: ?PWSTR,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Status: u32,
     Priority: u32,
     Position: u32,
@@ -3620,7 +3620,7 @@ pub const JOB_INFO_4A = extern struct {
     pDriverName: ?PSTR,
     pDevMode: ?*DEVMODEA,
     pStatus: ?PSTR,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Status: u32,
     Priority: u32,
     Position: u32,
@@ -3647,7 +3647,7 @@ pub const JOB_INFO_4W = extern struct {
     pDriverName: ?PWSTR,
     pDevMode: ?*DEVMODEW,
     pStatus: ?PWSTR,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     Status: u32,
     Priority: u32,
     Position: u32,
@@ -12181,11 +12181,11 @@ const LPARAM = @import("../foundation.zig").LPARAM;
 const LRESULT = @import("../foundation.zig").LRESULT;
 const PANOSE = @import("../graphics/gdi.zig").PANOSE;
 const POINTL = @import("../foundation.zig").POINTL;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const RECTL = @import("../foundation.zig").RECTL;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const SIZE = @import("../foundation.zig").SIZE;
 const STREAM_SEEK = @import("../system/com.zig").STREAM_SEEK;
 const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;

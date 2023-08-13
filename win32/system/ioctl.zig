@@ -6003,17 +6003,17 @@ pub const STREAM_INFORMATION_ENTRY = extern struct {
             Class: FILE_STORAGE_TIER_CLASS,
             Flags: u32,
         };
-        pub const _DataStream = extern struct {
-            Length: u16,
-            Flags: u16,
-            Reserved: u32,
-            Vdl: u64,
-        };
         pub const _Ea = extern struct {
             Length: u16,
             Flags: u16,
             EaSize: u32,
             EaInformationOffset: u32,
+        };
+        pub const _DataStream = extern struct {
+            Length: u16,
+            Flags: u16,
+            Reserved: u32,
+            Vdl: u64,
         };
         DesiredStorageClass: _DesiredStorageClass,
         DataStream: _DataStream,
