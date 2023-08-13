@@ -96,7 +96,7 @@ pub const MAXLENGTH_NAI = @as(u32, 72);
 pub const MAXLENGTH_UICCDATASTORE = @as(u32, 10);
 
 //--------------------------------------------------------------------------------
-// Section: Types (18)
+// Section: Types (20)
 //--------------------------------------------------------------------------------
 pub const MODEM_STATUS_FLAGS = enum(u32) {
     CTS_ON = 16,
@@ -385,6 +385,28 @@ pub const MDMSPKRFLAG_DIAL = MODEMDEVCAPS_SPEAKER_MODE.DIAL;
 pub const MDMSPKRFLAG_OFF = MODEMDEVCAPS_SPEAKER_MODE.OFF;
 pub const MDMSPKRFLAG_ON = MODEMDEVCAPS_SPEAKER_MODE.ON;
 
+pub const DCB_STOP_BITS = enum(u8) {
+    ONESTOPBIT = 0,
+    ONE5STOPBITS = 1,
+    TWOSTOPBITS = 2,
+};
+pub const ONESTOPBIT = DCB_STOP_BITS.ONESTOPBIT;
+pub const ONE5STOPBITS = DCB_STOP_BITS.ONE5STOPBITS;
+pub const TWOSTOPBITS = DCB_STOP_BITS.TWOSTOPBITS;
+
+pub const DCB_PARITY = enum(u8) {
+    EVENPARITY = 2,
+    MARKPARITY = 3,
+    NOPARITY = 0,
+    ODDPARITY = 1,
+    SPACEPARITY = 4,
+};
+pub const EVENPARITY = DCB_PARITY.EVENPARITY;
+pub const MARKPARITY = DCB_PARITY.MARKPARITY;
+pub const NOPARITY = DCB_PARITY.NOPARITY;
+pub const ODDPARITY = DCB_PARITY.ODDPARITY;
+pub const SPACEPARITY = DCB_PARITY.SPACEPARITY;
+
 pub const MODEMDEVCAPS = extern struct {
     dwActualSize: u32,
     dwRequiredSize: u32,
@@ -458,8 +480,8 @@ pub const DCB = extern struct {
     XonLim: u16,
     XoffLim: u16,
     ByteSize: u8,
-    Parity: u8,
-    StopBits: u8,
+    Parity: DCB_PARITY,
+    StopBits: DCB_STOP_BITS,
     XonChar: CHAR,
     XoffChar: CHAR,
     ErrorChar: CHAR,
